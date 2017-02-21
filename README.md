@@ -1,6 +1,6 @@
 # HelloWorld
 
-* ActionScript 3.0
+* ActionScript
 * Assembly
 * C
 * C++
