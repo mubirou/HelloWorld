@@ -3,8 +3,8 @@
 ## Flex SDK / ActionScript 3.0 について
 
 * Ver.4.6 までは Adobe Flex SDK、Ver.4.8 からは [Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK となる
-* ActionScript 3.0 は ECMAScript 4 草案（ECMA-262 4th 草案）がベース
-* 2010年4月に iPhone SDK の規約変更後 Flash の重要度が低下、AS3 が利用される場面も減少した
+* ActionScript 3.0（AS3）は ECMAScript 4 草案（ECMA-262 4th 草案）がベース
+* 2010年4月に iPhone SDK の規約変更後 [Adobe Flash](https://ja.wikipedia.org/wiki/Adobe_Flash) の重要度が低下、AS3 が利用される場面も減少した
 * ActionScript 4 のホワイトペーパーが公開されたが開発予定はない
 
 ## 開発環境の構築
