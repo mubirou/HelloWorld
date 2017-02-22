@@ -1,13 +1,31 @@
-# HELLO WORLD
+# HelloWorld
 
-* ActionScript 3.0
-* C#
+* ActionScript
+* アセンブリ言語
+* C
 * C++
+* C#
+* COBOL
+* CoffeeScript
+* D
 * ECMAScript 6
+* F#
+* FORTLAN
+* Go
+* Haskell
+* Haxe
+* HTML+CSS
 * Java
 * JavaScript
+* Objective-C
+* Parl
+* Parl 6
 * PHP
 * Python
+* R
 * Ruby
+* Scala
+* SQL
 * Swift
 * TypeScript
+* Visual Basic .NET
