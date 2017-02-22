@@ -5,7 +5,7 @@
 |カテゴリ|ソフト名|リリース日|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04 LTS（Linux）|2016年4月|
-|コンパイラ|Apache Flex SDK 4.15|2016年1月|
+|コンパイラ|Apache Flex SDK 4.15.0|2016年1月|
 |Flash Player|Adobe PlayerGlobal 24.0.0.221|2017年2月|
 |エディタ|Visual Stduio Code 1.9.1|2017年1月|
 |拡張機能|NextGen ActionScript 0.3.1|不明|
@@ -40,7 +40,7 @@
     http://www.adobe.com/jp/support/flashplayer/debug_downloads.html
     1. 「最新版のplayerglobal.swcをダウンロード」を選択しダウンロード
     1. /opt/flex_sdk/frameworks/libs/ に /player/11.1/ フォルダを作成
-    1. ダウンロードした playerglobal24_0.swc を /opt/flex_sdk/frameworks/libs/player/11.1/ にそのまま（展開しない）複製
+    1. ダウンロードした playerglobal24_0.swc を /opt/flex_sdk/frameworks/libs/player/11.1/ にそのまま複製（展開しない）
     1. ファイル名を playerglobal24_0.swc → playerglobal.swc に変更
 
 1. 設定ファイルの変更
@@ -89,12 +89,12 @@ package {
 
 ### コンパイル（.as → .swf）
 
-1. Visual Studio Code で 表示 → 総合ターミナル を選択
+1. Visual Studio Code で 表示 → 総合ターミナル を選択（端末でも可）
 
 1. Main.as ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/actionscript
 
-1. コンパイル  
+1. コンパイラ（mxmlc）でコンパイル  
 $ /opt/flex_sdk/bin/mxmlc Main.as  
 設定ファイル "/opt/flex_sdk/frameworks/flex-config.xml" をロードしています  
 /home/（ユーザー名）/デスクトップ/actionscript/Main.swf (640 バイト)
@@ -115,7 +115,12 @@ $ /opt/flex_sdk/bin/mxmlc Main.as
         <param name="movie" value="Main.swf">
         <paarm name="quality" value="high">
         <param name="bgcolor" value="#ffcc00">
-        <embed src="Main.swf" quality="high" bgcolor="#ffcc00" width="550" height="400" type="application/x=shockwave-flash"></embed>
+        <embed src="Main.swf" 
+               quality="high"
+               bgcolor="#ffcc00"
+               width="550" height="400"
+               type="application/x=shockwave-flash">
+        </embed>
     </object>
 </body>
 </html>
