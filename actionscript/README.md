@@ -5,8 +5,8 @@
 |カテゴリ|ソフト名|リリース日|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04 LTS（Linux）|2016年4月|
-|コンパイラ|[Apache Flex SDK](https://ja.wikipedia.org/wiki/Apache_Flex) 4.15.0|2016年1月|
-|Flash Player|[Adobe PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 24.0.0.221|2017年2月|
+|コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.15.0|2016年1月|
+|Flash Player|Adobe [PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 24.0.0.221|2017年2月|
 |エディタ|Visual Stduio Code 1.9.1|2017年1月|
 |拡張機能|NextGen ActionScript 0.3.1|不明|
 |ブラウザ|Mozilla Firefox 51.0.1|2017年1月|
