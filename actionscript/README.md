@@ -126,7 +126,7 @@ $ /opt/flex_sdk/bin/mxmlc Main.as
 1. Flash Player 対応の Web ブラウザ（Firefox）を起動
 
 1. ファイル → ファイルを開く で上記の index.html を開く  
-550 x 400 の矩形のステージ上の左上に Hello, world! と表示されたら成功 👌
+550 x 400 の矩形のステージ上の左上に Hello, world! と表示されたら成功！
 
 ***
 更新日: 2017年2月22日
