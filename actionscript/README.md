@@ -2,6 +2,14 @@
 
 ## 開発環境の構築
 
+|カテゴリ|ソフト名|リリース日|
+|:--:|:--:|:--:|
+|OS|Ubuntu 16.04 LTS（Linux）|2016年4月|
+|コンパイラ|Apache Flex SDK 4.15|2016年1月|
+|エディタ|Visual Stduio Code 1.9.1|2017年1月|
+|拡張機能|NextGen ActionScript 0.3.1||
+|その他|Java 1.8.0_121（Java SE 8）|2017年1月|
+
 1. Apache Flex SDK のインストール  
     1. https://flex.apache.org/ にアクセス
     1. DOWNLOAD FLEX → SDK BINARIES を選択
@@ -26,16 +34,7 @@
 
 1. 設定ファイルの変更
     1. コードエディタで /opt/flex_sdk/frameworks/flex-config.xml を開く
-    1. 426行目  
-
-|カテゴリ|ソフト名|リリース日|
-|:--:|:--:|:--:|
-|OS|Ubuntu 16.04 LTS（Linux）|2016年4月|
-|コンパイラ|Apache Flex SDK 4.15|2016年1月|
-|エディタ|Visual Stduio Code 1.9.1|2017年1月|
-|拡張機能|NextGen ActionScript 0.3.1||
-|その他|Java 1.8.0_121（Java SE 8）|2017年1月|
-
+    1. XXX 
 
 ## コードの記述〜実行
 
