@@ -1,4 +1,4 @@
-# ActionScript
+# ActionScript 3.0
 
 ### 開発環境の構築
 
