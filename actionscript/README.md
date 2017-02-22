@@ -2,15 +2,15 @@
 
 ### 開発環境の構築
 
-|カテゴリ|ソフト名|リリース日|
+||ソフト名|リリース日|
 |:--:|:--:|:--:|
-|OS|Ubuntu 16.04 LTS（Linux）|2016年4月|
-|コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.15.0|2016年1月|
-|Flash Player|Adobe [PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 24.0.0.221|2017年2月|
-|エディタ|Visual Stduio Code 1.9.1|2017年1月|
+|OS|Ubuntu 16.04 LTS（Linux）|2016年04月|
+|コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.15.0|2016年01月|
+|Flash Player|Adobe [PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 24.0.0.221|2017年02月|
+|エディタ|Visual Stduio Code 1.9.1|2017年01月|
 |拡張機能|NextGen ActionScript 0.3.1|不明|
-|ブラウザ|Mozilla Firefox 51.0.1|2017年1月|
-|その他|Java 1.8.0_121（Java SE 8）|2017年1月|
+|ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
+|その他|Java 1.8.0_121（Java SE 8）|2017年01月|
 
 1. Apache Flex SDK のインストール  
     1. https://flex.apache.org/ にアクセス
