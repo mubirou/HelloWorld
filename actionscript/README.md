@@ -56,7 +56,7 @@
 1. Visual Studio Code を起動
     1. ファイル → 新規ファイル を選択
     1. ファイル → 保存 を選択
-    1. 任意の場所（ここではデスクトップ上に actionscript フォルダを作成）に Main.as という名で保存
+    1. 任意の場所（今回はデスクトップ上に actionscript フォルダを作成）に Main.as という名で保存
 
 1. コードの記述
 ```
@@ -126,7 +126,7 @@ $ /opt/flex_sdk/bin/mxmlc Main.as
 1. Flash Player 対応の Web ブラウザ（Firefox）を起動
 
 1. ファイル → ファイルを開く で上記の index.html を開く  
-550 x 400 の矩形のステージに Hello, world! と表示されたら成功👍
+550 x 400 の矩形のステージ上の左上に Hello, world! と表示されたら成功 👌
 
 ***
-作成日: 2017年2月22日
+更新日: 2017年2月22日
