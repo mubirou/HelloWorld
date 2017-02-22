@@ -1,13 +1,13 @@
 # ActionScript 3.0
 
-### Flex SDK / ActionScript 3.0 について
+## Flex SDK / ActionScript 3.0 について
 
-* Ver.4.6 までは "Adobe" Flex SDK、Ver.4.8 からは "Apache" Flex SDK
-* ActionScript 3.0 は ECMAScript 4 草案（ECMA-262 4th 草案）ベース
+* Ver.4.6 までは Adobe Flex SDK、Ver.4.8 からは [Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK となる
+* ActionScript 3.0 は ECMAScript 4 草案（ECMA-262 4th 草案）がベース
 * 2010年4月に iPhone SDK の規約変更後 Flash の重要度が低下、AS3 が利用される場面も減少した
 * ActionScript 4 のホワイトペーパーが公開されたが開発予定はない
 
-### 開発環境の構築
+## 開発環境の構築
 
 ||ソフト名|リリース日|
 |:--:|:--:|:--:|
@@ -58,7 +58,7 @@
 
 
 
-### コードの記述
+## コードの記述
 
 1. Visual Studio Code を起動
     1. [ファイル]→[新規ファイル] を選択
@@ -94,21 +94,21 @@ package {
 }
 ```
 
-### コンパイル（.as → .swf）
+## コンパイル
 
 1. Visual Studio Code で [表示]→[総合ターミナル] を選択（端末でも可）
 
 1. Main.as ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/actionscript
 
-1. コンパイラ（mxmlc）でコンパイル  
+1. コンパイラ（mxmlc）でコンパイル（.as → .swf） 
 $ /opt/flex_sdk/bin/mxmlc Main.as  
 設定ファイル "/opt/flex_sdk/frameworks/flex-config.xml" をロードしています  
 /home/（ユーザー名）/デスクトップ/actionscript/Main.swf (640 バイト)
 
 1. Main.as ファイルと同階層に Main.swf ファイルが生成されたのを確認
 
-### HTMLファイルの記述
+## HTMLファイルの記述
 
 1. Visual Studio Code を起動
 
@@ -133,7 +133,7 @@ $ /opt/flex_sdk/bin/mxmlc Main.as
 </html>
 ```
 
-### 動作確認
+## 動作確認
 
 1. Flash Player 対応の Web ブラウザ（Firefox）を起動
 
