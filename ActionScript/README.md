@@ -141,4 +141,5 @@ $ /opt/flex_sdk/bin/mxmlc Main.as
 550 x 400 の矩形のステージ上の左上に Hello, world! と表示されたら成功！
 
 ***
+作成者: Takashi Nishimura
 作成日: 2017年02月22日
