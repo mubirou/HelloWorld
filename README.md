@@ -1,6 +1,6 @@
 # HelloWorld
 
-* [ActionScript 3.0](https://github.com/TakashiNishimura/HelloWorld/tree/master/actionscript)
+* [ActionScript 3.0](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript)
 * Assembler
 * C
 * C++
