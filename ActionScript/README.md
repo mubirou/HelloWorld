@@ -9,7 +9,7 @@
 
 ## 開発環境の構築
 
-||ソフト名|リリース日|
+||ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.15.0|2016年01月|
