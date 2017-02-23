@@ -35,7 +35,7 @@
 1. コードの記述
 ```
 //test.c
-#include <stdio.h> //puts() 関数に必要
+#include <stdio.h> //puts関数に必要
 
 int main(void) {
     puts("Hello,world!");
