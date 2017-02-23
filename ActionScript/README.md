@@ -11,7 +11,7 @@
 
 ||ソフト名|リリース日|
 |:--:|:--:|:--:|
-|OS|Ubuntu 16.04.2 LTS（Linux）|2016年04月|
+|OS|Ubuntu 16.04.2 LTS（Linux）|2017年02月|
 |コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.15.0|2016年01月|
 |Flash Player|[PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 24.0.0.221|2017年02月|
 |エディタ|Visual Stduio Code 1.9.1|2017年01月|
