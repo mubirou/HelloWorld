@@ -1,8 +1,8 @@
 # HelloWorld
 
 * [ActionScript 3.0](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/README.md)
-* Assembler
-* [C](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/README.md)
+* アセンブリ言語
+* [C言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/README.md)
 * C++
 * C#
 * COBOL
