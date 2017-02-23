@@ -133,7 +133,7 @@ $ /opt/flex_sdk/bin/mxmlc Main.as
 </html>
 ```
 
-## 動作確認
+## 実行
 
 1. Flash Player 対応の Web ブラウザ（Firefox）を起動
 
