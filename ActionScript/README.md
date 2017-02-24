@@ -40,7 +40,7 @@
 
 1. Visual Studio Codeに拡張機能の追加
     1. [表示]→[機能拡張] を選択
-    1. NextGen ActionScript を検索しインストール
+    1. NextGen ActionScript を検索＆インストール
 
 1. Adobe PlayerGlobal のダウンロード
     1. Adobe Flash Player サポートセンターにアクセス  
@@ -63,7 +63,7 @@
 1. Visual Studio Code を起動
     1. [ファイル]→[新規ファイル] を選択
     1. [ファイル]→[保存] を選択
-    1. 任意の場所（今回はデスクトップ上に actionscript フォルダを作成）に Main.as という名で保存
+    1. 任意の場所（今回はデスクトップ上に actionscript フォルダを作成）に Main<b>.as</b> という名で保存
 
 1. コードの記述
 ```
