@@ -18,8 +18,8 @@
 * Java
 * JavaScript
 * Objective-C
-* Parl
-* Parl 6
+* Perl
+* Perl 6
 * PHP
 * Python
 * R
