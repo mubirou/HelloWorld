@@ -5,7 +5,7 @@
 * [C#](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/README.md)
 * [C++](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/README.md)
 * [C言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/README.md)
-* [COBOL](https://github.com/TakashiNishimura/HelloWorld/tree/master/COBOL)
+* [COBOL](https://github.com/TakashiNishimura/HelloWorld/tree/master/COBOL/README.md)
 * CoffeeScript
 * D
 * ECMAScript 6
