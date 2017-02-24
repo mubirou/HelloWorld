@@ -101,7 +101,7 @@ package {
 1. Main.as ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/actionscript
 
-1. コンパイラ（mxmlc）でコンパイル（.as → .swf） 
+1. コンパイラ（mxmlc）でコンパイル（.as → .swf）  
 $ /opt/flex_sdk/bin/mxmlc Main.as  
 設定ファイル "/opt/flex_sdk/frameworks/flex-config.xml" をロードしています  
 /home/（ユーザー名）/デスクトップ/actionscript/Main.swf (640 バイト)
