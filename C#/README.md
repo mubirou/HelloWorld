@@ -6,7 +6,7 @@
 * C/C++ から構文・キーワード・演算子を譲り受けつつ、文法は Java に大きな影響を受けている
 * [.NET Framework](https://ja.wikipedia.org/wiki/.NET_Framework) 、[Mono](http://bit.ly/2l5Mzx1) 等のライブラリを使うことで最大限の力を発揮する
 * [Ecma インターナショナル](http://bit.ly/2lLMUZZ)、[ISO](http://bit.ly/1VLZ5lB) により標準化され、[JIS](http://bit.ly/2lQk5vD) で標準プログラミング言語として制定されている
-* [Unity](http://bit.ly/2l5GJMb) の開発言語して採用
+* [Unity](http://bit.ly/2l5GJMb) でも採用
 * バージョンアップ履歴: アルファ版（2000年）→ 1.0（2002年）→ 2.0（2005年）→3.0（2008年）→ 4.0（2010年）→5.0（2012年）→ 6.0（2015年）
 
 ## 開発環境の構築
