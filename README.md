@@ -9,7 +9,7 @@
 * [CoffeeScript](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/README.md)
 * [D言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/README.md)
 * [Dart](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/README.md)
-* ECMAScript 6
+* [ECMAScript 6](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/README.md)
 * F#
 * FORTLAN
 * Go
