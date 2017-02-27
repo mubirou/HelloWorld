@@ -11,7 +11,7 @@
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ| [F#](https://ja.wikipedia.org/wiki/F_Sharp) Conmiler 4.0|2015年07月|
-|コンパイラ| [Mono](http://bit.ly/2l5Mzx1) JIT compiler 4.2.1|2015年11月|
+|ランタイム| [Mono](http://bit.ly/2l5Mzx1) JIT compiler 4.2.1|2015年11月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[lonede](http://ionide.io/)-fsharp 2.23.5|2017年02月|
 
