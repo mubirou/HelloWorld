@@ -7,7 +7,7 @@
 * [C言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/README.md)
 * [COBOL](https://github.com/TakashiNishimura/HelloWorld/tree/master/COBOL/README.md)
 * [CoffeeScript](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/README.md)
-* D言語
+* [D言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/README.md)
 * Dart
 * ECMAScript 6
 * F#
