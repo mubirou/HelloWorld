@@ -5,7 +5,7 @@
 * 2015年にリリースされた [ECMAScript](https://ja.wikipedia.org/wiki/ECMAScript) 6th Edition
 * class ベースのオブジェクト指向プログラミングや[アロー関数](https://mzl.la/2leGv5i)を新たにサポート
 * ECMA-262 6th Edition、ECMAScript 2015 とも呼ばれる
-* ECMAScript 2015 からは毎年改訂することになった（最新版は [ECMAScript 2016](https://www.ecma-international.org/ecma-262/7.0/)）
+* ECMAScript 2015 からは毎年改訂することになった（最新版は [ECMAScript 2016](https://www.ecma-international.org/ecma-262/7.0/) ）
 
 ## 開発環境の構築
 
