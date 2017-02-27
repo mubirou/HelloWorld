@@ -18,6 +18,7 @@
 |拡張機能|C#（Microsoft） 1.7.0|不明|
 
 1. 端末でコンパイラのインストール  
+    $ sudo apt-get update ←インストール済みパッケージのアップデート 
     $ sudo apt-get install mono-mcs →指示に従う  
     $ mcs --version  ← Mono compiler Suite（C#のコンパイラ）のバージョン確認  
     Mono C# compiler version 4.2.1.0
