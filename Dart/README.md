@@ -14,7 +14,7 @@
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[Dart Code](https://github.com/Dart-Code/Dart-Code/releases) 0.15.1|2017年02月|
 
-1. Dart のインストール（[Installing Dart on Linux](https://www.dartlang.org/install/linux) 参照）  
+1. Dart のインストール（<b>[Installing Dart on Linux](https://www.dartlang.org/install/linux)</b> 参照）  
     $ sudo apt-get update ←インストール済みパッケージのアップデート  
     $ sudo apt-get install apt-transport-https  
     $ sudo sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'  
