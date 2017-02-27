@@ -14,14 +14,14 @@
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[Dart Code](https://github.com/Dart-Code/Dart-Code/releases) 0.15.1|2017年02月|
 
-1. Dart のインストール（<b>[Installing Dart on Linux](https://www.dartlang.org/install/linux)</b> 参照）  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+1. Dart のインストール（ <b>[Installing Dart on Linux](https://www.dartlang.org/install/linux)</b> 参照）  
+    $ sudo apt-get update  
     $ sudo apt-get install apt-transport-https  
     $ sudo sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'  
     $ sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'  
     $ sudo apt-get update  
     $ sudo sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'  
-    $ sudo apt-get install dart ←Dart SDK のインストール  
+    $ sudo apt-get install dart  
     $ sudo apt-get install dart/stable  
     $ dart --version ←Dart のバージョン確認  
     Dart VM version: 1.22.1 (Tue Feb 21 22:22:42 2017) on "linux_x64"
