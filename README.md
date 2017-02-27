@@ -8,7 +8,7 @@
 * [COBOL](https://github.com/TakashiNishimura/HelloWorld/tree/master/COBOL/README.md)
 * [CoffeeScript](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/README.md)
 * [D言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/README.md)
-* Dart
+* [Dart](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/README.md)
 * ECMAScript 6
 * F#
 * FORTLAN
