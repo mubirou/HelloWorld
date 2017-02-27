@@ -51,7 +51,7 @@ class Main
 _main = new Main()
 ```
 
-## コンパイル〜実行
+## コンパイル
 
 1. Visual Studio Code で [表示]→[総合ターミナル] を選択（端末でも可）
 
