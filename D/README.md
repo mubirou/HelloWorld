@@ -16,7 +16,7 @@
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[Code-D](https://github.com/Pure-D/code-d)|不明|
 
-1. CoffeeScript コンパイラのインストール  
+1. D言語コンパイラのインストール  
     $ sudo apt-get update ←インストール済みパッケージのアップデート  
     $ sudo apt-get install gdc ←D言語コンパイラのインストール  
     $ gdc --version ←バージョン確認  
