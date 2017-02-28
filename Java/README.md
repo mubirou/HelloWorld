@@ -4,7 +4,7 @@
 
 * 1995年に登場したオブジェクト指向プログラミング言語
 * [Android](https://ja.wikipedia.org/wiki/Android) アプリ開発言語として採用
-* 2010年に開発元の米 [Sun Microsystems](http://bit.ly/2mySRXN) が米 [Oracle](http://bit.ly/2m5QRZU) により買収され、Java 関連の権利も移転
+* 2010年に開発元の米 [Sun Microsystems](http://bit.ly/2mySRXN) が米 [Oracle](http://bit.ly/2m5QRZU) により買収され、[Java](https://ja.wikipedia.org/wiki/Java) 関連の権利も移転
 * ① [Java SE](http://bit.ly/1qWEkCh)（スタンドアローン用） ② [Java EE](http://bit.ly/2m11Mn2)（サーバサイド用） ③ [Java ME](http://bit.ly/2lODD2J)（組み込み分野用）のエディションがある
 
 ## 開発環境の構築
@@ -12,7 +12,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
-|[Java](https://ja.wikipedia.org/wiki/Java)|Java SE 8 Update 121 |2017年01月|
+|Java|Java SE 8 Update 121 |2017年01月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[Java Language Support](http://bit.ly/2lj4bpb) 0.0.23|2016年10月|
 
