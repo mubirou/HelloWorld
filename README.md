@@ -14,7 +14,7 @@
 * [FORTRAN](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTLAN/README.md)
 * [Go](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README.md)
 * [Haskell](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/README.md)
-* Haxe
+* [Haxe](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/README.md)
 * HTML+CSS
 * Java
 * JavaScript
