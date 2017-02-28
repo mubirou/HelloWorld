@@ -12,7 +12,7 @@
 * [ECMAScript 6](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/README.md)
 * [F#](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/README.md)
 * [FORTRAN](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTLAN/README.md)
-* Go
+* [Go](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README.md)
 * Haskell
 * Haxe
 * HTML+CSS
