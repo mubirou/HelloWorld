@@ -25,6 +25,7 @@
 * Python
 * R
 * Ruby
+* Rust
 * Scala
 * SQL
 * Swift
