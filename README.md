@@ -16,7 +16,7 @@
 * [HTML+CSS](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/README.md)
 * [Haskell](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/README.md)
 * [Haxe](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/README.md)
-* Java
+* [Java](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/README.md)
 * JavaScript
 * Objective-C
 * Perl
