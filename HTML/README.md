@@ -57,11 +57,11 @@
 
 ```
 .type01 {
-    font-family: 'Righteous', cursive;
+    font-family: 'Righteous', cursive; /* Google Fonts */
     color: #ff0000;
     font-size: 64px;
     font-weight: bold;
-    letter-spacing: 5px;
+    letter-spacing: 5px; /* 文字間の幅 */
     text-shadow: 2px 2px 2px #333333; /* CSS3新機能 */
 }
 ```
