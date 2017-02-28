@@ -22,7 +22,7 @@
 |フォント|[Google Fonts](https://fonts.google.com/?selection.family=Righteous)|―|
 |ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 
-* 今回は [Webフォント](http://bit.ly/2liCm0j) として [Google Fonts](https://fonts.google.com/?selection.family=Righteous) を利用
+※今回は [Webフォント](http://bit.ly/2liCm0j) として [Google Fonts](https://fonts.google.com/?selection.family=Righteous) を利用
 
 ## HTMLの記述
 
