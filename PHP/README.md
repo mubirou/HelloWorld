@@ -22,7 +22,6 @@
     $ sudo apt-get install apache2  
     $ apache2 -v ←バージョン確認  
     Server version: Apache/2.4.18 (Ubuntu)  
-    Server built:   2016-07-14T12:32:26  
 
     * Web サーバの操作（参考）  
         $ service apache2 start ←起動（上記の作業で起動済）  
@@ -74,7 +73,7 @@ $myClass = new MyClass();
 ```
 
 * [phpinfo()](http://php.net/manual/ja/function.phpinfo.php) の表示（参考）  
-    PHP に関する各種設定情報を確認したい場合、以下のコードを記述して Web サーバのルートディレクトリ（ /ver/www/html/ ）に test.php という名で保存し、下記と同様の方法で実行する  
+    PHP に関する各種設定情報を確認したい場合、以下のコードを記述して下記と同様の方法で実行する  
     ※<b>本番環境ではセキュリティ上削除しておく</b>
 
 ```
