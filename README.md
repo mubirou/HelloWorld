@@ -22,7 +22,7 @@
 * [PHP](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/README.md)
 * [Perl](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/README.md)
 * [Perl 6](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/README.md)
-* Python
+* [Python](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/README.md)
 * R
 * Ruby
 * Rust
