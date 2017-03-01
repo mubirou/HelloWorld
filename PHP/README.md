@@ -18,9 +18,9 @@
 |ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 
 1. 端末で Web サーバのインストール＆起動  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
-    $ sudo apt-get install apache2 ←Webサーバのインストール  
-    $ apache2 -v ←Webサーバのバージョン確認  
+    $ sudo apt-get update  
+    $ sudo apt-get install apache2  
+    $ apache2 -v ←バージョン確認  
     Server version: Apache/2.4.18 (Ubuntu)  
     Server built:   2016-07-14T12:32:26  
 
@@ -30,10 +30,10 @@
         $ service apache2 restart ←再起動
 
 1. PHP のインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install php php-mysql php-sqlite3 libapache2-mod-php php-cgi php-common php-pear php-mbs
-tring ←各種インストール  
-    $ service apache2 restart ←Webサーバの再起動  
+tring  
+    $ service apache2 restart  
     $ php -v ←バージョン確認  
     PHP 7.0.15-0ubuntu0.16.04.2 (cli) ( NTS )  
     Copyright (c) 1997-2017 The PHP Group  
