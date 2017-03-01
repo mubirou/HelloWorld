@@ -24,7 +24,7 @@
     $ python3 --version  
     Python 3.5.2
 
-    $ ls -l `which python` ←デフォルトの Python を調べる  
+    $ ls -l \`which python\` ←デフォルトの Python を調べる  
     lrwxrwxrwx 1 root root 9  9月 16 09:40 /usr/bin/python -> python2.7
 
 1. PyLing（コードの質のチェック用）のインストール  
