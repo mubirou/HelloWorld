@@ -23,7 +23,7 @@
 * [Perl](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/README.md)
 * [Perl 6](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/README.md)
 * [Python](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/README.md)
-* R言語
+* [R言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/README.md)
 * Ruby
 * Rust
 * Scala
