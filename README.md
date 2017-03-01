@@ -19,7 +19,7 @@
 * [Java](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/README.md)
 * [JavaScript](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/README.md)
 * [Objective-C](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/README.md)
-* Perl
+* [Perl](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/README.md)
 * Perl 6
 * PHP
 * Python
