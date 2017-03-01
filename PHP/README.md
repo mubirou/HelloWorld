@@ -90,7 +90,7 @@ phpinfo();
 
 1. Web ブラウザ（Firefox）を起動
 
-1. localhost/index.php を開く（ 127.0.0.1/index.php でも同じ）
+1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/index.php を開く
 
 1. Hello,world! と表示されたら成功！
 
