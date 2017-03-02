@@ -67,7 +67,7 @@ $ coffee -c main.coffee
 
 1. Visual Studio Code を起動
 
-1. Main.coffee ファイルと同階層に index.html ファイルを作成
+1. main.js ファイルと同階層に index.html ファイルを作成
 
 ```
 <!DOCTYPE html>
