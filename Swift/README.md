@@ -26,7 +26,7 @@
     $ /opt/swift/usr/bin/swift --version ←バージョン確認  
     Swift version 3.0.2 (swift-3.0.2-RELEASE)  
     $ sudo apt-get update  
-    $ sudo apt-get install clang ←Clangコンパイラのインストール  
+    $ sudo apt-get install clang ←[Clang](https://ja.wikipedia.org/wiki/Clang) のインストール  
     $ clang -v  
     clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)
 
