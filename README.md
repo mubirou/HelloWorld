@@ -26,8 +26,8 @@
 * [R言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/README.md)
 * [Ruby](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/README.md)
 * [Rust](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/README.md)
-* [Scala](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/README.md)
 * SQL
+* [Scala](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/README.md)
 * Swift
 * TypeScript
 * Visual Basic .NET
