@@ -28,6 +28,6 @@
 * [Rust](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/README.md)
 * [SQL](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/README.md)
 * [Scala](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/README.md)
-* Swift
+* [Swift](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/README.md)
 * TypeScript
 * Visual Basic .NET
