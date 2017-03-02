@@ -14,7 +14,7 @@
 |コンパイラ|[Swift](http://bit.ly/2lYITz8) 3.0.2|2016年12月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|Swift Language 0.0.2|不明|
-|その他|Clang 3.8.0|不明|
+|その他|[Clang](https://ja.wikipedia.org/wiki/Clang) 3.8.0|不明|
 
 1. Web ブラウザで http://swift.org を開く
 1. [DOWNLOAD] → [Releases] → [Ubuntu 16.04] を選択
