@@ -13,11 +13,14 @@
 |エディタ|Visual Studio Code 1.10.0|2017年03月|
 |拡張機能|[Ruby](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) 0.10.4|2016年12月|
 
-1. 端末で R のインストール  
+1. 端末で Ruby のインストール  
     $ sudo apt-get update  
     $ sudo apt-get install ruby  
     $ sudo ruby -v  
     ruby 2.3.1p112 (2016-04-26) [x86_64-linux-gnu]
+
+1. Visual Studio Codeに拡張機能の追加  
+    [表示]→[機能拡張] から [Ruby](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) を検索＆インストール
 
 ## コードの記述
 
