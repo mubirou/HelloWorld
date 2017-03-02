@@ -30,4 +30,4 @@
 * [Scala](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/README.md)
 * [Swift](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/README.md)
 * [TypeScript](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/README.md)
-* Visual Basic .NET
+* [Visual Basic .NET](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/README.md)
