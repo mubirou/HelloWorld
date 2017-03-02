@@ -20,7 +20,7 @@
     $ sudo apt-get update ←インストール済みパッケージのアップデート  
     $ sudo apt-get install openjdk-8-jdk ←最新版 Java のインストール  
     $ java -version ←バージョン確認  
-    openjdk version "1.8.0_121" ←Java Standard Edition 8 Update 121
+    openjdk version "1.8.0_121" ←Java Standard Edition 8 Update 121  
     OpenJDK Runtime Environment (build 1.8.0_121-8u121-b13-0ubuntu1.16.04.2-b13)  
     OpenJDK 64-Bit Server VM (build 25.121-b13, mixed mode)
 
