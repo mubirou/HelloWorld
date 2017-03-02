@@ -12,7 +12,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
-|Java|Java SE 8 Update 121 |2017年01月|
+|Java|Java SE 8 Update 121|2017年01月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[Java Language Support](http://bit.ly/2lj4bpb) 0.0.23|2016年10月|
 
