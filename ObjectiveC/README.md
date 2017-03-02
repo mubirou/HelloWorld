@@ -1,6 +1,6 @@
-# Object-C
+# Objective-C
 
-## Object-Cについて
+## Objective-Cについて
 
 * [C言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/README.md)の上位互換言語
 * [Mac OS](https://ja.wikipedia.org/wiki/Mac_OS) に標準付属の公式開発言語
