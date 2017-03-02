@@ -11,7 +11,7 @@
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ|[TypeScript](https://www.typescriptlang.org/index.html) 2.2.1|2017年02月|
-|エディタ|Visual Studio Code 1.9.1|2017年01月|
+|エディタ|Visual Studio Code 1.10.1|2017年03月|
 |ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 |その他|[Node.js](https://ja.wikipedia.org/wiki/Node.js) 4.2.6|2016年01月|
 
