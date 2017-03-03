@@ -1,4 +1,4 @@
-# ActionScript 3.0（ macOS 版 ）
+# ActionScript 3.0（ macOS ）
 
 ## Flex SDK / ActionScript 3.0 について
 

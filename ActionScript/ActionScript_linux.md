@@ -1,4 +1,4 @@
-# ActionScript 3.0（ Linux 版 ）
+# ActionScript 3.0（ Linux ）
 
 ## Flex SDK / ActionScript 3.0 について
 
