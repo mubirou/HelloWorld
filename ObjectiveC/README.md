@@ -3,7 +3,7 @@
 ## Objective-Cについて
 
 * [C言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/README.md)の上位互換言語
-* [Mac OS](https://ja.wikipedia.org/wiki/Mac_OS) に標準付属の公式開発言語
+* [macOS](https://ja.wikipedia.org/wiki/Mac_OS) に標準付属の公式開発言語
 * [iOS](http://bit.ly/2lw7f2p) アプリ開発に利用されてきたが徐々に [Swift](http://www.apple.com/jp/swift/) に移行されている
 
 ## 開発環境の構築
