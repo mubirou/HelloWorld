@@ -1,4 +1,4 @@
-# ActionScript 3.0（ Ubuntu 対応）
+# ActionScript 3.0
 
 ## Flex SDK / ActionScript 3.0 について
 
