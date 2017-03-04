@@ -31,8 +31,6 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
     r/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1  
     Apple LLVM version 8.0.0 (clang-800.0.42.1)  
     Target: x86_64-apple-darwin16.4.0  
-    Thread model: posix  
-    InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 
 1. Visual Studio Codeに拡張機能の追加  
     1. [表示]→[機能拡張] で Assembler を検索
