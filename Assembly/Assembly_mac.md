@@ -24,7 +24,7 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
     1. Xcode 8.2.1 を [Download] を選択、指示に従ってダウンロード
     1. Xcode を開き、引き続き指示に従いインストール
 
-1. ターミナルでコンパイラの動作確認
+1. ターミナルでコンパイラの動作確認  
     $ gcc --version  
     Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr  
     --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Develope  
