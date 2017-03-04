@@ -16,7 +16,6 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
 |:--:|:--:|:--:|
 |OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
 |統合開発環境|[Xcode](https://developer.apple.com/download/) 8.2.1|2016年12月|
-|コンパイラ|[GCC](http://bit.ly/2kOadCN) 5.4.0 |2016年06月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|gas 0.0.1|不明|
 
@@ -25,8 +24,8 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
     1. Xcode 8.2.1 を [Download] を選択、指示に従ってダウンロード
     1. Xcode を開き、引き続き指示に従いインストール
 
-1. ターミナルでコンパイラのバージョン確認  
-    $ gcc --version  
+1. ターミナルでコンパイラの動作確認
+    $ gcc --version  
     Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr  
     --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Develope  
     r/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1  
