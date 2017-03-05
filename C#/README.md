@@ -10,8 +10,8 @@
 
 ## Hello,world!
 
-* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/C#/CSharp_linux.md)
-* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/C#/CSharp_mac.md)
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_mac.md)
 
 ***
 作成者: Takashi Nishimura
