@@ -10,8 +10,8 @@
 
 ## Hello,world!
 
-* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/C#/C#_linux.md)
-* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/C#/C#_mac.md)
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/C#/C¥#_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/C#/C¥#_mac.md)
 
 ***
 作成者: Takashi Nishimura
