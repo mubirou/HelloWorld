@@ -14,7 +14,7 @@
 |ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md)|
 |F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_mac.md)|
 |FORTRAN|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_mac.md)|
-|Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README.md)||
+|Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_mac.md)|
 |HTML+CSS|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/README.md)||
 |Haskell|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/README.md)||
 |Haxe|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/README.md)||
