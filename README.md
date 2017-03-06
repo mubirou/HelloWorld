@@ -9,7 +9,7 @@
 |C言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md)|
 |COBOL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_mac.md)|
 |CoffeeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_mac.md)|
-|D言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/README.md)||
+|D言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_mac.md)|
 |Dart|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/README.md)||
 |ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/README.md)||
 |F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/README.md)||
