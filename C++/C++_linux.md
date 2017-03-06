@@ -50,7 +50,7 @@ int main() {
 
 ## コンパイル〜実行
 
-1. Visual Studio Code で [表示]→[総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
 
 1. test.cpp ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/C++
