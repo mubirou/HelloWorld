@@ -1,4 +1,4 @@
-# ECMAScript 6
+# ECMAScript 6（ macOS ）
 
 ## ECMAScript 6 について
 
@@ -12,8 +12,8 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|Ubuntu 16.04.2 LTS|2017年02月|
-|エディタ|Visual Studio Code 1.9.1|2017年01月|
+|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
+|エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|[JavaScript (ES6) code snipets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets) 1.4.0|2017年02月|
 |ブラウザ|Safari 10.0.3|2017年01月|
 
@@ -48,12 +48,16 @@
 
 ## 実行
 
-1. Web ブラウザ（Firefox）を起動 → 右クリック → 要素を調査 → コンソール を開く
+1. Web ブラウザ（Safari）を起動
+
+1. [Safari] → [環境設定] → [詳細] → [メニューバーに"開発"メニューを表示] にチェック
 
 1. [ファイル] → [ファイルを開く] で上記の index.html を開く
 
-1. Web ブラウザのコンソールに Hello,world! と表示されたら成功！
+1. [開発] → [エラーコンソールを表示]
+
+1. コンソールに Hello,world! と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年02月27日
+作成日: 2017年03月06日

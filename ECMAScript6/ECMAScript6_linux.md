@@ -1,4 +1,4 @@
-# ECMAScript 6
+# ECMAScript 6（ Linux ）
 
 ## ECMAScript 6 について
 
@@ -15,7 +15,7 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[JavaScript (ES6) code snipets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets) 1.4.0|2017年02月|
-|ブラウザ|Safari 10.0.3|2017年01月|
+|ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 
 * Visual Studio Codeに拡張機能の追加  
     [表示] → [機能拡張] から [JavaScript (ES6) code snipets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets) を検索＆インストール
