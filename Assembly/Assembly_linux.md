@@ -27,14 +27,14 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
     warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 1. Visual Studio Codeに拡張機能の追加  
-    1. [表示]→[機能拡張] で Assembler を検索
+    1. [表示] → [機能拡張] で Assembler を検索
     1. ヒットした中から gas（[GNUアセンブラ](http://bit.ly/2lI52nm)）を選んでインストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に Assembly フォルダを作成）に test<b>.s</b> という名で保存
 
 1. コードの記述（<b>最後に空白行が必要</b>／<b>CPUによって書き方が異なる</b>）

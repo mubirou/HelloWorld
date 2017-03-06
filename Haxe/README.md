@@ -22,13 +22,13 @@
     3.2.1
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示]→[機能拡張] から [Legacy Haxe 3.2.1](https://marketplace.visualstudio.com/items?itemName=haxedevs.haxe) を検索＆インストール
+    [表示] → [機能拡張] から [Legacy Haxe 3.2.1](https://marketplace.visualstudio.com/items?itemName=haxedevs.haxe) を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に Haxe フォルダを作成）に Main<b>.hx</b> という名で保存  
     ※作成するクラス名と同じファイル名にする（大文字小文字区別あり）
 
@@ -45,8 +45,8 @@ class Main {
 ## Haxe コンパイラ用ファイルの作成
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. Main.hx と同階層に compile<b>.hxml</b> という名で保存（ファイル名は任意）
 
 1. [Haxe コンパイラ](http://old.haxe.org/doc/compiler?lang=jp)のコマンドライン引数の記述

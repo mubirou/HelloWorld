@@ -23,13 +23,13 @@
     warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示]→[機能拡張] から C/C++（Microsoft） を検索＆インストール
+    [表示] → [機能拡張] から C/C++（Microsoft） を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に C フォルダを作成）に test<b>.c</b> という名で保存
 
 1. コードの記述

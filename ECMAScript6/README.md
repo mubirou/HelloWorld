@@ -18,13 +18,13 @@
 |ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 
 * Visual Studio Codeに拡張機能の追加  
-    [表示]→[機能拡張] から [JavaScript (ES6) code snipets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets) を検索＆インストール
+    [表示] → [機能拡張] から [JavaScript (ES6) code snipets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets) を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所に index.html という名で保存
 
 1. コードの記述

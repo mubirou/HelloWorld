@@ -25,13 +25,13 @@
     OpenJDK 64-Bit Server VM (build 25.121-b13, mixed mode)
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示]→[機能拡張] から [Java Language Support](http://bit.ly/2lj4bpb) を検索＆インストール
+    [表示] → [機能拡張] から [Java Language Support](http://bit.ly/2lj4bpb) を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に Java フォルダを作成）に MyClass<b>.java</b> という名で保存  
     ※<b>ファイル名は作成するクラスと同じ名前にする必要がある</b>
 

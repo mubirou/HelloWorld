@@ -21,7 +21,7 @@
 
 1. Apache Flex SDK のインストール  
     1. https://flex.apache.org/ にアクセス
-    1. [DOWNLOAD FLEX]→[SDK BINARIES] を選択
+    1. [DOWNLOAD FLEX] → [SDK BINARIES] を選択
     1. Linux Binaries : apache-flex-sdk-4.15.0-bin.tar.gz をダウンロード
     1. ダウンロードした .tar.gz ファイルをデスクトップ上に「展開」
     1. フォルダ名を apache-flex-sdk-4.15.0-bin → flex_sdk に変更
@@ -39,7 +39,7 @@
     $ sudo apt-get install openjdk-8-jdk
 
 1. Visual Studio Codeに拡張機能の追加
-    1. [表示]→[機能拡張] を選択
+    1. [表示] → [機能拡張] を選択
     1. NextGen ActionScript を検索＆インストール
 
 1. Adobe PlayerGlobal のダウンロード
@@ -59,8 +59,8 @@
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に ActionScript フォルダを作成）に Main<b>.as</b> という名で保存
 
 1. コードの記述
