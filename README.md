@@ -10,7 +10,7 @@
 |COBOL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_mac.md)|
 |CoffeeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_mac.md)|
 |D言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_mac.md)|
-|Dart|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/README.md)||
+|Dart|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_mac.md)|
 |ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/README.md)||
 |F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/README.md)||
 |FORTRAN|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTLAN/README.md)||
