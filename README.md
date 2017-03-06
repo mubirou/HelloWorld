@@ -12,7 +12,7 @@
 |D言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_mac.md)|
 |Dart|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_mac.md)|
 |ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md)|
-|F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/README.md)||
+|F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_mac.md)|
 |FORTRAN|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTLAN/README.md)||
 |Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README.md)||
 |HTML+CSS|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/README.md)||
