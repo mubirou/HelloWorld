@@ -31,7 +31,7 @@
     cobc (OpenCOBOL) 1.1.0  
 
 1. シンボリクリンクの作成（コンパイル時のエラー回避のため）  
-    $ ln -s /usr/local/Cellar/gmp/6.1.2/include/gmp.h /usr/local/Cellar/open-cobol/1.1_1/include
+    $ ln -s /usr/local/Cellar/gmp/<b>6.1.2</b>/include/gmp.h /usr/local/Cellar/open-cobol/<b>1.1_1</b>/include
 
 1. コマンドラインツールのインストール（コンパイル時のエラー回避のため）  
     $ xcode-select --install
