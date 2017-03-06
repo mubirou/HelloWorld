@@ -10,8 +10,8 @@
 
 ## Hello,world!
 
-* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_linux.md)
-* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_mac.md)
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_mac.md)
 
 ***
 作成者: Takashi Nishimura
