@@ -136,7 +136,7 @@ $ /Applications/flex_sdk/bin/mxmlc Main.as
 
 1. chrome://plugins/ にアクセスし、[Adobe Flash Player](http://www.adobe.com/jp/products/flashplayer.html) の [常に実行を許可する] をチェックする
 
-1. [ファイル]→[ファイルを開く] で上記の index.html を開く  
+1. [ファイル] → [ファイルを開く] で上記の index.html を開く  
 550 x 400 の矩形のステージ上の左上に Hello, world! と表示されたら成功！
 
 ***

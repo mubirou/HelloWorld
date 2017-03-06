@@ -87,7 +87,7 @@ $ haxe compile.hxml
 
 1. Web ブラウザ（Firefox）を起動 → 右クリック → 要素を調査 → コンソール を開く
 
-1. [ファイル]→[ファイルを開く] で上記の index.html を開く
+1. [ファイル] → [ファイルを開く] で上記の index.html を開く
 
 1. Web ブラウザのコンソールに Hello,world! と表示されたら成功！
 
