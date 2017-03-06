@@ -11,7 +11,7 @@
 |CoffeeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_mac.md)|
 |D言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_mac.md)|
 |Dart|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_mac.md)|
-|ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/README.md)||
+|ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md)|
 |F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/README.md)||
 |FORTRAN|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTLAN/README.md)||
 |Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README.md)||
