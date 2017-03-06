@@ -59,7 +59,7 @@ main() {
 1. test.dart ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/Dart
 
-1. 実行
+1. 実行  
 $ dart test.dart  
 Hello,world! ←…と表示されたら成功！
 
