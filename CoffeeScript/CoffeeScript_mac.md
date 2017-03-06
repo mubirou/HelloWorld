@@ -28,7 +28,7 @@
     $ npm -v  
     3.10.10  
 
-1. npm（Node Package Manager）のインストール  
+1. [CofeeScript](https://ja.wikipedia.org/wiki/CoffeeScript) コンパイラのインストール  
     $ sudo npm install -g coffee-script  
     $ coffee -v  
     CoffeeScript version 1.12.4
