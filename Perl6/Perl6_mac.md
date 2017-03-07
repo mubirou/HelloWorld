@@ -11,7 +11,7 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-||OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
+|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
 |パッケージ管理システム|[Homebrew](http://bit.ly/2mr4lzk) 1.1.10|2016年11月|
 |実行エンジン|[Perl 6](https://ja.wikipedia.org/wiki/Perl_6) 2017.01|2017年01月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|

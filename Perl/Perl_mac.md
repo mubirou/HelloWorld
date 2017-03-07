@@ -12,7 +12,7 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-||OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
+|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
 |実行エンジン|[Perl](https://ja.wikipedia.org/wiki/Perl) 5.18.2|2014年01月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|[Perl HTML Template](https://github.com/textmate/perl-html-template.tmbundle) 1.1.1|ー|
