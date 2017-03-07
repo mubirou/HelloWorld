@@ -19,7 +19,7 @@
 |Haskell|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_mac.md)|
 |Haxe|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_mac.md)|
 |Java|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_mac.md)|
-|JavaScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/README.md)||
+|JavaScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_mac.md)|
 |Objective-C|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/README.md)||
 |PHP|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/README.md)||
 |Perl|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/README.md)||
