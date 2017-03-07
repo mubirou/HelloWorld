@@ -14,7 +14,7 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ|[GDC](https://github.com/D-Programming-GDC) 5.4.0|2016年07月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|[Code-D](https://github.com/Pure-D/code-d)|不明|
+|拡張機能|[Code-D](https://github.com/Pure-D/code-d)|ー|
 
 1. D言語コンパイラのインストール  
     $ sudo apt-get update ←インストール済みパッケージのアップデート  

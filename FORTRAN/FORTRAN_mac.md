@@ -16,7 +16,7 @@
 |パッケージ管理システム|[Homebrew](http://bit.ly/2mr4lzk) 1.1.10|2016年11月|
 |コンパイラ|[GFortran](https://ja.wikipedia.org/wiki/GFortran) 6.3.0|2016年12月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|fortran 0.1.0|不明|
+|拡張機能|fortran 0.1.0|ー|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
 1. 指示に従って端末でインストール  

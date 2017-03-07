@@ -13,7 +13,7 @@
 |データベース|[MySQL](https://ja.wikipedia.org/wiki/MySQL) 5.7.17|2016年12月|
 |実行エンジン|[PHP](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor) 7.0.15|2017年01月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|PHP Debug 1.10.0|不明|
+|拡張機能|PHP Debug 1.10.0|ー|
 |ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 
 1. [PHP の開発環境の構築](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/README.md) をする

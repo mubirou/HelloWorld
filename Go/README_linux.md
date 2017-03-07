@@ -13,7 +13,7 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ|[Go](http://bit.ly/2lPWKrt) 1.6.2|2016年02月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|go 0.0.1|不明|
+|拡張機能|go 0.0.1|ー|
 
 1. Go のインストール  
   $ sudo apt-get update ←インストール済みパッケージのアップデート  

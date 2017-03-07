@@ -16,7 +16,7 @@
 |統合開発環境|[Xcode](https://developer.apple.com/download/) 8.2.1|2016年12月|
 |コンパイラ|[Mono](http://www.mono-project.com/) Framework 4.8.0|2017年02月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|C#（Microsoft） 1.7.0|不明|
+|拡張機能|C#（Microsoft） 1.7.0|ー|
 
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
     1. [Apple ID](https://appleid.apple.com/#!&page=signin) を用意し [Xcode](https://developer.apple.com/download/) にアクセス

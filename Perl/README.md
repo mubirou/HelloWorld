@@ -15,7 +15,7 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |実行エンジン|Perl 5.22.1|2015年12月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|[Perl HTML Template](https://github.com/textmate/perl-html-template.tmbundle) 1.1.1|不明|
+|拡張機能|[Perl HTML Template](https://github.com/textmate/perl-html-template.tmbundle) 1.1.1|ー|
 
 1. 端末での設定  
     $ perl -v ←バージョン確認  

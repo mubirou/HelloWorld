@@ -15,7 +15,7 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ|[GFortran](https://ja.wikipedia.org/wiki/GFortran) 5.4.0|2016年06月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|fortran 0.1.0|不明|
+|拡張機能|fortran 0.1.0|ー|
 
 1. 端末でコンパイラのインストール  
     $ sudo apt-get update ←インストール済みパッケージのアップデート  

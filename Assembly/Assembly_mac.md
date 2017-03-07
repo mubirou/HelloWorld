@@ -17,7 +17,7 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
 |OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
 |統合開発環境|[Xcode](https://developer.apple.com/download/) 8.2.1|2016年12月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|gas 0.0.1|不明|
+|拡張機能|gas 0.0.1|ー|
 
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
     1. [Apple ID](https://appleid.apple.com/#!&page=signin) を用意し [Xcode](https://developer.apple.com/download/) にアクセス

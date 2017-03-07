@@ -14,7 +14,7 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |実行エンジン|Perl6 2015.11|2015年11月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|Perl 6 code snippets 0.0.5|不明|
+|拡張機能|Perl 6 code snippets 0.0.5|ー|
 
 1. 端末で Perl 6 コンパイラのインストール  
     $ sudo apt-get update ←インストール済みパッケージのアップデート  

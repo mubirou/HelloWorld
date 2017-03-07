@@ -13,7 +13,7 @@
 |Java|[Java](https://ja.wikipedia.org/wiki/Java) SE 8 Update 121 |2017年01月|
 |実行エンジン|[Scala](https://ja.wikipedia.org/wiki/Scala) 2.11.6|2015年03月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|Scala Syntax （Dalton Jorge） 0.0.4|不明|
+|拡張機能|Scala Syntax （Dalton Jorge） 0.0.4|ー|
 
 1. 端末で Scala のインストール  
     $ sudo apt-get update  

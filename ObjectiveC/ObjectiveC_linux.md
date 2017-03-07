@@ -11,9 +11,9 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
-|コンパイラ|gobjc（GNU Objective-C Compiler）4:5.3.1-1|不明|
+|コンパイラ|gobjc（GNU Objective-C Compiler）4:5.3.1-1|ー|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|[C/C++ Clang](https://github.com/mitaki28/vscode-clang) 0.2.1|不明|
+|拡張機能|[C/C++ Clang](https://github.com/mitaki28/vscode-clang) 0.2.1|ー|
 
 1. 端末でコンパイラ等のインストール  
     $ sudo apt-get update ←インストール済みパッケージのアップデート  

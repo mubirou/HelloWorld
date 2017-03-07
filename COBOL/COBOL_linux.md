@@ -15,7 +15,7 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ| [OpenCOBOL](https://en.wikipedia.org/wiki/GnuCOBOL) 1.1.0|2009年02月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|cobol 0.3.11|不明|
+|拡張機能|cobol 0.3.11|ー|
 
 1. 端末でコンパイラのインストール  
     $ sudo apt-get update ←インストール済みパッケージのアップデート  

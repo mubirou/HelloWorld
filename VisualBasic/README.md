@@ -11,7 +11,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
-|コンパイラ|Visual Basic.Net Compiler 0.0.0.5943|不明|
+|コンパイラ|Visual Basic.Net Compiler 0.0.0.5943|ー|
 |実行エンジン|Mono C# compiler 4.2.1.0|2015年11月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 
