@@ -9,8 +9,8 @@
 
 ## Hello,world!
 
-* [Linux 版]()
-* [macOS 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_mac.md)
 
 ***
 作成者: Takashi Nishimura
