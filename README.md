@@ -22,7 +22,7 @@
 |JavaScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_mac.md)|
 |Objective-C|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_mac.md)|
 |PHP|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_mac.md)|
-|Perl|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/README.md)||
+|Perl|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_mac.md)|
 |Perl 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/README.md)||
 |Python|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/README.md)||
 |R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/README.md)||
