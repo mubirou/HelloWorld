@@ -50,7 +50,7 @@ int main() {
 
 ## コンパイル〜実行
 
-1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [総合ターミナル] → [端末] を選択（ターミナルでも可）
 
 1. test.m ファイルのあるディレクトリに移動  
 $ cd /Users/（ユーザー名）/Desktop/ObjectiveC

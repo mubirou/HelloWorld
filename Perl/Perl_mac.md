@@ -17,7 +17,7 @@
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|[Perl HTML Template](https://github.com/textmate/perl-html-template.tmbundle) 1.1.1|ー|
 
-1. 端末での設定  
+1. ターミナルでバージョン確認  
     $ perl -v  
     This is perl 5, version 18, subversion 2 (v5.18.2) built for darwin-thread-multi-2level  
     (with 2 registered patches, see perl -V for more detail)
@@ -57,7 +57,7 @@ my $_myclass = MyClass -> new #インスタンスの生成
 
 ## 実行
 
-1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [総合ターミナル] → [端末] を選択（ターミナルでも可）
 
 1. test.pl ファイルのあるディレクトリに移動  
 $ cd /Users/（ユーザー名）/Desktop/Perl
