@@ -12,7 +12,6 @@
 * HTML の要素をどのように表示（装飾）させるかを指示する仕様
 * CSS1（1996年）→ CSS3（2011年）が [W3C](https://www.w3.org/) により勧告
 
-
 ## Hello,world!
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_linux.md)
