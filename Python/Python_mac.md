@@ -13,9 +13,9 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 ||OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
-|実行エンジン|Python 3.6.0|2016年12月|
+|実行エンジン|[Python](https://ja.wikipedia.org/wiki/Python) 3.6.0|2016年12月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.9|2017年02月|
+|拡張機能|[Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) 0.5.9|2017年02月|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
 
