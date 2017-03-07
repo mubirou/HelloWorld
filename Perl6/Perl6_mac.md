@@ -18,6 +18,7 @@
 |拡張機能|Perl 6 code snippets 0.0.5|ー|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
+
 1. 指示に従ってターミナルでインストール  
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
     $ brew --version ←バージョン確認  
