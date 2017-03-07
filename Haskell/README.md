@@ -7,8 +7,8 @@
 
 ## Hello,world!
 
-* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/README_linux.md)
-* [macOS 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_mac.md)
 
 ***
 作成者: Takashi Nishimura
