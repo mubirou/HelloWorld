@@ -20,12 +20,12 @@
 |コマンドラインツール|xcode-select|ー|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
-1. 指示に従って端末でインストール  
+1. 指示に従ってターミナルでインストール  
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
     $ brew --version ←バージョン確認  
     Homebrew 1.1.10
 
-1. 端末でコンパイラのインストール  
+1. ターミナルでコンパイラのインストール  
     $ brew install open-cobol  
     $ cobc --version ←バージョン確認  
     cobc (OpenCOBOL) 1.1.0  

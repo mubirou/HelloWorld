@@ -18,7 +18,7 @@
 |拡張機能|D Programming Language 0.16.1|2017年03月|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
-1. 指示に従って端末でインストール  
+1. 指示に従ってターミナルでインストール  
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
     $ brew --version ←バージョン確認  
     Homebrew 1.1.10

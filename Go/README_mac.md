@@ -17,7 +17,7 @@
 |拡張機能|go（lukehoban） 0.6.55|ー|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
-1. 指示に従って端末でインストール  
+1. 指示に従ってターミナルでインストール  
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
     $ brew --version ←バージョン確認  
     Homebrew 1.1.10
