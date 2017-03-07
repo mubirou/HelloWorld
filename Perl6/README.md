@@ -9,8 +9,8 @@
 
 ## Hello,world!
 
-* [Linux 版]()
-* [macOS 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_mac.md)
 
 ***
 作成者: Takashi Nishimura
