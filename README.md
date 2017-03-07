@@ -25,7 +25,7 @@
 |Perl|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_mac.md)|
 |Perl 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_mac.md)|
 |Python|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md)|
-|R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/README.md)||
+|R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)|
 |Ruby|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/README.md)||
 |Rust|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/README.md)||
 |SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/README.md)||
