@@ -7,7 +7,7 @@
 
 ## Hello,world!
 
-* [Linux 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/README_linux.md)
 * [macOS 版]()
 
 ***
