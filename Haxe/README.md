@@ -7,8 +7,8 @@
 
 ## Hello,world!
 
-* [Linux 版]()
-* [macOS 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_mac.md)
 
 ***
 作成者: Takashi Nishimura

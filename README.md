@@ -17,7 +17,7 @@
 |Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_mac.md)|
 |HTML+CSS|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_mac.md)|
 |Haskell|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_mac.md)|
-|Haxe|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/README.md)||
+|Haxe|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_mac.md)|
 |Java|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/README.md)||
 |JavaScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/README.md)||
 |Objective-C|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/README.md)||
