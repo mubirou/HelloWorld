@@ -6,8 +6,8 @@
 
 ## Hello,world!
 
-* [Linux 版]()
-* [macOS 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)
 
 ***
 作成者: Takashi Nishimura

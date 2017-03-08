@@ -28,7 +28,7 @@
 |R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)|
 |Ruby|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_mac.md)|
 |Rust|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_mac.md)|
-|SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/README.md)||
+|SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)|
 |Scala|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/README.md)||
 |Swift|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/README.md)||
 |TypeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/README.md)||
