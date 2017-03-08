@@ -15,7 +15,7 @@
 |実行エンジン|PHP 7.1.1|2017年01月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|PHP Debug 1.10.0|ー|
-|機能拡張|[vscode-database](http://bit.ly/2mh8nYF) 1.2.0|ー|
+|拡張機能|[vscode-database](http://bit.ly/2mh8nYF) 1.2.0|ー|
 |ブラウザ|Safari 10.0.3|2017年01月|
 
 1. [MAMP](https://www.mamp.info/en/) のインストール
