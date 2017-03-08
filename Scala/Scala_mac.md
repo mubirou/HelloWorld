@@ -29,7 +29,7 @@
     $ brew --version ←バージョン確認  
     Homebrew 1.1.11
 
-1. Scala のインストール  
+1. [Scala](https://ja.wikipedia.org/wiki/Scala) のインストール  
     $ brew install scala  
     …  
     🍺  Cellar/scala/2.12.1: 44 files, 20MB
