@@ -39,7 +39,7 @@
 1. 環境変数に追加  
     $ cd  
     $ touch .bash_profile ←ファイルの作成  
-    $ [vi](https://ja.wikipedia.org/wiki/Vi) .bash_profile ←以下の2行を追加して保存  
+    $ [vi](https://ja.wikipedia.org/wiki/Vi) .bash_profile ←以下の2行を追加して保存  
     export JAVA_HOME=$(/usr/libexec/java_home)  
     export PATH="/Users/（ユーザー名）/.scala/bin:$PATH"  
 
