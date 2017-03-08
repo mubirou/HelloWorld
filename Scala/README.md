@@ -7,8 +7,8 @@
 
 ## Hello,world!
 
-* [Linux 版]()
-* [macOS 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_mac.md)
 
 ***
 作成者: Takashi Nishimura
