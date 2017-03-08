@@ -34,7 +34,7 @@
     …  
     🍺  Cellar/scala/2.12.1: 44 files, 20MB
 
-1. 環境変数に追加  
+1. [環境変数](http://bit.ly/2lCIAgK)に追加  
     $ cd  
     $ touch .bash_profile ←ファイルの作成  
     $ [vi](https://ja.wikipedia.org/wiki/Vi) .bash_profile ←以下の2行を追加して保存  
