@@ -16,11 +16,12 @@
 |拡張機能|[Haskell Syntax Highlighting](http://bit.ly/2l6sqMc) 2.0.0|2017年02月|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
+
 1. 指示に従ってターミナルでインストール  
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
     $ brew --version ←バージョン確認  
     Homebrew 1.1.10
-Has
+
 1. コンパイラのインストール  
     $ brew install ghc  
     $ ghc --version  
