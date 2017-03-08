@@ -1,4 +1,4 @@
-# Rust
+# Rust（ Linux ）
 
 ## <ruby>Rust<rt>ラスト</rt></ruby>について
 

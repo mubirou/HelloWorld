@@ -1,4 +1,4 @@
-# Rust
+# Rust（ macOS ）
 
 ## <ruby>Rust<rt>ラスト</rt></ruby>について
 
