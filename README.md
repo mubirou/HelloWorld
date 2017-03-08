@@ -30,6 +30,6 @@
 |Rust|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_mac.md)|
 |SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)|
 |Scala|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_mac.md)|
-|Swift|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/README.md)||
+|Swift|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_mac.md)|
 |TypeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/README.md)||
 |Visual Basic .NET|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/README.md)||
