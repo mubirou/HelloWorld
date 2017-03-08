@@ -24,14 +24,12 @@
     $ java -version  
     java version "1.8.0_121"
 
-1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
-
-1. 指示に従ってターミナルでインストール  
+1. [Homebrew](https://brew.sh/index_ja.html) にアクセスし指示に従いインストール  
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
     $ brew --version ←バージョン確認  
     Homebrew 1.1.11
 
-1. ターミナルで Scala のインストール  
+1. Scala のインストール  
     $ brew install scala  
     …  
     🍺  Cellar/scala/2.12.1: 44 files, 20MB
