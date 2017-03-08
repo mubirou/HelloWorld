@@ -19,7 +19,7 @@
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
     1. [Apple ID](https://appleid.apple.com/#!&page=signin) を用意し [Xcode](https://developer.apple.com/download/) にアクセス
     1. Xcode 8.2.1 を [Download] を選択、指示に従ってダウンロード
-    1. Xcode を開き、引き続き指示に従いインストール  
+    1. Xcode を開き、指示に従いインストール  
     1. ターミナルでバージョン確認  
     $ swift --version  
     Apple Swift version 3.0.2 (swiftlang-800.0.63 clang-800.0.42.1)  

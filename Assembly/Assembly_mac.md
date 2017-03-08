@@ -22,7 +22,7 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
     1. [Apple ID](https://appleid.apple.com/#!&page=signin) を用意し [Xcode](https://developer.apple.com/download/) にアクセス
     1. Xcode 8.2.1 を [Download] を選択、指示に従ってダウンロード
-    1. Xcode を開き、引き続き指示に従いインストール
+    1. Xcode を開き、指示に従いインストール
 
 1. ターミナルでコンパイラの動作確認  
     $ gcc --version  
