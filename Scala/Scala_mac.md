@@ -33,7 +33,7 @@
 
 1. ターミナルで Scala のインストール  
     $ brew install scala  
-    …
+    …  
     🍺  Cellar/scala/2.12.1: 44 files, 20MB
 
 1. 環境変数に追加  
