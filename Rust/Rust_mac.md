@@ -12,7 +12,7 @@
 |OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
 |パッケージ管理システム|[Homebrew](http://bit.ly/2mr4lzk) 1.1.11|2017年03月|
 |コンパイラ|rustc 1.15.1|2017年02月|
-|エディタ|Visual Studio Code 1.10.0|2017年03月|
+|エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|[Rust](https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust) 0.3.10|2017年02月|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
@@ -26,13 +26,6 @@
     $ brew install rust  
     $ rustc --version  
     rustc 1.15.1
-
-
-
-    $ sudo apt-get update  
-    $ sudo apt-get install rustc  
-    $ rustc --version  
-    rustc 1.7.0
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [機能拡張] から [Rust](https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust) を検索＆インストール
@@ -70,4 +63,4 @@ Hello,world! ←…と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年03月02日
+作成日: 2017年03月08日
