@@ -24,7 +24,7 @@
     $ java -version  
     java version "1.8.0_121"
 
-1. [Homebrew](https://brew.sh/index_ja.html) にアクセスし指示に従いインストール  
+1. [Homebrew](https://brew.sh/index_ja.html) を参考にインストール  
     $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"  
     $ brew --version ←バージョン確認  
     Homebrew 1.1.11
