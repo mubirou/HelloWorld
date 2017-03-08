@@ -8,8 +8,8 @@
 
 ## Hello,world!
 
-* [Linux 版]()
-* [macOS 版]()
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_mac.md)
 
 ***
 作成者: Takashi Nishimura

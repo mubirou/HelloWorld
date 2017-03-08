@@ -32,4 +32,4 @@
 |Scala|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_mac.md)|
 |Swift|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_mac.md)|
 |TypeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md)|
-|Visual Basic .NET|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/README.md)||
+|Visual Basic .NET|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_mac.md)|
