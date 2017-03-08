@@ -15,7 +15,7 @@
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|Scala Syntax （Dalton Jorge） 0.0.4|ー|
 
-1. 端末で Scala のインストール  
+1. 端末でのインストール  
     $ sudo apt-get update  
     $ sudo apt-get install openjdk-8-jdk  
     $ java -version  
