@@ -50,7 +50,7 @@ tring
         * 保存して終了: [Esc] → 「ZZ」
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から PHP Debug を検索＆インストール
+    [表示] → [拡張機能] から PHP Debug を検索＆インストール
 
 ## コードの記述
 

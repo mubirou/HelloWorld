@@ -37,7 +37,7 @@
     $ xcode-select --install
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から cobol を検索＆インストール
+    [表示] → [拡張機能] から cobol を検索＆インストール
 
 ## コードの記述
 

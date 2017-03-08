@@ -23,7 +23,7 @@
     This is perl6 version 2015.11 built on MoarVM version 2015.11
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から Perl 6 code snippets を検索＆インストール
+    [表示] → [拡張機能] から Perl 6 code snippets を検索＆インストール
 
 ## コードの記述
 

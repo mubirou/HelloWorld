@@ -24,7 +24,7 @@
     Mono C# compiler version 4.2.1.0
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から C#（Microsoft） を検索＆インストール
+    [表示] → [拡張機能] から C#（Microsoft） を検索＆インストール
 
 ## コードの記述
 

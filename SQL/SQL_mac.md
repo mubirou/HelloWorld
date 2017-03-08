@@ -47,7 +47,7 @@
     （ /Applications/MAMP/htdocs/ と同意）
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から PHP Debug と [vscode-database](http://bit.ly/2mh8nYF) を検索＆インストール
+    [表示] → [拡張機能] から PHP Debug と [vscode-database](http://bit.ly/2mh8nYF) を検索＆インストール
     
 
 ## データベースとテーブルの作成

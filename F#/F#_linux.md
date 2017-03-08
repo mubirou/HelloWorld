@@ -24,7 +24,7 @@
     F# Compiler for F# 4.0 (Open Source Edition)  
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から [Ionide](http://ionide.io/)-fsharp を検索＆インストール
+    [表示] → [拡張機能] から [Ionide](http://ionide.io/)-fsharp を検索＆インストール
 
 ## コードの記述
 

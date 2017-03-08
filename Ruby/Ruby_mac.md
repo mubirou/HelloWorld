@@ -33,7 +33,7 @@
     ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin16]
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から [Ruby（Peng Lv）](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby)を検索＆インストール
+    [表示] → [拡張機能] から [Ruby（Peng Lv）](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby)を検索＆インストール
 
 ## コードの記述
 

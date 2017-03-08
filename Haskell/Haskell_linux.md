@@ -21,7 +21,7 @@
     The Glorious Glasgow Haskell Compilation System, version 7.10.3
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から [Haskell Syntax Highlighting](http://bit.ly/2l6sqMc) を検索＆インストール
+    [表示] → [拡張機能] から [Haskell Syntax Highlighting](http://bit.ly/2l6sqMc) を検索＆インストール
 
 ## コードの記述
 

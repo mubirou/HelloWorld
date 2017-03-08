@@ -28,7 +28,7 @@
     rustc 1.15.1
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [機能拡張] から [Rust](https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust) を検索＆インストール
+    [表示] → [拡張機能] から [Rust](https://marketplace.visualstudio.com/items?itemName=kalitaalexey.vscode-rust) を検索＆インストール
 
 ## コードの記述
 
