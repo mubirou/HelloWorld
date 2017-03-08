@@ -43,7 +43,7 @@
     export JAVA_HOME=$(/usr/libexec/java_home)  
     export PATH="/Users/（ユーザー名）/.scala/bin:$PATH"  
 
-        * [Vi](https://ja.wikipedia.org/wiki/Vi) エディタの使い方（参考）
+    * [Vi](https://ja.wikipedia.org/wiki/Vi) エディタの使い方（参考）
         * 入力モード: [i]
         * 編集モード: [Esc]
         * 行番号表示: [Esc] → 「:set number」
