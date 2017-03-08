@@ -31,5 +31,5 @@
 |SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)|
 |Scala|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_mac.md)|
 |Swift|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_mac.md)|
-|TypeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/README.md)||
+|TypeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md)|
 |Visual Basic .NET|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/README.md)||
