@@ -21,7 +21,6 @@
     $ sudo apt-get install gdc ←D言語コンパイラのインストール  
     $ gdc --version ←バージョン確認  
     gdc (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609  
-    Copyright (C) 2015 Free Software Foundation, Inc.
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から Code-D を検索＆インストール
