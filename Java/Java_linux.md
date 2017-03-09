@@ -21,8 +21,6 @@
     $ sudo apt-get install openjdk-8-jdk ←最新版 Java のインストール  
     $ java -version ←バージョン確認  
     openjdk version "1.8.0_121" ←Java Standard Edition 8 Update 121  
-    OpenJDK Runtime Environment (build 1.8.0_121-8u121-b13-0ubuntu1.16.04.2-b13)  
-    OpenJDK 64-Bit Server VM (build 25.121-b13, mixed mode)
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から [Java Language Support](http://bit.ly/2lj4bpb) を検索＆インストール
