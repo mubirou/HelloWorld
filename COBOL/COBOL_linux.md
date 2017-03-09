@@ -18,7 +18,7 @@
 |拡張機能|cobol 0.3.11|ー|
 
 1. 端末でコンパイラのインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install open-cobol ←COBOLコンパイラのインストール  
     $ cobc --version ←バージョン確認  
     cobc (OpenCOBOL) 1.1.0  

@@ -18,7 +18,7 @@
 |拡張機能|fortran 0.1.0|ー|
 
 1. 端末でコンパイラのインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install gcc g++ gfortran ←各種インストール  
     $ gfortran --version ← バージョン確認  
     GNU Fortran (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609  

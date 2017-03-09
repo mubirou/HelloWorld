@@ -17,7 +17,7 @@
 |拡張機能|[Java Language Support](http://bit.ly/2lj4bpb) 0.0.23|2016年10月|
 
 1. 端末で [Java](https://www.java.com/ja/download/) のインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install openjdk-8-jdk ←最新版 Java のインストール  
     $ java -version ←バージョン確認  
     openjdk version "1.8.0_121" ←Java Standard Edition 8 Update 121  

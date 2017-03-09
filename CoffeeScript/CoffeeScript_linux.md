@@ -18,14 +18,14 @@
 |その他|[Node.js](https://ja.wikipedia.org/wiki/Node.js) 4.2.6|2016年01月|
 
 1. 端末で Node.js のインストール（CoffeeScript に必要）  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install nodejs npm ←Node.js のインストール  
     $ sudo apt install nodejs-legacy  ←node -v が無効なので指示に従ってインストール  
     $ node -v ←Node.js のバージョン確認  
     v4.2.6
 
 1. CoffeeScript コンパイラのインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo npm install -g coffee-script ←CoffeeScript コンパイラのインストール  
     $ coffee -v ←CofeeScript のバージョン確認  
     CoffeeScript version 1.12.4

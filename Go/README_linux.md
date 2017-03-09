@@ -16,7 +16,7 @@
 |拡張機能|go 0.0.1|ー|
 
 1. Go のインストール  
-  $ sudo apt-get update ←インストール済みパッケージのアップデート  
+  $ sudo apt-get update  
   $ sudo apt-get install golang-go ←Goのインストール  
   $ go version ←Goのバージョン確認  
   go version go1.6.2 linux/amd64

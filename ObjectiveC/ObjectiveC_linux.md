@@ -16,7 +16,7 @@
 |拡張機能|[C/C++ Clang](https://github.com/mitaki28/vscode-clang) 0.2.1|ー|
 
 1. 端末でコンパイラ等のインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install build-essential  
     $ sudo apt-get install gobjc ←GNU Objective-C Compiler  
     $ sudo apt-get install libgnustep-base-dev  

@@ -16,7 +16,7 @@
 |ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 
 1. 端末で Haxe のインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install haxe ←Haxeのインストール  
     $ haxe -version ←Haxeのバージョン確認  
     3.2.1

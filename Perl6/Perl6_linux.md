@@ -17,7 +17,7 @@
 |拡張機能|Perl 6 code snippets 0.0.5|ー|
 
 1. 端末で [Perl 6](https://ja.wikipedia.org/wiki/Perl_6) コンパイラのインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install rakudo  
     $ perl6 -v ←バージョン確認  
     This is perl6 version 2015.11 built on MoarVM version 2015.11

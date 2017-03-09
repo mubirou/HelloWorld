@@ -15,7 +15,7 @@
 |拡張機能|[Haskell Syntax Highlighting](http://bit.ly/2l6sqMc) 2.0.0|2017年02月|
 
 1. 端末でコンパイラのインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install ghc ←Haskellコンパイラのインストール  
     $ ghc --version ←Haskellコンパイラのバージョン確認  
     The Glorious Glasgow Haskell Compilation System, version 7.10.3

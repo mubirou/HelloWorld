@@ -16,7 +16,7 @@
 |拡張機能|[Ionide](http://ionide.io/)-fsharp 2.23.5|2017年02月|
 
 1. 端末でコンパイラのインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install mono-complete fsharp ←MonoコンパイラとF#をインストール  
     $ mono --version  ←Monoのバージョン確認  
     Mono JIT compiler version 4.2.1 (Debian 4.2.1.102+dfsg2-7ubuntu4)  

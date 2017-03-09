@@ -17,7 +17,7 @@
 |拡張機能|[Code-D](https://github.com/Pure-D/code-d)|ー|
 
 1. D言語コンパイラのインストール  
-    $ sudo apt-get update ←インストール済みパッケージのアップデート  
+    $ sudo apt-get update  
     $ sudo apt-get install gdc ←D言語コンパイラのインストール  
     $ gdc --version ←バージョン確認  
     gdc (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609  
