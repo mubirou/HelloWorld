@@ -59,7 +59,7 @@ var _myClass:MyClass = MyClass()
 1. test.swift ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/Swift
 
-1. コンパイル 
+1. コンパイル  
 $ /opt/swift/usr/bin/swiftc test.swift
 
 1. test.swift ファイルと同階層に test （実行ファイル）が生成されたのを確認
