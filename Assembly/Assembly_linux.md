@@ -22,9 +22,6 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
 1. 端末でコンパイラのバージョン確認  
     $ gcc --version  
     gcc (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609 ←Ubuntuのデフォルト  
-    Copyright (C) 2015 Free Software Foundation, Inc.  
-    This is free software; see the source for copying conditions.  There is NO  
-    warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 1. Visual Studio Codeに拡張機能の追加  
     1. [表示] → [機能拡張] で Assembler を検索
