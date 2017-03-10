@@ -33,7 +33,7 @@
     1. フォルダ名を apache-flex-sdk-4.15.0-bin → flex_sdk に変更
     1. フォルダを C:\Program Files (x86) に移動する
     1. コマンドプロンプトでバージョン確認  
-    >cd \Program Files (x86)\flex_sdk\bin
+    >cd \Program Files (x86)\flex_sdk\bin  
     >mxmlc -version  
     Version 4.15.0 build 20160104
 
