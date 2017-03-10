@@ -2,7 +2,7 @@
 
 |言語|Linux|macOS|Windows|
 |:--|:--:|:--:|:--:|
-|ActionScript 3.0|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_mac.md)||
+|ActionScript 3.0|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_win.md)|
 |アセンブリ言語|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_mac.md)||
 |C#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_mac.md)||
 |C++|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_mac.md)||
