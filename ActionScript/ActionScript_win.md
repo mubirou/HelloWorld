@@ -11,7 +11,7 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10 Pro|ー|
+|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10|ー|
 |コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.15.0|2016年01月|
 |Flash Player|[PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 24.0.0.221|2017年02月|
 |エディタ|Visual Studio Code 1.10.2|2017年03月|
