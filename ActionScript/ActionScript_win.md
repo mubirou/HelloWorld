@@ -44,9 +44,9 @@
 1. Adobe PlayerGlobal のダウンロード
     1. Adobe Flash Player サポートセンターにアクセス  
     http://www.adobe.com/jp/support/flashplayer/debug_downloads.html
-    1. [最新版のplayerglobal.swcをダウンロード] を選択しダウンロード
-    1. C:\Program Files (x86)/flex_sdk/frameworks/libs/ に /player/11.1/ フォルダを作成
-    1. 作成したフォルダ内に、ダウンロードした playerglobal24_0.swc を複製（展開しない）
+    1. [最新版のplayerglobal.swcをダウンロード] を選択しダウンロード  
+    1. C:\Program Files (x86)/flex_sdk/frameworks/libs/ に /player/11.1/ フォルダを作成  
+    1. 作成したフォルダ内に、ダウンロードした playerglobal24_0.swc を複製（展開しない）  
     1. ファイル名を playerglobal24_0.swc → playerglobal.swc に変更
 
 1. 設定ファイルの変更
