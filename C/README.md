@@ -10,6 +10,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_win.md)
 
 ***
 作成者: Takashi Nishimura
