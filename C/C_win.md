@@ -32,10 +32,9 @@
     1. [システム環境変数] で変数 "Path" を探して選択 → [編集] ボタンをクリック
     1. 変数値の最後に ;C:\MinGW\bin を追加
     1. Windows を再起動
-
-1. コマンドプロンプトでバージョン確認  
-\>gcc --version  
-gcc (GCC) 5.3.0
+    1. コマンドプロンプトでバージョン確認  
+        \>gcc --version  
+        gcc (GCC) 5.3.0
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から [C/C++（Microsoft）](http://bit.ly/2mughye) を検索＆インストール
