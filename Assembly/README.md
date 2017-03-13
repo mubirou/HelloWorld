@@ -14,6 +14,7 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Assembly/Assembly_win.md)
 
 ***
 作成者: Takashi Nishimura
