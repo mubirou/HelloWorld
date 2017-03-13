@@ -65,7 +65,7 @@ L_.str:
 1. test.s ファイルのあるディレクトリに移動  
 $ cd /Users/（ユーザー名）/Desktop/Assembly
 
-1. コンパイル（.s → a.out）  
+1. アセンブル（.s → a.out）  
 $ gcc test.s
 
 1. test.c ファイルと同階層に a.out ファイルが生成されたのを確認
