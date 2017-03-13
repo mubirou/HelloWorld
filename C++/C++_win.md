@@ -37,8 +37,6 @@
     1. 変数値の最後に ;C:\MinGW\bin を追加
     1. Windows を再起動
     1. コマンドプロンプトでバージョン確認  
-        \>gcc --version  
-        gcc (GCC) 5.3.0  
         \>g++  --version  
         g++ (GCC) 5.3.0
 
