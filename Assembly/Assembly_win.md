@@ -82,8 +82,8 @@ message:
     \>cd \Users\（ユーザー名）\Desktop\Assembly
 
 1. コンパイル（.asm → .obj → a.exe）  
-    >nasm -fwin32 test.asm  
-    >gcc test.obj
+    \>nasm -fwin32 test.asm  
+    \>gcc test.obj
 
 1. test.asm ファイルと同階層に test.obj と a.exe ファイルが生成されたのを確認
 
