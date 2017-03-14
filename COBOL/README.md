@@ -12,6 +12,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_win.md)
 
 ***
 作成者: Takashi Nishimura
