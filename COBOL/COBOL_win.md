@@ -42,7 +42,7 @@
     1. http://www.b-for-server.com/homepage/indexwin.html にアクセス
     1. [open-cobol-1.0-1.zip（バイナリー）のダウンロード] を選択、ダウンロード
     1. ダウンロードした gnu-cobol-2.0_rc-2_win.zip を Desktop に展開
-    1. \Desktop\open-cobol-1.0-1 フォルダ内の全ファイルを C:\MinGW フォルダ内にコピー
+    1. \Desktop\open-cobol-1.0-1 フォルダ内の全ファイルを C:\MinGW フォルダ内にコピー（cobc.exeが必要）
     1. コマンドプロントでバージョン確認  
         \>cobc --version  
         cobc (OpenCOBOL) 1.0.0  
