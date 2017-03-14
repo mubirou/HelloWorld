@@ -8,7 +8,7 @@
 |C#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_win.md)|
 |C++|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_win.md)|
 |C言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_win.md)|
-|COBOL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_mac.md)||
+|COBOL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_mac.md)|ー|
 |CoffeeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_mac.md)||
 |D言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_mac.md)||
 |Dart|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_mac.md)||

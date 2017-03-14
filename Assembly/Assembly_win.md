@@ -12,7 +12,7 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10|ー|2017年01月|
+|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|2017年01月|
 |アセンブラ|[NASM](https://ja.wikipedia.org/wiki/Netwide_Assembler) 2.12.02|2016年07月|
 |開発環境|[MinGW](https://ja.wikipedia.org/wiki/MinGW) |ー|
 |コンパイラ|[GCC](http://bit.ly/2kOadCN) 5.3.0 |2015年12月|

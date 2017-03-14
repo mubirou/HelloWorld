@@ -12,7 +12,7 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10|ー|
+|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
 |コンパイラ|Visual C# Compiler 4.6.0079.0|ー|
 |エディタ|Visual Studio Code 1.10.2|2017年03月|
 |拡張機能|C#（Microsoft） 1.7.0|ー|

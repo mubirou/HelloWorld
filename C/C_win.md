@@ -10,7 +10,7 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10|ー|
+|OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
 |開発環境|[MinGW](https://ja.wikipedia.org/wiki/MinGW) |ー|
 |コンパイラ|[GCC](http://bit.ly/2kOadCN) 5.3.0 |2015年12月|
 |エディタ|Visual Studio Code 1.10.2|2017年03月|
