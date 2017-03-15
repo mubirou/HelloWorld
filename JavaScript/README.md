@@ -10,6 +10,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_win.md)
 
 ***
 作成者: Takashi Nishimura
