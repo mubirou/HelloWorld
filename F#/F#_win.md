@@ -27,9 +27,9 @@
 1. [環境変数](http://bit.ly/2lCIAgK)の設定  
     1. タスクバーのスタートボタンを右クリック → [コントロールパネル] → [システムとセキュリティ] → [システム] → [システムの詳細設定] → [環境変数] を開く
     1. [システム環境変数] で変数 "Path" を探して選択 → [編集] ボタンをクリック
-    1. 変数値の最後に ;C:\Program Files (x86)\Microsoft SDKs\F#\3.1\Framework\v4.0 を追加（Fsc.exeが存在するフォルダ）
+    1. 変数値の最後に ;C:\Program Files (x86)\Microsoft SDKs\F#\3.1\Framework\v4.0 を追加（Fsc.exeが存在）
     1. コマンドプロンプトでバージョン確認  
-        \>fsc test.fs  
+        \>fsc --help  
         Microsoft (R) F# Compiler version 12.0.21005.1
 
 1. Visual Studio Codeに拡張機能の追加  
