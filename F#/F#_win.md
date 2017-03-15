@@ -19,7 +19,7 @@
     1. [.NET Frameworkd のインストール](https://msdn.microsoft.com/ja-jp/library/5a4x27ek(v=vs.110).aspx) を開く
     1. [NET Framework 4.6.2 Dev Pack] を選択
     1. [日本語] を選択した状態で [ダウンロード] ボタンをクリック
-    1. "ダウンロードするプログラムを選んでください。" 画面で次の2つを選択して [次へ]
+    1. [ダウンロードするプログラムを選んでください。] 画面で次の2つを選択して [次へ]
         * NDP462-DevPack-KB3151934-ENU.exe 82.8MB
         * NDP462-DevPack-KB3151934-JPN.exe 13.4MB
     1. ダウンロードした上記の2つのファイルをそれぞれインストール
