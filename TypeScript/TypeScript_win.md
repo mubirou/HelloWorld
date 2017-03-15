@@ -1,4 +1,4 @@
-# TypeScript（ macOS ）
+# TypeScript（ Windows ）
 
 ## TypeScriptについて
 
