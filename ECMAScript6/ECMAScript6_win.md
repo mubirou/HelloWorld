@@ -1,4 +1,4 @@
-# ECMAScript 6（ macOS ）
+# ECMAScript 6（ Windows ）
 
 ## ECMAScript 6 について
 
