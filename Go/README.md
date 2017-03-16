@@ -10,6 +10,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_win.md)
 
 ***
 作成者: Takashi Nishimura

@@ -12,20 +12,16 @@
 |:--:|:--:|:--:|
 |OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
 |コンパイラ|[Go](http://bit.ly/2lPWKrt) 1.8|2017年02月|
-|エディタ|Visual Studio Code 1.10.1|2017年03月|
+|エディタ|Visual Studio Code 1.10.2|2017年03月|
 |拡張機能|go（lukehoban） 0.6.55|ー|
 
 1. [Go](http://bit.ly/2lPWKrt) のインストール  
     1. https://golang.org/dl/ にアクセス
     1. Featured downloads（お勧め）の中から Microsoft Windows の go1.8.windows-amd64.msi を選択、ダウンロード
-    
-
-
-
-
-    $ brew install go  
-    $ go version  
-    go version go1.8 darwin/amd64
+    1. ダウンロードした go1.8.windows-amd64.msi をダブルクリックしインストール
+    1. Windows を再起動後、コマンドプロンプトでバージョン確認  
+        \>go version  
+        go version go1.8 windows/amd64
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から go（lukehoban） を検索＆インストール
@@ -50,15 +46,15 @@ func main() { //main関数（最初に実行される）
 
 ## 実行
 
-1. Visual Studio Code で [表示] → [総合ターミナル] → [端末] を選択（ターミナルでも可）
+1. コマンドプロンプトを起動
 
 1. test.go ファイルのあるディレクトリに移動  
-$ cd /Users/（ユーザー名）/Desktop/Go
+\>cd \Users\（ユーザー名）\Desktop\Go
 
 1. 実行  
-$ go run test.go  
+\>go run test.go  
 Hello,world! ←…と表示されたら成功！（ファイルは生成されない）
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年03月07日
+作成日: 2017年03月16日
