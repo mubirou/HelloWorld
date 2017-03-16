@@ -51,7 +51,7 @@
 
 ## データベースとテーブルの作成
 
-* データベースの起動
+* データベースの起動（Windowsを起動する度に実行）
    1. [Windows スタートメニュー] → [すべてのアプリ] → [XAMPP] → [XAMPP Control Panel] を起動
    2. 以下の Service の [Start] ボタンをクリック
         * Apache
