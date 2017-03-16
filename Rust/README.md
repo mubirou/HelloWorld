@@ -9,6 +9,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_win.md)
 
 ***
 作成者: Takashi Nishimura

@@ -28,7 +28,7 @@
 |Python|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_win.md)|
 |R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_win.md)|
 |Ruby|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_win.md)|
-|Rust|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_mac.md)||
+|Rust|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_win.md)|
 |SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_win.md)|
 |Scala|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_mac.md)||
 |Swift|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_mac.md)||
