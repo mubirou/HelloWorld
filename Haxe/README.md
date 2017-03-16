@@ -9,6 +9,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_win.md)
 
 ***
 作成者: Takashi Nishimura
