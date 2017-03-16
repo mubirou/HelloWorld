@@ -8,6 +8,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_win.md)
 
 ***
 作成者: Takashi Nishimura
