@@ -10,6 +10,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_win.md)
 
 ***
 作成者: Takashi Nishimura
