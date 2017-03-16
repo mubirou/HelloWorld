@@ -15,7 +15,7 @@
 |ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)|
 |F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_win.md)|
 |FORTRAN|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_win.md)|
-|Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_mac.md)||
+|Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_mac.md)||
 |HTML+CSS|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_win.md)|
 |Haskell|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_mac.md)||
 |Haxe|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_mac.md)||

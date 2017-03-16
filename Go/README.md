@@ -8,8 +8,8 @@
 
 ## Hello,world!
 
-* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_linux.md)
-* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/README_mac.md)
+* [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_linux.md)
+* [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_mac.md)
 
 ***
 作成者: Takashi Nishimura
