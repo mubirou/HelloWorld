@@ -24,7 +24,7 @@
 |Objective-C|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_win.md)|
 |PHP|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_win.md)|
 |Perl|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_win.md)|
-|Perl 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_mac.md)||
+|Perl 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_win.md)|
 |Python|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md)||
 |R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)||
 |Ruby|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_mac.md)||

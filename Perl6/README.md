@@ -11,6 +11,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_win.md)
 
 ***
 作成者: Takashi Nishimura
