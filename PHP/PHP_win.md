@@ -26,14 +26,12 @@
         * Apache
         * MySQL
 
-1. C:\xampp\htdocs に以下の内容の test.php ファイルを置き、Webブラウザで localhost/test.php を開き各種バージョンを確認  
-    （<b>本番環境ではセキュリティ上削除しておく</b>）
+1. C:\xampp\htdocs に以下の内容の test.php ファイルを置き、Webブラウザで localhost/test.php を開いて各種情報を確認（<b>本番環境ではセキュリティ上削除しておく</b>）
     ```
     <?php phpinfo(); ?>
     ```
 
-1. エディタで C:\xampp\php\php.ini を開いて、エラー表示が有効か確認する  
-    （<b>本番環境では Off にする</b>）
+1. エディタで C:\xampp\php\php.ini を開いて、エラー表示が有効か確認する（<b>本番環境では Off にする</b>）
     ```
     477行目 display_errors=On  
     ```
