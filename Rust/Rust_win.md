@@ -18,7 +18,7 @@
     1. https://www.rust-lang.org/en-US/install.html にアクセス
     1. [rustup-init.exe] をクリック、ダウンロード
     1. ダウンロードした rustup-init.exe をダブルクリック、インストール  
-        （冒頭で、"1) Proceed with installation（default）" を選択）
+        （冒頭で「 1) Proceed with installation（default）」を選択）
 
 1. [環境変数](http://bit.ly/2lCIAgK)の設定  
     1. タスクバーのスタートボタンを右クリック → [コントロールパネル] → [システムとセキュリティ] → [システム] → [システムの詳細設定] → [環境変数] を開く
@@ -60,7 +60,7 @@ fn main() {
 1. test.rs ファイルと同階層に test.exe、test.pdb ファイルが生成されたのを確認
 
 1. 実行  
-\>test.exe
+\>test.exe  
 Hello,world! ←…と表示されたら成功！  
 
 ***
