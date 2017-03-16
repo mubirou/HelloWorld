@@ -26,7 +26,7 @@
 |Perl|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_win.md)|
 |Perl 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_win.md)|
 |Python|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_win.md)|
-|R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)||
+|R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_win.md)|
 |Ruby|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_mac.md)||
 |Rust|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_mac.md)||
 |SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_win.md)|

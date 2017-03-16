@@ -11,6 +11,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_win.md)
 
 ***
 作成者: Takashi Nishimura
