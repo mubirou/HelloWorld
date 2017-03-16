@@ -8,6 +8,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_win.md)
 
 ***
 作成者: Takashi Nishimura
