@@ -9,6 +9,7 @@
 
 * [Linux 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_linux.md)
 * [macOS 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_mac.md)
+* [Windows 版](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_win.md)
 
 ***
 作成者: Takashi Nishimura
