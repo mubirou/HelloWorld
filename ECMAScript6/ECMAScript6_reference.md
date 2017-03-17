@@ -1,5 +1,7 @@
 <b>この項目は書きかけの項目です。</b>
 
+# ECMAScript 6 基礎文法
+
 * Hello,world!（[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md)／[macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md)／[Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
@@ -103,7 +105,7 @@ var _function2 = () => {}; //アロー関数
 console.log(typeof _function2); //"function"
 
 
-//⑦symbol
+//⑦symbol（シンボル）
 var _symbol = Symbol();
 console.log(typeof _symbol); //"symbol"
 
