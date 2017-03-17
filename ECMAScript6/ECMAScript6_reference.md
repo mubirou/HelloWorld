@@ -6,7 +6,7 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-* スーパークラスとサブクラス
+* [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * 名前空間
 * 継承と委譲
 * 変数とスコープ
@@ -233,7 +233,7 @@ class Rectangle {
         this.__height = _height;
     }
 
-    //アクセサ（getter / setter）
+    //アクセサ（getter/setter）
     get width() {
         return this.__width;
     }
@@ -275,90 +275,104 @@ console.log(_rectangle.getArea()); //2073600
 更新日：2017年03月17日  
 
 
+<a name="スーパークラスとサブクラス"></a>
 # スーパークラスとサブクラス
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
-◆HTMLファイル（index.html）
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>TEST</title>
-        <script src="main.js"></script>
-    </head>
-</html>
+```
+<script>
 
-◆ECMAScript 2015ファイル（main.js）
-//main.js
-//===========================
-//スーパークラス
-//===========================
+//=====================================================
+// スーパークラス
+//=====================================================
 class SuperClass {
-  constructor() { //コンストラクタ
-    //①プロパティの定義
-	  this.__pSuperClass = "スーパークラスのプロパティ";
-  }
+    //コンストラクタ
+    constructor() {
+        //①プロパティの定義
+        this.__pSuperClass = "スーパークラスのプロパティ";
+    }
 
-  //②アクセサの定義（getter）
-  get pSuperClass() { return this.__pSuperClass; }
+    //②アクセサの定義（setterは省略）
+    get pSuperClass() {
+        return this.__pSuperClass;
+    }
 
-  //③メソッドの定義
-  mSuperClass() { return "スーパークラスのメソッド"; }
+    //③メソッドの定義
+    mSuperClass() {
+        return "スーパークラスのメソッド";
+    }
 }
 
-//===========================
-//サブクラスＡ
-//===========================
-class SubClassA extends SuperClass { //←…スーパークラスを継承（多重継承は不可）
-  constructor() { //コンストラクタ
-    super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-    //①プロパティの定義
-    this.__pSubClassA = "サブクラスＡのプロパティ";
-  }
+//=====================================================
+// サブクラスＡ（スーパークラスを継承／多重継承は不可）
+//=====================================================
+class SubClassA extends SuperClass {
+    //コンストラクタ
+    constructor() {
+        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
+        //①プロパティの定義
+        this.__pSubClassA = "サブクラスＡのプロパティ";
+    }
 
-	//②アクセサの定義（getter）
-	get pSubClassA() { return this.__pSubClassA; }
+    //②アクセサの定義（setterは省略）
+    get pSubClassA() {
+        return this.__pSubClassA;
+    }
 
-	//③メソッドの定義
-	mSubClassA() { return "サブクラスＡのメソッド"; }
+    //③メソッドの定義
+    mSubClassA() {
+        return "サブクラスＡのメソッド";
+    }
 }
 
-//===========================
-//サブクラスＢ
-//===========================
-class SubClassB extends SuperClass { //←…スーパークラスを継承（多重継承は不可）
-  constructor() { //コンストラクタ
-    super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-    //①プロパティの定義
-	 this.__pSubClassB = "サブクラスＢのプロパティ";
-  }
+//=====================================================
+// サブクラスＢ（スーパークラスを継承／多重継承は不可）
+//=====================================================
+class SubClassB extends SuperClass {
+    //コンストラクタ
+    constructor() {
+        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
+        //①プロパティの定義
+        this.__pSubClassB = "サブクラスＢのプロパティ";
+    }
 
-	//②アクセサの定義（getter）
-	get pSubClassB() { return this.__pSubClassB; }
+    //②アクセサの定義（setterは省略）
+    get pSubClassB() {
+        return this.__pSubClassB;
+    }
 
-  //③メソッドの定義
-	mSubClassB() { return "サブクラスＢのメソッド"; }
+    //③メソッドの定義
+    mSubClassB() {
+        return "サブクラスＢのメソッド";
+    }
 }
 
-//===========================
-//実行
-//===========================
+//=====================================================
+// 実行
+//=====================================================
 //サブクラスＡのインスタンス
-var subclassA_ = new SubClassA();
-console.log(subclassA_.pSuperClass); //"スーパークラスのプロパティ"
-console.log(subclassA_.pSubClassA); //"サブクラスＡのプロパティ"
-console.log(subclassA_.mSuperClass()); //"スーパークラスのメソッド"
-console.log(subclassA_.mSubClassA()); //"サブクラスＡのメソッド"
+var _subclassA = new SubClassA();
+console.log(_subclassA.pSuperClass); //"スーパークラスのプロパティ"
+console.log(_subclassA.pSubClassA); //"サブクラスＡのプロパティ"
+console.log(_subclassA.mSuperClass()); //"スーパークラスのメソッド"
+console.log(_subclassA.mSubClassA()); //"サブクラスＡのメソッド"
 
 //サブクラスＢのインスタンス
-var subclassB_ = new SubClassB();
-console.log(subclassB_.pSuperClass); //"スーパークラスのプロパティ"
-console.log(subclassB_.pSubClassB); //"サブクラスＢのプロパティ"
-console.log(subclassB_.mSuperClass()); //"スーパークラスのメソッド"
-console.log(subclassB_.mSubClassB()); //"サブクラスＢのメソッド"
+var _subclassB = new SubClassB();
+console.log(_subclassB.pSuperClass); //"スーパークラスのプロパティ"
+console.log(_subclassB.pSubClassB); //"サブクラスＢのプロパティ"
+console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
+console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 
-作成日：2016年9月14日（水）
-#1-6 名前空間
+</script>
+```
+
+実行環境：Ubuntu 16.04.2 LTS、Chromium 56.0.2924.76  
+作成者：Takashi Nishimura  
+作成日：2016年09月14日  
+更新日：2017年03月17日  
+
+
+# 名前空間
 Ubuntu 16.04.1 LTS、Chromium 55.0.XX、VSCode 1.8.1対応
 ※ES2015+からサポートされた「import」と「export」はまだブラウザで利用できません。
 ※記述方法はやや力技的ですが機能としては充分であると言えます。
