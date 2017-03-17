@@ -2,15 +2,15 @@
 
 # ECMAScript 6 基礎文法
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md)／[macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md)／[Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-* クラス
+* [クラス](#クラス)
 * スーパークラスとサブクラス
 * 名前空間
 * 継承と委譲
 * 変数とスコープ
-* アクセサ （getter／setter）
+* アクセサ （getter / setter）
 * 演算子
 * 定数
 * メソッド
@@ -218,48 +218,64 @@ console.log(_string2, typeof _string2); //"takashi,49", "string"
 作成日：2016年09月14日  
 更新日：2017年03月17日  
 
-
+<a name="クラス"></a>
 # クラス
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
-◆index.html
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="main.js"></script>
-    </head>
-</html>
+```
+<script>
 
-◆main.js
-class Rectangle { //長方形クラス ←…前方宣言が必要
-  constructor(width=640, height=480) { //コンストラクタ
-    this.__width = width; //←…外からもアクセス可能だがアクセスしないようにしよう!!
-    this.__height = height;
-  }
+//長方形クラス（前方宣言が必要）
+class Rectangle {
+    //コンストラクタ
+    constructor(_width=640, _height=480) {
+        //外からもアクセス可能だがアクセスしないようにする
+        this.__width = _width;
+        this.__height = _height;
+    }
 
-  //アクセサ（getter/setter）
-  get width() { return this.__width; }
-  get height() { return this.__height; }
-  set width(newValue) { this.__width = newValue; }
-  set height(newValue) { this.__height = newValue; }
+    //アクセサ（getter / setter）
+    get width() {
+        return this.__width;
+    }
+    set width(_newValue) {
+        this.__width = _newValue;
+    }
 
-  getArea() { return this.__width * this.__height; } //面積を計算して値を返す
+    get height() { 
+        return this.__height;
+    }
+    set height(_newValue) {
+        this.__height = _newValue;
+    }
+
+    //面積を計算して値を返す
+    getArea() { 
+        return this.__width * this.__height;
+    }
 }
 
-var rectangle_ = new Rectangle(); //①インスタンスの生成
+//①インスタンスの生成
+var _rectangle = new Rectangle();
 
 //②プロパティの確認と変更
-console.log(rectangle_.width, rectangle_.height); //640, 480
-rectangle_.width = 1920; 
-rectangle_.height = 1080;
-console.log(rectangle_.width, rectangle_.height); //1920, 1080
+console.log(_rectangle.width, _rectangle.height); //640, 480
+_rectangle.width = 1920; 
+_rectangle.height = 1080;
+console.log(_rectangle.width, _rectangle.height); //1920, 1080
 
 //③メソッドの実行
-console.log(rectangle_.getArea()); //2073600
+console.log(_rectangle.getArea()); //2073600
 
-作成日：2016年9月14日（水）
-#1-5 スーパークラスとサブクラス
+</script>
+```
+
+実行環境：Ubuntu 16.04.2 LTS、Chromium 56.0.2924.76  
+作成者：Takashi Nishimura  
+作成日：2016年09月14日  
+更新日：2017年03月17日  
+
+
+# スーパークラスとサブクラス
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
 ◆HTMLファイル（index.html）
