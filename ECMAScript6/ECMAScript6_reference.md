@@ -203,7 +203,7 @@ var _number4 = parseFloat("3.14です。"); //数字以外を含む値
 console.log(_number4, typeof _number4); //3.14, "number"
 
 //④数値→string型
-var _string1 = String(100); //(100).toString()でも同じ
+var _string1 = String(100); //(100).toString() でも同じ
 console.log(_string1, typeof _string1); //"100", "string"
 
 //⑤配列→string型
