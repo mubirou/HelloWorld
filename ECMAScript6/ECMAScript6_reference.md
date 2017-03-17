@@ -7,7 +7,7 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
-* 名前空間
+* [名前空間](#名前空間)
 * 継承と委譲
 * 変数とスコープ
 * アクセサ （getter / setter）
@@ -368,90 +368,84 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 作成日：2017年03月17日  
 
 
+<a name="名前空間"></a>
 # 名前空間
-Ubuntu 16.04.1 LTS、Chromium 55.0.XX、VSCode 1.8.1対応
-※ES2015+からサポートされた「import」と「export」はまだブラウザで利用できません。
-※記述方法はやや力技的ですが機能としては充分であると言えます。
 
-◆HTMLファイル（index.html）
+* ES2015+からサポートされた import と export はまだブラウザで利用できません
+* サンプルの方法は力技的ですが機能としては充分です
+
+#### 外部ファイル（ myLibrary.js ）
+```
+//名前空間を省略可能にするために（オプション）
+if (myLibrary != window) {
+    var myLibrary = {}; //namescape（省略をしない前提であればconstにします）
+}
+
+/**************************
+myLibrary.SuperClassクラス
+**************************/
+myLibrary.SuperClass = 
+class SuperClass {
+    constructor() {
+        this.__myProperty = undefined;
+    }
+    get myProperty() {
+        return this.__myProperty;
+    }
+    set myProperty(_newValue) {
+        this.__myProperty = _newValue;
+    }
+};
+
+/**************************
+myLibrary.MyClassクラス
+**************************/
+myLibrary.MyClass = 
+class MyClass extends myLibrary.SuperClass { //継承も可能
+    constructor() {
+        super();
+        console.log("new myLibrary.MyClass!");
+    }
+    MyClassMethod() {
+        console.log("MyClass.MyClassMethod()");
+    }
+};
+```
+
+#### xxx.html
+```
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <!--script>var canvaslite = window;</script--> ←…追加でcanvasliteが省略可能!
-        <script src="canvaslite.js"></script>
-        <script src="main.js"></script>
-    </head>
-</html>
+<head>
+<meta charset="UTF-8">
+<!--script>var myLibrary = window;</script-->
+<script src="myLibrary.js"></script>
+<script>
 
-◆ECMAScript 6（canvaslite.js）
-//名前空間を省略可能にするために
-if (canvaslite != window) {
-    var canvaslite = {}; //namescape（省略をしない前提であればconstにします）
-}
-
-//==============================
-//canvaslite.SuperDisplayクラス
-//==============================
-canvaslite.SuperDisplay = 
-    class SuperDisplay {
-        constructor() { this.__name = "undefined"; }
-        get name() { return this.__name; }
-        set name(_newValue) { this.__name = _newValue; }
-    };
-
-//==============================
-//canvaslite.Bitmapクラス
-//==============================
-canvaslite.Bitmap = 
-    class Bitmap extends canvaslite.SuperDisplay { //継承も可能
-        constructor() {
-            super();
-            console.log("new canvaslite.Bitmap!");
-        }
-        bitmapMethod() {
-            console.log("Bitmap.bitmapMethod()");
-        }
-    };
-
-//==============================
-//canvaslite.SpriteSheetクラス
-//==============================
-canvaslite.SpriteSheet = 
-    class SpriteSheet extends canvaslite.SuperDisplay { //継承も可能
-        constructor() {
-            super();
-            console.log("new canvaslite.SpriteSheet!");
-        }
-        spriteSheetMethod() {
-            console.log("SpriteSheet.spriteSheetMethod()");
-        }
-    };
-
-◆Mainファイル
-//main.js
-var _bitmap01 = new canvaslite.Bitmap();
-_bitmap01.bitmapMethod(); //"Bitmap.bitmapMethod()"
-_bitmap01.name = "bitmap01";
-console.log(_bitmap01.name); //"bitmap01"
-
-var _spriteSheet01 = new canvaslite.SpriteSheet();
-_spriteSheet01.spriteSheetMethod(); //"SpriteSheet.spriteSheetMethod()"
-_spriteSheet01.name = "spriteSheet01";
-console.log(_spriteSheet01.name); //"spriteSheet01"
+var _myClass = new myLibrary.MyClass();
+_myClass.MyClassMethod(); //"Bitmap.bitmapMethod()"
+_myClass.myProperty = "hoge";
+console.log(_myClass.myProperty); //"hoge"
 
 //Bitmapクラス（名前空間を省略するとコンフリクトを起こす）
-class Bitmap {
+class MyClass {
     constructor() {
-        console.log("コンフリクトを起こさない!!");
+        console.log("コンフリクトを起こさない!");
     }
 }
+new MyClass(); //"コンフリクトを起こさない!"
 
-var _bitmap = new Bitmap(); //"コンフリクトを起こさない!!"
+</script>
+</head>
+</html>
+```
 
-作成日：2016年12月20日（火）
-更新日：2017年2月1日（水） 継承にも対応
-#1-7 継承と委譲
+環　境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月17日  
+
+
+# 継承と委譲
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
 ◆概要
