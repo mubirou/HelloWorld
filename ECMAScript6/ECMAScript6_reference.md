@@ -114,8 +114,7 @@ console.log(typeof _symbol); //"symbol"
 
 実行環境：Ubuntu 16.04.2 LTS、Chromium 56.0.2924.76  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日  
+作成日：2017年03月17日  
 
 
 <a name="データ型の操作"></a>
@@ -215,8 +214,7 @@ console.log(_string2, typeof _string2); //"takashi,49", "string"
 
 実行環境：Ubuntu 16.04.2 LTS、Chromium 56.0.2924.76  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日  
+作成日：2017年03月17日  
 
 <a name="クラス"></a>
 # クラス
@@ -271,8 +269,7 @@ console.log(_rectangle.getArea()); //2073600
 
 実行環境：Ubuntu 16.04.2 LTS、Chromium 56.0.2924.76  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日  
+作成日：2017年03月17日  
 
 
 <a name="スーパークラスとサブクラス"></a>
@@ -368,8 +365,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 
 実行環境：Ubuntu 16.04.2 LTS、Chromium 56.0.2924.76  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日  
+作成日：2017年03月17日  
 
 
 # 名前空間
