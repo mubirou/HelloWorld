@@ -196,14 +196,14 @@ console.log(_number1, typeof _number1); //1（falseの場合は0）, "number"
 var _number2 = Number("3.14");
 console.log(_number2, typeof _number2); //3.14, "number"
 
-var _number3 = parseInt("3.14"); //←…小数点以下を切り捨てて整数化
+var _number3 = parseInt("3.14"); //小数点以下を切り捨てて整数化
 console.log(_number3, typeof _number3); //3, "number"
 
-var _number4 = parseFloat("3.14です。"); //←…数字以外を含む値
+var _number4 = parseFloat("3.14です。"); //数字以外を含む値
 console.log(_number4, typeof _number4); //3.14, "number"
 
 //④数値→string型
-var _string1 = String(100); //←…(100).toString()でも同じ
+var _string1 = String(100); //(100).toString()でも同じ
 console.log(_string1, typeof _string1); //"100", "string"
 
 //⑤配列→string型
