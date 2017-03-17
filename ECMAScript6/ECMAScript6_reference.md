@@ -404,7 +404,7 @@ myLibrary.MyClass =
 class MyClass extends myLibrary.SuperClass { //継承も可能
     constructor() {
         super();
-        console.log("new myLibrary.MyClass!");
+        console.log("new myLibrary.MyClass");
     }
     MyClassMethod() {
         console.log("MyClass.MyClassMethod()");
@@ -422,8 +422,8 @@ class MyClass extends myLibrary.SuperClass { //継承も可能
 <script src="myLibrary.js"></script>
 <script>
 
-var _myClass = new myLibrary.MyClass();
-_myClass.MyClassMethod(); //"Bitmap.bitmapMethod()"
+var _myClass = new myLibrary.MyClass(); //"new myLibrary.MyClass"
+_myClass.MyClassMethod(); //"MyClass.MyClassMethod()"
 _myClass.myProperty = "hoge";
 console.log(_myClass.myProperty); //"hoge"
 
