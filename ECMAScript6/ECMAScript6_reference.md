@@ -112,7 +112,7 @@ console.log(typeof _symbol); //"symbol"
 </script>
 ```
 
-環　境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -212,7 +212,7 @@ console.log(_string2, typeof _string2); //"takashi,49", "string"
 </script>
 ```
 
-環　境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -267,7 +267,7 @@ console.log(_rectangle.getArea()); //2073600
 </script>
 ```
 
-環　境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -363,7 +363,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 </script>
 ```
 
-環　境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -440,7 +440,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 </html>
 ```
 
-環　境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
