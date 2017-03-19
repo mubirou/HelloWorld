@@ -112,7 +112,7 @@ console.log(typeof _symbol); //"symbol"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -212,7 +212,7 @@ console.log(_string2, typeof _string2); //"takashi,49", "string"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -239,7 +239,7 @@ class Rectangle {
         this.__width = _newValue;
     }
 
-    get height() { 
+    get height() {
         return this.__height;
     }
     set height(_newValue) {
@@ -247,7 +247,7 @@ class Rectangle {
     }
 
     //面積を計算して値を返す
-    getArea() { 
+    getArea() {
         return this.__width * this.__height;
     }
 }
@@ -257,7 +257,7 @@ var _rectangle = new Rectangle();
 
 //②プロパティの確認と変更
 console.log(_rectangle.width, _rectangle.height); //640, 480
-_rectangle.width = 1920; 
+_rectangle.width = 1920;
 _rectangle.height = 1080;
 console.log(_rectangle.width, _rectangle.height); //1920, 1080
 
@@ -267,7 +267,7 @@ console.log(_rectangle.getArea()); //2073600
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -363,7 +363,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -384,7 +384,7 @@ if (myLibrary != window) {
 /**************************
 myLibrary.SuperClassクラス
 **************************/
-myLibrary.SuperClass = 
+myLibrary.SuperClass =
 class SuperClass {
     constructor() {
         this.__myProperty = undefined;
@@ -400,7 +400,7 @@ class SuperClass {
 /**************************
 myLibrary.MyClassクラス
 **************************/
-myLibrary.MyClass = 
+myLibrary.MyClass =
 class MyClass extends myLibrary.SuperClass { //継承も可能
     constructor() {
         super();
@@ -440,52 +440,69 @@ new MyClass(); //"コンフリクトを起こさない!"
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
 
 # 継承と委譲
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
-◆概要
-GoFデザインパターンのAdapterパターンで利用され、継承の場合は「extends クラス名」を使い、
-委譲の場合は「new クラス名()」を使ってオブジェクトを生成し、他のクラスの機能を利用します。
+### 概要
 
-◆HTMLファイル（index.html）
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="main.js"></script>
-    </head>
-</html>
+* GoFデザインパターンのAdapterパターンで利用される。
+* 継承の場合は「extends クラス名」を使い、委譲の場合は「new クラス名()」を使ってオブジェクトを生成し、他のクラスの機能を利用する。
 
-◆ECMAScript 2015ファイル（main.js）
-【継承】
+### 継承
+
+```
+<script>
 class ClassA {
-	myMethod() {
-		console.log("ClassA.myMethod()");
-	}
+  myMethod() {
+    console.log("ClassA.myMethod");
+  }
 }
 
-class ClassB extends ClassA {} //←…ClassAを継承
-
-var classB_ = new ClassB();
-classB_.myMethod();
-
-【委譲】（上記のClassBの内容のみ、次のように書き換えます）
-class ClassB { //←…このクラスの内容だけが継承の場合と異なります
-	constructor() { //コンストラクタ
-		this.__classA = new ClassA(); //←…コンストラクタ内でオブジェクトを生成
-	} 
-	myMethod() { 
-		this.__classA.myMethod(); //←…ClassAのmyMethod()を実行
-	}
+class ClassB extends ClassA { //ClassAを継承
 }
 
-作成日：2016年9月15日（木）
-#1-8 変数とスコープ
+var _classB = new ClassB();
+_classB.myMethod();
+
+</script>
+```
+
+### 委譲
+
+```
+<script>
+
+class ClassA {
+  myMethod() {
+    console.log("ClassA.myMethod");
+  }
+}
+
+class ClassB {
+  constructor() { //コンストラクタ
+    this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成
+  }
+  myMethod() {
+    this.__classA.myMethod(); //ClassAのmyMethod()を実行
+  }
+}
+
+var _classB = new ClassB();
+_classB.myMethod();
+
+</script>
+```
+
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月19日
+
+
+# 変数とスコープ
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
 ◆変数の種類
@@ -573,7 +590,7 @@ myFunction2();
 【メソッド内で定義した場合】
 //○○.js
 class MyClass {
-myMethod1() { 
+myMethod1() {
 var _local = "ローカル変数"; //←メソッド内でのみ利用可能（varは省略不可）
 console.log(_local); //"ローカル変数"
 }
@@ -656,7 +673,7 @@ console.log(5 - 8); //-3 (減算)
 console.log(3 * 4); //12 (乗算)
 console.log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
 console.log(63 % 60); //3 (余剰)
-console.log(8 / 3); //2.6666666666666665（小数点第16位まで）（除算) 
+console.log(8 / 3); //2.6666666666666665（小数点第16位まで）（除算)
 
 //後ろに付けるインクリメント（デクリメント）
 var huga_ = 0;
@@ -1108,7 +1125,7 @@ switch (_name) {
 	case "TAKASHI" :
 		console.log("父"); //←…これが出力される
 		break;
-	case "TOMOKO" : 
+	case "TOMOKO" :
 		console.log("母");
 		break;
 	case "TOHRU" :
@@ -1137,7 +1154,7 @@ switch (true) {
 	case _age <= 20 :
 		console.log("20歳以下");
 		break;
-	case _age <= 40 : 
+	case _age <= 40 :
 		console.log("21〜40歳");
 		break;
 	case _age <= 60 :
@@ -1161,7 +1178,7 @@ switch (true) {
 var _name = "TOHRU";
 switch (_name) {
 	case "TAKASHI" :
-	case "TOMOKO" : 
+	case "TOMOKO" :
 		console.log("親です");
 		break;
 	case "TOHRU" :
@@ -1270,7 +1287,7 @@ for (変数名 in 配列等) {
 
 ◆配列（1次元）の場合
 ………
-var _array = ["TAKASHI","TOMOKO","TOHRU","SACHIKO"]; 
+var _array = ["TAKASHI","TOMOKO","TOHRU","SACHIKO"];
 for (let _indexNum in _array) {
 	console.log(_indexNum); //0→1→2→3
 	console.log(_array[_indexNum]); //"TAKASHI"→"TOMOKO"→"TOHRU"→"SACHIKO"
@@ -1303,7 +1320,7 @@ for (let _propName in _object) {
 Ubuntu 16.04.1 LTS、Chromium 53.0.XX（ES6に97％対応）、Visual Studio Code 1.8.0対応
 
 ◆一次元配列（Array）の場合
-var _array = ["TAKASHI","TOMOKO","TOHRU","SACHIKO"]; 
+var _array = ["TAKASHI","TOMOKO","TOHRU","SACHIKO"];
 for (let _data of _array) {
 	console.log(_data); //"TAKASHI"→"TOMOKO"→"TOHRU"→"SACHIKO"
 }
@@ -1320,7 +1337,7 @@ for (let _theArray of _array) {
 ◆配列（Set）の場合
 var _set = new Set();
 _set.add("TOHRU");
-_set.add("SACHIKO"); 
+_set.add("SACHIKO");
 for (let _data of _set) {
 	console.log(_data); //"TOHRU"→"SACHIKO"
 }
@@ -1604,7 +1621,7 @@ _object.age = 49;
 _object.hello = function() {
 	return "Hello! How are you?";
 }
-	
+
 //④プロパティの参照
 console.log(_object.name); //"Takashi Nishimura"
 	console.log(_object["name"]); //←…配列演算子[]を使うことも可能
@@ -1717,7 +1734,7 @@ console.log(_myClass.hoge); //"擬似プライベート変数"
     class MyClass {
 constructor() {
 	this.__img01 = document.getElementById("img01");
-            
+
 	//イベントハンドラメソッド内でthis＝Canvasオブジェクトとする為
 this.__mousedown_img01 =(_e)=> { this.__mousedown_img01_method(_e); }
 
@@ -2272,7 +2289,7 @@ Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCod
 <script>
 //①XMLHttpRequestオブジェクトの生成
 var _request = new XMLHttpRequest();
-    
+
 //②イベントハンドラの定義
 _request.onload = function() {
 	console.log(this.responseText); //⑤読み込んだテキストの表示
