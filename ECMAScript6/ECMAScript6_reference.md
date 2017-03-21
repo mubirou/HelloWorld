@@ -1875,7 +1875,7 @@ do {
     var _object = new Object();
     //他にも {プロパティ名①:値, プロパティ名②:値} という方法もある
 
-    //②プロパティの追加（更新も同じ方法です）
+    //②プロパティの追加（更新も同じ方法）
     _object.name = "Takashi Nishimura";
     _object.age = 49;
 
@@ -1910,12 +1910,13 @@ do {
 <a name="連想配列（Map）"></a>
 # <b>連想配列（Map）</b>
 
-◆Objectとの違い
-① キーに文字列以外でも使える。
-② データの個数を調べるプロパティが用意されている。
-③ Objectオブジェクトを継承していない（クリーンな連想配列の生成が可能）。
+### [Object](http://bit.ly/2nkyLU0) との違い
+1. キーに文字列以外でも使える。
+1. データの個数を調べるプロパティが用意されている。
+1. Objectオブジェクトを継承していない（クリーンな連想配列の生成が可能）。
 
-◆サンプル
+### サンプル
+```
 	<!DOCTYPE html><html><head><meta charset="UTF-8"><script>
 //①作成
 		var _map = new Map();
@@ -1945,6 +1946,7 @@ do {
 //⑦データの削除
 		_map.delete("ICHIRO");
 	</script></head></html>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
