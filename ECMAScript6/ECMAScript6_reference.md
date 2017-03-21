@@ -12,35 +12,35 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-* 定数
-* メソッド
-* 匿名関数
-* アロー関数
-* クラス定数･変数･メソッド
-* if 文
-* 三項演算子
-* switch 文
-* for 文
-* for...in 文
-* for...of 文
-* while文
-* 配列（Array）
-* 配列（Set）
-* 連想配列（Object）
-* 連想配列（Map）
-* this
-* 文字列の操作
-* 正規表現
-* 抽象クラス
-* superキーワード
-* オーバーライド
-* カスタムイベント
-* 数学関数（Math）
-* 乱数
-* 日時情報
-* タイマー
-* 処理速度計測
-* 外部テキストの読み込み
+* [定数](#定数)
+* [メソッド](#メソッド)
+* [匿名関数](#匿名関数)
+* [アロー関数](#アロー関数)
+* [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
+* [if 文](#if文)
+* [三項演算子](#三項演算子)
+* [switch 文](#switch文)
+* [for 文](#for文)
+* [for...in 文](#for...in文)
+* [for...of 文](#for...of文)
+* [while文](#while文)
+* [配列（Array）](#配列（Array）)
+* [配列（Set）](#配列（Set）)
+* [連想配列（Object）](#連想配列（Object）)
+* [連想配列（Map）](#連想配列（Map）)
+* [this](#this)
+* [文字列の操作](#文字列の操作)
+* [正規表現](#正規表現)
+* [抽象クラス](#抽象クラス)
+* [super キーワード](#superキーワード)
+* [オーバーライド](#オーバーライド)
+* [カスタムイベント](#カスタムイベント)
+* [数学関数（Math）](#数学関数（Math）)
+* [乱数](#乱数)
+* [日時情報](#日時情報)
+* [タイマー](#タイマー)
+* [処理速度計測](#処理速度計測)
+* [外部テキストの読み込み](#外部テキストの読み込み)
 
 
 <a name="データ型"></a>
@@ -215,6 +215,7 @@ console.log(_string2, typeof _string2); //"takashi,49", "string"
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
+
 
 <a name="クラス"></a>
 # <b>クラス</b>
@@ -798,7 +799,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 作成日：2017年03月21日
 
 
-# 定数
+<a name="定数"></a>
+# <b>定数</b>
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
 ◆概要
@@ -835,8 +837,13 @@ class MyMath {
 console.log(MyMath.PI); //3.141592653589793
 //MyMath.PI = 3.14; //Error:値の変更はできません
 
-作成日：2016年9月16日（金）
-#1-12 メソッド
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="メソッド"></a>
+# <b>メソッド</b>
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
 //========================================================================================
@@ -959,9 +966,14 @@ var myClass_ = new MyClass();
 myClass_.sum(1,2); //1→2
 myClass_.sum(1,2,3,4,5); //1→2→3→4→5
 
-作成日：2016年9月20日（火）
-#1-13 匿名関数
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="匿名関数"></a>
+# <b>匿名関数</b>
+
 ※アロー関数（新機能）を従来の匿名式に置き換えたバージョンです（波線の部分だけ変更）
 
 //○○.js
@@ -1000,9 +1012,14 @@ hello_.hello("隆"); //"隆、こんにちは!"
 hello_.change("chinese");
 hello_.hello("隆"); //"隆, 你好!"
 
-作成日：2016年9月21日（水）
-#1-14 アロー関数
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="アロー関数"></a>
+# <b>アロー関数</b>
+
 ※匿名関数をラムダ式（新機能）に置き換えたバージョンです（波線の部分だけ変更）
 
 //○○.js
@@ -1041,9 +1058,14 @@ hello_.hello("隆"); //"隆、こんにちは!"
 hello_.change("chinese");
 hello_.hello("隆"); //"隆, 你好!"
 
-作成日：2016年9月21日（水）
-#1-15 クラス定数･変数･メソッド
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="クラス定数･変数･メソッド"></a>
+# <b>クラス定数･変数･メソッド</b>
+
 ※クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセス可能です。
 
 //○○.js
@@ -1082,9 +1104,13 @@ console.log(MyMath.lastUpdate); //"2016-09-22"
 console.log(MyMath.pow(2, 0)); //1
 console.log(MyMath.pow(2, 8)); //256
 
-作成日：2016年9月21日（水）
-#1-16 if文
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="if文"></a>
+# <b>if 文</b>
 
 ◆基本例文（trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い）
 <!DOCTYPE html>
@@ -1164,9 +1190,13 @@ console.log("どちらか一方だけtrueです");
 console.log("両方共にtrueかfalseです");
 }
 
-作成日：2016年9月21日（水）
-#1-17 三項演算子
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="三項演算子"></a>
+# <b>三項演算子</b>
 
 ◆比較式が１つの場合
 【構文】
@@ -1204,8 +1234,13 @@ result_ = "退職";
 </head>
 </html>
 
-作成日：2016年9月21日（水）
-#1-18 switch文
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="switch文"></a>
+# <b>switch 文</b>
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
 ◆判別式がboolean値ではない場合…
@@ -1287,9 +1322,13 @@ switch (_name) {
 </head>
 </html>
 
-作成日：2016年9月26日（月）
-#1-19 for文
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="for文"></a>
+# <b>for 文</b>
 
 ◆ループカウンタの宣言方法
 ①letでループ制御変数を宣言する（参考「変数とスコープ」）
@@ -1369,8 +1408,13 @@ for (let i=1; i<=20; i++) { //←…iは1,2,...19,20
 }
 ………
 
-作成日：2016年9月26日（月）
-#1-20 for...in文
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="for...in文"></a>
+# <b>for...in 文</b>
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
 
 ◆基本構文
@@ -1409,9 +1453,13 @@ for (let _propName in _object) {
 }
 ………
 
-作成日：2016年9月26日（月）
-#1-21 for...of文
-Ubuntu 16.04.1 LTS、Chromium 53.0.XX（ES6に97％対応）、Visual Studio Code 1.8.0対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="for...of文"></a>
+# <b>for...of 文</b>
 
 ◆一次元配列（Array）の場合
 var _array = ["TAKASHI","TOMOKO","TOHRU","SACHIKO"];
@@ -1448,9 +1496,13 @@ for (let [_key, _value] of _map) {
 }
 	※配列（Object）では利用できないようです…（要調査）。
 
-作成日：2016年12月16日（金）
-#1-22 while文
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="while文"></a>
+# <b>while 文</b>
 
 ◆while文
 【構文】
@@ -1531,9 +1583,13 @@ while (_i <= 20) {
 </head>
 </html>
 
-作成日：2016年9月26日（月）
-#1-23 配列（Array）
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="配列（Array）"></a>
+# <b>配列（Array）</b>
 
 ◆作成
 【new演算子を使う方法】
@@ -1653,10 +1709,14 @@ _array.forEach(function(arg) {
 });
 ※for文、for...in文を使う方法もあります（参照「for...in文」）。
 
-作成日：2016年9月27日（火）
-更新日：2016年9月28日（水） forEach()に変更
-#1-24 配列（Set）
-Ubuntu 16.04.1 LTS、Chromium 53.0.XX（ES6に97％対応）、Visual Studio Code 1.8.0対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="配列（Set）"></a>
+# <b>配列（Set）</b>
+
 ※配列（Array）と異なり、データの重複ができません。
 
 <!DOCTYPE html>
@@ -1694,9 +1754,13 @@ Ubuntu 16.04.1 LTS、Chromium 53.0.XX（ES6に97％対応）、Visual Studio Cod
     </head>
 </html>
 
-作成日：2016年12月16日（金）
-#1-25 連想配列（Object）
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="連想配列（Object）"></a>
+# <b>連想配列（Object）</b>
 
 <!DOCTYPE html>
 <html>
@@ -1735,9 +1799,13 @@ for (let _propName in _object) {
 </head>
 </html>
 
-作成日：2016年9月28日（水）
-#1-26 連想配列（Map）
-Ubuntu 16.04.1 LTS、Chromium 53.0.XX（ES6に97％対応）、Visual Studio Code 1.8.0対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="連想配列（Map）"></a>
+# <b>連想配列（Map）</b>
 
 ◆Objectとの違い
 ① キーに文字列以外でも使える。
@@ -1775,9 +1843,13 @@ Ubuntu 16.04.1 LTS、Chromium 53.0.XX（ES6に97％対応）、Visual Studio Cod
 		_map.delete("TOHRU");
 	</script></head></html>
 
-作成日：2016年12月16日（金）
-#1-27 this
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="this"></a>
+# <b>this</b>
 
 ◆トップレベルのthis
 <!DOCTYPE html>
@@ -1853,10 +1925,13 @@ __mousedown_img01_method(_e) { //引数は「JavaScript.MouseEvent」
 </body>
 </html>
 
-作成日：2016年9月28日（水）
-更新日：2016年12月16日（金） イベントハンドラメソッド内のthisを追加
-#1-28 文字列の操作
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="文字列の操作"></a>
+# <b>文字列の操作</b>
 
 ◆文字列の生成
 var 変数 = new String("○○"); //←…object型
@@ -1893,9 +1968,14 @@ var _string = "A,B,C,D,E,F";
 var _array = _string.split(","); //←…カンマ区切りで配列化
 console.log(_array); //["A", "B", "C", "D", "E", "F"]
 
-作成日：2016年9月28日（水）
-#1-29 正規表現
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="正規表現"></a>
+# <b>正規表現</b>
+
 ※ES6には多くの正規表現の機能が用意されています。ここではいくつかのサンプルを紹介します。
 
 ◆検索＆置換
@@ -1931,9 +2011,13 @@ StringとRegExpクラスには、次のような正規表現用のメソッド�
 ⑤ String.replace()
 ⑥ String.split()
 
-作成日：2016年9月28日（水）
-#1-30 抽象クラス
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="抽象クラス"></a>
+# <b>抽象クラス</b>
 
 ◆概要
 ECMAScript 6には、TypeScript（1.6〜）にあるabstractやinterfaceキーワードはありません。ECMAScript 6では、継承と例外処理によって擬似的な抽象クラスを実現します。
@@ -1970,8 +2054,13 @@ var _subClass = new SubClass();
 _subClass.commonMethod(); //"AbstractClass.commonMethod()"
 _subClass.eachMethod(); //"SubClass.eachMethod()"
 
-作成日：2016年9月29日（木）
-#1-31 superキーワード
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="superキーワード"></a>
+# <b>super キーワード</b>
 Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
 
 【○○.html】
@@ -2010,9 +2099,13 @@ super.methodSuper("from SubClass");
 var _subClass = new SubClass(); //"SuperClass.constructor : from SubClass"
 _subClass.methodSub(); //"SuperClass.methodSuper : from SubClass"
 
-作成日：2016年9月29日（木）
-#1-32 オーバーライド
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="オーバーライド"></a>
+# <b>オーバーライド</b>
 
 ◆概要
 スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ。
@@ -2050,9 +2143,13 @@ myMethod() {
 var _subClass = new SubClass();
 _subClass.myMethod();
 
-作成日：2016年9月29日（木）
-#1-33 カスタムイベント
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="カスタムイベント"></a>
+# <b>カスタムイベント</b>
 
 ◆概要
 ECMAScript 2015に実装されている○.dispatchEvent()や○.addEventListener()のターゲットに指定できるオブジェクトは…Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なり、ここで紹介する方法は、他の言語でも利用可能な考え方の汎用的な方法です。
@@ -2087,9 +2184,13 @@ _robot.fight();
 _robot.fight();
 _robot.fight(); //"GAME OVER"
 
-作成日：2016年9月29日（木）
-#1-34 数学関数（Math）
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="数学関数（Math）"></a>
+# <b>数学関数（Math）</b>
 
 ◆Math.sin() ←…サイン（正弦）
 
@@ -2161,9 +2262,13 @@ console.log(Math.sign(-0.1)); //-1（負の値）
 console.log(Math.sign(0)); //0（0）
 console.log(Math.sign(0.1)); //1（正の値）
 
-作成日：2016年9月29日（木）
-#1-35 乱数
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="乱数"></a>
+# <b>乱数</b>
 
 ◆Math.random()
 0以上、1未満（0.9999…）の値を返します。
@@ -2201,9 +2306,13 @@ for (let i=0; i<10000000; i++) {
 console.log(_u5,_u4,_u3,_u2,_u1,_o0,_o1,_o2,_o3,_o4,_o5);
 //909461 910465 907165 908025 910926 907237 910557 908476 909376 908795 909517
 
-作成日：2016年9月30日（金）
-#1-36 日時情報
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="日時情報"></a>
+# <b>日時情報</b>
 
 ◆書式
 var ○ = new Date();
@@ -2241,9 +2350,13 @@ console.log(_date.getMilliseconds()); //668
 </head>
 </html>		
 
-作成日：2016年9月30日（金）
-#1-37 タイマー
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="タイマー"></a>
+# <b>タイマー</b>
 
 ◆繰返し実行する
 this._count = 0; //←…var _count = 0;でも同じ
@@ -2324,10 +2437,13 @@ TaskB.nextTask = TaskC;
 
 TaskA.exec(); //実行開始
 
-作成日：2016年9月30日（金）
-更新日：2016年10月20日（火） setInterval()の第3引数について追加
-#1-38 処理速度計測
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+<a name="処理速度計測"></a>
+# <b>処理速度計測</b>
 
 ◆Dateオブジェクトを使う方法…
 <!DOCTYPE html>
@@ -2364,9 +2480,14 @@ console.timeEnd("timerA"); //"timerA: 3628.869ms"
 </head>
 </html>		
 
-作成日：2016年9月30日（金）
-#1-39 外部テキストの読み込み
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
+
+
+
+<a name="外部テキストの読み込み"></a>
+# <b>外部テキストの読み込み</b>
 
 ◆テキストファイルの用意
 ※sample.txt（UTF-8）としてHTMLファイルと同階層に保存します。
@@ -2404,4 +2525,6 @@ _request.send(null);
 	JSON形式の場合は…JSON.parse(XMLHttpRequest.responseText)
 …を使うことで解析が可能になります。
 
-作成日：2016年9月30日（金）
+実行環境：Ubuntu 16.04 LTS、Chromium 56  
+作成者：Takashi Nishimura  
+作成日：2017年03月XX日  
