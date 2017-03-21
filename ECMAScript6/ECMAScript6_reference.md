@@ -2,7 +2,7 @@
 
 # <b>ECMAScript 6 基礎文法</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
+* Hello,world! （[Linux](https://github.com/TARONishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TARONishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TARONishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -81,7 +81,7 @@ console.log(typeof _string2); //"object"（"string"ではない）
 var _array = ["A","B","C"]; //配列（Array）
 console.log(typeof _array); //"object"
 
-var _object = {name:"takashi", age:49}; //連想配列
+var _object = {name:"TARO", age:49}; //連想配列
 console.log(typeof _object); //"object"
 
 var _hoge2 = null; //null（データ不在）
@@ -113,7 +113,7 @@ console.log(typeof _symbol); //"symbol"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月17日  
 
 
@@ -137,7 +137,7 @@ console.log(typeof 1.0); //"number"
 console.log(typeof "1"); //"string"
 
 //④object（全てのオブジェクトのベース）
-console.log(typeof {name:"takashi", age:49}); //"object"
+console.log(typeof {name:"TARO", age:49}); //"object"
 
 //⑤undefined（未初期化変数）
 console.log(typeof hoge_); //"undefined"
@@ -170,7 +170,7 @@ console.log("あ" instanceof String); //false（要注意）
 console.log(new String("あ") instanceof String); //true
 
 //④object（全てのオブジェクトのベース）
-console.log({name:"takashi"} instanceof Object); //true
+console.log({name:"TARO"} instanceof Object); //true
 console.log(new Object() instanceof Object); //true
 
 //⑤function（関数）
@@ -206,14 +206,14 @@ var _string1 = String(100); //(100).toString() でも同じ
 console.log(_string1, typeof _string1); //"100", "string"
 
 //⑤配列→string型
-var _string2 = String(["takashi", 49]);
-console.log(_string2, typeof _string2); //"takashi,49", "string"
+var _string2 = String(["TARO", 49]);
+console.log(_string2, typeof _string2); //"TARO,49", "string"
 
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月17日  
 
 
@@ -269,7 +269,7 @@ console.log(_rectangle.getArea()); //2073600
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月17日  
 
 
@@ -365,7 +365,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月17日  
 
 
@@ -442,7 +442,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月17日  
 
 
@@ -500,7 +500,7 @@ _classB.myMethod();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月19日
 
 
@@ -661,7 +661,7 @@ _classB.myMethod();
 	```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日
 
 
@@ -719,7 +719,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日
 
 
@@ -794,7 +794,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日
 
 
@@ -815,9 +815,9 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 * 例文
     ```
     <script>
-        const MY_NAME = "TAKASHI NISHIMURA";
-        console.log(MY_NAME); //"TAKASHI NISHIMURA"
-        MY_NAME = "TOHRU NISHIMURa"; //Error（変更不可）
+        const MY_NAME = "TARO NISHIMURA";
+        console.log(MY_NAME); //"TARO NISHIMURA"
+        MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
     </script>
     ```
 
@@ -846,7 +846,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -987,7 +987,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1026,7 +1026,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     }
 
     var _hello = new Hello();
-    _hello.hello("Takashi"); //"Takashi,Hello!"
+    _hello.hello("TARO"); //"TARO,Hello!"
     _hello.change("japanese");
     _hello.hello("たかし"); //"たかし、こんにちは!"
     _hello.change("chinese");
@@ -1035,7 +1035,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1073,7 +1073,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     }
 
     var _hello = new Hello();
-    _hello.hello("Takashi"); //"Takashi,Hello!"
+    _hello.hello("TARO"); //"TARO,Hello!"
     _hello.change("japanese");
     _hello.hello("たかし"); //"たかし、こんにちは!"
     _hello.change("chinese");
@@ -1082,7 +1082,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1129,7 +1129,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1229,7 +1229,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1281,7 +1281,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1356,7 +1356,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1432,7 +1432,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1478,16 +1478,16 @@ for (変数名 in 配列等) {
 ### 連想配列（Object＝オブジェクトリテラル）の場合
 ```
 <script>
-    var _object = { name: "Takashi Nishimura", age: 49 };
+    var _object = { name: "TARO Nishimura", age: 49 };
     for (let _propName in _object) {
         console.log(_propName); //name→age
-        console.log(_object[_propName]); //"Takashi Nishimura" → 49
+        console.log(_object[_propName]); //"TARO Nishimura" → 49
     }
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1544,7 +1544,7 @@ for (変数名 in 配列等) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1621,66 +1621,82 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月21日  
 
 
 <a name="配列（Array）"></a>
 # <b>配列（Array）</b>
 
-◆作成
-【new演算子を使う方法】
-var _array = new Array(); //←…空の配列を作成
-var _array = new Array(4); //←…4つの空の要素（undefined）を持つ配列を作成
-var _array = new Array("TOHRU", "SACHIKO");
-var _array = new Array(["TOHRU",14], ["SACHIKO",10]); //←…配列のネスト
+### 作成
+* new演算子を使う方法
+    ```
+    var _array = new Array(); //空の配列を作成
+    var _array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
+    var _array = new Array("A", "I");
+    var _array = new Array(["A","あ"], ["I","い"]); //配列のネスト
+    ```
 
-【配列リテラルを使う方法】
-var _array = []; //←…空の配列を作成
-var _array = ["TOHRU", "SACHIKO"];
-var _array = [["TOHRU",14], ["SACHIKO",10]]; //←…配列のネスト
+* 配列リテラルを使う方法
+    ```
+    var _array = []; //空の配列を作成
+    var _array = ["A", "I"];
+    var _array = [["A","あ"], ["I","い"]]; //配列のネスト
+    ```
 
-◆要素の数
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### 要素の数
+```
 <script>
-var _array = ["00", "01", "02", "03"];
-console.log(_array.length); //4
+    var _array = ["00", "01", "02", "03"];
+    console.log(_array.length); //4
 </script>
-</head>
-</html>
+```
 
-◆追加（最後）
-var _array = ["TOHRU", "SACHIKO"];
-_array.push("TARO"); //←…カンマ（,）を使って複数同時に追加可能
-console.log(_array); //["TOHRU", "SACHIKO", "TARO"]
+### 追加（最後）
+```
+<script>
+    var _array = ["ICHIRO", "JIRO"];
+    _array.push("TARO"); //カンマ（,）を使って複数同時に追加可能
+    console.log(_array); //["ICHIRO", "JIRO", "TARO"]
+</script>
+```
 
-◆追加（先頭）
-var _array = ["TOHRU", "SACHIKO"];
-_array.unshift("TARO"); //←…カンマ（,）を使って複数同時に追加可能
-console.log(_array); //["TARO", "TOHRU", "SACHIKO"]
+### 追加（先頭）
+```
+<script>
+    var _array = ["ICHIRO", "JIRO"];
+    _array.unshift("TARO"); //カンマ（,）を使って複数同時に追加可能
+    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
+</script>
+```
 
-◆更新（任意の値）
-var _array = ["TAKASHI", "TOHRU", "SACHIKO"];
-_array[0] = "TARO"; //←…0番目を変更する場合
-console.log(_array); //["TARO", "TOHRU", "SACHIKO"]
+### 更新（任意の値）
+```
+<script>
+    var _array = ["TARO", "ICHIRO", "JIRO"];
+    _array[0] = "TARO"; //0番目を変更する場合
+    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
+</script>
+```
 
-◆更新（null値）
-var _array = ["TAKASHI", "TOHRU", "SACHIKO"];
-_array[0] = null;
-console.log(_array); //[null, "TOHRU", "SACHIKO"]
+### 更新（null 値）
+```
+<script>
+    var _array = ["TARO", "ICHIRO", "JIRO"];
+    _array[0] = null;
+    console.log(_array); //[null, "ICHIRO", "JIRO"]
+</script>
+```
 
 ◆削除（最後）
-var _array = ["TOHRU", "SACHIKO", "TAKASHI"];
-console.log(_array.pop()); //"TAKASHI" ←…削除した要素を返す
-console.log(_array); //["TOHRU", "SACHIKO"]
+var _array = ["ICHIRO", "JIRO", "TARO"];
+console.log(_array.pop()); //"TARO" ←…削除した要素を返す
+console.log(_array); //["ICHIRO", "JIRO"]
 
 ◆削除（最初）
-var _array = ["TAKASHI", "TOHRU", "SACHIKO"];
-console.log(_array.shift()); //"TAKASHI" ←…削除した要素を返す
-console.log(_array); //["TOHRU", "SACHIKO"]
+var _array = ["TARO", "ICHIRO", "JIRO"];
+console.log(_array.shift()); //"TARO" ←…削除した要素を返す
+console.log(_array); //["ICHIRO", "JIRO"]
 
 ◆削除（○番目から□個）
 var _array = ["00", "01", "02", "03", "04", "05"];
@@ -1728,7 +1744,7 @@ console.log(_array3) //["A", "B", "C", "D", "E", "F"]
 
 ◆複製
 var _original = ["A", "B", "C"];
-var _copy = _original.concat(); //←…複製
+var _copy = _original.concat(); //複製
 
 //実験（参照コピーではなく複製されているか否か）
 _original[0] = "あ";
@@ -1736,7 +1752,7 @@ console.log(_original[0], _copy[0]); //"あ" "A" ←…参照コピーではな�
 
 ◆文字列→配列
 var _string = "A,B,C,D,E,F";
-var _array = _string.split(","); //←…カンマ区切りで配列化
+var _array = _string.split(","); //カンマ区切りで配列化
 console.log(_array); //["A", "B", "C", "D", "E", "F"]
 
 ◆全要素を取り出す
@@ -1747,7 +1763,7 @@ _array.forEach(function(arg) {
 ※for文、for...in文を使う方法もあります（参照「for...in文」）。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -1765,11 +1781,11 @@ _array.forEach(function(arg) {
              var _set = new Set();
 
 //②データの追加
-             _set.add("TOHRU");
-             _set.add("SACHIKO");
+             _set.add("ICHIRO");
+             _set.add("JIRO");
 
 //参考：既存データの追加
-             _set.add("TOHRU"); //←…無視される
+             _set.add("ICHIRO"); //無視される
 
 //③データの数
              console.log(_set.size); //2
@@ -1777,22 +1793,22 @@ _array.forEach(function(arg) {
 //④全てのデータの取得
              for (let _data of _set) {
                 console.log(_data);
-                //"TOHRU"
-                //"SACHIKO"
+                //"ICHIRO"
+                //"JIRO"
              }
 
 //⑤データがあるか否か
-             console.log(_set.has("TAKASHI")); //false
-             console.log(_set.has("TOHRU")); //true
+             console.log(_set.has("TARO")); //false
+             console.log(_set.has("ICHIRO")); //true
 
 //⑥データの削除
-             _set.delete("TOHRU");
+             _set.delete("ICHIRO");
         </script>
     </head>
 </html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -1809,7 +1825,7 @@ var _object = new Object();
 //他にも {プロパティ名①:値, プロパティ名②:値} というオブジェクトリテラルを使う方法もあります。
 
 //②プロパティの追加（更新も同じ方法です）
-_object.name = "Takashi Nishimura";
+_object.name = "TARO Nishimura";
 _object.age = 49;
 
 //③関数の追加
@@ -1818,8 +1834,8 @@ _object.hello = function() {
 }
 
 //④プロパティの参照
-console.log(_object.name); //"Takashi Nishimura"
-	console.log(_object["name"]); //←…配列演算子[]を使うことも可能
+console.log(_object.name); //"TARO Nishimura"
+	console.log(_object["name"]); //配列演算子[]を使うことも可能
 console.log(_object.age); //4
 
 //⑤関数の実行
@@ -1829,7 +1845,7 @@ console.log(_object.hello()); //"Hello! How are you?"
 for (let _propName in _object) {
 	console.log(_propName + " : " + _object[_propName]);
 }
-//name : Takashi Nishimura
+//name : TARO Nishimura
 //age : 50
 //hello : function () {...
 </script>
@@ -1837,7 +1853,7 @@ for (let _propName in _object) {
 </html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -1855,33 +1871,33 @@ for (let _propName in _object) {
 		var _map = new Map();
 
 //②データの追加
-		_map.set("TOHRU", "2002-XX-XX");
-		_map.set("SACHIKO", "2006-XX-XX");
+		_map.set("ICHIRO", "2002-XX-XX");
+		_map.set("JIRO", "2006-XX-XX");
 
 //③データの数
 		console.log(_map.size); //2
 
 //④データの取得
-		console.log(_map.get("TOHRU")); //"2002-XX-XX"
-		console.log(_map.get("SACHIKO")); //"2006-XX-XX"
+		console.log(_map.get("ICHIRO")); //"2002-XX-XX"
+		console.log(_map.get("JIRO")); //"2006-XX-XX"
 
 //⑤全てのデータの取得
 		for (let [_key, _value] of _map) {
 			console.log(_key, _value);
-			//"TOHRU" "2002-XX-XX"
-			//"SACHIKO" "2006-XX-XX"
+			//"ICHIRO" "2002-XX-XX"
+			//"JIRO" "2006-XX-XX"
 		}
 
 //⑥データがあるか否か
-		console.log(_map.has("TAKASHI")); //false
-		console.log(_map.has("TOHRU")); //true
+		console.log(_map.has("TARO")); //false
+		console.log(_map.has("ICHIRO")); //true
 
 //⑦データの削除
-		_map.delete("TOHRU");
+		_map.delete("ICHIRO");
 	</script></head></html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -1914,10 +1930,10 @@ document.write(this); //[object Window] ←…windowと同じ（省略可能）
 class MyClass {
     constructor() {
         document.write(this); //[object Object] ←…MyClassのインスタンス
-        this.__hoge = "擬似プライベート変数"; //←…thisは省略不可
+        this.__hoge = "擬似プライベート変数"; //thisは省略不可
     }
     get hoge() { //アクセサ（getter）
-        return this.__hoge; //←…thisは省略不可
+        return this.__hoge; //thisは省略不可
     }
 }
 var _myClass = new MyClass();
@@ -1963,7 +1979,7 @@ __mousedown_img01_method(_e) { //引数は「JavaScript.MouseEvent」
 </html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -1971,8 +1987,8 @@ __mousedown_img01_method(_e) { //引数は「JavaScript.MouseEvent」
 # <b>文字列の操作</b>
 
 ◆文字列の生成
-var 変数 = new String("○○"); //←…object型
-var 変数 = "○○"; //←…string型
+var 変数 = new String("○○"); //object型
+var 変数 = "○○"; //string型
 ※上記2つは厳密には異なりますが、通常は意識する必要はないと思います。
 
 ◆文字列の長さを調べる
@@ -1988,13 +2004,13 @@ console.log(_string.substr(4,3)); //"456" ←…4文字目（0から開始）〜
 
 ◆置換
 var _string = "2016年9月28日";
-	var _regExp = new RegExp("2016", "g"); //←…第2引数を省略すると全てを置換（"g"と同等）
+	var _regExp = new RegExp("2016", "g"); //第2引数を省略すると全てを置換（"g"と同等）
 console.log(_string.replace(_regExp, "平成27")); //平成27年9月28日
 
 ◆検索（最後から検索する○.lastIndexOf()もあります）
 var _string = "ABCDEFG-ABCDEFG";
 var _count = 0;
-while (_string.indexOf("CD", _count) != -1) { //←…見つからないと-1を返す
+while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
 	var _num = _string.indexOf("CD", _count);
 	console.log(_num); //2,10 ←…"CD"が見つかった場所（0から開始）を返す
 	_count = _num + 1;
@@ -2002,11 +2018,11 @@ while (_string.indexOf("CD", _count) != -1) { //←…見つからないと-1を
 
 ◆文字列→配列
 var _string = "A,B,C,D,E,F";
-var _array = _string.split(","); //←…カンマ区切りで配列化
+var _array = _string.split(","); //カンマ区切りで配列化
 console.log(_array); //["A", "B", "C", "D", "E", "F"]
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2017,13 +2033,13 @@ console.log(_array); //["A", "B", "C", "D", "E", "F"]
 
 ◆検索＆置換
 var _string = "熊谷,遠藤,西村,藤牧,日茂,井戸,伊藤,渡邊";
-var _regExp = new RegExp("西村", "g"); //←…第2引数を省略すると全てを置換（"g"と同等）
+var _regExp = new RegExp("西村", "g"); //第2引数を省略すると全てを置換（"g"と同等）
 /*
 "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能なはずです（要調査）。
 */
-if (_regExp.test(_string)) { //←…検索
+if (_regExp.test(_string)) { //検索
 	console.log('"西村"は含まれています');
-		let _result = _string.replace(_regExp, "にしむら"); //←…置換
+		let _result = _string.replace(_regExp, "にしむら"); //置換
 		//熊谷,遠藤,にしむら,藤牧,日茂,井戸,伊藤,渡邊
 		console.log(_result);
 } else {
@@ -2032,7 +2048,7 @@ if (_regExp.test(_string)) { //←…検索
 
 ◆マッチした数
 var _string = "059371820400381295700347891205178900517093823";
-var _regExp = new RegExp("00", "g"); //←…第2引数を省略すると全てを置換（"g"と同等）
+var _regExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
 var _matchList = _string.match(_regExp);
 console.log(_matchList); //["00", "00", "00"]
 console.log(_matchList.length); //3  ←…マッチした数
@@ -2049,7 +2065,7 @@ StringとRegExpクラスには、次のような正規表現用のメソッド�
 ⑥ String.split()
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2060,12 +2076,12 @@ StringとRegExpクラスには、次のような正規表現用のメソッド�
 ECMAScript 6には、TypeScript（1.6〜）にあるabstractやinterfaceキーワードはありません。ECMAScript 6では、継承と例外処理によって擬似的な抽象クラスを実現します。
 
 ◆構文
-class Abstract○○ { //←…（擬似）抽象クラスの定義
+class Abstract○○ { //（擬似）抽象クラスの定義
 	抽象メソッド名(引数①,引数②,...) {
-		throw new Error("派生クラスで実装して下さい"); //←…例外処理
+		throw new Error("派生クラスで実装して下さい"); //例外処理
 	}
 }
-class 派生クラス名 extends Abstract○○ { //←…（擬似）抽象クラスの継承
+class 派生クラス名 extends Abstract○○ { //（擬似）抽象クラスの継承
 	抽象メソッド名(引数①,引数②,...) {
 		//実際の処理はここに記述
 	}
@@ -2073,17 +2089,17 @@ class 派生クラス名 extends Abstract○○ { //←…（擬似）抽象ク�
 
 ◆例文
 //main.js
-class AbstractClass { //←…（擬似）抽象クラスの定義
-commonMethod() { //←…共通のメソッド
+class AbstractClass { //（擬似）抽象クラスの定義
+commonMethod() { //共通のメソッド
 	console.log("AbstractClass.commonMethod()");
 }
-eachMethod() { //←…抽象メソッド（実際の処理は記述しない）
-	throw new Error("派生クラスで実装して下さい"); //←…例外処理
+eachMethod() { //抽象メソッド（実際の処理は記述しない）
+	throw new Error("派生クラスで実装して下さい"); //例外処理
 }
 }
-class SubClass extends AbstractClass { //←…（擬似）抽象クラスの継承
-eachMethod() { //←…オーバーライドして実際の処理を記述
-	console.log("SubClass.eachMethod()"); //←…実際の処理
+class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
+eachMethod() { //オーバーライドして実際の処理を記述
+	console.log("SubClass.eachMethod()"); //実際の処理
 }
 }
 
@@ -2092,7 +2108,7 @@ _subClass.commonMethod(); //"AbstractClass.commonMethod()"
 _subClass.eachMethod(); //"SubClass.eachMethod()"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2112,7 +2128,7 @@ Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCod
 【main.js】
 //スーパークラス
 class SuperClass {
-    constructor(arg) { //←…コンストラクタ
+    constructor(arg) { //コンストラクタ
         console.log("SuperClass.constructor : " + arg);
     }
     methodSuper(arg) {
@@ -2121,10 +2137,10 @@ class SuperClass {
 }
 
 //サブクラス
-class SubClass extends SuperClass { //←…スーパークラスを継承
-constructor() { //←…コンストラクタ
+class SubClass extends SuperClass { //スーパークラスを継承
+constructor() { //コンストラクタ
 //↓サブクラスのコンストラクタ内であれば冒頭でなくても可能
-super("from SubClass"); //←…スーパークラスのコンストラクタの呼び出し（必須）
+super("from SubClass"); //スーパークラスのコンストラクタの呼び出し（必須）
 }
 methodSub() {
 		//↓スーパークラスのメソッドを呼び出すことが可能
@@ -2137,7 +2153,7 @@ var _subClass = new SubClass(); //"SuperClass.constructor : from SubClass"
 _subClass.methodSub(); //"SuperClass.methodSuper : from SubClass"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2168,10 +2184,10 @@ myMethod() {
 }
 
 //サブクラス
-class SubClass extends SuperClass { //←…スーパークラスを継承
+class SubClass extends SuperClass { //スーパークラスを継承
 //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
 myMethod() {
-	super.myMethod(); //←…スーパークラス内の同名のメソッドを呼び出す場合…
+	super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合…
 	console.log("SubClass.myMethod()");
 }
 }
@@ -2181,7 +2197,7 @@ var _subClass = new SubClass();
 _subClass.myMethod();
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2192,11 +2208,11 @@ _subClass.myMethod();
 ECMAScript 2015に実装されている○.dispatchEvent()や○.addEventListener()のターゲットに指定できるオブジェクトは…Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なり、ここで紹介する方法は、他の言語でも利用可能な考え方の汎用的な方法です。
 
 ◆例文（○○.js）
-class Robot { //←…イベントを設定するクラス
+class Robot { //イベントを設定するクラス
 	constructor() { this.__energy = 80; }
 addEventListener(_event, _function) {
 	if (_event == "die") {
-		this.__dieHandler = _function; //←…匿名関数を変数に格納
+		this.__dieHandler = _function; //匿名関数を変数に格納
 	} else { //該当のイベントが無い場合、実行時にErrorを発生させる（オプション）
 		throw new Error('Error:"' + _event + '"はサポートされていません');
 	}
@@ -2209,20 +2225,20 @@ this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の
 	}
 }
 
-var die_robot = (arg) => { //←…リスナー関数（前方宣言が必要）
+var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
     console.log(arg); //Robotクラスのインスタンス
     alert("GAME OVER");
 }
 
 var _robot = new Robot();
-_robot.addEventListener("die", die_robot); //←…イベントリスナーの設定
+_robot.addEventListener("die", die_robot); //イベントリスナーの設定
 _robot.fight();
 _robot.fight();
 _robot.fight();
 _robot.fight(); //"GAME OVER"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2254,7 +2270,7 @@ console.log(Math.cos(Math.PI*2)); //1 ←…360°
 
 ◆Math.atan2() ←…アークタンジェント2
 //三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
-var _disX = Math.sqrt(3); //←…√3のこと
+var _disX = Math.sqrt(3); //√3のこと
 var _disY = 1;
 console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
 console.log(180*Math.atan2(_disY, _disX)/Math.PI); //30.000000000000004（度）
@@ -2300,7 +2316,7 @@ console.log(Math.sign(0)); //0（0）
 console.log(Math.sign(0.1)); //1（正の値）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2344,7 +2360,7 @@ console.log(_u5,_u4,_u3,_u2,_u1,_o0,_o1,_o2,_o3,_o4,_o5);
 //909461 910465 907165 908025 910926 907237 910557 908476 909376 908795 909517
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2388,7 +2404,7 @@ console.log(_date.getMilliseconds()); //668
 </html>		
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2396,23 +2412,23 @@ console.log(_date.getMilliseconds()); //668
 # <b>タイマー</b>
 
 ◆繰返し実行する
-this._count = 0; //←…var _count = 0;でも同じ
-this.callbackFunction = () => { //←…var loopFunction ...でも同じ
-	if (++ _count <= 10) { //←…10回繰返す場合…
+this._count = 0; //var _count = 0;でも同じ
+this.callbackFunction = () => { //var loopFunction ...でも同じ
+	if (++ _count <= 10) { //10回繰返す場合…
 		console.log("繰返し実行したい処理");
 	} else {
-clearInterval(this._timerID); //←…繰返しを止める
+clearInterval(this._timerID); //繰返しを止める
 	}
 }
 //↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
-this._timerID = setInterval(this.callbackFunction, 1000); //←…1秒間隔で繰返す場合
+this._timerID = setInterval(this.callbackFunction, 1000); //1秒間隔で繰返す場合
 
 ◆一度だけ実行する
-this.callbackFunction = () => { //←…var timeoutFunction ...でも同じ
+this.callbackFunction = () => { //var timeoutFunction ...でも同じ
 console.log("一度だけ実行したい処理");
 clearTimeout(this._timerID);
 }
-this._timerID = setTimeout(this.callbackFunction, 1000); //←…1秒後に1回実行する場合
+this._timerID = setTimeout(this.callbackFunction, 1000); //1秒後に1回実行する場合
 
 ◆○秒後にA、その○秒後にB...を実行 ←…Promise（新機能）でも同様のことが出来そうですが…
 //Task○のスーパークラス ////////////////////////////////////////////////////////////
@@ -2475,7 +2491,7 @@ TaskB.nextTask = TaskC;
 TaskA.exec(); //実行開始
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2488,8 +2504,8 @@ TaskA.exec(); //実行開始
 <head>
 <meta charset="UTF-8">
 <script>
-var _start = new Date().getTime(); //←…1970年からの経過時間（ミリ秒）
-for (let i=0; i<1000000000; i++) { //←…10億回繰返す
+var _start = new Date().getTime(); //1970年からの経過時間（ミリ秒）
+for (let i=0; i<1000000000; i++) { //10億回繰返す
     //速度計測したい処理
 }
 var _end = new Date().getTime();
@@ -2509,7 +2525,7 @@ console.log(_end - _start); //3643（ミリ秒）
 <meta charset="UTF-8">
 <script>
 console.time("timerA");
-for (let i=0; i<1000000000; i++) { //←…10億回繰返す
+for (let i=0; i<1000000000; i++) { //10億回繰返す
     //速度計測したい処理
 }
 console.timeEnd("timerA"); //"timerA: 3628.869ms"
@@ -2518,7 +2534,7 @@ console.timeEnd("timerA"); //"timerA: 3628.869ms"
 </html>		
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2563,5 +2579,5 @@ _request.send(null);
 …を使うことで解析が可能になります。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：TARO Nishimura  
 作成日：2017年03月XX日  
