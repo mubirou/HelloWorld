@@ -113,7 +113,7 @@ console.log(typeof _symbol); //"symbol"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
 
@@ -213,7 +213,7 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
 
@@ -269,7 +269,7 @@ console.log(_rectangle.getArea()); //2073600
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
 
@@ -365,7 +365,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
 
@@ -442,7 +442,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
 
@@ -500,7 +500,7 @@ _classB.myMethod();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月19日
 
 
@@ -661,7 +661,7 @@ _classB.myMethod();
 	```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
 
@@ -719,7 +719,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
 
@@ -794,7 +794,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
 
@@ -846,7 +846,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -987,7 +987,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1035,7 +1035,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1082,7 +1082,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1129,7 +1129,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1229,7 +1229,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1281,7 +1281,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1356,7 +1356,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1432,7 +1432,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1487,7 +1487,7 @@ for (変数名 in 配列等) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1544,7 +1544,7 @@ for (変数名 in 配列等) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1621,7 +1621,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1822,7 +1822,7 @@ do {
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
 
@@ -1867,7 +1867,7 @@ do {
 </html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -1912,7 +1912,7 @@ for (let _propName in _object) {
 </html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -1956,7 +1956,7 @@ for (let _propName in _object) {
 	</script></head></html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2038,7 +2038,7 @@ __mousedown_img01_method(_e) { //引数は「JavaScript.MouseEvent」
 </html>
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2081,7 +2081,7 @@ var _array = _string.split(","); //カンマ区切りで配列化
 console.log(_array); //["A", "B", "C", "D", "E", "F"]
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2124,7 +2124,7 @@ StringとRegExpクラスには、次のような正規表現用のメソッド�
 ⑥ String.split()
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2167,7 +2167,7 @@ _subClass.commonMethod(); //"AbstractClass.commonMethod()"
 _subClass.eachMethod(); //"SubClass.eachMethod()"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2212,7 +2212,7 @@ var _subClass = new SubClass(); //"SuperClass.constructor : from SubClass"
 _subClass.methodSub(); //"SuperClass.methodSuper : from SubClass"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2256,7 +2256,7 @@ var _subClass = new SubClass();
 _subClass.myMethod();
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2297,7 +2297,7 @@ _robot.fight();
 _robot.fight(); //"GAME OVER"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2375,7 +2375,7 @@ console.log(Math.sign(0)); //0（0）
 console.log(Math.sign(0.1)); //1（正の値）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2419,7 +2419,7 @@ console.log(_u5,_u4,_u3,_u2,_u1,_o0,_o1,_o2,_o3,_o4,_o5);
 //909461 910465 907165 908025 910926 907237 910557 908476 909376 908795 909517
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2463,7 +2463,7 @@ console.log(_date.getMilliseconds()); //668
 </html>		
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2550,7 +2550,7 @@ TaskB.nextTask = TaskC;
 TaskA.exec(); //実行開始
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2593,7 +2593,7 @@ console.timeEnd("timerA"); //"timerA: 3628.869ms"
 </html>		
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
 
 
@@ -2638,5 +2638,5 @@ _request.send(null);
 …を使うことで解析が可能になります。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：TARO Nishimura  
+作成者：Takashi Nishimura  
 作成日：2017年03月XX日  
