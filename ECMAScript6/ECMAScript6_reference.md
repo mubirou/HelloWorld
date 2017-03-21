@@ -44,7 +44,7 @@
 
 
 <a name="データ型"></a>
-# データ型
+# <b>データ型</b>
 
 ```
 <script>
@@ -217,7 +217,7 @@ console.log(_string2, typeof _string2); //"takashi,49", "string"
 作成日：2017年03月17日  
 
 <a name="クラス"></a>
-# クラス
+# <b>クラス</b>
 
 ```
 <script>
@@ -273,7 +273,7 @@ console.log(_rectangle.getArea()); //2073600
 
 
 <a name="スーパークラスとサブクラス"></a>
-# スーパークラスとサブクラス
+# <b>スーパークラスとサブクラス</b>
 
 ```
 <script>
@@ -369,7 +369,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 
 
 <a name="名前空間"></a>
-# 名前空間
+# <b>名前空間</b>
 
 * ES2015+からサポートされた import と export はまだブラウザで利用できません
 * サンプルの方法は力技的ですが機能としては充分です
@@ -446,7 +446,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 
 
 <a name="継承と委譲"></a>
-# 継承と委譲
+# <b>継承と委譲</b>
 
 ### 概要
 
@@ -504,7 +504,7 @@ _classB.myMethod();
 
 
 <a name="変数とスコープ"></a>
-# 変数とスコープ
+# <b>変数とスコープ</b>
 
 ### 変数の種類
 
@@ -666,7 +666,7 @@ _classB.myMethod();
 
 
 <a name="アクセサ"></a>
-# アクセサ（getter / setter）
+# <b>アクセサ（getter / setter）</b>
 
 ### 概要
 ECMAScript 6 は、TypeScript と違い private 変数を定義することができません。そこでパブリック変数を、[Python](https://ja.wikipedia.org/wiki/Python) 風に __xxx と命名してプライベート変数扱いにします。実際は単なるパブリック変数ですので外部からアクセスできてしまいますが、必ずアクセサを使ってアクセスするようにします。
@@ -723,7 +723,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 作成日：2017年03月21日
 
 
-# 演算子
+# <b>演算子</b>
 
 //算術演算子（複合代入演算子+=,-=,*=,/=,%=などあり）
 console.log(3 + 2); //5 (可算)
