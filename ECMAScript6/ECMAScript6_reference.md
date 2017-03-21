@@ -1136,219 +1136,228 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 <a name="if文"></a>
 # <b>if 文</b>
 
-◆基本例文（trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い）
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script>
-            var age_ = 48;
-            if (age_ <= 20) {
-                console.log("20歳以下");
-            } else if (age_ <= 40) {
-                console.log("21〜40歳");
-            } else if (age_ <= 60) {
-                console.log("41〜60歳"); //これが出力される
-            } else {
-                console.log("61歳以上");
-            }
-        </script>
-    </head>
-</html>
+### 基本例文
+* trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
+```
+<script>
+    var _age = 49;
+    if (_age <= 20) {
+        console.log("20歳以下");
+    } else if (_age <= 40) {
+        console.log("21〜40歳");
+    } else if (_age <= 60) {
+        console.log("41〜60歳"); //これが出力される
+    } else {
+        console.log("61歳以上");
+    }
+</script>
+```
 
-◆論理積（AND）（2つの条件がtrueの場合）
+### 論理積（AND）
+* 2つの条件が true の場合
+
 1. 論理演算子（&&）を使う方法
-if (条件式① && 条件②) {
-	処理A ←……条件式① かつ 条件式② の両方がtrueの場合に実行
-} else {
-	処理B
-}
+    ```
+    if (条件式① && 条件②) {
+        処理A ←条件式①かつ条件式②の両方がtrueの場合に実行
+    } else {
+        処理B
+    }
+    ```
 
-2. ifのネストを使う方法
-if (条件式①) {
-	if (条件②) {
-		処理A ←……条件式① かつ 条件式② の両方がtrueの場合に実行
-	} else {
-		処理B
-	}
-} else {
-	処理B
-}
-◆論理和（OR）（2つの条件のどちらか一方でもtrueの場合）
+1. if 文のネストを使う方法
+    ```
+    if (条件式①) {
+        if (条件②) {
+            処理A ←条件式①かつ条件式②の両方がtrueの場合に実行
+        } else {
+            処理B
+        }
+    } else {
+        処理B
+    }
+    ```
+
+### 論理和（OR）
+* 2つの条件のどちらか一方でも true の場合
 1. 論理演算子（||）を使う方法
-if (条件式① || 条件②) {
-	処理A ←……条件式①または条件式②の両方がtrueの場合に実行
-} else {
-	処理B
-}
+    ```
+    if (条件式① || 条件②) {
+        処理A ←条件式①または条件式②の両方がtrueの場合に実行
+    } else {
+        処理B
+    }
+    ```
 
-2. 論理演算子（||）を使わない方法
-if (条件式①) {
-	処理A ←……条件式①がtrueの場合に実行
-} else if (条件②) {
-	処理A ←……条件式②がtrueの場合に実行
-} else {
-	処理B
-}
+1. 論理演算子（||）を使わない方法
+    ```
+    if (条件式①) {
+        処理A ←条件式①がtrueの場合に実行
+    } else if (条件②) {
+        処理A ←条件式②がtrueの場合に実行
+    } else {
+        処理B
+    }
+    ```
 
-◆排他的論理和（XOR）（2つの条件のうちどちらか一方だけtrueの場合）
-1. ^演算子を使う方法
-//○○.js
-var a_ = true;
-var b_ = false;
+### 排他的論理和（XOR）
+* 2つの条件のうちどちらか一方だけ true の場合
+1. ^ 演算子を使う方法
+    ```
+    <script>
+        var _a = true;
+        var _b = false;
+        if (_a ^ _b) {
+            console.log("どちらか一方だけtrueです");
+        } else {
+            console.log("両方共にtrueかfalseです");
+        }
+    </script>
+    ```
 
-if (a_ ^ b_) {
-	console.log("どちらか一方だけtrueです");
-} else {
-	console.log("両方共にtrueかfalseです");
-}
-
-2. ^演算子を使わない場合…
-//○○.js
-var a_ = true;
-var b_ = false;
-
-if ((a_ || b_) && !(a_ && b_)) {
-console.log("どちらか一方だけtrueです");
-} else {
-console.log("両方共にtrueかfalseです");
-}
+2. ^ 演算子を使わない場合
+    ```
+    <script>
+        var _a = true;
+        var _b = false;
+        if ((_a || _b) && !(_a && _b)) {
+            console.log("どちらか一方だけtrueです");
+        } else {
+            console.log("両方共にtrueかfalseです");
+        }
+    </script>
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
 
-◆比較式が１つの場合
-【構文】
+### 比較式が１つの場合
+* 構文
+```
 データ型 変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
-【例文】
+```
+* 例文
+```
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script>
-var age_ = 49;
-var result_ = (age_ < 60) ? "現役" : "退職";
-console.log(result_); //"現役"
-</script>
+    <meta charset="UTF-8">
+    <script>
+        var age_ = 49;
+        var result_ = (age_ < 60) ? "現役" : "退職";
+        console.log(result_); //"現役"
+    </script>
 </head>
 </html>
+```
 
-◆比較式が複数の場合
-【構文】
-データ型 変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
+### 比較式が複数の場合
+* 構文
+```
+変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
 変数名 = (比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
 変数名 = (①②の全てがfalseの場合の返り値);
-【例文】
+```
+* 例文
+```
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script>
-var age_ = 49;
-var result_ = (age_ < 20) ? "未成年" :
-result_ = (age_ < 60) ? "現役" :
-result_ = "退職";
-		console.log(result_); //"現役"
-</script>
+    <meta charset="UTF-8">
+    <script>
+        var age_ = 49;
+        var result_ = (age_ < 20) ? "未成年" :
+        result_ = (age_ < 60) ? "現役" :
+        result_ = "退職";
+        console.log(result_); //"現役"
+    </script>
 </head>
 </html>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="switch文"></a>
 # <b>switch 文</b>
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.2対応
 
-◆判別式がboolean値ではない場合…
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### 判別式がboolean値ではない場合
+```
 <script>
-var _name = "TAKASHI";
-switch (_name) {
-	case "TAKASHI" :
-		console.log("父"); //←…これが出力される
-		break;
-	case "TOMOKO" :
-		console.log("母");
-		break;
-	case "TOHRU" :
-		console.log("長男");
-		break;
-	case "SACHIKO" :
-		console.log("長女");
-		break;
-	default:
-		console.log("家族以外");
-		break; //←…省略可
-}
+    var _name = "TARO";
+    switch (_name) {
+        case "TARO":
+            console.log("父"); //これが出力される
+            break;
+        case "HANAKO":
+            console.log("母");
+            break;
+        case "ICHIRO":
+            console.log("長男");
+            break;
+        case "JIRO":
+            console.log("次男");
+            break;
+        default:
+            console.log("家族以外");
+            break; //省略可
+    }
 </script>
-</head>
-</html>
+```
 
-◆判別式がboolean値の場合…
-※case式に比較演算子が使われます。
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### 判別式がboolean値の場合
+* case式に比較演算子が使われる
+```
 <script>
-var _age = 49;
-switch (true) {
-	case _age <= 20 :
-		console.log("20歳以下");
-		break;
-	case _age <= 40 :
-		console.log("21〜40歳");
-		break;
-	case _age <= 60 :
-		console.log("41〜60歳"); //←…これが出力される
-		break;
-	default:
-		console.log("61歳以上");
-		break; //←…省略可
-}
+    var _age = 49;
+    switch (true) {
+        case _age <= 20:
+            console.log("20歳以下");
+            break;
+        case _age <= 40:
+            console.log("21〜40歳");
+            break;
+        case _age <= 60:
+            console.log("41〜60歳"); //これが出力される
+            break;
+        default:
+            console.log("61歳以上");
+            break; //省略可
+    }
 </script>
-</head>
-</html>
+```
 
-◆break文が無い使い方
-※C#のようなフォールスルー禁止規則（何か処理をしておきながらbreakを書かないとエラー）はありません。
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### break文が無い使い方
+* [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
+```
 <script>
-var _name = "TOHRU";
-switch (_name) {
-	case "TAKASHI" :
-	case "TOMOKO" :
-		console.log("親です");
-		break;
-	case "TOHRU" :
-	case "SACHIKO" :
-		console.log("子供です"); //←…これが出力される
-		break;
-	default:
-		console.log("家族ではありません");
-		break; //←…省略可
-}
+    var _name = "JIRO";
+    switch (_name) {
+        case "TARO":
+        case "HANAKO":
+            console.log("親です");
+            break;
+        case "ICHIRO":
+        case "JIRO":
+            console.log("子供です"); //これが出力される
+            break;
+        default:
+            console.log("家族ではありません");
+            break; //省略可
+    }
 </script>
-</head>
-</html>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="for文"></a>
