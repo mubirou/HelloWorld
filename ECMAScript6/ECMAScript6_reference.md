@@ -993,94 +993,97 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 <a name="匿名関数"></a>
 # <b>匿名関数</b>
+* [アロー関数](#アロー関数)を従来の匿名式に置き換えたもの
+```
+<script>
+    class Hello {
+        //コンストラクタ
+        constructor() {
+            this.__american = function (_name) { //匿名関数①
+                console.log(_name + "," + "Hello!");
+            }
 
-※アロー関数（新機能）を従来の匿名式に置き換えたバージョンです（波線の部分だけ変更）
+            this.__japanese = function (_name) { //匿名関数②
+                console.log(_name + "、" + "こんにちは!");
+            }
 
-//○○.js
-class Hello {
-	//コンストラクタ
-	constructor() {
-this.__american = function(_name) { //匿名関数①
-	console.log(_name + "," + "Hello!");
-}
+            this.__chinese = function (_name) { //匿名関数③
+                console.log(_name + "," + "你好!");
+            }
 
-this.__japanese = function(_name) { //匿名関数②
-	console.log(_name + "、" + "こんにちは!");
-}
+            //パブリック変数に匿名関数を代入（前方宣言が必要）
+            this.hello = this.__american;
+        }
 
-this.__chinese = function(_name) { //匿名関数③
-	console.log(_name + "," + "你好!");
-}
+        //匿名関数の入替え
+        change(_language) {
+            switch (_language) {
+                case "american": this.hello = this.__american; break;
+                case "japanese": this.hello = this.__japanese; break;
+                case "chinese": this.hello = this.__chinese; break;
+            }
+        }
+    }
 
-		//パブリック変数に匿名関数を代入（匿名関数は前方宣言が必要）
-		this.hello = this.__american;
-	}
-
-	change(_language) {
-		switch(_language) {
-			case "american": this.hello = this.__american; break; //匿名関数の入替え
-			case "japanese": this.hello = this.__japanese; break; //匿名関数の入替え
-			case "chinese": this.hello = this.__chinese; break; //匿名関数の入替え
-		}
-	}
-}
-
-var hello_ = new Hello();
-hello_.hello("Takashi"); //"Takashi,Hello!"
-hello_.change("japanese");
-hello_.hello("隆"); //"隆、こんにちは!"
-hello_.change("chinese");
-hello_.hello("隆"); //"隆, 你好!"
+    var _hello = new Hello();
+    _hello.hello("Takashi"); //"Takashi,Hello!"
+    _hello.change("japanese");
+    _hello.hello("隆"); //"隆、こんにちは!"
+    _hello.change("chinese");
+    _hello.hello("隆"); //"隆, 你好!"
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="アロー関数"></a>
 # <b>アロー関数</b>
+* [匿名関数](#匿名関数)をラムダ式に置き換えたバージョン
+```
+<script>
+    class Hello {
+        //コンストラクタ
+        constructor() {
+            this.__american = (_name) => { //匿名関数①
+                console.log(_name + "," + "Hello!");
+            }
 
-※匿名関数をラムダ式（新機能）に置き換えたバージョンです（波線の部分だけ変更）
+            this.__japanese = (_name) => { //匿名関数②
+                console.log(_name + "、" + "こんにちは!");
+            }
 
-//○○.js
-class Hello {
-	//コンストラクタ
-	constructor() {
-this.__american = (_name) => { //匿名関数①
-	console.log(_name + "," + "Hello!");
-}
+            this.__chinese = (_name) => { //匿名関数③
+                console.log(_name + "," + "你好!");
+            }
 
-this.__japanese = (_name) => { //匿名関数②
-	console.log(_name + "、" + "こんにちは!");
-}
+            //パブリック変数に匿名関数を代入（前方宣言が必要）
+            this.hello = this.__american;
+        }
+        //匿名関数の入替え
+        change(_language) {
+            switch (_language) {
+                case "american": this.hello = this.__american; break; 
+                case "japanese": this.hello = this.__japanese; break;
+                case "chinese": this.hello = this.__chinese; break;
+            }
+        }
+    }
 
-this.__chinese = (_name) => { //匿名関数③
-	console.log(_name + "," + "你好!");
-}
-
-		//パブリック変数に匿名関数を代入（匿名関数は前方宣言が必要）
-		this.hello = this.__american;
-	}
-
-	change(_language) {
-		switch(_language) {
-			case "american": this.hello = this.__american; break; //匿名関数の入替え
-			case "japanese": this.hello = this.__japanese; break; //匿名関数の入替え
-			case "chinese": this.hello = this.__chinese; break; //匿名関数の入替え
-		}
-	}
-}
-
-var hello_ = new Hello();
-hello_.hello("Takashi"); //"Takashi,Hello!"
-hello_.change("japanese");
-hello_.hello("隆"); //"隆、こんにちは!"
-hello_.change("chinese");
-hello_.hello("隆"); //"隆, 你好!"
+    var _hello = new Hello();
+    _hello.hello("Takashi"); //"Takashi,Hello!"
+    _hello.change("japanese");
+    _hello.hello("隆"); //"隆、こんにちは!"
+    _hello.change("chinese");
+    _hello.hello("隆"); //"隆, 你好!"
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="クラス定数･変数･メソッド"></a>
