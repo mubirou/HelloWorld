@@ -1028,9 +1028,9 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     var _hello = new Hello();
     _hello.hello("Takashi"); //"Takashi,Hello!"
     _hello.change("japanese");
-    _hello.hello("隆"); //"隆、こんにちは!"
+    _hello.hello("たかし"); //"たかし、こんにちは!"
     _hello.change("chinese");
-    _hello.hello("隆"); //"隆, 你好!"
+    _hello.hello("たかし"); //"たかし, 你好!"
 </script>
 ```
 
@@ -1075,9 +1075,9 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     var _hello = new Hello();
     _hello.hello("Takashi"); //"Takashi,Hello!"
     _hello.change("japanese");
-    _hello.hello("隆"); //"隆、こんにちは!"
+    _hello.hello("たかし"); //"たかし、こんにちは!"
     _hello.change("chinese");
-    _hello.hello("隆"); //"隆, 你好!"
+    _hello.hello("たかし"); //"たかし, 你好!"
 </script>
 ```
 
