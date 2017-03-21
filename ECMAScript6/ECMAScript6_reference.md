@@ -1494,131 +1494,135 @@ for (変数名 in 配列等) {
 <a name="for...of文"></a>
 # <b>for...of 文</b>
 
-◆一次元配列（Array）の場合
-var _array = ["TAKASHI","TOMOKO","TOHRU","SACHIKO"];
-for (let _data of _array) {
-	console.log(_data); //"TAKASHI"→"TOMOKO"→"TOHRU"→"SACHIKO"
-}
+### 一次元配列（Array）の場合
+```
+<script>
+    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+    for (let _data of _array) {
+        console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+    }
+</script>
+```
 
-◆二次元配列（Array）の場合
-var _array = [
-		["x0y0","x1y0","x2y0"], //←…0行目
- 		["x0y1","x1y1","x2y1"]  //←…1行目
-	];
-for (let _theArray of _array) {
-	console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-}
+### 二次元配列（Array）の場合
+```
+<script>
+    var _array = [
+        ["x0y0", "x1y0", "x2y0"], //0行目
+        ["x0y1", "x1y1", "x2y1"]  //1行目
+    ];
+    for (let _theArray of _array) {
+        console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+    }
+</script>
+```
 
-◆配列（Set）の場合
-var _set = new Set();
-_set.add("TOHRU");
-_set.add("SACHIKO");
-for (let _data of _set) {
-	console.log(_data); //"TOHRU"→"SACHIKO"
-}
+### 配列（Set）の場合
+```
+<script>
+    var _set = new Set();
+    _set.add("TARO");
+    _set.add("HANAKO");
+    for (let _data of _set) {
+        console.log(_data); //"TARO"→"HANAKO"
+    }
+</script>
+```
 
-◆連想配列（Map）の場合
-var _map = new Map(
-	["TOHRU", "2002-XX-XX"],
-	["SACHIKO", "2006-XX-XX"]
-);
-for (let [_key, _value] of _map) {
-	console.log(_key, _value);
-	//"TOHRU" "2002-XX-XX
-	//"SACHIKO" "2006-XX-XX"
-}
-	※配列（Object）では利用できないようです…（要調査）。
+### 連想配列（Map）の場合
+```
+<script>
+    var _map = new Map();
+    _map.set("RYOMA", "1836-01-03");
+    _map.set("YUKICHI", "1835-01-10");
+    for (let [_key, _value] of _map) {
+        console.log(_key, _value);
+        //"RYOMA" "1836-01-03
+        //"YUKICHI" "1835-01-10"
+    }
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="while文"></a>
 # <b>while 文</b>
 
-◆while文
-【構文】
+### while 文
+* 構文
+```
 while (ループ判定式) {
-	繰り返す処理
+    繰り返す処理
 }
+```
 
-【例文】
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+* 例文
+```
 <script>
-var _i = 0;
-while (_i < 10) { //ループ判定式にはboolean値しか使えません
-	console.log(_i); //0,1,2,3,4,5,6,7,8,9
-	_i++;
-}
+    var _i = 0;
+    while (_i < 10) { //ループ判定式にはboolean値しか使えない
+        console.log(_i); //0,1,2,3,4,5,6,7,8,9
+        _i++;
+    }
 </script>
-</head>
-</html>
+```
 
-◆do...while文
-【構文】
+### do...while 文
+* 構文
+```
 do {
-	繰り返す処理 ←…ループ判定式がfalseの場合でも最低１回は実行される
+    繰り返す処理 ←ループ判定式がfalseの場合でも最低１回は実行される
 } while(ループ判定式);
+```
 
-【例文】
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+* 例文
+```
 <script>
-var _i = 0;
-do {
-	console.log(_i); //0 ←…ループ判定式はfalseだが１回実行される
-	_i++;
-} while(_i < 0);
+    var _i = 0;
+    do {
+        console.log(_i); //0 ←ループ判定式はfalseだが１回実行される
+        _i++;
+    } while (_i < 0);
 </script>
-</head>
-</html>
+```
 
-◆while文とbreak文（例：1〜100までを出力）
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### while文とbreak文
+* 例文（1〜100までを出力）
+```
 <script>
-var _count = 0;
-while (true) { //ループ判別式をtrueにすると無限ループに!
-	_count++;
-	if (_count > 100) {
-		break; //←…break文を使ってループを終了（while文の次の行へ）
-	}
-	console.log(_count); //1,2,....,99,100
-}
+    var _count = 0;
+    while (true) { //ループ判別式をtrueにすると無限ループに
+        _count++;
+        if (_count > 100) {
+            break; //break文を使ってループを終了（while文の次の行へ）
+        }
+        console.log(_count); //1,2,....,99,100
+    }
 </script>
-</head>
-</html>
+```
 
-◆while文とcontinue文（例：3の倍数を出力）
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### while文とcontinue文
+* 例文（3の倍数を出力）
+```
 <script>
-var _i = 1;
-while (_i <= 20) {
-	if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-		_i++;
-		continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
-	}
-	console.log(_i); //3,6,9,12,15,18 ←…3の倍数
-	_i++;
-}
+    var _i = 1;
+    while (_i <= 20) {
+        if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+            _i++;
+            continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+        }
+        console.log(_i); //3,6,9,12,15,18 ←3の倍数
+        _i++;
+    }
 </script>
-</head>
-</html>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="配列（Array）"></a>
