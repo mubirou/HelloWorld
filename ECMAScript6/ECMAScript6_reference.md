@@ -1438,47 +1438,57 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 <a name="for...in文"></a>
 # <b>for...in 文</b>
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
 
-◆基本構文
+### 基本構文
+```
 for (変数名 in 配列等) {
-	console.log(変数名); //配列の場合はインデックス番号、連想配列の場合はプロパティ名
-	console.log(配列等[変数名]); //配列の場合は要素の値、連想配列の場合はプロパティ値
-}
+    //配列の場合はインデックス番号、連想配列の場合はプロパティ名
+    console.log(変数名);
 
-◆配列（1次元）の場合
-………
-var _array = ["TAKASHI","TOMOKO","TOHRU","SACHIKO"];
-for (let _indexNum in _array) {
-	console.log(_indexNum); //0→1→2→3
-	console.log(_array[_indexNum]); //"TAKASHI"→"TOMOKO"→"TOHRU"→"SACHIKO"
+    //配列の場合は要素の値、連想配列の場合はプロパティ値
+    console.log(配列等[変数名]);
 }
-………
+```
 
-◆配列（2次元）の場合
-………
-var _array = [
-		["x0y0","x1y0","x2y0"], //←…0行目
- 		["x0y1","x1y1","x2y1"]  //←…1行目
-	];
-for (let _indexNum in _array) {
-	console.log(_indexNum); //0→1
-	console.log(_array[_indexNum]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-}
-………
+### 配列（1次元）の場合
+```
+<script>
+    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+    for (let _indexNum in _array) {
+        console.log(_indexNum); //0→1→2→3
+        console.log(_array[_indexNum]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+    }
+</script>
+```
 
-◆連想配列（Object＝オブジェクトリテラル）の場合
-………
-var _object = {name:"Takashi Nishimura", age:49};
-for (let _propName in _object) {
-	console.log(_propName); //name→age
-	console.log(_object[_propName]); //"Takashi Nishimura" → 49
-}
-………
+### 配列（2次元）の場合
+```
+<script>
+    var _array = [
+        ["x0y0", "x1y0", "x2y0"], //0行目
+        ["x0y1", "x1y1", "x2y1"]  //1行目
+    ];
+    for (let _indexNum in _array) {
+        console.log(_indexNum); //0→1
+        console.log(_array[_indexNum]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+    }
+</script>
+```
+
+### 連想配列（Object＝オブジェクトリテラル）の場合
+```
+<script>
+    var _object = { name: "Takashi Nishimura", age: 49 };
+    for (let _propName in _object) {
+        console.log(_propName); //name→age
+        console.log(_object[_propName]); //"Takashi Nishimura" → 49
+    }
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="for...of文"></a>
