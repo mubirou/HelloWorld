@@ -1,6 +1,6 @@
 <b>この項目は書きかけの項目です。</b>
 
-# ECMAScript 6 基礎文法
+# <b>ECMAScript 6 基礎文法</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
 * [データ型](#データ型)
@@ -118,7 +118,7 @@ console.log(typeof _symbol); //"symbol"
 
 
 <a name="データ型の操作"></a>
-# データ型の操作
+# <b>データ型の操作</b>
 
 ### データ型を調べる①
 （ typeof 演算子 ＝ データ型を文字列で返す）
