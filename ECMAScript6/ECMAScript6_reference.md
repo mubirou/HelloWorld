@@ -815,8 +815,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 * 例文
     ```
     <script>
-        const MY_NAME = "TARO NISHIMURA";
-        console.log(MY_NAME); //"TARO NISHIMURA"
+        const MY_NAME = "Takashi Nishimura";
+        console.log(MY_NAME); //"Takashi Nishimura"
         MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
     </script>
     ```
@@ -1478,10 +1478,10 @@ for (変数名 in 配列等) {
 ### 連想配列（Object＝オブジェクトリテラル）の場合
 ```
 <script>
-    var _object = { name: "TARO Nishimura", age: 49 };
+    var _object = { name: "Takashi Nishimura", age: 49 };
     for (let _propName in _object) {
         console.log(_propName); //name→age
-        console.log(_object[_propName]); //"TARO Nishimura" → 49
+        console.log(_object[_propName]); //"Takashi Nishimura" → 49
     }
 </script>
 ```
@@ -1869,46 +1869,42 @@ do {
 <a name="連想配列（Object）"></a>
 # <b>連想配列（Object）</b>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+```
 <script>
-//①作成
-var _object = new Object();
-//他にも {プロパティ名①:値, プロパティ名②:値} というオブジェクトリテラルを使う方法もあります。
+    //①作成
+    var _object = new Object();
+    //他にも {プロパティ名①:値, プロパティ名②:値} という方法もある
 
-//②プロパティの追加（更新も同じ方法です）
-_object.name = "TARO Nishimura";
-_object.age = 49;
+    //②プロパティの追加（更新も同じ方法です）
+    _object.name = "Takashi Nishimura";
+    _object.age = 49;
 
-//③関数の追加
-_object.hello = function() {
-	return "Hello! How are you?";
-}
+    //③関数の追加
+    _object.hello = function () {
+        return "Hello! How are you?";
+    }
 
-//④プロパティの参照
-console.log(_object.name); //"TARO Nishimura"
-	console.log(_object["name"]); //配列演算子[]を使うことも可能
-console.log(_object.age); //4
+    //④プロパティの参照
+    console.log(_object.name); //"Takashi Nishimura"
+    console.log(_object["name"]); //配列演算子[]を使うことも可能
+    console.log(_object.age); //49
 
-//⑤関数の実行
-console.log(_object.hello()); //"Hello! How are you?"
+    //⑤関数の実行
+    console.log(_object.hello()); //"Hello! How are you?"
 
-//⑥全ての要素の取得
-for (let _propName in _object) {
-	console.log(_propName + " : " + _object[_propName]);
-}
-//name : TARO Nishimura
-//age : 50
-//hello : function () {...
+    //⑥全ての要素の取得
+    for (let _propName in _object) {
+        console.log(_propName + " : " + _object[_propName]);
+    }
+    //name : Takashi Nishimura
+    //age : 49
+    //hello : function () {...
 </script>
-</head>
-</html>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="連想配列（Map）"></a>
