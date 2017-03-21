@@ -1829,46 +1829,41 @@ do {
 <a name="配列（Set）"></a>
 # <b>配列（Set）</b>
 
-※配列（Array）と異なり、データの重複ができません。
+* 配列（Array）と異なりデータの重複ができない
+```
+<script>
+    //①作成
+    var _set = new Set();
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script>
-//①作成
-             var _set = new Set();
+    //②データの追加
+    _set.add("ICHIRO");
+    _set.add("JIRO");
 
-//②データの追加
-             _set.add("ICHIRO");
-             _set.add("JIRO");
+    //参考：既存データの追加
+    _set.add("ICHIRO"); //無視される
 
-//参考：既存データの追加
-             _set.add("ICHIRO"); //無視される
+    //③データの数
+    console.log(_set.size); //2
 
-//③データの数
-             console.log(_set.size); //2
+    //④全てのデータの取得
+    for (let _data of _set) {
+        console.log(_data);
+        //"ICHIRO"
+        //"JIRO"
+    }
 
-//④全てのデータの取得
-             for (let _data of _set) {
-                console.log(_data);
-                //"ICHIRO"
-                //"JIRO"
-             }
+    //⑤データがあるか否か
+    console.log(_set.has("TARO")); //false
+    console.log(_set.has("ICHIRO")); //true
 
-//⑤データがあるか否か
-             console.log(_set.has("TARO")); //false
-             console.log(_set.has("ICHIRO")); //true
-
-//⑥データの削除
-             _set.delete("ICHIRO");
-        </script>
-    </head>
-</html>
+    //⑥データの削除
+    _set.delete("ICHIRO");
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="連想配列（Object）"></a>
