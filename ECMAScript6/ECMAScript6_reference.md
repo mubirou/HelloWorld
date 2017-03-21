@@ -1688,83 +1688,142 @@ do {
 </script>
 ```
 
-◆削除（最後）
-var _array = ["ICHIRO", "JIRO", "TARO"];
-console.log(_array.pop()); //"TARO" ←…削除した要素を返す
-console.log(_array); //["ICHIRO", "JIRO"]
+### 削除（最後）
+```
+<script>
+    var _array = ["ICHIRO", "JIRO", "TARO"];
+    console.log(_array.pop()); //"TARO"（削除した要素を返す）
+    console.log(_array); //["ICHIRO", "JIRO"]
+</script>
+```
 
-◆削除（最初）
-var _array = ["TARO", "ICHIRO", "JIRO"];
-console.log(_array.shift()); //"TARO" ←…削除した要素を返す
-console.log(_array); //["ICHIRO", "JIRO"]
+### 削除（最初）
+```
+<script>
+    var _array = ["TARO", "ICHIRO", "JIRO"];
+    console.log(_array.shift()); //"TARO"（削除した要素を返す）
+    console.log(_array); //["ICHIRO", "JIRO"]
+</script>
+```
 
-◆削除（○番目から□個）
-var _array = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.splice(3,2)); //["03", "04"]
-console.log(_array) //["00", "01", "02", "05"]
+### 削除（○番目から□個）
+```
+<script>
+    var _array = ["00", "01", "02", "03", "04", "05"];
+    console.log(_array.splice(3, 2)); //["03", "04"]
+    console.log(_array) //["00", "01", "02", "05"]
+</script>
+```
 
-◆削除（○番目から全て）
-var _array = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.splice(3)); //["03", "04", "05"]
-console.log(_array) //["00", "01", "02"]
+### 削除（○番目から全て）
+```
+<script>
+    var _array = ["00", "01", "02", "03", "04", "05"];
+    console.log(_array.splice(3)); //["03", "04", "05"]
+    console.log(_array) //["00", "01", "02"]
+</script>
+```
 
-◆抽出（○番目から□番目）
-var _array = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.slice(2,4)); //["02", "03"] ←…4番目は含まず
-console.log(_array) //["00", "01", "02", "03", "04", "05"] ←…元配列に変化なし
+### 抽出（○番目から□番目）
+```
+<script>
+    var _array = ["00", "01", "02", "03", "04", "05"];
+    console.log(_array.slice(2, 4)); //["02", "03"]（4番目は含まず）
+    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
+</script>
+```
 
-◆抽出（○番目から全て）
-var _array = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.slice(2)); //["02", "03", "04", "05"]
-console.log(_array) //["00", "01", "02", "03", "04", "05"] ←…元配列に変化なし
+### 抽出（○番目から全て）
+```
+<script>
+    var _array = ["00", "01", "02", "03", "04", "05"];
+    console.log(_array.slice(2)); //["02", "03", "04", "05"]
+    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
+</script>
+```
 
-◆検索(前から）※第2引数番目から、後ろに向かって検索（最初に見つかったインデックス番号を返す）
-var _array = ["A", "B", "C", "D", "E", "F", "D"];
-console.log(_array.indexOf("D", 0)); //3 ←…見つからない場合「-1」を返す
+### 検索(前から）
+* 第2引数番目から、後ろに向かって検索（最初に見つかったインデックス番号を返す）
+```
+<script>
+    var _array = ["A", "B", "C", "D", "E", "F", "D"];
+    console.log(_array.indexOf("D", 0)); //3（見つからない場合「-1」を返す）
+</script>
+```
 
-◆検索（後ろから）※第2引数番目から、前に向かって検索（最初に見つかったインデックス番号を返す）
-var _array = ["A", "B", "C", "D", "E", "F", "D"];
-console.log(_array.lastIndexOf("D")); //6 ←…第2引数を省略すると_array.lengthと同じ
+### 検索（後ろから）
+* 第2引数番目から、前に向かって検索（最初に見つかったインデックス番号を返す）
+```
+<script>
+    var _array = ["A", "B", "C", "D", "E", "F", "D"];
+    console.log(_array.lastIndexOf("D")); 
+    //6（第2引数を省略すると _array.length と同じ）
+</script>
+```
 
-◆並べ替え（反転）
-var _array = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.reverse()); //["05", "04", "03", "02", "01", "00"]
-console.log(_array) //["05", "04", "03", "02", "01", "00"] ←…元配列も変更
+### 並べ替え（反転）
+```
+<script>
+    var _array = ["00", "01", "02", "03", "04", "05"];
+    console.log(_array.reverse()); //["05", "04", "03", "02", "01", "00"]
+    console.log(_array) //["05", "04", "03", "02", "01", "00"]（元配列も変更）
+</script>
+```
 
-◆並べ替え（ソート）
-var _array = ["C", "02", "A", "01", "03", "B"];
-console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
-console.log(_array) //["01", "02", "03", "A", "B", "C"] ←…元配列も変更
+### 並べ替え（ソート）
+```
+<script>
+    var _array = ["C", "02", "A", "01", "03", "B"];
+    console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
+    console.log(_array) //["01", "02", "03", "A", "B", "C"]（元配列も変更）
+</script>
+```
 
-◆結合
-var _array1 = ["A", "B", "C"];
-var _array2 = ["D", "E", "F"];
-var _array3 = _array1.concat(_array2);
-console.log(_array3) //["A", "B", "C", "D", "E", "F"]
+### 結合
+```
+<script>
+    var _array1 = ["A", "B", "C"];
+    var _array2 = ["D", "E", "F"];
+    var _array3 = _array1.concat(_array2);
+    console.log(_array3) //["A", "B", "C", "D", "E", "F"]
+</script>
+```
 
-◆複製
-var _original = ["A", "B", "C"];
-var _copy = _original.concat(); //複製
+### 複製
+```
+<script>
+    var _original = ["A", "B", "C"];
+    var _copy = _original.concat(); //複製
 
-//実験（参照コピーではなく複製されているか否か）
-_original[0] = "あ";
-console.log(_original[0], _copy[0]); //"あ" "A" ←…参照コピーではない
+    //実験（参照コピーではなく複製されているか否か）
+    _original[0] = "あ";
+    console.log(_original[0], _copy[0]); //"あ" "A"（参照コピーではない）
+</script>
+```
 
-◆文字列→配列
-var _string = "A,B,C,D,E,F";
-var _array = _string.split(","); //カンマ区切りで配列化
-console.log(_array); //["A", "B", "C", "D", "E", "F"]
+### 文字列→配列
+```
+<script>
+    var _string = "A,B,C,D,E,F";
+    var _array = _string.split(","); //カンマ区切りで配列化
+    console.log(_array); //["A", "B", "C", "D", "E", "F"]
+</script>
+```
 
-◆全要素を取り出す
-var _array = ["A", "B", "C", "D", "E", "F"];
-_array.forEach(function(arg) {
-	console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
-});
-※for文、for...in文を使う方法もあります（参照「for...in文」）。
+### 全要素を取り出す
+```
+<script>
+    var _array = ["A", "B", "C", "D", "E", "F"];
+    _array.forEach(function (arg) {
+        console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
+    });
+</script>
+```
+* for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：TARO Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="配列（Set）"></a>
