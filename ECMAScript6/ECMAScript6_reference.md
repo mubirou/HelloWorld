@@ -1088,48 +1088,49 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 <a name="クラス定数･変数･メソッド"></a>
 # <b>クラス定数･変数･メソッド</b>
+* クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
+```
+<script>
+    class MyMath {
+        //①クラス定数（静的定数）の定義（静的定数）
+        static get PI() {
+            return 3.141592653589793;
+        }
+        static set PI(newValue) {
+            throw new Error("値の変更はできません");
+        }
 
-※クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセス可能です。
+        //③静的メソッド（静的メソッド）の定義
+        static pow(arg1, arg2) {
+            if (arg2 == 0) { return 1; } //0乗対策
+            var _result = arg1;
+            for (let _i = 1; _i < arg2; _i++) {
+                _result = _result * arg1;
+            }
+            return _result;
+        }
+    }
 
-//○○.js
-class MyMath {
-	//①クラス定数（静的定数）の定義（静的定数）←…力技
-static get PI() {
-	return 3.141592653589793;
-}
-static set PI(newValue) {
-	throw new Error("値の変更はできません");
-}
+    //①クラス定数の参照
+    console.log(MyMath.PI); //3.141592653589793
+    //MyMath.PI = 3.14; //Error: 値の変更はできません
 
-	//③静的メソッド（静的メソッド）の定義（static メソッド名()）
-static pow(arg1, arg2) {
-	if (arg2 == 0) { return 1; } //0乗対策
-	var _result = arg1;
-	for (let _i=1; _i<arg2; _i++) {
-		_result = _result * arg1;
-	}
-	return _result;
-}
-}
+    //②クラス変数の参照および変更
+    console.log(MyMath.lastUpdate); //undefined
+    MyMath.lastUpdate = "2017-03-21"; //②クラス変数（静的変数）の定義
+    console.log(MyMath.lastUpdate); //"2017-03-21"
+    MyMath.lastUpdate = "2017-03-22"; //変更可能
+    console.log(MyMath.lastUpdate); //"2017-03-22"
 
-//①クラス定数の参照
-console.log(MyMath.PI); //3.141592653589793
-//MyMath.PI = 3.14; //Error:値の変更はできません
-
-//②クラス変数の参照および変更
-console.log(MyMath.lastUpdate); //undefined
-MyMath.lastUpdate = "2016-09-21"; //←…②クラス変数（静的変数）の定義
-console.log(MyMath.lastUpdate); //"2016-09-21"
-MyMath.lastUpdate = "2016-09-22"; //←…変更可能
-console.log(MyMath.lastUpdate); //"2016-09-22"
-
-//③静的メソッドの実行
-console.log(MyMath.pow(2, 0)); //1
-console.log(MyMath.pow(2, 8)); //256
+    //③静的メソッドの実行
+    console.log(MyMath.pow(2, 0)); //1
+    console.log(MyMath.pow(2, 8)); //256
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="if文"></a>
