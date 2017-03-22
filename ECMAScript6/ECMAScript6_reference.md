@@ -2345,80 +2345,122 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 <a name="数学関数（Math）"></a>
 # <b>数学関数（Math）</b>
 
-◆Math.sin() ←…サイン（正弦）
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### Math.sin() : サイン（正弦）
+```
 <script>
-console.log(Math.sin(0)); //0 ←…0°
-console.log(Math.sin(Math.PI/2)); //1 ←…90°
-console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0） ←180°
-console.log(Math.sin(Math.PI*3/2)); //-1 ←…270°
-console.log(Math.sin(Math.PI*2)); //-2.4492935982947064e-16（≒0）←360°
+    console.log(Math.sin(0)); //0（0°）
+    console.log(Math.sin(Math.PI / 2)); //1（90°）
+    console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
+    console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
+    console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
 </script>
-</head>
-</html>
+```
 
-◆Math.cos() ←…コサイン（余弦）
-console.log(Math.cos(0)); //1 ←…0°
-console.log(Math.cos(Math.PI/2)); //6.123233995736766e-17（≒0） ←…90°
-console.log(Math.cos(Math.PI)); //-1 ←…180°
-console.log(Math.cos(Math.PI*3/2)); //-1.8369701987210297e-16（≒0） ←…270°
-console.log(Math.cos(Math.PI*2)); //1 ←…360°
+### Math.cos() : コサイン（余弦）
+```
+<script>
+    console.log(Math.cos(0)); //1（0°）
+    console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
+    console.log(Math.cos(Math.PI)); //-1（180°）
+    console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
+    console.log(Math.cos(Math.PI * 2)); //1 ←…360°
+</script>
+```
 
-◆Math.atan2() ←…アークタンジェント2
-//三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
-var _disX = Math.sqrt(3); //√3のこと
-var _disY = 1;
-console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
-console.log(180*Math.atan2(_disY, _disX)/Math.PI); //30.000000000000004（度）
+### Math.atan2() : アークタンジェント2
+```
+<script>
+    //三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
+    var _disX = Math.sqrt(3); //√3のこと
+    var _disY = 1;
+    console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
+    console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //30.000000000000004（度）
+</script>
+```
 
-◆Math.PI ←…円周率
-console.log(Math.PI); //3.141592653589793
+### Math.PI : 円周率
+```
+<script>
+    console.log(Math.PI); //3.141592653589793
+</script>
+```
 
-◆Math.floor() ←…切り捨て
-console.log(Math.floor(1.001)); //1
-console.log(Math.floor(1.999)); //1
+### Math.floor() : 切り捨て
+```
+<script>
+    console.log(Math.floor(1.001)); //1
+    console.log(Math.floor(1.999)); //1
+</script>
+```
 
-◆Math.ceil() ←…切り上げ
-console.log(Math.ceil(1.001)); //2
-console.log(Math.ceil(1.999)); //2
+### Math.ceil() : 切り上げ
+```
+<script>
+    console.log(Math.ceil(1.001)); //2
+    console.log(Math.ceil(1.999)); //2
+</script>
+```
 
-◆Math.round() ←…四捨五入
-console.log(Math.round(1.499)); //1
-console.log(Math.round(1.500)); //2
+### Math.round() : 四捨五入
+```
+<script>
+    console.log(Math.round(1.499)); //1
+    console.log(Math.round(1.500)); //2
+</script>
+```
 
-◆Math.abs() ←…絶対値
-console.log(Math.abs(100)); //100
-console.log(Math.abs(-100)); //100
+### Math.abs() : 絶対値
+```
+<script>
+    console.log(Math.abs(100)); //100
+    console.log(Math.abs(-100)); //100
+</script>
+```
 
-◆Math.pow() ←…累乗（○の□乗）
-console.log(Math.pow(2, 0)); //1（2の0乗）
-console.log(Math.pow(2, 8)); //256（2の8乗）
+### Math.pow() : 累乗（○の□乗）
+```
+<script>
+    console.log(Math.pow(2, 0)); //1（2の0乗）
+    console.log(Math.pow(2, 8)); //256（2の8乗）
+</script>
+```
 
-◆Math.sqrt() ←…平方根（√○）
-console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
-console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
-console.log(Math.sqrt(4)); //2
-console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+### Math.sqrt() : 平方根（√○）
+```
+<script>
+    console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
+    console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
+    console.log(Math.sqrt(4)); //2
+    console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+</script>
+```
 
-◆Math.max() ←…比較（最大値）
-console.log(Math.max(5.01, -10)); //5.01 ←…「2つ」の数値の比較
+### Math.max() : 比較（最大値）
+```
+<script>
+    console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
+</script>
+```
 
-◆Math.min() ←…比較（最小値）
-console.log(Math.min(5.01, -10)); //-10 ←…「2つ」の数値の比較
+### Math.min() : 比較（最小値）
+```
+<script>
+    console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
+</script>
+```
 
-◆Math.sign() ←…符号（正か負の値か）
-console.log(Math.sign(-0.1)); //-1（負の値）
-console.log(Math.sign(0)); //0（0）
-console.log(Math.sign(0.1)); //1（正の値）
+### Math.sign() : 符号（正か負の値か）
+```
+<script>
+    console.log(Math.sign(-0.1)); //-1（負の値）
+    console.log(Math.sign(0)); //0（0）
+    console.log(Math.sign(0.1)); //1（正の値）
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
-
+作成日：2017年03月22日  
 
 <a name="乱数"></a>
 # <b>乱数</b>
