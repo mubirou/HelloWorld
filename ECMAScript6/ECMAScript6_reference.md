@@ -1863,7 +1863,7 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月22日  
 
 
 <a name="連想配列（Object）"></a>
@@ -1904,7 +1904,7 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月22日  
 
 
 <a name="連想配列（Map）"></a>
@@ -1950,7 +1950,7 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月22日  
 
 
 <a name="this"></a>
@@ -2039,7 +2039,7 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月22日  
 
 
 <a name="文字列の操作"></a>
@@ -2105,7 +2105,7 @@ var 変数 = "xxx"; //string型
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月22日  
 
 
 <a name="正規表現"></a>
@@ -2156,50 +2156,59 @@ var 変数 = "xxx"; //string型
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月22日  
 
 
 <a name="抽象クラス"></a>
 # <b>抽象クラス</b>
 
-◆概要
-ECMAScript 6には、TypeScript（1.6〜）にあるabstractやinterfaceキーワードはありません。ECMAScript 6では、継承と例外処理によって擬似的な抽象クラスを実現します。
+### 概要
+* ECMAScript 6 には、TypeScript（1.6〜）にある abstract や interface キーワードはない
+* ECMAScript 6 では、継承と例外処理によって擬似的な抽象クラスを実現
 
-◆構文
-class Abstract○○ { //（擬似）抽象クラスの定義
-	抽象メソッド名(引数①,引数②,...) {
-		throw new Error("派生クラスで実装して下さい"); //例外処理
-	}
-}
-class 派生クラス名 extends Abstract○○ { //（擬似）抽象クラスの継承
-	抽象メソッド名(引数①,引数②,...) {
-		//実際の処理はここに記述
-	}
+### 構文
+```
+//（擬似）抽象クラスの定義
+class Abstract○○ {
+    抽象メソッド名(引数①,引数②,...) {
+        throw new Error("派生クラスで実装して下さい"); //例外処理
+    }
 }
 
-◆例文
-//main.js
-class AbstractClass { //（擬似）抽象クラスの定義
-commonMethod() { //共通のメソッド
-	console.log("AbstractClass.commonMethod()");
+//（擬似）抽象クラスの継承
+class 派生クラス名 extends Abstract○○ {
+    抽象メソッド名(引数①,引数②,...) {
+        //実際の処理はここに記述
+    }
 }
-eachMethod() { //抽象メソッド（実際の処理は記述しない）
-	throw new Error("派生クラスで実装して下さい"); //例外処理
-}
-}
-class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
-eachMethod() { //オーバーライドして実際の処理を記述
-	console.log("SubClass.eachMethod()"); //実際の処理
-}
-}
+```
 
-var _subClass = new SubClass();
-_subClass.commonMethod(); //"AbstractClass.commonMethod()"
-_subClass.eachMethod(); //"SubClass.eachMethod()"
+### 例文
+```
+<script>
+    class AbstractClass { //（擬似）抽象クラスの定義
+        commonMethod() { //共通のメソッド
+            console.log("AbstractClass.commonMethod()");
+        }
+        eachMethod() { //抽象メソッド（実際の処理は記述しない）
+            throw new Error("サブクラスで実装して下さい"); //例外処理
+        }
+    }
+    class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
+        eachMethod() { //オーバーライドして実際の処理を記述
+            console.log("SubClass.eachMethod()"); //実際の処理
+        }
+    }
+
+    var _subClass = new SubClass();
+    _subClass.commonMethod(); //"AbstractClass.commonMethod()"
+    _subClass.eachMethod(); //"SubClass.eachMethod()"
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 <a name="superキーワード"></a>
