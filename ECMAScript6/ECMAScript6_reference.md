@@ -2697,7 +2697,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 # <b>外部テキストの読み込み</b>
 
 ### テキストファイルの用意（準備）
-* sample.txt（UTF-8）としてHTMLファイルと同階層に保存
+* [Web サーバ](http://bit.ly/2mbzR4D)を稼働し、ルートディレクトリ等に sample.txt （UTF-8）として保存
 ```
 あいうえお
 かきくけこ
@@ -2705,36 +2705,30 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 
 ### テキストの読み込み
+* 上記の sample.txt と同階層に xxx.html として保存
 ```
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <script>
-//①XMLHttpRequestオブジェクトの生成
-var _request = new XMLHttpRequest();
+    //①XMLHttpRequestオブジェクトの生成
+    var _request = new XMLHttpRequest();
 
-//②イベントハンドラの定義
-_request.onload = function() {
-	console.log(this.responseText); //⑤読み込んだテキストの表示
-}
+    //②イベントハンドラの定義
+    _request.onload = function () {
+        console.log(this.responseText); //⑤読み込んだテキストの表示
+    }
 
-//③ヘッダの設定
-_request.open("GET", "sample.txt");
+    //③ヘッダの設定
+    _request.open("GET", "sample.txt");
 
-//④リクエストの送信
-_request.send(null);
+    //④リクエストの送信
+    _request.send(null);
 </script>
-</head>
-</html>		
 ```
 
-◆テキストファイルの解析
-読み込んだXMLHttpRequest.responseTextは…
-	CSV形式の場合は…convertCSVtoArray(XMLHttpRequest.responseText)
-	JSON形式の場合は…JSON.parse(XMLHttpRequest.responseText)
-…を使うことで解析が可能になります。
+### テキストファイルの解析
+* 読み込んだ XMLHttpRequest.responseText の解析は次の関数/メソッドを利用する
+    * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
+    * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
