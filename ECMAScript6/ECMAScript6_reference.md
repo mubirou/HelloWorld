@@ -2519,15 +2519,15 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 
 ### 書式
 ```
-var ○ = new Date();
-○.getFullYear(); //年（2015等）
-○.getMonth(); //月（0〜11）
-○.getDate(); //日（1〜31）
-○.getDay(); //曜日（0=日曜〜5=金曜）
-○.getHours(); //時（0〜23）
-○.getMinutes(); //分（0〜59）
-○.getSeconds(); //秒（0〜59）
-○.getMilliseconds(); //ミリ秒（0〜999）
+var xxx = new Date();
+xxx.getFullYear(); //年（2015等）
+xxx.getMonth(); //月（0〜11）
+xxx.getDate(); //日（1〜31）
+xxx.getDay(); //曜日（0=日曜〜5=金曜）
+xxx.getHours(); //時（0〜23）
+xxx.getMinutes(); //分（0〜59）
+xxx.getSeconds(); //秒（0〜59）
+xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 
 ### 例文
