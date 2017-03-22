@@ -2661,44 +2661,35 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-◆Dateオブジェクトを使う方法…
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### Dateオブジェクトを使う方法
+```
 <script>
-var _start = new Date().getTime(); //1970年からの経過時間（ミリ秒）
-for (let i=0; i<1000000000; i++) { //10億回繰返す
-    //速度計測したい処理
-}
-var _end = new Date().getTime();
-console.log(_end - _start); //3643（ミリ秒）
+    var _start = new Date().getTime(); //1970年からの経過時間（ミリ秒）
+    for (let i = 0; i < 1000000000; i++) { //10億回繰返す
+        //速度計測したい処理
+    }
+    var _end = new Date().getTime();
+    console.log(_end - _start); //3643（ミリ秒）
 </script>
-</head>
-</html>		
+```
 
-◆console.time()を使う方法… ←…これからはこちらを使いましょう
-処理時間の計測に役立ちます。ページ毎に10000個（!）のタイマーが使用可能です。
-各タイマーには、ユニーク（唯一）な識別子を付けて使用します。使用後は、同じ識別子を引数としてconsole.timeEnd() を実行することで経過時間が出力されます。
-
-【例文】
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script>
-console.time("timerA");
-for (let i=0; i<1000000000; i++) { //10億回繰返す
-    //速度計測したい処理
-}
-console.timeEnd("timerA"); //"timerA: 3628.869ms"
-</script>
-</head>
-</html>		
+### console.time() を使う方法
+* 処理時間の計測に利用可能（推奨）
+* ページ毎に10000個のタイマーが使用可能
+* 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数としてconsole.timeEnd() を実行することで経過時間が出力
+    ```
+    <script>
+        console.time("timerA");
+        for (let i = 0; i < 1000000000; i++) { //10億回繰返す
+            //速度計測したい処理
+        }
+        console.timeEnd("timerA"); //"timerA: 3628.869ms"
+    </script>
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 
