@@ -2465,45 +2465,53 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 <a name="乱数"></a>
 # <b>乱数</b>
 
-◆Math.random()
-0以上、1未満（0.9999…）の値を返します。
-現在時刻を元にrandom seed（乱数種）を生成する…らしい。
-console.log(Math.random()); //0.13397585139675616
-console.log(Math.random()); //0.9903535518676447
-console.log(Math.random()); //0.006009885271453852
+### Math.random()
+* 0以上、1未満（0.9999…）の値を返す
+* 現在時刻を元に random seed （乱数種）を生成
+```
+<script>
+    console.log(Math.random()); //0.13397585139675616
+    console.log(Math.random()); //0.9903535518676447
+    console.log(Math.random()); //0.006009885271453852
+</script>
+```
 
-◆整数の乱数
-//整数の乱数を返すカスタム関数
-this.randomInt = (_min, _max) => {
-    return Math.floor(Math.random() * (_max - _min + 1)) + _min;
-}
-
-//実験（1000万回繰返して精度を調べます）
-var _u5=0, _u4=0, _u3=0, _u2=0, _u1=0;
-var _o0=0, _o1=0, _o2=0, _o3=0, _o4=0, _o5=0;
-
-for (let i=0; i<10000000; i++) {
-    switch(this.randomInt(-5, 5)) {
-        case -5: _u5++; break;
-        case -4: _u4++; break;
-        case -3: _u3++; break;
-        case -2: _u2++; break;
-        case -1: _u1++; break;
-        case  0: _o0++; break;
-        case  1: _o1++; break;
-        case  2: _o2++; break;
-        case  3: _o3++; break;
-        case  4: _o4++; break;
-        case  5: _o5++; break;
+### 整数の乱数
+```
+<script>
+    //整数の乱数を返すカスタム関数
+    this.randomInt = (_min, _max) => {
+        return Math.floor(Math.random() * (_max - _min + 1)) + _min;
     }
-}
 
-console.log(_u5,_u4,_u3,_u2,_u1,_o0,_o1,_o2,_o3,_o4,_o5);
-//909461 910465 907165 908025 910926 907237 910557 908476 909376 908795 909517
+    //実験（1000万回繰返して精度を調べる）
+    var _u5 = 0, _u4 = 0, _u3 = 0, _u2 = 0, _u1 = 0;
+    var _o0 = 0, _o1 = 0, _o2 = 0, _o3 = 0, _o4 = 0, _o5 = 0;
+
+    for (let i = 0; i < 10000000; i++) {
+        switch (this.randomInt(-5, 5)) {
+            case -5: _u5++; break;
+            case -4: _u4++; break;
+            case -3: _u3++; break;
+            case -2: _u2++; break;
+            case -1: _u1++; break;
+            case 0: _o0++; break;
+            case 1: _o1++; break;
+            case 2: _o2++; break;
+            case 3: _o3++; break;
+            case 4: _o4++; break;
+            case 5: _o5++; break;
+        }
+    }
+
+    console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
+    //909461 910465 907165 908025 910926 907237 910557 908476 909376 908795 909517
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 <a name="日時情報"></a>
