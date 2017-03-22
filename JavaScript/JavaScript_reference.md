@@ -7,7 +7,7 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-* [プロトタイプ](#プロトタイプ)（≒クラス）
+* [クラス](#クラス)（プロトタイプ）
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)（プロトタイプベース）
 ***
 * [名前空間](#名前空間)
@@ -169,8 +169,8 @@
 作成日：2017年03月22日  
 
 
-<a name="プロトタイプ"></a>
-# <b>プロトタイプ</b>（≒クラス）
+<a name="クラス"></a>
+# <b>クラス</b>（プロトタイプ）
 
 ### Function.prototype プロパティ
 * JavaScript はクラスベースではなく、[プロトタイプベース](http://bit.ly/2l76Rew)の[オブジェクト指向プログラミング](http://bit.ly/1YfUaXy)言語である（"class" キーワードが実装されていない）
