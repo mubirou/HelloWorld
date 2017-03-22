@@ -2,7 +2,7 @@
 
 # <b>ECMAScript 6 基礎文法</b>
 
-* Hello,world! （[Linux](https://github.com/TARONishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TARONishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TARONishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -2696,14 +2696,16 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
 
-◆テキストファイルの用意
-※sample.txt（UTF-8）としてHTMLファイルと同階層に保存します。
-
+### テキストファイルの用意（準備）
+* sample.txt（UTF-8）としてHTMLファイルと同階層に保存
+```
 あいうえお
 かきくけこ
 さしすせそ
+```
 
-◆HTMLファイル
+### テキストの読み込み
+```
 <!DOCTYPE html>
 <html>
 <head>
@@ -2725,6 +2727,7 @@ _request.send(null);
 </script>
 </head>
 </html>		
+```
 
 ◆テキストファイルの解析
 読み込んだXMLHttpRequest.responseTextは…
