@@ -2709,7 +2709,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 <script>
     //①XMLHttpRequestオブジェクトの生成
-    var _request = new XMLHttpRequest();
+    var _request = new XMLHttpRequest(); //Webサーバ上で動作
 
     //②イベントハンドラの定義
     _request.onload = function () {
