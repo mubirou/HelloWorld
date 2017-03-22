@@ -1956,83 +1956,90 @@ do {
 <a name="this"></a>
 # <b>this</b>
 
-◆トップレベルのthis
+### トップレベルの this
+```
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script>
-document.write(this); //[object Window] ←…windowと同じ（省略可能）
-</script>
+    <meta charset="UTF-8">
+    <script>
+        document.write(this); //[object Window]（＝window／省略可能）
+    </script>
 </head>
 </html>
-※<script src="main.js"></script>として外部のmain.jsを読み込んだ場合も同様です。
+```
+* \<script src="xxx.js">\</script> として外部の xxx.js を読み込んだ場合も同様
 
-◆クラス内のthis
-【○○.html】
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="main.js"></script>
-    </head>
-</html>
-
-【main.js】
-class MyClass {
-    constructor() {
-        document.write(this); //[object Object] ←…MyClassのインスタンス
-        this.__hoge = "擬似プライベート変数"; //thisは省略不可
-    }
-    get hoge() { //アクセサ（getter）
-        return this.__hoge; //thisは省略不可
-    }
-}
-var _myClass = new MyClass();
-console.log(_myClass.hoge); //"擬似プライベート変数"
-
-※クラス内ではthis/var/let/constの何れかを指定する必要があり省略はできません。
-
-◆イベントハンドラメソッド内のthis
-＜概要＞
-独自クラスを作成し、JavaScript標準のイベント（mousedown等）のイベントリスナーを記述した場合、リスナー関数内で自分自身（＝クラス）を参照したい場合がよくあります。しかし、残念ながらthisはイベントリスナーの対象となるオブジェクトを参照します。そこでワンクション置くことでクラスを参照できるようにしたのが以下のサンプルです。
-
+### クラス内の this
+```
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script>
-    class MyClass {
-constructor() {
-	this.__img01 = document.getElementById("img01");
-
-	//イベントハンドラメソッド内でthis＝Canvasオブジェクトとする為
-this.__mousedown_img01 =(_e)=> { this.__mousedown_img01_method(_e); }
-
-	//Image用イベントハンドラの定義
-this.__img01.addEventListener("mousedown",this.__mousedown_img01,false);
-}
-
-//MyClass.__mousedown_img01（アロー関数）からの呼出し
-__mousedown_img01_method(_e) { //引数は「JavaScript.MouseEvent」
-	console.log(this); //MyClass
-}
-    }
-
-    window.addEventListener("load", load_window, false);
-    function load_window() {
-        new MyClass();
-    }
-</script>
+    <meta charset="UTF-8">
+    <script>
+        class MyClass {
+            constructor() {
+                document.write(this); //[object Object]（MyClassのインスタンス）
+                this.__hoge = "擬似プライベート変数"; //thisは省略不可
+            }
+            get hoge() { //アクセサ（getter）
+                return this.__hoge; //thisは省略不可
+            }
+        }
+        var _myClass = new MyClass();
+        console.log(_myClass.hoge); //"擬似プライベート変数"
+    </script>
 </head>
+</html>
+```
+
+* クラス内では this / var / let / const の何れかを指定する必要があり省略は不可
+
+### イベントハンドラメソッド内の this
+* 概要  
+独自クラスを作成し、JavaScript 標準のイベント（mousedown 等）のイベントリスナーを記述した場合、リスナー関数内で自分自身（＝クラス）を参照したい場合がよくあります。しかし、this はイベントリスナーの対象となるオブジェクトを参照します。そこでワンクション置くことでクラスを参照できるようにしたのが以下のサンプルです。
+
+* 例文
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script>
+        class MyClass {
+            constructor() {
+                this.__image = document.getElementById("image");
+
+                //イベントハンドラメソッド内でthis==Canvasオブジェクトとする為
+                this.__mousedown_image = (_e) => { 
+                    this.__mousedown_image_method(_e);
+                }
+
+                //Image用イベントハンドラの定義
+                this.__image.addEventListener("mousedown", this.__mousedown_image, false);
+            }
+
+            //MyClass.__mousedown_image（アロー関数）からの呼出し
+            __mousedown_image_method(_mouseEvent) {
+                console.log(this); //MyClass
+            }
+        }
+        addEventListener("load", load_window, false);
+        function load_window() {
+            new MyClass();
+        }
+    </script>
+</head>
+
 <body>
-    <img id="img01" src="sample.png">
+    <img id="image" src="sample.png">
 </body>
 </html>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="文字列の操作"></a>
