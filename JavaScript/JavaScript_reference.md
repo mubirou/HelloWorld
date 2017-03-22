@@ -53,7 +53,7 @@
 1. boolean（論理型）
 1. number（整数･浮動小数点数）
 1. string（文字列）
-1. object（全てのオブジェクトのベース／array も object 型）
+1. object（全てのオブジェクトのベース）
 1. undefined（未初期化変数）
 1. function（関数）
 
@@ -64,11 +64,12 @@
     console.log(typeof 1); //"number"
     console.log(typeof "1"); //"string"
     console.log(typeof new Object()); //"object"
+    console.log(typeof []); //"object"
 
     var _hoge; //変数宣言したのみで値が設定されていない場合
     console.log(typeof _hoge); //"undefined"
 
-    function hoge() {};
+    function hoge() { };
     console.log(typeof hoge); //"function"
 </script>
 ```
