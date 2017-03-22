@@ -2495,12 +2495,12 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
             case -3: _u3++; break;
             case -2: _u2++; break;
             case -1: _u1++; break;
-            case 0: _o0++; break;
-            case 1: _o1++; break;
-            case 2: _o2++; break;
-            case 3: _o3++; break;
-            case 4: _o4++; break;
-            case 5: _o5++; break;
+            case  0: _o0++; break;
+            case  1: _o1++; break;
+            case  2: _o2++; break;
+            case  3: _o3++; break;
+            case  4: _o4++; break;
+            case  5: _o5++; break;
         }
     }
 
