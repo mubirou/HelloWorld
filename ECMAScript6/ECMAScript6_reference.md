@@ -2213,47 +2213,44 @@ class 派生クラス名 extends Abstract○○ {
 
 <a name="superキーワード"></a>
 # <b>super キーワード</b>
-Ubuntu 16.04.1 LTS、Chromium 52.0.XX（ECMAScript 2015に97％対応）、VSCode 1.5.3対応
 
-【○○.html】
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="main.js"></script>
-    </head>
-</html>
-
-【main.js】
-//スーパークラス
-class SuperClass {
-    constructor(arg) { //コンストラクタ
-        console.log("SuperClass.constructor : " + arg);
+```
+<script>
+    //スーパークラス
+    class SuperClass {
+        constructor(arg) { //コンストラクタ
+            console.log("SuperClass.constructor : " + arg);
+        }
+        methodSuper(arg) {
+            console.log("SuperClass.methodSuper : " + arg);
+        }
     }
-    methodSuper(arg) {
-        console.log("SuperClass.methodSuper : " + arg);
+
+    //サブクラス
+    class SubClass extends SuperClass { //スーパークラスを継承
+        constructor() { //コンストラクタ
+            //↓スーパークラスのコンストラクタの呼び出し（必須）
+            super("from SubClass");
+            //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
+        }
+        methodSub() {
+            //↓スーパークラスのメソッドを呼び出すことが可能
+            super.methodSuper("from SubClass");
+        }
     }
-}
 
-//サブクラス
-class SubClass extends SuperClass { //スーパークラスを継承
-constructor() { //コンストラクタ
-//↓サブクラスのコンストラクタ内であれば冒頭でなくても可能
-super("from SubClass"); //スーパークラスのコンストラクタの呼び出し（必須）
-}
-methodSub() {
-		//↓スーパークラスのメソッドを呼び出すことが可能
-super.methodSuper("from SubClass");
-	}
-}
-
-//実行
-var _subClass = new SubClass(); //"SuperClass.constructor : from SubClass"
-_subClass.methodSub(); //"SuperClass.methodSuper : from SubClass"
+    //実行
+    var _subClass = new SubClass(); 
+    //=> "SuperClass.constructor : from SubClass"
+    
+    _subClass.methodSub(); 
+    //=>"SuperClass.methodSuper : from SubClass"
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 <a name="オーバーライド"></a>
