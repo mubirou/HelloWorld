@@ -2559,88 +2559,103 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-◆繰返し実行する
-this._count = 0; //var _count = 0;でも同じ
-this.callbackFunction = () => { //var loopFunction ...でも同じ
-	if (++ _count <= 10) { //10回繰返す場合…
-		console.log("繰返し実行したい処理");
-	} else {
-clearInterval(this._timerID); //繰返しを止める
-	}
-}
-//↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
-this._timerID = setInterval(this.callbackFunction, 1000); //1秒間隔で繰返す場合
+### 繰返し実行する
+```
+<script>
+    _count = 0;
+    callbackFunction = () => {
+        if (++_count <= 10) { //10回繰返す場合…
+            console.log(_count, "繰返し実行したい処理");
+        } else {
+            clearInterval(_timerID); //繰返しを止める
+        }
+    }
+    //↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
+    _timerID = setInterval(callbackFunction, 1000); //1秒間隔で繰返す場合
+</script>
+```
 
-◆一度だけ実行する
-this.callbackFunction = () => { //var timeoutFunction ...でも同じ
-console.log("一度だけ実行したい処理");
-clearTimeout(this._timerID);
-}
-this._timerID = setTimeout(this.callbackFunction, 1000); //1秒後に1回実行する場合
+### 一度だけ実行する
+```
+<script>
+    callbackFunction = () => {
+        console.log("一度だけ実行したい処理");
+        clearTimeout(_timerID);
+    }
+    _timerID = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
+</script>
+```
 
-◆○秒後にA、その○秒後にB...を実行 ←…Promise（新機能）でも同様のことが出来そうですが…
-//Task○のスーパークラス ////////////////////////////////////////////////////////////
-class SuperTask {
-    //静的変数（delay）
-    static set delay(_newValue) { this.__delay = _newValue; }
-    static get delay() {
-        if (this.__delay == undefined) { this.__delay = 0; }
-        return this.__delay;
+### XX 秒後にA、そのXXX 秒後にB...を実行
+* [Promise](https://mzl.la/2nHNs4B) でも同様のことが可能と思われる
+```
+<script>
+    //Task○のスーパークラス
+    class SuperTask {
+        //静的変数（delay）
+        static set delay(_newValue) { this.__delay = _newValue; }
+        static get delay() {
+            if (this.__delay == undefined) { this.__delay = 0; }
+            return this.__delay;
+        }
+
+        //静的変数（nextTask）
+        static get nextTask() { return this.__nextTask; }
+        static set nextTask(_newValue) { this.__nextTask = _newValue; }
+
+        static exec() { //静的メソッド
+            if (this.__delay == undefined) { this.__delay = 0; }
+            setTimeout(this.__callBack, this.__delay);
+        }
     }
 
-    //静的変数（nextTask）
-    static get nextTask() { return this.__nextTask; }
-    static set nextTask(_newValue) { this.__nextTask = _newValue; }
-
-    static exec() { //静的メソッド
-        if (this.__delay == undefined) { this.__delay = 0; }
-        setTimeout(this.__callBack, this.__delay);
+    //TaskAクラス
+    class TaskA extends SuperTask {
+        static __callBack() {
+            var _this = TaskA;
+            //TaskAで実行したいことをここに記述
+            console.log(_this.delay + "ミリ秒後にTaskAで実行すること");
+            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
+        }
     }
-}
-//TaskAクラス////////////////////////////////////////////////////////////////////////
-class TaskA extends SuperTask {
-static __callBack() {
-var _this = TaskA;
-//TaskAで実行したいことをここに記述
-console.log(_this.delay + "ミリ秒後にTaskAで実行すること");
-if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-	}
-}
 
-//TaskBクラス////////////////////////////////////////////////////////////////////////
-class TaskB extends SuperTask {
-    static __callBack() {
-var _this = TaskB;
-//TaskBで実行したいことをここに記述
-console.log(_this.delay + "ミリ秒後にTaskBで実行すること");
-if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-	}
-}
+    //TaskBクラス
+    class TaskB extends SuperTask {
+        static __callBack() {
+            var _this = TaskB;
+            //TaskBで実行したいことをここに記述
+            console.log(_this.delay + "ミリ秒後にTaskBで実行すること");
+            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
+        }
+    }
 
-//TaskCクラス////////////////////////////////////////////////////////////////////////
-class TaskC extends SuperTask {
-    static __callBack() {
-var _this = TaskC;
-//TaskCで実行したいことをここに記述
-console.log(_this.delay + "ミリ秒後にTaskCで実行すること");
-if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-	}
-}
+    //TaskCクラス
+    class TaskC extends SuperTask {
+        static __callBack() {
+            var _this = TaskC;
+            //TaskCで実行したいことをここに記述
+            console.log(_this.delay + "ミリ秒後にTaskCで実行すること");
+            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
+        }
+    }
 
-//タイマーの設定（初期値は0ミリ秒）
-TaskA.delay = 1000;
-TaskB.delay = 2000;
-TaskC.delay = 3000;
+    //タイマーの設定（初期値は0ミリ秒）
+    TaskA.delay = 1000;
+    TaskB.delay = 3000;
+    TaskC.delay = 10000;
 
-//次のタスクの設定（初期値は未設定）
-TaskA.nextTask = TaskB;
-TaskB.nextTask = TaskC;
+    //次のタスクの設定（初期値は未設定）
+    TaskA.nextTask = TaskB;
+    TaskB.nextTask = TaskC;
 
-TaskA.exec(); //実行開始
+    TaskA.exec(); //実行開始
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 <a name="処理速度計測"></a>
