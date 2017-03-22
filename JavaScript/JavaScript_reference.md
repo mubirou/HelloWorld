@@ -7,8 +7,9 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-* [クラス](#クラス)
-* [スーパークラスとサブクラス](#スーパークラスとサブクラス)
+* [プロトタイプ](#プロトタイプ)（≒クラス）
+* [スーパークラスとサブクラス](#スーパークラスとサブクラス)（プロトタイプベース）
+***
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -49,12 +50,12 @@
 # <b>データ型</b>
 
 ### データ型の種類
-1. boolean
-1. number
-1. string
-1. object（array も object 型）
-1. undefined
-1. function
+1. boolean（論理型）
+1. number（整数･浮動小数点数）
+1. string（文字列）
+1. object（全てのオブジェクトのベース／array も object 型）
+1. undefined（未初期化変数）
+1. function（関数）
 
 ### 例文
 ```
@@ -85,28 +86,24 @@
 
 ```
 <script>
+    //①boolean（論理型）
+    console.log(typeof true); //"boolean"
 
-//①boolean（論理型）
-console.log(typeof true); //"boolean"
+    //②number（整数･浮動小数点数）
+    console.log(typeof 1); //"number"
+    console.log(typeof 1.0); //"number"
 
-//②number（整数･浮動小数点数）
-console.log(typeof 1); //"number"
-console.log(typeof 1.0); //"number"
+    //③string（文字列）
+    console.log(typeof "1"); //"string"
 
-//③string（文字列）
-console.log(typeof "1"); //"string"
+    //④object（全てのオブジェクトのベース）
+    console.log(typeof { name: "TARO", age: 49 }); //"object"
 
-//④object（全てのオブジェクトのベース）
-console.log(typeof {name:"TARO", age:49}); //"object"
+    //⑤undefined（未初期化変数）
+    console.log(typeof _hoge); //"undefined"
 
-//⑤undefined（未初期化変数）
-console.log(typeof hoge_); //"undefined"
-
-//⑥function（関数）
-console.log(typeof function() {}); //"function"
-
-//⑦symbol
-console.log(typeof Symbol()); //"symbol"
+    //⑥function（関数）
+    console.log(typeof function () { }); //"function"
 
 </script>
 ```
@@ -116,217 +113,200 @@ console.log(typeof Symbol()); //"symbol"
 
 ```
 <script>
+    //①boolean（論理型）
+    console.log(true instanceof Boolean); //false（要注意）
+    console.log(new Boolean(true) instanceof Boolean); //true
 
-//①boolean（論理型）
-console.log(true instanceof Boolean); //false（要注意）
-console.log(new Boolean(true) instanceof Boolean); //true
+    //②number（整数･浮動小数点数）
+    console.log(1 instanceof Number); //false（要注意）
+    console.log(new Number(1) instanceof Number); //true
 
-//②number（整数･浮動小数点数）
-console.log(1 instanceof Number); //false（要注意）
-console.log(new Number(1) instanceof Number); //true
+    //③string（文字列）
+    console.log("あ" instanceof String); //false（要注意）
+    console.log(new String("あ") instanceof String); //true
 
-//③string（文字列）
-console.log("あ" instanceof String); //false（要注意）
-console.log(new String("あ") instanceof String); //true
+    //④object（全てのオブジェクトのベース）
+    console.log({ name: "TARO" } instanceof Object); //true
+    console.log(new Object() instanceof Object); //true
 
-//④object（全てのオブジェクトのベース）
-console.log({name:"TARO"} instanceof Object); //true
-console.log(new Object() instanceof Object); //true
-
-//⑤function（関数）
-console.log(function() {} instanceof Function); //true
-
+    //⑤function（関数）
+    console.log(function () { } instanceof Function); //true
 </script>
 ```
 
 ### データ型のキャスト（変換）
 ```
 <script>
+    //①数値→boolean型
+    var _boolean = Boolean(1);
+    console.log(_boolean, typeof _boolean); //true, "boolean"
 
-//①数値→boolean型
-var _boolean = Boolean(1);
-console.log(_boolean, typeof _boolean); //true, "boolean"
+    //②boolean型→number型
+    var _number1 = Number(true);
+    console.log(_number1, typeof _number1); //1（falseの場合は0）, "number"
 
-//②boolean型→number型
-var _number1 = Number(true);
-console.log(_number1, typeof _number1); //1（falseの場合は0）, "number"
+    //③文字列→number型
+    var _number2 = Number("3.14");
+    console.log(_number2, typeof _number2); //3.14, "number"
 
-//③文字列→number型
-var _number2 = Number("3.14");
-console.log(_number2, typeof _number2); //3.14, "number"
+    var _number3 = parseInt("3.14"); //小数点以下を切り捨てて整数化
+    console.log(_number3, typeof _number3); //3, "number"
 
-var _number3 = parseInt("3.14"); //小数点以下を切り捨てて整数化
-console.log(_number3, typeof _number3); //3, "number"
+    var _number4 = parseFloat("3.14です。"); //前方から数値化できる文字列のみ変換
+    console.log(_number4, typeof _number4); //3.14, "number"
 
-var _number4 = parseFloat("3.14です。"); //数字以外を含む値
-console.log(_number4, typeof _number4); //3.14, "number"
+    //④数値→string型
+    var _string1 = String(100); //(100).toString() でも同じ
+    console.log(_string1, typeof _string1); //"100", "string"
 
-//④数値→string型
-var _string1 = String(100); //(100).toString() でも同じ
-console.log(_string1, typeof _string1); //"100", "string"
-
-//⑤配列→string型
-var _string2 = String(["TARO", 49]);
-console.log(_string2, typeof _string2); //"TARO,49", "string"
-
+    //⑤配列→string型
+    var _string2 = String(["TARO", 49]);
+    console.log(_string2, typeof _string2); //"TARO,49", "string"
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月22日  
 
 
-<a name="クラス"></a>
-# <b>クラス</b>
+<a name="プロトタイプ"></a>
+# <b>プロトタイプ（≒クラス）</b>
+
+### Function.prototype プロパティ
+* JavaScript はクラスベースではなく、[プロトタイプベース](http://bit.ly/2l76Rew)の[オブジェクト指向プログラミング](http://bit.ly/1YfUaXy)言語である（"class" キーワードが実装されていない）
+* クラス定義には Function.prototype プロパティを利用
+* コンストラクタ関数が呼び出されるとプロトタイプオブジェクト（メソッドとプロパティの格納庫）が自動的に作成され、この格納庫にプロパティとメソッドを定義する
 
 ```
 <script>
+    //長方形クラス（前方宣言が必要）
+    function Rectangle() { } //コンストラクタ関数
 
-//長方形クラス（前方宣言が必要）
-class Rectangle {
-    //コンストラクタ
-    constructor(_width=640, _height=480) {
-        //外からもアクセス可能だがアクセスしないようにする
-        this.__width = _width;
-        this.__height = _height;
-    }
+    //プロパティ群の初期値の設定
+    Rectangle.prototype.__width = 640;
+    Rectangle.prototype.__height = 480;
 
     //アクセサ（getter/setter）
-    get width() {
+    Rectangle.prototype.getWidth = function () {
         return this.__width;
     }
-    set width(_newValue) {
+    Rectangle.prototype.setWidth = function (_newValue) {
         this.__width = _newValue;
     }
 
-    get height() {
+    Rectangle.prototype.getHeight = function () {
         return this.__height;
     }
-    set height(_newValue) {
+    Rectangle.prototype.setHeight = function (_newValue) {
         this.__height = _newValue;
     }
 
     //面積を計算して値を返す
-    getArea() {
+    Rectangle.prototype.getArea = function () {
         return this.__width * this.__height;
     }
-}
 
-//①インスタンスの生成
-var _rectangle = new Rectangle();
+    //①インスタンスの生成
+    var _rectangle = new Rectangle();
 
-//②プロパティの確認と変更
-console.log(_rectangle.width, _rectangle.height); //640, 480
-_rectangle.width = 1920;
-_rectangle.height = 1080;
-console.log(_rectangle.width, _rectangle.height); //1920, 1080
+    //②プロパティの確認と変更
+    console.log(_rectangle.getWidth(), _rectangle.getHeight()); //640, 480
+    _rectangle.setWidth(1920);
+    _rectangle.setHeight(1080);
+    console.log(_rectangle.getWidth(), _rectangle.getHeight()); //1920, 1080
 
-//③メソッドの実行
-console.log(_rectangle.getArea()); //2073600
-
+    //③メソッドの実行
+    console.log(_rectangle.getArea()); //→ 2073600
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月22日  
 
 
 <a name="スーパークラスとサブクラス"></a>
 # <b>スーパークラスとサブクラス</b>
 
+* JavaScript はクラスベースの[オブジェクト指向](http://bit.ly/1YfUaXy)ではないため[プロトタイプベース](http://bit.ly/2l76Rew)の継承を利用する
 ```
 <script>
+    /****************************************************
+    スーパークラス
+    ****************************************************/
+    //コンストラクタ関数
+    function SuperClass() { }
 
-/****************************************************
-スーパークラス
-****************************************************/
-class SuperClass {
-    //コンストラクタ
-    constructor() {
-        //①プロパティの定義
-        this.__pSuperClass = "スーパークラスのプロパティ";
-    }
+    //①プロパティの定義
+    SuperClass.prototype.__pSuperClass = "スーパークラスのプロパティ";
 
     //②アクセサの定義（setterは省略）
-    get pSuperClass() {
+    SuperClass.prototype.get_pSuperClass = function () {
         return this.__pSuperClass;
     }
 
     //③メソッドの定義
-    mSuperClass() {
+    SuperClass.prototype.mSuperClass = function () {
         return "スーパークラスのメソッド";
     }
-}
 
-/****************************************************
-サブクラスＡ（スーパークラスを継承／多重継承は不可）
-****************************************************/
-class SubClassA extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassA = "サブクラスＡのプロパティ";
-    }
-
+    /****************************************************
+    サブクラスＡ（スーパークラスを継承／多重継承は不可）
+    ****************************************************/
+    //コンストラクタ関数
+    function SubClassA() { }
+    //スーパークラスを継承
+    SubClassA.prototype = new SuperClass();
+    //①プロパティの定義
+    SubClassA.prototype.__pSubClassA = "サブクラスAのプロパティ";
     //②アクセサの定義（setterは省略）
-    get pSubClassA() {
+    SubClassA.prototype.get_pSubClassA = function () {
         return this.__pSubClassA;
     }
-
     //③メソッドの定義
-    mSubClassA() {
-        return "サブクラスＡのメソッド";
-    }
-}
-
-/****************************************************
-サブクラスＢ（スーパークラスを継承／多重継承は不可）
-****************************************************/
-class SubClassB extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassB = "サブクラスＢのプロパティ";
+    SubClassA.prototype.mSubClassA = function () {
+        return "サブクラスAのメソッド";
     }
 
+    /****************************************************
+    サブクラスＢ（スーパークラスを継承／多重継承は不可）
+    ****************************************************/
+    //コンストラクタ関数
+    function SubClassB() { }
+    //スーパークラスを継承
+    SubClassB.prototype = new SuperClass();
+    //①プロパティの定義
+    SubClassB.prototype.__pSubClassB = "サブクラスBのプロパティ";
     //②アクセサの定義（setterは省略）
-    get pSubClassB() {
+    SubClassB.prototype.get_pSubClassB = function () {
         return this.__pSubClassB;
     }
-
     //③メソッドの定義
-    mSubClassB() {
-        return "サブクラスＢのメソッド";
+    SubClassB.prototype.mSubClassB = function () {
+        return "サブクラスBのメソッド";
     }
-}
 
-/****************************************************
-実行
-****************************************************/
-//サブクラスＡのインスタンス
-var _subclassA = new SubClassA();
-console.log(_subclassA.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassA.pSubClassA); //"サブクラスＡのプロパティ"
-console.log(_subclassA.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassA.mSubClassA()); //"サブクラスＡのメソッド"
+    /****************************************************
+    実行
+    ****************************************************/
+    var _subClassA = new SubClassA(); //サブクラスAからインスタンスを生成
+    console.log(_subClassA.get_pSuperClass()); //"スーパークラスのプロパティ"
+    console.log(_subClassA.get_pSubClassA()); //"サブクラスAのプロパティ"
+    console.log(_subClassA.mSuperClass()); //"スーパークラスのメソッド"
+    console.log(_subClassA.mSubClassA()); //"サブクラスAのメソッド"
 
-//サブクラスＢのインスタンス
-var _subclassB = new SubClassB();
-console.log(_subclassB.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassB.pSubClassB); //"サブクラスＢのプロパティ"
-console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
-
+    var _subClassB = new SubClassB(); //サブクラスBからインスタンスを生成
+    console.log(_subClassB.get_pSuperClass()); //"スーパークラスのプロパティ"
+    console.log(_subClassB.get_pSubClassB()); //"サブクラスBのプロパティ"
+    console.log(_subClassB.mSuperClass()); //"スーパークラスのメソッド"
+    console.log(_subClassB.mSubClassB()); //"サブクラスBのメソッド"
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月22日  
 
 
 <a name="名前空間"></a>
