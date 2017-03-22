@@ -48,75 +48,33 @@
 <a name="データ型"></a>
 # <b>データ型</b>
 
+### データ型の種類
+1. boolean
+1. number
+1. string
+1. object（array も object 型）
+1. undefined
+1. function
+
+### 例文
 ```
 <script>
+    console.log(typeof true); //"boolean"
+    console.log(typeof 1); //"number"
+    console.log(typeof "1"); //"string"
+    console.log(typeof new Object()); //"object"
 
-//①boolean（論理型）
-var _boolean = true;
-console.log(_boolean, typeof _boolean); //true, "boolean"
+    var _hoge; //変数宣言したのみで値が設定されていない場合
+    console.log(typeof _hoge); //"undefined"
 
-
-//②number（整数･浮動小数点数） ※NaNも"number"型
-var _number = 9007199254740998;
-//-9007199254740998〜9007199254740998（約±9000兆）まで扱える
-console.log(_number, typeof _number); //9007199254740998, "number"
-
-var _number2 = 3.14159265358979323846264338327;
-console.log(_number2, typeof _number2); //3.141592653589793, "number"
-
-
-//③string（文字列）
-var _string = "いろは"; //シングルまたはダブルクォーテーションで囲む
-console.log(_string, typeof _string); //"いろは", "string"
-
-
-//④object（全てのオブジェクトのベース）
-var _boolean2 = new Boolean(true);
-console.log(typeof _boolean2); //"object"（"boolean"ではない）
-
-var _number3 = new Number(1);
-console.log(typeof _number3); //"object"（"number"ではない）
-
-var _string2 = new String("1");
-console.log(typeof _string2); //"object"（"string"ではない）
-
-var _array = ["A","B","C"]; //配列（Array）
-console.log(typeof _array); //"object"
-
-var _object = {name:"TARO", age:49}; //連想配列
-console.log(typeof _object); //"object"
-
-var _hoge2 = null; //null（データ不在）
-console.log(_hoge2, typeof _hoge2); //null, "object"
-
-class MyClass {} //クラス（前方宣言が必要）
-var _myClass = new MyClass();
-console.log(typeof _myClass); //"object"
-
-
-//⑤undefined（未初期化変数）
-var _hoge; //変数宣言したのみで値が設定されていない場合
-console.log(_hoge, typeof _hoge); //undefined, "undefined"
-
-
-//⑥function（関数）
-var _function = function() {}; //匿名関数
-console.log(typeof _function); //"function"
-
-var _function2 = () => {}; //アロー関数
-console.log(typeof _function2); //"function"
-
-
-//⑦symbol（シンボル）
-var _symbol = Symbol();
-console.log(typeof _symbol); //"symbol"
-
+    function hoge() {};
+    console.log(typeof hoge); //"function"
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月22日  
 
 
 <a name="データ型の操作"></a>

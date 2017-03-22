@@ -140,7 +140,7 @@ console.log(typeof "1"); //"string"
 console.log(typeof {name:"TARO", age:49}); //"object"
 
 //⑤undefined（未初期化変数）
-console.log(typeof hoge_); //"undefined"
+console.log(typeof _hoge); //"undefined"
 
 //⑥function（関数）
 console.log(typeof function() {}); //"function"
