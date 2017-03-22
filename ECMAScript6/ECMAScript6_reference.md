@@ -2111,44 +2111,52 @@ var 変数 = "xxx"; //string型
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-※ES6には多くの正規表現の機能が用意されています。ここではいくつかのサンプルを紹介します。
+* ECMAScript 6 には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
-◆検索＆置換
-var _string = "熊谷,遠藤,西村,藤牧,日茂,井戸,伊藤,渡邊";
-var _regExp = new RegExp("西村", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-/*
-"^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能なはずです（要調査）。
-*/
-if (_regExp.test(_string)) { //検索
-	console.log('"西村"は含まれています');
-		let _result = _string.replace(_regExp, "にしむら"); //置換
-		//熊谷,遠藤,にしむら,藤牧,日茂,井戸,伊藤,渡邊
-		console.log(_result);
-} else {
-	console.log('"西村"は含まれていません');
-}
+### 検索＆置換
+```
+<script>
+    var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+    var _regExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+    /*
+    "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
+    */
+    if (_regExp.test(_string)) { //検索
+        console.log('"吉田"は含まれています');
+        let _result = _string.replace(_regExp, "よしだ"); //置換
+        //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
+        console.log(_result);
+    } else {
+        console.log('"吉田"は含まれていません');
+    }
+</script>
+```
 
-◆マッチした数
-var _string = "059371820400381295700347891205178900517093823";
-var _regExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-var _matchList = _string.match(_regExp);
-console.log(_matchList); //["00", "00", "00"]
-console.log(_matchList.length); //3  ←…マッチした数
+### マッチした数
+```
+<script>
+    var _string = "059371820400381295700347891205178900517093823";
+    var _regExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+    var _matchList = _string.match(_regExp);
+    console.log(_matchList); //["00", "00", "00"]
+    console.log(_matchList.length); //3（マッチした数）
+</script>
+```
 
-◆正規表現について…
-文字パータンを表現するオブジェクト（ES6ではRegExpクラス）のこと。
-JavaScriptの正規表現は、「ECMAScript 3」で標準化されました。
-StringとRegExpクラスには、次のような正規表現用のメソッドが用意されています。
-① RegExp.exec()
-② RegExp.test()
-③ String.search()
-④ String.match()
-⑤ String.replace()
-⑥ String.split()
+### 正規表現について…
+* 文字パータンを表現するオブジェクト（ECMAScript 6 では RegExp クラス）のこと
+* JavaScriptの正規表現は、ECMAScript 3 で標準化された
+* String と RegExp クラスには、次のような正規表現用のメソッドが用意されている
+    1. RegExp.exec()
+    1. RegExp.test()
+    1. String.search()
+    1. String.match()
+    1. String.replace()
+    1. String.split()
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月21日  
 
 
 <a name="抽象クラス"></a>
