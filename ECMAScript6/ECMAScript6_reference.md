@@ -2242,7 +2242,7 @@ class 派生クラス名 extends Abstract○○ {
     //実行
     var _subClass = new SubClass(); 
     //=> "SuperClass.constructor : from SubClass"
-    
+
     _subClass.methodSub(); 
     //=>"SuperClass.methodSuper : from SubClass"
 </script>
@@ -2256,45 +2256,40 @@ class 派生クラス名 extends Abstract○○ {
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
 
-◆概要
-スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ。
-スーパークラスのメソッドを呼び出したい場合は、super.メソッド名()とする。
-（擬似）抽象クラスもこの方法を使います。
+### 概要
+* スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ
+* スーパークラスのメソッドを呼び出したい場合は、super.メソッド名() とする
+* （擬似）[抽象クラス](http://bit.ly/2nkzAwa)でもこの方法を活用
 
-【○○.html】
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="main.js"></script>
-    </head>
-</html>
+### 例文
+```
+<script>
+    //スーパークラス
+    class SuperClass {
+        //↓サブクラスでオーバライドするメソッド
+        myMethod() {
+            console.log("SuperClass.myMethod()");
+        }
+    }
 
-【main.js】
-//スーパークラス
-class SuperClass {
-//↓サブクラスでオーバライドするメソッド
-myMethod() {
-	console.log("SuperClass.myMethod()");
-}
-}
+    //サブクラス
+    class SubClass extends SuperClass { //スーパークラスを継承
+        //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
+        myMethod() {
+            //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
+            console.log("SubClass.myMethod()");
+        }
+    }
 
-//サブクラス
-class SubClass extends SuperClass { //スーパークラスを継承
-//↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-myMethod() {
-	super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合…
-	console.log("SubClass.myMethod()");
-}
-}
-
-//実行
-var _subClass = new SubClass();
-_subClass.myMethod();
+    //実行
+    var _subClass = new SubClass();
+    _subClass.myMethod();
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 <a name="カスタムイベント"></a>
