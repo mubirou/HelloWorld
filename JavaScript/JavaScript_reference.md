@@ -104,7 +104,6 @@
 
     //⑥function（関数）
     console.log(typeof function () { }); //"function"
-
 </script>
 ```
 
