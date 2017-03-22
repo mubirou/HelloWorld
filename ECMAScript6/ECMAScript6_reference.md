@@ -2517,45 +2517,43 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
-◆書式
+### 書式
+```
 var ○ = new Date();
-	○.getFullYear(); //年（2015等）
-	○.getMonth(); //月（0〜11）
-	○.getDate(); //日（1〜31）
-	○.getDay(); //曜日（0=日曜〜5=金曜）
-	○.getHours(); //時（0〜23）
-	○.getMinutes(); //分（0〜59）
-	○.getSeconds(); //秒（0〜59）
-	○.getMilliseconds(); //ミリ秒（0〜999）
+○.getFullYear(); //年（2015等）
+○.getMonth(); //月（0〜11）
+○.getDate(); //日（1〜31）
+○.getDay(); //曜日（0=日曜〜5=金曜）
+○.getHours(); //時（0〜23）
+○.getMinutes(); //分（0〜59）
+○.getSeconds(); //秒（0〜59）
+○.getMilliseconds(); //ミリ秒（0〜999）
+```
 
-◆例文
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+### 例文
+```
 <script>
-var _date = new Date();
-console.log(_date); //"Fri Sep 30 2016 09:36:50 GMT+0900" (JST)
-console.log(_date.getFullYear()); //2016
-console.log(_date.getMonth()); //8 ←…9月
-console.log(_date.getDate()); //30
-console.log(_date.getDay()); //5 ←…金曜日
-console.log(_date.getHours()); //9
-console.log(_date.getMinutes()); //36
-console.log(_date.getSeconds()); //50
-console.log(_date.getMilliseconds()); //668
-//"hh:mm:ss"で現在の時間を表示する方法
-			var _h = (_date.getHours()<10) ? "0"+_date.getHours() : _date.getHours();
-			var _m = (_date.getMinutes()<10) ? "0"+_date.getMinutes() : _date.getMinutes();
-			var _s = (_date.getSeconds()< 10) ? "0"+_date.getSeconds() : _date.getSeconds();
-			console.log(_h + ":" + _m + ":" + _s); //"09:36:50"
+    var _date = new Date();
+    console.log(_date); //"Wed Mar 22 2017 09:33:39 GMT+0900 (JST)"
+    console.log(_date.getFullYear()); //2017
+    console.log(_date.getMonth()); //2（3月）
+    console.log(_date.getDate()); //22
+    console.log(_date.getDay()); //3（水曜日）
+    console.log(_date.getHours()); //09
+    console.log(_date.getMinutes()); //33
+    console.log(_date.getSeconds()); //39
+    console.log(_date.getMilliseconds()); //559
+    //"hh:mm:ss"で現在の時間を表示する方法
+    var _h = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
+    var _m = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
+    var _s = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
+    console.log(_h + ":" + _m + ":" + _s); //"09:33:39"
 </script>
-</head>
-</html>		
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 <a name="タイマー"></a>
