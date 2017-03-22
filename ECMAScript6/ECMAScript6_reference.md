@@ -2295,42 +2295,51 @@ class 派生クラス名 extends Abstract○○ {
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-◆概要
-ECMAScript 2015に実装されている○.dispatchEvent()や○.addEventListener()のターゲットに指定できるオブジェクトは…Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なり、ここで紹介する方法は、他の言語でも利用可能な考え方の汎用的な方法です。
+### 概要
+JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener() のターゲットに指定できるオブジェクトは Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なりここで紹介する方法は、他の言語でも利用可能な考え方の汎用的な方法です。
 
-◆例文（○○.js）
-class Robot { //イベントを設定するクラス
-	constructor() { this.__energy = 80; }
-addEventListener(_event, _function) {
-	if (_event == "die") {
-		this.__dieHandler = _function; //匿名関数を変数に格納
-	} else { //該当のイベントが無い場合、実行時にErrorを発生させる（オプション）
-		throw new Error('Error:"' + _event + '"はサポートされていません');
-	}
-}
-	fight() {
-		this.__energy -= 20;
-		if (this.__energy <= 0) {
-this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
-		}
-	}
-}
+### 例文
+```
+<script>
+    class Robot { //イベントを設定するクラス
+        constructor() { 
+            this.__energy = 80;
+        }
 
-var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
-    console.log(arg); //Robotクラスのインスタンス
-    alert("GAME OVER");
-}
+        addEventListener(_event, _function) {
+            if (_event == "die") {
+                this.__dieHandler = _function; //匿名関数を変数に格納
+            } else {
+                //該当のイベントが無い場合、実行時にErrorを発生（オプション）
+                throw new Error('Error:"' + _event + '"はサポートされていません');
+            }
+        }
 
-var _robot = new Robot();
-_robot.addEventListener("die", die_robot); //イベントリスナーの設定
-_robot.fight();
-_robot.fight();
-_robot.fight();
-_robot.fight(); //"GAME OVER"
+        fight() {
+            this.__energy -= 20;
+            if (this.__energy <= 0) {
+                this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
+            }
+        }
+    }
+
+    var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
+        console.log(arg); //Robotクラスのインスタンス
+        alert("GAME OVER");
+    }
+
+    var _robot = new Robot();
+    _robot.addEventListener("die", die_robot); //イベントリスナーの設定
+    _robot.fight();
+    _robot.fight();
+    _robot.fight();
+    _robot.fight(); //"GAME OVER"
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月XX日  
+作成日：2017年03月22日  
 
 
 <a name="数学関数（Math）"></a>
