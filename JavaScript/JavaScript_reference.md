@@ -468,11 +468,10 @@ JavaScript は private 変数を定義することができません。そこで
     function Nishimura(_age) { //コンストラクタ
         this.__age = _age;
     }
-    //アクセサ（getter/setter）
-    Nishimura.prototype.getAge = function () {
+    Nishimura.prototype.getAge = function () { //アクセサ（getter）
         return this.__age;
     };
-    Nishimura.prototype.setAge = function (_newValue) {
+    Nishimura.prototype.setAge = function (_newValue) { //アクセサ（setter）
         this.__age = _newValue;
     };
 
@@ -491,11 +490,10 @@ JavaScript は private 変数を定義することができません。そこで
     function Nishimura(_age) { //コンストラクタ
         this.__age = _age;
     }
-    //アクセサ（getter/setter）
-    Nishimura.prototype.getAge = function () {
+    Nishimura.prototype.getAge = function () { //アクセサ（getter）
         return this.__age;
     };
-    Nishimura.prototype.setAge = function (_newValue) {
+    Nishimura.prototype.setAge = function (_newValue) { //アクセサ（setter）
         throw new Error("値の変更はできません");
     };
 
