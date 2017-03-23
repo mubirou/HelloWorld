@@ -60,7 +60,7 @@
     var _hoge; //変数宣言したのみで値が設定されていない場合
     console.log(typeof _hoge); //"undefined"
 
-    function hoge() { };
+    function hoge() {};
     console.log(typeof hoge); //"function"
 </script>
 ```
@@ -172,7 +172,7 @@
 ```
 <script>
     //長方形クラス（前方宣言が必要）
-    function Rectangle() { } //コンストラクタ関数
+    function Rectangle() {} //コンストラクタ関数
 
     //プロパティ群の初期値の設定
     Rectangle.prototype.__width = 640;
@@ -227,7 +227,7 @@
     スーパークラス
     ****************************************************/
     //コンストラクタ関数
-    function SuperClass() { }
+    function SuperClass() {}
 
     //①プロパティの定義
     SuperClass.prototype.__pSuperClass = "スーパークラスのプロパティ";
@@ -246,7 +246,7 @@
     サブクラスＡ（スーパークラスを継承／多重継承は不可）
     ****************************************************/
     //コンストラクタ関数
-    function SubClassA() { }
+    function SubClassA() {}
     //スーパークラスを継承
     SubClassA.prototype = new SuperClass();
     //①プロパティの定義
@@ -264,7 +264,7 @@
     サブクラスＢ（スーパークラスを継承／多重継承は不可）
     ****************************************************/
     //コンストラクタ関数
-    function SubClassB() { }
+    function SubClassB() {}
     //スーパークラスを継承
     SubClassB.prototype = new SuperClass();
     //①プロパティの定義
@@ -373,13 +373,13 @@ myLibrary.MyClass.prototype.MyClassMethod = function() { //メソッド
 ```
 <script>
     //ClassAクラス
-    function ClassA() { }; //コンストラクタ
+    function ClassA() {}; //コンストラクタ
     ClassA.prototype.myMethod = function() {
         console.log("ClassA.myMethod");
     }
 
     //ClassBクラス
-    function ClassB() { }; //コンストラクタ
+    function ClassB() {}; //コンストラクタ
     ClassB.prototype = new ClassA(); //ClassAを継承
 
     //実行
@@ -393,7 +393,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function() { //メソッド
 ```
 <script>
     //ClassAクラス
-    function ClassA() { }; //コンストラクタ
+    function ClassA() {}; //コンストラクタ
     ClassA.prototype.myMethod = function() {
         console.log("ClassA.myMethod");
     }
@@ -1511,7 +1511,7 @@ var 変数 = "xxx"; //string型
 ```
 <script>
     //（擬似）抽象クラスの定義
-    function AbstractClass() { }; //コンストラクタ
+    function AbstractClass() {}; //コンストラクタ
     AbstractClass.prototype.commonMethod = function() { //共通のメソッド
         console.log("AbstractClass.commonMethod()");
     }
@@ -1520,7 +1520,7 @@ var 変数 = "xxx"; //string型
     }
 
     //サブクラス
-    function SubClass() { }; //コンストラクタ
+    function SubClass() {}; //コンストラクタ
     SubClass.prototype = new AbstractClass(); //（擬似）抽象クラスの継承
     SubClass.prototype.eachMethod = function() { //オーバーライドして実際の処理を記述
         console.log("SubClass.eachMethod()"); //実際の処理
@@ -1549,14 +1549,14 @@ var 変数 = "xxx"; //string型
 ```
 <script>
     //スーパークラス
-    function SuperClass() { }; //コンストラクタ
+    function SuperClass() {}; //コンストラクタ
     //↓サブクラスでオーバライドするメソッド
     SuperClass.prototype.myMethod = function() {
         console.log("SuperClass.myMethod()");
     }
 
     //サブクラス
-    function SubClass() { }; //コンストラクタ
+    function SubClass() {}; //コンストラクタ
     SubClass.prototype = new SuperClass(); //（擬似）抽象クラスの継承
     //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
     SubClass.prototype.myMethod = function() {

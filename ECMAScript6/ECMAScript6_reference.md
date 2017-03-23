@@ -999,15 +999,15 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     class Hello {
         //コンストラクタ
         constructor() {
-            this.__american = function (_name) { //匿名関数①
+            this.__american = function(_name) { //匿名関数①
                 console.log(_name + "," + "Hello!");
             }
 
-            this.__japanese = function (_name) { //匿名関数②
+            this.__japanese = function(_name) { //匿名関数②
                 console.log(_name + "、" + "こんにちは!");
             }
 
-            this.__chinese = function (_name) { //匿名関数③
+            this.__chinese = function(_name) { //匿名関数③
                 console.log(_name + "," + "你好!");
             }
 
@@ -1814,7 +1814,7 @@ do {
 ```
 <script>
     var _array = ["A", "B", "C", "D", "E", "F"];
-    _array.forEach(function (arg) {
+    _array.forEach(function(arg) {
         console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
     });
 </script>
@@ -1880,7 +1880,7 @@ do {
     _object.age = 49;
 
     //③関数の追加
-    _object.hello = function () {
+    _object.hello = function() {
         return "Hello! How are you?";
     }
 
@@ -1898,7 +1898,7 @@ do {
     }
     //name : Takashi Nishimura
     //age : 49
-    //hello : function () {...
+    //hello : function() {...
 </script>
 ```
 
