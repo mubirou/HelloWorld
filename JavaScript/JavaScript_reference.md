@@ -14,9 +14,9 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-***
 * [定数](#定数)
 * [メソッド](#メソッド)
+***
 * [匿名関数](#匿名関数)
 * [アロー関数](#アロー関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
@@ -604,142 +604,25 @@ JavaScript は private 変数を定義することができません。そこで
 <a name="メソッド"></a>
 # <b>メソッド</b>
 
-
-### パブリックメソッド
-* アクセス修飾子が存在しないため、メソッドは全てパブリックメソッド扱いになる
 ```
 <script>
-    //○○.js
-    class MyClass {
-        tashizan(_start, _end) {
-            var _result = 0; //ローカル変数（関数内のみ有効）
-            for (let _i = _start; _i <= _end; _i++) {
-                //_i はブロック変数（ブロック {} 内のみ有効）
-                _result += _i;
-            }
-            return _result;
+    console.log(tashizan(1, 10)); //55
+    console.log(tashizan(1, 100)); //5050
+
+    //第1引数〜第2引数までの値を足した合計を返す関数
+    function tashizan(_start, _end) {
+        var _result = 0;
+        for (var _i = _start; _i <= _end; _i++) {
+            _result += _i;
         }
+        return _result;
     }
-
-    var _myClass = new MyClass();
-    console.log(_myClass.tashizan(1, 10)); //55
-    console.log(_myClass.tashizan(1, 100)); //5050
-</script>
-```
-
-### 擬似プライベートメソッド
-* 実際は単なるパブリックメソッド
-* アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
-```
-<script>
-    class Omikuji {
-        //コンストラクタ
-        constructor() {
-            var _resultList = ["大吉", "吉", "中吉", "小吉", "凶"];
-            console.log(_resultList[this.__randomInt(0, 4)]);
-        }
-
-        __randomInt(_min, _max) { //（擬似）プライベートメソッド
-            var _tmp = _max - _min + 1;
-            return Math.floor(Math.random() * _tmp) + _min;
-        }
-    }
-
-    new Omikuji(); //大吉、吉、中吉、小吉、凶のいずれか
-</script>
-```
-
-### コンストラクタ
-```
-<script>
-    class Point {
-        //コンストラクタ
-        constructor(_x = 0, _y = 0) {
-            //（擬似）プライベート変数の定義（初期化）
-            this.__x = _x;
-            this.__y = _y;
-        }
-
-        //アクセサ（getter）
-        get x() { return this.__x; }
-        get y() { return this.__y; }
-
-        //アクセサ（setter）
-        set x(newValue) { this.__x = newValue; }
-        set y(newValue) { this.__y = newValue; }
-    }
-
-    var _point = new Point(100, 150); //ここでコンストラクタを呼び出す
-    console.log(_point.x); //100
-    console.log(_point.y); //150
-</script>
-```
-
-### 静的メソッド（クラスメソッド）
-* インスタンス化せずにメソッドを利用することが可能
-```
-<script>
-    class MyMath {
-        //静的メソッド（static メソッド名()）
-        static pow(arg1, arg2) {
-            if (arg2 == 0) { return 1; } //0乗対策
-            var _result = arg1;
-            for (let _i = 1; _i < arg2; _i++) {
-                _result = _result * arg1;
-            }
-            return _result;
-        }
-    }
-
-    console.log(MyMath.pow(2, 0)); //1（2の0乗）
-    console.log(MyMath.pow(2, 1)); //2（2の1乗）
-    console.log(MyMath.pow(2, 8)); //256（2の8乗）
-</script>
-```
-
-### デフォルト値付き引数
-* 省略可能な引数
-* 「オプション引数」とも呼ばれる
-```
-<script>
-    class MyClass {
-        constructor() {
-            this.__point = 0; //擬似プライベート変数の定義（初期化）
-        }
-        addPoint(arg = 1) { //初期値を1とした場合
-            this.__point += arg;
-            console.log(this.__point);
-        }
-    }
-
-    var _myClass = new MyClass();
-    _myClass.addPoint(); //1
-    _myClass.addPoint(10); //11
-</script>
-```
-
-### 可変長引数
-* 引数を固定の数ではなく任意の数にすることが可能
-* メソッド名(引数, ...可変長引数) のように併用も可能
-```
-<script>
-    class MyClass {
-        sum(...args) { //...引数名 で可変長引数
-            for (let tmp in args) {
-                console.log(args[tmp]);
-            }
-        }
-    }
-
-    var _myClass = new MyClass();
-    _myClass.sum(1, 2); //1→2
-    _myClass.sum(1, 2, 3, 4, 5); //1→2→3→4→5
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="匿名関数"></a>
