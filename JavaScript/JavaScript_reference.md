@@ -30,7 +30,6 @@
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 ***
-* [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -1542,85 +1541,40 @@ var 変数 = "xxx"; //string型
 作成日：2017年03月23日  
 
 
-<a name="superキーワード"></a>
-# <b>super キーワード</b>
-
-```
-<script>
-    //スーパークラス
-    class SuperClass {
-        constructor(arg) { //コンストラクタ
-            console.log("SuperClass.constructor : " + arg);
-        }
-        methodSuper(arg) {
-            console.log("SuperClass.methodSuper : " + arg);
-        }
-    }
-
-    //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        constructor() { //コンストラクタ
-            //↓スーパークラスのコンストラクタの呼び出し（必須）
-            super("from SubClass");
-            //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
-        }
-        methodSub() {
-            //↓スーパークラスのメソッドを呼び出すことが可能
-            super.methodSuper("from SubClass");
-        }
-    }
-
-    //実行
-    var _subClass = new SubClass(); 
-    //=> "SuperClass.constructor : from SubClass"
-
-    _subClass.methodSub(); 
-    //=>"SuperClass.methodSuper : from SubClass"
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
-
-
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
 
 ### 概要
 * スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ
-* スーパークラスのメソッドを呼び出したい場合は、super.メソッド名() とする
-* （擬似）[抽象クラス](http://bit.ly/2nkzAwa)でもこの方法を活用
+* （擬似）[抽象クラス](http://bit.ly/2mXbch6)でもこの方法を活用
 
 ### 例文
 ```
 <script>
     //スーパークラス
-    class SuperClass {
-        //↓サブクラスでオーバライドするメソッド
-        myMethod() {
-            console.log("SuperClass.myMethod()");
-        }
+    function SuperClass() { }; //コンストラクタ
+    //↓サブクラスでオーバライドするメソッド
+    SuperClass.prototype.myMethod = function () {
+        console.log("SuperClass.myMethod()");
     }
 
     //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-        myMethod() {
-            //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
-            console.log("SubClass.myMethod()");
-        }
+    function SubClass() { }; //コンストラクタ
+    SubClass.prototype = new SuperClass(); //（擬似）抽象クラスの継承
+    //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
+    SubClass.prototype.myMethod = function () {
+        console.log("SubClass.myMethod()");
     }
 
     //実行
     var _subClass = new SubClass();
-    _subClass.myMethod();
+    _subClass.myMethod(); //"SubClass.myMethod()"
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="カスタムイベント"></a>
@@ -1632,45 +1586,44 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ### 例文
 ```
 <script>
-    class Robot { //イベントを設定するクラス
-        constructor() { 
-            this.__energy = 80;
+    //Robotクラス
+    function Robot() { //コンストラクタ
+        this.__energy = 80;
+    }
+    Robot.prototype.addEventListener = function (_event, _function) {
+        if (_event == "die") {
+            this.__dieHandler = _function; //匿名関数を変数に格納
+        } else {
+            //該当のイベントが無い場合、実行時にErrorを発生（オプション）
+            throw new Error('Error:"' + _event + '"はサポートされていません');
         }
-
-        addEventListener(_event, _function) {
-            if (_event == "die") {
-                this.__dieHandler = _function; //匿名関数を変数に格納
-            } else {
-                //該当のイベントが無い場合、実行時にErrorを発生（オプション）
-                throw new Error('Error:"' + _event + '"はサポートされていません');
-            }
-        }
-
-        fight() {
-            this.__energy -= 20;
-            if (this.__energy <= 0) {
-                this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
-            }
+    }
+    Robot.prototype.fight = function () {
+        this.__energy -= 20;
+        if (this.__energy <= 0) {
+            this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
         }
     }
 
-    var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
-        console.log(arg); //Robotクラスのインスタンス
-        alert("GAME OVER");
-    }
-
+    //実行
     var _robot = new Robot();
     _robot.addEventListener("die", die_robot); //イベントリスナーの設定
     _robot.fight();
     _robot.fight();
     _robot.fight();
     _robot.fight(); //"GAME OVER"
+
+    //リスナー関数
+    function die_robot(_robot) {
+        console.log(_robot); //Robotクラスのインスタンス
+        alert("GAME OVER");
+    }
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="数学関数（Math）"></a>
@@ -1791,7 +1744,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 <a name="乱数"></a>
 # <b>乱数</b>
@@ -1811,7 +1764,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 <script>
     //整数の乱数を返すカスタム関数
-    this.randomInt = (_min, _max) => {
+    function randomInt(_min, _max) {
         return Math.floor(Math.random() * (_max - _min + 1)) + _min;
     }
 
@@ -1819,7 +1772,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
     var _u5 = 0, _u4 = 0, _u3 = 0, _u2 = 0, _u1 = 0;
     var _o0 = 0, _o1 = 0, _o2 = 0, _o3 = 0, _o4 = 0, _o5 = 0;
 
-    for (let i = 0; i < 10000000; i++) {
+    for (var i = 0; i < 10000000; i++) {
         switch (this.randomInt(-5, 5)) {
             case -5: _u5++; break;
             case -4: _u4++; break;
@@ -1836,13 +1789,13 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
     }
 
     console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-    //909461 910465 907165 908025 910926 907237 910557 908476 909376 908795 909517
+    //909416 909433 909328 909238 909005 907994 909124 909461 909113 908397 909491
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="日時情報"></a>
@@ -1865,26 +1818,26 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 <script>
     var _date = new Date();
-    console.log(_date); //"Wed Mar 22 2017 09:33:39 GMT+0900 (JST)"
+    console.log(_date); //"Thu Mar 23 2017 16:04:08 GMT+0900 (JST)"
     console.log(_date.getFullYear()); //2017
     console.log(_date.getMonth()); //2（3月）
-    console.log(_date.getDate()); //22
-    console.log(_date.getDay()); //3（水曜日）
-    console.log(_date.getHours()); //09
-    console.log(_date.getMinutes()); //33
-    console.log(_date.getSeconds()); //39
-    console.log(_date.getMilliseconds()); //559
+    console.log(_date.getDate()); //23
+    console.log(_date.getDay()); //4（木曜日）
+    console.log(_date.getHours()); //16
+    console.log(_date.getMinutes()); //4
+    console.log(_date.getSeconds()); //8
+    console.log(_date.getMilliseconds()); //612
     //"hh:mm:ss"で現在の時間を表示する方法
     var _h = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
     var _m = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
     var _s = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
-    console.log(_h + ":" + _m + ":" + _s); //"09:33:39"
+    console.log(_h + ":" + _m + ":" + _s); //"16:04:08"
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="タイマー"></a>

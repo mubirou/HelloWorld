@@ -2480,7 +2480,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 <script>
     //整数の乱数を返すカスタム関数
-    this.randomInt = (_min, _max) => {
+    randomInt = (_min, _max) => {
         return Math.floor(Math.random() * (_max - _min + 1)) + _min;
     }
 
@@ -2505,7 +2505,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
     }
 
     console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-    //909461 910465 907165 908025 910926 907237 910557 908476 909376 908795 909517
+    //909595 908581 908332 909483 907921 908880 909161 909607 909295 910453 908692
 </script>
 ```
 
