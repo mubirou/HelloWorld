@@ -25,11 +25,11 @@
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
 * [連想配列（Object）](#連想配列（Object）)
-***
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
+***
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
@@ -1363,78 +1363,28 @@ do {
 </head>
 </html>
 ```
-* \<script src="xxx.js">\</script> として外部の xxx.js を読み込んだ場合も同様
 
-### クラス内の this
+### クラス（プロトタイプ）内の this
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                document.write(this); //[object Object]（MyClassのインスタンス）
-                this.__hoge = "擬似プライベート変数"; //thisは省略不可
-            }
-            get hoge() { //アクセサ（getter）
-                return this.__hoge; //thisは省略不可
-            }
-        }
-        var _myClass = new MyClass();
-        console.log(_myClass.hoge); //"擬似プライベート変数"
-    </script>
-</head>
-</html>
-```
+<script>
+    //MyClassクラス
+    function MyClass() { //コンストラクタ
+        document.write(this); //[object Object]（MyClassのインスタンス）
+        this.__hoge = "擬似プライベート変数"; //thisは省略不可
+    }
+    MyClass.prototype.getHoge = function () { //アクセサ（getter）
+        return this.__hoge; //thisは省略不可
+    }
 
-* クラス内では this / var / let / const の何れかを指定する必要があり省略は不可
-
-### イベントハンドラメソッド内の this
-* 概要  
-独自クラスを作成し、JavaScript 標準のイベント（mousedown 等）のイベントリスナーを記述した場合、リスナー関数内で自分自身（＝クラス）を参照したい場合がよくあります。しかし、this はイベントリスナーの対象となるオブジェクトを参照します。そこでワンクション置くことでクラスを参照できるようにしたのが以下のサンプルです。
-
-* 例文
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                this.__image = document.getElementById("image");
-
-                //イベントハンドラメソッド内でthis==Canvasオブジェクトとする為
-                this.__mousedown_image = (_e) => { 
-                    this.__mousedown_image_method(_e);
-                }
-
-                //Image用イベントハンドラの定義
-                this.__image.addEventListener("mousedown", this.__mousedown_image, false);
-            }
-
-            //MyClass.__mousedown_image（アロー関数）からの呼出し
-            __mousedown_image_method(_mouseEvent) {
-                console.log(this); //MyClass
-            }
-        }
-        addEventListener("load", load_window, false);
-        function load_window() {
-            new MyClass();
-        }
-    </script>
-</head>
-
-<body>
-    <img id="image" src="sample.png">
-</body>
-</html>
+    //実行
+    var _myClass = new MyClass();
+    console.log(_myClass.getHoge()); //"擬似プライベート変数"
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="文字列の操作"></a>
@@ -1500,13 +1450,13 @@ var 変数 = "xxx"; //string型
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* ECMAScript 6 には以下のサンプル以外にも多くの正規表現の機能が用意されています
+* JavaScript には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
 ### 検索＆置換
 ```
@@ -1551,50 +1501,36 @@ var 変数 = "xxx"; //string型
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="抽象クラス"></a>
 # <b>抽象クラス</b>
 
 ### 概要
-* ECMAScript 6 には、TypeScript（1.6〜）にある abstract や interface キーワードはない
-* ECMAScript 6 では、継承と例外処理によって擬似的な抽象クラスを実現
-
-### 構文
-```
-//（擬似）抽象クラスの定義
-class Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
-        throw new Error("派生クラスで実装して下さい"); //例外処理
-    }
-}
-
-//（擬似）抽象クラスの継承
-class 派生クラス名 extends Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
-        //実際の処理はここに記述
-    }
-}
-```
+* JavaScript には、TypeScript（1.6〜）にある abstract や interface キーワードはない
+* JavaScript では、継承と例外処理によって擬似的な抽象クラスを実現
 
 ### 例文
 ```
 <script>
-    class AbstractClass { //（擬似）抽象クラスの定義
-        commonMethod() { //共通のメソッド
-            console.log("AbstractClass.commonMethod()");
-        }
-        eachMethod() { //抽象メソッド（実際の処理は記述しない）
-            throw new Error("サブクラスで実装して下さい"); //例外処理
-        }
+    //（擬似）抽象クラスの定義
+    function AbstractClass() { }; //コンストラクタ
+    AbstractClass.prototype.commonMethod = function () { //共通のメソッド
+        console.log("AbstractClass.commonMethod()");
     }
-    class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
-        eachMethod() { //オーバーライドして実際の処理を記述
-            console.log("SubClass.eachMethod()"); //実際の処理
-        }
+    AbstractClass.prototype.eachMethod = function () { //抽象メソッド（実際の処理は記述しない）
+        throw new Error("サブクラスで実装して下さい"); //例外処理
     }
 
+    //サブクラス
+    function SubClass() { }; //コンストラクタ
+    SubClass.prototype = new AbstractClass(); //（擬似）抽象クラスの継承
+    SubClass.prototype.eachMethod = function () { //オーバーライドして実際の処理を記述
+        console.log("SubClass.eachMethod()"); //実際の処理
+    }
+
+    //実行
     var _subClass = new SubClass();
     _subClass.commonMethod(); //"AbstractClass.commonMethod()"
     _subClass.eachMethod(); //"SubClass.eachMethod()"
@@ -1603,7 +1539,7 @@ class 派生クラス名 extends Abstract○○ {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="superキーワード"></a>
