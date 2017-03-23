@@ -17,10 +17,10 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
-***
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
+***
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
@@ -737,7 +737,7 @@ JavaScript は private 変数を定義することができません。そこで
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="三項演算子"></a>
@@ -789,7 +789,7 @@ JavaScript は private 変数を定義することができません。そこで
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="switch文"></a>
@@ -864,7 +864,7 @@ JavaScript は private 変数を定義することができません。そこで
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="for文"></a>
