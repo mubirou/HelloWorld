@@ -428,7 +428,7 @@ _myClass.MyClassMethod(); //"MyClass.MyClassMethod()"
 _myClass.myProperty = "hoge";
 console.log(_myClass.myProperty); //"hoge"
 
-//Bitmapクラス（名前空間を省略するとコンフリクトを起こす）
+//MyClassクラス（名前空間を省略するとコンフリクトを起こす）
 class MyClass {
     constructor() {
         console.log("コンフリクトを起こさない!");
