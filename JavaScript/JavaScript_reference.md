@@ -24,8 +24,7 @@
 * [for...in 文](#for...in文)
 * [while 文](#while文)
 ***
-* [配列（Array）](#配列（Array）)
-* [配列（Set）](#配列（Set）)
+* [配列](#配列)
 * [連想配列（Object）](#連想配列（Object）)
 * [連想配列（Map）](#連想配列（Map）)
 * [this](#this)
@@ -1062,8 +1061,8 @@ do {
 作成日：2017年03月23日  
 
 
-<a name="配列（Array）"></a>
-# <b>配列（Array）</b>
+<a name="配列"></a>
+# <b>配列</b>
 
 ### 作成
 * new演算子を使う方法
@@ -1208,13 +1207,47 @@ do {
 ```
 
 ### 並べ替え（ソート）
-```
-<script>
-    var _array = ["C", "02", "A", "01", "03", "B"];
-    console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
-    console.log(_array) //["01", "02", "03", "A", "B", "C"]（元配列も変更）
-</script>
-```
+* 例文
+    ```
+    <script>
+        //正順（ 0...9 > A...Z  > a...z  > あ...ん  > ア...ン > 漢字 ）となる
+        //全てを文字列に変換して比較（ "10" が "3"より優先）される
+
+        var _array = ["C", "02", "A", "01", "03", "B"];
+        console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
+        console.log(_array) //["01", "02", "03", "A", "B", "C"]（元配列も変更）
+    </script>
+    ```
+
+* 逆順にする場合
+    ```
+    <script>
+        //一度 Array.sort() で処理してから Array.reverse() で逆順にする
+
+        var _array = ["05", "02", "04", "01", "03", "06"];
+        console.log(_array.sort()); //["01", "02", "03", "04", "05", "06"]
+        console.log(_array.reverse()) //["06", "05", "04", "03", "02", "01"]
+    </script>
+    ```
+
+* 数値順にする場合  
+    ```
+    <script>
+        //sort() は文字列に変換してから比較されるため [130, 15, 30] となる
+        //数値順にソートする場合は以下のように記述する必要がある
+
+        var _array = [15, 30, 130];
+        _array.sort(
+            function (a, b) {
+                if (a < b) return -1;
+                if (b > 1) return 1;
+                return 0;
+            }
+        );
+        console.log(String(_array)); //→[15,30,130]
+    </script>
+    ```
+
 
 ### 結合
 ```
@@ -1248,59 +1281,31 @@ do {
 ```
 
 ### 全要素を取り出す
-```
-<script>
-    var _array = ["A", "B", "C", "D", "E", "F"];
-    _array.forEach(function (arg) {
-        console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
-    });
-</script>
-```
-* for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
+
+1. for 文を使う方法
+    ```
+    <script>
+        var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+        for (var _i = 0; _i < _array.length; _i++) {
+            console.log(_array[_i]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+        }
+    </script>
+    ```
+
+1. for...in 文を使う方法
+    ```
+    <script>
+        var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+        for (var _index in _array) {
+            console.log(_array[_index]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+        }
+    </script>
+    ```
+* for each...in 文による記述方法もあるがブラウザによって動作せず
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
-
-
-<a name="配列（Set）"></a>
-# <b>配列（Set）</b>
-
-* 配列（Array）と異なりデータの重複ができない
-```
-<script>
-    //①作成
-    var _set = new Set();
-
-    //②データの追加
-    _set.add("ICHIRO");
-    _set.add("JIRO");
-
-    //参考：既存データの追加
-    _set.add("ICHIRO"); //無視される
-
-    //③データの数
-    console.log(_set.size); //2
-
-    //④全てのデータの取得
-    for (let _data of _set) {
-        console.log(_data);
-        //"ICHIRO"
-        //"JIRO"
-    }
-
-    //⑤データがあるか否か
-    console.log(_set.has("TARO")); //false
-    console.log(_set.has("ICHIRO")); //true
-
-    //⑥データの削除
-    _set.delete("ICHIRO");
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="連想配列（Object）"></a>
