@@ -12,8 +12,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-***
 * [アクセサ （getter / setter）](#アクセサ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -459,58 +459,56 @@ myLibrary.MyClass.prototype.MyClassMethod = function () { //メソッド
 # <b>アクセサ（getter / setter）</b>
 
 ### 概要
-ECMAScript 6 は、TypeScript と違い private 変数を定義することができません。そこでパブリック変数を、[Python](https://ja.wikipedia.org/wiki/Python) 風に __xxx と命名してプライベート変数扱いにします。実際は単なるパブリック変数ですので外部からアクセスできてしまいますが、必ずアクセサを使ってアクセスするようにします。
+JavaScript は private 変数を定義することができません。そこでパブリック変数を、[Python](https://ja.wikipedia.org/wiki/Python) 風に __xxx と命名してプライベート変数扱いにします。実際は単なるパブリック変数ですので外部からアクセスできてしまいますが、必ずアクセサを使ってアクセスするようにします。
 
 ### 読書き可能なプロパティ
 ```
 <script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(age) {
-            this.__age = age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(newValue) {
-            this.__age = newValue;
-        }
+    //Nishimuraクラス
+    function Nishimura(_age) { //コンストラクタ
+        this.__age = _age;
     }
+    //アクセサ（getter/setter）
+    Nishimura.prototype.getAge = function () {
+        return this.__age;
+    };
+    Nishimura.prototype.setAge = function (_newValue) {
+        this.__age = _newValue;
+    };
 
+    //実行
     var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //変更が可能
-    console.log(_nishimura.age); //50
+    console.log(_nishimura.getAge()); //49
+    _nishimura.setAge(50); //変更が可能
+    console.log(_nishimura.getAge()); //50
 </script>
 ```
 
 ### 読取り専用のプロパティ
 ```
 <script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(age) {
-            this.__age = age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(_newValue) {
-            throw new Error("値の変更はできません");
-        }
+    //Nishimuraクラス
+    function Nishimura(_age) { //コンストラクタ
+        this.__age = _age;
     }
+    //アクセサ（getter/setter）
+    Nishimura.prototype.getAge = function () {
+        return this.__age;
+    };
+    Nishimura.prototype.setAge = function (_newValue) {
+        throw new Error("値の変更はできません");
+    };
 
+    //実行
     var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //Error: 値の変更はできません
+    console.log(_nishimura.getAge()); //49
+    _nishimura.setAge(50); //Error: 値の変更はできません
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年03月23日
 
 
 <a name="演算子"></a>

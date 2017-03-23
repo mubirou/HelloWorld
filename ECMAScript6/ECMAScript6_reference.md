@@ -676,8 +676,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 <script>
     class Nishimura {
         //コンストラクタ
-        constructor(age) {
-            this.__age = age;
+        constructor(_age) {
+            this.__age = _age;
         }
         //アクセサ（getter/setter）
         get age() {
@@ -700,8 +700,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 <script>
     class Nishimura {
         //コンストラクタ
-        constructor(age) {
-            this.__age = age;
+        constructor(_age) {
+            this.__age = _age;
         }
         //アクセサ（getter/setter）
         get age() {
