@@ -587,53 +587,18 @@ JavaScript は private 変数を定義することができません。そこで
 <a name="定数"></a>
 # <b>定数</b>
 
-### 概要
-* const はクラス外で定数を扱う場合に利用できます。
-* const をクラス内で利用した場合、単なる「変更不可のローカル変数」扱いとなり、用途は非常に限られます（ const this.定数名 という記述は不可）。
-* クラス定数を実現するためには、static（メソッドに対してのみ有効）と getter を利用します。setter には、値を変更しようとした際にエラーが発生するように記述します。
-
-### 通常の定数
-* 構文
-    ```
-    const 定数名 = 値; //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
-    ```
-
-* 例文
-    ```
-    <script>
-        const MY_NAME = "Takashi Nishimura";
-        console.log(MY_NAME); //"Takashi Nishimura"
-        MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
-    </script>
-    ```
-
-### クラス定数（静的定数）
 ```
 <script>
-    class MyMath {
-        constructor() {
-            /*
-            ↓「変更不可のローカル変数」となりクラス定数として利用できない
-            ↓「const this.定数名」という記述は不可
-            */
-            //const PI = 3.141592653589793;
-        }
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error("値の変更はできません");
-        }
-    }
-
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
+    //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
+    const MY_NAME = "Takashi Nishimura";
+    console.log(MY_NAME); //"Takashi Nishimura"
+    MY_NAME = "Taro Nishimura"; //Error（変更不可）
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="メソッド"></a>
