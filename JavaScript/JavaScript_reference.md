@@ -95,7 +95,7 @@
     console.log(typeof _hoge); //"undefined"
 
     //⑥function（関数）
-    console.log(typeof function () { }); //"function"
+    console.log(typeof function() {}); //"function"
 </script>
 ```
 
@@ -121,7 +121,7 @@
     console.log(new Object() instanceof Object); //true
 
     //⑤function（関数）
-    console.log(function () { } instanceof Function); //true
+    console.log(function() {} instanceof Function); //true
 </script>
 ```
 
@@ -179,22 +179,22 @@
     Rectangle.prototype.__height = 480;
 
     //アクセサ（getter/setter）
-    Rectangle.prototype.getWidth = function () {
+    Rectangle.prototype.getWidth = function() {
         return this.__width;
     }
-    Rectangle.prototype.setWidth = function (_newValue) {
+    Rectangle.prototype.setWidth = function(_newValue) {
         this.__width = _newValue;
     }
 
-    Rectangle.prototype.getHeight = function () {
+    Rectangle.prototype.getHeight = function() {
         return this.__height;
     }
-    Rectangle.prototype.setHeight = function (_newValue) {
+    Rectangle.prototype.setHeight = function(_newValue) {
         this.__height = _newValue;
     }
 
     //面積を計算して値を返す
-    Rectangle.prototype.getArea = function () {
+    Rectangle.prototype.getArea = function() {
         return this.__width * this.__height;
     }
 
@@ -233,12 +233,12 @@
     SuperClass.prototype.__pSuperClass = "スーパークラスのプロパティ";
 
     //②アクセサの定義（setterは省略）
-    SuperClass.prototype.get_pSuperClass = function () {
+    SuperClass.prototype.get_pSuperClass = function() {
         return this.__pSuperClass;
     }
 
     //③メソッドの定義
-    SuperClass.prototype.mSuperClass = function () {
+    SuperClass.prototype.mSuperClass = function() {
         return "スーパークラスのメソッド";
     }
 
@@ -252,11 +252,11 @@
     //①プロパティの定義
     SubClassA.prototype.__pSubClassA = "サブクラスAのプロパティ";
     //②アクセサの定義（setterは省略）
-    SubClassA.prototype.get_pSubClassA = function () {
+    SubClassA.prototype.get_pSubClassA = function() {
         return this.__pSubClassA;
     }
     //③メソッドの定義
-    SubClassA.prototype.mSubClassA = function () {
+    SubClassA.prototype.mSubClassA = function() {
         return "サブクラスAのメソッド";
     }
 
@@ -270,11 +270,11 @@
     //①プロパティの定義
     SubClassB.prototype.__pSubClassB = "サブクラスBのプロパティ";
     //②アクセサの定義（setterは省略）
-    SubClassB.prototype.get_pSubClassB = function () {
+    SubClassB.prototype.get_pSubClassB = function() {
         return this.__pSubClassB;
     }
     //③メソッドの定義
-    SubClassB.prototype.mSubClassB = function () {
+    SubClassB.prototype.mSubClassB = function() {
         return "サブクラスBのメソッド";
     }
 
@@ -313,23 +313,23 @@ if (myLibrary != window) {
 /****************************
 myLibrary.SuperClassクラス
 ****************************/
-myLibrary.SuperClass = function () { }; //コンストラクタ
+myLibrary.SuperClass = function() {}; //コンストラクタ
 myLibrary.SuperClass.prototype.__myProperty = undefined; //プロパティ
-myLibrary.SuperClass.prototype.getMyProperty = function () { //getter
+myLibrary.SuperClass.prototype.getMyProperty = function() { //getter
     return this.__myProperty;
 }
-myLibrary.SuperClass.prototype.setMyProperty = function (_newValue) { //setter
+myLibrary.SuperClass.prototype.setMyProperty = function(_newValue) { //setter
     this.__myProperty = _newValue;
 }
 
 /****************************
 myLibrary.MyClassクラス
 ****************************/
-myLibrary.MyClass = function () { //コンストラクタ
+myLibrary.MyClass = function() { //コンストラクタ
     console.log("new myLibrary.MyClass!");
 };
 myLibrary.MyClass.prototype = new myLibrary.SuperClass(); //継承も可能
-myLibrary.MyClass.prototype.MyClassMethod = function () { //メソッド
+myLibrary.MyClass.prototype.MyClassMethod = function() { //メソッド
     console.log("MyClass.MyClassMethod()");
 }
 ```
@@ -374,7 +374,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function () { //メソッド
 <script>
     //ClassAクラス
     function ClassA() { }; //コンストラクタ
-    ClassA.prototype.myMethod = function () {
+    ClassA.prototype.myMethod = function() {
         console.log("ClassA.myMethod");
     }
 
@@ -394,7 +394,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function () { //メソッド
 <script>
     //ClassAクラス
     function ClassA() { }; //コンストラクタ
-    ClassA.prototype.myMethod = function () {
+    ClassA.prototype.myMethod = function() {
         console.log("ClassA.myMethod");
     }
 
@@ -402,7 +402,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function () { //メソッド
     function ClassB() { //コンストラクタ
         this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
     }
-    ClassB.prototype.myMethod = function () {
+    ClassB.prototype.myMethod = function() {
         this.__classA.myMethod(); //ClassAのmyMethod()を実行
     }
 
@@ -459,10 +459,10 @@ JavaScript は private 変数を定義することができません。そこで
     function Nishimura(_age) { //コンストラクタ
         this.__age = _age;
     }
-    Nishimura.prototype.getAge = function () { //アクセサ（getter）
+    Nishimura.prototype.getAge = function() { //アクセサ（getter）
         return this.__age;
     };
-    Nishimura.prototype.setAge = function (_newValue) { //アクセサ（setter）
+    Nishimura.prototype.setAge = function(_newValue) { //アクセサ（setter）
         this.__age = _newValue;
     };
 
@@ -481,10 +481,10 @@ JavaScript は private 変数を定義することができません。そこで
     function Nishimura(_age) { //コンストラクタ
         this.__age = _age;
     }
-    Nishimura.prototype.getAge = function () { //アクセサ（getter）
+    Nishimura.prototype.getAge = function() { //アクセサ（getter）
         return this.__age;
     };
-    Nishimura.prototype.setAge = function (_newValue) { //アクセサ（setter）
+    Nishimura.prototype.setAge = function(_newValue) { //アクセサ（setter）
         throw new Error("値の変更はできません");
     };
 
@@ -621,7 +621,7 @@ JavaScript は private 変数を定義することができません。そこで
 ```
 <script>
     //前方宣言が必要
-    var _kakezan = function (arg1, arg2) {
+    var _kakezan = function(arg1, arg2) {
         return arg1 * arg2;
     }
     console.log(_kakezan(9, 9)); //81
@@ -1233,7 +1233,7 @@ do {
 
         var _array = [15, 30, 130];
         _array.sort(
-            function (a, b) {
+            function(a, b) {
                 if (a < b) return -1;
                 if (b > 1) return 1;
                 return 0;
@@ -1317,7 +1317,7 @@ do {
     _object.age = 49;
 
     //③関数の追加
-    _object.hello = function () {
+    _object.hello = function() {
         return "Hello! How are you?";
     }
 
@@ -1335,7 +1335,7 @@ do {
     }
     //name : Takashi Nishimura
     //age : 49
-    //hello : function () {...
+    //hello : function() {...
 </script>
 ```
 
@@ -1368,7 +1368,7 @@ do {
         document.write(this); //[object Object]（MyClassのインスタンス）
         this.__hoge = "擬似プライベート変数"; //thisは省略不可
     }
-    MyClass.prototype.getHoge = function () { //アクセサ（getter）
+    MyClass.prototype.getHoge = function() { //アクセサ（getter）
         return this.__hoge; //thisは省略不可
     }
 
@@ -1512,17 +1512,17 @@ var 変数 = "xxx"; //string型
 <script>
     //（擬似）抽象クラスの定義
     function AbstractClass() { }; //コンストラクタ
-    AbstractClass.prototype.commonMethod = function () { //共通のメソッド
+    AbstractClass.prototype.commonMethod = function() { //共通のメソッド
         console.log("AbstractClass.commonMethod()");
     }
-    AbstractClass.prototype.eachMethod = function () { //抽象メソッド（実際の処理は記述しない）
+    AbstractClass.prototype.eachMethod = function() { //抽象メソッド（実際の処理は記述しない）
         throw new Error("サブクラスで実装して下さい"); //例外処理
     }
 
     //サブクラス
     function SubClass() { }; //コンストラクタ
     SubClass.prototype = new AbstractClass(); //（擬似）抽象クラスの継承
-    SubClass.prototype.eachMethod = function () { //オーバーライドして実際の処理を記述
+    SubClass.prototype.eachMethod = function() { //オーバーライドして実際の処理を記述
         console.log("SubClass.eachMethod()"); //実際の処理
     }
 
@@ -1551,7 +1551,7 @@ var 変数 = "xxx"; //string型
     //スーパークラス
     function SuperClass() { }; //コンストラクタ
     //↓サブクラスでオーバライドするメソッド
-    SuperClass.prototype.myMethod = function () {
+    SuperClass.prototype.myMethod = function() {
         console.log("SuperClass.myMethod()");
     }
 
@@ -1559,7 +1559,7 @@ var 変数 = "xxx"; //string型
     function SubClass() { }; //コンストラクタ
     SubClass.prototype = new SuperClass(); //（擬似）抽象クラスの継承
     //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-    SubClass.prototype.myMethod = function () {
+    SubClass.prototype.myMethod = function() {
         console.log("SubClass.myMethod()");
     }
 
@@ -1587,7 +1587,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
     function Robot() { //コンストラクタ
         this.__energy = 80;
     }
-    Robot.prototype.addEventListener = function (_event, _function) {
+    Robot.prototype.addEventListener = function(_event, _function) {
         if (_event == "die") {
             this.__dieHandler = _function; //匿名関数を変数に格納
         } else {
@@ -1595,7 +1595,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
             throw new Error('Error:"' + _event + '"はサポートされていません');
         }
     }
-    Robot.prototype.fight = function () {
+    Robot.prototype.fight = function() {
         this.__energy -= 20;
         if (this.__energy <= 0) {
             this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
