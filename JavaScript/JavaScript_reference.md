@@ -311,9 +311,6 @@
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
-* ES2015+からサポートされた import と export はまだブラウザで利用できません
-* サンプルの方法は力技的ですが機能としては充分です
-
 #### 外部ファイル（ myLibrary.js ）
 ```
 //名前空間を省略可能にするために（オプション）
@@ -321,35 +318,28 @@ if (myLibrary != window) {
     var myLibrary = {}; //namescape（省略をしない前提であればconstにします）
 }
 
-/**************************
+/****************************
 myLibrary.SuperClassクラス
-**************************/
-myLibrary.SuperClass =
-class SuperClass {
-    constructor() {
-        this.__myProperty = undefined;
-    }
-    get myProperty() {
-        return this.__myProperty;
-    }
-    set myProperty(_newValue) {
-        this.__myProperty = _newValue;
-    }
-};
+****************************/
+myLibrary.SuperClass = function () { }; //コンストラクタ
+myLibrary.SuperClass.prototype.__myProperty = undefined; //プロパティ
+myLibrary.SuperClass.prototype.getMyProperty = function () { //getter
+    return this.__myProperty;
+}
+myLibrary.SuperClass.prototype.setMyProperty = function (_newValue) { //setter
+    this.__myProperty = _newValue;
+}
 
-/**************************
+/****************************
 myLibrary.MyClassクラス
-**************************/
-myLibrary.MyClass =
-class MyClass extends myLibrary.SuperClass { //継承も可能
-    constructor() {
-        super();
-        console.log("new myLibrary.MyClass");
-    }
-    MyClassMethod() {
-        console.log("MyClass.MyClassMethod()");
-    }
+****************************/
+myLibrary.MyClass = function () { //コンストラクタ
+    console.log("new myLibrary.MyClass!");
 };
+myLibrary.MyClass.prototype = new myLibrary.SuperClass(); //継承も可能
+myLibrary.MyClass.prototype.MyClassMethod = function () { //メソッド
+    console.log("MyClass.MyClassMethod()");
+}
 ```
 
 #### xxx.html
@@ -357,32 +347,28 @@ class MyClass extends myLibrary.SuperClass { //継承も可能
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<!--script>var myLibrary = window;</script-->
-<script src="myLibrary.js"></script>
-<script>
+    <meta charset="UTF-8">
+    <!--script>var myLibrary = window;</script-->
+    <script src="myLibrary.js"></script>
+    <script>
+        var _myClass = new myLibrary.MyClass(); //"new myLibrary.MyClass"
+        _myClass.MyClassMethod(); //"MyClass.MyClassMethod()"
+        _myClass.setMyProperty("hoge");
+        console.log(_myClass.getMyProperty()); //"hoge"
 
-var _myClass = new myLibrary.MyClass(); //"new myLibrary.MyClass"
-_myClass.MyClassMethod(); //"MyClass.MyClassMethod()"
-_myClass.myProperty = "hoge";
-console.log(_myClass.myProperty); //"hoge"
-
-//Bitmapクラス（名前空間を省略するとコンフリクトを起こす）
-class MyClass {
-    constructor() {
-        console.log("コンフリクトを起こさない!");
-    }
-}
-new MyClass(); //"コンフリクトを起こさない!"
-
-</script>
+        //MyClassクラス（名前空間を省略するとコンフリクトを起こす）
+        function MyClass() { //コンストラクタ
+            console.log("コンフリクトを起こさない!");
+        };
+        new MyClass(); //"コンフリクトを起こさない!"
+    </script>
 </head>
 </html>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月23日  
 
 
 <a name="継承と委譲"></a>
