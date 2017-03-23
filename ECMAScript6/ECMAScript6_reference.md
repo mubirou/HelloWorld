@@ -2712,7 +2712,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     var _request = new XMLHttpRequest(); //Webサーバ上で動作
 
     //②イベントハンドラの定義
-    _request.onload = function () {
+    _request.onload = function() {
         console.log(this.responseText); //⑤読み込んだテキストの表示
     }
 
