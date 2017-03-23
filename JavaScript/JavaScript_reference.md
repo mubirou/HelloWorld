@@ -374,27 +374,25 @@ myLibrary.MyClass.prototype.MyClassMethod = function () { //メソッド
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
 
-### 概要
-
-* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)で利用される。
-* 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する。
+* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
 
 ### 継承
 
 ```
 <script>
-class ClassA {
-  myMethod() {
-    console.log("ClassA.myMethod");
-  }
-}
+    //ClassAクラス
+    function ClassA() { }; //コンストラクタ
+    ClassA.prototype.myMethod = function () {
+        console.log("ClassA.myMethod");
+    }
 
-class ClassB extends ClassA { //ClassAを継承
-}
+    //ClassBクラス
+    function ClassB() { }; //コンストラクタ
+    ClassB.prototype = new ClassA(); //ClassAを継承
 
-var _classB = new ClassB();
-_classB.myMethod();
-
+    //実行
+    var _classB = new ClassB();
+    _classB.myMethod(); //"ClassA.myMethod"
 </script>
 ```
 
@@ -402,31 +400,29 @@ _classB.myMethod();
 
 ```
 <script>
+    //ClassAクラス
+    function ClassA() { }; //コンストラクタ
+    ClassA.prototype.myMethod = function () {
+        console.log("ClassA.myMethod");
+    }
 
-class ClassA {
-  myMethod() {
-    console.log("ClassA.myMethod");
-  }
-}
+    //ClassBクラス
+    function ClassB() { //コンストラクタ
+        this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
+    }
+    ClassB.prototype.myMethod = function () {
+        this.__classA.myMethod(); //ClassAのmyMethod()を実行
+    }
 
-class ClassB {
-  constructor() { //コンストラクタ
-    this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成
-  }
-  myMethod() {
-    this.__classA.myMethod(); //ClassAのmyMethod()を実行
-  }
-}
-
-var _classB = new ClassB();
-_classB.myMethod();
-
+    //実行
+    var _classB = new ClassB();
+    _classB.myMethod(); //"ClassA.myMethod"
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月19日
+作成日：2017年03月23日
 
 
 <a name="変数とスコープ"></a>

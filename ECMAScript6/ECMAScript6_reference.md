@@ -451,8 +451,8 @@ new MyClass(); //"コンフリクトを起こさない!"
 
 ### 概要
 
-* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)で利用される。
-* 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する。
+* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
+* 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承
 
@@ -486,7 +486,7 @@ class ClassA {
 
 class ClassB {
   constructor() { //コンストラクタ
-    this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成
+    this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
   }
   myMethod() {
     this.__classA.myMethod(); //ClassAのmyMethod()を実行
