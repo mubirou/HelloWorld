@@ -24,8 +24,8 @@
 * [for...in 文](#for...in文)
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
-***
 * [連想配列（Object）](#連想配列（Object）)
+***
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -1334,7 +1334,7 @@ do {
     console.log(_object.hello()); //"Hello! How are you?"
 
     //⑥全ての要素の取得
-    for (let _propName in _object) {
+    for (var _propName in _object) {
         console.log(_propName + " : " + _object[_propName]);
     }
     //name : Takashi Nishimura
@@ -1345,7 +1345,7 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月23日  
 
 
 <a name="this"></a>
