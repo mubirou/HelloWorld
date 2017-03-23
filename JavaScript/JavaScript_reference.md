@@ -21,10 +21,9 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-***
 * [for...in 文](#for...in文)
-* [for...of 文](#for...of文)
-* [while文](#while文)
+* [while 文](#while文)
+***
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
@@ -949,7 +948,7 @@ for (変数名 in 配列等) {
 ```
 <script>
     var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _indexNum in _array) {
+    for (var _indexNum in _array) {
         console.log(_indexNum); //0→1→2→3
         console.log(_array[_indexNum]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
     }
@@ -963,7 +962,7 @@ for (変数名 in 配列等) {
         ["x0y0", "x1y0", "x2y0"], //0行目
         ["x0y1", "x1y1", "x2y1"]  //1行目
     ];
-    for (let _indexNum in _array) {
+    for (var _indexNum in _array) {
         console.log(_indexNum); //0→1
         console.log(_array[_indexNum]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
     }
@@ -974,7 +973,7 @@ for (変数名 in 配列等) {
 ```
 <script>
     var _object = { name: "Takashi Nishimura", age: 49 };
-    for (let _propName in _object) {
+    for (var _propName in _object) {
         console.log(_propName); //name→age
         console.log(_object[_propName]); //"Takashi Nishimura" → 49
     }
@@ -983,64 +982,7 @@ for (変数名 in 配列等) {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
-
-
-<a name="for...of文"></a>
-# <b>for...of 文</b>
-
-### 一次元配列（Array）の場合
-```
-<script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _data of _array) {
-        console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
-    }
-</script>
-```
-
-### 二次元配列（Array）の場合
-```
-<script>
-    var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
-    ];
-    for (let _theArray of _array) {
-        console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-    }
-</script>
-```
-
-### 配列（Set）の場合
-```
-<script>
-    var _set = new Set();
-    _set.add("TARO");
-    _set.add("HANAKO");
-    for (let _data of _set) {
-        console.log(_data); //"TARO"→"HANAKO"
-    }
-</script>
-```
-
-### 連想配列（Map）の場合
-```
-<script>
-    var _map = new Map();
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //"RYOMA" "1836-01-03
-        //"YUKICHI" "1835-01-10"
-    }
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="while文"></a>
@@ -1084,7 +1026,7 @@ do {
 </script>
 ```
 
-### while文とbreak文
+### while 文と break 文
 * 例文（1〜100までを出力）
 ```
 <script>
@@ -1099,7 +1041,7 @@ do {
 </script>
 ```
 
-### while文とcontinue文
+### while 文と continue 文
 * 例文（3の倍数を出力）
 ```
 <script>
@@ -1117,7 +1059,7 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="配列（Array）"></a>
