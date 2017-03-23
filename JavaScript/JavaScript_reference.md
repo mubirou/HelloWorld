@@ -23,8 +23,8 @@
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [while 文](#while文)
+* [配列（Array）](#配列（Array）)
 ***
-* [配列](#配列)
 * [連想配列（Object）](#連想配列（Object）)
 * [連想配列（Map）](#連想配列（Map）)
 * [this](#this)
@@ -1061,8 +1061,8 @@ do {
 作成日：2017年03月23日  
 
 
-<a name="配列"></a>
-# <b>配列</b>
+<a name="配列（Array）"></a>
+# <b>配列（Array）</b>
 
 ### 作成
 * new演算子を使う方法
