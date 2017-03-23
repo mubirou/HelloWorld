@@ -20,8 +20,8 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
-***
 * [for 文](#for文)
+***
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
 * [while文](#while文)
@@ -870,32 +870,20 @@ JavaScript は private 変数を定義することができません。そこで
 <a name="for文"></a>
 # <b>for 文</b>
 
-### ループカウンタの宣言方法
-* 参考「[変数とスコープ](#変数とスコープ)」
-1. let でループ制御変数を宣言する
-    ```
-    <script>
-        for (let i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
-        }
-        console.log(i); //Error（for文の外では使えない）
-    </script>
-    ```
-
-1. var でループ制御変数を宣言する
-    ```
-    <script>
-        for (var i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
-        }
-        console.log(i); //10（for文の外でも有効）
-    </script>
-    ```
+### ループカウンタを1つずつアップする
+```
+<script>
+    for (var i = 0; i < 10; i++) {
+        console.log(i); //0,1,2,3,4,5,6,7,8,9
+    }
+    console.log(i); //10（for文の外でも有効）
+</script>
+```
 
 ### ループカウンタを○つずつアップする
 ```
 <script>
-    for (let i = 0; i < 50; i += 5) { //5つずつアップする場合…
+    for (var i = 0; i < 50; i += 5) { //5つずつアップする場合…
         console.log(i); //0,5,10,15,20,25,30,35,40,45
     }
 </script>
@@ -905,8 +893,8 @@ JavaScript は private 変数を定義することができません。そこで
 * ループ制御変数には慣例的に i, j, k が使われる
 ```
 <script>
-    for (let i = 1; i <= 5; i++) {
-        for (let j = 1; j <= 5; j++) {
+    for (var i = 1; i <= 5; i++) {
+        for (var j = 1; j <= 5; j++) {
             console.log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
         }
     }
@@ -929,7 +917,7 @@ JavaScript は private 変数を定義することができません。そこで
 ### for 文と continue 文
 ```
 <script>
-    for (let i = 1; i <= 20; i++) { //iは1,2,...19,20
+    for (var i = 1; i <= 20; i++) { //iは1,2,...19,20
         if ((i % 3) != 0) { //3で割り余りが0でない（＝3の倍数ではない）場合
             continue; //for文の残処理をスキップしてfor文の次の反復を開始する
         }
@@ -940,7 +928,7 @@ JavaScript は private 変数を定義することができません。そこで
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月23日  
 
 
 <a name="for...in文"></a>
