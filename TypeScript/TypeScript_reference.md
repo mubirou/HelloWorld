@@ -1,8 +1,8 @@
-# <b>ECMAScript 6 基礎文法</b>
+# <b>TypeScript 基礎文法</b>
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
