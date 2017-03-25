@@ -114,7 +114,7 @@ console.log(_hoge, typeof _hoge); //undefined, "undefined"
 var _function: Function = function () {}; //匿名関数
 console.log(typeof _function); //"function"
 
-var _function2: Function = () => { }; //アロー関数
+var _function2: Function = () => {}; //アロー関数
 console.log(typeof _function2); //"function"
 ```
 
