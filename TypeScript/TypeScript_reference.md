@@ -55,7 +55,7 @@
 1. string（文字列）
 1. object（全てのオブジェクトのベース）
 1. undefined（未初期化変数）
-1. function（関数）  
+1. function/Function（関数）  
 * 他にも null、any が利用可能
 
 ### 例文
