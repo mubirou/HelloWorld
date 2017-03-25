@@ -6,6 +6,7 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)）
 * [データ型](#データ型)
+***
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
@@ -48,75 +49,78 @@
 <a name="データ型"></a>
 # <b>データ型</b>
 
+### データ型の種類
+1. boolean（論理型）
+1. number（整数･浮動小数点数）
+1. string（文字列）
+1. object（全てのオブジェクトのベース）
+1. undefined（未初期化変数）
+1. function（関数）  
+* 他にも null、any が利用可能
+
+### 例文
 ```
-<script>
+//xxx.ts
 
 //①boolean（論理型）
-var _boolean = true;
+var _boolean: boolean = true;
 console.log(_boolean, typeof _boolean); //true, "boolean"
 
 
 //②number（整数･浮動小数点数） ※NaNも"number"型
-var _number = 9007199254740998;
+var _number: number = 9007199254740998;
 //-9007199254740998〜9007199254740998（約±9000兆）まで扱える
 console.log(_number, typeof _number); //9007199254740998, "number"
 
-var _number2 = 3.14159265358979323846264338327;
+var _number2: number = 3.14159265358979323846264338327;
 console.log(_number2, typeof _number2); //3.141592653589793, "number"
 
 
 //③string（文字列）
-var _string = "いろは"; //シングルまたはダブルクォーテーションで囲む
+var _string: string = "いろは"; //シングルまたはダブルクォーテーションで囲む
 console.log(_string, typeof _string); //"いろは", "string"
 
 
 //④object（全てのオブジェクトのベース）
-var _boolean2 = new Boolean(true);
+var _boolean2: object = new Boolean(true);
 console.log(typeof _boolean2); //"object"（"boolean"ではない）
 
-var _number3 = new Number(1);
+var _number3: object = new Number(1);
 console.log(typeof _number3); //"object"（"number"ではない）
 
-var _string2 = new String("1");
+var _string2: object = new String("1");
 console.log(typeof _string2); //"object"（"string"ではない）
 
-var _array = ["A","B","C"]; //配列（Array）
+var _array: object = ["A", "B", "C"]; //配列（Array）
 console.log(typeof _array); //"object"
 
-var _object = {name:"TARO", age:49}; //連想配列
+var _object: object = { name: "TARO", age: 49 }; //連想配列
 console.log(typeof _object); //"object"
 
-var _hoge2 = null; //null（データ不在）
+var _hoge2: null = null; //null（データ不在）
 console.log(_hoge2, typeof _hoge2); //null, "object"
 
-class MyClass {} //クラス（前方宣言が必要）
-var _myClass = new MyClass();
+class MyClass { } //クラス（前方宣言が必要）
+var _myClass: MyClass = new MyClass();
 console.log(typeof _myClass); //"object"
 
 
 //⑤undefined（未初期化変数）
-var _hoge; //変数宣言したのみで値が設定されていない場合
+var _hoge: any; //変数宣言したのみで値が設定されていない場合
 console.log(_hoge, typeof _hoge); //undefined, "undefined"
 
 
 //⑥function（関数）
-var _function = function() {}; //匿名関数
+var _function: Function = function () {}; //匿名関数
 console.log(typeof _function); //"function"
 
-var _function2 = () => {}; //アロー関数
+var _function2: Function = () => { }; //アロー関数
 console.log(typeof _function2); //"function"
-
-
-//⑦symbol（シンボル）
-var _symbol = Symbol();
-console.log(typeof _symbol); //"symbol"
-
-</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月25日  
 
 
 <a name="データ型の操作"></a>
