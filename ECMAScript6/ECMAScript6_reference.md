@@ -804,19 +804,13 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 * クラス定数を実現するためには、static（メソッドに対してのみ有効）と getter を利用します。setter には、値を変更しようとした際にエラーが発生するように記述します。
 
 ### 通常の定数
-* 構文
-    ```
-    const 定数名 = 値; //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
-    ```
-
-* 例文
-    ```
-    <script>
-        const MY_NAME = "Takashi Nishimura";
-        console.log(MY_NAME); //"Takashi Nishimura"
-        MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
-    </script>
-    ```
+```
+<script>
+    const MY_NAME = "Takashi Nishimura";
+    console.log(MY_NAME); //"Takashi Nishimura"
+    MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
+</script>
+```
 
 ### クラス定数（静的定数）
 ```

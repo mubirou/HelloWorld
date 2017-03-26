@@ -14,8 +14,8 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-***
 * [定数](#定数)
+***
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
 * [アロー関数](#アロー関数)
@@ -678,47 +678,42 @@ console.log(~3); //-4（ビット反転）
 * クラス定数を実現するためには、static（メソッドに対してのみ有効）と getter を利用します。setter には、値を変更しようとした際にエラーが発生するように記述します。
 
 ### 通常の定数
-* 構文
-    ```
-    const 定数名 = 値; //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
-    ```
 
-* 例文
-    ```
-    <script>
-        const MY_NAME = "Takashi Nishimura";
-        console.log(MY_NAME); //"Takashi Nishimura"
-        MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
-    </script>
-    ```
+```
+//main.ts
+
+//定数名は慣例的に大文字英字（ENTER_FRAMEなど）
+const MY_NAME: string = "Takashi Nishimura";
+console.log(MY_NAME); //"Takashi Nishimura"
+//MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
+```
 
 ### クラス定数（静的定数）
 ```
-<script>
-    class MyMath {
-        constructor() {
-            /*
-            ↓「変更不可のローカル変数」となりクラス定数として利用できない
-            ↓「const this.定数名」という記述は不可
-            */
-            //const PI = 3.141592653589793;
-        }
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error("値の変更はできません");
-        }
+//main.ts
+
+class MyMath {
+    constructor() {
+        //↓このような記述はできない
+        //public static const PI = 3.141592653589793;
     }
 
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
-</script>
+    public static get PI(): number {
+        return 3.141592653589793;
+    }
+
+    public static set PI(_newValue) {
+        throw new Error("値の変更はできません");
+    }
+}
+
+console.log(MyMath.PI); //3.141592653589793
+//MyMath.PI = 3.14; //Error: 値の変更はできません
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月26日  
 
 
 <a name="メソッド"></a>
