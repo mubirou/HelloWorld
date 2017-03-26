@@ -9,8 +9,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
-***
 * [名前空間](#名前空間)
+***
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
@@ -369,78 +369,54 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
-* ES2015+からサポートされた import と export はまだブラウザで利用できません
-* サンプルの方法は力技的ですが機能としては充分です
+* 名前の衝突を抑止するために、内部モジュールを利用します
 
-#### 外部ファイル（ myLibrary.js ）
 ```
-//名前空間を省略可能にするために（オプション）
-if (myLibrary != window) {
-    var myLibrary = {}; //namescape（省略をしない前提であればconstにします）
+//main.ts
+
+module myLibrary {
+    /**************************
+    myLibrary.SuperClassクラス
+    **************************/
+    export class SuperClass { //expoertは外から参照するために必要
+        private _pSuperClass: string = "スーパークラスのプロパティ";
+
+        //コンストラクタ
+        constructor() { }
+
+        //アクセサ
+        public get myProperty(): string { //publicは省略可能
+            return this._pSuperClass;
+        }
+        public set myProperty(_newValue) {
+            this._pSuperClass = _newValue
+        }
+    }
+
+    /**************************
+    myLibrary.MyClassクラス
+    **************************/
+    export class MyClass extends SuperClass {
+        constructor() {
+            super();
+            console.log("new myLibrary.MyClass");
+        }
+        public MyClassMethod(): void {
+            console.log("myLibrary.MyClass.MyClassMethod()");
+        }
+    }
 }
 
-/**************************
-myLibrary.SuperClassクラス
-**************************/
-myLibrary.SuperClass =
-class SuperClass {
-    constructor() {
-        this.__myProperty = undefined;
-    }
-    get myProperty() {
-        return this.__myProperty;
-    }
-    set myProperty(_newValue) {
-        this.__myProperty = _newValue;
-    }
-};
-
-/**************************
-myLibrary.MyClassクラス
-**************************/
-myLibrary.MyClass =
-class MyClass extends myLibrary.SuperClass { //継承も可能
-    constructor() {
-        super();
-        console.log("new myLibrary.MyClass");
-    }
-    MyClassMethod() {
-        console.log("MyClass.MyClassMethod()");
-    }
-};
-```
-
-#### xxx.html
-```
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<!--script>var myLibrary = window;</script-->
-<script src="myLibrary.js"></script>
-<script>
-
+//実行
 var _myClass = new myLibrary.MyClass(); //"new myLibrary.MyClass"
-_myClass.MyClassMethod(); //"MyClass.MyClassMethod()"
+_myClass.MyClassMethod(); //"myLibrary.MyClass.MyClassMethod()"
 _myClass.myProperty = "hoge";
 console.log(_myClass.myProperty); //"hoge"
-
-//MyClassクラス（名前空間を省略するとコンフリクトを起こす）
-class MyClass {
-    constructor() {
-        console.log("コンフリクトを起こさない!");
-    }
-}
-new MyClass(); //"コンフリクトを起こさない!"
-
-</script>
-</head>
-</html>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月26日  
 
 
 <a name="継承と委譲"></a>
