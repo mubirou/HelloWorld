@@ -458,18 +458,17 @@ new MyClass(); //"コンフリクトを起こさない!"
 
 ```
 <script>
-class ClassA {
-  myMethod() {
-    console.log("ClassA.myMethod");
-  }
-}
+    class ClassA {
+    myMethod() {
+        console.log("ClassA.myMethod");
+    }
+    }
 
-class ClassB extends ClassA { //ClassAを継承
-}
+    class ClassB extends ClassA { //ClassAを継承
+    }
 
-var _classB = new ClassB();
-_classB.myMethod();
-
+    var _classB = new ClassB();
+    _classB.myMethod();
 </script>
 ```
 
@@ -477,25 +476,23 @@ _classB.myMethod();
 
 ```
 <script>
+    class ClassA {
+    myMethod() {
+        console.log("ClassA.myMethod");
+    }
+    }
 
-class ClassA {
-  myMethod() {
-    console.log("ClassA.myMethod");
-  }
-}
+    class ClassB {
+    constructor() { //コンストラクタ
+        this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
+    }
+    myMethod() {
+        this.__classA.myMethod(); //ClassAのmyMethod()を実行
+    }
+    }
 
-class ClassB {
-  constructor() { //コンストラクタ
-    this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
-  }
-  myMethod() {
-    this.__classA.myMethod(); //ClassAのmyMethod()を実行
-  }
-}
-
-var _classB = new ClassB();
-_classB.myMethod();
-
+    var _classB = new ClassB();
+    _classB.myMethod();
 </script>
 ```
 

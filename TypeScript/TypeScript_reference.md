@@ -10,8 +10,8 @@
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -430,51 +430,67 @@ console.log(_myClass.myProperty); //"hoge"
 ### 継承
 
 ```
-<script>
-class ClassA {
-  myMethod() {
-    console.log("ClassA.myMethod");
-  }
+//main.ts
+
+//ClassAクラス
+class ClassA { //委譲と同じ
+    //コンストラクタ
+    constructor() {}
+
+    public myMethod(): void {
+        console.log("ClassA.myMethod♥");
+    }
 }
 
-class ClassB extends ClassA { //ClassAを継承
+//ClassBクラス
+class ClassB extends ClassA { //ClassAを継承（ここだけ委譲と異なる）
+    constructor() {
+        super();
+    }
 }
 
-var _classB = new ClassB();
+//実行
+var _classB: ClassB = new ClassB();
 _classB.myMethod();
-
-</script>
 ```
 
 ### 委譲
 
 ```
-<script>
+//main.ts
 
-class ClassA {
-  myMethod() {
-    console.log("ClassA.myMethod");
-  }
+//ClassAクラス
+class ClassA { //委譲と同じ
+    //コンストラクタ
+    constructor() {}
+
+    public myMethod(): void {
+        console.log("ClassA.myMethod");
+    }
 }
 
+//ClassBクラス
 class ClassB {
-  constructor() { //コンストラクタ
-    this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
-  }
-  myMethod() {
-    this.__classA.myMethod(); //ClassAのmyMethod()を実行
-  }
+    private _classA: ClassA; //private変数宣言
+
+    //コンストラクタ
+    constructor() {
+        this._classA = new ClassA(); //オブジェクトを生成（委譲）
+    }
+
+    public myMethod(): void {
+        this._classA.myMethod(); //ClassAのmyMethod()を実行
+    }
 }
 
+//実行
 var _classB = new ClassB();
 _classB.myMethod();
-
-</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月19日
+作成日：2017年03月26日
 
 
 <a name="変数とスコープ"></a>
