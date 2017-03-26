@@ -13,8 +13,8 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
-***
 * [演算子](#演算子)
+***
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
@@ -602,73 +602,71 @@ _nishimura.age = 50; //Error: 値の変更はできません
 ### 算術演算子
 （複合代入演算子 += -= *= /= %= などもあり）
 ```
-<script>
-    console.log(3 + 2); //5 (可算)
-    console.log(5 - 8); //-3 (減算)
-    console.log(3 * 4); //12 (乗算)
-    console.log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-    console.log(63 % 60); //3 (余剰)
-    console.log(8 / 3); //2.6666666666666665（除算)
-</script>
+//main.ts
+console.log(3 + 2); //5 (可算)
+console.log(5 - 8); //-3 (減算)
+console.log(3 * 4); //12 (乗算)
+console.log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
+console.log(63 % 60); //3 (余剰)
+console.log(8 / 3); //2.6666666666666665（除算)
 ```
 
 ### 後ろに付けるインクリメント／デクリメント
 ```
-<script>
-    //インクリメント
-    var _huga = 0;
-    var _piyo = _huga++; //加算する前の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //0
+//main.ts
 
-    //デクリメント
-    _huga = 0;
-    var _piyo = _huga--; //減算する前の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //0
-</script>
+//インクリメント
+var _huga: number = 0;
+var _piyo: number = _huga++; //加算する前の_hugaの値を返す
+console.log(_huga); //1
+console.log(_piyo); //0
+
+//デクリメント
+_huga = 0;
+_piyo = _huga--; //減算する前の_hugaの値を返す
+console.log(_huga); //-1
+console.log(_piyo); //0
 ```
 
 ### 前に付けるインクリメント／デクリメント
 ```
-<script>
-    //インクリメント
-    var _huga = 0;
-    var _piyo = ++_huga; //加算後の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //1
+//main.ts
 
-    //デクリメント
-    _huga = 0;
-    var _piyo = --_huga; //減算後の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //-1
-</script>
+//インクリメント
+var _huga: number = 0;
+var _piyo: number = ++_huga; //加算後の_hugaの値を返す
+console.log(_huga); //1
+console.log(_piyo); //1
+
+//デクリメント
+_huga = 0;
+_piyo = --_huga; //減算後の_hugaの値を返す
+console.log(_huga); //-1
+console.log(_piyo); //-1
 ```
 
 ### その他の演算子
 ```
-<script>
-    console.log(true && true); //true（論理積）
-    console.log(true || false); //true（論理和）
-    console.log(! true); //false（否定）
+//main.ts
+console.log(true && true); //true（論理積）
+console.log(true || false); //true（論理和）
+console.log(! true); //false（否定）
 
-    console.log(2 < 3); //true（比較/未満）
-    console.log(2 <= 2); //true（比較/以下）
-    console.log(1 == 1.0); //true（等号）
-    console.log(1 != 1.0); //false（不等号）
+console.log(2 < 3); //true（比較/未満）
+console.log(2 <= 2); //true（比較/以下）
+console.log(1 == 1.0); //true（等号）
+console.log(1 != 1.0); //false（不等号）
 
-    console.log(3 & 1); //1（ビット積）
-    console.log(3 | 1); //3（ビット和）
-    console.log(3 ^ 1); //2（排他的ビット和）
-    console.log(2 << 7); //256（ビット･シフト）
-    console.log(~3); //-4（ビット反転）
-</script>
+console.log(3 & 1); //1（ビット積）
+console.log(3 | 1); //3（ビット和）
+console.log(3 ^ 1); //2（排他的ビット和）
+console.log(2 << 7); //256（ビット･シフト）
+console.log(~3); //-4（ビット反転）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年03月26日
 
 
 <a name="定数"></a>

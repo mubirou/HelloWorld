@@ -747,7 +747,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
     //デクリメント
     _huga = 0;
-    var _piyo = _huga--; //減算する前の_hugaの値を返す
+    _piyo = _huga--; //減算する前の_hugaの値を返す
     console.log(_huga); //-1
     console.log(_piyo); //0
 </script>
