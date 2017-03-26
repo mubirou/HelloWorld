@@ -286,15 +286,15 @@ class SuperClass {
     private _pSuperClass: string = "スーパークラスのプロパティ";
 
     //コンストラクタ
-    constructor() { }
+    constructor() {}
 
     //アクセサの定義（setterは省略）
-    public get pSuperClass(): string {
+    public get pSuperClass(): string { //publicは省略可能
         return this._pSuperClass;
     }
 
     //メソッドの定義
-    public mSuperClass(): string {
+    public mSuperClass(): string { //publicは省略可能
         return "スーパークラスのメソッド";
     }
 }
@@ -312,12 +312,12 @@ class SubClassA extends SuperClass { //スーパークラスを継承
     }
 
     //アクセサの定義（setterは省略）
-    public get pSubClassA(): string {
+    public get pSubClassA(): string { //publicは省略可能
         return this._pSubClassA;
     }
 
     //メソッドの定義
-    public mSubClassA(): string {
+    public mSubClassA(): string { //publicは省略可能
         return "サブクラスＡのメソッド";
     }
 }
@@ -335,12 +335,12 @@ class SubClassB extends SuperClass { //スーパークラスを継承
     }
 
     //アクセサの定義（setterは省略）
-    public get pSubClassB(): string {
+    public get pSubClassB(): string { //publicは省略可能
         return this._pSubClassB;
     }
 
     //メソッドの定義
-    public mSubClassB(): string {
+    public mSubClassB(): string { //publicは省略可能
         return "サブクラスＢのメソッド";
     }
 }
