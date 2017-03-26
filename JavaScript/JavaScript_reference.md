@@ -424,7 +424,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function() { //メソッド
 * 半角英数字、_（アンダースコア）、$（ドル記号）のみ使用可能
 * 小文字大文字は区別
 * 頭文字は「数字」は不可
-* JavaScriptの「予約語」は使えない
+* JavaScript の「予約語」は使えない
 * 全角、日本語でも動作可能だが避けるべき
 * 1行で複数を定義する場合、「var _var1 = ○○, _var2 = ○○」のように記述
 

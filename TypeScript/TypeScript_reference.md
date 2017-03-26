@@ -496,162 +496,45 @@ _classB.myMethod();
 <a name="変数とスコープ"></a>
 # <b>変数とスコープ</b>
 
-### 変数の種類
+### ルール
+* 半角英数字、_（アンダースコア）、$（ドル記号）のみ使用可能
+* 小文字大文字は区別
+* 頭文字は「数字」は不可
+* TypeScript の「予約語」は使えない
+* 全角、日本語でも動作可能だが避けるべき
+* 1行で複数定義する場合、「var _var1: number=0, _var2: number=0」のように記述する
 
-1. グローバル変数…プログラム全体からアクセス可能
-1. 擬似プライベート変数…単なるパブリック変数（アクセサを利用すべき）
-1. ローカル変数…関数またはメソッド内でのみアクセス可能
-1. ブロック変数…ブロック{}内でのみアクセス可能
+### アクセス修飾子（module内外でも同じ処理)
+1. private (同じクラスからのみアクセス可)
+1. public (全クラスからアクセス可/省略するとpublic扱い)
 
-### グローバル変数
-* Windowオブジェクトのプロパティ
-
-```
-<script>
-    /*******************************************
-    グローバル変数定義
-    （関数の外部で定義するとグローバル変数扱い）
-    *******************************************/
-    var _global = "グローバル変数"; //varは省略可
-    //this._global = "グローバル変数"; //上記と同じ意味
-    //window._global = "グローバル変数"; //上記と同じ意味
-
-    /*****************************
-    関数内でのグローバル変数の扱い
-    *****************************/
-    function myFunction() {
-        console.log(_global); //"グローバル変数"
-        console.log(this._global); //"グローバル変数"
-        console.log(window._global); //"グローバル変数"
-    }
-    myFunction();
-
-    /********************************
-    クラス内でのグローバル変数の扱い
-    ********************************/
-    class MyClass {
-        constructor() { //コンストラクタ
-            console.log(_global); //"グローバル変数"
-            console.log(this._global); //undefined（thisはMyClassのインスタンスの為）
-            console.log(window._global); //"グローバル変数"
-        }
-    }
-    new MyClass();
-</script>
-```
-
-### 擬似プライベート変数
-* 実際は単なるパブリック変数
-* 変数へのアクセスはアクセサ（getter/setter）を利用する（推奨）
+### 例文
 
 ```
-<script>
-    class MyClass {
-        //コンストラクタ
-        constructor() {
-            //擬似プライベート変数の定義
-            this.__propA = "いろは"; //変数名は__xxxにする（任意）
-        }
+//MyClass.ts
 
-        get propA() { //アクセサ（getter）
-            return this.__propA;
-        }
+class MyClass {
+    //privateメンバ変数(省略でpublic扱い／var不要／型指定は省略可)
+    private _hoge: string = "PRIVATE";
 
-        set propA(_newValue) { //アクセサ（setter）
-            this.__propA = _newValue;
-        }
+    //コンストラクタ
+    constructor() {
+        this.foo();
+        console.log(this._hoge); //"PRIVATE"(thisは省略不可)
     }
 
-    var _myClass = new MyClass();
+    private foo(): void { //voidは省略可
+        var _hoge: string = "LOCAL";//ローカル変数の定義(varは省略不可)
+        console.log(_hoge); //"LOCAL"(thisは省略不可)
+    }
+}
 
-    //良い例（アクセサを使ってアクセスする）
-    console.log(_myClass.propA); //"いろは"（getterによる値の取得）
-    _myClass.propA = "ABC"; //setアクセサによる値の変更
-    console.log(_myClass.propA); //"ABC"
-
-    //悪い例（外部から直接アクセスしてはいけない）
-    _myClass.__propA = "あいう"; //外部から直接変更できてしまう
-    console.log(_myClass.__propA); //"あいう"
-</script>
+new MyClass();
 ```
-
-### ローカル変数
-* 関数またはメソッド内でのみアクセス可能
-
-1. 関数内で定義した場合
-	```
-	<script>
-		function myFunction1() {
-			//ローカル変数定義
-			var _local = "ローカル変数"; //varは省略不可
-			console.log(_local); //"ローカル変数"
-		}
-
-		function myFunction2() {
-			//console.log(_local); //Error
-		}
-
-		myFunction1();
-		myFunction2();
-		//console.log(_local); //Error
-	</script>
-	```
-
-1. メソッド内で定義した場合
-	```
-	<script>
-		class MyClass {
-			myMethod1() {
-				var _local = "ローカル変数"; //varは省略不可
-				console.log(_local); //"ローカル変数"
-			}
-			myMethod2() {
-				//console.log(_local); //Error
-			}
-		}
-		var myClass_ = new MyClass();
-		myClass_.myMethod1();
-		myClass_.myMethod2();
-	</script>
-	```
-
-1. for文内で定義した場合
-	```
-	<script>
-		for (var i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //10（for文の外でも有効）
-	</script>
-	```
-
-### ブロック変数
-* ブロック {} 内でのみ有効
-
-1. for 文内で定義した場合
-	```
-	<script>
-		for (let i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //Error（アクセス不可）
-	</script>
-	```
-
-1. if 文内で定義した場合
-	```
-	<script>
-		if (true) {
-			let _block = "ブロック変数";
-			console.log(_block); //"ブロック変数"
-		}
-		console.log(block_); //Error（アクセス不可）
-	</script>
-	```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年03月26日
 
 
 <a name="アクセサ"></a>

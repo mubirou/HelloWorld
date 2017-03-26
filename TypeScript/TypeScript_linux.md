@@ -5,6 +5,7 @@
 
 * [Microsoft](https://github.com/Microsoft/TypeScript) によって開発され、2012年に登場した AltJS（JavaScript の代替言語）
 * [クラスベース](http://bit.ly/2lBXgbE)のオブジェクト指向プログラミング言語
+* JavaScript の上位互換
 
 ## 開発環境の構築
 
