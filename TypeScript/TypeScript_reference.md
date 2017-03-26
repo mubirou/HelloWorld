@@ -396,7 +396,7 @@ module myLibrary {
     /**************************
     myLibrary.MyClassクラス
     **************************/
-    export class MyClass extends SuperClass {
+    export class MyClass extends SuperClass { //継承も可能
         constructor() {
             super();
             console.log("new myLibrary.MyClass");
