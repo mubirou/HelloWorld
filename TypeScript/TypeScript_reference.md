@@ -443,7 +443,7 @@ class ClassA { //委譲と同じ
 }
 
 //ClassBクラス
-class ClassB extends ClassA { //ClassAを継承（ここだけ委譲と異なる）
+class ClassB extends ClassA { //ClassAを継承（ここだけ委譲版と異なる）
     constructor() {
         super();
     }
@@ -460,7 +460,7 @@ _classB.myMethod();
 //main.ts
 
 //ClassAクラス
-class ClassA { //委譲と同じ
+class ClassA { //継承と同じ
     //コンストラクタ
     constructor() {}
 
@@ -470,7 +470,7 @@ class ClassA { //委譲と同じ
 }
 
 //ClassBクラス
-class ClassB {
+class ClassB { //ここだけ継承版と異なる
     private _classA: ClassA; //private変数宣言
 
     //コンストラクタ
