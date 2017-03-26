@@ -369,7 +369,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
-* 名前の衝突を抑止するために、内部モジュールを利用します
+* 内部モジュールを利用して名前の衝突を抑止します
 
 ```
 //main.ts
@@ -378,14 +378,14 @@ module myLibrary {
     /**************************
     myLibrary.SuperClassクラス
     **************************/
-    export class SuperClass { //expoertは外から参照するために必要
+    export class SuperClass {
         private _pSuperClass: string = "スーパークラスのプロパティ";
 
         //コンストラクタ
-        constructor() { }
+        constructor() {}
 
-        //アクセサ
-        public get myProperty(): string { //publicは省略可能
+        //アクセサ（publicは省略可能）
+        public get myProperty(): string {
             return this._pSuperClass;
         }
         public set myProperty(_newValue) {
@@ -401,7 +401,7 @@ module myLibrary {
             super();
             console.log("new myLibrary.MyClass");
         }
-        public MyClassMethod(): void {
+        public MyClassMethod(): void { //publicは省略可能
             console.log("myLibrary.MyClass.MyClassMethod()");
         }
     }
