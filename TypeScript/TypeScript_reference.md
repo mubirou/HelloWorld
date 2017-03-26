@@ -219,40 +219,43 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 # <b>クラス</b>
 
 ```
-<script>
+//main.ts
 
-//長方形クラス（前方宣言が必要）
-class Rectangle {
+//長方形クラス
+class Rectangle { //前方宣言が必要
+    //プロパティ群の初期値の設定
+    private _width: number = 0;
+    private _height: number = 0;
+
     //コンストラクタ
-    constructor(_width=640, _height=480) {
-        //外からもアクセス可能だがアクセスしないようにする
-        this.__width = _width;
-        this.__height = _height;
+    constructor(_width: number = 640, _height: number = 480) { 
+        this._width = _width;
+        this._height = _height;
     }
 
     //アクセサ（getter/setter）
-    get width() {
-        return this.__width;
+    public get width(): number {
+        return this._width;
     }
-    set width(_newValue) {
-        this.__width = _newValue;
+    public set width(_newValue) {
+        this._width = _newValue;
     }
 
-    get height() {
-        return this.__height;
+    public get height(): number {
+        return this._height;
     }
-    set height(_newValue) {
-        this.__height = _newValue;
+    public set height(_newValue) {
+        this._height = _newValue;
     }
 
     //面積を計算して値を返す
-    getArea() {
-        return this.__width * this.__height;
+    public getArea(): number {
+        return this._width * this._height;
     }
 }
 
-//①インスタンスの生成
-var _rectangle = new Rectangle();
+//①インスタンスの作成
+var _rectangle: Rectangle = new Rectangle();
 
 //②プロパティの確認と変更
 console.log(_rectangle.width, _rectangle.height); //640, 480
@@ -262,13 +265,11 @@ console.log(_rectangle.width, _rectangle.height); //1920, 1080
 
 //③メソッドの実行
 console.log(_rectangle.getArea()); //2073600
-
-</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月26日  
 
 
 <a name="スーパークラスとサブクラス"></a>
