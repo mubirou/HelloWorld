@@ -276,25 +276,25 @@ console.log(_rectangle.getArea()); //2073600
 # <b>スーパークラスとサブクラス</b>
 
 ```
-<script>
+//main.ts
 
 /****************************************************
 スーパークラス
 ****************************************************/
 class SuperClass {
+    //プロパティの設定
+    private _pSuperClass: string = "スーパークラスのプロパティ";
+
     //コンストラクタ
-    constructor() {
-        //①プロパティの定義
-        this.__pSuperClass = "スーパークラスのプロパティ";
+    constructor() { }
+
+    //アクセサの定義（setterは省略）
+    public get pSuperClass(): string {
+        return this._pSuperClass;
     }
 
-    //②アクセサの定義（setterは省略）
-    get pSuperClass() {
-        return this.__pSuperClass;
-    }
-
-    //③メソッドの定義
-    mSuperClass() {
+    //メソッドの定義
+    public mSuperClass(): string {
         return "スーパークラスのメソッド";
     }
 }
@@ -302,21 +302,22 @@ class SuperClass {
 /****************************************************
 サブクラスＡ（スーパークラスを継承／多重継承は不可）
 ****************************************************/
-class SubClassA extends SuperClass {
+class SubClassA extends SuperClass { //スーパークラスを継承
+    //プロパティの定義
+    private _pSubClassA = "サブクラスＡのプロパティ";
+
     //コンストラクタ
     constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassA = "サブクラスＡのプロパティ";
+        super(); //必須
     }
 
-    //②アクセサの定義（setterは省略）
-    get pSubClassA() {
-        return this.__pSubClassA;
+    //アクセサの定義（setterは省略）
+    public get pSubClassA(): string {
+        return this._pSubClassA;
     }
 
-    //③メソッドの定義
-    mSubClassA() {
+    //メソッドの定義
+    public mSubClassA(): string {
         return "サブクラスＡのメソッド";
     }
 }
@@ -324,21 +325,22 @@ class SubClassA extends SuperClass {
 /****************************************************
 サブクラスＢ（スーパークラスを継承／多重継承は不可）
 ****************************************************/
-class SubClassB extends SuperClass {
+class SubClassB extends SuperClass { //スーパークラスを継承
+    //プロパティの定義
+    private _pSubClassB = "サブクラスＢのプロパティ";
+
     //コンストラクタ
     constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassB = "サブクラスＢのプロパティ";
+        super(); //必須
     }
 
-    //②アクセサの定義（setterは省略）
-    get pSubClassB() {
-        return this.__pSubClassB;
+    //アクセサの定義（setterは省略）
+    public get pSubClassB(): string {
+        return this._pSubClassB;
     }
 
-    //③メソッドの定義
-    mSubClassB() {
+    //メソッドの定義
+    public mSubClassB(): string {
         return "サブクラスＢのメソッド";
     }
 }
@@ -346,26 +348,22 @@ class SubClassB extends SuperClass {
 /****************************************************
 実行
 ****************************************************/
-//サブクラスＡのインスタンス
-var _subclassA = new SubClassA();
+var _subclassA: SubClassA = new SubClassA();
 console.log(_subclassA.pSuperClass); //"スーパークラスのプロパティ"
 console.log(_subclassA.pSubClassA); //"サブクラスＡのプロパティ"
 console.log(_subclassA.mSuperClass()); //"スーパークラスのメソッド"
 console.log(_subclassA.mSubClassA()); //"サブクラスＡのメソッド"
 
-//サブクラスＢのインスタンス
-var _subclassB = new SubClassB();
+var _subclassB: SubClassB = new SubClassB();
 console.log(_subclassB.pSuperClass); //"スーパークラスのプロパティ"
 console.log(_subclassB.pSubClassB); //"サブクラスＢのプロパティ"
 console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
 console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
-
-</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月26日  
 
 
 <a name="名前空間"></a>
