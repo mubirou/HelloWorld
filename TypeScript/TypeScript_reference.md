@@ -12,8 +12,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-***
 * [アクセサ （getter / setter）](#アクセサ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -237,14 +237,14 @@ class Rectangle { //前方宣言が必要
     public get width(): number {
         return this._width;
     }
-    public set width(_newValue) {
+    public set width(_newValue: number) {
         this._width = _newValue;
     }
 
     public get height(): number {
         return this._height;
     }
-    public set height(_newValue) {
+    public set height(_newValue: number) {
         this._height = _newValue;
     }
 
@@ -540,59 +540,60 @@ new MyClass();
 <a name="アクセサ"></a>
 # <b>アクセサ（getter / setter）</b>
 
-### 概要
-ECMAScript 6 は、TypeScript と違い private 変数を定義することができません。そこでパブリック変数を、[Python](https://ja.wikipedia.org/wiki/Python) 風に __xxx と命名してプライベート変数扱いにします。実際は単なるパブリック変数ですので外部からアクセスできてしまいますが、必ずアクセサを使ってアクセスするようにします。
-
 ### 読書き可能なプロパティ
 ```
-<script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(_age) {
-            this.__age = _age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(newValue) {
-            this.__age = newValue;
-        }
+//MyClass.ts
+
+class Nishimura {
+    private _age: number = 0;
+
+    constructor(_age: number) {
+        this._age = _age;
     }
 
-    var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //変更が可能
-    console.log(_nishimura.age); //50
-</script>
+    get age(): number {
+        return this._age;
+    }
+
+    set age(_newValue: number) { //返値の型指定は不要
+        this._age = _newValue;
+    }
+}
+
+var _nishimura: Nishimura = new Nishimura(49);
+console.log(_nishimura.age); //49
+_nishimura.age = 50; //変更が可能
+console.log(_nishimura.age); //50
 ```
 
 ### 読取り専用のプロパティ
 ```
-<script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(_age) {
-            this.__age = _age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(_newValue) {
-            throw new Error("値の変更はできません");
-        }
+//MyClass.ts
+
+class Nishimura {
+    private _age: number = 0;
+
+    constructor(_age: number) {
+        this._age = _age;
     }
 
-    var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //Error: 値の変更はできません
-</script>
+    get age(): number {
+        return this._age;
+    }
+
+    set age(_newValue) {
+        throw new Error("値の変更はできません");
+    }
+}
+
+var _nishimura: Nishimura = new Nishimura(49);
+console.log(_nishimura.age); //49
+_nishimura.age = 50; //Error: 値の変更はできません
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年03月26日
 
 
 <a name="演算子"></a>
