@@ -16,8 +16,8 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
-***
 * [匿名関数](#匿名関数)
+***
 * [アロー関数](#アロー関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
@@ -849,48 +849,54 @@ console.log(myCanvas(1280, 720));
 # <b>匿名関数</b>
 * [アロー関数](#アロー関数)を従来の匿名式に置き換えたもの
 ```
-<script>
-    class Hello {
-        //コンストラクタ
-        constructor() {
-            this.__american = function(_name) { //匿名関数①
-                console.log(_name + "," + "Hello!");
-            }
+//xxx.ts
+class Hello {
+    //プライベート変数宣言
+    private _american: Function;
+    private _japanese: Function;
+    private _chinese: Function;
 
-            this.__japanese = function(_name) { //匿名関数②
-                console.log(_name + "、" + "こんにちは!");
-            }
+    public hello: Function; //本来はプライベート変数にしてセッターを利用すべき
 
-            this.__chinese = function(_name) { //匿名関数③
-                console.log(_name + "," + "你好!");
-            }
-
-            //パブリック変数に匿名関数を代入（前方宣言が必要）
-            this.hello = this.__american;
+    //コンストラクタ
+    constructor() {
+        this._american = function (_name) { //匿名関数①
+            console.log(_name + "," + "Hello!");
         }
 
-        //匿名関数の入替え
-        change(_language) {
-            switch (_language) {
-                case "american": this.hello = this.__american; break;
-                case "japanese": this.hello = this.__japanese; break;
-                case "chinese": this.hello = this.__chinese; break;
-            }
+        this._japanese = function (_name) { //匿名関数②
+            console.log(_name + "、" + "こんにちは!");
         }
+
+        this._chinese = function (_name) { //匿名関数③
+            console.log(_name + "," + "你好!");
+        }
+
+        //パブリック変数に匿名関数を代入（前方宣言が必要）
+        this.hello = this._american;
     }
 
-    var _hello = new Hello();
-    _hello.hello("TARO"); //"TARO,Hello!"
-    _hello.change("japanese");
-    _hello.hello("たかし"); //"たかし、こんにちは!"
-    _hello.change("chinese");
-    _hello.hello("たかし"); //"たかし, 你好!"
-</script>
+    //匿名関数の入替え
+    change(_language) {
+        switch (_language) {
+            case "american": this.hello = this._american; break;
+            case "japanese": this.hello = this._japanese; break;
+            case "chinese": this.hello = this._chinese; break;
+        }
+    }
+}
+
+var _hello: Hello = new Hello();
+_hello.hello("TARO"); //"TARO,Hello!"
+_hello.change("japanese");
+_hello.hello("たかし"); //"たかし、こんにちは!"
+_hello.change("chinese");
+_hello.hello("たかし"); //"たかし, 你好!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月27日  
 
 
 <a name="アロー関数"></a>
