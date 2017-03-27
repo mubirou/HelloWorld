@@ -23,10 +23,10 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-***
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
 * [while文](#while文)
+***
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
@@ -117,7 +117,7 @@ var _function2: Function = () => {}; //アロー関数
 console.log(typeof _function2); //"function"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月25日  
 
@@ -206,7 +206,7 @@ var _string2: string = String(["TARO", 49]);
 console.log(_string2, typeof _string2); //"TARO,49", "string"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月25日  
 
@@ -262,7 +262,7 @@ console.log(_rectangle.width, _rectangle.height); //1920, 1080
 console.log(_rectangle.getArea()); //2073600
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -355,7 +355,7 @@ console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
 console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -407,7 +407,7 @@ _myClass.myProperty = "hoge";
 console.log(_myClass.myProperty); //"hoge"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -479,7 +479,7 @@ var _classB = new ClassB();
 _classB.myMethod();
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -522,7 +522,7 @@ class MyClass {
 new MyClass();
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -579,7 +579,7 @@ console.log(_nishimura.age); //49
 _nishimura.age = 50; //Error: 値の変更はできません
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -650,7 +650,7 @@ console.log(2 << 7); //256（ビット･シフト）
 console.log(~3); //-4（ビット反転）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -689,7 +689,7 @@ console.log(MyMath.PI); //3.141592653589793
 //MyMath.PI = 3.14; //Error: 値の変更はできません
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -840,7 +840,7 @@ console.log(myCanvas("myCanvas")); //引数が1つでもエラーが出ない
 console.log(myCanvas(1280, 720));
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -894,7 +894,7 @@ _hello.change("chinese");
 _hello.hello("たかし"); //"たかし, 你好!"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -947,7 +947,7 @@ _hello.change("chinese");
 _hello.hello("たかし"); //"たかし, 你好!"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -986,7 +986,7 @@ console.log(MyMath.pow(2, 0)); //1
 console.log(MyMath.pow(2, 8)); //256
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1083,7 +1083,7 @@ if (_age <= 20) {
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1121,7 +1121,7 @@ _result = "退職";
 console.log(_result); //"現役"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1193,7 +1193,7 @@ switch (_name) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1264,7 +1264,7 @@ for (let i: number = 1; i <= 20; i++) { //iは1,2,...19,20
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1316,7 +1316,7 @@ for (let _propName in _object) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1326,56 +1326,28 @@ for (let _propName in _object) {
 
 ### 一次元配列（Array）の場合
 ```
-<script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _data of _array) {
-        console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
-    }
-</script>
+//xxx.ts
+var _array: string[] = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+for (let _data of _array) {
+    console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+}
 ```
 
 ### 二次元配列（Array）の場合
 ```
-<script>
-    var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
-    ];
-    for (let _theArray of _array) {
-        console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-    }
-</script>
+//xxx.ts
+var _array: string[][] = [
+    ["x0y0", "x1y0", "x2y0"], //0行目
+    ["x0y1", "x1y1", "x2y1"]  //1行目
+];
+for (let _theArray of _array) {
+    console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+}
 ```
 
-### 配列（Set）の場合
-```
-<script>
-    var _set = new Set();
-    _set.add("TARO");
-    _set.add("HANAKO");
-    for (let _data of _set) {
-        console.log(_data); //"TARO"→"HANAKO"
-    }
-</script>
-```
-
-### 連想配列（Map）の場合
-```
-<script>
-    var _map = new Map();
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //"RYOMA" "1836-01-03
-        //"YUKICHI" "1835-01-10"
-    }
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月27日  
 
 
 <a name="while文"></a>
@@ -1391,13 +1363,12 @@ while (ループ判定式) {
 
 * 例文
 ```
-<script>
-    var _i = 0;
-    while (_i < 10) { //ループ判定式にはboolean値しか使えない
-        console.log(_i); //0,1,2,3,4,5,6,7,8,9
-        _i++;
-    }
-</script>
+//xxx.ts
+var _i: number = 0;
+while (_i < 10) { //ループ判定式にはboolean値しか使えない
+    console.log(_i); //0,1,2,3,4,5,6,7,8,9
+    _i++;
+}
 ```
 
 ### do...while 文
@@ -1410,49 +1381,46 @@ do {
 
 * 例文
 ```
-<script>
-    var _i = 0;
-    do {
-        console.log(_i); //0 ←ループ判定式はfalseだが１回実行される
-        _i++;
-    } while (_i < 0);
-</script>
+//xxx.ts
+var _i: number = 0;
+do {
+    console.log(_i); //0 ←ループ判定式はfalseだが１回実行される
+    _i++;
+} while (_i < 0);
 ```
 
 ### while文とbreak文
 * 例文（1〜100までを出力）
 ```
-<script>
-    var _count = 0;
-    while (true) { //ループ判別式をtrueにすると無限ループに
-        _count++;
-        if (_count > 100) {
-            break; //break文を使ってループを終了（while文の次の行へ）
-        }
-        console.log(_count); //1,2,....,99,100
+//xxx.ts
+var _count: number = 0;
+while (true) { //ループ判別式をtrueにすると無限ループに
+    _count++;
+    if (_count > 100) {
+        break; //break文を使ってループを終了（while文の次の行へ）
     }
-</script>
+    console.log(_count); //1,2,....,99,100
+}
 ```
 
 ### while文とcontinue文
 * 例文（3の倍数を出力）
 ```
-<script>
-    var _i = 1;
-    while (_i <= 20) {
-        if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-            _i++;
-            continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
-        }
-        console.log(_i); //3,6,9,12,15,18 ←3の倍数
+//xxx.ts
+var _i: number = 1;
+while (_i <= 20) {
+    if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
         _i++;
+        continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
     }
-</script>
+    console.log(_i); //3,6,9,12,15,18 ←3の倍数
+    _i++;
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月27日  
 
 
 <a name="配列（Array）"></a>
@@ -1651,7 +1619,7 @@ do {
 ```
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1691,7 +1659,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1732,7 +1700,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1778,7 +1746,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1867,7 +1835,7 @@ do {
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1933,7 +1901,7 @@ var 変数 = "xxx"; //string型
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1984,7 +1952,7 @@ var 変数 = "xxx"; //string型
     1. String.replace()
     1. String.split()
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2036,7 +2004,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2078,7 +2046,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2117,7 +2085,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2167,7 +2135,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2288,7 +2256,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2339,7 +2307,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2381,7 +2349,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2483,7 +2451,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2517,7 +2485,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2559,6 +2527,6 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
     * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
