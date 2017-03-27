@@ -1104,7 +1104,7 @@ do {
 ### 更新（任意の値）
 ```
 <script>
-    var _array = ["TARO", "ICHIRO", "JIRO"];
+    var _array = ["TAKASHI", "ICHIRO", "JIRO"];
     _array[0] = "TARO"; //0番目を変更する場合
     console.log(_array); //["TARO", "ICHIRO", "JIRO"]
 </script>
