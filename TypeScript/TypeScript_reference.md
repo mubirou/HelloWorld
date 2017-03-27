@@ -28,11 +28,11 @@
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
 * [連想配列（Object）](#連想配列（Object）)
-***
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
+***
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
@@ -1632,88 +1632,33 @@ console.log(_obj.helloFunction()); //"Hello! How are you?"
 
 ### トップレベルの this
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        document.write(this); //[object Window]（＝window／省略可能）
-    </script>
-</head>
-</html>
+//xxx.ts
+document.write(this); //[object Window]（＝window／省略可能）
 ```
-* \<script src="xxx.js">\</script> として外部の xxx.js を読み込んだ場合も同様
 
 ### クラス内の this
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                document.write(this); //[object Object]（MyClassのインスタンス）
-                this.__hoge = "擬似プライベート変数"; //thisは省略不可
-            }
-            get hoge() { //アクセサ（getter）
-                return this.__hoge; //thisは省略不可
-            }
-        }
-        var _myClass = new MyClass();
-        console.log(_myClass.hoge); //"擬似プライベート変数"
-    </script>
-</head>
-</html>
-```
+//xxx.ts
+class MyClass {
+    private _hoge: string;
 
-* クラス内では this / var / let / const の何れかを指定する必要があり省略は不可
+    constructor() {
+        console.log(this); //MyClass {}（MyClassクラスのインスタンス）
+        this._hoge = "プライベート変数"; //thisは省略不可
+    }
 
-### イベントハンドラメソッド内の this
-* 概要  
-独自クラスを作成し、JavaScript 標準のイベント（mousedown 等）のイベントリスナーを記述した場合、リスナー関数内で自分自身（＝クラス）を参照したい場合がよくあります。しかし、this はイベントリスナーの対象となるオブジェクトを参照します。そこでワンクション置くことでクラスを参照できるようにしたのが以下のサンプルです。
+    public get hoge(): string { //アクセサ（getter）
+        return this._hoge; //thisは省略不可
+    }
+}
 
-* 例文
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                this.__image = document.getElementById("image");
-
-                //イベントハンドラメソッド内でthis==Canvasオブジェクトとする為
-                this.__mousedown_image = (_e) => { 
-                    this.__mousedown_image_method(_e);
-                }
-
-                //Image用イベントハンドラの定義
-                this.__image.addEventListener("mousedown", this.__mousedown_image, false);
-            }
-
-            //MyClass.__mousedown_image（アロー関数）からの呼出し
-            __mousedown_image_method(_mouseEvent) {
-                console.log(this); //MyClass
-            }
-        }
-        addEventListener("load", load_window, false);
-        function load_window() {
-            new MyClass();
-        }
-    </script>
-</head>
-
-<body>
-    <img id="image" src="sample.png">
-</body>
-</html>
+var _myClass: MyClass = new MyClass();
+console.log(_myClass.hoge); //"プライベート変数"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="文字列の操作"></a>
@@ -1721,100 +1666,93 @@ console.log(_obj.helloFunction()); //"Hello! How are you?"
 
 ### 文字列の生成
 ```
-var 変数 = new String("xxx"); //object型
-var 変数 = "xxx"; //string型
+var 変数1: Object = new String("xxx"); //object型
+var 変数2: string = "xxx"; //string型
 ```
 * 上記2つは厳密には異なるが通常は意識する必要はない
 
 ### 文字列の長さを調べる
 ```
-<script>
-    var _string = "ABCDE";
-    console.log(_string.length); //5
-</script>
+//xxx.ts
+var _string: string = "ABCDE";
+console.log(_string.length); //5
 ```
 
 ### 一部分を取得
 ```
-<script>
-    var _string = "0123456789";
-    console.log(_string.substr(0, 1)); //"0" ←0文字目（先頭）〜1文字取得
-    console.log(_string.substr(-1, 1)); //"9" ←後ろから1文字目〜1文字取得
-    console.log(_string.substr(4)); //"456789" ←4文字目（0から開始）〜全て取得
-    console.log(_string.substr(4, 3)); //"456" ←4文字目（0から開始）〜3文字取得
-</script>
+//xxx.ts
+var _string: string = "0123456789";
+console.log(_string.substr(0, 1)); //"0" ←0文字目（先頭）〜1文字取得
+console.log(_string.substr(-1, 1)); //"9" ←後ろから1文字目〜1文字取得
+console.log(_string.substr(4)); //"456789" ←4文字目（0から開始）〜全て取得
+console.log(_string.substr(4, 3)); //"456" ←4文字目（0から開始）〜3文字取得
 ```
 
 ### 置換
 ```
-<script>
-    var _string = "2017年3月22日";
-    var _regExp = new RegExp("2017", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    console.log(_string.replace(_regExp, "平成29")); //平成29年3月22日
-</script>
+//xxx.ts
+var _string: string = "2017年3月27日";
+var _regExp: RegExp = new RegExp("2017", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+console.log(_string.replace(_regExp, "平成29")); //"平成29年3月27日"
 ```
 
 ### 検索
 ```
-<script>
-    var _string = "ABCDEFG-ABCDEFG";
-    var _count = 0;
-    while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
-        var _num = _string.indexOf("CD", _count);
-        console.log(_num); //2,10 ←…"CD"が見つかった場所（0から開始）を返す
-        _count = _num + 1;
-    }
-</script>
+//xxx.ts
+var _string: string = "ABCDEFG-ABCDEFG";
+var _count: number = 0;
+while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
+    var _num: number = _string.indexOf("CD", _count);
+    console.log(_num); //2,10 ←…"CD"が見つかった場所（0から開始）を返す
+    _count = _num + 1;
+}
 ```
 * 最後から検索する String.lastIndexOf() もあり
 
 ### 文字列→配列
 ```
-<script>
-    var _string = "A,B,C,D,E,F";
-    var _array = _string.split(","); //カンマ区切りで配列化
-    console.log(_array); //["A", "B", "C", "D", "E", "F"]
-</script>
+//xxx.ts
+var _string: string = "A,B,C,D,E,F";
+var _array: string[] = _string.split(","); //カンマ区切りで配列化
+console.log(_array); //["A", "B", "C", "D", "E", "F"]
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* ECMAScript 6 には以下のサンプル以外にも多くの正規表現の機能が用意されています
+* TypeScript には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
 ### 検索＆置換
 ```
-<script>
-    var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-    var _regExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    /*
-    "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
-    */
-    if (_regExp.test(_string)) { //検索
-        console.log('"吉田"は含まれています');
-        let _result = _string.replace(_regExp, "よしだ"); //置換
-        //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
-        console.log(_result);
-    } else {
-        console.log('"吉田"は含まれていません');
-    }
-</script>
+//xxx.ts
+var _string: string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+var _regExp: RegExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+/*
+"^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
+*/
+if (_regExp.test(_string)) { //検索
+    console.log('"吉田"は含まれています');
+    let _result: string = _string.replace(_regExp, "よしだ"); //置換
+    //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
+    console.log(_result);
+} else {
+    console.log('"吉田"は含まれていません');
+}
 ```
 
 ### マッチした数
 ```
-<script>
-    var _string = "059371820400381295700347891205178900517093823";
-    var _regExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    var _matchList = _string.match(_regExp);
-    console.log(_matchList); //["00", "00", "00"]
-    console.log(_matchList.length); //3（マッチした数）
-</script>
+//xxx.ts
+var _string: string = "059371820400381295700347891205178900517093823";
+var _regExp: RegExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+var _matchList: string[] = _string.match(_regExp);
+console.log(_matchList); //["00", "00", "00"]
+console.log(_matchList.length); //3（マッチした数）
 ```
 
 ### 正規表現について…
@@ -1830,28 +1768,20 @@ var 変数 = "xxx"; //string型
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="抽象クラス"></a>
 # <b>抽象クラス</b>
 
-### 概要
-* ECMAScript 6 には、TypeScript（1.6〜）にある abstract や interface キーワードはない
-* ECMAScript 6 では、継承と例外処理によって擬似的な抽象クラスを実現
-
 ### 構文
 ```
-//（擬似）抽象クラスの定義
-class Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
-        throw new Error("派生クラスで実装して下さい"); //例外処理
-    }
+abstract class Abstract○○ { //抽象クラスの定義
+    abstract 抽象メソッド名(引数①,引数②,...): 返り値の型;
 }
 
-//（擬似）抽象クラスの継承
-class 派生クラス名 extends Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
+class 派生クラス名 extends Abstract○○ { //抽象クラスの継承
+    抽象メソッド名(引数①,引数②,...): 返り値の型 {
         //実際の処理はここに記述
     }
 }
@@ -1859,30 +1789,28 @@ class 派生クラス名 extends Abstract○○ {
 
 ### 例文
 ```
-<script>
-    class AbstractClass { //（擬似）抽象クラスの定義
-        commonMethod() { //共通のメソッド
-            console.log("AbstractClass.commonMethod()");
-        }
-        eachMethod() { //抽象メソッド（実際の処理は記述しない）
-            throw new Error("サブクラスで実装して下さい"); //例外処理
-        }
+//xxx.ts
+abstract class AbstractClass { //抽象クラスの定義
+    commonMethod(): void { //共通のメソッド
+        console.log("AbstractClass.commonMethod()");
     }
-    class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
-        eachMethod() { //オーバーライドして実際の処理を記述
-            console.log("SubClass.eachMethod()"); //実際の処理
-        }
-    }
+    abstract eachMethod(): void; //抽象メソッド（実際の処理は記述しない）
+}
 
-    var _subClass = new SubClass();
-    _subClass.commonMethod(); //"AbstractClass.commonMethod()"
-    _subClass.eachMethod(); //"SubClass.eachMethod()"
-</script>
+class SubClass extends AbstractClass { //抽象クラスの継承
+    eachMethod(): void { //オーバーライドして実際の処理を記述
+        console.log("SubClass.eachMethod()"); //実際の処理
+    }
+}
+
+var _subClass: SubClass = new SubClass();
+_subClass.commonMethod(); //"AbstractClass.commonMethod()"
+_subClass.eachMethod(); //"SubClass.eachMethod()"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="superキーワード"></a>
