@@ -32,8 +32,8 @@
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
-***
 * [super キーワード](#superキーワード)
+***
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -1817,42 +1817,40 @@ _subClass.eachMethod(); //"SubClass.eachMethod()"
 # <b>super キーワード</b>
 
 ```
-<script>
-    //スーパークラス
-    class SuperClass {
-        constructor(arg) { //コンストラクタ
-            console.log("SuperClass.constructor : " + arg);
-        }
-        methodSuper(arg) {
-            console.log("SuperClass.methodSuper : " + arg);
-        }
+//xxx.ts
+//スーパークラス
+class SuperClass {
+    constructor(_arg: string) { //コンストラクタ
+        console.log("SuperClass.constructor : " + _arg);
     }
-
-    //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        constructor() { //コンストラクタ
-            //↓スーパークラスのコンストラクタの呼び出し（必須）
-            super("from SubClass");
-            //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
-        }
-        methodSub() {
-            //↓スーパークラスのメソッドを呼び出すことが可能
-            super.methodSuper("from SubClass");
-        }
+    public methodSuper(_arg: string): void {
+        console.log("SuperClass.methodSuper : " + _arg);
     }
+}
 
-    //実行
-    var _subClass = new SubClass(); 
-    //=> "SuperClass.constructor : from SubClass"
+//サブクラス
+class SubClass extends SuperClass { //スーパークラスを継承
+    constructor() { //コンストラクタ
+        //↓スーパークラスのコンストラクタの呼び出し（必須）
+        super("from SubClass");
+        //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
+    }
+    public methodSub(): void {
+        //↓スーパークラスのメソッドを呼び出すことが可能
+        super.methodSuper("from SubClass");
+    }
+}
 
-    _subClass.methodSub(); 
-    //=>"SuperClass.methodSuper : from SubClass"
-</script>
+//実行
+var _subClass: SubClass = new SubClass();
+//"SuperClass.constructor : from SubClass"
+_subClass.methodSub();
+//"SuperClass.methodSuper : from SubClass"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="オーバーライド"></a>
