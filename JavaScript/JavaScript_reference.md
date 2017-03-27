@@ -788,7 +788,7 @@ JavaScript は private 変数を定義することができません。そこで
 <a name="switch文"></a>
 # <b>switch 文</b>
 
-### 判別式がboolean値ではない場合
+### 判別式が boolean 値ではない場合
 ```
 <script>
     var _name = "TARO";
@@ -812,8 +812,8 @@ JavaScript は private 変数を定義することができません。そこで
 </script>
 ```
 
-### 判別式がboolean値の場合
-* case式に比較演算子が使われる
+### 判別式が boolean 値の場合
+* case 式に比較演算子が使われる
 ```
 <script>
     var _age = 49;

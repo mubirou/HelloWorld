@@ -1248,9 +1248,9 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 <head>
     <meta charset="UTF-8">
     <script>
-        var age_ = 49;
-        var result_ = (age_ < 60) ? "現役" : "退職";
-        console.log(result_); //"現役"
+        var _age = 49;
+        var _result = (_age < 60) ? "現役" : "退職";
+        console.log(_result); //"現役"
     </script>
 </head>
 </html>
@@ -1270,11 +1270,11 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 <head>
     <meta charset="UTF-8">
     <script>
-        var age_ = 49;
-        var result_ = (age_ < 20) ? "未成年" :
-        result_ = (age_ < 60) ? "現役" :
-        result_ = "退職";
-        console.log(result_); //"現役"
+        var _age = 49;
+        var _result = (_age < 20) ? "未成年" :
+        _result = (_age < 60) ? "現役" :
+        _result = "退職";
+        console.log(_result); //"現役"
     </script>
 </head>
 </html>
@@ -1288,7 +1288,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 <a name="switch文"></a>
 # <b>switch 文</b>
 
-### 判別式がboolean値ではない場合
+### 判別式が boolean 値ではない場合
 ```
 <script>
     var _name = "TARO";
@@ -1312,8 +1312,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-### 判別式がboolean値の場合
-* case式に比較演算子が使われる
+### 判別式が boolean 値の場合
+* case 式に比較演算子が使われる
 ```
 <script>
     var _age = 49;

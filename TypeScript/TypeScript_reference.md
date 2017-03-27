@@ -20,9 +20,9 @@
 * [アロー関数](#アロー関数)
 * [クラス定数･クラスメソッド](#クラス定数･クラスメソッド)
 * [if 文](#if文)
-***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
+***
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
@@ -1098,17 +1098,10 @@ if (_age <= 20) {
 ```
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        var age_ = 49;
-        var result_ = (age_ < 60) ? "現役" : "退職";
-        console.log(result_); //"現役"
-    </script>
-</head>
-</html>
+//xxx.ts
+var _age: number = 49;
+var _result = (_age < 60) ? "現役" : "退職";
+console.log(_result); //"現役"
 ```
 
 ### 比較式が複数の場合
@@ -1120,99 +1113,89 @@ if (_age <= 20) {
 ```
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        var age_ = 49;
-        var result_ = (age_ < 20) ? "未成年" :
-        result_ = (age_ < 60) ? "現役" :
-        result_ = "退職";
-        console.log(result_); //"現役"
-    </script>
-</head>
-</html>
+//xxx.ts
+var _age: number = 49;
+var _result: string = (_age < 20) ? "未成年" :
+_result = (_age < 60) ? "現役" :
+_result = "退職";
+console.log(_result); //"現役"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月27日  
 
 
 <a name="switch文"></a>
 # <b>switch 文</b>
 
-### 判別式がboolean値ではない場合
+### 判別式が boolean 値ではない場合
 ```
-<script>
-    var _name = "TARO";
-    switch (_name) {
-        case "TARO":
-            console.log("父"); //これが出力される
-            break;
-        case "HANAKO":
-            console.log("母");
-            break;
-        case "ICHIRO":
-            console.log("長男");
-            break;
-        case "JIRO":
-            console.log("次男");
-            break;
-        default:
-            console.log("家族以外");
-            break; //省略可
-    }
-</script>
+//xxx.ts
+var _name: string = "TARO";
+switch (_name) {
+    case "TARO":
+        console.log("父"); //これが出力される
+        break;
+    case "HANAKO":
+        console.log("母");
+        break;
+    case "ICHIRO":
+        console.log("長男");
+        break;
+    case "JIRO":
+        console.log("次男");
+        break;
+    default:
+        console.log("家族以外");
+        break; //省略可
+}
 ```
 
-### 判別式がboolean値の場合
-* case式に比較演算子が使われる
+### 判別式が boolean 値の場合
+* case 式に比較演算子が使われる
 ```
-<script>
-    var _age = 49;
-    switch (true) {
-        case _age <= 20:
-            console.log("20歳以下");
-            break;
-        case _age <= 40:
-            console.log("21〜40歳");
-            break;
-        case _age <= 60:
-            console.log("41〜60歳"); //これが出力される
-            break;
-        default:
-            console.log("61歳以上");
-            break; //省略可
-    }
-</script>
+//xxx.ts
+var _age: number = 49;
+switch (true) {
+    case _age <= 20:
+        console.log("20歳以下");
+        break;
+    case _age <= 40:
+        console.log("21〜40歳");
+        break;
+    case _age <= 60:
+        console.log("41〜60歳"); //これが出力される
+        break;
+    default:
+        console.log("61歳以上");
+        break; //省略可
+}
 ```
 
 ### break文が無い使い方
 * [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
 ```
-<script>
-    var _name = "JIRO";
-    switch (_name) {
-        case "TARO":
-        case "HANAKO":
-            console.log("親です");
-            break;
-        case "ICHIRO":
-        case "JIRO":
-            console.log("子供です"); //これが出力される
-            break;
-        default:
-            console.log("家族ではありません");
-            break; //省略可
-    }
-</script>
+//xxx.ts
+var _name: string = "JIRO";
+switch (_name) {
+    case "TARO":
+    case "HANAKO":
+        console.log("親です");
+        break;
+    case "ICHIRO":
+    case "JIRO":
+        console.log("子供です"); //これが出力される
+        break;
+    default:
+        console.log("家族ではありません");
+        break; //省略可
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月27日  
 
 
 <a name="for文"></a>
