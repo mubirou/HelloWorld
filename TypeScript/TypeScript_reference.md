@@ -27,9 +27,8 @@
 * [for...of 文](#for...of文)
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
-***
 * [連想配列（Object）](#連想配列（Object）)
-* [連想配列（Map）](#連想配列（Map）)
+***
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -1604,92 +1603,28 @@ _array.forEach(function (arg) {
 作成日：2017年03月27日  
 
 
-
 <a name="連想配列（Object）"></a>
 # <b>連想配列（Object）</b>
 
 ```
-<script>
-    //①作成
-    var _object = new Object();
-    //他にも {プロパティ名①:値, プロパティ名②:値} という方法もある
-
-    //②プロパティの追加（更新も同じ方法）
-    _object.name = "Takashi Nishimura";
-    _object.age = 49;
-
-    //③関数の追加
-    _object.hello = function() {
+//xxx.ts
+var _obj: { name: string; age: number; helloFunction: Function } = {
+    name: "Takashi Nishimura",
+    age: 49,
+    helloFunction: () => { //アロー関数
         return "Hello! How are you?";
     }
+}
 
-    //④プロパティの参照
-    console.log(_object.name); //"Takashi Nishimura"
-    console.log(_object["name"]); //配列演算子[]を使うことも可能
-    console.log(_object.age); //49
-
-    //⑤関数の実行
-    console.log(_object.hello()); //"Hello! How are you?"
-
-    //⑥全ての要素の取得
-    for (let _propName in _object) {
-        console.log(_propName + " : " + _object[_propName]);
-    }
-    //name : Takashi Nishimura
-    //age : 49
-    //hello : function() {...
-</script>
+console.log(_obj.name); //"Takashi Nishimura"
+console.log(_obj["name"]); //"Takashi Nishimura"（配列アクセスも可能）
+console.log(_obj.age); //47
+console.log(_obj.helloFunction()); //"Hello! How are you?"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
-
-
-<a name="連想配列（Map）"></a>
-# <b>連想配列（Map）</b>
-
-### [Object](http://bit.ly/2nkyLU0) との違い
-1. キーに文字列以外でも使える
-1. データの個数を調べるプロパティが用意されている
-1. Object オブジェクトを継承していない（クリーンな連想配列の生成が可能）
-
-### 例文
-```
-<script>
-    //①作成
-    var _map = new Map();
-
-    //②データの追加
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
-
-    //③データの数
-    console.log(_map.size); //2
-
-    //④データの取得
-    console.log(_map.get("RYOMA")); //"1836-01-03"
-    console.log(_map.get("YUKICHI")); //"1835-01-10"
-
-    //⑤全てのデータの取得
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //"RYOMA" "1836-01-03"
-        //"YUKICHI" "1835-01-10"
-    }
-
-    //⑥データがあるか否か
-    console.log(_map.has("SHINSAKU")); //false
-    console.log(_map.has("RYOMA")); //true
-
-    //⑦データの削除
-    _map.delete("RYOMA");
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="this"></a>
