@@ -2062,8 +2062,10 @@ var randomInt: Function = (_min: number, _max: number): number => {
 }
 
 //実験（1000万回繰返して精度を調べる）
-var _u5: number = 0, _u4: number = 0, _u3: number = 0, _u2: number = 0, _u1: number = 0;
-var _o0: number = 0, _o1: number = 0, _o2: number = 0, _o3: number = 0, _o4: number = 0, _o5: number = 0;
+var _u5: number = 0, _u4: number = 0, _u3: number = 0;
+var _u2: number = 0, _u1: number = 0, _o0: number = 0;
+var _o1: number = 0, _o2: number = 0, _o3: number = 0;
+var _o4: number = 0, _o5: number = 0;
 
 for (let i: number = 0; i < 10000000; i++) {
     switch (this.randomInt(-5, 5)) {
