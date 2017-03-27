@@ -1,5 +1,3 @@
-### <b>この項目は、書きかけの項目です</b>
-
 # <b>TypeScript 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -39,7 +37,6 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -2172,34 +2169,31 @@ var _timerID: number = setTimeout(callbackFunction, 1000); //1秒後に1回実�
 
 ### Dateオブジェクトを使う方法
 ```
-<script>
-    var _start = new Date().getTime(); //1970年からの経過時間（ミリ秒）
-    for (let i = 0; i < 1000000000; i++) { //10億回繰返す
-        //速度計測したい処理
-    }
-    var _end = new Date().getTime();
-    console.log(_end - _start); //3643（ミリ秒）
-</script>
+//xxx.ts
+var _start: number = new Date().getTime(); //1970年からの経過時間（ミリ秒）
+for (let i: number = 0; i < 1000000000; i++) { //10億回繰返す
+    //速度計測したい処理
+}
+var _end: number = new Date().getTime();
+console.log(_end - _start); //2778（ミリ秒）
 ```
 
 ### console.time() を使う方法
 * 処理時間の計測に利用可能（推奨）
 * ページ毎に10000個のタイマーが使用可能
-* 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数としてconsole.timeEnd() を実行することで経過時間が出力
+* 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数として console.timeEnd() を実行することで経過時間が出力
     ```
-    <script>
-        console.time("timerA");
-        for (let i = 0; i < 1000000000; i++) { //10億回繰返す
-            //速度計測したい処理
-        }
-        console.timeEnd("timerA"); //"timerA: 3628.869ms"
-    </script>
+    //xxx.ts
+    console.time("timerA");
+    for (let i:number = 0; i < 1000000000; i++) { //10億回繰返す
+        //速度計測したい処理
+    }
+    console.timeEnd("timerA"); //"timerA: 2776.515ms"
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
-
 
 
 <a name="外部テキストの読み込み"></a>
@@ -2216,28 +2210,26 @@ var _timerID: number = setTimeout(callbackFunction, 1000); //1秒後に1回実�
 ### テキストの読み込み
 * 上記の sample.txt と同階層に xxx.html として保存
 ```
-<script>
-    //①XMLHttpRequestオブジェクトの生成
-    var _request = new XMLHttpRequest(); //Webサーバ上で動作
+//xxx.ts
+//①XMLHttpRequestオブジェクトの生成
+var _request: XMLHttpRequest = new XMLHttpRequest();
 
-    //②イベントハンドラの定義
-    _request.onload = function() {
-        console.log(this.responseText); //⑤読み込んだテキストの表示
+//②イベントハンドラの定義
+_request.onreadystatechange = ():void => { //イベントハンドラ
+    if (_request.readyState == 4) { //リクエストが完了した場合
+        if (_request.status == 200) { //成功した場合(Webサーバ上で動作）
+            console.log(_request.responseText); //⑤読み込んだテキストの表示
+        }
     }
+}
 
-    //③ヘッダの設定
-    _request.open("GET", "sample.txt");
+//③ヘッダの設定
+_request.open("GET","sample.txt");
 
-    //④リクエストの送信
-    _request.send(null);
-</script>
+//④リクエストの送信
+_request.send(null);
 ```
-
-### テキストファイルの解析
-* 読み込んだ XMLHttpRequest.responseText の解析は次の関数/メソッドを利用する
-    * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
-    * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
