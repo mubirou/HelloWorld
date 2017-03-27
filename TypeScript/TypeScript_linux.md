@@ -65,7 +65,7 @@ $ cd /home/（ユーザー名）/デスクトップ/TypeScript
 
 1. コンパイル（.ts → .js）  
 $ tsc main.ts  
-（必要に応じて tsc main.ts --target es5 とする）
+（必要に応じて tsc xxx.ts --target es5 とする）
 
 1. main.ts ファイルと同階層に main.js ファイルが生成されたのを確認
 
