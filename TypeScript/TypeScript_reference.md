@@ -1274,7 +1274,7 @@ for (let i: number = 1; i <= 20; i++) { //iは1,2,...19,20
 
 ### 基本構文
 ```
-for (変数名 in 配列等) {
+for (var 変数名 in 配列等) {
     //配列の場合はインデックス番号、連想配列の場合はプロパティ名
     console.log(変数名);
 
@@ -1285,38 +1285,35 @@ for (変数名 in 配列等) {
 
 ### 配列（1次元）の場合
 ```
-<script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1→2→3
-        console.log(_array[_indexNum]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
-    }
-</script>
+//xxx.ts
+var _array: string[] = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+for (let _index in _array) {
+    console.log(_index); //"0"→"1"→"2"→"3""
+    console.log(_array[_index]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+}
 ```
 
 ### 配列（2次元）の場合
 ```
-<script>
-    var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
-    ];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1
-        console.log(_array[_indexNum]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-    }
-</script>
+//xxx.ts
+var _array: string[][] = [
+    ["x0y0", "x1y0", "x2y0"], //0行目
+    ["x0y1", "x1y1", "x2y1"]  //1行目
+];
+for (let _index in _array) {
+    console.log(_index); //0→1
+    console.log(_array[_index]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+}
 ```
 
 ### 連想配列（Object＝オブジェクトリテラル）の場合
 ```
-<script>
-    var _object = { name: "Takashi Nishimura", age: 49 };
-    for (let _propName in _object) {
-        console.log(_propName); //name→age
-        console.log(_object[_propName]); //"Takashi Nishimura" → 49
-    }
-</script>
+//xxx.ts
+var _object: Object = { name: "Takashi Nishimura", age: 49 };
+for (let _propName in _object) {
+    console.log(_propName); //"name"→"age"
+    console.log(_object[_propName]); //"Takashi Nishimura" → 49
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
