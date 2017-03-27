@@ -1313,7 +1313,7 @@ for (let _propName in _object) {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月27日  
 
 
 <a name="for...of文"></a>
@@ -1886,7 +1886,7 @@ _subClass.methodSub();
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="カスタムイベント"></a>
