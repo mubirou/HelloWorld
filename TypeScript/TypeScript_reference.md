@@ -824,6 +824,22 @@ console.log(_myClass.sum(1, 2)); //3（1+2）
 console.log(_myClass.sum(1, 2, 3, 4, 5)); //15（1+2+3+4+5）
 ```
 
+### 省略可能な引数
+* 引数名の直後に「?」(クエスチョンマーク)を追加することでその引数が省略可能になる
+```
+//xxx.ts
+function myCanvas(_id_or_width: any, _height?: number): string {
+    if (typeof _id_or_width == "string") {
+        return "canvasのIDは" + _id_or_width;
+    } else if (typeof _id_or_width == "number") {
+        return "canvasのサイズは" + _id_or_width + " x " + _height;
+    }
+}
+
+console.log(myCanvas("myCanvas")); //引数が1つでもエラーが出ない
+console.log(myCanvas(1280, 720));
+```
+
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
