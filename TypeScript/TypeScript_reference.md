@@ -35,11 +35,11 @@
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
-***
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
+***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -1949,120 +1949,99 @@ _robot.fight(); //"GAME OVER"
 
 ### Math.sin() : サイン（正弦）
 ```
-<script>
-    console.log(Math.sin(0)); //0（0°）
-    console.log(Math.sin(Math.PI / 2)); //1（90°）
-    console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
-    console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
-    console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
-</script>
+//xxx.ts
+console.log(Math.sin(0)); //0（0°）
+console.log(Math.sin(Math.PI / 2)); //1（90°）
+console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
+console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
+console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
 ```
 
 ### Math.cos() : コサイン（余弦）
 ```
-<script>
-    console.log(Math.cos(0)); //1（0°）
-    console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
-    console.log(Math.cos(Math.PI)); //-1（180°）
-    console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
-    console.log(Math.cos(Math.PI * 2)); //1 ←…360°
-</script>
+//xxx.ts
+console.log(Math.cos(0)); //1（0°）
+console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
+console.log(Math.cos(Math.PI)); //-1（180°）
+console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
+console.log(Math.cos(Math.PI * 2)); //1 ←…360°
 ```
 
 ### Math.atan2() : アークタンジェント2
 ```
-<script>
-    //三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
-    var _disX = Math.sqrt(3); //√3のこと
-    var _disY = 1;
-    console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
-    console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //30.000000000000004（度）
-</script>
+//xxx.ts
+//三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
+var _disX: number = Math.sqrt(3); //√3のこと
+var _disY: number = 1;
+console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
+console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //30.000000000000004（度）
 ```
 
 ### Math.PI : 円周率
 ```
-<script>
-    console.log(Math.PI); //3.141592653589793
-</script>
+//xxx.ts
+console.log(Math.PI); //3.141592653589793
 ```
 
 ### Math.floor() : 切り捨て
 ```
-<script>
-    console.log(Math.floor(1.001)); //1
-    console.log(Math.floor(1.999)); //1
-</script>
+//xxx.ts
+console.log(Math.floor(1.001)); //1
+console.log(Math.floor(1.999)); //1
 ```
 
 ### Math.ceil() : 切り上げ
 ```
-<script>
-    console.log(Math.ceil(1.001)); //2
-    console.log(Math.ceil(1.999)); //2
-</script>
+//xxx.ts
+console.log(Math.ceil(1.001)); //2
+console.log(Math.ceil(1.999)); //2
 ```
 
 ### Math.round() : 四捨五入
 ```
-<script>
-    console.log(Math.round(1.499)); //1
-    console.log(Math.round(1.500)); //2
-</script>
+//xxx.ts
+console.log(Math.round(1.499)); //1
+console.log(Math.round(1.500)); //2
 ```
 
 ### Math.abs() : 絶対値
 ```
-<script>
-    console.log(Math.abs(100)); //100
-    console.log(Math.abs(-100)); //100
-</script>
+//xxx.ts
+console.log(Math.abs(100)); //100
+console.log(Math.abs(-100)); //100
 ```
 
 ### Math.pow() : 累乗（○の□乗）
 ```
-<script>
-    console.log(Math.pow(2, 0)); //1（2の0乗）
-    console.log(Math.pow(2, 8)); //256（2の8乗）
-</script>
+//xxx.ts
+console.log(Math.pow(2, 0)); //1（2の0乗）
+console.log(Math.pow(2, 8)); //256（2の8乗）
 ```
 
 ### Math.sqrt() : 平方根（√○）
 ```
-<script>
-    console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
-    console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
-    console.log(Math.sqrt(4)); //2
-    console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
-</script>
+//xxx.ts
+console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
+console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
+console.log(Math.sqrt(4)); //2
+console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
 ```
 
 ### Math.max() : 比較（最大値）
 ```
-<script>
-    console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
-</script>
+//xxx.ts
+console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
 ```
 
 ### Math.min() : 比較（最小値）
 ```
-<script>
-    console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
-</script>
-```
-
-### Math.sign() : 符号（正か負の値か）
-```
-<script>
-    console.log(Math.sign(-0.1)); //-1（負の値）
-    console.log(Math.sign(0)); //0（0）
-    console.log(Math.sign(0.1)); //1（正の値）
-</script>
+//xxx.ts
+console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 <a name="乱数"></a>
 # <b>乱数</b>
@@ -2071,49 +2050,47 @@ _robot.fight(); //"GAME OVER"
 * 0以上、1未満（0.9999…）の値を返す
 * 現在時刻を元に random seed （乱数種）を生成
 ```
-<script>
-    console.log(Math.random()); //0.13397585139675616
-    console.log(Math.random()); //0.9903535518676447
-    console.log(Math.random()); //0.006009885271453852
-</script>
+//xxx.ts
+console.log(Math.random()); //0.13397585139675616
+console.log(Math.random()); //0.9903535518676447
+console.log(Math.random()); //0.006009885271453852
 ```
 
 ### 整数の乱数
 ```
-<script>
-    //整数の乱数を返すカスタム関数
-    randomInt = (_min, _max) => {
-        return Math.floor(Math.random() * (_max - _min + 1)) + _min;
+//xxx.ts
+//整数の乱数を返すカスタム関数
+var randomInt: Function = (_min: number, _max: number): number => {
+    return Math.floor(Math.random() * (_max - _min + 1)) + _min;
+}
+
+//実験（1000万回繰返して精度を調べる）
+var _u5: number = 0, _u4: number = 0, _u3: number = 0, _u2: number = 0, _u1: number = 0;
+var _o0: number = 0, _o1: number = 0, _o2: number = 0, _o3: number = 0, _o4: number = 0, _o5: number = 0;
+
+for (let i: number = 0; i < 10000000; i++) {
+    switch (this.randomInt(-5, 5)) {
+        case -5: _u5++; break;
+        case -4: _u4++; break;
+        case -3: _u3++; break;
+        case -2: _u2++; break;
+        case -1: _u1++; break;
+        case 0: _o0++; break;
+        case 1: _o1++; break;
+        case 2: _o2++; break;
+        case 3: _o3++; break;
+        case 4: _o4++; break;
+        case 5: _o5++; break;
     }
+}
 
-    //実験（1000万回繰返して精度を調べる）
-    var _u5 = 0, _u4 = 0, _u3 = 0, _u2 = 0, _u1 = 0;
-    var _o0 = 0, _o1 = 0, _o2 = 0, _o3 = 0, _o4 = 0, _o5 = 0;
-
-    for (let i = 0; i < 10000000; i++) {
-        switch (this.randomInt(-5, 5)) {
-            case -5: _u5++; break;
-            case -4: _u4++; break;
-            case -3: _u3++; break;
-            case -2: _u2++; break;
-            case -1: _u1++; break;
-            case  0: _o0++; break;
-            case  1: _o1++; break;
-            case  2: _o2++; break;
-            case  3: _o3++; break;
-            case  4: _o4++; break;
-            case  5: _o5++; break;
-        }
-    }
-
-    console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-    //909595 908581 908332 909483 907921 908880 909161 909607 909295 910453 908692
-</script>
+console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
+//909620 908053 909554 909910 907996 910693 908960 909539 909366 908502 907807
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="日時情報"></a>
@@ -2121,7 +2098,7 @@ _robot.fight(); //"GAME OVER"
 
 ### 書式
 ```
-var xxx = new Date();
+var xxx: Date = new Date();
 xxx.getFullYear(); //年（2015等）
 xxx.getMonth(); //月（0〜11）
 xxx.getDate(); //日（1〜31）
@@ -2134,28 +2111,27 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 ### 例文
 ```
-<script>
-    var _date = new Date();
-    console.log(_date); //"Wed Mar 22 2017 09:33:39 GMT+0900 (JST)"
-    console.log(_date.getFullYear()); //2017
-    console.log(_date.getMonth()); //2（3月）
-    console.log(_date.getDate()); //22
-    console.log(_date.getDay()); //3（水曜日）
-    console.log(_date.getHours()); //09
-    console.log(_date.getMinutes()); //33
-    console.log(_date.getSeconds()); //39
-    console.log(_date.getMilliseconds()); //559
-    //"hh:mm:ss"で現在の時間を表示する方法
-    var _h = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
-    var _m = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
-    var _s = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
-    console.log(_h + ":" + _m + ":" + _s); //"09:33:39"
-</script>
+//xxx.ts
+var _date: Date = new Date();
+console.log(_date); //Mon Mar 27 2017 16:14:44 GMT+0900 (JST)
+console.log(_date.getFullYear()); //2017
+console.log(_date.getMonth()); //2（3月）
+console.log(_date.getDate()); //27
+console.log(_date.getDay()); //1（月曜日）
+console.log(_date.getHours()); //16
+console.log(_date.getMinutes()); //14
+console.log(_date.getSeconds()); //44
+console.log(_date.getMilliseconds()); //873
+//"hh:mm:ss"で現在の時間を表示する方法
+var _h: any = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
+var _m: any = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
+var _s: any = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
+console.log(_h + ":" + _m + ":" + _s); //"16:14:44"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="タイマー"></a>
@@ -2163,101 +2139,32 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 ### 繰返し実行する
 ```
-<script>
-    _count = 0;
-    callbackFunction = () => {
-        if (++_count <= 10) { //10回繰返す場合…
-            console.log(_count, "繰返し実行したい処理");
-        } else {
-            clearInterval(_timerID); //繰返しを止める
-        }
+//xxx.ts
+var _count: number = 0;
+var callbackFunction: Function = (): void => {
+    if (++_count <= 10) { //10回繰返す場合…
+        console.log(_count, "繰返し実行したい処理");
+    } else {
+        clearInterval(_timerID); //繰返しを止める
     }
-    //↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
-    _timerID = setInterval(callbackFunction, 1000); //1秒間隔で繰返す場合
-</script>
+}
+//↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
+var _timerID: number = setInterval(callbackFunction, 1000); //1秒間隔で繰返す場合
 ```
 
 ### 一度だけ実行する
 ```
-<script>
-    callbackFunction = () => {
-        console.log("一度だけ実行したい処理");
-        clearTimeout(_timerID);
-    }
-    _timerID = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
-</script>
-```
-
-### XX 秒後にA、そのXXX 秒後にB...を実行
-* [Promise](https://mzl.la/2nHNs4B) でも同様のことが可能と思われる
-```
-<script>
-    //Task○のスーパークラス
-    class SuperTask {
-        //静的変数（delay）
-        static set delay(_newValue) { this.__delay = _newValue; }
-        static get delay() {
-            if (this.__delay == undefined) { this.__delay = 0; }
-            return this.__delay;
-        }
-
-        //静的変数（nextTask）
-        static get nextTask() { return this.__nextTask; }
-        static set nextTask(_newValue) { this.__nextTask = _newValue; }
-
-        static exec() { //静的メソッド
-            if (this.__delay == undefined) { this.__delay = 0; }
-            setTimeout(this.__callBack, this.__delay);
-        }
-    }
-
-    //TaskAクラス
-    class TaskA extends SuperTask {
-        static __callBack() {
-            var _this = TaskA;
-            //TaskAで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskAで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskBクラス
-    class TaskB extends SuperTask {
-        static __callBack() {
-            var _this = TaskB;
-            //TaskBで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskBで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskCクラス
-    class TaskC extends SuperTask {
-        static __callBack() {
-            var _this = TaskC;
-            //TaskCで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskCで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //タイマーの設定（初期値は0ミリ秒）
-    TaskA.delay = 1000;
-    TaskB.delay = 3000;
-    TaskC.delay = 10000;
-
-    //次のタスクの設定（初期値は未設定）
-    TaskA.nextTask = TaskB;
-    TaskB.nextTask = TaskC;
-
-    TaskA.exec(); //実行開始
-
-</script>
+//xxx.ts
+var callbackFunction: Function = () => {
+    console.log("一度だけ実行したい処理");
+    clearTimeout(_timerID);
+}
+var _timerID: number = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年03月27日  
 
 
 <a name="処理速度計測"></a>

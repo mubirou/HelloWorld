@@ -1815,7 +1815,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 <script>
     var _date = new Date();
-    console.log(_date); //"Thu Mar 23 2017 16:04:08 GMT+0900 (JST)"
+    console.log(_date); //Thu Mar 23 2017 16:04:08 GMT+0900 (JST)
     console.log(_date.getFullYear()); //2017
     console.log(_date.getMonth()); //2（3月）
     console.log(_date.getDate()); //23
