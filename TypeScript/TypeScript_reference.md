@@ -61,7 +61,6 @@
 ### 例文
 ```
 //xxx.ts
-
 //①boolean（論理型）
 var _boolean: boolean = true;
 console.log(_boolean, typeof _boolean); //true, "boolean"
@@ -130,8 +129,7 @@ console.log(typeof _function2); //"function"
 （ typeof 演算子 ＝ データ型を文字列で返す）
 
 ```
-//main.ts
-
+//xxx.ts
 //①boolean（論理型）
 console.log(typeof true); //"boolean"
 
@@ -157,8 +155,7 @@ console.log(typeof function() {}); //"function"
 （ instanceof 演算子 ＝ データ型が一致するか boolean 型で返す）
 
 ```
-//main.ts
-
+//xxx.ts
 //①boolean（論理型）
 //console.log(true instanceof Boolean); //error（false）
 console.log(new Boolean(true) instanceof Boolean); //true
@@ -181,8 +178,7 @@ console.log(function() {} instanceof Function); //true
 
 ### データ型のキャスト（変換）
 ```
-//main.ts
-
+//xxx.ts
 //①数値→boolean型
 var _boolean: boolean = Boolean(1);
 console.log(_boolean, typeof _boolean); //true, "boolean"
@@ -219,8 +215,7 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 # <b>クラス</b>
 
 ```
-//main.ts
-
+//xxx.ts
 //長方形クラス
 class Rectangle { //前方宣言が必要
     //プロパティ群の初期値の設定
@@ -276,8 +271,7 @@ console.log(_rectangle.getArea()); //2073600
 # <b>スーパークラスとサブクラス</b>
 
 ```
-//main.ts
-
+//xxx.ts
 /****************************************************
 スーパークラス
 ****************************************************/
@@ -372,8 +366,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 * 内部モジュールを利用して名前の衝突を抑止します
 
 ```
-//main.ts
-
+//xxx.ts
 module myLibrary {
     /**************************
     myLibrary.SuperClassクラス
@@ -430,8 +423,7 @@ console.log(_myClass.myProperty); //"hoge"
 ### 継承
 
 ```
-//main.ts
-
+//xxx.ts
 //ClassAクラス
 class ClassA { //委譲と同じ
     //コンストラクタ
@@ -457,8 +449,7 @@ _classB.myMethod();
 ### 委譲
 
 ```
-//main.ts
-
+//xxx.ts
 //ClassAクラス
 class ClassA { //継承と同じ
     //コンストラクタ
@@ -511,8 +502,7 @@ _classB.myMethod();
 ### 例文
 
 ```
-//MyClass.ts
-
+//xxx.ts
 class MyClass {
     //privateメンバ変数(省略でpublic扱い／var不要／型指定は省略可)
     private _hoge: string = "PRIVATE";
@@ -542,8 +532,7 @@ new MyClass();
 
 ### 読書き可能なプロパティ
 ```
-//MyClass.ts
-
+//xxx.ts
 class Nishimura {
     private _age: number = 0;
 
@@ -568,8 +557,7 @@ console.log(_nishimura.age); //50
 
 ### 読取り専用のプロパティ
 ```
-//MyClass.ts
-
+//xxx.ts
 class Nishimura {
     private _age: number = 0;
 
@@ -602,7 +590,7 @@ _nishimura.age = 50; //Error: 値の変更はできません
 ### 算術演算子
 （複合代入演算子 += -= *= /= %= などもあり）
 ```
-//main.ts
+//xxx.ts
 console.log(3 + 2); //5 (可算)
 console.log(5 - 8); //-3 (減算)
 console.log(3 * 4); //12 (乗算)
@@ -613,8 +601,7 @@ console.log(8 / 3); //2.6666666666666665（除算)
 
 ### 後ろに付けるインクリメント／デクリメント
 ```
-//main.ts
-
+//xxx.ts
 //インクリメント
 var _huga: number = 0;
 var _piyo: number = _huga++; //加算する前の_hugaの値を返す
@@ -630,8 +617,7 @@ console.log(_piyo); //0
 
 ### 前に付けるインクリメント／デクリメント
 ```
-//main.ts
-
+//xxx.ts
 //インクリメント
 var _huga: number = 0;
 var _piyo: number = ++_huga; //加算後の_hugaの値を返す
@@ -647,7 +633,7 @@ console.log(_piyo); //-1
 
 ### その他の演算子
 ```
-//main.ts
+//xxx.ts
 console.log(true && true); //true（論理積）
 console.log(true || false); //true（論理和）
 console.log(! true); //false（否定）
@@ -668,15 +654,13 @@ console.log(~3); //-4（ビット反転）
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
-
 <a name="定数"></a>
 # <b>定数</b>
 
 ### 通常の定数
 
 ```
-//main.ts
-
+//xxx.ts
 //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
 const MY_NAME: string = "Takashi Nishimura";
 console.log(MY_NAME); //"Takashi Nishimura"
@@ -685,8 +669,7 @@ console.log(MY_NAME); //"Takashi Nishimura"
 
 ### クラス定数（静的定数）
 ```
-//main.ts
-
+//xxx.ts
 class MyMath {
     constructor() {
         //↓このような記述はできない
@@ -716,140 +699,134 @@ console.log(MyMath.PI); //3.141592653589793
 
 
 ### パブリックメソッド
-* アクセス修飾子が存在しないため、メソッドは全てパブリックメソッド扱いになる
 ```
-<script>
-    //○○.js
-    class MyClass {
-        tashizan(_start, _end) {
-            var _result = 0; //ローカル変数（関数内のみ有効）
-            for (let _i = _start; _i <= _end; _i++) {
-                //_i はブロック変数（ブロック {} 内のみ有効）
-                _result += _i;
-            }
-            return _result;
+//xxx.ts
+class MyClass {
+    public tashizan(_start: number, _end: number): number {
+        var _result: number = 0; //ローカル変数（関数内のみ有効）
+        for (var _i = _start; _i <= _end; _i++) {
+            //_i はブロック変数（ブロック {} 内のみ有効）
+            _result += _i;
         }
+        return _result;
+    }
+}
+
+var _myClass: MyClass = new MyClass();
+console.log(_myClass.tashizan(1, 10)); //55
+console.log(_myClass.tashizan(1, 100)); //5050
+```
+
+### プライベートメソッド
+```
+//xxx.ts
+class Omikuji {
+    //コンストラクタ
+    constructor() {
+        var _resultList: string[] = ["大吉", "吉", "中吉", "小吉", "凶"];
+        console.log(_resultList[this.randomInt(0, 4)]);
     }
 
-    var _myClass = new MyClass();
-    console.log(_myClass.tashizan(1, 10)); //55
-    console.log(_myClass.tashizan(1, 100)); //5050
-</script>
-```
-
-### 擬似プライベートメソッド
-* 実際は単なるパブリックメソッド
-* アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
-```
-<script>
-    class Omikuji {
-        //コンストラクタ
-        constructor() {
-            var _resultList = ["大吉", "吉", "中吉", "小吉", "凶"];
-            console.log(_resultList[this.__randomInt(0, 4)]);
-        }
-
-        __randomInt(_min, _max) { //（擬似）プライベートメソッド
-            var _tmp = _max - _min + 1;
-            return Math.floor(Math.random() * _tmp) + _min;
-        }
+    private randomInt(_min: number, _max: number): number {
+        var _tmp: number = _max - _min + 1;
+        return Math.floor(Math.random() * _tmp) + _min;
     }
+}
 
-    new Omikuji(); //大吉、吉、中吉、小吉、凶のいずれか
-</script>
+new Omikuji(); //大吉、吉、中吉、小吉、凶のいずれか
 ```
 
 ### コンストラクタ
 ```
-<script>
-    class Point {
-        //コンストラクタ
-        constructor(_x = 0, _y = 0) {
-            //（擬似）プライベート変数の定義（初期化）
-            this.__x = _x;
-            this.__y = _y;
-        }
-
-        //アクセサ（getter）
-        get x() { return this.__x; }
-        get y() { return this.__y; }
-
-        //アクセサ（setter）
-        set x(newValue) { this.__x = newValue; }
-        set y(newValue) { this.__y = newValue; }
+//xxx.ts
+class Point {
+    //プライベート変数宣言
+    private _x: number;
+    private _y: number;
+    
+    //コンストラクタ
+    constructor(_x: number = 0, _y: number = 0) {
+        this._x = _x;
+        this._y = _y;
     }
 
-    var _point = new Point(100, 150); //ここでコンストラクタを呼び出す
-    console.log(_point.x); //100
-    console.log(_point.y); //150
-</script>
+    //アクセサ（getter）
+    public get x(): number { return this._x; }
+    public get y(): number { return this._y; }
+
+    //アクセサ（setter）
+    public set x(_newValue) { this._x = _newValue; }
+    public set y(_newValue) { this._y = _newValue; }
+}
+
+var _point: Point = new Point(100, 150); //ここでコンストラクタを呼び出す
+console.log(_point.x); //100
+console.log(_point.y); //150
 ```
 
 ### 静的メソッド（クラスメソッド）
 * インスタンス化せずにメソッドを利用することが可能
 ```
-<script>
-    class MyMath {
-        //静的メソッド（static メソッド名()）
-        static pow(arg1, arg2) {
-            if (arg2 == 0) { return 1; } //0乗対策
-            var _result = arg1;
-            for (let _i = 1; _i < arg2; _i++) {
-                _result = _result * arg1;
-            }
-            return _result;
+//xxx.ts
+class MyMath {
+    //静的メソッド（static メソッド名()）
+    public static pow(_arg1: number, _arg2: number): number {
+        if (_arg2 == 0) { return 1; } //0乗対策
+        var _result: number = _arg1;
+        for (var i: number = 1; i < _arg2; i++) {
+            _result = _result * _arg1;
         }
+        return _result;
     }
+}
 
-    console.log(MyMath.pow(2, 0)); //1（2の0乗）
-    console.log(MyMath.pow(2, 1)); //2（2の1乗）
-    console.log(MyMath.pow(2, 8)); //256（2の8乗）
-</script>
+console.log(MyMath.pow(2, 0)); //1（2の0乗）
+console.log(MyMath.pow(2, 1)); //2（2の1乗）
+console.log(MyMath.pow(2, 8)); //256（2の8乗）
 ```
 
 ### デフォルト値付き引数
 * 省略可能な引数
 * 「オプション引数」とも呼ばれる
 ```
-<script>
-    class MyClass {
-        constructor() {
-            this.__point = 0; //擬似プライベート変数の定義（初期化）
-        }
-        addPoint(arg = 1) { //初期値を1とした場合
-            this.__point += arg;
-            console.log(this.__point);
-        }
+//xxx.ts
+class MyClass {
+    private _point: number = 0;
+    constructor() {}
+    public addPoint(_arg: number = 1) { //初期値を1とした場合
+        this._point += _arg;
+        console.log(this._point);
     }
+}
 
-    var _myClass = new MyClass();
-    _myClass.addPoint(); //1
-    _myClass.addPoint(10); //11
-</script>
+var _myClass: MyClass = new MyClass();
+_myClass.addPoint(); //1
+_myClass.addPoint(10); //11
 ```
 
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能
-* メソッド名(引数, ...可変長引数) のように併用も可能
+* 引数の前に「...」（ピリオド3つ）を記述（引数の値は配列になる）
 ```
-<script>
-    class MyClass {
-        sum(...args) { //...引数名 で可変長引数
-            for (let tmp in args) {
-                console.log(args[tmp]);
-            }
+//xxx.ts
+class MyClass {
+    sum(...args: number[]): number {
+        var _result: number = 0;
+        for (var _index in args) {
+            _result += args[_index];
         }
+        return _result;
     }
+}
 
-    var _myClass = new MyClass();
-    _myClass.sum(1, 2); //1→2
-    _myClass.sum(1, 2, 3, 4, 5); //1→2→3→4→5
-</script>
+var _myClass = new MyClass();
+console.log(_myClass.sum(1, 2)); //3（1+2）
+console.log(_myClass.sum(1, 2, 3, 4, 5)); //15（1+2+3+4+5）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年03月27日  
 
 
 <a name="匿名関数"></a>
