@@ -12,24 +12,24 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
-|コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.15.0|2016年01月|
-|Flash Player|[PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 24.0.0.221|2017年02月|
-|エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|NextGen ActionScript 0.3.1|ー|
-|ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
+|コンパイラ|[Apache Flex](https://ja.wikipedia.org/wiki/Apache_Flex) SDK 4.16.0|2017年03月|
+|Flash Player|[PlayerGlobal](http://www.adobe.com/jp/support/flashplayer/debug_downloads.html) 25.0.0.127|2017年03月|
+|エディタ|Visual Studio Code 1.10.2|2017年02月|
+|拡張機能|NextGen ActionScript 0.4.0|2017年03月|
+|ブラウザ|Mozilla Firefox 52.0.1|2017年03月|
 |その他|Java 1.8.0_121（Java SE 8）|2017年01月|
 
 1. Apache Flex SDK のインストール  
     1. https://flex.apache.org/ にアクセス
     1. [DOWNLOAD FLEX] → [SDK BINARIES] を選択
-    1. Linux Binaries : apache-flex-sdk-4.15.0-bin.tar.gz をダウンロード
+    1. Linux Binaries : apache-flex-sdk-4.16.0-bin.tar.gz をダウンロード
     1. ダウンロードした .tar.gz ファイルをデスクトップ上に「展開」
-    1. フォルダ名を apache-flex-sdk-4.15.0-bin → flex_sdk に変更
+    1. フォルダ名を apache-flex-sdk-4.16.0-bin → flex_sdk に変更
     1. 端末でフォルダの移動  
     $ sudo mv /home/（ユーザー名）/デスクトップ/flex_sdk /opt/
     1. 端末でバージョン確認  
     $ /opt/flex_sdk/bin/mxmlc -version  
-    Version 4.15.0 build 20160104
+    Version 4.16.0 build 20170305
 
 1. Java（Flex SDKに必要）のインストール
     1. 端末でバージョン確認  
@@ -47,8 +47,8 @@
     http://www.adobe.com/jp/support/flashplayer/debug_downloads.html
     1. [最新版のplayerglobal.swcをダウンロード] を選択しダウンロード
     1. /opt/flex_sdk/frameworks/libs/ に /player/11.1/ フォルダを作成
-    1. 作成したフォルダ内に、ダウンロードした playerglobal24_0.swc を複製（展開しない）
-    1. ファイル名を playerglobal24_0.swc → playerglobal.swc に変更
+    1. 作成したフォルダ内に、ダウンロードした playerglobal25_0.swc を複製（展開しない）
+    1. ファイル名を playerglobal25_0.swc → playerglobal.swc に変更
 
 1. 設定ファイルの変更
     1. コードエディタで /opt/flex_sdk/frameworks/flex-config.xml を開く
@@ -138,4 +138,5 @@ $ /opt/flex_sdk/bin/mxmlc Main.as
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年02月22日
+作成日: 2017年02月22日  
+更新日: 2017年03月28日
