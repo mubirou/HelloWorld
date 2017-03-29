@@ -63,6 +63,7 @@ package {
     import flash.display.*;
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
+
             //①boolean（論理型）
             var _boolean: Boolean = true;
             console.log(_boolean, typeof _boolean); //[true, "boolean"]
@@ -108,6 +109,7 @@ package {
             //⑥function（関数）
             var _function: Function = function():void {}; //匿名関数
             console.log(_function); //[function] ←typeof は不可
+            
         }
     }
 }
