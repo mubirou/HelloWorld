@@ -585,40 +585,55 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 * 半角英数字、_（アンダースコア）、$（ドル記号）のみ使用可能
 * 小文字大文字は区別
 * 頭文字は「数字」は不可
-* TypeScript の「予約語」は使えない
+* ActionScript 3.0 の「予約語」は使えない
 * 全角、日本語でも動作可能だが避けるべき
-* 1行で複数定義する場合、「var _var1: number=0, _var2: number=0」のように記述する
+* 1行で複数定義する場合、「var 変数名: データ型 = 値, 変数名: データ型 = 値」のように記述する
 
 ### アクセス修飾子
+1. public （あらゆるパッケージの全クラスからアクセス可）
+1. internal （同じパッケージ内の全クラスからアクセス可／省略すると internal 扱い）
+1. protected （同じクラス or サブクラスからのみアクセス可）
 1. private (同じクラスからのみアクセス可)
-1. public (全クラスからアクセス可/省略するとpublic扱い)
 
 ### 例文
 
 ```
-//xxx.ts
-class MyClass {
-    //privateメンバ変数(省略でpublic扱い／var不要／型指定は省略可)
-    private _hoge: string = "PRIVATE";
-
-    //コンストラクタ
-    constructor() {
-        this.foo();
-        console.log(this._hoge); //"PRIVATE"(thisは省略不可)
-    }
-
-    private foo(): void { //voidは省略可
-        var _hoge: string = "LOCAL";//ローカル変数の定義(varは省略不可)
-        console.log(_hoge); //"LOCAL"(thisは省略不可)
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            new MyClass(); //実行
+        }
     }
 }
 
-new MyClass();
+class MyClass {
+    private var _hoge: String = "PRIVATE"; //privateを省略するとinternal扱い
+
+    //コンストラクタ
+    public function MyClass() {
+        foo();
+        console.log(_hoge); //["PRIVATE"]
+    }
+
+    private function foo(): void {
+        var _hoge: String = "LOCAL"; //ローカル変数の定義
+        console.log(_hoge); //["LOCAL"]
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日
+作成日：2017年03月29日
 
 
 <a name="アクセサ"></a>
