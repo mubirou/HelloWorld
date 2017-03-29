@@ -14,8 +14,8 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-***
 * [定数](#定数)
+***
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
 * [アロー関数](#アロー関数)
@@ -862,41 +862,36 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="定数"></a>
 # <b>定数</b>
 
-### 通常の定数
-
 ```
-//xxx.ts
-//定数名は慣例的に大文字英字（ENTER_FRAMEなど）
-const MY_NAME: string = "Takashi Nishimura";
-console.log(MY_NAME); //"Takashi Nishimura"
-//MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
-```
-
-### クラス定数（静的定数）
-```
-//xxx.ts
-class MyMath {
-    constructor() {
-        //↓このような記述はできない
-        //public static const PI = 3.141592653589793;
-    }
-
-    public static get PI(): number {
-        return 3.141592653589793;
-    }
-
-    public static set PI(_newValue) {
-        throw new Error("値の変更はできません");
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //クラス定数の参照
+            console.log(MyMath.PI); //[3.141592653589793]
+            //MyMath.PI = 3.14; //Error（値の変更はできません）
+        }
     }
 }
 
-console.log(MyMath.PI); //3.141592653589793
-//MyMath.PI = 3.14; //Error: 値の変更はできません
+class MyMath {
+    //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
+    public static const PI: Number = 3.141592653589793; //クラス定数（静的定数）
+    public function MyMath() {} //コンストラクタ
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日  
+作成日：2017年03月29日  
 
 
 <a name="メソッド"></a>
