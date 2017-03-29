@@ -1,6 +1,6 @@
 ### この項目は、書きかけの項目です。
 
-# <b>ActionScript 基礎文法</b>
+# <b>ActionScript 3.0 基礎文法</b>
 
 ### <b>INDEX</b>
 
