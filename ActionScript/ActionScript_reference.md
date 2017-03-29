@@ -10,8 +10,8 @@
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -530,39 +530,52 @@ class console { //ブラウザのコンソールに出力（trace()の代替）
 ### 委譲版
 
 ```
-//xxx.ts
-//ClassAクラス
-class ClassA { //継承と同じ
-    //コンストラクタ
-    constructor() {}
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _classB: ClassB = new ClassB();
+            _classB.myMethod(); //["ClassA.myMethod"]
+        }
+    }
+}
 
-    public myMethod(): void {
+//ClassAクラス
+class ClassA { //委譲と同じ
+    public function ClassA() {} //コンストラクタ
+
+    public function myMethod(): void {
         console.log("ClassA.myMethod");
     }
 }
 
 //ClassBクラス
 class ClassB { //ここだけ継承版と異なる
-    private _classA: ClassA; //private変数宣言
+    private var _classA: ClassA; //private変数宣言
 
     //コンストラクタ
-    constructor() {
-        this._classA = new ClassA(); //オブジェクトを生成（委譲）
+    public function ClassB() {
+        _classA = new ClassA(); //オブジェクトを生成（委譲）
     }
 
-    public myMethod(): void {
-        this._classA.myMethod(); //ClassAのmyMethod()を実行
+    public function myMethod(): void {
+        _classA.myMethod(); //ClassAのmyMethod()を実行
     }
 }
 
-//実行
-var _classB = new ClassB();
-_classB.myMethod();
+class console { //ブラウザのコンソールに出力（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日
+作成日：2017年03月29日
 
 
 <a name="変数とスコープ"></a>
