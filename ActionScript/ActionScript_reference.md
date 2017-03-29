@@ -8,8 +8,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-***
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
+***
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -281,7 +281,7 @@ package {
     }
 }
 
-//長方形クラス
+//長方形クラス（通常は package 化して Rectangle
 class Rectangle {
     //プロパティ群の初期値の設定
     private var _width: uint = 0;
@@ -331,93 +331,104 @@ class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブ�
 # <b>スーパークラスとサブクラス</b>
 
 ```
-//xxx.ts
-/****************************************************
+//Main.as
+package  {
+    import flash.display.Sprite ;
+    public class Main extends Sprite {
+        public function Main() {
+            //サブクラスＡからインスタンスを生成
+            var _subClassA:SubClassA =  new SubClassA();
+            console.log(_subClassA.prop_Super); //["スーパークラスのプロパティ"]
+            console.log(_subClassA.prop_SubA); //["サブクラスＡのプロパティ"]
+            console.log(_subClassA.mSuperClass()); //["スーパークラスのメソッド"]
+            console.log(_subClassA.pSubClassA()); //["サブクラスＡのメソッド"]
+            
+             //サブクラスＢからインスタンスを生成
+            var _subClassB:SubClassB =  new SubClassB();
+            console.log(_subClassB.prop_Super); //["スーパークラスのプロパティ"]
+            console.log(_subClassB.prop_SubB); //["サブクラスＢのプロパティ"]
+            console.log(_subClassB.mSuperClass()); //["スーパークラスのメソッド"]
+            console.log(_subClassB.pSubClassB()); //["サブクラスＢのメソッド"]
+        }
+    }
+}
+
+
+/***********************************
 スーパークラス
-****************************************************/
+***********************************/
 class SuperClass {
-    //プロパティの設定
-    private _pSuperClass: string = "スーパークラスのプロパティ";
+    //プロパティの定義
+    private var _pSuperClass:String = "スーパークラスのプロパティ";
 
     //コンストラクタ
-    constructor() {}
+    public function SuperClass() {}
 
     //アクセサの定義（setterは省略）
-    public get pSuperClass(): string { //publicは省略可能
-        return this._pSuperClass;
+    public function get prop_Super(): String {
+        return _pSuperClass;
     }
 
     //メソッドの定義
-    public mSuperClass(): string { //publicは省略可能
+    public function mSuperClass(): String { 
         return "スーパークラスのメソッド";
     }
 }
 
-/****************************************************
-サブクラスＡ（スーパークラスを継承／多重継承は不可）
-****************************************************/
+
+/***********************************
+サブクラスＡ（スーパークラスを継承）
+***********************************/
 class SubClassA extends SuperClass { //スーパークラスを継承
     //プロパティの定義
-    private _pSubClassA = "サブクラスＡのプロパティ";
+    private var _pSubClassA:String = "サブクラスＡのプロパティ";
 
     //コンストラクタ
-    constructor() {
-        super(); //必須
-    }
+    public function SubClassA() {}
 
     //アクセサの定義（setterは省略）
-    public get pSubClassA(): string { //publicは省略可能
-        return this._pSubClassA;
+    public function get prop_SubA(): String {
+        return _pSubClassA;
     }
 
     //メソッドの定義
-    public mSubClassA(): string { //publicは省略可能
+    public function pSubClassA(): String {
         return "サブクラスＡのメソッド";
     }
 }
 
-/****************************************************
-サブクラスＢ（スーパークラスを継承／多重継承は不可）
-****************************************************/
+/***********************************
+サブクラスＢ（スーパークラスを継承）
+***********************************/
 class SubClassB extends SuperClass { //スーパークラスを継承
     //プロパティの定義
-    private _pSubClassB = "サブクラスＢのプロパティ";
+    private var _pSubClassB:String = "サブクラスＢのプロパティ";
 
     //コンストラクタ
-    constructor() {
-        super(); //必須
-    }
+    public function SubClassB() {}
 
     //アクセサの定義（setterは省略）
-    public get pSubClassB(): string { //publicは省略可能
-        return this._pSubClassB;
+    public function get prop_SubB(): String {
+        return _pSubClassB;
     }
 
     //メソッドの定義
-    public mSubClassB(): string { //publicは省略可能
+    public function pSubClassB(): String {
         return "サブクラスＢのメソッド";
     }
 }
 
-/****************************************************
-実行
-****************************************************/
-var _subclassA: SubClassA = new SubClassA();
-console.log(_subclassA.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassA.pSubClassA); //"サブクラスＡのプロパティ"
-console.log(_subclassA.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassA.mSubClassA()); //"サブクラスＡのメソッド"
-
-var _subclassB: SubClassB = new SubClassB();
-console.log(_subclassB.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassB.pSubClassB); //"サブクラスＢのプロパティ"
-console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
+class console { //ブラウザのコンソールに出力用（console.log()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日  
+作成日：2017年03月29日  
 
 
 <a name="名前空間"></a>
