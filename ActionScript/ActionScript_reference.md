@@ -862,13 +862,35 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="定数"></a>
 # <b>定数</b>
 
+### 通常の定数
 ```
 //Main.as
 package {
     import flash.display.*;
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
-            //クラス定数の参照
+            const MY_NAME: String = "Takashi Nishimura";
+            console.log(MY_NAME); //["Takashi Nishimura"]
+            //MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+
+### クラス定数（静的定数）
+```
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
             console.log(MyMath.PI); //[3.141592653589793]
             //MyMath.PI = 3.14; //Error（値の変更はできません）
         }
@@ -877,7 +899,7 @@ package {
 
 class MyMath {
     //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
-    public static const PI: Number = 3.141592653589793; //クラス定数（静的定数）
+    public static const PI: Number = 3.141592653589793;
     public function MyMath() {} //コンストラクタ
 }
 
