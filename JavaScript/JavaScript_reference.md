@@ -368,7 +368,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function() { //メソッド
 
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
 
-### 継承
+### 継承版
 
 ```
 <script>
@@ -388,7 +388,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function() { //メソッド
 </script>
 ```
 
-### 委譲
+### 委譲版
 
 ```
 <script>

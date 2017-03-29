@@ -415,7 +415,7 @@ console.log(_myClass.myProperty); //"hoge"
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
 * 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
-### 継承
+### 継承版
 
 ```
 //xxx.ts
@@ -441,7 +441,7 @@ var _classB: ClassB = new ClassB();
 _classB.myMethod();
 ```
 
-### 委譲
+### 委譲版
 
 ```
 //xxx.ts

@@ -118,9 +118,9 @@ package {
 class MyClass {} //クラス
 
 class console { //ブラウザのコンソールに出力用（trace()の代替）
-    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
-        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
 ```
@@ -163,10 +163,10 @@ package {
     }
 }
 
-class console { //trace()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
-    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+class console { //ブラウザのコンソールに出力（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
-        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
 ```
@@ -192,10 +192,10 @@ package {
     }
 }
 
-class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
-    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+class console { //ブラウザのコンソールに出力（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
-        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
 ```
@@ -242,10 +242,10 @@ package {
     }
 }
 
-class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
-    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+class console { //ブラウザのコンソールに出力（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
-        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
 ```
@@ -314,10 +314,10 @@ class Rectangle {
     }
 }
 
-class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
-    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+class console { //ブラウザのコンソールに出力（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
-        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
 ```
@@ -421,9 +421,9 @@ class SubClassB extends SuperClass { //スーパークラスを継承
 }
 
 class console { //ブラウザのコンソールに出力用（console.log()の代替）
-    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
-        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
 ```
@@ -468,9 +468,9 @@ package com.xxx {
 }
 
 class console { //ブラウザのコンソールに出力用（console.log()の代替）
-    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
-        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
 ```
@@ -488,33 +488,46 @@ class console { //ブラウザのコンソールに出力用（console.log()の�
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
 * 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
-### 継承
+### 継承版
 
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _classB: ClassB = new ClassB();
+            _classB.myMethod(); //["ClassA.myMethod"]
+        }
+    }
+}
+
 //ClassAクラス
 class ClassA { //委譲と同じ
-    //コンストラクタ
-    constructor() {}
+    public function ClassA() {} //コンストラクタ
 
-    public myMethod(): void {
-        console.log("ClassA.myMethod♥");
+    public function myMethod(): void {
+        console.log("ClassA.myMethod");
     }
 }
 
 //ClassBクラス
 class ClassB extends ClassA { //ClassAを継承（ここだけ委譲版と異なる）
-    constructor() {
-        super();
+    public function ClassB() { //コンストラクタ
+        //super(); //AS3の場合無くても良い
     }
 }
 
-//実行
-var _classB: ClassB = new ClassB();
-_classB.myMethod();
+class console { //ブラウザのコンソールに出力（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
+    }
+}
 ```
 
-### 委譲
+### 委譲版
 
 ```
 //xxx.ts
