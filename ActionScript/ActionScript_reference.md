@@ -336,19 +336,21 @@ package  {
     import flash.display.Sprite ;
     public class Main extends Sprite {
         public function Main() {
+
             //サブクラスＡからインスタンスを生成
-            var _subClassA:SubClassA =  new SubClassA();
+            var _subClassA:SubClassA = new SubClassA();
             console.log(_subClassA.prop_Super); //["スーパークラスのプロパティ"]
             console.log(_subClassA.prop_SubA); //["サブクラスＡのプロパティ"]
             console.log(_subClassA.mSuperClass()); //["スーパークラスのメソッド"]
             console.log(_subClassA.pSubClassA()); //["サブクラスＡのメソッド"]
             
              //サブクラスＢからインスタンスを生成
-            var _subClassB:SubClassB =  new SubClassB();
+            var _subClassB:SubClassB = new SubClassB();
             console.log(_subClassB.prop_Super); //["スーパークラスのプロパティ"]
             console.log(_subClassB.prop_SubB); //["サブクラスＢのプロパティ"]
             console.log(_subClassB.mSuperClass()); //["スーパークラスのメソッド"]
             console.log(_subClassB.pSubClassB()); //["サブクラスＢのメソッド"]
+            
         }
     }
 }
