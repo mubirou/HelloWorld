@@ -163,7 +163,7 @@ package {
     }
 }
 
-class console { //ブラウザのコンソールに出力（trace()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -192,7 +192,7 @@ package {
     }
 }
 
-class console { //ブラウザのコンソールに出力（trace()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -242,7 +242,7 @@ package {
     }
 }
 
-class console { //ブラウザのコンソールに出力（trace()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -314,7 +314,7 @@ class Rectangle {
     }
 }
 
-class console { //ブラウザのコンソールに出力（trace()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -519,7 +519,7 @@ class ClassB extends ClassA { //ClassAを継承（ここだけ委譲版と異な
     }
 }
 
-class console { //ブラウザのコンソールに出力（trace()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -565,7 +565,7 @@ class ClassB { //ここだけ継承版と異なる
     }
 }
 
-class console { //ブラウザのコンソールに出力（trace()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
