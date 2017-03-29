@@ -117,7 +117,7 @@ package {
 
 class MyClass {} //クラス
 
-class console { //ブラウザのコンソールに出力用（trace()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -420,7 +420,7 @@ class SubClassB extends SuperClass { //スーパークラスを継承
     }
 }
 
-class console { //ブラウザのコンソールに出力用（console.log()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -467,7 +467,7 @@ package com.xxx {
     }
 }
 
-class console { //ブラウザのコンソールに出力用（console.log()の代替）
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
