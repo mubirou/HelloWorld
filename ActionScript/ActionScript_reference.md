@@ -869,6 +869,7 @@ package {
     import flash.display.*;
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
+            //実行
             const MY_NAME: String = "Takashi Nishimura";
             console.log(MY_NAME); //["Takashi Nishimura"]
             //MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
@@ -891,8 +892,9 @@ package {
     import flash.display.*;
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
+            //実行
             console.log(MyMath.PI); //[3.141592653589793]
-            //MyMath.PI = 3.14; //Error（値の変更はできません）
+            //MyMath.PI = 3.14; //Error（変更不可）
         }
     }
 }
