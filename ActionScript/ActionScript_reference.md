@@ -54,70 +54,77 @@
 1. object（全てのオブジェクトのベース）
 1. undefined（未初期化変数）
 1. function/Function（関数）  
-* 他にも null、any が利用可能
+* Object、Button、TextField、MovieClip、null などは object 型
 
 ### 例文
 ```
-//xxx.ts
-//①boolean（論理型）
-var _boolean: boolean = true;
-console.log(_boolean, typeof _boolean); //true, "boolean"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //①boolean（論理型）
+            var _boolean: Boolean = true;
+            console.log(_boolean, typeof _boolean); //[true, "boolean"]
 
+            var _boolean2: Boolean = new Boolean(true);
+            console.log(typeof _boolean2); //["boolean"]（"object"ではない）
 
-//②number（整数･浮動小数点数） ※NaNも"number"型
-var _number: number = 9007199254740998;
-//-9007199254740998〜9007199254740998（約±9000兆）まで扱える
-console.log(_number, typeof _number); //9007199254740998, "number"
+            //②number（整数･浮動小数点数） ※NaNも number 型
+            var _number: Number = 9007199254740998;
+            //-9007199254740998〜9007199254740998（約±9000兆）まで扱える
+            console.log(_number, typeof _number); //[9007199254740998, "number"]
 
-var _number2: number = 3.14159265358979323846264338327;
-console.log(_number2, typeof _number2); //3.141592653589793, "number"
+            var _number2: Number = 3.14159265358979323846264338327;
+            console.log(_number2, typeof _number2); //[3.141592653589793, "number"]
 
+            var _number3: Number = new Number(1);
+            console.log(typeof _number3); //["number"]（"object"ではない）
 
-//③string（文字列）
-var _string: string = "いろは"; //シングルまたはダブルクォーテーションで囲む
-console.log(_string, typeof _string); //"いろは", "string"
+            //③string（文字列）
+            var _string: String = "いろは"; //シングルまたはダブルクォーテーションで囲む
+            console.log(_string, typeof _string); //["いろは", "string"]
 
+            var _string2: Object = new String("1");
+            console.log(typeof _string2); //["string"]（"object"ではない）
 
-//④object（全てのオブジェクトのベース）
-var _boolean2: object = new Boolean(true);
-console.log(typeof _boolean2); //"object"（"boolean"ではない）
+            //④object（全てのオブジェクトのベース）
+            var _object: Object = { name: "TARO", age: 49 }; //連想配列
+            console.log(typeof _object); //["object"]
 
-var _number3: object = new Number(1);
-console.log(typeof _number3); //"object"（"number"ではない）
+            var _array: Object = ["A", "B", "C"]; //配列（Array）
+            console.log(typeof _array); //["object"]
 
-var _string2: object = new String("1");
-console.log(typeof _string2); //"object"（"string"ではない）
+            var _hoge2: Object = null; //null（データ不在）
+            console.log(_hoge2, typeof _hoge2); //[null, "object"]
 
-var _array: object = ["A", "B", "C"]; //配列（Array）
-console.log(typeof _array); //"object"
+            var _myClass: MyClass = new MyClass();
+            console.log(typeof _myClass); //["object"]
 
-var _object: object = { name: "TARO", age: 49 }; //連想配列
-console.log(typeof _object); //"object"
+            //⑤undefined（未初期化変数）
+            var _hoge: *; //変数宣言したのみで値が設定されていない場合
+            console.log(_hoge, typeof _hoge); //[undefined, "undefined"]
 
-var _hoge2: null = null; //null（データ不在）
-console.log(_hoge2, typeof _hoge2); //null, "object"
+            //⑥function（関数）
+            var _function: Function = function():void {}; //匿名関数
+            console.log(_function); //[function] ←typeof は不可
+        }
+    }
+}
 
-class MyClass { } //クラス（前方宣言が必要）
-var _myClass: MyClass = new MyClass();
-console.log(typeof _myClass); //"object"
+class MyClass {} //クラス
 
-
-//⑤undefined（未初期化変数）
-var _hoge: any; //変数宣言したのみで値が設定されていない場合
-console.log(_hoge, typeof _hoge); //undefined, "undefined"
-
-
-//⑥function（関数）
-var _function: Function = function () {}; //匿名関数
-console.log(typeof _function); //"function"
-
-var _function2: Function = () => {}; //アロー関数
-console.log(typeof _function2); //"function"
+class console { //trace()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
+    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月25日  
+作成日：2017年03月29日  
 
 
 <a name="データ型の操作"></a>
@@ -204,7 +211,7 @@ var _string2: string = String(["TARO", 49]);
 console.log(_string2, typeof _string2); //"TARO,49", "string"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月25日  
 
@@ -260,7 +267,7 @@ console.log(_rectangle.width, _rectangle.height); //1920, 1080
 console.log(_rectangle.getArea()); //2073600
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -353,7 +360,7 @@ console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
 console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -405,7 +412,7 @@ _myClass.myProperty = "hoge";
 console.log(_myClass.myProperty); //"hoge"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -477,7 +484,7 @@ var _classB = new ClassB();
 _classB.myMethod();
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -520,7 +527,7 @@ class MyClass {
 new MyClass();
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -577,7 +584,7 @@ console.log(_nishimura.age); //49
 _nishimura.age = 50; //Error: 値の変更はできません
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -648,7 +655,7 @@ console.log(2 << 7); //256（ビット･シフト）
 console.log(~3); //-4（ビット反転）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日
 
@@ -687,7 +694,7 @@ console.log(MyMath.PI); //3.141592653589793
 //MyMath.PI = 3.14; //Error: 値の変更はできません
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月26日  
 
@@ -838,7 +845,7 @@ console.log(myCanvas("myCanvas")); //引数が1つでもエラーが出ない
 console.log(myCanvas(1280, 720));
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -892,7 +899,7 @@ _hello.change("chinese");
 _hello.hello("たかし"); //"たかし, 你好!"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -945,7 +952,7 @@ _hello.change("chinese");
 _hello.hello("たかし"); //"たかし, 你好!"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -984,7 +991,7 @@ console.log(MyMath.pow(2, 0)); //1
 console.log(MyMath.pow(2, 8)); //256
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1081,7 +1088,7 @@ if (_age <= 20) {
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1119,7 +1126,7 @@ _result = "退職";
 console.log(_result); //"現役"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1191,7 +1198,7 @@ switch (_name) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1262,7 +1269,7 @@ for (let i: number = 1; i <= 20; i++) { //iは1,2,...19,20
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1314,7 +1321,7 @@ for (let _propName in _object) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1343,7 +1350,7 @@ for (let _theArray of _array) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1416,7 +1423,7 @@ while (_i <= 20) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1598,7 +1605,7 @@ _array.forEach(function (arg) {
 ```
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1622,7 +1629,7 @@ console.log(_obj.age); //47
 console.log(_obj.helloFunction()); //"Hello! How are you?"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1656,7 +1663,7 @@ var _myClass: MyClass = new MyClass();
 console.log(_myClass.hoge); //"プライベート変数"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1717,7 +1724,7 @@ var _array: string[] = _string.split(","); //カンマ区切りで配列化
 console.log(_array); //["A", "B", "C", "D", "E", "F"]
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1766,7 +1773,7 @@ console.log(_matchList.length); //3（マッチした数）
     1. String.replace()
     1. String.split()
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1808,7 +1815,7 @@ _subClass.commonMethod(); //"AbstractClass.commonMethod()"
 _subClass.eachMethod(); //"SubClass.eachMethod()"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1848,7 +1855,7 @@ _subClass.methodSub();
 //"SuperClass.methodSuper : from SubClass"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1887,7 +1894,7 @@ _subClass.methodSub();
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -1939,7 +1946,7 @@ _robot.fight();
 _robot.fight(); //"GAME OVER"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -2039,7 +2046,7 @@ console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
 console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -2090,7 +2097,7 @@ console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
 //909620 908053 909554 909910 907996 910693 908960 909539 909366 908502 907807
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -2131,7 +2138,7 @@ var _s: any = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSe
 console.log(_h + ":" + _m + ":" + _s); //"16:14:44"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -2164,7 +2171,7 @@ var callbackFunction: Function = () => {
 var _timerID: number = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -2196,7 +2203,7 @@ console.log(_end - _start); //2778（ミリ秒）
     console.timeEnd("timerA"); //"timerA: 2776.515ms"
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
 
@@ -2235,6 +2242,6 @@ _request.open("GET","sample.txt");
 _request.send(null);
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
+実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月27日  
