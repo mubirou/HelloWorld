@@ -9,8 +9,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
-***
 * [名前空間](#名前空間)
+***
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
@@ -436,53 +436,48 @@ class console { //ブラウザのコンソールに出力用（console.log()の�
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
-* 内部モジュールを利用して名前の衝突を抑止します
+### 概要
+* パッケージ宣言をすることでコンパイル時に名前空間が暗黙的に作成される
+* ドメインが xxx.com の場合は com フォルダの中に xxx フォルダを作成し、そこにクラスファイル（.as）を置き、「com.xxx.クラス名」でアクセスするなどして、名前空間がぶつからないようにする
 
+### 例文
+
+* ドキュメントクラス（Main.as）
 ```
-//xxx.ts
-module myLibrary {
-    /**************************
-    myLibrary.SuperClassクラス
-    **************************/
-    export class SuperClass {
-        private _pSuperClass: string = "スーパークラスのプロパティ";
+//Main.as
+package  {
+    import flash.display.Sprite;
+    import com.xxx.SomeClass; //外部クラス（SomeClass.as）をインポートする
 
-        //コンストラクタ
-        constructor() {}
-
-        //アクセサ（publicは省略可能）
-        public get myProperty(): string {
-            return this._pSuperClass;
-        }
-        public set myProperty(_newValue) {
-            this._pSuperClass = _newValue
+    public class Main extends Sprite {
+        public function Main() {
+            var _someClass: SomeClass = new SomeClass();
         }
     }
+}
+```
 
-    /**************************
-    myLibrary.MyClassクラス
-    **************************/
-    export class MyClass extends SuperClass { //継承も可能
-        constructor() {
-            super();
-            console.log("new myLibrary.MyClass");
-        }
-        public MyClassMethod(): void { //publicは省略可能
-            console.log("myLibrary.MyClass.MyClassMethod()");
+* 外部クラス（Main.as から見て ../com/xxx/SomeClass.as ファイル）
+```
+package com.xxx {
+    public class SomeClass {
+        public function SomeClass(): void {
+            console.log("SomeClass");
         }
     }
 }
 
-//実行
-var _myClass = new myLibrary.MyClass(); //"new myLibrary.MyClass"
-_myClass.MyClassMethod(); //"myLibrary.MyClass.MyClassMethod()"
-_myClass.myProperty = "hoge";
-console.log(_myClass.myProperty); //"hoge"
+class console { //ブラウザのコンソールに出力用（console.log()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日  
+作成日：2017年03月29日  
 
 
 <a name="継承と委譲"></a>
