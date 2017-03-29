@@ -109,14 +109,14 @@ package {
             //⑥function（関数）
             var _function: Function = function():void {}; //匿名関数
             console.log(_function); //[function] ←typeof は不可
-            
+
         }
     }
 }
 
 class MyClass {} //クラス
 
-class console { //trace()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
+class console { //ブラウザのコンソールに出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行に必要
     public static function log(...args: *): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
