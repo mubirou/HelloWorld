@@ -12,8 +12,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-***
 * [アクセサ （getter / setter）](#アクセサ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -641,56 +641,88 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 ### 読書き可能なプロパティ
 ```
-//xxx.ts
-class Nishimura {
-    private _age: number = 0;
-
-    constructor(_age: number) {
-        this._age = _age;
-    }
-
-    get age(): number {
-        return this._age;
-    }
-
-    set age(_newValue: number) { //返値の型指定は不要
-        this._age = _newValue;
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _nishimura: Nishimura = new Nishimura(49);
+            console.log(_nishimura.age); //[49]
+            _nishimura.age = 50; //変更が可能
+            console.log(_nishimura.age); //[50]
+        }
     }
 }
 
-var _nishimura: Nishimura = new Nishimura(49);
-console.log(_nishimura.age); //49
-_nishimura.age = 50; //変更が可能
-console.log(_nishimura.age); //50
+
+class Nishimura {
+    private var _age: int = 0;
+
+    public function Nishimura(_age: int) {
+        this._age = _age; //この場合thisは必須
+    }
+
+    public function get age(): int {
+        return _age;
+    }
+
+    public function set age(_newValue: int): void { //返値の型指定は必須
+        _age = _newValue;
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 読取り専用のプロパティ
 ```
-//xxx.ts
-class Nishimura {
-    private _age: number = 0;
-
-    constructor(_age: number) {
-        this._age = _age;
-    }
-
-    get age(): number {
-        return this._age;
-    }
-
-    set age(_newValue) {
-        throw new Error("値の変更はできません");
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _nishimura: Nishimura = new Nishimura(49);
+            console.log(_nishimura.age); //[49]
+            _nishimura.age = 50; //["Error: 値の変更はできません"]
+        }
     }
 }
 
-var _nishimura: Nishimura = new Nishimura(49);
-console.log(_nishimura.age); //49
-_nishimura.age = 50; //Error: 値の変更はできません
+
+class Nishimura {
+    private var _age: int = 0;
+
+    public function Nishimura(_age: int) {
+        this._age = _age; //この場合thisは必須
+    }
+
+    public function get age(): int {
+        return _age;
+    }
+
+    public function set age(_newValue: int): void { //返値の型指定は必須
+        console.log(new Error("値の変更はできません").toString());
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日
+作成日：2017年03月29日
 
 
 <a name="演算子"></a>
