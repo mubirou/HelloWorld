@@ -13,8 +13,8 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
-***
 * [演算子](#演算子)
+***
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
@@ -731,69 +731,133 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ### 算術演算子
 （複合代入演算子 += -= *= /= %= などもあり）
 ```
-//xxx.ts
-console.log(3 + 2); //5 (可算)
-console.log(5 - 8); //-3 (減算)
-console.log(3 * 4); //12 (乗算)
-console.log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-console.log(63 % 60); //3 (余剰)
-console.log(8 / 3); //2.6666666666666665（除算)
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            console.log(3 + 2); //[5]（可算）
+            console.log(5 - 8); //[-3]（減算）
+            console.log(3 * 4); //[12]（乗算）
+            console.log(1 + 2 * 3 - 4 / 2); //[5]（複雑な計算）
+            console.log(63 % 60); //[3]（余剰)
+            console.log(8 / 3); //[2.6666666666666665]（除算）
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 後ろに付けるインクリメント／デクリメント
 ```
-//xxx.ts
-//インクリメント
-var _huga: number = 0;
-var _piyo: number = _huga++; //加算する前の_hugaの値を返す
-console.log(_huga); //1
-console.log(_piyo); //0
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-//デクリメント
-_huga = 0;
-_piyo = _huga--; //減算する前の_hugaの値を返す
-console.log(_huga); //-1
-console.log(_piyo); //0
+            //インクリメント
+            var _huga: Number = 0;
+            var _piyo: Number = _huga++; //加算する前の_hugaの値を返す
+            console.log(_huga); //[1]
+            console.log(_piyo); //[0]
+
+            //デクリメント
+            _huga = 0;
+            _piyo = _huga--; //減算する前の_hugaの値を返す
+            console.log(_huga); //[-1]
+            console.log(_piyo); //[0]
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 前に付けるインクリメント／デクリメント
 ```
-//xxx.ts
-//インクリメント
-var _huga: number = 0;
-var _piyo: number = ++_huga; //加算後の_hugaの値を返す
-console.log(_huga); //1
-console.log(_piyo); //1
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-//デクリメント
-_huga = 0;
-_piyo = --_huga; //減算後の_hugaの値を返す
-console.log(_huga); //-1
-console.log(_piyo); //-1
+            //インクリメント
+            var _huga: Number = 0;
+            var _piyo: Number = ++_huga; //加算後の_hugaの値を返す
+            console.log(_huga); //[1]
+            console.log(_piyo); //[1]
+
+            //デクリメント
+            _huga = 0;
+            _piyo = --_huga; //減算後の_hugaの値を返す
+            console.log(_huga); //[-1]
+            console.log(_piyo); //[-1]
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### その他の演算子
 ```
-//xxx.ts
-console.log(true && true); //true（論理積）
-console.log(true || false); //true（論理和）
-console.log(! true); //false（否定）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-console.log(2 < 3); //true（比較/未満）
-console.log(2 <= 2); //true（比較/以下）
-console.log(1 == 1.0); //true（等号）
-console.log(1 != 1.0); //false（不等号）
+            console.log(true && true); //[true]（論理積）
+            console.log(true || false); //[true]（論理和）
+            console.log(! true); //[false]（否定）
 
-console.log(3 & 1); //1（ビット積）
-console.log(3 | 1); //3（ビット和）
-console.log(3 ^ 1); //2（排他的ビット和）
-console.log(2 << 7); //256（ビット･シフト）
-console.log(~3); //-4（ビット反転）
+            console.log(2 < 3); //[true]（比較/未満）
+            console.log(2 <= 2); //[true]（比較/以下）
+            console.log(1 == 1.0); //[true]（等号）
+            console.log(1 != 1.0); //[false]（不等号）
+
+            console.log(3 & 1); //[1]（ビット積）
+            console.log(3 | 1); //[3]（ビット和）
+            console.log(3 ^ 1); //[2]（排他的ビット和）
+            console.log(2 << 7); //[256]（ビット･シフト）
+            console.log(~3); //[-4]（ビット反転）
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日
+作成日：2017年03月29日
 
 <a name="定数"></a>
 # <b>定数</b>
