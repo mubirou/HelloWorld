@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
@@ -136,86 +136,122 @@ class console { //ブラウザのコンソールに出力用（trace()の代替�
 （ typeof 演算子 ＝ データ型を文字列で返す）
 
 ```
-//xxx.ts
-//①boolean（論理型）
-console.log(typeof true); //"boolean"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+ 
+            //①boolean（論理型）
+            console.log(typeof true); //["boolean"]
 
-//②number（整数･浮動小数点数）
-console.log(typeof 1); //"number"
-console.log(typeof 1.0); //"number"
+            //②number（整数･浮動小数点数）
+            console.log(typeof 1); //["number"]
+            console.log(typeof 1.0); //["number"]
 
-//③string（文字列）
-console.log(typeof "1"); //"string"
+            //③string（文字列）
+            console.log(typeof "1"); //["string"]
 
-//④object（全てのオブジェクトのベース）
-console.log(typeof {name:"TARO", age:49}); //"object"
+            //④object（全てのオブジェクトのベース）
+            console.log(typeof {name:"TARO", age:49}); //["object"]
 
-//⑤undefined（未初期化変数）
-var _hoge: any;
-console.log(typeof _hoge); //"undefined"
+            //⑤undefined（未初期化変数）
+            var _hoge: *;
+            console.log(typeof _hoge); //["undefined"]
+        }
+    }
+}
 
-//⑥function（関数）
-console.log(typeof function() {}); //"function"
+class console { //trace()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
+    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+    }
+}
 ```
 
 ### データ型を調べる②
-（ instanceof 演算子 ＝ データ型が一致するか boolean 型で返す）
+（ is 演算子 ＝ データ型が一致するか true / false で返す）
 
 ```
-//xxx.ts
-//①boolean（論理型）
-//console.log(true instanceof Boolean); //error（false）
-console.log(new Boolean(true) instanceof Boolean); //true
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-//②number（整数･浮動小数点数）
-//console.log(1 instanceof Number); //error（false）
-console.log(new Number(1) instanceof Number); //true
+            console.log(true is Boolean); //[true]
+            console.log(1 is Number); //[true]
+            console.log("1" is String); //[true]
+            console.log(new Object() is Object); //[true]
+            function hoge():void {};
+            console.log(hoge is Function); //[true]
 
-//③string（文字列）
-//console.log("あ" instanceof String); //error（false）
-console.log(new String("あ") instanceof String); //true
+        }
+    }
+}
 
-//④object（全てのオブジェクトのベース）
-console.log({name:"TARO"} instanceof Object); //true
-console.log(new Object() instanceof Object); //true
-
-//⑤function（関数）
-console.log(function() {} instanceof Function); //true
+class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
+    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+    }
+}
 ```
+*  指定のデータ型に変更できる場合は変更し、できない場合は null を返す「as 演算子」もある
 
 ### データ型のキャスト（変換）
 ```
-//xxx.ts
-//①数値→boolean型
-var _boolean: boolean = Boolean(1);
-console.log(_boolean, typeof _boolean); //true, "boolean"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-//②boolean型→number型
-var _number1: number = Number(true);
-console.log(_number1, typeof _number1); //1（falseの場合は0）, "number"
+            //①数値→boolean型
+            var _boolean: Boolean = new Boolean(1);
+            console.log(_boolean, typeof _boolean); //[true, "boolean"]
 
-//③文字列→number型
-var _number2: number = Number("3.14");
-console.log(_number2, typeof _number2); //3.14, "number"
+            //②boolean型→number型
+            var _number1: Number = Number(true);
+            console.log(_number1, typeof _number1); //[1（falseの場合は0）, "number"]
 
-var _number3: number = parseInt("3.14"); //小数点以下を切り捨てて整数化
-console.log(_number3, typeof _number3); //3, "number"
+            //③文字列→number型
+            var _number2: Number = Number("3.14");
+            console.log(_number2, typeof _number2); //[3.14, "number"]
 
-var _number4: number = parseFloat("3.14です。"); //数字以外を含む値
-console.log(_number4, typeof _number4); //3.14, "number"
+            var _number3: Number = parseInt("3.14"); //小数点以下を切り捨てて整数化
+            console.log(_number3, typeof _number3); //[3, "number"]
 
-//④数値→string型
-var _string1: string = String(100); //(100).toString() でも同じ
-console.log(_string1, typeof _string1); //"100", "string"
+            var _number4: Number = parseFloat("3.14です。"); //数字以外を含む値
+            console.log(_number4, typeof _number4); //[3.14, "number"]
 
-//⑤配列→string型
-var _string2: string = String(["TARO", 49]);
-console.log(_string2, typeof _string2); //"TARO,49", "string"
+            //④数値→string型
+            var _string1: String = String(100); //(100).toString() でも同じ
+            console.log(_string1, typeof _string1); //["100", "string"]
+
+            var _string2: String = (100).toString();
+            console.log(_string2, typeof _string2); //["100", "string"]
+
+            //⑤配列→string型
+            var _string3: String = String(["Nishimura", 49]);
+            console.log(_string3, typeof _string3); //["Nishimura,49", "string"]
+
+        }
+    }
+}
+
+class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
+    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月25日  
+作成日：2017年03月29日  
 
 
 <a name="クラス"></a>
