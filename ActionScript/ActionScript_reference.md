@@ -870,7 +870,7 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
             //実行
-            const MY_NAME: String = "Takashi Nishimura";
+            const MY_NAME: String = "Takashi Nishimura"; //定数の定義
             console.log(MY_NAME); //["Takashi Nishimura"]
             //MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
         }
@@ -901,7 +901,7 @@ package {
 
 class MyMath {
     //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
-    public static const PI: Number = 3.141592653589793;
+    public static const PI: Number = 3.141592653589793; //クラス定数の定義
     public function MyMath() {} //コンストラクタ
 }
 
