@@ -447,7 +447,7 @@ myLibrary.MyClass.prototype.MyClassMethod = function() { //メソッド
 
 
 <a name="アクセサ"></a>
-# <b>アクセサ（getter / setter）</b>
+# <b>アクセサ （getter / setter）</b>
 
 ### 概要
 JavaScript は private 変数を定義することができません。そこでパブリック変数を、[Python](https://ja.wikipedia.org/wiki/Python) 風に __xxx と命名してプライベート変数扱いにします。実際は単なるパブリック変数ですので外部からアクセスできてしまいますが、必ずアクセサを使ってアクセスするようにします。

@@ -523,7 +523,7 @@ new MyClass();
 
 
 <a name="アクセサ"></a>
-# <b>アクセサ（getter / setter）</b>
+# <b>アクセサ （getter / setter）</b>
 
 ### 読書き可能なプロパティ
 ```
