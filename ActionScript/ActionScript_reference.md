@@ -7,8 +7,8 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-***
 * [クラス](#クラス)
+***
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -258,56 +258,72 @@ class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブ�
 # <b>クラス</b>
 
 ```
-//xxx.ts
-//長方形クラス
-class Rectangle { //前方宣言が必要
-    //プロパティ群の初期値の設定
-    private _width: number = 0;
-    private _height: number = 0;
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-    //コンストラクタ
-    constructor(_width: number = 640, _height: number = 480) { 
-        this._width = _width;
-        this._height = _height;
-    }
+            //①インスタンスの作成
+            var _rectangle: Rectangle = new Rectangle();
 
-    //アクセサ（getter/setter）
-    public get width(): number {
-        return this._width;
-    }
-    public set width(_newValue: number) {
-        this._width = _newValue;
-    }
+            //②プロパティの確認と変更
+            console.log(_rectangle.width, _rectangle.height); //[640, 480]
+            _rectangle.width = 1920;
+            _rectangle.height = 1080;
+            console.log(_rectangle.width, _rectangle.height); //[1920, 1080]
 
-    public get height(): number {
-        return this._height;
-    }
-    public set height(_newValue: number) {
-        this._height = _newValue;
-    }
+            //③メソッドの実行
+            console.log(_rectangle.getArea()); //[2073600]
 
-    //面積を計算して値を返す
-    public getArea(): number {
-        return this._width * this._height;
+        }
     }
 }
 
-//①インスタンスの作成
-var _rectangle: Rectangle = new Rectangle();
+//長方形クラス
+class Rectangle {
+    //プロパティ群の初期値の設定
+    private var _width: uint = 0;
+    private var _height: uint = 0;
 
-//②プロパティの確認と変更
-console.log(_rectangle.width, _rectangle.height); //640, 480
-_rectangle.width = 1920;
-_rectangle.height = 1080;
-console.log(_rectangle.width, _rectangle.height); //1920, 1080
+    //コンストラクタ
+    public function Rectangle(_w: uint = 640, _h: uint = 480) { 
+        _width = _w;
+        _height = _h;
+    }
 
-//③メソッドの実行
-console.log(_rectangle.getArea()); //2073600
+    //アクセサ（getter/setter）
+    public function get width(): uint {
+        return _width;
+    }
+    public function set width(_newValue: uint): void {
+        _width = _newValue;
+    }
+
+    public function get height(): uint {
+        return _height;
+    }
+    public function set height(_newValue: uint): void {
+        _height = _newValue;
+    }
+
+    //面積を計算して値を返す
+    public function getArea(): uint {
+        return _width * _height;
+    }
+}
+
+class console { //console.log()の代わりにconsole.log(xxx,xxx,...)でWebブラウザのconsoleに配列として出力
+    import flash.external.ExternalInterface; //JavaScriptの実行に必要
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行する
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月26日  
+作成日：2017年03月29日  
 
 
 <a name="スーパークラスとサブクラス"></a>
