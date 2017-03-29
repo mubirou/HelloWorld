@@ -5,8 +5,8 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_win.md)）
-***
 * [データ型](#データ型)
+***
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
