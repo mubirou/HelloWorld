@@ -25,8 +25,8 @@
 * [for...in 文](#for...in文)
 * [for each...in 文](#foreach...in文)
 * [while文](#while文)
-***
 * [配列（Array）](#配列（Array）)
+***
 * [連想配列（Object）](#連想配列（Object）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
@@ -2042,180 +2042,549 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ### 作成
 * new演算子を使う方法
     ```
-    var _array1: any[] = new Array(); //空の配列を作成
-    var _array2: any[] = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
-    var _array3: string[] = new Array("A", "I");
-    var _array4: string[][] = new Array(["A","あ"], ["I","い"]); //配列のネスト
+    var _array1: Array = new Array(); //空の配列を作成
+    var _array2: Array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
+    var _array3: Array = new Array("A", "I");
+    var _array4: Array = new Array(["A","あ"], ["I","い"]); //配列のネスト
     ```
 
 * 配列リテラルを使う方法
     ```
-    var _array1: any[] = []; //空の配列を作成
-    var _array2: string[] = ["A", "I"];
-    var _array3: string[][] = [["A","あ"], ["I","い"]]; //配列のネスト
+    var _array1: Array = []; //空の配列を作成
+    var _array2: Array = ["A", "I"];
+    var _array3: Array = [["A","あ"], ["I","い"]]; //配列のネスト
     ```
 
 ### 要素の数
 ```
-//xxx.ts
-var _array: string[] = ["00", "01", "02", "03"];
-console.log(_array.length); //4
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["00", "01", "02", "03"];
+            console.log(_array.length); //[4]
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 追加（最後）
 ```
-//xxx.ts
-var _array: string[] = ["ICHIRO", "JIRO"];
-_array.push("TARO"); //カンマ（,）を使って複数同時に追加可能
-console.log(_array); //["ICHIRO", "JIRO", "TARO"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["ICHIRO", "JIRO"];
+            _array.push("TARO"); //カンマ（,）を使って複数同時に追加可能
+            for each (var _data: String in _array) {
+                console.log(_data); //["ICHIRO"]→["JIRO"]→["TARO"]
+            }
+            
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 追加（先頭）
 ```
-//xxx.ts
-var _array: string[] = ["ICHIRO", "JIRO"];
-_array.unshift("TARO"); //カンマ（,）を使って複数同時に追加可能
-console.log(_array); //["TARO", "ICHIRO", "JIRO"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["ICHIRO", "JIRO"];
+            _array.unshift("TARO"); //カンマ（,）を使って複数同時に追加可能
+            for each (var _data: String in _array) {
+                console.log(_data); //["TARO"]→["ICHIRO"]→["JIRO"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 更新（任意の値）
 ```
-//xxx.ts
-var _array: string[] = ["TAKASHI", "ICHIRO", "JIRO"];
-_array[0] = "TARO"; //0番目を変更する場合
-console.log(_array); //["TARO", "ICHIRO", "JIRO"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["TAKASHI", "ICHIRO", "JIRO"];
+            _array[0] = "TARO"; //0番目を変更する場合
+            for each (var _data: String in _array) {
+                console.log(_data); //["TARO"]→["ICHIRO"]→["JIRO"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 更新（null 値）
 ```
-//xxx.ts
-var _array: string[] = ["TARO", "ICHIRO", "JIRO"];
-_array[0] = null;
-console.log(_array); //[null, "ICHIRO", "JIRO"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["TARO", "ICHIRO", "JIRO"];
+            _array[0] = null;
+            for each (var _data: String in _array) {
+                console.log(_data); //[null]→["ICHIRO"]→["JIRO"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 削除（最後）
 ```
-//xxx.ts
-var _array: string[] = ["ICHIRO", "JIRO", "TARO"];
-console.log(_array.pop()); //"TARO"（削除した要素を返す）
-console.log(_array); //["ICHIRO", "JIRO"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["ICHIRO", "JIRO", "TARO"];
+            console.log(_array.pop()); //["TARO"]（削除した要素を返す）
+            for each (var _data: String in _array) {
+                console.log(_data); //["ICHIRO"]→["JIRO"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 削除（最初）
 ```
-//xxx.ts
-var _array: string[] = ["TARO", "ICHIRO", "JIRO"];
-console.log(_array.shift()); //"TARO"（削除した要素を返す）
-console.log(_array); //["ICHIRO", "JIRO"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["TARO", "ICHIRO", "JIRO"];
+            console.log(_array.shift()); //"TARO"（削除した要素を返す）
+            for each (var _data: String in _array) {
+                console.log(_data); //["ICHIRO"]→["JIRO"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 削除（○番目から□個）
 ```
-//xxx.ts
-var _array: string[] = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.splice(3, 2)); //["03", "04"]
-console.log(_array) //["00", "01", "02", "05"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["00", "01", "02", "03", "04", "05"];
+            var _result: Array = _array.splice(3, 2);
+            for each (var _data: String in _result) {
+                console.log(_data); //["03"]→["04"]
+            }
+            for each (var _data2: String in _array) {
+                console.log(_data2); //["00"]→["01"]→["02"]→["05"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 削除（○番目から全て）
 ```
-//xxx.ts
-var _array: string[] = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.splice(3)); //["03", "04", "05"]
-console.log(_array) //["00", "01", "02"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["00", "01", "02", "03", "04", "05"];
+            var _result: Array = _array.splice(3);
+            for each (var _data: String in _result) {
+                console.log(_data); //["03"]→["04"]→["05"]
+            }
+            for each (var _data2: String in _array) {
+                console.log(_data2); //["00"]→["01"]→["02"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 抽出（○番目から□番目）
 ```
-//xxx.ts
-var _array: string[] = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.slice(2, 4)); //["02", "03"]（4番目は含まず）
-console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["00", "01", "02", "03", "04", "05"];
+            var _result: Array = _array.slice(2, 4);
+            for each (var _data: String in _result) {
+                console.log(_data); //["02"]→["03"]（4番目は含まず）
+            }
+            for each (var _data2: String in _array) {
+                console.log(_data2); //["00"]→["01"]→["02"]→["03"]→["04"]→["05"]（元配列に変化なし）
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 抽出（○番目から全て）
 ```
-//xxx.ts
-var _array: string[] = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.slice(2)); //["02", "03", "04", "05"]
-console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+        
+            var _array: Array = ["00", "01", "02", "03", "04", "05"];
+            var _result: Array = _array.slice(2);
+            for each (var _data: String in _result) {
+                console.log(_data); //["02"]→["03"]→["04"]→["05"]
+            }
+            for each (var _data2: String in _array) {
+                console.log(_data2); //["00"]→["01"]→["02"]→["03"]→["04"]→["05"]（元配列に変化なし）
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 検索(前から）
 * 第2引数番目から、後ろに向かって検索（最初に見つかったインデックス番号を返す）
 ```
-//xxx.ts
-var _array: string[] = ["A", "B", "C", "D", "E", "F", "D"];
-console.log(_array.indexOf("D", 0)); //3（見つからない場合「-1」を返す）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["A", "B", "C", "D", "E", "F", "D"];
+            console.log(_array.indexOf("D", 0)); //[3]（見つからない場合「-1」を返す）
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 検索（後ろから）
 * 第2引数番目から、前に向かって検索（最初に見つかったインデックス番号を返す）
 ```
-//xxx.ts
-var _array: string[] = ["A", "B", "C", "D", "E", "F", "D"];
-console.log(_array.lastIndexOf("D"));
-//6（第2引数を省略すると _array.length と同じ）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["A", "B", "C", "D", "E", "F", "D"];
+            console.log(_array.lastIndexOf("D")); //[6]（第2引数を省略すると _array.length と同じ）
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 並べ替え（反転）
 ```
-//xxx.ts
-var _array: string[] = ["00", "01", "02", "03", "04", "05"];
-console.log(_array.reverse()); //["05", "04", "03", "02", "01", "00"]
-console.log(_array) //["05", "04", "03", "02", "01", "00"]（元配列も変更）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["00", "01", "02", "03", "04", "05"];
+            var _result: Array = _array.reverse();
+            for each (var _data: String in _result) {
+                console.log(_data); //["05"]→["04"]→["03"]→["02"]→["01"]→["00"]
+            }
+            for each (var _data2: String in _array) {
+                console.log(_data2); //["05"]→["04"]→["03"]→["02"]→["01"]→["00"]（元配列も変更）
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 並べ替え（ソート）
+* Array.sort() ←引数なしの場合
+    * 正順（（0... 9）>（A ... Z）>（a...z）>（あ...ん）>（ア...ン）>漢字）
+    * 全てを文字列に変換して比較（ "10" が   "3"より優先）
+
+* Array.sort(Array.DESCENDING)
+    * 逆順になる（漢字>（ン...ア）>（ん...あ）>（z...a）>（Z ... A）>（9...0））
+
+* Array.sort(Array.NUMERIC)
+    * 数値順でソート（３が10より優先）
+
+* Array.sort(Array.CASEINSENSITIVE)
+    * 大文字と小文字を区別しない
+
+* Array.sort(Array.UNIQUESORT)
+    * 同じ値を持つ複数の要素が見つかった場合ソートを中止
+
+* Array.sort(Array.UNIQUESORT)
+    * 同じ値を持つ複数の要素が見つかった場合ソートを中止
+
 ```
-//xxx.ts
-var _array: string[] = ["C", "02", "A", "01", "03", "B"];
-console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
-console.log(_array) //["01", "02", "03", "A", "B", "C"]（元配列も変更）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["C", "02", "A", "01", "03", "B"];
+            var _result: Array = _array.sort();
+            for each (var _data: String in _result) {
+                console.log(_data); //["01"]→["02"]→["03"]→["A"]→["B"]→["C"]
+            }
+            for each (var _data2: String in _array) {
+                console.log(_data2); //["01"]→["02"]→["03"]→["A"]→["B"]→["C"]（元配列も変更）
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 結合
 ```
-//xxx.ts
-var _array1: string[] = ["A", "B", "C"];
-var _array2: string[] = ["D", "E", "F"];
-var _array3: string[] = _array1.concat(_array2);
-console.log(_array3) //["A", "B", "C", "D", "E", "F"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array1: Array = ["A", "B", "C"];
+            var _array2: Array = ["D", "E", "F"];
+            var _array3: Array = _array1.concat(_array2);
+            for each (var _data: String in _array3) {
+                console.log(_data); //["A"]→["B"]→["C"]→["D"]→["E"]→["F"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 複製
 ```
-//xxx.ts
-var _original: string[] = ["A", "B", "C"];
-var _copy: string[] = _original.concat(); //複製
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-//実験（参照コピーではなく複製されているか否か）
-_original[0] = "あ";
-console.log(_original[0], _copy[0]); //"あ" "A"（参照コピーではない）
+            var _original: Array = ["A", "B", "C"];
+            var _copy: Array = _original.concat(); //複製
+
+            //実験（参照コピーではなく複製されているか否か）
+            _original[0] = "あ";
+            console.log(_original[0], _copy[0]); //["あ", "A"]（参照コピーではない）
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 文字列→配列
 ```
-//xxx.ts
-var _string: string = "A,B,C,D,E,F";
-var _array: string[] = _string.split(","); //カンマ区切りで配列化
-console.log(_array); //["A", "B", "C", "D", "E", "F"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string: String = "A,B,C,D,E,F";
+            var _array: Array = _string.split(","); //カンマ区切りで配列化
+            console.log(_array); //[Array[6]]
+            for each (var _data: String in _array) {
+                console.log(_data); //["A"]→["B"]→["C"]→["D"]→["E"]→["F"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 全要素を取り出す
 ```
-//xxx.ts
-var _array: string[] = ["A", "B", "C", "D", "E", "F"];
-_array.forEach(function (arg) {
-    console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
-});
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["A", "B", "C", "D", "E", "F"];
+            for each (var _data: String in _array) {
+                console.log(_data); //["A"]→["B"]→["C"]→["D"]→["E"]→["F"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="連想配列（Object）"></a>
