@@ -1753,7 +1753,7 @@ console.log(_matchList.length); //3（マッチした数）
 ```
 
 ### 正規表現について…
-* 文字パータンを表現するオブジェクト（ECMAScript 6 では RegExp クラス）のこと
+* 文字パータンを表現するオブジェクト（RegExp クラス）のこと
 * JavaScriptの正規表現は、ECMAScript 3 で標準化された
 * String と RegExp クラスには、次のような正規表現用のメソッドが用意されている
     1. RegExp.exec()

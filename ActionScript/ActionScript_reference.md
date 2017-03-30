@@ -29,8 +29,8 @@
 * [連想配列（Object）](#連想配列（Object）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
-***
 * [正規表現](#正規表現)
+***
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
@@ -2821,38 +2821,72 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* TypeScript には以下のサンプル以外にも多くの正規表現の機能が用意されています
+* ActionScript 3.0 には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
 ### 検索＆置換
 ```
-//xxx.ts
-var _string: string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-var _regExp: RegExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-/*
-"^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
-*/
-if (_regExp.test(_string)) { //検索
-    console.log('"吉田"は含まれています');
-    let _result: string = _string.replace(_regExp, "よしだ"); //置換
-    //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
-    console.log(_result);
-} else {
-    console.log('"吉田"は含まれていません');
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string: String = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+            var _regExp: RegExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+            /*
+            "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
+            */
+            if (_regExp.test(_string)) { //検索
+                console.log('"吉田"は含まれています');
+                var _result: String = _string.replace(_regExp, "よしだ"); //置換
+                console.log(_result); //["よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"]
+            } else {
+                console.log('"吉田"は含まれていません');
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 ### マッチした数
 ```
-//xxx.ts
-var _string: string = "059371820400381295700347891205178900517093823";
-var _regExp: RegExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-var _matchList: string[] = _string.match(_regExp);
-console.log(_matchList); //["00", "00", "00"]
-console.log(_matchList.length); //3（マッチした数）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string: String = "059371820400381295700347891205178900517093823";
+            var _regExp: RegExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+            var _matchList: Array = _string.match(_regExp);
+            console.log(_matchList); //[Array[3]]
+            for each (var _data: String in _matchList) {
+                console.log(_data); //["0"]→["0"]→["0"]
+            }
+            console.log(_matchList.length); //[3]（マッチした数）
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 正規表現について…
-* 文字パータンを表現するオブジェクト（ECMAScript 6 では RegExp クラス）のこと
+* 文字パータンを表現するオブジェクト（RegExp クラス）のこと
 * JavaScriptの正規表現は、ECMAScript 3 で標準化された
 * String と RegExp クラスには、次のような正規表現用のメソッドが用意されている
     1. RegExp.exec()
@@ -2864,7 +2898,7 @@ console.log(_matchList.length); //3（マッチした数）
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="抽象クラス"></a>
