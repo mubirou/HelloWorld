@@ -32,11 +32,11 @@
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
-***
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
+***
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
@@ -49,7 +49,7 @@
 ### データ型の種類
 1. boolean（論理型）
 1. number（整数･浮動小数点数）
-    * int 型（±21億余の整数）、uint 型（±43億余の整数）もあり
+    * int 型（±21億余の整数）、uint 型（0〜4,294,967,295の整数）もあり
 1. string（文字列）
 1. object（全てのオブジェクトのベース）
 1. undefined（未初期化変数）
@@ -3039,85 +3039,113 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 ### 例文
 ```
-<script>
-    //スーパークラス
-    class SuperClass {
-        //↓サブクラスでオーバライドするメソッド
-        myMethod() {
-            console.log("SuperClass.myMethod()");
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _subClass: SubClass = new SubClass();
+            _subClass.myMethod(); //["SubClass.myMethod()"]
         }
     }
+}
 
-    //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-        myMethod() {
-            //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
-            console.log("SubClass.myMethod()");
-        }
+//スーパークラス
+class SuperClass {
+    //↓サブクラスでオーバライドするメソッド
+    public function myMethod(): void {
+        console.log("SuperClass.myMethod()");
     }
+}
 
-    //実行
-    var _subClass = new SubClass();
-    _subClass.myMethod();
-</script>
+//サブクラス
+class SubClass extends SuperClass { //スーパークラスを継承
+    //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
+    public override function myMethod(): void { //overrideが必須
+        //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
+        console.log("SubClass.myMethod()");
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
 ### 概要
-JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener() のターゲットに指定できるオブジェクトは Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なりここで紹介する方法は、他の言語でも利用可能な汎用的な方法です。
+ActionScript 3.0 に実装されている flash.events.dispatchEvent() や flash.events.Event は用途が限定されるため、ここでは汎用的な方法を紹介します
 
-### 例文
 ```
-//xxx.ts
-class Robot { //イベントを設定するクラス
-    private _energy: number;
-    private _dieHandler: Function;
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _robot: Robot = new Robot();
+            _robot.addEventListener("die", this.die_robot); //イベントリスナーの設定
+            _robot.fight();
+            _robot.fight();
+            _robot.fight();
+            _robot.fight(); //["GAME OVER"]
+        }
 
-    constructor() {
-        this._energy = 80;
+        //リスナー関数
+        private function die_robot(_arg: Robot): void {
+            console.log(_arg); //[Object]（Robotクラスのインスタンス）
+            console.log("GAME OVER");
+        }
+    }
+}
+
+class Robot { //イベントを設定するクラス
+    private var _energy: Number;
+    private var _dieHandler: Function;
+
+    public function Robot() {
+        _energy = 80;
     }
 
-    public addEventListener(_event, _function): void {
+    public function addEventListener(_event: String, _function: Function): void {
         if (_event == "die") {
-            this._dieHandler = _function; //匿名関数を変数に格納
+            _dieHandler = _function; //匿名関数を変数に格納
         } else {
             //該当のイベントが無い場合、実行時にErrorを発生（オプション）
-            throw new Error('Error:"' + _event + '"はサポートされていません');
+            console.log(new Error(_event + "はサポートされていません").toString());
         }
     }
 
-    public fight(): void {
-        this._energy -= 20;
-        if (this._energy <= 0) {
-            this._dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
+    public function fight(): void {
+        _energy -= 20;
+        if (_energy <= 0) {
+            _dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
         }
     }
 }
 
-var die_robot = (arg: Robot): void => { //リスナー関数（前方宣言が必要）
-    console.log(arg); //Robotクラスのインスタンス
-    alert("GAME OVER");
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
-
-var _robot: Robot = new Robot();
-_robot.addEventListener("die", die_robot); //イベントリスナーの設定
-_robot.fight();
-_robot.fight();
-_robot.fight();
-_robot.fight(); //"GAME OVER"
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="数学関数（Math）"></a>
@@ -3125,99 +3153,106 @@ _robot.fight(); //"GAME OVER"
 
 ### Math.sin() : サイン（正弦）
 ```
-//xxx.ts
-console.log(Math.sin(0)); //0（0°）
-console.log(Math.sin(Math.PI / 2)); //1（90°）
-console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
-console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
-console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
+//Main.as
+package {
+    import flash.display.*;
+    import flash.events.Event; //必須
+
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            console.log(Math.sin(0)); //[0]（0°）
+            console.log(Math.sin(Math.PI / 2)); //[1]（90°）
+            console.log(Math.sin(Math.PI)); //[1.2246467991473532e-16]（≒0）（180°）
+            console.log(Math.sin(Math.PI * 3 / 2)); //[-1]（270°）
+            console.log(Math.sin(Math.PI * 2)); //[-2.4492935982947064e-16]（≒0）（360°）
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
+* 以下も同様の処理
 
 ### Math.cos() : コサイン（余弦）
 ```
-//xxx.ts
-console.log(Math.cos(0)); //1（0°）
-console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
-console.log(Math.cos(Math.PI)); //-1（180°）
-console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
-console.log(Math.cos(Math.PI * 2)); //1 ←…360°
+console.log(Math.cos(0)); //[1]（0°）
+console.log(Math.cos(Math.PI / 2)); //[6.123233995736766e-17]（≒0）（90°）
+console.log(Math.cos(Math.PI)); //[-1]（180°）
+console.log(Math.cos(Math.PI * 3 / 2)); //[-1.8369701987210297e-16]（≒0）（270°）
+console.log(Math.cos(Math.PI * 2)); //[1] ←…360°
 ```
 
 ### Math.atan2() : アークタンジェント2
 ```
-//xxx.ts
 //三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
-var _disX: number = Math.sqrt(3); //√3のこと
-var _disY: number = 1;
-console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
-console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //30.000000000000004（度）
+var _disX: Number = Math.sqrt(3); //√3のこと
+var _disY: Number = 1;
+console.log(Math.atan2(_disY, _disX)); //[0.5235987755982989]（ラジアン）
+console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //[30.000000000000004]（度）
 ```
 
 ### Math.PI : 円周率
 ```
-//xxx.ts
-console.log(Math.PI); //3.141592653589793
+console.log(Math.PI); //[3.141592653589793]
 ```
 
 ### Math.floor() : 切り捨て
 ```
-//xxx.ts
-console.log(Math.floor(1.001)); //1
-console.log(Math.floor(1.999)); //1
+console.log(Math.floor(1.001)); //[1]
+console.log(Math.floor(1.999)); //[1]
 ```
 
 ### Math.ceil() : 切り上げ
 ```
-//xxx.ts
-console.log(Math.ceil(1.001)); //2
-console.log(Math.ceil(1.999)); //2
+console.log(Math.ceil(1.001)); //[2]
+console.log(Math.ceil(1.999)); //[2]
 ```
 
 ### Math.round() : 四捨五入
 ```
-//xxx.ts
-console.log(Math.round(1.499)); //1
-console.log(Math.round(1.500)); //2
+console.log(Math.round(1.499)); //[1]
+console.log(Math.round(1.500)); //[2]
 ```
 
 ### Math.abs() : 絶対値
 ```
-//xxx.ts
-console.log(Math.abs(100)); //100
-console.log(Math.abs(-100)); //100
+console.log(Math.abs(100)); //[100]
+console.log(Math.abs(-100)); //[100]
 ```
 
 ### Math.pow() : 累乗（○の□乗）
 ```
-//xxx.ts
-console.log(Math.pow(2, 0)); //1（2の0乗）
-console.log(Math.pow(2, 8)); //256（2の8乗）
+console.log(Math.pow(2, 0)); //[1]（2の0乗）
+console.log(Math.pow(2, 8)); //[256]（2の8乗）
 ```
 
 ### Math.sqrt() : 平方根（√○）
 ```
-//xxx.ts
-console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
-console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
-console.log(Math.sqrt(4)); //2
-console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+console.log(Math.sqrt(2)); //[1.4142135623730951]（一夜一夜にひとみごろ）
+console.log(Math.sqrt(3)); //[1.7320508075688772]（人並みに奢れや）
+console.log(Math.sqrt(4)); //[2]
+console.log(Math.sqrt(5)); //[2.23606797749979]（富士山麓オウム鳴く）
 ```
 
 ### Math.max() : 比較（最大値）
 ```
-//xxx.ts
-console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
+console.log(Math.max(5.01, -10)); //[5.01]（2つの数値の比較）
 ```
 
 ### Math.min() : 比較（最小値）
 ```
-//xxx.ts
-console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
+console.log(Math.min(5.01, -10)); //[-10]（2つの数値の比較）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 <a name="乱数"></a>
 # <b>乱数</b>
@@ -3226,49 +3261,80 @@ console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
 * 0以上、1未満（0.9999…）の値を返す
 * 現在時刻を元に random seed （乱数種）を生成
 ```
-//xxx.ts
-console.log(Math.random()); //0.13397585139675616
-console.log(Math.random()); //0.9903535518676447
-console.log(Math.random()); //0.006009885271453852
+//Main.as
+package {
+    import flash.display.*;
+    import flash.events.Event; //必須
+
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            console.log(Math.random()); //0.13397585139675616
+            console.log(Math.random()); //0.9903535518676447
+            console.log(Math.random()); //0.006009885271453852
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 整数の乱数
 ```
-//xxx.ts
-//整数の乱数を返すカスタム関数
-var randomInt: Function = (_min: number, _max: number): number => {
-    return Math.floor(Math.random() * (_max - _min + 1)) + _min;
-}
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実験（1000万回繰返して精度を調べる）
+            var _u5: int = 0, _u4: int = 0, _u3: int = 0;
+            var _u2: int = 0, _u1: int = 0, _o0: int = 0;
+            var _o1: int = 0, _o2: int = 0, _o3: int = 0;
+            var _o4: int = 0, _o5: int = 0;
 
-//実験（1000万回繰返して精度を調べる）
-var _u5: number = 0, _u4: number = 0, _u3: number = 0;
-var _u2: number = 0, _u1: number = 0, _o0: number = 0;
-var _o1: number = 0, _o2: number = 0, _o3: number = 0;
-var _o4: number = 0, _o5: number = 0;
+            for (var i: int = 0; i < 10000000; i++) {
+                switch (this.randomInt(-5, 5)) {
+                    case -5: _u5++; break;
+                    case -4: _u4++; break;
+                    case -3: _u3++; break;
+                    case -2: _u2++; break;
+                    case -1: _u1++; break;
+                    case 0: _o0++; break;
+                    case 1: _o1++; break;
+                    case 2: _o2++; break;
+                    case 3: _o3++; break;
+                    case 4: _o4++; break;
+                    case 5: _o5++; break;
+                }
+            }
 
-for (let i: number = 0; i < 10000000; i++) {
-    switch (this.randomInt(-5, 5)) {
-        case -5: _u5++; break;
-        case -4: _u4++; break;
-        case -3: _u3++; break;
-        case -2: _u2++; break;
-        case -1: _u1++; break;
-        case 0: _o0++; break;
-        case 1: _o1++; break;
-        case 2: _o2++; break;
-        case 3: _o3++; break;
-        case 4: _o4++; break;
-        case 5: _o5++; break;
+            console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
+            //[910200, 910019, 907640, 908999, 908764, 909585, 908325, 909711, 909847, 908968, 907942]
+        }
+
+        //整数の乱数を返すカスタム関数
+        private function randomInt (_min: int, _max: int): int {
+            return Math.floor(Math.random() * (_max - _min + 1)) + _min;
+        }
     }
 }
 
-console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-//909620 908053 909554 909910 907996 910693 908960 909539 909366 908502 907807
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="日時情報"></a>
