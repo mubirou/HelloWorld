@@ -1393,10 +1393,26 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 * 例文
 ```
-//xxx.ts
-var _age: number = 49;
-var _result = (_age < 60) ? "現役" : "退職";
-console.log(_result); //"現役"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _age: uint = 49;
+            var _result: String = (_age < 60) ? "現役" : "退職";
+            console.log(_result); //["現役"]
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 比較式が複数の場合
@@ -1408,17 +1424,33 @@ console.log(_result); //"現役"
 ```
 * 例文
 ```
-//xxx.ts
-var _age: number = 49;
-var _result: string = (_age < 20) ? "未成年" :
-_result = (_age < 60) ? "現役" :
-_result = "退職";
-console.log(_result); //"現役"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _age: Number = 49;
+            var _result: String = (_age < 20) ? "未成年" :
+            _result = (_age < 60) ? "現役" :
+            _result = "退職";
+            console.log(_result); //"現役"]
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="switch文"></a>
