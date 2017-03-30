@@ -21,8 +21,8 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
-***
 * [for 文](#for文)
+***
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
 * [while文](#while文)
@@ -1577,71 +1577,139 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 # <b>for 文</b>
 
 ### ループカウンタの宣言方法
-* 参考「[変数とスコープ](#変数とスコープ)」
-1. let でループ制御変数を宣言する
-    ```
-    //xxx.ts
-    for (let i:number = 0; i < 10; i++) {
-        console.log(i); //0,1,2,3,4,5,6,7,8,9
-    }
-    //console.log(i); //error（for文の外では使えない）
-    ```
+```
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-1. var でループ制御変数を宣言する
-    ```
-    //xxx.ts
-    for (var i: number = 0; i < 10; i++) {
-        console.log(i); //0,1,2,3,4,5,6,7,8,9
+            for (var i: Number = 0; i < 10; i++) {
+                console.log(i); //[0]→[1]→[2]→[3]→[4]→[5]→[6]→[7]→[8]→[9]
+            }
+            console.log(i); //[10]（for文の外でも有効）
+
+        }
     }
-    console.log(i); //10（for文の外でも有効）
-    ```
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 ### ループカウンタを○つずつアップする
 ```
-<script>
-    for (let i = 0; i < 50; i += 5) { //5つずつアップする場合…
-        console.log(i); //0,5,10,15,20,25,30,35,40,45
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            for (var i: uint = 0; i < 50; i += 5) { //5つずつアップする場合…
+                console.log(i); //[0]→[5]→[10]→[15]→[20]→[25]→[30]→[35]→[40]→[45]
+            }
+
+        }
     }
-</script>
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### for 文のネスト
 * ループ制御変数には慣例的に i, j, k が使われる
 ```
-//xxx.ts
-for (let i: number = 1; i <= 5; i++) {
-    for (let j: number = 1; j <= 5; j++) {
-        console.log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            for (var i: Number = 1; i <= 5; i++) {
+                for (var j: Number = 1; j <= 5; j++) {
+                    console.log("x" + i + "y" + j); //["x1y1"]→["x1y2"]→....["x5y4"]→["x5y5"]
+                }
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
 ```
 
 ### 無限ループと break 文
 ```
-//xxx.ts
-var _count: number = 0;
-for (;;) { //①初期化②ループ判定式③更新処理の全てを省略する
-    _count++;
-    if (_count > 100) break; //ループを終了
-    console.log(_count); //1,2,....,99,100
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _count: Number = 0;
+            for (;;) { //①初期化②ループ判定式③更新処理の全てを省略する
+                _count++;
+                if (_count > 100) break; //ループを終了
+                console.log(_count); //[1]→[2]→....[99]→[100]
+            }
+            console.log("for文終了");
+
+        }
+    }
 }
-console.log("for文終了");
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### for 文と continue 文
 ```
-//xxx.ts
-for (let i: number = 1; i <= 20; i++) { //iは1,2,...19,20
-    if ((i % 3) != 0) { //3で割り余りが0でない（＝3の倍数ではない）場合
-        continue; //for文の残処理をスキップしてfor文の次の反復を開始する
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            for (var i: Number = 1; i <= 20; i++) { //iは1,2,...19,20
+                if ((i % 3) != 0) { //3で割り余りが0でない（＝3の倍数ではない）場合
+                    continue; //for文の残処理をスキップしてfor文の次の反復を開始する
+                }
+                console.log(i); //[3]→[6]→[9]→[12]→[15]→[18]（3の倍数）
+            }
+
+        }
     }
-    console.log(i); //3,6,9,12,15,18 ←3の倍数
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="for...in文"></a>
