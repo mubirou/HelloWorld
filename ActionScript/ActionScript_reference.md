@@ -30,8 +30,8 @@
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-***
 * [抽象クラス](#抽象クラス)
+***
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
@@ -2904,14 +2904,22 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="抽象クラス"></a>
 # <b>抽象クラス</b>
 
+### 概要
+* ActionScript には、abstract キーワードはない
+* ActionScript では、継承と例外処理によって擬似的な抽象クラスを実現
+
 ### 構文
 ```
-abstract class Abstract○○ { //抽象クラスの定義
-    abstract 抽象メソッド名(引数①,引数②,...): 返り値の型;
+//（擬似）抽象クラスの定義
+class Abstract○○ {
+    public function 抽象メソッド名(引数①,引数②,...): 返り値の型 {
+        console.log(new Error("サブクラスで実装して下さい").toString()); //例外処理
+    }
 }
 
-class 派生クラス名 extends Abstract○○ { //抽象クラスの継承
-    抽象メソッド名(引数①,引数②,...): 返り値の型 {
+//（擬似）抽象クラスの継承
+class 派生クラス名 extends Abstract○○ {
+    public override function 抽象メソッド名(引数①,引数②,...): 返り値の型 {
         //実際の処理はここに記述
     }
 }
@@ -2919,28 +2927,45 @@ class 派生クラス名 extends Abstract○○ { //抽象クラスの継承
 
 ### 例文
 ```
-//xxx.ts
-abstract class AbstractClass { //抽象クラスの定義
-    commonMethod(): void { //共通のメソッド
-        console.log("AbstractClass.commonMethod()");
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _subClass: SubClass = new SubClass();
+            _subClass.commonMethod(); //["AbstractClass.commonMethod()"]
+            _subClass.eachMethod(); //["SubClass.eachMethod()"]
+        }
     }
-    abstract eachMethod(): void; //抽象メソッド（実際の処理は記述しない）
 }
 
-class SubClass extends AbstractClass { //抽象クラスの継承
-    eachMethod(): void { //オーバーライドして実際の処理を記述
+class AbstractClass { //（擬似）抽象クラスの定義
+    public function commonMethod(): void { //共通のメソッド
+        console.log("AbstractClass.commonMethod()");
+    }
+    public function eachMethod(): void { //抽象メソッド（実際の処理は記述しない）
+        console.log(new Error("サブクラスで実装して下さい").toString()); //例外処理
+    }
+}
+
+class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
+    public override function eachMethod(): void { //オーバーライドして実際の処理を記述
         console.log("SubClass.eachMethod()"); //実際の処理
     }
 }
 
-var _subClass: SubClass = new SubClass();
-_subClass.commonMethod(); //"AbstractClass.commonMethod()"
-_subClass.eachMethod(); //"SubClass.eachMethod()"
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="superキーワード"></a>
