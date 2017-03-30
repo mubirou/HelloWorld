@@ -36,8 +36,8 @@
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
-***
 * [日時情報](#日時情報)
+***
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -3355,27 +3355,42 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 ### 例文
 ```
-//xxx.ts
-var _date: Date = new Date();
-console.log(_date); //Mon Mar 27 2017 16:14:44 GMT+0900 (JST)
-console.log(_date.getFullYear()); //2017
-console.log(_date.getMonth()); //2（3月）
-console.log(_date.getDate()); //27
-console.log(_date.getDay()); //1（月曜日）
-console.log(_date.getHours()); //16
-console.log(_date.getMinutes()); //14
-console.log(_date.getSeconds()); //44
-console.log(_date.getMilliseconds()); //873
-//"hh:mm:ss"で現在の時間を表示する方法
-var _h: any = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
-var _m: any = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
-var _s: any = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
-console.log(_h + ":" + _m + ":" + _s); //"16:14:44"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _date: Date = new Date();
+            console.log(_date); //[Thu Mar 30 2017 15:19:01 GMT+0900 (JST)]
+            console.log(_date.getFullYear()); //[2017]
+            console.log(_date.getMonth()); //[2]（3月）
+            console.log(_date.getDate()); //[30]
+            console.log(_date.getDay()); //[4]（木曜日）
+            console.log(_date.getHours()); //[15]
+            console.log(_date.getMinutes()); //[19]
+            console.log(_date.getSeconds()); //[1]
+            console.log(_date.getMilliseconds()); //[627]
+            //"hh:mm:ss"で現在の時間を表示する方法
+            var _h: * = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
+            var _m: * = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
+            var _s: * = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
+            console.log(_h + ":" + _m + ":" + _s); //["15:19:01"]
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="タイマー"></a>
