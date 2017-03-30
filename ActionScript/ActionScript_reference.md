@@ -22,9 +22,9 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-***
 * [for...in 文](#for...in文)
-* [for...of 文](#for...of文)
+* [for each...in 文](#foreach...in文)
+***
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
 * [連想配列（Object）](#連想配列（Object）)
@@ -1717,7 +1717,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 ### 基本構文
 ```
-for (var 変数名 in 配列等) {
+for (var 変数名: String in 配列等) {
     //配列の場合はインデックス番号、連想配列の場合はプロパティ名
     console.log(変数名);
 
@@ -1728,69 +1728,175 @@ for (var 変数名 in 配列等) {
 
 ### 配列（1次元）の場合
 ```
-//xxx.ts
-var _array: string[] = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-for (let _index in _array) {
-    console.log(_index); //"0"→"1"→"2"→"3""
-    console.log(_array[_index]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+            for (var _index: String in _array) {
+                console.log(_index); //["0"]→["1"]→["2"]→["3"]
+                console.log(_array[_index]); //["TARO"]→["HANAKO"]→["ICHIRO"]→["JIRO"]
+            }
+
+        }
+    }
 }
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+
 ```
 
 ### 配列（2次元）の場合
 ```
-//xxx.ts
-var _array: string[][] = [
-    ["x0y0", "x1y0", "x2y0"], //0行目
-    ["x0y1", "x1y1", "x2y1"]  //1行目
-];
-for (let _index in _array) {
-    console.log(_index); //0→1
-    console.log(_array[_index]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = [
+                ["x0y0", "x1y0", "x2y0"], //0行目
+                ["x0y1", "x1y1", "x2y1"]  //1行目
+            ];
+            for (var _index: String in _array) {
+                console.log(_index); //["0"]→["1"]
+                console.log(_array[_index]); //[Array[3]]（0行目）→[Array[3]]（1行目）
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 ### 連想配列（Object＝オブジェクトリテラル）の場合
 ```
-//xxx.ts
-var _object: Object = { name: "Takashi Nishimura", age: 49 };
-for (let _propName in _object) {
-    console.log(_propName); //"name"→"age"
-    console.log(_object[_propName]); //"Takashi Nishimura" → 49
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _object: Object = { name: "Takashi Nishimura", age: 49 };
+            for (var _propName: String in _object) {
+                console.log(_propName); //["age"]→["name"]
+                console.log(_object[_propName]); //[49]→["Takashi Nishimura"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
-<a name="for...of文"></a>
-# <b>for...of 文</b>
+<a name="foreach...in文"></a>
+# <b>for each...in 文</b>
 
 ### 一次元配列（Array）の場合
 ```
-//xxx.ts
-var _array: string[] = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-for (let _data of _array) {
-    console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+            for each (var _data: String in _array) {
+                console.log(_data); //["TARO"]→["HANAKO"]→["ICHIRO"]→["JIRO"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 ### 二次元配列（Array）の場合
 ```
-//xxx.ts
-var _array: string[][] = [
-    ["x0y0", "x1y0", "x2y0"], //0行目
-    ["x0y1", "x1y1", "x2y1"]  //1行目
-];
-for (let _theArray of _array) {
-    console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _array: Array = [
+                ["x0y0", "x1y0", "x2y0"], //0行目
+                ["x0y1", "x1y1", "x2y1"]  //1行目
+            ];
+            for each (var _theArray: Array in _array) {
+                console.log(_theArray); //[Array[3]]（0行目）→[Array[3]]（1行目）
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+
+### 連想配列（Object＝オブジェクトリテラル）の場合
+```
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _object: Object = { name: "Takashi Nishimura", age: 49 };
+            for each (var _data: * in _object) {
+                console.log(_data); //[49]→["Takashi Nishimura"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="while文"></a>
