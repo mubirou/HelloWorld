@@ -1458,71 +1458,119 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 ### 判別式が boolean 値ではない場合
 ```
-//xxx.ts
-var _name: string = "TARO";
-switch (_name) {
-    case "TARO":
-        console.log("父"); //これが出力される
-        break;
-    case "HANAKO":
-        console.log("母");
-        break;
-    case "ICHIRO":
-        console.log("長男");
-        break;
-    case "JIRO":
-        console.log("次男");
-        break;
-    default:
-        console.log("家族以外");
-        break; //省略可
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _name: String = "TARO";
+            switch (_name) {
+                case "TARO":
+                    console.log("父"); //これが出力される
+                    break;
+                case "HANAKO":
+                    console.log("母");
+                    break;
+                case "ICHIRO":
+                    console.log("長男");
+                    break;
+                case "JIRO":
+                    console.log("次男");
+                    break;
+                default:
+                    console.log("家族以外");
+                    break; //省略可
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 ### 判別式が boolean 値の場合
 * case 式に比較演算子が使われる
 ```
-//xxx.ts
-var _age: number = 49;
-switch (true) {
-    case _age <= 20:
-        console.log("20歳以下");
-        break;
-    case _age <= 40:
-        console.log("21〜40歳");
-        break;
-    case _age <= 60:
-        console.log("41〜60歳"); //これが出力される
-        break;
-    default:
-        console.log("61歳以上");
-        break; //省略可
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _age: Number = 49;
+            switch (true) {
+                case _age <= 20:
+                    console.log("20歳以下");
+                    break;
+                case _age <= 40:
+                    console.log("21〜40歳");
+                    break;
+                case _age <= 60:
+                    console.log("41〜60歳"); //これが出力される
+                    break;
+                default:
+                    console.log("61歳以上");
+                    break; //省略可
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 ### break文が無い使い方
 * [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
 ```
-//xxx.ts
-var _name: string = "JIRO";
-switch (_name) {
-    case "TARO":
-    case "HANAKO":
-        console.log("親です");
-        break;
-    case "ICHIRO":
-    case "JIRO":
-        console.log("子供です"); //これが出力される
-        break;
-    default:
-        console.log("家族ではありません");
-        break; //省略可
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _name: String = "JIRO";
+            switch (_name) {
+                case "TARO":
+                case "HANAKO":
+                    console.log("親です");
+                    break;
+                case "ICHIRO":
+                case "JIRO":
+                    console.log("子供です"); //これが出力される
+                    break;
+                default:
+                    console.log("家族ではありません");
+                    break; //省略可
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="for文"></a>
