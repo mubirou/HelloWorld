@@ -24,8 +24,8 @@
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [for each...in 文](#foreach...in文)
-***
 * [while文](#while文)
+***
 * [配列（Array）](#配列（Array）)
 * [連想配列（Object）](#連想配列（Object）)
 * [this](#this)
@@ -1912,11 +1912,27 @@ while (ループ判定式) {
 
 * 例文
 ```
-//xxx.ts
-var _i: number = 0;
-while (_i < 10) { //ループ判定式にはboolean値しか使えない
-    console.log(_i); //0,1,2,3,4,5,6,7,8,9
-    _i++;
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _i: Number = 0;
+            while (_i < 10) { //ループ判定式にはboolean値しか使えない
+                console.log(_i); //[0]→[1]→[2]→[3]→[4]→[5]→[6]→[7]→[8]→[9]
+                _i++;
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
@@ -1930,46 +1946,94 @@ do {
 
 * 例文
 ```
-//xxx.ts
-var _i: number = 0;
-do {
-    console.log(_i); //0 ←ループ判定式はfalseだが１回実行される
-    _i++;
-} while (_i < 0);
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _i: Number = 0;
+            do {
+                console.log(_i); //[0] ←ループ判定式はfalseだが１回実行される
+                _i++;
+            } while (_i < 0);
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### while文とbreak文
 * 例文（1〜100までを出力）
 ```
-//xxx.ts
-var _count: number = 0;
-while (true) { //ループ判別式をtrueにすると無限ループに
-    _count++;
-    if (_count > 100) {
-        break; //break文を使ってループを終了（while文の次の行へ）
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _count: Number = 0;
+            while (true) { //ループ判別式をtrueにすると無限ループに
+                _count++;
+                if (_count > 100) {
+                    break; //break文を使ってループを終了（while文の次の行へ）
+                }
+                console.log(_count); //[0]→[1]→...[99]→[100]
+            }
+
+        }
     }
-    console.log(_count); //1,2,....,99,100
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 ### while文とcontinue文
 * 例文（3の倍数を出力）
 ```
-//xxx.ts
-var _i: number = 1;
-while (_i <= 20) {
-    if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-        _i++;
-        continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _i: Number = 1;
+            while (_i <= 20) {
+                if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+                    _i++;
+                    continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+                }
+                console.log(_i); //[3]→[6]→[9]→[12]→[15]→[18]（3の倍数）
+                _i++;
+            }
+
+        }
     }
-    console.log(_i); //3,6,9,12,15,18 ←3の倍数
-    _i++;
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="配列（Array）"></a>
