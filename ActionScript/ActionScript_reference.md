@@ -18,8 +18,8 @@
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
 * [クラス定数･クラスメソッド](#クラス定数･クラスメソッド)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -1272,16 +1272,32 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ### 基本例文
 * trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```
-//xxx.ts
-var _age = 49;
-if (_age <= 20) {
-    console.log("20歳以下");
-} else if (_age <= 40) {
-    console.log("21〜40歳");
-} else if (_age <= 60) {
-    console.log("41〜60歳"); //これが出力される
-} else {
-    console.log("61歳以上");
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _age: Number = 49;
+            if (_age <= 20) {
+                console.log("20歳以下");
+            } else if (_age <= 40) {
+                console.log("21〜40歳");
+            } else if (_age <= 60) {
+                console.log("41〜60歳"); //これが出力される
+            } else {
+                console.log("61歳以上");
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 
@@ -1334,33 +1350,37 @@ if (_age <= 20) {
 
 ### 排他的論理和（XOR）
 * 2つの条件のうちどちらか一方だけ true の場合
-1. ^ 演算子を使う方法
-    ```
-    //xxx.ts
-    var _a = true;
-    var _b = false;
-    if (_a ^ _b) {
-        console.log("どちらか一方だけtrueです");
-    } else {
-        console.log("両方共にtrueかfalseです");
-    }
-    ```
+* ActionScript 3.0 には XOR 演算子はない
+```
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-2. ^ 演算子を使わない場合
-    ```
-    //xxx.ts
-    var _a = true;
-    var _b = false;
-    if ((_a || _b) && !(_a && _b)) {
-        console.log("どちらか一方だけtrueです");
-    } else {
-        console.log("両方共にtrueかfalseです");
+            var _a: Boolean = true;
+            var _b: Boolean = false;
+            if ((_a || _b) && !(_a && _b)) {
+                console.log("どちらか一方だけtrueです"); //これが出力される
+            } else {
+                console.log("両方共にtrueかfalseです");
+            }
+
+        }
     }
-    ```
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="三項演算子"></a>
