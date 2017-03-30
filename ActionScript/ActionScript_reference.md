@@ -119,7 +119,7 @@ class MyClass {} //クラス
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -165,7 +165,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -194,7 +194,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -244,7 +244,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -316,7 +316,7 @@ class Rectangle {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -422,7 +422,7 @@ class SubClassB extends SuperClass { //スーパークラスを継承
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -469,7 +469,7 @@ package com.xxx {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -521,7 +521,7 @@ class ClassB extends ClassA { //ClassAを継承（ここだけ委譲版と異な
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -567,7 +567,7 @@ class ClassB { //ここだけ継承版と異なる
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -625,7 +625,7 @@ class MyClass {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -674,7 +674,7 @@ class Nishimura {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -714,7 +714,7 @@ class Nishimura {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -750,7 +750,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -782,7 +782,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -814,7 +814,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -849,7 +849,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -879,7 +879,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -907,7 +907,7 @@ class MyMath {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: *): void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -921,152 +921,232 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="メソッド"></a>
 # <b>メソッド</b>
 
+### アクセス修飾子
+1. private （同じクラスからのみアクセス可）
+1. protected （同じクラスorサブクラスからのみアクセス可）
+1. internal （同じパッケージ内の全クラスからアクセス可＝初期設定）
+1. public （あらゆるパッケージの全クラスからアクセス可）
+* static （クラスメソッド＝静的メソッド）
 
 ### パブリックメソッド
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _myClass: MyClass = new MyClass();
+            console.log(_myClass.tashizan(1, 10)); //[55]
+            console.log(_myClass.tashizan(1, 100)); //[5050]
+        }
+    }
+}
+
 class MyClass {
-    public tashizan(_start: number, _end: number): number {
-        var _result: number = 0; //ローカル変数（関数内のみ有効）
-        for (var _i = _start; _i <= _end; _i++) {
-            //_i はブロック変数（ブロック {} 内のみ有効）
-            _result += _i;
+    public function tashizan(_start: int, _end: int): int {
+        var _result: int = 0; //ローカル変数（メソッド内のみ有効）
+        for (var i:int = _start; i <= _end; i++) {
+            //i は {} 内のみ有効
+            _result += i;
         }
         return _result;
     }
 }
 
-var _myClass: MyClass = new MyClass();
-console.log(_myClass.tashizan(1, 10)); //55
-console.log(_myClass.tashizan(1, 100)); //5050
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### プライベートメソッド
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            new Omikuji(); //["大吉"]、["吉"]、["中吉"]、["小吉"]、["凶"] のいずれか
+        }
+    }
+}
+
 class Omikuji {
     //コンストラクタ
-    constructor() {
-        var _resultList: string[] = ["大吉", "吉", "中吉", "小吉", "凶"];
+    public function Omikuji() {
+        var _resultList: Array = ["大吉", "吉", "中吉", "小吉", "凶"];
         console.log(_resultList[this.randomInt(0, 4)]);
     }
 
-    private randomInt(_min: number, _max: number): number {
-        var _tmp: number = _max - _min + 1;
+    private function randomInt(_min: uint, _max: uint): uint {
+        var _tmp: uint = _max - _min + 1;
         return Math.floor(Math.random() * _tmp) + _min;
     }
 }
 
-new Omikuji(); //大吉、吉、中吉、小吉、凶のいずれか
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### コンストラクタ
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _point: Point = new Point(100, 150); //ここでコンストラクタを呼び出す
+            console.log(_point.x); //[100]
+            console.log(_point.y); //[150]
+        }
+    }
+}
+
 class Point {
     //プライベート変数宣言
-    private _x: number;
-    private _y: number;
+    private var _x: Number;
+    private var _y: Number;
     
     //コンストラクタ
-    constructor(_x: number = 0, _y: number = 0) {
-        this._x = _x;
-        this._y = _y;
+    public function Point(_x: Number = 0, _y: Number = 0) {
+        this._x = _x; //この場合 this は必須
+        this._y = _y; //この場合 this は必須
     }
 
     //アクセサ（getter）
-    public get x(): number { return this._x; }
-    public get y(): number { return this._y; }
+    public function get x(): Number { return _x; }
+    public function get y(): Number { return _y; }
 
     //アクセサ（setter）
-    public set x(_newValue) { this._x = _newValue; }
-    public set y(_newValue) { this._y = _newValue; }
+    public function set x(_newValue: Number): void { _x = _newValue; }
+    public function set y(_newValue: Number): void { _y = _newValue; }
 }
 
-var _point: Point = new Point(100, 150); //ここでコンストラクタを呼び出す
-console.log(_point.x); //100
-console.log(_point.y); //150
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 静的メソッド（クラスメソッド）
 * インスタンス化せずにメソッドを利用することが可能
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            console.log(MyMath.pow(2, 0)); //[1]（2の0乗）
+            console.log(MyMath.pow(2, 1)); //[2]（2の1乗）
+            console.log(MyMath.pow(2, 8)); //[256]（2の8乗）
+        }
+    }
+}
+
 class MyMath {
-    //静的メソッド（static メソッド名()）
-    public static pow(_arg1: number, _arg2: number): number {
+    //静的メソッド（public static function メソッド名()）
+    public static function pow(_arg1: Number, _arg2: Number): Number {
         if (_arg2 == 0) { return 1; } //0乗対策
-        var _result: number = _arg1;
-        for (var i: number = 1; i < _arg2; i++) {
+        var _result: Number = _arg1;
+        for (var i: Number = 1; i < _arg2; i++) {
             _result = _result * _arg1;
         }
         return _result;
     }
 }
 
-console.log(MyMath.pow(2, 0)); //1（2の0乗）
-console.log(MyMath.pow(2, 1)); //2（2の1乗）
-console.log(MyMath.pow(2, 8)); //256（2の8乗）
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### デフォルト値付き引数
 * 省略可能な引数
 * 「オプション引数」とも呼ばれる
 ```
-//xxx.ts
-class MyClass {
-    private _point: number = 0;
-    constructor() {}
-    public addPoint(_arg: number = 1) { //初期値を1とした場合
-        this._point += _arg;
-        console.log(this._point);
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _myClass: MyClass = new MyClass();
+            _myClass.addPoint(); //[1]
+            _myClass.addPoint(10); //[11]
+        }
     }
 }
 
-var _myClass: MyClass = new MyClass();
-_myClass.addPoint(); //1
-_myClass.addPoint(10); //11
+class MyClass {
+    private var _point: Number = 0;
+    public function MyClass() {}
+    public function addPoint(_arg: Number = 1): void { //初期値を1とした場合
+        _point += _arg;
+        console.log(_point);
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能
 * 引数の前に「...」（ピリオド3つ）を記述（引数の値は配列になる）
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _myClass: MyClass = new MyClass();
+            console.log(_myClass.sum(1, 2)); //[3]（1+2）
+            console.log(_myClass.sum(1, 2, 3, 4, 5)); //[15]（1+2+3+4+5）
+        }
+    }
+}
+
 class MyClass {
-    sum(...args: number[]): number {
-        var _result: number = 0;
-        for (var _index in args) {
+    public function sum(...args: Array): Number { 
+        var _result: Number = 0;
+        for (var _index: String in args) {
             _result += args[_index];
         }
         return _result;
     }
 }
 
-var _myClass = new MyClass();
-console.log(_myClass.sum(1, 2)); //3（1+2）
-console.log(_myClass.sum(1, 2, 3, 4, 5)); //15（1+2+3+4+5）
-```
-
-### 省略可能な引数
-* 引数名の直後に「?」(クエスチョンマーク)を追加することでその引数が省略可能になる
-```
-//xxx.ts
-function myCanvas(_id_or_width: any, _height?: number): string {
-    if (typeof _id_or_width == "string") {
-        return "canvasのIDは" + _id_or_width;
-    } else if (typeof _id_or_width == "number") {
-        return "canvasのサイズは" + _id_or_width + " x " + _height;
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
-
-console.log(myCanvas("myCanvas")); //引数が1つでもエラーが出ない
-console.log(myCanvas(1280, 720));
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="匿名関数"></a>
