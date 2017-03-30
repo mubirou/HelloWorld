@@ -26,10 +26,10 @@
 * [for each...in 文](#foreach...in文)
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
-***
 * [連想配列（Object）](#連想配列（Object）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
+***
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
@@ -2589,60 +2589,89 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 <a name="連想配列（Object）"></a>
 # <b>連想配列（Object）</b>
-
+* new Object() で生成後、プロパティを追加する方法もあり
 ```
-//xxx.ts
-var _obj: { name: string; age: number; helloFunction: Function } = {
-    name: "Takashi Nishimura",
-    age: 49,
-    helloFunction: () => { //アロー関数
-        return "Hello! How are you?";
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _obj: Object = {
+                name: "Takashi Nishimura",
+                age: 49,
+                helloFunction: function(): String {
+                    return "Hello! How are you?";
+                }
+            }
+
+            console.log(_obj.name); //["Takashi Nishimura"]
+            console.log(_obj["name"]); //["Takashi Nishimura"]（配列アクセスも可能）
+            console.log(_obj.age); //[49]
+            console.log(_obj.helloFunction()); //["Hello! How are you?"]
+
+        }
     }
 }
 
-console.log(_obj.name); //"Takashi Nishimura"
-console.log(_obj["name"]); //"Takashi Nishimura"（配列アクセスも可能）
-console.log(_obj.age); //47
-console.log(_obj.helloFunction()); //"Hello! How are you?"
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="this"></a>
 # <b>this</b>
 
-### トップレベルの this
 ```
-//xxx.ts
-document.write(this); //[object Window]（＝window／省略可能）
-```
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
 
-### クラス内の this
-```
-//xxx.ts
-class MyClass {
-    private _hoge: string;
+            //ドキュメントクラス（Main.as）のthis
+            console.log(this.toString()); //["[object Main]"]
 
-    constructor() {
-        console.log(this); //MyClass {}（MyClassクラスのインスタンス）
-        this._hoge = "プライベート変数"; //thisは省略不可
-    }
+            var _myClass: MyClass = new MyClass();
+            console.log(_myClass.hoge); //["プライベート変数"]
 
-    public get hoge(): string { //アクセサ（getter）
-        return this._hoge; //thisは省略不可
+        }
     }
 }
 
-var _myClass: MyClass = new MyClass();
-console.log(_myClass.hoge); //"プライベート変数"
+class MyClass {
+    private var _hoge: String;
+
+    public function MyClass() {
+        console.log(this); //[Object]（MyClassクラスのインスタンス）
+        this._hoge = "プライベート変数"; //thisは省略可能
+    }
+
+    public function get hoge(): String { //アクセサ（getter）
+        return this._hoge; //thisは省略可能
+    }
+}
+
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="文字列の操作"></a>
@@ -2650,60 +2679,143 @@ console.log(_myClass.hoge); //"プライベート変数"
 
 ### 文字列の生成
 ```
-var 変数1: Object = new String("xxx"); //object型
-var 変数2: string = "xxx"; //string型
+var 変数1: String = new String("xxx"); //object型
+var 変数2: String = "xxx"; //string型
 ```
-* 上記2つは厳密には異なるが通常は意識する必要はない
 
 ### 文字列の長さを調べる
 ```
-//xxx.ts
-var _string: string = "ABCDE";
-console.log(_string.length); //5
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string1: String = "ABCDE";
+            var _string2: String = "あいうえお";
+            console.log(_string1.length, _string2.length); //[5, 5]
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 一部分を取得
 ```
-//xxx.ts
-var _string: string = "0123456789";
-console.log(_string.substr(0, 1)); //"0" ←0文字目（先頭）〜1文字取得
-console.log(_string.substr(-1, 1)); //"9" ←後ろから1文字目〜1文字取得
-console.log(_string.substr(4)); //"456789" ←4文字目（0から開始）〜全て取得
-console.log(_string.substr(4, 3)); //"456" ←4文字目（0から開始）〜3文字取得
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string: String = "0123456789";
+            console.log(_string.substr(0, 1)); //["0"] ←0文字目（先頭）〜1文字取得
+            console.log(_string.substr(-1, 1)); //["9"] ←後ろから1文字目〜1文字取得
+            console.log(_string.substr(4)); //["456789"] ←4文字目（0から開始）〜全て取得
+            console.log(_string.substr(4, 3)); //["456"] ←4文字目（0から開始）〜3文字取得
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 置換
 ```
-//xxx.ts
-var _string: string = "2017年3月27日";
-var _regExp: RegExp = new RegExp("2017", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-console.log(_string.replace(_regExp, "平成29")); //"平成29年3月27日"
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string: String = "2017年3月30日";
+            var _regExp: RegExp = new RegExp("2017", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+            console.log(_string.replace(_regExp, "平成29")); //["平成29年3月30日"]
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 検索
 ```
-//xxx.ts
-var _string: string = "ABCDEFG-ABCDEFG";
-var _count: number = 0;
-while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
-    var _num: number = _string.indexOf("CD", _count);
-    console.log(_num); //2,10 ←…"CD"が見つかった場所（0から開始）を返す
-    _count = _num + 1;
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string: String = "ABCDEFG-ABCDEFG";
+            var _count: Number = 0;
+            while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
+                var _num: Number = _string.indexOf("CD", _count);
+                console.log(_num); //[2]→[10] ←…"CD"が見つかった場所（0から開始）を返す
+                _count = _num + 1;
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
 ```
 * 最後から検索する String.lastIndexOf() もあり
 
 ### 文字列→配列
 ```
-//xxx.ts
-var _string: string = "A,B,C,D,E,F";
-var _array: string[] = _string.split(","); //カンマ区切りで配列化
-console.log(_array); //["A", "B", "C", "D", "E", "F"]
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+
+            var _string: String = "A,B,C,D,E,F";
+            var _array: Array = _string.split(","); //カンマ区切りで配列化
+            console.log(_array); //[Array[6]]
+            for each (var _data: String in _array) {
+                console.log(_data); //["A"]→["B"]→["C"]→["D"]→["E"]→["F"]
+            }
+
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="正規表現"></a>
