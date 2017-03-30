@@ -15,10 +15,9 @@
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-***
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
-* [アロー関数](#アロー関数)
+***
 * [クラス定数･クラスメソッド](#クラス定数･クラスメソッド)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -1151,109 +1150,70 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 <a name="匿名関数"></a>
 # <b>匿名関数</b>
-* [アロー関数](#アロー関数)を従来の匿名式に置き換えたもの
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _hello: Hello = new Hello();
+            _hello.hello("TARO"); //["TARO,Hello!"]
+            _hello.change("japanese");
+            _hello.hello("たかし"); //["たかし、こんにちは!"]
+            _hello.change("chinese");
+            _hello.hello("たかし"); //["たかし,你好!"]
+        }
+    }
+}
+
 class Hello {
     //プライベート変数宣言
-    private _american: Function;
-    private _japanese: Function;
-    private _chinese: Function;
+    private var _american: Function;
+    private var _japanese: Function;
+    private var _chinese: Function;
 
-    public hello: Function; //本来はプライベート変数にしてセッターを利用すべき
+    public var hello: Function; //本来はプライベート変数にしてセッターを利用すべき
 
     //コンストラクタ
-    constructor() {
-        this._american = function (_name) { //匿名関数①
+    public function Hello() {
+        _american = function(_name: String): void { //匿名関数①
             console.log(_name + "," + "Hello!");
         }
 
-        this._japanese = function (_name) { //匿名関数②
+        _japanese = function(_name: String): void { //匿名関数②
             console.log(_name + "、" + "こんにちは!");
         }
 
-        this._chinese = function (_name) { //匿名関数③
+        _chinese = function(_name: String): void { //匿名関数③
             console.log(_name + "," + "你好!");
         }
 
         //パブリック変数に匿名関数を代入（前方宣言が必要）
-        this.hello = this._american;
+        hello = _american;
     }
 
     //匿名関数の入替え
-    change(_language: string) {
+    public function change(_language: String): void {
         switch (_language) {
-            case "american": this.hello = this._american; break;
-            case "japanese": this.hello = this._japanese; break;
-            case "chinese": this.hello = this._chinese; break;
+            case "american": hello = _american; break;
+            case "japanese": hello = _japanese; break;
+            case "chinese": hello = _chinese; break;
         }
     }
 }
 
-var _hello: Hello = new Hello();
-_hello.hello("TARO"); //"TARO,Hello!"
-_hello.change("japanese");
-_hello.hello("たかし"); //"たかし、こんにちは!"
-_hello.change("chinese");
-_hello.hello("たかし"); //"たかし, 你好!"
-```
-
-実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月27日  
-
-
-<a name="アロー関数"></a>
-# <b>アロー関数</b>
-* [匿名関数](#匿名関数)をラムダ式に置き換えたバージョン
-```
-//xxx.ts
-class Hello {
-    //プライベート変数宣言
-    private _american: Function;
-    private _japanese: Function;
-    private _chinese: Function;
-
-    public hello: Function; //本来はプライベート変数にしてセッターを利用すべき
-
-    //コンストラクタ
-    constructor() {
-        this._american = (_name: string) => { //匿名関数①
-            console.log(_name + "," + "Hello!");
-        }
-
-        this._japanese = (_name: string) => { //匿名関数②
-            console.log(_name + "、" + "こんにちは!");
-        }
-
-        this._chinese = (_name: string) => { //匿名関数③
-            console.log(_name + "," + "你好!");
-        }
-
-        this.hello = this._american;
-    }
-    
-    //匿名関数の入替え
-    change(_language: string) {
-        switch (_language) {
-            case "american": this.hello = this._american; break;
-            case "japanese": this.hello = this._japanese; break;
-            case "chinese": this.hello = this._chinese; break;
-        }
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: *): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
-
-var _hello: Hello = new Hello();
-_hello.hello("TARO"); //"TARO,Hello!"
-_hello.change("japanese");
-_hello.hello("たかし"); //"たかし、こんにちは!"
-_hello.change("chinese");
-_hello.hello("たかし"); //"たかし, 你好!"
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="クラス定数･クラスメソッド"></a>
