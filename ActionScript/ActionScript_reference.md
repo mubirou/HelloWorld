@@ -1,5 +1,3 @@
-#### この項目は、書きかけの項目です。
-
 # <b>ActionScript 3.0 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -39,7 +37,6 @@
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
-***
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
@@ -3504,28 +3501,35 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 ### テキストの読み込み
-* 上記の sample.txt と同階層に xxx.html として保存
 ```
-//xxx.ts
-//①XMLHttpRequestオブジェクトの生成
-var _request: XMLHttpRequest = new XMLHttpRequest();
+//Main.as
+package  {
+    import flash.display.*;
+    import flash.net.*; //必須
+    import flash.events.Event; //必須
 
-//②イベントハンドラの定義
-_request.onreadystatechange = ():void => { //イベントハンドラ
-    if (_request.readyState == 4) { //リクエストが完了した場合
-        if (_request.status == 200) { //成功した場合(Webサーバ上で動作）
-            console.log(_request.responseText); //⑤読み込んだテキストの表示
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _urlLoader: URLLoader =  new URLLoader();
+            _urlLoader.addEventListener(Event.COMPLETE, complete_urlLoader);
+            _urlLoader.load(new URLRequest("sample.txt"));
+        }
+        //リスナー関数
+        private function complete_urlLoader(e: Event): void {
+            console.log(e.target.data); //["あいうえお↵かきくけこ↵さしすせそ"]
         }
     }
 }
 
-//③ヘッダの設定
-_request.open("GET","sample.txt");
-
-//④リクエストの送信
-_request.send(null);
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  

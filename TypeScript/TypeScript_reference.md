@@ -2210,7 +2210,6 @@ console.log(_end - _start); //2778（ミリ秒）
 ```
 
 ### テキストの読み込み
-* 上記の sample.txt と同階層に xxx.html として保存
 ```
 //xxx.ts
 //①XMLHttpRequestオブジェクトの生成

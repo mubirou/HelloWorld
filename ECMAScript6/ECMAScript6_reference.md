@@ -2705,7 +2705,6 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 
 ### テキストの読み込み
-* 上記の sample.txt と同階層に xxx.html として保存
 ```
 <script>
     //①XMLHttpRequestオブジェクトの生成
