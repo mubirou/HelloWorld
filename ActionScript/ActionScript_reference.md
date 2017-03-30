@@ -37,8 +37,8 @@
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-***
 * [タイマー](#タイマー)
+***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -3396,34 +3396,38 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### 繰返し実行する
 ```
-//xxx.ts
-var _count: number = 0;
-var callbackFunction: Function = (): void => {
-    if (++_count <= 10) { //10回繰返す場合…
-        console.log(_count, "繰返し実行したい処理");
-    } else {
-        clearInterval(_timerID); //繰返しを止める
+package  {
+    import flash.display.*;
+    import flash.utils.Timer; //必須
+    import flash.events.TimerEvent; //必須
+
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //1秒間隔で5回繰返す場合
+            var _timer: Timer = new Timer(1000, 5); //第2引数が0の場合は無限
+            _timer.addEventListener(TimerEvent.TIMER, timer_timer);
+            _timer.start();
+        }
+        private function timer_timer(evt: TimerEvent): void {
+            console.log("繰返したい処理");
+            console.log(evt.target.currentCount); //繰返した回数
+            //evt.target.stop(); //1回で停止したい場合
+        }
     }
 }
-//↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
-var _timerID: number = setInterval(callbackFunction, 1000); //1秒間隔で繰返す場合
-```
 
-### 一度だけ実行する
-```
-//xxx.ts
-var callbackFunction: Function = () => {
-    console.log("一度だけ実行したい処理");
-    clearTimeout(_timerID);
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
 }
-var _timerID: number = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="処理速度計測"></a>
