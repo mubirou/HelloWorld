@@ -2923,6 +2923,13 @@ class 派生クラス名 extends Abstract○○ {
         //実際の処理はここに記述
     }
 }
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 ### 例文
