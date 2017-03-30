@@ -1,4 +1,4 @@
-### この項目は、書きかけの項目です。
+#### この項目は、書きかけの項目です。
 
 # <b>ActionScript 3.0 基礎文法</b>
 
@@ -38,8 +38,8 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-***
 * [処理速度計測](#処理速度計測)
+***
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
@@ -3397,6 +3397,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 # <b>タイマー</b>
 
 ```
+//Main.as
 package  {
     import flash.display.*;
     import flash.utils.Timer; //必須
@@ -3404,7 +3405,7 @@ package  {
 
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
-            //1秒間隔で5回繰返す場合
+            //1秒間隔で繰返す場合
             var _timer: Timer = new Timer(1000, 5); //第2引数が0の場合は無限
             _timer.addEventListener(TimerEvent.TIMER, timer_timer);
             _timer.start();
@@ -3433,33 +3434,62 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### Dateオブジェクトを使う方法
+### Date クラスを使う方法
 ```
-//xxx.ts
-var _start: number = new Date().getTime(); //1970年からの経過時間（ミリ秒）
-for (let i: number = 0; i < 1000000000; i++) { //10億回繰返す
-    //速度計測したい処理
+//Main.as
+package  {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _start: uint = new Date().getTime(); //1970年1月1日0:00:00からの経過時間（ミリ秒）
+            for (var _i: uint = 0; _i < 1000000000; _i++) { //10億回繰り返し
+                //速度測定したい処理
+            }
+            var _end:uint = new Date().getTime();
+            console.log(_end - _start); //[2240]ミリ秒
+        }
+    }
 }
-var _end: number = new Date().getTime();
-console.log(_end - _start); //2778（ミリ秒）
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
-### console.time() を使う方法
-* 処理時間の計測に利用可能（推奨）
-* ページ毎に10000個のタイマーが使用可能
-* 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数として console.timeEnd() を実行することで経過時間が出力
-    ```
-    //xxx.ts
-    console.time("timerA");
-    for (let i:number = 0; i < 1000000000; i++) { //10億回繰返す
-        //速度計測したい処理
+### getTimer() を使う方法
+```
+//Main.as
+package  {
+    import flash.display.*;
+    import flash.utils.getTimer; //必須
+
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _start: uint = getTimer();
+            for (var i: uint = 0; i < 1000000000; i++) { //10億回繰り返し
+                //速度測定したい処理
+            }
+            console.log(getTimer() - _start); //[2099]ミリ秒
+        }
     }
-    console.timeEnd("timerA"); //"timerA: 2776.515ms"
-    ```
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="外部テキストの読み込み"></a>
