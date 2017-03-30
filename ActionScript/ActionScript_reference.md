@@ -1220,39 +1220,50 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 # <b>クラス定数･クラスメソッド</b>
 * クラス定数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //①クラス定数の参照
+            console.log(MyMath.PI); //[3.141592653589793]
+            //MyMath.PI = 3.14; //Error: 値の変更はできません
+
+            //②静的メソッドの実行
+            console.log(MyMath.pow(2, 0)); //[1]
+            console.log(MyMath.pow(2, 8)); //[256]
+        }
+    }
+}
+
 class MyMath {
-    //①クラス定数（静的定数）の定義（静的定数）
-    public static get PI(): number {
-        return 3.141592653589793;
-    }
-    public static set PI(_newValue) {
-        throw new Error("値の変更はできません");
-    }
+    //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
+    public static const PI: Number = 3.141592653589793; //クラス定数の定義
+    
+    public function MyMath() {} //コンストラクタ
 
     //②静的メソッド（静的メソッド）の定義
-    public static pow(arg1: number, arg2: number): number {
-        if (arg2 == 0) { return 1; } //0乗対策
-        var _result = arg1;
-        for (var _i:number = 1; _i < arg2; _i++) {
-            _result = _result * arg1;
+    public static function pow(_arg1: uint, _arg2: uint): uint {
+        if (_arg2 == 0) { return 1; } //0乗対策
+        var _result: uint = _arg1;
+        for (var _i: uint = 1; _i < _arg2; _i++) {
+            _result = _result * _arg1;
         }
         return _result;
     }
 }
 
-//①クラス定数の参照
-console.log(MyMath.PI); //3.141592653589793
-//MyMath.PI = 3.14; //Error: 値の変更はできません
-
-//②静的メソッドの実行
-console.log(MyMath.pow(2, 0)); //1
-console.log(MyMath.pow(2, 8)); //256
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="if文"></a>
