@@ -31,8 +31,8 @@
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
-***
 * [super キーワード](#superキーワード)
+***
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -2979,40 +2979,54 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 # <b>super キーワード</b>
 
 ```
-//xxx.ts
+//Main.as
+package {
+    import flash.display.*;
+    public class Main extends Sprite {
+        public function Main() { //コンストラクタ
+            //実行
+            var _subClass: SubClass = new SubClass();
+            //["SuperClass.constructor : from SubClass"]
+            _subClass.methodSub();
+            //["SuperClass.methodSuper : from SubClass"]
+        }
+    }
+}
+
 //スーパークラス
 class SuperClass {
-    constructor(_arg: string) { //コンストラクタ
+    public function SuperClass(_arg: String) { //コンストラクタ
         console.log("SuperClass.constructor : " + _arg);
     }
-    public methodSuper(_arg: string): void {
+    public function methodSuper(_arg: String): void {
         console.log("SuperClass.methodSuper : " + _arg);
     }
 }
 
 //サブクラス
 class SubClass extends SuperClass { //スーパークラスを継承
-    constructor() { //コンストラクタ
+    public function SubClass() { //コンストラクタ
         //↓スーパークラスのコンストラクタの呼び出し（必須）
         super("from SubClass");
         //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
     }
-    public methodSub(): void {
+    public function methodSub(): void {
         //↓スーパークラスのメソッドを呼び出すことが可能
         super.methodSuper("from SubClass");
     }
 }
 
-//実行
-var _subClass: SubClass = new SubClass();
-//"SuperClass.constructor : from SubClass"
-_subClass.methodSub();
-//"SuperClass.methodSuper : from SubClass"
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月27日  
+作成日：2017年03月30日  
 
 
 <a name="オーバーライド"></a>
