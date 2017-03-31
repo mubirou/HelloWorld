@@ -85,57 +85,56 @@
 
 ### gettype() 関数
 * データ型を文字列で返す
-```
-<?php
-    //index.php
-    echo gettype(true)."<br>"; //"boolean"
-    echo gettype(100)."<br>"; //"integer"
-    echo gettype(100.0)."<br>"; //"double"
-    echo gettype("100")."<br>"; //"string"
-    echo gettype(array("nishimura",49))."<br>"; //"array"
-    echo gettype(new MyClass())."<br>"; //"object"
-    echo gettype(new PDO("sqlite::memory:", null, null))."<br>"; //"object"
-    echo gettype(NULL); //"NULL"
-    class MyClass {};
-?>
-```
+    ```
+    <?php
+        //index.php
+        echo gettype(true)."<br>"; //"boolean"
+        echo gettype(100)."<br>"; //"integer"
+        echo gettype(100.0)."<br>"; //"double"
+        echo gettype("100")."<br>"; //"string"
+        echo gettype(array("nishimura",49))."<br>"; //"array"
+        echo gettype(new MyClass())."<br>"; //"object"
+        echo gettype(new PDO("sqlite::memory:", null, null))."<br>"; //"object"
+        echo gettype(NULL); //"NULL"
+        class MyClass {};
+    ?>
+    ```
 
 ### is_xxx() 関数
 * データ型が一致するか boolean 型で返す（「1」または「」で出力される）
-1. is_bool() : 論理値
-1. is_int() : 整数
-1. is_float() : 浮動小数点数
-1. is_numeric() : 数値文字列を含む、整数 or 浮動小数点数
-1. is_string() : 文字列
-1. is_array() : 配列
-1. is_object() : オブジェクト
-1. is_resource() : 外部リソース
-1. is_NULL() : NULL値
-```
-<?php
-    echo is_int(100.0)."<br>"; //「」（FALSE）
-    echo is_float(100.0)."<br>"; //「1」（TRUE）
-    echo is_numeric(100.0)."<br>"; //「1」（TRUE）
-    echo is_numeric("100.0"); //「1」（TRUE）
-?>
-```
+    1. is_bool() : 論理値
+    1. is_int() : 整数
+    1. is_float() : 浮動小数点数
+    1. is_numeric() : 数値文字列を含む、整数 or 浮動小数点数
+    1. is_string() : 文字列
+    1. is_array() : 配列
+    1. is_object() : オブジェクト
+    1. is_resource() : 外部リソース
+    1. is_NULL() : NULL値
+    ```
+    <?php
+        echo is_int(100.0)."<br>"; //「」（FALSE）
+        echo is_float(100.0)."<br>"; //「1」（TRUE）
+        echo is_numeric(100.0)."<br>"; //「1」（TRUE）
+        echo is_numeric("100.0"); //「1」（TRUE）
+    ?>
+    ```
 
 ### var_dump() 関数
 * 値の情報を echo を使わずに出力する
-
-```
-<?php
-    var_dump(true); //bool(true) 
-    var_dump(100); //int(100) 
-    var_dump(100.0); //float(100) 
-    var_dump(  "100"); //string(3) "100"
-    var_dump(array("nishimura",49)); //array(2) { [0]=> string(9) "nishimura" [1]=> int(49) }
-    var_dump(new MyClass()); //object(MyClass)#1 (0) { }
-    var_dump(new PDO("sqlite::memory:",null,null)); //object(PDO)#1 (0) { }
-    var_dump(NULL); //NULL
-    class MyClass {};
-?>
-```
+    ```
+    <?php
+        var_dump(true); //bool(true) 
+        var_dump(100); //int(100) 
+        var_dump(100.0); //float(100) 
+        var_dump(  "100"); //string(3) "100"
+        var_dump(array("nishimura",49)); //array(2) { [0]=> string(9) "nishimura" [1]=> int(49) }
+        var_dump(new MyClass()); //object(MyClass)#1 (0) { }
+        var_dump(new PDO("sqlite::memory:",null,null)); //object(PDO)#1 (0) { }
+        var_dump(NULL); //NULL
+        class MyClass {};
+    ?>
+    ```
 
 ### データ型のキャスト（変換）
 
