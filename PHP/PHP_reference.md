@@ -7,8 +7,8 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-***
 * [クラス](#クラス)
+***
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -246,56 +246,56 @@
 # <b>クラス</b>
 
 ```
-<script>
+<?php
 
-//長方形クラス（前方宣言が必要）
+//長方形クラス
 class Rectangle {
-    //コンストラクタ
-    constructor(_width=640, _height=480) {
-        //外からもアクセス可能だがアクセスしないようにする
-        this.__width = _width;
-        this.__height = _height;
+    //プロパティの初期値の設定（private、protected、publicのいずれかで宣言）
+    private $width = 0;
+    private $height = 0;
+    
+    //コンストラクタ（同名の関数がある場合こちらを優先／省略時はpublic扱い）
+    function __construct($width = 640, $height = 480) {
+        $this->width = $width;
+        $this->height = $height;
     }
 
-    //アクセサ（getter/setter）
-    get width() {
-        return this.__width;
-    }
-    set width(_newValue) {
-        this.__width = _newValue;
+    //アクセサ（getter）
+    public function __get($name){
+        return $this->$name;
     }
 
-    get height() {
-        return this.__height;
+    //アクセサ（setter）
+    public function __set($name, $value){
+        $this->$name = $value;
     }
-    set height(_newValue) {
-        this.__height = _newValue;
-    }
-
+    
     //面積を計算して値を返す
-    getArea() {
-        return this.__width * this.__height;
+    public function getArea() {
+        return $this->width * $this->height; 
     }
 }
 
 //①インスタンスの生成
-var _rectangle = new Rectangle();
+$rectangle = new Rectangle();
 
 //②プロパティの確認と変更
-console.log(_rectangle.width, _rectangle.height); //640, 480
-_rectangle.width = 1920;
-_rectangle.height = 1080;
-console.log(_rectangle.width, _rectangle.height); //1920, 1080
+echo $rectangle->width."<br>"; //640
+echo $rectangle->height."<br>"; //480
+$rectangle->width = 1920;
+$rectangle->height = 1080;
+echo $rectangle->width."<br>"; //1920
+echo $rectangle->height."<br>"; //1080
 
 //③メソッドの実行
-console.log(_rectangle.getArea()); //2073600
+echo $rectangle->getArea(); //2073600
 
-</script>
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月31日  
 
 
 <a name="スーパークラスとサブクラス"></a>
