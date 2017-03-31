@@ -248,7 +248,7 @@
 ```
 <?php
 
-//長方形クラス
+//長方形クラス（前方宣言である必要はない）
 class Rectangle {
     //プロパティの初期値の設定（private、protected、publicのいずれかで宣言）
     private $width = 0;
