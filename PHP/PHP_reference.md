@@ -102,15 +102,15 @@
 
 ### is_xxx() 関数
 * データ型が一致するか boolean 型で返す（「1」または「」で出力される）
-    1. is_bool() : 論理値
-    1. is_int() : 整数
-    1. is_float() : 浮動小数点数
-    1. is_numeric() : 数値文字列を含む、整数 or 浮動小数点数
-    1. is_string() : 文字列
-    1. is_array() : 配列
-    1. is_object() : オブジェクト
-    1. is_resource() : 外部リソース
-    1. is_NULL() : NULL値
+1. is_bool() : 論理値
+1. is_int() : 整数
+1. is_float() : 浮動小数点数
+1. is_numeric() : 数値文字列を含む、整数 or 浮動小数点数
+1. is_string() : 文字列
+1. is_array() : 配列
+1. is_object() : オブジェクト
+1. is_resource() : 外部リソース
+1. is_NULL() : NULL値
     ```
     <?php
         echo is_int(100.0)."<br>"; //「」（FALSE）
