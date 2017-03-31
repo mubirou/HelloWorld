@@ -380,7 +380,7 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月31日  
 
 
 <a name="名前空間"></a>
