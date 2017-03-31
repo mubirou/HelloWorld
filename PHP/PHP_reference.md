@@ -302,25 +302,22 @@ echo $rectangle->getArea(); //2073600
 # <b>スーパークラスとサブクラス</b>
 
 ```
-<script>
+<?php
 
 /****************************************************
 スーパークラス
 ****************************************************/
 class SuperClass {
-    //コンストラクタ
-    constructor() {
-        //①プロパティの定義
-        this.__pSuperClass = "スーパークラスのプロパティ";
-    }
+    //①プロパティの定義
+    protected $pSuperClass = "スーパークラスのプロパティ"; //protectedにする
 
     //②アクセサの定義（setterは省略）
-    get pSuperClass() {
-        return this.__pSuperClass;
+    public function __get($name){
+        return $this->$name;
     }
 
     //③メソッドの定義
-    mSuperClass() {
+    public function mSuperClass() {
         return "スーパークラスのメソッド";
     }
 }
@@ -328,21 +325,17 @@ class SuperClass {
 /****************************************************
 サブクラスＡ（スーパークラスを継承／多重継承は不可）
 ****************************************************/
-class SubClassA extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassA = "サブクラスＡのプロパティ";
-    }
+class SubClassA extends SuperClass { //スーパークラスを継承
+    //①プロパティの定義
+    private $pSubClassA = "サブクラスＡのプロパティ";
 
     //②アクセサの定義（setterは省略）
-    get pSubClassA() {
-        return this.__pSubClassA;
+    public function __get($name){
+        return $this->$name;
     }
 
     //③メソッドの定義
-    mSubClassA() {
+    public function mSubClassA() {
         return "サブクラスＡのメソッド";
     }
 }
@@ -350,21 +343,17 @@ class SubClassA extends SuperClass {
 /****************************************************
 サブクラスＢ（スーパークラスを継承／多重継承は不可）
 ****************************************************/
-class SubClassB extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassB = "サブクラスＢのプロパティ";
-    }
+class SubClassB extends SuperClass { //スーパークラスを継承
+    //①プロパティの定義
+    private $pSubClassB = "サブクラスＢのプロパティ";
 
     //②アクセサの定義（setterは省略）
-    get pSubClassB() {
-        return this.__pSubClassB;
+    public function __get($name){
+        return $this->$name;
     }
 
     //③メソッドの定義
-    mSubClassB() {
+    public function mSubClassB() {
         return "サブクラスＢのメソッド";
     }
 }
@@ -373,20 +362,20 @@ class SubClassB extends SuperClass {
 実行
 ****************************************************/
 //サブクラスＡのインスタンス
-var _subclassA = new SubClassA();
-console.log(_subclassA.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassA.pSubClassA); //"サブクラスＡのプロパティ"
-console.log(_subclassA.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassA.mSubClassA()); //"サブクラスＡのメソッド"
+$subClassA =  new SubClassA(); //サブクラスAからインスタンスを生成
+echo $subClassA->pSuperClass."<br>"; //→ "スーパークラスのプロパティ"
+echo $subClassA->pSubClassA."<br>"; //→ "サブクラスＡのプロパティ"
+echo $subClassA->mSuperClass()."<br>"; //→ "スーパークラスのメソッド"
+echo $subClassA->mSubClassA()."<br>"; //→ "サブクラスＡのメソッド"
 
 //サブクラスＢのインスタンス
-var _subclassB = new SubClassB();
-console.log(_subclassB.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassB.pSubClassB); //"サブクラスＢのプロパティ"
-console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
+$subClassB =  new SubClassB(); //サブクラスBからインスタンスを生成
+echo $subClassB->pSuperClass."<br>"; //→ "スーパークラスのプロパティ"
+echo $subClassB->pSubClassB."<br>"; //→ "サブクラスＢのプロパティ"
+echo $subClassB->mSuperClass()."<br>"; //→ "スーパークラスのメソッド"
+echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 
-</script>
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
