@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
@@ -50,14 +50,14 @@
 # <b>データ型</b>
 
 ### データ型の種類
-1. boolean（論理型）
-1. integer（整数）
-1. double（浮動小数点数）
-1. string（文字列）
-1. array（配列）
-1. object（オブジェクト）
-1. resource（外部リソース）
-1. NULL（変数に何も値が代入されていない）
+1. boolean : 論理型
+1. integer : 整数
+1. double : 浮動小数点数
+1. string : 文字列
+1. array : 配列
+1. object : オブジェクト
+1. resource : 外部リソース
+1. NULL : 変数に何も値が代入されていない
 
 ### 例文
 ```
@@ -83,101 +83,164 @@
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
-### データ型を調べる①
-（ typeof 演算子 ＝ データ型を文字列で返す）
-
+### gettype() 関数
+* データ型を文字列で返す
 ```
-<script>
-
-//①boolean（論理型）
-console.log(typeof true); //"boolean"
-
-//②number（整数･浮動小数点数）
-console.log(typeof 1); //"number"
-console.log(typeof 1.0); //"number"
-
-//③string（文字列）
-console.log(typeof "1"); //"string"
-
-//④object（全てのオブジェクトのベース）
-console.log(typeof {name:"TARO", age:49}); //"object"
-
-//⑤undefined（未初期化変数）
-console.log(typeof _hoge); //"undefined"
-
-//⑥function（関数）
-console.log(typeof function() {}); //"function"
-
-//⑦symbol
-console.log(typeof Symbol()); //"symbol"
-
-</script>
+<?php
+    //index.php
+    echo gettype(true)."<br>"; //"boolean"
+    echo gettype(100)."<br>"; //"integer"
+    echo gettype(100.0)."<br>"; //"double"
+    echo gettype("100")."<br>"; //"string"
+    echo gettype(array("nishimura",49))."<br>"; //"array"
+    echo gettype(new MyClass())."<br>"; //"object"
+    echo gettype(new PDO("sqlite::memory:", null, null))."<br>"; //"object"
+    echo gettype(NULL); //"NULL"
+    class MyClass {};
+?>
 ```
 
-### データ型を調べる②
-（ instanceof 演算子 ＝ データ型が一致するか boolean 型で返す）
+### is_xxx() 関数
+* データ型が一致するか boolean 型で返す（「1」または「」で出力される）
+1. is_bool() : 論理値
+1. is_int() : 整数
+1. is_float() : 浮動小数点数
+1. is_numeric() : 数値文字列を含む、整数 or 浮動小数点数
+1. is_string() : 文字列
+1. is_array() : 配列
+1. is_object() : オブジェクト
+1. is_resource() : 外部リソース
+1. is_NULL() : NULL値
+```
+<?php
+    echo is_int(100.0)."<br>"; //「」（FALSE）
+    echo is_float(100.0)."<br>"; //「1」（TRUE）
+    echo is_numeric(100.0)."<br>"; //「1」（TRUE）
+    echo is_numeric("100.0"); //「1」（TRUE）
+?>
+```
+
+### var_dump() 関数
+* 値の情報を echo を使わずに出力する
 
 ```
-<script>
-
-//①boolean（論理型）
-console.log(true instanceof Boolean); //false（要注意）
-console.log(new Boolean(true) instanceof Boolean); //true
-
-//②number（整数･浮動小数点数）
-console.log(1 instanceof Number); //false（要注意）
-console.log(new Number(1) instanceof Number); //true
-
-//③string（文字列）
-console.log("あ" instanceof String); //false（要注意）
-console.log(new String("あ") instanceof String); //true
-
-//④object（全てのオブジェクトのベース）
-console.log({name:"TARO"} instanceof Object); //true
-console.log(new Object() instanceof Object); //true
-
-//⑤function（関数）
-console.log(function() {} instanceof Function); //true
-
-</script>
+<?php
+    var_dump(true); //bool(true) 
+    var_dump(100); //int(100) 
+    var_dump(100.0); //float(100) 
+    var_dump(  "100"); //string(3) "100"
+    var_dump(array("nishimura",49)); //array(2) { [0]=> string(9) "nishimura" [1]=> int(49) }
+    var_dump(new MyClass()); //object(MyClass)#1 (0) { }
+    var_dump(new PDO("sqlite::memory:",null,null)); //object(PDO)#1 (0) { }
+    var_dump(NULL); //NULL
+    class MyClass {};
+?>
 ```
 
 ### データ型のキャスト（変換）
-```
-<script>
 
-//①数値→boolean型
-var _boolean = Boolean(1);
-console.log(_boolean, typeof _boolean); //true, "boolean"
+1. settype() 関数 による変換
+    ```
+    <?php
+        //①数値→boolean型
+        $var = 1;
+        settype($var, "boolean");  //"bool"でも可
+        echo $var."<br>"; //→ 1（TRUE）
+        echo gettype($var)."<br>"; //"boolean"
 
-//②boolean型→number型
-var _number1 = Number(true);
-console.log(_number1, typeof _number1); //1（falseの場合は0）, "number"
+        //①浮動小数点数→integer型（小数点以下を切捨て整数化）
+        $var = "3.99";  // 数値の 3.99 でも同じ
+        settype($var, "integer");  //"int"でも可
+        echo $var."<br>"; //3
+        echo gettype($var)."<br>"; //"integer"
 
-//③文字列→number型
-var _number2 = Number("3.14");
-console.log(_number2, typeof _number2); //3.14, "number"
+        //数字以外を含む値をinteger型に変換
+        $var = "3.99円です"; 
+        settype($var, "integer");
+        echo $var."<br>"; //3（前方から数値化できる文字列のみ変換）
+        echo gettype($var)."<br>"; //"integer"
 
-var _number3 = parseInt("3.14"); //小数点以下を切り捨てて整数化
-console.log(_number3, typeof _number3); //3, "number"
+        //double型へ変換
+        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        settype($var, "float");
+        echo $var."<br>"; //3.99（前方から数値化できる文字列のみ変換）
+        echo gettype($var)."<br>"; //"double"
 
-var _number4 = parseFloat("3.14です。"); //数字以外を含む値
-console.log(_number4, typeof _number4); //3.14, "number"
+        //string型へ変換
+        $var = 100;
+        settype($var, "string");
+        echo $var."<br>"; //"100"
+        echo gettype($var)."<br>"; //"string"
 
-//④数値→string型
-var _string1 = String(100); //(100).toString() でも同じ
-console.log(_string1, typeof _string1); //"100", "string"
+        //array型へ変換
+        $var = "nishimura";
+        settype($var, "array");
+        echo $var[0]."<br>"; //"nishimura"
+        echo gettype($var)."<br>"; //"array"
+    ?>
+    ```
 
-//⑤配列→string型
-var _string2 = String(["TARO", 49]);
-console.log(_string2, typeof _string2); //"TARO,49", "string"
+1. 型キャストによる変換
+    ```
+    <?php
+        //boolean型へ変換
+        $var = 1;
+        $var = (bool)$var;  //(boolean) でも可
+        echo $var."<br>"; //1（TRUE）
+        echo gettype($var)."<br>"; //"boolean"
 
-</script>
-```
+        //integer型へ変換（小数点以下を切り捨てて整数化）
+        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = (int)$var; //(integer) でも可
+        echo $var."<br>"; //3（前方から数値化できる文字列のみ変換）
+        echo gettype($var)."<br>"; //"integer"
+
+        //double型へ変換
+        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = (float)$var;  //(double) や (real) でも可
+        echo $var."<br>"; //3.99（前方から数値化できる文字列のみ変換）
+        echo gettype($var)."<br>"; //"double"
+
+        //string型へ変換
+        $var = 100;
+        $var = (string)$var;
+        echo $var."<br>"; //"100"
+        echo gettype($var)."<br>"; //"string"
+
+        //array型へ変換
+        $var = "nishimura"; 
+        $var = (array)$var;
+        echo $var[0]."<br>"; //"nishimura"
+        echo gettype($var)."<br>"; //"array"
+    ?>
+    ```
+
+1. intval()、floatval()、strval() 関数による変換
+    ```
+    <?php
+        //integer型へ変換（小数点以下を切り捨てて整数化）
+        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = intval($var); 
+        echo $var."<br>"; //3（前方から数値化できる文字列のみ変換）
+        echo gettype($var)."<br>"; //"integer"
+
+        //double型へ変換
+        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = floatval($var);  //doubleval() と同じ
+        echo $var."<br>"; //3.99（前方から数値化できる文字列のみ変換）
+        echo gettype($var)."<br>"; //"double"
+
+        //string型へ変換
+        $var = 100;
+        $var = strval($var); 
+        echo $var."<br>"; //"100"
+        echo gettype($var)."<br>"; //"string"
+    ?>
+    ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月31日  
 
 
 <a name="クラス"></a>
