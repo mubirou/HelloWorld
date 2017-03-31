@@ -311,7 +311,11 @@ class SuperClass {
     //①プロパティの定義
     protected $pSuperClass = "スーパークラスのプロパティ"; //protectedにする
 
+    //コンストラクタ
+    function __construct($arg) {}
+
     //②アクセサの定義（setterは省略）
+    //今回はサブクラスでオーバーライドされるので不要
     public function __get($name){
         return $this->$name;
     }
@@ -328,6 +332,9 @@ class SuperClass {
 class SubClassA extends SuperClass { //スーパークラスを継承
     //①プロパティの定義
     private $pSubClassA = "サブクラスＡのプロパティ";
+
+    //コンストラクタ
+    function __construct() {}
 
     //②アクセサの定義（setterは省略）
     public function __get($name){
@@ -346,6 +353,9 @@ class SubClassA extends SuperClass { //スーパークラスを継承
 class SubClassB extends SuperClass { //スーパークラスを継承
     //①プロパティの定義
     private $pSubClassB = "サブクラスＢのプロパティ";
+
+    //コンストラクタ
+    function __construct() {}
 
     //②アクセサの定義（setterは省略）
     public function __get($name){
@@ -380,7 +390,7 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月31日  
+作成日：2017年04月01日  
 
 
 <a name="名前空間"></a>
