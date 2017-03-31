@@ -5,8 +5,8 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_win.md)）
-***
 * [データ型](#データ型)
+***
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
@@ -51,82 +51,33 @@
 
 ### データ型の種類
 1. boolean（論理型）
-1. number（整数･浮動小数点数）
+1. integer（整数）
+1. double（浮動小数点数）
 1. string（文字列）
-1. object（全てのオブジェクトのベース）
-1. undefined（未初期化変数）
-1. symbol（シンボル）
+1. array（配列）
+1. object（オブジェクト）
+1. resource（外部リソース）
+1. NULL（変数に何も値が代入されていない）
 
 ### 例文
 ```
-<script>
-
-//①boolean（論理型）
-var _boolean = true;
-console.log(_boolean, typeof _boolean); //true, "boolean"
-
-
-//②number（整数･浮動小数点数） ※NaNも"number"型
-var _number = 9007199254740998;
-//-9007199254740998〜9007199254740998（約±9000兆）まで扱える
-console.log(_number, typeof _number); //9007199254740998, "number"
-
-var _number2 = 3.14159265358979323846264338327;
-console.log(_number2, typeof _number2); //3.141592653589793, "number"
-
-
-//③string（文字列）
-var _string = "いろは"; //シングルまたはダブルクォーテーションで囲む
-console.log(_string, typeof _string); //"いろは", "string"
-
-
-//④object（全てのオブジェクトのベース）
-var _boolean2 = new Boolean(true);
-console.log(typeof _boolean2); //"object"（"boolean"ではない）
-
-var _number3 = new Number(1);
-console.log(typeof _number3); //"object"（"number"ではない）
-
-var _string2 = new String("1");
-console.log(typeof _string2); //"object"（"string"ではない）
-
-var _array = ["A","B","C"]; //配列（Array）
-console.log(typeof _array); //"object"
-
-var _object = {name:"TARO", age:49}; //連想配列
-console.log(typeof _object); //"object"
-
-var _hoge2 = null; //null（データ不在）
-console.log(_hoge2, typeof _hoge2); //null, "object"
-
-class MyClass {} //クラス（前方宣言が必要）
-var _myClass = new MyClass();
-console.log(typeof _myClass); //"object"
-
-
-//⑤undefined（未初期化変数）
-var _hoge; //変数宣言したのみで値が設定されていない場合
-console.log(_hoge, typeof _hoge); //undefined, "undefined"
-
-
-//⑥function（関数）
-var _function = function() {}; //匿名関数
-console.log(typeof _function); //"function"
-
-var _function2 = () => {}; //アロー関数
-console.log(typeof _function2); //"function"
-
-
-//⑦symbol（シンボル）
-var _symbol = Symbol();
-console.log(typeof _symbol); //"symbol"
-
-</script>
+<?php
+    //index.php
+    echo gettype(true)."<br>"; //"boolean"
+    echo gettype(100)."<br>"; //"integer"
+    echo gettype(100.0)."<br>"; //"double"
+    echo gettype("100")."<br>"; //"string"
+    echo gettype(array("nishimura",49))."<br>"; //"array"
+    echo gettype(new MyClass())."<br>"; //"object"
+    echo gettype(new PDO("sqlite::memory:", null, null))."<br>"; //"object"
+    echo gettype(NULL); //"NULL"
+    class MyClass {};
+?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年03月31日  
 
 
 <a name="データ型の操作"></a>
@@ -224,7 +175,7 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -280,7 +231,7 @@ console.log(_rectangle.getArea()); //2073600
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -376,7 +327,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -453,7 +404,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -508,7 +459,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月19日
 
@@ -669,7 +620,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 	</script>
 	```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
@@ -727,7 +678,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
@@ -802,7 +753,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
@@ -848,7 +799,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -989,7 +940,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1037,7 +988,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1084,7 +1035,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1131,7 +1082,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1231,7 +1182,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1283,7 +1234,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1358,7 +1309,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1434,7 +1385,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1489,7 +1440,7 @@ for (変数名 in 配列等) {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1546,7 +1497,7 @@ for (変数名 in 配列等) {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1623,7 +1574,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1824,7 +1775,7 @@ do {
 ```
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1864,7 +1815,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1905,7 +1856,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1951,7 +1902,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2040,7 +1991,7 @@ do {
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2106,7 +2057,7 @@ var 変数 = "xxx"; //string型
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2157,7 +2108,7 @@ var 変数 = "xxx"; //string型
     1. String.replace()
     1. String.split()
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2209,7 +2160,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2251,7 +2202,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2290,7 +2241,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2340,7 +2291,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2461,7 +2412,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2512,7 +2463,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2554,7 +2505,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2656,7 +2607,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2690,7 +2641,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2731,6 +2682,6 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
     * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
