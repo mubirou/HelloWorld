@@ -314,8 +314,7 @@ class SuperClass {
     //コンストラクタ
     function __construct($arg) {}
 
-    //②アクセサの定義（setterは省略）
-    //今回はサブクラスでオーバーライドされるので不要
+    //アクセサの定義（今回はサブクラスでオーバーライドされるので不要）
     public function __get($name){
         return $this->$name;
     }
