@@ -398,24 +398,24 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 
 ```
 <?php
-	namespace com\xxx;
-	class SomeClass {
-		function __construct() {
-			echo "com\xxx\SomeClass"."<br>";
-		}
-	}
+    namespace com\xxx;
+    class SomeClass {
+        function __construct() {
+            echo "com\xxx\SomeClass"."<br>";
+        }
+    }
 
-	namespace net\xxx;
-	class SomeClass {
-		function __construct() {
-			echo "net\xxx\SomeClass"."<br>";
-		}
-	}
+    namespace net\xxx;
+    class SomeClass {
+        function __construct() {
+            echo "net\xxx\SomeClass"."<br>";
+        }
+    }
 
-	//同じクラス名でもコンフリクト（衝突）を起こさない
-	//先頭にバックスラッシュは必須
-	$someClass1 = new \com\xxx\SomeClass();
-	$someClass2 = new \net\xxx\SomeClass();
+    //同じクラス名でもコンフリクト（衝突）を起こさない
+    //先頭にバックスラッシュは必須
+    $someClass1 = new \com\xxx\SomeClass();
+    $someClass2 = new \net\xxx\SomeClass();
 ?>
 ```
 
