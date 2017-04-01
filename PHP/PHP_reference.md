@@ -10,8 +10,8 @@
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -77,7 +77,7 @@
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月31日  
+作成日：2017年03月31日
 
 
 <a name="データ型の操作"></a>
@@ -239,7 +239,7 @@
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月31日  
+作成日：2017年03月31日
 
 
 <a name="クラス"></a>
@@ -390,7 +390,7 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月01日  
+作成日：2017年04月01日
 
 
 <a name="名前空間"></a>
@@ -421,7 +421,7 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月01日  
+作成日：2017年04月01日
 
 
 <a name="継承と委譲"></a>
@@ -435,48 +435,55 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 ### 継承版
 
 ```
-<script>
-    class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
-    }
-    }
+<?php
 
-    class ClassB extends ClassA { //ClassAを継承
+class ClassA {
+    public function myMethod() {
+        return "ClassA.myMethod";
     }
+}
 
-    var _classB = new ClassB();
-    _classB.myMethod();
-</script>
+class ClassB extends ClassA { //ClassAを継承
+}
+
+$classB =  new ClassB();
+echo $classB->myMethod(); //"ClassA.myMethod"
+
+?>
 ```
 
 ### 委譲版
 
 ```
-<script>
-    class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
-    }
-    }
+<?php
 
-    class ClassB {
-    constructor() { //コンストラクタ
-        this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
+class ClassA {
+    public function myMethod() {
+        echo "ClassA.myMethod";
     }
-    myMethod() {
-        this.__classA.myMethod(); //ClassAのmyMethod()を実行
-    }
-    }
+}
 
-    var _classB = new ClassB();
-    _classB.myMethod();
-</script>
+class ClassB extends ClassA { //ClassAを継承
+    private $classA;
+    
+    //コンストラクタ（同名の関数がある場合こちらを優先／省略時はpublic扱い）
+    function __construct() {
+        $this->classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
+    }
+    public function myMethod() {
+        $this->classA->myMethod(); //ClassAのmyMethod()を実行
+    }
+}
+
+$classB =  new ClassB();
+echo $classB->myMethod(); //"ClassA.myMethod"
+
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月19日
+作成日：2017年04月01日
 
 
 <a name="変数とスコープ"></a>
