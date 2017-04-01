@@ -11,8 +11,8 @@
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
-***
 * [変数とスコープ](#変数とスコープ)
+***
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
@@ -491,10 +491,11 @@ echo $classB->myMethod(); //"ClassA.myMethod"
 
 ### 変数の種類
 
-1. グローバル変数…プログラム全体からアクセス可能
-1. 擬似プライベート変数…単なるパブリック変数（アクセサを利用すべき）
-1. ローカル変数…関数またはメソッド内でのみアクセス可能
-1. ブロック変数…ブロック{}内でのみアクセス可能
+1. グローバル変数 : プログラム全体からアクセス可能
+1. private 変数 : クラス内でのみアクセス可能
+1. protected 変数 : クラスまたはサブクラス内でみアクセス可能
+1. ローカル変数 : 関数またはメソッド内でのみアクセス可能
+* 他にもクラス外からもアクセス可能な public 変数あり（非推奨）
 
 ### グローバル変数
 * Windowオブジェクトのプロパティ
@@ -576,7 +577,7 @@ echo $myClass->propA."<br>"; //"ABC"
     ```
     <?php
 
-    $var = "GLOBAL";  //グローバル変数の定義。
+    $var = "GLOBAL";  //グローバル変数の定義
 
     function myFunction1() {
         //ローカル変数定義
@@ -597,59 +598,40 @@ echo $myClass->propA."<br>"; //"ABC"
 
 1. メソッド内で定義した場合
     ```
-    <script>
-        class MyClass {
-            myMethod1() {
-                var _local = "ローカル変数"; //varは省略不可
-                console.log(_local); //"ローカル変数"
-            }
-            myMethod2() {
-                //console.log(_local); //Error
-            }
+    <?php
+
+    class MyClass {
+        public function myMethod1() {
+            //ローカル変数定義
+            $local = "ローカル変数";
+            echo $local; //"ローカル変数"
         }
-        var myClass_ = new MyClass();
-        myClass_.myMethod1();
-        myClass_.myMethod2();
-    </script>
+        public function myMethod2() {
+            //echo $local; //アクセス不可
+        }
+    }
+
+    //①インスタンスの生成
+    $myClass = new MyClass();
+    $myClass->myMethod1();
+    $myClass->myMethod2();
+
+    ?>
     ```
 
 1. for文内で定義した場合
     ```
-    <script>
-        for (var i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,...,8,9
+    <?php
+        for ($i = 0; $i < 10; $i++) {
+            echo $i."<br>"; //0,1,2,...,8,9
         }
-        console.log(i); //10（for文の外でも有効）
-    </script>
-    ```
-
-### ブロック変数
-* ブロック {} 内でのみ有効
-
-1. for 文内で定義した場合
-    ```
-    <script>
-        for (let i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,...,8,9
-        }
-        console.log(i); //Error（アクセス不可）
-    </script>
-    ```
-
-1. if 文内で定義した場合
-    ```
-    <script>
-        if (true) {
-            let _block = "ブロック変数";
-            console.log(_block); //"ブロック変数"
-        }
-        console.log(block_); //Error（アクセス不可）
-    </script>
+        echo $i; //10（for文の外でも有効）
+    ?>
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年04月01日
 
 
 <a name="アクセサ"></a>
