@@ -9,8 +9,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
-***
 * [名前空間](#名前空間)
+***
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
@@ -396,78 +396,32 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
-* ES2015+からサポートされた import と export はまだブラウザで利用できません
-* サンプルの方法は力技的ですが機能としては充分です
-
-#### 外部ファイル（ myLibrary.js ）
 ```
-//名前空間を省略可能にするために（オプション）
-if (myLibrary != window) {
-    var myLibrary = {}; //namescape（省略をしない前提であればconstにします）
-}
+<?php
+	namespace com\xxx;
+	class SomeClass {
+		function __construct() {
+			echo "com\xxx\SomeClass"."<br>";
+		}
+	}
 
-/**************************
-myLibrary.SuperClassクラス
-**************************/
-myLibrary.SuperClass =
-class SuperClass {
-    constructor() {
-        this.__myProperty = undefined;
-    }
-    get myProperty() {
-        return this.__myProperty;
-    }
-    set myProperty(_newValue) {
-        this.__myProperty = _newValue;
-    }
-};
+	namespace net\xxx;
+	class SomeClass {
+		function __construct() {
+			echo "net\xxx\SomeClass"."<br>";
+		}
+	}
 
-/**************************
-myLibrary.MyClassクラス
-**************************/
-myLibrary.MyClass =
-class MyClass extends myLibrary.SuperClass { //継承も可能
-    constructor() {
-        super();
-        console.log("new myLibrary.MyClass");
-    }
-    MyClassMethod() {
-        console.log("MyClass.MyClassMethod()");
-    }
-};
-```
-
-#### xxx.html
-```
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<!--script>var myLibrary = window;</script-->
-<script src="myLibrary.js"></script>
-<script>
-
-var _myClass = new myLibrary.MyClass(); //"new myLibrary.MyClass"
-_myClass.MyClassMethod(); //"MyClass.MyClassMethod()"
-_myClass.myProperty = "hoge";
-console.log(_myClass.myProperty); //"hoge"
-
-//MyClassクラス（名前空間を省略するとコンフリクトを起こす）
-class MyClass {
-    constructor() {
-        console.log("コンフリクトを起こさない!");
-    }
-}
-new MyClass(); //"コンフリクトを起こさない!"
-
-</script>
-</head>
-</html>
+	//同じクラス名でもコンフリクト（衝突）を起こさない
+	//先頭にバックスラッシュは必須
+	$someClass1 = new \com\xxx\SomeClass();
+	$someClass2 = new \net\xxx\SomeClass();
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年04月01日  
 
 
 <a name="継承と委譲"></a>
