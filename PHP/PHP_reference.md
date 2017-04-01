@@ -300,6 +300,7 @@ echo $rectangle->getArea(); //2073600
 
 <a name="スーパークラスとサブクラス"></a>
 # <b>スーパークラスとサブクラス</b>
+* スーパークラスのプロパティを private にしたい場合は[マジックメソッド](http://php.net/manual/ja/language.oop5.magic.php)の __get() ではなく get_xxx() 等と記述する必要がある。
 
 ```
 <?php
