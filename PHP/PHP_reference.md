@@ -446,7 +446,7 @@ class ClassA {
 class ClassB extends ClassA { //ClassAを継承
 }
 
-$classB =  new ClassB();
+$classB = new ClassB();
 echo $classB->myMethod(); //"ClassA.myMethod"
 
 ?>
@@ -475,7 +475,7 @@ class ClassB extends ClassA { //ClassAを継承
     }
 }
 
-$classB =  new ClassB();
+$classB = new ClassB();
 echo $classB->myMethod(); //"ClassA.myMethod"
 
 ?>
