@@ -500,147 +500,150 @@ echo $classB->myMethod(); //"ClassA.myMethod"
 * Windowオブジェクトのプロパティ
 
 ```
-<script>
-    /*******************************************
+<?php
+    /******************
     グローバル変数定義
-    （関数の外部で定義するとグローバル変数扱い）
-    *******************************************/
-    var _global = "グローバル変数"; //varは省略可
-    //this._global = "グローバル変数"; //上記と同じ意味
-    //window._global = "グローバル変数"; //上記と同じ意味
+    ******************/
+    $global = "グローバル変数";
 
     /*****************************
     関数内でのグローバル変数の扱い
     *****************************/
     function myFunction() {
-        console.log(_global); //"グローバル変数"
-        console.log(this._global); //"グローバル変数"
-        console.log(window._global); //"グローバル変数"
+        global $global; //カンマ（,）で複数指定可能
+        echo $global."<br>"; //"グローバル変数"
     }
     myFunction();
 
-    /********************************
+    /*******************************
     クラス内でのグローバル変数の扱い
-    ********************************/
+    *******************************/
     class MyClass {
-        constructor() { //コンストラクタ
-            console.log(_global); //"グローバル変数"
-            console.log(this._global); //undefined（thisはMyClassのインスタンスの為）
-            console.log(window._global); //"グローバル変数"
+        function __construct() {
+            global $global; //カンマ（,）で複数指定可能
+            echo $global."<br>"; //"グローバル変数"
         }
     }
     new MyClass();
-</script>
+?>
 ```
 
-### 擬似プライベート変数
-* 実際は単なるパブリック変数
-* 変数へのアクセスはアクセサ（getter/setter）を利用する（推奨）
+### プライベート変数
+* 変数へのアクセスは __get()、 __set() を利用する
+* クラス内とサブクラス内でのみアクセス可能な protected もあり
 
 ```
-<script>
-    class MyClass {
-        //コンストラクタ
-        constructor() {
-            //擬似プライベート変数の定義
-            this.__propA = "いろは"; //変数名は__xxxにする（任意）
-        }
+<?php
 
-        get propA() { //アクセサ（getter）
-            return this.__propA;
-        }
-
-        set propA(_newValue) { //アクセサ（setter）
-            this.__propA = _newValue;
-        }
+class MyClass {
+    //プライベート変数の宣言
+    private $propA;
+    
+    //コンストラクタ
+    function __construct() {
+        //プライベート変数の初期化
+        $this->propA = "いろは";
     }
 
-    var _myClass = new MyClass();
+    //アクセサ（getter）
+    public function __get($name){
+        return $this->$name;
+    }
 
-    //良い例（アクセサを使ってアクセスする）
-    console.log(_myClass.propA); //"いろは"（getterによる値の取得）
-    _myClass.propA = "ABC"; //setアクセサによる値の変更
-    console.log(_myClass.propA); //"ABC"
+    //アクセサ（setter）
+    public function __set($name, $value){
+        $this->$name = $value;
+    }
+}
 
-    //悪い例（外部から直接アクセスしてはいけない）
-    _myClass.__propA = "あいう"; //外部から直接変更できてしまう
-    console.log(_myClass.__propA); //"あいう"
-</script>
+//①インスタンスの生成
+$myClass = new MyClass();
+
+//②プロパティの確認と変更
+echo $myClass->propA."<br>"; //"いろは"
+$myClass->propA = "ABC"; //値の変更
+echo $myClass->propA."<br>"; //"ABC"
+
+?>
 ```
 
 ### ローカル変数
 * 関数またはメソッド内でのみアクセス可能
 
 1. 関数内で定義した場合
-	```
-	<script>
-		function myFunction1() {
-			//ローカル変数定義
-			var _local = "ローカル変数"; //varは省略不可
-			console.log(_local); //"ローカル変数"
-		}
+    ```
+    <?php
 
-		function myFunction2() {
-			//console.log(_local); //Error
-		}
+    $var = "GLOBAL";  //グローバル変数の定義。
 
-		myFunction1();
-		myFunction2();
-		//console.log(_local); //Error
-	</script>
-	```
+    function myFunction1() {
+        //ローカル変数定義
+        $local = "ローカル変数";
+        echo $local; //"ローカル変数"
+    }
+
+    function myFunction2() {
+        //echo $local; //アクセス不可
+    }
+
+    myFunction1(); //"ローカル変数"
+    //myFunction2(); //アクセス不可
+    //echo $local; //アクセス不可
+    
+    ?>
+    ```
 
 1. メソッド内で定義した場合
-	```
-	<script>
-		class MyClass {
-			myMethod1() {
-				var _local = "ローカル変数"; //varは省略不可
-				console.log(_local); //"ローカル変数"
-			}
-			myMethod2() {
-				//console.log(_local); //Error
-			}
-		}
-		var myClass_ = new MyClass();
-		myClass_.myMethod1();
-		myClass_.myMethod2();
-	</script>
-	```
+    ```
+    <script>
+        class MyClass {
+            myMethod1() {
+                var _local = "ローカル変数"; //varは省略不可
+                console.log(_local); //"ローカル変数"
+            }
+            myMethod2() {
+                //console.log(_local); //Error
+            }
+        }
+        var myClass_ = new MyClass();
+        myClass_.myMethod1();
+        myClass_.myMethod2();
+    </script>
+    ```
 
 1. for文内で定義した場合
-	```
-	<script>
-		for (var i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //10（for文の外でも有効）
-	</script>
-	```
+    ```
+    <script>
+        for (var i = 0; i < 10; i++) {
+            console.log(i); //0,1,2,...,8,9
+        }
+        console.log(i); //10（for文の外でも有効）
+    </script>
+    ```
 
 ### ブロック変数
 * ブロック {} 内でのみ有効
 
 1. for 文内で定義した場合
-	```
-	<script>
-		for (let i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //Error（アクセス不可）
-	</script>
-	```
+    ```
+    <script>
+        for (let i = 0; i < 10; i++) {
+            console.log(i); //0,1,2,...,8,9
+        }
+        console.log(i); //Error（アクセス不可）
+    </script>
+    ```
 
 1. if 文内で定義した場合
-	```
-	<script>
-		if (true) {
-			let _block = "ブロック変数";
-			console.log(_block); //"ブロック変数"
-		}
-		console.log(block_); //Error（アクセス不可）
-	</script>
-	```
+    ```
+    <script>
+        if (true) {
+            let _block = "ブロック変数";
+            console.log(_block); //"ブロック変数"
+        }
+        console.log(block_); //Error（アクセス不可）
+    </script>
+    ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
