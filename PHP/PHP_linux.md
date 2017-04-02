@@ -39,7 +39,7 @@ tring
 1. エラー表示を有効にする（<b>本番環境では Off に戻す</b>）  
     $ sudo vi /etc/php/7.0/apache2/php.ini ←PHP設定ファイルを開く  
     ```
-    462行目 display_errors = On ←OffをOnに変更
+    462行目 display_errors = On ;OffをOnに変更
     ```
     * [Vi](https://ja.wikipedia.org/wiki/Vi) エディタの使い方（参考）
         * 入力モード: [i]
