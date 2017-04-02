@@ -127,7 +127,7 @@
         var_dump(true); //bool(true) 
         var_dump(100); //int(100) 
         var_dump(100.0); //float(100) 
-        var_dump(  "100"); //string(3) "100"
+        var_dump("100"); //string(3) "100"
         var_dump(array("nishimura",49)); //array(2) { [0]=> string(9) "nishimura" [1]=> int(49) }
         var_dump(new MyClass()); //object(MyClass)#1 (0) { }
         var_dump(new PDO("sqlite::memory:",null,null)); //object(PDO)#1 (0) { }
