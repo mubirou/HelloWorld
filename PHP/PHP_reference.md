@@ -19,8 +19,8 @@
 * [匿名関数](#匿名関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
-***
 * [三項演算子](#三項演算子)
+***
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [for...in 文](#for...in文)
@@ -1198,17 +1198,11 @@ echo $nishimura->age.'<br>'; //49
 ```
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='UTF-8'>
-    <script>
-        var _age = 49;
-        var _result = (_age < 60) ? '現役' : '退職';
-        console.log(_result); //'現役'
-    </script>
-</head>
-</html>
+<?php
+    $age = 49;
+    $result = ($age < 60) ? '現役' : '退職';
+    echo $result; //'現役'
+?>
 ```
 
 ### 比較式が複数の場合
@@ -1220,24 +1214,18 @@ echo $nishimura->age.'<br>'; //49
 ```
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='UTF-8'>
-    <script>
-        var _age = 49;
-        var _result = (_age < 20) ? '未成年' :
-        _result = (_age < 60) ? '現役' :
-        _result = '退職';
-        console.log(_result); //'現役'
-    </script>
-</head>
-</html>
+<?php
+    $age = 49;
+    $result = ($age < 20) ? '未成年' :
+    $result = ($age < 60) ? '現役' :
+    $result = '退職';
+    echo $result; //'現役'
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月03日  
 
 
 <a name='switch文'></a>
