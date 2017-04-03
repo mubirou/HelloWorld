@@ -1233,26 +1233,26 @@ echo $nishimura->age.'<br>'; //49
 
 ### 判別式が boolean 値ではない場合
 ```
-<script>
-    var _name = 'TARO';
-    switch (_name) {
+<?php
+    $name = 'TARO';
+    switch ($name) {
         case 'TARO':
-            console.log('父'); //これが出力される
+            echo '父'; //これが出力される
             break;
         case 'HANAKO':
-            console.log('母');
+            echo '母';
             break;
         case 'ICHIRO':
-            console.log('長男');
+            echo '長男';
             break;
         case 'JIRO':
-            console.log('次男');
+            echo '次男';
             break;
         default:
-            console.log('家族以外');
+            echo '家族以外';
             break; //省略可
     }
-</script>
+?>
 ```
 
 ### 判別式が boolean 値の場合
