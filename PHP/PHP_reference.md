@@ -18,8 +18,8 @@
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -1094,18 +1094,18 @@ echo $nishimura->age.'<br>'; //49
 ### 基本例文
 * trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```
-<script>
-    var _age = 49;
-    if (_age <= 20) {
-        console.log('20歳以下');
-    } else if (_age <= 40) {
-        console.log('21〜40歳');
-    } else if (_age <= 60) {
-        console.log('41〜60歳'); //これが出力される
+<?php
+    $age = 49;
+    if ($age <= 20) {
+        echo '20歳以下';
+    } elseif ($age <= 40) {
+        echo '21〜40歳';
+    } elseif ($age <= 60) {
+        echo '41〜60歳'; //これが出力される
     } else {
-        console.log('61歳以上');
+        echo '61歳以上';
     }
-</script>
+?>
 ```
 
 ### 論理積（AND）
@@ -1148,7 +1148,7 @@ echo $nishimura->age.'<br>'; //49
     ```
     if (条件式①) {
         処理A ←条件式①がtrueの場合に実行
-    } else if (条件②) {
+    } elseif (条件②) {
         処理A ←条件式②がtrueの場合に実行
     } else {
         処理B
@@ -1159,33 +1159,33 @@ echo $nishimura->age.'<br>'; //49
 * 2つの条件のうちどちらか一方だけ true の場合
 1. ^ 演算子を使う方法
     ```
-    <script>
-        var _a = true;
-        var _b = false;
-        if (_a ^ _b) {
-            console.log('どちらか一方だけtrueです');
+    <?php
+        $a = true;
+        $b = false;
+        if ($a ^ $b) {
+            echo 'どちらか一方だけ true です';
         } else {
-            console.log('両方共にtrueかfalseです');
+            echo '両方共に true か false です';
         }
-    </script>
+    ?>
     ```
 
 2. ^ 演算子を使わない場合
     ```
-    <script>
-        var _a = true;
-        var _b = false;
-        if ((_a || _b) && !(_a && _b)) {
-            console.log('どちらか一方だけtrueです');
+    <?php
+        $a = true;
+        $b = false;
+        if (($a || $b) && !($a && $b)) {
+            echo 'どちらか一方だけ true です';
         } else {
-            console.log('両方共にtrueかfalseです');
+            echo '両方共に true か false です';
         }
-    </script>
+    ?>
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月03日  
 
 
 <a name='三項演算子'></a>
