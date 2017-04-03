@@ -16,8 +16,8 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
-***
 * [匿名関数](#匿名関数)
+***
 * [アロー関数](#アロー関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
@@ -972,50 +972,80 @@ echo $nishimura->age."<br>"; //49
 
 <a name="匿名関数"></a>
 # <b>匿名関数</b>
-* [アロー関数](#アロー関数)を従来の匿名式に置き換えたもの
+* [アロー関数](#アロー関数)を匿名式に置き換えたもの
+* PHP では「無名関数」と呼ばれる
+* クラス内で匿名関数を扱う場合、実行時に call_user_func() を使う必要がある
+
+### 通常の匿名関数
 ```
-<script>
-    class Hello {
-        //コンストラクタ
-        constructor() {
-            this.__american = function(_name) { //匿名関数①
-                console.log(_name + "," + "Hello!");
-            }
+<?php
+    $myFunction = function($arg) {
+        echo "引数は $arg です";
+    };
 
-            this.__japanese = function(_name) { //匿名関数②
-                console.log(_name + "、" + "こんにちは!");
-            }
+    $myFunction("hoge"); //"引数は hoge です"
+?>
+```
 
-            this.__chinese = function(_name) { //匿名関数③
-                console.log(_name + "," + "你好!");
-            }
+### クラス内の匿名関数
+```
+<?php
+    class MyClass {
+        public $american, $japanese, $chinese; //プライベート変数宣言
+        public $hello; //パブリック変数宣言（通常はプライベート変数＆アクセサを利用する
 
-            //パブリック変数に匿名関数を代入（前方宣言が必要）
-            this.hello = this.__american;
+        function __construct() { //コンストラクタ
+            $this->american = function($name) { //匿名関数①
+                echo $name.","."Hello!"."<br>";
+            };
+
+            $this->japanese = function($name) { //匿名関数②
+                echo $name."、"."こんにちは!"."<br>";
+            };
+
+            $this->chinese = function($name) { //匿名関数③
+                echo $name.","."你好!"."<br>";
+            };
+
+            //パブリック変数に匿名関数を代入
+            $this->hello = $this->american;
+        }
+
+        //アクセサ（getter）
+        public function __get($name){
+            return $this->$name;
+        }
+
+        //アクセサ（setter）
+        public function __set($name, $value){
+            $this->$name = $value;
         }
 
         //匿名関数の入替え
-        change(_language) {
-            switch (_language) {
-                case "american": this.hello = this.__american; break;
-                case "japanese": this.hello = this.__japanese; break;
-                case "chinese": this.hello = this.__chinese; break;
+        public function change($language) {
+            switch ($language) {
+                case "american": $this->hello = $this->american; break;
+                case "japanese": $this->hello = $this->japanese; break;
+                case "chinese": $this->hello = $this->chinese; break;
             }
         }
     }
 
-    var _hello = new Hello();
-    _hello.hello("TARO"); //"TARO,Hello!"
-    _hello.change("japanese");
-    _hello.hello("たかし"); //"たかし、こんにちは!"
-    _hello.change("chinese");
-    _hello.hello("たかし"); //"たかし, 你好!"
-</script>
+    //実行（ $myClass->hello("xxx"); ではエラー）
+    $myClass = new MyClass();
+    call_user_func($myClass->hello, "TARO"); //"TARO,Hello!"
+
+    $myClass->change("japanese");
+    call_user_func($myClass->hello, "たかし"); //"たかし、こんにちは!"
+
+    $myClass->change("chinese");
+    call_user_func($myClass->hello, "たかし"); //"たかし,你好!"
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月03日  
 
 
 <a name="アロー関数"></a>
