@@ -45,14 +45,14 @@
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
-<a name="データ型"></a>
+<a name='データ型'></a>
 # <b>データ型</b>
 
 ### データ型の種類
 1. boolean : 論理型
 1. integer : 整数
 1. double : 浮動小数点数
-1. string : 文字列
+1. string : 文字列（"xxx"または’xxx’で指定／'xxx'の方が高速に処理）
 1. array : 配列
 1. object : オブジェクト
 1. resource : 外部リソース
@@ -62,14 +62,14 @@
 ```
 <?php
     //index.php
-    echo gettype(true)."<br>"; //"boolean"
-    echo gettype(100)."<br>"; //"integer"
-    echo gettype(100.0)."<br>"; //"double"
-    echo gettype("100")."<br>"; //"string"
-    echo gettype(array("nishimura",49))."<br>"; //"array"
-    echo gettype(new MyClass())."<br>"; //"object"
-    echo gettype(new PDO("sqlite::memory:", null, null))."<br>"; //"object"
-    echo gettype(NULL); //"NULL"
+    echo gettype(true).'<br>'; //'boolean'
+    echo gettype(100).'<br>'; //'integer'
+    echo gettype(100.0).'<br>'; //'double'
+    echo gettype('100').'<br>'; //'string'
+    echo gettype(array('nishimura',49)).'<br>'; //'array'
+    echo gettype(new MyClass()).'<br>'; //'object'
+    echo gettype(new PDO('sqlite::memory:', null, null)).'<br>'; //'object'
+    echo gettype(NULL); //'NULL'
     class MyClass {};
 ?>
 ```
@@ -79,7 +79,7 @@
 作成日：2017年03月31日
 
 
-<a name="データ型の操作"></a>
+<a name='データ型の操作'></a>
 # <b>データ型の操作</b>
 
 ### gettype() 関数
@@ -87,14 +87,14 @@
     ```
     <?php
         //index.php
-        echo gettype(true)."<br>"; //"boolean"
-        echo gettype(100)."<br>"; //"integer"
-        echo gettype(100.0)."<br>"; //"double"
-        echo gettype("100")."<br>"; //"string"
-        echo gettype(array("nishimura",49))."<br>"; //"array"
-        echo gettype(new MyClass())."<br>"; //"object"
-        echo gettype(new PDO("sqlite::memory:", null, null))."<br>"; //"object"
-        echo gettype(NULL); //"NULL"
+        echo gettype(true).'<br>'; //'boolean'
+        echo gettype(100).'<br>'; //'integer'
+        echo gettype(100.0).'<br>'; //'double'
+        echo gettype('100').'<br>'; //'string'
+        echo gettype(array('nishimura',49)).'<br>'; //'array'
+        echo gettype(new MyClass()).'<br>'; //'object'
+        echo gettype(new PDO('sqlite::memory:', null, null)).'<br>'; //'object'
+        echo gettype(NULL); //'NULL'
         class MyClass {};
     ?>
     ```
@@ -112,10 +112,10 @@
     * is_NULL() : NULL値
     ```
     <?php
-        echo is_int(100.0)."<br>"; //「」（FALSE）
-        echo is_float(100.0)."<br>"; //「1」（TRUE）
-        echo is_numeric(100.0)."<br>"; //「1」（TRUE）
-        echo is_numeric("100.0"); //「1」（TRUE）
+        echo is_int(100.0).'<br>'; //「」（FALSE）
+        echo is_float(100.0).'<br>'; //「1」（TRUE）
+        echo is_numeric(100.0).'<br>'; //「1」（TRUE）
+        echo is_numeric('100.0'); //「1」（TRUE）
     ?>
     ```
 
@@ -126,10 +126,10 @@
         var_dump(true); //bool(true) 
         var_dump(100); //int(100) 
         var_dump(100.0); //float(100) 
-        var_dump("100"); //string(3) "100"
-        var_dump(array("nishimura",49)); //array(2) { [0]=> string(9) "nishimura" [1]=> int(49) }
+        var_dump('100'); //string(3) '100'
+        var_dump(array('nishimura',49)); //array(2) { [0]=> string(9) 'nishimura' [1]=> int(49) }
         var_dump(new MyClass()); //object(MyClass)#1 (0) { }
-        var_dump(new PDO("sqlite::memory:",null,null)); //object(PDO)#1 (0) { }
+        var_dump(new PDO('sqlite::memory:',null,null)); //object(PDO)#1 (0) { }
         var_dump(NULL); //NULL
         class MyClass {};
     ?>
@@ -142,39 +142,39 @@
     <?php
         //①数値→boolean型
         $var = 1;
-        settype($var, "boolean");  //"bool"でも可
-        echo $var."<br>"; //→ 1（TRUE）
-        echo gettype($var)."<br>"; //"boolean"
+        settype($var, 'boolean');  //'bool'でも可
+        echo $var.'<br>'; //→ 1（TRUE）
+        echo gettype($var).'<br>'; //'boolean'
 
         //①浮動小数点数→integer型（小数点以下を切捨て整数化）
-        $var = "3.99";  // 数値の 3.99 でも同じ
-        settype($var, "integer");  //"int"でも可
-        echo $var."<br>"; //3
-        echo gettype($var)."<br>"; //"integer"
+        $var = '3.99';  // 数値の 3.99 でも同じ
+        settype($var, 'integer');  //'int'でも可
+        echo $var.'<br>'; //3
+        echo gettype($var).'<br>'; //'integer'
 
         //数字以外を含む値をinteger型に変換
-        $var = "3.99円です"; 
-        settype($var, "integer");
-        echo $var."<br>"; //3（前方から数値化できる文字列のみ変換）
-        echo gettype($var)."<br>"; //"integer"
+        $var = '3.99円です'; 
+        settype($var, 'integer');
+        echo $var.'<br>'; //3（前方から数値化できる文字列のみ変換）
+        echo gettype($var).'<br>'; //'integer'
 
         //double型へ変換
-        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
-        settype($var, "float");
-        echo $var."<br>"; //3.99（前方から数値化できる文字列のみ変換）
-        echo gettype($var)."<br>"; //"double"
+        $var = '3.99円です'; //数値の 3.99 や文字列の '3.99' でも同じ
+        settype($var, 'float');
+        echo $var.'<br>'; //3.99（前方から数値化できる文字列のみ変換）
+        echo gettype($var).'<br>'; //'double'
 
         //string型へ変換
         $var = 100;
-        settype($var, "string");
-        echo $var."<br>"; //"100"
-        echo gettype($var)."<br>"; //"string"
+        settype($var, 'string');
+        echo $var.'<br>'; //'100'
+        echo gettype($var).'<br>'; //'string'
 
         //array型へ変換
-        $var = "nishimura";
-        settype($var, "array");
-        echo $var[0]."<br>"; //"nishimura"
-        echo gettype($var)."<br>"; //"array"
+        $var = 'nishimura';
+        settype($var, 'array');
+        echo $var[0].'<br>'; //'nishimura'
+        echo gettype($var).'<br>'; //'array'
     ?>
     ```
 
@@ -184,32 +184,32 @@
         //boolean型へ変換
         $var = 1;
         $var = (bool)$var;  //(boolean) でも可
-        echo $var."<br>"; //1（TRUE）
-        echo gettype($var)."<br>"; //"boolean"
+        echo $var.'<br>'; //1（TRUE）
+        echo gettype($var).'<br>'; //'boolean'
 
         //integer型へ変換（小数点以下を切り捨てて整数化）
-        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = '3.99円です'; //数値の 3.99 や文字列の '3.99' でも同じ
         $var = (int)$var; //(integer) でも可
-        echo $var."<br>"; //3（前方から数値化できる文字列のみ変換）
-        echo gettype($var)."<br>"; //"integer"
+        echo $var.'<br>'; //3（前方から数値化できる文字列のみ変換）
+        echo gettype($var).'<br>'; //'integer'
 
         //double型へ変換
-        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = '3.99円です'; //数値の 3.99 や文字列の '3.99' でも同じ
         $var = (float)$var;  //(double) や (real) でも可
-        echo $var."<br>"; //3.99（前方から数値化できる文字列のみ変換）
-        echo gettype($var)."<br>"; //"double"
+        echo $var.'<br>'; //3.99（前方から数値化できる文字列のみ変換）
+        echo gettype($var).'<br>'; //'double'
 
         //string型へ変換
         $var = 100;
         $var = (string)$var;
-        echo $var."<br>"; //"100"
-        echo gettype($var)."<br>"; //"string"
+        echo $var.'<br>'; //'100'
+        echo gettype($var).'<br>'; //'string'
 
         //array型へ変換
-        $var = "nishimura"; 
+        $var = 'nishimura'; 
         $var = (array)$var;
-        echo $var[0]."<br>"; //"nishimura"
-        echo gettype($var)."<br>"; //"array"
+        echo $var[0].'<br>'; //'nishimura'
+        echo gettype($var).'<br>'; //'array'
     ?>
     ```
 
@@ -217,22 +217,22 @@
     ```
     <?php
         //integer型へ変換（小数点以下を切り捨てて整数化）
-        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = '3.99円です'; //数値の 3.99 や文字列の '3.99' でも同じ
         $var = intval($var); 
-        echo $var."<br>"; //3（前方から数値化できる文字列のみ変換）
-        echo gettype($var)."<br>"; //"integer"
+        echo $var.'<br>'; //3（前方から数値化できる文字列のみ変換）
+        echo gettype($var).'<br>'; //'integer'
 
         //double型へ変換
-        $var = "3.99円です"; //数値の 3.99 や文字列の "3.99" でも同じ
+        $var = '3.99円です'; //数値の 3.99 や文字列の '3.99' でも同じ
         $var = floatval($var);  //doubleval() と同じ
-        echo $var."<br>"; //3.99（前方から数値化できる文字列のみ変換）
-        echo gettype($var)."<br>"; //"double"
+        echo $var.'<br>'; //3.99（前方から数値化できる文字列のみ変換）
+        echo gettype($var).'<br>'; //'double'
 
         //string型へ変換
         $var = 100;
         $var = strval($var); 
-        echo $var."<br>"; //"100"
-        echo gettype($var)."<br>"; //"string"
+        echo $var.'<br>'; //'100'
+        echo gettype($var).'<br>'; //'string'
     ?>
     ```
 
@@ -241,7 +241,7 @@
 作成日：2017年03月31日
 
 
-<a name="クラス"></a>
+<a name='クラス'></a>
 # <b>クラス</b>
 
 ```
@@ -279,12 +279,12 @@ class Rectangle {
 $rectangle = new Rectangle();
 
 //②プロパティの確認と変更
-echo $rectangle->width."<br>"; //640
-echo $rectangle->height."<br>"; //480
+echo $rectangle->width.'<br>'; //640
+echo $rectangle->height.'<br>'; //480
 $rectangle->width = 1920;
 $rectangle->height = 1080;
-echo $rectangle->width."<br>"; //1920
-echo $rectangle->height."<br>"; //1080
+echo $rectangle->width.'<br>'; //1920
+echo $rectangle->height.'<br>'; //1080
 
 //③メソッドの実行
 echo $rectangle->getArea(); //2073600
@@ -297,7 +297,7 @@ echo $rectangle->getArea(); //2073600
 作成日：2017年03月31日  
 
 
-<a name="スーパークラスとサブクラス"></a>
+<a name='スーパークラスとサブクラス'></a>
 # <b>スーパークラスとサブクラス</b>
 * スーパークラスのプロパティを private にしたい場合は[マジックメソッド](http://php.net/manual/ja/language.oop5.magic.php)の __get() ではなく get_xxx() 等と記述する必要がある。
 
@@ -309,7 +309,7 @@ echo $rectangle->getArea(); //2073600
 ****************************************************/
 class SuperClass {
     //①プロパティの定義
-    protected $pSuperClass = "スーパークラスのプロパティ"; //protectedにする
+    protected $pSuperClass = 'スーパークラスのプロパティ'; //protectedにする
 
     //コンストラクタ
     function __construct($arg) {}
@@ -321,7 +321,7 @@ class SuperClass {
 
     //③メソッドの定義
     public function mSuperClass() {
-        return "スーパークラスのメソッド";
+        return 'スーパークラスのメソッド';
     }
 }
 
@@ -330,7 +330,7 @@ class SuperClass {
 ****************************************************/
 class SubClassA extends SuperClass { //スーパークラスを継承
     //①プロパティの定義
-    private $pSubClassA = "サブクラスＡのプロパティ";
+    private $pSubClassA = 'サブクラスＡのプロパティ';
 
     //コンストラクタ
     function __construct() {}
@@ -342,7 +342,7 @@ class SubClassA extends SuperClass { //スーパークラスを継承
 
     //③メソッドの定義
     public function mSubClassA() {
-        return "サブクラスＡのメソッド";
+        return 'サブクラスＡのメソッド';
     }
 }
 
@@ -351,7 +351,7 @@ class SubClassA extends SuperClass { //スーパークラスを継承
 ****************************************************/
 class SubClassB extends SuperClass { //スーパークラスを継承
     //①プロパティの定義
-    private $pSubClassB = "サブクラスＢのプロパティ";
+    private $pSubClassB = 'サブクラスＢのプロパティ';
 
     //コンストラクタ
     function __construct() {}
@@ -363,7 +363,7 @@ class SubClassB extends SuperClass { //スーパークラスを継承
 
     //③メソッドの定義
     public function mSubClassB() {
-        return "サブクラスＢのメソッド";
+        return 'サブクラスＢのメソッド';
     }
 }
 
@@ -372,17 +372,17 @@ class SubClassB extends SuperClass { //スーパークラスを継承
 ****************************************************/
 //サブクラスＡのインスタンス
 $subClassA =  new SubClassA(); //サブクラスAからインスタンスを生成
-echo $subClassA->pSuperClass."<br>"; //→ "スーパークラスのプロパティ"
-echo $subClassA->pSubClassA."<br>"; //→ "サブクラスＡのプロパティ"
-echo $subClassA->mSuperClass()."<br>"; //→ "スーパークラスのメソッド"
-echo $subClassA->mSubClassA()."<br>"; //→ "サブクラスＡのメソッド"
+echo $subClassA->pSuperClass.'<br>'; //→ 'スーパークラスのプロパティ'
+echo $subClassA->pSubClassA.'<br>'; //→ 'サブクラスＡのプロパティ'
+echo $subClassA->mSuperClass().'<br>'; //→ 'スーパークラスのメソッド'
+echo $subClassA->mSubClassA().'<br>'; //→ 'サブクラスＡのメソッド'
 
 //サブクラスＢのインスタンス
 $subClassB =  new SubClassB(); //サブクラスBからインスタンスを生成
-echo $subClassB->pSuperClass."<br>"; //→ "スーパークラスのプロパティ"
-echo $subClassB->pSubClassB."<br>"; //→ "サブクラスＢのプロパティ"
-echo $subClassB->mSuperClass()."<br>"; //→ "スーパークラスのメソッド"
-echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
+echo $subClassB->pSuperClass.'<br>'; //→ 'スーパークラスのプロパティ'
+echo $subClassB->pSubClassB.'<br>'; //→ 'サブクラスＢのプロパティ'
+echo $subClassB->mSuperClass().'<br>'; //→ 'スーパークラスのメソッド'
+echo $subClassB->mSubClassB(); //→ 'サブクラスＢのメソッド'
 
 ?>
 ```
@@ -392,7 +392,7 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 作成日：2017年04月01日
 
 
-<a name="名前空間"></a>
+<a name='名前空間'></a>
 # <b>名前空間</b>
 
 ```
@@ -400,14 +400,14 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
     namespace com\xxx;
     class SomeClass {
         function __construct() {
-            echo "com\xxx\SomeClass"."<br>";
+            echo 'com\xxx\SomeClass'.'<br>';
         }
     }
 
     namespace net\xxx;
     class SomeClass {
         function __construct() {
-            echo "net\xxx\SomeClass"."<br>";
+            echo 'net\xxx\SomeClass'.'<br>';
         }
     }
 
@@ -423,7 +423,7 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 作成日：2017年04月01日
 
 
-<a name="継承と委譲"></a>
+<a name='継承と委譲'></a>
 # <b>継承と委譲</b>
 
 ### 概要
@@ -438,7 +438,7 @@ echo $subClassB->mSubClassB(); //→ "サブクラスＢのメソッド"
 
 class ClassA {
     public function myMethod() {
-        return "ClassA.myMethod";
+        return 'ClassA.myMethod';
     }
 }
 
@@ -446,7 +446,7 @@ class ClassB extends ClassA { //ClassAを継承
 }
 
 $classB = new ClassB();
-echo $classB->myMethod(); //"ClassA.myMethod"
+echo $classB->myMethod(); //'ClassA.myMethod'
 
 ?>
 ```
@@ -458,7 +458,7 @@ echo $classB->myMethod(); //"ClassA.myMethod"
 
 class ClassA {
     public function myMethod() {
-        echo "ClassA.myMethod";
+        echo 'ClassA.myMethod';
     }
 }
 
@@ -475,7 +475,7 @@ class ClassB extends ClassA { //ClassAを継承
 }
 
 $classB = new ClassB();
-echo $classB->myMethod(); //"ClassA.myMethod"
+echo $classB->myMethod(); //'ClassA.myMethod'
 
 ?>
 ```
@@ -485,7 +485,7 @@ echo $classB->myMethod(); //"ClassA.myMethod"
 作成日：2017年04月01日
 
 
-<a name="変数とスコープ"></a>
+<a name='変数とスコープ'></a>
 # <b>変数とスコープ</b>
 
 ### 変数の種類
@@ -493,8 +493,9 @@ echo $classB->myMethod(); //"ClassA.myMethod"
 1. グローバル変数 : プログラム全体からアクセス可能
 1. private 変数 : クラス内でのみアクセス可能
 1. protected 変数 : クラスまたはサブクラス内でみアクセス可能
+1. public 変数 : クラス外からもアクセス可能
 1. ローカル変数 : 関数またはメソッド内でのみアクセス可能
-* 他にもクラス外からもアクセス可能な public 変数あり（非推奨）
+* 文字列に変数を含む場合、ダブルクォーテーション（""）で囲む必要がある
 
 ### グローバル変数
 * Windowオブジェクトのプロパティ
@@ -505,14 +506,14 @@ echo $classB->myMethod(); //"ClassA.myMethod"
 /******************
 グローバル変数定義
 ******************/
-$global = "グローバル変数";
+$global = 'グローバル変数';
 
 /*****************************
 関数内でのグローバル変数の扱い
 *****************************/
 function myFunction() {
     global $global; //カンマ（,）で複数指定可能
-    echo $global."<br>"; //"グローバル変数"
+    echo $global.'<br>'; //'グローバル変数'
 }
 myFunction();
 
@@ -522,7 +523,7 @@ myFunction();
 class MyClass {
     function __construct() {
         global $global; //カンマ（,）で複数指定可能
-        echo $global."<br>"; //"グローバル変数"
+        echo $global.'<br>'; //'グローバル変数'
     }
 }
 new MyClass();
@@ -544,7 +545,7 @@ class MyClass {
     //コンストラクタ
     function __construct() {
         //プライベート変数の初期化
-        $this->propA = "いろは";
+        $this->propA = 'いろは';
     }
 
     //アクセサ（getter）
@@ -562,9 +563,9 @@ class MyClass {
 $myClass = new MyClass();
 
 //②プロパティの確認と変更
-echo $myClass->propA."<br>"; //"いろは"
-$myClass->propA = "ABC"; //値の変更
-echo $myClass->propA."<br>"; //"ABC"
+echo $myClass->propA.'<br>'; //'いろは'
+$myClass->propA = 'ABC'; //値の変更
+echo $myClass->propA.'<br>'; //'ABC'
 
 ?>
 ```
@@ -576,19 +577,19 @@ echo $myClass->propA."<br>"; //"ABC"
     ```
     <?php
 
-    $var = "GLOBAL";  //グローバル変数の定義
+    $var = 'GLOBAL';  //グローバル変数の定義
 
     function myFunction1() {
         //ローカル変数定義
-        $local = "ローカル変数";
-        echo $local; //"ローカル変数"
+        $local = 'ローカル変数';
+        echo $local; //'ローカル変数'
     }
 
     function myFunction2() {
         //echo $local; //アクセス不可
     }
 
-    myFunction1(); //"ローカル変数"
+    myFunction1(); //'ローカル変数'
     //myFunction2(); //アクセス不可
     //echo $local; //アクセス不可
 
@@ -602,8 +603,8 @@ echo $myClass->propA."<br>"; //"ABC"
     class MyClass {
         public function myMethod1() {
             //ローカル変数定義
-            $local = "ローカル変数";
-            echo $local; //"ローカル変数"
+            $local = 'ローカル変数';
+            echo $local; //'ローカル変数'
         }
         public function myMethod2() {
             //echo $local; //アクセス不可
@@ -622,7 +623,7 @@ echo $myClass->propA."<br>"; //"ABC"
     ```
     <?php
         for ($i = 0; $i < 10; $i++) {
-            echo $i."<br>"; //0,1,2,...,8,9
+            echo $i.'<br>'; //0,1,2,...,8,9
         }
         echo $i; //10（for文の外でも有効）
     ?>
@@ -633,7 +634,7 @@ echo $myClass->propA."<br>"; //"ABC"
 作成日：2017年04月01日
 
 
-<a name="アクセサ"></a>
+<a name='アクセサ'></a>
 # <b>アクセサ （getter / setter）</b>
 
 ### 読書き可能なプロパティ
@@ -661,9 +662,9 @@ class Nishimura {
 }
 
 $nishimura = new Nishimura(49);
-echo $nishimura->age."<br>"; //49
+echo $nishimura->age.'<br>'; //49
 $nishimura->age = 50; //変更が可能
-echo $nishimura->age."<br>"; //50
+echo $nishimura->age.'<br>'; //50
 
 ?>
 ```
@@ -688,13 +689,13 @@ class Nishimura {
 
     //アクセサ（setter）
     public function __set($name, $value){
-        throw new Exception("値の変更はできません");
+        throw new Exception('値の変更はできません');
     }
 }
 
 $nishimura = new Nishimura(49);
-echo $nishimura->age."<br>"; //49
-//$nishimura->age = 50; //"Fatal error: Uncaught Exception: 値の変更はできません"
+echo $nishimura->age.'<br>'; //49
+//$nishimura->age = 50; //'Fatal error: Uncaught Exception: 値の変更はできません'
 
 ?>
 ```
@@ -704,18 +705,18 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年04月02日
 
 
-<a name="演算子"></a>
+<a name='演算子'></a>
 # <b>演算子</b>
 
 ### 算術演算子
 （複合代入演算子 += -= *= /= %= などもあり）
 ```
 <?php
-    echo (3 + 2)."<br>"; //5 (可算)
-    echo (5 - 8)."<br>"; //-3 (減算)
-    echo (3 * 4)."<br>"; //12 (乗算)
-    echo (1 + 2 * 3 - 4 / 2)."<br>"; //5 (複雑な計算)
-    echo (63 % 60)."<br>"; //3 (余剰)
+    echo (3 + 2).'<br>'; //5 (可算)
+    echo (5 - 8).'<br>'; //-3 (減算)
+    echo (3 * 4).'<br>'; //12 (乗算)
+    echo (1 + 2 * 3 - 4 / 2).'<br>'; //5 (複雑な計算)
+    echo (63 % 60).'<br>'; //3 (余剰)
     echo (8 / 3); //2.6666666666667（除算)
 ?>
 ```
@@ -726,13 +727,13 @@ echo $nishimura->age."<br>"; //49
     //インクリメント
     $huga = 0;
     $piyo = $huga++; //加算する前の$hugaの値を返す
-    echo $huga."<br>"; //1
-    echo $piyo."<br>"; //0
+    echo $huga.'<br>'; //1
+    echo $piyo.'<br>'; //0
 
     //デクリメント
     $huga = 0;
     $piyo = $huga--; //減算する前の$hugaの値を返す
-    echo $huga."<br>"; //-1
+    echo $huga.'<br>'; //-1
     echo $piyo; //0
 ?>
 ```
@@ -743,13 +744,13 @@ echo $nishimura->age."<br>"; //49
     //インクリメント
     $huga = 0;
     $piyo = ++$huga; //加算後の$hugaの値を返す
-    echo $huga."<br>"; //1
-    echo $piyo."<br>"; //1
+    echo $huga.'<br>'; //1
+    echo $piyo.'<br>'; //1
 
     //デクリメント
     $huga = 0;
     $piyo = --$huga; //減算後の$hugaの値を返す
-    echo $huga."<br>"; //-1
+    echo $huga.'<br>'; //-1
     echo $piyo; //-1
 ?>
 ```
@@ -757,19 +758,19 @@ echo $nishimura->age."<br>"; //49
 ### その他の演算子
 ```
 <?php
-    echo (true && true)."<br>"; //「1」＝true（論理積）
-    echo (true || false)."<br>"; //「1」＝true（論理和）
-    echo (! true)."<br>"; //「」＝false（否定）
+    echo (true && true).'<br>'; //「1」＝true（論理積）
+    echo (true || false).'<br>'; //「1」＝true（論理和）
+    echo (! true).'<br>'; //「」＝false（否定）
 
-    echo (2 < 3)."<br>"; //「1」＝true（比較/未満）
-    echo (2 <= 2)."<br>"; //「1」＝true（比較/以下）
-    echo (1 == 1.0)."<br>"; //「1」＝true（等号）
-    echo (1 != 1.0)."<br>"; //「」＝false（不等号）
+    echo (2 < 3).'<br>'; //「1」＝true（比較/未満）
+    echo (2 <= 2).'<br>'; //「1」＝true（比較/以下）
+    echo (1 == 1.0).'<br>'; //「1」＝true（等号）
+    echo (1 != 1.0).'<br>'; //「」＝false（不等号）
 
-    echo (3 & 1)."<br>"; //1（ビット積）
-    echo (3 | 1)."<br>"; //3（ビット和）
-    echo (3 ^ 1)."<br>"; //2（排他的ビット和）
-    echo (2 << 7)."<br>"; //256（ビット･シフト）
+    echo (3 & 1).'<br>'; //1（ビット積）
+    echo (3 | 1).'<br>'; //3（ビット和）
+    echo (3 ^ 1).'<br>'; //2（排他的ビット和）
+    echo (2 << 7).'<br>'; //256（ビット･シフト）
     echo ~3; //-4（ビット反転）
 ?>
 ```
@@ -779,7 +780,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年04月03日
 
 
-<a name="定数"></a>
+<a name='定数'></a>
 # <b>定数</b>
 
 ### ルール
@@ -791,9 +792,9 @@ echo $nishimura->age."<br>"; //49
 ### 通常の定数
 ```
 <?php
-    const MY_NAME = "Takashi Nishimura";
-    echo MY_NAME; //"Takashi Nishimura"
-    //MY_NAME = "ICHIRO NISHIMURa"; //error（変更不可）
+    const MY_NAME = 'Takashi Nishimura';
+    echo MY_NAME; //'Takashi Nishimura'
+    //MY_NAME = 'ICHIRO NISHIMURa'; //error（変更不可）
 ?>
 ```
 
@@ -819,7 +820,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年04月03日  
 
 
-<a name="メソッド"></a>
+<a name='メソッド'></a>
 # <b>メソッド</b>
 
 
@@ -837,7 +838,7 @@ echo $nishimura->age."<br>"; //49
     }
 
     $myClass = new MyClass();
-    echo $myClass->tashizan(1, 10)."<br>"; //55
+    echo $myClass->tashizan(1, 10).'<br>'; //55
     echo $myClass->tashizan(1, 100); //5050
 ?>
 ```
@@ -849,7 +850,7 @@ echo $nishimura->age."<br>"; //49
     class MyClass {
         //コンストラクタ
         function __construct() {
-            echo $this->tashizan(1, 10)."<br>"; //55
+            echo $this->tashizan(1, 10).'<br>'; //55
             echo $this->tashizan(1, 100); //5050
         }
 
@@ -893,7 +894,7 @@ echo $nishimura->age."<br>"; //49
     }
 
     $point = new Point(100, 150); //ここでコンストラクタを呼び出す
-    echo $point->x."<br>"; //100
+    echo $point->x.'<br>'; //100
     echo $point->y; //150
 ?>
 ```
@@ -916,9 +917,9 @@ echo $nishimura->age."<br>"; //49
         }
     }
 
-    echo MyMath::pow(2, 0)."<br>"; //1（2の0乗）
-    echo MyMath::pow(2, 1)."<br>"; //2（2の1乗）
-    echo MyMath::pow(2, 8)."<br>"; //256（2の8乗）
+    echo MyMath::pow(2, 0).'<br>'; //1（2の0乗）
+    echo MyMath::pow(2, 1).'<br>'; //2（2の1乗）
+    echo MyMath::pow(2, 8).'<br>'; //256（2の8乗）
 ?>
 ```
 
@@ -939,7 +940,7 @@ echo $nishimura->age."<br>"; //49
     }
 
     $myClass = new MyClass();
-    echo $myClass->addPoint()."<br>"; //1
+    echo $myClass->addPoint().'<br>'; //1
     echo $myClass->addPoint(10); //11
 ?>
 ```
@@ -954,7 +955,7 @@ echo $nishimura->age."<br>"; //49
             foreach ($args as $data) {
                 $result += $data;
             }
-            echo $result."<br>";
+            echo $result.'<br>';
         }
     }
 
@@ -969,7 +970,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年04月03日
 
 
-<a name="匿名関数"></a>
+<a name='匿名関数'></a>
 # <b>匿名関数</b>
 * PHP では「無名関数」と呼ばれる
 * クラス内で匿名関数を扱う場合、実行時に call_user_func() を使う必要がある
@@ -978,10 +979,10 @@ echo $nishimura->age."<br>"; //49
 ```
 <?php
     $myFunction = function($arg) {
-        echo "引数は $arg です";
+        echo '引数は $arg です';
     };
 
-    $myFunction("hoge"); //"引数は hoge です"
+    $myFunction('hoge'); //'引数は hoge です'
 ?>
 ```
 
@@ -994,15 +995,15 @@ echo $nishimura->age."<br>"; //49
 
         function __construct() { //コンストラクタ
             $this->american = function($name) { //匿名関数①
-                echo $name.","."Hello!"."<br>";
+                echo $name.','.'Hello!'.'<br>';
             };
 
             $this->japanese = function($name) { //匿名関数②
-                echo $name."、"."こんにちは!"."<br>";
+                echo $name.'、'.'こんにちは!'.'<br>';
             };
 
             $this->chinese = function($name) { //匿名関数③
-                echo $name.","."你好!"."<br>";
+                echo $name.','.'你好!'.'<br>';
             };
 
             //パブリック変数に匿名関数を代入
@@ -1022,22 +1023,22 @@ echo $nishimura->age."<br>"; //49
         //匿名関数の入替え
         public function change($language) {
             switch ($language) {
-                case "american": $this->hello = $this->american; break;
-                case "japanese": $this->hello = $this->japanese; break;
-                case "chinese": $this->hello = $this->chinese; break;
+                case 'american': $this->hello = $this->american; break;
+                case 'japanese': $this->hello = $this->japanese; break;
+                case 'chinese': $this->hello = $this->chinese; break;
             }
         }
     }
 
-    //実行（ $myClass->hello("xxx"); ではエラー）
+    //実行（ $myClass->hello('xxx'); ではエラー）
     $myClass = new MyClass();
-    call_user_func($myClass->hello, "TARO"); //"TARO,Hello!"
+    call_user_func($myClass->hello, 'TARO'); //'TARO,Hello!'
 
-    $myClass->change("japanese");
-    call_user_func($myClass->hello, "たかし"); //"たかし、こんにちは!"
+    $myClass->change('japanese');
+    call_user_func($myClass->hello, 'たかし'); //'たかし、こんにちは!'
 
-    $myClass->change("chinese");
-    call_user_func($myClass->hello, "たかし"); //"たかし,你好!"
+    $myClass->change('chinese');
+    call_user_func($myClass->hello, 'たかし'); //'たかし,你好!'
 ?>
 ```
 
@@ -1046,7 +1047,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年04月03日  
 
 
-<a name="クラス定数･変数･メソッド"></a>
+<a name='クラス定数･変数･メソッド'></a>
 # <b>クラス定数･変数･メソッド</b>
 * クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
 ```
@@ -1057,7 +1058,7 @@ echo $nishimura->age."<br>"; //49
             return 3.141592653589793;
         }
         static set PI(newValue) {
-            throw new Error("値の変更はできません");
+            throw new Error('値の変更はできません');
         }
 
         //③静的メソッド（静的メソッド）の定義
@@ -1077,10 +1078,10 @@ echo $nishimura->age."<br>"; //49
 
     //②クラス変数の参照および変更
     console.log(MyMath.lastUpdate); //undefined
-    MyMath.lastUpdate = "2017-03-21"; //②クラス変数（静的変数）の定義
-    console.log(MyMath.lastUpdate); //"2017-03-21"
-    MyMath.lastUpdate = "2017-03-22"; //変更可能
-    console.log(MyMath.lastUpdate); //"2017-03-22"
+    MyMath.lastUpdate = '2017-03-21'; //②クラス変数（静的変数）の定義
+    console.log(MyMath.lastUpdate); //'2017-03-21'
+    MyMath.lastUpdate = '2017-03-22'; //変更可能
+    console.log(MyMath.lastUpdate); //'2017-03-22'
 
     //③静的メソッドの実行
     console.log(MyMath.pow(2, 0)); //1
@@ -1093,7 +1094,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年03月21日  
 
 
-<a name="if文"></a>
+<a name='if文'></a>
 # <b>if 文</b>
 
 ### 基本例文
@@ -1102,13 +1103,13 @@ echo $nishimura->age."<br>"; //49
 <script>
     var _age = 49;
     if (_age <= 20) {
-        console.log("20歳以下");
+        console.log('20歳以下');
     } else if (_age <= 40) {
-        console.log("21〜40歳");
+        console.log('21〜40歳');
     } else if (_age <= 60) {
-        console.log("41〜60歳"); //これが出力される
+        console.log('41〜60歳'); //これが出力される
     } else {
-        console.log("61歳以上");
+        console.log('61歳以上');
     }
 </script>
 ```
@@ -1168,9 +1169,9 @@ echo $nishimura->age."<br>"; //49
         var _a = true;
         var _b = false;
         if (_a ^ _b) {
-            console.log("どちらか一方だけtrueです");
+            console.log('どちらか一方だけtrueです');
         } else {
-            console.log("両方共にtrueかfalseです");
+            console.log('両方共にtrueかfalseです');
         }
     </script>
     ```
@@ -1181,9 +1182,9 @@ echo $nishimura->age."<br>"; //49
         var _a = true;
         var _b = false;
         if ((_a || _b) && !(_a && _b)) {
-            console.log("どちらか一方だけtrueです");
+            console.log('どちらか一方だけtrueです');
         } else {
-            console.log("両方共にtrueかfalseです");
+            console.log('両方共にtrueかfalseです');
         }
     </script>
     ```
@@ -1193,7 +1194,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年03月21日  
 
 
-<a name="三項演算子"></a>
+<a name='三項演算子'></a>
 # <b>三項演算子</b>
 
 ### 比較式が１つの場合
@@ -1206,11 +1207,11 @@ echo $nishimura->age."<br>"; //49
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <script>
         var _age = 49;
-        var _result = (_age < 60) ? "現役" : "退職";
-        console.log(_result); //"現役"
+        var _result = (_age < 60) ? '現役' : '退職';
+        console.log(_result); //'現役'
     </script>
 </head>
 </html>
@@ -1228,13 +1229,13 @@ echo $nishimura->age."<br>"; //49
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <script>
         var _age = 49;
-        var _result = (_age < 20) ? "未成年" :
-        _result = (_age < 60) ? "現役" :
-        _result = "退職";
-        console.log(_result); //"現役"
+        var _result = (_age < 20) ? '未成年' :
+        _result = (_age < 60) ? '現役' :
+        _result = '退職';
+        console.log(_result); //'現役'
     </script>
 </head>
 </html>
@@ -1245,28 +1246,28 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年03月21日  
 
 
-<a name="switch文"></a>
+<a name='switch文'></a>
 # <b>switch 文</b>
 
 ### 判別式が boolean 値ではない場合
 ```
 <script>
-    var _name = "TARO";
+    var _name = 'TARO';
     switch (_name) {
-        case "TARO":
-            console.log("父"); //これが出力される
+        case 'TARO':
+            console.log('父'); //これが出力される
             break;
-        case "HANAKO":
-            console.log("母");
+        case 'HANAKO':
+            console.log('母');
             break;
-        case "ICHIRO":
-            console.log("長男");
+        case 'ICHIRO':
+            console.log('長男');
             break;
-        case "JIRO":
-            console.log("次男");
+        case 'JIRO':
+            console.log('次男');
             break;
         default:
-            console.log("家族以外");
+            console.log('家族以外');
             break; //省略可
     }
 </script>
@@ -1279,16 +1280,16 @@ echo $nishimura->age."<br>"; //49
     var _age = 49;
     switch (true) {
         case _age <= 20:
-            console.log("20歳以下");
+            console.log('20歳以下');
             break;
         case _age <= 40:
-            console.log("21〜40歳");
+            console.log('21〜40歳');
             break;
         case _age <= 60:
-            console.log("41〜60歳"); //これが出力される
+            console.log('41〜60歳'); //これが出力される
             break;
         default:
-            console.log("61歳以上");
+            console.log('61歳以上');
             break; //省略可
     }
 </script>
@@ -1298,18 +1299,18 @@ echo $nishimura->age."<br>"; //49
 * [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
 ```
 <script>
-    var _name = "JIRO";
+    var _name = 'JIRO';
     switch (_name) {
-        case "TARO":
-        case "HANAKO":
-            console.log("親です");
+        case 'TARO':
+        case 'HANAKO':
+            console.log('親です');
             break;
-        case "ICHIRO":
-        case "JIRO":
-            console.log("子供です"); //これが出力される
+        case 'ICHIRO':
+        case 'JIRO':
+            console.log('子供です'); //これが出力される
             break;
         default:
-            console.log("家族ではありません");
+            console.log('家族ではありません');
             break; //省略可
     }
 </script>
@@ -1320,7 +1321,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年03月21日  
 
 
-<a name="for文"></a>
+<a name='for文'></a>
 # <b>for 文</b>
 
 ### ループカウンタの宣言方法
@@ -1360,7 +1361,7 @@ echo $nishimura->age."<br>"; //49
 <script>
     for (let i = 1; i <= 5; i++) {
         for (let j = 1; j <= 5; j++) {
-            console.log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+            console.log('x' + i + 'y' + j); //x1y1,x1y2,....,x5y4,x5y5
         }
     }
 </script>
@@ -1375,7 +1376,7 @@ echo $nishimura->age."<br>"; //49
         if (_count > 100) break; //ループを終了
         console.log(_count); //1,2,....,99,100
     }
-    console.log("for文終了");
+    console.log('for文終了');
 </script>
 ```
 
@@ -1396,7 +1397,7 @@ echo $nishimura->age."<br>"; //49
 作成日：2017年03月21日  
 
 
-<a name="for...in文"></a>
+<a name='for...in文'></a>
 # <b>for...in 文</b>
 
 ### 基本構文
@@ -1413,10 +1414,10 @@ for (変数名 in 配列等) {
 ### 配列（1次元）の場合
 ```
 <script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+    var _array = ['TARO', 'HANAKO', 'ICHIRO', 'JIRO'];
     for (let _indexNum in _array) {
         console.log(_indexNum); //0→1→2→3
-        console.log(_array[_indexNum]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+        console.log(_array[_indexNum]); //'TARO'→'HANAKO'→'ICHIRO'→'JIRO'
     }
 </script>
 ```
@@ -1425,12 +1426,12 @@ for (変数名 in 配列等) {
 ```
 <script>
     var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
+        ['x0y0', 'x1y0', 'x2y0'], //0行目
+        ['x0y1', 'x1y1', 'x2y1']  //1行目
     ];
     for (let _indexNum in _array) {
         console.log(_indexNum); //0→1
-        console.log(_array[_indexNum]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+        console.log(_array[_indexNum]); //['x0y0','x1y0','x2y0']→['x0y1','x1y1','x2y1']
     }
 </script>
 ```
@@ -1438,10 +1439,10 @@ for (変数名 in 配列等) {
 ### 連想配列（Object＝オブジェクトリテラル）の場合
 ```
 <script>
-    var _object = { name: "Takashi Nishimura", age: 49 };
+    var _object = { name: 'Takashi Nishimura', age: 49 };
     for (let _propName in _object) {
         console.log(_propName); //name→age
-        console.log(_object[_propName]); //"Takashi Nishimura" → 49
+        console.log(_object[_propName]); //'Takashi Nishimura' → 49
     }
 </script>
 ```
@@ -1451,15 +1452,15 @@ for (変数名 in 配列等) {
 作成日：2017年03月21日  
 
 
-<a name="for...of文"></a>
+<a name='for...of文'></a>
 # <b>for...of 文</b>
 
 ### 一次元配列（Array）の場合
 ```
 <script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
+    var _array = ['TARO', 'HANAKO', 'ICHIRO', 'JIRO'];
     for (let _data of _array) {
-        console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+        console.log(_data); //'TARO'→'HANAKO'→'ICHIRO'→'JIRO'
     }
 </script>
 ```
@@ -1468,11 +1469,11 @@ for (変数名 in 配列等) {
 ```
 <script>
     var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
+        ['x0y0', 'x1y0', 'x2y0'], //0行目
+        ['x0y1', 'x1y1', 'x2y1']  //1行目
     ];
     for (let _theArray of _array) {
-        console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+        console.log(_theArray); //['x0y0','x1y0','x2y0']→['x0y1','x1y1','x2y1']
     }
 </script>
 ```
@@ -1481,10 +1482,10 @@ for (変数名 in 配列等) {
 ```
 <script>
     var _set = new Set();
-    _set.add("TARO");
-    _set.add("HANAKO");
+    _set.add('TARO');
+    _set.add('HANAKO');
     for (let _data of _set) {
-        console.log(_data); //"TARO"→"HANAKO"
+        console.log(_data); //'TARO'→'HANAKO'
     }
 </script>
 ```
@@ -1493,12 +1494,12 @@ for (変数名 in 配列等) {
 ```
 <script>
     var _map = new Map();
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
+    _map.set('RYOMA', '1836-01-03');
+    _map.set('YUKICHI', '1835-01-10');
     for (let [_key, _value] of _map) {
         console.log(_key, _value);
-        //"RYOMA" "1836-01-03
-        //"YUKICHI" "1835-01-10"
+        //'RYOMA' '1836-01-03
+        //'YUKICHI' '1835-01-10'
     }
 </script>
 ```
@@ -1508,7 +1509,7 @@ for (変数名 in 配列等) {
 作成日：2017年03月21日  
 
 
-<a name="while文"></a>
+<a name='while文'></a>
 # <b>while 文</b>
 
 ### while 文
@@ -1585,7 +1586,7 @@ do {
 作成日：2017年03月21日  
 
 
-<a name="配列（Array）"></a>
+<a name='配列（Array）'></a>
 # <b>配列（Array）</b>
 
 ### 作成
@@ -1593,21 +1594,21 @@ do {
     ```
     var _array = new Array(); //空の配列を作成
     var _array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
-    var _array = new Array("A", "I");
-    var _array = new Array(["A","あ"], ["I","い"]); //配列のネスト
+    var _array = new Array('A', 'I');
+    var _array = new Array(['A','あ'], ['I','い']); //配列のネスト
     ```
 
 * 配列リテラルを使う方法
     ```
     var _array = []; //空の配列を作成
-    var _array = ["A", "I"];
-    var _array = [["A","あ"], ["I","い"]]; //配列のネスト
+    var _array = ['A', 'I'];
+    var _array = [['A','あ'], ['I','い']]; //配列のネスト
     ```
 
 ### 要素の数
 ```
 <script>
-    var _array = ["00", "01", "02", "03"];
+    var _array = ['00', '01', '02', '03'];
     console.log(_array.length); //4
 </script>
 ```
@@ -1615,90 +1616,90 @@ do {
 ### 追加（最後）
 ```
 <script>
-    var _array = ["ICHIRO", "JIRO"];
-    _array.push("TARO"); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //["ICHIRO", "JIRO", "TARO"]
+    var _array = ['ICHIRO', 'JIRO'];
+    _array.push('TARO'); //カンマ（,）を使って複数同時に追加可能
+    console.log(_array); //['ICHIRO', 'JIRO', 'TARO']
 </script>
 ```
 
 ### 追加（先頭）
 ```
 <script>
-    var _array = ["ICHIRO", "JIRO"];
-    _array.unshift("TARO"); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
+    var _array = ['ICHIRO', 'JIRO'];
+    _array.unshift('TARO'); //カンマ（,）を使って複数同時に追加可能
+    console.log(_array); //['TARO', 'ICHIRO', 'JIRO']
 </script>
 ```
 
 ### 更新（任意の値）
 ```
 <script>
-    var _array = ["TAKASHI", "ICHIRO", "JIRO"];
-    _array[0] = "TARO"; //0番目を変更する場合
-    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
+    var _array = ['TAKASHI', 'ICHIRO', 'JIRO'];
+    _array[0] = 'TARO'; //0番目を変更する場合
+    console.log(_array); //['TARO', 'ICHIRO', 'JIRO']
 </script>
 ```
 
 ### 更新（null 値）
 ```
 <script>
-    var _array = ["TARO", "ICHIRO", "JIRO"];
+    var _array = ['TARO', 'ICHIRO', 'JIRO'];
     _array[0] = null;
-    console.log(_array); //[null, "ICHIRO", "JIRO"]
+    console.log(_array); //[null, 'ICHIRO', 'JIRO']
 </script>
 ```
 
 ### 削除（最後）
 ```
 <script>
-    var _array = ["ICHIRO", "JIRO", "TARO"];
-    console.log(_array.pop()); //"TARO"（削除した要素を返す）
-    console.log(_array); //["ICHIRO", "JIRO"]
+    var _array = ['ICHIRO', 'JIRO', 'TARO'];
+    console.log(_array.pop()); //'TARO'（削除した要素を返す）
+    console.log(_array); //['ICHIRO', 'JIRO']
 </script>
 ```
 
 ### 削除（最初）
 ```
 <script>
-    var _array = ["TARO", "ICHIRO", "JIRO"];
-    console.log(_array.shift()); //"TARO"（削除した要素を返す）
-    console.log(_array); //["ICHIRO", "JIRO"]
+    var _array = ['TARO', 'ICHIRO', 'JIRO'];
+    console.log(_array.shift()); //'TARO'（削除した要素を返す）
+    console.log(_array); //['ICHIRO', 'JIRO']
 </script>
 ```
 
 ### 削除（○番目から□個）
 ```
 <script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.splice(3, 2)); //["03", "04"]
-    console.log(_array) //["00", "01", "02", "05"]
+    var _array = ['00', '01', '02', '03', '04', '05'];
+    console.log(_array.splice(3, 2)); //['03', '04']
+    console.log(_array) //['00', '01', '02', '05']
 </script>
 ```
 
 ### 削除（○番目から全て）
 ```
 <script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.splice(3)); //["03", "04", "05"]
-    console.log(_array) //["00", "01", "02"]
+    var _array = ['00', '01', '02', '03', '04', '05'];
+    console.log(_array.splice(3)); //['03', '04', '05']
+    console.log(_array) //['00', '01', '02']
 </script>
 ```
 
 ### 抽出（○番目から□番目）
 ```
 <script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.slice(2, 4)); //["02", "03"]（4番目は含まず）
-    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
+    var _array = ['00', '01', '02', '03', '04', '05'];
+    console.log(_array.slice(2, 4)); //['02', '03']（4番目は含まず）
+    console.log(_array) //['00', '01', '02', '03', '04', '05']（元配列に変化なし）
 </script>
 ```
 
 ### 抽出（○番目から全て）
 ```
 <script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.slice(2)); //["02", "03", "04", "05"]
-    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
+    var _array = ['00', '01', '02', '03', '04', '05'];
+    console.log(_array.slice(2)); //['02', '03', '04', '05']
+    console.log(_array) //['00', '01', '02', '03', '04', '05']（元配列に変化なし）
 </script>
 ```
 
@@ -1706,8 +1707,8 @@ do {
 * 第2引数番目から、後ろに向かって検索（最初に見つかったインデックス番号を返す）
 ```
 <script>
-    var _array = ["A", "B", "C", "D", "E", "F", "D"];
-    console.log(_array.indexOf("D", 0)); //3（見つからない場合「-1」を返す）
+    var _array = ['A', 'B', 'C', 'D', 'E', 'F', 'D'];
+    console.log(_array.indexOf('D', 0)); //3（見つからない場合「-1」を返す）
 </script>
 ```
 
@@ -1715,8 +1716,8 @@ do {
 * 第2引数番目から、前に向かって検索（最初に見つかったインデックス番号を返す）
 ```
 <script>
-    var _array = ["A", "B", "C", "D", "E", "F", "D"];
-    console.log(_array.lastIndexOf("D")); 
+    var _array = ['A', 'B', 'C', 'D', 'E', 'F', 'D'];
+    console.log(_array.lastIndexOf('D')); 
     //6（第2引数を省略すると _array.length と同じ）
 </script>
 ```
@@ -1724,58 +1725,58 @@ do {
 ### 並べ替え（反転）
 ```
 <script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.reverse()); //["05", "04", "03", "02", "01", "00"]
-    console.log(_array) //["05", "04", "03", "02", "01", "00"]（元配列も変更）
+    var _array = ['00', '01', '02', '03', '04', '05'];
+    console.log(_array.reverse()); //['05', '04', '03', '02', '01', '00']
+    console.log(_array) //['05', '04', '03', '02', '01', '00']（元配列も変更）
 </script>
 ```
 
 ### 並べ替え（ソート）
 ```
 <script>
-    var _array = ["C", "02", "A", "01", "03", "B"];
-    console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
-    console.log(_array) //["01", "02", "03", "A", "B", "C"]（元配列も変更）
+    var _array = ['C', '02', 'A', '01', '03', 'B'];
+    console.log(_array.sort()); //['01', '02', '03', 'A', 'B', 'C']
+    console.log(_array) //['01', '02', '03', 'A', 'B', 'C']（元配列も変更）
 </script>
 ```
 
 ### 結合
 ```
 <script>
-    var _array1 = ["A", "B", "C"];
-    var _array2 = ["D", "E", "F"];
+    var _array1 = ['A', 'B', 'C'];
+    var _array2 = ['D', 'E', 'F'];
     var _array3 = _array1.concat(_array2);
-    console.log(_array3) //["A", "B", "C", "D", "E", "F"]
+    console.log(_array3) //['A', 'B', 'C', 'D', 'E', 'F']
 </script>
 ```
 
 ### 複製
 ```
 <script>
-    var _original = ["A", "B", "C"];
+    var _original = ['A', 'B', 'C'];
     var _copy = _original.concat(); //複製
 
     //実験（参照コピーではなく複製されているか否か）
-    _original[0] = "あ";
-    console.log(_original[0], _copy[0]); //"あ" "A"（参照コピーではない）
+    _original[0] = 'あ';
+    console.log(_original[0], _copy[0]); //'あ' 'A'（参照コピーではない）
 </script>
 ```
 
 ### 文字列→配列
 ```
 <script>
-    var _string = "A,B,C,D,E,F";
-    var _array = _string.split(","); //カンマ区切りで配列化
-    console.log(_array); //["A", "B", "C", "D", "E", "F"]
+    var _string = 'A,B,C,D,E,F';
+    var _array = _string.split(','); //カンマ区切りで配列化
+    console.log(_array); //['A', 'B', 'C', 'D', 'E', 'F']
 </script>
 ```
 
 ### 全要素を取り出す
 ```
 <script>
-    var _array = ["A", "B", "C", "D", "E", "F"];
+    var _array = ['A', 'B', 'C', 'D', 'E', 'F'];
     _array.forEach(function(arg) {
-        console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
+        console.log(arg); //'A'→'B'→'C'→'D'→'E'→'F'
     });
 </script>
 ```
@@ -1786,7 +1787,7 @@ do {
 作成日：2017年03月21日  
 
 
-<a name="配列（Set）"></a>
+<a name='配列（Set）'></a>
 # <b>配列（Set）</b>
 
 * 配列（Array）と異なりデータの重複ができない
@@ -1796,11 +1797,11 @@ do {
     var _set = new Set();
 
     //②データの追加
-    _set.add("ICHIRO");
-    _set.add("JIRO");
+    _set.add('ICHIRO');
+    _set.add('JIRO');
 
     //参考：既存データの追加
-    _set.add("ICHIRO"); //無視される
+    _set.add('ICHIRO'); //無視される
 
     //③データの数
     console.log(_set.size); //2
@@ -1808,16 +1809,16 @@ do {
     //④全てのデータの取得
     for (let _data of _set) {
         console.log(_data);
-        //"ICHIRO"
-        //"JIRO"
+        //'ICHIRO'
+        //'JIRO'
     }
 
     //⑤データがあるか否か
-    console.log(_set.has("TARO")); //false
-    console.log(_set.has("ICHIRO")); //true
+    console.log(_set.has('TARO')); //false
+    console.log(_set.has('ICHIRO')); //true
 
     //⑥データの削除
-    _set.delete("ICHIRO");
+    _set.delete('ICHIRO');
 </script>
 ```
 
@@ -1826,7 +1827,7 @@ do {
 作成日：2017年03月22日  
 
 
-<a name="連想配列（Object）"></a>
+<a name='連想配列（Object）'></a>
 # <b>連想配列（Object）</b>
 
 ```
@@ -1836,25 +1837,25 @@ do {
     //他にも {プロパティ名①:値, プロパティ名②:値} という方法もある
 
     //②プロパティの追加（更新も同じ方法）
-    _object.name = "Takashi Nishimura";
+    _object.name = 'Takashi Nishimura';
     _object.age = 49;
 
     //③関数の追加
     _object.hello = function() {
-        return "Hello! How are you?";
+        return 'Hello! How are you?';
     }
 
     //④プロパティの参照
-    console.log(_object.name); //"Takashi Nishimura"
-    console.log(_object["name"]); //配列演算子[]を使うことも可能
+    console.log(_object.name); //'Takashi Nishimura'
+    console.log(_object['name']); //配列演算子[]を使うことも可能
     console.log(_object.age); //49
 
     //⑤関数の実行
-    console.log(_object.hello()); //"Hello! How are you?"
+    console.log(_object.hello()); //'Hello! How are you?'
 
     //⑥全ての要素の取得
     for (let _propName in _object) {
-        console.log(_propName + " : " + _object[_propName]);
+        console.log(_propName + ' : ' + _object[_propName]);
     }
     //name : Takashi Nishimura
     //age : 49
@@ -1867,7 +1868,7 @@ do {
 作成日：2017年03月22日  
 
 
-<a name="連想配列（Map）"></a>
+<a name='連想配列（Map）'></a>
 # <b>連想配列（Map）</b>
 
 ### [Object](http://bit.ly/2nkyLU0) との違い
@@ -1882,29 +1883,29 @@ do {
     var _map = new Map();
 
     //②データの追加
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
+    _map.set('RYOMA', '1836-01-03');
+    _map.set('YUKICHI', '1835-01-10');
 
     //③データの数
     console.log(_map.size); //2
 
     //④データの取得
-    console.log(_map.get("RYOMA")); //"1836-01-03"
-    console.log(_map.get("YUKICHI")); //"1835-01-10"
+    console.log(_map.get('RYOMA')); //'1836-01-03'
+    console.log(_map.get('YUKICHI')); //'1835-01-10'
 
     //⑤全てのデータの取得
     for (let [_key, _value] of _map) {
         console.log(_key, _value);
-        //"RYOMA" "1836-01-03"
-        //"YUKICHI" "1835-01-10"
+        //'RYOMA' '1836-01-03'
+        //'YUKICHI' '1835-01-10'
     }
 
     //⑥データがあるか否か
-    console.log(_map.has("SHINSAKU")); //false
-    console.log(_map.has("RYOMA")); //true
+    console.log(_map.has('SHINSAKU')); //false
+    console.log(_map.has('RYOMA')); //true
 
     //⑦データの削除
-    _map.delete("RYOMA");
+    _map.delete('RYOMA');
 </script>
 ```
 
@@ -1913,7 +1914,7 @@ do {
 作成日：2017年03月22日  
 
 
-<a name="this"></a>
+<a name='this'></a>
 # <b>this</b>
 
 ### トップレベルの this
@@ -1921,33 +1922,33 @@ do {
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <script>
         document.write(this); //[object Window]（＝window／省略可能）
     </script>
 </head>
 </html>
 ```
-* \<script src="xxx.js">\</script> として外部の xxx.js を読み込んだ場合も同様
+* \<script src='xxx.js'>\</script> として外部の xxx.js を読み込んだ場合も同様
 
 ### クラス内の this
 ```
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <script>
         class MyClass {
             constructor() {
                 document.write(this); //[object Object]（MyClassのインスタンス）
-                this.__hoge = "擬似プライベート変数"; //thisは省略不可
+                this.__hoge = '擬似プライベート変数'; //thisは省略不可
             }
             get hoge() { //アクセサ（getter）
                 return this.__hoge; //thisは省略不可
             }
         }
         var _myClass = new MyClass();
-        console.log(_myClass.hoge); //"擬似プライベート変数"
+        console.log(_myClass.hoge); //'擬似プライベート変数'
     </script>
 </head>
 </html>
@@ -1964,11 +1965,11 @@ do {
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <script>
         class MyClass {
             constructor() {
-                this.__image = document.getElementById("image");
+                this.__image = document.getElementById('image');
 
                 //イベントハンドラメソッド内でthis==Canvasオブジェクトとする為
                 this.__mousedown_image = (_e) => { 
@@ -1976,7 +1977,7 @@ do {
                 }
 
                 //Image用イベントハンドラの定義
-                this.__image.addEventListener("mousedown", this.__mousedown_image, false);
+                this.__image.addEventListener('mousedown', this.__mousedown_image, false);
             }
 
             //MyClass.__mousedown_image（アロー関数）からの呼出し
@@ -1984,7 +1985,7 @@ do {
                 console.log(this); //MyClass
             }
         }
-        addEventListener("load", load_window, false);
+        addEventListener('load', load_window, false);
         function load_window() {
             new MyClass();
         }
@@ -1992,7 +1993,7 @@ do {
 </head>
 
 <body>
-    <img id="image" src="sample.png">
+    <img id='image' src='sample.png'>
 </body>
 </html>
 ```
@@ -2002,20 +2003,20 @@ do {
 作成日：2017年03月22日  
 
 
-<a name="文字列の操作"></a>
+<a name='文字列の操作'></a>
 # <b>文字列の操作</b>
 
 ### 文字列の生成
 ```
-var 変数 = new String("xxx"); //object型
-var 変数 = "xxx"; //string型
+var 変数 = new String('xxx'); //object型
+var 変数 = 'xxx'; //string型
 ```
 * 上記2つは厳密には異なるが通常は意識する必要はない
 
 ### 文字列の長さを調べる
 ```
 <script>
-    var _string = "ABCDE";
+    var _string = 'ABCDE';
     console.log(_string.length); //5
 </script>
 ```
@@ -2023,31 +2024,31 @@ var 変数 = "xxx"; //string型
 ### 一部分を取得
 ```
 <script>
-    var _string = "0123456789";
-    console.log(_string.substr(0, 1)); //"0" ←0文字目（先頭）〜1文字取得
-    console.log(_string.substr(-1, 1)); //"9" ←後ろから1文字目〜1文字取得
-    console.log(_string.substr(4)); //"456789" ←4文字目（0から開始）〜全て取得
-    console.log(_string.substr(4, 3)); //"456" ←4文字目（0から開始）〜3文字取得
+    var _string = '0123456789';
+    console.log(_string.substr(0, 1)); //'0' ←0文字目（先頭）〜1文字取得
+    console.log(_string.substr(-1, 1)); //'9' ←後ろから1文字目〜1文字取得
+    console.log(_string.substr(4)); //'456789' ←4文字目（0から開始）〜全て取得
+    console.log(_string.substr(4, 3)); //'456' ←4文字目（0から開始）〜3文字取得
 </script>
 ```
 
 ### 置換
 ```
 <script>
-    var _string = "2017年3月22日";
-    var _regExp = new RegExp("2017", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    console.log(_string.replace(_regExp, "平成29")); //平成29年3月22日
+    var _string = '2017年3月22日';
+    var _regExp = new RegExp('2017', 'g'); //第2引数を省略すると全てを置換（'g'と同等）
+    console.log(_string.replace(_regExp, '平成29')); //平成29年3月22日
 </script>
 ```
 
 ### 検索
 ```
 <script>
-    var _string = "ABCDEFG-ABCDEFG";
+    var _string = 'ABCDEFG-ABCDEFG';
     var _count = 0;
-    while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
-        var _num = _string.indexOf("CD", _count);
-        console.log(_num); //2,10 ←…"CD"が見つかった場所（0から開始）を返す
+    while (_string.indexOf('CD', _count) != -1) { //見つからないと-1を返す
+        var _num = _string.indexOf('CD', _count);
+        console.log(_num); //2,10 ←…'CD'が見つかった場所（0から開始）を返す
         _count = _num + 1;
     }
 </script>
@@ -2057,9 +2058,9 @@ var 変数 = "xxx"; //string型
 ### 文字列→配列
 ```
 <script>
-    var _string = "A,B,C,D,E,F";
-    var _array = _string.split(","); //カンマ区切りで配列化
-    console.log(_array); //["A", "B", "C", "D", "E", "F"]
+    var _string = 'A,B,C,D,E,F';
+    var _array = _string.split(','); //カンマ区切りで配列化
+    console.log(_array); //['A', 'B', 'C', 'D', 'E', 'F']
 </script>
 ```
 
@@ -2068,7 +2069,7 @@ var 変数 = "xxx"; //string型
 作成日：2017年03月22日  
 
 
-<a name="正規表現"></a>
+<a name='正規表現'></a>
 # <b>正規表現</b>
 
 * ECMAScript 6 には以下のサンプル以外にも多くの正規表現の機能が用意されています
@@ -2076,18 +2077,18 @@ var 変数 = "xxx"; //string型
 ### 検索＆置換
 ```
 <script>
-    var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-    var _regExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+    var _string = '吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文';
+    var _regExp = new RegExp('吉田', 'g'); //第2引数を省略すると全てを置換（'g'と同等）
     /*
-    "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
+    '^○○$'のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば '[A-D]\d+' など…を使うことでより細かな制御が可能
     */
     if (_regExp.test(_string)) { //検索
-        console.log('"吉田"は含まれています');
-        let _result = _string.replace(_regExp, "よしだ"); //置換
-        //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
+        console.log(''吉田'は含まれています');
+        let _result = _string.replace(_regExp, 'よしだ'); //置換
+        //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文'
         console.log(_result);
     } else {
-        console.log('"吉田"は含まれていません');
+        console.log(''吉田'は含まれていません');
     }
 </script>
 ```
@@ -2095,10 +2096,10 @@ var 変数 = "xxx"; //string型
 ### マッチした数
 ```
 <script>
-    var _string = "059371820400381295700347891205178900517093823";
-    var _regExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
+    var _string = '059371820400381295700347891205178900517093823';
+    var _regExp = new RegExp('00', 'g'); //第2引数を省略すると全てを置換（'g'と同等）
     var _matchList = _string.match(_regExp);
-    console.log(_matchList); //["00", "00", "00"]
+    console.log(_matchList); //['00', '00', '00']
     console.log(_matchList.length); //3（マッチした数）
 </script>
 ```
@@ -2119,7 +2120,7 @@ var 変数 = "xxx"; //string型
 作成日：2017年03月22日  
 
 
-<a name="抽象クラス"></a>
+<a name='抽象クラス'></a>
 # <b>抽象クラス</b>
 
 ### 概要
@@ -2131,7 +2132,7 @@ var 変数 = "xxx"; //string型
 //（擬似）抽象クラスの定義
 class Abstract○○ {
     抽象メソッド名(引数①,引数②,...) {
-        throw new Error("派生クラスで実装して下さい"); //例外処理
+        throw new Error('派生クラスで実装して下さい'); //例外処理
     }
 }
 
@@ -2148,21 +2149,21 @@ class 派生クラス名 extends Abstract○○ {
 <script>
     class AbstractClass { //（擬似）抽象クラスの定義
         commonMethod() { //共通のメソッド
-            console.log("AbstractClass.commonMethod()");
+            console.log('AbstractClass.commonMethod()');
         }
         eachMethod() { //抽象メソッド（実際の処理は記述しない）
-            throw new Error("サブクラスで実装して下さい"); //例外処理
+            throw new Error('サブクラスで実装して下さい'); //例外処理
         }
     }
     class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
         eachMethod() { //オーバーライドして実際の処理を記述
-            console.log("SubClass.eachMethod()"); //実際の処理
+            console.log('SubClass.eachMethod()'); //実際の処理
         }
     }
 
     var _subClass = new SubClass();
-    _subClass.commonMethod(); //"AbstractClass.commonMethod()"
-    _subClass.eachMethod(); //"SubClass.eachMethod()"
+    _subClass.commonMethod(); //'AbstractClass.commonMethod()'
+    _subClass.eachMethod(); //'SubClass.eachMethod()'
 </script>
 ```
 
@@ -2171,7 +2172,7 @@ class 派生クラス名 extends Abstract○○ {
 作成日：2017年03月22日  
 
 
-<a name="superキーワード"></a>
+<a name='superキーワード'></a>
 # <b>super キーワード</b>
 
 ```
@@ -2179,10 +2180,10 @@ class 派生クラス名 extends Abstract○○ {
     //スーパークラス
     class SuperClass {
         constructor(arg) { //コンストラクタ
-            console.log("SuperClass.constructor : " + arg);
+            console.log('SuperClass.constructor : ' + arg);
         }
         methodSuper(arg) {
-            console.log("SuperClass.methodSuper : " + arg);
+            console.log('SuperClass.methodSuper : ' + arg);
         }
     }
 
@@ -2190,21 +2191,21 @@ class 派生クラス名 extends Abstract○○ {
     class SubClass extends SuperClass { //スーパークラスを継承
         constructor() { //コンストラクタ
             //↓スーパークラスのコンストラクタの呼び出し（必須）
-            super("from SubClass");
+            super('from SubClass');
             //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
         }
         methodSub() {
             //↓スーパークラスのメソッドを呼び出すことが可能
-            super.methodSuper("from SubClass");
+            super.methodSuper('from SubClass');
         }
     }
 
     //実行
     var _subClass = new SubClass(); 
-    //=> "SuperClass.constructor : from SubClass"
+    //=> 'SuperClass.constructor : from SubClass'
 
     _subClass.methodSub(); 
-    //=>"SuperClass.methodSuper : from SubClass"
+    //=>'SuperClass.methodSuper : from SubClass'
 </script>
 ```
 
@@ -2213,7 +2214,7 @@ class 派生クラス名 extends Abstract○○ {
 作成日：2017年03月22日  
 
 
-<a name="オーバーライド"></a>
+<a name='オーバーライド'></a>
 # <b>オーバーライド</b>
 
 ### 概要
@@ -2228,7 +2229,7 @@ class 派生クラス名 extends Abstract○○ {
     class SuperClass {
         //↓サブクラスでオーバライドするメソッド
         myMethod() {
-            console.log("SuperClass.myMethod()");
+            console.log('SuperClass.myMethod()');
         }
     }
 
@@ -2237,7 +2238,7 @@ class 派生クラス名 extends Abstract○○ {
         //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
         myMethod() {
             //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
-            console.log("SubClass.myMethod()");
+            console.log('SubClass.myMethod()');
         }
     }
 
@@ -2252,7 +2253,7 @@ class 派生クラス名 extends Abstract○○ {
 作成日：2017年03月22日  
 
 
-<a name="カスタムイベント"></a>
+<a name='カスタムイベント'></a>
 # <b>カスタムイベント</b>
 
 ### 概要
@@ -2267,33 +2268,33 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
         }
 
         addEventListener(_event, _function) {
-            if (_event == "die") {
+            if (_event == 'die') {
                 this.__dieHandler = _function; //匿名関数を変数に格納
             } else {
                 //該当のイベントが無い場合、実行時にErrorを発生（オプション）
-                throw new Error('Error:"' + _event + '"はサポートされていません');
+                throw new Error('Error:'' + _event + ''はサポートされていません');
             }
         }
 
         fight() {
             this.__energy -= 20;
             if (this.__energy <= 0) {
-                this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
+                this.__dieHandler(this); //←'die'イベントの発生（リスナー関数の呼出し）
             }
         }
     }
 
     var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
         console.log(arg); //Robotクラスのインスタンス
-        alert("GAME OVER");
+        alert('GAME OVER');
     }
 
     var _robot = new Robot();
-    _robot.addEventListener("die", die_robot); //イベントリスナーの設定
+    _robot.addEventListener('die', die_robot); //イベントリスナーの設定
     _robot.fight();
     _robot.fight();
     _robot.fight();
-    _robot.fight(); //"GAME OVER"
+    _robot.fight(); //'GAME OVER'
 </script>
 ```
 
@@ -2302,7 +2303,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 作成日：2017年03月22日  
 
 
-<a name="数学関数（Math）"></a>
+<a name='数学関数（Math）'></a>
 # <b>数学関数（Math）</b>
 
 ### Math.sin() : サイン（正弦）
@@ -2422,7 +2423,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
-<a name="乱数"></a>
+<a name='乱数'></a>
 # <b>乱数</b>
 
 ### Math.random()
@@ -2474,7 +2475,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 作成日：2017年03月22日  
 
 
-<a name="日時情報"></a>
+<a name='日時情報'></a>
 # <b>日時情報</b>
 
 ### 書式
@@ -2503,11 +2504,11 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     console.log(_date.getMinutes()); //33
     console.log(_date.getSeconds()); //39
     console.log(_date.getMilliseconds()); //559
-    //"hh:mm:ss"で現在の時間を表示する方法
-    var _h = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
-    var _m = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
-    var _s = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
-    console.log(_h + ":" + _m + ":" + _s); //"09:33:39"
+    //'hh:mm:ss'で現在の時間を表示する方法
+    var _h = (_date.getHours() < 10) ? '0' + _date.getHours() : _date.getHours();
+    var _m = (_date.getMinutes() < 10) ? '0' + _date.getMinutes() : _date.getMinutes();
+    var _s = (_date.getSeconds() < 10) ? '0' + _date.getSeconds() : _date.getSeconds();
+    console.log(_h + ':' + _m + ':' + _s); //'09:33:39'
 </script>
 ```
 
@@ -2516,7 +2517,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 作成日：2017年03月22日  
 
 
-<a name="タイマー"></a>
+<a name='タイマー'></a>
 # <b>タイマー</b>
 
 ### 繰返し実行する
@@ -2525,7 +2526,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     _count = 0;
     callbackFunction = () => {
         if (++_count <= 10) { //10回繰返す場合…
-            console.log(_count, "繰返し実行したい処理");
+            console.log(_count, '繰返し実行したい処理');
         } else {
             clearInterval(_timerID); //繰返しを止める
         }
@@ -2539,7 +2540,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 <script>
     callbackFunction = () => {
-        console.log("一度だけ実行したい処理");
+        console.log('一度だけ実行したい処理');
         clearTimeout(_timerID);
     }
     _timerID = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
@@ -2574,7 +2575,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
         static __callBack() {
             var _this = TaskA;
             //TaskAで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskAで実行すること");
+            console.log(_this.delay + 'ミリ秒後にTaskAで実行すること');
             if (_this.nextTask != undefined) { _this.nextTask.exec(); }
         }
     }
@@ -2584,7 +2585,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
         static __callBack() {
             var _this = TaskB;
             //TaskBで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskBで実行すること");
+            console.log(_this.delay + 'ミリ秒後にTaskBで実行すること');
             if (_this.nextTask != undefined) { _this.nextTask.exec(); }
         }
     }
@@ -2594,7 +2595,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
         static __callBack() {
             var _this = TaskC;
             //TaskCで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskCで実行すること");
+            console.log(_this.delay + 'ミリ秒後にTaskCで実行すること');
             if (_this.nextTask != undefined) { _this.nextTask.exec(); }
         }
     }
@@ -2618,7 +2619,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 作成日：2017年03月22日  
 
 
-<a name="処理速度計測"></a>
+<a name='処理速度計測'></a>
 # <b>処理速度計測</b>
 
 ### Dateオブジェクトを使う方法
@@ -2639,11 +2640,11 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 * 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数として console.timeEnd() を実行することで経過時間が出力
     ```
     <script>
-        console.time("timerA");
+        console.time('timerA');
         for (let i = 0; i < 1000000000; i++) { //10億回繰返す
             //速度計測したい処理
         }
-        console.timeEnd("timerA"); //"timerA: 3628.869ms"
+        console.timeEnd('timerA'); //'timerA: 3628.869ms'
     </script>
     ```
 
@@ -2653,7 +2654,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 
 
-<a name="外部テキストの読み込み"></a>
+<a name='外部テキストの読み込み'></a>
 # <b>外部テキストの読み込み</b>
 
 ### テキストファイルの用意（準備）
@@ -2676,7 +2677,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     }
 
     //③ヘッダの設定
-    _request.open("GET", "sample.txt");
+    _request.open('GET', 'sample.txt');
 
     //④リクエストの送信
     _request.send(null);
