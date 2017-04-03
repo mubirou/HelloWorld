@@ -17,8 +17,8 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
-***
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
+***
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
@@ -802,7 +802,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 <?php
     class MyMath {
-        const PI = 3.141592653589793; //クラス定数の定義
+        const PI = 3.141592653589793; //クラス定数（オブジェクト定数）の定義
         
         //コンストラクタ
         function __construct() {
@@ -1051,47 +1051,41 @@ echo $nishimura->age.'<br>'; //49
 # <b>クラス定数･変数･メソッド</b>
 * クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
 ```
-<script>
+<?php
     class MyMath {
-        //①クラス定数（静的定数）の定義（静的定数）
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error('値の変更はできません');
-        }
+        const PI = 3.141592653589793; //クラス定数（オブジェクト定数）の定義
+        public static $lastUpdate = '2017-04-03'; //クラス変数（オブジェクト変数）の定義
 
-        //③静的メソッド（静的メソッド）の定義
-        static pow(arg1, arg2) {
-            if (arg2 == 0) { return 1; } //0乗対策
-            var _result = arg1;
-            for (let _i = 1; _i < arg2; _i++) {
-                _result = _result * arg1;
+        function __construct() {} //コンストラクタ
+
+        //静的メソッド（静的メソッド）の定義
+        public static function pow($arg1, $arg2) {
+            if ($arg2 == 0) { return 1; } //0乗対策
+            $result = $arg1;
+            for ($i = 1; $i < $arg2; $i++) {
+                $result = $result * $arg1;
             }
-            return _result;
+            return $result;
         }
     }
 
-    //①クラス定数の参照
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
+    echo MyMath::PI.'<br>'; //3.141592653589793
+    //MyMath::PI = 3.14; //error: 値の変更はできません
 
-    //②クラス変数の参照および変更
-    console.log(MyMath.lastUpdate); //undefined
-    MyMath.lastUpdate = '2017-03-21'; //②クラス変数（静的変数）の定義
-    console.log(MyMath.lastUpdate); //'2017-03-21'
-    MyMath.lastUpdate = '2017-03-22'; //変更可能
-    console.log(MyMath.lastUpdate); //'2017-03-22'
+    echo MyMath::$lastUpdate.'<br>'; //'2017-04-03'
+    MyMath::$lastUpdate = '2017-04-04'; //クラス変数（オブジェクト変数）の変更
+    echo MyMath::$lastUpdate.'<br>'; //'2017-04-04'
 
-    //③静的メソッドの実行
-    console.log(MyMath.pow(2, 0)); //1
-    console.log(MyMath.pow(2, 8)); //256
-</script>
+    //静的メソッドの実行
+    echo MyMath::pow(2, 0).'<br>'; //1（2の0乗）
+    echo MyMath::pow(2, 1).'<br>'; //2（2の1乗）
+    echo MyMath::pow(2, 8).'<br>'; //256（2の8乗）
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月03日  
 
 
 <a name='if文'></a>
