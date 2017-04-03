@@ -15,8 +15,8 @@
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-***
 * [メソッド](#メソッド)
+***
 * [匿名関数](#匿名関数)
 * [アロー関数](#アロー関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
@@ -825,140 +825,148 @@ echo $nishimura->age."<br>"; //49
 
 
 ### パブリックメソッド
-* アクセス修飾子が存在しないため、メソッドは全てパブリックメソッド扱いになる
 ```
-<script>
-    //○○.js
+<?php
     class MyClass {
-        tashizan(_start, _end) {
-            var _result = 0; //ローカル変数（関数内のみ有効）
-            for (let _i = _start; _i <= _end; _i++) {
-                //_i はブロック変数（ブロック {} 内のみ有効）
-                _result += _i;
+        public function tashizan($start, $end) {
+            $result = 0; //ローカル変数（関数内のみ有効）
+            for ($i = $start; $i <= $end; $i++) {
+                $result += $i;
             }
-            return _result;
+            return $result;
         }
     }
 
-    var _myClass = new MyClass();
-    console.log(_myClass.tashizan(1, 10)); //55
-    console.log(_myClass.tashizan(1, 100)); //5050
-</script>
+    $myClass = new MyClass();
+    echo $myClass->tashizan(1, 10)."<br>"; //55
+    echo $myClass->tashizan(1, 100); //5050
+?>
 ```
 
-### 擬似プライベートメソッド
-* 実際は単なるパブリックメソッド
-* アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
+### プライベートメソッド
 ```
-<script>
-    class Omikuji {
+<?php
+    class MyClass {
         //コンストラクタ
-        constructor() {
-            var _resultList = ["大吉", "吉", "中吉", "小吉", "凶"];
-            console.log(_resultList[this.__randomInt(0, 4)]);
+        function __construct() {
+            echo $this->tashizan(1, 10)."<br>"; //55
+            echo $this->tashizan(1, 100); //5050
         }
 
-        __randomInt(_min, _max) { //（擬似）プライベートメソッド
-            var _tmp = _max - _min + 1;
-            return Math.floor(Math.random() * _tmp) + _min;
+        //privateメソッド
+        private function tashizan($start, $end) {
+            $result = 0; //ローカル変数（関数内のみ有効）
+            for ($i = $start; $i <= $end; $i++) {
+                $result += $i;
+            }
+            return $result;
         }
     }
 
-    new Omikuji(); //大吉、吉、中吉、小吉、凶のいずれか
-</script>
+    $myClass = new MyClass();
+    //echo $myClass->tashizan(1, 10); //error（アクセス不可）
+?>
 ```
 
 ### コンストラクタ
 ```
-<script>
+<?php
     class Point {
+        private $x, $y; //private変数の宣言
+
         //コンストラクタ
-        constructor(_x = 0, _y = 0) {
-            //（擬似）プライベート変数の定義（初期化）
-            this.__x = _x;
-            this.__y = _y;
+        function __construct($x = 0, $y = 0) {
+            //private変数の初期化
+            $this->x = $x;
+            $this->y = $y;
         }
 
         //アクセサ（getter）
-        get x() { return this.__x; }
-        get y() { return this.__y; }
+        public function __get($name){
+            return $this->$name;
+        }
 
         //アクセサ（setter）
-        set x(newValue) { this.__x = newValue; }
-        set y(newValue) { this.__y = newValue; }
+        public function __set($name, $value){
+            $this->$name = $value;
+        }
     }
 
-    var _point = new Point(100, 150); //ここでコンストラクタを呼び出す
-    console.log(_point.x); //100
-    console.log(_point.y); //150
-</script>
+    $point = new Point(100, 150); //ここでコンストラクタを呼び出す
+    echo $point->x."<br>"; //100
+    echo $point->y; //150
+?>
 ```
 
 ### 静的メソッド（クラスメソッド）
 * インスタンス化せずにメソッドを利用することが可能
 ```
-<script>
+<?php
     class MyMath {
-        //静的メソッド（static メソッド名()）
-        static pow(arg1, arg2) {
-            if (arg2 == 0) { return 1; } //0乗対策
-            var _result = arg1;
-            for (let _i = 1; _i < arg2; _i++) {
-                _result = _result * arg1;
+        function __construct() {} //コンストラクタ
+
+        //クラスメソッド（public static functin メソッド名()）
+        public static function pow($arg1, $arg2) {
+            if ($arg2 == 0) { return 1; } //0乗対策
+            $result = $arg1;
+            for ($i = 1; $i < $arg2; $i++) {
+                $result = $result * $arg1;
             }
-            return _result;
+            return $result;
         }
     }
 
-    console.log(MyMath.pow(2, 0)); //1（2の0乗）
-    console.log(MyMath.pow(2, 1)); //2（2の1乗）
-    console.log(MyMath.pow(2, 8)); //256（2の8乗）
-</script>
+    echo MyMath::pow(2, 0)."<br>"; //1（2の0乗）
+    echo MyMath::pow(2, 1)."<br>"; //2（2の1乗）
+    echo MyMath::pow(2, 8)."<br>"; //256（2の8乗）
+?>
 ```
 
 ### デフォルト値付き引数
-* 省略可能な引数
-* 「オプション引数」とも呼ばれる
 ```
-<script>
+<?php
     class MyClass {
-        constructor() {
-            this.__point = 0; //擬似プライベート変数の定義（初期化）
+        private $point; //プライベート変数の宣言
+
+        function __construct() { //コンストラクタ
+            $this->point = 0; //プライベート変数の初期化
         }
-        addPoint(arg = 1) { //初期値を1とした場合
-            this.__point += arg;
-            console.log(this.__point);
+
+        public function addPoint($arg = 1) { //初期値を1とした場合
+            $this->point += $arg;
+            return $this->point;
         }
     }
 
-    var _myClass = new MyClass();
-    _myClass.addPoint(); //1
-    _myClass.addPoint(10); //11
-</script>
+    $myClass = new MyClass();
+    echo $myClass->addPoint()."<br>"; //1
+    echo $myClass->addPoint(10); //11
+?>
 ```
 
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能
-* メソッド名(引数, ...可変長引数) のように併用も可能
 ```
-<script>
+<?php
     class MyClass {
-        sum(...args) { //...引数名 で可変長引数
-            for (let tmp in args) {
-                console.log(args[tmp]);
+        public function sum(...$args) { //...$引数名 で可変長引数
+            $result = 0;
+            foreach ($args as $data) {
+                $result += $data;
             }
+            echo $result."<br>";
         }
     }
 
-    var _myClass = new MyClass();
-    _myClass.sum(1, 2); //1→2
-    _myClass.sum(1, 2, 3, 4, 5); //1→2→3→4→5
-</script>
+    $myClass = new MyClass();
+    $myClass->sum(1, 2); //3（1+2）
+    $myClass->sum(1, 2, 3, 4, 5); //15（1+2+3+4+5）
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月03日
 
 
 <a name="匿名関数"></a>
