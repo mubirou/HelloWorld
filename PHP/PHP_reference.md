@@ -844,6 +844,7 @@ echo $nishimura->age."<br>"; //49
 ```
 
 ### プライベートメソッド
+* 他にも、クラスまたはサブクラス内でのみアクセス可能な protected メソッドもあり
 ```
 <?php
     class MyClass {
