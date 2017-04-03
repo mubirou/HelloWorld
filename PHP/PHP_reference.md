@@ -20,8 +20,8 @@
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-***
 * [switch 文](#switch文)
+***
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
@@ -1258,49 +1258,49 @@ echo $nishimura->age.'<br>'; //49
 ### 判別式が boolean 値の場合
 * case 式に比較演算子が使われる
 ```
-<script>
-    var _age = 49;
+<?php
+    $age = 49;
     switch (true) {
-        case _age <= 20:
-            console.log('20歳以下');
+        case $age <= 20:
+            echo '20歳以下';
             break;
-        case _age <= 40:
-            console.log('21〜40歳');
+        case $age <= 40:
+            echo '21〜40歳';
             break;
-        case _age <= 60:
-            console.log('41〜60歳'); //これが出力される
+        case $age <= 60:
+            echo '41〜60歳'; //これが出力される
             break;
         default:
-            console.log('61歳以上');
+            echo '61歳以上';
             break; //省略可
     }
-</script>
+?>
 ```
 
 ### break文が無い使い方
 * [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
 ```
-<script>
-    var _name = 'JIRO';
-    switch (_name) {
+<?php
+    $name = 'JIRO';
+    switch ($name) {
         case 'TARO':
         case 'HANAKO':
-            console.log('親です');
+            echo '親です';
             break;
         case 'ICHIRO':
         case 'JIRO':
-            console.log('子供です'); //これが出力される
+            echo '子供です'; //これが出力される
             break;
         default:
-            console.log('家族ではありません');
+            echo '家族ではありません';
             break; //省略可
     }
-</script>
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月04日  
 
 
 <a name='for文'></a>
