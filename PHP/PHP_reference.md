@@ -18,7 +18,6 @@
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
 ***
-* [アロー関数](#アロー関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -972,7 +971,6 @@ echo $nishimura->age."<br>"; //49
 
 <a name="匿名関数"></a>
 # <b>匿名関数</b>
-* [アロー関数](#アロー関数)を匿名式に置き換えたもの
 * PHP では「無名関数」と呼ばれる
 * クラス内で匿名関数を扱う場合、実行時に call_user_func() を使う必要がある
 
@@ -1046,53 +1044,6 @@ echo $nishimura->age."<br>"; //49
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2017年04月03日  
-
-
-<a name="アロー関数"></a>
-# <b>アロー関数</b>
-* [匿名関数](#匿名関数)をラムダ式に置き換えたバージョン
-```
-<script>
-    class Hello {
-        //コンストラクタ
-        constructor() {
-            this.__american = (_name) => { //匿名関数①
-                console.log(_name + "," + "Hello!");
-            }
-
-            this.__japanese = (_name) => { //匿名関数②
-                console.log(_name + "、" + "こんにちは!");
-            }
-
-            this.__chinese = (_name) => { //匿名関数③
-                console.log(_name + "," + "你好!");
-            }
-
-            //パブリック変数に匿名関数を代入（前方宣言が必要）
-            this.hello = this.__american;
-        }
-        //匿名関数の入替え
-        change(_language) {
-            switch (_language) {
-                case "american": this.hello = this.__american; break; 
-                case "japanese": this.hello = this.__japanese; break;
-                case "chinese": this.hello = this.__chinese; break;
-            }
-        }
-    }
-
-    var _hello = new Hello();
-    _hello.hello("TARO"); //"TARO,Hello!"
-    _hello.change("japanese");
-    _hello.hello("たかし"); //"たかし、こんにちは!"
-    _hello.change("chinese");
-    _hello.hello("たかし"); //"たかし, 你好!"
-</script>
-```
-
-実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月21日  
 
 
 <a name="クラス定数･変数･メソッド"></a>
