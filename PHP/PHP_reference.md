@@ -13,8 +13,8 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
-***
 * [演算子](#演算子)
+***
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
@@ -711,73 +711,73 @@ echo $nishimura->age."<br>"; //49
 ### 算術演算子
 （複合代入演算子 += -= *= /= %= などもあり）
 ```
-<script>
-    console.log(3 + 2); //5 (可算)
-    console.log(5 - 8); //-3 (減算)
-    console.log(3 * 4); //12 (乗算)
-    console.log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-    console.log(63 % 60); //3 (余剰)
-    console.log(8 / 3); //2.6666666666666665（除算)
-</script>
+<?php
+    echo (3 + 2)."<br>"; //5 (可算)
+    echo (5 - 8)."<br>"; //-3 (減算)
+    echo (3 * 4)."<br>"; //12 (乗算)
+    echo (1 + 2 * 3 - 4 / 2)."<br>"; //5 (複雑な計算)
+    echo (63 % 60)."<br>"; //3 (余剰)
+    echo (8 / 3); //2.6666666666667（除算)
+?>
 ```
 
 ### 後ろに付けるインクリメント／デクリメント
 ```
-<script>
+<?php
     //インクリメント
-    var _huga = 0;
-    var _piyo = _huga++; //加算する前の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //0
+    $huga = 0;
+    $piyo = $huga++; //加算する前の$hugaの値を返す
+    echo $huga."<br>"; //1
+    echo $piyo."<br>"; //0
 
     //デクリメント
-    _huga = 0;
-    _piyo = _huga--; //減算する前の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //0
-</script>
+    $huga = 0;
+    $piyo = $huga--; //減算する前の$hugaの値を返す
+    echo $huga."<br>"; //-1
+    echo $piyo; //0
+?>
 ```
 
 ### 前に付けるインクリメント／デクリメント
 ```
-<script>
+<?php
     //インクリメント
-    var _huga = 0;
-    var _piyo = ++_huga; //加算後の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //1
+    $huga = 0;
+    $piyo = ++$huga; //加算後の$hugaの値を返す
+    echo $huga."<br>"; //1
+    echo $piyo."<br>"; //1
 
     //デクリメント
-    _huga = 0;
-    var _piyo = --_huga; //減算後の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //-1
-</script>
+    $huga = 0;
+    $piyo = --$huga; //減算後の$hugaの値を返す
+    echo $huga."<br>"; //-1
+    echo $piyo; //-1
+?>
 ```
 
 ### その他の演算子
 ```
-<script>
-    console.log(true && true); //true（論理積）
-    console.log(true || false); //true（論理和）
-    console.log(! true); //false（否定）
+<?php
+    echo (true && true)."<br>"; //「1」＝true（論理積）
+    echo (true || false)."<br>"; //「1」＝true（論理和）
+    echo (! true)."<br>"; //「」＝false（否定）
 
-    console.log(2 < 3); //true（比較/未満）
-    console.log(2 <= 2); //true（比較/以下）
-    console.log(1 == 1.0); //true（等号）
-    console.log(1 != 1.0); //false（不等号）
+    echo (2 < 3)."<br>"; //「1」＝true（比較/未満）
+    echo (2 <= 2)."<br>"; //「1」＝true（比較/以下）
+    echo (1 == 1.0)."<br>"; //「1」＝true（等号）
+    echo (1 != 1.0)."<br>"; //「」＝false（不等号）
 
-    console.log(3 & 1); //1（ビット積）
-    console.log(3 | 1); //3（ビット和）
-    console.log(3 ^ 1); //2（排他的ビット和）
-    console.log(2 << 7); //256（ビット･シフト）
-    console.log(~3); //-4（ビット反転）
-</script>
+    echo (3 & 1)."<br>"; //1（ビット積）
+    echo (3 | 1)."<br>"; //3（ビット和）
+    echo (3 ^ 1)."<br>"; //2（排他的ビット和）
+    echo (2 << 7)."<br>"; //256（ビット･シフト）
+    echo ~3; //-4（ビット反転）
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年04月03日
 
 
 <a name="定数"></a>
