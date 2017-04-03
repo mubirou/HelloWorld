@@ -784,46 +784,40 @@ echo $nishimura->age."<br>"; //49
 # <b>定数</b>
 
 ### 概要
-* const はクラス外で定数を扱う場合に利用できます。
-* const をクラス内で利用した場合、単なる「変更不可のローカル変数」扱いとなり、用途は非常に限られます（ const this.定数名 という記述は不可）。
-* クラス定数を実現するためには、static（メソッドに対してのみ有効）と getter を利用します。setter には、値を変更しようとした際にエラーが発生するように記述します。
+* const 定数名 = 値;
+* 定数名の頭文字には「$（ドル記号）」は付けない
+* 関数内で定義してもローカル変数扱いにはならない
+* 定数を変更しようとするとエラーが発生
 
 ### 通常の定数
 ```
-<script>
+<?php
     const MY_NAME = "Takashi Nishimura";
-    console.log(MY_NAME); //"Takashi Nishimura"
-    MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
-</script>
+    echo MY_NAME; //"Takashi Nishimura"
+    //MY_NAME = "ICHIRO NISHIMURa"; //error（変更不可）
+?>
 ```
 
-### クラス定数（静的定数）
+### クラス定数（オブジェクト定数）
 ```
-<script>
+<?php
     class MyMath {
-        constructor() {
-            /*
-            ↓「変更不可のローカル変数」となりクラス定数として利用できない
-            ↓「const this.定数名」という記述は不可
-            */
-            //const PI = 3.141592653589793;
-        }
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error("値の変更はできません");
+        const PI = 3.141592653589793; //クラス定数の定義
+        
+        //コンストラクタ
+        function __construct() {
+            echo seft::PI; //3.1415926535898（小数点第13位まで）
         }
     }
 
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
-</script>
+    echo MyMath::PI; //3.141592653589793
+    //MyMath::PI = 3.14; //error（変更不可）
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月03日  
 
 
 <a name="メソッド"></a>
