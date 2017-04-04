@@ -24,9 +24,8 @@
 * [for 文](#for文)
 * [foreach...as 文](#foreach...as文)
 * [while文](#while文)
-***
 * [配列（array）](#配列（array）)
-* [配列（Set）](#配列（Set）)
+***
 * [連想配列（Object）](#連想配列（Object）)
 * [連想配列（Map）](#連想配列（Map）)
 * [this](#this)
@@ -1676,89 +1675,59 @@ do {
 
 ### 結合
 ```
-<script>
-    var _array1 = ['A', 'B', 'C'];
-    var _array2 = ['D', 'E', 'F'];
-    var _array3 = _array1.concat(_array2);
-    console.log(_array3) //['A', 'B', 'C', 'D', 'E', 'F']
-</script>
+<?php
+    $array1 = array('A', 'B', 'C');
+    $array2 = array('D', 'E', 'F');
+    $array3 = array_merge($array1, $array2);
+    foreach ($array3 as $data) {
+        echo $data.'<br>'; //'A'→'B'→'C'→'D'→'E'→'F'
+    }
+?>
 ```
 
 ### 複製
 ```
-<script>
-    var _original = ['A', 'B', 'C'];
-    var _copy = _original.concat(); //複製
+<?php
+    $original = array('A', 'B', 'C');
+    $copy = $original; //PHPの場合、代入するだけで複製される
 
     //実験（参照コピーではなく複製されているか否か）
-    _original[0] = 'あ';
-    console.log(_original[0], _copy[0]); //'あ' 'A'（参照コピーではない）
-</script>
+    $original[0] = 'あ';
+    foreach ($original as $data) {
+        echo $data.'<br>'; //'あ'→'B'→'C'
+    }
+    foreach ($copy as $data) {
+        echo $data.'<br>'; //'A'→'B'→'C'（元のデータは変化なし）
+    }
+?>
 ```
 
 ### 文字列→配列
 ```
-<script>
-    var _string = 'A,B,C,D,E,F';
-    var _array = _string.split(','); //カンマ区切りで配列化
-    console.log(_array); //['A', 'B', 'C', 'D', 'E', 'F']
-</script>
+<?php
+    $string = 'A,B,C,D,E,F';
+    $array = explode(",", $string); //カンマ区切りで配列化
+    echo is_array($array).'<br>'; //1（true）←配列
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'A'→'B'→'C'→'D'→'E'→'F'
+    }
+?>
 ```
 
 ### 全要素を取り出す
 ```
-<script>
-    var _array = ['A', 'B', 'C', 'D', 'E', 'F'];
-    _array.forEach(function(arg) {
-        console.log(arg); //'A'→'B'→'C'→'D'→'E'→'F'
-    });
-</script>
+<?php
+    $array = array('A', 'B', 'C', 'D', 'E', 'F');
+    foreach ($array as $data) {
+        echo $data."<br>"; //'A'→'B'→'C'→'D'→'E'→'F'
+    }
+?>
 ```
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
-
-
-<a name='配列（Set）'></a>
-# <b>配列（Set）</b>
-
-* 配列（array）と異なりデータの重複ができない
-```
-<script>
-    //①作成
-    var _set = new Set();
-
-    //②データの追加
-    _set.add('ICHIRO');
-    _set.add('JIRO');
-
-    //参考：既存データの追加
-    _set.add('ICHIRO'); //無視される
-
-    //③データの数
-    console.log(_set.size); //2
-
-    //④全てのデータの取得
-    for (let _data of _set) {
-        console.log(_data);
-        //'ICHIRO'
-        //'JIRO'
-    }
-
-    //⑤データがあるか否か
-    console.log(_set.has('TARO')); //false
-    console.log(_set.has('ICHIRO')); //true
-
-    //⑥データの削除
-    _set.delete('ICHIRO');
-</script>
-```
-
-実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月04日
 
 
 <a name='連想配列（Object）'></a>
