@@ -31,8 +31,8 @@
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [parent キーワード](#parentキーワード)（≒ super）
-***
 * [オーバーライド](#オーバーライド)
+***
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
@@ -1910,7 +1910,7 @@ do {
 //抽象クラスの定義
 abstract class Abstract○○ {
     //共通のメソッド（オーバーライドを禁止）
-    public final function 抽象メソッド名($引数①, $引数②, ...);
+    final public function 抽象メソッド名($引数①, $引数②, ...);
 }
 
 //抽象クラスの継承
@@ -1932,7 +1932,7 @@ class 派生クラス名 extends Abstract○○ {
         public function __construct() {}
 
         //共通のメソッド（オーバーライドを禁止）
-        public final function commonMethod() {
+        final public function commonMethod() {
             echo 'AbstractClass->commonMethod()'.'<br>'; //共通の処理をここに記述。
         }
 
@@ -2013,38 +2013,39 @@ class 派生クラス名 extends Abstract○○ {
 
 ### 概要
 * スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ
-* スーパークラスのメソッドを呼び出したい場合は、super.メソッド名() とする
+* スーパークラスのメソッドを呼び出したい場合は、parent::メソッド名() とする
 * （擬似）[抽象クラス](#抽象クラス)でもこの方法を活用
+* [final キーワード](http://php.net/manual/ja/language.oop5.final.php)を使って final public function メソッド名() と記述することでオーバーライド禁止
 
 ### 例文
 ```
-<script>
+<?php
     //スーパークラス
     class SuperClass {
         //↓サブクラスでオーバライドするメソッド
-        myMethod() {
-            console.log('SuperClass.myMethod()');
+        public function myMethod() {
+            echo 'SuperClass->myMethod()'.'<br>';
         }
     }
 
     //サブクラス
     class SubClass extends SuperClass { //スーパークラスを継承
         //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-        myMethod() {
-            //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
-            console.log('SubClass.myMethod()');
+        public function myMethod() {
+            //parent::myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
+            echo 'SubClass->myMethod()';
         }
     }
 
     //実行
-    var _subClass = new SubClass();
-    _subClass.myMethod();
-</script>
+    $subClass = new SubClass();
+    $subClass->myMethod(); //SubClass->myMethod()
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月04日  
 
 
 <a name='カスタムイベント'></a>
