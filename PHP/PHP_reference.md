@@ -27,8 +27,8 @@
 * [配列（array）](#配列（array）)
 * [連想配列（array）](#連想配列（array）)
 * [$this](#$this)
-***
 * [文字列の操作](#文字列の操作)
+***
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
@@ -1805,67 +1805,56 @@ do {
 <a name='文字列の操作'></a>
 # <b>文字列の操作</b>
 
-### 文字列の生成
-```
-var 変数 = new String('xxx'); //object型
-var 変数 = 'xxx'; //string型
-```
-* 上記2つは厳密には異なるが通常は意識する必要はない
-
 ### 文字列の長さを調べる
 ```
-<script>
-    var _string = 'ABCDE';
-    console.log(_string.length); //5
-</script>
+<?php
+    $string = 'ABCDE';
+    echo strlen($string); //5
+?>
 ```
 
 ### 一部分を取得
 ```
-<script>
-    var _string = '0123456789';
-    console.log(_string.substr(0, 1)); //'0' ←0文字目（先頭）〜1文字取得
-    console.log(_string.substr(-1, 1)); //'9' ←後ろから1文字目〜1文字取得
-    console.log(_string.substr(4)); //'456789' ←4文字目（0から開始）〜全て取得
-    console.log(_string.substr(4, 3)); //'456' ←4文字目（0から開始）〜3文字取得
-</script>
+<?php
+    $string = '0123456789';
+    echo substr($string, 0, 1).'<br>'; //'0' ←0文字目（先頭）〜1文字取得
+    echo substr($string, -1, 1).'<br>'; //'9' ←後ろから1文字目〜1文字取得
+    echo substr($string, 4).'<br>'; //'456789' ←4文字目（0から開始）〜全て取得
+    echo substr($string, 4, 3).'<br>'; //'456' ←4文字目（0から開始）〜3文字取得
+?>
 ```
 
 ### 置換
 ```
-<script>
-    var _string = '2017年3月22日';
-    var _regExp = new RegExp('2017', 'g'); //第2引数を省略すると全てを置換（'g'と同等）
-    console.log(_string.replace(_regExp, '平成29')); //平成29年3月22日
-</script>
+<?php
+    $string = '2017年4月4日';
+    echo str_replace('2017', '平成29', $string); //平成29年4月4日
+?>
 ```
 
 ### 検索
 ```
-<script>
-    var _string = 'ABCDEFG-ABCDEFG';
-    var _count = 0;
-    while (_string.indexOf('CD', _count) != -1) { //見つからないと-1を返す
-        var _num = _string.indexOf('CD', _count);
-        console.log(_num); //2,10 ←…'CD'が見つかった場所（0から開始）を返す
-        _count = _num + 1;
-    }
-</script>
+<?php
+    $string = 'ABCDEFG-ABCDEFG';
+    echo strpos($string, 'CD'); //2 ←見つかった最初の場所（0から開始）
+?>
 ```
-* 最後から検索する String.lastIndexOf() もあり
 
 ### 文字列→配列
 ```
-<script>
-    var _string = 'A,B,C,D,E,F';
-    var _array = _string.split(','); //カンマ区切りで配列化
-    console.log(_array); //['A', 'B', 'C', 'D', 'E', 'F']
-</script>
+<?php
+    $string = 'A,B,C,D,E,F';
+    $array = explode(",", $string); //カンマ区切りで配列化
+    echo is_array($array).'<br>'; //1（true）←配列
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'A'→'B'→'C'→'D'→'E'→'F'
+    }
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月04日  
 
 
 <a name='正規表現'></a>
