@@ -25,9 +25,8 @@
 * [foreach...as 文](#foreach...as文)
 * [while文](#while文)
 * [配列（array）](#配列（array）)
+* [連想配列（array）](#連想配列（array）)
 ***
-* [連想配列（Object）](#連想配列（Object）)
-* [連想配列（Map）](#連想配列（Map）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -1729,45 +1728,34 @@ do {
 作成日：2017年04月04日
 
 
-<a name='連想配列（Object）'></a>
-# <b>連想配列（Object）</b>
+<a name='連想配列（array）'></a>
+# <b>連想配列（array）</b>
 
 ```
-<script>
+<?php
     //①作成
-    var _object = new Object();
-    //他にも {プロパティ名①:値, プロパティ名②:値} という方法もある
+    $array = array(); //配列（array）と同じ方法（省略可能）
 
     //②プロパティの追加（更新も同じ方法）
-    _object.name = 'Takashi Nishimura';
-    _object.age = 49;
+    $array['name'] = 'Takashi Nishimura';
+    $array['age'] = 49;
 
     //③関数の追加
-    _object.hello = function() {
-        return 'Hello! How are you?';
-    }
+    $array['hello'] = function() {
+        echo 'Hello! How are you?';
+    };
 
     //④プロパティの参照
-    console.log(_object.name); //'Takashi Nishimura'
-    console.log(_object['name']); //配列演算子[]を使うことも可能
-    console.log(_object.age); //49
+    echo $array['name'].'<br>'; //'Takashi Nishimura'
 
     //⑤関数の実行
-    console.log(_object.hello()); //'Hello! How are you?'
-
-    //⑥全ての要素の取得
-    for (let _propName in _object) {
-        console.log(_propName + ' : ' + _object[_propName]);
-    }
-    //name : Takashi Nishimura
-    //age : 49
-    //hello : function() {...
-</script>
+    $array['hello'](); //'Hello! How are you?'
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月04日  
 
 
 <a name='連想配列（Map）'></a>
