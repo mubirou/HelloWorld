@@ -23,8 +23,8 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach...as 文](#foreach...as文)
-***
 * [while文](#while文)
+***
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
@@ -1422,13 +1422,13 @@ while (ループ判定式) {
 
 * 例文
 ```
-<script>
-    var _i = 0;
-    while (_i < 10) { //ループ判定式にはboolean値しか使えない
-        console.log(_i); //0,1,2,3,4,5,6,7,8,9
-        _i++;
+<?php
+    $i = 0;
+    while ($i < 10) { //ループ判定式にはboolean値しか使えない
+        echo $i.","; //0,1,2,3,4,5,6,7,8,9,
+        $i++;
     }
-</script>
+?>
 ```
 
 ### do...while 文
@@ -1441,49 +1441,49 @@ do {
 
 * 例文
 ```
-<script>
-    var _i = 0;
+<?php
+    $i = 0;
     do {
-        console.log(_i); //0 ←ループ判定式はfalseだが１回実行される
-        _i++;
-    } while (_i < 0);
-</script>
+        echo $i; //0 ←ループ判定式はfalseだが１回実行される
+        $i++;
+    } while ($i < 0);
+?>
 ```
 
 ### while文とbreak文
 * 例文（1〜100までを出力）
 ```
-<script>
-    var _count = 0;
+<?php
+    $count = 0;
     while (true) { //ループ判別式をtrueにすると無限ループに
-        _count++;
-        if (_count > 100) {
+        $count++;
+        if ($count > 100) {
             break; //break文を使ってループを終了（while文の次の行へ）
         }
-        console.log(_count); //1,2,....,99,100
+        echo $count.","; //1,2,....,99,100,
     }
-</script>
+?>
 ```
 
 ### while文とcontinue文
 * 例文（3の倍数を出力）
 ```
-<script>
-    var _i = 1;
-    while (_i <= 20) {
-        if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-            _i++;
+<?php
+    $i = 1;
+    while ($i <= 20) {
+        if (($i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+            $i++;
             continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
         }
-        console.log(_i); //3,6,9,12,15,18 ←3の倍数
-        _i++;
+        echo $i.","; //3,6,9,12,15,18,（3の倍数）
+        $i++;
     }
-</script>
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月04日  
 
 
 <a name='配列（Array）'></a>
