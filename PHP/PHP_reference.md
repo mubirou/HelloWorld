@@ -2015,7 +2015,7 @@ class 派生クラス名 extends Abstract○○ {
 * スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ
 * スーパークラスのメソッドを呼び出したい場合は、parent::メソッド名() とする
 * （擬似）[抽象クラス](#抽象クラス)でもこの方法を活用
-* [final キーワード](http://php.net/manual/ja/language.oop5.final.php)を使って final public function メソッド名() と記述することでオーバーライド禁止  
+* [final キーワード](http://php.net/manual/ja/language.oop5.final.php)を使い final public function メソッド名() と記述することでオーバーライド禁止  
 （参照 : [抽象クラス](#抽象クラス)）
 
 ### 例文
