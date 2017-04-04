@@ -1967,6 +1967,9 @@ class 派生クラス名 extends Abstract○○ {
 <a name='parentキーワード'></a>
 # <b>parent キーワード</b>（≒ super）
 
+* parent::__construct() でスーパークラスのコンストラクタの呼出し可能
+* parent::メソッド名() でスーパークラスのメソッドの呼出し可能
+
 ```
 <?php
     //スーパークラス
