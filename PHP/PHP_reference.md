@@ -1758,52 +1758,6 @@ do {
 作成日：2017年04月04日  
 
 
-<a name='連想配列（Map）'></a>
-# <b>連想配列（Map）</b>
-
-### [Object](http://bit.ly/2nkyLU0) との違い
-1. キーに文字列以外でも使える
-1. データの個数を調べるプロパティが用意されている
-1. Object オブジェクトを継承していない（クリーンな連想配列の生成が可能）
-
-### 例文
-```
-<script>
-    //①作成
-    var _map = new Map();
-
-    //②データの追加
-    _map.set('RYOMA', '1836-01-03');
-    _map.set('YUKICHI', '1835-01-10');
-
-    //③データの数
-    console.log(_map.size); //2
-
-    //④データの取得
-    console.log(_map.get('RYOMA')); //'1836-01-03'
-    console.log(_map.get('YUKICHI')); //'1835-01-10'
-
-    //⑤全てのデータの取得
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //'RYOMA' '1836-01-03'
-        //'YUKICHI' '1835-01-10'
-    }
-
-    //⑥データがあるか否か
-    console.log(_map.has('SHINSAKU')); //false
-    console.log(_map.has('RYOMA')); //true
-
-    //⑦データの削除
-    _map.delete('RYOMA');
-</script>
-```
-
-実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
-
-
 <a name='this'></a>
 # <b>this</b>
 
