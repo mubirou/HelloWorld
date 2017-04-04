@@ -2023,7 +2023,7 @@ class 派生クラス名 extends Abstract○○ {
 <?php
     //スーパークラス
     class SuperClass {
-        //↓サブクラスでオーバライドするメソッド
+        //サブクラスでオーバライドするメソッド
         public function myMethod() {
             echo 'SuperClass->myMethod()'.'<br>';
         }
@@ -2031,7 +2031,7 @@ class 派生クラス名 extends Abstract○○ {
 
     //サブクラス
     class SubClass extends SuperClass { //スーパークラスを継承
-        //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
+        //スーパークラスにある同名のメソッドを再定義＝オーバーライド
         public function myMethod() {
             //parent::myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
             echo 'SubClass->myMethod()';
