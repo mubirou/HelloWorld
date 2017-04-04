@@ -1047,13 +1047,16 @@ echo $nishimura->age.'<br>'; //49
 <a name='クラス定数･変数･メソッド'></a>
 # <b>クラス定数･変数･メソッド</b>
 * クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
+* self::クラス定数 で同じクラス内からアクセス可能
 ```
 <?php
     class MyMath {
         const PI = 3.141592653589793; //クラス定数（オブジェクト定数）の定義
         public static $lastUpdate = '2017-04-03'; //クラス変数（オブジェクト変数）の定義
 
-        function __construct() {} //コンストラクタ
+        function __construct() { //コンストラクタ
+            echo self::PI; //同じクラス内からクラス定数にアクセスする方法
+        }
 
         //静的メソッド（静的メソッド）の定義
         public static function pow($arg1, $arg2) {
@@ -1065,6 +1068,8 @@ echo $nishimura->age.'<br>'; //49
             return $result;
         }
     }
+
+    new MyMath();
 
     echo MyMath::PI.'<br>'; //3.141592653589793
     //MyMath::PI = 3.14; //error: 値の変更はできません
