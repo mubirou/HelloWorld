@@ -30,8 +30,8 @@
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
-***
 * [parent キーワード](#parentキーワード)（≒ super）
+***
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -1968,42 +1968,41 @@ class 派生クラス名 extends Abstract○○ {
 # <b>parent キーワード</b>（≒ super）
 
 ```
-<script>
+<?php
     //スーパークラス
     class SuperClass {
-        constructor(arg) { //コンストラクタ
-            console.log('SuperClass.constructor : ' + arg);
+        //コンストラクタ
+        function __construct($arg) {
+            echo 'CCC '.$arg.'<br>';
         }
-        methodSuper(arg) {
-            console.log('SuperClass.methodSuper : ' + arg);
+        public function methodSuper($arg) {
+            echo 'MMM '.$arg;
         }
     }
 
     //サブクラス
     class SubClass extends SuperClass { //スーパークラスを継承
-        constructor() { //コンストラクタ
-            //↓スーパークラスのコンストラクタの呼び出し（必須）
-            super('from SubClass');
-            //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
+        //コンストラクタ
+        function __construct() {
+            //スーパークラスのコンストラクタの呼び出し（冒頭である必要はない）
+            parent::__construct('from SubClass');
         }
-        methodSub() {
-            //↓スーパークラスのメソッドを呼び出すことが可能
-            super.methodSuper('from SubClass');
+        //メソッドの定義
+        public function methodSub() {
+            //スーパークラスのメソッドの呼び出し
+            parent::methodSuper('from SubClass');
         }
     }
 
     //実行
-    var _subClass = new SubClass(); 
-    //=> 'SuperClass.constructor : from SubClass'
-
-    _subClass.methodSub(); 
-    //=>'SuperClass.methodSuper : from SubClass'
-</script>
+    $subClass =  new SubClass(); //'CCC from SubClass'
+    $subClass->methodSub(); //'MMM from SubClass'
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月04日  
 
 
 <a name='オーバーライド'></a>
