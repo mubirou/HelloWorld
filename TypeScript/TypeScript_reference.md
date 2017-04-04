@@ -1398,7 +1398,7 @@ while (true) { //ループ判別式をtrueにすると無限ループに
 }
 ```
 
-### while文とcontinue文
+### while 文と continue 文
 * 例文（3の倍数を出力）
 ```
 //xxx.ts

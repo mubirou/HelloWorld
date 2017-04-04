@@ -1997,7 +1997,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 }
 ```
 
-### while文とcontinue文
+### while 文と continue 文
 * 例文（3の倍数を出力）
 ```
 //Main.as

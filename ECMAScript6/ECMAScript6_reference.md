@@ -1604,7 +1604,7 @@ do {
 </script>
 ```
 
-### while文とcontinue文
+### while 文と continue 文
 * 例文（3の倍数を出力）
 ```
 <script>
