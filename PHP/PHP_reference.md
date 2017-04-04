@@ -25,7 +25,7 @@
 * [foreach...as 文](#foreach...as文)
 * [while文](#while文)
 ***
-* [配列（Array）](#配列（Array）)
+* [配列（array）](#配列（array）)
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
 * [連想配列（Map）](#連想配列（Map）)
@@ -1486,67 +1486,71 @@ do {
 作成日：2017年04月04日  
 
 
-<a name='配列（Array）'></a>
-# <b>配列（Array）</b>
+<a name='配列（array）'></a>
+# <b>配列（array）</b>
 
 ### 作成
-* new 演算子を使う方法
+* array 関数を使う方法
     ```
-    var _array = new Array(); //空の配列を作成
-    var _array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
-    var _array = new Array('A', 'I');
-    var _array = new Array(['A','あ'], ['I','い']); //配列のネスト
+    $array1 = array(); //空の配列を作成
+    $array2 = array('A', 'I');
+    $array3 = array(array('A','あ'), array('I','い')); //配列のネスト
     ```
 
-* 配列リテラルを使う方法
+* 角カッコ構文を使う方法
     ```
-    var _array = []; //空の配列を作成
-    var _array = ['A', 'I'];
-    var _array = [['A','あ'], ['I','い']]; //配列のネスト
+    $array[0] = 'A';
+    $array[1] = 'I';
+    //１つの文で複数の要素を作成することはできません。
     ```
 
 ### 要素の数
 ```
-<script>
-    var _array = ['00', '01', '02', '03'];
-    console.log(_array.length); //4
-</script>
+<?php
+    $array = array('00', '01', '02', '03');
+    echo count($array); //4
+?>
 ```
 
 ### 追加（最後）
 ```
-<script>
-    var _array = ['ICHIRO', 'JIRO'];
-    _array.push('TARO'); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //['ICHIRO', 'JIRO', 'TARO']
-</script>
+<?php
+    $array = array('ICHIRO', 'JIRO');
+    array_push($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
+    echo $array[2]; //'TARO'
+    echo $array[3]; //'HANAKO'
+?>
 ```
 
 ### 追加（先頭）
 ```
-<script>
-    var _array = ['ICHIRO', 'JIRO'];
-    _array.unshift('TARO'); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //['TARO', 'ICHIRO', 'JIRO']
-</script>
+<?php
+    $array = ['ICHIRO', 'JIRO'];
+    array_unshift($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
+    echo $array[0]; //'TARO'
+    echo $array[1]; //'HANAKO'
+?>
 ```
 
 ### 更新（任意の値）
 ```
-<script>
-    var _array = ['TAKASHI', 'ICHIRO', 'JIRO'];
-    _array[0] = 'TARO'; //0番目を変更する場合
-    console.log(_array); //['TARO', 'ICHIRO', 'JIRO']
-</script>
+<?php
+    $array = array('TAKASHI', 'ICHIRO', 'JIRO');
+    $array[1] = 'TORU';
+    echo $array[0]; //'TAKASHI'
+    echo $array[1]; //'TORU'
+?>
 ```
 
-### 更新（null 値）
+### 更新（NULL 値）
 ```
-<script>
-    var _array = ['TARO', 'ICHIRO', 'JIRO'];
-    _array[0] = null;
-    console.log(_array); //[null, 'ICHIRO', 'JIRO']
-</script>
+<?php
+    $array = array('TARO', 'ICHIRO', 'JIRO');
+    $array[0] = NULL;
+    foreach ($array as $data) {
+        echo $data.'<br>'; //「」→「ICHIRO」→「JIRO」
+    }
+?>
 ```
 
 ### 削除（最後）
@@ -1690,7 +1694,7 @@ do {
 <a name='配列（Set）'></a>
 # <b>配列（Set）</b>
 
-* 配列（Array）と異なりデータの重複ができない
+* 配列（array）と異なりデータの重複ができない
 ```
 <script>
     //①作成
