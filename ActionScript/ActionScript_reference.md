@@ -2037,7 +2037,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 # <b>配列（Array）</b>
 
 ### 作成
-* new演算子を使う方法
+* new 演算子を使う方法
     ```
     var _array1: Array = new Array(); //空の配列を作成
     var _array2: Array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成

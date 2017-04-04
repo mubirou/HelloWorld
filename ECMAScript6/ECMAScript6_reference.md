@@ -1629,7 +1629,7 @@ do {
 # <b>配列（Array）</b>
 
 ### 作成
-* new演算子を使う方法
+* new 演算子を使う方法
     ```
     var _array = new Array(); //空の配列を作成
     var _array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
