@@ -1055,7 +1055,7 @@ echo $nishimura->age.'<br>'; //49
         public static $lastUpdate = '2017-04-03'; //クラス変数（オブジェクト変数）の定義
 
         function __construct() { //コンストラクタ
-            echo self::PI; //同じクラス内からクラス定数にアクセスする方法
+            echo self::PI; //3.1415926535898（同じクラス内からクラス定数にアクセスする方法）
         }
 
         //静的メソッド（静的メソッド）の定義
