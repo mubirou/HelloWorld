@@ -29,8 +29,8 @@
 * [$this](#$this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-***
 * [抽象クラス](#抽象クラス)
+***
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
@@ -1895,21 +1895,22 @@ do {
 # <b>抽象クラス</b>
 
 ### 概要
-* ECMAScript 6 には、TypeScript（1.6〜）にある abstract や interface キーワードはない
-* ECMAScript 6 では、継承と例外処理によって擬似的な抽象クラスを実現
+* abstract クラス、abstract メソッドをサポート ＝ Java と同様
+* final キーワードをサポート ＝ Java、ActionScript 3.0 と同様
+* override キーワードはない（通常の関数定義で上書き）＝ Java と同様
+* abstract class xxx とするとインスタンスの生成が不可になる
 
 ### 構文
 ```
-//（擬似）抽象クラスの定義
-class Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
-        throw new Error('派生クラスで実装して下さい'); //例外処理
-    }
+//抽象クラスの定義
+abstract class Abstract○○ {
+    //共通のメソッド（オーバーライドを禁止）
+    public final function 抽象メソッド名($引数①, $引数②, ...);
 }
 
-//（擬似）抽象クラスの継承
+//抽象クラスの継承
 class 派生クラス名 extends Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
+    public function 抽象メソッド名($引数①, $引数②, ...) {
         //実際の処理はここに記述
     }
 }
@@ -1917,30 +1918,45 @@ class 派生クラス名 extends Abstract○○ {
 
 ### 例文
 ```
-<script>
-    class AbstractClass { //（擬似）抽象クラスの定義
-        commonMethod() { //共通のメソッド
-            console.log('AbstractClass.commonMethod()');
+<?php
+    /**********
+    抽象クラス
+    **********/
+    abstract class AbstractClass {
+        //コンストラクタ
+        public function __construct() {}
+
+        //共通のメソッド（オーバーライドを禁止）
+        public final function commonMethod() {
+            echo 'AbstractClass->commonMethod()'.'<br>'; //共通の処理をここに記述。
         }
-        eachMethod() { //抽象メソッド（実際の処理は記述しない）
-            throw new Error('サブクラスで実装して下さい'); //例外処理
-        }
+
+        //抽象メソッド（実際の処理は記述しない）
+        public abstract function eachMethod(); //サブクラスでの定義が必須
     }
+
+    /**********
+    サブクラス
+    **********/
     class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
-        eachMethod() { //オーバーライドして実際の処理を記述
-            console.log('SubClass.eachMethod()'); //実際の処理
+        //コンストラクタ
+        public function __construct() {}
+
+        //オーバーライドして具体的処理を記述
+        public function eachMethod() {
+            echo 'SubClass->eachMethod()'; //実際の処理
         }
     }
 
-    var _subClass = new SubClass();
-    _subClass.commonMethod(); //'AbstractClass.commonMethod()'
-    _subClass.eachMethod(); //'SubClass.eachMethod()'
-</script>
+    $subClass = new SubClass();
+    $subClass->commonMethod(); //'AbstractClass->commonMethod()'
+    $subClass->eachMethod(); //'SubClass->eachMethod()'
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月04日  
 
 
 <a name='superキーワード'></a>
