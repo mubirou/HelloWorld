@@ -22,8 +22,8 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-***
 * [foreach...as 文](#foreach...as文)
+***
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
@@ -1369,113 +1369,44 @@ echo $nishimura->age.'<br>'; //49
 <a name='foreach...as文'></a>
 # <b>foreach...as 文</b>
 
-### 基本構文
-```
-for (変数名 in 配列等) {
-    //配列の場合はインデックス番号、連想配列の場合はプロパティ名
-    console.log(変数名);
-
-    //配列の場合は要素の値、連想配列の場合はプロパティ値
-    console.log(配列等[変数名]);
-}
-```
-
 ### 配列（1次元）の場合
 ```
-<script>
-    var _array = ['TARO', 'HANAKO', 'ICHIRO', 'JIRO'];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1→2→3
-        console.log(_array[_indexNum]); //'TARO'→'HANAKO'→'ICHIRO'→'JIRO'
+<?php
+    $array = array('TARO', 'HANAKO', 'ICHIRO', 'JIRO');
+    foreach ($array as $data) {
+        echo $data."<br>"; //'TAKASHI'→'TOMOKO'→'TORU'→'SACHIKO'
     }
-</script>
+?>
 ```
 
 ### 配列（2次元）の場合
 ```
-<script>
-    var _array = [
-        ['x0y0', 'x1y0', 'x2y0'], //0行目
-        ['x0y1', 'x1y1', 'x2y1']  //1行目
-    ];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1
-        console.log(_array[_indexNum]); //['x0y0','x1y0','x2y0']→['x0y1','x1y1','x2y1']
+<?php
+    $array = array(
+        array('x0y0', 'x1y0', 'x2y0'), //0行目
+        array('x0y1', 'x1y1', 'x2y1'), //1行目
+    );
+    foreach ($array as $tmp) {
+        foreach($tmp as $data) {
+            echo $data."<br>"; //'x0y0'→'x1y0'→'x2y0'→'x0y1'→x1y1'→'x2y1'
+        }
     }
-</script>
+?>
 ```
 
-### 連想配列（Object＝オブジェクトリテラル）の場合
+### 連想配列の場合
 ```
-<script>
-    var _object = { name: 'Takashi Nishimura', age: 49 };
-    for (let _propName in _object) {
-        console.log(_propName); //name→age
-        console.log(_object[_propName]); //'Takashi Nishimura' → 49
+<?php
+    $array = array('name'=>'Takashi Nishimura', 'age'=>49);
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'Takashi Nishimura'→49
     }
-</script>
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
-
-
-<a name='for...of文'></a>
-# <b>for...of 文</b>
-
-### 一次元配列（Array）の場合
-```
-<script>
-    var _array = ['TARO', 'HANAKO', 'ICHIRO', 'JIRO'];
-    for (let _data of _array) {
-        console.log(_data); //'TARO'→'HANAKO'→'ICHIRO'→'JIRO'
-    }
-</script>
-```
-
-### 二次元配列（Array）の場合
-```
-<script>
-    var _array = [
-        ['x0y0', 'x1y0', 'x2y0'], //0行目
-        ['x0y1', 'x1y1', 'x2y1']  //1行目
-    ];
-    for (let _theArray of _array) {
-        console.log(_theArray); //['x0y0','x1y0','x2y0']→['x0y1','x1y1','x2y1']
-    }
-</script>
-```
-
-### 配列（Set）の場合
-```
-<script>
-    var _set = new Set();
-    _set.add('TARO');
-    _set.add('HANAKO');
-    for (let _data of _set) {
-        console.log(_data); //'TARO'→'HANAKO'
-    }
-</script>
-```
-
-### 連想配列（Map）の場合
-```
-<script>
-    var _map = new Map();
-    _map.set('RYOMA', '1836-01-03');
-    _map.set('YUKICHI', '1835-01-10');
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //'RYOMA' '1836-01-03
-        //'YUKICHI' '1835-01-10'
-    }
-</script>
-```
-
-実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月04日
 
 
 <a name='while文'></a>
