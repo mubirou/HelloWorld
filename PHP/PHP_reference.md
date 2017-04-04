@@ -1517,8 +1517,9 @@ do {
 <?php
     $array = array('ICHIRO', 'JIRO');
     array_push($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
-    echo $array[2]; //'TARO'
-    echo $array[3]; //'HANAKO'
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'ICHIRO'→'JIRO'→'TARO'→'HANAKO'
+    }
 ?>
 ```
 
@@ -1527,8 +1528,9 @@ do {
 <?php
     $array = ['ICHIRO', 'JIRO'];
     array_unshift($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
-    echo $array[0]; //'TARO'
-    echo $array[1]; //'HANAKO'
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'TARO'→'HANAKO'→'ICHIRO'→'JIRO'
+    }
 ?>
 ```
 
@@ -1537,8 +1539,9 @@ do {
 <?php
     $array = array('TAKASHI', 'ICHIRO', 'JIRO');
     $array[1] = 'TORU';
-    echo $array[0]; //'TAKASHI'
-    echo $array[1]; //'TORU'
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'TAKASHI'→'TORU'→'JIRO'
+    }
 ?>
 ```
 
@@ -1548,100 +1551,127 @@ do {
     $array = array('TARO', 'ICHIRO', 'JIRO');
     $array[0] = NULL;
     foreach ($array as $data) {
-        echo $data.'<br>'; //「」→「ICHIRO」→「JIRO」
+        echo $data.'<br>'; //（NULL）→'ICHIRO'→'JIRO'
     }
 ?>
 ```
 
 ### 削除（最後）
 ```
-<script>
-    var _array = ['ICHIRO', 'JIRO', 'TARO'];
-    console.log(_array.pop()); //'TARO'（削除した要素を返す）
-    console.log(_array); //['ICHIRO', 'JIRO']
-</script>
+<?php
+    $array = array('ICHIRO', 'JIRO', 'TARO');
+    echo array_pop($array).'<br>'; //'TARO'（削除した要素を返す）
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'ICHIRO'→'JIRO'
+    }
+?>
 ```
 
 ### 削除（最初）
 ```
-<script>
-    var _array = ['TARO', 'ICHIRO', 'JIRO'];
-    console.log(_array.shift()); //'TARO'（削除した要素を返す）
-    console.log(_array); //['ICHIRO', 'JIRO']
-</script>
+<?php
+    $array = array('ICHIRO', 'JIRO', 'TARO');
+    echo array_shift($array).'<br>'; //'ICHIRO'（削除した要素を返す）
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'JIRO'→'TARO'
+    }
+?>
 ```
 
 ### 削除（○番目から□個）
 ```
-<script>
-    var _array = ['00', '01', '02', '03', '04', '05'];
-    console.log(_array.splice(3, 2)); //['03', '04']
-    console.log(_array) //['00', '01', '02', '05']
-</script>
+<?php
+    $array = array('00', '01', '02', '03', '04', '05');
+    array_splice($array, 3, 2); //3番目〜2個削除（削除した配列が返る）
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'00'→'01'→'02'→'05'
+    }
+?>
 ```
 
 ### 削除（○番目から全て）
 ```
-<script>
-    var _array = ['00', '01', '02', '03', '04', '05'];
-    console.log(_array.splice(3)); //['03', '04', '05']
-    console.log(_array) //['00', '01', '02']
-</script>
+<?php
+    $array = array('00', '01', '02', '03', '04', '05');
+    array_splice($array, 3); //3番目〜全てを削除（削除した配列を返す）
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'00'→'01'→'02'
+    }
+?>
 ```
 
-### 抽出（○番目から□番目）
+### 抽出（○番目から□個）
 ```
-<script>
-    var _array = ['00', '01', '02', '03', '04', '05'];
-    console.log(_array.slice(2, 4)); //['02', '03']（4番目は含まず）
-    console.log(_array) //['00', '01', '02', '03', '04', '05']（元配列に変化なし）
-</script>
+<?php
+    $array = array('00', '01', '02', '03', '04', '05');
+    $tmp = array_slice($array, 2, 4); //抽出した配列を返す
+    foreach ($tmp as $data) {
+        echo $data.'<br>'; //'02'→'03'→'04'→'05'
+    }
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'00'→'01'→'02'→'03'→'04'→'05'（元のデータは変化なし）
+    }
+?>
 ```
 
 ### 抽出（○番目から全て）
 ```
-<script>
-    var _array = ['00', '01', '02', '03', '04', '05'];
-    console.log(_array.slice(2)); //['02', '03', '04', '05']
-    console.log(_array) //['00', '01', '02', '03', '04', '05']（元配列に変化なし）
-</script>
+<?php
+    $array = array('00', '01', '02', '03', '04', '05');
+    $tmp = array_slice($array, 2); //2番目から全てを抽出した配列を返す
+    foreach ($tmp as $data) {
+        echo $data.'<br>'; //'02'→'03'→'04'→'05'
+    }
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'00'→'01'→'02'→'03'→'04'→'05'（元のデータは変化なし）
+    }
+?>
 ```
 
-### 検索(前から）
+### 検索（インデックス番号）
 * 第2引数番目から、後ろに向かって検索（最初に見つかったインデックス番号を返す）
 ```
-<script>
-    var _array = ['A', 'B', 'C', 'D', 'E', 'F', 'D'];
-    console.log(_array.indexOf('D', 0)); //3（見つからない場合「-1」を返す）
-</script>
+<?php
+    $array = array('A', 'B', 'C', 'D', 'E', 'F', 'D');
+    echo array_search('D', $array, 0); //3
+?>
 ```
 
-### 検索（後ろから）
-* 第2引数番目から、前に向かって検索（最初に見つかったインデックス番号を返す）
+### 検索（ブール値）
+* 第2引数番目から、前に向かって検索（見つかると 1（true）が返る）
 ```
-<script>
-    var _array = ['A', 'B', 'C', 'D', 'E', 'F', 'D'];
-    console.log(_array.lastIndexOf('D')); 
-    //6（第2引数を省略すると _array.length と同じ）
-</script>
+<?php
+    $array = array('A', 'B', 'C', 'D', 'E', 'F', 'D');
+    echo in_array('D', $array, TRUE); //1
+    //⬆見つからない場合は「」（boolean型のFALSE）が返ります。
+    //第3引数（省略可）をTRUEにするとデータ型もチェックします（ "2"と2など）。
+?>
 ```
 
 ### 並べ替え（反転）
 ```
-<script>
-    var _array = ['00', '01', '02', '03', '04', '05'];
-    console.log(_array.reverse()); //['05', '04', '03', '02', '01', '00']
-    console.log(_array) //['05', '04', '03', '02', '01', '00']（元配列も変更）
-</script>
+<?php
+    $array = array('00', '01', '02', '03', '04', '05');
+    $newArray = array_reverse($array);
+    foreach ($newArray as $data) {
+        echo $data.'<br>'; //'05'→'04'→'03'→'02'→'01'→'00'
+    }
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'00'→'01'→'02'→'03'→'04'→'05'（元のデータは変化なし）
+    }
+?>
 ```
 
 ### 並べ替え（ソート）
 ```
-<script>
-    var _array = ['C', '02', 'A', '01', '03', 'B'];
-    console.log(_array.sort()); //['01', '02', '03', 'A', 'B', 'C']
-    console.log(_array) //['01', '02', '03', 'A', 'B', 'C']（元配列も変更）
-</script>
+<?php
+    $array = array("Z","A","あ","ん", "ン","ア ", "0", "a","z","漢 ", "9");
+    sort($array);
+    foreach ($array as $data) {
+        echo $data.'<br>'; //'0'→'9'→'A'→'Z'→'a'→'z'→'あ'→'ん'→'ア'→'ン'→'漢' 
+    }
+    //正順（（'0'...'9'）>（A...Z）>（a...z）>（あ...ん）>（ア...ン）>漢字）
+?>
 ```
 
 ### 結合
