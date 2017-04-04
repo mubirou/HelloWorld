@@ -1723,7 +1723,6 @@ do {
     }
 ?>
 ```
-* for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
