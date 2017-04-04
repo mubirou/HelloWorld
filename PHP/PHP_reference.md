@@ -31,7 +31,7 @@
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 ***
-* [parent キーワード](#parentキーワード)
+* [parent キーワード](#parentキーワード)（≒ super）
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -1965,7 +1965,7 @@ class 派生クラス名 extends Abstract○○ {
 
 
 <a name='parentキーワード'></a>
-# <b>parent キーワード</b>
+# <b>parent キーワード</b>（≒ super）
 
 ```
 <script>
