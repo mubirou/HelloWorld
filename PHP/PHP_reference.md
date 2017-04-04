@@ -21,10 +21,9 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
-***
 * [for 文](#for文)
-* [for...in 文](#for...in文)
-* [for...of 文](#for...of文)
+***
+* [foreach...as 文](#foreach...as文)
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
@@ -1307,80 +1306,68 @@ echo $nishimura->age.'<br>'; //49
 # <b>for 文</b>
 
 ### ループカウンタの宣言方法
-* 参考「[変数とスコープ](#変数とスコープ)」
-1. let でループ制御変数を宣言する
-    ```
-    <script>
-        for (let i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
-        }
-        console.log(i); //Error（for文の外では使えない）
-    </script>
-    ```
-
-1. var でループ制御変数を宣言する
-    ```
-    <script>
-        for (var i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
-        }
-        console.log(i); //10（for文の外でも有効）
-    </script>
-    ```
+```
+<?php
+    for ($i = 0; $i < 10; $i++) {
+        echo $i.','; //0,1,2,3,4,5,6,7,8,9,
+    }
+    echo $i; //10（for文の外でも有効）
+?>
+```
 
 ### ループカウンタを○つずつアップする
 ```
 <script>
     for (let i = 0; i < 50; i += 5) { //5つずつアップする場合…
-        console.log(i); //0,5,10,15,20,25,30,35,40,45
+        console.log(i).','; //0,5,10,15,20,25,30,35,40,45
     }
 </script>
 ```
 
 ### for 文のネスト
-* ループ制御変数には慣例的に i, j, k が使われる
+* ループ制御変数には慣例的に $i, $j, $k が使われる
 ```
-<script>
-    for (let i = 1; i <= 5; i++) {
-        for (let j = 1; j <= 5; j++) {
-            console.log('x' + i + 'y' + j); //x1y1,x1y2,....,x5y4,x5y5
+<?php
+    for ($i = 1; $i <= 5; $i++) {
+        for ($j = 1; $j <= 5; $j++) {
+            echo 'x'.$i.'y'.$j.'<br>'; //x1y1,x1y2,....,x5y4,x5y5
         }
     }
-</script>
+?>
 ```
 
 ### 無限ループと break 文
 ```
-<script>
-    var _count = 0;
+<?php
+    $count = 0;
     for (;;) { //①初期化②ループ判定式③更新処理の全てを省略する
-        _count++;
-        if (_count > 100) break; //ループを終了
-        console.log(_count); //1,2,....,99,100
+        $count++;
+        if ($count > 100) break; //ループを終了
+        echo $count.','; //1,2,....,99,100,
     }
-    console.log('for文終了');
-</script>
+    echo 'for文終了';
+?>
 ```
 
 ### for 文と continue 文
 ```
-<script>
-    for (let i = 1; i <= 20; i++) { //iは1,2,...19,20
-        if ((i % 3) != 0) { //3で割り余りが0でない（＝3の倍数ではない）場合
+<?php
+    for ($i = 1; $i <= 20; $i++) { //iは1,2,...19,20
+        if (($i % 3) != 0) { //3で割り余りが0でない（＝3の倍数ではない）場合
             continue; //for文の残処理をスキップしてfor文の次の反復を開始する
         }
-        console.log(i); //3,6,9,12,15,18 ←3の倍数
+        echo $i.','; //3,6,9,12,15,18,（3の倍数）
     }
-</script>
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月04日  
 
 
-<a name='for...in文'></a>
-# <b>for...in 文</b>
+<a name='foreach...as文'></a>
+# <b>foreach...as 文</b>
 
 ### 基本構文
 ```
