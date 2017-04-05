@@ -36,8 +36,8 @@
 * [数学関数](#数学関数)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-***
 * [タイマー](#タイマー)
+***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -2278,104 +2278,33 @@ class 派生クラス名 extends Abstract○○ {
 
 <a name='タイマー'></a>
 # <b>タイマー</b>
+* バックエンドで動作する PHP の場合、サーバ負荷がかかるタイマー処理は多用すべきではない
 
-### 繰返し実行する
+### 繰返し実行する（参考）
+* while 文が全て完了してから出力されるため実用的ではない
 ```
-<script>
-    _count = 0;
-    callbackFunction = () => {
-        if (++_count <= 10) { //10回繰返す場合…
-            console.log(_count, '繰返し実行したい処理');
-        } else {
-            clearInterval(_timerID); //繰返しを止める
-        }
+<?php
+    $count = 0;
+    while($count < 10){
+        echo '繰り返し実行したい処理'.'<br>';
+        sleep(1); //1秒間隔で繰返す場合
+        $count++;
     }
-    //↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
-    _timerID = setInterval(callbackFunction, 1000); //1秒間隔で繰返す場合
-</script>
+    echo "end";
+?>
 ```
 
 ### 一度だけ実行する
 ```
-<script>
-    callbackFunction = () => {
-        console.log('一度だけ実行したい処理');
-        clearTimeout(_timerID);
-    }
-    _timerID = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
-</script>
-```
-
-### XX 秒後にA、そのXXX 秒後にB...を実行
-* [Promise](https://mzl.la/2nHNs4B) でも同様のことが可能と思われる
-```
-<script>
-    //Task○のスーパークラス
-    class SuperTask {
-        //静的変数（delay）
-        static set delay(_newValue) { this.__delay = _newValue; }
-        static get delay() {
-            if (this.__delay == undefined) { this.__delay = 0; }
-            return this.__delay;
-        }
-
-        //静的変数（nextTask）
-        static get nextTask() { return this.__nextTask; }
-        static set nextTask(_newValue) { this.__nextTask = _newValue; }
-
-        static exec() { //静的メソッド
-            if (this.__delay == undefined) { this.__delay = 0; }
-            setTimeout(this.__callBack, this.__delay);
-        }
-    }
-
-    //TaskAクラス
-    class TaskA extends SuperTask {
-        static __callBack() {
-            var _this = TaskA;
-            //TaskAで実行したいことをここに記述
-            console.log(_this.delay + 'ミリ秒後にTaskAで実行すること');
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskBクラス
-    class TaskB extends SuperTask {
-        static __callBack() {
-            var _this = TaskB;
-            //TaskBで実行したいことをここに記述
-            console.log(_this.delay + 'ミリ秒後にTaskBで実行すること');
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskCクラス
-    class TaskC extends SuperTask {
-        static __callBack() {
-            var _this = TaskC;
-            //TaskCで実行したいことをここに記述
-            console.log(_this.delay + 'ミリ秒後にTaskCで実行すること');
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //タイマーの設定（初期値は0ミリ秒）
-    TaskA.delay = 1000;
-    TaskB.delay = 3000;
-    TaskC.delay = 10000;
-
-    //次のタスクの設定（初期値は未設定）
-    TaskA.nextTask = TaskB;
-    TaskB.nextTask = TaskC;
-
-    TaskA.exec(); //実行開始
-
-</script>
+<?php
+    sleep(1); //1秒後に…
+    echo '1度だけ実行したい処理';
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月05日  
 
 
 <a name='処理速度計測'></a>
