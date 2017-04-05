@@ -2087,11 +2087,13 @@ class 派生クラス名 extends Abstract○○ {
         }
     }
 
-    $die_robot = function($arg) { //リスナー関数＝匿名関数（前方宣言が必要）
+    //リスナー関数＝匿名関数（前方宣言が必要）
+    $die_robot = function($arg) {
         echo var_dump($arg).'<br>'; //object(Robot)#2...（Robotクラスのインスタンス）
         echo 'GAME OVER';
     };
 
+    //実行
     $robot = new Robot();
     $robot->addEventListener('die', $die_robot); //イベントリスナーの設定
     $robot->fight();
