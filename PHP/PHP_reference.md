@@ -33,8 +33,8 @@
 * [parent キーワード](#parentキーワード)（≒ super）
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
+* [数学関数](#数学関数)
 ***
-* [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -2108,125 +2108,117 @@ class 派生クラス名 extends Abstract○○ {
 作成日：2017年04月05日
 
 
-<a name='数学関数（Math）'></a>
-# <b>数学関数（Math）</b>
+<a name='数学関数'></a>
+# <b>数学関数</b>
 
-### Math.sin() : サイン（正弦）
+### sin() : サイン（正弦）
 ```
-<script>
-    console.log(Math.sin(0)); //0（0°）
-    console.log(Math.sin(Math.PI / 2)); //1（90°）
-    console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
-    console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
-    console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
-</script>
-```
-
-### Math.cos() : コサイン（余弦）
-```
-<script>
-    console.log(Math.cos(0)); //1（0°）
-    console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
-    console.log(Math.cos(Math.PI)); //-1（180°）
-    console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
-    console.log(Math.cos(Math.PI * 2)); //1 ←…360°
-</script>
+<?php
+   echo sin(0).'<br>'; //0（0°）
+   echo sin(pi() / 2).'<br>'; //1（90°）
+   echo sin(pi()).'<br>'; //1.2246467991474E-16（≒0）（180°）
+   echo sin(pi() * 3 / 2).'<br>'; //-1（270°）
+   echo sin(pi() * 2); //-2.4492935982947E-16（≒0）（360°）
+?>
 ```
 
-### Math.atan2() : アークタンジェント2
+### cos() : コサイン（余弦）
 ```
-<script>
+<?php
+   echo cos(0).'<br>'; //1（0°）
+   echo cos(pi() / 2).'<br>'; //6.1232339957368E-17（≒0）（90°）
+   echo cos(pi()).'<br>'; //-1（180°）
+   echo cos(pi() * 3 / 2).'<br>'; //-1.836970198721E-16（≒0）（270°）
+   echo cos(pi() * 2); //1（360°）
+?>
+```
+
+### atan2() : アークタンジェント2
+```
+<?php
     //三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
-    var _disX = Math.sqrt(3); //√3のこと
-    var _disY = 1;
-    console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
-    console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //30.000000000000004（度）
-</script>
+    $disX = sqrt(3); //√3のこと
+    $disY = 1;
+    echo atan2($disY, $disX).'<br>'; //0.5235987755983（ラジアン）
+    echo 180 * atan2($disY, $disX) / pi(); //30（度）
+?>
 ```
 
-### Math.PI : 円周率
+### pi() : 円周率
 ```
-<script>
-    console.log(Math.PI); //3.141592653589793
-</script>
-```
-
-### Math.floor() : 切り捨て
-```
-<script>
-    console.log(Math.floor(1.001)); //1
-    console.log(Math.floor(1.999)); //1
-</script>
+<?php
+    echo pi(); //3.1415926535898
+?>
 ```
 
-### Math.ceil() : 切り上げ
+### floor() : 切り捨て
 ```
-<script>
-    console.log(Math.ceil(1.001)); //2
-    console.log(Math.ceil(1.999)); //2
-</script>
-```
-
-### Math.round() : 四捨五入
-```
-<script>
-    console.log(Math.round(1.499)); //1
-    console.log(Math.round(1.500)); //2
-</script>
+<?php
+    echo floor(1.001).'<br>'; //1
+    echo floor(1.999); //1
+?>
 ```
 
-### Math.abs() : 絶対値
+### ceil() : 切り上げ
 ```
-<script>
-    console.log(Math.abs(100)); //100
-    console.log(Math.abs(-100)); //100
-</script>
-```
-
-### Math.pow() : 累乗（○の□乗）
-```
-<script>
-    console.log(Math.pow(2, 0)); //1（2の0乗）
-    console.log(Math.pow(2, 8)); //256（2の8乗）
-</script>
+<?php
+    echo ceil(1.001).'<br>'; //2
+    echo ceil(1.999); //2
+?>
 ```
 
-### Math.sqrt() : 平方根（√○）
+### round() : 四捨五入
 ```
-<script>
-    console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
-    console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
-    console.log(Math.sqrt(4)); //2
-    console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
-</script>
+<?php
+    echo round(1.499).'<br>'; //1
+    echo round(1.500); //2
+?>
 ```
 
-### Math.max() : 比較（最大値）
+### abs() : 絶対値
 ```
-<script>
-    console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
-</script>
+<?php
+    echo abs(100).'<br>'; //100
+    echo abs(-100); //100
+?>
+```
+
+### pow() : 累乗（○の□乗）
+```
+<?php
+    echo pow(2, 0).'<br>'; //1（2の0乗）
+    echo pow(2, 8); //256（2の8乗）
+?>
+```
+
+### sqrt() : 平方根（√○）
+```
+<?php
+    echo sqrt(2).'<br>'; //1.4142135623731（一夜一夜にひとみごろ）
+    echo sqrt(3).'<br>'; //1.7320508075689（人並みに奢れや）
+    echo sqrt(4).'<br>'; //2
+    echo sqrt(5); //2.2360679774998（富士山麓オウム鳴く）
+?>
+```
+
+### max() : 比較（最大値）
+```
+<?php
+    echo max(5.01, -10); //5.01（2つの数値の比較）
+?>
 ```
 
 ### Math.min() : 比較（最小値）
 ```
-<script>
-    console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
-</script>
-```
-
-### Math.sign() : 符号（正か負の値か）
-```
-<script>
-    console.log(Math.sign(-0.1)); //-1（負の値）
-    console.log(Math.sign(0)); //0（0）
-    console.log(Math.sign(0.1)); //1（正の値）
-</script>
+<?php
+    echo min(5.01, -10); //-10（2つの数値の比較）
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月05日  
+
 
 <a name='乱数'></a>
 # <b>乱数</b>
