@@ -1,5 +1,3 @@
-### <b> この項目は、書きかけの項目です。<b>
-
 # <b>PHP 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -37,7 +35,6 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -2310,35 +2307,19 @@ class 派生クラス名 extends Abstract○○ {
 <a name='処理速度計測'></a>
 # <b>処理速度計測</b>
 
-### Dateオブジェクトを使う方法
 ```
-<script>
-    var _start = new Date().getTime(); //1970年からの経過時間（ミリ秒）
-    for (let i = 0; i < 1000000000; i++) { //10億回繰返す
-        //速度計測したい処理
+<?php
+    $start = microtime(TRUE); //1970年1月1日0:00:00 GMTからの経過時間（秒）
+    for ($i=0; $i<500000000; $i++) { //5億回繰り返し
+        //速度測定したい処理。
     }
-    var _end = new Date().getTime();
-    console.log(_end - _start); //3643（ミリ秒）
-</script>
+    echo microtime(TRUE) - $start; //→ 3.6270740032196（秒）
+?>
 ```
 
-### console.time() を使う方法
-* 処理時間の計測に利用可能（推奨）
-* ページ毎に10000個のタイマーが使用可能
-* 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数として console.timeEnd() を実行することで経過時間が出力
-    ```
-    <script>
-        console.time('timerA');
-        for (let i = 0; i < 1000000000; i++) { //10億回繰返す
-            //速度計測したい処理
-        }
-        console.timeEnd('timerA'); //'timerA: 3628.869ms'
-    </script>
-    ```
-
-実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 57  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月06日
 
 
 
@@ -2353,30 +2334,26 @@ class 派生クラス名 extends Abstract○○ {
 さしすせそ
 ```
 
-### テキストの読み込み
+### テキストの読み込み（文字列化）
 ```
-<script>
-    //①XMLHttpRequestオブジェクトの生成
-    var _request = new XMLHttpRequest(); //Webサーバ上で動作
+<?php
+    $text = file_get_contents('sample.txt');
+    echo var_dump($text); //string(47) ←文字列化されている
+    echo $text; //'あいうえお かきくけこ さしすせそ'
+?>
+```
 
-    //②イベントハンドラの定義
-    _request.onload = function() {
-        console.log(this.responseText); //⑤読み込んだテキストの表示
+### テキストの読み込み（配列化）
+```
+<?php
+    $array = file('sample.txt');
+    echo var_dump($array); //array(3)... ←配列化されている
+    foreach ($array as $data) {
+        echo $data."<br>"; //'あいうえお'→'かきくけこ'→'さしすせそ'
     }
-
-    //③ヘッダの設定
-    _request.open('GET', 'sample.txt');
-
-    //④リクエストの送信
-    _request.send(null);
-</script>
+?>
 ```
 
-### テキストファイルの解析
-* 読み込んだ XMLHttpRequest.responseText の解析は次の関数/メソッドを利用する
-    * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
-    * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
-
-実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
+実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 57  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月06日
