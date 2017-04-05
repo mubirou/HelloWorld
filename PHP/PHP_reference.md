@@ -1302,7 +1302,7 @@ echo $nishimura->age.'<br>'; //49
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='for文'></a>
@@ -1366,7 +1366,7 @@ echo $nishimura->age.'<br>'; //49
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='foreach...as文'></a>
@@ -1486,7 +1486,7 @@ do {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='配列（array）'></a>
@@ -1760,7 +1760,7 @@ do {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='$this'></a>
@@ -1804,7 +1804,7 @@ do {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='文字列の操作'></a>
@@ -1859,7 +1859,7 @@ do {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='正規表現'></a>
@@ -1893,7 +1893,7 @@ do {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='抽象クラス'></a>
@@ -1961,7 +1961,7 @@ class 派生クラス名 extends Abstract○○ {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='parentキーワード'></a>
@@ -2005,7 +2005,7 @@ class 派生クラス名 extends Abstract○○ {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='オーバーライド'></a>
@@ -2046,57 +2046,64 @@ class 派生クラス名 extends Abstract○○ {
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年04月04日  
+作成日：2017年04月04日
 
 
 <a name='カスタムイベント'></a>
 # <b>カスタムイベント</b>
 
 ### 概要
-JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener() のターゲットに指定できるオブジェクトは Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なりここで紹介する方法は、他の言語でも利用可能な汎用的な方法です。
+* PHP には declare() と register_tick_function() を使った方法がありますが、ここでは多言語でも流用可能な汎用的な方法を紹介
+* リスナー関数（[匿名関数](#匿名関数)）の呼出しには、call_user_func() を使う
 
 ### 例文
 ```
-<script>
-    class Robot { //イベントを設定するクラス
-        constructor() { 
-            this.__energy = 80;
+<?php
+    //イベントを設定するクラス
+    class Robot {
+        //プライベート変数宣言
+        private $energy;
+        private $dieHandler; //匿名関数を格納する変数
+
+        function __construct() { //コンストラクタ
+            $this->energy = 80;
         }
 
-        addEventListener(_event, _function) {
-            if (_event == 'die') {
-                this.__dieHandler = _function; //匿名関数を変数に格納
+        public function addEventListener($event, $function) {
+            if ($event == 'die') {
+                $this->dieHandler = $function; //匿名関数を変数に格納
             } else {
-                //該当のイベントが無い場合、実行時にErrorを発生（オプション）
-                throw new Error('Error:'' + _event + ''はサポートされていません');
+                //該当のイベントが無い場合、実行時にエラーを発生（オプション）
+                throw new Exception($event.'はサポートされていません');
             }
         }
 
-        fight() {
-            this.__energy -= 20;
-            if (this.__energy <= 0) {
-                this.__dieHandler(this); //←'die'イベントの発生（リスナー関数の呼出し）
+        public function fight() {
+            $this->energy -= 20;
+            if ($this->energy <= 0) {
+                //'die'イベントの発生（リスナー関数の呼出し）
+                call_user_func($this->dieHandler, $this);
             }
         }
     }
 
-    var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
-        console.log(arg); //Robotクラスのインスタンス
-        alert('GAME OVER');
-    }
+    $die_robot = function($arg) { //リスナー関数＝匿名関数（前方宣言が必要）
+        echo var_dump($arg).'<br>'; //object(Robot)#2...（Robotクラスのインスタンス）
+        echo 'GAME OVER';
+    };
 
-    var _robot = new Robot();
-    _robot.addEventListener('die', die_robot); //イベントリスナーの設定
-    _robot.fight();
-    _robot.fight();
-    _robot.fight();
-    _robot.fight(); //'GAME OVER'
-</script>
+    $robot = new Robot();
+    $robot->addEventListener('die', $die_robot); //イベントリスナーの設定
+    $robot->fight();
+    $robot->fight();
+    $robot->fight();
+    $robot->fight(); //'GAME OVER'
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月05日
 
 
 <a name='数学関数（Math）'></a>
