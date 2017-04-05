@@ -2250,43 +2250,30 @@ class 派生クラス名 extends Abstract○○ {
 <a name='日時情報'></a>
 # <b>日時情報</b>
 
-### 書式
 ```
-var xxx = new Date();
-xxx.getFullYear(); //年（2015等）
-xxx.getMonth(); //月（0〜11）
-xxx.getDate(); //日（1〜31）
-xxx.getDay(); //曜日（0=日曜〜5=金曜）
-xxx.getHours(); //時（0〜23）
-xxx.getMinutes(); //分（0〜59）
-xxx.getSeconds(); //秒（0〜59）
-xxx.getMilliseconds(); //ミリ秒（0〜999）
-```
-
-### 例文
-```
-<script>
-    var _date = new Date();
-    console.log(_date); //Wed Mar 22 2017 09:33:39 GMT+0900 (JST)
-    console.log(_date.getFullYear()); //2017
-    console.log(_date.getMonth()); //2（3月）
-    console.log(_date.getDate()); //22
-    console.log(_date.getDay()); //3（水曜日）
-    console.log(_date.getHours()); //09
-    console.log(_date.getMinutes()); //33
-    console.log(_date.getSeconds()); //39
-    console.log(_date.getMilliseconds()); //559
+<?php
+    $date = getdate();
+    echo $date['year'].'<br>'; //2017
+    echo $date['month'].'<br>'; //April
+    echo $date['mon'].'<br>'; //4（4月）
+    echo $date['yday'].'<br>'; //94（元日から何日）
+    echo $date['mday'].'<br>'; //5
+    echo $date['wday'].'<br>'; //3（水曜日）
+    echo $date['hours'].'<br>'; //10
+    echo $date['minutes'].'<br>'; //16
+    echo $date['seconds'].'<br>'; //2
+    
     //'hh:mm:ss'で現在の時間を表示する方法
-    var _h = (_date.getHours() < 10) ? '0' + _date.getHours() : _date.getHours();
-    var _m = (_date.getMinutes() < 10) ? '0' + _date.getMinutes() : _date.getMinutes();
-    var _s = (_date.getSeconds() < 10) ? '0' + _date.getSeconds() : _date.getSeconds();
-    console.log(_h + ':' + _m + ':' + _s); //'09:33:39'
-</script>
+    $h = ($date['hours'] < 10) ? '0'.$date['hours'] : $date['hours'];
+    $m = ($date['minutes'] < 10) ? '0'.$date['minutes'] : $date['minutes'];
+    $s = ($date['seconds'] < 10) ? '0'.$date['seconds'] : $date['seconds'];
+    echo $h.':'.$m.':'.$s; //'10:16:02'
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月05日  
 
 
 <a name='タイマー'></a>
