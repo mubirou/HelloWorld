@@ -34,8 +34,8 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数](#数学関数)
-***
 * [乱数](#乱数)
+***
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
@@ -2222,54 +2222,29 @@ class 派生クラス名 extends Abstract○○ {
 
 <a name='乱数'></a>
 # <b>乱数</b>
+* rando() 関数という libc（リブシー／Linux C Library）を利用する方法と、mt_rand() 関数という [Mersenne Twister](http://bit.ly/2oAEqX5)（メルセンヌ･ツイスタ）を使用する方法がある
 
-### Math.random()
-* 0以上、1未満（0.9999…）の値を返す
-* 現在時刻を元に random seed （乱数種）を生成
+### ランダムな整数（8〜10桁）
 ```
-<script>
-    console.log(Math.random()); //0.13397585139675616
-    console.log(Math.random()); //0.9903535518676447
-    console.log(Math.random()); //0.006009885271453852
-</script>
+<?php
+    //どちらの方法も8〜10桁のランダムな整数が返る
+    echo rand().'<br>';
+    echo mt_rand(); 
+?>
 ```
 
-### 整数の乱数
+### 指定範囲のランダムな整数
 ```
-<script>
-    //整数の乱数を返すカスタム関数
-    randomInt = (_min, _max) => {
-        return Math.floor(Math.random() * (_max - _min + 1)) + _min;
-    }
-
-    //実験（1000万回繰返して精度を調べる）
-    var _u5 = 0, _u4 = 0, _u3 = 0, _u2 = 0, _u1 = 0;
-    var _o0 = 0, _o1 = 0, _o2 = 0, _o3 = 0, _o4 = 0, _o5 = 0;
-
-    for (let i = 0; i < 10000000; i++) {
-        switch (this.randomInt(-5, 5)) {
-            case -5: _u5++; break;
-            case -4: _u4++; break;
-            case -3: _u3++; break;
-            case -2: _u2++; break;
-            case -1: _u1++; break;
-            case  0: _o0++; break;
-            case  1: _o1++; break;
-            case  2: _o2++; break;
-            case  3: _o3++; break;
-            case  4: _o4++; break;
-            case  5: _o5++; break;
-        }
-    }
-
-    console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-    //909595 908581 908332 909483 907921 908880 909161 909607 909295 910453 908692
-</script>
+<?php
+    //どちらの方法も-100〜100までのランダムな整数が返る
+    echo rand(-100, 100).'<br>';
+    echo mt_rand(-100, 100); 
+?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月05日  
 
 
 <a name='日時情報'></a>
