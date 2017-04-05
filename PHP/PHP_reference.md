@@ -35,8 +35,8 @@
 * [カスタムイベント](#カスタムイベント)
 * [数学関数](#数学関数)
 * [乱数](#乱数)
-***
 * [日時情報](#日時情報)
+***
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -2262,7 +2262,7 @@ class 派生クラス名 extends Abstract○○ {
     echo $date['hours'].'<br>'; //10
     echo $date['minutes'].'<br>'; //16
     echo $date['seconds'].'<br>'; //2
-    
+
     //'hh:mm:ss'で現在の時間を表示する方法
     $h = ($date['hours'] < 10) ? '0'.$date['hours'] : $date['hours'];
     $m = ($date['minutes'] < 10) ? '0'.$date['minutes'] : $date['minutes'];
