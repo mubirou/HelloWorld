@@ -12,8 +12,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-***
 * [アクセサ （getter / setter）](#アクセサ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -714,36 +714,37 @@ puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 ```
 class Nishimura
     @age #省略可
-    def initialize() #←…コンストラクタ
-        @age = 48
+    def initialize() #コンストラクタ
+        @age = 49
     end
-    def age #←…アクセスメソッド（getter）
+    def age #アクセスメソッド（getter）
         @age
     end
-    def age=(value) #←…アクセスメソッド（setter）
+    def age=(value) #アクセスメソッド（setter）
         @age = value
     end
 end
+
 _nishimura = Nishimura.new() #()は省略可
-puts(_nishimura.age) #48 ←…外部から参照可能!!
-#puts(_nishimura.@age) #error
-_nishimura.age = 49 #←…外部から変更可能!!
 puts(_nishimura.age) #49
+#puts(_nishimura.@age) #エラー（インスタンス変数へ直接のアクセスは不可）
+_nishimura.age = 50 #変更可能
+puts(_nishimura.age) #50
 ```
 
 ### 読み取り専用のプロパティ
 ```
 class Nishimura
-    def initialize() #←…コンストラクタ
-        @age = 48
+    def initialize() #コンストラクタ
+        @age = 49
     end
-    def age #←…アクセスメソッド（getter）
+    def age #アクセスメソッド（getter）
         @age
     end
 end
 _nishimura = Nishimura.new() #()は省略可
-puts(_nishimura.age) #48 ←…外部から参照可能!!
-#_nishimura.age = 49 #←…外部から変更不可!!
+puts(_nishimura.age) #49
+#_nishimura.age = 49 #エラー（変更不可）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
