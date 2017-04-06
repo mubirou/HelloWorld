@@ -523,6 +523,7 @@ _classB.myMethod() #"ClassA.myMethod"
 <a name="グローバル変数"></a>
 ### グローバル変数（大域変数） : $xxx
 ```
+#test.rb
 $global = "グローバル変数" #一般的にグローバル変数は好まれない
 
 #===========================================
@@ -562,6 +563,7 @@ _myClass.myMethod()
 
 * ふつうの getter / setter を使った例文
     ```
+    #test.rb
     class MyClass
         @hensu #インスタンス変数の宣言（省略可）
 
@@ -585,6 +587,7 @@ _myClass.myMethod()
 
 * attr_reader（参照のみ可）を使った例文 ＝ getter
     ```
+    #test.rb
     class MyClass
         attr_reader :hensu #インスタンス変数を外部から参照のみ可能にする
 
@@ -601,6 +604,7 @@ _myClass.myMethod()
 
 * attr_writer（変更のみ可）を使った例文 = Ruby流setter
     ```
+    #test.rb
     class MyClass
         attr_writer :hensu #インスタンス変数を外部から変更のみ可能にする
 
@@ -620,6 +624,7 @@ _myClass.myMethod()
 
 * attr_accessor（参照･変更可）を使った例文 ＝ getter / setter
     ```
+    #test.rb
     class MyClass
         attr_accessor :hensu #インスタンス変数を外部から参照･変更可能にする
 
@@ -638,6 +643,7 @@ _myClass.myMethod()
 ### ローカル変数（局所変数） : _xxx
 * メソッド内で宣言する場合
     ```
+    #test.rb
     def myMethod
         _local = "ローカル変数" #このメソッド内でのみ利用可
         puts(_local) #"ローカル変数"
@@ -653,6 +659,7 @@ _myClass.myMethod()
 
     * クラスの関数内で宣言する場合
     ```
+    #test.rb
     class MyClass
         def myMethod1()
             _local = "ローカル変数"
@@ -670,6 +677,7 @@ _myClass.myMethod()
 
 * for 文内で宣言する場合（内部処理は each メソッドと同じ）
     ```
+    #test.rb
     class MyClass
         def initialize()
             i = 999 #ローカル変数
@@ -685,6 +693,7 @@ _myClass.myMethod()
 <a name="クラス変数"></a>
 ### クラス変数（静的変数） : @@xxx
 ```
+#test.rb
 class MyClass
     @@hensu = "クラス変数"
     def MyClass.hensu #アクセサ（getter）が必要
@@ -712,6 +721,7 @@ puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 
 ### 読み書き可能なプロパティ
 ```
+#test.rb
 class Nishimura
     @age #省略可
     def initialize() #コンストラクタ
@@ -734,6 +744,7 @@ puts(_nishimura.age) #50
 
 ### 読み取り専用のプロパティ
 ```
+#test.rb
 class Nishimura
     def initialize() #コンストラクタ
         @age = 49
