@@ -9,8 +9,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
-***
 * [名前空間](#名前空間)
+***
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
@@ -405,78 +405,59 @@ _subClassB.mSubClassB() #"サブクラスのメソッド"
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
-* ES2015+からサポートされた import と export はまだブラウザで利用できません
-* サンプルの方法は力技的ですが機能としては充分です
-
-#### 外部ファイル（ myLibrary.js ）
+### 構文
 ```
-//名前空間を省略可能にするために（オプション）
-if (myLibrary != window) {
-    var myLibrary = {}; //namescape（省略をしない前提であればconstにします）
-}
-
-/**************************
-myLibrary.SuperClassクラス
-**************************/
-myLibrary.SuperClass =
-class SuperClass {
-    constructor() {
-        this.__myProperty = undefined;
-    }
-    get myProperty() {
-        return this.__myProperty;
-    }
-    set myProperty(_newValue) {
-        this.__myProperty = _newValue;
-    }
-};
-
-/**************************
-myLibrary.MyClassクラス
-**************************/
-myLibrary.MyClass =
-class MyClass extends myLibrary.SuperClass { //継承も可能
-    constructor() {
-        super();
-        console.log("new myLibrary.MyClass");
-    }
-    MyClassMethod() {
-        console.log("MyClass.MyClassMethod()");
-    }
-};
+modlue モジュール名 #大文字で開始
+    class クラス名
+        ……
+    end
+    ……
+end
+include モジュール名
+変数 = クラス名.new() #←…includeで事前にモジュールを取込めばモジュール名::は省略可
+#または モジュール名::クラス名.new() でもＯＫ
 ```
 
-#### xxx.html
+### 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<!--script>var myLibrary = window;</script-->
-<script src="myLibrary.js"></script>
-<script>
+#test.rb
+module MyLibrary #モジュール名は大文字で開始（注意）
+    #---------------
+    #スーパークラス
+    #---------------
+    class SuperClass
+        @myProperty #インスタンス変数の宣言（省略可）
+        def initialize() #コンストラクタ
+            @myProperty = "スーパークラスの変数"
+        end
+        def AAA()
+            puts("SuperClass.AAA")
+        end
+        def myProperty #アクセサ（getter）
+            @myProperty
+        end
+    end
 
-var _myClass = new myLibrary.MyClass(); //"new myLibrary.MyClass"
-_myClass.MyClassMethod(); //"MyClass.MyClassMethod()"
-_myClass.myProperty = "hoge";
-console.log(_myClass.myProperty); //"hoge"
+    #---------------
+    #サブクラス
+    #---------------
+    class SubClass < SuperClass #継承も可能
+        def BBB()
+            puts("SubClass.BBB")
+        end
+    end
+end
 
-//MyClassクラス（名前空間を省略するとコンフリクトを起こす）
-class MyClass {
-    constructor() {
-        console.log("コンフリクトを起こさない!");
-    }
-}
-new MyClass(); //"コンフリクトを起こさない!"
-
-</script>
-</head>
-</html>
+include MyLibrary
+_subclass = SubClass.new() #includeで事前にモジュールを取込めばモジュール名::は省略可
+#_subclass = MyLibrary::SubClass.new() #includeしておかないと「モジュール名::」が必要
+_subclass.AAA() #"AAA"
+_subclass.BBB() #"SubClass.BBB"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年04月06日  
 
 
 <a name="継承と委譲"></a>
