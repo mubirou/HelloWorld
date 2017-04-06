@@ -11,8 +11,8 @@
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
-***
 * [変数とスコープ](#変数とスコープ)
+***
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
@@ -561,10 +561,10 @@ _myClass.myMethod()
 * ふつうの getter / setter を使った例文
     ```
     class MyClass
-        @hensu #インスタンス変数の宣言←…個人的慣例として冒頭で宣言（省略可）
+        @hensu #インスタンス変数の宣言（省略可）
 
         def initialize()
-            @hensu = "インスタンス変数"
+            @hensu = "インスタンス変数①"
         end
 
         def hensu
@@ -576,8 +576,8 @@ _myClass.myMethod()
     end
 
     _myClass = MyClass.new()
-    puts(_myClass.hensu) #"インスタンス変数"
-    _myClass.hensu = "インスタンス変数②" #←…外からも変更可能
+    puts(_myClass.hensu) #"インスタンス変数①"
+    _myClass.hensu = "インスタンス変数②" #外からも変更可能
     puts(_myClass.hensu) #"インスタンス変数②"
     ```
 
@@ -592,7 +592,7 @@ _myClass.myMethod()
     end
 
     _myClass = MyClass.new()
-    #puts(_myClass.@hensu) #error ←…外からはアクセス不可（良いことデス）
+    #puts(_myClass.@hensu) #エラー（外からはアクセス不可）
     puts(_myClass.hensu) #"インスタンス変数"
     #_myClass.hensu = "インスタンス変数②" #Error（変更は不可）
     ```
@@ -613,7 +613,7 @@ _myClass.myMethod()
     _myClass = MyClass.new()
     #puts(_myClass.hensu) #Error（参照は不可）
     _myClass.hensu = "インスタンス変数②" #変更は可能
-    _myClass.test() #=> "インスタンス変数②"
+    _myClass.test() #"インスタンス変数②"
     ```
 
 * attr_accessor（参照･変更可）を使った例文 ＝ getter / setter
@@ -622,29 +622,30 @@ _myClass.myMethod()
         attr_accessor :hensu #インスタンス変数を外部から参照･変更可能にする
 
         def initialize()
-            @hensu = "インスタンス変数"
+            @hensu = "インスタンス変数①"
         end
     end
 
     _myClass = MyClass.new()
-    puts(_myClass.hensu) #=> "インスタンス変数"
+    puts(_myClass.hensu) #"インスタンス変数①"
     _myClass.hensu = "インスタンス変数②" #変更は可能
-    puts(_myClass.hensu) #=> "インスタンス変数②"
+    puts(_myClass.hensu) #"インスタンス変数②"
     ```
 
 ### ローカル変数（局所変数） : _xxx
 * メソッド内で宣言する場合
 ```
 def myMethod
-    _local = "ローカル変数" #このメソッド内でのみ利用可能!!
+    _local = "ローカル変数" #このメソッド内でのみ利用可
+    puts(_local) #"ローカル変数"
 end
 
 def myMethod2
-    #puts(_local) #error（アクセス不可）
+    #puts(_local) #エラー（アクセス不可）
 end
 myMethod()
 myMethod2()
-#puts(_local) #error（アクセス不可）
+#puts(_local) #エラー（アクセス不可）
 ```
 
 * クラスの関数内で宣言する場合
@@ -655,7 +656,7 @@ class MyClass
         puts(_local) #このメソッド内でのみ利用可能!!
     end
     def myMethod2()
-        #print(_local) #error（アクセス不可）
+        #print(_local) #エラー（アクセス不可）
     end
 end
 _myClass = MyClass.new()
@@ -670,9 +671,9 @@ class MyClass
     def initialize()
         i = 999 #ローカル変数
         for i in 0..5
-            puts(i) #0、1、2、…、5
+            puts(i) #0,1,...,5
         end
-        puts(i) #5 ←…for文を出てもメソッド内であればアクセス可能!!
+        puts(i) #5（メソッド内であればアクセス可）
     end
 end
 _myClass = MyClass.new()
@@ -686,7 +687,7 @@ class MyClass
         @@hensu
     end
 end
-#puts(MyClass.@@hensu) #error（アクセス不可）
+#puts(MyClass.@@hensu) #エラー（アクセス不可）
 puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 ```
 
