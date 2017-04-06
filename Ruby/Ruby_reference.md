@@ -634,62 +634,62 @@ _myClass.myMethod()
 
 ### ローカル変数（局所変数） : _xxx
 * メソッド内で宣言する場合
-```
-def myMethod
-    _local = "ローカル変数" #このメソッド内でのみ利用可
-    puts(_local) #"ローカル変数"
-end
+    ```
+    def myMethod
+        _local = "ローカル変数" #このメソッド内でのみ利用可
+        puts(_local) #"ローカル変数"
+    end
 
-def myMethod2
+    def myMethod2
+        #puts(_local) #エラー（アクセス不可）
+    end
+    myMethod()
+    myMethod2()
     #puts(_local) #エラー（アクセス不可）
-end
-myMethod()
-myMethod2()
-#puts(_local) #エラー（アクセス不可）
-```
+    ```
 
-* クラスの関数内で宣言する場合
-```
-class MyClass
-    def myMethod1()
-        _local = "ローカル変数"
-        puts(_local) #このメソッド内でのみ利用可能!!
+    * クラスの関数内で宣言する場合
+    ```
+    class MyClass
+        def myMethod1()
+            _local = "ローカル変数"
+            puts(_local) #このメソッド内でのみ利用可能!!
+        end
+        def myMethod2()
+            #print(_local) #エラー（アクセス不可）
+        end
     end
-    def myMethod2()
-        #print(_local) #エラー（アクセス不可）
-    end
-end
-_myClass = MyClass.new()
-_myClass.myMethod1() #"ローカル変数"
-_myClass.myMethod2()
-#puts(myClass_._local) #undefined（アクセス不可）
-```
+    _myClass = MyClass.new()
+    _myClass.myMethod1() #"ローカル変数"
+    _myClass.myMethod2()
+    #puts(myClass_._local) #undefined（アクセス不可）
+    ```
 
 * for 文内で宣言する場合（内部処理は each メソッドと同じ）
-```
-class MyClass
-    def initialize()
-        i = 999 #ローカル変数
-        for i in 0..5
-            puts(i) #0,1,...,5
+    ```
+    class MyClass
+        def initialize()
+            i = 999 #ローカル変数
+            for i in 0..5
+                puts(i) #0,1,...,5
+            end
+            puts(i) #5（メソッド内であればアクセス可）
         end
-        puts(i) #5（メソッド内であればアクセス可）
     end
-end
-_myClass = MyClass.new()
-```
+    _myClass = MyClass.new()
+    ```
 
 ### クラス変数（静的変数） : @@xxx
-```
-class MyClass
-    @@hensu = "クラス変数"
-    def MyClass.hensu #アクセサ（getter）が必要
-        @@hensu
+    ```
+    class MyClass
+        @@hensu = "クラス変数"
+        def MyClass.hensu #アクセサ（getter）が必要
+            @@hensu
+        end
     end
-end
-#puts(MyClass.@@hensu) #エラー（アクセス不可）
-puts(MyClass.hensu) #"クラス変数"（アクセス可能）
-```
+    #puts(MyClass.@@hensu) #エラー（アクセス不可）
+    puts(MyClass.hensu) #"クラス変数"（アクセス可能）
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
