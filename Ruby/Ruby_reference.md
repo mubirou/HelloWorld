@@ -14,8 +14,8 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-***
 * [定数](#定数)
+***
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
 * [アロー関数](#アロー関数)
@@ -819,46 +819,46 @@ puts(~3) #-4（ビット反転）
 # <b>定数</b>
 
 ### 概要
-* const はクラス外で定数を扱う場合に利用できます。
-* const をクラス内で利用した場合、単なる「変更不可のローカル変数」扱いとなり、用途は非常に限られます（ const this.定数名 という記述は不可）。
-* クラス定数を実現するためには、static（メソッドに対してのみ有効）と getter を利用します。setter には、値を変更しようとした際にエラーが発生するように記述します。
+* 多くの言語にある「const」は存在しない
+* 全て大文字（途中_は付けて良い）で命名するだけで、値を変更する際に警告（worning）を発生
 
 ### 通常の定数
 ```
-<script>
-    const MY_NAME = "Takashi Nishimura";
-    console.log(MY_NAME); //"Takashi Nishimura"
-    MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
-</script>
+#test.rb
+MY_NAME = "TAKASHI NISHIMURA" #先頭はアルファベットの大文字にしなければならない
+puts(MY_NAME) #"TAKASHI NISHIMURA"
+MY_NAME = "TARO NISHIMURA" #警告（worning）は出るが変更は出来てしまう
+puts(MY_NAME) #"TARO NISHIMURA"
 ```
 
-### クラス定数（静的定数）
+### クラス定数
 ```
-<script>
-    class MyMath {
-        constructor() {
-            /*
-            ↓「変更不可のローカル変数」となりクラス定数として利用できない
-            ↓「const this.定数名」という記述は不可
-            */
-            //const PI = 3.141592653589793;
-        }
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error("値の変更はできません");
-        }
-    }
+#test.rb
+#=======================================
+# カスタムクラス
+#=======================================
+class MyClass
+  MY_NAME = "TAKASHI NISHIMURA" #先頭はアルファベットの大文字
+  def initialize(init=0)
+    puts(MY_NAME) #"TAKASHI NISHIMURA" #クラス内でのアクセス方法
+  end
+end
 
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
-</script>
+#=======================================
+# 実行（クラス名::クラス定数でアクセス）
+#=======================================
+puts(MyClass::MY_NAME) #"TAKASHI NISHIMURA"（外からのアクセス方法）
+MyClass::MY_NAME = "TARO NISHIMURA" #警告（worning）は出るが変更は出来てしまう
+puts(MyClass::MY_NAME) #"TARO NISHIMURA"
+
+#インスタンスからのアクセスは不可
+_myClass = MyClass.new()
+#puts(_myClass.MY_NAME) #エラー（アクセス不可）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月06日
 
 
 <a name="メソッド"></a>
