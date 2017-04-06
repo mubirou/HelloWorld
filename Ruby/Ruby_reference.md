@@ -558,44 +558,44 @@ _myClass.myMethod()
     * attr_writer : 変更のみ
     * attr_accessor : 参照･変更可
 
-#### ふつうの getter / setter を使った例文
-    ```
-    class MyClass
-        @hensu #インスタンス変数の宣言←…個人的慣例として冒頭で宣言（省略可）
+    #### ふつうの getter / setter を使った例文
+        ```
+        class MyClass
+            @hensu #インスタンス変数の宣言←…個人的慣例として冒頭で宣言（省略可）
 
-        def initialize()
-            @hensu = "インスタンス変数"
+            def initialize()
+                @hensu = "インスタンス変数"
+            end
+
+            def hensu
+                @hensu
+            end
+            def hensu=(value)
+                @hensu = value
+            end
         end
 
-        def hensu
-            @hensu
+        _myClass = MyClass.new()
+        puts(_myClass.hensu) #"インスタンス変数"
+        _myClass.hensu = "インスタンス変数②" #←…外からも変更可能
+        puts(_myClass.hensu) #"インスタンス変数②"
+        ```
+
+    #### attr_reader（参照のみ可）を使った例文
+        ```
+        class MyClass
+            attr_reader :hensu #インスタンス変数を外部から参照のみ可能にする
+
+            def initialize()
+                @hensu = "インスタンス変数"
+            end
         end
-        def hensu=(value)
-            @hensu = value
-        end
-    end
 
-    _myClass = MyClass.new()
-    puts(_myClass.hensu) #"インスタンス変数"
-    _myClass.hensu = "インスタンス変数②" #←…外からも変更可能
-    puts(_myClass.hensu) #"インスタンス変数②"
-    ```
-
-#### attr_reader（参照のみ可）を使った例文
-    ```
-    class MyClass
-        attr_reader :hensu #インスタンス変数を外部から参照のみ可能にする
-
-        def initialize()
-            @hensu = "インスタンス変数"
-        end
-    end
-
-    _myClass = MyClass.new()
-    #puts(_myClass.@hensu) #error ←…外からはアクセス不可（良いことデス）
-    puts(_myClass.hensu) #"インスタンス変数"
-    #_myClass.hensu = "インスタンス変数②" #Error（変更は不可）
-    ```
+        _myClass = MyClass.new()
+        #puts(_myClass.@hensu) #error ←…外からはアクセス不可（良いことデス）
+        puts(_myClass.hensu) #"インスタンス変数"
+        #_myClass.hensu = "インスタンス変数②" #Error（変更は不可）
+        ```
 
 【attr_writer（変更のみ可）を使った例文】←…Ruby流setter
 class MyClass
