@@ -63,7 +63,7 @@
 ```
 #test.rb
 # ①TrueClass / FalseClass（論理型）
-_bool = true
+_bool = true #ローカル変数
 puts(_bool) #true
 puts(_bool.class.name) #TrueClass（falseの場合FalseClass）
 
