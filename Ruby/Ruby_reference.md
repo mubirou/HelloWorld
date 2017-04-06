@@ -101,7 +101,7 @@ class MyClass #前方宣言が必要
     def initialize() #コンストラクタ
     end
 end
-_myClass = MyClass.new() #←…()は省略可
+_myClass = MyClass.new() #()は省略可
 puts(_myClass) # #<MyClass:0x00000000deeab8>
 puts(_myClass.class.name) #MyClass
 
@@ -110,7 +110,7 @@ puts(nil) #何も表示されず
 puts(nil.class.name) #NilClass（オブジェクトが存在しない事を意味する）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日  
 
@@ -118,101 +118,109 @@ puts(nil.class.name) #NilClass（オブジェクトが存在しない事を意�
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
-### データ型を調べる①
-（ typeof 演算子 ＝ データ型を文字列で返す）
-
+### データ型を調べる
+* xxx.class.name
 ```
-<script>
+#test.rb
+puts(true.class.name) #TrueClass（falseの場合はFalseClass型）
+puts(100.class.name) #Fixnum（4611686018427387904以上の場合はBignum型）
+puts(0.1.class.name) #Float
+puts("1".class.name) #String
+puts(["TAKASHI", "HANAKO", "TARO"].class.name) #Array
+puts({"TAKASHI"=>49}.class.name) #Hash
 
-//①boolean（論理型）
-console.log(typeof true); //"boolean"
-
-//②number（整数･浮動小数点数）
-console.log(typeof 1); //"number"
-console.log(typeof 1.0); //"number"
-
-//③string（文字列）
-console.log(typeof "1"); //"string"
-
-//④object（全てのオブジェクトのベース）
-console.log(typeof {name:"TARO", age:49}); //"object"
-
-//⑤undefined（未初期化変数）
-console.log(typeof _hoge); //"undefined"
-
-//⑥function（関数）
-console.log(typeof function() {}); //"function"
-
-//⑦symbol
-console.log(typeof Symbol()); //"symbol"
-
-</script>
+class MyClass #前方宣言が必要
+    def initialize() #コンストラクタ
+    end
+end
+_myClass = MyClass.new() #()は省略可
+puts(_myClass.class.name) #MyClass
 ```
 
-### データ型を調べる②
-（ instanceof 演算子 ＝ データ型が一致するか boolean 型で返す）
-
+### 同値性を調べる
+* ==、===、eql?()
 ```
-<script>
-
-//①boolean（論理型）
-console.log(true instanceof Boolean); //false（要注意）
-console.log(new Boolean(true) instanceof Boolean); //true
-
-//②number（整数･浮動小数点数）
-console.log(1 instanceof Number); //false（要注意）
-console.log(new Number(1) instanceof Number); //true
-
-//③string（文字列）
-console.log("あ" instanceof String); //false（要注意）
-console.log(new String("あ") instanceof String); //true
-
-//④object（全てのオブジェクトのベース）
-console.log({name:"TARO"} instanceof Object); //true
-console.log(new Object() instanceof Object); //true
-
-//⑤function（関数）
-console.log(function() {} instanceof Function); //true
-
-</script>
+#test.rb
+puts(1 == 1.0) #true
+puts(1 === 1.0) #true
+puts(1.eql?(1.0)) #false（値が同じでもクラスが異なるとfalse）
 ```
 
-### データ型のキャスト（変換）
+### インスタンスの判定①
+* xxx.instance_of?()
+* オブジェクトが指定したクラスのインスタンスか判定
 ```
-<script>
-
-//①数値→boolean型
-var _boolean = Boolean(1);
-console.log(_boolean, typeof _boolean); //true, "boolean"
-
-//②boolean型→number型
-var _number1 = Number(true);
-console.log(_number1, typeof _number1); //1（falseの場合は0）, "number"
-
-//③文字列→number型
-var _number2 = Number("3.14");
-console.log(_number2, typeof _number2); //3.14, "number"
-
-var _number3 = parseInt("3.14"); //小数点以下を切り捨てて整数化
-console.log(_number3, typeof _number3); //3, "number"
-
-var _number4 = parseFloat("3.14です。"); //数字以外を含む値
-console.log(_number4, typeof _number4); //3.14, "number"
-
-//④数値→string型
-var _string1 = String(100); //(100).toString() でも同じ
-console.log(_string1, typeof _string1); //"100", "string"
-
-//⑤配列→string型
-var _string2 = String(["TARO", 49]);
-console.log(_string2, typeof _string2); //"TARO,49", "string"
-
-</script>
+#test.rb
+class MyClass #前方宣言が必要
+    def initialize() #コンストラクタ
+    end
+end
+_myClass = MyClass.new() #()は省略可
+puts(_myClass.instance_of?(MyClass)) #true
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+### インスタンスの判定②
+* xxx.is_a?()
+* オブジェクトが指定したクラスのインスタンスか継承をさかのぼって判定
+```
+#test.rb
+class BaseClass #基本クラス（スーパークラス）
+    def initialize()
+    end
+end
+class SubClass < BaseClass #派生クラス（サブクラス）
+    def initialize()
+    end
+end
+_subClass = SubClass.new() #()は省略可
+puts(_subClass.instance_of?(BaseClass)) #false
+puts(_subClass.is_a?(BaseClass)) #true（継承をさかのぼって判定）
+```
+
+### スーパークラスを調べる
+* xxx.class.superclass
+```
+#test.rb
+class BaseClass #基本クラス（スーパークラス）
+    def initialize()
+    end
+end
+class SubClass < BaseClass #派生クラス（サブクラス）
+    def initialize()
+    end
+end
+_subClass = SubClass.new() #()は省略可
+puts(_subClass.class.superclass) #BaseClass（オブジェクトのスーパークラスを返す）
+```
+
+### データ型のキャスト（文字列→数値）
+* xxx.to_i
+```
+#test.rb
+_tmp = "001".to_i
+puts(_tmp) #1
+puts(_tmp.class.name) #Fixnum
+
+_tmp = "001".to_f
+puts(_tmp) #1.0
+puts(_tmp.class.name) #Float
+```
+
+### データ型のキャスト（数値→文字列）
+* xxx.to_s
+```
+#test.rb
+_tmp = 100.to_s(10) #10進数の場合（(10)は省略可）
+puts(_tmp) #"100"
+puts(_tmp.class.name) #String
+```
+
+### データ型のキャスト（ブール値への変換）
+* Rubyには特別な機能が用意されていない
+
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年04月06日
 
 
 <a name="クラス"></a>
@@ -266,7 +274,7 @@ console.log(_rectangle.getArea()); //2073600
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -362,7 +370,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -439,7 +447,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月17日  
 
@@ -494,7 +502,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月19日
 
@@ -655,7 +663,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 	</script>
 	```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
@@ -713,7 +721,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
@@ -788,7 +796,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日
 
@@ -834,7 +842,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -975,7 +983,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1023,7 +1031,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1070,7 +1078,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1117,7 +1125,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1217,7 +1225,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1269,7 +1277,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1344,7 +1352,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1420,7 +1428,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1475,7 +1483,7 @@ for (変数名 in 配列等) {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1532,7 +1540,7 @@ for (変数名 in 配列等) {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1609,7 +1617,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1810,7 +1818,7 @@ do {
 ```
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月21日  
 
@@ -1850,7 +1858,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1891,7 +1899,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -1937,7 +1945,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2026,7 +2034,7 @@ do {
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2076,7 +2084,7 @@ var 変数 = "xxx"; //string型
     var _count = 0;
     while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
         var _num = _string.indexOf("CD", _count);
-        console.log(_num); //2,10 ←…"CD"が見つかった場所（0から開始）を返す
+        console.log(_num); //2,10 "CD"が見つかった場所（0から開始）を返す
         _count = _num + 1;
     }
 </script>
@@ -2092,7 +2100,7 @@ var 変数 = "xxx"; //string型
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2143,7 +2151,7 @@ var 変数 = "xxx"; //string型
     1. String.replace()
     1. String.split()
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2195,7 +2203,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2237,7 +2245,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2276,7 +2284,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2326,7 +2334,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2352,7 +2360,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
     console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
     console.log(Math.cos(Math.PI)); //-1（180°）
     console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
-    console.log(Math.cos(Math.PI * 2)); //1 ←…360°
+    console.log(Math.cos(Math.PI * 2)); //1 360°
 </script>
 ```
 
@@ -2447,7 +2455,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2498,7 +2506,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2540,7 +2548,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2642,7 +2650,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2676,7 +2684,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2717,6 +2725,6 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
     * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3.1  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
