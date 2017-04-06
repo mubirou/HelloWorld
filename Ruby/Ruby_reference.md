@@ -705,9 +705,9 @@ puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 
 ### 概要
 * 下記の他に3つのアクセスメソッドがある
-    1. attr_reader : 参照のみ
-    1. attr_writer : 変更のみ
-    1. attr_accessor : 参照･変更可
+    * attr_reader : 参照のみ
+    * attr_writer : 変更のみ
+    * attr_accessor : 参照･変更可
 * 参照「 [変数とスコープ](#変数とスコープ)」
 
 ### 読み書き可能なプロパティ
