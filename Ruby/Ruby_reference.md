@@ -1009,6 +1009,7 @@ _myClass.addPoint(10) #10（引数を指定した場合）
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能）
 ```
+#test.rb
 class MyClass
     def sum(*arg) #可変長引数はArray型
         _result = 0 #ローカル変数
@@ -1026,6 +1027,7 @@ _myClass.sum(1,2,3,4,5) #15（1+2+3+4+5）
 ### 名前付き引数
 * 引数名を指定してメソッドを呼び出す＝任意の順序で引数を渡すことが可能
 ```
+#test.rb
 class MyClass
     #デフォルト値を省略する場合「引数名:」とだけ記述  
     def rect(startX:0, startY:0, endX:0, endY:0) 
