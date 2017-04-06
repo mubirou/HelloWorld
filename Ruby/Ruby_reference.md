@@ -514,6 +514,206 @@ _classB.myMethod() #"ClassA.myMethod"
 # <b>変数とスコープ</b>
 
 ### 変数の種類
+1. グローバル変数 : プログラムのどこからでも参照＆変更可能
+1. インスタンス変数 : 同じインスタンス内であれば参照＆変更可能（未定義はnil）
+1. ローカル変数 : メソッド等の中でのみ参照＆変更可能
+1. クラス変数 : 静的変数（クラスをインスタンス化せずにアクセス可能）
+* パブリック変数という概念はない（attr_xxx で代用）
+
+### グローバル変数（大域変数） : $○○と命名
+```
+$global = "グローバル変数" #一般的にグローバル変数は好まれない
+
+#===========================================
+# メソッド内のグローバル変数の扱い
+#===========================================
+def myMethod()
+    puts($global)
+    $global = "グローバル②" #←…関数内で変更可能
+    puts($global)
+end
+
+myMethod() #"グローバル変数"→"グローバル②"
+
+#===========================================
+# クラス内のグローバル変数の扱い
+#===========================================
+class MyClass
+    def myMethod
+        puts($global)
+        $global = "グローバル③" #←…クラス内で変更可能
+        puts($global)
+    end
+end
+
+_myClass = MyClass.new()
+_myClass.myMethod() #"グローバル変数②"→"グローバル③"
+```
+
+### インスタンス変数……@○○と命名
+【特徴】
+全クラスからアクセスが可能なパブリック変数（実用性は無い）は存在しません。
+プライベート変数的ですが継承先でもアクセス可能（注意）。
+「他人の変数を勝手にいじってはいけない」というルールに則り、インスタンス変数は通常、プライベート変数とします。
+他の言語では通常、外部からは「get/setアクセサ」を使ってアクセスしますが、Rubyでは特別に「attr_reader（参照のみ）」「attr_writer（変更のみ）」「attr_accessor（参照･変更可）」の３つアクセスメソッドが用意されています。
+※他の言語と比較すると便利なようでわかりにくいかもしれません…。
+
+【ふつうのgetter/setterを使った例文】
+class MyClass
+    @hensu #インスタンス変数の宣言←…個人的慣例として冒頭で宣言（省略可）
+
+    def initialize()
+        @hensu = "インスタンス変数"
+    end
+
+    def hensu
+        @hensu
+    end
+    def hensu=(value)
+        @hensu = value
+    end
+end
+
+_myClass = MyClass.new()
+puts(_myClass.hensu) #"インスタンス変数"
+_myClass.hensu = "インスタンス変数②" #←…外からも変更可能
+puts(_myClass.hensu) #"インスタンス変数②"
+
+【attr_reader（参照のみ可）を使った例文】←…Ruby流getter
+class MyClass
+    attr_reader :hensu #インスタンス変数を外部から参照のみ可能にする
+
+    def initialize()
+        @hensu = "インスタンス変数"
+    end
+end
+
+_myClass = MyClass.new()
+#puts(_myClass.@hensu) #error ←…外からはアクセス不可（良いことデス）
+puts(_myClass.hensu) #"インスタンス変数"
+#_myClass.hensu = "インスタンス変数②" #Error（変更は不可）
+
+【attr_writer（変更のみ可）を使った例文】←…Ruby流setter
+class MyClass
+    attr_writer :hensu #インスタンス変数を外部から変更のみ可能にする
+
+    def initialize()
+        @hensu = "インスタンス変数"
+    end
+    def test()
+        puts(@hensu)
+    end
+end
+
+_myClass = MyClass.new()
+#puts(_myClass.hensu) #Error（参照は不可）
+_myClass.hensu = "インスタンス変数②" #変更は可能
+_myClass.test() #=> "インスタンス変数②"
+
+【attr_accessor（参照･変更可）を使った例文】←…Ruby流getter/setter
+class MyClass
+    attr_accessor :hensu #インスタンス変数を外部から参照･変更可能にする
+
+    def initialize()
+        @hensu = "インスタンス変数"
+    end
+end
+
+_myClass = MyClass.new()
+puts(_myClass.hensu) #=> "インスタンス変数"
+_myClass.hensu = "インスタンス変数②" #変更は可能
+puts(_myClass.hensu) #=> "インスタンス変数②"
+
+◆ローカル変数（局所変数）……_○○と命名（アルファベット小文字で開始も可）
+【メソッド内で宣言する場合】
+def myMethod
+    _local = "ローカル変数" #このメソッド内でのみ利用可能!!
+end
+
+def myMethod2
+    #puts(_local) #error（アクセス不可）
+end
+myMethod()
+myMethod2()
+#puts(_local) #error（アクセス不可）
+
+【クラスの関数内で宣言する場合】
+class MyClass
+    def myMethod1()
+        _local = "ローカル変数"
+        puts(_local) #このメソッド内でのみ利用可能!!
+    end
+    def myMethod2()
+        #print(_local) #error（アクセス不可）
+    end
+end
+_myClass = MyClass.new()
+_myClass.myMethod1() #"ローカル変数"
+_myClass.myMethod2()
+#puts(myClass_._local) #undefined（アクセス不可）
+
+【for文内で宣言する場合】※Rubyのfor文は内部処理的にはeachメソッドを実行しているとのこと。
+class MyClass
+    def initialize()
+        i = 999 #ローカル変数
+        for i in 0..5
+            puts(i) #0、1、2、…、5
+        end
+        puts(i) #5 ←…for文を出てもメソッド内であればアクセス可能!!
+    end
+end
+_myClass = MyClass.new()
+
+◆クラス変数（静的変数）……@@○○と命名 ※詳細は後述。
+class MyClass
+    @@hensu = "クラス変数"
+    def MyClass.hensu #アクセサ（getter）が必要
+        @@hensu
+    end
+end
+#puts(MyClass.@@hensu) #error（アクセス不可）
+puts(MyClass.hensu) #"クラス変数" ←…アクセス可能
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 変数の種類
 
 1. グローバル変数…プログラム全体からアクセス可能
 1. 擬似プライベート変数…単なるパブリック変数（アクセサを利用すべき）
