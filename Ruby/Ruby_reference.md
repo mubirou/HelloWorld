@@ -15,8 +15,8 @@
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-***
 * [メソッド](#メソッド)
+***
 * [匿名関数](#匿名関数)
 * [アロー関数](#アロー関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
@@ -864,142 +864,180 @@ _myClass = MyClass.new()
 <a name="メソッド"></a>
 # <b>メソッド</b>
 
-
-### パブリックメソッド
-* アクセス修飾子が存在しないため、メソッドは全てパブリックメソッド扱いになる
+### 基本構文
+* メソッド名にはアルファベット、数字、_（アンダースコア）を使用可能（数字で開始は不可）
 ```
-<script>
-    //○○.js
-    class MyClass {
-        tashizan(_start, _end) {
-            var _result = 0; //ローカル変数（関数内のみ有効）
-            for (let _i = _start; _i <= _end; _i++) {
-                //_i はブロック変数（ブロック {} 内のみ有効）
-                _result += _i;
-            }
-            return _result;
-        }
-    }
-
-    var _myClass = new MyClass();
-    console.log(_myClass.tashizan(1, 10)); //55
-    console.log(_myClass.tashizan(1, 100)); //5050
-</script>
+def メソッド名(引数①, 引数②, …)
+    ……さまざまな処理……
+    [return 戻り値]
+end
+メソッド名(引数①, 引数②, …)
 ```
 
-### 擬似プライベートメソッド
-* 実際は単なるパブリックメソッド
-* アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
+### publicメソッド
+* ○〜○までの値を足した合計を調べる
 ```
-<script>
-    class Omikuji {
-        //コンストラクタ
-        constructor() {
-            var _resultList = ["大吉", "吉", "中吉", "小吉", "凶"];
-            console.log(_resultList[this.__randomInt(0, 4)]);
-        }
+#test.rb
+class MyClass
+    def tashizan(_start, _end)
+        _result = 0 #ローカル変数
+        for i in _start.._end
+            _result += i
+        end
+        return _result
+    end
+    public :tashizan #tashizan()をpublic宣言（省略可）
+end
 
-        __randomInt(_min, _max) { //（擬似）プライベートメソッド
-            var _tmp = _max - _min + 1;
-            return Math.floor(Math.random() * _tmp) + _min;
-        }
-    }
-
-    new Omikuji(); //大吉、吉、中吉、小吉、凶のいずれか
-</script>
+_myClass = MyClass.new()
+puts(_myClass.tashizan(1,10)) #55
+puts(_myClass.tashizan(1,100)) #5050
 ```
 
-### コンストラクタ
+### privateメソッド
+* ○〜○までの値を足した合計を調べます
+* private とだけ記述してその後のメソッドを一括して private パブリック宣言することも可能
 ```
-<script>
-    class Point {
-        //コンストラクタ
-        constructor(_x = 0, _y = 0) {
-            //（擬似）プライベート変数の定義（初期化）
-            this.__x = _x;
-            this.__y = _y;
-        }
+#test.rb
+class MyClass
+    def initialize() #コンストラクタ
+        puts(tashizan(1,10)) #55（クラス内はアクセス可）
+        puts(tashizan(1,100)) #5050（クラス内はアクセス可）
+    end
+    def tashizan(_start, _end)
+        _result = 0 #ローカル変数
+        for i in _start.._end
+            _result += i
+        end
+        return _result
+    end
+    private :tashizan #tashizan()をprivate宣言
+end
 
-        //アクセサ（getter）
-        get x() { return this.__x; }
-        get y() { return this.__y; }
-
-        //アクセサ（setter）
-        set x(newValue) { this.__x = newValue; }
-        set y(newValue) { this.__y = newValue; }
-    }
-
-    var _point = new Point(100, 150); //ここでコンストラクタを呼び出す
-    console.log(_point.x); //100
-    console.log(_point.y); //150
-</script>
+_myClass = MyClass.new()
+#_myClass.tashizan(1,10) #エラー（外部からアクセス不可）
 ```
 
-### 静的メソッド（クラスメソッド）
-* インスタンス化せずにメソッドを利用することが可能
+### protectedメソッド
+* クラス及びサブクラス内でのみアクセス可能
 ```
-<script>
-    class MyMath {
-        //静的メソッド（static メソッド名()）
-        static pow(arg1, arg2) {
-            if (arg2 == 0) { return 1; } //0乗対策
-            var _result = arg1;
-            for (let _i = 1; _i < arg2; _i++) {
-                _result = _result * arg1;
-            }
-            return _result;
-        }
-    }
-
-    console.log(MyMath.pow(2, 0)); //1（2の0乗）
-    console.log(MyMath.pow(2, 1)); //2（2の1乗）
-    console.log(MyMath.pow(2, 8)); //256（2の8乗）
-</script>
+#test.rb
+class SuperClass #スーパークラス（基本クラス）
+    def myMethod()
+        puts("スーパークラスのメソッド")
+    end
+    protected :myMethod #myMethod()をprotected宣言
+end
+class SubClass < SuperClass #サブクラス（派生クラス）
+    def initialize() #コンストラクタ
+        myMethod() #"スーパークラスのメソッド"（サブクラスではアクセス可）
+    end
+end
+_subClass = SubClass.new()
+#_subClass.myMethod() #エラー（クラス/サブクラス外ではアクセス不可）
 ```
 
-### デフォルト値付き引数
-* 省略可能な引数
-* 「オプション引数」とも呼ばれる
+### initializeメソッド（コンストラクタ）
 ```
-<script>
-    class MyClass {
-        constructor() {
-            this.__point = 0; //擬似プライベート変数の定義（初期化）
-        }
-        addPoint(arg = 1) { //初期値を1とした場合
-            this.__point += arg;
-            console.log(this.__point);
-        }
-    }
+class クラス名:
+def initialize(引数①, 引数②, ...)
+    ……変数の初期化等の処理……
+end
+private :initialize #initializeだけは省略するとprivate扱い
+    ……
+end
+```
 
-    var _myClass = new MyClass();
-    _myClass.addPoint(); //1
-    _myClass.addPoint(10); //11
-</script>
+### クラスメソッド＝静的メソッド
+* 構文（他にも方法あり）
 ```
+class クラス
+class << self
+def メソッド名(引数①, 引数②, ...)
+    ……さまざまな処理……
+end
+    end
+end
+```
+
+* 例文
+```
+#test.rb
+class MyMath
+    class << self #この中のメソッドがクラスメソッドになる
+        def pow(arg1, arg2)
+            if (arg2 == 0) then
+                return 1 #0乗対策
+            end
+            _result = arg1 #ローカル変数
+            for i in 1..arg2-1
+                _result = _result * arg1
+            end
+            return _result
+        end
+    end
+end
+
+# 実行
+puts(MyMath.pow(2,0)) #1（クラス.クラスメソッド()で呼び出せる）
+puts(MyMath.pow(2,1)) #2
+puts(MyMath.pow(2,8)) #256
+_myMath = MyMath.new()
+#puts(_myMath.pow(2,8)) #エラー（インスタンスからは呼出し不可）
+```
+
+### デフォルト値付き引数（引数が省略可能）
+```
+#test.rb
+class MyClass
+    @point #省略可能
+    def initialize() #コンストラクタ
+        @point = 0
+    end
+    def addPoint(arg=1) #初期値を1とした場合
+        @point += arg
+        puts(@point)
+    end
+end
+_myClass = MyClass.new()
+_myClass.addPoint() #1（引数を指定しないと初期値（1）で処理）
+_myClass.addPoint(10) #10（引数を指定した場合）
 
 ### 可変長引数
-* 引数を固定の数ではなく任意の数にすることが可能
-* メソッド名(引数, ...可変長引数) のように併用も可能
+* 引数を固定の数ではなく任意の数にすることが可能）
 ```
-<script>
-    class MyClass {
-        sum(...args) { //...引数名 で可変長引数
-            for (let tmp in args) {
-                console.log(args[tmp]);
-            }
-        }
-    }
+class MyClass
+    def sum(*arg) #可変長引数はArray型
+        _result = 0 #ローカル変数
+        for i in 0..arg.length-1
+            _result += arg[i]
+        end
+        puts(_result)
+    end
+end
+_myClass = MyClass.new()
+_myClass.sum(1,1) #2 ←…1+1
+_myClass.sum(1,2,3,4,5) #15（1+2+3+4+5）
+```
 
-    var _myClass = new MyClass();
-    _myClass.sum(1, 2); //1→2
-    _myClass.sum(1, 2, 3, 4, 5); //1→2→3→4→5
-</script>
+### 名前付き引数
+* 引数名を指定してメソッドを呼び出す＝任意の順序で引数を渡すことが可能
+```
+class MyClass
+    #デフォルト値を省略する場合「引数名:」とだけ記述  
+    def rect(startX:0, startY:0, endX:0, endY:0) 
+        _result = (endX - startX) * (endY - startY)
+        puts("面積:" + _result.to_s + "m2")
+    end
+end
+
+_myClass = MyClass.new()
+_myClass.rect(endX:100, endY:100) #面積:10000m2（デフォルト値付との併用）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月06日  
 
 
 <a name="匿名関数"></a>
