@@ -7,8 +7,8 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-***
 * [クラス](#クラス)
+***
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -226,57 +226,91 @@ puts(_tmp.class.name) #String
 <a name="クラス"></a>
 # <b>クラス</b>
 
+### 最小構成
 ```
-<script>
+#test.rb
+class MyClass #前方宣言が必要（必ず大文字で始めなければならない）
+    def initialize() #コンストラクタ（省略可）
+    end
+end
+_myClass = MyClass.new() #()は省略可  
+```
 
-//長方形クラス（前方宣言が必要）
-class Rectangle {
-    //コンストラクタ
-    constructor(_width=640, _height=480) {
-        //外からもアクセス可能だがアクセスしないようにする
-        this.__width = _width;
-        this.__height = _height;
-    }
+### 例文
+```
+#test.rb
+#================================================================
+# 長方形クラス
+#================================================================
+class Rectangle #前方宣言が必要
+    #----------------------------------------------
+    # インスタンス変数の宣言（通常は省略）
+    #----------------------------------------------
+    @width = nil #省略可（@widthだけでも可）
+    @height = nil #省略可（@heightだけでも可）
 
-    //アクセサ（getter/setter）
-    get width() {
-        return this.__width;
-    }
-    set width(_newValue) {
-        this.__width = _newValue;
-    }
+    #----------------------------------------------
+    # コンストラクタ
+    #----------------------------------------------
+    def initialize(w,h)
+        @width = w
+        @height = h
+    end
 
-    get height() {
-        return this.__height;
-    }
-    set height(_newValue) {
-        this.__height = _newValue;
-    }
+    #----------------------------------------------
+    # @widthアクセス用（getter/setter）
+    #----------------------------------------------
+    def width #getter
+        @width
+    end
+    def width=(value) #setter
+        @width = value
+    end
 
-    //面積を計算して値を返す
-    getArea() {
-        return this.__width * this.__height;
-    }
-}
+    #----------------------------------------------
+    # @heightアクセス用（getter/setter）
+    #----------------------------------------------
+    def height #getter
+        @height
+    end
+    def height=(value) #setter
+        @height = value
+    end
 
-//①インスタンスの生成
-var _rectangle = new Rectangle();
+    #----------------------------------------------
+    # 面積計算用メソッド
+    #----------------------------------------------
+    def getArea
+        return @width * @height
+    end
+end
 
-//②プロパティの確認と変更
-console.log(_rectangle.width, _rectangle.height); //640, 480
-_rectangle.width = 1920;
-_rectangle.height = 1080;
-console.log(_rectangle.width, _rectangle.height); //1920, 1080
+#================================================================
+# 実行
+#================================================================
+#①インスタンスの生成
+_rectangle = Rectangle.new(640,480)
 
-//③メソッドの実行
-console.log(_rectangle.getArea()); //2073600
+#②プロパティの取得（その１）
+#puts(_rectangle.@width) #syntax error（外からのアクセス不可）
+puts(_rectangle.width) #640
+puts(_rectangle.height) #480
 
-</script>
+#③プロパティの更新
+_rectangle.width = 1920
+_rectangle.height = 1080
+
+#④プロパティの取得（その２）
+puts(_rectangle.width) #1920
+puts(_rectangle.height) #1080
+
+#⑤メソッドの実行
+puts(_rectangle.getArea()) #2073600（()は省略可）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年04月06日  
 
 
 <a name="スーパークラスとサブクラス"></a>
