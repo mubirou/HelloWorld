@@ -704,58 +704,51 @@ puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 # <b>アクセサ （getter / setter）</b>
 
 ### 概要
-ECMAScript 6 は、TypeScript と違い private 変数を定義することができません。そこでパブリック変数を、[Python](https://ja.wikipedia.org/wiki/Python) 風に __xxx と命名してプライベート変数扱いにします。実際は単なるパブリック変数ですので外部からアクセスできてしまいますが、必ずアクセサを使ってアクセスするようにします。
+* 下記の他に3つのアクセスメソッドがある
+    1. attr_reader : 参照のみ
+    1. attr_writer : 変更のみ
+    1. attr_accessor : 参照･変更可
+* 参照 [変数とスコープ](#変数とスコープ)
 
-### 読書き可能なプロパティ
+### 読み書き可能なプロパティ
 ```
-<script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(_age) {
-            this.__age = _age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(newValue) {
-            this.__age = newValue;
-        }
-    }
-
-    var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //変更が可能
-    console.log(_nishimura.age); //50
-</script>
+class Nishimura
+    @age #省略可
+    def initialize() #←…コンストラクタ
+        @age = 48
+    end
+    def age #←…アクセスメソッド（getter）
+        @age
+    end
+    def age=(value) #←…アクセスメソッド（setter）
+        @age = value
+    end
+end
+_nishimura = Nishimura.new() #()は省略可
+puts(_nishimura.age) #48 ←…外部から参照可能!!
+#puts(_nishimura.@age) #error
+_nishimura.age = 49 #←…外部から変更可能!!
+puts(_nishimura.age) #49
 ```
 
-### 読取り専用のプロパティ
+### 読み取り専用のプロパティ
 ```
-<script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(_age) {
-            this.__age = _age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(_newValue) {
-            throw new Error("値の変更はできません");
-        }
-    }
-
-    var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //Error: 値の変更はできません
-</script>
+class Nishimura
+    def initialize() #←…コンストラクタ
+        @age = 48
+    end
+    def age #←…アクセスメソッド（getter）
+        @age
+    end
+end
+_nishimura = Nishimura.new() #()は省略可
+puts(_nishimura.age) #48 ←…外部から参照可能!!
+#_nishimura.age = 49 #←…外部から変更不可!!
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年04月06日
 
 
 <a name="演算子"></a>
