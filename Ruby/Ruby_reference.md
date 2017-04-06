@@ -10,8 +10,8 @@
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -464,55 +464,50 @@ _subclass.BBB() #"SubClass.BBB"
 # <b>継承と委譲</b>
 
 ### 概要
-
-* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
+*  GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
+* 継承の場合は「class サブクラス <b>< スーパークラス</b>」を使い、委譲の場合は <b>クラス.new()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
-
 ```
-<script>
-    class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
-    }
-    }
+#test.rb
+class ClassA
+    def myMethod()  #()は省略可
+        puts("ClassA.myMethod")
+    end
+end
 
-    class ClassB extends ClassA { //ClassAを継承
-    }
+class ClassB < ClassA #ClassAを継承（ポイント）
+end
 
-    var _classB = new ClassB();
-    _classB.myMethod();
-</script>
+_classB = ClassB.new()
+_classB.myMethod() #"ClassA.myMethod"
 ```
 
 ### 委譲版
-
 ```
-<script>
-    class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
-    }
-    }
+#test.rb
+class ClassA
+    def myMethod()  #()は省略可
+        puts("ClassA.myMethod")
+    end
+end
 
-    class ClassB {
-    constructor() { //コンストラクタ
-        this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
-    }
-    myMethod() {
-        this.__classA.myMethod(); //ClassAのmyMethod()を実行
-    }
-    }
+class ClassB
+    def initialize() #コンストラクタ
+        @classA = ClassA.new() #ClassAのインスタンスを変数に格納（ポイント）
+    end
+    def myMethod()
+        @classA.myMethod()
+    end
+end
 
-    var _classB = new ClassB();
-    _classB.myMethod();
-</script>
+_classB = ClassB.new()
+_classB.myMethod() #"ClassA.myMethod"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月19日
+作成日：2017年04月06日
 
 
 <a name="変数とスコープ"></a>
