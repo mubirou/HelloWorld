@@ -8,8 +8,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-***
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
+***
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -316,97 +316,90 @@ puts(_rectangle.getArea()) #2073600（()は省略可）
 <a name="スーパークラスとサブクラス"></a>
 # <b>スーパークラスとサブクラス</b>
 
+### 概要
+* スーパークラス ＝ 基本（基底）クラス、親クラスのこと
+* サブクラス ＝ 派生クラス、子クラスのこと
+* 多重継承は不可
+
+### 例文
 ```
-<script>
+#test.rb
+#================
+# スーパークラス
+#================
+class SuperClass
+    @pSuperClass #インスタンス変数の宣言（省略可）←…派生クラスでも利用可能
+    def initialize() #コンストラクタ
+        @pSuperClass = "スーパークラスの変数"
+    end
+    def pSuperClass #getter
+        @pSuperClass
+    end
+    def mSuperClass
+        puts("スーパークラスのメソッド")
+    end
+end
 
-/****************************************************
-スーパークラス
-****************************************************/
-class SuperClass {
-    //コンストラクタ
-    constructor() {
-        //①プロパティの定義
-        this.__pSuperClass = "スーパークラスのプロパティ";
-    }
+#================
+# サブクラスＡ
+#================
+class SubClassA < SuperClass
+    @pSubClassA #インスタンス変数≒プライベート変数の宣言（省略可）
+    def initialize()
+        super() #必須（スーパークラスのinitialize()をオーバーライドしてしまう為）
+        @pSubClassA = "サブクラスＡの変数"
+    end
+    def pSubClassA #getter
+        @pSubClassA
+    end
+    def mSubClassA
+        puts("サブクラスＡのメソッド")
+    end
+end
+#================
+# サブクラスＢ
+#================
+class SubClassB < SuperClass
+    @pSubClassB #インスタンス変数≒プライベート変数の宣言（省略可）
+    def initialize()
+        super() #必須（スーパークラスのinitialize()をオーバーライドしてしまう為）
+        @pSubClassB = "サブクラスＢの変数"
+    end
+    def pSubClassB #getter
+        @pSubClassB
+    end
+    def mSubClassB
+        puts("サブクラスＢのメソッド")
+    end
+end
 
-    //②アクセサの定義（setterは省略）
-    get pSuperClass() {
-        return this.__pSuperClass;
-    }
+#================
+# 実行
+#================
+#サブクラスＡ
+_subClassA = SubClassA.new() #インタンスの生成（()は省略可）
+puts(_subClassA) ##<SubClassA:0x00000001e42748>
+puts(_subClassA.is_a?(SubClassA)) #true（SubClassAのインスンタンス）
+puts(_subClassA.is_a?(SuperClass)) #true（SuperClassのインスンタンスでもある）
+puts(_subClassA.pSuperClass) #"スーパークラスの変数"
+puts(_subClassA.pSubClassA) #"サブクラスＡの変数"
+_subClassA.mSuperClass() #"スーパークラスのメソッド"
+_subClassA.mSubClassA() #"サブクラスのメソッド"
 
-    //③メソッドの定義
-    mSuperClass() {
-        return "スーパークラスのメソッド";
-    }
-}
-
-/****************************************************
-サブクラスＡ（スーパークラスを継承／多重継承は不可）
-****************************************************/
-class SubClassA extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassA = "サブクラスＡのプロパティ";
-    }
-
-    //②アクセサの定義（setterは省略）
-    get pSubClassA() {
-        return this.__pSubClassA;
-    }
-
-    //③メソッドの定義
-    mSubClassA() {
-        return "サブクラスＡのメソッド";
-    }
-}
-
-/****************************************************
-サブクラスＢ（スーパークラスを継承／多重継承は不可）
-****************************************************/
-class SubClassB extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassB = "サブクラスＢのプロパティ";
-    }
-
-    //②アクセサの定義（setterは省略）
-    get pSubClassB() {
-        return this.__pSubClassB;
-    }
-
-    //③メソッドの定義
-    mSubClassB() {
-        return "サブクラスＢのメソッド";
-    }
-}
-
-/****************************************************
-実行
-****************************************************/
-//サブクラスＡのインスタンス
-var _subclassA = new SubClassA();
-console.log(_subclassA.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassA.pSubClassA); //"サブクラスＡのプロパティ"
-console.log(_subclassA.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassA.mSubClassA()); //"サブクラスＡのメソッド"
-
-//サブクラスＢのインスタンス
-var _subclassB = new SubClassB();
-console.log(_subclassB.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassB.pSubClassB); //"サブクラスＢのプロパティ"
-console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
-
-</script>
+#サブクラスＢ
+_subClassB = SubClassB.new() #インタンスの生成（()は省略可）
+puts(_subClassB) ##<SubClassB:0x00000001e42478>
+puts(_subClassB.is_a?(SubClassB)) #true（SubClassBのインスンタンス）
+puts(_subClassB.is_a?(SuperClass)) #true（SuperClassのインスンタンスでもある）
+puts(_subClassB.pSuperClass) #"スーパークラスの変数"
+puts(_subClassB.pSubClassB) #"サブクラスＢの変数"
+_subClassB.mSuperClass() #"スーパークラスのメソッド"
+_subClassB.mSubClassB() #"サブクラスのメソッド"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年04月06日
 
 
 <a name="名前空間"></a>
