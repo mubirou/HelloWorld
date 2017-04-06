@@ -558,78 +558,83 @@ _myClass.myMethod()
     * attr_writer : 変更のみ
     * attr_accessor : 参照･変更可
 
-    #### ふつうの getter / setter を使った例文
-        ```
-        class MyClass
-            @hensu #インスタンス変数の宣言←…個人的慣例として冒頭で宣言（省略可）
+* ふつうの getter / setter を使った例文
+    ```
+    class MyClass
+        @hensu #インスタンス変数の宣言←…個人的慣例として冒頭で宣言（省略可）
 
-            def initialize()
-                @hensu = "インスタンス変数"
-            end
-
-            def hensu
-                @hensu
-            end
-            def hensu=(value)
-                @hensu = value
-            end
+        def initialize()
+            @hensu = "インスタンス変数"
         end
 
-        _myClass = MyClass.new()
-        puts(_myClass.hensu) #"インスタンス変数"
-        _myClass.hensu = "インスタンス変数②" #←…外からも変更可能
-        puts(_myClass.hensu) #"インスタンス変数②"
-        ```
-
-    #### attr_reader（参照のみ可）を使った例文
-        ```
-        class MyClass
-            attr_reader :hensu #インスタンス変数を外部から参照のみ可能にする
-
-            def initialize()
-                @hensu = "インスタンス変数"
-            end
+        def hensu
+            @hensu
         end
-
-        _myClass = MyClass.new()
-        #puts(_myClass.@hensu) #error ←…外からはアクセス不可（良いことデス）
-        puts(_myClass.hensu) #"インスタンス変数"
-        #_myClass.hensu = "インスタンス変数②" #Error（変更は不可）
-        ```
-
-【attr_writer（変更のみ可）を使った例文】←…Ruby流setter
-class MyClass
-    attr_writer :hensu #インスタンス変数を外部から変更のみ可能にする
-
-    def initialize()
-        @hensu = "インスタンス変数"
+        def hensu=(value)
+            @hensu = value
+        end
     end
-    def test()
-        puts(@hensu)
+
+    _myClass = MyClass.new()
+    puts(_myClass.hensu) #"インスタンス変数"
+    _myClass.hensu = "インスタンス変数②" #←…外からも変更可能
+    puts(_myClass.hensu) #"インスタンス変数②"
+    ```
+
+* attr_reader（参照のみ可）を使った例文 ＝ getter
+    ```
+    class MyClass
+        attr_reader :hensu #インスタンス変数を外部から参照のみ可能にする
+
+        def initialize()
+            @hensu = "インスタンス変数"
+        end
     end
-end
 
-_myClass = MyClass.new()
-#puts(_myClass.hensu) #Error（参照は不可）
-_myClass.hensu = "インスタンス変数②" #変更は可能
-_myClass.test() #=> "インスタンス変数②"
+    _myClass = MyClass.new()
+    #puts(_myClass.@hensu) #error ←…外からはアクセス不可（良いことデス）
+    puts(_myClass.hensu) #"インスタンス変数"
+    #_myClass.hensu = "インスタンス変数②" #Error（変更は不可）
+    ```
 
-【attr_accessor（参照･変更可）を使った例文】←…Ruby流getter/setter
-class MyClass
-    attr_accessor :hensu #インスタンス変数を外部から参照･変更可能にする
+* attr_writer（変更のみ可）を使った例文 = Ruby流setter
+    ```
+    class MyClass
+        attr_writer :hensu #インスタンス変数を外部から変更のみ可能にする
 
-    def initialize()
-        @hensu = "インスタンス変数"
+        def initialize()
+            @hensu = "インスタンス変数"
+        end
+        def test()
+            puts(@hensu)
+        end
     end
-end
 
-_myClass = MyClass.new()
-puts(_myClass.hensu) #=> "インスタンス変数"
-_myClass.hensu = "インスタンス変数②" #変更は可能
-puts(_myClass.hensu) #=> "インスタンス変数②"
+    _myClass = MyClass.new()
+    #puts(_myClass.hensu) #Error（参照は不可）
+    _myClass.hensu = "インスタンス変数②" #変更は可能
+    _myClass.test() #=> "インスタンス変数②"
+    ```
 
-◆ローカル変数（局所変数）……_○○と命名（アルファベット小文字で開始も可）
-【メソッド内で宣言する場合】
+* attr_accessor（参照･変更可）を使った例文 ＝ getter / setter
+    ```
+    class MyClass
+        attr_accessor :hensu #インスタンス変数を外部から参照･変更可能にする
+
+        def initialize()
+            @hensu = "インスタンス変数"
+        end
+    end
+
+    _myClass = MyClass.new()
+    puts(_myClass.hensu) #=> "インスタンス変数"
+    _myClass.hensu = "インスタンス変数②" #変更は可能
+    puts(_myClass.hensu) #=> "インスタンス変数②"
+    ```
+
+### ローカル変数（局所変数） : _xxx
+* メソッド内で宣言する場合
+```
 def myMethod
     _local = "ローカル変数" #このメソッド内でのみ利用可能!!
 end
@@ -640,8 +645,10 @@ end
 myMethod()
 myMethod2()
 #puts(_local) #error（アクセス不可）
+```
 
-【クラスの関数内で宣言する場合】
+* クラスの関数内で宣言する場合
+```
 class MyClass
     def myMethod1()
         _local = "ローカル変数"
@@ -655,8 +662,10 @@ _myClass = MyClass.new()
 _myClass.myMethod1() #"ローカル変数"
 _myClass.myMethod2()
 #puts(myClass_._local) #undefined（アクセス不可）
+```
 
-【for文内で宣言する場合】※Rubyのfor文は内部処理的にはeachメソッドを実行しているとのこと。
+* for 文内で宣言する場合（内部処理は each メソッドと同じ）
+```
 class MyClass
     def initialize()
         i = 999 #ローカル変数
@@ -667,8 +676,10 @@ class MyClass
     end
 end
 _myClass = MyClass.new()
+```
 
-◆クラス変数（静的変数）……@@○○と命名 ※詳細は後述。
+### クラス変数（静的変数） : @@xxx
+```
 class MyClass
     @@hensu = "クラス変数"
     def MyClass.hensu #アクセサ（getter）が必要
@@ -676,203 +687,12 @@ class MyClass
     end
 end
 #puts(MyClass.@@hensu) #error（アクセス不可）
-puts(MyClass.hensu) #"クラス変数" ←…アクセス可能
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### 変数の種類
-
-1. グローバル変数…プログラム全体からアクセス可能
-1. 擬似プライベート変数…単なるパブリック変数（アクセサを利用すべき）
-1. ローカル変数…関数またはメソッド内でのみアクセス可能
-1. ブロック変数…ブロック{}内でのみアクセス可能
-
-### グローバル変数
-* Windowオブジェクトのプロパティ
-
+puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 ```
-<script>
-    /*******************************************
-    グローバル変数定義
-    （関数の外部で定義するとグローバル変数扱い）
-    *******************************************/
-    var _global = "グローバル変数"; //varは省略可
-    //this._global = "グローバル変数"; //上記と同じ意味
-    //window._global = "グローバル変数"; //上記と同じ意味
-
-    /*****************************
-    関数内でのグローバル変数の扱い
-    *****************************/
-    function myFunction() {
-        console.log(_global); //"グローバル変数"
-        console.log(this._global); //"グローバル変数"
-        console.log(window._global); //"グローバル変数"
-    }
-    myFunction();
-
-    /********************************
-    クラス内でのグローバル変数の扱い
-    ********************************/
-    class MyClass {
-        constructor() { //コンストラクタ
-            console.log(_global); //"グローバル変数"
-            console.log(this._global); //undefined（thisはMyClassのインスタンスの為）
-            console.log(window._global); //"グローバル変数"
-        }
-    }
-    new MyClass();
-</script>
-```
-
-### 擬似プライベート変数
-* 実際は単なるパブリック変数
-* 変数へのアクセスはアクセサ（getter/setter）を利用する（推奨）
-
-```
-<script>
-    class MyClass {
-        //コンストラクタ
-        constructor() {
-            //擬似プライベート変数の定義
-            this.__propA = "いろは"; //変数名は__xxxにする（任意）
-        }
-
-        get propA() { //アクセサ（getter）
-            return this.__propA;
-        }
-
-        set propA(_newValue) { //アクセサ（setter）
-            this.__propA = _newValue;
-        }
-    }
-
-    var _myClass = new MyClass();
-
-    //良い例（アクセサを使ってアクセスする）
-    console.log(_myClass.propA); //"いろは"（getterによる値の取得）
-    _myClass.propA = "ABC"; //setアクセサによる値の変更
-    console.log(_myClass.propA); //"ABC"
-
-    //悪い例（外部から直接アクセスしてはいけない）
-    _myClass.__propA = "あいう"; //外部から直接変更できてしまう
-    console.log(_myClass.__propA); //"あいう"
-</script>
-```
-
-### ローカル変数
-* 関数またはメソッド内でのみアクセス可能
-
-1. 関数内で定義した場合
-	```
-	<script>
-		function myFunction1() {
-			//ローカル変数定義
-			var _local = "ローカル変数"; //varは省略不可
-			console.log(_local); //"ローカル変数"
-		}
-
-		function myFunction2() {
-			//console.log(_local); //Error
-		}
-
-		myFunction1();
-		myFunction2();
-		//console.log(_local); //Error
-	</script>
-	```
-
-1. メソッド内で定義した場合
-	```
-	<script>
-		class MyClass {
-			myMethod1() {
-				var _local = "ローカル変数"; //varは省略不可
-				console.log(_local); //"ローカル変数"
-			}
-			myMethod2() {
-				//console.log(_local); //Error
-			}
-		}
-		var myClass_ = new MyClass();
-		myClass_.myMethod1();
-		myClass_.myMethod2();
-	</script>
-	```
-
-1. for文内で定義した場合
-	```
-	<script>
-		for (var i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //10（for文の外でも有効）
-	</script>
-	```
-
-### ブロック変数
-* ブロック {} 内でのみ有効
-
-1. for 文内で定義した場合
-	```
-	<script>
-		for (let i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //Error（アクセス不可）
-	</script>
-	```
-
-1. if 文内で定義した場合
-	```
-	<script>
-		if (true) {
-			let _block = "ブロック変数";
-			console.log(_block); //"ブロック変数"
-		}
-		console.log(block_); //Error（アクセス不可）
-	</script>
-	```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年04月06日
 
 
 <a name="アクセサ"></a>
