@@ -13,8 +13,8 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
-***
 * [演算子](#演算子)
+***
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
@@ -767,75 +767,52 @@ puts(_nishimura.age) #49
 # <b>演算子</b>
 
 ### 算術演算子
-（複合代入演算子 += -= *= /= %= などもあり）
+* 他にも複合代入演算子 += -= *= /= %= などもあり
+* インクリメント（++）、デクリメント（--）は存在しない
 ```
-<script>
-    console.log(3 + 2); //5 (可算)
-    console.log(5 - 8); //-3 (減算)
-    console.log(3 * 4); //12 (乗算)
-    console.log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-    console.log(63 % 60); //3 (余剰)
-    console.log(8 / 3); //2.6666666666666665（除算)
-</script>
-```
+#test.rb
+puts(3 + 2) #5 (可算) 
+puts(5 - 8) #-3 (減算)
+puts(3 * 4) #12 (乗算)
+puts(1 + 2 * 3 - 4 / 2) #5 (複雑な計算)
+puts(63 % 60) #3 (余剰)
+puts(8 / 3) #2（除算）←整数の場合、余りは切り捨てられる
+puts(8.0 / 3) #2.6666666666666665（小数点第16位まで）
+puts(2 ** 8) #256(べき乗) ←2の8乗
 
-### 後ろに付けるインクリメント／デクリメント
-```
-<script>
-    //インクリメント
-    var _huga = 0;
-    var _piyo = _huga++; //加算する前の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //0
-
-    //デクリメント
-    _huga = 0;
-    _piyo = _huga--; //減算する前の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //0
-</script>
-```
-
-### 前に付けるインクリメント／デクリメント
-```
-<script>
-    //インクリメント
-    var _huga = 0;
-    var _piyo = ++_huga; //加算後の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //1
-
-    //デクリメント
-    _huga = 0;
-    var _piyo = --_huga; //減算後の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //-1
-</script>
+#↓インクリメント（++）、デクリメント（--）は存在しない（注意）
+hoge_ = 0
+hoge_ += 1
+puts(hoge_) #1
 ```
 
 ### その他の演算子
 ```
-<script>
-    console.log(true && true); //true（論理積）
-    console.log(true || false); //true（論理和）
-    console.log(! true); //false（否定）
+#test.rb
+puts(true && true) #true（論理積）←Pythonと異なります
+puts(true || false) #true（論理和）←Pythonと異なります
 
-    console.log(2 < 3); //true（比較/未満）
-    console.log(2 <= 2); //true（比較/以下）
-    console.log(1 == 1.0); //true（等号）
-    console.log(1 != 1.0); //false（不等号）
+puts(! true) #false（否定）←Pythonと異なります
 
-    console.log(3 & 1); //1（ビット積）
-    console.log(3 | 1); //3（ビット和）
-    console.log(3 ^ 1); //2（排他的ビット和）
-    console.log(2 << 7); //256（ビット･シフト）
-    console.log(~3); //-4（ビット反転）
-</script>
+puts(2 < 3) #true（比較/未満）
+puts(2 <= 2) #true（比較/以下）
+puts(1 == 1.0) #true（等号）
+puts(1 != 1.0) #false（不等号）
+puts(1.eql?(1.0)) #false ←値が同じでもクラスが異なる
+
+# 注意（参照：データ型の操作（同値性））
+puts(1 == true) #falseとなります（他の多くの言語と異なる）
+
+puts(3 & 1) #1（ビット積）
+puts(3 | 1) #3（ビット和）
+puts(3 ^ 1) #2（排他的ビット和）
+puts(2 << 7) #256（ビット･シフト）
+puts(~3) #-4（ビット反転）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2017年04月06日
 
 
 <a name="定数"></a>
