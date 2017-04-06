@@ -871,14 +871,15 @@ def メソッド名(引数①, 引数②, …)
     ……さまざまな処理……
     [return 戻り値]
 end
+
 メソッド名(引数①, 引数②, …)
 ```
 
 ### publicメソッド
-* ○〜○までの値を足した合計を調べる
 ```
 #test.rb
 class MyClass
+    #○〜○までの値を足した合計を調べるメソッド
     def tashizan(_start, _end)
         _result = 0 #ローカル変数
         for i in _start.._end
@@ -895,7 +896,6 @@ puts(_myClass.tashizan(1,100)) #5050
 ```
 
 ### privateメソッド
-* ○〜○までの値を足した合計を調べます
 * private とだけ記述してその後のメソッドを一括して private パブリック宣言することも可能
 ```
 #test.rb
@@ -904,6 +904,8 @@ class MyClass
         puts(tashizan(1,10)) #55（クラス内はアクセス可）
         puts(tashizan(1,100)) #5050（クラス内はアクセス可）
     end
+    
+    #○〜○までの値を足した合計を調べるメソッド
     def tashizan(_start, _end)
         _result = 0 #ローカル変数
         for i in _start.._end
