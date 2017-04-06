@@ -942,11 +942,11 @@ _subClass = SubClass.new()
 ### initializeメソッド（コンストラクタ）
 ```
 class クラス名:
-def initialize(引数①, 引数②, ...)
-    ……変数の初期化等の処理……
-end
-private :initialize #initializeだけは省略するとprivate扱い
-    ……
+    def initialize(引数①, 引数②, ...)
+        ……変数の初期化等の処理……
+    end
+    private :initialize #initializeだけは省略するとprivate扱い
+        ……
 end
 ```
 
@@ -954,10 +954,10 @@ end
 * 構文（他にも方法あり）
 ```
 class クラス
-class << self
-def メソッド名(引数①, 引数②, ...)
-    ……さまざまな処理……
-end
+    class << self
+        def メソッド名(引数①, 引数②, ...)
+            ……さまざまな処理……
+        end
     end
 end
 ```
@@ -1004,6 +1004,7 @@ end
 _myClass = MyClass.new()
 _myClass.addPoint() #1（引数を指定しないと初期値（1）で処理）
 _myClass.addPoint(10) #10（引数を指定した場合）
+```
 
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能）
