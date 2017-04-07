@@ -23,8 +23,7 @@
 * [case 文](#case文) ≒ switch 文
 ***
 * [for 文](#for文)
-* [for...in 文](#for...in文)
-* [for...of 文](#for...of文)
+* [each メソッド](#eachメソッド)
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
@@ -1370,77 +1369,61 @@ end
 <a name="for文"></a>
 # <b>for 文</b>
 
-### ループカウンタの宣言方法
-* 参考「[変数とスコープ](#変数とスコープ)」
-1. let でループ制御変数を宣言する
-    ```
-    <script>
-        for (let i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
-        }
-        console.log(i); //Error（for文の外では使えない）
-    </script>
-    ```
+### 概要
+* Ruby の for 文は内部処理的には each メソッド（参照「[each メソッド](#eachメソッド)」）を実行
 
-1. var でループ制御変数を宣言する
-    ```
-    <script>
-        for (var i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
-        }
-        console.log(i); //10（for文の外でも有効）
-    </script>
-    ```
+### 例文
+```
+#test.rb
+for i in 0..9 do #←範囲オブジェクトの場合
+    puts(i) #0,1,2,3,4,5,6,7,8,9
+end
 
-### ループカウンタを○つずつアップする
+for tmp in ["A","B","C"] do #←配列（Array）の場合
+    puts(tmp) #"A"→"B"→"C"
+end
 ```
-<script>
-    for (let i = 0; i < 50; i += 5) { //5つずつアップする場合…
-        console.log(i); //0,5,10,15,20,25,30,35,40,45
-    }
-</script>
-```
+* ハッシュ型 {"TAKASHI"=>49, "TARO"=>14} 等の場合、"TAKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
 
 ### for 文のネスト
-* ループ制御変数には慣例的に i, j, k が使われる
+* ループ制御変数には i, j, k が使われる
 ```
-<script>
-    for (let i = 1; i <= 5; i++) {
-        for (let j = 1; j <= 5; j++) {
-            console.log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
-        }
-    }
-</script>
+#test.rb
+for i in 1..5 do
+    for j in 1..5 do
+        puts("x" + i.to_s + "y" + j.to_s) #x1y1,x1y2,....,x5y4,x5y5
+    end
+end
+```
+
+### next 文 ≒ continue 文
+* ループカウンタを○つずつアップする
+```
+#test.rb
+for i in 0..50 do
+    if (i % 5)!=0 then
+        next #以降処理せず、for文のブロックの先頭に戻って再度繰返す
+    end
+    puts(i) #0,5,10,15,20,25,30,35,40,45,50
+end
 ```
 
 ### 無限ループと break 文
 ```
-<script>
-    var _count = 0;
-    for (;;) { //①初期化②ループ判定式③更新処理の全てを省略する
-        _count++;
-        if (_count > 100) break; //ループを終了
-        console.log(_count); //1,2,....,99,100
-    }
-    console.log("for文終了");
-</script>
-```
-
-### for 文と continue 文
-```
-<script>
-    for (let i = 1; i <= 20; i++) { //iは1,2,...19,20
-        if ((i % 3) != 0) { //3で割り余りが0でない（＝3の倍数ではない）場合
-            continue; //for文の残処理をスキップしてfor文の次の反復を開始する
-        }
-        console.log(i); //3,6,9,12,15,18 ←3の倍数
-    }
-</script>
+#test.rb
+_count = 0
+for i in 0..9e9 do #ほぼ無限ループ（厳密な無限にはloop文等を使用）
+    _count += 1
+    if (_count > 100) then
+        break #100を超えたらループを抜け出す
+    end
+    puts(_count) #1,2,....,99,100
+end
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日  
 
 
 <a name="for...in文"></a>
