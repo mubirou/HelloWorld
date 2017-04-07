@@ -1855,7 +1855,7 @@ class MyClass
     puts(self) #MyClass（インスタンスではなくクラスそのもの）
 
     def initialize()
-        puts(self) #…→#<MyClass:0x00000000f090d8>（MyClassのインスタンス★）
+        puts(self) ##<MyClass:0x00000000f090d8>（MyClassのインスタンス★）
         self.myMethod() #myMethod（selfは省略可）
     end
 
