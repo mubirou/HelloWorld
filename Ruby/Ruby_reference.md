@@ -17,8 +17,8 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
-***
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
+***
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
@@ -1095,101 +1095,59 @@ _piyo() #Error
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年04月07日  
-
-
-<a name="アロー関数"></a>
-# <b>アロー関数</b>
-* [匿名関数](#匿名関数)をラムダ式に置き換えたバージョン
-```
-<script>
-    class Hello {
-        //コンストラクタ
-        constructor() {
-            this.__american = (_name) => { //匿名関数①
-                console.log(_name + "," + "Hello!");
-            }
-
-            this.__japanese = (_name) => { //匿名関数②
-                console.log(_name + "、" + "こんにちは!");
-            }
-
-            this.__chinese = (_name) => { //匿名関数③
-                console.log(_name + "," + "你好!");
-            }
-
-            //パブリック変数に匿名関数を代入（前方宣言が必要）
-            this.hello = this.__american;
-        }
-        //匿名関数の入替え
-        change(_language) {
-            switch (_language) {
-                case "american": this.hello = this.__american; break; 
-                case "japanese": this.hello = this.__japanese; break;
-                case "chinese": this.hello = this.__chinese; break;
-            }
-        }
-    }
-
-    var _hello = new Hello();
-    _hello.hello("TARO"); //"TARO,Hello!"
-    _hello.change("japanese");
-    _hello.hello("たかし"); //"たかし、こんにちは!"
-    _hello.change("chinese");
-    _hello.hello("たかし"); //"たかし, 你好!"
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
-作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日
 
 
 <a name="クラス定数･変数･メソッド"></a>
 # <b>クラス定数･変数･メソッド</b>
 * クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
+* 多くの言語にある static 修飾子はない
 ```
-<script>
-    class MyMath {
-        //①クラス定数（静的定数）の定義（静的定数）
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error("値の変更はできません");
-        }
+#test.rb
+class MyClass
+    #クラス定数（静的定数）の定義（静的定数）
+    @@PI = 3.141592653589793 #@@xxx（大文字である必要はない）
 
-        //③静的メソッド（静的メソッド）の定義
-        static pow(arg1, arg2) {
-            if (arg2 == 0) { return 1; } //0乗対策
-            var _result = arg1;
-            for (let _i = 1; _i < arg2; _i++) {
-                _result = _result * arg1;
-            }
-            return _result;
-        }
-    }
+    #アクセサ（getter）
+    def MyClass.PI
+        @@PI
+    end
 
-    //①クラス定数の参照
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
+    #アクセサ（setter）
+    def MyClass.PI=(value)
+        @@PI = value
+    end
 
-    //②クラス変数の参照および変更
-    console.log(MyMath.lastUpdate); //undefined
-    MyMath.lastUpdate = "2017-03-21"; //②クラス変数（静的変数）の定義
-    console.log(MyMath.lastUpdate); //"2017-03-21"
-    MyMath.lastUpdate = "2017-03-22"; //変更可能
-    console.log(MyMath.lastUpdate); //"2017-03-22"
+    #静的メソッド（静的メソッド）の定義
+    class << self #静的メソッドの宣言（決め打ち）
+        def pow(arg1, arg2)
+            if (arg2 == 0) then
+                return 1 #0 乗対策
+            end
+            _result = arg1 #ローカル変数
+            for i in 1..arg2-1
+                _result = _result * arg1
+            end
+            return _result
+        end
+    end
+end
 
-    //③静的メソッドの実行
-    console.log(MyMath.pow(2, 0)); //1
-    console.log(MyMath.pow(2, 8)); //256
-</script>
+#クラス定数の参照
+puts(MyClass.PI) #3.141592653589793（静的変数の呼び出し）
+puts(MyClass.pow(2,8)) #256（静的メソッドの呼び出し）
+
+_myClass = MyClass.new() #インスタンスの生成
+#puts(_myClass.PI) #エラー（インスタンスからの呼出しは不可）
+#puts(_myClass.pow(2,8)) #エラー（インスタンスからの呼出しは不可）
+
+MyClass.PI = 3.14 #変更も可能
+puts(MyClass.PI) #3.14
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日  
 
 
 <a name="if文"></a>
