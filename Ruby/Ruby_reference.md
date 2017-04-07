@@ -23,8 +23,8 @@
 * [case 文](#case文) ≒ switch 文
 * [for 文](#for文)
 * [each メソッド](#eachメソッド)
-***
 * [while 文](#while文)
+***
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
@@ -1489,78 +1489,61 @@ end
 <a name="while文"></a>
 # <b>while 文</b>
 
-### while 文
-* 構文
+### 概要
+* while 文と条件判定が反対の until 文 もあり
+* 他の言語にある do...while 文はない
+* ループ判定式による終了条件がなく、ただ繰り返すだけの loop メソッドもあり
+
+### 基本構文
 ```
-while (ループ判定式) {
+while (ループ判定式) do #ループ判定式がtrueの間繰り返される（()、doは省略可）
     繰り返す処理
-}
+end
 ```
 
-* 例文
+### 例文
 ```
-<script>
-    var _i = 0;
-    while (_i < 10) { //ループ判定式にはboolean値しか使えない
-        console.log(_i); //0,1,2,3,4,5,6,7,8,9
-        _i++;
-    }
-</script>
-```
-
-### do...while 文
-* 構文
-```
-do {
-    繰り返す処理 ←ループ判定式がfalseの場合でも最低１回は実行される
-} while(ループ判定式);
+#test.rb
+_i = 0
+while (_i < 10) do #()は省略可
+  puts(_i) #0,1,2,3,4,5,6,7,8,9
+  _i += 1
+end
+puts(_i) #10 ←while文の外でも変数はまだ有効
 ```
 
-* 例文
+### while 文と break 文
+* 1〜100までを出力
 ```
-<script>
-    var _i = 0;
-    do {
-        console.log(_i); //0 ←ループ判定式はfalseだが１回実行される
-        _i++;
-    } while (_i < 0);
-</script>
-```
-
-### while文とbreak文
-* 例文（1〜100までを出力）
-```
-<script>
-    var _count = 0;
-    while (true) { //ループ判別式をtrueにすると無限ループに
-        _count++;
-        if (_count > 100) {
-            break; //break文を使ってループを終了（while文の次の行へ）
-        }
-        console.log(_count); //1,2,....,99,100
-    }
-</script>
+#test.rb
+_count = 0
+while true #ループ判別式をtrueにすると無限ループに!
+  _count += 1
+  if _count > 100 then
+    break #←ループを終了
+  end
+  puts(_count) #1,2,....,99,100
+end
 ```
 
-### while 文と continue 文
-* 例文（3の倍数を出力）
+### while 文と next 文
+* 3の倍数を出力
 ```
-<script>
-    var _i = 1;
-    while (_i <= 20) {
-        if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-            _i++;
-            continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
-        }
-        console.log(_i); //3,6,9,12,15,18 ←3の倍数
-        _i++;
-    }
-</script>
+#test.rb
+_i = 1
+while (_i <= 20)
+  if ((_i % 3) != 0) #3で割って余りが0でない（＝3の倍数ではない）場合
+    _i += 1
+    next #←…while文の残処理をスキップしてwhile文の次の反復を開始する
+  end
+  puts(_i) #3,6,9,12,15,18 ←…3の倍数
+  _i += 1
+end
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日
 
 
 <a name="配列（Array）"></a>
