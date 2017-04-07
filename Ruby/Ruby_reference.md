@@ -21,7 +21,7 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 ***
-* [case 文](#case文)
+* [case 文](#case文) ≒ switch 文
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
@@ -1314,7 +1314,7 @@ puts(test(89)) #"退職"
 
 
 <a name="case文"></a>
-# <b>case 文</b>
+# <b>case 文</b> ≒ switch 文
 
 ### 判別式が boolean 値ではない場合
 ```
