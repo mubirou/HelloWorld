@@ -22,7 +22,7 @@
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [for each...in 文](#foreach...in文)
-* [while文](#while文)
+* [while 文](#while文)
 * [配列（Array）](#配列（Array）)
 * [連想配列（Object）](#連想配列（Object）)
 * [this](#this)

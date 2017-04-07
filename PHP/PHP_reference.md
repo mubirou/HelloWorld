@@ -21,7 +21,7 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach...as 文](#foreach...as文)
-* [while文](#while文)
+* [while 文](#while文)
 * [配列（array）](#配列（array）)
 * [連想配列（array）](#連想配列（array）)
 * [$this](#$this)

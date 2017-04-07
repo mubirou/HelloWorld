@@ -22,9 +22,9 @@
 * [三項演算子](#三項演算子)
 * [case 文](#case文) ≒ switch 文
 * [for 文](#for文)
-***
 * [each メソッド](#eachメソッド)
-* [while文](#while文)
+***
+* [while 文](#while文)
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
@@ -1423,62 +1423,63 @@ end
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年04月07日  
+作成日：2017年04月07日
 
 
 <a name="eachメソッド"></a>
 # <b>each メソッド</b>
 
-### 基本構文
-```
-for (変数名 in 配列等) {
-    //配列の場合はインデックス番号、連想配列の場合はプロパティ名
-    console.log(変数名);
+### 概要
+* Ruby の for 文（参照「[for 文](#for文)」）は内部処理的はこの each メソッドを実行
 
-    //配列の場合は要素の値、連想配列の場合はプロパティ値
-    console.log(配列等[変数名]);
-}
+### 例文
 ```
+(0..9).each do |i| #←範囲オブジェクトの場合
+    puts(i) #0,1,2,3,4,5,6,7,8,9
+end
 
-### 配列（1次元）の場合
+["A","B","C"].each do |tmp| #←配列（Array）の場合
+    puts(tmp) #"A"→"B"→"C"
+end
 ```
-<script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1→2→3
-        console.log(_array[_indexNum]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
-    }
-</script>
-```
+* ハッシュ型 {"TAKASHI"=>49, "TARO"=>14} 等の場合、"TAKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
 
-### 配列（2次元）の場合
+### each メソッドのネスト
+* ループ制御変数には i, j, k が使われる
 ```
-<script>
-    var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
-    ];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1
-        console.log(_array[_indexNum]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-    }
-</script>
+(1..5).each do |i|
+    (1..5).each do |j|
+        puts("x" + i.to_s + "y" + j.to_s) #x1y1,x1y2,....,x5y4,x5y5
+    end
+end
 ```
 
-### 連想配列（Object＝オブジェクトリテラル）の場合
+### next 文 ≒ continue 文
+* ループカウンタを○つずつアップする
 ```
-<script>
-    var _object = { name: "Takashi Nishimura", age: 49 };
-    for (let _propName in _object) {
-        console.log(_propName); //name→age
-        console.log(_object[_propName]); //"Takashi Nishimura" → 49
-    }
-</script>
+(1..50).each do |i|
+    if (i % 5)!=0 then
+        next #以降処理せず、for文のブロックの先頭に戻って再度繰返す
+    end
+    puts(i) #0,5,10,15,20,25,30,35,40,45,50
+end
+```
+
+### 無限ループと break 文
+```
+_count = 0
+(0..9e9).each do |i| #ほぼ無限ループ（厳密な無限にはloop文等を使用）
+    _count += 1
+    if (_count > 100) then
+        break #100を超えたらループを抜け出す
+    end
+    puts(_count) #1,2,....,99,100
+end
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日
 
 
 <a name="while文"></a>
