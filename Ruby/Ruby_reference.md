@@ -1316,76 +1316,55 @@ puts(test(89)) #"退職"
 <a name="case文"></a>
 # <b>case 文</b> ≒ switch 文
 
+### 基本構文
+* thenは省略可
+```
+case 比較したいオブジェクト
+when 値① then
+    処理①
+when 値② then
+    処理②
+else
+    処理③
+end
+```
+
 ### 判別式が boolean 値ではない場合
 ```
-<script>
-    var _name = "TARO";
-    switch (_name) {
-        case "TARO":
-            console.log("父"); //これが出力される
-            break;
-        case "HANAKO":
-            console.log("母");
-            break;
-        case "ICHIRO":
-            console.log("長男");
-            break;
-        case "JIRO":
-            console.log("次男");
-            break;
-        default:
-            console.log("家族以外");
-            break; //省略可
-    }
-</script>
+#test.rb
+_name = "TAKASHI"
+case _name
+when "TAKASHI"
+    puts("父")
+when "HANAKO"
+    puts("母")
+when "ICHIRO"
+    puts("長男")
+when "JIRO"
+    puts("次男")
+else
+    puts("家族以外")
+end
 ```
 
 ### 判別式が boolean 値の場合
 * case 式に比較演算子が使われる
 ```
-<script>
-    var _age = 49;
-    switch (true) {
-        case _age <= 20:
-            console.log("20歳以下");
-            break;
-        case _age <= 40:
-            console.log("21〜40歳");
-            break;
-        case _age <= 60:
-            console.log("41〜60歳"); //これが出力される
-            break;
-        default:
-            console.log("61歳以上");
-            break; //省略可
-    }
-</script>
-```
-
-### break文が無い使い方
-* [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
-```
-<script>
-    var _name = "JIRO";
-    switch (_name) {
-        case "TARO":
-        case "HANAKO":
-            console.log("親です");
-            break;
-        case "ICHIRO":
-        case "JIRO":
-            console.log("子供です"); //これが出力される
-            break;
-        default:
-            console.log("家族ではありません");
-            break; //省略可
-    }
-</script>
+#test.rb
+_age = 49
+case true
+when (_age <= 20)
+    puts("20歳以下")
+when (_age <= 60)
+    puts("60歳以下")
+else
+    puts("61歳以上")
+end
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日  
 
 
 <a name="for文"></a>
