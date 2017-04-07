@@ -21,7 +21,7 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 ***
-* [switch 文](#switch文)
+* [case 文](#case文)
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [for...of 文](#for...of文)
@@ -1313,8 +1313,8 @@ puts(test(89)) #"退職"
 作成日：2017年04月07日
 
 
-<a name="switch文"></a>
-# <b>switch 文</b>
+<a name="case文"></a>
+# <b>case 文</b>
 
 ### 判別式が boolean 値ではない場合
 ```
