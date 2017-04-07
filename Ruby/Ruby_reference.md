@@ -1376,7 +1376,7 @@ end
 ```
 #test.rb
 for i in 0..9 do #←範囲オブジェクトの場合
-    puts(i) #0,1,2,3,4,5,6,7,8,9
+    puts(i) #0→1→2→...→8→9
 end
 
 for tmp in ["A","B","C"] do #←配列（Array）の場合
@@ -1426,8 +1426,8 @@ end
 作成日：2017年04月07日  
 
 
-<a name="for...in文"></a>
-# <b>for...in 文</b>
+<a name="eachメソッド"></a>
+# <b>each メソッド</b>
 
 ### 基本構文
 ```
