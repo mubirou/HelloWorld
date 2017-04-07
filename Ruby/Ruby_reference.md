@@ -26,8 +26,8 @@
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
 * [連想配列（Hash）](#連想配列（Hash）)
-***
 * [self](#self) ≒ this
+***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
@@ -1849,90 +1849,34 @@ puts({"A"=>"あ", "I"=>"い", "U"=>"う"}.size) #3
 <a name="self"></a>
 # <b>self</b> ≒ this
 
-### トップレベルの this
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        document.write(this); //[object Window]（＝window／省略可能）
-    </script>
-</head>
-</html>
-```
-* \<script src="xxx.js">\</script> として外部の xxx.js を読み込んだ場合も同様
+#test.rb
+class MyClass
+    puts(self) #MyClass（インスタンスではなくクラスそのもの）
 
-### クラス内の this
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                document.write(this); //[object Object]（MyClassのインスタンス）
-                this.__hoge = "擬似プライベート変数"; //thisは省略不可
-            }
-            get hoge() { //アクセサ（getter）
-                return this.__hoge; //thisは省略不可
-            }
-        }
-        var _myClass = new MyClass();
-        console.log(_myClass.hoge); //"擬似プライベート変数"
-    </script>
-</head>
-</html>
-```
+    def initialize()
+        puts(self) #…→#<MyClass:0x00000000f090d8>（MyClassのインスタンス★）
+        self.myMethod() #myMethod（selfは省略可）
+    end
 
-* クラス内では this / var / let / const の何れかを指定する必要があり省略は不可
+    def myMethod()
+        puts("myMethod")
+    end
+end
 
-### イベントハンドラメソッド内の this
-* 概要  
-独自クラスを作成し、JavaScript 標準のイベント（mousedown 等）のイベントリスナーを記述した場合、リスナー関数内で自分自身（＝クラス）を参照したい場合がよくあります。しかし、this はイベントリスナーの対象となるオブジェクトを参照します。そこでワンクション置くことでクラスを参照できるようにしたのが以下のサンプルです。
+_myClass = MyClass.new()
+puts(_myClass) ##<MyClass:0x00000000f090d8>（MyClassのインスタンス★）
 
-* 例文
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                this.__image = document.getElementById("image");
+def MyMethod()
+    puts(self) 
+end
 
-                //イベントハンドラメソッド内でthis==Canvasオブジェクトとする為
-                this.__mousedown_image = (_e) => { 
-                    this.__mousedown_image_method(_e);
-                }
-
-                //Image用イベントハンドラの定義
-                this.__image.addEventListener("mousedown", this.__mousedown_image, false);
-            }
-
-            //MyClass.__mousedown_image（アロー関数）からの呼出し
-            __mousedown_image_method(_mouseEvent) {
-                console.log(this); //MyClass
-            }
-        }
-        addEventListener("load", load_window, false);
-        function load_window() {
-            new MyClass();
-        }
-    </script>
-</head>
-
-<body>
-    <img id="image" src="sample.png">
-</body>
-</html>
+MyMethod() #main
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月07日
 
 
 <a name="文字列の操作"></a>
