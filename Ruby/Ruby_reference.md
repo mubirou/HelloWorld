@@ -18,9 +18,9 @@
 * [メソッド](#メソッド)
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
-* [if 文](#if文)
-***
+* [if 文](#if文
 * [三項演算子](#三項演算子)
+***
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [for...in 文](#for...in文)
@@ -1272,50 +1272,45 @@ end
 ### 比較式が１つの場合
 * 構文
 ```
-データ型 変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
+変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
 ```
+
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        var _age = 49;
-        var _result = (_age < 60) ? "現役" : "退職";
-        console.log(_result); //"現役"
-    </script>
-</head>
-</html>
+#test.rb
+def test(_age)
+    _result = (_age < 60) ? "現役" : "退職"
+    return _result
+end
+puts(test(49)) #"現役"
+puts(test(89)) #"退職"
 ```
 
 ### 比較式が複数の場合
 * 構文
 ```
-変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
-変数名 = (比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
+変数名 = (比較式①) ? (①がtrueの場合の返り値) : #①がfalseの場合↓
+変数名 = (比較式②) ? (②がtrueの場合の返り値) : #②がfalseの場合↓
 変数名 = (①②の全てがfalseの場合の返り値);
 ```
+
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        var _age = 49;
-        var _result = (_age < 20) ? "未成年" :
-        _result = (_age < 60) ? "現役" :
-        _result = "退職";
-        console.log(_result); //"現役"
-    </script>
-</head>
-</html>
+#test.rb
+def test(_age)
+    _result = (_age < 20) ? "未成年" :
+    _result = (_age < 60) ? "現役" :
+    _result = "退職"
+    return _result
+end
+puts(test(19)) #"未成年"
+puts(test(49)) #"現役"
+puts(test(89)) #"退職"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日
 
 
 <a name="switch文"></a>
