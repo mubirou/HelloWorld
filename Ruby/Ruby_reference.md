@@ -17,7 +17,7 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 ***
-* [匿名関数](#匿名関数)
+* [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [アロー関数](#アロー関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
@@ -1045,52 +1045,58 @@ _myClass.rect(endX:100, endY:100) #面積:10000m2（デフォルト値付との�
 作成日：2017年04月06日  
 
 
-<a name="匿名関数"></a>
-# <b>匿名関数</b>
-* [アロー関数](#アロー関数)を従来の匿名式に置き換えたもの
+<a name="匿名関数（ラムダ式）"></a>
+# <b>匿名関数（ラムダ式）</b>
+
+### 概要
+* [Proc クラス](https://docs.ruby-lang.org/ja/latest/class/Proc.html)
+* Proc オブジェクトの生成には、Proc.new メソッドか Proc メソッド、または lambda メソッドを使用するが、ここでは ->(ブロック変数){処理} という方法を紹介
+
+### ラムダ式による基本構文
+* lambda メソッドを使う方法もあり
 ```
-<script>
-    class Hello {
-        //コンストラクタ
-        constructor() {
-            this.__american = function(_name) { //匿名関数①
-                console.log(_name + "," + "Hello!");
-            }
+変数 = ->(引数①, 引数②, …) {
+    ……いろいろな処理……
+    [return 戻り値]
+}
 
-            this.__japanese = function(_name) { //匿名関数②
-                console.log(_name + "、" + "こんにちは!");
-            }
+変数.call(引数①, 引数②, …)
+```
 
-            this.__chinese = function(_name) { //匿名関数③
-                console.log(_name + "," + "你好!");
-            }
+### ラムダ式による例文
+* lambda メソッドを使う方法もあり）
+```
+#ラムダ式による匿名関数
+_kakezan = ->(arg1, arg2) {
+    return arg1 * arg2
+}
 
-            //パブリック変数に匿名関数を代入（前方宣言が必要）
-            this.hello = this.__american;
-        }
+#実態はProcクラス
+p _kakezan #<Proc:0x00000000c45428@test.rb:1 (lambda)>
+puts(_kakezan) #<Proc:0x00000000c45428@test.rb:1 (lambda)>
+puts(_kakezan.class.name) #Proc（Proクラス）
 
-        //匿名関数の入替え
-        change(_language) {
-            switch (_language) {
-                case "american": this.hello = this.__american; break;
-                case "japanese": this.hello = this.__japanese; break;
-                case "chinese": this.hello = this.__chinese; break;
-            }
-        }
-    }
+#呼び出し方法
+p _kakezan.call(9,9) #81
+puts(_kakezan.call(9,9)) #81
+#puts(_kakezan(9,9)) #Error（普通のメソッドと同じ方法では呼び出せない）
+```
 
-    var _hello = new Hello();
-    _hello.hello("TARO"); //"TARO,Hello!"
-    _hello.change("japanese");
-    _hello.hello("たかし"); //"たかし、こんにちは!"
-    _hello.change("chinese");
-    _hello.hello("たかし"); //"たかし, 你好!"
-</script>
+### 注意
+* Procオブジェクトと通常のメソッドとの入れ替えは不可）
+```
+def hoge()
+   puts("ほげ")
+end
+hoge() #"ほげ"
+_piyo = hoge #"ほげ" ←hoge()を実行したことになってしまう
+puts(_piyo) #←nil
+_piyo() #Error
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2017年04月07日  
 
 
 <a name="アロー関数"></a>
