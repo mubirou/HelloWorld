@@ -24,11 +24,9 @@
 * [for 文](#for文)
 * [each メソッド](#eachメソッド)
 * [while 文](#while文)
-***
 * [配列（Array）](#配列（Array）)
-* [配列（Set）](#配列（Set）)
-* [連想配列（Object）](#連想配列（Object）)
-* [連想配列（Map）](#連想配列（Map）)
+***
+* [連想配列（Hash）](#連想配列（Hash）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -1534,9 +1532,9 @@ _i = 1
 while (_i <= 20)
   if ((_i % 3) != 0) #3で割って余りが0でない（＝3の倍数ではない）場合
     _i += 1
-    next #←…while文の残処理をスキップしてwhile文の次の反復を開始する
+    next #←while文の残処理をスキップしてwhile文の次の反復を開始する
   end
-  puts(_i) #3,6,9,12,15,18 ←…3の倍数
+  puts(_i) #3,6,9,12,15,18 ←3の倍数
   _i += 1
 end
 ```
@@ -1550,245 +1548,257 @@ end
 # <b>配列（Array）</b>
 
 ### 作成
-* new 演算子を使う方法
-    ```
-    var _array = new Array(); //空の配列を作成
-    var _array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
-    var _array = new Array("A", "I");
-    var _array = new Array(["A","あ"], ["I","い"]); //配列のネスト
-    ```
+* 構文
+```
+変数名 = [] #空の配列を作成
+変数名 = [nil] * 個数 #指定数の空（nil）の要素を持つ配列作成
+変数名 = [要素①, 要素②,...] #要素のデータ型は何でも良い
+```
 
-* 配列リテラルを使う方法
-    ```
-    var _array = []; //空の配列を作成
-    var _array = ["A", "I"];
-    var _array = [["A","あ"], ["I","い"]]; //配列のネスト
-    ```
+* 例文
+```
+#test.rb
+_array = []
+p _array #[]
+_array2 = ["A", "I", "U"]
+p _array2 #["A", "I", "U"]
+_array3 = [nil] * 10
+p _array3 #[nil, nil, nil, nil, nil, nil, nil, nil, nil, nil]
+```
 
 ### 要素の数
 ```
-<script>
-    var _array = ["00", "01", "02", "03"];
-    console.log(_array.length); //4
-</script>
+#test.rb
+_array = ["00", "01", "02", "03"]
+puts(_array.size) #4
 ```
 
 ### 追加（最後）
 ```
-<script>
-    var _array = ["ICHIRO", "JIRO"];
-    _array.push("TARO"); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //["ICHIRO", "JIRO", "TARO"]
-</script>
+#test.rb
+_array = ["ICHIRO", "JIRO"]
+_array.push("TARO")
+p _array #["ICHIRO", "JIRO", "TARO"]
 ```
 
-### 追加（先頭）
+### 追加（指定位置）
 ```
-<script>
-    var _array = ["ICHIRO", "JIRO"];
-    _array.unshift("TARO"); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
-</script>
+#test.rb
+_array = ["ICHIRO", "JIRO"]
+_array.insert(0,"TARO") #先頭（0）〜最後（配列.size）まで指定可能
+p _array #["TARO", "ICHIRO", "JIRO"]
 ```
 
 ### 更新（任意の値）
 ```
-<script>
-    var _array = ["TAKASHI", "ICHIRO", "JIRO"];
-    _array[0] = "TARO"; //0番目を変更する場合
-    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
-</script>
+#test.rb
+_array = ["TAKASHI", "ICHIRO", "JIRO"]
+_array[0] = "TARO" #0番目を変更する場合
+p _array #["TARO", "ICHIRO", "JIRO"]
 ```
 
-### 更新（null 値）
+### 更新（nil 値）
 ```
-<script>
-    var _array = ["TARO", "ICHIRO", "JIRO"];
-    _array[0] = null;
-    console.log(_array); //[null, "ICHIRO", "JIRO"]
-</script>
-```
-
-### 削除（最後）
-```
-<script>
-    var _array = ["ICHIRO", "JIRO", "TARO"];
-    console.log(_array.pop()); //"TARO"（削除した要素を返す）
-    console.log(_array); //["ICHIRO", "JIRO"]
-</script>
+#test.rb
+_array = ["TAKASHI", "ICHIRO", "JIRO"]
+_array[0] = nil
+p _array #[nil, "ICHIRO", "JIRO"]
 ```
 
-### 削除（最初）
+### 削除（指定の要素）
+* 構文
 ```
-<script>
-    var _array = ["TARO", "ICHIRO", "JIRO"];
-    console.log(_array.shift()); //"TARO"（削除した要素を返す）
-    console.log(_array); //["ICHIRO", "JIRO"]
-</script>
+配列.delete(削除する要素) #指定の要素を全て削除
 ```
 
-### 削除（○番目から□個）
+* 例文
 ```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.splice(3, 2)); //["03", "04"]
-    console.log(_array) //["00", "01", "02", "05"]
-</script>
-```
-
-### 削除（○番目から全て）
-```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.splice(3)); //["03", "04", "05"]
-    console.log(_array) //["00", "01", "02"]
-</script>
+#test.rb
+_array = ["ICHIRO", "JIRO", "TARO"]
+_array.delete("TARO")
+p _array #["ICHIRO", "JIRO"]
 ```
 
-### 抽出（○番目から□番目）
+### 削除（指定の位置）
+* 構文
 ```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.slice(2, 4)); //["02", "03"]（4番目は含まず）
-    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
-</script>
+配列.delete_at(インデックス番号) #指定のインデックス番号の要素を削除
 ```
 
-### 抽出（○番目から全て）
+* 例文
 ```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.slice(2)); //["02", "03", "04", "05"]
-    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
-</script>
-```
-
-### 検索(前から）
-* 第2引数番目から、後ろに向かって検索（最初に見つかったインデックス番号を返す）
-```
-<script>
-    var _array = ["A", "B", "C", "D", "E", "F", "D"];
-    console.log(_array.indexOf("D", 0)); //3（見つからない場合「-1」を返す）
-</script>
+#test.rb
+_array = ["ICHIRO", "JIRO", "TARO"]
+_array.delete_at(0) #先頭を削除する場合
+#_array.delete_at(_array.size-1) #最後を削除する場合
+p _array #["JIRO", "TARO"]
 ```
 
-### 検索（後ろから）
-* 第2引数番目から、前に向かって検索（最初に見つかったインデックス番号を返す）
+### 削除（○〜○番目）
+* 構文
 ```
-<script>
-    var _array = ["A", "B", "C", "D", "E", "F", "D"];
-    console.log(_array.lastIndexOf("D")); 
-    //6（第2引数を省略すると _array.length と同じ）
-</script>
+配列.slice!(開始インデックス..終了インデックス) #削除した値を返します
+```
+
+* 例文
+```
+#test.rb
+_array = ["00", "01", "02", "03", "04", "05"]
+_array.slice!(1..4) #1〜4番目を削除する場合
+p _array #["00", "05"]
+```
+
+### 抽出（○〜○番目）
+* 構文
+```
+配列[開始インデックス..終了インデックス] #終了番目は含まない
+```
+
+* 例文
+```
+#test.rb
+_array = ["00", "01", "02", "03", "04", "05"]
+p _array[1..5] #["01", "02", "03", "04", "05"]
+```
+
+### 検索(ヒットしたか否か）
+* 構文
+```
+配列.include?(検索する値)
+```
+
+* 例文
+```
+#test.rb
+_array = ["A", "B", "C", "D", "E", "F", "D"]
+puts(_array.include?("D")) #true（見つからなければfalse）
+```
+
+### 検索(ヒット位置）
+* 構文
+```
+配列.index(検索する値)
+```
+
+* 例文
+```
+#test.rb
+_array = ["A", "B", "C", "D", "E", "F", "D"]
+puts(_array.index("D")) #3（見つからない場合、（nil））
+```
+
+### 検索（ヒット数）
+* 構文
+```
+配列.count(検索する値)
+```
+
+* 例文
+```
+#test.rb
+_array = ["A", "C", "B", "C", "A", "C"]
+puts(_array.count("C")) #3（見つからなければ0）
 ```
 
 ### 並べ替え（反転）
+* 構文
 ```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.reverse()); //["05", "04", "03", "02", "01", "00"]
-    console.log(_array) //["05", "04", "03", "02", "01", "00"]（元配列も変更）
-</script>
+配列.reverse!()
+```
+
+* 例文
+```
+#test.rb
+_array = ["00", "01", "02", "03", "04", "05"]
+_array.reverse!()
+p _array #["05", "04", "03", "02", "01", "00"]
 ```
 
 ### 並べ替え（ソート）
+* 構文
 ```
-<script>
-    var _array = ["C", "02", "A", "01", "03", "B"];
-    console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
-    console.log(_array) //["01", "02", "03", "A", "B", "C"]（元配列も変更）
-</script>
+配列.sort!()
+```
+
+* 例文
+```
+#test.rb
+_array = ["C", "02", "A", "01", "03", "B"]
+_array.sort!()
+p _array #["01", "02", "03", "A", "B", "C"]
 ```
 
 ### 結合
+* 構文
 ```
-<script>
-    var _array1 = ["A", "B", "C"];
-    var _array2 = ["D", "E", "F"];
-    var _array3 = _array1.concat(_array2);
-    console.log(_array3) //["A", "B", "C", "D", "E", "F"]
-</script>
+配列①.concat(追加する配列②) #配列①の末尾に配列②を結合
+```
+
+* 例文
+```
+#test.rb
+_array1 = ["A","B","C"]
+_array2 = ["D","E","F"]
+_array1.concat(_array2)
+p _array1 #["A", "B", "C", "D", "E", "F"]
 ```
 
 ### 複製
+* 構文
 ```
-<script>
-    var _original = ["A", "B", "C"];
-    var _copy = _original.concat(); //複製
+変数 = コピー元の配列.dup
+```
 
-    //実験（参照コピーではなく複製されているか否か）
-    _original[0] = "あ";
-    console.log(_original[0], _copy[0]); //"あ" "A"（参照コピーではない）
-</script>
+* 例文
+```
+#test.rb
+_origin = ["A", "B", "C"]
+_copy = _origin.dup
+_copy[0] = "あ" #値を変更してみる
+p _origin #["A", "B", "C"]（参照ではないことが判る）
+p _copy #["あ", "B", "C"]
 ```
 
 ### 文字列→配列
+* 構文
 ```
-<script>
-    var _string = "A,B,C,D,E,F";
-    var _array = _string.split(","); //カンマ区切りで配列化
-    console.log(_array); //["A", "B", "C", "D", "E", "F"]
-</script>
+変数 = 文字列.split("区切り文字")
+```
+
+* 例文
+```
+#test.rb
+_string = "A,B,C,D,E,F"
+_array = _string.split(",") #カンマ区切り「,」で分割して配列化
+p _array #["A", "B", "C", "D", "E", "F"]
 ```
 
 ### 全要素を取り出す
+* for 文を使う場合
 ```
-<script>
-    var _array = ["A", "B", "C", "D", "E", "F"];
-    _array.forEach(function(arg) {
-        console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
-    });
-</script>
+#test.rb
+_array = ["A", "B", "C", "D", "E", "F"]
+for tmp in _array do
+    puts(tmp) #"A"→"B"→"C"→"D"→"E"→"F"
+end
 ```
-* for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
-作成者：Takashi Nishimura  
-作成日：2017年03月21日  
-
-
-<a name="配列（Set）"></a>
-# <b>配列（Set）</b>
-
-* 配列（Array）と異なりデータの重複ができない
+* each メソッドを使う場合
 ```
-<script>
-    //①作成
-    var _set = new Set();
-
-    //②データの追加
-    _set.add("ICHIRO");
-    _set.add("JIRO");
-
-    //参考：既存データの追加
-    _set.add("ICHIRO"); //無視される
-
-    //③データの数
-    console.log(_set.size); //2
-
-    //④全てのデータの取得
-    for (let _data of _set) {
-        console.log(_data);
-        //"ICHIRO"
-        //"JIRO"
-    }
-
-    //⑤データがあるか否か
-    console.log(_set.has("TARO")); //false
-    console.log(_set.has("ICHIRO")); //true
-
-    //⑥データの削除
-    _set.delete("ICHIRO");
-</script>
+#test.rb
+_array = ["A", "B", "C", "D", "E", "F"]
+_array.each do |tmp|
+    puts(tmp) #"A"→"B"→"C"→"D"→"E"→"F"
+end
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月07日  
 
 
-<a name="連想配列（Object）"></a>
-# <b>連想配列（Object）</b>
+<a name="連想配列（Hash）"></a>
+# <b>連想配列（Hash）</b>
 
 ```
 <script>
@@ -1820,52 +1830,6 @@ end
     //name : Takashi Nishimura
     //age : 49
     //hello : function() {...
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
-
-
-<a name="連想配列（Map）"></a>
-# <b>連想配列（Map）</b>
-
-### [Object](http://bit.ly/2nkyLU0) との違い
-1. キーに文字列以外でも使える
-1. データの個数を調べるプロパティが用意されている
-1. Object オブジェクトを継承していない（クリーンな連想配列の生成が可能）
-
-### 例文
-```
-<script>
-    //①作成
-    var _map = new Map();
-
-    //②データの追加
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
-
-    //③データの数
-    console.log(_map.size); //2
-
-    //④データの取得
-    console.log(_map.get("RYOMA")); //"1836-01-03"
-    console.log(_map.get("YUKICHI")); //"1835-01-10"
-
-    //⑤全てのデータの取得
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //"RYOMA" "1836-01-03"
-        //"YUKICHI" "1835-01-10"
-    }
-
-    //⑥データがあるか否か
-    console.log(_map.has("SHINSAKU")); //false
-    console.log(_map.has("RYOMA")); //true
-
-    //⑦データの削除
-    _map.delete("RYOMA");
 </script>
 ```
 
