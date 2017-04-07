@@ -1434,6 +1434,7 @@ end
 
 ### 例文
 ```
+#test.rb
 (0..9).each do |i| #←範囲オブジェクトの場合
     puts(i) #0,1,2,3,4,5,6,7,8,9
 end
@@ -1447,6 +1448,7 @@ end
 ### each メソッドのネスト
 * ループ制御変数には i, j, k が使われる
 ```
+#test.rb
 (1..5).each do |i|
     (1..5).each do |j|
         puts("x" + i.to_s + "y" + j.to_s) #x1y1,x1y2,....,x5y4,x5y5
@@ -1457,6 +1459,7 @@ end
 ### next 文 ≒ continue 文
 * ループカウンタを○つずつアップする
 ```
+#test.rb
 (1..50).each do |i|
     if (i % 5)!=0 then
         next #以降処理せず、for文のブロックの先頭に戻って再度繰返す
@@ -1467,6 +1470,7 @@ end
 
 ### 無限ループと break 文
 ```
+#test.rb
 _count = 0
 (0..9e9).each do |i| #ほぼ無限ループ（厳密な無限にはloop文等を使用）
     _count += 1
