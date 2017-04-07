@@ -25,9 +25,9 @@
 * [each メソッド](#eachメソッド)
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
-***
 * [連想配列（Hash）](#連想配列（Hash）)
-* [this](#this)
+***
+* [self](#self) ≒ this
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
@@ -1800,46 +1800,54 @@ end
 <a name="連想配列（Hash）"></a>
 # <b>連想配列（Hash）</b>
 
+### 作成
+1. 変数名 = {"キー①"=>値①, "キー②"=>値②}  
+    ※ {キー①:値①, キー②:値②} と同じ
+1. 変数名 = Hash.new ←空のハッシュの作成
+
+### 追加･更新
 ```
-<script>
-    //①作成
-    var _object = new Object();
-    //他にも {プロパティ名①:値, プロパティ名②:値} という方法もある
+#test.rb
+_hash = {"A"=>"あ", "I"=>"い"}
+_hash["U"] = "う"
+puts(_hash) #{"A"=>"あ", "I"=>"い", "U"=>"う"}（存在する場合更新）
+```
 
-    //②プロパティの追加（更新も同じ方法）
-    _object.name = "Takashi Nishimura";
-    _object.age = 49;
+### 取得
+```
+#test.rb
+_hash = {"A"=>"あ", "I"=>"い", "U"=>"う"}
+puts(_hash["A"]) #"あ"
+```
 
-    //③関数の追加
-    _object.hello = function() {
-        return "Hello! How are you?";
-    }
+### 削除
+```
+#test.rb
+_hash = {"A"=>"あ", "I"=>"い", "U"=>"う"}
+_hash.delete("U")
+puts(_hash) #{"A"=>"あ", "I"=>"い"}
+```
 
-    //④プロパティの参照
-    console.log(_object.name); //"Takashi Nishimura"
-    console.log(_object["name"]); //配列演算子[]を使うことも可能
-    console.log(_object.age); //49
+### キーの検索
+```
+#test.rb
+_hash = {"A"=>"あ", "I"=>"い", "U"=>"う"}
+puts(_hash.key?("A") ) #任意のキーがあるか否か（true／false）
+```
 
-    //⑤関数の実行
-    console.log(_object.hello()); //"Hello! How are you?"
-
-    //⑥全ての要素の取得
-    for (let _propName in _object) {
-        console.log(_propName + " : " + _object[_propName]);
-    }
-    //name : Takashi Nishimura
-    //age : 49
-    //hello : function() {...
-</script>
+### 要素数
+```
+#test.rb
+puts({"A"=>"あ", "I"=>"い", "U"=>"う"}.size) #3
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月07日
 
 
-<a name="this"></a>
-# <b>this</b>
+<a name="self"></a>
+# <b>self</b> ≒ this
 
 ### トップレベルの this
 ```
