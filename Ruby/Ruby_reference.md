@@ -1049,7 +1049,7 @@ _myClass.rect(endX:100, endY:100) #面積:10000m2（デフォルト値付との�
 # <b>匿名関数（ラムダ式）</b>
 
 ### 概要
-* [Proc クラス](https://docs.ruby-lang.org/ja/latest/class/Proc.html)
+* 実態は [Proc クラス](https://docs.ruby-lang.org/ja/latest/class/Proc.html)
 * Proc オブジェクトの生成には、Proc.new メソッドか Proc メソッド、または lambda メソッドを使用するが、ここでは ->(ブロック変数){処理} という方法を紹介
 
 ### ラムダ式による基本構文
@@ -1083,11 +1083,12 @@ puts(_kakezan.call(9,9)) #81
 ```
 
 ### 注意
-* Procオブジェクトと通常のメソッドとの入れ替えは不可）
+* Procオブジェクトと通常のメソッドとの入れ替えは不可
 ```
 def hoge()
    puts("ほげ")
 end
+
 hoge() #"ほげ"
 _piyo = hoge #"ほげ" ←hoge()を実行したことになってしまう
 puts(_piyo) #←nil
