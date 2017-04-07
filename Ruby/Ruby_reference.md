@@ -21,8 +21,8 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [case 文](#case文) ≒ switch 文
-***
 * [for 文](#for文)
+***
 * [each メソッド](#eachメソッド)
 * [while文](#while文)
 * [配列（Array）](#配列（Array）)
@@ -1472,63 +1472,6 @@ for (変数名 in 配列等) {
     for (let _propName in _object) {
         console.log(_propName); //name→age
         console.log(_object[_propName]); //"Takashi Nishimura" → 49
-    }
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
-作成者：Takashi Nishimura  
-作成日：2017年03月21日  
-
-
-<a name="for...of文"></a>
-# <b>for...of 文</b>
-
-### 一次元配列（Array）の場合
-```
-<script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _data of _array) {
-        console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
-    }
-</script>
-```
-
-### 二次元配列（Array）の場合
-```
-<script>
-    var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
-    ];
-    for (let _theArray of _array) {
-        console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-    }
-</script>
-```
-
-### 配列（Set）の場合
-```
-<script>
-    var _set = new Set();
-    _set.add("TARO");
-    _set.add("HANAKO");
-    for (let _data of _set) {
-        console.log(_data); //"TARO"→"HANAKO"
-    }
-</script>
-```
-
-### 連想配列（Map）の場合
-```
-<script>
-    var _map = new Map();
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //"RYOMA" "1836-01-03
-        //"YUKICHI" "1835-01-10"
     }
 </script>
 ```
