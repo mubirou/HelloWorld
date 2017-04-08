@@ -324,7 +324,7 @@ puts(_rectangle.getArea()) #2073600（()は省略可）
 # スーパークラス
 #================
 class SuperClass
-    @pSuperClass #インスタンス変数の宣言（省略可）←…派生クラスでも利用可能
+    @pSuperClass #インスタンス変数の宣言（省略可）←派生クラスでも利用可能
     def initialize() #コンストラクタ
         @pSuperClass = "スーパークラスの変数"
     end
