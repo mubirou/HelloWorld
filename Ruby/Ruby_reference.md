@@ -27,8 +27,8 @@
 * [配列（Array）](#配列（Array）)
 * [連想配列（Hash）](#連想配列（Hash）)
 * [self](#self) ≒ this
-***
 * [文字列の操作](#文字列の操作)
+***
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
@@ -1882,67 +1882,119 @@ MyMethod() #main
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### 文字列の生成
+### Stringクラスのオブジェクト作成
 ```
-var 変数 = new String("xxx"); //object型
-var 変数 = "xxx"; //string型
+変数 = "○○"
+変数 = '○○' ←ダブルクォーテーション（""）と同じ
+変数 = "○○\n○○" ←\nで改行
 ```
-* 上記2つは厳密には異なるが通常は意識する必要はない
+* 他にも方法あり
 
-### 文字列の長さを調べる
+### 連結
+* 構文
 ```
-<script>
-    var _string = "ABCDE";
-    console.log(_string.length); //5
-</script>
+文字列① + 文字列②
+文字列① << 文字列② ←既にある文字列①に文字列②に追加する場合
+```
+
+* 例文
+```
+#test.rb
+_string1 = "ABC"
+_string2 = "DEF"
+_string1 += _string2 #_string1 = _string1 + _string2 と同じ
+puts(_string1) #"ABCDEF"
+```
+
+### 長さを調べる
+```
+#test.rb
+_string1 = "ABCDE"
+puts(_string1.size) #5
+
+_string2 = "あいうえお"
+puts(_string2.size) #5（全角文字も１字扱い）
 ```
 
 ### 一部分を取得
+* 構文
 ```
-<script>
-    var _string = "0123456789";
-    console.log(_string.substr(0, 1)); //"0" ←0文字目（先頭）〜1文字取得
-    console.log(_string.substr(-1, 1)); //"9" ←後ろから1文字目〜1文字取得
-    console.log(_string.substr(4)); //"456789" ←4文字目（0から開始）〜全て取得
-    console.log(_string.substr(4, 3)); //"456" ←4文字目（0から開始）〜3文字取得
-</script>
+文字列[番号] ←0〜len(文字列)
+文字列[開始,文字数])
+```
+
+* 例文
+```
+#test.rb
+_string = "0123456789"
+puts(_string[4]) #"4"（4文字目を取得）
+puts(_string[4,3]) #"456"（4文字目〜3文字取得）
+puts(_string[4,9e9]) #"456789" ←9e9にすればほぼ間違いなく全部を取得可能
+```
+
+### 一部分を削除
+* 構文
+```
+文字列.delete!('削除する文字列')
+文字列.delete('削除する文字列') #元は変化なし
+```
+
+* 例文
+```
+#test.rb
+_string = "ABCDCBA"
+_string.delete!('A')
+puts(_string) #BCDCB
 ```
 
 ### 置換
+* 構文
 ```
-<script>
-    var _string = "2017年3月22日";
-    var _regExp = new RegExp("2017", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    console.log(_string.replace(_regExp, "平成29")); //平成29年3月22日
-</script>
+文字列.gsub!("置換前の文字列", "置換後の文字列")
+```
+
+* 例文
+```
+#test.rb
+_string = "2017年4月8日"
+puts(_string.gsub!("2017年","平成29年")) #平成29年4月8日
 ```
 
 ### 検索
+* 構文
 ```
-<script>
-    var _string = "ABCDEFG-ABCDEFG";
-    var _count = 0;
-    while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
-        var _num = _string.indexOf("CD", _count);
-        console.log(_num); //2,10 "CD"が見つかった場所（0から開始）を返す
-        _count = _num + 1;
-    }
-</script>
+文字列.include?(" 検索したい文字列") ←true または false
+文字列.index("検索したい文字列") ←見つからない場合はnil
+文字列.rindex("検索したい文字") ←見つからない場合はnil
 ```
-* 最後から検索する String.lastIndexOf() もあり
 
-### 文字列→配列
+* 例文
 ```
-<script>
-    var _string = "A,B,C,D,E,F";
-    var _array = _string.split(","); //カンマ区切りで配列化
-    console.log(_array); //["A", "B", "C", "D", "E", "F"]
-</script>
+#test.rb
+_string = "ABCDEFG-ABCDEFG"
+if _string.include?("CD") then #見つかった場合
+    puts(_string.index("CD")) #2（左から検索）
+    puts(_string.rindex("CD")) #10（右から検索）
+end
+```
+
+### 文字列→配列（Array）
+* 構文
+```
+文字列.split("区切り文字") または 文字列.split(/区切り文字/)
+```
+
+* 例文
+```
+#test.rb
+_string = "A,B,C,D,E,F" #「,」区切りの文字列
+_array = _string.split(",") #「,」区切りで分割して配列（Array）化
+p _array #["A", "B", "C", "D", "E", "F"]
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月8日
 
 
 <a name="正規表現"></a>
