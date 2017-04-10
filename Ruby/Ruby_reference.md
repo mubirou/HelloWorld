@@ -106,7 +106,7 @@ puts(nil) #何も表示されず
 puts(nil.class.name) #NilClass（オブジェクトが存在しない事を意味する）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日  
 
@@ -214,7 +214,7 @@ puts(_tmp.class.name) #String
 ### データ型のキャスト（ブール値への変換）
 * Rubyには特別な機能が用意されていない
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日
 
@@ -304,7 +304,7 @@ puts(_rectangle.height) #1080
 puts(_rectangle.getArea()) #2073600（()は省略可）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日  
 
@@ -393,7 +393,7 @@ _subClassB.mSuperClass() #"スーパークラスのメソッド"
 _subClassB.mSubClassB() #"サブクラスのメソッド"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日
 
@@ -451,7 +451,7 @@ _subclass.AAA() #"AAA"
 _subclass.BBB() #"SubClass.BBB"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日  
 
@@ -501,7 +501,7 @@ _classB = ClassB.new()
 _classB.myMethod() #"ClassA.myMethod"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日
 
@@ -700,7 +700,7 @@ end
 puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日
 
@@ -754,7 +754,7 @@ puts(_nishimura.age) #49
 #_nishimura.age = 49 #エラー（変更不可）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日
 
@@ -806,7 +806,7 @@ puts(2 << 7) #256（ビット･シフト）
 puts(~3) #-4（ビット反転）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日
 
@@ -852,7 +852,7 @@ _myClass = MyClass.new()
 #puts(_myClass.MY_NAME) #エラー（アクセス不可）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日
 
@@ -1036,7 +1036,7 @@ _myClass = MyClass.new()
 _myClass.rect(endX:100, endY:100) #面積:10000m2（デフォルト値付との併用）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月06日  
 
@@ -1092,7 +1092,7 @@ puts(_piyo) #（nil）
 _piyo() #エラー
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1144,7 +1144,7 @@ MyClass.PI = 3.14 #変更も可能
 puts(MyClass.PI) #3.14
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日  
 
@@ -1258,7 +1258,7 @@ end
     end
     ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1305,7 +1305,7 @@ puts(test(49)) #"現役"
 puts(test(89)) #"退職"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1359,7 +1359,7 @@ else
 end
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日  
 
@@ -1373,11 +1373,11 @@ end
 ### 例文
 ```
 #test.rb
-for i in 0..9 do #←範囲オブジェクトの場合
+for i in 0..9 do #範囲オブジェクトの場合
     puts(i) #0→1→2→...→8→9
 end
 
-for tmp in ["A","B","C"] do #←配列（Array）の場合
+for tmp in ["A","B","C"] do #配列（Array）の場合
     puts(tmp) #"A"→"B"→"C"
 end
 ```
@@ -1419,7 +1419,7 @@ for i in 0..9e9 do #ほぼ無限ループ（厳密な無限にはloop文等を�
 end
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1433,11 +1433,11 @@ end
 ### 例文
 ```
 #test.rb
-(0..9).each do |i| #←範囲オブジェクトの場合
+(0..9).each do |i| #範囲オブジェクトの場合
     puts(i) #0,1,2,3,4,5,6,7,8,9
 end
 
-["A","B","C"].each do |tmp| #←配列（Array）の場合
+["A","B","C"].each do |tmp| #配列（Array）の場合
     puts(tmp) #"A"→"B"→"C"
 end
 ```
@@ -1479,7 +1479,7 @@ _count = 0
 end
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1518,7 +1518,7 @@ _count = 0
 while true #ループ判別式をtrueにすると無限ループに!
   _count += 1
   if _count > 100 then
-    break #←ループを終了
+    break #ループを終了
   end
   puts(_count) #1,2,....,99,100
 end
@@ -1532,14 +1532,14 @@ _i = 1
 while (_i <= 20)
   if ((_i % 3) != 0) #3で割って余りが0でない（＝3の倍数ではない）場合
     _i += 1
-    next #←while文の残処理をスキップしてwhile文の次の反復を開始する
+    next #while文の残処理をスキップしてwhile文の次の反復を開始する
   end
   puts(_i) #3,6,9,12,15,18 ←3の倍数
   _i += 1
 end
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1792,7 +1792,7 @@ _array.each do |tmp|
 end
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日  
 
@@ -1841,7 +1841,7 @@ puts(_hash.key?("A") ) #任意のキーがあるか否か（true／false）
 puts({"A"=>"あ", "I"=>"い", "U"=>"う"}.size) #3
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1874,7 +1874,7 @@ end
 MyMethod() #main
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月07日
 
@@ -1991,7 +1991,7 @@ _array = _string.split(",") #「,」区切りで分割して配列（Array）化
 p _array #["A", "B", "C", "D", "E", "F"]
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月8日
 
@@ -2087,7 +2087,7 @@ _subClass.common() #"共通のメソッド"
 _subClass.abstractMethod() #"派生クラスでオーバーライドした抽象メソッド"
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年04月10日
 
@@ -2095,43 +2095,52 @@ _subClass.abstractMethod() #"派生クラスでオーバーライドした抽象
 <a name="superキーワード"></a>
 # <b>super キーワード</b>
 
+### 書式
 ```
-<script>
-    //スーパークラス
-    class SuperClass {
-        constructor(arg) { //コンストラクタ
-            console.log("SuperClass.constructor : " + arg);
-        }
-        methodSuper(arg) {
-            console.log("SuperClass.methodSuper : " + arg);
-        }
-    }
+lass スーパークラス
+  def initialize(引数) #コンストラクタ
+  end
+  def メソッド(引数)
+  end
+end
 
-    //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        constructor() { //コンストラクタ
-            //↓スーパークラスのコンストラクタの呼び出し（必須）
-            super("from SubClass");
-            //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
-        }
-        methodSub() {
-            //↓スーパークラスのメソッドを呼び出すことが可能
-            super.methodSuper("from SubClass");
-        }
-    }
-
-    //実行
-    var _subClass = new SubClass(); 
-    //=> "SuperClass.constructor : from SubClass"
-
-    _subClass.methodSub(); 
-    //=>"SuperClass.methodSuper : from SubClass"
-</script>
+class サブクラス < スーパークラス
+  def initialize(引数) #コンストラクタ
+    super(引数) #スーパークラスのコンストラクタを呼び出す
+  end
+  def メソッド(arg)
+    super(引数) #スーパークラスの同名のメソッドを呼び出す
+  end
+end
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+### 例文
+```
+class SuperClass #スーパークラス
+  def initialize(arg) #コンストラクタ
+    puts("スーパークラスのコンストラクタ:" + arg)
+  end
+  def hoge(arg)
+    puts("スーパークラスのhoge():" + arg)
+  end
+end
+
+class SubClass < SuperClass
+  def initialize() #コンストラクタ
+    super("派生クラスからの呼び出し") #スーパークラスのコンストラクタを呼び出す
+  end
+  def hoge(arg)
+    super(arg) #スーパークラスの同名メソッドを呼び出す（PythonやJSと異なる）
+  end
+end
+
+_subClass = SubClass.new() #サブクラスのインスタンス生成
+_subClass.hoge("派生クラスからの呼び出し")
+```
+
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月10日
 
 
 <a name="オーバーライド"></a>
@@ -2168,7 +2177,7 @@ _subClass.abstractMethod() #"派生クラスでオーバーライドした抽象
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2218,7 +2227,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2339,7 +2348,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2390,7 +2399,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2432,7 +2441,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2534,7 +2543,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2568,7 +2577,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
 
@@ -2609,6 +2618,6 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
     * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2017年03月22日  
