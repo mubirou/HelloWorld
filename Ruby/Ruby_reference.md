@@ -2526,36 +2526,50 @@ _loop.start()
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### Dateオブジェクトを使う方法
+### Time.nowを使う方法
 ```
-<script>
-    var _start = new Date().getTime(); //1970年からの経過時間（ミリ秒）
-    for (let i = 0; i < 1000000000; i++) { //10億回繰返す
-        //速度計測したい処理
-    }
-    var _end = new Date().getTime();
-    console.log(_end - _start); //3643（ミリ秒）
-</script>
+#test.rb
+_start = Time.now #計測開始
+
+for i in 1 .. 100000000 do #1億回繰返す場合
+  #速度計測したい処理（今回は何もしない）
+end
+
+_result = Time.now - _start #計測終了
+puts(_result) #3.017383659（秒）
 ```
 
-### console.time() を使う方法
-* 処理時間の計測に利用可能（推奨）
-* ページ毎に10000個のタイマーが使用可能
-* 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数として console.timeEnd() を実行することで経過時間が出力
-    ```
-    <script>
-        console.time("timerA");
-        for (let i = 0; i < 1000000000; i++) { //10億回繰返す
-            //速度計測したい処理
-        }
-        console.timeEnd("timerA"); //"timerA: 3628.869ms"
-    </script>
-    ```
+### Benchmarkライブラリーを使う方法
+```
+#test.rb
+require "benchmark"
+
+Benchmark.bm 10 do |r| #決め打ちで良い
+  r.report "実験①" do
+    #速度計測したい処理①
+    for i in 1 .. 100000000 do #1億回繰返す場合
+      2*2*2*2 #速度計測の比較をしたい処理①
+    end
+  end
+  r.report "実験②" do
+    # (計測したい処理その2)
+    for i in 1 .. 100000000 do #1億回繰返す場合
+      2**4 #速度計測の比較をしたい処理①
+    end
+  end
+end
+
+=begin
+                 user     system      total        real
+実験①          7.430000   0.000000   7.430000 (  7.430777)
+実験②          6.350000   0.000000   6.350000 (  6.348675) こちらが高速
+=end
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月0X日  
-更新日：2017年03月22日
+作成日：2016年07月09日  
+更新日：2017年04月10日
 
 
 
