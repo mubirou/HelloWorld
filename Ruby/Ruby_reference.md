@@ -2063,7 +2063,7 @@ p _string #"よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3 
-作成者：Takashi Nishimura 
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月10日
 
