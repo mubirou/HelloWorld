@@ -2297,8 +2297,6 @@ puts(Math.cos(Math::PI*2)) #1.0 ←360°
 * Π ラジアン（3.141592…）は180°
 ```
 #test.rb
-```
-#test.rb
 #横と縦の長さがわかっている直角三角形の角度Ａを調べるメソッド
 def getKakudo(w, h)
   _radian = Math.atan2(h, w) #単位：ラジアン
