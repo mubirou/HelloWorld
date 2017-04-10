@@ -546,7 +546,7 @@ class MyClass(object):
 myClass_ = MyClass()
 myClass_.myMethod() #"グローバル変数③"
 
-print(global_) #"グローバル変数③" ←…クラス内（または関数内）での変更が反映される
+print(global_) #"グローバル変数③" ←クラス内（または関数内）での変更が反映される
 ```
 
 <a name="パブリック変数"></a>
@@ -580,7 +580,7 @@ class MyClass(object):
 
     #コンストラクタ
     def __init__(self):
-        self.__p = "プライベート変数"
+        self.__p = "プライベート変数①"
 
     #-------------------------------------------------
     # プライベート変数へのアクセス用（getter/setter）
@@ -592,56 +592,57 @@ class MyClass(object):
     p = property(__getP, __setP) #プロパティを設定
 
 myClass_ = MyClass()
-print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行為）
+print(myClass_.p) #プライベート変数①（≠他人の変数を勝手にいじる行為）
 myClass_.p = "プライベート変数②"
 print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行為）
 ```
 
 <a name="プライベート変数"></a>
 ### ローカル変数
-* 関数内で宣言する場合
-```
-#test.py
-def myFunction1():
-    local_ = "ローカル変数" #この関数内でのみ利用可能!!
+1. 関数内で宣言する場合
+    ```
+    #test.py
+    def myFunction1():
+        local_ = "ローカル変数" #この関数内でのみ利用可能!!
 
-def myfunction2():
-    #print(local_) #ERROR（アクセス不可）
-    pass
-
-myFunction1()
-myfunction2()
-#print(local_) #ERROR（アクセス不可）
-```
-
-* クラスの関数内で宣言する場合
-```
-#test.py
-class MyClass(object):
-    def myMethod1(self): #selfは必須
-        local_ = "ローカル変数" #self.は付けない（付けるとパブリック変数扱い）
-        print(local_) #この関数内でのみ利用可能!!
-    def myMethod2(self): #selfは必須
+    def myfunction2():
         #print(local_) #ERROR（アクセス不可）
         pass
 
-myClass_ = MyClass()
-myClass_.myMethod1()
-myClass_.myMethod2()
-#print(myClass_.local_) #ERROR（アクセス不可）
-```
+    myFunction1()
+    myfunction2()
+    #print(local_) #ERROR（アクセス不可）
+    ```
 
-* for文内で宣言する場合
-#test.py
-class MyClass(object):
-    def __init__(self): #コンストラクタ
-        i_ = 999 #ローカル変数
-        for i_ in range(6): #ローカル変数（i_）0〜5
-            print(i_) #0、1、2、...、5
-        print(i_) #5（for文を出ても関数内であればアクセス可能）
+1. クラスの関数内で宣言する場合
+    ```
+    #test.py
+    class MyClass(object):
+        def myMethod1(self): #selfは必須
+            local_ = "ローカル変数" #self.は付けない（付けるとパブリック変数扱い）
+            print(local_) #この関数内でのみ利用可能!!
+        def myMethod2(self): #selfは必須
+            #print(local_) #ERROR（アクセス不可）
+            pass
 
-myClass_ = MyClass()
-```
+    myClass_ = MyClass()
+    myClass_.myMethod1()
+    myClass_.myMethod2()
+    #print(myClass_.local_) #ERROR（アクセス不可）
+    ```
+
+1. for文内で宣言する場合
+    ```
+    #test.py
+    class MyClass(object):
+        def __init__(self): #コンストラクタ
+            i_ = 999 #ローカル変数
+            for i_ in range(6): #ローカル変数（i_）0〜5
+                print(i_) #0、1、2、...、5
+            print(i_) #5（for文を出ても関数内であればアクセス可能）
+
+    myClass_ = MyClass()
+    ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
