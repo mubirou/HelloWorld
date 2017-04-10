@@ -14,7 +14,7 @@
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |実行エンジン|Python 3.5.2|2016年06月|
-|エディタ|Visual Studio Code 1.11.1|2017年04月|
+|エディタ|Visual Studio Code 1.9.1|2017年01月|
 |拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.8|2017年02月|
 
 1. 端末でバージョン確認  
