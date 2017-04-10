@@ -2097,7 +2097,7 @@ _subClass.abstractMethod() #"派生クラスでオーバーライドした抽象
 
 ### 書式
 ```
-lass スーパークラス
+class スーパークラス
   def initialize(引数) #コンストラクタ
   end
   def メソッド(引数)
