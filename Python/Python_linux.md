@@ -16,7 +16,7 @@
 |実行エンジン|Python 3.5.2|2016年06月|
 |エディタ|Visual Studio Code 1.11.1|2017年04月|
 |拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.8|2017年02月|
-|拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.8|2017年02月|[Python for VSCode](https://marketplace.visualstudio.com/items?itemName=tht13.python) 0.2.3|
+|拡張機能|[Python for VSCode](https://marketplace.visualstudio.com/items?itemName=tht13.python) 0.2.3|2016年02月
 
 1. 端末でバージョン確認  
     $ python --version  
