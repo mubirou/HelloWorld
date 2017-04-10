@@ -10,8 +10,8 @@
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -463,50 +463,46 @@ print(_tokyo.name) #nishimura
 
 ### 概要
 *  GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は「class サブクラス <b>< スーパークラス</b>」を使い、委譲の場合は <b>クラス.new()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
+* 継承の場合は <b>class 派生クラス名(基本クラス名):</b> を使い、委譲の場合は <b>クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
 ```
-#test.rb
-class ClassA
-    def myMethod()  #()は省略可
-        puts("ClassA.myMethod")
-    end
-end
+#test.py
+class ClassA(object):
+    def myMethod(self):
+        print("ClassA.myMethod()")
 
-class ClassB < ClassA #ClassAを継承（ポイント）
-end
+class ClassB(ClassA): #クラスＡを継承（ポイント）
+    pass
 
-_classB = ClassB.new()
-_classB.myMethod() #"ClassA.myMethod"
+classB_ = ClassB()
+classB_.myMethod() #ClassA.myMethod()
 ```
 
 ### 委譲版
 ```
-#test.rb
-class ClassA
-    def myMethod()  #()は省略可
-        puts("ClassA.myMethod")
-    end
-end
+#test.py
+class ClassA(object):
+    def myMethod(self):
+        print("ClassA.myMethod()")
 
-class ClassB
-    def initialize() #コンストラクタ
-        @classA = ClassA.new() #ClassAのインスタンスを変数に格納（ポイント）
-    end
-    def myMethod()
-        @classA.myMethod()
-    end
-end
+class ClassB(): #この内容のみ継承と異なる
+    __classA = None #プライベート変数の宣言（省略可）
 
-_classB = ClassB.new()
-_classB.myMethod() #"ClassA.myMethod"
+    def __init__(self): #コンストラクタ
+        self.__classA = ClassA() #クラスＡのインスタンスを生成（ポイント）
+
+    def myMethod(self):
+        self.__classA.myMethod()
+
+classB_ = ClassB()
+classB_.myMethod() #ClassA.myMethod()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月05日  
-更新日：2017年04月06日
+作成日：2016年06月21日  
+更新日：2017年04月10日
 
 
 <a name="変数とスコープ"></a>
