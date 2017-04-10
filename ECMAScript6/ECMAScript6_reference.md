@@ -123,7 +123,8 @@ console.log(typeof _symbol); //"symbol"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2016年09月14日  
+更新日：2017年03月17日
 
 
 <a name="データ型の操作"></a>
@@ -223,7 +224,8 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2016年09月14日  
+更新日：2017年03月17日  
 
 
 <a name="クラス"></a>
@@ -279,7 +281,8 @@ console.log(_rectangle.getArea()); //2073600
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2016年09月14日  
+更新日：2017年03月17日
 
 
 <a name="スーパークラスとサブクラス"></a>
@@ -375,7 +378,8 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2016年09月14日  
+更新日：2017年03月17日  
 
 
 <a name="名前空間"></a>
@@ -452,7 +456,8 @@ new MyClass(); //"コンフリクトを起こさない!"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月17日  
+作成日：2017年02月01日  
+更新日：2017年03月17日
 
 
 <a name="継承と委譲"></a>
@@ -507,7 +512,8 @@ new MyClass(); //"コンフリクトを起こさない!"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月19日
+作成日：2016年09月15日  
+更新日：2017年03月19日
 
 
 <a name="変数とスコープ"></a>
@@ -668,7 +674,8 @@ new MyClass(); //"コンフリクトを起こさない!"
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2016年09月15日  
+更新日：2017年03月21日
 
 
 <a name="アクセサ"></a>
@@ -726,7 +733,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2016年09月16日  
+更新日：2017年03月21日
 
 
 <a name="演算子"></a>
@@ -801,7 +809,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日
+作成日：2016年09月16日  
+更新日：2017年03月21日
 
 
 <a name="定数"></a>
@@ -847,7 +856,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月16日  
+更新日：2017年03月21日  
 
 
 <a name="メソッド"></a>
@@ -988,7 +998,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月20日  
+更新日：2017年03月21日  
 
 
 <a name="匿名関数"></a>
@@ -1036,7 +1047,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月21日  
+更新日：2017年03月21日
 
 
 <a name="アロー関数"></a>
@@ -1083,7 +1095,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月21日  
+更新日：2017年03月21日
 
 
 <a name="クラス定数･変数･メソッド"></a>
@@ -1130,7 +1143,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月21日  
+更新日：2017年03月21日
 
 
 <a name="if文"></a>
@@ -1230,7 +1244,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月21日  
+更新日：2017年03月21日
 
 
 <a name="三項演算子"></a>
@@ -1282,7 +1297,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月21日  
+更新日：2017年03月21日
 
 
 <a name="switch文"></a>
@@ -1357,7 +1373,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月26日  
+更新日：2017年03月21日
 
 
 <a name="for文"></a>
@@ -1433,7 +1450,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月26日  
+更新日：2017年03月21日
 
 
 <a name="for...in文"></a>
@@ -1488,7 +1506,8 @@ for (変数名 in 配列等) {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月26日  
+更新日：2017年03月21日
 
 
 <a name="for...of文"></a>
@@ -1545,7 +1564,8 @@ for (変数名 in 配列等) {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年12月16日  
+更新日：2017年03月21日
 
 
 <a name="while文"></a>
@@ -1622,7 +1642,8 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月26日  
+更新日：2017年03月21日  
 
 
 <a name="配列（Array）"></a>
@@ -1823,7 +1844,8 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月21日  
+作成日：2016年09月27日  
+更新日：2017年03月21日
 
 
 <a name="配列（Set）"></a>
@@ -1863,7 +1885,8 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年12月16日  
+更新日：2017年03月22日
 
 
 <a name="連想配列（Object）"></a>
@@ -1904,7 +1927,8 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月28日  
+更新日：2017年03月22日
 
 
 <a name="連想配列（Map）"></a>
@@ -1950,7 +1974,8 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年12月16日  
+更新日：2017年03月22日
 
 
 <a name="this"></a>
@@ -2039,7 +2064,8 @@ do {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月28日  
+更新日：2017年03月22日
 
 
 <a name="文字列の操作"></a>
@@ -2105,7 +2131,8 @@ var 変数 = "xxx"; //string型
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月28日  
+更新日：2017年03月22日
 
 
 <a name="正規表現"></a>
@@ -2156,7 +2183,8 @@ var 変数 = "xxx"; //string型
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月28日  
+更新日：2017年03月22日
 
 
 <a name="抽象クラス"></a>
@@ -2208,7 +2236,8 @@ class 派生クラス名 extends Abstract○○ {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月29日  
+更新日：2017年03月22日
 
 
 <a name="superキーワード"></a>
@@ -2250,7 +2279,8 @@ class 派生クラス名 extends Abstract○○ {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月29日  
+更新日：2017年03月22日
 
 
 <a name="オーバーライド"></a>
@@ -2289,7 +2319,8 @@ class 派生クラス名 extends Abstract○○ {
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月29日  
+更新日：2017年03月22日
 
 
 <a name="カスタムイベント"></a>
@@ -2339,7 +2370,8 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月29日  
+更新日：2017年03月22日
 
 
 <a name="数学関数（Math）"></a>
@@ -2460,7 +2492,8 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月29日  
+更新日：2017年03月22日
 
 <a name="乱数"></a>
 # <b>乱数</b>
@@ -2511,7 +2544,8 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月30日  
+更新日：2017年03月22日
 
 
 <a name="日時情報"></a>
@@ -2553,7 +2587,8 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月30日  
+更新日：2017年03月22日
 
 
 <a name="タイマー"></a>
@@ -2655,7 +2690,8 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月30日  
+更新日：2017年03月22日
 
 
 <a name="処理速度計測"></a>
@@ -2688,8 +2724,8 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月30日  
+更新日：2017年03月22日
 
 
 
@@ -2730,4 +2766,5 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年09月30日  
+更新日：2017年03月22日
