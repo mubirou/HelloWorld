@@ -2384,42 +2384,24 @@ puts([5.01, -10, 8, 2.9].min) #-10 ←配列（Array）要素の比較
 # <b>乱数</b>
 
 ### 0〜1.0未満
-* 書式
-```
-Random.rand() ←()は省略可
-```
-
-* 例文
 ```
 #test.rb
-puts(Random.rand()) #0.5222174965949302（0〜0.999…）
+puts(Random.rand()) #0.5222174965949302（0〜0.999…）←()は省略可
 ```
 
 ### 最小値〜最大値（Fixnum型）
-* 書式
-```
-Random.rand(最小値..最大値) 
-```
-
-* 例文
 ```
 #test.rb
 puts(Random.rand(5..9)) #5 ←5〜9のいずれか（整数）
 ```
 
 ### 0〜最大値（Fixnum型）
-* 書式
-```
-Random.rand(整数) ←0〜指定値未満の整数
-```
-
-* 例文
 ```
 #test.rb
 _i0 = _i1 = _i2 = _i3 = _i4 = _i5 = _i6 = _i7 = _i8 = _i9 = 0
 
 for i in 1..10000000 do #1000万回繰り返す
-  _tmp = Random.rand(10) #0〜9の乱数
+  _tmp = Random.rand(10) #0〜9の乱数（0〜指定値未満の整数）
   case _tmp
   when 0 then _i0 += 1
   when 1 then _i1 += 1
