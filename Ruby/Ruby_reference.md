@@ -2089,6 +2089,7 @@ class 派生クラス名 < Abstract○○ #（擬似）抽象クラスを継承
 
 ### 例文
 ```
+#test.rb
 class AbstractClass #（擬似）抽象クラス
     def common() #共通のメソッド
         puts("共通のメソッド")
@@ -2141,6 +2142,7 @@ end
 
 ### 例文
 ```
+#test.rb
 class SuperClass #スーパークラス
   def initialize(arg) #コンストラクタ
     puts("スーパークラスのコンストラクタ:" + arg)
@@ -2215,7 +2217,7 @@ _subClass.myMethod()
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月08日  
-更新日：2017年03月22日
+更新日：2017年04月10日
 
 
 <a name="カスタムイベント"></a>
@@ -2263,7 +2265,7 @@ _robot.fight() #"GAME OVER"
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月08日  
-更新日：2017年03月22日
+更新日：2017年04月10日
 
 
 <a name="数学関数（Math）"></a>
@@ -2271,120 +2273,112 @@ _robot.fight() #"GAME OVER"
 
 ### Math.sin() : サイン（正弦）
 ```
-<script>
-    console.log(Math.sin(0)); //0（0°）
-    console.log(Math.sin(Math.PI / 2)); //1（90°）
-    console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
-    console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
-    console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
-</script>
+#test.rb
+puts(Math.sin(0)) #0.0 ←0°
+puts(Math.sin(Math::PI/2)) #1.0 ←90°
+puts(Math.sin(Math::PI)) #1.2246467991473532e-16（≒0） ←180°
+puts(Math.sin(Math::PI*3/2)) #-1.0 ←270°
+puts(Math.sin(Math::PI*2)) #-2.4492935982947064e-16（≒0） ←360°
 ```
 
 ### Math.cos() : コサイン（余弦）
 ```
-<script>
-    console.log(Math.cos(0)); //1（0°）
-    console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
-    console.log(Math.cos(Math.PI)); //-1（180°）
-    console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
-    console.log(Math.cos(Math.PI * 2)); //1 360°
-</script>
+#test.rb
+puts(Math.cos(0)) #1.0 ←0°
+puts(Math.cos(Math::PI/2)) #6.123233995736766e-17（≒0） ←90°
+puts(Math.cos(Math::PI)) #-1.0 ←180°
+puts(Math.cos(Math::PI*3/2)) #-1.8369701987210297e-16（≒0） ←270°
+puts(Math.cos(Math::PI*2)) #1.0 ←360°
 ```
 
 ### Math.atan2() : アークタンジェント2
+* 2つの値のアークタンジェント（逆タンジェント）
+* X、Y 座標の角度をラジアン単位で返す
+* Π ラジアン（3.141592…）は180°
 ```
-<script>
-    //三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
-    var _disX = Math.sqrt(3); //√3のこと
-    var _disY = 1;
-    console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
-    console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //30.000000000000004（度）
-</script>
+#test.rb
+```
+#test.rb
+#横と縦の長さがわかっている直角三角形の角度Ａを調べるメソッド
+def getKakudo(w, h)
+  _radian = Math.atan2(h, w) #単位：ラジアン
+  return 180 * _radian/Math::PI #単位：度
+end
+
+#三角形の各辺が 1:2:√3 の場合、2:√3 の間の角度は 30° であることを検証
+_kakudo = getKakudo(Math.sqrt(3), 1) #Math.sqrt(3)は√3のこと
+puts(_kakudo) #30.000000000000004（度）
 ```
 
-### Math.PI : 円周率
+### Math::PI : 円周率
 ```
-<script>
-    console.log(Math.PI); //3.141592653589793
-</script>
-```
-
-### Math.floor() : 切り捨て
-```
-<script>
-    console.log(Math.floor(1.001)); //1
-    console.log(Math.floor(1.999)); //1
-</script>
+#test.rb
+puts(Math::PI) #3.141592653589793（math.piラジアン=180°）
 ```
 
-### Math.ceil() : 切り上げ
+### Math.sqrt()
+* 平方根（√○）
 ```
-<script>
-    console.log(Math.ceil(1.001)); //2
-    console.log(Math.ceil(1.999)); //2
-</script>
-```
-
-### Math.round() : 四捨五入
-```
-<script>
-    console.log(Math.round(1.499)); //1
-    console.log(Math.round(1.500)); //2
-</script>
+#test.rb
+puts(Math.sqrt(2)) #1.4142135623730951（一夜一夜にひとみごろ）
+puts(Math.sqrt(3)) #1.7320508075688772（人並みに奢れや）
+puts(Math.sqrt(4)) #2.0
+puts(Math.sqrt(5)) #2.23606797749979（富士山麓オウム鳴く）
 ```
 
-### Math.abs() : 絶対値
+## Mathモジュールを使わないもの
+
+### floor : 切り捨て
 ```
-<script>
-    console.log(Math.abs(100)); //100
-    console.log(Math.abs(-100)); //100
-</script>
+#test.rb
+puts(1.001.floor) #1
+puts(1.999.floor) #1
 ```
 
-### Math.pow() : 累乗（○の□乗）
+### round() : 四捨五入
 ```
-<script>
-    console.log(Math.pow(2, 0)); //1（2の0乗）
-    console.log(Math.pow(2, 8)); //256（2の8乗）
-</script>
-```
-
-### Math.sqrt() : 平方根（√○）
-```
-<script>
-    console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
-    console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
-    console.log(Math.sqrt(4)); //2
-    console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
-</script>
+#test.rb
+puts(1.499.round(0)) #1 ←引数で小数点以下の何位を丸めるか指定可能
+puts(1.499.round(1)) #1.5
+puts(1.500.round(0)) #2
 ```
 
-### Math.max() : 比較（最大値）
+### ceil : 切り上げ
 ```
-<script>
-    console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
-</script>
-```
-
-### Math.min() : 比較（最小値）
-```
-<script>
-    console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
-</script>
+#test.rb
+puts(1.001.ceil) #2
+puts(1.999.ceil) #2
 ```
 
-### Math.sign() : 符号（正か負の値か）
+### abs : 絶対値
 ```
-<script>
-    console.log(Math.sign(-0.1)); //-1（負の値）
-    console.log(Math.sign(0)); //0（0）
-    console.log(Math.sign(0.1)); //1（正の値）
-</script>
+#test.rb
+puts(100.abs) #100.0
+puts(-100.abs) #100.0
+```
+
+### ** : 累乗（○の□乗）
+```
+#test.rb
+puts(2**0) #1（2の0乗）
+puts(2**8) #256（2の8乗）
+```
+
+### max : 比較（最大値）
+```
+#test.rb
+puts([5.01, -10, 8, 2.9].max) #8 ←配列（Array）要素の比較
+```
+
+### min : 比較（最小値）
+```
+#test.rb
+puts([5.01, -10, 8, 2.9].min) #-10 ←配列（Array）要素の比較
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月0X日  
+作成日：2016年07月09日  
 更新日：2017年03月22日
 
 <a name="乱数"></a>
