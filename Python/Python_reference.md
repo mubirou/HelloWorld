@@ -9,8 +9,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
-***
 * [名前空間](#名前空間)
+***
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
@@ -367,7 +367,7 @@ class SuperClass(object):
 # 派生クラスＡ
 # class 派生クラス(基本クラス①, 基本クラス②, …) で多重継承可能
 #=================================================================
-class SubClassA(SuperClass): #←…基本クラス（SuperClass）を継承
+class SubClassA(SuperClass): #基本クラス（SuperClass）を継承
     # 擬似プライベート変数
     __pSubClassA = "派生クラスＡのプロパティ"
 
@@ -385,7 +385,7 @@ class SubClassA(SuperClass): #←…基本クラス（SuperClass）を継承
 #==============
 # 派生クラスＢ
 #==============
-class SubClassB(SuperClass): #←…基本クラス（SuperClass）を継承
+class SubClassB(SuperClass): #基本クラス（SuperClass）を継承
     # 擬似プライベート変数
     __pSubClassB = "派生クラスＢのプロパティ"
 
@@ -423,60 +423,39 @@ print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
-### 構文
-```
-modlue モジュール名 #大文字で開始
-    class クラス名
-        ……
-    end
-    ……
-end
-
-include モジュール名
-変数 = クラス名.new() #includeで事前にモジュールを取り込むと「モジュール名::」は省略可
-```
+### 概要
+Python の名前空間の目的は、他のディレクトリ（パッケージ）にあるモジュールをインポートして活用できるようにする事です。モジュールとは、再利用可能なコードのまとまりの基本的な単位（xxx.py）です。
 
 ### 例文
+* test.py と同階層に japan ディレクトリがあり、その中に tokyo.py が存在する場合
+
 ```
-#test.rb
-module MyLibrary #モジュール名は大文字で開始（注意）
-    #---------------
-    #スーパークラス
-    #---------------
-    class SuperClass
-        @myProperty #インスタンス変数の宣言（省略可）
-        def initialize() #コンストラクタ
-            @myProperty = "スーパークラスの変数"
-        end
-        def AAA()
-            puts("SuperClass.AAA")
-        end
-        def myProperty #アクセサ（getter）
-            @myProperty
-        end
-    end
+# japan/tokyo.py（tokyoモジュール）
+class Member(object):
+    #プライベート変数
+    __name = None
+    #コンストラクタ
+    def __init__(self,name): self.__name = name
+    #アクセサ（getter）
+    def __getName(self): return self.__name
+    name = property(__getName)
+```
 
-    #---------------
-    #サブクラス
-    #---------------
-    class SubClass < SuperClass #継承も可能
-        def BBB()
-            puts("SubClass.BBB")
-        end
-    end
-end
+```
+# test.py（モジュールを利用するファイル）
+import sys #決め打ち
+sys.path.append('japan') #japanディレクトリ（相対パス）を検索範囲に追加
+import tokyo #モジュール（tokyo.py）をインポート
+#「import tokyo as nw」等と別名を使って利用することも可能
 
-include MyLibrary
-_subclass = SubClass.new() #includeで事前にモジュールを取込めばモジュール名::は省略可
-#_subclass = MyLibrary::SubClass.new() #includeしておかないと「モジュール名::」が必要
-_subclass.AAA() #"AAA"
-_subclass.BBB() #"SubClass.BBB"
+_tokyo = tokyo.Member("nishimura") #別ディレクトリ、別ファイル内のクラスが利用可
+print(_tokyo.name) #nishimura
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月08日  
-更新日：2017年04月06日
+作成日：2016年06月28日  
+更新日：2017年04月10日
 
 
 <a name="継承と委譲"></a>
