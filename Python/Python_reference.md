@@ -7,8 +7,8 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-***
 * [クラス](#クラス)
+***
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -256,9 +256,9 @@ print(type(tmp_)) #<class 'str'>
 ### 最小構成
 ```
 #test.py
-class MyClass(object): #←…前方宣言が必要（(object)は省略可）
-   pass #←…何もしない
-myClass_ = MyClass() #←…インスタンスの生成
+class MyClass(object): #前方宣言が必要（(object)は省略可）
+   pass #何もしない
+myClass_ = MyClass() #インスタンスの生成
 ```
 
 * passについて  
