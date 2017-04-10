@@ -45,15 +45,94 @@
 <a name="データ型"></a>
 # <b>データ型</b>
 
-### データ型の種類
-1. TrueClass / FalseClass（論理型）
-1. Fixnum / Bignum（整数型）
-1. Float（浮動小数点数）
-1. String（文字列）
-1. Array（配列）
-1. Hash(ハッシュ≒連想配列）
-1. クラス（class）
-1. NilClass（オブジェクトが存在しない事を意味）
+### 主なデータ型の種類
+1. 論理型（bool）
+1. 整数型（int）
+1. 浮動小数点数（float）
+1. 文字列（str）
+1. リスト（list）
+1. 変更不可のリスト（tuple）
+1. 重複不許可な集合型（set）
+1. 変更不可の集合型（frozenset）
+1. クラス
+1. 辞書型（dict）
+1. 複素数オブジェクト型（complex）
+
+◆検証（Python 2.Xでは日本語（ダブルバイト）はコメント文を含めエラーが発生）
+
+# ①論理型（bool）……TrueまたはFalse
+
+bool_ = True #←…true/falseは不可
+print(bool_) #True（or False）
+print(type(bool_)) #<class 'bool'>
+
+# ②整数型（int）……非常に大きな値も扱えます
+
+int_ = 10000000000000000000 #1000京以上も扱える…
+print(int_) #10000000000000000000
+print(type(int_)) #<class 'int'>
+
+# ③浮動小数点数（float）……小数点第15桁まで
+
+float_ = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
+print(float_) #3.141592653589793（小数点第15桁まで）
+print(type(float_)) #<class 'float'>
+
+# ④文字列（str）……シングル/ダブルクォーテーション可
+
+string_ = "あいうえお" #←…'○'でも可（Python 2.Xではダブルバイトはエラー）
+print(string_) #あいうえお
+print(type(string_)) #<class 'str'>
+
+# ⑤リスト（list）……配列（変更可）
+
+list_ = ["TAKASHI", "TOHRU", "SACHIKO"]
+print(list_) #['TAKASHI', 'TOHRU', 'SACHIKO']
+print(type(list_))  #<class 'list'>
+
+# ⑥変更不可のリスト（tupleタプル）……配列（変更不可）
+
+lockList_ = ("TAKASHI", "TOHRU", "SACHIKO")
+print(lockList_) #('TAKASHI', 'TOHRU', 'SACHIKO')
+print(type(lockList_)) #<class 'tuple'>
+
+# ⑦重複不許可な集合型（set）
+
+set_ = set(["0001", "0002", "0003"])
+print(set_) #{'0002', '0001', '0003'} ←…何故この順序？（要調査）
+print(type(set_)) #<class 'set'>
+
+# ⑧変更不可の集合型（frozenset）
+
+frozenset_ = frozenset(["A", "B", "C"])
+print(frozenset_) #frozenset({'A', 'C', 'B'}) ←…何故この順序？（要調査）
+print(type(frozenset_)) #<class 'frozenset'>
+
+# ⑨クラス
+
+class MyClass: #←…前方宣言が必要
+    def __init__(self): #←…コンストラクタ
+        pass
+myClass_ = MyClass()
+print(myClass_) #<__main__.MyClass object at 0x7fcbae161cc0>
+print(type(myClass_)) #<class '__main__.MyClass'>
+
+# ⑩辞書型（dict）……連想配列
+
+dict_ = {"TAKASHI":48, "TOHRU":13}
+print(dict_) #{'TAKASHI': 48, 'TOHRU': 13}
+print(type(dict_)) #<class 'dict'>
+
+# ⑪複素数オブジェクト型（complex）
+
+print(type(1+1j)) #<class 'complex'> ←…内部では２つの別個の型扱い
+
+# ⑫ None型（None）……何もないことを示す定数
+
+print(type(None)) #<class 'NoneType'>
+
+
+
 
 ### 例文
 ```

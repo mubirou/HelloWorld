@@ -14,8 +14,9 @@
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |実行エンジン|Python 3.5.2|2016年06月|
-|エディタ|Visual Studio Code 1.9.1|2017年01月|
+|エディタ|Visual Studio Code 1.11.1|2017年04月|
 |拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.8|2017年02月|
+|拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.8|2017年02月|[Python for VSCode](https://marketplace.visualstudio.com/items?itemName=tht13.python) 0.2.3|
 
 1. 端末でバージョン確認  
     $ python --version  
@@ -25,14 +26,14 @@
     Python 3.5.2
 
     $ ls -l \`which python\` ←デフォルトの Python を調べる  
-    lrwxrwxrwx 1 root root 9  9月 16 09:40 /usr/bin/python -> python2.7
+    lrwxrwxrwx 1 root root 9 Sep 16  2016 /usr/bin/python -> python2.7
 
 1. PyLing（コードの質のチェック用）のインストール  
     $ sudo apt-get update  
     $ sudo apt-get install pylint  
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) を検索＆インストール
+    [表示] → [拡張機能] から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) および Python for VSCode を検索＆インストール
 
 ## コードの記述
 
@@ -63,4 +64,5 @@ Hello,world! ←…と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年03月01日
+作成日: 2017年03月01日  
+更新日: 2017年04月10日
