@@ -28,8 +28,8 @@
 * [連想配列（Hash）](#連想配列（Hash）)
 * [self](#self) ≒ this
 * [文字列の操作](#文字列の操作)
-***
 * [正規表現](#正規表現)
+***
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
@@ -1016,7 +1016,7 @@ class MyClass
     end
 end
 _myClass = MyClass.new()
-_myClass.sum(1,1) #2 ←…1+1
+_myClass.sum(1,1) #2 1+1
 _myClass.sum(1,2,3,4,5) #15（1+2+3+4+5）
 ```
 
@@ -1161,7 +1161,7 @@ puts(MyClass.PI) #3.14
 _age = 48
 if (_age <= 30) then #()、thenは省略可
   puts("30歳以下")
-elsif (_age <= 60) then #←…Pythonの「elif」と異なる（要注意）
+elsif (_age <= 60) then #Pythonの「elif」と異なる（要注意）
   puts("31〜60歳") #これが出力される
 else
   puts("61歳以上")
@@ -2048,52 +2048,48 @@ p _string #"よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博�
 # <b>抽象クラス</b>
 
 ### 概要
-* ECMAScript 6 には、TypeScript（1.6〜）にある abstract や interface キーワードはない
-* ECMAScript 6 では、継承と例外処理によって擬似的な抽象クラスを実現
+* Rubyには interface や abstract キーワードは存在しません
+* Rubyでは、継承と例外を使って擬似的な抽象クラスを実現します
 
 ### 構文
 ```
-//（擬似）抽象クラスの定義
-class Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
-        throw new Error("派生クラスで実装して下さい"); //例外処理
-    }
-}
+class Abstract○○(object) #抽象クラスの定義（実際には単なるスーパークラス）
+    def 抽象メソッド() #抽象メソッドの宣言（実際は単なるメソッド）
+        raise "メッセージ" #派生クラスで実装しないとRuntimeErrorを発生させる
 
-//（擬似）抽象クラスの継承
-class 派生クラス名 extends Abstract○○ {
-    抽象メソッド名(引数①,引数②,...) {
-        //実際の処理はここに記述
-    }
-}
+class 派生クラス名 < Abstract○○ #（擬似）抽象クラスを継承
+    def 抽象メソッド():
+        #実際の処理
+    ……
 ```
 
 ### 例文
 ```
-<script>
-    class AbstractClass { //（擬似）抽象クラスの定義
-        commonMethod() { //共通のメソッド
-            console.log("AbstractClass.commonMethod()");
-        }
-        eachMethod() { //抽象メソッド（実際の処理は記述しない）
-            throw new Error("サブクラスで実装して下さい"); //例外処理
-        }
-    }
-    class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
-        eachMethod() { //オーバーライドして実際の処理を記述
-            console.log("SubClass.eachMethod()"); //実際の処理
-        }
-    }
+class AbstractClass #（擬似）抽象クラス
+    def common() #共通のメソッド
+        puts("共通のメソッド")
+    end
+    def abstractMethod() #（擬似）抽象メソッド
+        #↓派生クラスでオーバーライドして実装しないとRuntimeError
+        raise "派生クラスで実装して下さい" #例外
+    end
+end
 
-    var _subClass = new SubClass();
-    _subClass.commonMethod(); //"AbstractClass.commonMethod()"
-    _subClass.eachMethod(); //"SubClass.eachMethod()"
-</script>
+class SubClass < AbstractClass #（擬似）抽象クラスを継承
+    #↓（擬似）抽象クラスの（擬似）抽象メソッドをオーバーライドして実際の処理を記述
+    def abstractMethod()
+        puts("派生クラスでオーバーライドした抽象メソッド")
+    end
+end
+
+_subClass = SubClass.new()
+_subClass.common() #"共通のメソッド"
+_subClass.abstractMethod() #"派生クラスでオーバーライドした抽象メソッド"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2017年04月10日
 
 
 <a name="superキーワード"></a>
