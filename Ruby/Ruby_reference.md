@@ -33,8 +33,8 @@
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
-***
 * [数学関数（Math）](#数学関数（Math）)
+***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -2383,53 +2383,64 @@ puts([5.01, -10, 8, 2.9].min) #-10 ←配列（Array）要素の比較
 <a name="乱数"></a>
 # <b>乱数</b>
 
-### Math.random()
-* 0以上、1未満（0.9999…）の値を返す
-* 現在時刻を元に random seed （乱数種）を生成
+### 0〜1.0未満
+* 書式
 ```
-<script>
-    console.log(Math.random()); //0.13397585139675616
-    console.log(Math.random()); //0.9903535518676447
-    console.log(Math.random()); //0.006009885271453852
-</script>
+Random.rand() ←()は省略可
 ```
 
-### 整数の乱数
+* 例文
 ```
-<script>
-    //整数の乱数を返すカスタム関数
-    randomInt = (_min, _max) => {
-        return Math.floor(Math.random() * (_max - _min + 1)) + _min;
-    }
+#test.rb
+puts(Random.rand()) #0.5222174965949302（0〜0.999…）
+```
 
-    //実験（1000万回繰返して精度を調べる）
-    var _u5 = 0, _u4 = 0, _u3 = 0, _u2 = 0, _u1 = 0;
-    var _o0 = 0, _o1 = 0, _o2 = 0, _o3 = 0, _o4 = 0, _o5 = 0;
+### 最小値〜最大値（Fixnum型）
+* 書式
+```
+Random.rand(最小値..最大値) 
+```
 
-    for (let i = 0; i < 10000000; i++) {
-        switch (this.randomInt(-5, 5)) {
-            case -5: _u5++; break;
-            case -4: _u4++; break;
-            case -3: _u3++; break;
-            case -2: _u2++; break;
-            case -1: _u1++; break;
-            case  0: _o0++; break;
-            case  1: _o1++; break;
-            case  2: _o2++; break;
-            case  3: _o3++; break;
-            case  4: _o4++; break;
-            case  5: _o5++; break;
-        }
-    }
+* 例文
+```
+#test.rb
+puts(Random.rand(5..9)) #5 ←5〜9のいずれか（整数）
+```
 
-    console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-    //909595 908581 908332 909483 907921 908880 909161 909607 909295 910453 908692
-</script>
+### 0〜最大値（Fixnum型）
+* 書式
+```
+Random.rand(整数) ←0〜指定値未満の整数
+```
+
+* 例文
+```
+#test.rb
+_i0 = _i1 = _i2 = _i3 = _i4 = _i5 = _i6 = _i7 = _i8 = _i9 = 0
+
+for i in 1..10000000 do #1000万回繰り返す
+  _tmp = Random.rand(10) #0〜9の乱数
+  case _tmp
+  when 0 then _i0 += 1
+  when 1 then _i1 += 1
+  when 2 then _i2 += 1
+  when 3 then _i3 += 1
+  when 4 then _i4 += 1
+  when 5 then _i5 += 1
+  when 6 then _i6 += 1
+  when 7 then _i7 += 1
+  when 8 then _i8 += 1
+  when 9 then _i9 += 1
+  end
+end
+
+puts(_i0,_i1,_i2,_i3,_i4,_i5,_i6,_i7,_i8,_i9)
+#1000060,1000791,999904,1000249,999825,1000008,1000036,1000464,998920,999743
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月0X日  
+作成日：2016年07月09日  
 更新日：2017年03月22日
 
 
