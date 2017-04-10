@@ -63,7 +63,7 @@
 ```
 #test.py
 bool_ = True #true/falseは不可
-print(bool_) #True（or False）
+print(bool_) #True
 print(type(bool_)) #<class 'bool'>
 ```
 
@@ -89,7 +89,7 @@ print(type(float_)) #<class 'float'>
 * シングル/ダブルクォーテーション可
 ```
 #test.py
-string_ = "あいうえお" #'○'でも可（Python 2.Xではダブルバイトはエラー）
+string_ = 'あいうえお' #"○"でも可（Python 2.Xではダブルバイトはエラー）
 print(string_) #あいうえお
 print(type(string_)) #<class 'str'>
 ```
@@ -98,8 +98,8 @@ print(type(string_)) #<class 'str'>
 * 配列（変更可）
 ```
 #test.py
-list_ = ["TAKASHI", "TOHRU", "SACHIKO"]
-print(list_) #['TAKASHI', 'TOHRU', 'SACHIKO']
+list_ = ['A', 'I', 'U']
+print(list_) #['A', 'I', 'U']
 print(type(list_))  #<class 'list'>
 ```
 
@@ -107,24 +107,24 @@ print(type(list_))  #<class 'list'>
 * 配列（変更不可）
 ```
 #test.py
-lockList_ = ("TAKASHI", "TOHRU", "SACHIKO")
-print(lockList_) #('TAKASHI', 'TOHRU', 'SACHIKO')
+lockList_ = ('A', 'I', 'U')
+print(lockList_) #('A', 'I', 'U')
 print(type(lockList_)) #<class 'tuple'>
 ```
 
 ### ⑦重複不許可な集合型（set）
 ```
 #test.py
-set_ = set(["0001", "0002", "0003"])
-print(set_) #{'0002', '0001', '0003'} ←何故この順序？（要調査）
+set_ = set(['0002', '0001', '0003'])
+print(set_) #{'0003', '0001', '0002'} ←順序が変更される
 print(type(set_)) #<class 'set'>
 ```
 
 ### ⑧変更不可の集合型（frozenset）
 ```
 #test.py
-frozenset_ = frozenset(["A", "B", "C"])
-print(frozenset_) #frozenset({'A', 'C', 'B'}) ←何故この順序？（要調査）
+frozenset_ = frozenset(['A', 'C', 'B'])
+print(frozenset_) #frozenset({'C', 'A', 'B'}) ←順序が変更される
 print(type(frozenset_)) #<class 'frozenset'>
 ```
 
@@ -139,11 +139,11 @@ print(myClass_) #<__main__.MyClass object at 0x7fcbae161cc0>
 print(type(myClass_)) #<class '__main__.MyClass'>
 ```
 
-### ⑩辞書型（dict）……連想配列
+### ⑩辞書型（dict） : 連想配列
 ```
 #test.py
-dict_ = {"TAKASHI":48, "TOHRU":13}
-print(dict_) #{'TAKASHI': 48, 'TOHRU': 13}
+dict_ = {'A':'あ', 'I':'い'}
+print(dict_) #{'A': 'あ', 'I': 'い'}
 print(type(dict_)) #<class 'dict'>
 ```
 
