@@ -67,7 +67,7 @@ $ chmod 755 test.pl
 
 1. 実行  
 $ ./test.pl  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

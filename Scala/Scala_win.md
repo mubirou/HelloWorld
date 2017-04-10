@@ -70,7 +70,7 @@
 
 1. 実行（ファイルは生成されない）  
 \>scala test.scala  
-Hello,world! ←…と表示されたら成功！  
+Hello,world! ←と表示されたら成功！  
 
 ***
 作成者: Takashi Nishimura  

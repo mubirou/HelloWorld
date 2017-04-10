@@ -63,7 +63,7 @@ $ cd /Users/（ユーザー名）/Desktop/Ruby
 
 1. 実行  
 $ /usr/local/bin/ruby test.rb  
-Hello,world! ←…と表示されたら成功！  
+Hello,world! ←と表示されたら成功！  
 
 ***
 作成者: Takashi Nishimura  

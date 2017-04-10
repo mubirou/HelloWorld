@@ -60,7 +60,7 @@ $ cd /Users/（ユーザー名）/Desktop/Perl6
 
 1. 実行  
 $ perl6 test.pl6  
-Hello,world! ←…と表示されたら成功！（ファイルは生成されない）
+Hello,world! ←と表示されたら成功！（ファイルは生成されない）
 
 ***
 作成者: Takashi Nishimura  

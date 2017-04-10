@@ -52,7 +52,7 @@ End Module
 
 1. 実行  
 \>test.exe  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

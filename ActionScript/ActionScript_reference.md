@@ -2766,7 +2766,7 @@ package {
             var _count: Number = 0;
             while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
                 var _num: Number = _string.indexOf("CD", _count);
-                console.log(_num); //[2]→[10] ←…"CD"が見つかった場所（0から開始）を返す
+                console.log(_num); //[2]→[10] ←"CD"が見つかった場所（0から開始）を返す
                 _count = _num + 1;
             }
 
@@ -3182,7 +3182,7 @@ console.log(Math.cos(0)); //[1]（0°）
 console.log(Math.cos(Math.PI / 2)); //[6.123233995736766e-17]（≒0）（90°）
 console.log(Math.cos(Math.PI)); //[-1]（180°）
 console.log(Math.cos(Math.PI * 3 / 2)); //[-1.8369701987210297e-16]（≒0）（270°）
-console.log(Math.cos(Math.PI * 2)); //[1] ←…360°
+console.log(Math.cos(Math.PI * 2)); //[1] ←360°
 ```
 
 ### Math.atan2() : アークタンジェント2

@@ -61,7 +61,7 @@ $ cd /home/（ユーザー名）/デスクトップ/R
 $ R  
 ……  
 \> source("test.R")  
-Hello,world! ←…と表示されたら成功！  
+Hello,world! ←と表示されたら成功！  
 \> q() ←終了
 
 ***

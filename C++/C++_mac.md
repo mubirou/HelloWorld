@@ -69,7 +69,7 @@ $ g++ -o test test.cpp ←「g++ -o 保存名 xx.cpp」
 
 1. 実行  
 $ ./test  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

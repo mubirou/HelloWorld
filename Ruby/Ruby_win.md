@@ -57,7 +57,7 @@ _myClass = MyClass.new() #()は省略可能
 
 1. 実行  
 \>ruby test.rb  
-Hello,world! ←…と表示されたら成功！（ファイルは生成されない）
+Hello,world! ←と表示されたら成功！（ファイルは生成されない）
 
 ***
 作成者: Takashi Nishimura  

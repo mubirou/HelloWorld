@@ -65,7 +65,7 @@ $ gdc test.d
 
 1. 実行  
 $ ./a.out  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

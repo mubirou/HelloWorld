@@ -65,7 +65,7 @@ new("MyClass")
 
 1. 実行  
 \>R --vanilla  --slave < test.R  
-Hello,world! ←…と表示されたら成功！（ファイルは生成されない）  
+Hello,world! ←と表示されたら成功！（ファイルは生成されない）  
 Reference class object of class "MyClass"
 
 ***

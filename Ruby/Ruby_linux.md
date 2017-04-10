@@ -50,7 +50,7 @@ $ cd /home/（ユーザー名）/デスクトップ/Ruby
 
 1. 実行  
 $ ruby test.rb  
-Hello,world! ←…と表示されたら成功！  
+Hello,world! ←と表示されたら成功！  
 
 ***
 作成者: Takashi Nishimura  

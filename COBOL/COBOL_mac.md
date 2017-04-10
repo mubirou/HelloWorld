@@ -70,7 +70,7 @@ $ cobc -x test.cob
 
 1. 実行  
 $ ./test  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

@@ -62,7 +62,7 @@
 
 # ①論理型（bool）……TrueまたはFalse
 
-bool_ = True #←…true/falseは不可
+bool_ = True #←true/falseは不可
 print(bool_) #True（or False）
 print(type(bool_)) #<class 'bool'>
 
@@ -80,7 +80,7 @@ print(type(float_)) #<class 'float'>
 
 # ④文字列（str）……シングル/ダブルクォーテーション可
 
-string_ = "あいうえお" #←…'○'でも可（Python 2.Xではダブルバイトはエラー）
+string_ = "あいうえお" #←'○'でも可（Python 2.Xではダブルバイトはエラー）
 print(string_) #あいうえお
 print(type(string_)) #<class 'str'>
 
@@ -99,19 +99,19 @@ print(type(lockList_)) #<class 'tuple'>
 # ⑦重複不許可な集合型（set）
 
 set_ = set(["0001", "0002", "0003"])
-print(set_) #{'0002', '0001', '0003'} ←…何故この順序？（要調査）
+print(set_) #{'0002', '0001', '0003'} ←何故この順序？（要調査）
 print(type(set_)) #<class 'set'>
 
 # ⑧変更不可の集合型（frozenset）
 
 frozenset_ = frozenset(["A", "B", "C"])
-print(frozenset_) #frozenset({'A', 'C', 'B'}) ←…何故この順序？（要調査）
+print(frozenset_) #frozenset({'A', 'C', 'B'}) ←何故この順序？（要調査）
 print(type(frozenset_)) #<class 'frozenset'>
 
 # ⑨クラス
 
-class MyClass: #←…前方宣言が必要
-    def __init__(self): #←…コンストラクタ
+class MyClass: #←前方宣言が必要
+    def __init__(self): #←コンストラクタ
         pass
 myClass_ = MyClass()
 print(myClass_) #<__main__.MyClass object at 0x7fcbae161cc0>
@@ -125,7 +125,7 @@ print(type(dict_)) #<class 'dict'>
 
 # ⑪複素数オブジェクト型（complex）
 
-print(type(1+1j)) #<class 'complex'> ←…内部では２つの別個の型扱い
+print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
 
 # ⑫ None型（None）……何もないことを示す定数
 

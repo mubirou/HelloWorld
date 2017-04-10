@@ -52,7 +52,7 @@ $ cd /home/（ユーザー名）/デスクトップ/Perl6
 
 1. 実行  
 $ perl6 test.pl6  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

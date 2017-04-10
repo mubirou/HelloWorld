@@ -64,7 +64,7 @@ $ cd /Users/（ユーザー名）/Desktop/R
 $ R  
 ……  
 \> source("test.R")  
-Hello,world! ←…と表示されたら成功！（ファイルは生成されない）  
+Hello,world! ←と表示されたら成功！（ファイルは生成されない）  
 \> q() ←終了
 
 ***

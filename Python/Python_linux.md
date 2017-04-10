@@ -60,7 +60,7 @@ $ cd /home/（ユーザー名）/デスクトップ/Python
 
 1. 実行  
 $ python3 test.py  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

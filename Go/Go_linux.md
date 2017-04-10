@@ -51,7 +51,7 @@ $ cd /home/（ユーザー名）/デスクトップ/Go
 
 1. 実行  
 $ go run test.go  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

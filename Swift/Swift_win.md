@@ -36,7 +36,7 @@
     ```
 
 1. 画面中央下の [Execute] ボタンをクリック（Ctrl + s）  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

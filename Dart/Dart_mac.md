@@ -62,7 +62,7 @@ $ cd /Users/（ユーザー名）/Desktop/Dart
 
 1. 実行  
 $ dart test.dart  
-Hello,world! ←…と表示されたら成功！（何も生成されない）
+Hello,world! ←と表示されたら成功！（何も生成されない）
 
 ***
 作成者: Takashi Nishimura  

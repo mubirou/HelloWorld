@@ -53,7 +53,7 @@ func main() { //main関数（最初に実行される）
 
 1. 実行  
 \>go run test.go  
-Hello,world! ←…と表示されたら成功！（ファイルは生成されない）
+Hello,world! ←と表示されたら成功！（ファイルは生成されない）
 
 ***
 作成者: Takashi Nishimura  

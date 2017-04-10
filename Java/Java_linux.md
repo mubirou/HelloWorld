@@ -58,7 +58,7 @@ $ javac MyClass.java
 
 1. 実行  
 $ java MyClass  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
