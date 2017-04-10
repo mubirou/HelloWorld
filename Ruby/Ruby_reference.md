@@ -35,8 +35,8 @@
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
-***
 * [日時情報](#日時情報)
+***
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -2434,7 +2434,7 @@ puts(_i0,_i1,_i2,_i3,_i4,_i5,_i6,_i7,_i8,_i9)
 ```
 #test.rb
 _now = Time.now
-puts(_now) #2016-07-09 11:50:44 +0900
+puts(_now) #2017-04-10 11:09:36 +0900
 puts(_now.year) #年（2016等）
 puts(_now.month) #月（1〜12）
 puts(_now.day) #日（1〜31）
@@ -2463,7 +2463,7 @@ else
   _s = _now.sec.to_s
 end
 
-puts(_h + ":" + _m + ":" + _s) #"08:03:04"
+puts(_h + ":" + _m + ":" + _s) #"11:09:36"など
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
@@ -2475,104 +2475,52 @@ puts(_h + ":" + _m + ":" + _s) #"08:03:04"
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### 繰返し実行する
-```
-<script>
-    _count = 0;
-    callbackFunction = () => {
-        if (++_count <= 10) { //10回繰返す場合…
-            console.log(_count, "繰返し実行したい処理");
-        } else {
-            clearInterval(_timerID); //繰返しを止める
-        }
-    }
-    //↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
-    _timerID = setInterval(callbackFunction, 1000); //1秒間隔で繰返す場合
-</script>
-```
+* バックエンドで動作する Ruby の場合、サーバ負荷がかかるタイマー処理は多用すべきではない
 
-### 一度だけ実行する
+### 一度だけ実行する場合（参考）
 ```
-<script>
-    callbackFunction = () => {
-        console.log("一度だけ実行したい処理");
-        clearTimeout(_timerID);
-    }
-    _timerID = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
-</script>
+#test.rb
+def onceExecute(_sec, _method)
+  sleep(_sec) #指定秒待つ（他の処理は出来ません）
+  _method.call() #匿名関数を呼出す
+end
+
+_someMethod = ->() { #匿名関数
+  puts("指定秒後に１度だけ実行したい処理")
+}
+
+onceExecute(3, _someMethod) #3秒後に1度だけ実行させる
 ```
 
-### XX 秒後にA、そのXXX 秒後にB...を実行
-* [Promise](https://mzl.la/2nHNs4B) でも同様のことが可能と思われる
+### 繰り返し実行する場合（参考）
 ```
-<script>
-    //Task○のスーパークラス
-    class SuperTask {
-        //静的変数（delay）
-        static set delay(_newValue) { this.__delay = _newValue; }
-        static get delay() {
-            if (this.__delay == undefined) { this.__delay = 0; }
-            return this.__delay;
-        }
+#test.rb
+class Loop
+  @isLoop #プライベート変数宣言（省略可）
+  def initialize() #コンストラクタ
+    @isLoop = false
+  end
+  def start()
+    @isLoop = true
+    run()
+  end
+  def run()
+    if (@isLoop) then
+      puts("繰返す処理を記述")
+      sleep(0.5) #0.5秒間隔で実行したい場合（他の処理は出来ません）
+      run()
+    end
+  end
+end
 
-        //静的変数（nextTask）
-        static get nextTask() { return this.__nextTask; }
-        static set nextTask(_newValue) { this.__nextTask = _newValue; }
-
-        static exec() { //静的メソッド
-            if (this.__delay == undefined) { this.__delay = 0; }
-            setTimeout(this.__callBack, this.__delay);
-        }
-    }
-
-    //TaskAクラス
-    class TaskA extends SuperTask {
-        static __callBack() {
-            var _this = TaskA;
-            //TaskAで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskAで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskBクラス
-    class TaskB extends SuperTask {
-        static __callBack() {
-            var _this = TaskB;
-            //TaskBで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskBで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskCクラス
-    class TaskC extends SuperTask {
-        static __callBack() {
-            var _this = TaskC;
-            //TaskCで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskCで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //タイマーの設定（初期値は0ミリ秒）
-    TaskA.delay = 1000;
-    TaskB.delay = 3000;
-    TaskC.delay = 10000;
-
-    //次のタスクの設定（初期値は未設定）
-    TaskA.nextTask = TaskB;
-    TaskB.nextTask = TaskC;
-
-    TaskA.exec(); //実行開始
-
-</script>
+_loop = Loop.new()
+_loop.start()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月0X日  
-更新日：2017年03月22日
+作成日：2016年07月09日  
+更新日：2017年04月10日
 
 
 <a name="処理速度計測"></a>
