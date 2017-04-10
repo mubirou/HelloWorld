@@ -11,8 +11,8 @@
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
-***
 * [変数とスコープ](#変数とスコープ)
+***
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
@@ -509,200 +509,144 @@ classB_.myMethod() #'ClassA.myMethod()'
 # <b>変数とスコープ</b>
 
 ### 変数の種類
-1. [グローバル変数](#グローバル変数) : プログラムのどこからでも参照＆変更可能
-1. [インスタンス変数](#インスタンス変数) : 同じインスタンス内であれば参照＆変更可能（未定義はnil）
-1. [ローカル変数](#ローカル変数) : メソッド等の中でのみ参照＆変更可能
-1. [クラス変数](#クラス変数) : 静的変数（クラスをインスタンス化せずにアクセス可能）
-* パブリック変数という概念はない（attr_xxx で代用）
+1. [グローバル変数](#グローバル変数)
+1. [パブリック変数](#パブリック変数)
+1. [プライベート変数](#プライベート変数)
+1. [ローカル変数](#ローカル変数)
 
 <a name="グローバル変数"></a>
-### グローバル変数（大域変数） : $xxx
+### グローバル変数
 ```
-#test.rb
-$global = "グローバル変数" #一般的にグローバル変数は好まれない
+#test.py
+global_ = "グローバル変数" #関数の外部で宣言するとグローバル変数扱い
 
-#===========================================
-# メソッド内のグローバル変数の扱い
-#===========================================
-def myMethod()
-    puts($global) #"グローバル変数"
-    $global = "グローバル②" #関数内で変更可能
-    puts($global) #"グローバル②"
-end
+#=====================================
+# 関数内のグローバル変数の扱い
+#=====================================
+def myFunction():
+    global global_ #グローバル変数を扱う「宣言」
+    global_ = "グローバル変数②" #global宣言すれば変更可（宣言なしでも参照は可）
+    print(global_)
 
-myMethod()
+myFunction() #"グローバル変数②"
 
-#===========================================
+#=====================================
 # クラス内のグローバル変数の扱い
-#===========================================
-class MyClass
-    def myMethod
-        puts($global) #"グローバル変数②"
-        $global = "グローバル③" #クラス内で変更可能
-        puts($global) #"グローバル③"
-    end
-end
+#=====================================
+class MyClass(object):
+    #コンストラクタ（省略可）
+    def __init__(self):
+        pass #何もしない
 
-_myClass = MyClass.new()
-_myClass.myMethod()
+    def myMethod(self):
+        global global_ #グローバル変数を扱う「宣言」
+        global_ = "グローバル変数③" #global宣言すれば変更可（宣言なしでも参照は可）
+        print(global_)
+
+myClass_ = MyClass()
+myClass_.myMethod() #"グローバル変数③"
+
+print(global_) #"グローバル変数③" ←…クラス内（または関数内）での変更が反映される
 ```
 
-<a name="インスタンス変数"></a>
-### インスタンス変数 : @xxx
-* 全クラスからアクセスが可能なパブリック変数（実用性は無い）は存在しない
-* プライベート変数的ですが継承先でもアクセス可能（注意）
-* Pythonでは３つアクセスメソッドが用意されている
-    * attr_reader : 参照のみ
-    * attr_writer : 変更のみ
-    * attr_accessor : 参照･変更可
-
-* ふつうの getter / setter を使った例文
-    ```
-    #test.rb
-    class MyClass
-        @hensu #インスタンス変数の宣言（省略可）
-
-        def initialize()
-            @hensu = "インスタンス変数①"
-        end
-
-        def hensu
-            @hensu
-        end
-        def hensu=(value)
-            @hensu = value
-        end
-    end
-
-    _myClass = MyClass.new()
-    puts(_myClass.hensu) #"インスタンス変数①"
-    _myClass.hensu = "インスタンス変数②" #外からも変更可能
-    puts(_myClass.hensu) #"インスタンス変数②"
-    ```
-
-* attr_reader（参照のみ可）を使った例文 ＝ getter
-    ```
-    #test.rb
-    class MyClass
-        attr_reader :hensu #インスタンス変数を外部から参照のみ可能にする
-
-        def initialize()
-            @hensu = "インスタンス変数"
-        end
-    end
-
-    _myClass = MyClass.new()
-    #puts(_myClass.@hensu) #エラー（外からはアクセス不可）
-    puts(_myClass.hensu) #"インスタンス変数"
-    #_myClass.hensu = "インスタンス変数②" #Error（変更は不可）
-    ```
-
-* attr_writer（変更のみ可）を使った例文 = Python流setter
-    ```
-    #test.rb
-    class MyClass
-        attr_writer :hensu #インスタンス変数を外部から変更のみ可能にする
-
-        def initialize()
-            @hensu = "インスタンス変数"
-        end
-        def test()
-            puts(@hensu)
-        end
-    end
-
-    _myClass = MyClass.new()
-    #puts(_myClass.hensu) #Error（参照は不可）
-    _myClass.hensu = "インスタンス変数②" #変更は可能
-    _myClass.test() #"インスタンス変数②"
-    ```
-
-* attr_accessor（参照･変更可）を使った例文 ＝ getter / setter
-    ```
-    #test.rb
-    class MyClass
-        attr_accessor :hensu #インスタンス変数を外部から参照･変更可能にする
-
-        def initialize()
-            @hensu = "インスタンス変数①"
-        end
-    end
-
-    _myClass = MyClass.new()
-    puts(_myClass.hensu) #"インスタンス変数①"
-    _myClass.hensu = "インスタンス変数②" #変更は可能
-    puts(_myClass.hensu) #"インスタンス変数②"
-    ```
-
-<a name="ローカル変数"></a>
-### ローカル変数（局所変数） : _xxx
-* メソッド内で宣言する場合
-    ```
-    #test.rb
-    def myMethod
-        _local = "ローカル変数" #このメソッド内でのみ利用可
-        puts(_local) #"ローカル変数"
-    end
-
-    def myMethod2
-        #puts(_local) #エラー（アクセス不可）
-    end
-    myMethod()
-    myMethod2()
-    #puts(_local) #エラー（アクセス不可）
-    ```
-
-    * クラスの関数内で宣言する場合
-    ```
-    #test.rb
-    class MyClass
-        def myMethod1()
-            _local = "ローカル変数"
-            puts(_local) #このメソッド内でのみ利用可能!!
-        end
-        def myMethod2()
-            #print(_local) #エラー（アクセス不可）
-        end
-    end
-    _myClass = MyClass.new()
-    _myClass.myMethod1() #"ローカル変数"
-    _myClass.myMethod2()
-    #puts(myClass_._local) #undefined（アクセス不可）
-    ```
-
-* for 文内で宣言する場合（内部処理は each メソッドと同じ）
-    ```
-    #test.rb
-    class MyClass
-        def initialize()
-            i = 999 #ローカル変数
-            for i in 0..5
-                puts(i) #0,1,...,5
-            end
-            puts(i) #5（メソッド内であればアクセス可）
-        end
-    end
-    _myClass = MyClass.new()
-    ```
-
-<a name="クラス変数"></a>
-### クラス変数（静的変数） : @@xxx
+<a name="パブリック変数"></a>
+### パブリック変数
+* 全クラスからアクセスが可能
+* クラス定義の直後、コンストラクタの直前に定義
+* パブリック変数を使った以下のような例文は「他人の変数を勝手にいじってはいけない」というルールに反するため、プラーベート変数 + get / set アクセサを使うべきでしょう
 ```
-#test.rb
-class MyClass
-    @@hensu = "クラス変数"
-    def MyClass.hensu #アクセサ（getter）が必要
-        @@hensu
-    end
-end
-#puts(MyClass.@@hensu) #エラー（アクセス不可）
-puts(MyClass.hensu) #"クラス変数"（アクセス可能）
+#test.py（悪い例）
+class MyClass(object):
+    def __init__(self): #コンストラクタ
+        self.p_ = "パブリック変数" #パブリック変数の宣言と設定
+
+myClass_ = MyClass()
+print(myClass_.p_) #"パブリック変数"（クラスの外からアクセス可能）
+myClass_.p_ = "○△☆□？" #クラスの外から変更できてしまう
+print(myClass_.p_) #"○△☆□？"
+```
+
+<a name="プライベート変数"></a>
+### プライベート変数
+* 同じクラス内のみアクセス可能
+* 外部からは get / set アクセサを使ってアクセス
+* __○○と命名することでプライベート変数になる
+
+```
+#test.py
+class MyClass(object):
+    #プライベート変数の宣言（selfは不要）＝省略可
+    __p = None
+
+    #コンストラクタ
+    def __init__(self):
+        self.__p = "プライベート変数"
+
+    #-------------------------------------------------
+    # プライベート変数へのアクセス用（getter/setter）
+    #-------------------------------------------------
+    def __getP(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        return self.__p
+    def __setP(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        self.__p = value #引数名「value」は任意
+    p = property(__getP, __setP) #プロパティを設定
+
+myClass_ = MyClass()
+print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行為）
+myClass_.p = "プライベート変数②"
+print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行為）
+```
+
+<a name="プライベート変数"></a>
+### ローカル変数
+* 関数内で宣言する場合
+```
+#test.py
+def myFunction1():
+    local_ = "ローカル変数" #この関数内でのみ利用可能!!
+
+def myfunction2():
+    #print(local_) #ERROR（アクセス不可）
+    pass
+
+myFunction1()
+myfunction2()
+#print(local_) #ERROR（アクセス不可）
+```
+
+* クラスの関数内で宣言する場合
+```
+#test.py
+class MyClass(object):
+    def myMethod1(self): #selfは必須
+        local_ = "ローカル変数" #self.は付けない（付けるとパブリック変数扱い）
+        print(local_) #この関数内でのみ利用可能!!
+    def myMethod2(self): #selfは必須
+        #print(local_) #ERROR（アクセス不可）
+        pass
+
+myClass_ = MyClass()
+myClass_.myMethod1()
+myClass_.myMethod2()
+#print(myClass_.local_) #ERROR（アクセス不可）
+```
+
+* for文内で宣言する場合
+#test.py
+class MyClass(object):
+    def __init__(self): #コンストラクタ
+        i_ = 999 #ローカル変数
+        for i_ in range(6): #ローカル変数（i_）0〜5
+            print(i_) #0、1、2、...、5
+        print(i_) #5（for文を出ても関数内であればアクセス可能）
+
+myClass_ = MyClass()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月05日  
-更新日：2017年04月06日
+作成日：2016年06月21日  
+更新日：2017年04月10日
 
 
 <a name="アクセサ"></a>
