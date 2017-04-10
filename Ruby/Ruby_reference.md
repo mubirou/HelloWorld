@@ -1999,52 +1999,49 @@ p _array #["A", "B", "C", "D", "E", "F"]
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* ECMAScript 6 には以下のサンプル以外にも多くの正規表現の機能が用意されています
+### 概要
+* 正規表現は、URL、パスワード、メールアドレス等、特定の文字パターンを抽出するのに利用
+* 正規表現の基本文法は、特定のプログラミング言語に依存しない
+* Ruby には以下のサンプル以外にも多くの正規表現の機能が用意されている
 
 ### 検索＆置換
+* 構文
 ```
-<script>
-    var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-    var _regExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    /*
-    "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
-    */
-    if (_regExp.test(_string)) { //検索
-        console.log('"吉田"は含まれています');
-        let _result = _string.replace(_regExp, "よしだ"); //置換
-        //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
-        console.log(_result);
-    } else {
-        console.log('"吉田"は含まれていません');
-    }
-</script>
+正規表現 = Regexp.new(文字列)
+
+#正規表現 = /文字列/ #Regex.new(文字列) と同じ
+# /^文字列$/ のように「^」（行頭マッチ）「$」（行末マッチ）といったメタ文字の他、様々
+# なパターン、例えば /[A-D]\d+/ など使うことでより細かな制御が可能
+
+if 正規表現 =~ 文字列 then #thenは省略可能 ←ここで「検索」
+#マッチした場合の処理
+文字列.gsub!("置換前の文字列", "置換後の文字列") ←ここで「置換」
+else
+マッチしなかった場合の処理
+end
 ```
 
-### マッチした数
+### 例文
 ```
-<script>
-    var _string = "059371820400381295700347891205178900517093823";
-    var _regExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    var _matchList = _string.match(_regExp);
-    console.log(_matchList); //["00", "00", "00"]
-    console.log(_matchList.length); //3（マッチした数）
-</script>
+#test.rb
+_string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+
+_regex = Regexp.new("吉田")
+#_regex = /吉田/ #Regex.new("吉田") と同じ
+
+if _regex =~ _string then #thenは省略可能 ←…ここで「検索」
+#マッチした場合（"吉田"が含まれている）の処理
+_string.gsub!("吉田","東村") #←…ここで「置換」
+else
+puts("吉田は含まれていません")
+end
+
+p _string #"よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
 ```
 
-### 正規表現について…
-* 文字パータンを表現するオブジェクト（RegExp クラス）のこと
-* JavaScriptの正規表現は、ECMAScript 3 で標準化された
-* String と RegExp クラスには、次のような正規表現用のメソッドが用意されている
-    1. RegExp.exec()
-    1. RegExp.test()
-    1. String.search()
-    1. String.match()
-    1. String.replace()
-    1. String.split()
-
-実行環境：Ubuntu 16.04 LTS、Ruby 2.3  
-作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+実行環境：Ubuntu 16.04 LTS、Ruby 2.3 
+作成者：Takashi Nishimura 
+作成日：2017年04月10日
 
 
 <a name="抽象クラス"></a>
