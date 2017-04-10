@@ -16,7 +16,6 @@
 |実行エンジン|Python 3.5.2|2016年06月|
 |エディタ|Visual Studio Code 1.11.1|2017年04月|
 |拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.8|2017年02月|
-|拡張機能|[Python for VSCode](https://marketplace.visualstudio.com/items?itemName=tht13.python) 0.2.3|2016年02月
 
 1. 端末でバージョン確認  
     $ python --version  
@@ -33,7 +32,7 @@
     $ sudo apt-get install pylint  
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) および [Python for VSCode](https://marketplace.visualstudio.com/items?itemName=tht13.python) を検索＆インストール
+    [表示] → [拡張機能] から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) を検索＆インストール
 
 ## コードの記述
 
@@ -64,5 +63,4 @@ Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年03月01日  
-更新日: 2017年04月10日
+作成日: 2017年03月01日
