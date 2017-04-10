@@ -448,8 +448,8 @@ sys.path.append('japan') #japanディレクトリ（相対パス）を検索範�
 import tokyo #モジュール（tokyo.py）をインポート
 #「import tokyo as nw」等と別名を使って利用することも可能
 
-_tokyo = tokyo.Member("nishimura") #別ディレクトリ、別ファイル内のクラスが利用可
-print(_tokyo.name) #nishimura
+_tokyo = tokyo.Member('nishimura') #別ディレクトリ、別ファイル内のクラスが利用可
+print(_tokyo.name) #'nishimura'
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -470,13 +470,13 @@ print(_tokyo.name) #nishimura
 #test.py
 class ClassA(object):
     def myMethod(self):
-        print("ClassA.myMethod()")
+        print('ClassA.myMethod()')
 
 class ClassB(ClassA): #クラスＡを継承（ポイント）
     pass
 
 classB_ = ClassB()
-classB_.myMethod() #ClassA.myMethod()
+classB_.myMethod() #'ClassA.myMethod()'
 ```
 
 ### 委譲版
@@ -484,7 +484,7 @@ classB_.myMethod() #ClassA.myMethod()
 #test.py
 class ClassA(object):
     def myMethod(self):
-        print("ClassA.myMethod()")
+        print('ClassA.myMethod()')
 
 class ClassB(): #この内容のみ継承と異なる
     __classA = None #プライベート変数の宣言（省略可）
@@ -496,7 +496,7 @@ class ClassB(): #この内容のみ継承と異なる
         self.__classA.myMethod()
 
 classB_ = ClassB()
-classB_.myMethod() #ClassA.myMethod()
+classB_.myMethod() #'ClassA.myMethod()'
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
