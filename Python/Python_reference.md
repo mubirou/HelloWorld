@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
