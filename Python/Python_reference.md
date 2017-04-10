@@ -5,8 +5,8 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_win.md)）
-***
 * [データ型](#データ型)
+***
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
@@ -58,137 +58,111 @@
 1. 辞書型（dict）
 1. 複素数オブジェクト型（complex）
 
-◆検証（Python 2.Xでは日本語（ダブルバイト）はコメント文を含めエラーが発生）
-
-# ①論理型（bool）……TrueまたはFalse
-
-bool_ = True #←true/falseは不可
+### ①論理型（bool）
+* TrueまたはFalse
+```
+test.py
+bool_ = True #true/falseは不可
 print(bool_) #True（or False）
 print(type(bool_)) #<class 'bool'>
+```
 
-# ②整数型（int）……非常に大きな値も扱えます
-
-int_ = 10000000000000000000 #1000京以上も扱える…
+### ②整数型（int）
+* 非常に大きな値も扱えます
+```
+test.py
+int_ = 10000000000000000000 #1000京以上も扱える
 print(int_) #10000000000000000000
 print(type(int_)) #<class 'int'>
+```
 
-# ③浮動小数点数（float）……小数点第15桁まで
-
+### ③浮動小数点数（float）
+* 小数点第15桁まで
+```
+test.py
 float_ = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 print(float_) #3.141592653589793（小数点第15桁まで）
 print(type(float_)) #<class 'float'>
+```
 
-# ④文字列（str）……シングル/ダブルクォーテーション可
-
-string_ = "あいうえお" #←'○'でも可（Python 2.Xではダブルバイトはエラー）
+### ④文字列（str）
+* シングル/ダブルクォーテーション可
+```
+test.py
+string_ = "あいうえお" #'○'でも可（Python 2.Xではダブルバイトはエラー）
 print(string_) #あいうえお
 print(type(string_)) #<class 'str'>
+```
 
-# ⑤リスト（list）……配列（変更可）
-
+### ⑤リスト（list）
+* 配列（変更可）
+```
+test.py
 list_ = ["TAKASHI", "TOHRU", "SACHIKO"]
 print(list_) #['TAKASHI', 'TOHRU', 'SACHIKO']
 print(type(list_))  #<class 'list'>
+```
 
-# ⑥変更不可のリスト（tupleタプル）……配列（変更不可）
-
+### ⑥変更不可のリスト（tupleタプル）
+* 配列（変更不可）
+```
+test.py
 lockList_ = ("TAKASHI", "TOHRU", "SACHIKO")
 print(lockList_) #('TAKASHI', 'TOHRU', 'SACHIKO')
 print(type(lockList_)) #<class 'tuple'>
+```
 
-# ⑦重複不許可な集合型（set）
-
+### ⑦重複不許可な集合型（set）
+```
+test.py
 set_ = set(["0001", "0002", "0003"])
 print(set_) #{'0002', '0001', '0003'} ←何故この順序？（要調査）
 print(type(set_)) #<class 'set'>
+```
 
-# ⑧変更不可の集合型（frozenset）
-
+### ⑧変更不可の集合型（frozenset）
+```
+test.py
 frozenset_ = frozenset(["A", "B", "C"])
 print(frozenset_) #frozenset({'A', 'C', 'B'}) ←何故この順序？（要調査）
 print(type(frozenset_)) #<class 'frozenset'>
+```
 
-# ⑨クラス
-
-class MyClass: #←前方宣言が必要
-    def __init__(self): #←コンストラクタ
+### ⑨クラス
+```
+test.py
+class MyClass: #前方宣言が必要
+    def __init__(self): #コンストラクタ
         pass
 myClass_ = MyClass()
 print(myClass_) #<__main__.MyClass object at 0x7fcbae161cc0>
 print(type(myClass_)) #<class '__main__.MyClass'>
+```
 
-# ⑩辞書型（dict）……連想配列
-
+### ⑩辞書型（dict）……連想配列
+```
+test.py
 dict_ = {"TAKASHI":48, "TOHRU":13}
 print(dict_) #{'TAKASHI': 48, 'TOHRU': 13}
 print(type(dict_)) #<class 'dict'>
-
-# ⑪複素数オブジェクト型（complex）
-
-print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
-
-# ⑫ None型（None）……何もないことを示す定数
-
-print(type(None)) #<class 'NoneType'>
-
-
-
-
-### 例文
 ```
-#test.rb
-# ①TrueClass / FalseClass（論理型）
-_bool = true #ローカル変数
-puts(_bool) #true
-puts(_bool.class.name) #TrueClass（falseの場合FalseClass）
 
-# ②Fixnum / Bignum（整数型）
-_num = 4611686018427387903
-puts(_num) #4611686018427387903
-puts(_num.class.name) #Fixnum
+### ⑪複素数オブジェクト型（complex）
+```
+test.py
+print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
+```
 
-_num = 4611686018427387904 #4,611,686,018,427,387,904以上は「Bignum」型
-puts(_num) #4611686018427387904
-puts(_num.class.name) #Bignum
-
-# ③Float（浮動小数点数）
-_float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
-puts(_float) #3.141592653589793（小数点第15桁まで）
-puts(_float.class.name) #Float
-
-# ④文字列（String）
-_string = "あいうえお"
-puts(_string) #"あいうえお"
-puts("あいうえお".class.name) #String
-
-# ⑤配列（Array）
-_list = ["A","B","C"]
-puts(_list) #"A" → "B" → "C"
-puts(_list.class.name) #Array
-
-# ⑥ハッシュ（Hash）≒ 連想配列
-_hash = {"name"=>"TARO", "age"=>49} #他の記述方法あり
-puts(_hash) #{"name"=>"TARO", "age"=>49}
-puts(_hash.class.name) #Hash
-
-# ⑦クラス
-class MyClass #前方宣言が必要
-    def initialize() #コンストラクタ
-    end
-end
-_myClass = MyClass.new() #()は省略可
-puts(_myClass) # #<MyClass:0x00000000deeab8>
-puts(_myClass.class.name) #MyClass
-
-# ⑧NilClass
-puts(nil) #何も表示されず
-puts(nil.class.name) #NilClass（オブジェクトが存在しない事を意味する）
+### ⑫None型（None）……何もないことを示す定数
+```
+test.py
+print(type(None)) #<class 'NoneType'>
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月04日  
-更新日：2017年04月06日
+作成日：2016年06月20日  
+更新日：2017年04月10日
 
 
 <a name="データ型の操作"></a>
