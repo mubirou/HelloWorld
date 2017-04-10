@@ -168,110 +168,86 @@ print(type(None)) #<class 'NoneType'>
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
-### データ型を調べる
-* xxx.class.name
+### type() 関数 : データ型を返す
 ```
-#test.rb
-puts(true.class.name) #TrueClass（falseの場合はFalseClass型）
-puts(100.class.name) #Fixnum（4611686018427387904以上の場合はBignum型）
-puts(0.1.class.name) #Float
-puts("1".class.name) #String
-puts(["TAKASHI", "HANAKO", "TARO"].class.name) #Array
-puts({"TAKASHI"=>49}.class.name) #Hash
+#test.py
+print(type(True)) #<class 'bool'>
+print(type(100)) #<class 'int'>
+print(type(0.1)) #<class 'float'>
+print(type('1')) #<class 'str'>
+print(type(["TAKASHI", "TOHRU", "SACHIKO"])) #<class 'list'>
+print(type(("TAKASHI", "TOHRU", "SACHIKO"))) #<class 'tuple'>
+print(type(set(["TAKASHI", "TOHRU", "SACHIKO"]))) #<class 'set'>
+print(type(frozenset(["TAKASHI", "TOHRU", "SACHIKO"]))) #<class 'frozenset'>
+print(type({"TAKASHI":48, "TOHRU":13})) #<class 'dict'>
+print(type(1+1j)) #<class 'complex'>
 
-class MyClass #前方宣言が必要
-    def initialize() #コンストラクタ
-    end
-end
-_myClass = MyClass.new() #()は省略可
-puts(_myClass.class.name) #MyClass
-```
-
-### 同値性を調べる
-* ==、===、eql?()
-```
-#test.rb
-puts(1 == 1.0) #true
-puts(1 === 1.0) #true
-puts(1.eql?(1.0)) #false（値が同じでもクラスが異なるとfalse）
+class MyClass: #前方宣言が必要
+    def __init__(self): #コンストラクタ
+        pass #何もしない
+myClass_ = MyClass()
+print(type(myClass_)) #<class '__main__.MyClass'>
 ```
 
-### インスタンスの判定①
-* xxx.instance_of?()
+### is 演算子 : 厳密一致
+```
+#test.py
+# 数値のブール値の比較
+print(1 is True) #False（厳密一致）
+
+# クラスとインスタンスの比較
+class MyClass: #前方宣言が必要
+    def __init__(self): #コンストラクタ
+        pass #何もしない
+
+myClass_ = MyClass()
+print(myClass_ is MyClass) #False（厳密一致）
+```
+
+### isinstance() 関数 : インスタンスの判定
 * オブジェクトが指定したクラスのインスタンスか判定
 ```
-#test.rb
-class MyClass #前方宣言が必要
-    def initialize() #コンストラクタ
-    end
-end
-_myClass = MyClass.new() #()は省略可
-puts(_myClass.instance_of?(MyClass)) #true
+#test.py
+class MyClass: #前方宣言が必要
+    def __init__(self): #コンストラクタ（オプション）
+        pass #何もしない
+
+myClass_ = MyClass()
+print(isinstance(myClass_, MyClass)) #True ←isinstance(オブジェクト, クラス名)
 ```
 
-### インスタンスの判定②
-* xxx.is_a?()
-* オブジェクトが指定したクラスのインスタンスか継承をさかのぼって判定
+### データ型のキャスト（数値 ↔ bool 型）
 ```
-#test.rb
-class BaseClass #基本クラス（スーパークラス）
-    def initialize()
-    end
-end
-class SubClass < BaseClass #派生クラス（サブクラス）
-    def initialize()
-    end
-end
-_subClass = SubClass.new() #()は省略可
-puts(_subClass.instance_of?(BaseClass)) #false
-puts(_subClass.is_a?(BaseClass)) #true（継承をさかのぼって判定）
+#test.py
+#数値→bool型
+tmp_ = bool(1)
+print(tmp_) #True
+print(type(tmp_)) #<class 'bool'>
+
+#bool型→数値
+tmp_ = int(True) #True→1に変換（Falseは0に変換）
+print(tmp_) #1
+print(type(tmp_)) #<class 'int'>
 ```
 
-### スーパークラスを調べる
-* xxx.class.superclass
+### データ型のキャスト（数値 ↔ string 型）
 ```
-#test.rb
-class BaseClass #基本クラス（スーパークラス）
-    def initialize()
-    end
-end
-class SubClass < BaseClass #派生クラス（サブクラス）
-    def initialize()
-    end
-end
-_subClass = SubClass.new() #()は省略可
-puts(_subClass.class.superclass) #BaseClass（オブジェクトのスーパークラスを返す）
-```
+#test.py
+#string型→数値
+tmp_ = int("001")
+print(tmp_) #1
+print(type(tmp_)); #<class 'int'>
 
-### データ型のキャスト（文字列→数値）
-* xxx.to_i
+#数値→string型
+tmp_ = str(100)
+print(tmp_) #100
+print(type(tmp_)) #<class 'str'>
 ```
-#test.rb
-_tmp = "001".to_i
-puts(_tmp) #1
-puts(_tmp.class.name) #Fixnum
-
-_tmp = "001".to_f
-puts(_tmp) #1.0
-puts(_tmp.class.name) #Float
-```
-
-### データ型のキャスト（数値→文字列）
-* xxx.to_s
-```
-#test.rb
-_tmp = 100.to_s(10) #10進数の場合（(10)は省略可）
-puts(_tmp) #"100"
-puts(_tmp.class.name) #String
-```
-
-### データ型のキャスト（ブール値への変換）
-* Pythonには特別な機能が用意されていない
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月05日  
-更新日：2017年04月06日
+作成日：2016年06月20日  
+更新日：2017年04月10日
 
 
 <a name="クラス"></a>
