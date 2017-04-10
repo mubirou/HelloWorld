@@ -1,5 +1,3 @@
-### <b>この項目は、書きかけの項目です。</b>
-
 # <b>Ruby 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -36,7 +34,6 @@
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-***
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -2573,39 +2570,54 @@ end
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
 
-### テキストファイルの用意（準備）
-* [Web サーバ](http://bit.ly/2mbzR4D)を稼働し、ルートディレクトリ等に sample.txt （UTF-8）として保存
+### テキストファイルの用意（sample.txt/UTF-8として保存）
+* [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はない
 ```
 あいうえお
 かきくけこ
 さしすせそ
 ```
 
-### テキストの読み込み
+### 構文
 ```
-<script>
-    //①XMLHttpRequestオブジェクトの生成
-    var _request = new XMLHttpRequest(); //Webサーバ上で動作
-
-    //②イベントハンドラの定義
-    _request.onload = function() {
-        console.log(this.responseText); //⑤読み込んだテキストの表示
-    }
-
-    //③ヘッダの設定
-    _request.open("GET", "sample.txt");
-
-    //④リクエストの送信
-    _request.send(null);
-</script>
+○ = File.open("□□.txt")
+○.read() #テキストファイルの内容が返り値となります
+```
+または
+```
+File.read("□□.txt")
 ```
 
-### テキストファイルの解析
-* 読み込んだ XMLHttpRequest.responseText の解析は次の関数/メソッドを利用する
-    * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
-    * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
+### 例文
+```
+#test.rb
+_file = File.open("sample.txt") #同じ階層に○.txtがある場合
+_result = _file.read()
+puts(_result)
+#あいうえお
+#かきくけこ
+#さしすせそ
+```
+
+### 外部テキストの書き込み（参考）
+```
+#test.py
+_file = File.open("sample.txt")
+_tmp = _file.read()
+_tmp += "たちつてと\nなにぬねの" #読み込んだテキストに追加（「\n」で改行）
+File.write("sample.txt", _tmp)
+
+#ファイルの読み込み（確認）
+_reslt = File.read("sample.txt")
+puts(_reslt)
+#あいうえお
+#かきくけこ
+#さしすせそ
+#さしすせそ
+#たちつてと
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月0X日  
-更新日：2017年03月22日
+作成日：2016年07月09日  
+更新日：2017年04月10日
