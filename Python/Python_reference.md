@@ -61,7 +61,7 @@
 ### ①論理型（bool）
 * TrueまたはFalse
 ```
-test.py
+#test.py
 bool_ = True #true/falseは不可
 print(bool_) #True（or False）
 print(type(bool_)) #<class 'bool'>
@@ -70,7 +70,7 @@ print(type(bool_)) #<class 'bool'>
 ### ②整数型（int）
 * 非常に大きな値も扱えます
 ```
-test.py
+#test.py
 int_ = 10000000000000000000 #1000京以上も扱える
 print(int_) #10000000000000000000
 print(type(int_)) #<class 'int'>
@@ -79,7 +79,7 @@ print(type(int_)) #<class 'int'>
 ### ③浮動小数点数（float）
 * 小数点第15桁まで
 ```
-test.py
+#test.py
 float_ = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 print(float_) #3.141592653589793（小数点第15桁まで）
 print(type(float_)) #<class 'float'>
@@ -88,7 +88,7 @@ print(type(float_)) #<class 'float'>
 ### ④文字列（str）
 * シングル/ダブルクォーテーション可
 ```
-test.py
+#test.py
 string_ = "あいうえお" #'○'でも可（Python 2.Xではダブルバイトはエラー）
 print(string_) #あいうえお
 print(type(string_)) #<class 'str'>
@@ -97,7 +97,7 @@ print(type(string_)) #<class 'str'>
 ### ⑤リスト（list）
 * 配列（変更可）
 ```
-test.py
+#test.py
 list_ = ["TAKASHI", "TOHRU", "SACHIKO"]
 print(list_) #['TAKASHI', 'TOHRU', 'SACHIKO']
 print(type(list_))  #<class 'list'>
@@ -106,7 +106,7 @@ print(type(list_))  #<class 'list'>
 ### ⑥変更不可のリスト（tupleタプル）
 * 配列（変更不可）
 ```
-test.py
+#test.py
 lockList_ = ("TAKASHI", "TOHRU", "SACHIKO")
 print(lockList_) #('TAKASHI', 'TOHRU', 'SACHIKO')
 print(type(lockList_)) #<class 'tuple'>
@@ -114,7 +114,7 @@ print(type(lockList_)) #<class 'tuple'>
 
 ### ⑦重複不許可な集合型（set）
 ```
-test.py
+#test.py
 set_ = set(["0001", "0002", "0003"])
 print(set_) #{'0002', '0001', '0003'} ←何故この順序？（要調査）
 print(type(set_)) #<class 'set'>
@@ -122,7 +122,7 @@ print(type(set_)) #<class 'set'>
 
 ### ⑧変更不可の集合型（frozenset）
 ```
-test.py
+#test.py
 frozenset_ = frozenset(["A", "B", "C"])
 print(frozenset_) #frozenset({'A', 'C', 'B'}) ←何故この順序？（要調査）
 print(type(frozenset_)) #<class 'frozenset'>
@@ -130,7 +130,7 @@ print(type(frozenset_)) #<class 'frozenset'>
 
 ### ⑨クラス
 ```
-test.py
+#test.py
 class MyClass: #前方宣言が必要
     def __init__(self): #コンストラクタ
         pass
@@ -141,7 +141,7 @@ print(type(myClass_)) #<class '__main__.MyClass'>
 
 ### ⑩辞書型（dict）……連想配列
 ```
-test.py
+#test.py
 dict_ = {"TAKASHI":48, "TOHRU":13}
 print(dict_) #{'TAKASHI': 48, 'TOHRU': 13}
 print(type(dict_)) #<class 'dict'>
@@ -149,13 +149,13 @@ print(type(dict_)) #<class 'dict'>
 
 ### ⑪複素数オブジェクト型（complex）
 ```
-test.py
+#test.py
 print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
 ```
 
 ### ⑫None型（None）……何もないことを示す定数
 ```
-test.py
+#test.py
 print(type(None)) #<class 'NoneType'>
 ```
 
