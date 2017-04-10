@@ -8,8 +8,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-***
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
+***
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -343,91 +343,81 @@ print(rectangle_.getArea()) #2073600
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
-### 概要
-* スーパークラス ＝ 基本（基底）クラス、親クラスのこと
-* サブクラス ＝ 派生クラス、子クラスのこと
-* 多重継承は不可
-
-### 例文
 ```
-#test.rb
-#================
-# スーパークラス
-#================
-class SuperClass
-    @pSuperClass #インスタンス変数の宣言（省略可）←派生クラスでも利用可能
-    def initialize() #コンストラクタ
-        @pSuperClass = "スーパークラスの変数"
-    end
-    def pSuperClass #getter
-        @pSuperClass
-    end
-    def mSuperClass
-        puts("スーパークラスのメソッド")
-    end
-end
+#test.py
+#====================
+# 基本（基底）クラス
+#====================
+class SuperClass(object):
+    # プライベート変数
+    __pSuperClass = "基本クラスのプロパティ"
 
-#================
-# サブクラスＡ
-#================
-class SubClassA < SuperClass
-    @pSubClassA #インスタンス変数≒プライベート変数の宣言（省略可）
-    def initialize()
-        super() #必須（スーパークラスのinitialize()をオーバーライドしてしまう為）
-        @pSubClassA = "サブクラスＡの変数"
-    end
-    def pSubClassA #getter
-        @pSubClassA
-    end
-    def mSubClassA
-        puts("サブクラスＡのメソッド")
-    end
-end
-#================
-# サブクラスＢ
-#================
-class SubClassB < SuperClass
-    @pSubClassB #インスタンス変数≒プライベート変数の宣言（省略可）
-    def initialize()
-        super() #必須（スーパークラスのinitialize()をオーバーライドしてしまう為）
-        @pSubClassB = "サブクラスＢの変数"
-    end
-    def pSubClassB #getter
-        @pSubClassB
-    end
-    def mSubClassB
-        puts("サブクラスＢのメソッド")
-    end
-end
+    # getter/setter
+    def __get__pSuperClass(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        return self.__pSuperClass
+    def __set__pSuperClass(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        self.__pSuperClass = value
+    pSuperClass = property(__get__pSuperClass, __set__pSuperClass)
 
-#================
+    # 関数
+    def mSuperClass(self):
+        return "基本クラスのメソッド"
+
+#=================================================================
+# 派生クラスＡ
+# class 派生クラス(基本クラス①, 基本クラス②, …) で多重継承可能
+#=================================================================
+class SubClassA(SuperClass): #←…基本クラス（SuperClass）を継承
+    # 擬似プライベート変数
+    __pSubClassA = "派生クラスＡのプロパティ"
+
+    # getter/setter
+    def __get__pSubClassA(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        return self.__pSubClassA
+    def __set__pSubClassA(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        self.__pSubClassA = value
+    pSubClassA = property(__get__pSubClassA, __set__pSubClassA)
+
+    # 関数
+    def mSubClassA(self):
+        return "派生クラスＡのメソッド"
+
+#==============
+# 派生クラスＢ
+#==============
+class SubClassB(SuperClass): #←…基本クラス（SuperClass）を継承
+    # 擬似プライベート変数
+    __pSubClassB = "派生クラスＢのプロパティ"
+
+    # getter/setter
+    def __get__pSubClassB(self):
+        return self.__pSubClassB
+    def __set__pSubClassB(self, value):
+        self.__pSubClassB = value
+    pSubClassB = property(__get__pSubClassB, __set__pSubClassB)
+
+    # 関数
+    def mSubClassB(self):
+        return "派生クラスＢのメソッド"
+
+#======
 # 実行
-#================
-#サブクラスＡ
-_subClassA = SubClassA.new() #インタンスの生成（()は省略可）
-puts(_subClassA) ##<SubClassA:0x00000001e42748>
-puts(_subClassA.is_a?(SubClassA)) #true（SubClassAのインスンタンス）
-puts(_subClassA.is_a?(SuperClass)) #true（SuperClassのインスンタンスでもある）
-puts(_subClassA.pSuperClass) #"スーパークラスの変数"
-puts(_subClassA.pSubClassA) #"サブクラスＡの変数"
-_subClassA.mSuperClass() #"スーパークラスのメソッド"
-_subClassA.mSubClassA() #"サブクラスのメソッド"
-
-#サブクラスＢ
-_subClassB = SubClassB.new() #インタンスの生成（()は省略可）
-puts(_subClassB) ##<SubClassB:0x00000001e42478>
-puts(_subClassB.is_a?(SubClassB)) #true（SubClassBのインスンタンス）
-puts(_subClassB.is_a?(SuperClass)) #true（SuperClassのインスンタンスでもある）
-puts(_subClassB.pSuperClass) #"スーパークラスの変数"
-puts(_subClassB.pSubClassB) #"サブクラスＢの変数"
-_subClassB.mSuperClass() #"スーパークラスのメソッド"
-_subClassB.mSubClassB() #"サブクラスのメソッド"
+#======
+# 派生クラスＡ
+subClassA_ = SubClassA() #インスタンスの生成
+print(subClassA_) #<__main__.SubClassA object at 0x7f3b6d678e80>
+print(isinstance(subClassA_, SubClassA)) #True（SubClassのインスタンス）
+print(isinstance(subClassA_, SuperClass)) #True（SuperClassのインスタンスでもある）
+print(subClassA_.pSuperClass) #基本クラスのプロパティ
+print(subClassA_.pSubClassA) #派生クラスＡのプロパティ
+print(subClassA_.mSuperClass()) #基本クラスのメソッド
+print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月05日  
-更新日：2017年04月06日
+作成日：2016年06月21日  
+更新日：2017年04月10日
 
 
 <a name="名前空間"></a>
