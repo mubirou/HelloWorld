@@ -2429,44 +2429,47 @@ puts(_i0,_i1,_i2,_i3,_i4,_i5,_i6,_i7,_i8,_i9)
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
-### 書式
-```
-var xxx = new Date();
-xxx.getFullYear(); //年（2015等）
-xxx.getMonth(); //月（0〜11）
-xxx.getDate(); //日（1〜31）
-xxx.getDay(); //曜日（0=日曜〜5=金曜）
-xxx.getHours(); //時（0〜23）
-xxx.getMinutes(); //分（0〜59）
-xxx.getSeconds(); //秒（0〜59）
-xxx.getMilliseconds(); //ミリ秒（0〜999）
-```
-
 ### 例文
+* Time クラスのほかに Date クラスもあり
 ```
-<script>
-    var _date = new Date();
-    console.log(_date); //Wed Mar 22 2017 09:33:39 GMT+0900 (JST)
-    console.log(_date.getFullYear()); //2017
-    console.log(_date.getMonth()); //2（3月）
-    console.log(_date.getDate()); //22
-    console.log(_date.getDay()); //3（水曜日）
-    console.log(_date.getHours()); //09
-    console.log(_date.getMinutes()); //33
-    console.log(_date.getSeconds()); //39
-    console.log(_date.getMilliseconds()); //559
-    //"hh:mm:ss"で現在の時間を表示する方法
-    var _h = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
-    var _m = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
-    var _s = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
-    console.log(_h + ":" + _m + ":" + _s); //"09:33:39"
-</script>
+#test.rb
+_now = Time.now
+puts(_now) #2016-07-09 11:50:44 +0900
+puts(_now.year) #年（2016等）
+puts(_now.month) #月（1〜12）
+puts(_now.day) #日（1〜31）
+puts(_now.wday) #0（日曜）〜6（土曜）
+puts(_now.hour) #時間（0〜23）
+puts(_now.min) #分（0〜59）
+puts(_now.sec) #秒（0〜59）
+puts(_now.usec) #マイクロ秒（0〜999999）
+
+# "hh:mm:ss"で現在の時間を表示する
+if (_now.hour < 10) then #「時」がひと桁の場合…
+  _h = "0" + _now.hour.to_s
+else 
+  _h = _now.hour.to_s
+end
+
+if (_now.min < 10) then #「分」がひと桁の場合…
+  _m = "0" + _now.min.to_s
+else 
+  _m = _now.min.to_s
+end
+
+if (_now.sec < 10) then #「秒」がひと桁の場合…
+  _s = "0" + _now.sec.to_s
+else
+  _s = _now.sec.to_s
+end
+
+puts(_h + ":" + _m + ":" + _s) #"08:03:04"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月0X日  
-更新日：2017年03月22日
+作成日：2016年07月09日  
+更新日：2017年04月10日
 
 
 <a name="タイマー"></a>
