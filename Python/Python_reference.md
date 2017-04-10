@@ -62,70 +62,70 @@
 * TrueまたはFalse
 ```
 #test.py
-bool_ = True #true/falseは不可
-print(bool_) #True
-print(type(bool_)) #<class 'bool'>
+_bool = True #true/falseは不可
+print(_bool) #True
+print(type(_bool)) #<class 'bool'>
 ```
 
 ### ②整数型（int）
 * 非常に大きな値も扱えます
 ```
 #test.py
-int_ = 10000000000000000000 #1000京以上も扱える
-print(int_) #10000000000000000000
-print(type(int_)) #<class 'int'>
+_int = 10000000000000000000 #1000京以上も扱える
+print(_int) #10000000000000000000
+print(type(_int)) #<class 'int'>
 ```
 
 ### ③浮動小数点数（float）
 * 小数点第15桁まで
 ```
 #test.py
-float_ = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
-print(float_) #3.141592653589793（小数点第15桁まで）
-print(type(float_)) #<class 'float'>
+_float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
+print(_float) #3.141592653589793（小数点第15桁まで）
+print(type(_float)) #<class 'float'>
 ```
 
 ### ④文字列（str）
 * シングル/ダブルクォーテーション可
 ```
 #test.py
-string_ = 'あいうえお' #"○"でも可（Python 2.Xではダブルバイトはエラー）
-print(string_) #あいうえお
-print(type(string_)) #<class 'str'>
+_string = 'あいうえお' #"○"でも可（Python 2.Xではダブルバイトはエラー）
+print(_string) #あいうえお
+print(type(_string)) #<class 'str'>
 ```
 
 ### ⑤リスト（list）
 * 配列（変更可）
 ```
 #test.py
-list_ = ['A', 'I', 'U']
-print(list_) #['A', 'I', 'U']
-print(type(list_))  #<class 'list'>
+_list = ['A', 'I', 'U']
+print(_list) #['A', 'I', 'U']
+print(type(_list))  #<class 'list'>
 ```
 
 ### ⑥変更不可のリスト（tupleタプル）
 * 配列（変更不可）
 ```
 #test.py
-lockList_ = ('A', 'I', 'U')
-print(lockList_) #('A', 'I', 'U')
-print(type(lockList_)) #<class 'tuple'>
+_lockList = ('A', 'I', 'U')
+print(_lockList) #('A', 'I', 'U')
+print(type(_lockList)) #<class 'tuple'>
 ```
 
 ### ⑦重複不許可な集合型（set）
 ```
 #test.py
-set_ = set(['0002', '0001', '0003'])
-print(set_) #{'0003', '0001', '0002'} ←順序が変更される
-print(type(set_)) #<class 'set'>
+_set = set(['0002', '0001', '0003'])
+print(_set) #{'0003', '0001', '0002'} ←順序が変更される
+print(type(_set)) #<class 'set'>
 ```
 
 ### ⑧変更不可の集合型（frozenset）
 ```
 #test.py
-frozenset_ = frozenset(['A', 'C', 'B'])
-print(frozenset_) #frozenset({'C', 'A', 'B'}) ←順序が変更される
-print(type(frozenset_)) #<class 'frozenset'>
+_frozenset = frozenset(['A', 'C', 'B'])
+print(_frozenset) #frozenset({'C', 'A', 'B'}) ←順序が変更される
+print(type(_frozenset)) #<class 'frozenset'>
 ```
 
 ### ⑨クラス
@@ -134,17 +134,17 @@ print(type(frozenset_)) #<class 'frozenset'>
 class MyClass: #前方宣言が必要
     def __init__(self): #コンストラクタ
         pass
-myClass_ = MyClass()
-print(myClass_) #<__main__.MyClass object at 0x7fcbae161cc0>
-print(type(myClass_)) #<class '__main__.MyClass'>
+_myClass = MyClass()
+print(_myClass) #<__main__.MyClass object at 0x7fcbae161cc0>
+print(type(_myClass)) #<class '__main__.MyClass'>
 ```
 
 ### ⑩辞書型（dict） : 連想配列
 ```
 #test.py
-dict_ = {'A':'あ', 'I':'い'}
-print(dict_) #{'A': 'あ', 'I': 'い'}
-print(type(dict_)) #<class 'dict'>
+_dict = {'A':'あ', 'I':'い'}
+print(_dict) #{'A': 'あ', 'I': 'い'}
+print(type(_dict)) #<class 'dict'>
 ```
 
 ### ⑪複素数オブジェクト型（complex）
@@ -185,8 +185,8 @@ print(type(1+1j)) #<class 'complex'>
 class MyClass: #前方宣言が必要
     def __init__(self): #コンストラクタ
         pass #何もしない
-myClass_ = MyClass()
-print(type(myClass_)) #<class '__main__.MyClass'>
+_myClass = MyClass()
+print(type(_myClass)) #<class '__main__.MyClass'>
 ```
 
 ### is 演算子 : 厳密一致
@@ -200,8 +200,8 @@ class MyClass: #前方宣言が必要
     def __init__(self): #コンストラクタ
         pass #何もしない
 
-myClass_ = MyClass()
-print(myClass_ is MyClass) #False（厳密一致）
+_myClass = MyClass()
+print(_myClass is MyClass) #False（厳密一致）
 ```
 
 ### isinstance() 関数 : インスタンスの判定
@@ -212,36 +212,36 @@ class MyClass: #前方宣言が必要
     def __init__(self): #コンストラクタ（オプション）
         pass #何もしない
 
-myClass_ = MyClass()
-print(isinstance(myClass_, MyClass)) #True ←isinstance(オブジェクト, クラス名)
+_myClass = MyClass()
+print(isinstance(_myClass, MyClass)) #True ←isinstance(オブジェクト, クラス名)
 ```
 
 ### データ型のキャスト（数値 ↔ bool 型）
 ```
 #test.py
 #数値→bool型
-tmp_ = bool(1)
-print(tmp_) #True
-print(type(tmp_)) #<class 'bool'>
+_tmp = bool(1)
+print(_tmp) #True
+print(type(_tmp)) #<class 'bool'>
 
 #bool型→数値
-tmp_ = int(True) #True→1に変換（Falseは0に変換）
-print(tmp_) #1
-print(type(tmp_)) #<class 'int'>
+_tmp = int(True) #True→1に変換（Falseは0に変換）
+print(_tmp) #1
+print(type(_tmp)) #<class 'int'>
 ```
 
 ### データ型のキャスト（数値 ↔ string 型）
 ```
 #test.py
 #string型→数値
-tmp_ = int("001")
-print(tmp_) #1
-print(type(tmp_)); #<class 'int'>
+_tmp = int("001")
+print(_tmp) #1
+print(type(_tmp)); #<class 'int'>
 
 #数値→string型
-tmp_ = str(100)
-print(tmp_) #100
-print(type(tmp_)) #<class 'str'>
+_tmp = str(100)
+print(_tmp) #100
+print(type(_tmp)) #<class 'str'>
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -258,7 +258,7 @@ print(type(tmp_)) #<class 'str'>
 #test.py
 class MyClass(object): #前方宣言が必要（(object)は省略可）
    pass #何もしない
-myClass_ = MyClass() #インスタンスの生成
+_myClass = MyClass() #インスタンスの生成
 ```
 
 * passについて  
@@ -316,22 +316,22 @@ class Rectangle(object): #(object)は省略可
 # 実行
 #======
 #①インスタンスの生成
-rectangle_ = Rectangle(640,480)
+_rectangle = Rectangle(640,480)
 
 #②プロパティの取得（その１）
-print(rectangle_.width) #640
-print(rectangle_.height) #480
+print(_rectangle.width) #640
+print(_rectangle.height) #480
 
 #③プロパティの更新
-rectangle_.width = 1920
-rectangle_.height = 1080
+_rectangle.width = 1920
+_rectangle.height = 1080
 
 #④プロパティの取得（その２）
-print(rectangle_.width) #1920
-print(rectangle_.height) #1080
+print(_rectangle.width) #1920
+print(_rectangle.height) #1080
 
 #⑤関数の実行
-print(rectangle_.getArea()) #2073600
+print(_rectangle.getArea()) #2073600
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -475,8 +475,8 @@ class ClassA(object):
 class ClassB(ClassA): #クラスＡを継承（ポイント）
     pass
 
-classB_ = ClassB()
-classB_.myMethod() #'ClassA.myMethod()'
+_classB = ClassB()
+_classB.myMethod() #'ClassA.myMethod()'
 ```
 
 ### 委譲版
@@ -495,8 +495,8 @@ class ClassB(): #この内容のみ継承と異なる
     def myMethod(self):
         self.__classA.myMethod()
 
-classB_ = ClassB()
-classB_.myMethod() #'ClassA.myMethod()'
+_classB = ClassB()
+_classB.myMethod() #'ClassA.myMethod
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -518,15 +518,15 @@ classB_.myMethod() #'ClassA.myMethod()'
 ### グローバル変数
 ```
 #test.py
-global_ = "グローバル変数" #関数の外部で宣言するとグローバル変数扱い
+_global = "グローバル変数" #関数の外部で宣言するとグローバル変数扱い
 
 #=====================================
 # 関数内のグローバル変数の扱い
 #=====================================
 def myFunction():
-    global global_ #グローバル変数を扱う「宣言」
-    global_ = "グローバル変数②" #global宣言すれば変更可（宣言なしでも参照は可）
-    print(global_)
+    global _global #グローバル変数を扱う「宣言」
+    _global = "グローバル変数②" #global宣言すれば変更可（宣言なしでも参照は可）
+    print(_global)
 
 myFunction() #"グローバル変数②"
 
@@ -539,14 +539,14 @@ class MyClass(object):
         pass #何もしない
 
     def myMethod(self):
-        global global_ #グローバル変数を扱う「宣言」
-        global_ = "グローバル変数③" #global宣言すれば変更可（宣言なしでも参照は可）
-        print(global_)
+        global _global #グローバル変数を扱う「宣言」
+        _global = "グローバル変数③" #global宣言すれば変更可（宣言なしでも参照は可）
+        print(_global)
 
-myClass_ = MyClass()
-myClass_.myMethod() #"グローバル変数③"
+_myClass = MyClass()
+_myClass.myMethod() #"グローバル変数③"
 
-print(global_) #"グローバル変数③" ←クラス内（または関数内）での変更が反映される
+print(_global) #"グローバル変数③" ←クラス内（または関数内）での変更が反映される
 ```
 
 <a name="パブリック変数"></a>
@@ -558,12 +558,12 @@ print(global_) #"グローバル変数③" ←クラス内（または関数内�
 #test.py（悪い例）
 class MyClass(object):
     def __init__(self): #コンストラクタ
-        self.p_ = "パブリック変数" #パブリック変数の宣言と設定
+        self._p = "パブリック変数" #パブリック変数の宣言と設定
 
-myClass_ = MyClass()
-print(myClass_.p_) #"パブリック変数"（クラスの外からアクセス可能）
-myClass_.p_ = "○△☆□？" #クラスの外から変更できてしまう
-print(myClass_.p_) #"○△☆□？"
+_myClass = MyClass()
+print(_myClass._p) #"パブリック変数"（クラスの外からアクセス可能）
+_myClass._p = "○△☆□？" #クラスの外から変更できてしまう
+print(_myClass._p) #"○△☆□？"
 ```
 
 <a name="プライベート変数"></a>
@@ -591,10 +591,10 @@ class MyClass(object):
         self.__p = value #引数名「value」は任意
     p = property(__getP, __setP) #プロパティを設定
 
-myClass_ = MyClass()
-print(myClass_.p) #プライベート変数①（≠他人の変数を勝手にいじる行為）
-myClass_.p = "プライベート変数②"
-print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行為）
+_myClass = MyClass()
+print(_myClass.p) #プライベート変数①（≠他人の変数を勝手にいじる行為）
+_myClass.p = "プライベート変数②"
+print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行為）
 ```
 
 <a name="プライベート変数"></a>
@@ -603,15 +603,16 @@ print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行�
     ```
     #test.py
     def myFunction1():
-        local_ = "ローカル変数" #この関数内でのみ利用可能!!
+        _local = "ローカル変数" #この関数内でのみ利用可能
+        print(_local) #"ローカル変数"（アクセス可）
 
     def myfunction2():
-        #print(local_) #ERROR（アクセス不可）
+        #print(_local) #ERROR（アクセス不可）
         pass
 
     myFunction1()
     myfunction2()
-    #print(local_) #ERROR（アクセス不可）
+    #print(_local) #ERROR（アクセス不可）
     ```
 
 1. クラスの関数内で宣言する場合
@@ -619,16 +620,16 @@ print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行�
     #test.py
     class MyClass(object):
         def myMethod1(self): #selfは必須
-            local_ = "ローカル変数" #self.は付けない（付けるとパブリック変数扱い）
-            print(local_) #この関数内でのみ利用可能!!
+            _local = "ローカル変数" #self.は付けない（付けるとパブリック変数扱い）
+            print(_local) #この関数内でのみ利用可能!!
         def myMethod2(self): #selfは必須
-            #print(local_) #ERROR（アクセス不可）
+            #print(_local) #ERROR（アクセス不可）
             pass
 
-    myClass_ = MyClass()
-    myClass_.myMethod1()
-    myClass_.myMethod2()
-    #print(myClass_.local_) #ERROR（アクセス不可）
+    _myClass = MyClass()
+    _myClass.myMethod1()
+    _myClass.myMethod2()
+    #print(_myClass._local) #ERROR（アクセス不可）
     ```
 
 1. for文内で宣言する場合
@@ -636,12 +637,12 @@ print(myClass_.p) #アクセス可（≠他人の変数を勝手にいじる行�
     #test.py
     class MyClass(object):
         def __init__(self): #コンストラクタ
-            i_ = 999 #ローカル変数
-            for i_ in range(6): #ローカル変数（i_）0〜5
-                print(i_) #0、1、2、...、5
-            print(i_) #5（for文を出ても関数内であればアクセス可能）
+            _i = 999 #ローカル変数
+            for _i in range(6): #ローカル変数（_i）0〜5
+                print(_i) #0、1、2、...、5
+            print(_i) #5（for文を出ても関数内であればアクセス可能）
 
-    myClass_ = MyClass()
+    _myClass = MyClass()
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
