@@ -255,90 +255,89 @@ print(type(tmp_)) #<class 'str'>
 
 ### 最小構成
 ```
-#test.rb
-class MyClass #前方宣言が必要（必ず大文字で始めなければならない）
-    def initialize() #コンストラクタ（省略可）
-    end
-end
-_myClass = MyClass.new() #()は省略可  
+#test.py
+class MyClass(object): #←…前方宣言が必要（(object)は省略可）
+   pass #←…何もしない
+myClass_ = MyClass() #←…インスタンスの生成
 ```
+
+* passについて  
+Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味するpass文が用意されています。
 
 ### 例文
 ```
-#test.rb
+#test.py
 #==============
 # 長方形クラス
 #==============
-class Rectangle #前方宣言が必要
-    #----------------------------------------------
-    # インスタンス変数の宣言（通常は省略）
-    #----------------------------------------------
-    @width = nil #省略可（@widthだけでも可）
-    @height = nil #省略可（@heightだけでも可）
+class Rectangle(object): #(object)は省略可
+    #-----------------------------------------------------------
+    # プライベート変数（ここではself.は付けない／__○○にする）
+    #-----------------------------------------------------------
+    __width = None #値を設定可（コンストラクタ内に記述可）
+    __height = None #値を設定可（コンストラクタ内に記述可）
 
-    #----------------------------------------------
+    #----------------
     # コンストラクタ
-    #----------------------------------------------
-    def initialize(w,h)
-        @width = w
-        @height = h
-    end
+    #----------------
+    def __init__(self, w, h): #self（自分自身を指す）は省略不可
+        self.__width = w
+        self.__height = h
 
-    #----------------------------------------------
-    # @widthアクセス用（getter/setter）
-    #----------------------------------------------
-    def width #getter
-        @width
-    end
-    def width=(value) #setter
-        @width = value
-    end
+    #-----------------------------------
+    # _widthアクセス用（getter/setter）
+    #-----------------------------------
+    def __getWidth(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        return self.__width
 
-    #----------------------------------------------
-    # @heightアクセス用（getter/setter）
-    #----------------------------------------------
-    def height #getter
-        @height
-    end
-    def height=(value) #setter
-        @height = value
-    end
+    def __setWidth(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        self.__width = value #引数名「value」は任意
 
-    #----------------------------------------------
-    # 面積計算用メソッド
-    #----------------------------------------------
-    def getArea
-        return @width * @height
-    end
-end
+    width = property(__getWidth, __setWidth) #プロパティを設定
 
-#==============
+    #------------------------------------
+    # _heightアクセス用（getter/setter）
+    #------------------------------------
+    def __getHeight(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        return self.__height
+
+    def __setHeight(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
+        self.__height = value #引数名「value」は任意
+
+    height = property(__getHeight, __setHeight) #プロパティを設定
+
+    #----------------
+    # 面積計算用関数
+    #----------------
+    def getArea(self): #self（自分自身を指す）は省略不可（引数は追加可）
+        return self.__width * self.__height
+
+#======
 # 実行
-#==============
+#======
 #①インスタンスの生成
-_rectangle = Rectangle.new(640,480)
+rectangle_ = Rectangle(640,480)
 
 #②プロパティの取得（その１）
-#puts(_rectangle.@width) #syntax error（外からのアクセス不可）
-puts(_rectangle.width) #640
-puts(_rectangle.height) #480
+print(rectangle_.width) #640
+print(rectangle_.height) #480
 
 #③プロパティの更新
-_rectangle.width = 1920
-_rectangle.height = 1080
+rectangle_.width = 1920
+rectangle_.height = 1080
 
 #④プロパティの取得（その２）
-puts(_rectangle.width) #1920
-puts(_rectangle.height) #1080
+print(rectangle_.width) #1920
+print(rectangle_.height) #1080
 
-#⑤メソッドの実行
-puts(_rectangle.getArea()) #2073600（()は省略可）
+#⑤関数の実行
+print(rectangle_.getArea()) #2073600
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月05日  
-更新日：2017年04月06日  
+作成日：2016年06月20日  
+更新日：2017年04月10日
 
 
 <a name="スーパークラスとサブクラス"></a>
