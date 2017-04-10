@@ -33,7 +33,7 @@
     $ sudo apt-get install pylint  
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) および [Python for VSCode]((https://marketplace.visualstudio.com/items?itemName=tht13.python) を検索＆インストール
+    [表示] → [拡張機能] から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) および [Python for VSCode](https://marketplace.visualstudio.com/items?itemName=tht13.python) を検索＆インストール
 
 ## コードの記述
 
