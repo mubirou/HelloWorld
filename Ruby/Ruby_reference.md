@@ -2031,7 +2031,7 @@ _regex = Regexp.new("吉田")
 
 if _regex =~ _string then #thenは省略可能（ここで「検索」）
     #マッチした場合（"吉田"が含まれている）の処理
-    _string.gsub!("吉田","東村") #ここで「置換」
+    _string.gsub!("吉田", "よしだ") #ここで「置換」
 else
     puts("吉田は含まれていません")
 end
