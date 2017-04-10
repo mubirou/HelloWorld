@@ -31,9 +31,9 @@
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
-***
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
+***
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
@@ -2173,89 +2173,97 @@ _subClass.hoge("派生クラスからの呼び出し")
 # <b>オーバーライド</b>
 
 ### 概要
-* スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ
-* スーパークラスのメソッドを呼び出したい場合は、super.メソッド名() とする
-* （擬似）[抽象クラス](#抽象クラス)でもこの方法を活用
+* スーパークラスで定義したメソッドを派生クラスで再定義することをオーバーライドと呼ぶ
+* スーパークラスの「同名のメソッド」を呼び出したい場合は、super([引数]) を使う
+
+### 書式
+```
+class スーパークラス名
+    def メソッド名(引数): #派生クラスでオーバーライドされる
+        ……
+
+class 派生クラス名 < 基本クラス名
+    def メソッド名(引数) #スーパークラスのメソッドをオーバーライドする
+        super(引数) #スーパークラスの「同名のメソッド」を呼び出す場合
+        ……
+```
 
 ### 例文
 ```
-<script>
-    //スーパークラス
-    class SuperClass {
-        //↓サブクラスでオーバライドするメソッド
-        myMethod() {
-            console.log("SuperClass.myMethod()");
-        }
-    }
+#test.rb
+#スーパークラス
+class SuperClass 
+  #↓派生クラスでオーバーライドされる
+  def myMethod()
+    puts("スーパークラスのmyMethod()")
+  end
+end
 
-    //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-        myMethod() {
-            //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
-            console.log("SubClass.myMethod()");
-        }
-    }
+#派生クラス
+class SubClass < SuperClass 
+  #↓スーパークラスのメソッドをオーバーライドする
+  def myMethod()
+    super() #スーパークラスの「同名のメソッド」を呼び出す場合
+    puts("派生クラスのmyMethod()")
+  end
+end
 
-    //実行
-    var _subClass = new SubClass();
-    _subClass.myMethod();
-</script>
+_subClass = SubClass.new()
+_subClass.myMethod()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月08日  
+更新日：2017年03月22日
 
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-### 概要
-JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener() のターゲットに指定できるオブジェクトは Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なりここで紹介する方法は、他の言語でも利用可能な汎用的な方法です。
-
-### 例文
 ```
-<script>
-    class Robot { //イベントを設定するクラス
-        constructor() { 
-            this.__energy = 80;
-        }
+#test.rb
+class Robot
+  @energy #プライベート変数の宣言
+  @dieHandler #プライベート変数の宣言（リスナーメソッドを格納）
 
-        addEventListener(_event, _function) {
-            if (_event == "die") {
-                this.__dieHandler = _function; //匿名関数を変数に格納
-            } else {
-                //該当のイベントが無い場合、実行時にErrorを発生（オプション）
-                throw new Error('Error:"' + _event + '"はサポートされていません');
-            }
-        }
+  def initialize()
+    @energy = 80 #プライベート変数の初期化
+  end
 
-        fight() {
-            this.__energy -= 20;
-            if (this.__energy <= 0) {
-                this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
-            }
-        }
-    }
+  def addEventListener(_event, _method)
+    if (_event == "die") then
+      @dieHandler = _method #変数に匿名関数を格納（ポイント!!）
+    else
+      puts("Error: Robot.addEventListener()")
+    end
+  end
 
-    var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
-        console.log(arg); //Robotクラスのインスタンス
-        alert("GAME OVER");
-    }
+  def fight()
+    @energy -= 20
+    if (@energy <= 0) then
+      @dieHandler.call(self) #匿名関数の呼び出し（selfはRobotクラスのインスタンス）
+    end
+  end
+end
 
-    var _robot = new Robot();
-    _robot.addEventListener("die", die_robot); //イベントリスナーの設定
-    _robot.fight();
-    _robot.fight();
-    _robot.fight();
-    _robot.fight(); //"GAME OVER"
-</script>
+_die_Robot = ->(arg) { #匿名関数（ポイント!!）
+  puts(arg) ##<Robot:0x0000000271c030> #Robotクラスのインスタンス
+  puts("GAME OVER")
+}
+
+_robot = Robot.new()
+_robot.addEventListener("die", _die_Robot)
+_robot.fight()
+_robot.fight()
+_robot.fight()
+_robot.fight() #"GAME OVER"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月08日  
+更新日：2017年03月22日
 
 
 <a name="数学関数（Math）"></a>
@@ -2376,7 +2384,8 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月0X日  
+更新日：2017年03月22日
 
 <a name="乱数"></a>
 # <b>乱数</b>
@@ -2427,7 +2436,8 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月0X日  
+更新日：2017年03月22日
 
 
 <a name="日時情報"></a>
@@ -2469,7 +2479,8 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月0X日  
+更新日：2017年03月22日
 
 
 <a name="タイマー"></a>
@@ -2571,7 +2582,8 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月0X日  
+更新日：2017年03月22日
 
 
 <a name="処理速度計測"></a>
@@ -2605,7 +2617,8 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月0X日  
+更新日：2017年03月22日
 
 
 
@@ -2646,4 +2659,5 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2017年03月22日  
+作成日：2016年07月0X日  
+更新日：2017年03月22日
