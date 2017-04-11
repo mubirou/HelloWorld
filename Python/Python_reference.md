@@ -763,10 +763,10 @@ print(~3) #-4（ビット反転）
 #擬似「定数」←実際はグローバル変数
 MY_NAME = "TAKASHI NISHIMURA"
 
-print(MY_NAME) #TAKASHI NISHIMURA
+print(MY_NAME) #"TAKASHI NISHIMURA"
 
 MY_NAME = "TARO NISHIMURA" #変更できてしまう（本当は定数ではない）
-print(MY_NAME) #TARO NISHIMURA
+print(MY_NAME) #"TARO NISHIMURA"
 ```
 
 ### クラス定数（クラスからもインスタンスからも呼び出せる）
@@ -781,15 +781,15 @@ class MyClass(object):
 # 「インスタンス変数」と「クラス定数」の違いを検証
 #=====================================================
 myClass_ = MyClass() #インスタンスの生成
-print(myClass_.MY_NAME) #TAKASHI NISHIMURA ←インスタンス変数へのアクセス
+print(myClass_.MY_NAME) #"TAKASHI NISHIMURA" ←インスタンス変数へのアクセス
 myClass_.MY_NAME = "HANAKO NISHIMURA" #インスタンス変数を変更（他人をいじる…）
-#↑本来はオブジェクト指向のルールとしてgetter/setterでアクセスすべき
-print(myClass_.MY_NAME) #HANAKO NISHIMURA
+#↑オブジェクト指向のルールとしてgetter/setterでアクセスすべきですが…
+print(myClass_.MY_NAME) #"HANAKO NISHIMURA"
 
-print(MyClass.MY_NAME) #TAKASHI NISHIMURA ←クラス変数とインスタンス変数は別扱い
+print(MyClass.MY_NAME) #"TAKASHI NISHIMURA" ←クラス変数とインスタンス変数は別扱い
 
 MyClass.MY_NAME = "TARO NISHIMURA" #変更できてしまう（実際は定数ではない）
-print(MyClass.MY_NAME) #TARO NISHIMURA
+print(MyClass.MY_NAME) #"TARO NISHIMURA"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
