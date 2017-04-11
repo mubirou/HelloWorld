@@ -17,8 +17,8 @@
 * [定数](#定数)
 * [関数](#関数)
 * [匿名関数](#匿名関数)
-***
 * [静的変数・静的関数](#静的変数・静的関数)
+***
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [case 文](#case文) ≒ switch 文
@@ -1023,9 +1023,9 @@ lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
 #test.py
 def japanesHello(): #「def」構文による関数
     import datetime
-    hour_ = datetime.datetime.now().hour
-    if (hour_ > 18) or (5 > hour_ ) : return "今晩は"
-    elif (11 > hour_) : return "おはようございます"
+    _hour = datetime.datetime.now().hour
+    if (_hour > 18) or (5 > _hour ) : return "今晩は"
+    elif (11 > _hour) : return "おはようございます"
     else: return "こんにちは"
 
 chinesehHello = lambda : "您好" #「lambda」構文による関数
@@ -1044,55 +1044,48 @@ print(hello()) #"您好"
 
 <a name="静的変数・静的関数"></a>
 # <b>静的変数・静的関数</b>
-* クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
-* 多くの言語にある static 修飾子はない
+
+### 概要
+* 静的変数・静的関数は、クラスをインスタンス化せずにアクセス可能
+* Pythonでは静的関数は ①静的メソッド と ②クラスメソッド の２種類あり
+* Pythonには static 修飾子は存在せず、パブリック変数を擬似的に静的変数扱いにする  
+
+### 例文
 ```
-#test.rb
-class MyClass
-    #クラス定数（静的定数）の定義（静的定数）
-    @@PI = 3.141592653589793 #@@xxx（大文字である必要はない）
+#test.py
+class MyClass(object):
+    PI = 3.141592653589793 #擬似「静的変数」←実際は「パブリック変数」
+    #↑パブリック変数はここで初期化しないようにしましょう（静的変数と混乱するため…）
+    """ 
+    ②クラスメソッド の場合、上記の２行を次の通りに変更
+    @classmethod #「②クラスメソッド」の宣言
+    def Pow(cls, arg1, arg2): #cls（名前は任意／クラス自身）が必須
+    """
+    @staticmethod #「①静的メソッド」の宣言
+    def Pow(arg1, arg2):
+        if arg2 == 0:
+            return 1 #0乗対策
+        _result = arg1
+        for i in range(1, arg2):
+            _result = _result * arg1
+        return _result
 
-    #アクセサ（getter）
-    def MyClass.PI
-        @@PI
-    end
+print(MyClass.PI) #3.141592653589793
+print(MyClass.Pow(2,8)) #256
 
-    #アクセサ（setter）
-    def MyClass.PI=(value)
-        @@PI = value
-    end
+_myClass = MyClass() #インスタンスの生成
+print(_myClass.PI) #3.141592653589793 ←インスタンスからも呼び出せたりもします
+print(_myClass.Pow(2,8)) #256 ←インスタンスからも呼び出せたりもします
 
-    #静的メソッド（静的メソッド）の定義
-    class << self #静的メソッドの宣言（決め打ち）
-        def pow(arg1, arg2)
-            if (arg2 == 0) then
-                return 1 #0 乗対策
-            end
-            _result = arg1 #ローカル変数
-            for i in 1..arg2-1
-                _result = _result * arg1
-            end
-            return _result
-        end
-    end
-end
-
-#クラス定数の参照
-puts(MyClass.PI) #3.141592653589793（静的変数の呼び出し）
-puts(MyClass.pow(2,8)) #256（静的メソッドの呼び出し）
-
-_myClass = MyClass.new() #インスタンスの生成
-#puts(_myClass.PI) #エラー（インスタンスからの呼出しは不可）
-#puts(_myClass.pow(2,8)) #エラー（インスタンスからの呼出しは不可）
-
-MyClass.PI = 3.14 #変更も可能
-puts(MyClass.PI) #3.14
+MyClass.PI = 3.14 #変更が出来ます（変更不可にはできません）
+print(MyClass.PI) #3.14
+print(_myClass.PI) #3.14 ←インスタンス変数も変更されます
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月06日  
-更新日：2017年04月07日  
+作成日：2016年06月24日  
+更新日：2017年04月11日
 
 
 <a name="if文"></a>
