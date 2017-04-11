@@ -32,8 +32,8 @@
 * [抽象クラス](#抽象クラス)
 * [super 関数](#super関数)
 * [オーバーライド](#オーバーライド)
-***
 * [カスタムイベント](#カスタムイベント)
+***
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
@@ -2148,38 +2148,37 @@ _subClass.myFunction()
 # <b>カスタムイベント</b>
 
 ```
-#test.rb
-class Robot
-  @energy #プライベート変数の宣言
-  @dieHandler #プライベート変数の宣言（リスナーメソッドを格納）
+#test.py
+#================
+# カスタムクラス 
+#================
+class Robot(object):
+    __energy = 100 #プライベート変数
+    __dieHandler = None #プライベート変数（これにリスナー関数を格納）
 
-  def initialize()
-    @energy = 80 #プライベート変数の初期化
-  end
+    def __init__(self): #コンストラクタ関数
+        pass
+    
+    def addEventListener(self, event_, function_):
+        if (event_ == "die"):
+            self.__dieHandler = function_ #変数にリスナー関数を格納（ポイント）
+        else:
+            print("Error: Robot.addEventListener()")
 
-  def addEventListener(_event, _method)
-    if (_event == "die") then
-      @dieHandler = _method #変数に匿名関数を格納（ポイント!!）
-    else
-      puts("Error: Robot.addEventListener()")
-    end
-  end
+    def fight(self):
+        self.__energy -= 20
+        if (self.__energy <= 0):
+           self.__dieHandler(self) #dieイベント発生!!（リスナー関数の呼出し）
 
-  def fight()
-    @energy -= 20
-    if (@energy <= 0) then
-      @dieHandler.call(self) #匿名関数の呼び出し（selfはRobotクラスのインスタンス）
-    end
-  end
-end
 
-_die_Robot = ->(arg) { #匿名関数（ポイント!!）
-  puts(arg) ##<Robot:0x0000000271c030> #Robotクラスのインスタンス
-  puts("GAME OVER")
-}
+# メイン =================================================================================
+def die_Robot(arg): #前方定義
+    print(arg) #<__main__.Robot object at 0x7f98ba5ebc50>
+    print("GAME OVER!!") #dieイベントが発生した時に実行すること
 
-_robot = Robot.new()
-_robot.addEventListener("die", _die_Robot)
+_robot = Robot()
+_robot.addEventListener("die", die_Robot)
+_robot.fight()
 _robot.fight()
 _robot.fight()
 _robot.fight()
@@ -2188,8 +2187,8 @@ _robot.fight() #"GAME OVER"
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月08日  
-更新日：2017年04月10日
+作成日：2016年06月28日  
+更新日：2017年04月11日
 
 
 <a name="数学関数（Math）"></a>
