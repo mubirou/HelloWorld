@@ -2379,8 +2379,8 @@ import datetime #必須
 #test.py
 import datetime #必須
 now_ = datetime.datetime.now()
-print(now_) #2016-06-29 08:32:31.474641
-print(now_.year) #年（2016等）
+print(now_) #2017-04-11 14:23:07.857409
+print(now_.year) #年（2017等）
 print(now_.month) #月（1〜12）
 print(now_.day) #日（1〜31）
 print(now_.weekday()) #0（月曜）〜6（日曜） ←…これだけ関数（注意）
@@ -2396,7 +2396,7 @@ if (now_.minute < 10) : m_ = "0" + str(now_.minute)
 else: m_ = str(now_.minute)
 if (now_.second < 10) : s_ = "0" + str(now_.second)
 else: s_ = str(now_.second)
-print(h_ + ":" + m_ + ":" + s_) #08:50:14
+print(h_ + ":" + m_ + ":" + s_) #14:23:07
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -2407,53 +2407,51 @@ print(h_ + ":" + m_ + ":" + s_) #08:50:14
 
 <a name="タイマー"></a>
 # <b>タイマー</b>
-
 * バックエンドで動作する Python の場合、サーバ負荷がかかるタイマー処理は多用すべきではない
 
 ### 一度だけ実行する場合（参考）
 ```
-#test.rb
-def onceExecute(_sec, _method)
-  sleep(_sec) #指定秒待つ（他の処理は出来ません）
-  _method.call() #匿名関数を呼出す
-end
-
-_someMethod = ->() { #匿名関数
-  puts("指定秒後に１度だけ実行したい処理")
-}
-
-onceExecute(3, _someMethod) #3秒後に1度だけ実行させる
+#test.py
+import threading #必須
+def timeOut():
+    print("一度だけ実行したい処理")
+timer_ = threading.Timer(3, timeOut) # 3秒後に1度だけ実行したい場合…
+timer_.start()
 ```
 
 ### 繰り返し実行する場合（参考）
 ```
-#test.rb
-class Loop
-  @isLoop #プライベート変数宣言（省略可）
-  def initialize() #コンストラクタ
-    @isLoop = false
-  end
-  def start()
-    @isLoop = true
-    run()
-  end
-  def run()
-    if (@isLoop) then
-      puts("繰返す処理を記述")
-      sleep(0.5) #0.5秒間隔で実行したい場合（他の処理は出来ません）
-      run()
-    end
-  end
-end
+# test.py
+# 以下はthreading.Threadを継承したクラス（Loop）を作成した独自の方法です。
+# メモリ管理の問題を含め更に良い方法がある気がします…（要調査）。
+import threading #必須
+import time
 
-_loop = Loop.new()
+class Loop(threading.Thread):
+    __isLoop = False
+
+    def run(self):
+        if (self.__isLoop) :
+            print("繰返し実行したい処理を記述")
+            time.sleep(0.5) #0.5秒間隔で実行したい場合…
+            self.run() #←…これが無いと1回だけしか実行しない
+
+    def stop(self): #カスタム関数
+        self.__isLoop = False
+
+    def start(self): #継承元の関数をオーバーライド
+        self.__isLoop = True
+        super(Loop, self).start() #継承元の関数を呼出す
+
+_loop = Loop()
 _loop.start()
+#_loop.stop() #ループを止める場合
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月09日  
-更新日：2017年04月10日
+作成日：2016年06月29日  
+更新日：2017年04月11日
 
 
 <a name="処理速度計測"></a>
