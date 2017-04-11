@@ -1200,9 +1200,9 @@ else:
 
 ### 例文
 ```
-_age = 48
-result_ = "現役" if (_age < 60) else "退職"
-print(result_)
+_age = 49
+_result = "現役" if (_age < 60) else "退職"
+print(_result)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
