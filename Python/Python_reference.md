@@ -23,8 +23,9 @@
 * [for 文](#for文)
 * [for...in 文](#for...in文)
 * [while 文](#while文)
+* [配列（タプル）](#配列（タプル）)
 ***
-* [配列（Array）](#配列（Array）)
+* [動的配列（リスト）](#動的配列（リスト）)
 * [連想配列（Hash）](#連想配列（Hash）)
 * [self](#self) ≒ this
 * [文字列の操作](#文字列の操作)
@@ -1376,258 +1377,89 @@ while (i_ <= 20) :
 更新日：2017年04月11日
 
 
-<a name="配列（Array）"></a>
-# <b>配列（Array）</b>
+<a name="配列（タプル）"></a>
+# <b>配列（タプル）</b>
 
-### 作成
+### 概要
+* 要素の数を変更不可
+* 要素の内容を変更不可
+
+### 作成（２次元配列の作成可能）
 * 構文
 ```
-変数名 = [] #空の配列を作成
-変数名 = [nil] * 個数 #指定数の空（nil）の要素を持つ配列作成
-変数名 = [要素①, 要素②,...] #要素のデータ型は何でも良い
+①変数名 = (要素①, 要素②, 要素③)
+②変数名 = tuple([要素①, 要素②, 要素③])
 ```
-
 * 例文
 ```
-#test.rb
-_array = []
-p _array #[]
-_array2 = ["A", "I", "U"]
-p _array2 #["A", "I", "U"]
-_array3 = [nil] * 10
-p _array3 #[nil, nil, nil, nil, nil, nil, nil, nil, nil, nil]
+#test.py
+tuple_ = ('A', 'B', 'C')
+print(type(tuple_)) #<class 'tuple'> ←tuple（タプル）型
+print(tuple_) #('A', 'B', 'C')
 ```
 
 ### 要素の数
-```
-#test.rb
-_array = ["00", "01", "02", "03"]
-puts(_array.size) #4
-```
-
-### 追加（最後）
-```
-#test.rb
-_array = ["ICHIRO", "JIRO"]
-_array.push("TARO")
-p _array #["ICHIRO", "JIRO", "TARO"]
-```
-
-### 追加（指定位置）
-```
-#test.rb
-_array = ["ICHIRO", "JIRO"]
-_array.insert(0,"TARO") #先頭（0）〜最後（配列.size）まで指定可能
-p _array #["TARO", "ICHIRO", "JIRO"]
-```
-
-### 更新（任意の値）
-```
-#test.rb
-_array = ["TAKASHI", "ICHIRO", "JIRO"]
-_array[0] = "TARO" #0番目を変更する場合
-p _array #["TARO", "ICHIRO", "JIRO"]
-```
-
-### 更新（nil 値）
-```
-#test.rb
-_array = ["TAKASHI", "ICHIRO", "JIRO"]
-_array[0] = nil
-p _array #[nil, "ICHIRO", "JIRO"]
-```
-
-### 削除（指定の要素）
 * 構文
 ```
-配列.delete(削除する要素) #指定の要素を全て削除
+len(タプル)
 ```
-
 * 例文
 ```
-#test.rb
-_array = ["ICHIRO", "JIRO", "TARO"]
-_array.delete("TARO")
-p _array #["ICHIRO", "JIRO"]
+#test.py
+tuple_ = ("A","B","C")
+print(len(tuple_)) #3
 ```
 
-### 削除（指定の位置）
+### 抽出
 * 構文
 ```
-配列.delete_at(インデックス番号) #指定のインデックス番号の要素を削除
+タプル[開始インデックス[:終了インデックス:ステップ]]
 ```
-
 * 例文
 ```
-#test.rb
-_array = ["ICHIRO", "JIRO", "TARO"]
-_array.delete_at(0) #先頭を削除する場合
-#_array.delete_at(_array.size-1) #最後を削除する場合
-p _array #["JIRO", "TARO"]
+#test.py
+tuple_ = (0,1,2,3,4,5,6,7,8,9,10)
+print(tuple_[10]) #10
+print(tuple_[2:5]) #(2, 3, 4) ←インデックス番号2〜5未満までを抽出
+print(tuple_[0:10:3]) #(0, 3, 6, 9) ←インデックス番号0〜10未満までを3つ毎に抽出
 ```
 
-### 削除（○〜○番目）
+### 検索
 * 構文
 ```
-配列.slice!(開始インデックス..終了インデックス) #削除した値を返します
+①タプル.index(検索する要素[,検索開始位置,検索終了位置]) ←見つかった位置を返す
+②検索する要素 in タプル ←見つかるとTrue（見つからないとFalase）を返す
 ```
-
 * 例文
 ```
-#test.rb
-_array = ["00", "01", "02", "03", "04", "05"]
-_array.slice!(1..4) #1〜4番目を削除する場合
-p _array #["00", "05"]
+#test.py
+tuple_ = ("A","B","C","D","E","F","G","H","I","J","K")
+print("E" in tuple_) #True ←"E"が見つかった
+print(tuple_.index("E")) #4 ←"E"を検索（インデックス4番目にヒット）
 ```
 
-### 抽出（○〜○番目）
-* 構文
+### 全要素の取得
 ```
-配列[開始インデックス..終了インデックス] #終了番目は含まない
+for 変数 in タプル: print(変数) ←要素だけを取得する場合
 ```
-
-* 例文
-```
-#test.rb
-_array = ["00", "01", "02", "03", "04", "05"]
-p _array[1..5] #["01", "02", "03", "04", "05"]
-```
-
-### 検索(ヒットしたか否か）
-* 構文
-```
-配列.include?(検索する値)
-```
-
-* 例文
-```
-#test.rb
-_array = ["A", "B", "C", "D", "E", "F", "D"]
-puts(_array.include?("D")) #true（見つからなければfalse）
-```
-
-### 検索(ヒット位置）
-* 構文
-```
-配列.index(検索する値)
-```
-
-* 例文
-```
-#test.rb
-_array = ["A", "B", "C", "D", "E", "F", "D"]
-puts(_array.index("D")) #3（見つからない場合、（nil））
-```
-
-### 検索（ヒット数）
-* 構文
-```
-配列.count(検索する値)
-```
-
-* 例文
-```
-#test.rb
-_array = ["A", "C", "B", "C", "A", "C"]
-puts(_array.count("C")) #3（見つからなければ0）
-```
-
-### 並べ替え（反転）
-* 構文
-```
-配列.reverse!()
-```
-
-* 例文
-```
-#test.rb
-_array = ["00", "01", "02", "03", "04", "05"]
-_array.reverse!()
-p _array #["05", "04", "03", "02", "01", "00"]
-```
-
-### 並べ替え（ソート）
-* 構文
-```
-配列.sort!()
-```
-
-* 例文
-```
-#test.rb
-_array = ["C", "02", "A", "01", "03", "B"]
-_array.sort!()
-p _array #["01", "02", "03", "A", "B", "C"]
-```
-
-### 結合
-* 構文
-```
-配列①.concat(追加する配列②) #配列①の末尾に配列②を結合
-```
-
-* 例文
-```
-#test.rb
-_array1 = ["A","B","C"]
-_array2 = ["D","E","F"]
-_array1.concat(_array2)
-p _array1 #["A", "B", "C", "D", "E", "F"]
-```
-
-### 複製
-* 構文
-```
-変数 = コピー元の配列.dup
-```
-
-* 例文
-```
-#test.rb
-_origin = ["A", "B", "C"]
-_copy = _origin.dup
-_copy[0] = "あ" #値を変更してみる
-p _origin #["A", "B", "C"]（参照ではないことが判る）
-p _copy #["あ", "B", "C"]
-```
-
-### 文字列→配列
-* 構文
-```
-変数 = 文字列.split("区切り文字")
-```
-
-* 例文
-```
-#test.rb
-_string = "A,B,C,D,E,F"
-_array = _string.split(",") #カンマ区切り「,」で分割して配列化
-p _array #["A", "B", "C", "D", "E", "F"]
-```
-
-### 全要素を取り出す
-* for 文を使う場合
-```
-#test.rb
-_array = ["A", "B", "C", "D", "E", "F"]
-for tmp in _array do
-    puts(tmp) #"A"→"B"→"C"→"D"→"E"→"F"
-end
-```
-
-* for...in 文を使う場合
-```
-#test.rb
-_array = ["A", "B", "C", "D", "E", "F"]
-_array.each do |tmp|
-    puts(tmp) #"A"→"B"→"C"→"D"→"E"→"F"
-end
-```
+* [for...in 文](#for...in文)参照
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
+作成日：2016年06月24日  
+更新日：2017年04月11日
+
+
+<a name="動的配列（リスト）"></a>
+# <b>動的配列（リスト）</b>
+
+
+
+
+実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
+作成者：Takashi Nishimura  
+作成日：2016年06月24日  
+更新日：2017年04月11日
 
 
 <a name="連想配列（Hash）"></a>
@@ -1812,7 +1644,7 @@ if _string.include?("CD") then #見つかった場合
 end
 ```
 
-### 文字列→配列（Array）
+### 文字列→配列（タプル）
 * 構文
 ```
 文字列.split("区切り文字") または 文字列.split(/区切り文字/)
@@ -1822,7 +1654,7 @@ end
 ```
 #test.rb
 _string = "A,B,C,D,E,F" #「,」区切りの文字列
-_array = _string.split(",") #「,」区切りで分割して配列（Array）化
+_array = _string.split(",") #「,」区切りで分割して配列（タプル）化
 p _array #["A", "B", "C", "D", "E", "F"]
 ```
 
@@ -2178,13 +2010,13 @@ puts(2**8) #256（2の8乗）
 ### max : 比較（最大値）
 ```
 #test.rb
-puts([5.01, -10, 8, 2.9].max) #8 ←配列（Array）要素の比較
+puts([5.01, -10, 8, 2.9].max) #8 ←配列（タプル）要素の比較
 ```
 
 ### min : 比較（最小値）
 ```
 #test.rb
-puts([5.01, -10, 8, 2.9].min) #-10 ←配列（Array）要素の比較
+puts([5.01, -10, 8, 2.9].min) #-10 ←配列（タプル）要素の比較
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
