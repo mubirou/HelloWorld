@@ -15,9 +15,9 @@
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-***
 * [関数](#関数)
-* [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
+***
+* [匿名関数](#匿名関数)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -911,7 +911,7 @@ print(_point.y) #150
     print(MyMath.Pow(2,1)) #2
     print(MyMath.Pow(2,8)) #256
     myMath_ = MyMath()
-    print(myMath_.Pow(2,0)) #インスタンスからも呼び出せたりもします
+    print(myMath_.Pow(2,0)) #1（インスタンスからも呼び出せる）
     ```
 
 1. クラスメソッド
@@ -933,11 +933,12 @@ print(_point.y) #150
     print(MyMath.Pow(2,1)) #2
     print(MyMath.Pow(2,8)) #256
     myMath_ = MyMath()
-    print(myMath_.Pow(2,0)) #インスタンスからも呼び出せる
+    print(myMath_.Pow(2,0)) #1（インスタンスからも呼び出せる）
     ```
 
 ### デフォルト値付き引数
 ```
+#test.py
 class MyClass(object):
     __point = 0 #プライベート変数
     def addPoint(self, arg=1): #初期値を1とした場合（selfは必須）
@@ -968,6 +969,7 @@ _myClass.sum(1,2,3,4,5) #15 ←1+2+3+4+5（引数の数はいくつでも可能�
 ### 名前付き引数
 * 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
 ```
+#test.py
 class MyClass(object):
     def rect(self, startX=0, startY=0, endX=0, endY=0): #デフォルト値はオプション
         _result = (endX - startX) * (endY - startY)
@@ -983,8 +985,8 @@ _myClass.rect(endX=100, endY=100) #面積:10000m2 ←デフォルト値付との
 更新日：2017年04月11日
 
 
-<a name="匿名関数（ラムダ式）"></a>
-# <b>匿名関数（ラムダ式）</b>
+<a name="匿名関数"></a>
+# <b>匿名関数</b>
 
 ### 概要
 * 実態は [Proc クラス](https://docs.Python-lang.org/ja/latest/class/Proc.html)
