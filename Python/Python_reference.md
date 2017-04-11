@@ -1214,62 +1214,58 @@ print(_result)
 <a name="for文"></a>
 # <b>for 文</b>
 
-### 概要
-* Python の for 文は内部処理的には each メソッド（参照「[each メソッド](#eachメソッド)」）を実行
-
-### 例文
+### 基本構文
 ```
-#test.rb
-for i in 0..9 do #範囲オブジェクトの場合
-    puts(i) #0→1→2→...→8→9
-end
-
-for tmp in ["A","B","C"] do #配列（Array）の場合
-    puts(tmp) #"A"→"B"→"C"
-end
+for 変数 in range(開始,終了):
+    繰り返す処理
 ```
-* ハッシュ型 {"TAKASHI"=>49, "TARO"=>14} 等の場合、"TAKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
-
-### for 文のネスト
-* ループ制御変数には i, j, k が使われる
+または
 ```
-#test.rb
-for i in 1..5 do
-    for j in 1..5 do
-        puts("x" + i.to_s + "y" + j.to_s) #x1y1,x1y2,....,x5y4,x5y5
-    end
-end
+for ループ制御変数, 要素変数 in enumerate(リスト等):
+    繰り返す処理（ループ制御変数、要素変数の利用可能）
 ```
 
-### next 文 ≒ continue 文
+### 基本例文
+```
+#test.py
+for i in range(0,10): #←…第１引数を省略すると0扱い
+    print(i) #0,1,2,3,4,5,6,7,8,9
+
+print(i) #for文の外でもiは有効
+```
+
+### for文のネスト
+* ループ制御変数にはi,j,kが使われる
+```
+for i in range(1,6):
+    for j in range(1,6):
+        print("x" + str(i) + "y" + str(j)) #x1y1,x1y2,....,x5y4,x5y5
+```
+
+### continue文
 * ループカウンタを○つずつアップする
 ```
-#test.rb
-for i in 0..50 do
-    if (i % 5)!=0 then
-        next #以降処理せず、for文のブロックの先頭に戻って再度繰返す
-    end
-    puts(i) #0,5,10,15,20,25,30,35,40,45,50
-end
+for i in range(0,50):
+    if i % 5: #5つずつアップする場合…
+        continue #以降処理せず、for文のブロックの先頭に戻って再度繰返す
+    print(i) #0,5,10,15,20,25,30,35,40,45
 ```
 
 ### 無限ループと break 文
 ```
-#test.rb
-_count = 0
-for i in 0..9e9 do #ほぼ無限ループ（厳密な無限にはloop文等を使用）
-    _count += 1
-    if (_count > 100) then
+#test.py
+count_ = 0
+for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile文を使います）
+    count_ += 1
+    if (count_ > 100):
         break #100を超えたらループを抜け出す
-    end
-    puts(_count) #1,2,....,99,100
-end
+    print(count_) #1,2,....,99,10
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
+作成日：2016年06月24日  
+更新日：2017年04月11日
 
 
 <a name="eachメソッド"></a>
