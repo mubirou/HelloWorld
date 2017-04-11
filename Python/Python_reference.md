@@ -1512,6 +1512,7 @@ print(_list) #['C', 'A', 'B']
 _list = ['A', 'B', 'C']
 _list[0] = None #0番目を変更する場合 ←None型も指定可能
 print(_list) #[None, 'B', 'C']
+```
 
 ### 削除（指定の要素）
 * 構文
