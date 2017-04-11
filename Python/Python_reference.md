@@ -1283,7 +1283,7 @@ for 要素変数 in リスト等: ←要素だけ取り出したい場合はこ�
 #test.py
 list_ = ["A", "B", "C"]
 for i, tmp in enumerate(list_):
-    print(i, tmp) # 0 TAKASHI → 1 TOHRU → 2 SACHIKO
+    print(i, tmp) # 0 A → 1 B → 2 C
 ```
 
 ### タプル（tuple／変更不可の配列）
@@ -1291,7 +1291,7 @@ for i, tmp in enumerate(list_):
 #test.py
 lockList_ = ("A", "B", "C")
 for i, tmp in enumerate(lockList_):
-    print(i, tmp) # 0 TAKASHI → 1 TOHRU → 2 SACHIKO
+    print(i, tmp) # 0 A → 1 B → 2 C
 ```
 
 ### セット（重複不許可な集合体）
@@ -1299,7 +1299,7 @@ for i, tmp in enumerate(lockList_):
 #test.py
 set_ = set(["A", "B", "C"])
 for i, tmp in enumerate(set_):
-    print(i, tmp) # 0 002 → 1 001 → 2 0003 ←何故この順序？（要調査）
+    print(i, tmp) # 0 C → 1 A → 2 B ←順序に注意
 ```
 
 ### フローズンセット（変更不可の集合型）
@@ -1307,16 +1307,15 @@ for i, tmp in enumerate(set_):
 #test.py
 frozenset_ = frozenset(["A", "B", "C"])
 for i, tmp in enumerate(frozenset_):
-    print(i, tmp) # 0 C → 1 A → 2 B ←何故この順序？（要調査）
+    print(i, tmp) # 0 C → 1 B → 2 A ←順序に注意
 ```
-※for tmp in frozenset_: の場合、A → B → C（要調査）
 
 ### 辞書（連想配列）
 ```
 #test.py
 dict_ = {"A":"あ", "I":"い"}
 for i, tmp in enumerate(dict_):
-    print(i, tmp, dict_[tmp]) # 0 TAKASHI 48 → 1 TOHRU 13
+    print(i, tmp, dict_[tmp]) # 0 A あ → 1 I い
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
