@@ -48,84 +48,110 @@
 # <b>データ型</b>
 
 ### データ型の種類
-1. boolean（論理型）
-1. number（整数･浮動小数点数）
-1. string（文字列）
-1. object（全てのオブジェクトのベース）
-1. undefined（未初期化変数）
-1. symbol（シンボル）
+1. 論理型（boolean 型）
+1. 整数型（byte 型 : -128〜127）
+1. 整数型（short 型 : -32768〜32767）
+1. 整数型（int 型 : -2147483648〜2147483647）
+1. 整数型（long 型 : -9223372036854775808〜9223372036854775807）
+1. 浮動小数点数型（float 型 : 小数点第7位までの値）
+1. 浮動小数点数型（double 型 : 小数点第15位までの値）
+1. 文字型（char 型）
+1. 文字列型（String 型: プリミティブ型ではなく String クラスのオブジェクト）
+1. 列挙型（enum）
+1. クラス
+1. 配列
+1. リスト（LinkedList 他）
+1. セット（TreeSet 他）
+1. マップ（HashMap 他）
 
 ### 例文
 ```
-<script>
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち
+        //①論理型（boolean型）
+        boolean _bool = true; //プリミティブ型
+        System.out.println(_bool); //true
+        Boolean _bool2 = new Boolean(true); //オブジェクト型
+        System.out.println(_bool2.getClass()); //class java.lang.Boolean
 
-//①boolean（論理型）
-var _boolean = true;
-console.log(_boolean, typeof _boolean); //true, "boolean"
+        //②整数型（byte型 -128〜127）
+        byte _byte = 127;
+        System.out.println(_byte); //127
 
+        //③整数型（short型 -32768〜32767）
+        short _short = 32767;
+        System.out.println(_short); //32767
 
-//②number（整数･浮動小数点数） ※NaNも"number"型
-var _number = 9007199254740998;
-//-9007199254740998〜9007199254740998（約±9000兆）まで扱える
-console.log(_number, typeof _number); //9007199254740998, "number"
+        //④整数型（int型 -2147483648〜2147483647）
+        int _int = 2147483647; //プリミティブ型
+        System.out.println(_int); //2147483647
+        Integer _int2 = new Integer(100); //オブジェクト型
+        System.out.println(_int2.getClass()); //class java.lang.Integer
 
-var _number2 = 3.14159265358979323846264338327;
-console.log(_number2, typeof _number2); //3.141592653589793, "number"
+        //⑤整数型（long型 -9223372036854775808〜9223372036854775807）
+        long _long = 9223372036854775807L; //最後にLかl
+        System.out.println(_long); //9223372036854775807
 
+        //⑥浮動小数点数型（float型 小数点第7位までの値）
+        float _float = 3.14159265358979323846264338327950F; //最後にFかf
+        System.out.println(_float); //3.1415927（小数点第7位までの値）
 
-//③string（文字列）
-var _string = "いろは"; //シングルまたはダブルクォーテーションで囲む
-console.log(_string, typeof _string); //"いろは", "string"
+        //⑦浮動小数点数型（double型 小数点第15位までの値）
+        double _double = 3.14159265358979323846264338327950; //プリミティブ型
+        System.out.println(_double); //3.141592653589793（小数点第15位までの値）
+        Double _double2 = new Double(3.14159265358979323846264338327950); //オブジェクト型
+        System.out.println(_double2.getClass()); //class java.lang.Double
 
+        //⑧文字型（char型）
+        char _char = 'a'; //シングルクォーテーションで囲む
+        System.out.println(_char); //a
 
-//④object（全てのオブジェクトのベース）
-var _boolean2 = new Boolean(true);
-console.log(typeof _boolean2); //"object"（"boolean"ではない）
+        //⑨文字列型（String型）＝プリミティブ型ではなくStringクラスのオブジェクト
+        String _string = "999"; //new String("999")でも同じ ←…オブジェクト型
+        System.out.println(_string); //999
+        System.out.println(_string.getClass()); //class java.lang.String
 
-var _number3 = new Number(1);
-console.log(typeof _number3); //"object"（"number"ではない）
+        //⑩列挙型（enum）
+        System.out.println(Signal.BLUE); //BLUE
+        System.out.println(Signal.BLUE.getClass()); //class Signal
 
-var _string2 = new String("1");
-console.log(typeof _string2); //"object"（"string"ではない）
+        //⑪クラス
+        MyClass _myClass = new MyClass();
+        System.out.println(_myClass); //MyClass@6bc7c054
+        System.out.println(_myClass.getClass()); //class MyClass
 
-var _array = ["A","B","C"]; //配列（Array）
-console.log(typeof _array); //"object"
+        //⑫配列
+        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
+        System.out.println(_array); //[I@232204a1
+        System.out.println(_array.getClass()); //class [I
 
-var _object = {name:"TARO", age:49}; //連想配列
-console.log(typeof _object); //"object"
+        //⑬リスト（LinkedList他）
+        java.util.LinkedList<String> _list = new java.util.LinkedList<String>();
+        System.out.println(_list); //[]
+        System.out.println(_list.getClass()); //class java.util.LinkedList
 
-var _hoge2 = null; //null（データ不在）
-console.log(_hoge2, typeof _hoge2); //null, "object"
+        //⑭セット（TreeSet他）
+        java.util.Set<String> _set = new java.util.HashSet<String>();
+        System.out.println(_set); //[]
+        System.out.println(_set.getClass()); //class java.util.HashSet
 
-class MyClass {} //クラス（前方宣言が必要）
-var _myClass = new MyClass();
-console.log(typeof _myClass); //"object"
+        //⑮マップ（HashMap他）
+        java.util.Map<String, Integer> _map 
+        = new java.util.HashMap<String, Integer>();
+        System.out.println(_map); //{}
+        System.out.println(_map.getClass()); //class java.util.HashMap
+    }
+}
 
-
-//⑤undefined（未初期化変数）
-var _hoge; //変数宣言したのみで値が設定されていない場合
-console.log(_hoge, typeof _hoge); //undefined, "undefined"
-
-
-//⑥function（関数）
-var _function = function() {}; //匿名関数
-console.log(typeof _function); //"function"
-
-var _function2 = () => {}; //アロー関数
-console.log(typeof _function2); //"function"
-
-
-//⑦symbol（シンボル）
-var _symbol = Symbol();
-console.log(typeof _symbol); //"symbol"
-
-</script>
+enum Signal { BLUE,YELLOW,RED } //⑩列挙型の定義
+class MyClass {} //⑪クラスの定義
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日
+作成日：2016年07月13日  
+更新日：2017年04月12日
 
 
 <a name="データ型の操作"></a>
@@ -633,9 +659,9 @@ new MyClass(); //"コンフリクトを起こさない!"
 				//console.log(_local); //Error
 			}
 		}
-		var myClass_ = new MyClass();
-		myClass_.myMethod1();
-		myClass_.myMethod2();
+		var _myClass = new MyClass();
+		_myClass.myMethod1();
+		_myClass.myMethod2();
 	</script>
 	```
 
