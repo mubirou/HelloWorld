@@ -1679,8 +1679,8 @@ print(_copy) #['C', 'B']
 * 例文
 ```
 #test.py
-string_ = "A,B,C"
-_list = string_.split(",") #カンマ区切りで分割してリスト化
+_string = "A,B,C"
+_list = _string.split(",") #カンマ区切りで分割してリスト化
 print(_list) #['A', 'B', 'C']
 ```
 
@@ -1840,9 +1840,9 @@ _myClass.myMethod()
 * 例文
 ```
 ↓３つとも同じ結果になります。
-①string_ = "１行目\n２行目"
-②string_ = '１行目\n２行目'
-③string_ = """１行目
+①_string = "１行目\n２行目"
+②_string = '１行目\n２行目'
+③_string = """１行目
 ２行目"""
 ```
 
@@ -1855,10 +1855,10 @@ len(文字列)
 * 例文
 ```
 #test.py
-string1_ = "ABCDE"
-print(len(string1_)) #5
-string2_ = "あいうえお"
-print(len(string2_)) #5 ←全角文字も１字扱い
+_string1 = "ABCDE"
+print(len(_string1)) #5
+_string2 = "あいうえお"
+print(len(_string2)) #5 ←全角文字も１字扱い
 ```
 
 ### 一部分を取得
@@ -1871,10 +1871,10 @@ print(len(string2_)) #5 ←全角文字も１字扱い
 * 例文
 ```
 #test.py
-string_ = "0123456789"
-print(string_[4]) #4
-print(string_[4:7]) #456
-print(string_[4:len(string_)]) #456789
+_string = "0123456789"
+print(_string[4]) #4
+print(_string[4:7]) #456
+print(_string[4:len(_string)]) #456789
 ```
 
 ### 一部分を削除
@@ -1888,11 +1888,11 @@ print(string_[4:len(string_)]) #456789
 * 例文
 ```
 #test.py
-string_ = "ABCDCBA"
-print(string_.strip('A')) #BCDCB ←両端から削除
-print(string_.lstrip('A')) #BCDCBA ←左端から削除
-print(string_.rstrip('A')) #ABCDCB ←右端から削除
-print(string_) #ABCDCBA ←元は変更なし
+_string = "ABCDCBA"
+print(_string.strip('A')) #BCDCB ←両端から削除
+print(_string.lstrip('A')) #BCDCBA ←左端から削除
+print(_string.rstrip('A')) #ABCDCB ←右端から削除
+print(_string) #ABCDCBA ←元は変更なし
 ```
 
 ### 置換
@@ -1904,8 +1904,8 @@ print(string_) #ABCDCBA ←元は変更なし
 * 例文
 ```
 #test.py
-string_ = "2017年4月11日"
-print(string_.replace('2017年','平成29年')) #平成29年4月11日
+_string = "2017年4月11日"
+print(_string.replace('2017年','平成29年')) #平成29年4月11日
 ```
 
 ### 検索
@@ -1919,10 +1919,10 @@ print(string_.replace('2017年','平成29年')) #平成29年4月11日
 * 例文
 ```
 #test.py
-string_ = "ABCDEFG-ABCDEFG"
-if ("CD" in string_) : #見つかった（True）場合…
-    print(string_.find("CD")) #2 ←左から検索
-    print(string_.rfind("CD")) #10 ←右から検索
+_string = "ABCDEFG-ABCDEFG"
+if ("CD" in _string) : #見つかった（True）場合…
+    print(_string.find("CD")) #2 ←左から検索
+    print(_string.rfind("CD")) #10 ←右から検索
 ```
 
 ### 文字列→配列
@@ -1934,8 +1934,8 @@ String.split('区切り文字');
 * 例文
 ```
 #test.py
-string_ = "A,B,C" #「,」区切りの文字列
-list_ = string_.split(',') #「,」区切りで分割してリスト化
+_string = "A,B,C" #「,」区切りの文字列
+list_ = _string.split(',') #「,」区切りで分割してリスト化
 print(list_) #['A', 'B', 'C']
 ```
 
