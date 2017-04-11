@@ -27,11 +27,11 @@
 * [動的配列（リスト）](#動的配列（リスト）)
 * [連想配列（辞書）](#連想配列（辞書）)
 * [self](#self) ≒ this
-***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
-* [super キーワード](#superキーワード)
+* [super 関数](#super関数)
+***
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -2007,98 +2007,93 @@ print(pattern_.sub('よしだ', string_)) #よしだ松蔭,高杉晋作,久坂�
 
 ### 構文
 ```
-class Abstract○○(object) #抽象クラスの定義（実際には単なるスーパークラス）
-    def 抽象メソッド() #抽象メソッドの宣言（実際は単なるメソッド）
-        raise "メッセージ" #派生クラスで実装しないとRuntimeErrorを発生させる
+class Abstract○○(object): #擬似抽象クラスの定義（実際には単なる基本クラス）
+    def □□(self): #擬似抽象関数の宣言（実際は単なる関数）
+        raise NotImplementedError() #派生クラスで実装しないとErrorを発生させる
 
-class 派生クラス名 < Abstract○○ #（擬似）抽象クラスを継承
-    def 抽象メソッド():
+class 派生クラス名(Abstract○○): #抽象クラスを継承
+    def □□(self):
         #実際の処理
-    ......
 ```
 
 ### 例文
 ```
-#test.rb
-class AbstractClass #（擬似）抽象クラス
-    def common() #共通のメソッド
-        puts("共通のメソッド")
-    end
-    def abstractMethod() #（擬似）抽象メソッド
-        #↓派生クラスでオーバーライドして実装しないとRuntimeError
-        raise "派生クラスで実装して下さい" #例外
-    end
-end
+#test.py
+class AbstractClass(object): #擬似抽象クラスの定義（実際には単なる基本クラス）
+    def common(self): #共通の関数
+        print("共通の関数")
 
-class SubClass < AbstractClass #（擬似）抽象クラスを継承
-    #↓（擬似）抽象クラスの（擬似）抽象メソッドをオーバーライドして実際の処理を記述
-    def abstractMethod()
-        puts("派生クラスでオーバーライドした抽象メソッド")
-    end
-end
+    def abstractFunction(self): #擬似抽象関数の宣言（実際は単なる関数）
+        #↓派生クラスで実装しないとErrorを発生させる（ポイント）
+        raise NotImplementedError() #例外処理
 
-_subClass = SubClass.new()
-_subClass.common() #"共通のメソッド"
-_subClass.abstractMethod() #"派生クラスでオーバーライドした抽象メソッド"
+#派生クラス
+class SubClass(AbstractClass): #擬似抽象クラスを継承
+    #↓オーバーライドして実際の処理を記述
+    def abstractFunction(self):
+        #↓実際の処理
+        print("派生クラスでオーバーライドした抽象関数")
+
+#実行
+_subClass = SubClass()
+_subClass.common() #"共通の関数"
+_subClass.abstractFunction() #"派生クラスでオーバーライドした抽象関数"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月08日  
-更新日：2017年04月10日
+作成日：2016年06月28日  
+更新日：2017年04月11日
 
 
-<a name="superキーワード"></a>
-# <b>super キーワード</b>
+<a name="super関数"></a>
+# <b>super 関数</b>
 
 ### 書式
 ```
-class スーパークラス
-  def initialize(引数) #コンストラクタ
-  end
-  def メソッド(引数)
-  end
-end
+# 基本クラス
+class 基本クラス名(object):
+    def __init__(self, 引数): ←コンストラクタ
+        …………
+    def ○○(self, 引数): ←派生クラスでオーバーライドされる
+        …………
 
-class サブクラス < スーパークラス
-  def initialize(引数) #コンストラクタ
-    super(引数) #スーパークラスのコンストラクタを呼び出す
-  end
-  def メソッド(arg)
-    super(引数) #スーパークラスの同名のメソッドを呼び出す
-  end
-end
+# 派生クラス
+class 派生クラス名(基本クラス名): ←基本クラスを継承
+	def __init__(self, 引数): ←コンストラクタ
+        super(派生クラス名, self).__init__(引数)
+        …………
+    def 関数名(self, 引数): ←基本クラスの関数をオーバーライド
+        super(派生クラス名, self).○○(引数) ←基本クラスの同名の関数を呼び出す
+        …………
 ```
 
-### 例文
+## 例文
 ```
-#test.rb
-class SuperClass #スーパークラス
-  def initialize(arg) #コンストラクタ
-    puts("スーパークラスのコンストラクタ:" + arg)
-  end
-  def hoge(arg)
-    puts("スーパークラスのhoge():" + arg)
-  end
-end
+#test.py
+#基本クラス
+class SuperClass(object):
+    def __init__(self, arg): #コンストラクタ
+        print("基本クラスのコンストラクタ:" + arg)
+    def hoge(self, arg): #派生クラスでオーバーライドされる
+        print("基本クラスのhoge(): " + arg)
 
-class SubClass < SuperClass
-  def initialize() #コンストラクタ
-    super("派生クラスからの呼び出し") #スーパークラスのコンストラクタを呼び出す
-  end
-  def hoge(arg)
-    super(arg) #スーパークラスの同名メソッドを呼び出す（PythonやJSと異なる）
-  end
-end
+#派生クラス
+class SubClass(SuperClass): #基本クラス（SuperClass）を継承
+    def __init__(self): #コンストラクタ
+        super(SubClass, self).__init__("派生クラスからの呼び出し")
+    def hoge(self, arg): #基本クラスの関数をオーバーライド
+        super(SubClass, self).hoge(arg) #基本クラスのhoge()を呼び出す
 
-_subClass = SubClass.new() #サブクラスのインスタンス生成
+# 実行
+_subClass = SubClass()
 _subClass.hoge("派生クラスからの呼び出し")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月08日  
-更新日：2017年04月10日
+作成日：2016年06月28日  
+更新日：2017年04月11日
 
 
 <a name="オーバーライド"></a>
