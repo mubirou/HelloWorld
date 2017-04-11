@@ -2515,7 +2515,6 @@ print(result_)
 #あいうえお
 #かきくけこ
 #さしすせそ
-"""
 ```
 
 ### 外部テキストの書き込み（参考）
@@ -2530,7 +2529,6 @@ file_.close()
 file_ = open("sample.txt", "r") #同じ階層に○.txtがある場合
 result_ = file_.read()
 print(result_)
-"""
 #あいうえお
 #かきくけこ
 #さしすせそ
