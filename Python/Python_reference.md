@@ -21,8 +21,8 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [for 文](#for文)
+* [for...in 文](#for...in文)
 ***
-* [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
 * [連想配列（Hash）](#連想配列（Hash）)
@@ -1219,16 +1219,11 @@ print(_result)
 for 変数 in range(開始,終了):
     繰り返す処理
 ```
-または
-```
-for ループ制御変数, 要素変数 in enumerate(リスト等):
-    繰り返す処理（ループ制御変数、要素変数の利用可能）
-```
 
 ### 基本例文
 ```
 #test.py
-for i in range(0,10): #←…第１引数を省略すると0扱い
+for i in range(0,10): #←第１引数を省略すると0扱い
     print(i) #0,1,2,3,4,5,6,7,8,9
 
 print(i) #9（for文の外でもiは有効）
@@ -1270,126 +1265,64 @@ for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile�
 更新日：2017年04月11日
 
 
-<a name="foreach文"></a>
-# <b>foreach 文</b>
-
-### 概要
-* Python の for 文（参照「[for 文](#for文)」）は内部処理的はこの foreach 文を実行
-
-### 例文
-```
-#test.rb
-(0..9).each do |i| #範囲オブジェクトの場合
-    puts(i) #0,1,2,3,4,5,6,7,8,9
-end
-
-["A","B","C"].each do |tmp| #配列（Array）の場合
-    puts(tmp) #"A"→"B"→"C"
-end
-```
-* ハッシュ型 {"TAKASHI"=>49, "TARO"=>14} 等の場合、"TAKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
-
-### foreach 文のネスト
-* ループ制御変数には i, j, k が使われる
-```
-#test.rb
-(1..5).each do |i|
-    (1..5).each do |j|
-        puts("x" + i.to_s + "y" + j.to_s) #x1y1,x1y2,....,x5y4,x5y5
-    end
-end
-```
-
-### next 文 ≒ continue 文
-* ループカウンタを○つずつアップする
-```
-#test.rb
-(1..50).each do |i|
-    if (i % 5)!=0 then
-        next #以降処理せず、for文のブロックの先頭に戻って再度繰返す
-    end
-    puts(i) #0,5,10,15,20,25,30,35,40,45,50
-end
-```
-
-### 無限ループと break 文
-```
-#test.rb
-_count = 0
-(0..9e9).each do |i| #ほぼ無限ループ（厳密な無限にはloop文等を使用）
-    _count += 1
-    if (_count > 100) then
-        break #100を超えたらループを抜け出す
-    end
-    puts(_count) #1,2,....,99,100
-end
-```
-
-実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
-
-
-<a name="while文"></a>
-# <b>while 文</b>
-
-### 概要
-* while 文と条件判定が反対の until 文 もあり
-* 他の言語にある do...while 文はない
-* ループ判定式による終了条件がなく、ただ繰り返すだけの loop メソッドもあり
+<a name="for...in文"></a>
+# <b>for...in 文</b>
 
 ### 基本構文
 ```
-while (ループ判定式) do #ループ判定式がtrueの間繰り返される（()、doは省略可）
-    繰り返す処理
-end
+for ループ制御変数, 要素変数 in enumerate(リスト等):
+    print(ループ制御変数, 要素変数）
+```
+```
+for 要素変数 in リスト等: ←要素だけ取り出したい場合はこちらを使います
+    print(要素変数）
 ```
 
-### 例文
+### リスト（変更可能な配列）
 ```
-#test.rb
-_i = 0
-while (_i < 10) do #()は省略可
-  puts(_i) #0,1,2,3,4,5,6,7,8,9
-  _i += 1
-end
-puts(_i) #10 ←while文の外でも変数はまだ有効
+#test.py
+list_ = ["TAKASHI", "TOHRU", "SACHIKO"]
+for i, tmp in enumerate(list_):
+    print(i, tmp) # 0 TAKASHI → 1 TOHRU → 2 SACHIKO
 ```
 
-### while 文と break 文
-* 1〜100までを出力
+### タプル（tuple／変更不可の配列）
 ```
-#test.rb
-_count = 0
-while true #ループ判別式をtrueにすると無限ループに!
-  _count += 1
-  if _count > 100 then
-    break #ループを終了
-  end
-  puts(_count) #1,2,....,99,100
-end
+#test.py
+lockList_ = ("TAKASHI", "TOHRU", "SACHIKO")
+for i, tmp in enumerate(lockList_):
+    print(i, tmp) # 0 TAKASHI → 1 TOHRU → 2 SACHIKO
 ```
 
-### while 文と next 文
-* 3の倍数を出力
+### セット（重複不許可な集合体）
 ```
-#test.rb
-_i = 1
-while (_i <= 20)
-  if ((_i % 3) != 0) #3で割って余りが0でない（＝3の倍数ではない）場合
-    _i += 1
-    next #while文の残処理をスキップしてwhile文の次の反復を開始する
-  end
-  puts(_i) #3,6,9,12,15,18 ←3の倍数
-  _i += 1
-end
+#test.py
+set_ = set(["0001", "0002", "0003"])
+for i, tmp in enumerate(set_):
+    print(i, tmp) # 0 002 → 1 001 → 2 0003 ←何故この順序？（要調査）
+```
+
+### フローズンセット（変更不可の集合型）
+```
+#test.py
+frozenset_ = frozenset(["A", "B", "C"])
+for i, tmp in enumerate(frozenset_):
+    print(i, tmp) # 0 C → 1 A → 2 B ←何故この順序？（要調査）
+```
+※for tmp in frozenset_: の場合、A → B → C（要調査）
+
+### 辞書（連想配列）
+```
+#test.py
+dict_ = {"TAKASHI":48, "TOHRU":13}
+for i, tmp in enumerate(dict_):
+    print(i, tmp, dict_[tmp]) # 0 TAKASHI 48 → 1 TOHRU 13
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
+作成日：2016年06月24日  
+更新日：2017年04月11日
 
 
 <a name="配列（Array）"></a>
@@ -1631,7 +1564,7 @@ for tmp in _array do
 end
 ```
 
-* foreach 文を使う場合
+* for...in 文を使う場合
 ```
 #test.rb
 _array = ["A", "B", "C", "D", "E", "F"]
