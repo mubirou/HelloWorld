@@ -2522,18 +2522,15 @@ print(result_)
 #test.py
 #ファイルの書き込み
 file_ = open("sample.txt", "w") # "r" ではなく "w"
-file_.write("たちつてと\nなにぬねの") #「\n」で改行も可能
+file_.write("さしすせそ\nたちつてと") #「\n」で改行も可能
 file_.close()
 
 #ファイルの読み込み（確認）
 file_ = open("sample.txt", "r") #同じ階層に○.txtがある場合
 result_ = file_.read()
 print(result_)
-#あいうえお
-#かきくけこ
 #さしすせそ
 #たちつてと
-#なにぬねの
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
