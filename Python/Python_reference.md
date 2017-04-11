@@ -1814,10 +1814,10 @@ class MyClass(object):
     def myMethod(self): #selfが必須（クラス内に定義する関数）
         _p = None #ローカル変数
         _p = self._p + 10 #selfが無いとError]
-        print(_p) #510
+        print(_p)
     
 _myClass = MyClass(500)
-_myClass.myMethod() #510
+_myClass.myMethod()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -1829,119 +1829,120 @@ _myClass.myMethod() #510
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### Stringクラスのオブジェクト作成
-```
-変数 = "○○"
-変数 = '○○' ←ダブルクォーテーション（""）と同じ
-変数 = "○○\n○○" ←\nで改行
-```
-
-### 連結
+### string オブジェクトの作成
 * 構文
 ```
-文字列① + 文字列②
-文字列① << 文字列② ←既にある文字列①に文字列②に追加する場合
+①変数 = "○○"
+②変数 = '○○' ←ダブルクォーテーション（""）と同じ
+③変数 = """○○""" ←\nを使わない改行が可能
 ```
 
 * 例文
 ```
-#test.rb
-_string1 = "ABC"
-_string2 = "DEF"
-_string1 += _string2 #_string1 = _string1 + _string2 と同じ
-puts(_string1) #"ABCDEF"
+↓３つとも同じ結果になります。
+①string_ = "１行目\n２行目"
+②string_ = '１行目\n２行目'
+③string_ = """１行目
+２行目"""
 ```
 
 ### 長さを調べる
+* 構文
 ```
-#test.rb
-_string1 = "ABCDE"
-puts(_string1.size) #5
+len(文字列)
+```
 
-_string2 = "あいうえお"
-puts(_string2.size) #5（全角文字も１字扱い）
+* 例文
+```
+#test.py
+string1_ = "ABCDE"
+print(len(string1_)) #5
+string2_ = "あいうえお"
+print(len(string2_)) #5 ←全角文字も１字扱い
 ```
 
 ### 一部分を取得
 * 構文
 ```
 文字列[番号] ←0〜len(文字列)
-文字列[開始,文字数])
+文字列[開始:終了) ←終了は含まない
 ```
 
 * 例文
 ```
-#test.rb
-_string = "0123456789"
-puts(_string[4]) #"4"（4文字目を取得）
-puts(_string[4,3]) #"456"（4文字目〜3文字取得）
-puts(_string[4,9e9]) #"456789" ←9e9にすればほぼ間違いなく全部を取得可能
+#test.py
+string_ = "0123456789"
+print(string_[4]) #4
+print(string_[4:7]) #456
+print(string_[4:len(string_)]) #456789
 ```
 
 ### 一部分を削除
 * 構文
 ```
-文字列.delete!('削除する文字列')
-文字列.delete('削除する文字列') #元は変化なし
+文字列.strip('削除する文字列') ←両端から削除
+文字列.lstrip('削除する文字列') ←左端から削除
+文字列.rstrip('削除する文字列') ←右端から削除
 ```
 
 * 例文
 ```
-#test.rb
-_string = "ABCDCBA"
-_string.delete!('A')
-puts(_string) #BCDCB
+#test.py
+string_ = "ABCDCBA"
+print(string_.strip('A')) #BCDCB ←両端から削除
+print(string_.lstrip('A')) #BCDCBA ←左端から削除
+print(string_.rstrip('A')) #ABCDCB ←右端から削除
+print(string_) #ABCDCBA ←元は変更なし
 ```
 
 ### 置換
 * 構文
 ```
-文字列.gsub!("置換前の文字列", "置換後の文字列")
+文字列.replace('置換前の文字列', '置換後の文字列')
 ```
 
 * 例文
 ```
-#test.rb
-_string = "2017年4月8日"
-puts(_string.gsub!("2017年","平成29年")) #平成29年4月8日
+#test.py
+string_ = "2017年4月11日"
+print(string_.replace('2017年','平成29年')) #平成29年4月11日
 ```
 
 ### 検索
 * 構文
 ```
-文字列.include?(" 検索したい文字列") ←true または false
-文字列.index("検索したい文字列") ←見つからない場合はnil
-文字列.rindex("検索したい文字") ←見つからない場合はnil
+検索したい文字列 in 文字列 ←True or False
+文字列.find("検索したい文字列" [,開始位置,終了位置]) ←見つからない場合-1
+文字列.rfind("検索したい文字" [,開始位置,終了位置])←見つからない場合-1
 ```
 
 * 例文
 ```
-#test.rb
-_string = "ABCDEFG-ABCDEFG"
-if _string.include?("CD") then #見つかった場合
-    puts(_string.index("CD")) #2（左から検索）
-    puts(_string.rindex("CD")) #10（右から検索）
-end
+#test.py
+string_ = "ABCDEFG-ABCDEFG"
+if ("CD" in string_) : #見つかった（True）場合…
+    print(string_.find("CD")) #2 ←左から検索
+    print(string_.rfind("CD")) #10 ←右から検索
 ```
 
-### 文字列→配列（タプル）
+### 文字列→配列
 * 構文
 ```
-文字列.split("区切り文字") または 文字列.split(/区切り文字/)
+String.split('区切り文字');
 ```
 
 * 例文
 ```
-#test.rb
-_string = "A,B,C,D,E,F" #「,」区切りの文字列
-_array = _string.split(",") #「,」区切りで分割して配列（タプル）化
-p _array #["A", "B", "C", "D", "E", "F"]
+#test.py
+string_ = "A,B,C" #「,」区切りの文字列
+list_ = string_.split(',') #「,」区切りで分割してリスト化
+print(list_) #['A', 'B', 'C']
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月08日  
-更新日：2017年04月08日
+作成日：2016年06月28日  
+更新日：2017年04月11日
 
 
 <a name="正規表現"></a>
