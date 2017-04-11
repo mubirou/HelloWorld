@@ -765,8 +765,8 @@ MY_NAME = "TAKASHI NISHIMURA"
 
 print(MY_NAME) #TAKASHI NISHIMURA
 
-MY_NAME = "TOHRU NISHIMURA" #変更できてしまう（本当は定数ではない）
-print(MY_NAME) #TOHRU NISHIMURA
+MY_NAME = "TARO NISHIMURA" #変更できてしまう（本当は定数ではない）
+print(MY_NAME) #TARO NISHIMURA
 #上記のようにせず「大文字の変数は定数扱い＝変更不可」というルールにする…だけです。
 ```
 
@@ -783,14 +783,14 @@ class MyClass(object):
 #=====================================================
 myClass_ = MyClass() #インスタンスの生成
 print(myClass_.MY_NAME) #TAKASHI NISHIMURA ←インスタンス変数へのアクセス
-myClass_.MY_NAME = "SACHIKO NISHIMURA" #インスタンス変数を変更（他人をいじる…）
+myClass_.MY_NAME = "HANAKO NISHIMURA" #インスタンス変数を変更（他人をいじる…）
 #↑オブジェクト指向のルールとしてgetter/setterでアクセスすべきですが…
-print(myClass_.MY_NAME) #SACHIKO NISHIMURA
+print(myClass_.MY_NAME) #HANAKO NISHIMURA
 
 print(MyClass.MY_NAME) #TAKASHI NISHIMURA ←クラス変数とインスタンス変数は別扱い
 
-MyClass.MY_NAME = "TOHRU NISHIMURA" #変更できてしまう（実際は定数ではない）
-print(MyClass.MY_NAME) #TOHRU NISHIMURA
+MyClass.MY_NAME = "TARO NISHIMURA" #変更できてしまう（実際は定数ではない）
+print(MyClass.MY_NAME) #TARO NISHIMURA
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
