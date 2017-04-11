@@ -18,10 +18,9 @@
 * [関数](#関数)
 * [匿名関数](#匿名関数)
 * [静的変数・静的関数](#静的変数・静的関数)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
-* [case 文](#case文) ≒ switch 文
 * [for 文](#for文)
 * [each メソッド](#eachメソッド)
 * [while 文](#while文)
@@ -1090,121 +1089,119 @@ print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 
 <a name="if文"></a>
 # <b>if 文</b>
-* if 文の反対の役割をする unless 文もあり
+* Python には switch 文は存在しない  
+（何かをするのに明確な方法がただ１つあるべきという思想とか…）
 
-### 基本例文
-* trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
-
+### 基本構文
+* Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```
-#test.rb
-_age = 48
-if (_age <= 30) then #()、thenは省略可
-  puts("30歳以下")
-elsif (_age <= 60) then #Pythonの「elif」と異なる（要注意）
-  puts("31〜60歳") #これが出力される
-else
-  puts("61歳以上")
-end
-```
-
-* 注意（中身が無いと false 扱い () も false 扱い）
-```
-#test.rb
-if nil then 
-    puts("A") 
-else
-    puts("B") #これが出力される
-end
-
-if "あ" then #中身が何かあればtrue扱い（''""含む）
-    puts("A") #これが出力される
-else
-    puts("B")
-end
+#test.py
+age_ = 48
+if (age_ <= 20) : #()は省略可
+    print("20歳以下")
+elif (age_ <= 40) : #「else if」でも「elseif」でもない（要注意）
+    print("21〜40歳")
+elif (age_ <= 60) :
+    print("41〜60歳") #これが出力される
+else:
+    print("61歳以上")
 ```
 
-### 論理積（AND）
-* 2つの条件が true の場合
+* 注意：条件式の判断記述について
+```
+#test.py
+if None : #() '' "" も同じFalseとして判断
+    print("A")
+else:
+    print("B") #こちらが実行される
 
-1. 論理演算子（&&）を使う方法
+if "あ" : #中身が何かあればTrueとして判断
+    print("A") #こちらが実行される
+else:
+    print("B")
+```
+
+### 論理積（and）
+```
+1. 論理演算子（and）を使う方法
     ```
-    if (条件式① && 条件②) then #()は省略可
-        処理A ←条件式① かつ 条件式② の両方が true の場合に実行
-    else
+    if (条件式① and 条件②) : #()は省略可
+        処理A ←条件式① かつ 条件式② の両方がTrueの場合に実行
+    else:
         処理B
-    end
     ```
 
-2. if のネストを使う方法
+1. ifのネストを使う方法
     ```
-    if (条件式①) then #()は省略可
-        if (条件②) then
-            処理A ←条件式① かつ 条件式② の両方が true の場合に実行
-        else
+    if (条件式①) : #()は省略可
+        if (条件②) :
+            処理A ←条件式① かつ 条件式② の両方がTrueの場合に実行
+        else:
             処理B
-        end
-    else
+    else:
         処理B
-    end
     ```
 
-### 論理和（OR）
-* 2つの条件のどちらか一方でも true の場合
-
-1. 論理演算子（||）を使う方法
+### 論理和（or）
+1. 論理演算子（or）を使う方法
     ```
-    if (条件式① || 条件②) then #()は省略可
-        処理A ←条件式①または条件式②の両方が true の場合に実行
-    else
+    if (条件式① or 条件②) : #()は省略可
+        処理A ←条件式①または条件式②の両方がTrueの場合に実行
+    else:
         処理B
-    end
     ```
 
-2. if のネストを使う方法
+1. ifのネストを使う方法
     ```
-    if (条件式①) then #()は省略可
-        処理A ←条件式①が true の場合に実行
-    elsif (条件②) then
-        処理A ←条件式②が true の場合に実行
-    else
+    if (条件式①) : #()は省略可
+        処理A ←条件式①がTrueの場合に実行
+    elif (条件②) :
+        処理A ←条件式②がTrueの場合に実行
+    else:
         処理B
-    end
     ```
 
 ### 排他的論理和（XOR）
-* 2つの条件のうちどちらか一方だけ true の場合
-1. ^ 演算子を使う方法
+1. ^演算子を使う方法
     ```
-    #test.rb
-    _a = true
-    _b = false
-    if (_a ^ _b) then #()は省略可
-        puts("どちらか一方だけtrueです")
-    else
-        puts("両方共にtrueかfalseです")
-    end
+    a_ = True
+    b_ = False
+    if (a_ ^ b_) : #()は省略可
+        print("どちらか一方だけtrueです")
+    else:
+        print("両方共にtrueかfalseです")
     ```
 
-2. ^ 演算子を使わない場合
+1. ^演算子を使わない場合
     ```
-    #test.rb
-    _a = true
-    _b = false
-    if ((_a || _b) && !(_a && _b)) then #()は省略可
-        puts("どちらか一方だけtrueです")
-    else
-    puts("両方共にtrueかfalseです")
-    end
+    a_ = True
+    b_ = False
+    if ((a_ or b_) and not (a_ and b_)) : #()は省略可
+        print("どちらか一方だけtrueです")
+    else:
+    print("両方共にtrueかfalseです")
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
+作成日：2016年06月24日  
+更新日：2017年04月11日
 
 
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
+
+◆三項演算子（if文を使った独特のものです）
+【ECMAScript系】変数 = (比較式) ? (True時の返り値) : (False時の返り値)
+【Pythonの場合】変数 = (True時の返り値) if (比較式) else (False時の返り値)
+#Pythonの三項演算子の例
+age_ = 48
+result_ = "現役" if (age_ < 60) else "退職"
+print(result_)
+
+
+
+
 
 ### 比較式が１つの場合
 * 構文
@@ -1243,61 +1240,6 @@ end
 puts(test(19)) #"未成年"
 puts(test(49)) #"現役"
 puts(test(89)) #"退職"
-```
-
-実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
-
-
-<a name="case文"></a>
-# <b>case 文</b> ≒ switch 文
-
-### 基本構文
-* thenは省略可
-```
-case 比較したいオブジェクト
-when 値① then
-    処理①
-when 値② then
-    処理②
-else
-    処理③
-end
-```
-
-### 判別式が boolean 値ではない場合
-```
-#test.rb
-_name = "TAKASHI"
-case _name
-when "TAKASHI"
-    puts("父")
-when "HANAKO"
-    puts("母")
-when "ICHIRO"
-    puts("長男")
-when "JIRO"
-    puts("次男")
-else
-    puts("家族以外")
-end
-```
-
-### 判別式が boolean 値の場合
-* case 式に比較演算子が使われる
-```
-#test.rb
-_age = 49
-case true
-when (_age <= 20)
-    puts("20歳以下")
-when (_age <= 60)
-    puts("60歳以下")
-else
-    puts("61歳以上")
-end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
