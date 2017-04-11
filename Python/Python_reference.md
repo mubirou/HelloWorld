@@ -2534,7 +2534,7 @@ print(result_)
 #さしすせそ
 #たちつてと
 #なにぬねの
-"""
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
