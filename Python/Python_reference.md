@@ -1015,7 +1015,7 @@ lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
     print(myFunction2(4,3)) #12 ←4x3
     ```
 
-### 変数へ def /lambda 構文による関数の格納
+### 変数へ def / lambda 構文による関数の格納
 * def 構文の場合、関数名（変数）に function 型のデータが格納される
 * lambda 構文の場合、匿名の function 型のデータとなる（変数に格納可能）
 * def / lambda ともに function 型のデータのため、１つの変数に入れ替えることが可能
@@ -1031,9 +1031,9 @@ def japanesHello(): #「def」構文による関数
 chinesehHello = lambda : "您好" #「lambda」構文による関数
 
 hello = japanesHello #変数に「def」構文による関数を格納
-print(hello()) #こんにちは（時間による）
+print(hello()) #"こんにちは"（時間による）
 hello = chinesehHello #変数の中を「lambda」構文による関数と入れ替える
-print(hello()) #您好
+print(hello()) #"您好"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
