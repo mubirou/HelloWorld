@@ -842,8 +842,8 @@ class MyClass(object): #前方宣言
         return _result
 
 _myClass = MyClass()
-#print(_myClass.__Tashizan(1,10)) #ERROR（プライベート関数はアクセス不可）
-#print(_myClass.__Tashizan(1,100)) #ERROR（プライベート関数はアクセス不可）
+#print(_myClass.__Tashizan(1,10)) #エラー（プライベート関数はアクセス不可）
+#print(_myClass.__Tashizan(1,100)) #エラー（プライベート関数はアクセス不可）
 ```
 
 ### コンストラクタ
@@ -861,7 +861,7 @@ class MyClass(object): #前方宣言
 #test.py
 #カスタムクラス
 class Point(object):
-	#プライベート変数の宣言
+    #プライベート変数の宣言
     __x = __y = None
 
     def __init__(self, arg1, arg2): #コンストラクタ（selfは省略不可）
@@ -893,48 +893,48 @@ print(_point.y) #150
 * Pythonでは別々に扱われる
 
 1. 静的メソッド
-```
-#test.py
-#カスタムクラス（MyMath）
-class MyMath(object):
-    @staticmethod #静的メソッドの宣言
-    def Pow(arg1, arg2): #個人的な慣例として大文字で開始（selfは不要）
-        if arg2 == 0:
-            return 1 #0乗対策
-        _result = arg1
-        for i in range(1, arg2):
-            _result = _result * arg1
-        return _result
+    ```
+    #test.py
+    #カスタムクラス（MyMath）
+    class MyMath(object):
+        @staticmethod #静的メソッドの宣言
+        def Pow(arg1, arg2): #個人的な慣例として大文字で開始（selfは不要）
+            if arg2 == 0:
+                return 1 #0乗対策
+            _result = arg1
+            for i in range(1, arg2):
+                _result = _result * arg1
+            return _result
 
-# 実行
-print(MyMath.Pow(2,0)) #1
-print(MyMath.Pow(2,1)) #2
-print(MyMath.Pow(2,8)) #256
-myMath_ = MyMath()
-print(myMath_.Pow(2,0)) #インスタンスからも呼び出せたりもします
-```
+    # 実行
+    print(MyMath.Pow(2,0)) #1
+    print(MyMath.Pow(2,1)) #2
+    print(MyMath.Pow(2,8)) #256
+    myMath_ = MyMath()
+    print(myMath_.Pow(2,0)) #インスタンスからも呼び出せたりもします
+    ```
 
 1. クラスメソッド
-```
-#test.py
-#カスタムクラス（MyMath）
-class MyMath(object):
-    @classmethod #クラスメソッドの宣言
-    def Pow(cls, arg1, arg2): #cls（名前は任意／クラス自身）が必須
-        if arg2 == 0:
-            return 1 #0乗対策
-        _result = arg1
-        for i in range(1, arg2):
-            _result = _result * arg1
-        return _result
+    ```
+    #test.py
+    #カスタムクラス（MyMath）
+    class MyMath(object):
+        @classmethod #クラスメソッドの宣言
+        def Pow(cls, arg1, arg2): #cls（名前は任意／クラス自身）が必須
+            if arg2 == 0:
+                return 1 #0乗対策
+            _result = arg1
+            for i in range(1, arg2):
+                _result = _result * arg1
+            return _result
 
-# 実行
-print(MyMath.Pow(2,0)) #1
-print(MyMath.Pow(2,1)) #2
-print(MyMath.Pow(2,8)) #256
-myMath_ = MyMath()
-print(myMath_.Pow(2,0)) #インスタンスからも呼び出せる
-```
+    # 実行
+    print(MyMath.Pow(2,0)) #1
+    print(MyMath.Pow(2,1)) #2
+    print(MyMath.Pow(2,8)) #256
+    myMath_ = MyMath()
+    print(myMath_.Pow(2,0)) #インスタンスからも呼び出せる
+    ```
 
 ### デフォルト値付き引数
 ```
