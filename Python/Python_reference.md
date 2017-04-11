@@ -20,9 +20,9 @@
 * [静的変数・静的関数](#静的変数・静的関数)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-***
 * [for 文](#for文)
-* [each メソッド](#eachメソッド)
+***
+* [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
 * [連想配列（Hash）](#連想配列（Hash）)
@@ -1261,7 +1261,7 @@ for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile�
     count_ += 1
     if (count_ > 100):
         break #100を超えたらループを抜け出す
-    print(count_) #1,2,....,99,10
+    print(count_) #1,2,....,99,100
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -1270,11 +1270,11 @@ for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile�
 更新日：2017年04月11日
 
 
-<a name="eachメソッド"></a>
-# <b>each メソッド</b>
+<a name="foreach文"></a>
+# <b>foreach 文</b>
 
 ### 概要
-* Python の for 文（参照「[for 文](#for文)」）は内部処理的はこの each メソッドを実行
+* Python の for 文（参照「[for 文](#for文)」）は内部処理的はこの foreach 文を実行
 
 ### 例文
 ```
@@ -1289,7 +1289,7 @@ end
 ```
 * ハッシュ型 {"TAKASHI"=>49, "TARO"=>14} 等の場合、"TAKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
 
-### each メソッドのネスト
+### foreach 文のネスト
 * ループ制御変数には i, j, k が使われる
 ```
 #test.rb
@@ -1631,7 +1631,7 @@ for tmp in _array do
 end
 ```
 
-* each メソッドを使う場合
+* foreach 文を使う場合
 ```
 #test.rb
 _array = ["A", "B", "C", "D", "E", "F"]
