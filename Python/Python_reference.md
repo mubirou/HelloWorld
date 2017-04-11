@@ -33,8 +33,8 @@
 * [super 関数](#super関数)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
+* [数学関数（math）](#数学関数（math）)
 ***
-* [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -2191,116 +2191,119 @@ _robot.fight() #"GAME OVER"
 更新日：2017年04月11日
 
 
-<a name="数学関数（Math）"></a>
-# <b>数学関数（Math）</b>
+<a name="数学関数（math）"></a>
+# <b>数学関数（math）</b>
 
-### Math.sin() : サイン（正弦）
+### math.sin() : サイン（正弦）
 ```
-#test.rb
-puts(Math.sin(0)) #0.0 ←0°
-puts(Math.sin(Math::PI/2)) #1.0 ←90°
-puts(Math.sin(Math::PI)) #1.2246467991473532e-16（≒0） ←180°
-puts(Math.sin(Math::PI*3/2)) #-1.0 ←270°
-puts(Math.sin(Math::PI*2)) #-2.4492935982947064e-16（≒0） ←360°
-```
-
-### Math.cos() : コサイン（余弦）
-```
-#test.rb
-puts(Math.cos(0)) #1.0 ←0°
-puts(Math.cos(Math::PI/2)) #6.123233995736766e-17（≒0） ←90°
-puts(Math.cos(Math::PI)) #-1.0 ←180°
-puts(Math.cos(Math::PI*3/2)) #-1.8369701987210297e-16（≒0） ←270°
-puts(Math.cos(Math::PI*2)) #1.0 ←360°
+#test.py
+import math #必須
+print(math.sin(0)) #0.0 ←0°
+print(math.sin(math.pi/2)) #1.0 ←90°
+print(math.sin(math.pi)) #1.2246467991473532e-16（≒0） ←180°
+print(math.sin(math.pi*3/2)) #-1.0 ←270°
+print(math.sin(math.pi*2)) #-2.4492935982947064e-16（≒0） ←360°
 ```
 
-### Math.atan2() : アークタンジェント2
+### math.cos() : コサイン（余弦）
+```
+#test.py
+import math #必須
+print(math.cos(0)) #1.0 ←0°
+print(math.cos(math.pi/2)) #6.123233995736766e-17（≒0） ←90°
+print(math.cos(math.pi)) #-1.0 ←180°
+print(math.cos(math.pi*3/2)) #-1.8369701987210297e-16（≒0） ←270°
+print(math.cos(math.pi*2)) #1.0 ←360°
+```
+
+### math.atan2() : アークタンジェント2
 * 2つの値のアークタンジェント（逆タンジェント）
 * X、Y 座標の角度をラジアン単位で返す
 * Π ラジアン（3.141592…）は180°
 ```
-#test.rb
-#横と縦の長さがわかっている直角三角形の角度Ａを調べるメソッド
-def getKakudo(w, h)
-  _radian = Math.atan2(h, w) #単位：ラジアン
-  return 180 * _radian/Math::PI #単位：度
-end
-
-#三角形の各辺が 1:2:√3 の場合、2:√3 の間の角度は 30° であることを検証
-_kakudo = getKakudo(Math.sqrt(3), 1) #Math.sqrt(3)は√3のこと
-puts(_kakudo) #30.000000000000004（度）
+#test.py
+import math #必須
+disX_ = math.sqrt(3) #√3のこと
+disY_ = 1;
+print(math.atan2(disY_, disX_)) #0.5235987755982989（ラジアン）
+print(180*math.atan2(disY_, disX_)/math.pi) #30.000000000000004（度）
 ```
 
-### Math::PI : 円周率
+### math.pi : 円周率
 ```
-#test.rb
-puts(Math::PI) #3.141592653589793（math.piラジアン=180°）
-```
-
-### Math.sqrt() : 平方根（√○）
-```
-#test.rb
-puts(Math.sqrt(2)) #1.4142135623730951（一夜一夜にひとみごろ）
-puts(Math.sqrt(3)) #1.7320508075688772（人並みに奢れや）
-puts(Math.sqrt(4)) #2.0
-puts(Math.sqrt(5)) #2.23606797749979（富士山麓オウム鳴く）
+#test.py
+import math #必須
+print(math.pi) #3.141592653589793 ※math.piラジアン=180°
 ```
 
-以下は Math モジュールを使わないもの
+### math.floor() : 切り捨て
+```
+#test.py
+import math #必須
+print(math.floor(1.001)) #1
+print(math.floor(1.999)) #1
+```
+
+### math.ceil() : 切り上げ
+```
+#test.py
+import math #必須
+print(math.ceil(1.001)) #2
+print(math.ceil(1.999)) #2
+```
+
+### math.fabs() : 絶対値
+```
+#test.py
+import math #必須
+print(math.fabs(100)) #100.0
+print(math.fabs(-100)) #100.0
+```
+
+### math.pow() : 累乗（○の□乗）
+```
+#test.py
+import math #必須
+print(math.pow(2, 0)) #1.0（2の0乗）
+print(math.pow(2, 8)) #256.0（2の8乗）
+```
+
+### math.sqrt() : 平方根（√○）
+```
+#test.py
+import math #必須
+print(math.sqrt(2)) #1.4142135623730951（一夜一夜にひとみごろ）
+print(math.sqrt(3)) #1.7320508075688772（人並みに奢れや）
+print(math.sqrt(4)) #2.0
+print(math.sqrt(5)) #2.23606797749979（富士山麓オウム鳴く）
+```
+
+mathモジュールを使わないもの
 ***
-
-### floor : 切り捨て
-```
-#test.rb
-puts(1.001.floor) #1
-puts(1.999.floor) #1
-```
 
 ### round() : 四捨五入
 ```
-#test.rb
-puts(1.499.round(0)) #1 ←引数で小数点以下の何位を丸めるか指定可能
-puts(1.499.round(1)) #1.5
-puts(1.500.round(0)) #2
+#test.py
+print(round(1.499)) #1
+print(round(1.500)) #2
 ```
 
-### ceil : 切り上げ
+### max() : 比較（最大値）
 ```
-#test.rb
-puts(1.001.ceil) #2
-puts(1.999.ceil) #2
-```
-
-### abs : 絶対値
-```
-#test.rb
-puts(100.abs) #100
-puts(-100.abs) #100
+#test.py
+print(max(5.01, -10, 8, 2.9)) #8 ←リスト･タプルの要素の比較
 ```
 
-### ** : 累乗（○の□乗）
+### min() : 比較（最小値）
 ```
-#test.rb
-puts(2**0) #1（2の0乗）
-puts(2**8) #256（2の8乗）
-```
-
-### max : 比較（最大値）
-```
-#test.rb
-puts([5.01, -10, 8, 2.9].max) #8 ←配列（タプル）要素の比較
-```
-
-### min : 比較（最小値）
-```
-#test.rb
-puts([5.01, -10, 8, 2.9].min) #-10 ←配列（タプル）要素の比較
+#test.py
+print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月09日  
-更新日：2017年04月10日
+作成日：2016年06月29日  
+更新日：2017年04月11日
 
 
 <a name="乱数"></a>
