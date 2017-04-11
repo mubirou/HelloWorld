@@ -1074,12 +1074,12 @@ print(MyClass.PI) #3.141592653589793
 print(MyClass.Pow(2,8)) #256
 
 _myClass = MyClass() #インスタンスの生成
-print(_myClass.PI) #3.141592653589793 ←インスタンスからも呼び出せたりもします
-print(_myClass.Pow(2,8)) #256 ←インスタンスからも呼び出せたりもします
+print(_myClass.PI) #3.141592653589793 ←インスタンスからも呼び出せる
+print(_myClass.Pow(2,8)) #256 ←インスタンスからも呼び出せる
 
 MyClass.PI = 3.14 #変更が出来ます（変更不可にはできません）
 print(MyClass.PI) #3.14
-print(_myClass.PI) #3.14 ←インスタンス変数も変更されます
+print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
