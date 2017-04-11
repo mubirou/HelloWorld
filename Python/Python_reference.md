@@ -2458,8 +2458,8 @@ _loop.start()
 ```
 #test.py
 import time #timeモジュール（日付と時間を扱うCライブラリ関数を提供）
-    開始時間 = time.time() #UNIX時間（1970年1月1日 午前0:00からの経過時間）
-    ………
+開始時間 = time.time() #UNIX時間（1970年1月1日 午前0:00からの経過時間）
+………
 様々な処理
 ………
 結果 = time.time() - 開始時間
@@ -2480,7 +2480,7 @@ for i in range(0,100000000): #1億回繰り返す
 #===========================================
 
 _result = time.time() - _start
-print(str(_result) + 'sec.') #4.048005104064941sec.
+print(str(_result) + 'sec.') #3.835374116897583sec.
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -2502,44 +2502,43 @@ print(str(_result) + 'sec.') #4.048005104064941sec.
 
 ### 構文
 ```
-○ = File.open("□□.txt")
-○.read() #テキストファイルの内容が返り値となります
-```
-または
-```
-File.read("□□.txt")
+○ = open("□□.txt", "r")
+○.read() #テキストファイルの内容が返る
 ```
 
 ### 例文
 ```
-#test.rb
-_file = File.open("sample.txt") #同じ階層に○.txtがある場合
-_result = _file.read()
-puts(_result)
+#test.py
+file_ = open("sample.txt", "r") #同じ階層に○.txtがある場合…
+result_ = file_.read()
+print(result_)
 #あいうえお
 #かきくけこ
 #さしすせそ
+"""
 ```
 
 ### 外部テキストの書き込み（参考）
 ```
 #test.py
-_file = File.open("sample.txt")
-_tmp = _file.read()
-_tmp += "たちつてと\nなにぬねの" #読み込んだテキストに追加（「\n」で改行）
-File.write("sample.txt", _tmp)
+#ファイルの書き込み
+file_ = open("sample.txt", "w") # "r" ではなく "w"
+file_.write("たちつてと\nなにぬねの") #「\n」で改行も可能
+file_.close()
 
 #ファイルの読み込み（確認）
-_reslt = File.read("sample.txt")
-puts(_reslt)
+file_ = open("sample.txt", "r") #同じ階層に○.txtがある場合
+result_ = file_.read()
+print(result_)
+"""
 #あいうえお
 #かきくけこ
 #さしすせそ
-#さしすせそ
 #たちつてと
-```
+#なにぬねの
+"""
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月09日  
-更新日：2017年04月10日
+作成日：2016年06月29日  
+更新日：2017年04月11日
