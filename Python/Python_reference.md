@@ -1281,7 +1281,7 @@ for 要素変数 in リスト等: ←要素だけ取り出したい場合はこ�
 ### リスト（変更可能な配列）
 ```
 #test.py
-list_ = ["TAKASHI", "TOHRU", "SACHIKO"]
+list_ = ["A", "B", "C"]
 for i, tmp in enumerate(list_):
     print(i, tmp) # 0 TAKASHI → 1 TOHRU → 2 SACHIKO
 ```
@@ -1289,7 +1289,7 @@ for i, tmp in enumerate(list_):
 ### タプル（tuple／変更不可の配列）
 ```
 #test.py
-lockList_ = ("TAKASHI", "TOHRU", "SACHIKO")
+lockList_ = ("A", "B", "C")
 for i, tmp in enumerate(lockList_):
     print(i, tmp) # 0 TAKASHI → 1 TOHRU → 2 SACHIKO
 ```
@@ -1297,7 +1297,7 @@ for i, tmp in enumerate(lockList_):
 ### セット（重複不許可な集合体）
 ```
 #test.py
-set_ = set(["0001", "0002", "0003"])
+set_ = set(["A", "B", "C"])
 for i, tmp in enumerate(set_):
     print(i, tmp) # 0 002 → 1 001 → 2 0003 ←何故この順序？（要調査）
 ```
@@ -1314,7 +1314,7 @@ for i, tmp in enumerate(frozenset_):
 ### 辞書（連想配列）
 ```
 #test.py
-dict_ = {"TAKASHI":48, "TOHRU":13}
+dict_ = {"A":"あ", "I":"い"}
 for i, tmp in enumerate(dict_):
     print(i, tmp, dict_[tmp]) # 0 TAKASHI 48 → 1 TOHRU 13
 ```
