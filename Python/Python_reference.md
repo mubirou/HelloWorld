@@ -22,8 +22,8 @@
 * [三項演算子](#三項演算子)
 * [for 文](#for文)
 * [for...in 文](#for...in文)
-***
 * [while 文](#while文)
+***
 * [配列（Array）](#配列（Array）)
 * [連想配列（Hash）](#連想配列（Hash）)
 * [self](#self) ≒ this
@@ -1223,7 +1223,7 @@ for 変数 in range(開始,終了):
 ### 基本例文
 ```
 #test.py
-for i in range(0,10): #←第１引数を省略すると0扱い
+for i in range(0,10): #第１引数を省略すると0扱い
     print(i) #0,1,2,3,4,5,6,7,8,9
 
 print(i) #9（for文の外でもiは有効）
@@ -1319,6 +1319,58 @@ for i, tmp in enumerate(dict_):
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
+作成者：Takashi Nishimura  
+作成日：2016年06月24日  
+更新日：2017年04月11日
+
+
+<a name="while文"></a>
+# <b>while 文</b>
+* 他の多くの言語にある do...while 文はない
+
+### 基本構文
+```
+while (ループ判定式) : #ループ判定式がTrueの間繰り返される（()は省略可）
+    繰り返す処理
+```
+
+### 例文
+```
+#test.py
+i_ = 0
+while (i_ < 10) : #()は省略可
+    print(i_) #0,1,2,3,4,5,6,7,8,9
+    i_ += 1
+
+print(i_) #10 ←while文の外でも変数はまだ有効
+```
+
+### while 文と break 文
+```
+#test.py
+count_ = 0
+while (True) : #ループ判別式をTrueにすると無限ループに!
+    count_ += 1
+    if (count_ > 100) :
+        break #ループを終了
+    print(count_) #1,2,....,99,100（1〜100までを出力）
+
+print("while文終了") #while文の外
+```
+
+### while 文と continue 文（3の倍数を出力）
+```
+#test.py
+i_ = 1
+while (i_ <= 20) :
+    if ((i_ % 3) != 0) : #3で割って余りが0ではない（＝3の倍数ではない）場合
+        i_ += 1
+        continue #while文の残処理をスキップしてwhile文の次の反復を開始する
+    print(i_) #3,6,9,12,15,18（3の倍数を出力）
+    i_ += 1
+```
+
+実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
