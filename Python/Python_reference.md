@@ -813,9 +813,9 @@ def 関数名(引数①, 引数②, ...)
 ```
 #test.py
 class MyClass(object): #前方宣言
-    def tashizan(self, start_, end_): #self（第1引数）は必須 ←オブジェクト自身を指す
+    def tashizan(self, _start, end_): #self（第1引数）は必須 ←オブジェクト自身を指す
         _result = 0 #ローカル変数
-        for i in range(start_, end_+1):
+        for i in range(_start, end_+1):
             _result += i
         return _result
         
@@ -834,9 +834,9 @@ class MyClass(object): #前方宣言
         print(self.__Tashizan(1,100)) #5050
 
     #関数名は__○○にすることでプライベート関数扱いになります
-    def __Tashizan(self, start_, end_): #self（第1引数）は必須 ←オブジェクト自身を指す
+    def __Tashizan(self, _start, end_): #self（第1引数）は必須 ←オブジェクト自身を指す
         _result = 0 #ローカル変数
-        for i in range(start_, end_+1):
+        for i in range(_start, end_+1):
             _result += i
         return _result
 
@@ -1967,8 +1967,8 @@ import re ←正規表現に必須
 import re #正規表現に必須
 string_ = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
 pattern_ = re.compile('吉田') #正規表現をコンパイル
-result_ = pattern_.search(string_) #見つからなければNone
-if (result_ is None) :
+_result = pattern_.search(string_) #見つからなければNone
+if (_result is None) :
     print("吉田は含まれていません")
 else :
     print("吉田は含まれています")
@@ -2407,9 +2407,8 @@ print(h_ + ":" + m_ + ":" + s_) #14:23:07
 
 <a name="タイマー"></a>
 # <b>タイマー</b>
-* バックエンドで動作する Python の場合、サーバ負荷がかかるタイマー処理は多用すべきではない
 
-### 一度だけ実行する場合（参考）
+### 一度だけ実行する場合
 ```
 #test.py
 import threading #必須
@@ -2419,11 +2418,9 @@ timer_ = threading.Timer(3, timeOut) # 3秒後に1度だけ実行したい場合
 timer_.start()
 ```
 
-### 繰り返し実行する場合（参考）
+### 繰り返し実行する場合
 ```
-# test.py
-# 以下はthreading.Threadを継承したクラス（Loop）を作成した独自の方法です。
-# メモリ管理の問題を含め更に良い方法がある気がします…（要調査）。
+# test.py（threading.Thread を継承したクラスを作成した方法）
 import threading #必須
 import time
 
@@ -2434,7 +2431,7 @@ class Loop(threading.Thread):
         if (self.__isLoop) :
             print("繰返し実行したい処理を記述")
             time.sleep(0.5) #0.5秒間隔で実行したい場合…
-            self.run() #←…これが無いと1回だけしか実行しない
+            self.run() #これが無いと1回だけしか実行しない
 
     def stop(self): #カスタム関数
         self.__isLoop = False
@@ -2457,48 +2454,39 @@ _loop.start()
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### Time.nowを使う方法
+### 構文
 ```
-#test.rb
-_start = Time.now #計測開始
-
-for i in 1 .. 100000000 do #1億回繰返す場合
-  #速度計測したい処理（今回は何もしない）
-end
-
-_result = Time.now - _start #計測終了
-puts(_result) #4.089608507（秒）
+#test.py
+import time #timeモジュール（日付と時間を扱うCライブラリ関数を提供）
+    開始時間 = time.time() #UNIX時間（1970年1月1日 午前0:00からの経過時間）
+    ………
+様々な処理
+………
+結果 = time.time() - 開始時間
+print(結果) #○○秒（浮動小数点数値＝小数点15桁）
 ```
 
-### Benchmarkライブラリーを使う方法
+### 例文
 ```
-#test.rb
-require "benchmark"
+#test.py
+import time #必須
+_start = time.time() #計測開始時間
 
-Benchmark.bm 10 do |r| #決め打ちで良い
-  r.report "実験①" do
-    #速度計測したい処理①
-    for i in 1 .. 100000000 do #1億回繰返す場合
-      2*2*2*2 #速度計測の比較をしたい処理①
-    end
-  end
-  r.report "実験②" do
-    # (計測したい処理その2)
-    for i in 1 .. 100000000 do #1億回繰返す場合
-      2**4 #速度計測の比較をしたい処理①
-    end
-  end
-end
+#===========================================
+#ここに計測したい様々な処理を記述
+for i in range(0,100000000): #1億回繰り返す
+    #速度計測したい処理
+    pass #今回は何もしない
+#===========================================
 
-#                 user     system      total        real
-#実験①         10.570000   0.000000  10.570000 ( 10.571983)
-#実験②          8.030000   0.000000   8.030000 (  8.027341)
+_result = time.time() - _start
+print(str(_result) + 'sec.') #4.048005104064941sec.
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月09日  
-更新日：2017年04月10日
+作成日：2016年06月29日  
+更新日：2017年04月11日
 
 
 <a name="外部テキストの読み込み"></a>
