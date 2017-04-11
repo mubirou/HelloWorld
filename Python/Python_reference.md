@@ -34,7 +34,6 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（math）](#数学関数（math）)
-***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -2311,45 +2310,48 @@ print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 
 ### 0〜1.0未満
 ```
-#test.rb
-puts(Random.rand()) #0.5222174965949302（0〜0.999…）←()は省略可
+#test.py
+print(random.random()) #0.5365828948689807 ←0〜0.999…
 ```
 
-### 最小値〜最大値（Fixnum型）
+### 最小値〜最大値（float型）
 ```
-#test.rb
-puts(Random.rand(5..9)) #5 ←5〜9のいずれか（整数）
+#test.py
+print(random.uniform(1,100)) #56.961497327378886 ←0.0〜100.0以下
 ```
 
-### 0〜最大値（Fixnum型）
+### 最小値〜最大値（int型）
 ```
-#test.rb
-_i0 = _i1 = _i2 = _i3 = _i4 = _i5 = _i6 = _i7 = _i8 = _i9 = 0
+#test.py
+import random #必須
+i0=0; i1=0; i2=0; i3=0; i4=0; i5=0; i6=0; i7=0; i8=0; i9=0;
+for i in range(0,1000000): #100万回繰り返します
+    tmp = random.randint(0,9)
+    if (tmp == 0): i0 += 1
+    elif (tmp == 1): i1 += 1
+    elif (tmp == 2): i2 += 1
+    elif (tmp == 3): i3 += 1
+    elif (tmp == 4): i4 += 1
+    elif (tmp == 5): i5 += 1
+    elif (tmp == 6): i6 += 1
+    elif (tmp == 7): i7 += 1
+    elif (tmp == 8): i8 += 1
+    elif (tmp == 9): i9 += 1
+    else: print("Error")
+print(i0, i1, i2, i3, i4, i5, i6, i7, i8, i9)
+#100000 99898 100097 99690 99807 100435 100024 100190 99531 100328
+```
 
-for i in 1..10000000 do #1000万回繰り返す
-  _tmp = Random.rand(10) #0〜9の乱数（0〜指定値未満の整数）
-  case _tmp
-  when 0 then _i0 += 1
-  when 1 then _i1 += 1
-  when 2 then _i2 += 1
-  when 3 then _i3 += 1
-  when 4 then _i4 += 1
-  when 5 then _i5 += 1
-  when 6 then _i6 += 1
-  when 7 then _i7 += 1
-  when 8 then _i8 += 1
-  when 9 then _i9 += 1
-  end
-end
-
-puts(_i0,_i1,_i2,_i3,_i4,_i5,_i6,_i7,_i8,_i9)
-#999984→1000715→998330→1000162→1000477→1002110→999414→998289→999532→1000987
+### ランダムな文字
+```
+#test.py
+print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #X …など
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月09日  
-更新日：2017年04月10日
+作成日：2016年06月29日  
+更新日：2017年04月11日
 
 
 <a name="日時情報"></a>
