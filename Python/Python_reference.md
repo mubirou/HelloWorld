@@ -2311,12 +2311,14 @@ print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 ### 0〜1.0未満
 ```
 #test.py
+import random #必須
 print(random.random()) #0.5365828948689807 ←0〜0.999…
 ```
 
 ### 最小値〜最大値（float型）
 ```
 #test.py
+import random #必須
 print(random.uniform(1,100)) #56.961497327378886 ←0.0〜100.0以下
 ```
 
@@ -2345,6 +2347,7 @@ print(i0, i1, i2, i3, i4, i5, i6, i7, i8, i9)
 ### ランダムな文字
 ```
 #test.py
+import random #必須
 print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #X …など
 ```
 
