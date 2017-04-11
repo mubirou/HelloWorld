@@ -1231,12 +1231,13 @@ for ループ制御変数, 要素変数 in enumerate(リスト等):
 for i in range(0,10): #←…第１引数を省略すると0扱い
     print(i) #0,1,2,3,4,5,6,7,8,9
 
-print(i) #for文の外でもiは有効
+print(i) #9（for文の外でもiは有効）
 ```
 
 ### for文のネスト
 * ループ制御変数にはi,j,kが使われる
 ```
+#test.py
 for i in range(1,6):
     for j in range(1,6):
         print("x" + str(i) + "y" + str(j)) #x1y1,x1y2,....,x5y4,x5y5
@@ -1245,6 +1246,7 @@ for i in range(1,6):
 ### continue文
 * ループカウンタを○つずつアップする
 ```
+#test.py
 for i in range(0,50):
     if i % 5: #5つずつアップする場合…
         continue #以降処理せず、for文のブロックの先頭に戻って再度繰返す
