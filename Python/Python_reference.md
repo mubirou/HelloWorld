@@ -16,8 +16,8 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [関数](#関数)
-***
 * [匿名関数](#匿名関数)
+***
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -988,58 +988,56 @@ _myClass.rect(endX=100, endY=100) #面積:10000m2 ←デフォルト値付との
 <a name="匿名関数"></a>
 # <b>匿名関数</b>
 
-### 概要
-* 実態は [Proc クラス](https://docs.Python-lang.org/ja/latest/class/Proc.html)
-* Proc オブジェクトの生成には、Proc.new メソッドか Proc メソッド、または lambda メソッドを使用するが、ここでは ->(ブロック変数){処理} という方法を紹介
-
-### ラムダ式による基本構文
-* lambda メソッドを使う方法もあり
+### 基本構文
 ```
-変数 = ->(引数①, 引数②, …) {
-    ......いろいろな処理......
-    [return 戻り値]
-}
-
-変数.call(引数①, 引数②, …)
+lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
 ```
 
-### ラムダ式による例文
-* lambda メソッドを使う方法もあり
+### def / lamda（ラムダ）構文の違い
+
+1. defの場合
+    ```
+    def myFunction1(arg1, arg2):
+        #ここに様々な処理を記述可能（重要）
+        return arg1 * arg2
+    print(myFunction1) # <function myFunction1 at 0x7f4f0ad77378>
+    print(type(myFunction1)) #<class 'function'> ←function型
+    print(myFunction1(4,3)) #12 ←4x3
+    ```
+
+1. lambdaの場合
+    ```
+    myFunction2 = lambda arg1,arg2 : arg1*arg2 #戻り値しか記述できない
+    print(myFunction2) # <function <lambda> at 0x7f3dcde4f378>
+    print(type(myFunction2)) #<class 'function'> ←function型
+    print(myFunction2(4,3)) #12 ←4x3
+    ```
+
+### 変数へ def /lambda 構文による関数の格納
+* def 構文の場合、関数名（変数）に function 型のデータが格納される
+* lambda 構文の場合、匿名の function 型のデータとなる（変数に格納可能）
+* def / lambda ともに function 型のデータのため、１つの変数に入れ替えることが可能
 ```
-#test.rb
-#ラムダ式による匿名関数
-_kakezan = ->(arg1, arg2) {
-    return arg1 * arg2
-}
+#test.py
+def japanesHello(): #「def」構文による関数
+    import datetime
+    hour_ = datetime.datetime.now().hour
+    if (hour_ > 18) or (5 > hour_ ) : return "今晩は"
+    elif (11 > hour_) : return "おはようございます"
+    else: return "こんにちは"
 
-#実態はProcクラス
-p _kakezan #<Proc:0x00000000c45428@test.rb:1 (lambda)>
-puts(_kakezan) #<Proc:0x00000000c45428@test.rb:1 (lambda)>
-puts(_kakezan.class.name) #Proc（Proクラス）
+chinesehHello = lambda : "您好" #「lambda」構文による関数
 
-#呼び出し方法
-p _kakezan.call(9,9) #81
-puts(_kakezan.call(9,9)) #81
-#puts(_kakezan(9,9)) #Error（普通のメソッドと同じ方法では呼び出せない）
-```
-
-### 注意（Proc オブジェクトと通常のメソッドとの入れ替えは不可）
-```
-#test.rb
-def hoge()
-   puts("ほげ")
-end
-
-hoge() #"ほげ"
-_piyo = hoge #"ほげ" ←hoge()を実行したことになってしまう
-puts(_piyo) #（nil）
-_piyo() #エラー
+hello = japanesHello #変数に「def」構文による関数を格納
+print(hello()) #こんにちは（時間による）
+hello = chinesehHello #変数の中を「lambda」構文による関数と入れ替える
+print(hello()) #您好
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月06日  
-更新日：2017年04月07日
+作成日：2016年06月23日  
+更新日：2017年04月11日
 
 
 <a name="クラス定数･変数･メソッド"></a>
