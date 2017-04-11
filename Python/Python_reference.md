@@ -1608,6 +1608,7 @@ print(_list.count('C')) #3（見つからなければ0）
 len(リスト)
 ```
 * 例文
+```
 #test.py
 _list = [0,1,2,3,4,5,6,7,8,9]
 print(len(_list)) #10
