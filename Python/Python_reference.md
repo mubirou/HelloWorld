@@ -14,8 +14,8 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-***
 * [定数](#定数)
+***
 * [メソッド](#メソッド)
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
@@ -753,47 +753,50 @@ print(~3) #-4（ビット反転）
 # <b>定数</b>
 
 ### 概要
-* 多くの言語にある「const」は存在しない
-* 全て大文字（途中_は付けて良い）で命名するだけで、値を変更する際に警告（worning）を発生
+* 多くの言語にある const 修飾子が存在しない
+* 慣例的に_（アンダースコア）付で全て大文字にすることで定数と判断する
+* 実際は通常のグローバル変数やパブリック変数と同じなので、変更は出来てしまう
 
 ### 通常の定数
 ```
-#test.rb
-MY_NAME = "TAKASHI NISHIMURA" #先頭はアルファベットの大文字にしなければならない
-puts(MY_NAME) #"TAKASHI NISHIMURA"
-MY_NAME = "TARO NISHIMURA" #警告（worning）は出るが変更は出来てしまう
-puts(MY_NAME) #"TARO NISHIMURA"
+#test.py
+#擬似「定数」←実際はグローバル変数
+MY_NAME = "TAKASHI NISHIMURA"
+
+print(MY_NAME) #TAKASHI NISHIMURA
+
+MY_NAME = "TOHRU NISHIMURA" #変更できてしまう（本当は定数ではない）
+print(MY_NAME) #TOHRU NISHIMURA
+#上記のようにせず「大文字の変数は定数扱い＝変更不可」というルールにする…だけです。
 ```
 
-### クラス定数
+### クラス定数（クラスからもインスタンスからも呼び出せる）
 ```
-#test.rb
-#=======================================
-# カスタムクラス
-#=======================================
-class MyClass
-  MY_NAME = "TAKASHI NISHIMURA" #先頭はアルファベットの大文字
-  def initialize(init=0)
-    puts(MY_NAME) #"TAKASHI NISHIMURA" #クラス内でのアクセス方法
-  end
-end
+#test.py
+#カスタムクラス（MyClass）
+class MyClass(object):
+    #擬似「クラス定数」←実際はパブリック変数
+    MY_NAME = "TAKASHI NISHIMURA"
 
-#=======================================
-# 実行（クラス名::クラス定数でアクセス）
-#=======================================
-puts(MyClass::MY_NAME) #"TAKASHI NISHIMURA"（外からのアクセス方法）
-MyClass::MY_NAME = "TARO NISHIMURA" #警告（worning）は出るが変更は出来てしまう
-puts(MyClass::MY_NAME) #"TARO NISHIMURA"
+#=====================================================
+# 「インスタンス変数」と「クラス定数」の違いを検証
+#=====================================================
+myClass_ = MyClass() #インスタンスの生成
+print(myClass_.MY_NAME) #TAKASHI NISHIMURA ←インスタンス変数へのアクセス
+myClass_.MY_NAME = "SACHIKO NISHIMURA" #インスタンス変数を変更（他人をいじる…）
+#↑オブジェクト指向のルールとしてgetter/setterでアクセスすべきですが…
+print(myClass_.MY_NAME) #SACHIKO NISHIMURA
 
-#インスタンスからのアクセスは不可
-_myClass = MyClass.new()
-#puts(_myClass.MY_NAME) #エラー（アクセス不可）
+print(MyClass.MY_NAME) #TAKASHI NISHIMURA ←クラス変数とインスタンス変数は別扱い
+
+MyClass.MY_NAME = "TOHRU NISHIMURA" #変更できてしまう（実際は定数ではない）
+print(MyClass.MY_NAME) #TOHRU NISHIMURA
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月05日  
-更新日：2017年04月06日
+作成日：2016年06月23日  
+更新日：2017年04月11日
 
 
 <a name="メソッド"></a>
