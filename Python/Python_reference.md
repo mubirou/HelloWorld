@@ -997,6 +997,7 @@ lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
 
 1. defの場合
     ```
+    #test.py
     def myFunction1(arg1, arg2):
         #ここに様々な処理を記述可能（重要）
         return arg1 * arg2
@@ -1007,6 +1008,7 @@ lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
 
 1. lambdaの場合
     ```
+    #test.py
     myFunction2 = lambda arg1,arg2 : arg1*arg2 #戻り値しか記述できない
     print(myFunction2) # <function <lambda> at 0x7f3dcde4f378>
     print(type(myFunction2)) #<class 'function'> ←function型
