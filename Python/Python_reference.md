@@ -19,8 +19,8 @@
 * [匿名関数](#匿名関数)
 * [静的変数・静的関数](#静的変数・静的関数)
 * [if 文](#if文)
-***
 * [三項演算子](#三項演算子)
+***
 * [for 文](#for文)
 * [each メソッド](#eachメソッド)
 * [while 文](#while文)
@@ -1096,12 +1096,12 @@ print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 * Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```
 #test.py
-age_ = 49
-if (age_ <= 20) : #()は省略可
+_age = 49
+if (_age <= 20) : #()は省略可
     print("20歳以下")
-elif (age_ <= 40) : #「else if」でも「elseif」でもない（要注意）
+elif (_age <= 40) : #「else if」でも「elseif」でもない（要注意）
     print("21〜40歳")
-elif (age_ <= 60) :
+elif (_age <= 60) :
     print("41〜60歳") #これが出力される
 else:
     print("61歳以上")
@@ -1180,7 +1180,7 @@ else:
     if ((a_ or b_) and not (a_ and b_)) : #()は省略可
         print("どちらか一方だけtrueです")
     else:
-    print("両方共にtrueかfalseです")
+        print("両方共にtrueかfalseです")
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -1192,61 +1192,23 @@ else:
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
 
-◆三項演算子（if文を使った独特のものです）
-【ECMAScript系】変数 = (比較式) ? (True時の返り値) : (False時の返り値)
-【Pythonの場合】変数 = (True時の返り値) if (比較式) else (False時の返り値)
-#Pythonの三項演算子の例
-age_ = 48
-result_ = "現役" if (age_ < 60) else "退職"
+### 構文
+* Python の三項演算子は if 文を使った独特のものです
+```
+変数 = (True時の返り値) if (比較式) else (False時の返り値)
+```
+
+### 例文
+```
+_age = 48
+result_ = "現役" if (_age < 60) else "退職"
 print(result_)
-
-
-
-
-
-### 比較式が１つの場合
-* 構文
-```
-変数名 = (比較式) ? (true時の返り値) : (false時の返り値)
-```
-
-* 例文
-```
-#test.rb
-def test(_age)
-    _result = (_age < 60) ? "現役" : "退職"
-    return _result
-end
-puts(test(49)) #"現役"
-puts(test(89)) #"退職"
-```
-
-### 比較式が複数の場合
-* 構文
-```
-変数名 = (比較式①) ? (①がtrueの場合の返り値) : #①がfalseの場合↓
-変数名 = (比較式②) ? (②がtrueの場合の返り値) : #②がfalseの場合↓
-変数名 = (①②の全てがfalseの場合の返り値);
-```
-
-* 例文
-```
-#test.rb
-def test(_age)
-    _result = (_age < 20) ? "未成年" :
-    _result = (_age < 60) ? "現役" :
-    _result = "退職"
-    return _result
-end
-puts(test(19)) #"未成年"
-puts(test(49)) #"現役"
-puts(test(89)) #"退職"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
+作成日：2016年06月24日  
+更新日：2017年04月11日
 
 
 <a name="for文"></a>
