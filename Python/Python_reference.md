@@ -1163,6 +1163,7 @@ else:
 ### 排他的論理和（XOR）
 1. ^演算子を使う方法
     ```
+    #test.py
     a_ = True
     b_ = False
     if (a_ ^ b_) : #()は省略可
@@ -1173,6 +1174,7 @@ else:
 
 1. ^演算子を使わない場合
     ```
+    #test.py
     a_ = True
     b_ = False
     if ((a_ or b_) and not (a_ and b_)) : #()は省略可
