@@ -31,8 +31,8 @@
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [super 関数](#super関数)
-***
 * [オーバーライド](#オーバーライド)
+***
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
@@ -2100,49 +2100,48 @@ _subClass.hoge("派生クラスからの呼び出し")
 # <b>オーバーライド</b>
 
 ### 概要
-* スーパークラスで定義したメソッドを派生クラスで再定義することをオーバーライドと呼ぶ
-* スーパークラスの「同名のメソッド」を呼び出したい場合は、super([引数]) を使う
+* 基本クラスで定義したメソッドを派生クラスで再定義することをオーバーライドと呼ぶ
+* 基本クラスのメソッドを呼び出したい場合は、super(クラス,self).メソッド()を使う
 
 ### 書式
 ```
-class スーパークラス名
-    def メソッド名(引数): #派生クラスでオーバーライドされる
-        ......
+class 基本クラス名(object):
+    def 関数名(self, 引数): #派生クラスでオーバーライドされる
+        ……
 
-class 派生クラス名 < 基本クラス名
-    def メソッド名(引数) #スーパークラスのメソッドをオーバーライドする
-        super(引数) #スーパークラスの「同名のメソッド」を呼び出す場合
-        ......
+class 派生クラス名(基本クラス名):
+    def 関数名(self, 引数): #基本クラスの関数をオーバーライドする
+        #↓オーバーライドした基本クラスの関数を呼出す場合…
+        super(派生クラス名, self).関数名(引数)
+        ……
 ```
 
 ### 例文
 ```
-#test.rb
-#スーパークラス
-class SuperClass 
-  #↓派生クラスでオーバーライドされる
-  def myMethod()
-    puts("スーパークラスのmyMethod()")
-  end
-end
+#test.py
+#基本クラス
+class SuperClass(object):
+    #↓派生クラスでオーバーライドされる
+    def myFunction(self):
+        print("基本クラスのmyFunction()")
 
 #派生クラス
-class SubClass < SuperClass 
-  #↓スーパークラスのメソッドをオーバーライドする
-  def myMethod()
-    super() #スーパークラスの「同名のメソッド」を呼び出す場合
-    puts("派生クラスのmyMethod()")
-  end
-end
+class SubClass(SuperClass): #基本クラス（SuperClass）を継承
+    #↓基本クラスの関数をオーバーライドする
+    def myFunction(self):
+        #↓基本クラスのmyFunction()を呼出す場合…
+        super(SubClass, self).myFunction()
+        print("派生クラスのmyFunction()")
 
-_subClass = SubClass.new()
-_subClass.myMethod()
+# 実行
+_subClass = SubClass()
+_subClass.myFunction()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月08日  
-更新日：2017年04月10日
+作成日：2016年06月28日  
+更新日：2017年04月11日
 
 
 <a name="カスタムイベント"></a>
