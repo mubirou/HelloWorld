@@ -2312,7 +2312,7 @@ print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 ```
 #test.py
 import random #必須
-print(random.random()) #0.5365828948689807 ←0〜0.999…
+print(random.random()) #0.831427260696891 ←0〜0.999...
 ```
 
 ### 最小値〜最大値（float型）
@@ -2341,14 +2341,14 @@ for i in range(0,1000000): #100万回繰り返します
     elif (tmp == 9): i9 += 1
     else: print("Error")
 print(i0, i1, i2, i3, i4, i5, i6, i7, i8, i9)
-#100000 99898 100097 99690 99807 100435 100024 100190 99531 100328
+#100059 99956 100599 100200 99863 99702 99881 99715 99783 100242
 ```
 
 ### ランダムな文字
 ```
 #test.py
 import random #必須
-print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #X …など
+print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #"X"...など
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -2360,47 +2360,49 @@ print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #X …など
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
-### 例文
-* Time クラスのほかに Date クラスもあり
+### 書式
 ```
-#test.rb
-_now = Time.now
-puts(_now) #2017-04-10 11:09:36 +0900
-puts(_now.year) #年（2016等）
-puts(_now.month) #月（1〜12）
-puts(_now.day) #日（1〜31）
-puts(_now.wday) #0（日曜）〜6（土曜）
-puts(_now.hour) #時間（0〜23）
-puts(_now.min) #分（0〜59）
-puts(_now.sec) #秒（0〜59）
-puts(_now.usec) #マイクロ秒（0〜999999）
+import datetime #必須
+○ = datetime.datetime.now()
+○.year #年（2016等）
+○.month #月（1〜12）
+○.day #日（1〜31）
+○.weekday() #0（月曜）〜6（日曜） ←これだけ関数（注意）
+○.hour #時間（0〜23）
+○.minute #分（0〜59）
+○.second #秒（0〜59）
+○.microsecond #マイクロ秒（0〜999999）
+```
 
-# "hh:mm:ss"で現在の時間を表示する
-if (_now.hour < 10) then #「時」がひと桁の場合…
-  _h = "0" + _now.hour.to_s
-else 
-  _h = _now.hour.to_s
-end
+### 例文
+```
+#test.py
+import datetime #必須
+now_ = datetime.datetime.now()
+print(now_) #2016-06-29 08:32:31.474641
+print(now_.year) #年（2016等）
+print(now_.month) #月（1〜12）
+print(now_.day) #日（1〜31）
+print(now_.weekday()) #0（月曜）〜6（日曜） ←…これだけ関数（注意）
+print(now_.hour) #時間（0〜23）
+print(now_.minute) #分（0〜59）
+print(now_.second) #秒（0〜59）
+print(now_.microsecond) #マイクロ秒（0〜999999）
 
-if (_now.min < 10) then #「分」がひと桁の場合…
-  _m = "0" + _now.min.to_s
-else 
-  _m = _now.min.to_s
-end
-
-if (_now.sec < 10) then #「秒」がひと桁の場合…
-  _s = "0" + _now.sec.to_s
-else
-  _s = _now.sec.to_s
-end
-
-puts(_h + ":" + _m + ":" + _s) #"11:09:36"など
+#"hh:mm:ss"で現在の時間を表示する方法
+if (now_.hour < 10) : h_ = "0" + str(now_.hour)
+else: h_ = str(now_.hour)
+if (now_.minute < 10) : m_ = "0" + str(now_.minute)
+else: m_ = str(now_.minute)
+if (now_.second < 10) : s_ = "0" + str(now_.second)
+else: s_ = str(now_.second)
+print(h_ + ":" + m_ + ":" + s_) #08:50:14
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月09日  
-更新日：2017年04月10日
+作成日：2016年06月29日  
+更新日：2017年04月11日
 
 
 <a name="タイマー"></a>
