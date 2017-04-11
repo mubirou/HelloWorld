@@ -26,8 +26,8 @@
 * [配列（タプル）](#配列（タプル）)
 * [動的配列（リスト）](#動的配列（リスト）)
 * [連想配列（辞書）](#連想配列（辞書）)
-***
 * [self](#self) ≒ this
+***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
@@ -1798,34 +1798,32 @@ print(len(_dict)) #3
 # <b>self</b> ≒ this
 
 ```
-#test.rb
-class MyClass
-    puts(self) #MyClass（インスタンスではなくクラスそのもの）
+#test.py
+class MyClass(object):
+    #↓通常はプライベート（__p）にするので問題ない（他の言語と異なるところ）
+    _p = None #インスタンス変数（selfは不要）
+    
+    #コンストラクタ（第１引数にselfが必須)
+    def __init__(self, _p): #引数名がインスタンス変数名と同じ場合…
+        self._p = _p #selfが無いとローカル変数扱い
+        
+        #↓このメソッドが実行されたオブジェクト
+        print(self) #<__main__.Robot object at 0x7f3667656b00>
+        self.myMethod() #selfが必須（クラス内で関数を実行する場合）
 
-    def initialize()
-        puts(self) ##<MyClass:0x00000000f090d8>（MyClassのインスタンス★）
-        self.myMethod() #myMethod（selfは省略可）
-    end
-
-    def myMethod()
-        puts("myMethod")
-    end
-end
-
-_myClass = MyClass.new()
-puts(_myClass) ##<MyClass:0x00000000f090d8>（MyClassのインスタンス★）
-
-def MyMethod()
-    puts(self) 
-end
-
-MyMethod() #main
+    def myMethod(self): #selfが必須（クラス内に定義する関数）
+        _p = None #ローカル変数
+        _p = self._p + 10 #selfが無いとError]
+        print(_p) #510
+    
+_myClass = MyClass(500)
+_myClass.myMethod() #510
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：Takashi Nishimura  
-作成日：2016年07月07日  
-更新日：2017年04月07日
+作成日：2016年06月27日  
+更新日：2017年04月11日
 
 
 <a name="文字列の操作"></a>
