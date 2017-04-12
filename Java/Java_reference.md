@@ -37,7 +37,6 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
-***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -2323,8 +2322,9 @@ public class Main { //publicは省略可
         _robot.fight();
         _robot.fight();
         _robot.fight();
-        _robot.fight();
-    }}
+        _robot.fight(); //=> "GAME OVER"
+    }
+}
 
 class Robot {
     private int _energy = 80;
@@ -2358,123 +2358,114 @@ interface Ixxx_robot { //無名関数用インターフェース（Java独特）
 <a name="数学関数（Math）"></a>
 # <b>数学関数（Math）</b>
 
+### 概要
+* Math クラスは java.lang パッケージに含まれているため importする必要はない
+* Math クラスは全て静的メンバ（static）である
+* Math クラスのクラス定義は public final class Math extends Object である
+
 ### Math.sin() : サイン（正弦）
 ```
-<script>
-    console.log(Math.sin(0)); //0（0°）
-    console.log(Math.sin(Math.PI / 2)); //1（90°）
-    console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
-    console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
-    console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
-</script>
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        System.out.println(Math.sin(0)); //=> 0.0 ←0°
+        System.out.println(Math.sin(Math.PI/2)); //=> 1.0 ←90°
+        System.out.println(Math.sin(Math.PI)); //=> 1.2246467991473532E-16（≒0）←180°
+        System.out.println(Math.sin(Math.PI*3/2)); //=> -1.0 ←270°
+        System.out.println(Math.sin(Math.PI*2)); //=> -2.4492935982947064E-16（≒0）
+    }
+}
 ```
 
 ### Math.cos() : コサイン（余弦）
 ```
-<script>
-    console.log(Math.cos(0)); //1（0°）
-    console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
-    console.log(Math.cos(Math.PI)); //-1（180°）
-    console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
-    console.log(Math.cos(Math.PI * 2)); //1 ←360°
-</script>
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        System.out.println(Math.cos(0)); //=> 1.0 ←…0°
+        System.out.println(Math.cos(Math.PI/2)); //=> 6.123233995736766E-17（≒0）←90°
+        System.out.println(Math.cos(Math.PI)); //=> -1.0 ←…180°
+        System.out.println(Math.cos(Math.PI*3/2)); //=> -1.8369701987210297E-16（≒0）←270°
+        System.out.println(Math.cos(Math.PI*2)); //=> 1.0 ←…360°
+    }
+}
 ```
 
 ### Math.atan2() : アークタンジェント2
+* 2つの値のアークタンジェント（逆タンジェント）
+* X、Y座標の角度をラジアン単位で返す
+* Πラジアン（3.141592…）は180°
 ```
-<script>
-    //三角形の各辺が1:2:√3の場合に2:√3の間の角度は30°であることの検証
-    var _disX = Math.sqrt(3); //√3のこと
-    var _disY = 1;
-    console.log(Math.atan2(_disY, _disX)); //0.5235987755982989（ラジアン）
-    console.log(180 * Math.atan2(_disY, _disX) / Math.PI); //30.000000000000004（度）
-</script>
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
+        double disX_ = Math.sqrt(3); //√3のこと
+        int disY_ = 1;
+        System.out.println(Math.atan2(disY_, disX_)); //0.5235987755982989（ラジアン）
+        System.out.println(180*Math.atan2(disY_, disX_)/Math.PI); //30.000000000000004（度）
+    }
+}
 ```
 
 ### Math.PI : 円周率
 ```
-<script>
-    console.log(Math.PI); //3.141592653589793
-</script>
+System.out.println(Math.PI); //=> 3.141592653589793 ※Math.PIラジアン=180°
 ```
 
 ### Math.floor() : 切り捨て
 ```
-<script>
-    console.log(Math.floor(1.001)); //1
-    console.log(Math.floor(1.999)); //1
-</script>
+System.out.println(Math.floor(1.001)); //=> 1.0
+System.out.println(Math.floor(1.999)); //=> 1.0
 ```
 
 ### Math.ceil() : 切り上げ
 ```
-<script>
-    console.log(Math.ceil(1.001)); //2
-    console.log(Math.ceil(1.999)); //2
-</script>
+System.out.println(Math.ceil(1.001)); //=> 2.0
+System.out.println(Math.ceil(1.999)); //=> 2.0
 ```
 
 ### Math.round() : 四捨五入
 ```
-<script>
-    console.log(Math.round(1.499)); //1
-    console.log(Math.round(1.500)); //2
-</script>
+System.out.println(Math.round(1.499)); //=> 1
+System.out.println(Math.round(1.500)); //=> 2
 ```
 
 ### Math.abs() : 絶対値
 ```
-<script>
-    console.log(Math.abs(100)); //100
-    console.log(Math.abs(-100)); //100
-</script>
+System.out.println(Math.abs(100)); //=> 100
+System.out.println(Math.abs(-100)); //=> 100
 ```
 
 ### Math.pow() : 累乗（○の□乗）
 ```
-<script>
-    console.log(Math.pow(2, 0)); //1（2の0乗）
-    console.log(Math.pow(2, 8)); //256（2の8乗）
-</script>
+System.out.println(Math.pow(2, 0)); //=> 1.0（2の0乗）
+System.out.println(Math.pow(2, 8)); //=> 256.0（2の8乗）
 ```
 
 ### Math.sqrt() : 平方根（√○）
 ```
-<script>
-    console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
-    console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
-    console.log(Math.sqrt(4)); //2
-    console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
-</script>
+System.out.println(Math.sqrt(2)); //=> 1.4142135623730951（一夜一夜にひとみごろ）
+System.out.println(Math.sqrt(3)); //=> 1.7320508075688772（人並みに奢れや）
+System.out.println(Math.sqrt(4)); //=> 2.0
+System.out.println(Math.sqrt(5)); //=> 2.23606797749979（富士山麓オウム鳴く）
 ```
 
 ### Math.max() : 比較（最大値）
 ```
-<script>
-    console.log(Math.max(5.01, -10)); //5.01（2つの数値の比較）
-</script>
+System.out.println(Math.max(5.01, -10)); //=> 5.01 ←「2つ」の数値の比較
 ```
 
 ### Math.min() : 比較（最小値）
 ```
-<script>
-    console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
-</script>
-```
-
-### Math.sign() : 符号（正か負の値か）
-```
-<script>
-    console.log(Math.sign(-0.1)); //-1（負の値）
-    console.log(Math.sign(0)); //0（0）
-    console.log(Math.sign(0.1)); //1（正の値）
-</script>
+System.out.println(Math.min(5.01, -10)); //=> -10.0 ←「2つ」の数値の比較
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月29日  
-更新日：2017年03月22日
+作成日：2016年07月19日  
+更新日：2017年04月12日
+
 
 <a name="乱数"></a>
 # <b>乱数</b>
