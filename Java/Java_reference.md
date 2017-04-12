@@ -1122,7 +1122,7 @@ public class Main { //publicは省略可
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _age = 48;
+        int _age = 49;
         String _result = 
         (_age < 20) ? "未成年":
         (_age < 60) ? "現役":
@@ -1141,77 +1141,60 @@ public class Main { //publicは省略可
 <a name="switch文"></a>
 # <b>switch 文</b>
 
-### 判別式が boolean 値ではない場合
+### 例文（全てに break 文あり）
 ```
-<script>
-    var _name = "TARO";
-    switch (_name) {
-        case "TARO":
-            console.log("父"); //これが出力される
-            break;
-        case "HANAKO":
-            console.log("母");
-            break;
-        case "ICHIRO":
-            console.log("長男");
-            break;
-        case "JIRO":
-            console.log("次男");
-            break;
-        default:
-            console.log("家族以外");
-            break; //省略可
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        String name_ = "TARO";
+        switch (name_) { //判別式には整数,列挙、文字,文字列型のみ可、booleanは不可!
+            case "TARO" :
+                System.out.println("父"); //=> "父" ←これが出力される
+                break;
+            case "HANAKO" : 
+                System.out.println("母");
+                break;
+            case "ICHIRO" :
+                System.out.println("長男");
+                break;
+            case "JIRO" :
+                System.out.println("次男");
+                break;
+            default:
+                System.out.println("家族以外");
+                break; //省略可
+        }
     }
-</script>
+}
 ```
 
-### 判別式が boolean 値の場合
-* case 式に比較演算子が使われる
+### 例文（一部に break 文なし）
 ```
-<script>
-    var _age = 49;
-    switch (true) {
-        case _age <= 20:
-            console.log("20歳以下");
-            break;
-        case _age <= 40:
-            console.log("21〜40歳");
-            break;
-        case _age <= 60:
-            console.log("41〜60歳"); //これが出力される
-            break;
-        default:
-            console.log("61歳以上");
-            break; //省略可
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        String name_ = "JIRO";
+        switch (name_) { //↓C#のようなフォールスルーの禁止規則はない
+            case "TARO" : //breakが無いと次のcaseも処理
+            case "HANAKO" : 
+                System.out.println("親"); //=> "親" ←これが出力される
+                break;
+            case "ICHIRO" : //breakが無いと次のcaseも処理
+            case "JIRO" :
+                System.out.println("子");
+                break;
+            default:
+                System.out.println("家族以外");
+                break; //省略可
+        }
     }
-</script>
-```
-
-### break文が無い使い方
-* [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
-```
-<script>
-    var _name = "JIRO";
-    switch (_name) {
-        case "TARO":
-        case "HANAKO":
-            console.log("親です");
-            break;
-        case "ICHIRO":
-        case "JIRO":
-            console.log("子供です"); //これが出力される
-            break;
-        default:
-            console.log("家族ではありません");
-            break; //省略可
-    }
-</script>
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月26日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="for文"></a>
