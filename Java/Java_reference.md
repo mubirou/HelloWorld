@@ -148,7 +148,7 @@ enum Signal { BLUE,YELLOW,RED } //⑩列挙型の定義
 class MyClass {} //⑪クラスの定義
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年07月13日  
 更新日：2017年04月12日
@@ -273,7 +273,7 @@ class MyClass {} //⑪クラスの定義
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -322,7 +322,7 @@ class Rectangle { //長方形クラス
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -370,7 +370,7 @@ class SubClassB extends SuperClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -420,7 +420,7 @@ public class Main { //public は省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -476,7 +476,7 @@ public class Main { //public は省略可
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月15日  
 更新日：2017年03月19日
@@ -638,7 +638,7 @@ public class Main { //public は省略可
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月15日  
 更新日：2017年03月21日
@@ -697,7 +697,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月16日  
 更新日：2017年03月21日
@@ -773,7 +773,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月16日  
 更新日：2017年03月21日
@@ -820,7 +820,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月16日  
 更新日：2017年03月21日  
@@ -962,7 +962,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月20日  
 更新日：2017年03月21日  
@@ -1011,7 +1011,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月21日  
 更新日：2017年03月21日
@@ -1059,7 +1059,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月21日  
 更新日：2017年03月21日
@@ -1107,7 +1107,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月21日  
 更新日：2017年03月21日
@@ -1208,7 +1208,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月21日  
 更新日：2017年03月21日
@@ -1261,7 +1261,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月21日  
 更新日：2017年03月21日
@@ -1337,7 +1337,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月26日  
 更新日：2017年03月21日
@@ -1414,7 +1414,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月26日  
 更新日：2017年03月21日
@@ -1470,7 +1470,7 @@ for (変数名 in 配列等) {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月26日  
 更新日：2017年03月21日
@@ -1528,7 +1528,7 @@ for (変数名 in 配列等) {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年12月16日  
 更新日：2017年03月21日
@@ -1606,7 +1606,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月26日  
 更新日：2017年03月21日  
@@ -1808,7 +1808,7 @@ do {
 ```
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月27日  
 更新日：2017年03月21日
@@ -1849,7 +1849,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年12月16日  
 更新日：2017年03月22日
@@ -1891,7 +1891,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月28日  
 更新日：2017年03月22日
@@ -1938,7 +1938,7 @@ do {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年12月16日  
 更新日：2017年03月22日
@@ -2028,7 +2028,7 @@ do {
 </html>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月28日  
 更新日：2017年03月22日
@@ -2095,7 +2095,7 @@ var 変数 = "xxx"; //string型
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月28日  
 更新日：2017年03月22日
@@ -2147,7 +2147,7 @@ var 変数 = "xxx"; //string型
     1. String.replace()
     1. String.split()
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月28日  
 更新日：2017年03月22日
@@ -2200,7 +2200,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月29日  
 更新日：2017年03月22日
@@ -2243,7 +2243,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月29日  
 更新日：2017年03月22日
@@ -2283,7 +2283,7 @@ class 派生クラス名 extends Abstract○○ {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月29日  
 更新日：2017年03月22日
@@ -2334,7 +2334,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月29日  
 更新日：2017年03月22日
@@ -2456,7 +2456,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月29日  
 更新日：2017年03月22日
@@ -2508,7 +2508,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月30日  
 更新日：2017年03月22日
@@ -2551,7 +2551,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月30日  
 更新日：2017年03月22日
@@ -2654,7 +2654,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月30日  
 更新日：2017年03月22日
@@ -2689,7 +2689,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     </script>
     ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成日：2016年09月30日  
 更新日：2017年03月22日
 
@@ -2730,7 +2730,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
     * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月30日  
 更新日：2017年03月22日
