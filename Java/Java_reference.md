@@ -20,7 +20,7 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-* [foreach 文](#foreach文)
+* [for-each 文](#for-each文)
 ***
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
@@ -855,7 +855,7 @@ public class Main { //publicは省略可
 class MyClass {
     public void sum(int... args) { //最後の引数にのみ有効、引数は「配列」扱い
         int _result = 0; //ローカル変数
-        for (int tmp : args) { //拡張for文（foreach文）
+        for (int tmp : args) { //拡張for文（for-each文）
             _result += tmp;
         }
         System.out.println(_result);
@@ -1297,8 +1297,8 @@ public class Main { //publicは省略可
 更新日：2017年04月12日
 
 
-<a name="foreach文"></a>
-# <b>foreach 文</b>
+<a name="for-each文"></a>
+# <b>for-each 文</b>
 
 ### 基本構文
 ```
@@ -1625,7 +1625,7 @@ do {
     });
 </script>
 ```
-* for文、foreach文を使う方法もあり（参照「[foreach 文](#foreach文)」）
+* for文、for-each文を使う方法もあり（参照「[for-each 文](#for-each文)」）
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
