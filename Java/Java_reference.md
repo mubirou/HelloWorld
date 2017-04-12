@@ -31,6 +31,7 @@
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
+* [インターフェース](#インターフェース)
 ***
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
@@ -1607,8 +1608,8 @@ List<データ型> 変数 = LinkedList.subList(開始位置,終了位置); //終
 * 例文
 ```
 //"A","B","C","D" → "C","D"を返す
-List<String> result_ = _list.subList(2,4); //2番目から3番目まで抽出
-List<String> result_ = _list.subList(1,_list.size()); //1番目〜最後を抽出
+List<String> _result = _list.subList(2,4); //2番目から3番目まで抽出
+List<String> _result = _list.subList(1,_list.size()); //1番目〜最後を抽出
 ```
 
 ### 追加（最後）
@@ -1719,9 +1720,9 @@ import java.util.*; //LinkedList に必要
 public class Main { //public は省略可
     public static void main(String[] args) { //決め打ち(自動的に実行)
         String _string = "A,B,C,D"; //①元となる文字列
-        String[] array_ = _string.split(","); //②文字列→配列に変換（「配列」参照）
+        String[] _array = _string.split(","); //②文字列→配列に変換（「配列」参照）
         LinkedList<String> _list = new LinkedList<>(); //③空のLinkedListを作成
-        for (String _value : array_) {
+        for (String _value : _array) {
             _list.add(_value); //④配列の要素を1つずつArrayListに追加
         }
     }
@@ -2026,11 +2027,11 @@ public class Main { //public は省略可
         String _word = "CD";
         int _i = 0;
         while (_string.indexOf(_word, _i) != -1) { //見つからない場合「-1」
-            int num_ = _string.indexOf(_word, _i);
-            System.out.println(num_); //2、10 ←"CD"が見つかった位置を出力
-            System.out.println(_string.substring(num_, num_ + _word.length())); 
+            int _num = _string.indexOf(_word, _i);
+            System.out.println(_num); //2、10 ←"CD"が見つかった位置を出力
+            System.out.println(_string.substring(_num, _num + _word.length())); 
             //"CD"、"CD"
-            _i = num_ + 1;
+            _i = _num + 1;
         }
     }
 }
@@ -2047,7 +2048,7 @@ String.split("区切り文字");
 public class Main { //public は省略可
     public static void main(String[] args) { //決め打ち(自動的に実行)
         String _string = "A,B,C,D"; //「,」区切りの文字列
-        String[] array_ = _string.split(","); //「,」区切りで分割して配列化
+        String[] _array = _string.split(","); //「,」区切りで分割して配列化
         //→{"A","B","C","D"}
     }
 }
@@ -2062,53 +2063,66 @@ public class Main { //public は省略可
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* ECMAScript 6 には以下のサンプル以外にも多くの正規表現の機能が用意されています
+* Java には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
 ### 検索＆置換
 ```
-<script>
-    var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-    var _regExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    /*
-    "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など...を使うことでより細かな制御が可能
-    */
-    if (_regExp.test(_string)) { //検索
-        console.log('"吉田"は含まれています');
-        let _result = _string.replace(_regExp, "よしだ"); //置換
-        //よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
-        console.log(_result);
-    } else {
-        console.log('"吉田"は含まれていません');
+//Main.java
+import java.util.regex.*; //Pattern、Matcherに必要
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+        String _result = "";
+        String _regex = "吉田";
+
+        Pattern _pattern = Pattern.compile(_regex);
+        Matcher _matcher = _pattern.matcher(_string);
+
+        if (_matcher.find()) { //ここで「検索」
+            //マッチした場合（"吉田"が含まれている）の処理
+            _result = _string.replaceAll("吉田", "よしだ"); 
+        } else {
+            System.out.println("吉田は含まれていません");
+        }
+        System.out.println(_string); //=> "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+        System.out.println(_result); //=> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文";
     }
-</script>
+}
 ```
 
 ### マッチした数
 ```
-<script>
-    var _string = "059371820400381295700347891205178900517093823";
-    var _regExp = new RegExp("00", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    var _matchList = _string.match(_regExp);
-    console.log(_matchList); //["00", "00", "00"]
-    console.log(_matchList.length); //3（マッチした数）
-</script>
+//Main.java
+import java.util.regex.*; //Pattern に必要
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "cabacbbacbcba";
+        Pattern _pattern = Pattern.compile("a",Pattern.CASE_INSENSITIVE);
+        Matcher _matcher = _pattern.matcher(_string);
+        int _count = 0;
+        while(_matcher.find()){
+            _count++;
+        }
+        System.out.println(_count); //=> 4
+    }
+}
 ```
-
-### 正規表現について...
-* 文字パータンを表現するオブジェクト（RegExp クラス）のこと
-* JavaScriptの正規表現は、ECMAScript 3 で標準化された
-* String と RegExp クラスには、次のような正規表現用のメソッドが用意されている
-    1. RegExp.exec()
-    1. RegExp.test()
-    1. String.search()
-    1. String.match()
-    1. String.replace()
-    1. String.split()
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月28日  
-更新日：2017年03月22日
+作成日：2016年07月19日  
+更新日：2017年04月12日
+
+
+<a name="インターフェース"></a>
+# <b>インターフェース</b>
+
+XXXXX
+
+実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+作成者：Takashi Nishimura  
+作成日：2016年07月19日  
+更新日：2017年04月12日
 
 
 <a name="抽象クラス"></a>
