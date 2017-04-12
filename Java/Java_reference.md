@@ -35,9 +35,9 @@
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
-***
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
+***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -2310,52 +2310,49 @@ class SubClass extends SuperClass {
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-### 概要
-JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener() のターゲットに指定できるオブジェクトは Window、XMLHttpRequest、HTMLCanvasElement、ドキュメント上の単一のノード、ドキュメント自身などに限られるため、用途が限定されます。それとは異なりここで紹介する方法は、他の言語でも利用可能な汎用的な方法です。
-
-### 例文
 ```
-<script>
-    class Robot { //イベントを設定するクラス
-        constructor() { 
-            this.__energy = 80;
-        }
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        Ixxx_robot die_robot = (Robot arg) -> { //無名関数（リスナー関数）の定義
+            System.out.println(arg.getClass()); //=> class Robot
+            System.out.println("GAME OVER");
+        }; //「;」が必須
+        Robot _robot = new Robot();
+        _robot.addEventListener("die", die_robot); //イベントリスナーの定義
+        _robot.fight();
+        _robot.fight();
+        _robot.fight();
+        _robot.fight();
+    }}
 
-        addEventListener(_event, _function) {
-            if (_event == "die") {
-                this.__dieHandler = _function; //匿名関数を変数に格納
-            } else {
-                //該当のイベントが無い場合、実行時にErrorを発生（オプション）
-                throw new Error('Error:"' + _event + '"はサポートされていません');
-            }
-        }
-
-        fight() {
-            this.__energy -= 20;
-            if (this.__energy <= 0) {
-                this.__dieHandler(this); //"die"イベントの発生（リスナー関数の呼出し）
-            }
+class Robot {
+    private int _energy = 80;
+    private Ixxx_robot _dieHandler; //無名関数を格納する変数の宣言
+    public void addEventListener(String _event, Ixxx_robot function_) {
+        if (_event == "die") {
+            _dieHandler = function_; //無名関数を格納する
+        } else { //該当のイベントが無い場合、実行時にErrorを出す（オプション）
+            System.out.println("Error: Robot.addEventListener()");
         }
     }
-
-    var die_robot = (arg) => { //リスナー関数（前方宣言が必要）
-        console.log(arg); //Robotクラスのインスタンス
-        alert("GAME OVER");
+    public void fight() {
+        _energy -= 20;
+        if (_energy <= 0) {
+            _dieHandler.exec(this); //無名関数の呼び出し
+        }
     }
+}
 
-    var _robot = new Robot();
-    _robot.addEventListener("die", die_robot); //イベントリスナーの設定
-    _robot.fight();
-    _robot.fight();
-    _robot.fight();
-    _robot.fight(); //"GAME OVER"
-</script>
+interface Ixxx_robot { //無名関数用インターフェース（Java独特）
+    public void exec(Robot arg);
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月29日  
-更新日：2017年03月22日
+作成日：2016年07月19日  
+更新日：2017年04月12日
 
 
 <a name="数学関数（Math）"></a>
