@@ -1398,6 +1398,95 @@ public class Main { //publicは省略可
 <a name="while文"></a>
 # <b>while 文</b>
 
+### while文
+* 構文
+```
+while (ループ判定式) {
+    繰り返す処理
+}
+```
+
+* 例文
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int i_ = 0;
+        while (i_ < 10) { //ループ判定式にはboolean型しか使えません
+            System.out.println(i_); //0,1,2,3,4,5,6,7,8,9
+            i_++;
+        }
+        System.out.println(i_); //10（変数はまだ有効）
+    }
+}
+```
+
+◆do...while文
+【構文】
+do {
+    繰り返す処理 ←…ループ判定式がfalseの場合でも最低１回は実行される
+} while(ループ判定式);
+    ※少なくとも一度は {} 内の処理を行ないます。
+
+【例文】
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int i_ = 0;
+        do {
+            System.out.println(i_); //=> 0 ←ループ判定式はfalseだが１回実行される
+            i_++;
+        } while(i_ < 0);
+    }
+}
+
+◆while文とbreak文
+【例文】
+//Main.java
+//1〜100までを出力
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int count_ = 0;
+        while (true) { //ループ判別式をtrueにすると無限ループに!
+            count_++;
+            if (count_ > 100) {
+                break; //←…break文を使ってループを終了
+            }
+             System.out.println(count_); //=> 1,2,....,99,100
+        }
+        System.out.println("while文終了");
+    }
+}
+※「break文」はfor文やwhileループから抜け出て処理を中断するための制御文です。
+
+◆while文とcontinue文
+【例文】
+//Main.java
+    //3の倍数を出力
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int i_ = 1;
+        while (i_ <= 20) {
+            if ((i_ % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+                i_++;
+                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+            }
+            System.out.println(i_); //=> 3,6,9,12,15,18 ←…3の倍数
+            i_++;
+        }
+    }
+}
+※「continue文」はその時点のループ内の処理のみ中断し、ループから脱出せずにループを
+  継続します。
+
+
+
+
+
+
+
+
+
 ### while 文
 * 構文
 ```

@@ -46,16 +46,16 @@ $ gcc -S xx.c → 同階層に xx.s が生成される
 1. コードの記述（<b>CPUによって書き方が異なる</b>）
 ```
 #test.s
-	.globl	_main
+    .globl    _main
 _main:
-	pushq	%rbp
+    pushq    %rbp
 Ltmp0:
-	leaq	L_.str(%rip), %rdi
-	callq	_puts
-	popq	%rbp
-	retq
+    leaq    L_.str(%rip), %rdi
+    callq    _puts
+    popq    %rbp
+    retq
 L_.str:
-	.asciz	"Hello,world!"
+    .asciz    "Hello,world!"
 ```
 
 ## アセンブル〜実行

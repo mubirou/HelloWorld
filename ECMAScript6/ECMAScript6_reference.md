@@ -473,9 +473,9 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 <script>
     class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
-    }
+        myMethod() {
+            console.log("ClassA.myMethod");
+        }
     }
 
     class ClassB extends ClassA { //ClassAを継承
@@ -491,18 +491,18 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 <script>
     class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
-    }
+        myMethod() {
+            console.log("ClassA.myMethod");
+        }
     }
 
     class ClassB {
-    constructor() { //コンストラクタ
-        this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
-    }
-    myMethod() {
-        this.__classA.myMethod(); //ClassAのmyMethod()を実行
-    }
+        constructor() { //コンストラクタ
+            this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
+        }
+        myMethod() {
+            this.__classA.myMethod(); //ClassAのmyMethod()を実行
+        }
     }
 
     var _classB = new ClassB();
@@ -602,75 +602,75 @@ new MyClass(); //"コンフリクトを起こさない!"
 * 関数またはメソッド内でのみアクセス可能
 
 1. 関数内で定義した場合
-	```
-	<script>
-		function myFunction1() {
-			//ローカル変数定義
-			var _local = "ローカル変数"; //varは省略不可
-			console.log(_local); //"ローカル変数"
-		}
+    ```
+    <script>
+        function myFunction1() {
+            //ローカル変数定義
+            var _local = "ローカル変数"; //varは省略不可
+            console.log(_local); //"ローカル変数"
+        }
 
-		function myFunction2() {
-			//console.log(_local); //Error
-		}
+        function myFunction2() {
+            //console.log(_local); //Error
+        }
 
-		myFunction1();
-		myFunction2();
-		//console.log(_local); //Error
-	</script>
-	```
+        myFunction1();
+        myFunction2();
+        //console.log(_local); //Error
+    </script>
+    ```
 
 1. メソッド内で定義した場合
-	```
-	<script>
-		class MyClass {
-			myMethod1() {
-				var _local = "ローカル変数"; //varは省略不可
-				console.log(_local); //"ローカル変数"
-			}
-			myMethod2() {
-				//console.log(_local); //Error
-			}
-		}
-		var myClass_ = new MyClass();
-		myClass_.myMethod1();
-		myClass_.myMethod2();
-	</script>
-	```
+    ```
+    <script>
+        class MyClass {
+            myMethod1() {
+                var _local = "ローカル変数"; //varは省略不可
+                console.log(_local); //"ローカル変数"
+            }
+            myMethod2() {
+                //console.log(_local); //Error
+            }
+        }
+        var myClass_ = new MyClass();
+        myClass_.myMethod1();
+        myClass_.myMethod2();
+    </script>
+    ```
 
 1. for文内で定義した場合
-	```
-	<script>
-		for (var i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //10（for文の外でも有効）
-	</script>
-	```
+    ```
+    <script>
+        for (var i = 0; i < 10; i++) {
+            console.log(i); //0,1,2,...,8,9
+        }
+        console.log(i); //10（for文の外でも有効）
+    </script>
+    ```
 
 ### ブロック変数
 * ブロック {} 内でのみ有効
 
 1. for 文内で定義した場合
-	```
-	<script>
-		for (let i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //Error（アクセス不可）
-	</script>
-	```
+    ```
+    <script>
+        for (let i = 0; i < 10; i++) {
+            console.log(i); //0,1,2,...,8,9
+        }
+        console.log(i); //Error（アクセス不可）
+    </script>
+    ```
 
 1. if 文内で定義した場合
-	```
-	<script>
-		if (true) {
-			let _block = "ブロック変数";
-			console.log(_block); //"ブロック変数"
-		}
-		console.log(block_); //Error（アクセス不可）
-	</script>
-	```
+    ```
+    <script>
+        if (true) {
+            let _block = "ブロック変数";
+            console.log(_block); //"ブロック変数"
+        }
+        console.log(block_); //Error（アクセス不可）
+    </script>
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
