@@ -3,9 +3,9 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_win.md)）
-***
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
@@ -157,102 +157,126 @@ class MyClass {} //⑪クラスの定義
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
-### データ型を調べる①
-（ typeof 演算子 ＝ データ型を文字列で返す）
+### データ型の調べ方
+1.オブジェクト.getClass()
+    * プリミティブ型の場合エラー（注意）
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち
+            Class class_ = new MyClass().getClass();
+            System.out.println(class_); //=> class MyClass
+            System.out.println(new Integer(99).getClass()); //=>class java.lang.Integer
+        }
+    }
+    class MyClass {}
+    ```
 
-```
-<script>
+1. オブジェクト.getClass().getName()
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち
+            String string_ = new MyClass().getClass().getName();
+            System.out.println(string_); //=> "MyClass"
+        }
+    }
+    class MyClass {}
+    ```
 
-//①boolean（論理型）
-console.log(typeof true); //"boolean"
+1. instanceof演算子
+    * プリミティブ型の場合エラー（注意）、さかのぼってチェック可
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち
+            SubClass subClass_ = new SubClass();
+            System.out.println(subClass_ instanceof SuperClass); //=> true
+            System.out.println(subClass_ instanceof ISubClass); //=> true
+            SubSubClass subsubClass_ = new SubSubClass();
+            System.out.println(subsubClass_ instanceof SuperClass); //=> true
+            System.out.println(new Integer(99) instanceof Integer); //=> true
+        }
+    }
+    interface ISubClass {} //インターフェース
+    class SuperClass {} //スーパークラス
+    class SubClass extends SuperClass implements ISubClass {} //サブクラス
+    class SubSubClass extends SubClass {} //サブクラスを継承
+    ```
 
-//②number（整数･浮動小数点数）
-console.log(typeof 1); //"number"
-console.log(typeof 1.0); //"number"
+### データ型のキャスト
+1.数値↔boolean型
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち
+            //数値→bool型へ変換
+            int int_ = 0;
+            boolean bool_ = int_ != 0; //0をfalseに変換（0以外はtrueに変換）
+            System.out.println(bool_); //=> false
 
-//③string（文字列）
-console.log(typeof "1"); //"string"
+            //bool型→数値へ変換
+            boolean bool_ = true;
+            int int_ = (bool_) ? 1 : 0; //三項演算子を活用
+            System.out.println(int_); //=> 1
+        }
+    }
+    ```
 
-//④object（全てのオブジェクトのベース）
-console.log(typeof {name:"TARO", age:49}); //"object"
+1. 数値↔数値（縮小変換）
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち
+            //整数の場合
+            long long_ = 2147483648L; //intは-2147483648〜2147483647
+            int int_ = (int)long_; //long型→int型へ変換
+            System.out.println(int_); //=> -2147483648 ←…元のデータが失われる
 
-//⑤undefined（未初期化変数）
-console.log(typeof _hoge); //"undefined"
+            //浮動小数点数の場合
+            double double_ = 3.141592653589793;
+            float float_ = (float)double_;
+            System.out.println(float_); //=> 3.1415927 ←…データの一部が失われる
+        }
+    }
+    ```
 
-//⑥function（関数）
-console.log(typeof function() {}); //"function"
+1. 数値↔数値（拡張変換）
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち
+            int int_ = 2147483647; //intは-2147483648〜2147483647
+            long long_ = (long)int_ + 1; //int型→long型へ変換
+            System.out.println(long_); //=> 2147483648
+        }
+    }
+    ```
 
-//⑦symbol
-console.log(typeof Symbol()); //"symbol"
+1. 数値↔string型
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち
+            //string型→数値
+            String string_ = "001";
+            int int_ = Integer.parseInt(string_); //"001"（String型）→1（int型）に変換
+            System.out.println(int_); //1
 
-</script>
-```
-
-### データ型を調べる②
-（ instanceof 演算子 ＝ データ型が一致するか boolean 型で返す）
-
-```
-<script>
-
-//①boolean（論理型）
-console.log(true instanceof Boolean); //false（要注意）
-console.log(new Boolean(true) instanceof Boolean); //true
-
-//②number（整数･浮動小数点数）
-console.log(1 instanceof Number); //false（要注意）
-console.log(new Number(1) instanceof Number); //true
-
-//③string（文字列）
-console.log("あ" instanceof String); //false（要注意）
-console.log(new String("あ") instanceof String); //true
-
-//④object（全てのオブジェクトのベース）
-console.log({name:"TARO"} instanceof Object); //true
-console.log(new Object() instanceof Object); //true
-
-//⑤function（関数）
-console.log(function() {} instanceof Function); //true
-
-</script>
-```
-
-### データ型のキャスト（変換）
-```
-<script>
-
-//①数値→boolean型
-var _boolean = Boolean(1);
-console.log(_boolean, typeof _boolean); //true, "boolean"
-
-//②boolean型→number型
-var _number1 = Number(true);
-console.log(_number1, typeof _number1); //1（falseの場合は0）, "number"
-
-//③文字列→number型
-var _number2 = Number("3.14");
-console.log(_number2, typeof _number2); //3.14, "number"
-
-var _number3 = parseInt("3.14"); //小数点以下を切り捨てて整数化
-console.log(_number3, typeof _number3); //3, "number"
-
-var _number4 = parseFloat("3.14です。"); //数字以外を含む値
-console.log(_number4, typeof _number4); //3.14, "number"
-
-//④数値→string型
-var _string1 = String(100); //(100).toString() でも同じ
-console.log(_string1, typeof _string1); //"100", "string"
-
-//⑤配列→string型
-var _string2 = String(["TARO", 49]);
-console.log(_string2, typeof _string2); //"TARO,49", "string"
-
-</script>
-```
+            //数値→string型
+            int int_ = 100;
+            String string_ = String.valueOf(int_); //100（int型）→"100"（String）に変換
+            System.out.println(string_); //=> "100"
+            System.out.println(string_.getClass()); //=> class java.lang.String
+            //↑プリミティブ型ではなくStringクラスのオブジェクトなので.getClass()が使える
+        }
+    }
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日  
+作成日：2016年07月14日  
+更新日：2017年04月12日
 
 
 <a name="クラス"></a>
