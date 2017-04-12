@@ -216,9 +216,9 @@ class MyClass {} //⑪クラスの定義
             System.out.println(_bool); //=> false
 
             //bool型→数値へ変換
-            boolean _bool = true;
-            int _int = (_bool) ? 1 : 0; //三項演算子を活用
-            System.out.println(_int); //=> 1
+            boolean _bool2 = true;
+            int _int2 = (_bool2) ? 1 : 0; //三項演算子を活用
+            System.out.println(_int2); //=> 1
         }
     }
     ```
@@ -264,10 +264,10 @@ class MyClass {} //⑪クラスの定義
             System.out.println(_int); //1
 
             //数値→string型
-            int _int = 100;
-            String _string = String.valueOf(_int); //100（int型）→"100"（String）に変換
-            System.out.println(_string); //=> "100"
-            System.out.println(_string.getClass()); //=> class java.lang.String
+            int _int2 = 100;
+            String _string2 = String.valueOf(_int2); //100（int型）→"100"（String）に変換
+            System.out.println(_string2); //=> "100"
+            System.out.println(_string2.getClass()); //=> class java.lang.String
             //↑プリミティブ型ではなくStringクラスのオブジェクトなので.getClass()が使える
         }
     }
@@ -283,57 +283,48 @@ class MyClass {} //⑪クラスの定義
 # <b>クラス</b>
 
 ```
-<script>
+//Main.java
+public class Main { //メインクラス（publicは省略可）
+    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
+        //①インタンスの生成
+        Rectangle _rectangle = new Rectangle(); 
 
-//長方形クラス（前方宣言が必要）
-class Rectangle {
-    //コンストラクタ
-    constructor(_width=640, _height=480) {
-        //外からもアクセス可能だがアクセスしないようにする
-        this.__width = _width;
-        this.__height = _height;
-    }
+        //②フィールドの更新
+        _rectangle.setWidth(1920);
+        _rectangle.setHeight(1080);
 
-    //アクセサ（getter/setter）
-    get width() {
-        return this.__width;
-    }
-    set width(_newValue) {
-        this.__width = _newValue;
-    }
+        //③フィールドの取得
+        System.out.println(_rectangle.getWidth()); //=> 1920
+        System.out.println(_rectangle.getHeight()); //=> 1080
 
-    get height() {
-        return this.__height;
-    }
-    set height(_newValue) {
-        this.__height = _newValue;
-    }
-
-    //面積を計算して値を返す
-    getArea() {
-        return this.__width * this.__height;
+        //④メソッドの実行
+        System.out.println(_rectangle.getArea()); //=> 2073600
     }
 }
+class Rectangle { //長方形クラス
+    //フィールド（プロパティ）の宣言（初期値の設定も可）
+    private int _width = 0; //アクセス修飾子を除くと同じパッケージ内でアクセス可に…
+    private int _height = 0;
 
-//①インスタンスの生成
-var _rectangle = new Rectangle();
+    public Rectangle() {} //コンストラクタ（戻り値は指定しない／ここで初期化も可）
 
-//②プロパティの確認と変更
-console.log(_rectangle.width, _rectangle.height); //640, 480
-_rectangle.width = 1920;
-_rectangle.height = 1080;
-console.log(_rectangle.width, _rectangle.height); //1920, 1080
+    //メソッドの定義（thisは省略可）↓専用のget/setアクセサは用意されていません
+    public int getWidth() { return this._width; } //_widthのgetter
+    public void setWidth(int w) { this._width = w; } //_widthのsetter
 
-//③メソッドの実行
-console.log(_rectangle.getArea()); //2073600
-
-</script>
+    public int getHeight() { return this._height; } //_heightのgetter
+    public void setHeight(int h) { this._height = h; } //_heightのsetter
+    
+    public int getArea() { //面積を計算して値を返す
+        return this._width * this._height;
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日
+作成日：2016年07月14日  
+更新日：2017年04月12日
 
 
 <a name="スーパークラスとサブクラス"></a>
