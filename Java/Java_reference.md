@@ -23,8 +23,8 @@
 * [for-each 文](#for-each文)
 * [while 文](#while文)
 * [配列](#配列)
+* [リスト（LinkedList）](#リスト（LinkedList）)
 ***
-* [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
 * [連想配列（Map）](#連想配列（Map）)
 * [this](#this)
@@ -520,7 +520,7 @@ public class Main { //publicは省略可
 class MyClass {
     private String _p = "メンバ変数（private）"; //private宣言
     public String getP() { return _p; } //_pのgetter（thisは省略）
-    public void setP(String value_) { _p = value_; } //_pのsetter（thisは省略）
+    public void setP(String _value) { _p = _value; } //_pのsetter（thisは省略）
 }
 ```
 
@@ -1348,8 +1348,8 @@ public class Main { //publicは省略可
         LinkedList<String> _list = new LinkedList<String>();
         _list.add("TOHRU");
         _list.add("SACHIKO");
-        for (String value_ : _list) {
-            System.out.println(value_); //=> "TOHRU" => "SACHIKO"
+        for (String _value : _list) {
+            System.out.println(_value); //=> "TOHRU" => "SACHIKO"
         }
     }
 }
@@ -1364,8 +1364,8 @@ public class Main { //publicは省略可
         SortedSet<String> _set = new TreeSet<String>();
         _set.add("TARO");
         _set.add("HANAKO");
-        for (String value_ : _set) {
-            System.out.println(value_); //"HANAKO"→"TARO"
+        for (String _value : _set) {
+            System.out.println(_value); //"HANAKO"→"TARO"
         }
     }
 }
@@ -1551,8 +1551,8 @@ public class Main { //publicは省略可
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        String string_ = "A,B,C,D"; //「,」区切りの文字列
-        String[] _array = string_.split(","); //「,」区切りで分割して配列化
+        String _string = "A,B,C,D"; //「,」区切りの文字列
+        String[] _array = _string.split(","); //「,」区切りで分割して配列化
     }
 }
 ```
@@ -1563,45 +1563,188 @@ public class Main { //publicは省略可
 更新日：2017年04月12日
 
 
-<a name="配列（Set）"></a>
-# <b>配列（Set）</b>
+<a name="リスト（LinkedList）"></a>
+# <b>リスト（LinkedList）</b>
+* リストには LinkedList のほかに ArrayList もあり（後者の方が低速）
 
-* 配列（Array）と異なりデータの重複ができない
+### 作成
+* 構文
 ```
-<script>
-    //①作成
-    var _set = new Set();
-
-    //②データの追加
-    _set.add("ICHIRO");
-    _set.add("JIRO");
-
-    //参考：既存データの追加
-    _set.add("ICHIRO"); //無視される
-
-    //③データの数
-    console.log(_set.size); //2
-
-    //④全てのデータの取得
-    for (let _data of _set) {
-        console.log(_data);
-        //"ICHIRO"
-        //"JIRO"
+LinkedList<データ型> 変数名 = new LinkedList<>();
+```
+* 例文
+```
+//Main.java
+import java.util.*; //LinkedList に必要
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        LinkedList<String> _list = new LinkedList<>();
+        System.out.println(_list); //=> []
+        System.out.println(_list.getClass()); //=> class java.util.LinkedList
+        System.out.println(_list.getClass().getName()); //=> java.util.LinkedList
     }
-
-    //⑤データがあるか否か
-    console.log(_set.has("TARO")); //false
-    console.log(_set.has("ICHIRO")); //true
-
-    //⑥データの削除
-    _set.delete("ICHIRO");
-</script>
+}
 ```
+
+### 抽出（指定位置）
+```
+LinkedList.get(値);
+```
+
+### 要素の数
+```
+LinkedList.size();
+```
+
+### 抽出（○番目から○番目）
+* 構文
+```
+List<データ型> 変数 = LinkedList.subList(開始位置,終了位置); //終了位置は含めない
+```
+
+* 例文
+```
+//"A","B","C","D" → "C","D"を返す
+List<String> result_ = _list.subList(2,4); //2番目から3番目まで抽出
+List<String> result_ = _list.subList(1,_list.size()); //1番目〜最後を抽出
+```
+
+### 追加（最後）
+```
+LinkedList.add(値);
+```
+
+### 追加（指定位置）
+* 構文
+```
+LinkedList.add(インデックス番号,値); //先頭（0）〜最後（LinkedList.size()）まで指定可
+```
+
+* 例文
+```
+//"A","B" → "C","A","B"
+_list.add(0,"C"); //先頭に追加する場合は0
+```
+
+### 更新（任意の値）
+* 構文
+```
+LinkedList.set(インデックス番号,値);
+```
+
+* 例文
+```
+//"A","B","C" → "D","B","C"
+_list.set(0,"D"); //0番目を変更する場合
+```
+
+### 更新（null型）
+* 構文
+```
+LinkedList.set(インデックス番号,null);
+```
+
+* 例文
+```
+//"A","B","C","D" → "A","B",null,"D"
+_list.set(2,null);
+```
+
+### 削除（指定のオブジェクト）
+* 構文
+```
+LinkedList.remove(指定したい要素); //指定のインデックス番号の要素を削除
+```
+
+* 例文
+```
+//"A","B","C","D" → "B","C","D"
+_array.remove("A");
+```
+
+## 削除（指定のインデックス）
+* 構文
+```
+LinkedList.remove(インデックス番号); //指定のインデックス番号の要素を削除
+//先頭（0）〜最後（LinkedList.size()-1）まで指定可能
+```
+* 例文
+```
+//"A","B","C","D" → "B","C","D"
+_array.remove(0); //先頭を削除する場合
+_list.remove(_list.size()-1); //最後を削除する場合
+```
+
+### 検索(前から）
+* 構文
+```
+LinkedList.indexOf(検索する要素); //最初に見つかったインデックス番号を返す（無い場合-1）
+```
+
+* 例文
+```
+//"A","B","C","D"
+System.out.println(_list.indexOf("C")); //=> 2
+```
+
+### 検索（後ろから）
+* 構文
+```
+LinkedList.lastIndexOf(検索する要素); //最初に見つかったインデックス番号を返す（無い場合-1）
+```
+
+* 例文
+```
+//"A","B","C","D"
+System.out.println(_list.lastIndexOf("C")); //=> 2
+```
+
+### 複製（LinkedList →配列）
+* 構文
+```
+Object[] 変数 = LinkedList.toArray();
+```
+
+* 例文
+```
+Object[] listCopy_ = _list.toArray();
+```
+
+### 文字列→ LinkedList
+```
+//Main.java
+import java.util.*; //LinkedList に必要
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "A,B,C,D"; //①元となる文字列
+        String[] array_ = _string.split(","); //②文字列→配列に変換（「配列」参照）
+        LinkedList<String> _list = new LinkedList<>(); //③空のLinkedListを作成
+        for (String _value : array_) {
+            _list.add(_value); //④配列の要素を1つずつArrayListに追加
+        }
+    }
+}
+```
+
+### 全要素を取り出す
+1. foreach 文を使う場合
+    ```
+    for (String _value : _list) {
+        System.out.println(_value); //=> 0番目から1つずつ出力されます
+    }
+    ```
+
+1. for文を使う場合
+    ```
+    for (int i=0; i < _list.size(); i++) {
+        System.out.println(_list.get(i));
+    }
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年12月16日  
-更新日：2017年03月22日
+作成日：2016年07月16日  
+更新日：2017年04月12日
 
 
 <a name="連想配列（Object）"></a>
