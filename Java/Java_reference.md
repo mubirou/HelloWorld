@@ -164,8 +164,8 @@ class MyClass {} //⑪クラスの定義
     //Main.java
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
-            Class class_ = new MyClass().getClass();
-            System.out.println(class_); //=> class MyClass
+            Class _class = new MyClass().getClass();
+            System.out.println(_class); //=> class MyClass
             System.out.println(new Integer(99).getClass()); //=>class java.lang.Integer
         }
     }
@@ -177,8 +177,8 @@ class MyClass {} //⑪クラスの定義
     //Main.java
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
-            String string_ = new MyClass().getClass().getName();
-            System.out.println(string_); //=> "MyClass"
+            String _string = new MyClass().getClass().getName();
+            System.out.println(_string); //=> "MyClass"
         }
     }
     class MyClass {}
@@ -190,11 +190,11 @@ class MyClass {} //⑪クラスの定義
     //Main.java
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
-            SubClass subClass_ = new SubClass();
-            System.out.println(subClass_ instanceof SuperClass); //=> true
-            System.out.println(subClass_ instanceof ISubClass); //=> true
-            SubSubClass subsubClass_ = new SubSubClass();
-            System.out.println(subsubClass_ instanceof SuperClass); //=> true
+            SubClass _subClass = new SubClass();
+            System.out.println(_subClass instanceof SuperClass); //=> true
+            System.out.println(_subClass instanceof ISubClass); //=> true
+            SubSubClass _subSubClass = new SubSubClass();
+            System.out.println(_subSubClass instanceof SuperClass); //=> true
             System.out.println(new Integer(99) instanceof Integer); //=> true
         }
     }
@@ -211,14 +211,14 @@ class MyClass {} //⑪クラスの定義
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
             //数値→bool型へ変換
-            int int_ = 0;
-            boolean bool_ = int_ != 0; //0をfalseに変換（0以外はtrueに変換）
-            System.out.println(bool_); //=> false
+            int _int = 0;
+            boolean _bool = _int != 0; //0をfalseに変換（0以外はtrueに変換）
+            System.out.println(_bool); //=> false
 
             //bool型→数値へ変換
-            boolean bool_ = true;
-            int int_ = (bool_) ? 1 : 0; //三項演算子を活用
-            System.out.println(int_); //=> 1
+            boolean _bool = true;
+            int _int = (_bool) ? 1 : 0; //三項演算子を活用
+            System.out.println(_int); //=> 1
         }
     }
     ```
@@ -229,14 +229,14 @@ class MyClass {} //⑪クラスの定義
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
             //整数の場合
-            long long_ = 2147483648L; //intは-2147483648〜2147483647
-            int int_ = (int)long_; //long型→int型へ変換
-            System.out.println(int_); //=> -2147483648 ←…元のデータが失われる
+            long _long = 2147483648L; //intは-2147483648〜2147483647
+            int _int = (int)_long; //long型→int型へ変換
+            System.out.println(_int); //=> -2147483648 ←…元のデータが失われる
 
             //浮動小数点数の場合
-            double double_ = 3.141592653589793;
-            float float_ = (float)double_;
-            System.out.println(float_); //=> 3.1415927 ←…データの一部が失われる
+            double _double = 3.141592653589793;
+            float _float = (float)_double;
+            System.out.println(_float); //=> 3.1415927 ←…データの一部が失われる
         }
     }
     ```
@@ -246,9 +246,9 @@ class MyClass {} //⑪クラスの定義
     //Main.java
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
-            int int_ = 2147483647; //intは-2147483648〜2147483647
-            long long_ = (long)int_ + 1; //int型→long型へ変換
-            System.out.println(long_); //=> 2147483648
+            int _int = 2147483647; //intは-2147483648〜2147483647
+            long _long = (long)_int + 1; //int型→long型へ変換
+            System.out.println(_long); //=> 2147483648
         }
     }
     ```
@@ -259,15 +259,15 @@ class MyClass {} //⑪クラスの定義
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
             //string型→数値
-            String string_ = "001";
-            int int_ = Integer.parseInt(string_); //"001"（String型）→1（int型）に変換
-            System.out.println(int_); //1
+            String _string = "001";
+            int _int = Integer.parseInt(_string); //"001"（String型）→1（int型）に変換
+            System.out.println(_int); //1
 
             //数値→string型
-            int int_ = 100;
-            String string_ = String.valueOf(int_); //100（int型）→"100"（String）に変換
-            System.out.println(string_); //=> "100"
-            System.out.println(string_.getClass()); //=> class java.lang.String
+            int _int = 100;
+            String _string = String.valueOf(_int); //100（int型）→"100"（String）に変換
+            System.out.println(_string); //=> "100"
+            System.out.println(_string.getClass()); //=> class java.lang.String
             //↑プリミティブ型ではなくStringクラスのオブジェクトなので.getClass()が使える
         }
     }
