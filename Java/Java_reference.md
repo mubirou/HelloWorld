@@ -108,7 +108,7 @@ public class Main { //publicは省略可
         System.out.println(_char); //a
 
         //⑨文字列型（String型）＝プリミティブ型ではなくStringクラスのオブジェクト
-        String _string = "999"; //new String("999")でも同じ ←…オブジェクト型
+        String _string = "999"; //new String("999")でも同じ ←オブジェクト型
         System.out.println(_string); //999
         System.out.println(_string.getClass()); //class java.lang.String
 
@@ -231,12 +231,12 @@ class MyClass {} //⑪クラスの定義
             //整数の場合
             long _long = 2147483648L; //intは-2147483648〜2147483647
             int _int = (int)_long; //long型→int型へ変換
-            System.out.println(_int); //=> -2147483648 ←…元のデータが失われる
+            System.out.println(_int); //=> -2147483648 ←元のデータが失われる
 
             //浮動小数点数の場合
             double _double = 3.141592653589793;
             float _float = (float)_double;
-            System.out.println(_float); //=> 3.1415927 ←…データの一部が失われる
+            System.out.println(_float); //=> 3.1415927 ←データの一部が失われる
         }
     }
     ```
@@ -304,7 +304,7 @@ public class Main { //メインクラス（publicは省略可）
 
 class Rectangle { //長方形クラス
     //フィールド（プロパティ）の宣言（初期値の設定も可）
-    private int _width = 0; //アクセス修飾子を除くと同じパッケージ内でアクセス可に…
+    private int _width = 0; //アクセス修飾子を除くと同じパッケージ内でアクセス可に...
     private int _height = 0;
 
     public Rectangle() {} //コンストラクタ（戻り値は指定しない／ここで初期化も可）
@@ -486,162 +486,113 @@ class ClassB { //この内容だけが継承と異なる
 # <b>変数とスコープ</b>
 
 ### 変数の種類
+1. メンバ変数（＝フィールド）
+    * アクセス修飾子指定しないと同じパッケージからのみ可能
+    1. public : どのクラスからも可能
+    2. protected : サブクラスか同パッケージからのみ可能
+    3. private : 同じクラスからのみ可能
+1. ローカル変数
+1. クラス変数（＝static変数、静的変数）
 
-1. グローバル変数…プログラム全体からアクセス可能
-1. 擬似プライベート変数…単なるパブリック変数（アクセサを利用すべき）
-1. ローカル変数…関数またはメソッド内でのみアクセス可能
-1. ブロック変数…ブロック{}内でのみアクセス可能
-
-### グローバル変数
-* Windowオブジェクトのプロパティ
-
+### public（メンバ変数）: 非推奨
 ```
-<script>
-    /*******************************************
-    グローバル変数定義
-    （関数の外部で定義するとグローバル変数扱い）
-    *******************************************/
-    var _global = "グローバル変数"; //varは省略可
-    //this._global = "グローバル変数"; //上記と同じ意味
-    //window._global = "グローバル変数"; //上記と同じ意味
-
-    /*****************************
-    関数内でのグローバル変数の扱い
-    *****************************/
-    function myFunction() {
-        console.log(_global); //"グローバル変数"
-        console.log(this._global); //"グローバル変数"
-        console.log(window._global); //"グローバル変数"
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        MyClass _myClass = new MyClass();
+        System.out.println(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
     }
-    myFunction();
+}
 
-    /********************************
-    クラス内でのグローバル変数の扱い
-    ********************************/
+class MyClass {
+    public String _p = "メンバ変数（public）"; //冒頭でpublic宣言
+}
+```
+
+### protected（メンバ変数）
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        SubClass _subClass = new SubClass();
+        System.out.println(_subClass._p); //アクセスできないはずですが...（要調査）
+     }
+}
+class SuperClass { //スーパークラス
+    protected String _p = "メンバ変数（protected）"; //protected宣言
+}
+class SubClass extends SuperClass { //サブクラス
+    public SubClass() { //コンストラクタ
+        System.out.println(_p); //アクセス可能
+    }
+}
+```
+
+### private（メンバ変数）: 推奨
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        MyClass _myClass = new MyClass();
+        System.out.println(_myClass.getP()); //getterで参照可
+        _myClass.setP("フィールド（private）"); //setterで変更可
+    }
+}
+class MyClass {
+    private String _p = "メンバ変数（private）"; //private宣言
+    public String getP() { return _p; } //_pのgetter（thisは省略）
+    public void setP(String value_) { _p = value_; } //_pのsetter（thisは省略）
+}
+```
+
+### ローカ変数
+1. メソッド内で宣言する場合
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            MyClass _myClass = new MyClass();
+            _myClass.myMethod();
+        }
+    }
+
     class MyClass {
-        constructor() { //コンストラクタ
-            console.log(_global); //"グローバル変数"
-            console.log(this._global); //undefined（thisはMyClassのインスタンスの為）
-            console.log(window._global); //"グローバル変数"
+        private String _p = "メンバ変数（private）";
+        public MyClass() { //コンストラクタ
+            System.out.println(_p); //=> "メンバ変数（private）"（ここはthis省略可）
+        }
+        public void myMethod() {
+            String _p = "ローカル変数"; //ローカル変数宣言
+            System.out.println(_p); //=> "ローカル変数"
+            System.out.println(this._p); //=> "メンバ変数（private）"（ここはthis必須）
         }
     }
-    new MyClass();
-</script>
-```
+    ```
 
-### 擬似プライベート変数
-* 実際は単なるパブリック変数
-* 変数へのアクセスはアクセサ（getter/setter）を利用する（推奨）
-
-```
-<script>
+1. for文内で宣言する場合
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            new MyClass();
+        }
+    }
     class MyClass {
-        //コンストラクタ
-        constructor() {
-            //擬似プライベート変数の定義
-            this.__propA = "いろは"; //変数名は__xxxにする（任意）
-        }
-
-        get propA() { //アクセサ（getter）
-            return this.__propA;
-        }
-
-        set propA(_newValue) { //アクセサ（setter）
-            this.__propA = _newValue;
+        private int i_ = 999; //private宣言
+        public MyClass() { //コンストラクタ
+            for (int i_=0; i_<=5; i_++) { //ローカル変数宣言
+                System.out.println("A: " + i_); //0、1、2、...、5
+                System.out.println("B: " + this.i_); //999 ←メンバ変数（private）
+            }
+            System.out.println("C: " + i_); //999（thisは省略可）
         }
     }
-
-    var _myClass = new MyClass();
-
-    //良い例（アクセサを使ってアクセスする）
-    console.log(_myClass.propA); //"いろは"（getterによる値の取得）
-    _myClass.propA = "ABC"; //setアクセサによる値の変更
-    console.log(_myClass.propA); //"ABC"
-
-    //悪い例（外部から直接アクセスしてはいけない）
-    _myClass.__propA = "あいう"; //外部から直接変更できてしまう
-    console.log(_myClass.__propA); //"あいう"
-</script>
-```
-
-### ローカル変数
-* 関数またはメソッド内でのみアクセス可能
-
-1. 関数内で定義した場合
-    ```
-    <script>
-        function myFunction1() {
-            //ローカル変数定義
-            var _local = "ローカル変数"; //varは省略不可
-            console.log(_local); //"ローカル変数"
-        }
-
-        function myFunction2() {
-            //console.log(_local); //Error
-        }
-
-        myFunction1();
-        myFunction2();
-        //console.log(_local); //Error
-    </script>
-    ```
-
-1. メソッド内で定義した場合
-    ```
-    <script>
-        class MyClass {
-            myMethod1() {
-                var _local = "ローカル変数"; //varは省略不可
-                console.log(_local); //"ローカル変数"
-            }
-            myMethod2() {
-                //console.log(_local); //Error
-            }
-        }
-        var _myClass = new MyClass();
-        _myClass.myMethod1();
-        _myClass.myMethod2();
-    </script>
-    ```
-
-1. for文内で定義した場合
-    ```
-    <script>
-        for (var i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,...,8,9
-        }
-        console.log(i); //10（for文の外でも有効）
-    </script>
-    ```
-
-### ブロック変数
-* ブロック {} 内でのみ有効
-
-1. for 文内で定義した場合
-    ```
-    <script>
-        for (let i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,...,8,9
-        }
-        console.log(i); //Error（アクセス不可）
-    </script>
-    ```
-
-1. if 文内で定義した場合
-    ```
-    <script>
-        if (true) {
-            let _block = "ブロック変数";
-            console.log(_block); //"ブロック変数"
-        }
-        console.log(block_); //Error（アクセス不可）
-    </script>
     ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月15日  
-更新日：2017年03月21日
+作成日：2016年07月14日  
+更新日：2017年04月12日
 
 
 <a name="アクセサ"></a>
@@ -1371,7 +1322,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ### ループカウンタを○つずつアップする
 ```
 <script>
-    for (let i = 0; i < 50; i += 5) { //5つずつアップする場合…
+    for (let i = 0; i < 50; i += 5) { //5つずつアップする場合...
         console.log(i); //0,5,10,15,20,25,30,35,40,45
     }
 </script>
@@ -2112,7 +2063,7 @@ var 変数 = "xxx"; //string型
     var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
     var _regExp = new RegExp("吉田", "g"); //第2引数を省略すると全てを置換（"g"と同等）
     /*
-    "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など…を使うことでより細かな制御が可能
+    "^○○$"のように「^（行頭マッチ）」「$（行末マッチ）」といったメタ文字の他、様々なパターン、例えば "[A-D]\d+" など...を使うことでより細かな制御が可能
     */
     if (_regExp.test(_string)) { //検索
         console.log('"吉田"は含まれています');
@@ -2136,7 +2087,7 @@ var 変数 = "xxx"; //string型
 </script>
 ```
 
-### 正規表現について…
+### 正規表現について...
 * 文字パータンを表現するオブジェクト（RegExp クラス）のこと
 * JavaScriptの正規表現は、ECMAScript 3 で標準化された
 * String と RegExp クラスには、次のような正規表現用のメソッドが用意されている
@@ -2465,7 +2416,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 # <b>乱数</b>
 
 ### Math.random()
-* 0以上、1未満（0.9999…）の値を返す
+* 0以上、1未満（0.9999...）の値を返す
 * 現在時刻を元に random seed （乱数種）を生成
 ```
 <script>
@@ -2565,7 +2516,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 <script>
     _count = 0;
     callbackFunction = () => {
-        if (++_count <= 10) { //10回繰返す場合…
+        if (++_count <= 10) { //10回繰返す場合...
             console.log(_count, "繰返し実行したい処理");
         } else {
             clearInterval(_timerID); //繰返しを止める
