@@ -12,8 +12,8 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-***
 * [定数](#定数)
+***
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
 * [アロー関数](#アロー関数)
@@ -685,48 +685,52 @@ public class Main { //publicは省略可
 <a name="定数"></a>
 # <b>定数</b>
 
-### 概要
-* const はクラス外で定数を扱う場合に利用できます。
-* const をクラス内で利用した場合、単なる「変更不可のローカル変数」扱いとなり、用途は非常に限られます（ const this.定数名 という記述は不可）。
-* クラス定数を実現するためには、static（メソッドに対してのみ有効）と getter を利用します。setter には、値を変更しようとした際にエラーが発生するように記述します。
-
 ### 通常の定数
 ```
-<script>
-    const MY_NAME = "Takashi Nishimura";
-    console.log(MY_NAME); //"Takashi Nishimura"
-    MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
-</script>
-```
-
-### クラス定数（静的定数）
-```
-<script>
-    class MyMath {
-        constructor() {
-            /*
-            ↓「変更不可のローカル変数」となりクラス定数として利用できない
-            ↓「const this.定数名」という記述は不可
-            */
-            //const PI = 3.141592653589793;
-        }
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error("値の変更はできません");
-        }
+//Main.java
+//メインクラス
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        final float PI = 3.14159F;
+        System.out.println(PI); //=> 3.14159
+        //PI = 3.14; //エラー: final変数PIに値を代入することはできません
     }
+}
+```
 
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
-</script>
+### 静的定数（メンバ定数）
+* 構文
+```
+class クラス名 {
+    public static final データ型 定数名 = 値;
+    ………
+}
+
+#アクセス方法
+クラス名.定数名
+```
+
+* 例文
+```
+//Main.java
+//メインクラス
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        System.out.println(MyMath.PI); //=> 3.14159
+        //MyMath.PI = 3.14; //エラー: final変数PIに値を代入することはできません
+    }
+}
+
+//カスタムクラス（MyMath）
+class MyMath { 
+    public static final float PI = 3.14159F;
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月16日  
-更新日：2017年03月21日  
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="メソッド"></a>
