@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Jav_alinux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Jav_amac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Jav_awin.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -16,8 +16,8 @@
 * [メソッド](#メソッド)
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [静的メンバ（static）](#静的メンバ（static）)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -927,16 +927,18 @@ interface IHello {
 ### 基本構文
 ```
 class MyMath {
-    public static final データ型 変数名 = 値; //←…静的定数（＝クラス定数）
-    public static データ型 変数名 = 値; //←…静的変数（＝クラス変数、static変数）
-    //↓静的メソッド（＝クラスメソッド、staticメソッド）
+    public static final データ型 変数名 = 値; //静的定数（＝クラス定数）
+
+    public static データ型 変数名 = 値; //静的変数（＝クラス変数、static変数）
+
+    //静的メソッド（＝クラスメソッド、staticメソッド）
     public static 戻り値の型 メソッド名([データ型① 引数①, ...]) {
             処理 [return 戻り値;]
     }
     ……
 ```
 
-### 例文（Main.java）
+### 例文
 ```
 //Main.java
 public class Main { //publicは省略可
@@ -987,37 +989,38 @@ class MyMath {
 ### 基本例文
 * trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```
-<script>
-    var _age = 49;
-    if (_age <= 20) {
-        console.log("20歳以下");
-    } else if (_age <= 40) {
-        console.log("21〜40歳");
-    } else if (_age <= 60) {
-        console.log("41〜60歳"); //これが出力される
-    } else {
-        console.log("61歳以上");
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _age = 49;
+        if (_age <= 20) { // () は省略不可
+            System.out.println("20歳以下");
+        } else if (_age <= 40) {
+            System.out.println("21〜40歳");
+        } else if (_age <= 60) {
+            System.out.println("41〜60歳"); //これが出力される
+        } else {
+            System.out.println("61歳以上");
+        }
     }
-</script>
+}
 ```
 
 ### 論理積（AND）
-* 2つの条件が true の場合
-
 1. 論理演算子（&&）を使う方法
     ```
     if (条件式① && 条件②) {
-        処理A ←条件式①かつ条件式②の両方がtrueの場合に実行
+        処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
     } else {
         処理B
     }
     ```
 
-1. if 文のネストを使う方法
+1. ifのネストを使う方法
     ```
     if (条件式①) {
         if (条件②) {
-            処理A ←条件式①かつ条件式②の両方がtrueの場合に実行
+            処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
         } else {
             処理B
         }
@@ -1027,7 +1030,6 @@ class MyMath {
     ```
 
 ### 論理和（OR）
-* 2つの条件のどちらか一方でも true の場合
 1. 論理演算子（||）を使う方法
     ```
     if (条件式① || 条件②) {
@@ -1037,7 +1039,7 @@ class MyMath {
     }
     ```
 
-1. 論理演算子（||）を使わない方法
+1. ifのネストを使う方法
     ```
     if (条件式①) {
         処理A ←条件式①がtrueの場合に実行
@@ -1049,37 +1051,40 @@ class MyMath {
     ```
 
 ### 排他的論理和（XOR）
-* 2つの条件のうちどちらか一方だけ true の場合
-1. ^ 演算子を使う方法
+1. ^演算子を使う方法
     ```
-    <script>
-        var _a = true;
-        var _b = false;
-        if (_a ^ _b) {
-            console.log("どちらか一方だけtrueです");
-        } else {
-            console.log("両方共にtrueかfalseです");
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            boolean _a = true, _b = false;
+            if (_a ^ _b) {
+                System.out.println("どちらか一方だけtrueです");
+            } else {
+                System.out.println("両方共にtrueかfalseです");
+            }
         }
-    </script>
+    }
     ```
 
-2. ^ 演算子を使わない場合
+1. ^演算子を使わない場合
     ```
-    <script>
-        var _a = true;
-        var _b = false;
-        if ((_a || _b) && !(_a && _b)) {
-            console.log("どちらか一方だけtrueです");
-        } else {
-            console.log("両方共にtrueかfalseです");
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            boolean _a = true, _b = false;
+            if ((_a || _b) && !(_a && _b)) {
+                System.out.println("どちらか一方だけtrueです");
+            } else {
+                System.out.println("両方共にtrueかfalseです");
+            }
         }
-    </script>
+    }
     ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月21日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="三項演算子"></a>
@@ -1871,7 +1876,7 @@ do {
 
                 //イベントハンドラメソッド内でthis==Canvasオブジェクトとする為
                 this.__mousedown_image = (_e) => { 
-                    this.__mousedown_image_method(_e);
+                    this.__mousedown_im_agemethod(_e);
                 }
 
                 //Image用イベントハンドラの定義
@@ -1879,7 +1884,7 @@ do {
             }
 
             //MyClass.__mousedown_image（アロー関数）からの呼出し
-            __mousedown_image_method(_mouseEvent) {
+            __mousedown_im_agemethod(_mouseEvent) {
                 console.log(this); //MyClass
             }
         }
