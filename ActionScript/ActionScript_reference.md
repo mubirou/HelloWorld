@@ -434,7 +434,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 ### 概要
 * パッケージ宣言をすることでコンパイル時に名前空間が暗黙的に作成される
-* ドメインが xxx.com の場合は com フォルダの中に xxx フォルダを作成し、そこにクラスファイル（.as）を置き、「com.xxx.クラス名」でアクセスするなどして、名前空間がぶつからないようにする
+* ドメインが xxx.com の場合は com フォルダの中に xxx フォルダを作成し、そこにクラスファイル（.as）を置き、「jp.xxx.クラス名」でアクセスするなどして、名前空間がぶつからないようにする
 
 ### 例文
 
@@ -443,7 +443,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 //Main.as
 package  {
     import flash.display.Sprite;
-    import com.xxx.SomeClass; //外部クラス（SomeClass.as）をインポートする
+    import jp.xxx.SomeClass; //外部クラス（SomeClass.as）をインポートする
 
     public class Main extends Sprite {
         public function Main() {
@@ -455,7 +455,7 @@ package  {
 
 * 外部クラス（Main.as から見て ../com/xxx/SomeClass.as ファイル）
 ```
-package com.xxx {
+package jp.xxx {
     public class SomeClass {
         public function SomeClass(): void {
             console.log("SomeClass");
