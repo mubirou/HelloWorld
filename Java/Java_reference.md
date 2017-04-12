@@ -1927,15 +1927,25 @@ class Robot {
 ### String オブジェクトの作成
 1. リテラル文字列による作成（一般的な方法）
     ```
-    String _string = "ABCDE";
-    System.out.println(_string); //=> "ABCDE"
-    ``
+    //Main.java
+    public class Main { //public は省略可
+        public static void main(String[] args) { //決め打ち(自動的に実行)
+            String _string = "ABCDE";
+            System.out.println(_string); //=> "ABCDE"
+        }
+    }
+    ```
 
 1. new 演算子と char 型配列による作成
     ```
-    char tmp[] = {'A','B','C','D','E'};
-    String _string = new String(tmp);
-    System.out.println(_string); //=> "ABCDE"
+    //Main.java
+    public class Main { //public は省略可
+        public static void main(String[] args) { //決め打ち(自動的に実行)
+            char tmp[] = {'A','B','C','D','E'};
+            String _string = new String(tmp);
+            System.out.println(_string); //=> "ABCDE"
+        }
+    }
     ```
 
 ### 長さを調べる
