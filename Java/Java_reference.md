@@ -33,9 +33,9 @@
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
-***
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
+***
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
@@ -2215,43 +2215,48 @@ class SubClass extends AbstractClass { //抽象クラスを継承
 # <b>super キーワード</b>
 
 ```
-<script>
-    //スーパークラス
-    class SuperClass {
-        constructor(arg) { //コンストラクタ
-            console.log("SuperClass.constructor : " + arg);
-        }
-        methodSuper(arg) {
-            console.log("SuperClass.methodSuper : " + arg);
-        }
+//Main.java
+//メインクラス（publicは省略可）
+public class Main {
+    public static void main(String[] args) { //決め打ち ←最初に自動的に実行される
+        SubClass _SubClass = new SubClass(); //サブクラスのインスタンスの生成
+        //=> "スーパークラスのコンストラクタ：サブクラスからの呼び出し"
+        _SubClass.methodSub("サブクラスからの呼び出し");
+        //=> "スーパークラスのメソッド：サブクラスからの呼び出し"
     }
+}
 
-    //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        constructor() { //コンストラクタ
-            //↓スーパークラスのコンストラクタの呼び出し（必須）
-            super("from SubClass");
-            //↑サブクラスのコンストラクタ内であれば冒頭でなくても可能
-        }
-        methodSub() {
-            //↓スーパークラスのメソッドを呼び出すことが可能
-            super.methodSuper("from SubClass");
-        }
+//スーパークラス
+class SuperClass {
+    //コンストラクタ
+    public SuperClass(String arg) {
+        System.out.println("スーパークラスのコンストラクタ：" + arg);
     }
+    //メソッド
+    public void methodSuper(String arg) {
+        System.out.println("スーパークラスのメソッド：" + arg);
+    }
+}
 
-    //実行
-    var _subClass = new SubClass(); 
-    //=> "SuperClass.constructor : from SubClass"
-
-    _subClass.methodSub(); 
-    //=>"SuperClass.methodSuper : from SubClass"
-</script>
+//サブクラス
+class SubClass extends SuperClass {
+    //コンストラクタ
+    public SubClass() {
+        //System.out.println("ここはエラー"); //コンストラクタのsuper()は冒頭に!
+        super("サブクラスからの呼び出し"); //スーパークラスのコンストラクタを呼出す
+    }
+    //メソッド
+    public void methodSub(String arg) {
+        System.out.println("ここはエラーなし"); //メソッド内のsuper()はどこでもOK!
+        super.methodSuper(arg); //スーパークラスのメソッドを呼出す
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月29日  
-更新日：2017年03月22日
+作成日：2016年07月19日  
+更新日：2017年04月12日
 
 
 <a name="オーバーライド"></a>
