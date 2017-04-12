@@ -583,7 +583,7 @@ class MyClass {
 # <b>アクセサ （getter / setter）</b>
 
 ### 概要
-オブジェクト指向プログラミングの「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数はprivate変数とし、外部からはメソッドを使ってアクセスします。Javaには他の多くの言語にある専用のアクセサが用意されていません。そこで、get○○()、set○○(型,引数)といった記述をして同じ機能を実現します。
+オブジェクト指向プログラミングの「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は private 変数とし、外部からはメソッドを使ってアクセスします。Java には他の多くの言語にある専用のアクセサが用意されていません。そこで、get○○()、set○○(型,引数) といった記述をして同じ機能を実現します。
 
 ### 読書き可能なメンバ変数
 ```
@@ -598,9 +598,9 @@ public class Main { //publicは省略可
 }
 
 class Nishimura {
-    private int age_ = 49; //private宣言
-    public int getAge() { return age_; } //thisは省略 ←age_のgetter
-    public void setAge(int age_) { this.age_ = age_; } //←age_のsetter
+    private int _age = 49; //private宣言
+    public int getAge() { return _age; } //_ageのgetter（thisは省略）
+    public void setAge(int _age) { this._age = _age; } //_ageのsetter
 }
 ```
 
@@ -611,13 +611,13 @@ public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         Nishimura _nishimura = new Nishimura();
         System.out.println(_nishimura.getAge()); //49
-        //_nishimura.age_ = 50; //エラー（値が変更できない）
+        //_nishimura._age = 50; //エラー（値が変更できない）
     }
 }
 
 class Nishimura {
-    private int age_ = 49; //private宣言
-    public int getAge() { return age_; } //thisは省略 ←getterのみ用意
+    private int _age = 49; //private宣言
+    public int getAge() { return _age; } //getterのみ用意（thisは省略）
 }
 ```
 
@@ -626,7 +626,7 @@ class Nishimura {
 作成日：2016年07月14日  
 更新日：2017年04月12日
 
-ssssssssssssssssssssssssssssssssssssssssssssss
+
 <a name="演算子"></a>
 # <b>演算子</b>
 
