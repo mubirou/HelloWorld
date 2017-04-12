@@ -2555,17 +2555,17 @@ public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         //デフォルトの日時情報
         LocalDateTime _now = LocalDateTime.now();
-        System.out.println(_now); //=> 2016-07-20T07:23:27.689
-        System.out.println(_now.getYear()); //=> 2016
-        System.out.println(_now.getMonth()); //=> JULY
-        System.out.println(_now.getMonthValue()); //=> 7（1〜12月）
-        System.out.println(_now.getDayOfMonth()); //=> 20（1〜31日）
-        System.out.println(_now.getDayOfYear()); //=> 202（元日からの日数1〜366）
+        System.out.println(_now); //=> 2017-04-12T16:32:02.988
+        System.out.println(_now.getYear()); //=> 2017
+        System.out.println(_now.getMonth()); //=> APRIL
+        System.out.println(_now.getMonthValue()); //=> 4（1〜12月）
+        System.out.println(_now.getDayOfMonth()); //=> 12（1〜31日）
+        System.out.println(_now.getDayOfYear()); //=> 102（元日からの日数1〜366）
         System.out.println(_now.getDayOfWeek()); //=> WEDNESDAY
-        System.out.println(_now.getHour()); //=> 7（0〜23時）
-        System.out.println(_now.getMinute()); //=> 23（0〜59分）
-        System.out.println(_now.getSecond()); //=> 27（0〜59秒）
-        System.out.println(_now.getNano()); //=> 689000000（ナノ秒）
+        System.out.println(_now.getHour()); //=> 16（0〜23時）
+        System.out.println(_now.getMinute()); //=> 32（0〜59分）
+        System.out.println(_now.getSecond()); //=> 2（0〜59秒）
+        System.out.println(_now.getNano()); //=> 988000000
         
         //"hh:mm:ss"で現在の時間を表示する方法
         String _h 
@@ -2574,7 +2574,7 @@ public class Main { //publicは省略可
         =(_now.getMinute()<10) ? "0"+_now.getMinute() : String.valueOf(_now.getMinute());
         String _s 
         =(_now.getSecond()<10) ? "0"+_now.getSecond() : String.valueOf(_now.getSecond());
-        System.out.println(_h + ":" + _m + ":" + _s); //=> "07:33:37"
+        System.out.println(_h + ":" + _m + ":" + _s); //=> "16:32:02"
     }
 }
 ```
@@ -2588,104 +2588,31 @@ public class Main { //publicは省略可
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### 繰返し実行する
+### java.util.Timer を使う方法
 ```
-<script>
-    _count = 0;
-    callbackFunction = () => {
-        if (++_count <= 10) { //10回繰返す場合...
-            console.log(_count, "繰返し実行したい処理");
-        } else {
-            clearInterval(_timerID); //繰返しを止める
-        }
+//Main.java
+import java.util.Timer; //Timerに必要
+import java.util.TimerTask; //TimerTaskに必要
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        Timer _timer = new Timer();
+        //↓2000ミリ秒（2秒）後に1回だけ実行する場合…
+        //_timer.schedule(new OnceExecute(), 2000);
+        //0秒後から10fps（100ミリ秒毎）の間隔で繰返し実行する場合…
+        _timer.schedule(new LoopExec(), 0, 100); 
     }
-    //↓第3引数を使ってデータをcallbackFunctionの引数として送信することも可能
-    _timerID = setInterval(callbackFunction, 1000); //1秒間隔で繰返す場合
-</script>
-```
-
-### 一度だけ実行する
-```
-<script>
-    callbackFunction = () => {
-        console.log("一度だけ実行したい処理");
-        clearTimeout(_timerID);
+}
+class LoopExec extends TimerTask {
+    public void run() { //決め打ち
+        System.out.println("繰り返しまたは、指定秒後に１度だけ実行したい処理");
     }
-    _timerID = setTimeout(callbackFunction, 1000); //1秒後に1回実行する場合
-</script>
-```
-
-### XX 秒後にA、そのXXX 秒後にB...を実行
-* [Promise](https://mzl.la/2nHNs4B) でも同様のことが可能と思われる
-```
-<script>
-    //Task○のスーパークラス
-    class SuperTask {
-        //静的変数（delay）
-        static set delay(_newValue) { this.__delay = _newValue; }
-        static get delay() {
-            if (this.__delay == undefined) { this.__delay = 0; }
-            return this.__delay;
-        }
-
-        //静的変数（nextTask）
-        static get nextTask() { return this.__nextTask; }
-        static set nextTask(_newValue) { this.__nextTask = _newValue; }
-
-        static exec() { //静的メソッド
-            if (this.__delay == undefined) { this.__delay = 0; }
-            setTimeout(this.__callBack, this.__delay);
-        }
-    }
-
-    //TaskAクラス
-    class TaskA extends SuperTask {
-        static __callBack() {
-            var _this = TaskA;
-            //TaskAで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskAで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskBクラス
-    class TaskB extends SuperTask {
-        static __callBack() {
-            var _this = TaskB;
-            //TaskBで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskBで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //TaskCクラス
-    class TaskC extends SuperTask {
-        static __callBack() {
-            var _this = TaskC;
-            //TaskCで実行したいことをここに記述
-            console.log(_this.delay + "ミリ秒後にTaskCで実行すること");
-            if (_this.nextTask != undefined) { _this.nextTask.exec(); }
-        }
-    }
-
-    //タイマーの設定（初期値は0ミリ秒）
-    TaskA.delay = 1000;
-    TaskB.delay = 3000;
-    TaskC.delay = 10000;
-
-    //次のタスクの設定（初期値は未設定）
-    TaskA.nextTask = TaskB;
-    TaskB.nextTask = TaskC;
-
-    TaskA.exec(); //実行開始
-
-</script>
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月30日  
-更新日：2017年03月22日
+作成日：2016年07月20日  
+更新日：2017年04月12日
 
 
 <a name="処理速度計測"></a>
