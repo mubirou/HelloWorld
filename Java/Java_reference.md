@@ -5,9 +5,9 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-***
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
+***
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -301,6 +301,7 @@ public class Main { //メインクラス（publicは省略可）
         System.out.println(_rectangle.getArea()); //=> 2073600
     }
 }
+
 class Rectangle { //長方形クラス
     //フィールド（プロパティ）の宣言（初期値の設定も可）
     private int _width = 0; //アクセス修飾子を除くと同じパッケージ内でアクセス可に…
@@ -331,97 +332,48 @@ class Rectangle { //長方形クラス
 # <b>スーパークラスとサブクラス</b>
 
 ```
-<script>
-
-/****************************************************
-スーパークラス
-****************************************************/
-class SuperClass {
-    //コンストラクタ
-    constructor() {
-        //①プロパティの定義
-        this.__pSuperClass = "スーパークラスのプロパティ";
-    }
-
-    //②アクセサの定義（setterは省略）
-    get pSuperClass() {
-        return this.__pSuperClass;
-    }
-
-    //③メソッドの定義
-    mSuperClass() {
-        return "スーパークラスのメソッド";
+//Main.java
+public class Main { //メインクラス（publicは省略可）
+    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
+        SubClassA _subclassA = new SubClassA(); //サブクラスＡのインスタンスの生成
+        System.out.println(_subclassA.getFieldS()); //=> "スーパークラスのフィールド"
+        System.out.println(_subclassA.getFieldA()); //=> "サブクラスＡのフィールド"
+        System.out.println(_subclassA.methodS()); //=> "スーパークラスのメソッド"
+        System.out.println(_subclassA.methodA()); //=> "サブクラスＡのメソッド"
+        SubClassB _subclassB = new SubClassB(); //サブクラスＢのインスタンスの生成
+        System.out.println(_subclassB.getFieldS()); //=> "スーパークラスのフィールド"
+        System.out.println(_subclassB.getFieldB()); //=> "サブクラスＢのプロパティ"
+        System.out.println(_subclassB.methodS()); //=> "スーパークラスのメソッド"
+        System.out.println(_subclassB.methodB()); //=> "サブクラスＢのメソッド"
     }
 }
 
-/****************************************************
-サブクラスＡ（スーパークラスを継承／多重継承は不可）
-****************************************************/
+//スーパークラス
+class SuperClass { 
+    private String _fieldS = "スーパークラスのフィールド"; //①フィールドの定義
+    public String getFieldS() { return _fieldS; } //②アクセサ（getter）※thisは省略
+    public String methodS() { return "スーパークラスのメソッド"; } //③メソッド
+}
+
+//サブクラスＡ（スーパークラス継承）※多重継承不可
 class SubClassA extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassA = "サブクラスＡのプロパティ";
-    }
-
-    //②アクセサの定義（setterは省略）
-    get pSubClassA() {
-        return this.__pSubClassA;
-    }
-
-    //③メソッドの定義
-    mSubClassA() {
-        return "サブクラスＡのメソッド";
-    }
+    private String _fieldA = "サブクラスＡのフィールド"; //①フィールド
+    public String getFieldA() { return _fieldA; } //②アクセサ（getter）※thisは省略
+    public String methodA() { return "サブクラスＡのメソッド";    } //③メソッド
 }
 
-/****************************************************
-サブクラスＢ（スーパークラスを継承／多重継承は不可）
-****************************************************/
-class SubClassB extends SuperClass {
-    //コンストラクタ
-    constructor() {
-        super(); //コンストラクタの冒頭でスーパークラスのコンストラクタを呼出す（必須）
-        //①プロパティの定義
-        this.__pSubClassB = "サブクラスＢのプロパティ";
-    }
-
-    //②アクセサの定義（setterは省略）
-    get pSubClassB() {
-        return this.__pSubClassB;
-    }
-
-    //③メソッドの定義
-    mSubClassB() {
-        return "サブクラスＢのメソッド";
-    }
+//サブクラスＢ（スーパークラス継承）※多重継承不可
+class SubClassB extends SuperClass { 
+    private String _fieldB = "サブクラスＢのフィールド"; //①フィールド
+    public String getFieldB() { return _fieldB; } //②アクセサ（getter）※thisは省略
+    public String methodB() { return "サブクラスＢのメソッド"; } //③メソッド
 }
-
-/****************************************************
-実行
-****************************************************/
-//サブクラスＡのインスタンス
-var _subclassA = new SubClassA();
-console.log(_subclassA.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassA.pSubClassA); //"サブクラスＡのプロパティ"
-console.log(_subclassA.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassA.mSubClassA()); //"サブクラスＡのメソッド"
-
-//サブクラスＢのインスタンス
-var _subclassB = new SubClassB();
-console.log(_subclassB.pSuperClass); //"スーパークラスのプロパティ"
-console.log(_subclassB.pSubClassB); //"サブクラスＢのプロパティ"
-console.log(_subclassB.mSuperClass()); //"スーパークラスのメソッド"
-console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
-
-</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年09月14日  
-更新日：2017年03月17日  
+作成日：2016年07月14日  
+更新日：2017年04月12日
 
 
 <a name="名前空間"></a>
@@ -644,75 +596,75 @@ new MyClass(); //"コンフリクトを起こさない!"
 * 関数またはメソッド内でのみアクセス可能
 
 1. 関数内で定義した場合
-	```
-	<script>
-		function myFunction1() {
-			//ローカル変数定義
-			var _local = "ローカル変数"; //varは省略不可
-			console.log(_local); //"ローカル変数"
-		}
+    ```
+    <script>
+        function myFunction1() {
+            //ローカル変数定義
+            var _local = "ローカル変数"; //varは省略不可
+            console.log(_local); //"ローカル変数"
+        }
 
-		function myFunction2() {
-			//console.log(_local); //Error
-		}
+        function myFunction2() {
+            //console.log(_local); //Error
+        }
 
-		myFunction1();
-		myFunction2();
-		//console.log(_local); //Error
-	</script>
-	```
+        myFunction1();
+        myFunction2();
+        //console.log(_local); //Error
+    </script>
+    ```
 
 1. メソッド内で定義した場合
-	```
-	<script>
-		class MyClass {
-			myMethod1() {
-				var _local = "ローカル変数"; //varは省略不可
-				console.log(_local); //"ローカル変数"
-			}
-			myMethod2() {
-				//console.log(_local); //Error
-			}
-		}
-		var _myClass = new MyClass();
-		_myClass.myMethod1();
-		_myClass.myMethod2();
-	</script>
-	```
+    ```
+    <script>
+        class MyClass {
+            myMethod1() {
+                var _local = "ローカル変数"; //varは省略不可
+                console.log(_local); //"ローカル変数"
+            }
+            myMethod2() {
+                //console.log(_local); //Error
+            }
+        }
+        var _myClass = new MyClass();
+        _myClass.myMethod1();
+        _myClass.myMethod2();
+    </script>
+    ```
 
 1. for文内で定義した場合
-	```
-	<script>
-		for (var i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //10（for文の外でも有効）
-	</script>
-	```
+    ```
+    <script>
+        for (var i = 0; i < 10; i++) {
+            console.log(i); //0,1,2,...,8,9
+        }
+        console.log(i); //10（for文の外でも有効）
+    </script>
+    ```
 
 ### ブロック変数
 * ブロック {} 内でのみ有効
 
 1. for 文内で定義した場合
-	```
-	<script>
-		for (let i = 0; i < 10; i++) {
-			console.log(i); //0,1,2,...,8,9
-		}
-		console.log(i); //Error（アクセス不可）
-	</script>
-	```
+    ```
+    <script>
+        for (let i = 0; i < 10; i++) {
+            console.log(i); //0,1,2,...,8,9
+        }
+        console.log(i); //Error（アクセス不可）
+    </script>
+    ```
 
 1. if 文内で定義した場合
-	```
-	<script>
-		if (true) {
-			let _block = "ブロック変数";
-			console.log(_block); //"ブロック変数"
-		}
-		console.log(block_); //Error（アクセス不可）
-	</script>
-	```
+    ```
+    <script>
+        if (true) {
+            let _block = "ブロック変数";
+            console.log(_block); //"ブロック変数"
+        }
+        console.log(block_); //Error（アクセス不可）
+    </script>
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
