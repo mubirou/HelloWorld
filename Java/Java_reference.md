@@ -11,8 +11,8 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
-***
 * [演算子](#演算子)
+***
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数](#匿名関数)
@@ -630,77 +630,56 @@ class Nishimura {
 <a name="演算子"></a>
 # <b>演算子</b>
 
-### 算術演算子
-（複合代入演算子 += -= *= /= %= などもあり）
 ```
-<script>
-    console.log(3 + 2); //5 (可算)
-    console.log(5 - 8); //-3 (減算)
-    console.log(3 * 4); //12 (乗算)
-    console.log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-    console.log(63 % 60); //3 (余剰)
-    console.log(8 / 3); //2.6666666666666665（除算)
-</script>
-```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
 
-### 後ろに付けるインクリメント／デクリメント
-```
-<script>
-    //インクリメント
-    var _huga = 0;
-    var _piyo = _huga++; //加算する前の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //0
+        //算術演算子（複合代入演算子+=,-=,*=,/=,%=などあり）
+        System.out.println(3 + 2); //5 (可算)
+        System.out.println(5 - 8); //-3 (減算)
+        System.out.println(3 * 4); //12 (乗算)
+        System.out.println(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
+        System.out.println(63 % 60); //3 (余剰)
+        System.out.println(8 / 3); //2(除算) ←整数の場合、余りは切り捨てられる
+        System.out.println(8.0 / 3); //2.6666666666666665（小数点第16位まで）
 
-    //デクリメント
-    _huga = 0;
-    _piyo = _huga--; //減算する前の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //0
-</script>
-```
+        //後ろに付けるインクリメント（デクリメント）
+        int _huga = 0;
+        int _piyo = _huga++; //デクリメントの場合_huga--
+        System.out.println(_huga); //1（デクリメントの場合 -1）
+        System.out.println(_piyo); //0（デクリメントの場合 0）
 
-### 前に付けるインクリメント／デクリメント
-```
-<script>
-    //インクリメント
-    var _huga = 0;
-    var _piyo = ++_huga; //加算後の_hugaの値を返す
-    console.log(_huga); //1
-    console.log(_piyo); //1
+        //前に付けるインクリメント（デクリメント）
+        _huga = _piyo = 0;
+        _piyo = ++_huga; //デクリメントの場合 --_huga
+        System.out.println(_huga); //1（デクリメントの場合-1）
+        System.out.println(_piyo); //1（デクリメントの場合-1）
 
-    //デクリメント
-    _huga = 0;
-    var _piyo = --_huga; //減算後の_hugaの値を返す
-    console.log(_huga); //-1
-    console.log(_piyo); //-1
-</script>
-```
+        //その他の演算子
+        System.out.println(true && true); //true（論理積）
+        System.out.println(true || false); //true（論理和）
+        System.out.println(! true); //false（否定）
 
-### その他の演算子
-```
-<script>
-    console.log(true && true); //true（論理積）
-    console.log(true || false); //true（論理和）
-    console.log(! true); //false（否定）
+        System.out.println(2 < 3); //true（比較/未満）
+        System.out.println(2 <= 2); //true（比較/以下）
+        System.out.println(1 == 1.0); //true（等号）
+        System.out.println(1 != 1.0); //false（不等号）
 
-    console.log(2 < 3); //true（比較/未満）
-    console.log(2 <= 2); //true（比較/以下）
-    console.log(1 == 1.0); //true（等号）
-    console.log(1 != 1.0); //false（不等号）
+        System.out.println(3 & 1); //1（ビット積）
+        System.out.println(3 | 1); //3（ビット和）
+        System.out.println(3 ^ 1); //2（排他的ビット和）
+        System.out.println(2 << 7); //256（ビット･シフト）
+        System.out.println(~3); //-4（ビット反転）
 
-    console.log(3 & 1); //1（ビット積）
-    console.log(3 | 1); //3（ビット和）
-    console.log(3 ^ 1); //2（排他的ビット和）
-    console.log(2 << 7); //256（ビット･シフト）
-    console.log(~3); //-4（ビット反転）
-</script>
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月16日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="定数"></a>
