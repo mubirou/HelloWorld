@@ -2478,9 +2478,9 @@ import java.util.Random; //Randomクラスに必要
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         int _0=0, _1=0, _2=0, _3=0, _4=0, _5=0, _6=0, _7=0, _8=0, _9=0;
-        Random random_ = new Random(); //Randomクラスのインスタンス化
+        Random rando_m = new Random(); //Randomクラスのインスタンス化
         for (int i=0; i<100000000; i++) { //1億回繰り返します
-            switch (random_.nextInt(10)) {
+            switch (rando_m.nextInt(10)) {
                 case 0: _0++; break;
                 case 1: _1++; break;
                 case 2: _2++; break;
@@ -2495,9 +2495,9 @@ public class Main { //publicは省略可
             }
         }
         System.out.println(_0+","+_1+","+_2+","+_3+","+_4);
-        //=> "10003782,10000434,10003557,10004203,9997548"
+        //=> "9998750,9995016,10002279,10005150,10002463"
         System.out.println(_5+","+_6+","+_7+","+_8+","+_9);
-        //=> "9997138,10000059,9995140,9995060,10003079"
+        //=> "9997912,9998089,9999414,9998470,10002457"
     }
 }
 ```
@@ -2525,9 +2525,9 @@ public class Main { //publicは省略可
             }
         }
         System.out.println(_0+","+_1+","+_2+","+_3+","+_4);
-        //=> "10003782,10000434,10003557,10004203,9997548"
+        //=> "10000717,10000466,10000525,9993501,9999160"
         System.out.println(_5+","+_6+","+_7+","+_8+","+_9);
-        //=> "9997138,10000059,9995140,9995060,10003079"
+        //=> "10001492,10000658,9997803,10000333,10005345"
     }
 }
 ```
@@ -2541,44 +2541,48 @@ public class Main { //publicは省略可
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
-### 書式
-```
-var xxx = new Date();
-xxx.getFullYear(); //年（2015等）
-xxx.getMonth(); //月（0〜11）
-xxx.getDate(); //日（1〜31）
-xxx.getDay(); //曜日（0=日曜〜5=金曜）
-xxx.getHours(); //時（0〜23）
-xxx.getMinutes(); //分（0〜59）
-xxx.getSeconds(); //秒（0〜59）
-xxx.getMilliseconds(); //ミリ秒（0〜999）
-```
+### 概要
+* Javaでは日時情報を扱うものに java.util.Date と java.util.Calendar クラスがある
+* 以下のサンプルはJava SE 8（1.8）から導入された java.time.LocalDateTime クラスを使ったもの
+* この新しいAPIには、デフォルトの <b>LocalDateTime</b> のほかに、UTC（グリニッジ）から時差付きの <b>OffsetDateTime</b>、タイムゾーンを持つ <b>ZonedDateTime</b> の３つのクラスがある
 
 ### 例文
 ```
-<script>
-    var _date = new Date();
-    console.log(_date); //Wed Mar 22 2017 09:33:39 GMT+0900 (JST)
-    console.log(_date.getFullYear()); //2017
-    console.log(_date.getMonth()); //2（3月）
-    console.log(_date.getDate()); //22
-    console.log(_date.getDay()); //3（水曜日）
-    console.log(_date.getHours()); //09
-    console.log(_date.getMinutes()); //33
-    console.log(_date.getSeconds()); //39
-    console.log(_date.getMilliseconds()); //559
-    //"hh:mm:ss"で現在の時間を表示する方法
-    var _h = (_date.getHours() < 10) ? "0" + _date.getHours() : _date.getHours();
-    var _m = (_date.getMinutes() < 10) ? "0" + _date.getMinutes() : _date.getMinutes();
-    var _s = (_date.getSeconds() < 10) ? "0" + _date.getSeconds() : _date.getSeconds();
-    console.log(_h + ":" + _m + ":" + _s); //"09:33:39"
-</script>
+//Main.java
+import java.time.*; //LocalDateTimeに必要
+
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        //デフォルトの日時情報
+        LocalDateTime _now = LocalDateTime.now();
+        System.out.println(_now); //=> 2016-07-20T07:23:27.689
+        System.out.println(_now.getYear()); //=> 2016
+        System.out.println(_now.getMonth()); //=> JULY
+        System.out.println(_now.getMonthValue()); //=> 7（1〜12月）
+        System.out.println(_now.getDayOfMonth()); //=> 20（1〜31日）
+        System.out.println(_now.getDayOfYear()); //=> 202（元日からの日数1〜366）
+        System.out.println(_now.getDayOfWeek()); //=> WEDNESDAY
+        System.out.println(_now.getHour()); //=> 7（0〜23時）
+        System.out.println(_now.getMinute()); //=> 23（0〜59分）
+        System.out.println(_now.getSecond()); //=> 27（0〜59秒）
+        System.out.println(_now.getNano()); //=> 689000000（ナノ秒）
+        
+        //"hh:mm:ss"で現在の時間を表示する方法
+        String _h 
+        =(_now.getHour()<10) ? "0"+_now.getHour() : String.valueOf(_now.getHour());
+        String _m 
+        =(_now.getMinute()<10) ? "0"+_now.getMinute() : String.valueOf(_now.getMinute());
+        String _s 
+        =(_now.getSecond()<10) ? "0"+_now.getSecond() : String.valueOf(_now.getSecond());
+        System.out.println(_h + ":" + _m + ":" + _s); //=> "07:33:37"
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月30日  
-更新日：2017年03月22日
+作成日：2016年07月20日  
+更新日：2017年04月12日
 
 
 <a name="タイマー"></a>
