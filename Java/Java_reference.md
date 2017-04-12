@@ -2262,41 +2262,49 @@ class SubClass extends SuperClass {
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
 
-### 概要
-* スーパークラスで定義したメソッドをサブクラスで再定義することをオーバーライドと呼ぶ
-* スーパークラスのメソッドを呼び出したい場合は、super.メソッド名() とする
-* （擬似）[抽象クラス](#抽象クラス)でもこの方法を活用
-
-### 例文
+### 抽象メソッドのオーバーライドの書式
 ```
-<script>
-    //スーパークラス
-    class SuperClass {
-        //↓サブクラスでオーバライドするメソッド
-        myMethod() {
-            console.log("SuperClass.myMethod()");
-        }
+abstract class 抽象クラス名 { //抽象クラスの定義
+    //抽象メソッド宣言 ※{}は記述しない
+    abstract [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]);
+    ……
+}
+class 派生クラス extends 抽象クラス名 { //抽象クラスを継承
+    [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]) { //オーバーライド
+        //実際の処理
     }
+    ……
+```
 
-    //サブクラス
-    class SubClass extends SuperClass { //スーパークラスを継承
-        //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-        myMethod() {
-            //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
-            console.log("SubClass.myMethod()");
-        }
+### 通常のメソッドのオーバーライド
+```
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        SubClass _subClass = new SubClass();
+        _subClass.method(); //=> "SubClass.method"←…サブクラスのメソッドが実行される
     }
+}
 
-    //実行
-    var _subClass = new SubClass();
-    _subClass.myMethod();
-</script>
+class SuperClass {
+    //final public void method() { …とするとオーバーライドを禁止にできます
+    public void method() {
+        System.out.println("SuperClass.method");
+    }
+}
+
+class SubClass extends SuperClass {
+    public void method() { //スーパークラスのメソッドと同名（同じ引数）
+        System.out.println("SubClass.method"); //これにオーバーライドされる
+        //super.method(); //上書きしたスーパークラスのメソッドを実行する場合
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月29日  
-更新日：2017年03月22日
+作成日：2016年07月19日  
+更新日：2017年04月12日
 
 
 <a name="カスタムイベント"></a>
