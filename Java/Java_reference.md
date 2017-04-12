@@ -205,7 +205,7 @@ class MyClass {} //⑪クラスの定義
     ```
 
 ### データ型のキャスト
-1.数値↔boolean型
+1. 数値↔boolean型
     ```
     //Main.java
     public class Main { //publicは省略可
