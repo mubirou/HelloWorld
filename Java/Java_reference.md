@@ -2117,7 +2117,43 @@ public class Main { //public は省略可
 <a name="インターフェース"></a>
 # <b>インターフェース</b>
 
-XXXXX
+### 概要
+* クラスにどのような機能（メソッド）を持たせるか、ということだけを定める
+* 抽象クラスと似ているが、抽象クラスとは異なり、実際の処理は一切記述できない
+* 実際の処理はインターフェースを継承したクラスで定義（実装しないとエラー）
+* 多重実装（複数のインターフェースを同時に指定）が可能
+
+### 例文
+```
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        Moneybox _moneybox = new Moneybox();
+        _moneybox.add(5000);
+        System.out.println(_moneybox.getTotal()); //5000
+     }
+}
+
+interface IMoneybox { //インターフェースの宣言（,で複数実装可能）
+    //暗黙的に全てのメソッドが「public」になる
+    void add(int _money);
+    int getTotal(); //getter
+    void setTotal(int _value); //setter
+}
+
+class Moneybox implements IMoneybox { //インターフェースの実装
+    private int _total = 0;
+    public void add(int _money) {
+        _total += _money;
+    } 
+    public int getTotal() { //getterの実装
+        return _total;
+    }
+    public void setTotal(int _value) { //setterの実装
+        _total = _value;
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
