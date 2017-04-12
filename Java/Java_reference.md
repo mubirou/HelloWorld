@@ -29,9 +29,9 @@
 * [セット（TreeSet）](#セット（TreeSet）)
 * [マップ（HashMap）](#マップ（HashMap）)
 * [this](#this)
-***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
+***
 * [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
@@ -1924,68 +1924,129 @@ class Robot {
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### 文字列の生成
-```
-var 変数 = new String("xxx"); //object型
-var 変数 = "xxx"; //string型
-```
-* 上記2つは厳密には異なるが通常は意識する必要はない
+### String オブジェクトの作成
+1. リテラル文字列による作成（一般的な方法）
+    ```
+    String _string = "ABCDE";
+    System.out.println(_string); //=> "ABCDE"
+    ``
 
-### 文字列の長さを調べる
+1. new 演算子と char 型配列による作成
+    ```
+    char tmp[] = {'A','B','C','D','E'};
+    String _string = new String(tmp);
+    System.out.println(_string); //=> "ABCDE"
+    ```
+
+### 長さを調べる
 ```
-<script>
-    var _string = "ABCDE";
-    console.log(_string.length); //5
-</script>
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "ABCDE";
+        System.out.println(_string.length()); //5
+    }
+}
 ```
 
 ### 一部分を取得
+* 構文
 ```
-<script>
-    var _string = "0123456789";
-    console.log(_string.substr(0, 1)); //"0" ←0文字目（先頭）〜1文字取得
-    console.log(_string.substr(-1, 1)); //"9" ←後ろから1文字目〜1文字取得
-    console.log(_string.substr(4)); //"456789" ←4文字目（0から開始）〜全て取得
-    console.log(_string.substr(4, 3)); //"456" ←4文字目（0から開始）〜3文字取得
-</script>
+String.substring(開始位置 [,終了位置])
+```
+* 例文
+```
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "0123456789";
+        System.out.println(_string.substring(4)); //=> "456789"
+        System.out.println(_string.substring(4,5)); //"4"
+        System.out.println(_string.substring(4,_string.length())); //=> "456789"
+    }
+}
+```
+
+### 一部分を削除
+* 構文
+```
+StringBuilder 変数 = new StringBuilder("○");
+StringBuilder.delete(開始位置, 終了位置); //1文字前まで削除
+```
+* 例文
+```
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "にしむらたかし";
+        StringBuilder _string2 = new StringBuilder(_string);
+        System.out.println(_string2.delete(0, 4)); //=> たかし
+    }
+}
 ```
 
 ### 置換
+* 構文
 ```
-<script>
-    var _string = "2017年3月22日";
-    var _regExp = new RegExp("2017", "g"); //第2引数を省略すると全てを置換（"g"と同等）
-    console.log(_string.replace(_regExp, "平成29")); //平成29年3月22日
-</script>
+String.replaceAll("置換前の文字列", "置換後の文字列");
+```
+* 例文
+```
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "2017年4月12日";
+        System.out.println(_string.replaceAll("2017年", "平成29年")); 
+        //"平成29年4月12日"
+    }
+}
 ```
 
 ### 検索
+* 構文
 ```
-<script>
-    var _string = "ABCDEFG-ABCDEFG";
-    var _count = 0;
-    while (_string.indexOf("CD", _count) != -1) { //見つからないと-1を返す
-        var _num = _string.indexOf("CD", _count);
-        console.log(_num); //2,10 ←"CD"が見つかった場所（0から開始）を返す
-        _count = _num + 1;
+String.indexOf("検索したい文字列", 開始位置);
+```
+* 例文
+```
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "ABCDEFG-ABCDEFG";
+        String _word = "CD";
+        int _i = 0;
+        while (_string.indexOf(_word, _i) != -1) { //見つからない場合「-1」
+            int num_ = _string.indexOf(_word, _i);
+            System.out.println(num_); //2、10 ←"CD"が見つかった位置を出力
+            System.out.println(_string.substring(num_, num_ + _word.length())); 
+            //"CD"、"CD"
+            _i = num_ + 1;
+        }
     }
-</script>
+}
 ```
-* 最後から検索する String.lastIndexOf() もあり
 
 ### 文字列→配列
+* 構文
 ```
-<script>
-    var _string = "A,B,C,D,E,F";
-    var _array = _string.split(","); //カンマ区切りで配列化
-    console.log(_array); //["A", "B", "C", "D", "E", "F"]
-</script>
+String.split("区切り文字");
+```
+* 例文
+```
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        String _string = "A,B,C,D"; //「,」区切りの文字列
+        String[] array_ = _string.split(","); //「,」区切りで分割して配列化
+        //→{"A","B","C","D"}
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月28日  
-更新日：2017年03月22日
+作成日：2016年07月19日  
+更新日：2017年04月12日
 
 
 <a name="正規表現"></a>
