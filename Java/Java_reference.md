@@ -1821,6 +1821,50 @@ for (String _value : _set) {
 <a name="マップ（HashMap）"></a>
 # <b>マップ（HashMap）</b>
 
+### 概要
+* 基本的な Map である HashMap のほか LinkedHashMap、TreeMap、Hashtable の4種類あり
+* マップは「キー」と「値」の組み合わせを格納するデータ構造
+
+### 作成方法
+```
+Map<キーの型, 値の型> 変数名 = new HashMap<>();
+```
+
+### 例文
+```
+//Main.java
+import java.util.*; //HashMap に必要
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        //①作成（空のHashMapを作成）
+        Map<String,String> _map = new HashMap<>();
+
+        //②追加
+        _map.put("TARO", "たろう");
+        _map.put("HANAKO", "はなこ");
+
+        //③取得
+        System.out.println(_map.get("TARO"));
+
+        //④更新
+        _map.replace("TARO", "太郎");
+
+        //⑤全ての要素を取得する
+        for (Map.Entry<String, String> tmp_ : _map.entrySet()) {
+            System.out.println(tmp_.getKey() + " : " + tmp_.getValue());
+            //=> "HANAKO : はなこ"
+            //=> "TARO : 太郎"
+        }
+    }
+}
+```
+
+### キー／値の検索
+```
+//("A","あ")、("I","い")、("U","う")、("E","え")
+System.out.println(_map.containsKey("A")); //true（任意のキーがあるか否か）
+System.out.println(_map.containsValue(い")); //true（ 任意の値があるか否か）
+```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
