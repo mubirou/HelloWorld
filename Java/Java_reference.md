@@ -2281,7 +2281,7 @@ class 派生クラス extends 抽象クラス名 { //抽象クラスを継承
 public class Main { //public は省略可
     public static void main(String[] args) { //決め打ち(自動的に実行)
         SubClass _subClass = new SubClass();
-        _subClass.method(); //=> "SubClass.method"←…サブクラスのメソッドが実行される
+        _subClass.method(); //=> "SubClass.method"←サブクラスのメソッドが実行される
     }
 }
 
@@ -2382,11 +2382,11 @@ public class Main { //publicは省略可
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(Math.cos(0)); //=> 1.0 ←…0°
+        System.out.println(Math.cos(0)); //=> 1.0 ←0°
         System.out.println(Math.cos(Math.PI/2)); //=> 6.123233995736766E-17（≒0）←90°
-        System.out.println(Math.cos(Math.PI)); //=> -1.0 ←…180°
+        System.out.println(Math.cos(Math.PI)); //=> -1.0 ←180°
         System.out.println(Math.cos(Math.PI*3/2)); //=> -1.8369701987210297E-16（≒0）←270°
-        System.out.println(Math.cos(Math.PI*2)); //=> 1.0 ←…360°
+        System.out.println(Math.cos(Math.PI*2)); //=> 1.0 ←360°
     }
 }
 ```
@@ -2470,54 +2470,72 @@ System.out.println(Math.min(5.01, -10)); //=> -10.0 ←「2つ」の数値の比
 <a name="乱数"></a>
 # <b>乱数</b>
 
-### Math.random()
-* 0以上、1未満（0.9999...）の値を返す
-* 現在時刻を元に random seed （乱数種）を生成
+### Randomクラスを使う方法
 ```
-<script>
-    console.log(Math.random()); //0.13397585139675616
-    console.log(Math.random()); //0.9903535518676447
-    console.log(Math.random()); //0.006009885271453852
-</script>
-```
+//Main.java
+import java.util.Random; //Randomクラスに必要
 
-### 整数の乱数
-```
-<script>
-    //整数の乱数を返すカスタム関数
-    randomInt = (_min, _max) => {
-        return Math.floor(Math.random() * (_max - _min + 1)) + _min;
-    }
-
-    //実験（1000万回繰返して精度を調べる）
-    var _u5 = 0, _u4 = 0, _u3 = 0, _u2 = 0, _u1 = 0;
-    var _o0 = 0, _o1 = 0, _o2 = 0, _o3 = 0, _o4 = 0, _o5 = 0;
-
-    for (let i = 0; i < 10000000; i++) {
-        switch (this.randomInt(-5, 5)) {
-            case -5: _u5++; break;
-            case -4: _u4++; break;
-            case -3: _u3++; break;
-            case -2: _u2++; break;
-            case -1: _u1++; break;
-            case  0: _o0++; break;
-            case  1: _o1++; break;
-            case  2: _o2++; break;
-            case  3: _o3++; break;
-            case  4: _o4++; break;
-            case  5: _o5++; break;
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _0=0, _1=0, _2=0, _3=0, _4=0, _5=0, _6=0, _7=0, _8=0, _9=0;
+        Random random_ = new Random(); //Randomクラスのインスタンス化
+        for (int i=0; i<100000000; i++) { //1億回繰り返します
+            switch (random_.nextInt(10)) {
+                case 0: _0++; break;
+                case 1: _1++; break;
+                case 2: _2++; break;
+                case 3: _3++; break;
+                case 4: _4++; break;
+                case 5: _5++; break;
+                case 6: _6++; break;
+                case 7: _7++; break;
+                case 8: _8++; break;
+                case 9: _9++; break;
+                default: System.out.println("Error"); break;
+            }
         }
+        System.out.println(_0+","+_1+","+_2+","+_3+","+_4);
+        //=> "10003782,10000434,10003557,10004203,9997548"
+        System.out.println(_5+","+_6+","+_7+","+_8+","+_9);
+        //=> "9997138,10000059,9995140,9995060,10003079"
     }
+}
+```
 
-    console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-    //909595 908581 908332 909493 907921 908880 909161 909607 909295 910453 908692
-</script>
+### Mathクラスを使う方法
+```
+//Main.java
+//インポートは不要
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _0=0, _1=0, _2=0, _3=0, _4=0, _5=0, _6=0, _7=0, _8=0, _9=0;
+        for (int i=0; i<100000000; i++) { //1億回繰り返します
+            switch ((int)(Math.random()*10)) {
+                case 0: _0++; break;
+                case 1: _1++; break;
+                case 2: _2++; break;
+                case 3: _3++; break;
+                case 4: _4++; break;
+                case 5: _5++; break;
+                case 6: _6++; break;
+                case 7: _7++; break;
+                case 8: _8++; break;
+                case 9: _9++; break;
+                default: System.out.println("Error"); break;
+            }
+        }
+        System.out.println(_0+","+_1+","+_2+","+_3+","+_4);
+        //=> "10003782,10000434,10003557,10004203,9997548"
+        System.out.println(_5+","+_6+","+_7+","+_8+","+_9);
+        //=> "9997138,10000059,9995140,9995060,10003079"
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月30日  
-更新日：2017年03月22日
+作成日：2016年07月19日  
+更新日：2017年04月12日
 
 
 <a name="日時情報"></a>
