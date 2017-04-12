@@ -1,3 +1,5 @@
+### <b>この項目は書きかけの項目です</b>
+
 # <b>Java 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -1380,8 +1382,8 @@ public class Main { //publicは省略可
         Map<String,String> _map = new HashMap<String,String>();
         _map.put("A","あ");
         _map.put("I", "い");
-        for (Map.Entry<String, String> tmp_ : _map.entrySet()) {
-            System.out.println(tmp_.getKey() + " : " + tmp_.getValue()); 
+        for (Map.Entry<String, String> _tmp : _map.entrySet()) {
+            System.out.println(_tmp.getKey() + " : " + _tmp.getValue()); 
             //=> I : い
             //=> A : あ
         }
@@ -1844,14 +1846,14 @@ public class Main { //public は省略可
         _map.put("HANAKO", "はなこ");
 
         //③取得
-        System.out.println(_map.get("TARO"));
+        System.out.println(_map.get("TARO")); //=> "たろう"
 
         //④更新
         _map.replace("TARO", "太郎");
 
         //⑤全ての要素を取得する
-        for (Map.Entry<String, String> tmp_ : _map.entrySet()) {
-            System.out.println(tmp_.getKey() + " : " + tmp_.getValue());
+        for (Map.Entry<String, String> _tmp : _map.entrySet()) {
+            System.out.println(_tmp.getKey() + " : " + _tmp.getValue());
             //=> "HANAKO : はなこ"
             //=> "TARO : 太郎"
         }
