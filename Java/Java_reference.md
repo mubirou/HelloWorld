@@ -1363,7 +1363,7 @@ public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         SortedSet<String> _set = new TreeSet<String>();
         _set.add("TARO");
-        _set.add("SACHIKO");
+        _set.add("HANAKO");
         for (String value_ : _set) {
             System.out.println(value_); //"HANAKO"→"TARO"
         }
