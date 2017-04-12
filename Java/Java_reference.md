@@ -8,8 +8,8 @@
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間（パッケージ）](#名前空間（パッケージ）)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -429,57 +429,57 @@ public class Main { //public は省略可
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
 
-### 概要
 
+### 概要
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
 * 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
-
 ```
-<script>
-    class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
+//Main.java
+public class Main { //メインクラス（publicは省略可）
+    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
+        ClassB _classB = new ClassB();
+        _classB.myMethod();
     }
-    }
+}
 
-    class ClassB extends ClassA { //ClassAを継承
-    }
+class ClassA {
+    public void myMethod() { System.out.println("ClassA.myMethod()"); }
+}
 
-    var _classB = new ClassB();
-    _classB.myMethod();
-</script>
+class ClassB extends ClassA {} //ClassAを継承
 ```
 
 ### 委譲版
-
 ```
-<script>
-    class ClassA {
-    myMethod() {
-        console.log("ClassA.myMethod");
+//Main.java
+public class Main { //メインクラス（publicは省略可）
+    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
+        ClassB _classB = new ClassB();
+        _classB.myMethod();
     }
-    }
+}
 
-    class ClassB {
-    constructor() { //コンストラクタ
-        this.__classA = new ClassA(); //コンストラクタ内でオブジェクトを生成（委譲）
-    }
-    myMethod() {
-        this.__classA.myMethod(); //ClassAのmyMethod()を実行
-    }
-    }
+class ClassA {
+    public void myMethod() { System.out.println("ClassA.myMethod()"); }
+}
 
-    var _classB = new ClassB();
-    _classB.myMethod();
-</script>
+class ClassB { //この内容だけが継承と異なる
+    private ClassA _classA; //フィールドにインスタンスを格納（委譲）
+    public ClassB() { //コンストラクタ
+        _classA = new ClassA(); //フィールドにインスタンスを格納（thisは省略）
+    }
+    public void myMethod() { 
+        _classA.myMethod(); //thisは省略
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月15日  
-更新日：2017年03月19日
+作成日：2016年07月14日  
+更新日：2017年04月12日
 
 
 <a name="変数とスコープ"></a>
