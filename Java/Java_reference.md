@@ -21,9 +21,9 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [for-each 文](#for-each文)
-***
 * [while 文](#while文)
-* [配列（Array）](#配列（Array）)
+***
+* [配列](#配列)
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
 * [連想配列（Map）](#連想配列（Map）)
@@ -1180,7 +1180,7 @@ public class Main { //publicは省略可
                 break;
             case "ICHIRO" : //breakが無いと次のcaseも処理
             case "JIRO" :
-                System.out.println("子"); //←これが出力される
+                System.out.println("子"); //これが出力される
                 break;
             default:
                 System.out.println("家族以外");
@@ -1265,11 +1265,11 @@ public class Main { //publicは省略可
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        int count_ = 0;
+        int _count = 0;
         for (;;) { //①初期化②ループ判定式③更新処理...の全てを省略すると無限ループ
-            count_++;
-            if (count_ > 100) break; //ループを終了
-            System.out.println(count_); //1,2,...,99,100
+            _count++;
+            if (_count > 100) break; //ループを終了
+            System.out.println(_count); //1,2,...,99,100
         }
         System.out.println("for文終了");
     }
@@ -1398,95 +1398,6 @@ public class Main { //publicは省略可
 <a name="while文"></a>
 # <b>while 文</b>
 
-### while文
-* 構文
-```
-while (ループ判定式) {
-    繰り返す処理
-}
-```
-
-* 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int i_ = 0;
-        while (i_ < 10) { //ループ判定式にはboolean型しか使えません
-            System.out.println(i_); //0,1,2,3,4,5,6,7,8,9
-            i_++;
-        }
-        System.out.println(i_); //10（変数はまだ有効）
-    }
-}
-```
-
-◆do...while文
-【構文】
-do {
-    繰り返す処理 ←…ループ判定式がfalseの場合でも最低１回は実行される
-} while(ループ判定式);
-    ※少なくとも一度は {} 内の処理を行ないます。
-
-【例文】
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int i_ = 0;
-        do {
-            System.out.println(i_); //=> 0 ←ループ判定式はfalseだが１回実行される
-            i_++;
-        } while(i_ < 0);
-    }
-}
-
-◆while文とbreak文
-【例文】
-//Main.java
-//1〜100までを出力
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int count_ = 0;
-        while (true) { //ループ判別式をtrueにすると無限ループに!
-            count_++;
-            if (count_ > 100) {
-                break; //←…break文を使ってループを終了
-            }
-             System.out.println(count_); //=> 1,2,....,99,100
-        }
-        System.out.println("while文終了");
-    }
-}
-※「break文」はfor文やwhileループから抜け出て処理を中断するための制御文です。
-
-◆while文とcontinue文
-【例文】
-//Main.java
-    //3の倍数を出力
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int i_ = 1;
-        while (i_ <= 20) {
-            if ((i_ % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                i_++;
-                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
-            }
-            System.out.println(i_); //=> 3,6,9,12,15,18 ←…3の倍数
-            i_++;
-        }
-    }
-}
-※「continue文」はその時点のループ内の処理のみ中断し、ループから脱出せずにループを
-  継続します。
-
-
-
-
-
-
-
-
-
 ### while 文
 * 構文
 ```
@@ -1497,13 +1408,17 @@ while (ループ判定式) {
 
 * 例文
 ```
-<script>
-    var _i = 0;
-    while (_i < 10) { //ループ判定式にはboolean値しか使えない
-        console.log(_i); //0,1,2,3,4,5,6,7,8,9
-        _i++;
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _i = 0;
+        while (_i < 10) { //ループ判定式にはboolean型しか使えません
+            System.out.println(_i); //0,1,2,3,4,5,6,7,8,9
+            _i++;
+        }
+        System.out.println(_i); //10（変数はまだ有効）
     }
-</script>
+}
 ```
 
 ### do...while 文
@@ -1516,54 +1431,108 @@ do {
 
 * 例文
 ```
-<script>
-    var _i = 0;
-    do {
-        console.log(_i); //0 ←ループ判定式はfalseだが１回実行される
-        _i++;
-    } while (_i < 0);
-</script>
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _i = 0;
+        do {
+            System.out.println(_i); //=> 0 ←ループ判定式はfalseだが１回実行される
+            _i++;
+        } while(_i < 0);
+    }
+}
 ```
 
-### while文とbreak文
-* 例文（1〜100までを出力）
+### while 文と break 文
 ```
-<script>
-    var _count = 0;
-    while (true) { //ループ判別式をtrueにすると無限ループに
-        _count++;
-        if (_count > 100) {
-            break; //break文を使ってループを終了（while文の次の行へ）
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _count = 0;
+        while (true) { //ループ判別式をtrueにすると無限ループ
+            _count++;
+            if (_count > 100) {
+                break; //break文を使ってループを終了
+            }
+             System.out.println(_count); //=> 1,2,....,99,100（1〜100までを出力）
         }
-        console.log(_count); //1,2,....,99,100
+        System.out.println("while文終了");
     }
-</script>
+}
 ```
+* break 文は for 文や while ループから抜け出て処理を中断するための制御文
 
 ### while 文と continue 文
-* 例文（3の倍数を出力）
 ```
-<script>
-    var _i = 1;
-    while (_i <= 20) {
-        if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _i = 1;
+        while (_i <= 20) {
+            if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+                _i++;
+                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+            }
+            System.out.println(_i); //=> 3,6,9,12,15,18（3の倍数）
             _i++;
-            continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
         }
-        console.log(_i); //3,6,9,12,15,18 ←3の倍数
-        _i++;
     }
-</script>
+}
 ```
+* continue 文はその時点のループ内の処理のみ中断し、ループから脱出せずにループを継続する
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月26日  
-更新日：2017年03月21日  
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
-<a name="配列（Array）"></a>
-# <b>配列（Array）</b>
+<a name="配列"></a>
+# <b>配列</b>
+* Java では配列の宣言後に要素の数を変更することは不可
+
+### １次元配列の作成方法
+1. int[] array_ = new int[4]; //4つの空の要素（動的型）を持つ配列を作成
+1. String[] array_ = new String[]{"A","B","C","D"};
+1. String[] array_ = {"A","B","C","D"}; //簡単
+
+### 配列の配列(≒2次元配列、ジャグ配列)の場合
+* Java/C++にはC#のような多次元配列がないため「配列の配列」で代用
+* 以下の例文では５行x４列のコインロッカーのような配列を作成
+
+1. new 演算子を使う方法
+```
+String[][] coinlocker_ = new String[5][4]; //←…new データ型[行数][列数]
+coinlocker_[0][0] = "1083";
+coinlocker_[0][1] = "7777";
+coinlocker_[2][1] = "0135";
+coinlocker_[4][3] = "1234";
+
+②配列リテラルを使う方法…
+String[][] coinlocker_ = 
+{{"1083","7777","",""}, //←…0行目
+ {"","","",""},         //←…1行目
+ {"","0135","",""},     //←…2行目
+ {"","","",""},         //←…3行目
+ {"","","","1234"}};    //←…4行目
+System.out.println(coinlocker_[0][0]); //=> "1083"
+System.out.println(coinlocker_[0][1]); //=> "7777"
+System.out.println(coinlocker_[2][1]); //=> "0135"
+System.out.println(coinlocker_[4][3]); //=> "1234"
+
+◆配列の要素の数
+String[] array_ = {"TAKASHI","TOMOKO","TOHRU","SACHIKO"};
+for (int i=0; i<array_.length; i++) { System.out.println(array_[i]); }
+
+◆文字列→配列
+String string_ = "TAKASHI,TOMOKO,TOHRU,SACHIKO"; //「,」区切りの文字列
+String[] array_ = string_.split(","); //「,」区切りで分割して配列化
+
+
+
+
+
+
 
 ### 作成
 * new 演算子を使う方法
@@ -2265,7 +2234,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
         fight() {
             this.__energy -= 20;
             if (this.__energy <= 0) {
-                this.__dieHandler(this); //←"die"イベントの発生（リスナー関数の呼出し）
+                this.__dieHandler(this); //"die"イベントの発生（リスナー関数の呼出し）
             }
         }
     }
