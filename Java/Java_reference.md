@@ -760,9 +760,9 @@ public class Main { //publicは省略可
 }
 class MyClass {
     //○〜○までの値を足した合計を返す
-    public int tashizan(int start_, int end_) {
+    public int tashizan(int _start, int _end) {
         int _result = 0; //ローカル変数
-        for (int i = start_; i <= end_; i++) {
+        for (int i = _start; i <= _end; i++) {
             _result += i;
         }
         return _result;
@@ -2617,36 +2617,47 @@ class LoopExec extends TimerTask {
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### Dateオブジェクトを使う方法
-```
-<script>
-    var _start = new Date().getTime(); //1970年からの経過時間（ミリ秒）
-    for (let i = 0; i < 1000000000; i++) { //10億回繰返す
-        //速度計測したい処理
-    }
-    var _end = new Date().getTime();
-    console.log(_end - _start); //3643（ミリ秒）
-</script>
-```
+### currentTimeMillisメソッドを使う方法
+* ミリ秒で表される現在の時間を返す
+* 戻り値の時間単位はミリ秒だが、値の粒度（りゅうど）は基本となるＯＳによって異なり、単位がより大きくなる場合がある（多くのＯＳでは、時間を10ミリ秒の単位で計測する）
 
-### console.time() を使う方法
-* 処理時間の計測に利用可能（推奨）
-* ページ毎に10000個のタイマーが使用可能
-* 各タイマーにはユニーク（唯一）な識別子を付けて使用。使用後は同じ識別子を引数として console.timeEnd() を実行することで経過時間が出力
-    ```
-    <script>
-        console.time("timerA");
-        for (let i = 0; i < 1000000000; i++) { //10億回繰返す
+* 例文
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        long _start = System.currentTimeMillis(); //1970年1月1日からのミリ秒
+        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合…
             //速度計測したい処理
         }
-        console.timeEnd("timerA"); //"timerA: 3628.869ms"
-    </script>
-    ```
+        long _end = System.currentTimeMillis();
+        System.out.println((_end - _start)  + "ミリ秒"); //=> 3252ミリ秒
+    }
+}
+```
+
+### nanoTimeメソッドを使う方法（推奨）
+* 利用可能でもっとも正確なシステムタイマーの現在の値をナノ秒単位で返す
+* 返される値は、固定された任意の時間からの経過時間 (ナノ秒) 
+
+* 例文
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        long _start = System.nanoTime();
+        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合…
+            //速度計測したい処理
+        }
+        long _end = System.nanoTime();
+        System.out.println((_end - _start) / 1000000f + "ミリ秒"); //=> 3253.8875ミリ秒
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成日：2016年09月30日  
-更新日：2017年03月22日
-
+作成日：2016年07月20日  
+更新日：2017年04月12日
 
 
 <a name="外部テキストの読み込み"></a>
