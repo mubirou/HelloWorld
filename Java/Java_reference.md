@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>Java 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -2589,6 +2587,7 @@ public class Main { //publicは省略可
 # <b>タイマー</b>
 
 ### java.util.Timer を使う方法
+* 他にも javax.swing.Timer もあり
 ```
 //Main.java
 import java.util.Timer; //Timerに必要
@@ -2652,40 +2651,53 @@ class LoopExec extends TimerTask {
 
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
+* [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はない
 
-### テキストファイルの用意（準備）
-* [Web サーバ](http://bit.ly/2mbzR4D)を稼働し、ルートディレクトリ等に sample.txt （UTF-8）として保存
+### テキストファイルの用意（sample.txt/UTF-8として保存）
 ```
 あいうえお
 かきくけこ
 さしすせそ
 ```
 
-### テキストの読み込み
+### 例文
 ```
-<script>
-    //①XMLHttpRequestオブジェクトの生成
-    var _request = new XMLHttpRequest(); //Webサーバ上で動作
+//Main.java
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-    //②イベントハンドラの定義
-    _request.onload = function() {
-        console.log(this.responseText); //⑤読み込んだテキストの表示
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        //FileReaderクラスを扱う場合、例外処理が必要
+        try {
+            //①Fileクラスのオブジェクトの生成
+            File file_ = new File("sample.txt"); #同じ階層に○.txtがある場合…
+
+            //②FileReaderクラスのオブジェクトの生成
+            FileReader filereader_ = new FileReader(file_);
+            
+            //③１文字ずつ読み込んでいきます
+            int int_;
+            while((int_ = filereader_.read()) != -1){
+                //④文字コードを文字に変換
+                System.out.print((char)int_); //=>"あ"=>"い"=>"う"=>…
+            }
+
+            //⑤ファイルを閉じる
+            filereader_.close();
+
+        } catch(FileNotFoundException e) {
+            System.out.println(e);
+        } catch(IOException e) {
+            System.out.println(e);
+        }
     }
-
-    //③ヘッダの設定
-    _request.open("GET", "sample.txt");
-
-    //④リクエストの送信
-    _request.send(null);
-</script>
+}
 ```
-
-### テキストファイルの解析
-* 読み込んだ XMLHttpRequest.responseText の解析は次の関数/メソッドを利用する
-    * CSV形式の場合 : convertCSVtoArray(XMLHttpRequest.responseText)
-    * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月30日  
-更新日：2017年03月22日
+作成日：2016年07月20日  
+更新日：2017年04月12日
