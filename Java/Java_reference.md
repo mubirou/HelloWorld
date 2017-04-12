@@ -872,51 +872,52 @@ class MyClass {
 
 <a name="匿名関数（ラムダ式）"></a>
 # <b>匿名関数（ラムダ式）</b>
+* ラムダ式は Java SE 8（1.8.0）から導入
 
 ```
-<script>
-    class Hello {
-        //コンストラクタ
-        constructor() {
-            this.__american = function(_name) { //匿名関数①
-                console.log(_name + "," + "Hello!");
-            }
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
 
-            this.__japanese = function(_name) { //匿名関数②
-                console.log(_name + "、" + "こんにちは!");
-            }
+        //無名関数①（オリジナル）
+        IHello hello_ = (String name_) -> { //データ型は省略可能
+            return name_ + "," + "Hello";
+        }; //「;」が必須
 
-            this.__chinese = function(_name) { //匿名関数③
-                console.log(_name + "," + "你好!");
-            }
+        //無名関数②（入替用）
+        IHello japaneseHello_ = (String name_) -> { //データ型は省略可能
+            return name_ + "," + "こんにちは";
+        }; //「;」が必須
 
-            //パブリック変数に匿名関数を代入（前方宣言が必要）
-            this.hello = this.__american;
-        }
+        //無名関数③（入替用）
+        IHello chineseHello_ = (String name_) -> { //データ型は省略可能
+            return name_ + "," + "你好";
+        }; //「;」が必須
 
-        //匿名関数の入替え
-        change(_language) {
-            switch (_language) {
-                case "american": this.hello = this.__american; break;
-                case "japanese": this.hello = this.__japanese; break;
-                case "chinese": this.hello = this.__chinese; break;
-            }
-        }
+        //無名関数①の実行
+        System.out.println(hello_.exec("TAKASHI")); //=> "TAKASHI,Hello"
+
+        //無名関数②に入替えてから実行
+        hello_ = japaneseHello_;
+        System.out.println(hello_.exec("隆")); //=> "隆,こんにちは"
+
+        //無名関数③に入替えてから実行
+        hello_ = chineseHello_;
+        System.out.println(hello_.exec("隆")); //=> "隆,你好"
+        
     }
+}
 
-    var _hello = new Hello();
-    _hello.hello("TARO"); //"TARO,Hello!"
-    _hello.change("japanese");
-    _hello.hello("たかし"); //"たかし、こんにちは!"
-    _hello.change("chinese");
-    _hello.hello("たかし"); //"たかし, 你好!"
-</script>
+//無名関数用インターフェース
+interface IHello {
+    public String exec(String name_); //抽象メソッド（１つだけ）
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月21日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="アロー関数"></a>
