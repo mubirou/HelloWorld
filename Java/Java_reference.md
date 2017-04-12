@@ -9,9 +9,9 @@
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間（パッケージ）](#名前空間（パッケージ）)
 * [継承と委譲](#継承と委譲)
-***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -51,7 +51,7 @@
 1. 論理型（boolean 型）
 1. 整数型（byte 型 : -128〜127）
 1. 整数型（short 型 : -32768〜32767）
-1. 整数型（int 型 : -2147483648〜2147483647）
+1. 整数型（int 型 : -2147493649〜2147493647）
 1. 整数型（long 型 : -9223372036854775808〜9223372036854775807）
 1. 浮動小数点数型（float 型 : 小数点第7位までの値）
 1. 浮動小数点数型（double 型 : 小数点第15位までの値）
@@ -83,9 +83,9 @@ public class Main { //publicは省略可
         short _short = 32767;
         System.out.println(_short); //32767
 
-        //④整数型（int型 -2147483648〜2147483647）
-        int _int = 2147483647; //プリミティブ型
-        System.out.println(_int); //2147483647
+        //④整数型（int型 -2147493649〜2147493647）
+        int _int = 2147493647; //プリミティブ型
+        System.out.println(_int); //2147493647
         Integer _int2 = new Integer(100); //オブジェクト型
         System.out.println(_int2.getClass()); //class java.lang.Integer
 
@@ -229,9 +229,9 @@ class MyClass {} //⑪クラスの定義
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
             //整数の場合
-            long _long = 2147483648L; //intは-2147483648〜2147483647
+            long _long = 2147493649L; //intは-2147493649〜2147493647
             int _int = (int)_long; //long型→int型へ変換
-            System.out.println(_int); //=> -2147483648 ←元のデータが失われる
+            System.out.println(_int); //=> -2147493649 ←元のデータが失われる
 
             //浮動小数点数の場合
             double _double = 3.141592653589793;
@@ -246,9 +246,9 @@ class MyClass {} //⑪クラスの定義
     //Main.java
     public class Main { //publicは省略可
         public static void main(String[] args) { //決め打ち
-            int _int = 2147483647; //intは-2147483648〜2147483647
+            int _int = 2147493647; //intは-2147493649〜2147493647
             long _long = (long)_int + 1; //int型→long型へ変換
-            System.out.println(_long); //=> 2147483648
+            System.out.println(_long); //=> 2147493649
         }
     }
     ```
@@ -583,61 +583,50 @@ class MyClass {
 # <b>アクセサ （getter / setter）</b>
 
 ### 概要
-ECMAScript 6 は、TypeScript と違い private 変数を定義することができません。そこでパブリック変数を、[Python](https://ja.wikipedia.org/wiki/Python) 風に __xxx と命名してプライベート変数扱いにします。実際は単なるパブリック変数ですので外部からアクセスできてしまいますが、必ずアクセサを使ってアクセスするようにします。
+オブジェクト指向プログラミングの「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数はprivate変数とし、外部からはメソッドを使ってアクセスします。Javaには他の多くの言語にある専用のアクセサが用意されていません。そこで、get○○()、set○○(型,引数)といった記述をして同じ機能を実現します。
 
-### 読書き可能なプロパティ
+### 読書き可能なメンバ変数
 ```
-<script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(_age) {
-            this.__age = _age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(newValue) {
-            this.__age = newValue;
-        }
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        Nishimura _nishimura = new Nishimura();
+        System.out.println(_nishimura.getAge()); //=> 49
+        _nishimura.setAge(50); //値が変更できる
+        System.out.println(_nishimura.getAge()); //=> 50
     }
+}
 
-    var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //変更が可能
-    console.log(_nishimura.age); //50
-</script>
+class Nishimura {
+    private int age_ = 49; //private宣言
+    public int getAge() { return age_; } //thisは省略 ←age_のgetter
+    public void setAge(int age_) { this.age_ = age_; } //←age_のsetter
+}
 ```
 
-### 読取り専用のプロパティ
+### 読取り専用のメンバ変数
 ```
-<script>
-    class Nishimura {
-        //コンストラクタ
-        constructor(_age) {
-            this.__age = _age;
-        }
-        //アクセサ（getter/setter）
-        get age() {
-            return this.__age;
-        }
-        set age(_newValue) {
-            throw new Error("値の変更はできません");
-        }
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        Nishimura _nishimura = new Nishimura();
+        System.out.println(_nishimura.getAge()); //49
+        //_nishimura.age_ = 50; //エラー（値が変更できない）
     }
+}
 
-    var _nishimura = new Nishimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //Error: 値の変更はできません
-</script>
+class Nishimura {
+    private int age_ = 49; //private宣言
+    public int getAge() { return age_; } //thisは省略 ←getterのみ用意
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月16日  
-更新日：2017年03月21日
+作成日：2016年07月14日  
+更新日：2017年04月12日
 
-
+ssssssssssssssssssssssssssssssssssssssssssssss
 <a name="演算子"></a>
 # <b>演算子</b>
 
@@ -2439,7 +2428,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
     }
 
     console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
-    //909595 908581 908332 909483 907921 908880 909161 909607 909295 910453 908692
+    //909595 908581 908332 909493 907921 908880 909161 909607 909295 910453 908692
 </script>
 ```
 
