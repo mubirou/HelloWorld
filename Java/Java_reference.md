@@ -22,8 +22,8 @@
 * [for 文](#for文)
 * [for-each 文](#for-each文)
 * [while 文](#while文)
-***
 * [配列](#配列)
+***
 * [配列（Set）](#配列（Set）)
 * [連想配列（Object）](#連想配列（Object）)
 * [連想配列（Map）](#連想配列（Map）)
@@ -1492,245 +1492,74 @@ public class Main { //publicは省略可
 * Java では配列の宣言後に要素の数を変更することは不可
 
 ### １次元配列の作成方法
-1. int[] array_ = new int[4]; //4つの空の要素（動的型）を持つ配列を作成
-1. String[] array_ = new String[]{"A","B","C","D"};
-1. String[] array_ = {"A","B","C","D"}; //簡単
+1. int[] _array = new int[4]; //4つの空の要素（動的型）を持つ配列を作成
+1. String[] _array = new String[]{"A","B","C","D"};
+1. String[] _array = {"A","B","C","D"}; //簡単
 
 ### 配列の配列(≒2次元配列、ジャグ配列)の場合
 * Java/C++にはC#のような多次元配列がないため「配列の配列」で代用
 * 以下の例文では５行x４列のコインロッカーのような配列を作成
 
 1. new 演算子を使う方法
-```
-String[][] coinlocker_ = new String[5][4]; //←…new データ型[行数][列数]
-coinlocker_[0][0] = "1083";
-coinlocker_[0][1] = "7777";
-coinlocker_[2][1] = "0135";
-coinlocker_[4][3] = "1234";
-
-②配列リテラルを使う方法…
-String[][] coinlocker_ = 
-{{"1083","7777","",""}, //←…0行目
- {"","","",""},         //←…1行目
- {"","0135","",""},     //←…2行目
- {"","","",""},         //←…3行目
- {"","","","1234"}};    //←…4行目
-System.out.println(coinlocker_[0][0]); //=> "1083"
-System.out.println(coinlocker_[0][1]); //=> "7777"
-System.out.println(coinlocker_[2][1]); //=> "0135"
-System.out.println(coinlocker_[4][3]); //=> "1234"
-
-◆配列の要素の数
-String[] array_ = {"TAKASHI","TOMOKO","TOHRU","SACHIKO"};
-for (int i=0; i<array_.length; i++) { System.out.println(array_[i]); }
-
-◆文字列→配列
-String string_ = "TAKASHI,TOMOKO,TOHRU,SACHIKO"; //「,」区切りの文字列
-String[] array_ = string_.split(","); //「,」区切りで分割して配列化
-
-
-
-
-
-
-
-### 作成
-* new 演算子を使う方法
     ```
-    var _array = new Array(); //空の配列を作成
-    var _array = new Array(4); //4つの空の要素（undefined）を持つ配列を作成
-    var _array = new Array("A", "I");
-    var _array = new Array(["A","あ"], ["I","い"]); //配列のネスト
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            String[][] _coinlocker = new String[5][4]; //new データ型[行数][列数]
+            _coinlocker[0][0] = "1083";
+            _coinlocker[0][1] = "7777";
+            _coinlocker[2][1] = "0135";
+            _coinlocker[4][3] = "1234";
+        }
+    }
     ```
 
-* 配列リテラルを使う方法
+1. 配列リテラルを使う方法
     ```
-    var _array = []; //空の配列を作成
-    var _array = ["A", "I"];
-    var _array = [["A","あ"], ["I","い"]]; //配列のネスト
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            String[][] _coinlocker = 
+            {{"1083","7777","",""}, //0行目
+            {"","","",""},         //1行目
+            {"","0135","",""},     //2行目
+            {"","","",""},         //3行目
+            {"","","","1234"}};    //4行目
+            System.out.println(_coinlocker[0][0]); //=> "1083"
+            System.out.println(_coinlocker[0][1]); //=> "7777"
+            System.out.println(_coinlocker[2][1]); //=> "0135"
+            System.out.println(_coinlocker[4][3]); //=> "1234"
+        }
+    }
     ```
 
-### 要素の数
-```
-<script>
-    var _array = ["00", "01", "02", "03"];
-    console.log(_array.length); //4
-</script>
-```
-
-### 追加（最後）
-```
-<script>
-    var _array = ["ICHIRO", "JIRO"];
-    _array.push("TARO"); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //["ICHIRO", "JIRO", "TARO"]
-</script>
-```
-
-### 追加（先頭）
-```
-<script>
-    var _array = ["ICHIRO", "JIRO"];
-    _array.unshift("TARO"); //カンマ（,）を使って複数同時に追加可能
-    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
-</script>
-```
-
-### 更新（任意の値）
-```
-<script>
-    var _array = ["TAKASHI", "ICHIRO", "JIRO"];
-    _array[0] = "TARO"; //0番目を変更する場合
-    console.log(_array); //["TARO", "ICHIRO", "JIRO"]
-</script>
-```
-
-### 更新（null 値）
-```
-<script>
-    var _array = ["TARO", "ICHIRO", "JIRO"];
-    _array[0] = null;
-    console.log(_array); //[null, "ICHIRO", "JIRO"]
-</script>
-```
-
-### 削除（最後）
-```
-<script>
-    var _array = ["ICHIRO", "JIRO", "TARO"];
-    console.log(_array.pop()); //"TARO"（削除した要素を返す）
-    console.log(_array); //["ICHIRO", "JIRO"]
-</script>
-```
-
-### 削除（最初）
-```
-<script>
-    var _array = ["TARO", "ICHIRO", "JIRO"];
-    console.log(_array.shift()); //"TARO"（削除した要素を返す）
-    console.log(_array); //["ICHIRO", "JIRO"]
-</script>
-```
-
-### 削除（○番目から□個）
-```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.splice(3, 2)); //["03", "04"]
-    console.log(_array) //["00", "01", "02", "05"]
-</script>
-```
-
-### 削除（○番目から全て）
-```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.splice(3)); //["03", "04", "05"]
-    console.log(_array) //["00", "01", "02"]
-</script>
-```
-
-### 抽出（○番目から□番目）
-```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.slice(2, 4)); //["02", "03"]（4番目は含まず）
-    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
-</script>
-```
-
-### 抽出（○番目から全て）
-```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.slice(2)); //["02", "03", "04", "05"]
-    console.log(_array) //["00", "01", "02", "03", "04", "05"]（元配列に変化なし）
-</script>
-```
-
-### 検索(前から）
-* 第2引数番目から、後ろに向かって検索（最初に見つかったインデックス番号を返す）
-```
-<script>
-    var _array = ["A", "B", "C", "D", "E", "F", "D"];
-    console.log(_array.indexOf("D", 0)); //3（見つからない場合「-1」を返す）
-</script>
-```
-
-### 検索（後ろから）
-* 第2引数番目から、前に向かって検索（最初に見つかったインデックス番号を返す）
-```
-<script>
-    var _array = ["A", "B", "C", "D", "E", "F", "D"];
-    console.log(_array.lastIndexOf("D")); 
-    //6（第2引数を省略すると _array.length と同じ）
-</script>
-```
-
-### 並べ替え（反転）
-```
-<script>
-    var _array = ["00", "01", "02", "03", "04", "05"];
-    console.log(_array.reverse()); //["05", "04", "03", "02", "01", "00"]
-    console.log(_array) //["05", "04", "03", "02", "01", "00"]（元配列も変更）
-</script>
-```
-
-### 並べ替え（ソート）
-```
-<script>
-    var _array = ["C", "02", "A", "01", "03", "B"];
-    console.log(_array.sort()); //["01", "02", "03", "A", "B", "C"]
-    console.log(_array) //["01", "02", "03", "A", "B", "C"]（元配列も変更）
-</script>
-```
-
-### 結合
-```
-<script>
-    var _array1 = ["A", "B", "C"];
-    var _array2 = ["D", "E", "F"];
-    var _array3 = _array1.concat(_array2);
-    console.log(_array3) //["A", "B", "C", "D", "E", "F"]
-</script>
-```
-
-### 複製
-```
-<script>
-    var _original = ["A", "B", "C"];
-    var _copy = _original.concat(); //複製
-
-    //実験（参照コピーではなく複製されているか否か）
-    _original[0] = "あ";
-    console.log(_original[0], _copy[0]); //"あ" "A"（参照コピーではない）
-</script>
-```
+### 配列の要素の数
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            String[] _array = {"TAKASHI","TOMOKO","TOHRU","SACHIKO"};
+            for (int i=0; i<_array.length; i++) { 
+                System.out.println(_array[i]);
+            }
+        }
+    }
 
 ### 文字列→配列
-```
-<script>
-    var _string = "A,B,C,D,E,F";
-    var _array = _string.split(","); //カンマ区切りで配列化
-    console.log(_array); //["A", "B", "C", "D", "E", "F"]
-</script>
-```
-
-### 全要素を取り出す
-```
-<script>
-    var _array = ["A", "B", "C", "D", "E", "F"];
-    _array.forEach(function(arg) {
-        console.log(arg); //"A"→"B"→"C"→"D"→"E"→"F"
-    });
-</script>
-```
-* for文、for-each文を使う方法もあり（参照「[for-each 文](#for-each文)」）
+    ```
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            String string_ = "A,B,C,D"; //「,」区切りの文字列
+            String[] _array = string_.split(","); //「,」区切りで分割して配列化
+        }
+    }
+    ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月27日  
-更新日：2017年03月21日
+作成日：2016年07月16日  
+更新日：2017年04月12日
 
 
 <a name="配列（Set）"></a>
