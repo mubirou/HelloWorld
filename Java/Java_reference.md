@@ -14,9 +14,9 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
-***
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
-* [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
+* [静的メンバ（static）](#静的メンバ（static）)
+***
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
@@ -920,100 +920,65 @@ interface IHello {
 更新日：2017年04月12日
 
 
-<a name="アロー関数"></a>
-# <b>アロー関数</b>
-* [匿名関数](#匿名関数)をラムダ式に置き換えたバージョン
+<a name="静的メンバ（static）"></a>
+# <b>静的メンバ（static）</b>
+* 静的メンバはクラスをインスタンス化せずにアクセスが可能
+
+### 基本構文
 ```
-<script>
-    class Hello {
-        //コンストラクタ
-        constructor() {
-            this.__american = (_name) => { //匿名関数①
-                console.log(_name + "," + "Hello!");
-            }
-
-            this.__japanese = (_name) => { //匿名関数②
-                console.log(_name + "、" + "こんにちは!");
-            }
-
-            this.__chinese = (_name) => { //匿名関数③
-                console.log(_name + "," + "你好!");
-            }
-
-            //パブリック変数に匿名関数を代入（前方宣言が必要）
-            this.hello = this.__american;
-        }
-        //匿名関数の入替え
-        change(_language) {
-            switch (_language) {
-                case "american": this.hello = this.__american; break; 
-                case "japanese": this.hello = this.__japanese; break;
-                case "chinese": this.hello = this.__chinese; break;
-            }
-        }
+class MyMath {
+    public static final データ型 変数名 = 値; //←…静的定数（＝クラス定数）
+    public static データ型 変数名 = 値; //←…静的変数（＝クラス変数、static変数）
+    //↓静的メソッド（＝クラスメソッド、staticメソッド）
+    public static 戻り値の型 メソッド名([データ型① 引数①, ...]) {
+            処理 [return 戻り値;]
     }
+    ……
+```
 
-    var _hello = new Hello();
-    _hello.hello("TARO"); //"TARO,Hello!"
-    _hello.change("japanese");
-    _hello.hello("たかし"); //"たかし、こんにちは!"
-    _hello.change("chinese");
-    _hello.hello("たかし"); //"たかし, 你好!"
-</script>
+### 例文（Main.java）
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+
+        //静的定数（＝クラス定数）
+        System.out.println(MyMath.PI); //=> 3.14159
+
+        //静的変数（＝クラス変数、static変数）
+        System.out.println(MyMath.lastUpdate); //=> "2016-07-15"
+        MyMath.lastUpdate = "2017-04-12"; //変更可能
+        System.out.println(MyMath.lastUpdate); //=> "2017-04-12"
+
+        //静的メソッドの実行
+        System.out.println(MyMath.pow(2,0)); //1（2の0乗）
+        System.out.println(MyMath.pow(2,1)); //2（2の1乗）
+        System.out.println(MyMath.pow(2,8)); //256（2の8乗）
+
+    }
+}
+
+class MyMath {
+    //静的定数（＝クラス定数）
+    public static final float PI = 3.14159F;
+
+    //静的変数（＝クラス変数、static変数）
+    public static String lastUpdate = "2016-07-15";
+
+    //静的メソッド（＝クラスメソッド、staticメソッド）
+    public static long pow(int arg1, int arg2) {
+        if (arg2 == 0) { return 1; } //0乗対策
+        long _result = arg1;
+        for (int i=1; i<arg2; i++) { _result = _result * arg1; }
+        return _result;
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月21日  
-更新日：2017年03月21日
-
-
-<a name="クラス定数･変数･メソッド"></a>
-# <b>クラス定数･変数･メソッド</b>
-* クラス定数･クラス変数･クラスメソッドは、クラスをインスタンス化せずにアクセスが可能
-```
-<script>
-    class MyMath {
-        //①クラス定数（静的定数）の定義（静的定数）
-        static get PI() {
-            return 3.141592653589793;
-        }
-        static set PI(newValue) {
-            throw new Error("値の変更はできません");
-        }
-
-        //③静的メソッド（静的メソッド）の定義
-        static pow(arg1, arg2) {
-            if (arg2 == 0) { return 1; } //0乗対策
-            var _result = arg1;
-            for (let _i = 1; _i < arg2; _i++) {
-                _result = _result * arg1;
-            }
-            return _result;
-        }
-    }
-
-    //①クラス定数の参照
-    console.log(MyMath.PI); //3.141592653589793
-    //MyMath.PI = 3.14; //Error: 値の変更はできません
-
-    //②クラス変数の参照および変更
-    console.log(MyMath.lastUpdate); //undefined
-    MyMath.lastUpdate = "2017-03-21"; //②クラス変数（静的変数）の定義
-    console.log(MyMath.lastUpdate); //"2017-03-21"
-    MyMath.lastUpdate = "2017-03-22"; //変更可能
-    console.log(MyMath.lastUpdate); //"2017-03-22"
-
-    //③静的メソッドの実行
-    console.log(MyMath.pow(2, 0)); //1
-    console.log(MyMath.pow(2, 8)); //256
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
-作成日：2016年09月21日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="if文"></a>
