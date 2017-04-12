@@ -1302,55 +1302,97 @@ public class Main { //publicは省略可
 
 ### 基本構文
 ```
-for (変数名 in 配列等) {
-    //配列の場合はインデックス番号、連想配列の場合はプロパティ名
-    console.log(変数名);
-
-    //配列の場合は要素の値、連想配列の場合はプロパティ値
-    console.log(配列等[変数名]);
+for (データ型 変数名 : 配列等) {
+    System.out.println(変数名);
 }
 ```
 
 ### 配列（1次元）の場合
 ```
-<script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1→2→3
-        console.log(_array[_indexNum]); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        String[] _array = {"A","B","C","D"}; 
+        for (String value : _array) {
+            System.out.println(value); //"A"→"B"→"C"→"D"
+        }
     }
-</script>
+}
 ```
 
-### 配列（2次元）の場合
+### 配列の配列（≒2次元配列、ジャグ配列）の場合
 ```
-<script>
-    var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
-    ];
-    for (let _indexNum in _array) {
-        console.log(_indexNum); //0→1
-        console.log(_array[_indexNum]); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        String[][] _array = {
+            {"x0y0","x1y0","x2y0"}, //0行目
+            {"x0y1","x1y1","x2y1"}  //1行目
+        };
+        for (String[] the_array : _array) {
+            for (String value : the_array) {
+                System.out.println(value); 
+                //=> "x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
+            }
+        }
     }
-</script>
+}
 ```
 
-### 連想配列（Object＝オブジェクトリテラル）の場合
+### リスト（LinkedList）の場合
 ```
-<script>
-    var _object = { name: "Takashi Nishimura", age: 49 };
-    for (let _propName in _object) {
-        console.log(_propName); //name→age
-        console.log(_object[_propName]); //"Takashi Nishimura" → 49
+//Main.java
+import java.util.*; //LinkedListに必要
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        LinkedList<String> _list = new LinkedList<String>();
+        _list.add("TOHRU");
+        _list.add("SACHIKO");
+        for (String value_ : _list) {
+            System.out.println(value_); //=> "TOHRU" => "SACHIKO"
+        }
     }
-</script>
+}
+```
+
+### セット（TreeSet）の場合
+```
+//Main.java
+import java.util.*; //TreeSetに必要
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        SortedSet<String> _set = new TreeSet<String>();
+        _set.add("TARO");
+        _set.add("SACHIKO");
+        for (String value_ : _set) {
+            System.out.println(value_); //"HANAKO"→"TARO"
+        }
+    }
+}
+```
+
+### マップ（HashMap）の場合
+```
+//Main.java
+import java.util.*; //HashMapに必要
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        Map<String,String> _map = new HashMap<String,String>();
+        _map.put("A","あ");
+        _map.put("I", "い");
+        for (Map.Entry<String, String> tmp_ : _map.entrySet()) {
+            System.out.println(tmp_.getKey() + " : " + tmp_.getValue()); 
+            //=> I : い
+            //=> A : あ
+        }
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月26日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="while文"></a>
