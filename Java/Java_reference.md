@@ -1565,7 +1565,7 @@ public class Main { //publicは省略可
 
 <a name="リスト（LinkedList）"></a>
 # <b>リスト（LinkedList）</b>
-* リストには LinkedList のほかに ArrayList もあり（後者の方が低速）
+リストには LinkedList のほかに ArrayList もあり（後者の方が低速）
 
 ### 作成
 * 構文
