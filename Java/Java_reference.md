@@ -28,8 +28,8 @@
 * [リスト（LinkedList）](#リスト（LinkedList）)
 * [セット（TreeSet）](#セット（TreeSet）)
 * [マップ（HashMap）](#マップ（HashMap）)
-***
 * [this](#this)
+***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
@@ -1877,91 +1877,48 @@ System.out.println(_map.containsValue(い")); //true（ 任意の値があるか
 <a name="this"></a>
 # <b>this</b>
 
-### トップレベルの this
+### thisが必要な場合
+1. 「引数」と「インスタンス変数」が同じ場合
+1. 「ローカル変数」と「メンバ変数」が同じ場合
+* thisは、thisを記述したメソッドを所有するクラス（オブジェクト）を参照する
+
+### 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        document.write(this); //[object Window]（＝window／省略可能）
-    </script>
-</head>
-</html>
-```
-* \<script src="xxx.js">\</script> として外部の xxx.js を読み込んだ場合も同様
+//Main.java
+public class Main { //public は省略可
+    public static void main(String[] args) { //決め打ち(自動的に実行)
+        Robot _robot = new Robot(500);
+        _robot.move();
+        System.out.println(_robot.getX()); //510
+        //System.out.println(this); //エラー（staticメソッド内では参照できず）
+    }
+}
 
-### クラス内の this
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                document.write(this); //[object Object]（MyClassのインスタンス）
-                this.__hoge = "擬似プライベート変数"; //thisは省略不可
-            }
-            get hoge() { //アクセサ（getter）
-                return this.__hoge; //thisは省略不可
-            }
-        }
-        var _myClass = new MyClass();
-        console.log(_myClass.hoge); //"擬似プライベート変数"
-    </script>
-</head>
-</html>
-```
-
-* クラス内では this / var / let / const の何れかを指定する必要があり省略は不可
-
-### イベントハンドラメソッド内の this
-* 概要  
-独自クラスを作成し、JavaScript 標準のイベント（mousedown 等）のイベントリスナーを記述した場合、リスナー関数内で自分自身（＝クラス）を参照したい場合がよくあります。しかし、this はイベントリスナーの対象となるオブジェクトを参照します。そこでワンクション置くことでクラスを参照できるようにしたのが以下のサンプルです。
-
-* 例文
-```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        class MyClass {
-            constructor() {
-                this.__image = document.getElementById("image");
-
-                //イベントハンドラメソッド内でthis==Canvasオブジェクトとする為
-                this.__mousedown_image = (_e) => { 
-                    this.__mousedown_im_agemethod(_e);
-                }
-
-                //Image用イベントハンドラの定義
-                this.__image.addEventListener("mousedown", this.__mousedown_image, false);
-            }
-
-            //MyClass.__mousedown_image（アロー関数）からの呼出し
-            __mousedown_im_agemethod(_mouseEvent) {
-                console.log(this); //MyClass
-            }
-        }
-        addEventListener("load", load_window, false);
-        function load_window() {
-            new MyClass();
-        }
-    </script>
-</head>
-
-<body>
-    <img id="image" src="sample.png">
-</body>
-</html>
+//カスタムクラス
+class Robot {
+    private int _x; //インスタンス変数（thisは不要）
+    
+    public Robot(int _x) { //引数
+        this._x = _x; //①thisが無いと意味合いがことなる
+        System.out.println(this); //Robot@6bc7c054（このメソッドが実行されたオブジェクト）
+    }
+    public void move() {
+        int _x; //ローカル変数
+        _x = this._x + 10; //②thisが無いとエラー
+        if (_x >= 1920) _x = 0;
+        this._x = _x; //②thisが無いと意味合いがことなる
+        System.out.println(this); //Robot@6bc7c054（このメソッドが実行されたオブジェクト）
+    }
+    public int getX() {
+        return _x; //thisを付けてもよい（通常は省略）
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月28日  
-更新日：2017年03月22日
+作成日：2016年07月17日  
+更新日：2017年04月12日
 
 
 <a name="文字列の操作"></a>
