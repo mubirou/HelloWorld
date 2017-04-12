@@ -1538,7 +1538,7 @@ public class Main { //publicは省略可
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        String[] _array = {"TAKASHI","TOMOKO","TOHRU","SACHIKO"};
+        String[] _array = {"A","B","C","D"};
         for (int i=0; i<_array.length; i++) { 
             System.out.println(_array[i]);
         }
