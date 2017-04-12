@@ -390,12 +390,12 @@ class SubClassB extends SuperClass {
 //MyClass.java
 package jp.xxx;
 public class MyClass {
-    private float version_ = 0.9F;
+    private float _version = 0.9F;
     public MyClass() { //コンストラクタ
         System.out.println("MyClassが生成されました");
     }
     public float getVersion() {
-        return version_;
+        return _version;
     } 
 }
 ```
@@ -412,11 +412,10 @@ public class MyClass {
 ```
 //Main.java
 import jp.xxx.MyClass;
-//import jp.xxx.*; //...でも可能
 public class Main { //public は省略可
     public static void main(String[] args) { //決め打ち(自動的に実行)
-        MyClass MyClass_ = new MyClass(); //=> "MyClassが生成されました"
-        System.out.println(MyClass_.getVersion()); //=> 0.9
+        MyClass _MyClass = new MyClass(); //=> "MyClassが生成されました"
+        System.out.println(_MyClass.getVersion()); //=> 0.9
     }
 }
 ```
