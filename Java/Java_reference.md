@@ -17,8 +17,8 @@
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
-***
 * [三項演算子](#三項演算子)
+***
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [for...in 文](#for...in文)
@@ -987,7 +987,7 @@ class MyMath {
 # <b>if 文</b>
 
 ### 基本例文
-* trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
+* true と評価される可能性が高い順に並べると if 文を早く抜け出せる可能性が高い
 ```
 //Main.java
 public class Main { //publicは省略可
@@ -1016,7 +1016,7 @@ public class Main { //publicは省略可
     }
     ```
 
-1. ifのネストを使う方法
+1. if のネストを使う方法
     ```
     if (条件式①) {
         if (条件②) {
@@ -1039,7 +1039,7 @@ public class Main { //publicは省略可
     }
     ```
 
-1. ifのネストを使う方法
+1. if のネストを使う方法
     ```
     if (条件式①) {
         処理A ←条件式①がtrueの場合に実行
@@ -1051,7 +1051,7 @@ public class Main { //publicは省略可
     ```
 
 ### 排他的論理和（XOR）
-1. ^演算子を使う方法
+1. ^ 演算子を使う方法
     ```
     //Main.java
     public class Main { //publicは省略可
@@ -1066,7 +1066,7 @@ public class Main { //publicは省略可
     }
     ```
 
-1. ^演算子を使わない場合
+1. ^ 演算子を使わない場合
     ```
     //Main.java
     public class Main { //publicは省略可
@@ -1095,49 +1095,47 @@ public class Main { //publicは省略可
 ```
 データ型 変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
 ```
+
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        var _age = 49;
-        var _result = (_age < 60) ? "現役" : "退職";
-        console.log(_result); //"現役"
-    </script>
-</head>
-</html>
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _age = 48;
+        String _result = (_age < 60) ? "現役" : "退職";
+        System.out.println(_result); //"現役"
+    }
+}
 ```
 
 ### 比較式が複数の場合
 * 構文
 ```
-変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
-変数名 = (比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
-変数名 = (①②の全てがfalseの場合の返り値);
+データ型 変数名 = 
+(比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
+(比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
+(①②の全てがfalseの場合の返り値);
 ```
+
 * 例文
 ```
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <script>
-        var _age = 49;
-        var _result = (_age < 20) ? "未成年" :
-        _result = (_age < 60) ? "現役" :
-        _result = "退職";
-        console.log(_result); //"現役"
-    </script>
-</head>
-</html>
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int _age = 48;
+        String _result = 
+        (_age < 20) ? "未成年":
+        (_age < 60) ? "現役":
+        "退職";
+        System.out.println(_result); //"現役"
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月21日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
 <a name="switch文"></a>
