@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_alinux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_amac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_awin.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
