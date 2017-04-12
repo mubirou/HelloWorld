@@ -489,10 +489,10 @@ class ClassB { //この内容だけが継承と異なる
 1. メンバ変数（＝フィールド）
     * アクセス修飾子指定しないと同じパッケージからのみ可能
     1. public : どのクラスからも可能
-    2. protected : サブクラスか同パッケージからのみ可能
+    2. protected : （サブクラスか同パッケージからのみ可能）
     3. private : 同じクラスからのみ可能
 1. ローカル変数
-1. クラス変数（＝static変数、静的変数）
+1. クラス変数（＝ static 変数、静的変数）
 
 ### public（メンバ変数）: 非推奨
 ```
@@ -506,25 +506,6 @@ public class Main { //publicは省略可
 
 class MyClass {
     public String _p = "メンバ変数（public）"; //冒頭でpublic宣言
-}
-```
-
-### protected（メンバ変数）
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        SubClass _subClass = new SubClass();
-        System.out.println(_subClass._p); //アクセスできないはずですが...（要調査）
-     }
-}
-class SuperClass { //スーパークラス
-    protected String _p = "メンバ変数（protected）"; //protected宣言
-}
-class SubClass extends SuperClass { //サブクラス
-    public SubClass() { //コンストラクタ
-        System.out.println(_p); //アクセス可能
-    }
 }
 ```
 
@@ -558,9 +539,11 @@ class MyClass {
 
     class MyClass {
         private String _p = "メンバ変数（private）";
+
         public MyClass() { //コンストラクタ
             System.out.println(_p); //=> "メンバ変数（private）"（ここはthis省略可）
         }
+
         public void myMethod() {
             String _p = "ローカル変数"; //ローカル変数宣言
             System.out.println(_p); //=> "ローカル変数"
@@ -577,14 +560,15 @@ class MyClass {
             new MyClass();
         }
     }
+
     class MyClass {
-        private int i_ = 999; //private宣言
+        private int _i = 999; //private宣言
         public MyClass() { //コンストラクタ
-            for (int i_=0; i_<=5; i_++) { //ローカル変数宣言
-                System.out.println("A: " + i_); //0、1、2、...、5
-                System.out.println("B: " + this.i_); //999 ←メンバ変数（private）
+            for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
+                System.out.println("A: " + _i); //0、1、2、...、5
+                System.out.println("B: " + this._i); //999 ←メンバ変数（private）
             }
-            System.out.println("C: " + i_); //999（thisは省略可）
+            System.out.println("C: " + _i); //999（thisは省略可）
         }
     }
     ```
