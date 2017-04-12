@@ -18,11 +18,10 @@
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-***
 * [switch 文](#switch文)
 * [for 文](#for文)
-* [for...in 文](#for...in文)
-* [for...of 文](#for...of文)
+* [foreach 文](#foreach文)
+***
 * [while 文](#while文)
 * [配列（Array）](#配列（Array）)
 * [配列（Set）](#配列（Set）)
@@ -880,18 +879,18 @@ public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
 
         //無名関数①（オリジナル）
-        IHello hello_ = (String name_) -> { //データ型は省略可能
-            return name_ + "," + "Hello";
+        IHello hello_ = (String _name) -> { //データ型は省略可能
+            return _name + "," + "Hello";
         }; //「;」が必須
 
         //無名関数②（入替用）
-        IHello japaneseHello_ = (String name_) -> { //データ型は省略可能
-            return name_ + "," + "こんにちは";
+        IHello japaneseHello_ = (String _name) -> { //データ型は省略可能
+            return _name + "," + "こんにちは";
         }; //「;」が必須
 
         //無名関数③（入替用）
-        IHello chineseHello_ = (String name_) -> { //データ型は省略可能
-            return name_ + "," + "你好";
+        IHello chineseHello_ = (String _name) -> { //データ型は省略可能
+            return _name + "," + "你好";
         }; //「;」が必須
 
         //無名関数①の実行
@@ -910,7 +909,7 @@ public class Main { //publicは省略可
 
 //無名関数用インターフェース
 interface IHello {
-    public String exec(String name_); //抽象メソッド（１つだけ）
+    public String exec(String _name); //抽象メソッド（１つだけ）
 }
 ```
 
@@ -1146,8 +1145,8 @@ public class Main { //publicは省略可
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        String name_ = "TARO";
-        switch (name_) { //判別式には整数,列挙、文字,文字列型のみ可、booleanは不可!
+        String _name = "TARO";
+        switch (_name) { //判別式には整数,列挙、文字,文字列型のみ可、booleanは不可!
             case "TARO" :
                 System.out.println("父"); //=> "父" ←これが出力される
                 break;
@@ -1173,15 +1172,15 @@ public class Main { //publicは省略可
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        String name_ = "JIRO";
-        switch (name_) { //↓C#のようなフォールスルーの禁止規則はない
+        String _name = "ICHIRO";
+        switch (_name) { //↓C#のようなフォールスルーの禁止規則はない
             case "TARO" : //breakが無いと次のcaseも処理
             case "HANAKO" : 
-                System.out.println("親"); //=> "親" ←これが出力される
+                System.out.println("親");
                 break;
             case "ICHIRO" : //breakが無いと次のcaseも処理
             case "JIRO" :
-                System.out.println("子");
+                System.out.println("子"); //←これが出力される
                 break;
             default:
                 System.out.println("家族以外");
@@ -1200,82 +1199,106 @@ public class Main { //publicは省略可
 <a name="for文"></a>
 # <b>for 文</b>
 
-### ループカウンタの宣言方法
-* 参考「[変数とスコープ](#変数とスコープ)」
-1. let でループ制御変数を宣言する
+### 基本構文
+```
+for (①初期化; ②ループ判定式; ③更新処理) {
+    繰り返す処理
+}
+```
+
+### ループカウンタ（ループ制御変数）の宣言位置
+1. for 文の中でループ制御変数を宣言
     ```
-    <script>
-        for (let i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            for (int i=0; i<10; i++) { //ここでループ制御変数を宣言すると…
+                System.out.println(i); //0,1,2,3,4,5,6,7,8,9
+            }
+            //System.out.println(i); //エラー（for文の外では利用不可）
         }
-        console.log(i); //Error（for文の外では使えない）
-    </script>
+    }
     ```
 
-1. var でループ制御変数を宣言する
+1. for 文の外でループ制御変数を宣言
     ```
-    <script>
-        for (var i = 0; i < 10; i++) {
-            console.log(i); //0,1,2,3,4,5,6,7,8,9
+    //Main.java
+    public class Main { //publicは省略可
+        public static void main(String[] args) { //決め打ち（自動的に実行）
+            int _i; //ここでint型を宣言すると…
+            for (_i=0; _i<10; _i++) {
+                System.out.println(_i); //0,1,2,3,4,5,6,7,8,9
+            }
+            System.out.println(_i); //10（for文の外でも有効）
         }
-        console.log(i); //10（for文の外でも有効）
-    </script>
+    }
     ```
 
 ### ループカウンタを○つずつアップする
 ```
-<script>
-    for (let i = 0; i < 50; i += 5) { //5つずつアップする場合...
-        console.log(i); //0,5,10,15,20,25,30,35,40,45
-    }
-</script>
-```
-
-### for 文のネスト
-* ループ制御変数には慣例的に i, j, k が使われる
-```
-<script>
-    for (let i = 1; i <= 5; i++) {
-        for (let j = 1; j <= 5; j++) {
-            console.log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        for (int i=0; i<50; i+=5) { //5つずつアップする場合
+            System.out.println(i); //0,5,10,15,20,25,30,35,40,45
         }
     }
-</script>
+}
+```
+
+### for文のネスト
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        for (int i=1; i<=5; i++) {
+            for (int j=1; j<=5; j++) {
+                System.out.println("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+            }
+        }
+    }
+}
 ```
 
 ### 無限ループと break 文
 ```
-<script>
-    var _count = 0;
-    for (;;) { //①初期化②ループ判定式③更新処理の全てを省略する
-        _count++;
-        if (_count > 100) break; //ループを終了
-        console.log(_count); //1,2,....,99,100
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        int count_ = 0;
+        for (;;) { //①初期化②ループ判定式③更新処理...の全てを省略すると無限ループ
+            count_++;
+            if (count_ > 100) break; //ループを終了
+            System.out.println(count_); //1,2,...,99,100
+        }
+        System.out.println("for文終了");
     }
-    console.log("for文終了");
-</script>
+}
 ```
 
 ### for 文と continue 文
 ```
-<script>
-    for (let i = 1; i <= 20; i++) { //iは1,2,...19,20
-        if ((i % 3) != 0) { //3で割り余りが0でない（＝3の倍数ではない）場合
-            continue; //for文の残処理をスキップしてfor文の次の反復を開始する
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        for (int i=1; i<=20; i++) { //iは1,2,...19,20
+            if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+                continue; //for文の残処理をスキップしてfor文の次の反復を開始する
+            }
+            System.out.println(i); //3,6,9,12,15,18 ←3の倍数
         }
-        console.log(i); //3,6,9,12,15,18 ←3の倍数
     }
-</script>
+}
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年09月26日  
-更新日：2017年03月21日
+作成日：2016年07月15日  
+更新日：2017年04月12日
 
 
-<a name="for...in文"></a>
-# <b>for...in 文</b>
+<a name="foreach文"></a>
+# <b>foreach 文</b>
 
 ### 基本構文
 ```
@@ -1327,64 +1350,6 @@ for (変数名 in 配列等) {
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年09月26日  
-更新日：2017年03月21日
-
-
-<a name="for...of文"></a>
-# <b>for...of 文</b>
-
-### 一次元配列（Array）の場合
-```
-<script>
-    var _array = ["TARO", "HANAKO", "ICHIRO", "JIRO"];
-    for (let _data of _array) {
-        console.log(_data); //"TARO"→"HANAKO"→"ICHIRO"→"JIRO"
-    }
-</script>
-```
-
-### 二次元配列（Array）の場合
-```
-<script>
-    var _array = [
-        ["x0y0", "x1y0", "x2y0"], //0行目
-        ["x0y1", "x1y1", "x2y1"]  //1行目
-    ];
-    for (let _theArray of _array) {
-        console.log(_theArray); //["x0y0","x1y0","x2y0"]→["x0y1","x1y1","x2y1"]
-    }
-</script>
-```
-
-### 配列（Set）の場合
-```
-<script>
-    var _set = new Set();
-    _set.add("TARO");
-    _set.add("HANAKO");
-    for (let _data of _set) {
-        console.log(_data); //"TARO"→"HANAKO"
-    }
-</script>
-```
-
-### 連想配列（Map）の場合
-```
-<script>
-    var _map = new Map();
-    _map.set("RYOMA", "1836-01-03");
-    _map.set("YUKICHI", "1835-01-10");
-    for (let [_key, _value] of _map) {
-        console.log(_key, _value);
-        //"RYOMA" "1836-01-03
-        //"YUKICHI" "1835-01-10"
-    }
-</script>
-```
-
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
-作成日：2016年12月16日  
 更新日：2017年03月21日
 
 
@@ -1660,7 +1625,7 @@ do {
     });
 </script>
 ```
-* for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
+* for文、foreach文を使う方法もあり（参照「[foreach 文](#foreach文)」）
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
