@@ -1534,28 +1534,28 @@ public class Main { //publicは省略可
     ```
 
 ### 配列の要素の数
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            String[] _array = {"TAKASHI","TOMOKO","TOHRU","SACHIKO"};
-            for (int i=0; i<_array.length; i++) { 
-                System.out.println(_array[i]);
-            }
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        String[] _array = {"TAKASHI","TOMOKO","TOHRU","SACHIKO"};
+        for (int i=0; i<_array.length; i++) { 
+            System.out.println(_array[i]);
         }
     }
-    ```
+}
+```
 
 ### 文字列→配列
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            String string_ = "A,B,C,D"; //「,」区切りの文字列
-            String[] _array = string_.split(","); //「,」区切りで分割して配列化
-        }
+```
+//Main.java
+public class Main { //publicは省略可
+    public static void main(String[] args) { //決め打ち（自動的に実行）
+        String string_ = "A,B,C,D"; //「,」区切りの文字列
+        String[] _array = string_.split(","); //「,」区切りで分割して配列化
     }
-    ```
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
 作成者：Takashi Nishimura  
