@@ -12,9 +12,9 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-***
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
+***
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
@@ -133,7 +133,7 @@ print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionar
     //test.swift
     class SuperClass {}
     class SubClass: SuperClass {}
-    var _subClass: Any = SubClass() //←「: SubClass」とすると以下でwarning
+    var _subClass: Any = SubClass() //「: SubClass」とすると以下でwarning
     print(_subClass is SubClass) //=> true
     print(_subClass is SuperClass) //=> true
     ```
@@ -158,7 +158,7 @@ print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionar
     ```
     //test.swift
     var _string: String = "007"
-    var int_: Int = Int(_string)! //←「!」を付けないとOptional型になってしまう
+    var int_: Int = Int(_string)! //「!」を付けないとOptional型になってしまう
     print(int_ + 3) //=> 10
     ```
 
@@ -465,7 +465,7 @@ print(_myClass.p) //=> "ほげほげ"
         }
     }
     var _myClass: MyClass = MyClass()
-    _myClass.myMethod(_name:"HANAKO") //←引数の渡し方が独特
+    _myClass.myMethod(_name:"HANAKO") //引数の渡し方が独特
     ```
 
 1. for 文内で宣言する場合
@@ -532,104 +532,103 @@ print(MyMath.PI) //=> 3.14
 <a name="アクセサ"></a>
 # <b>アクセサ （getter / setter）</b>
 
-### 概要
-オブジェクト指向プログラミングの「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は private 変数とし、外部からはメソッドを使ってアクセスします。Java には他の多くの言語にある専用のアクセサが用意されていません。そこで、get○○()、set○○(型,引数) といった記述をして同じ機能を実現します。
-
-### 読書き可能なメンバ変数
+### 読み書き可能なプロパティ
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Nishimura _nishimura = new Nishimura();
-        System.out.println(_nishimura.getAge()); //=> 49
-        _nishimura.setAge(50); //値が変更できる
-        System.out.println(_nishimura.getAge()); //=> 50
+//test.swift
+internal class Nishimura { //internalは省略可
+    private var _age: Int = 49 //private宣言
+    //アクセサ
+    internal var age: Int {
+        get {
+            return _age
+        }
+        set {
+            _age = newValue
+        }
     }
 }
 
-class Nishimura {
-    private int _age = 49; //private宣言
-    public int getAge() { return _age; } //_ageのgetter（thisは省略）
-    public void setAge(int _age) { this._age = _age; } //_ageのsetter
-}
+var _nishimura: Nishimura = Nishimura()
+print(_nishimura.age) //=> 49 ←getter
+//print(_nishimura._age) //error（直接のアクセス不可）
+_nishimura.age = 50 //変更可能 ←setter
+print(_nishimura.age) //=> 50 ←getter
 ```
 
-### 読取り専用のメンバ変数
+#### 読み取り専用のメンバ変数
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Nishimura _nishimura = new Nishimura();
-        System.out.println(_nishimura.getAge()); //49
-        //_nishimura._age = 50; //エラー（値が変更できない）
+//test.swift
+internal class Nishimura { //internalは省略可
+    private var _age: Int = 49 //private宣言
+    //アクセサ
+    internal var age: Int {
+        get {
+            return _age
+        }
     }
 }
 
-class Nishimura {
-    private int _age = 49; //private宣言
-    public int getAge() { return _age; } //getterのみ用意（thisは省略）
-}
+var _nishimura: Nishimura = Nishimura()
+print(_nishimura.age) //=> 49 ←getter
+//print(_nishimura._age) //error（直接のアクセス不可）
+//_nishimura.age = 50 //=> error ←変更できません
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2016年07月27日  
+更新日：2017年04月14日
 
 
 <a name="演算子"></a>
 # <b>演算子</b>
 
+### 算術演算子
+* 複合代入演算子 +=, -=, *=, /=, %= などあり
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.swift
+print(3 + 2); //=> 5 (可算)
+print(5 - 8); //=> -3 (減算)
+print(3 * 4); //=> 12 (乗算)
+print(1 + 2 * 3 - 4 / 2); //=> 5 (複雑な計算)
+print(63 % 60); //=> 3 (余剰)
+print(8 / 3); //=> 2(除算) ←整数の場合、余りは切り捨てられる
+print(8.0 / 3); //=> 2.66666666666667（小数点第14位まで）
+```
 
-        //算術演算子（複合代入演算子+=,-=,*=,/=,%=などあり）
-        System.out.println(3 + 2); //5 (可算)
-        System.out.println(5 - 8); //-3 (減算)
-        System.out.println(3 * 4); //12 (乗算)
-        System.out.println(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-        System.out.println(63 % 60); //3 (余剰)
-        System.out.println(8 / 3); //2(除算) ←整数の場合、余りは切り捨てられる
-        System.out.println(8.0 / 3); //2.6666666666666665（小数点第16位まで）
+### インクリメント、デクリメントの廃止
+* バージョン3.0からインクリメントおよびデクリメントは廃止
+```
+//test.swift
+var hoge_: Int = 0
+hoge_ += 1 //←複合代入演算子（+=、-=）で代用
+print(hoge_) //=> 1
+```
 
-        //後ろに付けるインクリメント（デクリメント）
-        int _huga = 0;
-        int _piyo = _huga++; //デクリメントの場合_huga--
-        System.out.println(_huga); //1（デクリメントの場合 -1）
-        System.out.println(_piyo); //0（デクリメントの場合 0）
+### その他の演算子
+```
+//test.swift
+print(true && true); //=> true（論理積）
+print(true || false); //=> true（論理和）
+print(!true); //=> false（否定）←スペースを空けるとerror（要注意）
 
-        //前に付けるインクリメント（デクリメント）
-        _huga = _piyo = 0;
-        _piyo = ++_huga; //デクリメントの場合 --_huga
-        System.out.println(_huga); //1（デクリメントの場合-1）
-        System.out.println(_piyo); //1（デクリメントの場合-1）
+print(2 < 3); //=> true（比較/未満）
+print(2 <= 2); //=> true（比較/以下）
+print(1 == 1.0); //=> true（等号）
+print(1 != 1.0); //=> false（不等号）
+//同じインスタンスか否かを調べる場合「===」「!==」を使用します。
 
-        //その他の演算子
-        System.out.println(true && true); //true（論理積）
-        System.out.println(true || false); //true（論理和）
-        System.out.println(! true); //false（否定）
-
-        System.out.println(2 < 3); //true（比較/未満）
-        System.out.println(2 <= 2); //true（比較/以下）
-        System.out.println(1 == 1.0); //true（等号）
-        System.out.println(1 != 1.0); //false（不等号）
-
-        System.out.println(3 & 1); //1（ビット積）
-        System.out.println(3 | 1); //3（ビット和）
-        System.out.println(3 ^ 1); //2（排他的ビット和）
-        System.out.println(2 << 7); //256（ビット･シフト）
-        System.out.println(~3); //-4（ビット反転）
-
-    }
-}
+print(3 & 1); //=> 1（ビット積）
+print(3 | 1); //=> 3（ビット和）
+print(3 ^ 1); //=> 2（排他的ビット和）
+print(2 << 7); //=> 256（ビット･シフト）
+print(~3); //=> -4（ビット反転）
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月27日  
+更新日：2017年04月14日
 
 
 <a name="定数"></a>
