@@ -439,7 +439,7 @@ print(_myClass.p) //=> "ほげほげ"
             print(_v) //=> "PRIVATE"
         }
         func myMethod() -> Void { // -> Void は省略可
-            var _v: String //内部変数（≒ローカル変数）宣言のみ!! ←設定は不可!!
+            var _v: String //内部変数（≒ローカル変数）宣言のみ ←設定は不可
             _v = "LOCAL" //ローカル変数への値の設定
             print(_v) //=> "LOCAL"
             print(self._v) //=> "PRIVATE"
@@ -463,7 +463,7 @@ print(_myClass.p) //=> "ほげほげ"
         }
     }
     var _myClass: MyClass = MyClass()
-    _myClass.myMethod(_name:"HANAKO") ←引数の渡し方が独特…
+    _myClass.myMethod(_name:"HANAKO") //←引数の渡し方が独特
     ```
 
 1. for 文内で宣言する場合
@@ -491,25 +491,28 @@ print(_myClass.p) //=> "ほげほげ"
 //test.swift
 var _global: String = "GLOBAL"
 
-//==========================================================
+//==================================
 // メソッド内のグローバル変数の扱い
-//==========================================================
+//==================================
 func myMethod() -> Void { // -> Void は省略可
     print(_global) //=> "GLOBAL" ←何も宣言することなく利用可能
 }
 myMethod()
 
-//==========================================================
+//================================
 // クラス内のグローバル変数の扱い
-//==========================================================
+//================================
 class MyClass { //internal扱い
     init() {
         print(_global) //=> "GLOBAL" ←何も宣言することなく利用可能
     }
 }
 var _myClass: MyClass = MyClass()
+```
 
-◆クラス変数（静的変数）
+### クラス変数（静的変数）
+```
+//test.swift
 class MyMath { //internal扱い
     internal static var PI: Double = 3.14159265358979 //internalは省略可
 }
