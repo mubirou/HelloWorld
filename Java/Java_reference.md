@@ -2690,10 +2690,10 @@ public class Main { //publicは省略可
             FileReader filereader_ = new FileReader(file_);
             
             //③１文字ずつ読み込んでいきます
-            int int_;
-            while((int_ = filereader_.read()) != -1){
+            int _int;
+            while((_int = filereader_.read()) != -1){
                 //④文字コードを文字に変換
-                System.out.print((char)int_); //=>"あ"=>"い"=>"う"=>…
+                System.out.print((char)_int); //=>"あ"=>"い"=>"う"=>…
             }
 
             //⑤ファイルを閉じる

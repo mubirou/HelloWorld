@@ -1516,7 +1516,7 @@ do {
 ```
 <?php
     $array = array('ICHIRO', 'JIRO');
-    array_push($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
+    _arraypush($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
     foreach ($array as $data) {
         echo $data.'<br>'; //'ICHIRO'→'JIRO'→'TARO'→'HANAKO'
     }
@@ -1527,7 +1527,7 @@ do {
 ```
 <?php
     $array = ['ICHIRO', 'JIRO'];
-    array_unshift($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
+    _arrayunshift($array, 'TARO', 'HANAKO'); //カンマ（,）を使って複数同時に追加可能
     foreach ($array as $data) {
         echo $data.'<br>'; //'TARO'→'HANAKO'→'ICHIRO'→'JIRO'
     }
@@ -1560,7 +1560,7 @@ do {
 ```
 <?php
     $array = array('ICHIRO', 'JIRO', 'TARO');
-    echo array_pop($array).'<br>'; //'TARO'（削除した要素を返す）
+    echo _arraypop($array).'<br>'; //'TARO'（削除した要素を返す）
     foreach ($array as $data) {
         echo $data.'<br>'; //'ICHIRO'→'JIRO'
     }
@@ -1571,7 +1571,7 @@ do {
 ```
 <?php
     $array = array('ICHIRO', 'JIRO', 'TARO');
-    echo array_shift($array).'<br>'; //'ICHIRO'（削除した要素を返す）
+    echo _arrayshift($array).'<br>'; //'ICHIRO'（削除した要素を返す）
     foreach ($array as $data) {
         echo $data.'<br>'; //'JIRO'→'TARO'
     }
@@ -1582,7 +1582,7 @@ do {
 ```
 <?php
     $array = array('00', '01', '02', '03', '04', '05');
-    array_splice($array, 3, 2); //3番目〜2個削除（削除した配列が返る）
+    _arraysplice($array, 3, 2); //3番目〜2個削除（削除した配列が返る）
     foreach ($array as $data) {
         echo $data.'<br>'; //'00'→'01'→'02'→'05'
     }
@@ -1593,7 +1593,7 @@ do {
 ```
 <?php
     $array = array('00', '01', '02', '03', '04', '05');
-    array_splice($array, 3); //3番目〜全てを削除（削除した配列を返す）
+    _arraysplice($array, 3); //3番目〜全てを削除（削除した配列を返す）
     foreach ($array as $data) {
         echo $data.'<br>'; //'00'→'01'→'02'
     }
@@ -1604,7 +1604,7 @@ do {
 ```
 <?php
     $array = array('00', '01', '02', '03', '04', '05');
-    $tmp = array_slice($array, 2, 4); //抽出した配列を返す
+    $tmp = _arrayslice($array, 2, 4); //抽出した配列を返す
     foreach ($tmp as $data) {
         echo $data.'<br>'; //'02'→'03'→'04'→'05'
     }
@@ -1618,7 +1618,7 @@ do {
 ```
 <?php
     $array = array('00', '01', '02', '03', '04', '05');
-    $tmp = array_slice($array, 2); //2番目から全てを抽出した配列を返す
+    $tmp = _arrayslice($array, 2); //2番目から全てを抽出した配列を返す
     foreach ($tmp as $data) {
         echo $data.'<br>'; //'02'→'03'→'04'→'05'
     }
@@ -1633,7 +1633,7 @@ do {
 ```
 <?php
     $array = array('A', 'B', 'C', 'D', 'E', 'F', 'D');
-    echo array_search('D', $array, 0); //3
+    echo _arraysearch('D', $array, 0); //3
 ?>
 ```
 
@@ -1652,7 +1652,7 @@ do {
 ```
 <?php
     $array = array('00', '01', '02', '03', '04', '05');
-    $newArray = array_reverse($array);
+    $newArray = _arrayreverse($array);
     foreach ($newArray as $data) {
         echo $data.'<br>'; //'05'→'04'→'03'→'02'→'01'→'00'
     }
@@ -1679,7 +1679,7 @@ do {
 <?php
     $array1 = array('A', 'B', 'C');
     $array2 = array('D', 'E', 'F');
-    $array3 = array_merge($array1, $array2);
+    $array3 = _arraymerge($array1, $array2);
     foreach ($array3 as $data) {
         echo $data.'<br>'; //'A'→'B'→'C'→'D'→'E'→'F'
     }

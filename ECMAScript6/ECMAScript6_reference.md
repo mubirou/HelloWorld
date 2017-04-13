@@ -632,9 +632,9 @@ new MyClass(); //"コンフリクトを起こさない!"
                 //console.log(_local); //Error
             }
         }
-        var myClass_ = new MyClass();
-        myClass_.myMethod1();
-        myClass_.myMethod2();
+        var _myClass = new MyClass();
+        _myClass.myMethod1();
+        _myClass.myMethod2();
     </script>
     ```
 

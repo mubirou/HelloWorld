@@ -671,7 +671,7 @@ _myClass.myMethod()
     _myClass = MyClass.new()
     _myClass.myMethod1() #"ローカル変数"
     _myClass.myMethod2()
-    #puts(myClass_._local) #undefined（アクセス不可）
+    #puts(_myClass._local) #undefined（アクセス不可）
     ```
 
 * for 文内で宣言する場合（内部処理は each メソッドと同じ）

@@ -1963,9 +1963,9 @@ import re ←正規表現に必須
 ```
 #test.py
 import re #正規表現に必須
-string_ = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
+_string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
 pattern_ = re.compile('吉田') #正規表現をコンパイル
-_result = pattern_.search(string_) #見つからなければNone
+_result = pattern_.search(_string) #見つからなければNone
 if (_result is None) :
     print("吉田は含まれていません")
 else :
@@ -1984,9 +1984,9 @@ import re ←正規表現に必須
 ```
 #test.py
 import re #正規表現に必須
-string_ = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
+_string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
 pattern_ = re.compile('吉田') #正規表現をコンパイル
-print(pattern_.sub('よしだ', string_)) #よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文
+print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文
 ```
 
 実行環境：Ubuntu 16.04 LTS、Python 2.3 
