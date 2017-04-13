@@ -73,33 +73,36 @@ print(_bool, type(of : _bool)) //=> true Bool
 var _int:Int = 9223372036854775807 //約900京
 print(type(of : _int)) //=> Int
 
-//②浮動小数点数型（Float型 小数点第5位までの値）
+//②浮動小数点数型 : Float型（小数点第5位までの値）
 var _float:Float = 3.1415926535897932384626433832795
 print(_float, type(of : _float)) //=> 3.14159  Float
 
-//④浮動小数点数型（Double型 小数点第14位までの値）←…デフォルト
+//④浮動小数点数型 : Double型（小数点第14位までの値）←デフォルト
 var _double:Double = 3.1415926535897932384626433832795
 print(_double, type(of : _double)) //=> 3.14159265358979  Double
 
-//⑤文字型（Character型）
+//⑤文字型 : Character型
 var _char:Character = "a" //シングルクォーテーションは不可
 print(_char, type(of : _char)) //=> "a"  Character
 
-var _string:String = "007" //⑥文字型（String型） ←…デフォルト
+//⑥文字型 : String型 ←デフォルト
+var _string:String = "007"
 print(_string, type(of : _string)) //=> "007"  String
 
-enum Signal { case BLUE,YELLOW,Red } //⑦列挙型
+//⑦列挙型
+enum Signal { case BLUE,YELLOW,Red }
 print(Signal.BLUE) //=> BLUE
 
-class MyClass {} //⑧クラス
+//⑧クラス
+class MyClass {}
 var _myClass:MyClass = MyClass()
 print(_myClass, type(of : _myClass)) //=> test.MyClass MyClass
 
-//⑪配列（Array型）
+//⑪配列 : Array型
 var _array:Array<String> = ["A","B","C"] //<Any>、<AnyObject>等も可
 print(_array, type(of : _array)) //=> ["A","B","C"]  Array<String>
 
-//⑫辞書（Dictionary型）
+//⑫辞書 : Dictionary型
 var _dic:Dictionary<String, String> = ["a":"あ", "i":"い", "u":"う"]
 print(_dic, type(of : _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionary<String, String>
 ```
