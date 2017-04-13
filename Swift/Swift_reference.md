@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間（パッケージ）](#名前空間（パッケージ）)
@@ -181,49 +181,48 @@ print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionar
 # <b>クラス</b>
 
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
-        //①インタンスの生成
-        Rectangle _rectangle = new Rectangle(); 
+//test.swift
+public class Rectangle { //長方形クラス ←アクセス修飾子を省略でinternal扱い
+    private var _width: Int = 0 //インスタンス変数（プロパティ）
+    private var _height: Int = 0 //インスタンス変数（プロパティ）
 
-        //②フィールドの更新
-        _rectangle.setWidth(1920);
-        _rectangle.setHeight(1080);
-
-        //③フィールドの取得
-        System.out.println(_rectangle.getWidth()); //=> 1920
-        System.out.println(_rectangle.getHeight()); //=> 1080
-
-        //④メソッドの実行
-        System.out.println(_rectangle.getArea()); //=> 2073600
-    }
-}
-
-class Rectangle { //長方形クラス
-    //フィールド（プロパティ）の宣言（初期値の設定も可）
-    private int _width = 0; //アクセス修飾子を除くと同じパッケージ内でアクセス可に...
-    private int _height = 0;
-
-    public Rectangle() {} //コンストラクタ（戻り値は指定しない／ここで初期化も可）
-
-    //メソッドの定義（thisは省略可）↓専用のget/setアクセサは用意されていません
-    public int getWidth() { return this._width; } //_widthのgetter
-    public void setWidth(int w) { this._width = w; } //_widthのsetter
-
-    public int getHeight() { return this._height; } //_heightのgetter
-    public void setHeight(int h) { this._height = h; } //_heightのsetter
+    init() { } //コンストラクタ
     
-    public int getArea() { //面積を計算して値を返す
-        return this._width * this._height;
+    //アクセサ
+    public var width: Int {
+        get { return _width }
+        set { _width = newValue } //newValueは決め打ち
+    }
+    public var height: Int {
+        get { return _height }
+        set { _height = newValue } //newValueは決め打ち
+    }
+
+    //メソッド
+    public func getArea() -> Int { //面積を計算して値を返す（返り値が無い場合->は不要）
+        return _width * _height
     }
 }
+
+//①インタンスの生成
+var _rectangle: Rectangle = Rectangle()
+
+//②フィールドの更新
+_rectangle.width = 1920
+_rectangle.height = 1080
+
+//③フィールドの取得
+print(_rectangle.width) //=> 1920
+print(_rectangle.height) //=> 1080
+
+//④メソッドの実行
+print(_rectangle.getArea()) //=> 2073600
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2016年07月26日  
+更新日：2017年04月13日
 
 
 <a name="スーパークラスとサブクラス"></a>
