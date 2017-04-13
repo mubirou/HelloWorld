@@ -12,19 +12,19 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
-|統合開発環境|[Xcode](https://developer.apple.com/download/) 8.2.1|2016年12月|
+|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.4|2017年04月|
+|統合開発環境|[Xcode](https://developer.apple.com/download/) 8.3.1|2017年04月|
 |コンパイラ|[Swift](http://bit.ly/2lYITz8) 3.0.2|2016年12月|
 |エディタ|Visual Studio Code 1.10.1|2017年03月|
 |拡張機能|Swift Language 0.0.2|ー|
 
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
     1. [Apple ID](https://appleid.apple.com/#!&page=signin) を用意し [Xcode](https://developer.apple.com/download/) にアクセス
-    1. Xcode 8.2.1 を [Download] を選択、指示に従ってダウンロード
+    1. Xcode 8.3.1 を [Download] を選択、指示に従ってダウンロード
     1. Xcode を開き、指示に従いインストール  
     1. ターミナルでバージョン確認  
-    $ swift --version  
-    Apple Swift version 3.0.2 (swiftlang-800.0.63 clang-800.0.42.1)  
+    $ swift -version  
+    Apple Swift version 3.1 (swiftlang-802.0.51 clang-802.0.41)  
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から Swift Language （Martin Kase） を検索＆インストール
@@ -34,7 +34,7 @@
 1. Visual Studio Code を起動
     1. [ファイル] → [新規ファイル] を選択
     1. [ファイル] → [保存] を選択
-    1. 任意の場所（今回はデスクトップ上に Swift フォルダを作成）に test<b>.swift</b> という名で保存  
+    1. 任意の場所（今回はデスクトップ上）に test<b>.swift</b> という名で保存  
 
 1. コードの記述
 ```
@@ -53,7 +53,7 @@ var _myClass:MyClass = MyClass()
 1. Visual Studio Code で [表示] → [総合ターミナル] → [端末] を選択（ターミナルでも可）
 
 1. test.swift ファイルのあるディレクトリに移動  
-$ cd /Users/（ユーザー名）/Desktop/Swift
+$ cd /Users/（ユーザー名）/Desktop
 
 1. コンパイル  
 $ swiftc test.swift
@@ -66,4 +66,5 @@ Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年03月08日
+作成日: 2017年03月08日  
+更新日: 2017年04月13日
