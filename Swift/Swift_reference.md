@@ -10,8 +10,8 @@
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -321,154 +321,207 @@ print(_myClass2) //=> test.MyLibrary.MyClass2
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
 
-
 ### 概要
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
+* 継承の場合は「: クラス名」を使い、委譲の場合は「クラス名()」を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
-        ClassB _classB = new ClassB();
-        _classB.myMethod();
+//test.swift
+internal class ClassA { //internalは省略可
+    internal func myMethod() { //internalは省略可
+        print("ClassA.myMethod()")
     }
 }
 
-class ClassA {
-    public void myMethod() { System.out.println("ClassA.myMethod()"); }
-}
+internal class ClassB : ClassA {} //ClassAを継承
 
-class ClassB extends ClassA {} //ClassAを継承
+var _classB: ClassB = ClassB();
+_classB.myMethod(); //=> "ClassA.myMethod()"
 ```
 
 ### 委譲版
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
-        ClassB _classB = new ClassB();
-        _classB.myMethod();
+//test.swift
+internal class ClassA { //internalは省略可
+    internal func myMethod() { //internalは省略可
+        print("ClassA.myMethod()")
     }
 }
 
-class ClassA {
-    public void myMethod() { System.out.println("ClassA.myMethod()"); }
+internal class ClassB { //この内容だけが継承版と異なる
+    private var _classA:ClassA; //プロパティにインスタンスを格納（委譲）
+    init() { //コンストラクタ
+        _classA = ClassA(); //プロパティにインスタンスを格納
+    }
+    internal func myMethod() { //internalは省略可
+        _classA.myMethod();
+    }
 }
 
-class ClassB { //この内容だけが継承と異なる
-    private ClassA _classA; //フィールドにインスタンスを格納（委譲）
-    public ClassB() { //コンストラクタ
-        _classA = new ClassA(); //フィールドにインスタンスを格納（thisは省略）
-    }
-    public void myMethod() { 
-        _classA.myMethod(); //thisは省略
-    }
-}
+var _classB:ClassB = ClassB();
+_classB.myMethod(); //=> "ClassA.myMethod()"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2016年07月26日  
+更新日：2017年04月13日
 
 
 <a name="変数とスコープ"></a>
 # <b>変数とスコープ</b>
 
 ### 変数の種類
-1. メンバ変数（＝フィールド）
-    * アクセス修飾子指定しないと同じパッケージからのみ可能
-    1. public : どのクラスからも可能
-    2. protected : （サブクラスか同パッケージからのみ可能）
-    3. private : 同じクラスからのみ可能
+1. インスタンス変数
+    * open : 別のモジュールからもアクセス可（旧 public と同等）
+    * public : 別のモジュールからもアクセス可（但し継承・オーバーライドは不可）
+    * internal : 同じモジュール内からのみアクセスできる ←デフォルト
+    * fileprivate : 同じソースファイル内からのみアクセスできる（旧 private と同等）
+    * private : 定義されたスコープ内でのみアクセスできる
+
 1. ローカル変数
-1. クラス変数（＝ static 変数、静的変数）
+    * メソッド内 : メソッド内でのみアクセス可
+    * 引数 : メソッド内でのみアクセス可
+    * for 文 : for 文内でのみアクセス可
 
-### public（メンバ変数）: 非推奨
+1. グローバル変数 : ソースファイル内のどこからでもアクセス可
+
+1. クラス変数（静的変数）
+
+### public（インスタンス変数）: 非推奨
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        MyClass _myClass = new MyClass();
-        System.out.println(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
+//test.swift
+public class MyClass { //←…internal（省略可）は不可
+	public var p_:String = "ほげ" //←…public宣言
+}
+var myClass_:MyClass = MyClass()
+print(myClass_.p_) //=> "ほげ" //←…参照可（他人の変数を勝手にいじる行為）
+myClass_.p_ = "ほげほげ" // ←…変更可（他人の変数を勝手にいじる行為）
+print(myClass_.p_) //=> "ほげほげ"
+```
+
+### internal（インスタンス変数）: 非推奨（デフォルト）
+```
+//test.swift
+internal class MyClass { //←…internalは省略可
+	internal var p_:String = "ほげ" //←…internalは省略可
+}
+var myClass_:MyClass = MyClass()
+print(myClass_.p_) //=> "ほげ" //←…参照可（他人の変数を勝手にいじる行為）
+myClass_.p_ = "ほげほげ" // ←…変更可（他人の変数を勝手にいじる行為）
+print(myClass_.p_) //=> "ほげほげ"
+```
+
+### private（インスタンス変数）: 推奨
+```
+//test.swift
+internal class MyClass { //←…internalは省略可
+	private var p_:String = "ほげ" //←…private宣言
+	internal var p:String { //p_のアクセサ ←…internalは省略可
+        get { return p_ }
+        set { p_ = newValue }
     }
 }
-
-class MyClass {
-    public String _p = "メンバ変数（public）"; //冒頭でpublic宣言
-}
-```
-
-### private（メンバ変数）: 推奨
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        MyClass _myClass = new MyClass();
-        System.out.println(_myClass.getP()); //getterで参照可
-        _myClass.setP("フィールド（private）"); //setterで変更可
-    }
-}
-class MyClass {
-    private String _p = "メンバ変数（private）"; //private宣言
-    public String getP() { return _p; } //_pのgetter（thisは省略）
-    public void setP(String _value) { _p = _value; } //_pのsetter（thisは省略）
-}
+var myClass_:MyClass = MyClass()
+print(myClass_.p) //=> "ほげ" ←…getterで参照
+myClass_.p = "ほげほげ" // ←…setterで変更
+print(myClass_.p) //=> "ほげほげ"
 ```
 
 ### ローカ変数
 1. メソッド内で宣言する場合
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            MyClass _myClass = new MyClass();
-            _myClass.myMethod();
+    //test.swift
+    class MyClass { //←…internal扱い
+        private var v_:String = "PRIVATE"; //←…private宣言
+        init() {
+            print(v_) //=> "PRIVATE"
+        }
+        func myMethod() -> Void { // -> Void は省略可
+            var v_:String //内部変数（≒ローカル変数）宣言のみ!! ←…設定は不可!!
+            v_ = "LOCAL" //←…ローカル変数への値の設定
+            print(v_) //=> "LOCAL"
+            print(self.v_) //=> "PRIVATE"
         }
     }
-
-    class MyClass {
-        private String _p = "メンバ変数（private）";
-
-        public MyClass() { //コンストラクタ
-            System.out.println(_p); //=> "メンバ変数（private）"（ここはthis省略可）
-        }
-
-        public void myMethod() {
-            String _p = "ローカル変数"; //ローカル変数宣言
-            System.out.println(_p); //=> "ローカル変数"
-            System.out.println(this._p); //=> "メンバ変数（private）"（ここはthis必須）
-        }
-    }
+    var myClass_:MyClass = MyClass()
+    myClass_.myMethod()
     ```
 
-1. for文内で宣言する場合
+1. 引数として利用する場合
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            new MyClass();
+    //test.swift
+    class MyClass { //←…internal扱い
+        private var name_:String = "TOHRU"; //←…private宣言
+        init() {
+            print(name_) //=> "TOHRU"
+        }
+        func myMethod(name_:String) -> Void { // -> Void は省略可
+            print(name_) //=> "SACHIKO"
+            print(self.name_) //=> "TOHRU" ←…インスタンス変数の参照はselfが必要
         }
     }
+    var myClass_:MyClass = MyClass()
+    myClass_.myMethod(name_:"SACHIKO") ←…引数の渡し方が独特…
+    ```
 
-    class MyClass {
-        private int _i = 999; //private宣言
-        public MyClass() { //コンストラクタ
-            for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-                System.out.println("A: " + _i); //0、1、2、...、5
-                System.out.println("B: " + this._i); //999 ←メンバ変数（private）
+1. for 文内で宣言する場合
+    ```
+    //test.swift
+    class MyClass { //←…internal扱い
+        private var i_:Int = 999; //←…private宣言
+        init() {
+            print(i_) //=> 999
+        }
+        func myMethod() -> Void { // -> Void は省略可
+            for i_ in 0..<10 {
+                print(i_); //=> 0、1、2、…、9
+                print(self.i_); //=> 999
             }
-            System.out.println("C: " + _i); //999（thisは省略可）
+            print(i_); //=> 999
         }
     }
+    var myClass_:MyClass = MyClass()
+    myClass_.myMethod()
     ```
+
+### グローバル変数
+```
+//test.swift
+var global_:String = "GLOBAL"
+
+//==========================================================
+// メソッド内のグローバル変数の扱い
+//==========================================================
+func myMethod() -> Void { // -> Void は省略可
+	print(global_) //=> "GLOBAL" ←…何も宣言することなく利用可能
+}
+myMethod()
+
+//==========================================================
+// クラス内のグローバル変数の扱い
+//==========================================================
+class MyClass { //←…internal扱い
+	init() {
+		print(global_) //=> "GLOBAL" ←…何も宣言することなく利用可能
+	}
+}
+var myClass_:MyClass = MyClass()
+
+◆クラス変数（静的変数）
+class MyMath { //←…internal扱い
+	internal static var PI:Double = 3.14159265358979 //←…internalは省略可
+}
+print(MyMath.PI) //=> 3.14159265358979
+MyMath.PI = 3.14 //←…変更可能
+print(MyMath.PI) //=> 3.14
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2016年07月27日  
+更新日：2017年04月13日
 
 
 <a name="アクセサ"></a>
