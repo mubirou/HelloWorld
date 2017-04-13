@@ -9,8 +9,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
-***
 * [名前空間](#名前空間)
+***
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
@@ -276,50 +276,46 @@ print(_subclassB.methodB()); //=> "サブクラスＢのメソッド"
 # <b>名前空間</b>
 
 ### 概要
-* ここでいう名前空間とはパッケージを指す
-* 物理的なフォルダ単位で管理する
-* 一般的にパッケージ名はドメインを逆にしたものを使用
+* Swift の名前空間には次の２種類ある
+    1. Nested Types : クラスのネストによる方法
+    1. module : UIKit や Foundation といったフレームワークの利用
 
-### クラス作成とパッケージ宣言
-* Main.java と同階層に jp/xxx/ フォルダを作成しその中に次のファイルを作成
+### 例文（Nested Typesによる名前空間）
 ```
-//MyClass.java
-package jp.xxx;
-public class MyClass {
-    private float _version = 0.9F;
-    public MyClass() { //コンストラクタ
-        System.out.println("MyClassが生成されました");
+//test.swift
+class MyLibrary {
+    class MyClass {
+        private var _w: Int
+        private var _h: Int
+        init(width _w: Int=640, height _h: Int=480) {
+            self._w = _w
+            self._h = _h
+        }
+        var width: Int {
+            get { return _w }
+            set { _w = newValue }
+        }
+        var height: Int {
+            get { return _h }
+            set { _h = newValue }
+        }
     }
-    public float getVersion() {
-        return _version;
-    } 
-}
-```
-
-### コンパイル
-1. Main.java ファイルがあるディレクトリに移動  
-    $ cd /home/（ユーザー名）/デスクトップ/ ←デスクトップ上にある場合
-
-1. コンパイル  
-    $ javac jp/xxx/MyClass.java  
-    ※MyClass.<b>class</b>が生成される
-
-### メインクラスの記述
-```
-//Main.java
-import jp.xxx.MyClass;
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        MyClass _MyClass = new MyClass(); //=> "MyClassが生成されました"
-        System.out.println(_MyClass.getVersion()); //=> 0.9
+    class MyClass2 {
+        //いろいろな機能
     }
 }
+
+var _myClass: MyLibrary.MyClass = MyLibrary.MyClass()
+print(_myClass.width, _myClass.height) //=> 640 480
+
+var _myClass2: MyLibrary.MyClass2 = MyLibrary.MyClass2()
+print(_myClass2) //=> test.MyLibrary.MyClass2
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年07月29日  
+更新日：2017年04月13日
 
 
 <a name="継承と委譲"></a>
