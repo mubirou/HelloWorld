@@ -227,50 +227,49 @@ print(_rectangle.getArea()) //=> 2073600
 
 <a name="スーパークラスとサブクラス"></a>
 # <b>スーパークラスとサブクラス</b>
-
+* 多重継承は不可
+* デフォルトのアクセス修飾子は internal（同一プロジェクト内でアクセス可）
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
-        SubClassA _subclassA = new SubClassA(); //サブクラスＡのインスタンスの生成
-        System.out.println(_subclassA.getFieldS()); //=> "スーパークラスのフィールド"
-        System.out.println(_subclassA.getFieldA()); //=> "サブクラスＡのフィールド"
-        System.out.println(_subclassA.methodS()); //=> "スーパークラスのメソッド"
-        System.out.println(_subclassA.methodA()); //=> "サブクラスＡのメソッド"
-        SubClassB _subclassB = new SubClassB(); //サブクラスＢのインスタンスの生成
-        System.out.println(_subclassB.getFieldS()); //=> "スーパークラスのフィールド"
-        System.out.println(_subclassB.getFieldB()); //=> "サブクラスＢのプロパティ"
-        System.out.println(_subclassB.methodS()); //=> "スーパークラスのメソッド"
-        System.out.println(_subclassB.methodB()); //=> "サブクラスＢのメソッド"
-    }
+//test.swift
+//スーパークラス（internalは省略可能）
+internal class SuperClass { 
+    private var _fieldS: String  = "スーパークラスのプロパティ" //①インスタンス変数
+    internal var fieldS: String  { get { return _fieldS }} //②アクセサ（getter）
+    internal func methodS() -> String { return "スーパークラスのメソッド" } //③メソッド        
 }
 
-//スーパークラス
-class SuperClass { 
-    private String _fieldS = "スーパークラスのフィールド"; //①フィールドの定義
-    public String getFieldS() { return _fieldS; } //②アクセサ（getter）※thisは省略
-    public String methodS() { return "スーパークラスのメソッド"; } //③メソッド
+//サブクラスＡ（internalは省略可能／多重継承不可）
+internal class SubClassA : SuperClass {
+    private var _fieldA: String  = "サブクラスＡのプロパティ" //①インスタンス変数
+    internal var fieldA: String  { get { return _fieldA }} //②アクセサ（getter）
+    internal func methodA() -> String { return "サブクラスＡのメソッド" } //③メソッド
 }
 
-//サブクラスＡ（スーパークラス継承）※多重継承不可
-class SubClassA extends SuperClass {
-    private String _fieldA = "サブクラスＡのフィールド"; //①フィールド
-    public String getFieldA() { return _fieldA; } //②アクセサ（getter）※thisは省略
-    public String methodA() { return "サブクラスＡのメソッド";    } //③メソッド
+//サブクラスＢ（internalは省略可能／多重継承不可）
+internal class SubClassB : SuperClass { 
+    private var _fieldB: String  = "サブクラスＢのプロパティ" //①インスタンス変数
+    internal var fieldB: String  { get { return _fieldB }} //②アクセサ（getter）
+    internal func methodB() -> String { return "サブクラスＢのメソッド" } //③メソッド
 }
 
-//サブクラスＢ（スーパークラス継承）※多重継承不可
-class SubClassB extends SuperClass { 
-    private String _fieldB = "サブクラスＢのフィールド"; //①フィールド
-    public String getFieldB() { return _fieldB; } //②アクセサ（getter）※thisは省略
-    public String methodB() { return "サブクラスＢのメソッド"; } //③メソッド
-}
+// 実行
+var _subclassA:SubClassA = SubClassA();
+print(_subclassA.fieldS); //=> "スーパークラスのプロパティ"
+print(_subclassA.fieldA); //=> "サブクラスＡのプロパティ"
+print(_subclassA.methodS()); //=> "スーパークラスのメソッド"
+print(_subclassA.methodA()); //=> "サブクラスＡのメソッド"
+
+var _subclassB:SubClassB = SubClassB();
+print(_subclassB.fieldS); //=> "スーパークラスのプロパティ"
+print(_subclassB.fieldB); //=> "サブクラスＢのプロパティ"
+print(_subclassB.methodS()); //=> "スーパークラスのメソッド"
+print(_subclassB.methodB()); //=> "サブクラスＢのメソッド"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2016年07月26日  
+更新日：2017年04月13日
 
 
 <a name="名前空間（パッケージ）"></a>
