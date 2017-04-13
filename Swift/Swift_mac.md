@@ -14,8 +14,8 @@
 |:--:|:--:|:--:|
 |OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.4|2017年04月|
 |統合開発環境|[Xcode](https://developer.apple.com/download/) 8.3.1|2017年04月|
-|コンパイラ|[Swift](http://bit.ly/2lYITz8) 3.0.2|2016年12月|
-|エディタ|Visual Studio Code 1.10.1|2017年03月|
+|コンパイラ|[Swift](http://bit.ly/2lYITz8) 3.1|2017年03月|
+|エディタ|Visual Studio Code 1.11.1|2017年03月|
 |拡張機能|Swift Language 0.0.2|ー|
 
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
