@@ -1,4 +1,4 @@
-### <b>この項目は編集中の項目です</b>
+### <b>この項目は書きかけの項目です</b>
 
 # <b>Swift 基礎文法</b>
 
@@ -68,27 +68,27 @@
 
 //①論理型 : Bool型（他にBoolean型あり）
 var _bool: Bool = true
-print(_bool, type(of : _bool)) //=> true Bool
+print(_bool, type(of: _bool)) //=> true Bool
 
 //②整数型 : Int型（-9223372036854775808〜9223372036854775807）
-var _int:Int = 9223372036854775807 //約900京
-print(type(of : _int)) //=> Int
+var _int: Int = 9223372036854775807 //約900京
+print(type(of: _int)) //=> Int
 
 //②浮動小数点数型 : Float型（小数点第5位までの値）
-var _float:Float = 3.1415926535897932384626433832795
-print(_float, type(of : _float)) //=> 3.14159  Float
+var _float: Float = 3.1415926535897932384626433832795
+print(_float, type(of: _float)) //=> 3.14159  Float
 
 //④浮動小数点数型 : Double型（小数点第14位までの値）←デフォルト
-var _double:Double = 3.1415926535897932384626433832795
-print(_double, type(of : _double)) //=> 3.14159265358979  Double
+var _double: Double = 3.1415926535897932384626433832795
+print(_double, type(of: _double)) //=> 3.14159265358979  Double
 
 //⑤文字型 : Character型
-var _char:Character = "a" //シングルクォーテーションは不可
-print(_char, type(of : _char)) //=> "a"  Character
+var _char: Character = "a" //シングルクォーテーションは不可
+print(_char, type(of: _char)) //=> "a"  Character
 
 //⑥文字型 : String型 ←デフォルト
-var _string:String = "007"
-print(_string, type(of : _string)) //=> "007"  String
+var _string: String = "007"
+print(_string, type(of: _string)) //=> "007"  String
 
 //⑦列挙型
 enum Signal { case BLUE,YELLOW,Red }
@@ -96,16 +96,16 @@ print(Signal.BLUE) //=> BLUE
 
 //⑧クラス
 class MyClass {}
-var _myClass:MyClass = MyClass()
-print(_myClass, type(of : _myClass)) //=> test.MyClass MyClass
+var _myClass: MyClass = MyClass()
+print(_myClass, type(of: _myClass)) //=> test.MyClass MyClass
 
 //⑪配列 : Array型
-var _array:Array<String> = ["A","B","C"] //<Any>、<AnyObject>等も可
-print(_array, type(of : _array)) //=> ["A","B","C"]  Array<String>
+var _array: Array<String> = ["A","B","C"] //<Any>、<AnyObject>等も可
+print(_array, type(of: _array)) //=> ["A","B","C"]  Array<String>
 
 //⑫辞書 : Dictionary型
-var _dic:Dictionary<String, String> = ["a":"あ", "i":"い", "u":"う"]
-print(_dic, type(of : _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionary<String, String>
+var _dic: Dictionary<String, String> = ["a":"あ", "i":"い", "u":"う"]
+print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionary<String, String>
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -118,125 +118,63 @@ print(_dic, type(of : _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictiona
 # <b>データ型の操作</b>
 
 ### データ型の調べ方
-1. オブジェクト.getClass()
-    * プリミティブ型の場合エラー（注意）
+1. type(of:)
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            Class _class = new MyClass().getClass();
-            System.out.println(_class); //=> class MyClass
-            System.out.println(new Integer(99).getClass()); //=>class java.lang.Integer
-        }
-    }
+    //test.swift
     class MyClass {}
+    var _myClass: MyClass = MyClass()
+    print(type(of: _myClass)) //=> MyClass
+    print(type(of: 99)) //=> Int
     ```
 
-1. オブジェクト.getClass().getName()
+1.  is演算子
+    * 他にも as 演算子（型キャスト）や as? 演算子（不可の場合 nil が返る）あり
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            String _string = new MyClass().getClass().getName();
-            System.out.println(_string); //=> "MyClass"
-        }
-    }
-    class MyClass {}
-    ```
-
-1. instanceof演算子
-    * プリミティブ型の場合エラー（注意）、さかのぼってチェック可
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            SubClass _subClass = new SubClass();
-            System.out.println(_subClass instanceof SuperClass); //=> true
-            System.out.println(_subClass instanceof ISubClass); //=> true
-            SubSubClass _subSubClass = new SubSubClass();
-            System.out.println(_subSubClass instanceof SuperClass); //=> true
-            System.out.println(new Integer(99) instanceof Integer); //=> true
-        }
-    }
-    interface ISubClass {} //インターフェース
-    class SuperClass {} //スーパークラス
-    class SubClass extends SuperClass implements ISubClass {} //サブクラス
-    class SubSubClass extends SubClass {} //サブクラスを継承
+    //test.swift
+    class SuperClass {}
+    class SubClass: SuperClass {}
+    var _subClass: Any = SubClass() //←「: SubClass」とすると以下でwarning
+    print(_subClass is SubClass) //=> true
+    print(_subClass is SuperClass) //=> true
     ```
 
-### データ型のキャスト
-1. 数値↔boolean型
+1. キャスト（Int 型→ Bool 型）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            //数値→bool型へ変換
-            int _int = 0;
-            boolean _bool = _int != 0; //0をfalseに変換（0以外はtrueに変換）
-            System.out.println(_bool); //=> false
-
-            //bool型→数値へ変換
-            boolean _bool2 = true;
-            int _int2 = (_bool2) ? 1 : 0; //三項演算子を活用
-            System.out.println(_int2); //=> 1
-        }
-    }
+    //test.swift
+    var int_: Int = 1
+    var _bool: Bool = (int_ != 0) //0をfalseに変換（0以外はtrueに変換）
+    print(_bool) //=> true
     ```
 
-1. 数値↔数値（縮小変換）
+1. キャスト（Bool 型→ Int 型）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            //整数の場合
-            long _long = 2147493649L; //intは-2147493649〜2147493647
-            int _int = (int)_long; //long型→int型へ変換
-            System.out.println(_int); //=> -2147493649 ←元のデータが失われる
-
-            //浮動小数点数の場合
-            double _double = 3.141592653589793;
-            float _float = (float)_double;
-            System.out.println(_float); //=> 3.1415927 ←データの一部が失われる
-        }
-    }
+    //test.swift
+    var _bool: Bool = true
+    var _int: Int = _bool ? 1 : 0 //三項演算子を活用
+    print(_int) //=> 1
     ```
 
-1. 数値↔数値（拡張変換）
+1. キャスト（String 型→ Int 型）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            int _int = 2147493647; //intは-2147493649〜2147493647
-            long _long = (long)_int + 1; //int型→long型へ変換
-            System.out.println(_long); //=> 2147493649
-        }
-    }
+    //test.swift
+    var _string: String = "007"
+    var int_: Int = Int(_string)! //←「!」を付けないとOptional型になってしまう
+    print(int_ + 3) //=> 10
     ```
 
-1. 数値↔string型
+1. キャスト（Int 型→ String 型）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            //string型→数値
-            String _string = "001";
-            int _int = Integer.parseInt(_string); //"001"（String型）→1（int型）に変換
-            System.out.println(_int); //1
-
-            //数値→string型
-            int _int2 = 100;
-            String _string2 = String.valueOf(_int2); //100（int型）→"100"（String）に変換
-            System.out.println(_string2); //=> "100"
-            System.out.println(_string2.getClass()); //=> class java.lang.String
-            //↑プリミティブ型ではなくStringクラスのオブジェクトなので.getClass()が使える
-        }
-    }
+    //test.swift
+    var _int: Int = 100;
+    var _string: String = String(_int); //100（Int型）→"100"（String）に変換
+    print(_string); //=> "100"
+    print(type(of: _string)); //=> String
     ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2016年07月26日  
+更新日：2017年04月13日
 
 
 <a name="クラス"></a>
