@@ -392,129 +392,129 @@ _classB.myMethod(); //=> "ClassA.myMethod()"
 ### public（インスタンス変数）: 非推奨
 ```
 //test.swift
-public class MyClass { //←…internal（省略可）は不可
-	public var p_:String = "ほげ" //←…public宣言
+public class MyClass { //internal（省略可）は不可
+    public var _p: String = "ほげ" //public宣言
 }
-var myClass_:MyClass = MyClass()
-print(myClass_.p_) //=> "ほげ" //←…参照可（他人の変数を勝手にいじる行為）
-myClass_.p_ = "ほげほげ" // ←…変更可（他人の変数を勝手にいじる行為）
-print(myClass_.p_) //=> "ほげほげ"
+var _myClass: MyClass = MyClass()
+print(_myClass._p) //=> "ほげ" //参照可（他人の変数を勝手にいじる行為）
+_myClass._p = "ほげほげ" //変更可（他人の変数を勝手にいじる行為）
+print(_myClass._p) //=> "ほげほげ"
 ```
 
 ### internal（インスタンス変数）: 非推奨（デフォルト）
 ```
 //test.swift
-internal class MyClass { //←…internalは省略可
-	internal var p_:String = "ほげ" //←…internalは省略可
+internal class MyClass { //internalは省略可
+    internal var _p: String = "ほげ" //internalは省略可
 }
-var myClass_:MyClass = MyClass()
-print(myClass_.p_) //=> "ほげ" //←…参照可（他人の変数を勝手にいじる行為）
-myClass_.p_ = "ほげほげ" // ←…変更可（他人の変数を勝手にいじる行為）
-print(myClass_.p_) //=> "ほげほげ"
+var _myClass: MyClass = MyClass()
+print(_myClass._p) //=> "ほげ" //参照可（他人の変数を勝手にいじる行為）
+_myClass._p = "ほげほげ" //変更可（他人の変数を勝手にいじる行為）
+print(_myClass._p) //=> "ほげほげ"
 ```
 
 ### private（インスタンス変数）: 推奨
 ```
 //test.swift
-internal class MyClass { //←…internalは省略可
-	private var p_:String = "ほげ" //←…private宣言
-	internal var p:String { //p_のアクセサ ←…internalは省略可
-        get { return p_ }
-        set { p_ = newValue }
+internal class MyClass { //internalは省略可
+    private var _p: String = "ほげ" //private宣言
+    internal var p: String { //_pのアクセサ ←internalは省略可
+        get { return _p }
+        set { _p = newValue }
     }
 }
-var myClass_:MyClass = MyClass()
-print(myClass_.p) //=> "ほげ" ←…getterで参照
-myClass_.p = "ほげほげ" // ←…setterで変更
-print(myClass_.p) //=> "ほげほげ"
+var _myClass: MyClass = MyClass()
+print(_myClass.p) //=> "ほげ" ←getterで参照
+_myClass.p = "ほげほげ" //setterで変更
+print(_myClass.p) //=> "ほげほげ"
 ```
 
 ### ローカ変数
 1. メソッド内で宣言する場合
     ```
     //test.swift
-    class MyClass { //←…internal扱い
-        private var v_:String = "PRIVATE"; //←…private宣言
+    class MyClass { //internal扱い
+        private var _v: String = "PRIVATE"; //private宣言
         init() {
-            print(v_) //=> "PRIVATE"
+            print(_v) //=> "PRIVATE"
         }
         func myMethod() -> Void { // -> Void は省略可
-            var v_:String //内部変数（≒ローカル変数）宣言のみ!! ←…設定は不可!!
-            v_ = "LOCAL" //←…ローカル変数への値の設定
-            print(v_) //=> "LOCAL"
-            print(self.v_) //=> "PRIVATE"
+            var _v: String //内部変数（≒ローカル変数）宣言のみ!! ←設定は不可!!
+            _v = "LOCAL" //ローカル変数への値の設定
+            print(_v) //=> "LOCAL"
+            print(self._v) //=> "PRIVATE"
         }
     }
-    var myClass_:MyClass = MyClass()
-    myClass_.myMethod()
+    var _myClass: MyClass = MyClass()
+    _myClass.myMethod()
     ```
 
 1. 引数として利用する場合
     ```
     //test.swift
-    class MyClass { //←…internal扱い
-        private var name_:String = "TOHRU"; //←…private宣言
+    class MyClass { //internal扱い
+        private var _name: String = "TARO"; //private宣言
         init() {
-            print(name_) //=> "TOHRU"
+            print(_name) //=> "TARO"
         }
-        func myMethod(name_:String) -> Void { // -> Void は省略可
-            print(name_) //=> "SACHIKO"
-            print(self.name_) //=> "TOHRU" ←…インスタンス変数の参照はselfが必要
+        func myMethod(_name: String) -> Void { // -> Void は省略可
+            print(_name) //=> "HANAKO"
+            print(self._name) //=> "TARO" ←インスタンス変数の参照はselfが必要
         }
     }
-    var myClass_:MyClass = MyClass()
-    myClass_.myMethod(name_:"SACHIKO") ←…引数の渡し方が独特…
+    var _myClass: MyClass = MyClass()
+    _myClass.myMethod(_name:"HANAKO") ←引数の渡し方が独特…
     ```
 
 1. for 文内で宣言する場合
     ```
     //test.swift
-    class MyClass { //←…internal扱い
-        private var i_:Int = 999; //←…private宣言
+    class MyClass { //internal扱い
+        private var _i:Int = 999; //private宣言
         init() {
-            print(i_) //=> 999
+            print(_i) //=> 999
         }
         func myMethod() -> Void { // -> Void は省略可
-            for i_ in 0..<10 {
-                print(i_); //=> 0、1、2、…、9
-                print(self.i_); //=> 999
+            for _i in 0..<10 {
+                print(_i); //=> 0、1、2、…、9
+                print(self._i); //=> 999
             }
-            print(i_); //=> 999
+            print(_i); //=> 999
         }
     }
-    var myClass_:MyClass = MyClass()
-    myClass_.myMethod()
+    var _myClass: MyClass = MyClass()
+    _myClass.myMethod()
     ```
 
 ### グローバル変数
 ```
 //test.swift
-var global_:String = "GLOBAL"
+var _global: String = "GLOBAL"
 
 //==========================================================
 // メソッド内のグローバル変数の扱い
 //==========================================================
 func myMethod() -> Void { // -> Void は省略可
-	print(global_) //=> "GLOBAL" ←…何も宣言することなく利用可能
+    print(_global) //=> "GLOBAL" ←何も宣言することなく利用可能
 }
 myMethod()
 
 //==========================================================
 // クラス内のグローバル変数の扱い
 //==========================================================
-class MyClass { //←…internal扱い
-	init() {
-		print(global_) //=> "GLOBAL" ←…何も宣言することなく利用可能
-	}
+class MyClass { //internal扱い
+    init() {
+        print(_global) //=> "GLOBAL" ←何も宣言することなく利用可能
+    }
 }
-var myClass_:MyClass = MyClass()
+var _myClass: MyClass = MyClass()
 
 ◆クラス変数（静的変数）
-class MyMath { //←…internal扱い
-	internal static var PI:Double = 3.14159265358979 //←…internalは省略可
+class MyMath { //internal扱い
+    internal static var PI: Double = 3.14159265358979 //internalは省略可
 }
 print(MyMath.PI) //=> 3.14159265358979
-MyMath.PI = 3.14 //←…変更可能
+MyMath.PI = 3.14 //変更可能
 print(MyMath.PI) //=> 3.14
 ```
 
@@ -1293,10 +1293,10 @@ import java.util.*; //LinkedListに必要
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         LinkedList<String> _list = new LinkedList<String>();
-        _list.add("TOHRU");
-        _list.add("SACHIKO");
+        _list.add("TARO");
+        _list.add("HANAKO");
         for (String _value : _list) {
-            System.out.println(_value); //=> "TOHRU" => "SACHIKO"
+            System.out.println(_value); //=> "TARO" => "HANAKO"
         }
     }
 }
