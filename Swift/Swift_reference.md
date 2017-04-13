@@ -5,6 +5,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_win.md)）
+***
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -48,110 +49,65 @@
 # <b>データ型</b>
 
 ### データ型の種類
-1. 論理型（boolean 型）
-1. 整数型（byte 型 : -128〜127）
-1. 整数型（short 型 : -32768〜32767）
-1. 整数型（int 型 : -2147493649〜2147493647）
-1. 整数型（long 型 : -9223372036854775808〜9223372036854775807）
-1. 浮動小数点数型（float 型 : 小数点第7位までの値）
-1. 浮動小数点数型（double 型 : 小数点第15位までの値）
-1. 文字型（char 型）
-1. 文字列型（String 型: プリミティブ型ではなく String クラスのオブジェクト）
-1. 列挙型（enum）
+1. 論理型 : Bool型（他にBoolean型あり）
+1. 整数型 : Int型（-9223372036854775808〜9223372036854775807）
+1. 浮動小数点数型 : Float型（小数点第5位までの値）
+1. 浮動小数点数型 : Double型（小数点第14位までの値）←デフォルト
+1. 文字型 : Character型
+1. 文字型 : String型 ←デフォルト
+1. 列挙型
 1. クラス
-1. 配列
-1. リスト（LinkedList 他）
-1. セット（TreeSet 他）
-1. マップ（HashMap 他）
+1. 配列 : Array型
+1. 辞書 : Dictionary型
+* 型指定に「?」（「!」と併用も）を付けることで「nil」の代入を許可する Optional 型に
+* Any 型もあり
 
-### 例文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち
-        //①論理型（boolean型）
-        boolean _bool = true; //プリミティブ型
-        System.out.println(_bool); //true
-        Boolean _bool2 = new Boolean(true); //オブジェクト型
-        System.out.println(_bool2.getClass()); //class java.lang.Boolean
+//test.swift
 
-        //②整数型（byte型 -128〜127）
-        byte _byte = 127;
-        System.out.println(_byte); //127
+//①論理型 : Bool型（他にBoolean型あり）
+var _bool: Bool = true
+print(_bool, type(of : _bool)) //=> true Bool
 
-        //③整数型（short型 -32768〜32767）
-        short _short = 32767;
-        System.out.println(_short); //32767
+//②整数型 : Int型（-9223372036854775808〜9223372036854775807）
+var _int:Int = 9223372036854775807 //約900京
+print(type(of : _int)) //=> Int
 
-        //④整数型（int型 -2147493649〜2147493647）
-        int _int = 2147493647; //プリミティブ型
-        System.out.println(_int); //2147493647
-        Integer _int2 = new Integer(100); //オブジェクト型
-        System.out.println(_int2.getClass()); //class java.lang.Integer
+//②浮動小数点数型（Float型 小数点第5位までの値）
+var _float:Float = 3.1415926535897932384626433832795
+print(_float, type(of : _float)) //=> 3.14159  Float
 
-        //⑤整数型（long型 -9223372036854775808〜9223372036854775807）
-        long _long = 9223372036854775807L; //最後にLかl
-        System.out.println(_long); //9223372036854775807
+//④浮動小数点数型（Double型 小数点第14位までの値）←…デフォルト
+var _double:Double = 3.1415926535897932384626433832795
+print(_double, type(of : _double)) //=> 3.14159265358979  Double
 
-        //⑥浮動小数点数型（float型 小数点第7位までの値）
-        float _float = 3.14159265358979323846264338327950F; //最後にFかf
-        System.out.println(_float); //3.1415927（小数点第7位までの値）
+//⑤文字型（Character型）
+var _char:Character = "a" //シングルクォーテーションは不可
+print(_char, type(of : _char)) //=> "a"  Character
 
-        //⑦浮動小数点数型（double型 小数点第15位までの値）
-        double _double = 3.14159265358979323846264338327950; //プリミティブ型
-        System.out.println(_double); //3.141592653589793（小数点第15位までの値）
-        Double _double2 = new Double(3.14159265358979323846264338327950); //オブジェクト型
-        System.out.println(_double2.getClass()); //class java.lang.Double
+var _string:String = "007" //⑥文字型（String型） ←…デフォルト
+print(_string, type(of : _string)) //=> "007"  String
 
-        //⑧文字型（char型）
-        char _char = 'a'; //シングルクォーテーションで囲む
-        System.out.println(_char); //a
+enum Signal { case BLUE,YELLOW,Red } //⑦列挙型
+print(Signal.BLUE) //=> BLUE
 
-        //⑨文字列型（String型）＝プリミティブ型ではなくStringクラスのオブジェクト
-        String _string = "999"; //new String("999")でも同じ ←オブジェクト型
-        System.out.println(_string); //999
-        System.out.println(_string.getClass()); //class java.lang.String
+class MyClass {} //⑧クラス
+var _myClass:MyClass = MyClass()
+print(_myClass, type(of : _myClass)) //=> test.MyClass MyClass
 
-        //⑩列挙型（enum）
-        System.out.println(Signal.BLUE); //BLUE
-        System.out.println(Signal.BLUE.getClass()); //class Signal
+//⑪配列（Array型）
+var _array:Array<String> = ["A","B","C"] //<Any>、<AnyObject>等も可
+print(_array, type(of : _array)) //=> ["A","B","C"]  Array<String>
 
-        //⑪クラス
-        MyClass _myClass = new MyClass();
-        System.out.println(_myClass); //MyClass@6bc7c054
-        System.out.println(_myClass.getClass()); //class MyClass
-
-        //⑫配列
-        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
-        System.out.println(_array); //[I@232204a1
-        System.out.println(_array.getClass()); //class [I
-
-        //⑬リスト（LinkedList他）
-        java.util.LinkedList<String> _list = new java.util.LinkedList<String>();
-        System.out.println(_list); //[]
-        System.out.println(_list.getClass()); //class java.util.LinkedList
-
-        //⑭セット（TreeSet他）
-        java.util.Set<String> _set = new java.util.HashSet<String>();
-        System.out.println(_set); //[]
-        System.out.println(_set.getClass()); //class java.util.HashSet
-
-        //⑮マップ（HashMap他）
-        java.util.Map<String, Integer> _map 
-        = new java.util.HashMap<String, Integer>();
-        System.out.println(_map); //{}
-        System.out.println(_map.getClass()); //class java.util.HashMap
-    }
-}
-
-enum Signal { BLUE,YELLOW,RED } //⑩列挙型の定義
-class MyClass {} //⑪クラスの定義
+//⑫辞書（Dictionary型）
+var _dic:Dictionary<String, String> = ["a":"あ", "i":"い", "u":"う"]
+print(_dic, type(of : _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionary<String, String>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月13日  
-更新日：2017年04月12日
+更新日：2017年04月13日
 
 
 <a name="データ型の操作"></a>
@@ -273,7 +229,7 @@ class MyClass {} //⑪クラスの定義
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -322,7 +278,7 @@ class Rectangle { //長方形クラス
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -370,7 +326,7 @@ class SubClassB extends SuperClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -420,7 +376,7 @@ public class Main { //public は省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -476,7 +432,7 @@ class ClassB { //この内容だけが継承と異なる
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -573,7 +529,7 @@ class MyClass {
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -621,7 +577,7 @@ class Nishimura {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -676,7 +632,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -727,7 +683,7 @@ class MyMath {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -865,7 +821,7 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -915,7 +871,7 @@ interface IHello {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -978,7 +934,7 @@ class MyMath {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1082,7 +1038,7 @@ public class Main { //publicは省略可
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1133,7 +1089,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1192,7 +1148,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1293,7 +1249,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1391,7 +1347,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1483,7 +1439,7 @@ public class Main { //publicは省略可
 ```
 * continue 文はその時点のループ内の処理のみ中断し、ループから脱出せずにループを継続する
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1559,7 +1515,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月16日  
 更新日：2017年04月12日
@@ -1743,7 +1699,7 @@ public class Main { //public は省略可
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月16日  
 更新日：2017年04月12日
@@ -1814,7 +1770,7 @@ for (String _value : _set) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月16日  
 更新日：2017年04月12日
@@ -1868,7 +1824,7 @@ System.out.println(_map.containsKey("A")); //true（任意のキーがあるか�
 System.out.println(_map.containsValue(い")); //true（ 任意の値があるか否か）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月17日  
 更新日：2017年04月12日
@@ -1915,7 +1871,7 @@ class Robot {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月17日  
 更新日：2017年04月12日
@@ -2053,7 +2009,7 @@ public class Main { //public は省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2107,7 +2063,7 @@ public class Main { //public は省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2154,7 +2110,7 @@ class Moneybox implements IMoneybox { //インターフェースの実装
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2204,7 +2160,7 @@ class SubClass extends AbstractClass { //抽象クラスを継承
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2252,7 +2208,7 @@ class SubClass extends SuperClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2300,7 +2256,7 @@ class SubClass extends SuperClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2349,7 +2305,7 @@ interface Ixxx_robot { //無名関数用インターフェース（Java独特）
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2461,7 +2417,7 @@ System.out.println(Math.max(5.01, -10)); //=> 5.01 ←「2つ」の数値の比�
 System.out.println(Math.min(5.01, -10)); //=> -10.0 ←「2つ」の数値の比較
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2532,7 +2488,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2579,7 +2535,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月20日  
 更新日：2017年04月12日
@@ -2610,7 +2566,7 @@ class LoopExec extends TimerTask {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月20日  
 更新日：2017年04月12日
@@ -2657,7 +2613,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成日：2016年07月20日  
 更新日：2017年04月12日
 
@@ -2692,10 +2648,10 @@ public class Main { //publicは省略可
             FileReader filereader_ = new FileReader(file_);
             
             //③１文字ずつ読み込んでいきます
-            int int_;
-            while((int_ = filereader_.read()) != -1){
+            int _int;
+            while((_int = filereader_.read()) != -1){
                 //④文字コードを文字に変換
-                System.out.print((char)int_); //=>"あ"=>"い"=>"う"=>…
+                System.out.print((char)_int); //=>"あ"=>"い"=>"う"=>…
             }
 
             //⑤ファイルを閉じる
@@ -2710,7 +2666,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月20日  
 更新日：2017年04月12日
