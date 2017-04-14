@@ -891,11 +891,11 @@ internal class MyMath { //internalは省略可
 
 //クラス定数（静的定数）
 print(MyMath.PI) //=> 3.14159265358979
-//MyMath.PI = 3.14 //error ←…変更不可
+//MyMath.PI = 3.14 //error ←変更不可
 
 //クラス変数（静的変数）
 print(MyMath.lastUpdate) //=> "2016-07-27"
-MyMath.lastUpdate = "2017-04-14" //←…変更可能
+MyMath.lastUpdate = "2017-04-14" //変更可能
 print(MyMath.lastUpdate) //=> "2017-04-14"
 
 //静的メソッドの実行
