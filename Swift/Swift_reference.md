@@ -1236,12 +1236,186 @@ while _i <= 20 {
 <a name="配列"></a>
 # <b>配列</b>
 
+### 作成と取得（1次元）
+* 作成方法
+```
+var _array1: Array<String> = ["A","B","C"]
+var _array2: [String] = ["A","B","C"]
+var array3_: Array = ["A","B","C"] //型推論
+```
+* 例文
+```
+//test.swift
+var _array:[String] = ["A","B","C"]
+print(_array) //=> ["A", "B", "C"]
+print(_array.dynamicType) //=> Array<String>
+print(_array[0]) //=> "A" ←要素を取得（指定位置）する方法
+```
 
+### 作成と取得（2次元）
+* 構文
+```
+var 変数名: [[データ型]] = [[○,○,...],[○,○,...],...]
+```
+* 例文
+```
+//test.swift（コインロッカーのようなイメージ）
+var coinlocker_:[[String]] = [
+    ["1083","7777","",""], //0行目
+    ["","","",""],         //1行目
+    ["","0135","",""],     //2行目
+    ["","","",""],         //3行目
+    ["","","","1234"]      //4行目
+]
+print(coinlocker_[0][0]); //=> "1083"
+print(coinlocker_[0][1]); //=> "7777"
+print(coinlocker_[2][1]); //=> "0135"
+print(coinlocker_[4][3]); //=> "1234"
+```
+
+### 抽出（○番目から○番目）
+* 構文
+```
+Array[開始インデックス番号...終了インデックス番号] //終了インデックス番号を含む
+```
+* 例文
+```
+//test.swift
+var _array: [String] = ["A","B","C"]
+print(_array[0...1]) //=> ["A","B"]
+```
+
+### 要素の数
+```
+//test.swift
+var _array:[String] = ["A","B","C"]
+for i in 0 ..< _array.count { //この場合要素の数は「3」
+    print(_array[i]) //=> "A"→"B"→"C"
+}
+```
+
+### 追加（最後）
+* 構文
+```
+Array.append (値)
+```
+* 例文
+```
+//test.swift
+//["A","B"]→["A","B","C"]
+var _array: [String] = ["A","B"]
+_array.append("C")
+```
+
+### 追加（指定位置）
+* 構文
+```
+Array.insert(値, at:インデックス番号) //先頭（0）〜最後（Array.count）まで指定可能
+```
+* 例文
+```
+//test.swift
+//["A","B"]→["C","A","B"]
+var _array:[String] = ["A","B","C"]
+_array.insert("C", at:0)
+```
+
+### 更新（任意の値）
+* 構文
+```
+Array[インデックス番号] = 値
+```
+* 例文
+```
+//test.swift
+//["A","B","C"]→["D","B","C"]
+var _array:[String] = ["A","B","C"]
+_array[0] = "D" //0番目を変更する場合
+```
+
+### 更新（nil 型）
+* 構文
+```
+var 変数:[データ型?] = [○,○,...]
+変数[インデックス番号] = nil
+```
+* 例文
+```
+//test.swift
+//[Optional("A"), Optional("B"), Optional("C")] → [nil,Optional("B"),Optional("C")]
+var _array:[String?] = ["A", "B", "C"]
+_array[0] = nil
+```
+
+### 削除（指定のインデックス）
+* 構文
+```
+Array.remove(at:インデックス番号); //指定のインデックス番号の要素を削除
+//先頭（0）〜最後（Array.count-1）まで指定可能
+```
+* 例文
+```
+//test.swift
+//["A","B","C"]→["B","C"]
+var _array:[String] = ["A","B","C"]
+_array.remove(at:0) //先頭を削除する場合
+```
+
+### 削除（最後）
+* 構文
+```
+Array.removeLast()
+```
+* 例文
+```
+//test.swift
+//["A","B","C"]→["A","B"]
+var _array:[String] = ["A","B","C"]
+_array.removeLast()
+```
+
+### 結合
+```
+//test.swift
+var _array1:[String] = ["A", "B"]
+var _array2:[String] = ["C", "D"]
+_array1 += _array2
+print(_array1) //=> ["A", "B", "C", "D"]
+```
+
+### 複製
+```
+//test.swift
+var _array1:[String] = ["A","B","C"]
+var _array2:[String] = _array1 //代入は参照ではなく複製（注意）
+_array2[0] = "X" //片方の配列の要素のみ変更してみる
+print(_array1) //=> ["A","B","C"]
+print(_array2) //=> ["X","B","C"] 
+```
+
+### 全要素を取り出す
+1. for...in 文を使った例
+    ```
+    //test.swift
+    var _array:[String] = ["A","B","C"]
+    for value in _array {
+        print(value) //=> "A"→"B"→"C"
+    }
+    ```
+
+1. for 文を使った例
+    ```
+    //test.swift
+    var _array:[String] = ["A","B","C"]
+    for i in 0 ..< _array.count {
+        print(_array[i]) //=> "A"→"B"→"C"
+    }
+    ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月16日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="リスト（LinkedList）"></a>
