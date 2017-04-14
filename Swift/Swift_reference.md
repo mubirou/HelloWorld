@@ -1479,23 +1479,23 @@ print(_dic) //=> ["U": "う", "A": "あ", "I": "ゐ"]
 ### 例文
 ```
 //test.swift
-internal class Robot { //←…internalは省略可
-    private var _x: Int //←…インスタンス変数（ここではselfは不可）
+internal class Robot { //internalは省略可
+    private var _x: Int //インスタンス変数（ここではselfは不可）
     
     init(_x: Int) { //引数
-        self._x = _x //←…①selfが無いとerror
+        self._x = _x //①selfが無いとerror
         print(self) //=> test.Robot（このメソッドが実行されたオブジェクト）
     }
-    internal func move() -> Void { //←…internalは省略可
+    internal func move() -> Void { //internalは省略可
         var _x: Int //ローカル変数宣言
-        _x = self._x + 10 //←…②selfが無いとerror
+        _x = self._x + 10 //②selfが無いとerror
         if (_x >= 1920) {
             _x = 0
         }
-        self._x = _x //←…②selfが無いとerror
+        self._x = _x //②selfが無いとerror
         print(self) //=> test.Robot（このメソッドが実行されたオブジェクト）
     }
-    internal var x: Int { //←…internalは省略可
+    internal var x: Int { //internalは省略可
         get { 
             return _x //selfを付けてもよい（通常は省略）
         }
