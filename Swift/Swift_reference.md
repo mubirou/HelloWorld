@@ -28,9 +28,9 @@
 * [辞書（Dictionary）](#辞書（Dictionary）)
 * [self](#self)
 * [文字列の操作](#文字列の操作)
-***
 * [インターフェース（protocol）](#インターフェース（protocol）)
-* [抽象クラス（abstract）](#抽象クラス（abstract）)
+***
+* [抽象クラス](#抽象クラス)
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
@@ -930,7 +930,7 @@ if (age_ <= 20) { // () は省略可
 1. 論理演算子（&&）を使う方法
     ```
     if (条件式① && 条件②) {
-        処理A ←…条件式① かつ 条件式② の両方がtrueの場合に実行
+        処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
     } else {
         処理B
     }
@@ -939,7 +939,7 @@ if (age_ <= 20) { // () は省略可
     ```
     if (条件式①) {
         if (条件②) {
-            処理A ←…条件式① かつ 条件式② の両方がtrueの場合に実行
+            処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
         } else {
             処理B
         }
@@ -1684,7 +1684,7 @@ protocol IMoneybox { //≒interface ←他の言語に合わあせてI○○と�
     var total: Int { get set }
 }
 
-class Moneybox : IMoneybox { //←…プロトコルの実装
+class Moneybox : IMoneybox { //プロトコルの実装
     private var _total: Int = 0
     func add(money _money: Int) -> Void {
         _total += _money
@@ -1710,48 +1710,40 @@ print(_tmoneybox.total) //=> 5000
 更新日：2017年04月14日
 
 
-<a name="抽象クラス（abstract）"></a>
-# <b>抽象クラス（abstract）</b>
-
-### 概要
-* 派生クラスに実装しなければならないメソッドを、抽象クラスで定義
-* 実際の処理は、抽象クラスを継承した派生クラスで抽象メソッドをオーバーライドして記述
-
-### 構文
-```
-abstract class Abstract○○ { //抽象クラスの定義
-    abstract public 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
-}
-class SubClass : Abstract○○ { //抽象クラスの継承
-    public 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
-        //実際の処理
-    }
-    ……
-```
+<a name="抽象クラス"></a>
+# <b>抽象クラス</b>
+* abstract キーワードが存在しない（継承と例外処理等を使って擬似的な抽象クラスを実現する）
 
 ### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        SubClass _subClass = new SubClass();
-        _subClass.common(); //=> "AbstractClass.common()"
-        _subClass.method(); //=> "SubClass.method()"
+//test.swift
+//==============================================
+// 擬似抽象クラスの定義
+//==============================================
+internal class AbstractClass { //internalは省略可
+    //↓共通のメソッド
+    internal func common() -> Void { 
+        print("AbstractClass.common()")
+    }
+    //↓抽象メソッドの宣言（実際の処理は書かない）
+    internal func abstractMethod() -> Void { 
+        print("サブクラスでオーバーライドして実装して下さい") //例外処理でもＯＫ
     }
 }
 
-abstract class AbstractClass { //「抽象クラス」の定義
-    public void common() { //共通のメソッド
-        System.out.println("AbstractClass.common()");
+//==============================================
+// サブクラス ←擬似抽象クラスを継承
+//==============================================
+internal class SubClass : AbstractClass { //internalは省略可
+    //↓オーバーライドして実際の処理を記述
+    override internal func abstractMethod() -> Void {
+        print("SubClass.abstractMethod()") //実際の処理
     }
-    abstract public void method(); //抽象メソッドの宣言（実際の処理は書かない）
 }
 
-class SubClass extends AbstractClass { //抽象クラスを継承
-    public void method() { //オーバーライドして実際の処理を記述
-        System.out.println("SubClass.method()"); //実際の処理
-    }
-}
+var _subClass:SubClass = SubClass()
+_subClass.common() //=> "AbstractClass.common()"
+_subClass.abstractMethod() //=> "SubClass.method()"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
