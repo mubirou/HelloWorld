@@ -686,138 +686,132 @@ print(MyMath.PI) //=> 3.14159265358979 ←インスタンスの生成が不要
 # <b>メソッド</b>
 
 ### 基本構文
-* 「デフォルト値付き引数」「名前付き引数」には非対応
 ```
-[アクセス修飾子] [static] 戻り値のデータ型 メソッド名([データ型 引数, …]) {
-    [return 戻り値;]
+[アクセス修飾子] [static] func メソッド名([引数:型, …]) -> 戻り値の型 {
+    [return 戻り値]
 }
 ```
 
-### アクセス修飾子】※省略すると同じパッケージ内からのみアクセス可能…とのこと。
-1. public : 全クラスからアクセス可能
-1. protected : 同じクラスおよびサブクラス内（同じパッケージ）からアクセス可能
-1. private : 同じクラス内からアクセス可能
-* static : 静的メンバ＝クラスメソッド（インスタンスを作成せずにメソッドが利用可能）
+* アクセス修飾子】※省略するとinternal扱い。
+    1. open : 別のモジュールからもアクセス可（旧 public と同等）
+    1. public : 別のモジュールからもアクセス可（但し継承・オーバーライドは不可）
+    1. internal : 同じモジュール内からのみアクセスできる ←デフォルト
+    1. fileprivate : 同じソースファイル内からのみアクセスできる（旧 private と同等）
+    1. private : 定義されたスコープ内でのみアクセスできる
+    * static : クラスメソッド（静的メソッド）
 
 ### 基本例文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        MyClass _myClass = new MyClass();
-        System.out.println(_myClass.tashizan(1,10)); //55
-        System.out.println(_myClass.tashizan(1,100)); //5050
-    }
-}
-class MyClass {
+//test.swift
+internal class MyClass { //internalは省略可
     //○〜○までの値を足した合計を返す
-    public int tashizan(int _start, int _end) {
-        int _result = 0; //ローカル変数
-        for (int i = _start; i <= _end; i++) {
+    internal func tashizan(_start:Int, end_:Int) -> Int { //internalは省略可
+        var _result:Int //ローカル変数（内部変数）の宣言
+        _result = 0; //ローカル変数の初期化
+        for i in _start..<end_+1 { //..<の間をあけるとerror
             _result += i;
         }
         return _result;
     }
 }
+
+var _myClass: MyClass = MyClass();
+print(_myClass.tashizan(_start:1, end_:10)); //=> 55
+print(_myClass.tashizan(_start:1, end_:100)); //=> 5050
 ```
 
-### main() メソッド 
-* 特徴
-    * main() メソッドを記述できるクラスはファイル名と同じクラスに１つのみ
-    * main() が自動的に最初に実行される
-    * public static void main(String[] args) と決め打ちする
-
-* 例文
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            myMethod(); //=> "Main.myMethod()"
-        }
-        static void myMethod() { //staticなメソッドならmain()から呼び出せる
-            System.out.println("Main.myMethod()");
-        }
-    }
-    ```
-
-###  コンストラクタ
-* 書式
-    ```
-    class クラス名 {
-        [public] クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
-            ……
-        }
-        ……
-    ```
-    * アクセス修飾子を省略した場合、同じパッケージ内でのみアクセス可能
-
-* 例文
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
-            System.out.println(_point.getX()); //100
-            System.out.println(_point.getY()); //150
-        }
-    }
-    class Point {
-        private int _x, _y; //メンバ変数の「宣言」
-        public Point(int _x, int _y) { //コンストラクタ
-            //メンバ変数の「初期化」など…
-            this._x = _x;
-            this._y = _y;
-        }
-        public int getX() { return _x; } //今回はgetterのみ
-        public int getY() { return _y; } //今回はgetterのみ
-    }
-    ```
-
-### 静的メソッド（＝クラスメソッド、static メソッド）
+### コンストラクタ＝イニシャライザ
+* 引数ありと引数なしを同時に定義するとが可能）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(MyMath.pow(2,0)); //1（2の0乗）
-        System.out.println(MyMath.pow(2,1)); //2（2の1乗）
-        System.out.println(MyMath.pow(2,8)); //256（2の8乗）
+//test.swift
+internal class MyClass { //internalは省略可
+    //引数なしのコンストラクタの宣言
+    init() { 
+        print("インスタンスが生成")
+    }
+    //引数ありのコンストラクタの宣言
+    init(arg1: String) {
+        print("インスタンスが生成:" + arg1)
     }
 }
-class MyMath { //カスタムクラス
-    public static long pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
-        long _result = arg1;
-        for (int i=1; i<arg2; i++) { _result = _result * arg1; }
+
+var _myClass1: MyClass = MyClass() //=> "インスタンスが生成"
+var _myClass2: MyClass = MyClass(arg1:"引数あり") //=> "インスタンスが生成:引数あり"
+```
+
+### クラスメソッド＝静的メソッド
+```
+//test.swift
+internal class MyMath { //internalは省略可
+    internal static func pow(arg1:Int, arg2:Int) -> Int { //internalは省略可
+        if (arg2 == 0) { return 1 } //0乗対策
+        var _result:Int //ローカル変数宣言
+        _result = arg1 //ローカル変数の初期化
+        for i in 1..<arg2 {
+            if i == 0 { return 0 } //iを使わないとerrorになるので…
+            _result = _result * arg1
+        }
         return _result;
     }
 }
+
+print(MyMath.pow(arg1:2, arg2:0)); //=> 1（2の0乗）
+print(MyMath.pow(arg1:2, arg2:1)); //=> 2（2の1乗）
+print(MyMath.pow(arg1:2, arg2:8)); //=> 256（2の8乗）
+```
+
+### デフォルト値付き引数
+```
+//test.swift
+internal class MyClass { //internalは省略可
+    private var _point: Int = 0
+    internal func addPoint(_point:Int=1) -> Void { // -> Void は省略可
+        self._point += _point
+        print(self._point)
+    }
+}
+
+var _myClass:MyClass = MyClass()
+_myClass.addPoint() //=> 1
+_myClass.addPoint(_point:10) //=> 11
 ```
 
 ### 可変長引数
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        MyClass _myClass = new MyClass();
-        _myClass.sum(1,1); //=>2（1+1）
-        _myClass.sum(1,2,3,4,5); //=>15（1+2+3+4+5）
-    }
-}
-class MyClass {
-    public void sum(int... args) { //最後の引数にのみ有効、引数は「配列」扱い
-        int _result = 0; //ローカル変数
-        for (int tmp : args) { //拡張for文（for-each文）
-            _result += tmp;
+//test.swift
+internal class MyClass { //internalは省略可
+    internal func sum(_points:Int...) -> Void { // -> Void は省略可
+        var _result:Int //ローカル変数宣言
+        _result = 0
+        for tmp in _points { //引数は配列（Array）
+            _result += tmp
         }
-        System.out.println(_result);
+        print(_result)
     }
 }
+
+var _myClass:MyClass = MyClass()
+_myClass.sum(_points:1,1) //=> 2（1+1）
+_myClass.sum(_points:1,2,3,4,5); //=> 15（1+2+3+4+5）←引数の数はいくつでも可
 ```
+
+//========================================================================================
+// 名前付き引数（引数名の指定の簡略化が可能）
+//========================================================================================
+internal class MyClass { //internalは省略可
+    internal func myMethod(name newUserName_:String) -> Void { // -> Void は省略可
+        print(newUserName_) //=> "TAKASHI"
+    }
+}
+
+var _myClass:MyClass = MyClass()
+_myClass.myMethod(name:"TAKASHI")
+
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月27日  
+更新日：2017年04月14日
 
 
 <a name="匿名関数（ラムダ式）"></a>
