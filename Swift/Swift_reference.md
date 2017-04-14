@@ -1235,73 +1235,8 @@ while _i <= 20 {
 
 <a name="配列"></a>
 # <b>配列</b>
-* Java では配列の宣言後に要素の数を変更することは不可
 
-### １次元配列の作成方法
-1. int[] _array = new int[4]; //4つの空の要素（動的型）を持つ配列を作成
-1. String[] _array = new String[]{"A","B","C","D"};
-1. String[] _array = {"A","B","C","D"}; //簡単
 
-### 配列の配列(≒2次元配列、ジャグ配列)の場合
-* Java/C++にはC#のような多次元配列がないため「配列の配列」で代用
-* 以下の例文では５行x４列のコインロッカーのような配列を作成
-
-1. new 演算子を使う方法
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            String[][] _coinlocker = new String[5][4]; //new データ型[行数][列数]
-            _coinlocker[0][0] = "1083";
-            _coinlocker[0][1] = "7777";
-            _coinlocker[2][1] = "0135";
-            _coinlocker[4][3] = "1234";
-        }
-    }
-    ```
-
-1. 配列リテラルを使う方法
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            String[][] _coinlocker = 
-            {{"1083","7777","",""}, //0行目
-            {"","","",""},         //1行目
-            {"","0135","",""},     //2行目
-            {"","","",""},         //3行目
-            {"","","","1234"}};    //4行目
-            System.out.println(_coinlocker[0][0]); //=> "1083"
-            System.out.println(_coinlocker[0][1]); //=> "7777"
-            System.out.println(_coinlocker[2][1]); //=> "0135"
-            System.out.println(_coinlocker[4][3]); //=> "1234"
-        }
-    }
-    ```
-
-### 配列の要素の数
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String[] _array = {"A","B","C","D"};
-        for (int i=0; i<_array.length; i++) { 
-            System.out.println(_array[i]);
-        }
-    }
-}
-```
-
-### 文字列→配列
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String _string = "A,B,C,D"; //「,」区切りの文字列
-        String[] _array = _string.split(","); //「,」区切りで分割して配列化
-    }
-}
-```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
