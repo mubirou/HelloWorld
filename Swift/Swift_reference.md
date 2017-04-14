@@ -16,9 +16,9 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
-***
 * [匿名関数（クロージャ）](#匿名関数（クロージャ）)
-* [静的メンバ（static）](#静的メンバ（static）)
+***
+* [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
@@ -846,15 +846,15 @@ var _chineseHello = { (_name: String) -> String in
 }
 
 //無名関数①の実行
-print(_hello("TAKASHI")) //=> "TAKASHI,Hello" ←…_hello(_name:"TAKASHI")ではない
+print(_hello("TAKASHI")) //=> "TAKASHI,Hello" ←_hello(_name:"TAKASHI")ではない
 
 //無名関数②に入替えて実行
 _hello = _japaneseHello
-print(_hello("たかし")) //=> "たかし、こんにちは" ←…_hello(_name:"たかし")ではない
+print(_hello("TAKASHI")) //=> "TAKASHI、こんにちは" ←_hello(_name:"TAKASHI")ではない
 
 //無名関数③に入替えて実行
 _hello = _chineseHello
-print(_hello("たかし")) //=> "たかし,你好" ←…_hello(_name:"たかし")ではない
+print(_hello("TAKASHI")) //=> "TAKASHI,你好" ←_hello(_name:"TAKASHI")ではない
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -863,8 +863,8 @@ print(_hello("たかし")) //=> "たかし,你好" ←…_hello(_name:"たかし
 更新日：2017年04月14日
 
 
-<a name="静的メンバ（static）"></a>
-# <b>静的メンバ（static）</b>
+<a name="クラス定数･変数･メソッド"></a>
+# <b>クラス定数･変数･メソッド</b>
 * 静的メンバはクラスをインスタンス化せずにアクセスが可能
 
 ### 基本構文
@@ -2302,7 +2302,7 @@ interface Ixxx_robot { //無名関数用インターフェース（Java独特）
 
 ### 概要
 * Math クラスは java.lang パッケージに含まれているため importする必要はない
-* Math クラスは全て静的メンバ（static）である
+* Math クラスは全てクラス定数･変数･メソッドである
 * Math クラスのクラス定義は public final class Math extends Object である
 
 ### Math.sin() : サイン（正弦）
