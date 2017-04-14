@@ -895,8 +895,8 @@ print(MyMath.PI) //=> 3.14159265358979
 
 //クラス変数（静的変数）
 print(MyMath.lastUpdate) //=> "2016-07-27"
-MyMath.lastUpdate = "2016-07-28" //←…変更可能
-print(MyMath.lastUpdate) //=> "2016-07-28"
+MyMath.lastUpdate = "2017-04-14" //←…変更可能
+print(MyMath.lastUpdate) //=> "2017-04-14"
 
 //静的メソッドの実行
 print(MyMath.pow(arg1:2, arg2:0)) //=> 1（2の0乗）
@@ -906,8 +906,8 @@ print(MyMath.pow(arg1:2, arg2:8)) //=> 256（2の8乗）
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月27日  
+更新日：2017年04月14日
 
 
 <a name="if文"></a>
