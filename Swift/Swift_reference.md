@@ -29,9 +29,9 @@
 * [self](#self)
 * [文字列の操作](#文字列の操作)
 * [インターフェース（protocol）](#インターフェース（protocol）)
-***
 * [抽象クラス](#抽象クラス)
-* [super キーワード](#superキーワード)
+***
+* [super](#super)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -1746,50 +1746,50 @@ _subClass.abstractMethod() //=> "SubClass.method()"
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年07月29日  
+更新日：2017年04月14日
 
 
-<a name="superキーワード"></a>
-# <b>super キーワード</b>
+<a name="super"></a>
+# <b>super</b>
 
 ```
-//Main.java
-//メインクラス（publicは省略可）
-public class Main {
-    public static void main(String[] args) { //決め打ち ←最初に自動的に実行される
-        SubClass _SubClass = new SubClass(); //サブクラスのインスタンスの生成
-        //=> "スーパークラスのコンストラクタ：サブクラスからの呼び出し"
-        _SubClass.methodSub("サブクラスからの呼び出し");
-        //=> "スーパークラスのメソッド：サブクラスからの呼び出し"
+//test.swift
+//==================================
+// スーパークラス
+//==================================
+internal class SuperClass { //internalは省略可
+    //コンストラクタ
+    init(arg: String) {
+        print("スーパークラスのコンストラクタ：" + arg)
+    }
+    //メソッド
+    internal func methodSuper(argA: String) -> Void { //internalは省略可
+        print("ここはエラーなし") //コンストラクタのsuper()はどこでもOK
+        print("スーパークラスのメソッド：" + argA)
     }
 }
 
-//スーパークラス
-class SuperClass {
+//==================================
+// サブクラス
+//==================================
+internal class SubClass : SuperClass { //internalは省略可
     //コンストラクタ
-    public SuperClass(String arg) {
-        System.out.println("スーパークラスのコンストラクタ：" + arg);
+    init() {
+        super.init(arg:"サブクラスからの呼び出し") //スーパークラスのコンストラクタを呼出す
     }
     //メソッド
-    public void methodSuper(String arg) {
-        System.out.println("スーパークラスのメソッド：" + arg);
+    internal func methodSub(argB: String) -> Void { //internalは省略可
+        print("ここはエラーなし") //メソッド内のsuper()はどこでもOK!
+        super.methodSuper(argA:argB) //スーパークラスのメソッドを呼出す
     }
 }
 
-//サブクラス
-class SubClass extends SuperClass {
-    //コンストラクタ
-    public SubClass() {
-        //System.out.println("ここはエラー"); //コンストラクタのsuper()は冒頭に!
-        super("サブクラスからの呼び出し"); //スーパークラスのコンストラクタを呼出す
-    }
-    //メソッド
-    public void methodSub(String arg) {
-        System.out.println("ここはエラーなし"); //メソッド内のsuper()はどこでもOK!
-        super.methodSuper(arg); //スーパークラスのメソッドを呼出す
-    }
-}
+var subClass_: SubClass = SubClass() //サブクラスのインスタンスの生成
+//=> "スーパークラスのコンストラクタ：サブクラスからの呼び出し"
+
+subClass_.methodSub(argB:"サブクラスからの呼び出し")
+//=> "スーパークラスのメソッド：サブクラスからの呼び出し"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
