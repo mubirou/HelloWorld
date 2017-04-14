@@ -1367,6 +1367,9 @@ Array.remove(at:インデックス番号); //指定のインデックス番号�
 //["A","B","C"]→["B","C"]
 var _array:[String] = ["A","B","C"]
 _array.remove(at:0) //先頭を削除する場合
+for value in _array {
+    print(value) //=> "B"→"C"
+}
 ```
 
 ### 削除（最後）
@@ -1380,6 +1383,9 @@ Array.removeLast()
 //["A","B","C"]→["A","B"]
 var _array:[String] = ["A","B","C"]
 _array.removeLast()
+for value in _array {
+    print(value) //=> "A"→"B"
+}
 ```
 
 ### 結合
