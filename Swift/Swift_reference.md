@@ -138,8 +138,8 @@ print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionar
 1. キャスト（Int 型→ Bool 型）
     ```
     //test.swift
-    var int_: Int = 1
-    var _bool: Bool = (int_ != 0) //0をfalseに変換（0以外はtrueに変換）
+    var _int: Int = 1
+    var _bool: Bool = (_int != 0) //0をfalseに変換（0以外はtrueに変換）
     print(_bool) //=> true
     ```
 
@@ -155,8 +155,8 @@ print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionar
     ```
     //test.swift
     var _string: String = "007"
-    var int_: Int = Int(_string)! //「!」を付けないとOptional型になってしまう
-    print(int_ + 3) //=> 10
+    var _int: Int = Int(_string)! //「!」を付けないとOptional型になってしまう
+    print(_int + 3) //=> 10
     ```
 
 1. キャスト（Int 型→ String 型）
@@ -1845,6 +1845,8 @@ subClass_.myMethod()
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
+### 注意
+* addEventListener() の引数（無名関数）のデータ型の前に <b>@escaping</b> が必要
 
 ```
 //test.swift（internalは省略可）
@@ -1852,33 +1854,36 @@ internal class Robot {
     private var _energy: Int = 80
 
     //無名関数を格納する変数（初期値として何もしない無名関数を定義しておく）
-    private var _dieHandler: ((Robot))->() = { (arg:Robot) -> Void in }
+    private var _dieHandler = { (arg:Robot) -> Void in 
+        //何もしない
+    }
 
-    internal func addEventListener(event_:String, _function: ((Robot))->()) {
-        if (event_ == "die") {
+    //引数（無名関数）のデータ型の前に「@escaping」と記述する
+    internal func addEventListener(_event:String, _function: @escaping (Robot) -> ()) {
+        if (_event == "die") {
             _dieHandler = _function //無名関数を格納する（空の初期値から変更）
         } else { //該当のイベントが無い場合、実行時にerrorを出す（オプション）
-            print("error:" + event_ + "というイベントはありません")
+            print("error:" + _event + "というイベントはありません") //本来はthrow...を使用
         }
     }
 
     internal func fight() -> Void {
         _energy -= 20
         if (_energy <= 0) {
-            _dieHandler(self) //無名関数の呼び出し
+           _dieHandler(self) //無名関数の呼び出し
         }
     }
 }
 
 //無名関数（リスナー関数）
-var die_robot:((Robot))->() = { (arg:Robot) -> Void in
+var die_robot = { (arg: Robot) -> Void in
     print(arg) //=> test.Robot
     print("GAME OVER")
 }
-print(die_robot.dynamicType) //=> (Robot) -> () ←無名関数のデータ型
+print(type(of: die_robot)) //=> (Robot) -> () ←無名関数のデータ型
 
-var _robot:Robot = Robot()
-_robot.addEventListener(event_:"die", _function:die_robot) //イベントリスナーの定義
+var _robot: Robot = Robot()
+_robot.addEventListener(_event: "die", _function: die_robot) //イベントリスナーの定義
 _robot.fight()
 _robot.fight()
 _robot.fight()
@@ -1887,8 +1892,8 @@ _robot.fight() //=> "GAME OVER"
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年08月01日  
+更新日：2017年04月14日
 
 
 <a name="数学関数（Math）"></a>
