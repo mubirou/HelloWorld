@@ -1605,9 +1605,8 @@ String.components(separatedBy:"区切り文字")
 //test.swift
 import Foundation
 var _string: String = "A,B,C,D" //「,」区切りの文字列
-var array_ = _string.components(separatedBy:",")
-print(array_, array_.dynamicType) 
-//=> ["A", "B", "C", "D"]   Array<String>
+var _array = _string.components(separatedBy:",")
+print(_array, type(of: _array)) //=> ["A", "B", "C", "D"] Array<String>
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
