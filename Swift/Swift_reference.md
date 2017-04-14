@@ -15,9 +15,9 @@
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-***
 * [メソッド](#メソッド)
-* [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
+***
+* [匿名関数（クロージャ）](#匿名関数（クロージャ）)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -800,12 +800,12 @@ _myClass.sum(_points:1,2,3,4,5); //=> 15（1+2+3+4+5）←引数の数はいく�
 //test.swift
 internal class MyClass { //internalは省略可
     internal func myMethod(name _newUserName: String) -> Void { // -> Void は省略可
-        print(_newUserName) //=> "TAKASHI"
+        print(_newUserName)
     }
 }
 
 var _myClass:MyClass = MyClass()
-_myClass.myMethod(name:"TAKASHI")
+_myClass.myMethod(name:"TAKASHI") //=> "TAKASHI"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -814,54 +814,53 @@ _myClass.myMethod(name:"TAKASHI")
 更新日：2017年04月14日
 
 
-<a name="匿名関数（ラムダ式）"></a>
-# <b>匿名関数（ラムダ式）</b>
-* ラムダ式は Java SE 8（1.8.0）から導入
+<a name="匿名関数（クロージャ）"></a>
+# <b>匿名関数（クロージャ）</b>
 
+### 構文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+[アクセス修飾子] var 変数名 = { ([引数:型, …]) -> 戻り値の型 in
+    ………
+}
+```
+* 内容を変更させたくない場合は var ではなく let にする
+* デフォルト値付き引数は利用不可
+* インスタンス変数としても利用可能
 
-        //無名関数①（オリジナル）
-        IHello hello_ = (String _name) -> { //データ型は省略可能
-            return _name + "," + "Hello";
-        }; //「;」が必須
-
-        //無名関数②（入替用）
-        IHello japaneseHello_ = (String _name) -> { //データ型は省略可能
-            return _name + "," + "こんにちは";
-        }; //「;」が必須
-
-        //無名関数③（入替用）
-        IHello chineseHello_ = (String _name) -> { //データ型は省略可能
-            return _name + "," + "你好";
-        }; //「;」が必須
-
-        //無名関数①の実行
-        System.out.println(hello_.exec("TAKASHI")); //=> "TAKASHI,Hello"
-
-        //無名関数②に入替えてから実行
-        hello_ = japaneseHello_;
-        System.out.println(hello_.exec("隆")); //=> "隆,こんにちは"
-
-        //無名関数③に入替えてから実行
-        hello_ = chineseHello_;
-        System.out.println(hello_.exec("隆")); //=> "隆,你好"
-        
-    }
+### 例文
+```
+//test.swift
+//無名関数①（オリジナル）
+var _hello = { (_name: String) -> String in
+    return _name + "," + "Hello"
 }
 
-//無名関数用インターフェース
-interface IHello {
-    public String exec(String _name); //抽象メソッド（１つだけ）
+//無名関数②（入替用）
+var _japaneseHello = { (_name: String) -> String in
+    return _name + "、" + "こんにちは"
 }
+
+//無名関数③（入替用）
+var _chineseHello = { (_name: String) -> String in
+    return _name + "," + "你好"
+}
+
+//無名関数①の実行
+print(_hello("TAKASHI")) //=> "TAKASHI,Hello" ←…_hello(_name:"TAKASHI")ではない
+
+//無名関数②に入替えて実行
+_hello = _japaneseHello
+print(_hello("たかし")) //=> "たかし、こんにちは" ←…_hello(_name:"たかし")ではない
+
+//無名関数③に入替えて実行
+_hello = _chineseHello
+print(_hello("たかし")) //=> "たかし,你好" ←…_hello(_name:"たかし")ではない
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月27日  
+更新日：2017年04月14日
 
 
 <a name="静的メンバ（static）"></a>
