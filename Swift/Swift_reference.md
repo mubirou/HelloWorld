@@ -867,57 +867,41 @@ print(_hello("TAKASHI")) //=> "TAKASHI,你好" ←_hello(_name:"TAKASHI")では�
 # <b>クラス定数･変数･メソッド</b>
 * 静的メンバはクラスをインスタンス化せずにアクセスが可能
 
-### 基本構文
 ```
-class MyMath {
-    public static final データ型 変数名 = 値; //静的定数（＝クラス定数）
-
-    public static データ型 変数名 = 値; //静的変数（＝クラス変数、static変数）
-
-    //静的メソッド（＝クラスメソッド、staticメソッド）
-    public static 戻り値の型 メソッド名([データ型① 引数①, ...]) {
-            処理 [return 戻り値;]
-    }
-    ……
-```
-
-### 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-
-        //静的定数（＝クラス定数）
-        System.out.println(MyMath.PI); //=> 3.14159
-
-        //静的変数（＝クラス変数、static変数）
-        System.out.println(MyMath.lastUpdate); //=> "2016-07-15"
-        MyMath.lastUpdate = "2017-04-12"; //変更可能
-        System.out.println(MyMath.lastUpdate); //=> "2017-04-12"
-
-        //静的メソッドの実行
-        System.out.println(MyMath.pow(2,0)); //1（2の0乗）
-        System.out.println(MyMath.pow(2,1)); //2（2の1乗）
-        System.out.println(MyMath.pow(2,8)); //256（2の8乗）
-
+//test.swift
+internal class MyMath { //internalは省略可
+    //クラス定数（静的定数）
+    internal static let PI: Double = 3.14159265358979 //internalは省略可
+    
+    //クラス変数（静的変数）
+    internal static var lastUpdate: String = "2016-07-27" //internalは省略可
+    
+    //クラスメソッド（静的メソッド）
+    internal static func pow(arg1:Int, arg2:Int) -> Int { //internalは省略可
+        if (arg2 == 0) { return 1 } //0乗対策
+        var result_: Int //ローカル変数宣言
+        result_ = arg1 //ローカル変数の初期化
+        for i in 1..<arg2 {
+            if i == 0 { return 0 } //iを使わないとerrorになるので…
+            result_ = result_ * arg1
+        }
+        return result_
     }
 }
 
-class MyMath {
-    //静的定数（＝クラス定数）
-    public static final float PI = 3.14159F;
+//クラス定数（静的定数）
+print(MyMath.PI) //=> 3.14159265358979
+//MyMath.PI = 3.14 //error ←…変更不可
 
-    //静的変数（＝クラス変数、static変数）
-    public static String lastUpdate = "2016-07-15";
+//クラス変数（静的変数）
+print(MyMath.lastUpdate) //=> "2016-07-27"
+MyMath.lastUpdate = "2016-07-28" //←…変更可能
+print(MyMath.lastUpdate) //=> "2016-07-28"
 
-    //静的メソッド（＝クラスメソッド、staticメソッド）
-    public static long pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
-        long _result = arg1;
-        for (int i=1; i<arg2; i++) { _result = _result * arg1; }
-        return _result;
-    }
-}
+//静的メソッドの実行
+print(MyMath.pow(arg1:2, arg2:0)) //=> 1（2の0乗）
+print(MyMath.pow(arg1:2, arg2:1)) //=> 2（2の1乗）
+print(MyMath.pow(arg1:2, arg2:8)) //=> 256（2の8乗）
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
