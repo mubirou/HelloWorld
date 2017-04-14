@@ -634,52 +634,52 @@ print(~3); //=> -4（ビット反転）
 <a name="定数"></a>
 # <b>定数</b>
 
-### 通常の定数
-```
-//Main.java
-//メインクラス
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        final float PI = 3.14159F;
-        System.out.println(PI); //=> 3.14159
-        //PI = 3.14; //エラー: final変数PIに値を代入することはできません
-    }
-}
-```
+### 概要
+* 値の「変更がある」変数は「var」を付けて宣言
+* 値の「変更がない」変数は「let」を付けて宣言
 
-### 静的定数（メンバ定数）
+### 通常の定数
 * 構文
 ```
-class クラス名 {
-    public static final データ型 定数名 = 値;
-    ………
+let 定数名: 型 = 値
+```
+
+* 例文
+```
+//test.swift
+let PI:Double = 3.1415926535897932384626433832795
+print(PI); //=> 3.14159265358979
+//PI = 3.14 //=> error ←変更は不可
+```
+
+### クラス定数（静的定数）
+* 構文
+```
+//test.swift
+internal class クラス名 { //internalは省略可
+    internal static let 定数名: データ型 = 値 //「internal」「public」にする
+        ………
 }
 
-#アクセス方法
+//アクセス方法
 クラス名.定数名
 ```
 
 * 例文
 ```
-//Main.java
-//メインクラス
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(MyMath.PI); //=> 3.14159
-        //MyMath.PI = 3.14; //エラー: final変数PIに値を代入することはできません
-    }
+//test.swift
+internal class MyMath { //internalは省略可
+    internal static let PI:Double = 3.14159265358979 //internalは省略可
 }
 
-//カスタムクラス（MyMath）
-class MyMath { 
-    public static final float PI = 3.14159F;
-}
+print(MyMath.PI) //=> 3.14159265358979 ←インスタンスの生成が不要
+//MyMath.PI = 3.14 //変更不可
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月27日  
+更新日：2017年04月14日
 
 
 <a name="メソッド"></a>
