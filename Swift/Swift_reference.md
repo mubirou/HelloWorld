@@ -23,7 +23,7 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 ***
-* [for-each 文](#for-each文)
+* [for...in 文](#for...in文)
 * [while 文](#while文)
 * [配列](#配列)
 * [リスト（LinkedList）](#リスト（LinkedList）)
@@ -1124,102 +1124,55 @@ print("for文終了")
 更新日：2017年04月14日
 
 
-<a name="for-each文"></a>
-# <b>for-each 文</b>
+<a name="for...in文"></a>
+# <b>for...in 文</b>
 
 ### 基本構文
 ```
-for (データ型 変数名 : 配列等) {
-    System.out.println(変数名);
+for 変数 in 配列等 {
+    print(変数名)
 }
 ```
 
 ### 配列（1次元）の場合
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String[] _array = {"A","B","C","D"}; 
-        for (String value : _array) {
-            System.out.println(value); //"A"→"B"→"C"→"D"
-        }
+//test.swift
+var _array:[String] = ["A","B","C"]
+for value in _array {
+    print(value) //=> "A"→"B"→"C"
+}
+```
+
+### 配列（2次元）の場合
+```
+//test.swift
+var _array:[[String]] = [
+    ["x0y0","x1y0","x2y0"], //0行目
+    ["x0y1","x1y1","x2y1"]  //1行目
+]
+for theArray in _array {
+    for value in theArray {
+        print(value)
+        //=> "x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"    
     }
 }
 ```
 
-### 配列の配列（≒2次元配列、ジャグ配列）の場合
+### 辞書（Dictionary 型）の場合
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String[][] _array = {
-            {"x0y0","x1y0","x2y0"}, //0行目
-            {"x0y1","x1y1","x2y1"}  //1行目
-        };
-        for (String[] the_array : _array) {
-            for (String value : the_array) {
-                System.out.println(value); 
-                //=> "x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
-            }
-        }
-    }
-}
-```
-
-### リスト（LinkedList）の場合
-```
-//Main.java
-import java.util.*; //LinkedListに必要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        LinkedList<String> _list = new LinkedList<String>();
-        _list.add("TARO");
-        _list.add("HANAKO");
-        for (String _value : _list) {
-            System.out.println(_value); //=> "TARO" => "HANAKO"
-        }
-    }
-}
-```
-
-### セット（TreeSet）の場合
-```
-//Main.java
-import java.util.*; //TreeSetに必要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        SortedSet<String> _set = new TreeSet<String>();
-        _set.add("TARO");
-        _set.add("HANAKO");
-        for (String _value : _set) {
-            System.out.println(_value); //"HANAKO"→"TARO"
-        }
-    }
-}
-```
-
-### マップ（HashMap）の場合
-```
-//Main.java
-import java.util.*; //HashMapに必要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Map<String,String> _map = new HashMap<String,String>();
-        _map.put("A","あ");
-        _map.put("I", "い");
-        for (Map.Entry<String, String> _tmp : _map.entrySet()) {
-            System.out.println(_tmp.getKey() + " : " + _tmp.getValue()); 
-            //=> I : い
-            //=> A : あ
-        }
-    }
+//test.swift
+var dic_:Dictionary<String,String> = ["A":"あ", "I":"い"]
+for value in dic_ {
+    print(value.key + " : " + value.value)
+    //=> "A : あ"
+    //=> "I : い"
 }
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="while文"></a>
