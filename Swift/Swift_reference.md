@@ -1352,6 +1352,9 @@ var 変数:[データ型?] = [○,○,...]
 //[Optional("A"), Optional("B"), Optional("C")] → [nil,Optional("B"),Optional("C")]
 var _array:[String?] = ["A", "B", "C"]
 _array[0] = nil
+for value in _array {
+    print(value) //=> nil → Optional("B") → Optional("C")]
+}
 ```
 
 ### 削除（指定のインデックス）
