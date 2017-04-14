@@ -703,10 +703,10 @@ print(MyMath.PI) //=> 3.14159265358979 ←インスタンスの生成が不要
 //test.swift
 internal class MyClass { //internalは省略可
     //○〜○までの値を足した合計を返す
-    internal func tashizan(_start:Int, end_:Int) -> Int { //internalは省略可
+    internal func tashizan(_start:Int, _end:Int) -> Int { //internalは省略可
         var _result:Int //ローカル変数（内部変数）の宣言
         _result = 0; //ローカル変数の初期化
-        for i in _start..<end_+1 { //..<の間をあけるとerror
+        for i in _start..<_end+1 { //..<の間をあけるとerror
             _result += i;
         }
         return _result;
@@ -714,8 +714,8 @@ internal class MyClass { //internalは省略可
 }
 
 var _myClass: MyClass = MyClass();
-print(_myClass.tashizan(_start:1, end_:10)); //=> 55
-print(_myClass.tashizan(_start:1, end_:100)); //=> 5050
+print(_myClass.tashizan(_start:1, _end:10)); //=> 55
+print(_myClass.tashizan(_start:1, _end:100)); //=> 5050
 ```
 
 ### コンストラクタ＝イニシャライザ
@@ -1532,9 +1532,9 @@ var 変数: String = "○○"
 ```
 //test.swift
 var _string: String = "0123456789"
-var start_ = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
-var end_ = _string.index(_string.startIndex, offsetBy:3) //最初から3文字目まで
-var _result = _string[start_ ... end_]
+var _start = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
+var _end = _string.index(_string.startIndex, offsetBy:3) //最初から3文字目まで
+var _result = _string[_start ... _end]
 print(_result) //=> "0123"
 ```
 
@@ -1559,16 +1559,16 @@ print(subString(string: _string, start:2, end:5)) //=> "2345"
 ```
 //test.swift
 var _string: String = "0123456789"
-var start_ = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
-var end_ = _string.index(_string.startIndex, offsetBy:3) //最初から3文字目まで
-_string.removeSubrange(start_ ..< end_)
+var _start = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
+var _end = _string.index(_string.startIndex, offsetBy:3) //最初から3文字目まで
+_string.removeSubrange(_start ..< _end)
 print(_string) //=> "3456789"
 ```
 
 ### 一部分を削除（カスタム関数版）
 ```
 //test.swift
-var _string: String = "0123456789"
+//カスタム関数（前方宣言が必要）
 func deleteString(string arg1: String, start arg2:Int, end arg3:Int) -> String {
     var _result: String
     _result = arg1
@@ -1577,6 +1577,8 @@ func deleteString(string arg1: String, start arg2:Int, end arg3:Int) -> String {
     _result.index(_result.startIndex, offsetBy:arg3))
     return _result
 }
+
+var _string: String = "0123456789"
 print(deleteString(string: _string, start:0, end:3)) //=> "3456789"
 print(deleteString(string: _string, start:2, end:5)) //=> "0156789"
 ```
@@ -1584,11 +1586,11 @@ print(deleteString(string: _string, start:2, end:5)) //=> "0156789"
 ### 置換
 ```
 //test.swift
-var _string: String = "2015年11月17日";
-    var start_ = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
-var end_ = _string.index(_string.startIndex, offsetBy:4) //最初から4文字目まで
-_string.replaceSubrange(start_ ... end_, with:"平成27年")
-print(_string) //=> "平成27年11月17日"
+var _string: String = "2017年04月14日";
+var _start = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
+var _end = _string.index(_string.startIndex, offsetBy:4) //最初から4文字目まで
+_string.replaceSubrange(_start ... _end, with:"平成29年")
+print(_string) //=> "平成29年04月14日";
 ```
 
 ### 文字列→配列
