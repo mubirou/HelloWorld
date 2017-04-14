@@ -32,9 +32,9 @@
 * [抽象クラス](#抽象クラス)
 * [super](#super)
 * [オーバーライド](#オーバーライド)
-***
 * [カスタムイベント](#カスタムイベント)
-* [数学関数（Math）](#数学関数（Math）)
+* [数学関数](#数学関数)
+***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -1898,116 +1898,114 @@ _robot.fight() //=> "GAME OVER"
 更新日：2017年04月14日
 
 
-<a name="数学関数（Math）"></a>
-# <b>数学関数（Math）</b>
+<a name="数学関数"></a>
+# <b>数学関数</b>
 
 ### 概要
-* Math クラスは java.lang パッケージに含まれているため importする必要はない
-* Math クラスは全てクラス定数･変数･メソッドである
-* Math クラスのクラス定義は public final class Math extends Object である
+* Linuxの場合、import Glibcのインポートが必要
+* OS Xの場合、import Darwinのインポートが必要
 
-### Math.sin() : サイン（正弦）
+### sin() : サイン（正弦）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(Math.sin(0)); //=> 0.0 ←0°
-        System.out.println(Math.sin(Math.PI/2)); //=> 1.0 ←90°
-        System.out.println(Math.sin(Math.PI)); //=> 1.2246467991473532E-16（≒0）←180°
-        System.out.println(Math.sin(Math.PI*3/2)); //=> -1.0 ←270°
-        System.out.println(Math.sin(Math.PI*2)); //=> -2.4492935982947064E-16（≒0）
-    }
-}
+//test.swift
+import Glibc //OS Xの場合import Darwin
+print(sin(0.0)) //=> 0.0 ←0°（引数がInt型だとerror）
+print(sin(M_PI/2)) //=> 1.0 ←90°
+print(sin(M_PI)) //=> 1.22464679914735e-16（≒0）←180°
+print(sin(M_PI*3/2)) //=> -1.0 ←270°
+print(sin(M_PI*2)) //=> -2.44929359829471e-16（≒0）
 ```
 
-### Math.cos() : コサイン（余弦）
+### cos() : コサイン（余弦）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(Math.cos(0)); //=> 1.0 ←0°
-        System.out.println(Math.cos(Math.PI/2)); //=> 6.123233995736766E-17（≒0）←90°
-        System.out.println(Math.cos(Math.PI)); //=> -1.0 ←180°
-        System.out.println(Math.cos(Math.PI*3/2)); //=> -1.8369701987210297E-16（≒0）←270°
-        System.out.println(Math.cos(Math.PI*2)); //=> 1.0 ←360°
-    }
-}
+//test.swift
+print(cos(0.0)) //=> 1.0 ←0°（cos(0)だとerror）
+print(cos(M_PI/2)) //=> 6.12323399573677e-17（≒0）←90°
+print(cos(M_PI)) //=> -1.0 ←180°
+print(cos(M_PI*3/2)) //=> -1.83697019872103e-16（≒0）←270°
+print(cos(M_PI*2)) //=> 1.0 ←360°
 ```
 
-### Math.atan2() : アークタンジェント2
+### atan2() : アークタンジェント2
 * 2つの値のアークタンジェント（逆タンジェント）
-* X、Y座標の角度をラジアン単位で返す
-* Πラジアン（3.141592…）は180°
+* X、Y 座標の角度をラジアン単位で返す
+* Π ラジアン（3.141592…）は180°
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
-        double disX_ = Math.sqrt(3); //√3のこと
-        int disY_ = 1;
-        System.out.println(Math.atan2(disY_, disX_)); //0.5235987755982989（ラジアン）
-        System.out.println(180*Math.atan2(disY_, disX_)/Math.PI); //30.000000000000004（度）
-    }
-}
+//test.swift
+//三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証してみます。
+import Darwin //Linuxの場合 import Glibc
+var disX_:Double = sqrt(3) //√3のこと
+var disY_:Double = 1.0 //※Intは不可
+print(atan2(disY_, disX_)) //=> 0.523598775598299（ラジアン）
+print(180*atan2(disY_, disX_)/M_PI) //=> 30.0（度）
 ```
 
-### Math.PI : 円周率
+### M_PI : 円周率
 ```
-System.out.println(Math.PI); //=> 3.141592653589793 ※Math.PIラジアン=180°
-```
-
-### Math.floor() : 切り捨て
-```
-System.out.println(Math.floor(1.001)); //=> 1.0
-System.out.println(Math.floor(1.999)); //=> 1.0
+//test.swift
+print(M_PI) //=> 3.14159265358979（M_PIラジアン=180°）
 ```
 
-### Math.ceil() : 切り上げ
+### floor() : 切り捨て
 ```
-System.out.println(Math.ceil(1.001)); //=> 2.0
-System.out.println(Math.ceil(1.999)); //=> 2.0
-```
-
-### Math.round() : 四捨五入
-```
-System.out.println(Math.round(1.499)); //=> 1
-System.out.println(Math.round(1.500)); //=> 2
+//test.swift
+print(floor(1.001)) //=> 1.0
+print(floor(1.999)) //=> 1.0
 ```
 
-### Math.abs() : 絶対値
+### ceil() : 切り上げ
 ```
-System.out.println(Math.abs(100)); //=> 100
-System.out.println(Math.abs(-100)); //=> 100
-```
-
-### Math.pow() : 累乗（○の□乗）
-```
-System.out.println(Math.pow(2, 0)); //=> 1.0（2の0乗）
-System.out.println(Math.pow(2, 8)); //=> 256.0（2の8乗）
+//test.swift
+print(ceil(1.001)) //=> 2.0
+print(ceil(1.999)) //=> 2.0
 ```
 
-### Math.sqrt() : 平方根（√○）
+### round() : 四捨五入
 ```
-System.out.println(Math.sqrt(2)); //=> 1.4142135623730951（一夜一夜にひとみごろ）
-System.out.println(Math.sqrt(3)); //=> 1.7320508075688772（人並みに奢れや）
-System.out.println(Math.sqrt(4)); //=> 2.0
-System.out.println(Math.sqrt(5)); //=> 2.23606797749979（富士山麓オウム鳴く）
-```
-
-### Math.max() : 比較（最大値）
-```
-System.out.println(Math.max(5.01, -10)); //=> 5.01 ←「2つ」の数値の比較
+//test.swift
+print(round(1.499)) //=> 1.0
+print(round(1.500)) //=> 2.0
 ```
 
-### Math.min() : 比較（最小値）
+### abs() : 絶対値
 ```
-System.out.println(Math.min(5.01, -10)); //=> -10.0 ←「2つ」の数値の比較
+//test.swift
+print(abs(100)) //=> 100
+print(abs(-100)) //=> 100
+```
+
+### pow() : 累乗（○の□乗）
+```
+//test.swift
+print(pow(2.0, 0)) //=> 1.0（2の0乗） ←第1引数はIntだとerror
+print(pow(2.0, 8)) //=> 256.0（2の8乗） ←第1引数はIntだとerror
+```
+
+### sqrt() : 平方根（√○）
+```
+//test.swift
+print(sqrt(2.0)) //=> 1.4142135623731（一夜一夜にひとみごろ）
+print(sqrt(3.0)) //=> 1.73205080756888（人並みに奢れや）
+print(sqrt(4.0)) //=> 2.0
+print(sqrt(5.0)) //=> 2.23606797749979（富士山麓オウム鳴く）
+```
+
+### max() : 比較（最大値）
+```
+//test.swift
+print(max(5.01, -10)) //=> 5.01 ←「2つ」の数値の比較
+```
+
+### min() : 比較（最小値）
+```
+//test.swift
+print(min(5.01, -10)) //=> -10.0 ←「2つ」の数値の比較
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年08月01日  
+更新日：2017年04月14日
 
 
 <a name="乱数"></a>
