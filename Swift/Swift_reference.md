@@ -795,18 +795,18 @@ _myClass.sum(_points:1,1) //=> 2（1+1）
 _myClass.sum(_points:1,2,3,4,5); //=> 15（1+2+3+4+5）←引数の数はいくつでも可
 ```
 
-//========================================================================================
-// 名前付き引数（引数名の指定の簡略化が可能）
-//========================================================================================
+### 名前付き引数（引数名の指定の簡略化が可能）
+```
+//test.swift
 internal class MyClass { //internalは省略可
-    internal func myMethod(name newUserName_:String) -> Void { // -> Void は省略可
-        print(newUserName_) //=> "TAKASHI"
+    internal func myMethod(name _newUserName: String) -> Void { // -> Void は省略可
+        print(_newUserName) //=> "TAKASHI"
     }
 }
 
 var _myClass:MyClass = MyClass()
 _myClass.myMethod(name:"TAKASHI")
-
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
