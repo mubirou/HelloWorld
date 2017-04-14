@@ -877,13 +877,13 @@ internal class MyMath { //internalは省略可
     //クラスメソッド（静的メソッド）
     internal static func pow(arg1:Int, arg2:Int) -> Int { //internalは省略可
         if (arg2 == 0) { return 1 } //0乗対策
-        var result_: Int //ローカル変数宣言
-        result_ = arg1 //ローカル変数の初期化
+        var _result: Int //ローカル変数宣言
+        _result = arg1 //ローカル変数の初期化
         for i in 1..<arg2 {
             if i == 0 { return 0 } //iを使わないとerrorになるので…
-            result_ = result_ * arg1
+            _result = _result * arg1
         }
-        return result_
+        return _result
     }
 }
 
@@ -995,19 +995,19 @@ if ((_a || _b) && !(_a && _b)) {
 ```
 //test.swift
 var age_:Int = 49
-var result_:String = (age_ < 60) ? "現役" : "退職"
-print(result_); //=> "現役"
+var _result: String = (age_ < 60) ? "現役" : "退職"
+print(_result); //=> "現役"
 ```
 
 ### 三項演算子（比較式が複数の場合）
 ```
 //test.swift
 var age_:Int = 49
-var result_:String = 
+var _result: String = 
 (age_ < 20) ? "未成年":
 (age_ < 60) ? "現役":
 "退職"
-print(result_) //=> "現役"
+print(_result) //=> "現役"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -1043,7 +1043,7 @@ switch (true) {
 ### 判別式が Bool 型ではない場合
 ```
 //test.swift
-var _name:String = "TAKASHI"
+var _name: String = "TAKASHI"
 switch (_name) {
     case "TAKASHI": print("父") //これが出力
     case "HANAKO": print("母")
@@ -1055,7 +1055,7 @@ switch (_name) {
 
 ### fallthrouh（フォールスルー）
 ```
-var _name:String = "TARO"
+var _name: String = "TARO"
 switch (_name) {
     case "TAKASHI": fallthrough //ここで終了せず次のcaseの処理へ
     case "HANAKO": print("親")
@@ -1518,138 +1518,98 @@ print(_robot.x) //=> 510
 # <b>文字列の操作</b>
 
 ### String オブジェクトの作成
-1. リテラル文字列による作成（一般的な方法）
-    ```
-    //Main.java
-    public class Main { //public は省略可
-        public static void main(String[] args) { //決め打ち(自動的に実行)
-            String _string = "ABCDE";
-            System.out.println(_string); //=> "ABCDE"
-        }
-    }
-    ```
-
-1. new 演算子と char 型配列による作成
-    ```
-    //Main.java
-    public class Main { //public は省略可
-        public static void main(String[] args) { //決め打ち(自動的に実行)
-            char tmp[] = {'A','B','C','D','E'};
-            String _string = new String(tmp);
-            System.out.println(_string); //=> "ABCDE"
-        }
-    }
-    ```
-
-### 長さを調べる
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "ABCDE";
-        System.out.println(_string.length()); //5
-    }
-}
+var 変数: String = String("○○")
+var 変数: String = "○○"
+```
+
+### 長さを調べる（ダブルバイトにも対応）
+```
+○○.characters.count
 ```
 
 ### 一部分を取得
-* 構文
 ```
-String.substring(開始位置 [,終了位置])
+//test.swift
+var _string: String = "0123456789"
+var start_ = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
+var end_ = _string.index(_string.startIndex, offsetBy:3) //最初から3文字目まで
+var _result = _string[start_ ... end_]
+print(_result) //=> "0123"
 ```
-* 例文
+
+### 一部分を取得（カスタム関数版）
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "0123456789";
-        System.out.println(_string.substring(4)); //=> "456789"
-        System.out.println(_string.substring(4,5)); //"4"
-        System.out.println(_string.substring(4,_string.length())); //=> "456789"
-    }
+//test.swift
+var _string: String = "0123456789"
+func subString(string arg1: String, start arg2:Int, end arg3:Int) -> String {
+    var _result: String
+    _result = arg1[arg1.index(arg1.startIndex, offsetBy:arg2)
+    ...
+    arg1.index(arg1.startIndex, offsetBy:arg3)]
+    return _result
 }
+print(subString(string: _string, start:0, end:3)) //=> "0123"
+print(subString(string: _string, start:2, end:5)) //=> "2345"
 ```
 
 ### 一部分を削除
-* 構文
 ```
-StringBuilder 変数 = new StringBuilder("○");
-StringBuilder.delete(開始位置, 終了位置); //1文字前まで削除
+//test.swift
+var _string: String = "0123456789"
+var start_ = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
+var end_ = _string.index(_string.startIndex, offsetBy:3) //最初から3文字目まで
+_string.removeSubrange(start_ ..< end_)
+print(_string) //=> "3456789"
 ```
-* 例文
+
+### 一部分を削除（カスタム関数版）
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "にしむらたかし";
-        StringBuilder _string2 = new StringBuilder(_string);
-        System.out.println(_string2.delete(0, 4)); //=> たかし
-    }
+//test.swift
+var _string: String = "0123456789"
+func deleteString(string arg1: String, start arg2:Int, end arg3:Int) -> String {
+    var _result: String
+    _result = arg1
+    _result.removeSubrange(_result.index(_result.startIndex, offsetBy:arg2) 
+    ..< 
+    _result.index(_result.startIndex, offsetBy:arg3))
+    return _result
 }
+print(deleteString(string: _string, start:0, end:3)) //=> "3456789"
+print(deleteString(string: _string, start:2, end:5)) //=> "0156789"
 ```
 
 ### 置換
-* 構文
 ```
-String.replaceAll("置換前の文字列", "置換後の文字列");
-```
-* 例文
-```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "2017年4月12日";
-        System.out.println(_string.replaceAll("2017年", "平成29年")); 
-        //"平成29年4月12日"
-    }
-}
-```
-
-### 検索
-* 構文
-```
-String.indexOf("検索したい文字列", 開始位置);
-```
-* 例文
-```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "ABCDEFG-ABCDEFG";
-        String _word = "CD";
-        int _i = 0;
-        while (_string.indexOf(_word, _i) != -1) { //見つからない場合「-1」
-            int _num = _string.indexOf(_word, _i);
-            System.out.println(_num); //2、10 ←"CD"が見つかった位置を出力
-            System.out.println(_string.substring(_num, _num + _word.length())); 
-            //"CD"、"CD"
-            _i = _num + 1;
-        }
-    }
-}
+//test.swift
+var _string: String = "2015年11月17日";
+    var start_ = _string.index(_string.startIndex, offsetBy:0) //最初から0文字目〜
+var end_ = _string.index(_string.startIndex, offsetBy:4) //最初から4文字目まで
+_string.replaceSubrange(start_ ... end_, with:"平成27年")
+print(_string) //=> "平成27年11月17日"
 ```
 
 ### 文字列→配列
 * 構文
 ```
-String.split("区切り文字");
+import Foundation
+String.components(separatedBy:"区切り文字")
 ```
+
 * 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "A,B,C,D"; //「,」区切りの文字列
-        String[] _array = _string.split(","); //「,」区切りで分割して配列化
-        //→{"A","B","C","D"}
-    }
-}
+//test.swift
+import Foundation
+var _string: String = "A,B,C,D" //「,」区切りの文字列
+var array_ = _string.components(separatedBy:",")
+print(array_, array_.dynamicType) 
+//=> ["A", "B", "C", "D"]   Array<String>
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年07月29日  
+更新日：2017年04月14日
 
 
 <a name="正規表現"></a>
