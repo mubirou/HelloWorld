@@ -1239,7 +1239,7 @@ while _i <= 20 {
 ```
 var _array1: Array<String> = ["A","B","C"]
 var _array2: [String] = ["A","B","C"]
-var array3_: Array = ["A","B","C"] //型推論
+var _array3: Array = ["A","B","C"] //型推論
 ```
 * 例文
 ```
@@ -1303,6 +1303,9 @@ Array.append (値)
 //["A","B"]→["A","B","C"]
 var _array: [String] = ["A","B"]
 _array.append("C")
+for value in _array {
+    print(value) //=> "A"→"B"→"C"
+}
 ```
 
 ### 追加（指定位置）
@@ -1314,8 +1317,11 @@ Array.insert(値, at:インデックス番号) //先頭（0）〜最後（Array.
 ```
 //test.swift
 //["A","B"]→["C","A","B"]
-var _array:[String] = ["A","B","C"]
+var _array:[String] = ["A","B"]
 _array.insert("C", at:0)
+for value in _array {
+    print(value) //=> "C"→"A"→"B"
+}
 ```
 
 ### 更新（任意の値）
@@ -1329,6 +1335,9 @@ Array[インデックス番号] = 値
 //["A","B","C"]→["D","B","C"]
 var _array:[String] = ["A","B","C"]
 _array[0] = "D" //0番目を変更する場合
+for value in _array {
+    print(value) //=> "D"→"B"→"C"
+}
 ```
 
 ### 更新（nil 型）
