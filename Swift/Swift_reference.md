@@ -25,9 +25,9 @@
 * [for...in 文](#for...in文)
 * [while 文](#while文)
 * [配列](#配列)
-***
 * [辞書（Dictionary）](#辞書（Dictionary）)
-* [this](#this)
+* [self](#self)
+***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
@@ -1159,8 +1159,8 @@ for theArray in _array {
 ### 辞書（Dictionary 型）の場合
 ```
 //test.swift
-var dic_:Dictionary<String,String> = ["A":"あ", "I":"い"]
-for value in dic_ {
+var _dic:Dictionary<String,String> = ["A":"あ", "I":"い"]
+for value in _dic {
     print(value.key + " : " + value.value)
     //=> "A : あ"
     //=> "I : い"
@@ -1434,60 +1434,84 @@ print(_array2) //=> ["X","B","C"]
 
 <a name="辞書（Dictionary）"></a>
 # <b>辞書（Dictionary）</b>
+* 辞書は「キー」と「値」の組み合わせを格納するデータ構造です
 
-XXXXXXX
+```
+//test.swift
+//①作成
+var _dic: Dictionary<String, String> = ["A":"あ"]
+
+//②追加
+_dic["I"] = "い"
+_dic["U"] = "う"
+
+//③更新
+_dic["I"] = "ゐ"
+
+//④全てのデータを取得（その１）
+for (key, value) in _dic {
+    print(key, value) //=> U う → A あ → I ゐ
+}
+
+//④全てのデータを取得（その２）
+for value in _dic {
+    print(value.key, value.value) //=> U う → A あ → I ゐ
+}
+
+//確認
+print(_dic) //=> ["U": "う", "A": "あ", "I": "ゐ"]
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月17日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
-<a name="this"></a>
-# <b>this</b>
+<a name="self"></a>
+# <b>self</b>
 
-### thisが必要な場合
+### selfが必要な場合
 1. 「引数」と「インスタンス変数」が同じ場合
-1. 「ローカル変数」と「メンバ変数」が同じ場合
-* thisは、thisを記述したメソッドを所有するクラス（オブジェクト）を参照する
+1. 「ローカル変数」と「インスタンス変数」が同じ場合
+* selfは、selfを記述したメソッドを所有するクラス（オブジェクト）を指す
 
 ### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        Robot _robot = new Robot(500);
-        _robot.move();
-        System.out.println(_robot.getX()); //510
-        //System.out.println(this); //エラー（staticメソッド内では参照できず）
-    }
-}
-
-//カスタムクラス
-class Robot {
-    private int _x; //インスタンス変数（thisは不要）
+//test.swift
+internal class Robot { //←…internalは省略可
+    private var _x: Int //←…インスタンス変数（ここではselfは不可）
     
-    public Robot(int _x) { //引数
-        this._x = _x; //①thisが無いと意味合いがことなる
-        System.out.println(this); //Robot@6bc7c054（このメソッドが実行されたオブジェクト）
+    init(_x: Int) { //引数
+        self._x = _x //←…①selfが無いとerror
+        print(self) //=> test.Robot（このメソッドが実行されたオブジェクト）
     }
-    public void move() {
-        int _x; //ローカル変数
-        _x = this._x + 10; //②thisが無いとエラー
-        if (_x >= 1920) _x = 0;
-        this._x = _x; //②thisが無いと意味合いがことなる
-        System.out.println(this); //Robot@6bc7c054（このメソッドが実行されたオブジェクト）
+    internal func move() -> Void { //←…internalは省略可
+        var _x: Int //ローカル変数宣言
+        _x = self._x + 10 //←…②selfが無いとerror
+        if (_x >= 1920) {
+            _x = 0
+        }
+        self._x = _x //←…②selfが無いとerror
+        print(self) //=> test.Robot（このメソッドが実行されたオブジェクト）
     }
-    public int getX() {
-        return _x; //thisを付けてもよい（通常は省略）
+    internal var x: Int { //←…internalは省略可
+        get { 
+            return _x //selfを付けてもよい（通常は省略）
+        }
     }
-}
+ }
+
+var _robot:Robot = Robot(_x:500)
+_robot.move()
+print(_robot.x) //=> 510
+//print(self) //=> error
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月17日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="文字列の操作"></a>
