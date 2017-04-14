@@ -20,9 +20,9 @@
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-***
 * [switch 文](#switch文)
 * [for 文](#for文)
+***
 * [for-each 文](#for-each文)
 * [while 文](#while文)
 * [配列](#配列)
@@ -1078,100 +1078,50 @@ switch (_name) {
 
 ### 基本構文
 ```
-for (①初期化; ②ループ判定式; ③更新処理) {
+for ループ制御変数 in 開始 ..< 終了 { //終了は含みません
     繰り返す処理
 }
 ```
 
-### ループカウンタ（ループ制御変数）の宣言位置
-1. for 文の中でループ制御変数を宣言
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            for (int i=0; i<10; i++) { //ここでループ制御変数を宣言すると…
-                System.out.println(i); //0,1,2,3,4,5,6,7,8,9
-            }
-            //System.out.println(i); //エラー（for文の外では利用不可）
-        }
-    }
-    ```
-
-1. for 文の外でループ制御変数を宣言
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            int _i; //ここでint型を宣言すると…
-            for (_i=0; _i<10; _i++) {
-                System.out.println(_i); //0,1,2,3,4,5,6,7,8,9
-            }
-            System.out.println(_i); //10（for文の外でも有効）
-        }
-    }
-    ```
-
-### ループカウンタを○つずつアップする
+### 基本例文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        for (int i=0; i<50; i+=5) { //5つずつアップする場合
-            System.out.println(i); //0,5,10,15,20,25,30,35,40,45
-        }
-    }
+//test.swift
+for i in 0 ..< 10 { // ..< は空白を入れてはいけない
+    print(i); //=> 0,1,2,3,4,5,6,7,8,9
 }
+//print(i); //error（for文の外では使えない）
 ```
 
-### for文のネスト
+### break 文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        for (int i=1; i<=5; i++) {
-            for (int j=1; j<=5; j++) {
-                System.out.println("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
-            }
-        }
+//test.swift
+var _count: Int = 0
+for i in 0 ..< 100000 { // ..< は空白を入れてはいけない
+    _count += 1
+    if (_count > 100) {
+        break //ループを終了
     }
+    print(_count) //=> 1,2,...,99,100
 }
+print("for文終了")
 ```
 
-### 無限ループと break 文
+### continue 文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _count = 0;
-        for (;;) { //①初期化②ループ判定式③更新処理...の全てを省略すると無限ループ
-            _count++;
-            if (_count > 100) break; //ループを終了
-            System.out.println(_count); //1,2,...,99,100
+//test.swift
+    for i in 0 ..< 20 { //iは1,2,...,18,19
+        if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+            continue; //for文の残処理をスキップしてfor文の次の反復を開始する
         }
-        System.out.println("for文終了");
+        print(i) //=> 3,6,9,12,15,18 ←3の倍数
     }
-}
-```
-
-### for 文と continue 文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        for (int i=1; i<=20; i++) { //iは1,2,...19,20
-            if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                continue; //for文の残処理をスキップしてfor文の次の反復を開始する
-            }
-            System.out.println(i); //3,6,9,12,15,18 ←3の倍数
-        }
-    }
-}
+print("for文終了")
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="for-each文"></a>
