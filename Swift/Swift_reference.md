@@ -1900,30 +1900,28 @@ _robot.fight() //=> "GAME OVER"
 
 <a name="数学関数"></a>
 # <b>数学関数</b>
-
-### 概要
-* Linuxの場合、import Glibcのインポートが必要
-* OS Xの場合、import Darwinのインポートが必要
+* インポートするライブラリが OS、関数の種類によって異なるので注意
 
 ### sin() : サイン（正弦）
 ```
 //test.swift
-import Glibc //OS Xの場合import Darwin
+import Foundation
 print(sin(0.0)) //=> 0.0 ←0°（引数がInt型だとerror）
-print(sin(M_PI/2)) //=> 1.0 ←90°
-print(sin(M_PI)) //=> 1.22464679914735e-16（≒0）←180°
-print(sin(M_PI*3/2)) //=> -1.0 ←270°
-print(sin(M_PI*2)) //=> -2.44929359829471e-16（≒0）
+print(sin(Double.pi/2)) //=> 1.0 ←90°
+print(sin(Double.pi)) //=> 1.22464679914735e-16（≒0）←180°
+print(sin(Double.pi*3/2)) //=> -1.0 ←270°
+print(sin(Double.pi*2)) //=> -2.44929359829471e-16（≒0）
 ```
 
 ### cos() : コサイン（余弦）
 ```
 //test.swift
+import Foundation
 print(cos(0.0)) //=> 1.0 ←0°（cos(0)だとerror）
-print(cos(M_PI/2)) //=> 6.12323399573677e-17（≒0）←90°
-print(cos(M_PI)) //=> -1.0 ←180°
-print(cos(M_PI*3/2)) //=> -1.83697019872103e-16（≒0）←270°
-print(cos(M_PI*2)) //=> 1.0 ←360°
+print(cos(Double.pi/2)) //=> 6.12323399573677e-17（≒0）←90°
+print(cos(Double.pi)) //=> -1.0 ←180°
+print(cos(Double.pi*3/2)) //=> -1.83697019872103e-16（≒0）←270°
+print(cos(Double.pi*2)) //=> 1.0 ←360°
 ```
 
 ### atan2() : アークタンジェント2
@@ -1932,23 +1930,25 @@ print(cos(M_PI*2)) //=> 1.0 ←360°
 * Π ラジアン（3.141592…）は180°
 ```
 //test.swift
-//三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証してみます。
-import Darwin //Linuxの場合 import Glibc
-var disX_:Double = sqrt(3) //√3のこと
-var disY_:Double = 1.0 //※Intは不可
-print(atan2(disY_, disX_)) //=> 0.523598775598299（ラジアン）
-print(180*atan2(disY_, disX_)/M_PI) //=> 30.0（度）
+//三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
+import Foundation
+var _disX:Double = sqrt(3) //√3のこと
+var _disY:Double = 1.0 //※Intは不可
+print(atan2(_disY, _disX)) //=> 0.523598775598299（ラジアン）
+print(180*atan2(_disY, _disX)/Double.pi) //=> 30.0（度）
 ```
 
 ### M_PI : 円周率
 ```
 //test.swift
-print(M_PI) //=> 3.14159265358979（M_PIラジアン=180°）
+import Foundation
+print(Double.pi) //=> 3.14159265358979（Double.piラジアン=180°）
 ```
 
 ### floor() : 切り捨て
 ```
 //test.swift
+import Foundation
 print(floor(1.001)) //=> 1.0
 print(floor(1.999)) //=> 1.0
 ```
@@ -1956,6 +1956,7 @@ print(floor(1.999)) //=> 1.0
 ### ceil() : 切り上げ
 ```
 //test.swift
+import Foundation
 print(ceil(1.001)) //=> 2.0
 print(ceil(1.999)) //=> 2.0
 ```
@@ -1963,6 +1964,7 @@ print(ceil(1.999)) //=> 2.0
 ### round() : 四捨五入
 ```
 //test.swift
+import Foundation
 print(round(1.499)) //=> 1.0
 print(round(1.500)) //=> 2.0
 ```
@@ -1970,6 +1972,7 @@ print(round(1.500)) //=> 2.0
 ### abs() : 絶対値
 ```
 //test.swift
+import Foundation
 print(abs(100)) //=> 100
 print(abs(-100)) //=> 100
 ```
@@ -1977,6 +1980,7 @@ print(abs(-100)) //=> 100
 ### pow() : 累乗（○の□乗）
 ```
 //test.swift
+import Darwin
 print(pow(2.0, 0)) //=> 1.0（2の0乗） ←第1引数はIntだとerror
 print(pow(2.0, 8)) //=> 256.0（2の8乗） ←第1引数はIntだとerror
 ```
@@ -1984,6 +1988,7 @@ print(pow(2.0, 8)) //=> 256.0（2の8乗） ←第1引数はIntだとerror
 ### sqrt() : 平方根（√○）
 ```
 //test.swift
+import Darwin
 print(sqrt(2.0)) //=> 1.4142135623731（一夜一夜にひとみごろ）
 print(sqrt(3.0)) //=> 1.73205080756888（人並みに奢れや）
 print(sqrt(4.0)) //=> 2.0
@@ -1993,12 +1998,14 @@ print(sqrt(5.0)) //=> 2.23606797749979（富士山麓オウム鳴く）
 ### max() : 比較（最大値）
 ```
 //test.swift
+import Darwin
 print(max(5.01, -10)) //=> 5.01 ←「2つ」の数値の比較
 ```
 
 ### min() : 比較（最小値）
 ```
 //test.swift
+import Darwin
 print(min(5.01, -10)) //=> -10.0 ←「2つ」の数値の比較
 ```
 
