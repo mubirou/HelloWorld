@@ -1845,9 +1845,11 @@ subClass_.myMethod()
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
+
 ### 注意
 * addEventListener() の引数（無名関数）のデータ型の前に <b>@escaping</b> が必要
 
+### 例文
 ```
 //test.swift（internalは省略可）
 internal class Robot {
