@@ -916,20 +916,16 @@ print(MyMath.pow(arg1:2, arg2:8)) //=> 256（2の8乗）
 ### 基本例文
 * true と評価される可能性が高い順に並べると if 文を早く抜け出せる可能性が高い
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _age = 49;
-        if (_age <= 20) { // () は省略不可
-            System.out.println("20歳以下");
-        } else if (_age <= 40) {
-            System.out.println("21〜40歳");
-        } else if (_age <= 60) {
-            System.out.println("41〜60歳"); //これが出力される
-        } else {
-            System.out.println("61歳以上");
-        }
-    }
+//test.swift
+var age_:Int = 48
+if (age_ <= 20) { // () は省略可
+    print("20歳以下")
+} else if (age_ <= 40) {
+    print("21〜40歳")
+} else if (age_ <= 60) {
+    print("41〜60歳") //これが出力される
+} else {
+    print("61歳以上")
 }
 ```
 
@@ -937,17 +933,16 @@ public class Main { //publicは省略可
 1. 論理演算子（&&）を使う方法
     ```
     if (条件式① && 条件②) {
-        処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+        処理A ←……条件式① かつ 条件式② の両方がtrueの場合に実行
     } else {
         処理B
     }
     ```
-
 1. if のネストを使う方法
     ```
     if (条件式①) {
         if (条件②) {
-            処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+            処理A ←……条件式① かつ 条件式② の両方がtrueの場合に実行
         } else {
             処理B
         }
@@ -966,7 +961,7 @@ public class Main { //publicは省略可
     }
     ```
 
-1. if のネストを使う方法
+1. ifのネストを使う方法
     ```
     if (条件式①) {
         処理A ←条件式①がtrueの場合に実行
@@ -978,40 +973,21 @@ public class Main { //publicは省略可
     ```
 
 ### 排他的論理和（XOR）
-1. ^ 演算子を使う方法
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            boolean _a = true, _b = false;
-            if (_a ^ _b) {
-                System.out.println("どちらか一方だけtrueです");
-            } else {
-                System.out.println("両方共にtrueかfalseです");
-            }
-        }
-    }
-    ```
-
-1. ^ 演算子を使わない場合
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            boolean _a = true, _b = false;
-            if ((_a || _b) && !(_a && _b)) {
-                System.out.println("どちらか一方だけtrueです");
-            } else {
-                System.out.println("両方共にtrueかfalseです");
-            }
-        }
-    }
-    ```
+```
+//test.swift
+var _a: Bool = true
+var _b: Bool = false
+if ((_a || _b) && !(_a && _b)) {
+    print("どちらか一方だけtrueです");
+} else {
+    print("両方共にtrueかfalseです");
+}
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="三項演算子"></a>
