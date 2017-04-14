@@ -1541,7 +1541,7 @@ print(_result) //=> "0123"
 ### 一部分を取得（カスタム関数版）
 ```
 //test.swift
-var _string: String = "0123456789"
+//カスタム関数（前方宣言が必要）
 func subString(string arg1: String, start arg2:Int, end arg3:Int) -> String {
     var _result: String
     _result = arg1[arg1.index(arg1.startIndex, offsetBy:arg2)
@@ -1549,6 +1549,8 @@ func subString(string arg1: String, start arg2:Int, end arg3:Int) -> String {
     arg1.index(arg1.startIndex, offsetBy:arg3)]
     return _result
 }
+
+var _string: String = "0123456789"
 print(subString(string: _string, start:0, end:3)) //=> "0123"
 print(subString(string: _string, start:2, end:5)) //=> "2345"
 ```
