@@ -1713,6 +1713,7 @@ print(_tmoneybox.total) //=> 5000
 <a name="抽象クラス"></a>
 # <b>抽象クラス</b>
 * abstract キーワードが存在しない（継承と例外処理等を使って擬似的な抽象クラスを実現する）
+
 ```
 //test.swift
 //==============================================
@@ -1794,50 +1795,46 @@ subClass_.methodSub(argB:"サブクラスからの呼び出し")
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年07月29日  
+更新日：2017年04月14日
 
 
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
 
-### 抽象メソッドのオーバーライドの書式
-```
-abstract class 抽象クラス名 { //抽象クラスの定義
-    //抽象メソッド宣言 ※{}は記述しない
-    abstract [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]);
-    ……
-}
-class 派生クラス extends 抽象クラス名 { //抽象クラスを継承
-    [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]) { //オーバーライド
-        //実際の処理
-    }
-    ……
-```
+### 概要
+* スーパークラスで定義したメソッドをサブクラスで再定義（上書き）することをオーバーライドと呼ぶ
+* スーパークラスのメソッドを呼び出したい場合は、super.メソッド名(引数名:値) と記述する
 
-### 通常のメソッドのオーバーライド
+### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        SubClass _subClass = new SubClass();
-        _subClass.method(); //=> "SubClass.method"←サブクラスのメソッドが実行される
+//test.swift
+//================
+// スーパークラス
+//================
+internal class SuperClass { //internal は省略可
+    //↓サブクラスでオーバーライドされる
+    internal func myMethod() -> Void { //internal は省略可
+        print("スーパークラスのmyMethod()")
     }
 }
 
-class SuperClass {
-    //final public void method() { …とするとオーバーライドを禁止にできます
-    public void method() {
-        System.out.println("SuperClass.method");
+//================================
+// サブクラス（SuperClassを継承）
+//================================
+internal class SubClass : SuperClass { //internal は省略可
+    //↓スーパークラスのメソッドをオーバーライドする
+    override internal func myMethod() -> Void { //internal は省略可
+        print("サブクラスのmyMethod()")
+        super.myMethod() //スーパークラスのmyMethod()を呼出す場合…
     }
 }
 
-class SubClass extends SuperClass {
-    public void method() { //スーパークラスのメソッドと同名（同じ引数）
-        System.out.println("SubClass.method"); //これにオーバーライドされる
-        //super.method(); //上書きしたスーパークラスのメソッドを実行する場合
-    }
-}
+//======
+// 実行
+//======
+var subClass_:SubClass = SubClass()
+subClass_.myMethod()
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
