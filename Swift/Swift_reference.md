@@ -1020,61 +1020,57 @@ print(result_) //=> "現役"
 
 <a name="switch文"></a>
 # <b>switch 文</b>
+* 他の多くの言語とは異なり各処理の後の break 文は不要
 
-### 例文（全てに break 文あり）
+### 基本構文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String _name = "TARO";
-        switch (_name) { //判別式には整数,列挙、文字,文字列型のみ可、booleanは不可!
-            case "TARO" :
-                System.out.println("父"); //=> "父" ←これが出力される
-                break;
-            case "HANAKO" : 
-                System.out.println("母");
-                break;
-            case "ICHIRO" :
-                System.out.println("長男");
-                break;
-            case "JIRO" :
-                System.out.println("次男");
-                break;
-            default:
-                System.out.println("家族以外");
-                break; //省略可
-        }
-    }
+switch 式 {
+    case 式① : 式と式①が等しいときの処理
+    case 式② : 式と式②が等しいときの処理
+    default : それ以外のときの処理
 }
 ```
 
-### 例文（一部に break 文なし）
+### 判別式が Bool 型の場合
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String _name = "ICHIRO";
-        switch (_name) { //↓C#のようなフォールスルーの禁止規則はない
-            case "TARO" : //breakが無いと次のcaseも処理
-            case "HANAKO" : 
-                System.out.println("親");
-                break;
-            case "ICHIRO" : //breakが無いと次のcaseも処理
-            case "JIRO" :
-                System.out.println("子"); //これが出力される
-                break;
-            default:
-                System.out.println("家族以外");
-                break; //省略可
-        }
-    }
+//test.swift
+var age_: Int = 49
+switch (true) {
+    case age_ <= 20: print("20歳以下")
+    case age_ <= 60: print("21〜60歳") //これが出力される
+    default: print("61歳以上")
+}
+```
+
+### 判別式が Bool 型ではない場合
+```
+//test.swift
+var _name:String = "TAKASHI"
+switch (_name) {
+    case "TAKASHI": print("父") //これが出力
+    case "HANAKO": print("母")
+    case "TARO": print("長男")
+    case "JIRO": print("次男")
+    default: print("家族以外")
+}
+```
+
+### fallthrouh（フォールスルー）
+```
+var _name:String = "TARO"
+switch (_name) {
+    case "TAKASHI": fallthrough //ここで終了せず次のcaseの処理へ
+    case "HANAKO": print("親")
+    case "TARO": fallthrough //ここで終了せず次のcaseの処理へ
+    case "JIRO": print("子") //これが出力
+    default: print("家族以外")
 }
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="for文"></a>
