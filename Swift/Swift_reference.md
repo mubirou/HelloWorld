@@ -1350,11 +1350,9 @@ var 変数:[データ型?] = [○,○,...]
 ```
 //test.swift
 //[Optional("A"), Optional("B"), Optional("C")] → [nil,Optional("B"),Optional("C")]
-var _array:[String?] = ["A", "B", "C"]
+var _array: [String?] = ["A", "B", "C"]
 _array[0] = nil
-for value in _array {
-    print(value) //=> nil → Optional("B") → Optional("C")]
-}
+print(_array[0...2]) //[nil, Optional("B"), Optional("C")]
 ```
 
 ### 削除（指定のインデックス）
