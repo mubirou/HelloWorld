@@ -1839,51 +1839,50 @@ subClass_.myMethod()
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年07月29日  
+更新日：2017年04月14日
 
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Ixxx_robot die_robot = (Robot arg) -> { //無名関数（リスナー関数）の定義
-            System.out.println(arg.getClass()); //=> class Robot
-            System.out.println("GAME OVER");
-        }; //「;」が必須
-        Robot _robot = new Robot();
-        _robot.addEventListener("die", die_robot); //イベントリスナーの定義
-        _robot.fight();
-        _robot.fight();
-        _robot.fight();
-        _robot.fight(); //=> "GAME OVER"
-    }
-}
+//test.swift（internalは省略可）
+internal class Robot {
+    private var _energy: Int = 80
 
-class Robot {
-    private int _energy = 80;
-    private Ixxx_robot _dieHandler; //無名関数を格納する変数の宣言
-    public void addEventListener(String _event, Ixxx_robot function_) {
-        if (_event == "die") {
-            _dieHandler = function_; //無名関数を格納する
-        } else { //該当のイベントが無い場合、実行時にErrorを出す（オプション）
-            System.out.println("Error: Robot.addEventListener()");
+    //無名関数を格納する変数（初期値として何もしない無名関数を定義しておく）
+    private var _dieHandler: ((Robot))->() = { (arg:Robot) -> Void in }
+
+    internal func addEventListener(event_:String, _function: ((Robot))->()) {
+        if (event_ == "die") {
+            _dieHandler = _function //無名関数を格納する（空の初期値から変更）
+        } else { //該当のイベントが無い場合、実行時にerrorを出す（オプション）
+            print("error:" + event_ + "というイベントはありません")
         }
     }
-    public void fight() {
-        _energy -= 20;
+
+    internal func fight() -> Void {
+        _energy -= 20
         if (_energy <= 0) {
-            _dieHandler.exec(this); //無名関数の呼び出し
+            _dieHandler(self) //無名関数の呼び出し
         }
     }
 }
 
-interface Ixxx_robot { //無名関数用インターフェース（Java独特）
-    public void exec(Robot arg);
+//無名関数（リスナー関数）
+var die_robot:((Robot))->() = { (arg:Robot) -> Void in
+    print(arg) //=> test.Robot
+    print("GAME OVER")
 }
+print(die_robot.dynamicType) //=> (Robot) -> () ←無名関数のデータ型
+
+var _robot:Robot = Robot()
+_robot.addEventListener(event_:"die", _function:die_robot) //イベントリスナーの定義
+_robot.fight()
+_robot.fight()
+_robot.fight()
+_robot.fight() //=> "GAME OVER"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
