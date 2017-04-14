@@ -27,10 +27,9 @@
 * [配列](#配列)
 * [辞書（Dictionary）](#辞書（Dictionary）)
 * [self](#self)
-***
 * [文字列の操作](#文字列の操作)
-* [正規表現](#正規表現)
-* [インターフェース](#インターフェース)
+***
+* [インターフェース（protocol）](#インターフェース（protocol）)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
@@ -1669,51 +1668,46 @@ public class Main { //public は省略可
 更新日：2017年04月12日
 
 
-<a name="インターフェース"></a>
-# <b>インターフェース</b>
+<a name="インターフェース（protocol）"></a>
+# <b>インターフェース（protocol）</b>
 
 ### 概要
-* クラスにどのような機能（メソッド）を持たせるか、ということだけを定める
-* 抽象クラスと似ているが、抽象クラスとは異なり、実際の処理は一切記述できない
-* 実際の処理はインターフェースを継承したクラスで定義（実装しないとエラー）
-* 多重実装（複数のインターフェースを同時に指定）が可能
+* 多くの言語で定義できる interface と同じような機能（protocol と呼ぶ）
+* クラスにどのような機能（メソッド）を持たせるかということだけを定める（実際の処理は記述不可）
+* カンマ（,）を使って多重実装（複数のプロトコルを同時に指定）が可能
 
 ### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        Moneybox _moneybox = new Moneybox();
-        _moneybox.add(5000);
-        System.out.println(_moneybox.getTotal()); //5000
-     }
+//test.swift
+protocol IMoneybox { //≒interface ←他の言語に合わあせてI○○と命名
+    func add(money _money: Int) -> Void
+    var total: Int { get set }
 }
 
-interface IMoneybox { //インターフェースの宣言（,で複数実装可能）
-    //暗黙的に全てのメソッドが「public」になる
-    void add(int _money);
-    int getTotal(); //getter
-    void setTotal(int _value); //setter
-}
-
-class Moneybox implements IMoneybox { //インターフェースの実装
-    private int _total = 0;
-    public void add(int _money) {
-        _total += _money;
+class Moneybox : IMoneybox { //←…プロトコルの実装
+    private var _total: Int = 0
+    func add(money _money: Int) -> Void {
+        _total += _money
     } 
-    public int getTotal() { //getterの実装
-        return _total;
-    }
-    public void setTotal(int _value) { //setterの実装
-        _total = _value;
+    var total: Int {
+        get {
+            return _total
+        }
+        set {
+            _total = newValue
+        }
     }
 }
+
+var _tmoneybox: Moneybox = Moneybox()
+_tmoneybox.add(money:5000)
+print(_tmoneybox.total) //=> 5000
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2016年07月29日  
+更新日：2017年04月14日
 
 
 <a name="抽象クラス（abstract）"></a>
