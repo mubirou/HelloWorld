@@ -22,9 +22,9 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-***
 * [for...in 文](#for...in文)
 * [while 文](#while文)
+***
 * [配列](#配列)
 * [リスト（LinkedList）](#リスト（LinkedList）)
 * [セット（TreeSet）](#セット（TreeSet）)
@@ -601,7 +601,7 @@ print(8.0 / 3); //=> 2.66666666666667（小数点第14位まで）
 ```
 //test.swift
 var hoge_: Int = 0
-hoge_ += 1 //←複合代入演算子（+=、-=）で代用
+hoge_ += 1 //複合代入演算子（+=、-=）で代用
 print(hoge_) //=> 1
 ```
 
@@ -933,7 +933,7 @@ if (age_ <= 20) { // () は省略可
 1. 論理演算子（&&）を使う方法
     ```
     if (条件式① && 条件②) {
-        処理A ←……条件式① かつ 条件式② の両方がtrueの場合に実行
+        処理A ←…条件式① かつ 条件式② の両方がtrueの場合に実行
     } else {
         処理B
     }
@@ -942,7 +942,7 @@ if (age_ <= 20) { // () は省略可
     ```
     if (条件式①) {
         if (条件②) {
-            処理A ←……条件式① かつ 条件式② の両方がtrueの場合に実行
+            処理A ←…条件式① かつ 条件式② の両方がtrueの場合に実行
         } else {
             処理B
         }
@@ -1179,92 +1179,58 @@ for value in dic_ {
 # <b>while 文</b>
 
 ### while 文
-* 構文
 ```
-while (ループ判定式) {
-    繰り返す処理
+//test.swift
+var _i: Int = 0
+while _i < 10 { //ループ判定式には条件式しか指定できません
+    print(_i) //=> 0,1,2,3,4,5,6,7,8,9
+    _i += 1
 }
+print(_i) //=> 10（変数はまだ有効）
 ```
 
-* 例文
+### repeat...while 文 ≒ do...while 文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _i = 0;
-        while (_i < 10) { //ループ判定式にはboolean型しか使えません
-            System.out.println(_i); //0,1,2,3,4,5,6,7,8,9
-            _i++;
-        }
-        System.out.println(_i); //10（変数はまだ有効）
+//test.swift
+var _i: Int = 0
+repeat {
+    print(_i) //=> 0 ←ループ判定式はfalseだが１回実行される
+    _i += 1
+} while _i < 0
+```
+
+### break 文
+```
+//test.swift
+var _count: Int = 0
+while true { //ループ判別式をtrueにすると無限ループに!
+    _count += 1
+    if (_count > 100) {
+        break //break文を使ってwhileループから抜け出て処理を終了
     }
+    print(_count) //=> 1,2,....,99,100
 }
+print("while文終了")
 ```
 
-### do...while 文
-* 構文
+### continue文
 ```
-do {
-    繰り返す処理 ←ループ判定式がfalseの場合でも最低１回は実行される
-} while(ループ判定式);
-```
-
-* 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _i = 0;
-        do {
-            System.out.println(_i); //=> 0 ←ループ判定式はfalseだが１回実行される
-            _i++;
-        } while(_i < 0);
+//test.swift
+var _i: Int = 1;
+while _i <= 20 {
+    if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+        _i += 1
+        continue //while文の残処理をスキップしてwhile文の次の反復を開始する
     }
+    print(_i) //=> 3,6,9,12,15,18（3の倍数を出力）
+    _i += 1
 }
 ```
-
-### while 文と break 文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _count = 0;
-        while (true) { //ループ判別式をtrueにすると無限ループ
-            _count++;
-            if (_count > 100) {
-                break; //break文を使ってループを終了
-            }
-             System.out.println(_count); //=> 1,2,....,99,100（1〜100までを出力）
-        }
-        System.out.println("while文終了");
-    }
-}
-```
-* break 文は for 文や while ループから抜け出て処理を中断するための制御文
-
-### while 文と continue 文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _i = 1;
-        while (_i <= 20) {
-            if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                _i++;
-                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
-            }
-            System.out.println(_i); //=> 3,6,9,12,15,18（3の倍数）
-            _i++;
-        }
-    }
-}
-```
-* continue 文はその時点のループ内の処理のみ中断し、ループから脱出せずにループを継続する
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="配列"></a>
