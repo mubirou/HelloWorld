@@ -18,8 +18,8 @@
 * [メソッド](#メソッド)
 * [匿名関数（クロージャ）](#匿名関数（クロージャ）)
 * [クラス定数･変数･メソッド](#クラス定数･変数･メソッド)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -917,7 +917,7 @@ print(MyMath.pow(arg1:2, arg2:8)) //=> 256（2の8乗）
 * true と評価される可能性が高い順に並べると if 文を早く抜け出せる可能性が高い
 ```
 //test.swift
-var age_:Int = 48
+var age_:Int = 49
 if (age_ <= 20) { // () は省略可
     print("20歳以下")
 } else if (age_ <= 40) {
@@ -994,51 +994,28 @@ if ((_a || _b) && !(_a && _b)) {
 # <b>三項演算子</b>
 
 ### 比較式が１つの場合
-* 構文
 ```
-データ型 変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
-```
-
-* 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _age = 48;
-        String _result = (_age < 60) ? "現役" : "退職";
-        System.out.println(_result); //"現役"
-    }
-}
+//test.swift
+var age_:Int = 49
+var result_:String = (age_ < 60) ? "現役" : "退職"
+print(result_); //=> "現役"
 ```
 
-### 比較式が複数の場合
-* 構文
+### 三項演算子（比較式が複数の場合）
 ```
-データ型 変数名 = 
-(比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
-(比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
-(①②の全てがfalseの場合の返り値);
-```
-
-* 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _age = 49;
-        String _result = 
-        (_age < 20) ? "未成年":
-        (_age < 60) ? "現役":
-        "退職";
-        System.out.println(_result); //"現役"
-    }
-}
+//test.swift
+var age_:Int = 49
+var result_:String = 
+(age_ < 20) ? "未成年":
+(age_ < 60) ? "現役":
+"退職"
+print(result_) //=> "現役"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年07月28日  
+更新日：2017年04月14日
 
 
 <a name="switch文"></a>
