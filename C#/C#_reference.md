@@ -82,7 +82,7 @@
 
 ### 検証
 ```
-test.cs
+//test.cs
 using System; //Console.WriteLine()に必要
 
 class Test {
