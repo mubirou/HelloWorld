@@ -172,13 +172,13 @@ class Test {
         Console.WriteLine((int)Signal.BLUE); //0 ←キャストによる型変換が必要
 
         //構造体（クラスに似ているが継承は不可）
-        MyStruct _struct = new MyStruct("Takashi Nishimura", 48);
+        MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
         Console.WriteLine(_struct); //MyStruct
         Console.WriteLine(_struct.GetType()); //MyStruct
         
         //匿名型クラス（宣言には、必ずvarキーワードを使います）
-        var _anon = new { Name="Takashi Nishimrua", Age=48 }; //読み取り専用（注意）
-        Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 48 }
+        var _anon = new { Name="Takashi Nishimrua", Age=49 }; //読み取り専用（注意）
+        Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 49 }
         Console.WriteLine(_anon.Name); //"Takashi Nishimura ←取得方法
         Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
 
