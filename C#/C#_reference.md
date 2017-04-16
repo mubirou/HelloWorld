@@ -49,6 +49,182 @@
 # <b>データ型</b>
 
 ### データ型の種類
+* 論理型
+    * bool型 : true または false
+
+* 整数型
+    * byte 型 : 0〜255（8 bit）
+    * sbyte 型 : -128〜127（8 bit）
+    * short 型 : -32768〜32767（16 bit）←約±3万
+    * ushort 型 :  0〜65535（16 bit）←約6万
+    * int 型 : -2147483648〜2147483647（32 bit）←約±20億／16進数（0xFFCC00等）も可
+    * uint 型 :  0〜4294967295（32 bit）←約40億（初期値）
+    * long 型 : -9223372036854775808〜9223372036854775807（64 bit）←約±900京
+    * ulong 型 : 0〜18446744073709551615（64 bit）←約1800京
+
+* 浮動小数点数型
+    * float 型 : 小数点第6位までの値（第7位を四捨五入）←最後にfを付ける
+    * double 型 : 小数点第14位までの値（第15位を四捨五入）←デフォルト
+    * decimal 型 : 小数点第28位までの値（第29位を四捨五入）←最後に m を付ける
+
+* 文字型
+    * char 型 : 1文字（シングルクォーテーションで囲む）
+    * string 型 : 2文字以上（ダブルクォーテーションで囲む）
+
+* その他のデータ型
+    * null許容型 : 変数の値が未定義（宣言には ? を追記）
+    * 列挙型（enum） : 内部的には0、1、2...（int 型）で処理
+    * 構造体（struct）: 継承が出来ないクラスに似たもの
+    * 匿名型クラス（new {}）: class を使わないクラス（プロパティは読取専用）
+    * クラス（class）: class を使った参照型（データそのものではなくアドレスを保持）
+    * dynamic型 : 動的型（型が未確定）←TypeScript の any 相当
+    * Object[]型 : 配列の場合
+
+### 検証
+```
+using System; //Console.WriteLine()に必要
+
+class Test {
+	static void Main() {
+		//bool型
+		bool _bool = true;
+		Console.WriteLine(_bool); //True
+		Console.WriteLine(_bool.GetType()); //System.Boolean
+		
+		//整数型①（0〜255）
+		byte _byte = 255;
+		Console.WriteLine(_byte); //255
+		Console.WriteLine(_byte.GetType()); //System.Byte
+		
+		//整数型②（-128〜127）
+		sbyte _sbyte = -128;
+		Console.WriteLine(_sbyte); //-128
+		Console.WriteLine(_sbyte.GetType()); //System.SByte
+		
+		//整数型③（-32768〜32767）
+		short _short = -32768;
+		Console.WriteLine(_short); //-32768
+		Console.WriteLine(_short.GetType()); //System.Int16
+		
+		//整数型④（0〜65535）
+		ushort _ushort = 65535;
+		Console.WriteLine(_ushort); //65535
+		Console.WriteLine(_ushort.GetType()); //System.UInt16
+		
+		//整数型⑤（-2147483648〜2147483647）
+		int _int = -2147483648;
+		Console.WriteLine(_int); //-2147483648
+		Console.WriteLine(_int.GetType()); //System.Int32
+
+		int _int16 = 0xFFCC00; //←…16進数の場合。
+		Console.WriteLine(_int16); //16763904
+		Console.WriteLine(_int16.GetType()); //System.Int32
+		
+		//整数型⑥（0〜4294967295）
+		uint _uint = 4294967295;
+		Console.WriteLine(_uint); //4294967295
+		Console.WriteLine(_uint.GetType()); //System.UInt32
+		
+		//整数型⑦（-9223372036854775808〜9223372036854775807）
+		long _long = -9223372036854775808;
+		Console.WriteLine(_long); //-9223372036854775808
+		Console.WriteLine(_long.GetType()); //System.Int64
+		
+		//整数型⑧（0〜18446744073709551615）
+		ulong _ulong = 18446744073709551615;
+		Console.WriteLine(_ulong); //18446744073709551615
+		Console.WriteLine(_ulong.GetType()); //System.UInt64
+		
+		//浮動小数点数型①
+		float _float = 3.1415926f; //←…最期に「f」。
+		Console.WriteLine(_float); //3.141593
+		Console.WriteLine(_float.GetType()); //System.Single
+		
+		//浮動小数点数型②
+		double _double = 3.141592653589793d; //←…dをつけなくても同じ。
+		Console.WriteLine(_double); //3.14159265358979
+		Console.WriteLine(_double.GetType()); //System.Double
+		
+		//浮動小数点数型③
+		decimal _decimal = 3.14159265358979323846264338327m; //←…最期に「m」。
+		Console.WriteLine(_decimal); //3.1415926535897932384626433833
+		Console.WriteLine(_decimal.GetType()); //System.Decimal
+		
+		//文字型①（char型＝1文字）
+		char _char = 'a'; //←…シングルクォーテーション。
+		Console.WriteLine(_char); //a
+		Console.WriteLine(_char.GetType()); //System.Char
+		
+		//文字型②（string型）
+		string _string = "999"; //←…ダブルクォーテーション。
+		Console.WriteLine(_string); //999
+		Console.WriteLine(_string.GetType()); //System.string
+
+//null許容型
+		int? _null = null; //string型は不可
+		Console.WriteLine(_null); //（null）
+		Console.WriteLine(_null == null); //True
+
+//列挙型（enum）
+		Console.WriteLine(Signal.BLUE); //BLUE
+		Console.WriteLine(Signal.BLUE.GetType()); //Signal
+		Console.WriteLine((int)Signal.BLUE); //0 ←…キャストによる型変換が必要。
+
+		//構造体（クラスに似ているが継承は不可）
+		MyStruct _struct = new MyStruct("Takashi Nishimura", 48);
+		Console.WriteLine(_struct); //MyStruct
+		Console.WriteLine(_struct.GetType()); //MyStruct
+		
+//匿名型クラス（宣言には、必ずvarキーワードを使います）
+		var _anon = new { Name="Takashi Nishimrua", Age=48 }; //読み取り専用（注意）
+		Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 48 }
+		Console.WriteLine(_anon.Name); //"Takashi Nishimura ←…取得方法
+		Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
+
+		//クラス
+		MyClass _myClass = new MyClass("Takashi Nishimura", 48);
+		Console.WriteLine(_myClass); //MyClass
+		Console.WriteLine(_myClass.GetType()); //MyClass
+
+		//配列
+		int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
+		Console.WriteLine(_array); //System.Object[]
+	}
+}
+
+enum Signal { BLUE,YELLOW,RED }; //列挙（enum）の定義
+
+struct MyStruct { //構造体の定義
+	public string name;
+	public byte age;
+	public MyStruct(string p1, byte p2) {
+		name = p1;
+		age = p2;
+	}
+}
+
+class MyClass { //クラスの定義
+	public string name;
+	public byte age;
+	public MyClass(string p1, byte p2) {
+		name = p1;
+		age = p2;
+	}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### データ型の種類
 1. 論理型（boolean 型）
 1. 整数型（byte 型 : -128〜127）
 1. 整数型（short 型 : -32768〜32767）
@@ -149,7 +325,7 @@ enum Signal { BLUE,YELLOW,RED } //⑩列挙型の定義
 class MyClass {} //⑪クラスの定義
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月13日  
 更新日：2017年04月12日
@@ -274,7 +450,7 @@ class MyClass {} //⑪クラスの定義
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -323,7 +499,7 @@ class Rectangle { //長方形クラス
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -371,7 +547,7 @@ class SubClassB extends SuperClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -421,7 +597,7 @@ public class Main { //public は省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -477,7 +653,7 @@ class ClassB { //この内容だけが継承と異なる
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -574,7 +750,7 @@ class MyClass {
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -622,7 +798,7 @@ class Nishimura {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月14日  
 更新日：2017年04月12日
@@ -677,7 +853,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -704,7 +880,7 @@ public class Main { //publicは省略可
 ```
 class クラス名 {
     public static final データ型 定数名 = 値;
-    ………
+    :…
 }
 
 #アクセス方法
@@ -728,7 +904,7 @@ class MyMath {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -797,9 +973,9 @@ class MyClass {
     ```
     class クラス名 {
         [public] クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
-            ……
+            :
         }
-        ……
+        :
     ```
     * アクセス修飾子を省略した場合、同じパッケージ内でのみアクセス可能
 
@@ -866,7 +1042,7 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -916,7 +1092,7 @@ interface IHello {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -937,7 +1113,7 @@ class MyMath {
     public static 戻り値の型 メソッド名([データ型① 引数①, ...]) {
             処理 [return 戻り値;]
     }
-    ……
+    :
 ```
 
 ### 例文
@@ -979,7 +1155,7 @@ class MyMath {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1083,7 +1259,7 @@ public class Main { //publicは省略可
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1134,7 +1310,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1193,7 +1369,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1294,7 +1470,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1392,7 +1568,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1484,7 +1660,7 @@ public class Main { //publicは省略可
 ```
 * continue 文はその時点のループ内の処理のみ中断し、ループから脱出せずにループを継続する
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月15日  
 更新日：2017年04月12日
@@ -1560,7 +1736,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月16日  
 更新日：2017年04月12日
@@ -1744,7 +1920,7 @@ public class Main { //public は省略可
     }
     ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月16日  
 更新日：2017年04月12日
@@ -1815,7 +1991,7 @@ for (String _value : _set) {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月16日  
 更新日：2017年04月12日
@@ -1869,7 +2045,7 @@ System.out.println(_map.containsKey("A")); //true（任意のキーがあるか�
 System.out.println(_map.containsValue(い")); //true（ 任意の値があるか否か）
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月17日  
 更新日：2017年04月12日
@@ -1916,7 +2092,7 @@ class Robot {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月17日  
 更新日：2017年04月12日
@@ -2054,7 +2230,7 @@ public class Main { //public は省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2108,7 +2284,7 @@ public class Main { //public は省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2155,7 +2331,7 @@ class Moneybox implements IMoneybox { //インターフェースの実装
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2177,7 +2353,7 @@ class SubClass : Abstract○○ { //抽象クラスの継承
     public 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
         //実際の処理
     }
-    ……
+    :
 ```
 
 ### 例文
@@ -2205,7 +2381,7 @@ class SubClass extends AbstractClass { //抽象クラスを継承
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2253,7 +2429,7 @@ class SubClass extends SuperClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2267,13 +2443,13 @@ class SubClass extends SuperClass {
 abstract class 抽象クラス名 { //抽象クラスの定義
     //抽象メソッド宣言 ※{}は記述しない
     abstract [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]);
-    ……
+    :
 }
 class 派生クラス extends 抽象クラス名 { //抽象クラスを継承
     [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]) { //オーバーライド
         //実際の処理
     }
-    ……
+    :
 ```
 
 ### 通常のメソッドのオーバーライド
@@ -2301,7 +2477,7 @@ class SubClass extends SuperClass {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2350,7 +2526,7 @@ interface Ixxx_robot { //無名関数用インターフェース（Java独特）
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2462,7 +2638,7 @@ System.out.println(Math.max(5.01, -10)); //=> 5.01 ←「2つ」の数値の比�
 System.out.println(Math.min(5.01, -10)); //=> -10.0 ←「2つ」の数値の比較
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2533,7 +2709,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月19日  
 更新日：2017年04月12日
@@ -2580,7 +2756,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月20日  
 更新日：2017年04月12日
@@ -2611,7 +2787,7 @@ class LoopExec extends TimerTask {
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月20日  
 更新日：2017年04月12日
@@ -2658,7 +2834,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成日：2016年07月20日  
 更新日：2017年04月12日
 
@@ -2711,7 +2887,7 @@ public class Main { //publicは省略可
 }
 ```
 
-実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2016年07月20日  
 更新日：2017年04月12日
