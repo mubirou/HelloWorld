@@ -72,263 +72,152 @@
     * string 型 : 2文字以上（ダブルクォーテーションで囲む）
 
 * その他のデータ型
-    * null許容型 : 変数の値が未定義（宣言には ? を追記）
+    * null 許容型 : 変数の値が未定義（宣言には ? を追記）
     * 列挙型（enum） : 内部的には0、1、2...（int 型）で処理
     * 構造体（struct）: 継承が出来ないクラスに似たもの
     * 匿名型クラス（new {}）: class を使わないクラス（プロパティは読取専用）
     * クラス（class）: class を使った参照型（データそのものではなくアドレスを保持）
-    * dynamic型 : 動的型（型が未確定）←TypeScript の any 相当
-    * Object[]型 : 配列の場合
+    * dynamic 型 : 動的型（型が未確定）←TypeScript の any 相当
+    * Object[] 型 : 配列の場合
 
 ### 検証
 ```
+test.cs
 using System; //Console.WriteLine()に必要
 
 class Test {
-	static void Main() {
-		//bool型
-		bool _bool = true;
-		Console.WriteLine(_bool); //True
-		Console.WriteLine(_bool.GetType()); //System.Boolean
-		
-		//整数型①（0〜255）
-		byte _byte = 255;
-		Console.WriteLine(_byte); //255
-		Console.WriteLine(_byte.GetType()); //System.Byte
-		
-		//整数型②（-128〜127）
-		sbyte _sbyte = -128;
-		Console.WriteLine(_sbyte); //-128
-		Console.WriteLine(_sbyte.GetType()); //System.SByte
-		
-		//整数型③（-32768〜32767）
-		short _short = -32768;
-		Console.WriteLine(_short); //-32768
-		Console.WriteLine(_short.GetType()); //System.Int16
-		
-		//整数型④（0〜65535）
-		ushort _ushort = 65535;
-		Console.WriteLine(_ushort); //65535
-		Console.WriteLine(_ushort.GetType()); //System.UInt16
-		
-		//整数型⑤（-2147483648〜2147483647）
-		int _int = -2147483648;
-		Console.WriteLine(_int); //-2147483648
-		Console.WriteLine(_int.GetType()); //System.Int32
+    static void Main() {
+        //bool型
+        bool _bool = true;
+        Console.WriteLine(_bool); //True
+        Console.WriteLine(_bool.GetType()); //System.Boolean
+        
+        //整数型①（0〜255）
+        byte _byte = 255;
+        Console.WriteLine(_byte); //255
+        Console.WriteLine(_byte.GetType()); //System.Byte
+        
+        //整数型②（-128〜127）
+        sbyte _sbyte = -128;
+        Console.WriteLine(_sbyte); //-128
+        Console.WriteLine(_sbyte.GetType()); //System.SByte
+        
+        //整数型③（-32768〜32767）
+        short _short = -32768;
+        Console.WriteLine(_short); //-32768
+        Console.WriteLine(_short.GetType()); //System.Int16
+        
+        //整数型④（0〜65535）
+        ushort _ushort = 65535;
+        Console.WriteLine(_ushort); //65535
+        Console.WriteLine(_ushort.GetType()); //System.UInt16
+        
+        //整数型⑤（-2147483648〜2147483647）
+        int _int = -2147483648;
+        Console.WriteLine(_int); //-2147483648
+        Console.WriteLine(_int.GetType()); //System.Int32
 
-		int _int16 = 0xFFCC00; //←…16進数の場合。
-		Console.WriteLine(_int16); //16763904
-		Console.WriteLine(_int16.GetType()); //System.Int32
-		
-		//整数型⑥（0〜4294967295）
-		uint _uint = 4294967295;
-		Console.WriteLine(_uint); //4294967295
-		Console.WriteLine(_uint.GetType()); //System.UInt32
-		
-		//整数型⑦（-9223372036854775808〜9223372036854775807）
-		long _long = -9223372036854775808;
-		Console.WriteLine(_long); //-9223372036854775808
-		Console.WriteLine(_long.GetType()); //System.Int64
-		
-		//整数型⑧（0〜18446744073709551615）
-		ulong _ulong = 18446744073709551615;
-		Console.WriteLine(_ulong); //18446744073709551615
-		Console.WriteLine(_ulong.GetType()); //System.UInt64
-		
-		//浮動小数点数型①
-		float _float = 3.1415926f; //←…最期に「f」。
-		Console.WriteLine(_float); //3.141593
-		Console.WriteLine(_float.GetType()); //System.Single
-		
-		//浮動小数点数型②
-		double _double = 3.141592653589793d; //←…dをつけなくても同じ。
-		Console.WriteLine(_double); //3.14159265358979
-		Console.WriteLine(_double.GetType()); //System.Double
-		
-		//浮動小数点数型③
-		decimal _decimal = 3.14159265358979323846264338327m; //←…最期に「m」。
-		Console.WriteLine(_decimal); //3.1415926535897932384626433833
-		Console.WriteLine(_decimal.GetType()); //System.Decimal
-		
-		//文字型①（char型＝1文字）
-		char _char = 'a'; //←…シングルクォーテーション。
-		Console.WriteLine(_char); //a
-		Console.WriteLine(_char.GetType()); //System.Char
-		
-		//文字型②（string型）
-		string _string = "999"; //←…ダブルクォーテーション。
-		Console.WriteLine(_string); //999
-		Console.WriteLine(_string.GetType()); //System.string
+        int _int16 = 0xFFCC00; //←…16進数の場合。
+        Console.WriteLine(_int16); //16763904
+        Console.WriteLine(_int16.GetType()); //System.Int32
+        
+        //整数型⑥（0〜4294967295）
+        uint _uint = 4294967295;
+        Console.WriteLine(_uint); //4294967295
+        Console.WriteLine(_uint.GetType()); //System.UInt32
+        
+        //整数型⑦（-9223372036854775808〜9223372036854775807）
+        long _long = -9223372036854775808;
+        Console.WriteLine(_long); //-9223372036854775808
+        Console.WriteLine(_long.GetType()); //System.Int64
+        
+        //整数型⑧（0〜18446744073709551615）
+        ulong _ulong = 18446744073709551615;
+        Console.WriteLine(_ulong); //18446744073709551615
+        Console.WriteLine(_ulong.GetType()); //System.UInt64
+        
+        //浮動小数点数型①
+        float _float = 3.1415926f; //←…最期に「f」。
+        Console.WriteLine(_float); //3.141593
+        Console.WriteLine(_float.GetType()); //System.Single
+        
+        //浮動小数点数型②
+        double _double = 3.141592653589793d; //←…dをつけなくても同じ。
+        Console.WriteLine(_double); //3.14159265358979
+        Console.WriteLine(_double.GetType()); //System.Double
+        
+        //浮動小数点数型③
+        decimal _decimal = 3.14159265358979323846264338327m; //←…最期に「m」。
+        Console.WriteLine(_decimal); //3.1415926535897932384626433833
+        Console.WriteLine(_decimal.GetType()); //System.Decimal
+        
+        //文字型①（char型＝1文字）
+        char _char = 'a'; //←…シングルクォーテーション。
+        Console.WriteLine(_char); //a
+        Console.WriteLine(_char.GetType()); //System.Char
+        
+        //文字型②（string型）
+        string _string = "999"; //←…ダブルクォーテーション。
+        Console.WriteLine(_string); //999
+        Console.WriteLine(_string.GetType()); //System.string
 
-//null許容型
-		int? _null = null; //string型は不可
-		Console.WriteLine(_null); //（null）
-		Console.WriteLine(_null == null); //True
+        //null許容型
+        int? _null = null; //string型は不可
+        Console.WriteLine(_null); //（null）
+        Console.WriteLine(_null == null); //True
 
-//列挙型（enum）
-		Console.WriteLine(Signal.BLUE); //BLUE
-		Console.WriteLine(Signal.BLUE.GetType()); //Signal
-		Console.WriteLine((int)Signal.BLUE); //0 ←…キャストによる型変換が必要。
+        //列挙型（enum）
+        Console.WriteLine(Signal.BLUE); //BLUE
+        Console.WriteLine(Signal.BLUE.GetType()); //Signal
+        Console.WriteLine((int)Signal.BLUE); //0 ←…キャストによる型変換が必要。
 
-		//構造体（クラスに似ているが継承は不可）
-		MyStruct _struct = new MyStruct("Takashi Nishimura", 48);
-		Console.WriteLine(_struct); //MyStruct
-		Console.WriteLine(_struct.GetType()); //MyStruct
-		
-//匿名型クラス（宣言には、必ずvarキーワードを使います）
-		var _anon = new { Name="Takashi Nishimrua", Age=48 }; //読み取り専用（注意）
-		Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 48 }
-		Console.WriteLine(_anon.Name); //"Takashi Nishimura ←…取得方法
-		Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
+        //構造体（クラスに似ているが継承は不可）
+        MyStruct _struct = new MyStruct("Takashi Nishimura", 48);
+        Console.WriteLine(_struct); //MyStruct
+        Console.WriteLine(_struct.GetType()); //MyStruct
+        
+        //匿名型クラス（宣言には、必ずvarキーワードを使います）
+        var _anon = new { Name="Takashi Nishimrua", Age=48 }; //読み取り専用（注意）
+        Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 48 }
+        Console.WriteLine(_anon.Name); //"Takashi Nishimura ←…取得方法
+        Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
 
-		//クラス
-		MyClass _myClass = new MyClass("Takashi Nishimura", 48);
-		Console.WriteLine(_myClass); //MyClass
-		Console.WriteLine(_myClass.GetType()); //MyClass
+        //クラス
+        MyClass _myClass = new MyClass("Takashi Nishimura", 48);
+        Console.WriteLine(_myClass); //MyClass
+        Console.WriteLine(_myClass.GetType()); //MyClass
 
-		//配列
-		int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
-		Console.WriteLine(_array); //System.Object[]
-	}
+        //配列
+        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
+        Console.WriteLine(_array); //System.Object[]
+    }
 }
 
 enum Signal { BLUE,YELLOW,RED }; //列挙（enum）の定義
 
 struct MyStruct { //構造体の定義
-	public string name;
-	public byte age;
-	public MyStruct(string p1, byte p2) {
-		name = p1;
-		age = p2;
-	}
-}
-
-class MyClass { //クラスの定義
-	public string name;
-	public byte age;
-	public MyClass(string p1, byte p2) {
-		name = p1;
-		age = p2;
-	}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### データ型の種類
-1. 論理型（boolean 型）
-1. 整数型（byte 型 : -128〜127）
-1. 整数型（short 型 : -32768〜32767）
-1. 整数型（int 型 : -2147493649〜2147493647）
-1. 整数型（long 型 : -9223372036854775808〜9223372036854775807）
-1. 浮動小数点数型（float 型 : 小数点第7位までの値）
-1. 浮動小数点数型（double 型 : 小数点第15位までの値）
-1. 文字型（char 型）
-1. 文字列型（String 型: プリミティブ型ではなく String クラスのオブジェクト）
-1. 列挙型（enum）
-1. クラス
-1. 配列
-1. リスト（LinkedList 他）
-1. セット（TreeSet 他）
-1. マップ（HashMap 他）
-
-### 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち
-        //①論理型（boolean型）
-        boolean _bool = true; //プリミティブ型
-        System.out.println(_bool); //true
-        Boolean _bool2 = new Boolean(true); //オブジェクト型
-        System.out.println(_bool2.getClass()); //class java.lang.Boolean
-
-        //②整数型（byte型 -128〜127）
-        byte _byte = 127;
-        System.out.println(_byte); //127
-
-        //③整数型（short型 -32768〜32767）
-        short _short = 32767;
-        System.out.println(_short); //32767
-
-        //④整数型（int型 -2147493649〜2147493647）
-        int _int = 2147493647; //プリミティブ型
-        System.out.println(_int); //2147493647
-        Integer _int2 = new Integer(100); //オブジェクト型
-        System.out.println(_int2.getClass()); //class java.lang.Integer
-
-        //⑤整数型（long型 -9223372036854775808〜9223372036854775807）
-        long _long = 9223372036854775807L; //最後にLかl
-        System.out.println(_long); //9223372036854775807
-
-        //⑥浮動小数点数型（float型 小数点第7位までの値）
-        float _float = 3.14159265358979323846264338327950F; //最後にFかf
-        System.out.println(_float); //3.1415927（小数点第7位までの値）
-
-        //⑦浮動小数点数型（double型 小数点第15位までの値）
-        double _double = 3.14159265358979323846264338327950; //プリミティブ型
-        System.out.println(_double); //3.141592653589793（小数点第15位までの値）
-        Double _double2 = new Double(3.14159265358979323846264338327950); //オブジェクト型
-        System.out.println(_double2.getClass()); //class java.lang.Double
-
-        //⑧文字型（char型）
-        char _char = 'a'; //シングルクォーテーションで囲む
-        System.out.println(_char); //a
-
-        //⑨文字列型（String型）＝プリミティブ型ではなくStringクラスのオブジェクト
-        String _string = "999"; //new String("999")でも同じ ←オブジェクト型
-        System.out.println(_string); //999
-        System.out.println(_string.getClass()); //class java.lang.String
-
-        //⑩列挙型（enum）
-        System.out.println(Signal.BLUE); //BLUE
-        System.out.println(Signal.BLUE.getClass()); //class Signal
-
-        //⑪クラス
-        MyClass _myClass = new MyClass();
-        System.out.println(_myClass); //MyClass@6bc7c054
-        System.out.println(_myClass.getClass()); //class MyClass
-
-        //⑫配列
-        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
-        System.out.println(_array); //[I@232204a1
-        System.out.println(_array.getClass()); //class [I
-
-        //⑬リスト（LinkedList他）
-        java.util.LinkedList<String> _list = new java.util.LinkedList<String>();
-        System.out.println(_list); //[]
-        System.out.println(_list.getClass()); //class java.util.LinkedList
-
-        //⑭セット（TreeSet他）
-        java.util.Set<String> _set = new java.util.HashSet<String>();
-        System.out.println(_set); //[]
-        System.out.println(_set.getClass()); //class java.util.HashSet
-
-        //⑮マップ（HashMap他）
-        java.util.Map<String, Integer> _map 
-        = new java.util.HashMap<String, Integer>();
-        System.out.println(_map); //{}
-        System.out.println(_map.getClass()); //class java.util.HashMap
+    public string name;
+    public byte age;
+    public MyStruct(string p1, byte p2) {
+        name = p1;
+        age = p2;
     }
 }
 
-enum Signal { BLUE,YELLOW,RED } //⑩列挙型の定義
-class MyClass {} //⑪クラスの定義
+class MyClass { //クラスの定義
+    public string name;
+    public byte age;
+    public MyClass(string p1, byte p2) {
+        name = p1;
+        age = p2;
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月13日  
-更新日：2017年04月12日
+作成日：2015年11月14日  
+更新日：2017年04月16日
 
 
 <a name="データ型の操作"></a>
