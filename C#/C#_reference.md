@@ -117,7 +117,7 @@ class Test {
         Console.WriteLine(_int); //-2147483648
         Console.WriteLine(_int.GetType()); //System.Int32
 
-        int _int16 = 0xFFCC00; //←…16進数の場合。
+        int _int16 = 0xFFCC00; //16進数の場合
         Console.WriteLine(_int16); //16763904
         Console.WriteLine(_int16.GetType()); //System.Int32
         
@@ -137,27 +137,27 @@ class Test {
         Console.WriteLine(_ulong.GetType()); //System.UInt64
         
         //浮動小数点数型①
-        float _float = 3.1415926f; //←…最期に「f」。
+        float _float = 3.1415926f; //最期に「f」
         Console.WriteLine(_float); //3.141593
         Console.WriteLine(_float.GetType()); //System.Single
         
         //浮動小数点数型②
-        double _double = 3.141592653589793d; //←…dをつけなくても同じ。
+        double _double = 3.141592653589793d; //「d」をつけなくても同じ
         Console.WriteLine(_double); //3.14159265358979
         Console.WriteLine(_double.GetType()); //System.Double
         
         //浮動小数点数型③
-        decimal _decimal = 3.14159265358979323846264338327m; //←…最期に「m」。
+        decimal _decimal = 3.14159265358979323846264338327m; //最期に「m」
         Console.WriteLine(_decimal); //3.1415926535897932384626433833
         Console.WriteLine(_decimal.GetType()); //System.Decimal
         
         //文字型①（char型＝1文字）
-        char _char = 'a'; //←…シングルクォーテーション。
+        char _char = 'a'; //シングルクォーテーション
         Console.WriteLine(_char); //a
         Console.WriteLine(_char.GetType()); //System.Char
         
         //文字型②（string型）
-        string _string = "999"; //←…ダブルクォーテーション。
+        string _string = "999"; //ダブルクォーテーション
         Console.WriteLine(_string); //999
         Console.WriteLine(_string.GetType()); //System.string
 
@@ -169,7 +169,7 @@ class Test {
         //列挙型（enum）
         Console.WriteLine(Signal.BLUE); //BLUE
         Console.WriteLine(Signal.BLUE.GetType()); //Signal
-        Console.WriteLine((int)Signal.BLUE); //0 ←…キャストによる型変換が必要。
+        Console.WriteLine((int)Signal.BLUE); //0 ←キャストによる型変換が必要
 
         //構造体（クラスに似ているが継承は不可）
         MyStruct _struct = new MyStruct("Takashi Nishimura", 48);
@@ -179,7 +179,7 @@ class Test {
         //匿名型クラス（宣言には、必ずvarキーワードを使います）
         var _anon = new { Name="Takashi Nishimrua", Age=48 }; //読み取り専用（注意）
         Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 48 }
-        Console.WriteLine(_anon.Name); //"Takashi Nishimura ←…取得方法
+        Console.WriteLine(_anon.Name); //"Takashi Nishimura ←取得方法
         Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
 
         //クラス
@@ -649,7 +649,7 @@ class MyClass {
 # <b>アクセサ （getter / setter）</b>
 
 ### 概要
-オブジェクト指向プログラミングの「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は private 変数とし、外部からはメソッドを使ってアクセスします。Java には他の多くの言語にある専用のアクセサが用意されていません。そこで、get○○()、set○○(型,引数) といった記述をして同じ機能を実現します。
+オブジェクト指向プログラミングの「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は private 変数とし、外部からはメソッドを使ってアクセスしますJava には他の多くの言語にある専用のアクセサが用意されていませんそこで、get○○()、set○○(型,引数) といった記述をして同じ機能を実現します
 
 ### 読書き可能なメンバ変数
 ```
@@ -810,7 +810,7 @@ class MyMath {
 }
 ```
 
-### アクセス修飾子】※省略すると同じパッケージ内からのみアクセス可能…とのこと。
+### アクセス修飾子】※省略すると同じパッケージ内からのみアクセス可能…とのこと
 1. public : 全クラスからアクセス可能
 1. protected : 同じクラスおよびサブクラス内（同じパッケージ）からアクセス可能
 1. private : 同じクラス内からアクセス可能
