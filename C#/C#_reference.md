@@ -311,6 +311,7 @@ class MyClass { //クラスの定義
     ```
 
 1. bool型→数値へ変換
+    ```
     //test.cs
     using System;
     class Test {
