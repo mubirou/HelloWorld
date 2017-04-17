@@ -9,8 +9,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
+* [名前空間](#名前空間)
 ***
-* [名前空間（パッケージ）](#名前空間（パッケージ）)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
@@ -416,7 +416,9 @@ class Rectangle { //長方形クラス
     //プロパティの定義･初期値の設定
     private int _width = 0; //privateは省略可
     private int _height = 0; //privateは省略可
-    public Rectangle() {} //コンストラクタは省略可（初期値はここで設定してもよい）
+
+    //コンストラクタは省略可（初期値はここで設定してもよい）
+    public Rectangle() {}
     
     //メソッド群の定義
     public int width {
@@ -510,54 +512,52 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 更新日：2017年04月17日
 
 
-<a name="名前空間（パッケージ）"></a>
-# <b>名前空間（パッケージ）</b>
+<a name="名前空間"></a>
+# <b>名前空間</b>
 
 ### 概要
-* ここでいう名前空間とはパッケージを指す
-* 物理的なフォルダ単位で管理する
-* 一般的にパッケージ名はドメインを逆にしたものを使用
+* フォルダによる階層構造でファイルを管理するかのようにクラスを管理（但し論理的）
+* .NET Framework にある System 名前空間はその下に Text、IO、Drawing などあり
+* デフォルトでは無名の名前空間（global名前空間）が使用される
+* 1つの名前空間の中に、クラス/構造体/デリゲート/列挙/インターフェース等を宣言できる他、別の名前空間を宣言することも可能
 
-### クラス作成とパッケージ宣言
-* Main.java と同階層に jp/xxx/ フォルダを作成しその中に次のファイルを作成
+### 書式
 ```
-//MyClass.java
-package jp.xxx;
-public class MyClass {
-    private float _version = 0.9F;
-    public MyClass() { //コンストラクタ
-        System.out.println("MyClassが生成されました");
+namespace 名前空間名 {
+    class ○○ {
     }
-    public float getVersion() {
-        return _version;
-    } 
+    ……
 }
 ```
 
-### コンパイル
-1. Main.java ファイルがあるディレクトリに移動  
-    $ cd /home/（ユーザー名）/デスクトップ/ ←デスクトップ上にある場合
-
-1. コンパイル  
-    $ javac jp/xxx/MyClass.java  
-    ※MyClass.<b>class</b>が生成される
-
-### メインクラスの記述
+### 例文
 ```
-//Main.java
-import jp.xxx.MyClass;
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        MyClass _MyClass = new MyClass(); //=> "MyClassが生成されました"
-        System.out.println(_MyClass.getVersion()); //=> 0.9
+//test.cs
+using System; //Console.WriteLine()に必要
+
+class Test { //メインクラス（Main()メソッドを含む）←Mainは不可
+    static void Main() { //自動的に最初に実行される
+        MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
+        Console.WriteLine(_myClass); //MyLibrary.MyClass
     }
+}
+
+namespace MyLibrary {
+    //インターフェース等…
+    class MyClass {
+        public MyClass() { //コンストラクタ
+            //いろいろな処理…
+        }
+        //いろいろなメソッド…
+    }
+    //いろいろなクラス…
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月23日  
+更新日：2017年04月17日
 
 
 <a name="継承と委譲"></a>
