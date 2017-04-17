@@ -816,7 +816,7 @@ class Test {
         Console.WriteLine(_nishimura.Age); //50
     }}
 class Nishimura {
-    int _age = 48; //privateは省略
+    int _age = 49; //privateは省略
     public int Age {
         get { return _age; } //thisは省略
         private set {} //外部からアクセス不可（読み取り専用にする）
