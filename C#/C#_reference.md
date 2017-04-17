@@ -8,8 +8,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
+* [基本クラスと派生クラス](#基本クラスと派生クラス)
 ***
-* [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間（パッケージ）](#名前空間（パッケージ）)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -439,52 +439,75 @@ class Rectangle { //長方形クラス
 更新日：2017年04月17日
 
 
-<a name="スーパークラスとサブクラス"></a>
-# <b>スーパークラスとサブクラス</b>
+<a name="基本クラスと派生クラス"></a>
+# <b>基本クラスと派生クラス</b>
 
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
-        SubClassA _subclassA = new SubClassA(); //サブクラスＡのインスタンスの生成
-        System.out.println(_subclassA.getFieldS()); //=> "スーパークラスのフィールド"
-        System.out.println(_subclassA.getFieldA()); //=> "サブクラスＡのフィールド"
-        System.out.println(_subclassA.methodS()); //=> "スーパークラスのメソッド"
-        System.out.println(_subclassA.methodA()); //=> "サブクラスＡのメソッド"
-        SubClassB _subclassB = new SubClassB(); //サブクラスＢのインスタンスの生成
-        System.out.println(_subclassB.getFieldS()); //=> "スーパークラスのフィールド"
-        System.out.println(_subclassB.getFieldB()); //=> "サブクラスＢのプロパティ"
-        System.out.println(_subclassB.methodS()); //=> "スーパークラスのメソッド"
-        System.out.println(_subclassB.methodB()); //=> "サブクラスＢのメソッド"
+//test.cs
+using System; //Console.WriteLine()に必要
+
+class Test { //メインクラス（Main()メソッドを含む）←…Mainは不可
+    static void Main() { //自動的に最初に実行される
+        //派生クラスＡのインスタンス
+        SubClassA _subclassA = new SubClassA();
+        Console.WriteLine(_subclassA.pSuperClass); //"基本クラスのプロパティ"
+        Console.WriteLine(_subclassA.pSubClassA); //"派生クラスＡのプロパティ"
+        Console.WriteLine(_subclassA.mSuperClass()); //"基本クラスのメソッド"
+        Console.WriteLine(_subclassA.mSubClassA()); //"派生クラスＡのメソッド"
+        
+        //派生クラスＢのインスタンス
+        SubClassB _subclassB = new SubClassB();
+        Console.WriteLine(_subclassB.pSuperClass); //"基本クラスのプロパティ"
+        Console.WriteLine(_subclassB.pSubClassB); //"派生クラスＢのプロパティ"
+        Console.WriteLine(_subclassB.mSuperClass()); //"基本クラスのメソッド"
+        Console.WriteLine(_subclassB.mSubClassB()); //"派生クラスＢのメソッド"
     }
 }
 
-//スーパークラス
-class SuperClass { 
-    private String _fieldS = "スーパークラスのフィールド"; //①フィールドの定義
-    public String getFieldS() { return _fieldS; } //②アクセサ（getter）※thisは省略
-    public String methodS() { return "スーパークラスのメソッド"; } //③メソッド
+//基本クラス（スーパークラス）
+class SuperClass {
+    //①プロパティの定義
+    string _pSuperClass = "基本クラスのプロパティ"; //privateは省略
+    //②メソッド群の定義
+    public string pSuperClass {
+        get { return _pSuperClass; } //thisは省略
+    }
+    public string mSuperClass() {
+        return "基本クラスのメソッド";
+    }
 }
 
-//サブクラスＡ（スーパークラス継承）※多重継承不可
-class SubClassA extends SuperClass {
-    private String _fieldA = "サブクラスＡのフィールド"; //①フィールド
-    public String getFieldA() { return _fieldA; } //②アクセサ（getter）※thisは省略
-    public String methodA() { return "サブクラスＡのメソッド";    } //③メソッド
+//派生クラスＡ
+class SubClassA : SuperClass { //基本クラスを継承（多重継承は不可）
+    //①プロパティの定義
+    string _pSubClassA = "派生クラスＡのプロパティ"; //privateは省略
+    //②メソッド群の定義
+    public string pSubClassA {
+        get { return _pSubClassA; } //thisは省略。
+    }
+    public string mSubClassA() {
+        return "派生クラスＡのメソッド";
+    }
 }
 
-//サブクラスＢ（スーパークラス継承）※多重継承不可
-class SubClassB extends SuperClass { 
-    private String _fieldB = "サブクラスＢのフィールド"; //①フィールド
-    public String getFieldB() { return _fieldB; } //②アクセサ（getter）※thisは省略
-    public String methodB() { return "サブクラスＢのメソッド"; } //③メソッド
+//派生クラスＡ
+class SubClassB : SuperClass { //基本クラスを継承（多重継承は不可）
+    //①プロパティの定義
+    string _pSubClassB = "派生クラスＢのプロパティ"; //privateは省略
+    //②メソッド群の定義
+    public string pSubClassB {
+        get { return _pSubClassB; } //thisは省略
+    }
+    public string mSubClassB() {
+        return "派生クラスＢのメソッド";
+    }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2015年11月05日  
+更新日：2017年04月17日
 
 
 <a name="名前空間（パッケージ）"></a>
