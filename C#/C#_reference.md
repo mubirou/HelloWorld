@@ -583,6 +583,7 @@ class ClassA {
     public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
 }
 class ClassB : ClassA {} //ClassAを継承
+```
 
 ### 委譲版
 ```
