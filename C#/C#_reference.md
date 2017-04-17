@@ -10,9 +10,9 @@
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
+***
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
@@ -625,89 +625,167 @@ class ClassB { //この内容だけが継承と異なる
 1. ローカル変数
 1. クラス変数（＝ static 変数、静的変数）
 
-### public（メンバ変数）: 非推奨
+### 変数の種類
+1. public 変数 : 全クラスからアクセス可能
+1. protected 変数 : 同じクラスおよび派生クラス内でのみアクセス可能
+1. private 変数 : 同じクラス内のみアクセス可能（省略すると private 扱い）
+1. ローカル変数 : メソッド内でのみアクセス可能（メソッド内で宣言したもの）
+* その他「ブロックスコープ」等あり
+
+###  public 変数
+* 特徴
+    * 全クラスからアクセスが可能
+    * クラス定義の直後、コンストラクタの直前に定義
+    * 通常は private 変数を利用し、アクセスには「get / set アクセサ」を使用する
+
+* 書式
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+class クラス名 { //クラス定義
+public データ型 変数名; //public変数宣言（初期化も可）
+    public クラス名() {} //コンストラクタ（省略可）
+    ……
+```
+
+* 悪い例
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
         MyClass _myClass = new MyClass();
-        System.out.println(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
+        Console.WriteLine(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
+     }
+}
+class MyClass {
+    public string _p = "public変数"; //public宣言は冒頭でおこなう
+}
+```
+
+### protected 変数
+* 特徴
+    * 同じクラスおよび派生クラス内でのみアクセス可能
+    * 基本クラス（スーパークラス）の定義の直後、コンストラクタの直前に定義
+
+* 書式
+```
+class 基本クラス { //スーパークラス定義
+    protected データ型 変数名; //protected変数宣言（初期化も可）
+    public クラス名() {} //コンストラクタ（省略可）
+    ……
+```
+
+* 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        SubClass _subClass = new SubClass();
+        Console.WriteLine(_subClass); //SubClass
+        //Console.WriteLine(_subClass._pSuperClass); //error（アクセス不可）
+     }
+}
+
+class SuperClass { //基本クラス
+    protected string _pSuperClass = "SuperClass変数"; //protected変数宣言
+}
+
+class SubClass : SuperClass { //派生クラス
+    public SubClass() {
+        Console.WriteLine(_pSuperClass); //アクセス可能
     }
+}
+```
+
+### private 変数
+* 特徴
+    * 同じクラス内のみアクセス可能（省略すると private 扱い）
+    * クラス定義の直後、コンストラクタの直前に定義
+    * 「他人の変数を勝手にいじってはいけない」というルールに則り、インスタンス変数は通常、private 変数とし、外部からは「get / set アクセサ」を使ってアクセスする
+
+* 書式
+```
+class クラス名 { //クラス定義
+private データ型 変数名; //private変数宣言（初期化も可）←privateは省略可
+    public クラス名() {} //コンストラクタ（省略可）
+    ……
+```
+
+* 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        MyClass _myClass = new MyClass();
+        Console.WriteLine(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
+     }
 }
 
 class MyClass {
-    public String _p = "メンバ変数（public）"; //冒頭でpublic宣言
-}
-```
-
-### private（メンバ変数）: 推奨
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        MyClass _myClass = new MyClass();
-        System.out.println(_myClass.getP()); //getterで参照可
-        _myClass.setP("フィールド（private）"); //setterで変更可
+    private string _p = "private変数"; //private宣言は冒頭でおこなう
+    public string P {
+        get { return _p; }
+        set { _p = value; }
     }
 }
-class MyClass {
-    private String _p = "メンバ変数（private）"; //private宣言
-    public String getP() { return _p; } //_pのgetter（thisは省略）
-    public void setP(String _value) { _p = _value; } //_pのsetter（thisは省略）
-}
 ```
 
-### ローカ変数
+### ローカル変数
+* 特徴
+    * ①メソッド ② for ③ foreach 文内で宣言
+    * 宣言した ①メソッド ② for ③ foreach 文内でのみアクセス可能
+
 1. メソッド内で宣言する場合
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
             MyClass _myClass = new MyClass();
-            _myClass.myMethod();
+            _myClass.MyMethod();
         }
     }
 
     class MyClass {
-        private String _p = "メンバ変数（private）";
-
+        private string _string = "private変数";
         public MyClass() { //コンストラクタ
-            System.out.println(_p); //=> "メンバ変数（private）"（ここはthis省略可）
+            Console.WriteLine(_string); //private変数（ここはthisは無くても良い）
         }
-
-        public void myMethod() {
-            String _p = "ローカル変数"; //ローカル変数宣言
-            System.out.println(_p); //=> "ローカル変数"
-            System.out.println(this._p); //=> "メンバ変数（private）"（ここはthis必須）
-        }
-    }
-    ```
-
-1. for文内で宣言する場合
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            new MyClass();
-        }
-    }
-
-    class MyClass {
-        private int _i = 999; //private宣言
-        public MyClass() { //コンストラクタ
-            for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-                System.out.println("A: " + _i); //0、1、2、...、5
-                System.out.println("B: " + this._i); //999 ←メンバ変数（private）
-            }
-            System.out.println("C: " + _i); //999（thisは省略可）
+        public void MyMethod() {
+            string _string = "ローカル変数"; //ローカル変数宣言
+            Console.WriteLine(_string); //ローカル変数
+            Console.WriteLine(this._string); //private変数（ここではthisが必須）
         }
     }
     ```
+
+1. for 文内で宣言する場合（foreach 文も同様）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        new MyClass();
+     }
+}
+class MyClass {
+    private int _i = 999; //private変数
+    public MyClass() { //コンストラクタ
+        for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
+            Console.WriteLine("A: " + _i); //0、1、2、…、5
+            Console.WriteLine("B: " + this._i); //999（private変数）
+        }
+        //Console.WriteLine("C: " + _i); //error（ロカール変数はアクセス不可）
+        Console.WriteLine("C: " + this._i); //999（private変数はthisが必須）
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2015年11月20日  
+更新日：2017年04月17日
 
 
 <a name="アクセサ"></a>
