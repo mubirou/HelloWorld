@@ -6,9 +6,9 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
+***
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
 * [名前空間（パッケージ）](#名前空間（パッケージ）)
 * [継承と委譲](#継承と委譲)
@@ -224,174 +224,218 @@ class MyClass { //クラスの定義
 # <b>データ型の操作</b>
 
 ### データ型の調べ方
-1. オブジェクト.getClass()
-    * プリミティブ型の場合エラー（注意）
+1. is 演算子
+    * クラスか否かを調べる（○ is int といった使い方も可能）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            Class _class = new MyClass().getClass();
-            System.out.println(_class); //=> class MyClass
-            System.out.println(new Integer(99).getClass()); //=>class java.lang.Integer
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            //クラスの場合
+            var _tmp = new SubClass();
+            Console.WriteLine(_tmp is SubClass); //True
+            Console.WriteLine(_tmp is SuperClass); //True
+
+            //匿名型クラスの場合
+            var _tmp2 = new {};
+            Console.WriteLine(_tmp2 is object); //True;
         }
     }
-    class MyClass {}
+
+    class SuperClass {} //基本クラスの定義
+    class SubClass : SuperClass {} //派生クラスの定義
     ```
 
-1. オブジェクト.getClass().getName()
+1. as 演算子
+    * キャスト成功時に変換後の値が返され、失敗するとエラー
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            String _string = new MyClass().getClass().getName();
-            System.out.println(_string); //=> "MyClass"
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            var _myClass = new MyClass();
+            Console.WriteLine(_myClass as MyClass); //=> MyClass
+            //Console.WriteLine(_myClass as HogeClass); //=> エラー
         }
     }
+
     class MyClass {}
+    class HogeClass {};
     ```
 
-1. instanceof演算子
-    * プリミティブ型の場合エラー（注意）、さかのぼってチェック可
+1. GetType() メソッド
+    * Object.GetType() メソッド（オブジェクトの型を返す）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            SubClass _subClass = new SubClass();
-            System.out.println(_subClass instanceof SuperClass); //=> true
-            System.out.println(_subClass instanceof ISubClass); //=> true
-            SubSubClass _subSubClass = new SubSubClass();
-            System.out.println(_subSubClass instanceof SuperClass); //=> true
-            System.out.println(new Integer(99) instanceof Integer); //=> true
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            Console.WriteLine(true.GetType()); //=> System.Boolean
+            Console.WriteLine(100.GetType()); //=> System.Int32
+            Console.WriteLine(10000000000.GetType()); //=> System.UInt64
+            Console.WriteLine(0.1.GetType()); //=> System.Double
+            Console.WriteLine('1'.GetType()); //=> System.Char
+            Console.WriteLine("1".GetType()); //=> System.String
+            Console.WriteLine(new {}.GetType()); //=> <>__AnonType0
+            Console.WriteLine(new MyClass().GetType()); //=> MyClass
         }
     }
-    interface ISubClass {} //インターフェース
-    class SuperClass {} //スーパークラス
-    class SubClass extends SuperClass implements ISubClass {} //サブクラス
-    class SubSubClass extends SubClass {} //サブクラスを継承
+
+    class MyClass {}
     ```
 
 ### データ型のキャスト
-1. 数値↔boolean型
+1. 数値↔ bool 型（不可）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            //数値→bool型へ変換
-            int _int = 0;
-            boolean _bool = _int != 0; //0をfalseに変換（0以外はtrueに変換）
-            System.out.println(_bool); //=> false
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            //bool _tmp = (bool)1; //error（数値→bool型への変換は不可）
+            //int _tmp = (int)true; //error（bool型→数値への変換は不可）
+        }
+    }
+    ```
 
-            //bool型→数値へ変換
-            boolean _bool2 = true;
-            int _int2 = (_bool2) ? 1 : 0; //三項演算子を活用
-            System.out.println(_int2); //=> 1
+1. 数値→ bool 型へ変換（力技）
+    ```
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            int _tmp = 0;
+            bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
+            Console.WriteLine(_tmp2); //False
+        }
+    }
+    ```
+
+1. bool型→数値へ変換
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            bool _tmp = true;
+            int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
+            Console.WriteLine(_tmp2); //1
         }
     }
     ```
 
 1. 数値↔数値（縮小変換）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
             //整数の場合
-            long _long = 2147493649L; //intは-2147493649〜2147493647
-            int _int = (int)_long; //long型→int型へ変換
-            System.out.println(_int); //=> -2147493649 ←元のデータが失われる
+            long _tmp1 = 2147483648; //intは-2147483648〜2147483647
+            int _tmp2 = (int)_tmp1; //long型→int型へ変換
+            Console.WriteLine(_tmp2); //-2147483648 ←元のデータが失われる
 
             //浮動小数点数の場合
-            double _double = 3.141592653589793;
-            float _float = (float)_double;
-            System.out.println(_float); //=> 3.1415927 ←データの一部が失われる
+            decimal _decimal = 3.14159265358979323846264338327m;
+            double _tmp3 = (double)_decimal;
+            Console.WriteLine(_tmp3); //3.14159265358979 ←データの一部が失われる
         }
     }
     ```
 
 1. 数値↔数値（拡張変換）
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            int _int = 2147493647; //intは-2147493649〜2147493647
-            long _long = (long)_int + 1; //int型→long型へ変換
-            System.out.println(_long); //=> 2147493649
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            int _tmp = 2147483647; //intは-2147483648〜2147483647
+            long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
+            Console.WriteLine(_tmp2); //2147483648
         }
     }
     ```
 
-1. 数値↔string型
+1. 数値↔ string 型
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち
-            //string型→数値
-            String _string = "001";
-            int _int = Integer.parseInt(_string); //"001"（String型）→1（int型）に変換
-            System.out.println(_int); //1
-
-            //数値→string型
-            int _int2 = 100;
-            String _string2 = String.valueOf(_int2); //100（int型）→"100"（String）に変換
-            System.out.println(_string2); //=> "100"
-            System.out.println(_string2.getClass()); //=> class java.lang.String
-            //↑プリミティブ型ではなくStringクラスのオブジェクトなので.getClass()が使える
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            string _tmp = "001";
+            int _tmp2 = Int32.Parse(_tmp); //"001"（string型）→1（int型）に変換
+            Console.WriteLine(_tmp2); //1
+            Console.WriteLine(_tmp2.GetType()); //System.Int32
         }
     }
     ```
+
+1. 数値→ string 型
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        int _tmp = 100;
+        string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
+        Console.WriteLine(_tmp2); //"100"
+        Console.WriteLine(_tmp2.GetType()); //System.String
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2015年11月07日  
+更新日：2017年04月17日
 
 
 <a name="クラス"></a>
 # <b>クラス</b>
 
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
+//test.cs
+using System; //Console.WriteLine()に必要
+class Test { //Mainは不可
+    static void Main() { //自動的に最初に実行される
         //①インタンスの生成
-        Rectangle _rectangle = new Rectangle(); 
-
-        //②フィールドの更新
-        _rectangle.setWidth(1920);
-        _rectangle.setHeight(1080);
-
-        //③フィールドの取得
-        System.out.println(_rectangle.getWidth()); //=> 1920
-        System.out.println(_rectangle.getHeight()); //=> 1080
-
+        Rectangle _rectangle = new Rectangle();
+        
+        //②プロパティの更新
+        _rectangle.width = 1920;
+        _rectangle.height = 1080;
+        //③プロパティの取得
+        Console.WriteLine(_rectangle.width); //1920
+        Console.WriteLine(_rectangle.height); //1080
+        
         //④メソッドの実行
-        System.out.println(_rectangle.getArea()); //=> 2073600
+        Console.WriteLine(_rectangle.getArea()); //2073600
     }
 }
 
 class Rectangle { //長方形クラス
-    //フィールド（プロパティ）の宣言（初期値の設定も可）
-    private int _width = 0; //アクセス修飾子を除くと同じパッケージ内でアクセス可に...
-    private int _height = 0;
-
-    public Rectangle() {} //コンストラクタ（戻り値は指定しない／ここで初期化も可）
-
-    //メソッドの定義（thisは省略可）↓専用のget/setアクセサは用意されていません
-    public int getWidth() { return this._width; } //_widthのgetter
-    public void setWidth(int w) { this._width = w; } //_widthのsetter
-
-    public int getHeight() { return this._height; } //_heightのgetter
-    public void setHeight(int h) { this._height = h; } //_heightのsetter
+    //プロパティの定義･初期値の設定
+    private int _width = 0; //privateは省略可
+    private int _height = 0; //privateは省略可
+    public Rectangle() {} //コンストラクタは省略可（初期値はここで設定してもよい）
     
+    //メソッド群の定義
+    public int width {
+        get { return this._width; } //thisは省略可
+        set { this._width = value; } //valueは決め打ち
+    }
+    public int height {
+        get { return this._height; } //thisは省略可
+        set { this._height = value; } //valueは決め打ち
+    }
     public int getArea() { //面積を計算して値を返す
-        return this._width * this._height;
+        return this._width * this._height; //thisは省略可
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2015年11月02日  
+更新日：2017年04月17日
 
 
 <a name="スーパークラスとサブクラス"></a>
