@@ -563,57 +563,53 @@ namespace MyLibrary {
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
 
-
 ### 概要
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は <b>extends クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
+* 継承の場合は <b>:クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
+//test.cs
+using System;
+
+class Test {
+    static void Main() {
         ClassB _classB = new ClassB();
-        _classB.myMethod();
+        _classB.MyMethod();
     }
 }
 
 class ClassA {
-    public void myMethod() { System.out.println("ClassA.myMethod()"); }
+    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
 }
-
-class ClassB extends ClassA {} //ClassAを継承
-```
+class ClassB : ClassA {} //ClassAを継承
 
 ### 委譲版
 ```
-//Main.java
-public class Main { //メインクラス（publicは省略可）
-    public static void main(String[] args) { //決め打ち（自動的に最初に実行）
+//test.cs
+using System;
+
+class Test {
+    static void Main() {
         ClassB _classB = new ClassB();
-        _classB.myMethod();
+        _classB.MyMethod();
     }
 }
 
 class ClassA {
-    public void myMethod() { System.out.println("ClassA.myMethod()"); }
+    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
 }
-
 class ClassB { //この内容だけが継承と異なる
-    private ClassA _classA; //フィールドにインスタンスを格納（委譲）
-    public ClassB() { //コンストラクタ
-        _classA = new ClassA(); //フィールドにインスタンスを格納（thisは省略）
-    }
-    public void myMethod() { 
-        _classA.myMethod(); //thisは省略
-    }
+    private ClassA _classA;
+    public ClassB() { _classA = new ClassA(); } //コンストラクタでオブジェクト生成
+    public void MyMethod() { _classA.MyMethod(); }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
-更新日：2017年04月12日
+作成日：2015年11月26日  
+更新日：2017年04月17日
 
 
 <a name="変数とスコープ"></a>
