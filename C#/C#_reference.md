@@ -12,8 +12,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-***
 * [アクセサ （getter / setter）](#アクセサ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -794,6 +794,7 @@ class Test {
         Console.WriteLine(_nishimura.Age); //50
     }
 }
+
 class Nishimura {
     int _age = 49; //privateは省略
     public int Age {
@@ -814,7 +815,9 @@ class Test {
         //_nishimura.Age = 50; //error（値の変更は不可）
         _nishimura.NextYear();
         Console.WriteLine(_nishimura.Age); //50
-    }}
+    }
+}
+
 class Nishimura {
     int _age = 49; //privateは省略
     public int Age {
@@ -828,7 +831,7 @@ class Nishimura {
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
 作成日：2015年11月09日  
-更新日：2017年04月12日
+更新日：2017年04月17日
 
 
 <a name="演算子"></a>
