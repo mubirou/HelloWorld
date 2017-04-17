@@ -14,8 +14,8 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-***
 * [定数](#定数)
+***
 * [メソッド](#メソッド)
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [静的メンバ（static）](#静的メンバ（static）)
@@ -838,7 +838,7 @@ class Nishimura {
 # <b>演算子</b>
 
 ```
-//Test.cs
+//test.cs
 using System;
 
 class Test {
@@ -887,13 +887,13 @@ class Test {
 
 ### 通常の定数
 ```
-//Main.java
-//メインクラス
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        final float PI = 3.14159F;
-        System.out.println(PI); //=> 3.14159
-        //PI = 3.14; //エラー: final変数PIに値を代入することはできません
+//test.cs
+using System;
+class Test {
+    static void Main() { //自動的に最初に実行される
+        const float PI = 3.14159f; //staticは記述しない（注意）
+        Console.WriteLine(PI); //=> 3.14159
+        //PI = 3.14; //error（変更不可）
     }
 }
 ```
@@ -902,8 +902,8 @@ public class Main { //publicは省略可
 * 構文
 ```
 class クラス名 {
-    public static final データ型 定数名 = 値;
-    :…
+    public const float 定数名 = 値; //staticは記述しない
+    …
 }
 
 #アクセス方法
@@ -912,25 +912,28 @@ class クラス名 {
 
 * 例文
 ```
-//Main.java
+//test.cs
+using System;
+
 //メインクラス
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(MyMath.PI); //=> 3.14159
-        //MyMath.PI = 3.14; //エラー: final変数PIに値を代入することはできません
+class Test {
+    static void Main() { //自動的に最初に実行される
+        Console.WriteLine(MyMath.PI); //=> 3.14159
+        //MyMath.PI = 3.14; //error（変更不可）
     }
 }
 
 //カスタムクラス（MyMath）
-class MyMath { 
-    public static final float PI = 3.14159F;
+class MyMath {
+    public const float PI = 3.14159f; //staticは記述しない（注意）
+    public MyMath() {} //コンストラクタ
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2015年11月06日  
+更新日：2017年04月17日
 
 
 <a name="メソッド"></a>
