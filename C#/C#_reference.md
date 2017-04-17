@@ -782,48 +782,52 @@ class MyClass {
 <a name="アクセサ"></a>
 # <b>アクセサ （getter / setter）</b>
 
-### 概要
-オブジェクト指向プログラミングの「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は private 変数とし、外部からはメソッドを使ってアクセスしますJava には他の多くの言語にある専用のアクセサが用意されていませんそこで、get○○()、set○○(型,引数) といった記述をして同じ機能を実現します
-
-### 読書き可能なメンバ変数
+### 読み書き可能なプロパティ
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         Nishimura _nishimura = new Nishimura();
-        System.out.println(_nishimura.getAge()); //=> 49
-        _nishimura.setAge(50); //値が変更できる
-        System.out.println(_nishimura.getAge()); //=> 50
+        Console.WriteLine(_nishimura.Age); //49
+        _nishimura.Age = 50; //値を変更可能
+        Console.WriteLine(_nishimura.Age); //50
     }
 }
-
 class Nishimura {
-    private int _age = 49; //private宣言
-    public int getAge() { return _age; } //_ageのgetter（thisは省略）
-    public void setAge(int _age) { this._age = _age; } //_ageのsetter
-}
-```
-
-### 読取り専用のメンバ変数
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Nishimura _nishimura = new Nishimura();
-        System.out.println(_nishimura.getAge()); //49
-        //_nishimura._age = 50; //エラー（値が変更できない）
+    int _age = 49; //privateは省略
+    public int Age {
+        get { return _age; } //thisは省略
+        set { _age = value; } //thisは省略 ←valueは予め定義された変数（決め打ち）
     }
 }
+```
 
+### 読み取り専用のプロパティ
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Nishimura _nishimura = new Nishimura();
+        Console.WriteLine(_nishimura.Age); //49
+        //_nishimura.Age = 50; //error（値の変更は不可）
+        _nishimura.NextYear();
+        Console.WriteLine(_nishimura.Age); //50
+    }}
 class Nishimura {
-    private int _age = 49; //private宣言
-    public int getAge() { return _age; } //getterのみ用意（thisは省略）
+    int _age = 48; //privateは省略
+    public int Age {
+        get { return _age; } //thisは省略
+        private set {} //外部からアクセス不可（読み取り専用にする）
+    }
+    public void NextYear() { _age += 1; } //クラスの内部からに限り変更可能
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月14日  
+作成日：2015年11月09日  
 更新日：2017年04月12日
 
 
