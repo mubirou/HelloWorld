@@ -1503,14 +1503,14 @@ class Test {
         switch (_name) {
             case "TAKASHI" : //breakが無いと次のcaseも処理
             case "HANAKO" : 
-                Debug.Log("親");
+                Console.WriteLine("親");
                 break;
             case "TARO" : //breakが無いと次のcaseも処理
             case "JIRO" :
-                Debug.Log("子");
+                Console.WriteLine("子");
                 break;
             default:
-                Debug.Log("家族以外");
+                Console.WriteLine("家族以外");
                 break; //defaultのbreakは省略不可
         }
     }
