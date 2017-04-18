@@ -1241,54 +1241,28 @@ class MyClass {
 # <b>静的メンバ（static）</b>
 * 静的メンバはクラスをインスタンス化せずにアクセスが可能
 
-### 基本構文
 ```
-class MyMath {
-    public static final データ型 変数名 = 値; //静的定数（＝クラス定数）
+//Test.cs
+using System;
 
-    public static データ型 変数名 = 値; //静的変数（＝クラス変数、static変数）
-
-    //静的メソッド（＝クラスメソッド、staticメソッド）
-    public static 戻り値の型 メソッド名([データ型① 引数①, ...]) {
-            処理 [return 戻り値;]
-    }
-    :
-```
-
-### 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-
-        //静的定数（＝クラス定数）
-        System.out.println(MyMath.PI); //=> 3.14159
-
-        //静的変数（＝クラス変数、static変数）
-        System.out.println(MyMath.lastUpdate); //=> "2016-07-15"
-        MyMath.lastUpdate = "2017-04-12"; //変更可能
-        System.out.println(MyMath.lastUpdate); //=> "2017-04-12"
-
-        //静的メソッドの実行
-        System.out.println(MyMath.pow(2,0)); //1（2の0乗）
-        System.out.println(MyMath.pow(2,1)); //2（2の1乗）
-        System.out.println(MyMath.pow(2,8)); //256（2の8乗）
-
+class Test {
+    static void Main() { //インスタンス化せずにOSから自動的に呼ぶ出すため
+        Console.WriteLine(Math.PI); //3.14159265358979 ←静的変数の呼び出し
+        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
     }
 }
 
-class MyMath {
-    //静的定数（＝クラス定数）
-    public static final float PI = 3.14159F;
+class Math { //独自クラス
+    //静的変数
+    public static double PI = 3.14159265358979;
 
-    //静的変数（＝クラス変数、static変数）
-    public static String lastUpdate = "2016-07-15";
-
-    //静的メソッド（＝クラスメソッド、staticメソッド）
-    public static long pow(int arg1, int arg2) {
+    //静的メソッド
+    public static long Pow(int arg1, int arg2) {
         if (arg2 == 0) { return 1; } //0乗対策
         long _result = arg1;
-        for (int i=1; i<arg2; i++) { _result = _result * arg1; }
+        for (int i=1; i<arg2; i++) {
+            _result = _result * arg1;
+        }
         return _result;
     }
 }
@@ -1296,8 +1270,8 @@ class MyMath {
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2015年11月21日  
+更新日：2017年04月18日
 
 
 <a name="if文"></a>
