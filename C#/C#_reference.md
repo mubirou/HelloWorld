@@ -940,138 +940,198 @@ class MyMath {
 # <b>メソッド</b>
 
 ### 基本構文
-* 「デフォルト値付き引数」「名前付き引数」には非対応
 ```
-[アクセス修飾子] [static] 戻り値のデータ型 メソッド名([データ型 引数, …]) {
+アクセス修飾子 [static] 戻り値のデータ型 メソッド名([データ型 引数, …]) {
     [return 戻り値;]
 }
 ```
 
-### アクセス修飾子】※省略すると同じパッケージ内からのみアクセス可能…とのこと
+### アクセス修飾子
 1. public : 全クラスからアクセス可能
-1. protected : 同じクラスおよびサブクラス内（同じパッケージ）からアクセス可能
-1. private : 同じクラス内からアクセス可能
-* static : 静的メンバ＝クラスメソッド（インスタンスを作成せずにメソッドが利用可能）
+1. protected : 同じクラスおよび派生クラス内でのみアクセス可能
+1. private : 同じクラス内のみアクセス可能（省略すると private 扱い）
+1. internal : アセンブリ内でのみアクセス可能
+* static : 静的メソッド＝クラスメソッド
 
 ### 基本例文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() { //自動的に最初に実行される
         MyClass _myClass = new MyClass();
-        System.out.println(_myClass.tashizan(1,10)); //55
-        System.out.println(_myClass.tashizan(1,100)); //5050
+        Console.WriteLine(_myClass.Tashizan(1,10)); //55
+        Console.WriteLine(_myClass.Tashizan(1,100)); //5050
     }
 }
+
 class MyClass {
     //○〜○までの値を足した合計を返す
-    public int tashizan(int _start, int _end) {
+    public int Tashizan(int _start, int _end) {
         int _result = 0; //ローカル変数
-        for (int i = _start; i <= _end; i++) {
-            _result += i;
+        for (int _i = _start; _i <= _end; _i++) {
+            _result += _i;
         }
         return _result;
     }
 }
 ```
 
-### main() メソッド 
+### Main()メソッド
 * 特徴
-    * main() メソッドを記述できるクラスはファイル名と同じクラスに１つのみ
-    * main() が自動的に最初に実行される
-    * public static void main(String[] args) と決め打ちする
+    * 記述できるクラスは１つだけ（複数存在するとエラー）
+    * 自動的に最初に実行
+    * static キーワードが必須（オブジェクトの生成をしなくても Main() を呼び出す必要がある為）
+    * 値を返したり、引数を渡すことも可能
 
 * 例文
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            myMethod(); //=> "Main.myMethod()"
-        }
-        static void myMethod() { //staticなメソッドならmain()から呼び出せる
-            System.out.println("Main.myMethod()");
-        }
-    }
-    ```
-
-###  コンストラクタ
-* 書式
-    ```
-    class クラス名 {
-        [public] クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
-            :
-        }
-        :
-    ```
-    * アクセス修飾子を省略した場合、同じパッケージ内でのみアクセス可能
-
-* 例文
-    ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
-            System.out.println(_point.getX()); //100
-            System.out.println(_point.getY()); //150
-        }
-    }
-    class Point {
-        private int _x, _y; //メンバ変数の「宣言」
-        public Point(int _x, int _y) { //コンストラクタ
-            //メンバ変数の「初期化」など…
-            this._x = _x;
-            this._y = _y;
-        }
-        public int getX() { return _x; } //今回はgetterのみ
-        public int getY() { return _y; } //今回はgetterのみ
-    }
-    ```
-
-### 静的メソッド（＝クラスメソッド、static メソッド）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(MyMath.pow(2,0)); //1（2の0乗）
-        System.out.println(MyMath.pow(2,1)); //2（2の1乗）
-        System.out.println(MyMath.pow(2,8)); //256（2の8乗）
+//test.cs
+using System;
+class Test { //メインクラス（Mainは不可）
+    static void Main() { //自動的に最初に実行される
+        Method(); //"Test.Method()"
+    }
+    static void Method() { //staticなメソッドならMain()から呼び出せる
+        Console.WriteLine("Test.Method()");
     }
 }
-class MyMath { //カスタムクラス
-    public static long pow(int arg1, int arg2) {
+```
+
+### コンストラクタ
+* 書式】
+```
+class クラス名 {
+    public クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
+        ……
+    }
+    ……
+```
+
+* 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
+        Console.WriteLine(_point.X); //100
+        Console.WriteLine(_point.Y); //150
+     }
+}
+
+class Point {
+    private int _x, _y;
+    public Point(int _x=0, int _y=0) { //コンストラクタ
+        this._x = _x;
+        this._y = _y;
+    }
+    public int X {
+        get { return _x; }
+        set { _x = value; }
+    }
+    public int Y {
+        get { return _y; }
+        set { _y = value; }
+    }
+}
+```
+
+### 静的メソッド（クラスメソッド）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() { //自動的に最初に実行される
+        Console.WriteLine(Math.Pow(2,0)); //1（2の0乗）
+        Console.WriteLine(Math.Pow(2,1)); //2（2の1乗）
+        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗）
+    }
+}
+
+class Math {
+    public static long Pow(int arg1, int arg2) {
         if (arg2 == 0) { return 1; } //0乗対策
         long _result = arg1;
-        for (int i=1; i<arg2; i++) { _result = _result * arg1; }
+        for (int i=1; i<arg2; i++) {
+            _result = _result * arg1;
+        }
         return _result;
+    }
+}
+```
+
+### デフォルト値付き引数
+* オプション引数（引数は省略可）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() { //自動的に最初に実行される
+        MyClass _myClass = new MyClass();
+        _myClass.AddPoint(); //→1
+        _myClass.AddPoint(10); //→11
+    }
+}
+
+class MyClass {
+    private int _point = 0;
+    public void AddPoint(int arg = 1) { //初期値を1とした場合
+        _point += arg;
+        Console.WriteLine(_point);
     }
 }
 ```
 
 ### 可変長引数
+* 引数を固定の数ではなく任意の数にすることが可能
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() { //自動的に最初に実行される
         MyClass _myClass = new MyClass();
-        _myClass.sum(1,1); //=>2（1+1）
-        _myClass.sum(1,2,3,4,5); //=>15（1+2+3+4+5）
+        _myClass.Sum(1,1); //1+1
+        _myClass.Sum(1,2,3,4,5); //1+2+3+4+5（引数の数はいくつでも可能）
     }
 }
+
 class MyClass {
-    public void sum(int... args) { //最後の引数にのみ有効、引数は「配列」扱い
+    public void Sum(params int[] args) {
         int _result = 0; //ローカル変数
-        for (int tmp : args) { //拡張for文（for-each文）
+        foreach (int tmp in args) {
             _result += tmp;
         }
-        System.out.println(_result);
+        Console.WriteLine(_result);
+    }
+}
+```
+
+### 名前付き引数
+* 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() { //自動的に最初に実行される
+        MyClass _myClass = new MyClass();
+        _myClass.Rect(endX:100, endY:100); //面積:10000m2
+        _myClass.Rect(10,10,100,100); //面積:8100m2
+    }
+}
+
+class MyClass {
+    public void Rect(int startX=0, int startY=0, int endX=0, int endY=0) {
+        int _result = (endX - startX) * (endY - startY);
+        Console.WriteLine("面積:" + _result + "m2");
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年11月25日  
+更新日：2017年04月18日
 
 
 <a name="匿名関数（ラムダ式）"></a>
