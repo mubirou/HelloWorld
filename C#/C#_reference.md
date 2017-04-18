@@ -1564,17 +1564,17 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     ```
 
 ### ループカウンタを○つずつアップする
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            for (int i=0; i<50; i+=5) { //5つずつアップする場合...
-                Console.WriteLine(i); //0,5,10,15,20,25,30,35,40,45
-            }
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        for (int i=0; i<50; i+=5) { //5つずつアップする場合...
+            Console.WriteLine(i); //0,5,10,15,20,25,30,35,40,45
         }
     }
-    ```
+}
+```
 
 ### for 文のネスト
 ```
