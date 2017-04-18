@@ -1420,7 +1420,7 @@ class Test {
         string _result = (_age < 20) ? "未成年" :
         _result = (_age < 60) ? "現役" :
         _result = "退職";
-        Debug.Log(_result); //"現役"
+        Console.WriteLine(_result); //"現役"
     }
 }
 ```
