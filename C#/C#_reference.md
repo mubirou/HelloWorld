@@ -1584,7 +1584,7 @@ class Test {
     static void Main() {
         for (int i=1; i<=5; i++) {
             for (int j=1; j<=5; j++) {
-                Debug.Log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+                Console.WriteLine("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
             }
         }
     }
