@@ -1499,7 +1499,7 @@ case "□□" : 何か処理; break;
 using System;
 class Test {
     static void Main() {
-        string _name = "TAKASHI";
+        string _name = "JIRO";
         switch (_name) {
             case "TAKASHI" : //breakが無いと次のcaseも処理
             case "HANAKO" : 
