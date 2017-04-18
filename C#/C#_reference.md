@@ -21,8 +21,8 @@
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-***
 * [switch 文](#switch文)
+***
 * [for 文](#for文)
 * [for-each 文](#for-each文)
 * [while 文](#while文)
@@ -1434,51 +1434,84 @@ class Test {
 <a name="switch文"></a>
 # <b>switch 文</b>
 
-### 例文（全てに break 文あり）
+### 基本サンプル
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String _name = "TARO";
-        switch (_name) { //判別式には整数,列挙、文字,文字列型のみ可、booleanは不可!
-            case "TARO" :
-                System.out.println("父"); //=> "父" ←これが出力される
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _name = "TAKASHI";
+        switch (_name) { //判別式には「整数型」「文字型」しか使えない!
+            case "TAKASHI" :
+                Console.WriteLine("父");
                 break;
             case "HANAKO" : 
-                System.out.println("母");
+                Console.WriteLine("母");
                 break;
-            case "ICHIRO" :
-                System.out.println("長男");
+            case "TARO" :
+                Console.WriteLine("長男");
                 break;
-            case "JIRO" :
-                System.out.println("次男");
+            case "JISO" :
+                Console.WriteLine("次男");
                 break;
             default:
-                System.out.println("家族以外");
-                break; //省略可
+                Console.WriteLine("家族以外");
+                break; //defaultのbreakは省略不可（注意）
         }
     }
 }
 ```
 
-### 例文（一部に break 文なし）
+### 注意その１ : 判別式にbool型が使えない
+* 判別式に指定可能なもの
+    * byte 型、short 型、int 型 などの整数型（浮動小数点型は指定不可）
+    * char 型、string 型といった文字型
+
+* 悪い例（エラー発生）
+    ```
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            int _age = 49;
+            switch (true) { //bool型はエラー（注意）
+                case _age < 20 :
+                    Console.WriteLine("未成年");
+                    break;
+                default:
+                    Console.WriteLine("成人");
+                    break;
+            }
+        }
+    }
+    ```
+
+### 注意その２ : フォールスルーの禁止規則
+* C#では、下記のように case で何か処理をしておきながら break 文を書かないで次の case の処理に入っていくことは不可（フォールスルーの禁止規則）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String _name = "ICHIRO";
-        switch (_name) { //↓C#のようなフォールスルーの禁止規則はない
-            case "TARO" : //breakが無いと次のcaseも処理
+case "○○" : 何か処理; //何か処理をしておきながらbreakを書かないとエラー
+case "□□" : 何か処理; break;
+```
+
+* 良い例
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _name = "TAKASHI";
+        switch (_name) {
+            case "TAKASHI" : //breakが無いと次のcaseも処理
             case "HANAKO" : 
-                System.out.println("親");
+                Debug.Log("親");
                 break;
-            case "ICHIRO" : //breakが無いと次のcaseも処理
+            case "TARO" : //breakが無いと次のcaseも処理
             case "JIRO" :
-                System.out.println("子"); //これが出力される
+                Debug.Log("子");
                 break;
             default:
-                System.out.println("家族以外");
-                break; //省略可
+                Debug.Log("家族以外");
+                break; //defaultのbreakは省略不可
         }
     }
 }
@@ -1486,8 +1519,8 @@ public class Main { //publicは省略可
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2015年11月10日  
+更新日：2017年04月18日
 
 
 <a name="for文"></a>
