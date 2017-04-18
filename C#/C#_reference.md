@@ -16,8 +16,9 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
-***
 * [匿名関数](#匿名関数)
+* [ラムダ式](#ラムダ式)
+***
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -1174,6 +1175,57 @@ class MyClass {
                 for (int i=0; i<arg; i++) _tmp += "←";
                 Console.WriteLine(_tmp);
             };
+        }
+    }
+}
+```
+
+実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+作成者：Takashi Nishimura  
+作成日：2015年11月09日  
+更新日：2017年04月18日
+
+
+<a name="ラムダ式"></a>
+# <b>ラムダ式</b>
+* [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
+
+```
+//Test.cs
+using System;
+class Test { //メインクラス
+    static void Main() { //自動的最初に実行される
+        MyClass _myClass = new MyClass();
+        _myClass.Move(1); //→
+        _myClass.change();
+        _myClass.Move(3); //←←←
+    }
+}
+class MyClass {
+    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
+    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
+    private bool _right = true;
+    public MyClass() { //コンストラクタ
+        Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+            string _tmp = "";
+            for (int i=0; i<arg; i++) _tmp += "→";
+            Console.WriteLine(_tmp);
+        }; //メソッドの内容を変更
+    }
+    public void change() {
+        _right = ! _right;
+        if (_right) {
+            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+                string _tmp = "";
+                for (int i=0; i<arg; i++) _tmp += "→";
+                Console.WriteLine(_tmp);
+            }; //メソッドの内容を変更
+        } else {
+            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+                string _tmp = "";
+                for (int i=0; i<arg; i++) _tmp += "←";
+                Console.WriteLine(_tmp);
+            }; //メソッドの内容を変更
         }
     }
 }
