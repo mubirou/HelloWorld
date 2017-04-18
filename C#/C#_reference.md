@@ -19,8 +19,8 @@
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -449,7 +449,7 @@ class Rectangle { //長方形クラス
 //test.cs
 using System; //Console.WriteLine()に必要
 
-class Test { //メインクラス（Main()メソッドを含む）←…Mainは不可
+class Test { //メインクラス（Main()メソッドを含む）←Mainは不可
     static void Main() { //自動的に最初に実行される
         //派生クラスＡのインスタンス
         SubClassA _subclassA = new SubClassA();
@@ -1278,20 +1278,20 @@ class Math { //独自クラス
 # <b>if 文</b>
 
 ### 基本例文
-* true と評価される可能性が高い順に並べると if 文を早く抜け出せる可能性が高い
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//Test.cs
+using System;
+class Test { //メインクラス
+    static void Main() { //自動的最初に実行される
         int _age = 49;
-        if (_age <= 20) { // () は省略不可
-            System.out.println("20歳以下");
+        if (_age <= 20) {
+            Console.WriteLine("20歳以下");
         } else if (_age <= 40) {
-            System.out.println("21〜40歳");
+            Console.WriteLine("21〜40歳");
         } else if (_age <= 60) {
-            System.out.println("41〜60歳"); //これが出力される
+            Console.WriteLine("41〜60歳"); //これが出力される
         } else {
-            System.out.println("61歳以上");
+            Console.WriteLine("61歳以上");
         }
     }
 }
@@ -1307,7 +1307,7 @@ public class Main { //publicは省略可
     }
     ```
 
-1. if のネストを使う方法
+1. ifのネストを使う方法
     ```
     if (条件式①) {
         if (条件②) {
@@ -1330,7 +1330,7 @@ public class Main { //publicは省略可
     }
     ```
 
-1. if のネストを使う方法
+2. ifのネストを使う方法
     ```
     if (条件式①) {
         処理A ←条件式①がtrueの場合に実行
@@ -1344,29 +1344,31 @@ public class Main { //publicは省略可
 ### 排他的論理和（XOR）
 1. ^ 演算子を使う方法
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            boolean _a = true, _b = false;
+    //Test.cs
+    using System;
+    class Test { //メインクラス
+        static void Main() { //自動的最初に実行され
+            bool _a = true, _b = false;
             if (_a ^ _b) {
-                System.out.println("どちらか一方だけtrueです");
+                Console.WriteLine("どちらか一方だけtrueです");
             } else {
-                System.out.println("両方共にtrueかfalseです");
+                Console.WriteLine("両方共にtrueかfalseです");
             }
         }
     }
     ```
 
-1. ^ 演算子を使わない場合
+1. ^ 演算子を使わない方法
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            boolean _a = true, _b = false;
+    //Test.cs
+    using System;
+    class Test {
+        static void Main() {
+            bool _a = true, _b = false;
             if ((_a || _b) && !(_a && _b)) {
-                System.out.println("どちらか一方だけtrueです");
+                Console.WriteLine("どちらか一方だけtrueです");
             } else {
-                System.out.println("両方共にtrueかfalseです");
+                Console.WriteLine("両方共にtrueかfalseです");
             }
         }
     }
@@ -1374,8 +1376,8 @@ public class Main { //publicは省略可
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2015年11月09日  
+更新日：2017年04月18日
 
 
 <a name="三項演算子"></a>
