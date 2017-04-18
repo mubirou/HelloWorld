@@ -20,8 +20,8 @@
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
-***
 * [三項演算子](#三項演算子)
+***
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [for-each 文](#for-each文)
@@ -1139,7 +1139,7 @@ class MyClass {
 # <b>匿名メソッド</b>
 
 ```
-//Test.cs
+//test.cs
 using System;
 class Test { //メインクラス
     static void Main() { //自動的最初に実行される
@@ -1191,7 +1191,7 @@ class MyClass {
 * [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
 
 ```
-//Test.cs
+//test.cs
 using System;
 class Test { //メインクラス
     static void Main() { //自動的最初に実行される
@@ -1242,7 +1242,7 @@ class MyClass {
 * 静的メンバはクラスをインスタンス化せずにアクセスが可能
 
 ```
-//Test.cs
+//test.cs
 using System;
 
 class Test {
@@ -1279,7 +1279,7 @@ class Math { //独自クラス
 
 ### 基本例文
 ```
-//Test.cs
+//test.cs
 using System;
 class Test { //メインクラス
     static void Main() { //自動的最初に実行される
@@ -1344,7 +1344,7 @@ class Test { //メインクラス
 ### 排他的論理和（XOR）
 1. ^ 演算子を使う方法
     ```
-    //Test.cs
+    //test.cs
     using System;
     class Test { //メインクラス
         static void Main() { //自動的最初に実行され
@@ -1360,7 +1360,7 @@ class Test { //メインクラス
 
 1. ^ 演算子を使わない方法
     ```
-    //Test.cs
+    //test.cs
     using System;
     class Test {
         static void Main() {
@@ -1391,12 +1391,13 @@ class Test { //メインクラス
 
 * 例文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _age = 48;
-        String _result = (_age < 60) ? "現役" : "退職";
-        System.out.println(_result); //"現役"
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        int _age = 49;
+        string _result = (_age < 60) ? "現役" : "退職";
+        Console.WriteLine(_result); //"現役"
     }
 }
 ```
@@ -1404,31 +1405,29 @@ public class Main { //publicは省略可
 ### 比較式が複数の場合
 * 構文
 ```
-データ型 変数名 = 
-(比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
-(比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
-(①②の全てがfalseの場合の返り値);
+データ型 変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
+変数名 = (比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
+変数名 = (①②の全てがfalseの場合の返り値);
 ```
 
 * 例文
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         int _age = 49;
-        String _result = 
-        (_age < 20) ? "未成年":
-        (_age < 60) ? "現役":
-        "退職";
-        System.out.println(_result); //"現役"
+        string _result = (_age < 20) ? "未成年" :
+        _result = (_age < 60) ? "現役" :
+        _result = "退職";
+        Debug.Log(_result); //"現役"
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2015年11月09日  
+更新日：2017年04月18日
 
 
 <a name="switch文"></a>
