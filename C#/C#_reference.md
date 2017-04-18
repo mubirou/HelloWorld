@@ -527,7 +527,7 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 namespace 名前空間名 {
     class ○○ {
     }
-    ……
+    ......
 }
 ```
 
@@ -635,7 +635,7 @@ class ClassB { //この内容だけが継承と異なる
 class クラス名 { //クラス定義
 public データ型 変数名; //public変数宣言（初期化も可）
     public クラス名() {} //コンストラクタ（省略可）
-    ……
+    ......
 ```
 
 * 悪い例
@@ -663,7 +663,7 @@ class MyClass {
 class 基本クラス { //スーパークラス定義
     protected データ型 変数名; //protected変数宣言（初期化も可）
     public クラス名() {} //コンストラクタ（省略可）
-    ……
+    ......
 ```
 
 * 例文
@@ -700,7 +700,7 @@ class SubClass : SuperClass { //派生クラス
 class クラス名 { //クラス定義
 private データ型 変数名; //private変数宣言（初期化も可）←privateは省略可
     public クラス名() {} //コンストラクタ（省略可）
-    ……
+    ......
 ```
 
 * 例文
@@ -765,7 +765,7 @@ class MyClass {
     private int _i = 999; //private変数
     public MyClass() { //コンストラクタ
         for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-            Console.WriteLine("A: " + _i); //0、1、2、…、5
+            Console.WriteLine("A: " + _i); //0、1、2、...、5
             Console.WriteLine("B: " + this._i); //999（private変数）
         }
         //Console.WriteLine("C: " + _i); //error（ロカール変数はアクセス不可）
@@ -904,7 +904,7 @@ class Test {
 ```
 class クラス名 {
     public const float 定数名 = 値; //staticは記述しない
-    …
+    ...
 }
 
 #アクセス方法
@@ -942,7 +942,7 @@ class MyMath {
 
 ### 基本構文
 ```
-アクセス修飾子 [static] 戻り値のデータ型 メソッド名([データ型 引数, …]) {
+アクセス修飾子 [static] 戻り値のデータ型 メソッド名([データ型 引数, ...]) {
     [return 戻り値;]
 }
 ```
@@ -1004,9 +1004,9 @@ class Test { //メインクラス（Mainは不可）
 ```
 class クラス名 {
     public クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
-        ……
+        ......
     }
-    ……
+    ......
 ```
 
 * 例文
@@ -1168,7 +1168,7 @@ class MyClass {
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "→";
                 Console.WriteLine(_tmp);
-            }; //…匿名メソッドの再定義（メソッドの内容を変更）
+            }; //...匿名メソッドの再定義（メソッドの内容を変更）
         } else {
             Move = delegate(int arg) { //匿名メソッドの再定義（メソッドの内容を変更）
                 string _tmp = "";
@@ -1534,53 +1534,57 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 ```
 
 ### ループカウンタ（ループ制御変数）の宣言位置
-1. for 文の中でループ制御変数を宣言
+1. for 文の中で宣言
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            for (int i=0; i<10; i++) { //ここでループ制御変数を宣言すると…
-                System.out.println(i); //0,1,2,3,4,5,6,7,8,9
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            for (int i=0; i<10; i++) { //ここでint型を宣言すると...
+                Console.WriteLine(i); //0,1,2,3,4,5,6,7,8,9
             }
-            //System.out.println(i); //エラー（for文の外では利用不可）
+            //Console.WriteLine(i); //error（for文の外では使用不可）
         }
     }
     ```
 
-1. for 文の外でループ制御変数を宣言
+1. for 文の外でループ制御変数を宣言する
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            int _i; //ここでint型を宣言すると…
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            int _i; //ここでint型を宣言すると...
             for (_i=0; _i<10; _i++) {
-                System.out.println(_i); //0,1,2,3,4,5,6,7,8,9
+                Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
             }
-            System.out.println(_i); //10（for文の外でも有効）
+            Console.WriteLine(_i); //10（for文の外でも有効）
         }
     }
     ```
 
 ### ループカウンタを○つずつアップする
-```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        for (int i=0; i<50; i+=5) { //5つずつアップする場合
-            System.out.println(i); //0,5,10,15,20,25,30,35,40,45
+    ```
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            for (int i=0; i<50; i+=5) { //5つずつアップする場合...
+                Console.WriteLine(i); //0,5,10,15,20,25,30,35,40,45
+            }
         }
     }
-}
-```
+    ```
 
-### for文のネスト
+### for 文のネスト
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         for (int i=1; i<=5; i++) {
             for (int j=1; j<=5; j++) {
-                System.out.println("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+                Debug.Log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
             }
         }
     }
@@ -1589,30 +1593,32 @@ public class Main { //publicは省略可
 
 ### 無限ループと break 文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         int _count = 0;
-        for (;;) { //①初期化②ループ判定式③更新処理...の全てを省略すると無限ループ
+        for (;;) { //①初期化 ②ループ判定式 ③更新処理...の全てを省略すると無限ループ
             _count++;
             if (_count > 100) break; //ループを終了
-            System.out.println(_count); //1,2,...,99,100
+            Console.WriteLine(_count); //1,2,....,99,100
         }
-        System.out.println("for文終了");
+        Console.WriteLine("for文終了"); //★
     }
 }
 ```
 
 ### for 文と continue 文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         for (int i=1; i<=20; i++) { //iは1,2,...19,20
             if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
                 continue; //for文の残処理をスキップしてfor文の次の反復を開始する
             }
-            System.out.println(i); //3,6,9,12,15,18 ←3の倍数
+            Console.WriteLine(i); //3,6,9,12,15,18 ←3の倍数
         }
     }
 }
@@ -1620,8 +1626,8 @@ public class Main { //publicは省略可
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2015年11月10日  
+更新日：2017年04月19日
 
 
 <a name="for-each文"></a>
@@ -2611,7 +2617,7 @@ public class Main { //public は省略可
 }
 
 class SuperClass {
-    //final public void method() { …とするとオーバーライドを禁止にできます
+    //final public void method() { ...とするとオーバーライドを禁止にできます
     public void method() {
         System.out.println("SuperClass.method");
     }
@@ -2719,7 +2725,7 @@ public class Main { //publicは省略可
 ### Math.atan2() : アークタンジェント2
 * 2つの値のアークタンジェント（逆タンジェント）
 * X、Y座標の角度をラジアン単位で返す
-* Πラジアン（3.141592…）は180°
+* Πラジアン（3.141592...）は180°
 ```
 //Main.java
 public class Main { //publicは省略可
@@ -2922,9 +2928,9 @@ import java.util.TimerTask; //TimerTaskに必要
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         Timer _timer = new Timer();
-        //↓2000ミリ秒（2秒）後に1回だけ実行する場合…
+        //↓2000ミリ秒（2秒）後に1回だけ実行する場合...
         //_timer.schedule(new OnceExecute(), 2000);
-        //0秒後から10fps（100ミリ秒毎）の間隔で繰返し実行する場合…
+        //0秒後から10fps（100ミリ秒毎）の間隔で繰返し実行する場合...
         _timer.schedule(new LoopExec(), 0, 100); 
     }
 }
@@ -2954,7 +2960,7 @@ class LoopExec extends TimerTask {
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         long _start = System.currentTimeMillis(); //1970年1月1日からのミリ秒
-        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合…
+        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合...
             //速度計測したい処理
         }
         long _end = System.currentTimeMillis();
@@ -2973,7 +2979,7 @@ public class Main { //publicは省略可
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         long _start = System.nanoTime();
-        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合…
+        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合...
             //速度計測したい処理
         }
         long _end = System.nanoTime();
@@ -3011,7 +3017,7 @@ public class Main { //publicは省略可
         //FileReaderクラスを扱う場合、例外処理が必要
         try {
             //①Fileクラスのオブジェクトの生成
-            File file_ = new File("sample.txt"); #同じ階層に○.txtがある場合…
+            File file_ = new File("sample.txt"); #同じ階層に○.txtがある場合...
 
             //②FileReaderクラスのオブジェクトの生成
             FileReader filereader_ = new FileReader(file_);
@@ -3020,7 +3026,7 @@ public class Main { //publicは省略可
             int _int;
             while((_int = filereader_.read()) != -1){
                 //④文字コードを文字に変換
-                System.out.print((char)_int); //=>"あ"=>"い"=>"う"=>…
+                System.out.print((char)_int); //=>"あ"=>"い"=>"う"=>...
             }
 
             //⑤ファイルを閉じる
