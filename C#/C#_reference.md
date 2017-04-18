@@ -22,9 +22,9 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
-***
 * [for 文](#for文)
-* [for-each 文](#for-each文)
+***
+* [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
 * [リスト（LinkedList）](#リスト（LinkedList）)
@@ -1630,8 +1630,8 @@ class Test {
 更新日：2017年04月19日
 
 
-<a name="for-each文"></a>
-# <b>for-each 文</b>
+<a name="foreach文"></a>
+# <b>foreach 文</b>
 
 ### 基本構文
 ```
