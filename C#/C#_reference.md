@@ -2516,37 +2516,37 @@ class Robot {
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### String オブジェクトの作成
-1. リテラル文字列による作成（一般的な方法）
-    ```
-    //Main.java
-    public class Main { //public は省略可
-        public static void main(String[] args) { //決め打ち(自動的に実行)
-            String _string = "ABCDE";
-            System.out.println(_string); //=> "ABCDE"
-        }
-    }
-    ```
+### string オブジェクトの作成
+* 構文
+```
+string 変数名 = "○○"; //文字列リテラルを使う方法
+string 変数名 = new string(new char[]{'○','○',...}); //new演算子とchar型配列を使う方法
+```
+* 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //①文字列リテラルを使う
+        string _string1 = "ABCDE";
+        Console.WriteLine(_string1); //"ABCDE"
 
-1. new 演算子と char 型配列による作成
-    ```
-    //Main.java
-    public class Main { //public は省略可
-        public static void main(String[] args) { //決め打ち(自動的に実行)
-            char tmp[] = {'A','B','C','D','E'};
-            String _string = new String(tmp);
-            System.out.println(_string); //=> "ABCDE"
-        }
+        //②new演算子とchar型配列を使う
+        string _string2 = new string(new char[]{'A','B','C','D','E'});
+        Console.WriteLine(_string2); //"ABCDE" 
     }
-    ```
+}
+```
 
 ### 長さを調べる
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "ABCDE";
-        System.out.println(_string.length()); //5
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _string = "ABCDE";
+        Console.WriteLine(_string.Length); //5
     }
 }
 ```
@@ -2554,17 +2554,19 @@ public class Main { //public は省略可
 ### 一部分を取得
 * 構文
 ```
-String.substring(開始位置 [,終了位置])
+String[番号] ←0（最初）〜String.Length-1（最後）
+String.Substring(開始 [,文字数])
 ```
 * 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "0123456789";
-        System.out.println(_string.substring(4)); //=> "456789"
-        System.out.println(_string.substring(4,5)); //"4"
-        System.out.println(_string.substring(4,_string.length())); //=> "456789"
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _string = "0123456789";
+        Console.WriteLine(_string[4]); //"4"
+        Console.WriteLine(_string.Substring(4)); //"456789"
+        Console.WriteLine(_string.Substring(4,3)); //"456"
     }
 }
 ```
@@ -2572,17 +2574,16 @@ public class Main { //public は省略可
 ### 一部分を削除
 * 構文
 ```
-StringBuilder 変数 = new StringBuilder("○");
-StringBuilder.delete(開始位置, 終了位置); //1文字前まで削除
+String.Remove(開始位置, 削除する文字数);
 ```
 * 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "にしむらたかし";
-        StringBuilder _string2 = new StringBuilder(_string);
-        System.out.println(_string2.delete(0, 4)); //=> たかし
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _string = "にしむらたかし";
+        Console.WriteLine(_string.Remove(0, 4)); //"たかし"
     }
 }
 ```
@@ -2590,16 +2591,17 @@ public class Main { //public は省略可
 ### 置換
 * 構文
 ```
-String.replaceAll("置換前の文字列", "置換後の文字列");
+String.Replace("置換前の文字列", "置換後の文字列");
+String.Replace('置換前の文字', '置換後の文字');
 ```
 * 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "2017年4月12日";
-        System.out.println(_string.replaceAll("2017年", "平成29年")); 
-        //"平成29年4月12日"
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _string = "2017年04月19日";
+        Console.WriteLine(_string.Replace("2017年", "平成29年")); //"平成29年04月19日"
     }
 }
 ```
@@ -2607,21 +2609,22 @@ public class Main { //public は省略可
 ### 検索
 * 構文
 ```
-String.indexOf("検索したい文字列", 開始位置);
+String.IndexOf("検索したい文字列", 開始位置);
+String.IndexOf('検索したい文字', 開始位置);
 ```
 * 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "ABCDEFG-ABCDEFG";
-        String _word = "CD";
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _string = "ABCDEFG-ABCDEFG";
+        string _word = "CD";
         int _i = 0;
-        while (_string.indexOf(_word, _i) != -1) { //見つからない場合「-1」
-            int _num = _string.indexOf(_word, _i);
-            System.out.println(_num); //2、10 ←"CD"が見つかった位置を出力
-            System.out.println(_string.substring(_num, _num + _word.length())); 
-            //"CD"、"CD"
+        while (_string.IndexOf(_word, _i) != -1) { //見つからない場合「-1」
+            int _num = _string.IndexOf(_word, _i);
+            Console.WriteLine(_num); //2、10 ←"CD"が見つかった位置を出力
+            Console.WriteLine(_string.Substring(_num, _word.Length)); //"CD"、"CD"
             _i = _num + 1;
         }
     }
@@ -2631,24 +2634,27 @@ public class Main { //public は省略可
 ### 文字列→配列
 * 構文
 ```
-String.split("区切り文字");
+String.Split('区切り文字');
 ```
 * 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "A,B,C,D"; //「,」区切りの文字列
-        String[] _array = _string.split(","); //「,」区切りで分割して配列化
-        //→{"A","B","C","D"}
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _string = "A,B,C,D"; //「,」区切りの文字列
+        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
+        foreach (object value in _array) {
+            Console.WriteLine(value); // "A"→"B"→"C"→"D"
+        }
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月17日  
+更新日：2017年04月19日
 
 
 <a name="正規表現"></a>
