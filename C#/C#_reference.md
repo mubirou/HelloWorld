@@ -1635,88 +1635,105 @@ class Test {
 
 ### 基本構文
 ```
-for (データ型 変数名 : 配列等) {
-    System.out.println(変数名);
+foreach (データ型 変数名 in 配列等) {
+    Console.WriteLine(変数名);
 }
 ```
 
 ### 配列（1次元）の場合
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String[] _array = {"A","B","C","D"}; 
-        for (String value : _array) {
-            System.out.println(value); //"A"→"B"→"C"→"D"
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string[] _array = {"A","B","C","D"}; 
+        foreach (string value in _array) {
+            Console.WriteLine(value); //"A"→"B"→"C"→"D"
         }
     }
 }
 ```
 
-### 配列の配列（≒2次元配列、ジャグ配列）の場合
+### 配列（2次元）の場合
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String[][] _array = {
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string[,] _array = {
             {"x0y0","x1y0","x2y0"}, //0行目
             {"x0y1","x1y1","x2y1"}  //1行目
-        };
-        for (String[] the_array : _array) {
-            for (String value : the_array) {
-                System.out.println(value); 
-                //=> "x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
+        }; 
+        foreach (string value in _array) {
+            Console.WriteLine(value); //"x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
+        }
+    }
+}
+```
+
+### 配列（ジャグ配列）の場合
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        dynamic[][] _array = new dynamic[2][];
+            _array[0] = new dynamic[]{"A","あ"};
+            _array[1] = new dynamic[]{"I","い"};
+        foreach (object[] theArray in _array) {
+            foreach (dynamic value in theArray) { //dynamicではなくobject??
+                Console.WriteLine(value); //"A"→"あ"、"I"→"い"
             }
+            Console.WriteLine(); //オプション（改行）
         }
     }
 }
 ```
 
-### リスト（LinkedList）の場合
+### 動的配列（ArrayList）の場合
 ```
-//Main.java
-import java.util.*; //LinkedListに必要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        LinkedList<String> _list = new LinkedList<String>();
-        _list.add("TOHRU");
-        _list.add("SACHIKO");
-        for (String _value : _list) {
-            System.out.println(_value); //=> "TOHRU" => "SACHIKO"
+//test.cs
+using System;
+using System.Collections; //ArrayListに必要
+class Test {
+    static void Main() {
+        ArrayList _array = new ArrayList();
+        _array.Add("TAKASHI");
+        _array.Add(49);
+        foreach (object value in _array) {
+            Console.WriteLine(value); //"TAKASHI"→49
         }
     }
 }
 ```
 
-### セット（TreeSet）の場合
+### 動的配列（List）の場合
 ```
-//Main.java
-import java.util.*; //TreeSetに必要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        SortedSet<String> _set = new TreeSet<String>();
-        _set.add("TARO");
-        _set.add("HANAKO");
-        for (String _value : _set) {
-            System.out.println(_value); //"HANAKO"→"TARO"
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        List<string> _list = new List<string>() { "A", "B" };
+        foreach (string value in _list) {
+            Console.WriteLine(value); //"A"→"B"
         }
     }
 }
 ```
 
-### マップ（HashMap）の場合
+### 連想配列の場合
 ```
-//Main.java
-import java.util.*; //HashMapに必要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Map<String,String> _map = new HashMap<String,String>();
-        _map.put("A","あ");
-        _map.put("I", "い");
-        for (Map.Entry<String, String> _tmp : _map.entrySet()) {
-            System.out.println(_tmp.getKey() + " : " + _tmp.getValue()); 
-            //=> I : い
-            //=> A : あ
+//test.cs
+using System;
+using System.Collections.Generic; //Dictionaryに必要
+class Test {
+    static void Main() {
+        Dictionary<string, string> _dic = new Dictionary<string, string>() {
+            {"A", "あ"},    {"I", "い"}
+        };
+        foreach (KeyValuePair<string, string> tmp in _dic) {
+            Console.WriteLine(tmp.Key + ":" + tmp.Value); //A:あ
         }
     }
 }
@@ -1724,8 +1741,8 @@ public class Main { //publicは省略可
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2016年01月21日  
+更新日：2017年04月19日
 
 
 <a name="while文"></a>
