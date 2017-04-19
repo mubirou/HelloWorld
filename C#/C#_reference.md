@@ -1937,7 +1937,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
             new dynamic[]{"E","え","エ"}
             };
             foreach (dynamic[] theArray in _array) { //確認 (コマンドライン版の例）
-                foreach (object theValue in theArray) { //←dynamicではなくobject??
+                foreach (object theValue in theArray) {
                     Console.WriteLine(theValue);
                 }
             }
@@ -1946,30 +1946,30 @@ string[] _array3 = {"A","B","C","D"}; //簡単
     ```
 
 ### 配列の Length プロパティ
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string[] _array = {"A","B","C","D"};
-            for (int i=0; i<_array.Length; i++) { //配列の要素の数
-                Console.WriteLine(_array[i]);
-            }
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string[] _array = {"A","B","C","D"};
+        for (int i=0; i<_array.Length; i++) { //配列の要素の数
+            Console.WriteLine(_array[i]);
         }
     }
-    ```
+}
+```
 
 ### 文字列→配列
 ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string _string = "A,B,C,D"; //「,」区切りの文字列
-            string[] _array = _string.Split(','); //「,」区切りで分割して配列化
-        }
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        string _string = "A,B,C,D"; //「,」区切りの文字列
+        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
     }
-    ```
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
