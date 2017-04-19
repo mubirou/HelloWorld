@@ -2406,7 +2406,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>() {
     {"キー①", 値①},
     {"キー②", 値②}, 
-    ………
+    ......…
 };
 ```
 
@@ -2725,44 +2725,52 @@ class Test {
 * クラスにどのような機能（メソッド）を持たせるか、ということだけを定める
 * 抽象クラスと似ているが、抽象クラスとは異なり、実際の処理は一切記述できない
 * 実際の処理はインターフェースを継承したクラスで定義（実装しないとエラー）
-* 多重実装（複数のインターフェースを同時に指定）が可能
+* 多重実装（複数のインターフェースを同時に指定）や多重継承も可能
+
+### 構文
+```
+//インターフェースの宣言
+interface Iインターフェース名 { //慣例的にインターフェース名の先頭にIを付けます
+    戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]); //暗黙的にpublic扱い
+    ......
+}
+//インターフェースの実装
+class クラス名 : Iインターフェース名 { ......
+```
 
 ### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
+//test.cs
+using System;
+class Test {
+    static void Main() {
         Moneybox _moneybox = new Moneybox();
-        _moneybox.add(5000);
-        System.out.println(_moneybox.getTotal()); //5000
-     }
-}
-
-interface IMoneybox { //インターフェースの宣言（,で複数実装可能）
-    //暗黙的に全てのメソッドが「public」になる
-    void add(int _money);
-    int getTotal(); //getter
-    void setTotal(int _value); //setter
-}
-
-class Moneybox implements IMoneybox { //インターフェースの実装
-    private int _total = 0;
-    public void add(int _money) {
-        _total += _money;
-    } 
-    public int getTotal() { //getterの実装
-        return _total;
+        _moneybox.Add(5000);
+        Console.WriteLine(_moneybox.Total); //5000
     }
-    public void setTotal(int _value) { //setterの実装
-        _total = _value;
+}
+
+//インターフェースの宣言
+interface IMoneybox {
+    void Add(int _money); //通常のメソッド（暗黙的にpublicになる）
+    int Total { get; set; } //get/setアクセサ（暗黙的にpublicになる）
+}
+
+//インターフェースの実装（継承との併用は,を使う）
+class Moneybox : IMoneybox {
+    private int _total = 0;
+    public void Add(int _money) { _total += _money; } 
+    public int Total {
+        get { return _total; }
+        set { _total = value; }
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月21日  
+更新日：2017年04月19日
 
 
 <a name="抽象クラス（abstract）"></a>
