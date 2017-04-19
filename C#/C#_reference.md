@@ -1760,7 +1760,6 @@ while (ループ判定式) {
 ```
 //test.cs
 using System;
-
 class Test {
     static void Main() {
         int _i = 0;
@@ -1789,7 +1788,7 @@ class Test {
     static void Main() {
         int _i = 0;
         do {
-            Debug.Log(_i); //0 ←ループ判定式はfalseだが１回実行される
+            Console.WriteLine(_i); //0 ←ループ判定式はfalseだが１回実行される
             _i++;
         } while(_i < 0);
     }
@@ -1827,7 +1826,7 @@ class Test {
                 _i++;
                 continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
             }
-            Debug.Log(_i); //3,6,9,12,15,18（3の倍数を出力）
+            Console.WriteLine(_i); //3,6,9,12,15,18（3の倍数を出力）
             _i++;
         }
     }
