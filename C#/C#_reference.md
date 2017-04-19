@@ -27,9 +27,9 @@
 * [while 文](#while文)
 ***
 * [配列](#配列)
-* [リスト（LinkedList）](#リスト（LinkedList）)
-* [セット（TreeSet）](#セット（TreeSet）)
-* [マップ（HashMap）](#マップ（HashMap）)
+* [動的配列（ArrayList）](#動的配列（ArrayList）)
+* [動的配列（List）](#動的配列（List）)
+* [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -1841,82 +1841,147 @@ class Test {
 
 <a name="配列"></a>
 # <b>配列</b>
-* Java では配列の宣言後に要素の数を変更することは不可
+* C# では配列宣言後の要素数変更は不可
 
-### １次元配列の作成方法
-1. int[] _array = new int[4]; //4つの空の要素（動的型）を持つ配列を作成
-1. String[] _array = new String[]{"A","B","C","D"};
-1. String[] _array = {"A","B","C","D"}; //簡単
+### １次元配列の作成
+* 構文
+```
+データ型[] 変数名 = new データ型[要素数];
+データ型[] 変数名 = new データ型[]{要素①,要素②,...};
+データ型[] 変数名 = {要素①,要素②,...}; //簡単
+```
+* 他にも var キーワードを使ってデータ型を省略した定義も可能
 
-### 配列の配列(≒2次元配列、ジャグ配列)の場合
-* Java/C++にはC#のような多次元配列がないため「配列の配列」で代用
-* 以下の例文では５行x４列のコインロッカーのような配列を作成
+* 例文
+```
+dynamic[] _array1 = new dynamic[4]; //4つの空の要素（動的型）を持つ配列を作成
+string[] _array2 = new string[]{"A","B","C","D"};
+string[] _array3 = {"A","B","C","D"}; //簡単
+```
 
+### ２次元配列（四角配列）の作成
+* 構文
+```
+データ型[,] 変数名 = new データ型[行数,列数]; //縦x横の空の要素を持つ２次元配列
+データ型[,] 変数名 = {{1行目の配列},{2行目の配列},...};
+```
+
+* 例文（≒５行x４列のコインロッカー）
 1. new 演算子を使う方法
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            String[][] _coinlocker = new String[5][4]; //new データ型[行数][列数]
-            _coinlocker[0][0] = "1083";
-            _coinlocker[0][1] = "7777";
-            _coinlocker[2][1] = "0135";
-            _coinlocker[4][3] = "1234";
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            string[,] _coinlocker = new string[5,4];
+            _coinlocker[0,0] = "1083"; //0,0の値
+            _coinlocker[0,1] = "7777"; //0,1の値
+            _coinlocker[2,1] = "0135"; //2,1の値
+            _coinlocker[4,3] = "1234"; //4,3の値
         }
     }
     ```
 
 1. 配列リテラルを使う方法
     ```
-    //Main.java
-    public class Main { //publicは省略可
-        public static void main(String[] args) { //決め打ち（自動的に実行）
-            String[][] _coinlocker = 
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            string[,] _coinlocker = 
             {{"1083","7777","",""}, //0行目
             {"","","",""},         //1行目
             {"","0135","",""},     //2行目
             {"","","",""},         //3行目
             {"","","","1234"}};    //4行目
-            System.out.println(_coinlocker[0][0]); //=> "1083"
-            System.out.println(_coinlocker[0][1]); //=> "7777"
-            System.out.println(_coinlocker[2][1]); //=> "0135"
-            System.out.println(_coinlocker[4][3]); //=> "1234"
+
+            //確認
+            Console.WriteLine(_coinlocker[0,0]); //"1083"
+            Console.WriteLine(_coinlocker[0,1]); //"7777"
+            Console.WriteLine(_coinlocker[2,1]); //"0135"
+            Console.WriteLine(_coinlocker[4,3]); //"1234"
         }
     }
     ```
 
-### 配列の要素の数
+### 配列の配列（ジャグ配列）の作成
+* 構文（それぞれの配列の長さは異なるものにできる）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String[] _array = {"A","B","C","D"};
-        for (int i=0; i<_array.length; i++) { 
-            System.out.println(_array[i]);
+①データ型[][] 変数名 = new データ型[要素数][];
+②データ型[][] 変数名 = new データ型[][]{new データ型[]{配列①},...};
+```
+
+* 例文
+1. ジャグ配列の宣言→後で値を割り当てる方法
+    ```
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            dynamic[][] _array = new dynamic[4][];
+            _array[0] = new dynamic[]{"A","あ","ア"}; //配列リテラルは不可
+            _array[1] = new dynamic[]{"I","い","イ"};
+            _array[2] = new dynamic[]{"U","う","ウ"};
+            _array[3] = new dynamic[]{"E","え","エ"};
         }
     }
-}
-```
+    ```
+
+1. ジャグ配列の宣言と同時に値を割り当てる方法
+    ```
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            dynamic[][] _array = new dynamic[][]{
+            new dynamic[]{"A","あ","ア"},
+            new dynamic[]{"I","い","イ"},
+            new dynamic[]{"U","う","ウ"},
+            new dynamic[]{"E","え","エ"}
+            };
+            foreach (dynamic[] theArray in _array) { //確認 (コマンドライン版の例）
+                foreach (object theValue in theArray) { //←dynamicではなくobject??
+                    Console.WriteLine(theValue);
+                }
+            }
+        }
+    }
+    ```
+
+### 配列の Length プロパティ
+    ```
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            string[] _array = {"A","B","C","D"};
+            for (int i=0; i<_array.Length; i++) { //配列の要素の数
+                Console.WriteLine(_array[i]);
+            }
+        }
+    }
+    ```
 
 ### 文字列→配列
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        String _string = "A,B,C,D"; //「,」区切りの文字列
-        String[] _array = _string.split(","); //「,」区切りで分割して配列化
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            string _string = "A,B,C,D"; //「,」区切りの文字列
+            string[] _array = _string.Split(','); //「,」区切りで分割して配列化
+        }
     }
-}
-```
+    ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月16日  
-更新日：2017年04月12日
+作成日：2016年01月21日  
+更新日：2017年04月19日
 
 
-<a name="リスト（LinkedList）"></a>
-# <b>リスト（LinkedList）</b>
+<a name="動的配列（ArrayList）"></a>
+# <b>動的配列（ArrayList）</b>
 リストには LinkedList のほかに ArrayList もあり（後者の方が低速）
 
 ### 作成
@@ -2099,8 +2164,8 @@ public class Main { //public は省略可
 更新日：2017年04月12日
 
 
-<a name="セット（TreeSet）"></a>
-# <b>セット（TreeSet）</b>
+<a name="動的配列（List）"></a>
+# <b>動的配列（List）</b>
 
 ### 概要
 * Set には TreeSet のほか HashSet、LinkedHashSet の３種類あり
@@ -2170,8 +2235,8 @@ for (String _value : _set) {
 更新日：2017年04月12日
 
 
-<a name="マップ（HashMap）"></a>
-# <b>マップ（HashMap）</b>
+<a name="連想配列（Dictionary）"></a>
+# <b>連想配列（Dictionary）</b>
 
 ### 概要
 * 基本的な Map である HashMap のほか LinkedHashMap、TreeMap、Hashtable の4種類あり
