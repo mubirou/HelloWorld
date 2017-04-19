@@ -1967,6 +1967,9 @@ class Test {
     static void Main() {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
+        foreach (string value in _array) {
+            Console.WriteLine(value); //"A"→"B"→"C"→"D"
+        }
     }
 }
 ```
