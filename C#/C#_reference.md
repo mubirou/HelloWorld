@@ -26,9 +26,8 @@
 * [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
-***
-* [動的配列（ArrayList）](#動的配列（ArrayList）)
 * [動的配列（List）](#動的配列（List）)
+***
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
@@ -1980,259 +1979,418 @@ class Test {
 更新日：2017年04月19日
 
 
-<a name="動的配列（ArrayList）"></a>
-# <b>動的配列（ArrayList）</b>
-リストには LinkedList のほかに ArrayList もあり（後者の方が低速）
+<a name="動的配列（List）"></a>
+# <b>動的配列（List）</b>
+
+### 概要
+* 配列と異なり List は要素の数を変更したり追加･削除などが可能
+* 動的配列（ArrayList）の.NET framework 2.0 対応版
 
 ### 作成
 * 構文
 ```
-LinkedList<データ型> 変数名 = new LinkedList<>();
+List<データ型> 変数名 = new List<データ型>(); //空のListを作成
+List<データ型> 変数名 = new List<データ型>(数); //指定数の空の要素を持つList作成
+List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,... };
 ```
 * 例文
 ```
-//Main.java
-import java.util.*; //LinkedList に必要
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        LinkedList<String> _list = new LinkedList<>();
-        System.out.println(_list); //=> []
-        System.out.println(_list.getClass()); //=> class java.util.LinkedList
-        System.out.println(_list.getClass().getName()); //=> java.util.LinkedList
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        List<string> _list = new List<string>() { "A", "B" };
+        foreach (object value in _list) {
+            Console.WriteLine(value); //"A"→"B"
+        }
     }
 }
 ```
 
-### 抽出（指定位置）
-```
-LinkedList.get(値);
-```
-
-### 要素の数
-```
-LinkedList.size();
-```
-
-### 抽出（○番目から○番目）
+### 追加（最後）
 * 構文
 ```
-List<データ型> 変数 = LinkedList.subList(開始位置,終了位置); //終了位置は含めない
+List.Add(値); //値はobject型（文字型、数値型等）で混在不可（dynamic型は除く）
 ```
-
 * 例文
 ```
-//"A","B","C","D" → "C","D"を返す
-List<String> _result = _list.subList(2,4); //2番目から3番目まで抽出
-List<String> _result = _list.subList(1,_list.size()); //1番目〜最後を抽出
-```
-
-### 追加（最後）
-```
-LinkedList.add(値);
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //空 → "A" → "A","B"
+        List<string> _list = new List<string>();
+        _list.Add("A");
+        _list.Add("B");
+        foreach (object value in _list) {
+            Console.WriteLine(value); //"A"→"B"
+        }
+    }
+}
 ```
 
 ### 追加（指定位置）
 * 構文
 ```
-LinkedList.add(インデックス番号,値); //先頭（0）〜最後（LinkedList.size()）まで指定可
+List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capacity-1）まで指定可能
 ```
-
 * 例文
 ```
-//"A","B" → "C","A","B"
-_list.add(0,"C"); //先頭に追加する場合は0
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"A","B" → "C","A","B"
+        List<string> _list = new List<string>() { "A", "B" };
+        _list.Insert(0,"C"); //先頭に追加する場合は0
+        foreach (object value in _list) {
+            Console.WriteLine(value); //"C"→"A"→"B"
+        }
+    }
+}
 ```
 
 ### 更新（任意の値）
 * 構文
 ```
-LinkedList.set(インデックス番号,値);
+List[インデックス番号] = 値;
 ```
-
 * 例文
 ```
-//"A","B","C" → "D","B","C"
-_list.set(0,"D"); //0番目を変更する場合
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"A","B" → "C","B"
+        List<string> _list = new List<string>() { "A", "B" };
+        _list[0] = "C"; //0番目を変更する場合
+        foreach (object value in _list) {
+            Console.WriteLine(value); //"C"→"B"
+        }
+    }
+}
 ```
 
-### 更新（null型）
+###更新（null型）
 * 構文
 ```
-LinkedList.set(インデックス番号,null);
+List[インデックス番号] = null;
 ```
-
 * 例文
 ```
-//"A","B","C","D" → "A","B",null,"D"
-_list.set(2,null);
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"A","B","C" → "A","B",null
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        _list[2] = null;
+        foreach (object value in _list) {
+            Console.WriteLine(value); // "A"→"B"→（null）
+        }
+    }
+}
 ```
 
 ### 削除（指定のオブジェクト）
 * 構文
 ```
-LinkedList.remove(指定したい要素); //指定のインデックス番号の要素を削除
+List.Remove(object); //最初に見つかった指定のオブジェクトを削除
 ```
-
 * 例文
 ```
-//"A","B","C","D" → "B","C","D"
-_array.remove("A");
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"A","B","C" → "A","C"
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        _list.Remove("B");
+        foreach (object value in _list) {
+            Console.WriteLine(value); // "A"→"C"
+        }
+    }
+}
 ```
 
-## 削除（指定のインデックス）
+### 削除（指定のインデックス）
 * 構文
 ```
-LinkedList.remove(インデックス番号); //指定のインデックス番号の要素を削除
-//先頭（0）〜最後（LinkedList.size()-1）まで指定可能
+List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacity-1）まで指定可能
 ```
 * 例文
 ```
-//"A","B","C","D" → "B","C","D"
-_array.remove(0); //先頭を削除する場合
-_list.remove(_list.size()-1); //最後を削除する場合
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"A","B","C" → "B","C"
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        _list.RemoveAt(0); //先頭を削除する場合
+        //_list.RemoveAt(_list.Capacity-1); //最後を削除する場合
+        foreach (object value in _list) {
+            Console.WriteLine(value); // "B"→"C"
+        }
+    }
+}
+```
+
+### 削除（○番目から□個）
+* 構文
+```
+List.RemoveRange(開始, 削除する個数); //開始＝削除開始したいインデックス番号
+List.RemoveRange(開始, List.Capacity-開始); //○番目から最後まで削除
+List.Clear(); //全て削除
+```
+* 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"A","B","C","D" → "A","B"
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        _list.RemoveRange(2, 2); //2番目から2個削除
+        //]_list.RemoveRange(1, _list.Capacity-1); //1番目〜最後を削除する場合
+        //_list.Clear(); //全て削除する場合
+        foreach (object value in _list) {
+            Console.WriteLine(value); // "A"→"B"
+        }
+    }
+}
+```
+
+### 抽出（○番目から□個）
+* 構文
+```
+List.GetRange(開始, 抜き出す個数); //開始＝抜出しを開始したいインデックス番号
+```
+* 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"A","B","C","D" → "C","D"を返す
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
+        //List<string> _result = _list.GetRange(1, _list.Capacity-1);//1番目〜最後を抽出
+        foreach (object value in _list) {
+            Console.WriteLine(value); // "C"→"D"
+        }
+    }
+}
 ```
 
 ### 検索(前から）
 * 構文
 ```
-LinkedList.indexOf(検索する要素); //最初に見つかったインデックス番号を返す（無い場合-1）
+List.IndexOf(object [,検索開始するインデックス番号]);
+//最初に見つかったインデックス番号を返す（無い場合-1）
+//第2引数を省略すると最初（0）から検索
 ```
-
 * 例文
 ```
-//"A","B","C","D"
-System.out.println(_list.indexOf("C")); //=> 2
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        Console.WriteLine(_list.IndexOf("C",0)); //2
+        //最初から検索する場合（第2引数が0の場合は省略可能）
+    }
+}
 ```
 
 ### 検索（後ろから）
 * 構文
 ```
-LinkedList.lastIndexOf(検索する要素); //最初に見つかったインデックス番号を返す（無い場合-1）
+List.LastIndexOf(object [,検索開始するインデックス番号]);
+//最後に見つかったインデックス番号を返す（無い場合-1）
+//第2引数を省略すると最後（List.Capacity-1）から検索
 ```
-
 * 例文
 ```
-//"A","B","C","D"
-System.out.println(_list.lastIndexOf("C")); //=> 2
-```
-
-### 複製（LinkedList →配列）
-* 構文
-```
-Object[] 変数 = LinkedList.toArray();
-```
-
-* 例文
-```
-Object[] listCopy_ = _list.toArray();
-```
-
-### 文字列→ LinkedList
-```
-//Main.java
-import java.util.*; //LinkedList に必要
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "A,B,C,D"; //①元となる文字列
-        String[] _array = _string.split(","); //②文字列→配列に変換（「配列」参照）
-        LinkedList<String> _list = new LinkedList<>(); //③空のLinkedListを作成
-        for (String _value : _array) {
-            _list.add(_value); //④配列の要素を1つずつArrayListに追加
-        }
-    }
-}
-```
-
-### 全要素を取り出す
-1. foreach 文を使う場合
-    ```
-    for (String _value : _list) {
-        System.out.println(_value); //=> 0番目から1つずつ出力されます
-    }
-    ```
-
-1. for文を使う場合
-    ```
-    for (int i=0; i < _list.size(); i++) {
-        System.out.println(_list.get(i));
-    }
-    ```
-
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：Takashi Nishimura  
-作成日：2016年07月16日  
-更新日：2017年04月12日
-
-
-<a name="動的配列（List）"></a>
-# <b>動的配列（List）</b>
-
-### 概要
-* Set には TreeSet のほか HashSet、LinkedHashSet の３種類あり
-* リストと異なり重複が不可
-* TreeSet は自動的にソートされ、インデックスが無い
-
-### 作成
-```
-//Main.java
-import java.util.*; //TreeSet に必要
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        SortedSet<String> _set = new TreeSet<>();
-        System.out.println(_set); //=> []
-        System.out.println(_set.getClass()); //=> class java.util.TreeSet
-        System.out.println(_set.getClass().getName()); //=> java.util.TreeSet
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        Console.WriteLine(_list.LastIndexOf("C")); //2
+        //最初から検索する場合（第2引数が0の場合は省略可能）
     }
 }
 ```
 
 ### 要素の数
+* 構文
 ```
-TreeSet.size();
+List.Count; //実際に格納されている要素の数
+List.Capacity; //格納可能な要素の数
+```
+* 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //List<string> _list = new List<string>() { "A", "B", "C"};
+        List<string> _list = new List<string>(3); //空のArrayListを作成
+        Console.WriteLine(_list.Count); //0 ←実際に格納されている要素の数
+        Console.WriteLine(_list.Capacity); //3 ←格納可能な要素の数
+    }
+}
 ```
 
-### 追加（最後）
+### 並べ替え（反転）
 ```
-TreeSet.add("○○")
-```
-
-### 削除（指定のオブジェクト）
-```
-TreeSet.remove("○○")
-```
-
-### 複製（TreeSet→配列）
-```
-Object[] 変数 = TreeSet.toArray()
-```
-
-### 文字列→ TreeSet
-```
-//Main.java
-import java.util.*; //TreeSet に必要
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "A,B,C,D"; //①元となる文字列
-        String[] _array = _string.split(","); //②文字列→配列に変換
-        TreeSet<String> _set = new TreeSet<>(); //③空のTreeSetを作成
-        for (String _value : _array) {
-            _set.add(_value); //④配列の要素を1つずつArrayListに追加
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        _list.Reverse();
+        foreach (object value in _list) {
+            Console.WriteLine(value); // "D"→"C"→"B"→"A"
         }
     }
 }
 ```
 
-### 全要素を取り出す
+### 並べ替え（ソート）
+* 構文
 ```
-for (String _value : _set) {
-    System.out.println(_value); //=> 0番目から1つずつ出力されます
+List.Sort(); //引数で範囲や比較方法を指定することも可能
+```
+* 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //"C", "02", "A", "01", "03", "B" → "01", "02", "03", "A", "B", "C"
+        List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
+        _list.Sort();
+        foreach (object value in _list) {
+            Console.WriteLine(value); // "01"→"02"→"03"→"A"→"B"→"C"
+        }
+    }
 }
 ```
 
+### 結合
+* 構文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        List<string> _list1 = new List<string>() { "A", "B", "C" };
+        List<string> _list2 = new List<string>() { "D", "E", "F" };
+
+        //_list1の末尾に_list2を結合
+        _list1.AddRange(_list2);
+
+        foreach (object value in _list1) {
+            Console.WriteLine(value); // "A"→"B"→"C"→"D"→"E"→"F"
+        }
+    }
+}
+```
+
+### 複製
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        List<string> _listCopy = new List<string>(_list); //簡易型コピー方法
+        _list[0] = "X";
+        Console.WriteLine(_list[0]); //"X"
+        Console.WriteLine(_listCopy[0]); //"A（参照コピーではない）
+    }
+}
+```
+
+### 文字列→ List
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        string _string = "A,B,C,D"; //①元となる文字列
+        string[] _array = _string.Split(','); //②文字列→配列に変換（「配列」参照）
+        List<string> _list = new List<string>(); //③空のListを作成
+        foreach (string _tmp in _array) { //データ型に注意
+            _list.Add(_tmp); //④配列の要素を1つずつListに追加
+        }
+
+        //確認
+        foreach (object value in _array) {
+            Console.WriteLine(value); // "A"→"B"→"C"→"D"
+        }
+    }
+}
+```
+
+
+### 全要素を取り出す
+1. foreach 文を使う方法
+    ```
+    //test.cs
+    using System;
+    using System.Collections.Generic; //Listに必要
+    class Test {
+        static void Main() {
+            List<string> _list = new List<string>() { "A", "B", "C" };
+
+            //全要素を取り出す
+            foreach (object value in _list) {
+                Console.WriteLine(value); // "A"→"B"→"C"
+            }
+        }
+    }
+    ```
+
+1. for 文を使う方法
+    ```
+    //test.cs
+    using System;
+    using System.Collections.Generic; //Listに必要
+    class Test {
+        static void Main() {
+            List<string> _list = new List<string>() { "A", "B", "C" };
+
+            //全要素を取り出す
+            for (int i=0; i < _list.Count; i++) {
+                Console.WriteLine(_list[i]); // "A"→"B"→"C"
+            }
+        }
+    }
+    ```
+
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月16日  
-更新日：2017年04月12日
+作成日：2015年11月14日  
+更新日：2017年04月19日
 
 
 <a name="連想配列（Dictionary）"></a>
