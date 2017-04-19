@@ -30,8 +30,8 @@
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
-***
 * [正規表現](#正規表現)
+***
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [super キーワード](#superキーワード)
@@ -2660,55 +2660,62 @@ class Test {
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* Java には以下のサンプル以外にも多くの正規表現の機能が用意されています
+* C# には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
-### 検索＆置換
+### マッチした数
 ```
-//Main.java
-import java.util.regex.*; //Pattern、Matcherに必要
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-        String _result = "";
-        String _regex = "吉田";
-
-        Pattern _pattern = Pattern.compile(_regex);
-        Matcher _matcher = _pattern.matcher(_string);
-
-        if (_matcher.find()) { //ここで「検索」
-            //マッチした場合（"吉田"が含まれている）の処理
-            _result = _string.replaceAll("吉田", "よしだ"); 
-        } else {
-            System.out.println("吉田は含まれていません");
-        }
-        System.out.println(_string); //=> "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-        System.out.println(_result); //=> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文";
+//test.cs
+using System;
+using System.Text.RegularExpressions; //Regexに必要
+class Test {
+    static void Main() {
+        string _string = "cabacbbacbcba";
+        //"a"がいくつ含まれるか
+        MatchCollection _mc = Regex.Matches(_string, "a");
+        Console.WriteLine(_mc.Count); //4
     }
 }
 ```
 
-### マッチした数
+### パスワード
 ```
-//Main.java
-import java.util.regex.*; //Pattern に必要
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "cabacbbacbcba";
-        Pattern _pattern = Pattern.compile("a",Pattern.CASE_INSENSITIVE);
-        Matcher _matcher = _pattern.matcher(_string);
-        int _count = 0;
-        while(_matcher.find()){
-            _count++;
-        }
-        System.out.println(_count); //=> 4
+//test.cs
+using System;
+using System.Text.RegularExpressions; //Regexに必要
+class Test {
+    static void Main() {
+        string _string = @"U7eLoERa"; //任意のパスワード（@を付ける）
+        /* 条件
+        8文字以上（全て半角）
+        1文字以上の「数字」を含む
+        1文字以上の大文字および小文字の「英字」を含む
+        */
+        Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");//②
+        Match _match = _regex.Match(_string);
+        Console.WriteLine(_match.Success); //True ←パスワードとして条件に合致
+    }
+}
+```
+
+### 郵便番号（7桁）
+```
+//test.cs
+using System;
+using System.Text.RegularExpressions; //Regexに必要
+class Test {
+    static void Main() {
+        string _string = "156-0057"; //任意の郵便番号
+        Regex _regex = new Regex("\\d{3}-\\d{4}");
+        Match _match = _regex.Match(_string);
+        Console.WriteLine(_match.Success); //True ←郵便番号として条件に合致
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月19日  
+更新日：2017年04月19日
 
 
 <a name="インターフェース"></a>
