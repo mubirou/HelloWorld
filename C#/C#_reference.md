@@ -2184,7 +2184,7 @@ class Test {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
         //List<string> _result = _list.GetRange(1, _list.Capacity-1);//1番目〜最後を抽出
-        foreach (object value in _list) {
+        foreach (object value in _result) {
             Console.WriteLine(value); // "C"→"D"
         }
     }
@@ -2397,54 +2397,67 @@ class Test {
 # <b>連想配列（Dictionary）</b>
 
 ### 概要
-* 基本的な Map である HashMap のほか LinkedHashMap、TreeMap、Hashtable の4種類あり
-* マップは「キー」と「値」の組み合わせを格納するデータ構造
+* ディクショナリ、ハッシュとも呼ばれる「キー」と「値」の組み合わせを格納するデータ構造
+* 匿名型クラスは、同様のデータ構造を持てるが読取り専用
 
 ### 作成方法
 ```
-Map<キーの型, 値の型> 変数名 = new HashMap<>();
+Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>();
+Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>() {
+    {"キー①", 値①},
+    {"キー②", 値②}, 
+    ………
+};
 ```
 
-### 例文
-```
-//Main.java
-import java.util.*; //HashMap に必要
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        //①作成（空のHashMapを作成）
-        Map<String,String> _map = new HashMap<>();
+* 例文
+    ```
+    //test.cs
+    using System;
+    using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
+    class Test {
+        static void Main() {
+            //①作成（空のDictionaryを作成する場合、{}は不要）
+            Dictionary<string, string> _dic = new Dictionary<string, string>() {
+                {"A", "あ"},
+                {"I", "い"}
+            };
 
-        //②追加
-        _map.put("TARO", "たろう");
-        _map.put("HANAKO", "はなこ");
+            //②追加
+            _dic.Add("U", "う");
+            _dic.Add("E", "え");
 
-        //③取得
-        System.out.println(_map.get("TARO")); //=> "たろう"
+            //③更新
+            _dic["A"] = "ア"; //上書き変更
 
-        //④更新
-        _map.replace("TARO", "太郎");
-
-        //⑤全ての要素を取得する
-        for (Map.Entry<String, String> _tmp : _map.entrySet()) {
-            System.out.println(_tmp.getKey() + " : " + _tmp.getValue());
-            //=> "HANAKO : はなこ"
-            //=> "TARO : 太郎"
+            //④取得
+            Console.WriteLine(_dic["A"]); //"ア"
         }
+    }
+    ```
+
+### キー/値の検索
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
+class Test {
+    static void Main() {
+        //①作成（空のDictionaryを作成する場合、{}は不要）
+        Dictionary<string, string> _dic = new Dictionary<string, string>() {
+            {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
+        };
+
+        Console.WriteLine(_dic.ContainsKey("B")); //任意のキーがあるか否か（True／False）
+        Console.WriteLine(_dic.ContainsValue("え")); //任意の値があるか否か（True／False）
     }
 }
 ```
 
-### キー／値の検索
-```
-//("A","あ")、("I","い")、("U","う")、("E","え")
-System.out.println(_map.containsKey("A")); //true（任意のキーがあるか否か）
-System.out.println(_map.containsValue(い")); //true（ 任意の値があるか否か）
-```
-
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月17日  
-更新日：2017年04月12日
+作成日：2015年12月11日  
+更新日：2017年04月19日
 
 
 <a name="this"></a>
