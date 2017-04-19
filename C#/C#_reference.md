@@ -2436,7 +2436,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
     }
     ```
 
-### キー/値の検索
+### キー、値の検索
 ```
 //test.cs
 using System;
