@@ -1681,7 +1681,7 @@ class Test {
             _array[0] = new dynamic[]{"A","あ"};
             _array[1] = new dynamic[]{"I","い"};
         foreach (object[] theArray in _array) {
-            foreach (dynamic value in theArray) { //dynamicではなくobject??
+            foreach (object value in theArray) {
                 Console.WriteLine(value); //"A"→"あ"、"I"→"い"
             }
             Console.WriteLine(); //オプション（改行）
@@ -1733,7 +1733,7 @@ class Test {
             {"A", "あ"},    {"I", "い"}
         };
         foreach (KeyValuePair<string, string> tmp in _dic) {
-            Console.WriteLine(tmp.Key + ":" + tmp.Value); //A:あ
+            Console.WriteLine(tmp.Key + ":" + tmp.Value); //A:あ → I:い
         }
     }
 }
