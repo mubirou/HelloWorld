@@ -24,8 +24,8 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
-***
 * [while 文](#while文)
+***
 * [配列](#配列)
 * [リスト（LinkedList）](#リスト（LinkedList）)
 * [セット（TreeSet）](#セット（TreeSet）)
@@ -1758,15 +1758,17 @@ while (ループ判定式) {
 
 * 例文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+
+class Test {
+    static void Main() {
         int _i = 0;
-        while (_i < 10) { //ループ判定式にはboolean型しか使えません
-            System.out.println(_i); //0,1,2,3,4,5,6,7,8,9
+        while (_i < 10) { //ループ判定式にはbool型しか使えない
+            Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
             _i++;
         }
-        System.out.println(_i); //10（変数はまだ有効）
+        Console.WriteLine(_i); //10（変数はまだ有効）
     }
 }
 ```
@@ -1781,12 +1783,13 @@ do {
 
 * 例文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         int _i = 0;
         do {
-            System.out.println(_i); //=> 0 ←ループ判定式はfalseだが１回実行される
+            Debug.Log(_i); //0 ←ループ判定式はfalseだが１回実行される
             _i++;
         } while(_i < 0);
     }
@@ -1795,46 +1798,46 @@ public class Main { //publicは省略可
 
 ### while 文と break 文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         int _count = 0;
-        while (true) { //ループ判別式をtrueにすると無限ループ
+        while (true) { //ループ判別式をtrueにすると無限ループに
             _count++;
             if (_count > 100) {
-                break; //break文を使ってループを終了
+                break; //break文を使ってループを終了→★
             }
-             System.out.println(_count); //=> 1,2,....,99,100（1〜100までを出力）
+            Console.WriteLine(_count); //1,2,....,99,100（1〜100までを出力）
         }
-        System.out.println("while文終了");
+        Console.WriteLine("while文終了"); //★
     }
 }
 ```
-* break 文は for 文や while ループから抜け出て処理を中断するための制御文
 
 ### while 文と continue 文
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
         int _i = 1;
         while (_i <= 20) {
             if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
                 _i++;
                 continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
             }
-            System.out.println(_i); //=> 3,6,9,12,15,18（3の倍数）
+            Debug.Log(_i); //3,6,9,12,15,18（3の倍数を出力）
             _i++;
         }
     }
 }
 ```
-* continue 文はその時点のループ内の処理のみ中断し、ループから脱出せずにループを継続する
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月15日  
-更新日：2017年04月12日
+作成日：2015年11月10日  
+更新日：2017年04月19日
 
 
 <a name="配列"></a>
