@@ -2465,18 +2465,21 @@ class Test {
 
 ### thisが必要な場合
 1. 「引数」と「インスタンス変数」が同じ場合
-1. 「ローカル変数」と「メンバ変数」が同じ場合
-* thisは、thisを記述したメソッドを所有するクラス（オブジェクト）を参照する
+1. 「ローカル変数」と「インスタンス変数」が同じ場合
+* this は、this を記述したメソッドを所有するクラス（オブジェクト）を指す
 
 ### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
+//test.cs
+using System;
+
+//メインクラス
+class Test {
+    static void Main() {
         Robot _robot = new Robot(500);
-        _robot.move();
-        System.out.println(_robot.getX()); //510
-        //System.out.println(this); //エラー（staticメソッド内では参照できず）
+        _robot.Move();
+        Console.WriteLine(_robot.X); //510
+        //Console.WriteLine(this); //error（staticメソッド内では参照できず）
     }
 }
 
@@ -2485,26 +2488,29 @@ class Robot {
     private int _x; //インスタンス変数（thisは不要）
     
     public Robot(int _x) { //引数
-        this._x = _x; //①thisが無いと意味合いがことなる
-        System.out.println(this); //Robot@6bc7c054（このメソッドが実行されたオブジェクト）
+        this._x = _x; //①thisが無いとWarning（引数を参照してしまう）
+        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
     }
-    public void move() {
+
+    public void Move() {
         int _x; //ローカル変数
-        _x = this._x + 10; //②thisが無いとエラー
+        _x = this._x + 10; //②thisが無いとerror（ローカル変数を参照してしまう）
         if (_x >= 1920) _x = 0;
-        this._x = _x; //②thisが無いと意味合いがことなる
-        System.out.println(this); //Robot@6bc7c054（このメソッドが実行されたオブジェクト）
+        this._x = _x; //②thisが無いとWarning（ローカル変数を参照してしまう）
+        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
     }
-    public int getX() {
-        return _x; //thisを付けてもよい（通常は省略）
+
+    public int X {
+        get { return _x; } //thisを付けてもよい（通常は省略）
+        private set {}
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月17日  
-更新日：2017年04月12日
+作成日：2015年11月15日  
+更新日：2017年04月19日
 
 
 <a name="文字列の操作"></a>
