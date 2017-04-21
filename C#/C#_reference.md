@@ -3436,44 +3436,40 @@ class Program     {
 さしすせそ
 ```
 
-### 例文
+### 例文（StreamReader クラスを使う方法）
 ```
-//Main.java
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+//test.cs
+using System;
+using System.IO; //StreamReaderに必要
+class Test { 
+    static void Main() {
+        string _path = "sample.txt";
+        //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
+        StreamReader _stream = new StreamReader(_path); //.txt以外も可能
+        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
+        _stream.Close(); //閉じる
+        Console.WriteLine(_string); //結果を出力
+    }
+}
+```
 
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        //FileReaderクラスを扱う場合、例外処理が必要
-        try {
-            //①Fileクラスのオブジェクトの生成
-            File file_ = new File("sample.txt"); #同じ階層に○.txtがある場合...
-
-            //②FileReaderクラスのオブジェクトの生成
-            FileReader filereader_ = new FileReader(file_);
-            
-            //③１文字ずつ読み込んでいきます
-            int _int;
-            while((_int = filereader_.read()) != -1){
-                //④文字コードを文字に変換
-                System.out.print((char)_int); //=>"あ"=>"い"=>"う"=>...
-            }
-
-            //⑤ファイルを閉じる
-            filereader_.close();
-
-        } catch(FileNotFoundException e) {
-            System.out.println(e);
-        } catch(IOException e) {
-            System.out.println(e);
-        }
+###  例文（File.OpenTextメソッドを使う方法）
+```
+//test.cs
+using System;
+using System.IO; //StreamReaderに必要
+class Test { 
+    static void Main() {
+        string _path = "sample.txt";
+        StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
+        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
+        _stream.Close(); //閉じる
+        Debug.Log(_string); //結果を出力
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月20日  
-更新日：2017年04月12日
+作成日：2015年11月30日  
+更新日：2017年04月21日
