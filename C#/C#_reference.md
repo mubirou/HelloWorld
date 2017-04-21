@@ -35,8 +35,8 @@
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
-***
 * [カスタムイベント](#カスタムイベント)
+***
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
@@ -2896,7 +2896,7 @@ class 派生クラス名 : 基本クラス { //派生クラス（基本クラス
 
 * 例文
 ```
-//Test.cs
+//test.cs
 using System;
 
 class Test {
@@ -2937,7 +2937,7 @@ class 派生クラス : 抽象クラス名 { //抽象クラスを継承
 
 * 例文
 ```
-//Test.cs
+//test.cs
 using System;
 
 class Test {
@@ -2967,50 +2967,77 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
+### 概要
+イベントとは、あるアクションが発生したことを自動的に通知する仕組み。カスタムクラス内で何か処理をし終えた際、別のオブジェクトにそのことを知らせる場合に、このイベント機能を使用。イベントを設定したカスタムクラスからは、情報（イベント）を発信するだけ。情報を受けたいオブジェクトは、リスナーメソッドを準備して待ち受ける...。このことにより、カスタムクラスを汚さずに済む、というメリットが生まれる。C# に用意された event は、特殊なデリゲート（delegate）と言えるものです。デリゲートとの違いは、event 宣言した変数（イベント名）には、イベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等。
+
+### 書式
+* イベントの設定
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Ixxx_robot die_robot = (Robot arg) -> { //無名関数（リスナー関数）の定義
-            System.out.println(arg.getClass()); //=> class Robot
-            System.out.println("GAME OVER");
-        }; //「;」が必須
-        Robot _robot = new Robot();
-        _robot.addEventListener("die", die_robot); //イベントリスナーの定義
-        _robot.fight();
-        _robot.fight();
-        _robot.fight();
-        _robot.fight(); //=> "GAME OVER"
+class クラス名 {
+    public delegate void デリゲート名([型 引数]); //デリゲート宣言
+    public event デリゲート名 イベント名; //これにイベントハンドラを登録
+    public 戻り値の型 メソッド名([型 引数]) { //イベントを発生させたいメソッド
+        ……
+        イベント名([引数]); //ここでイベントハンドラを呼出す!
+    }
+    ……
+}
+```
+
+* イベントハンドラの登録
+```
+クラス名 ○ = new クラス名();
+○.イベント名 += イベントハンドラ名; //イベントハンドラを削除する場合「-=」
+……
+static 戻り値の型 イベントハンドラ名([型 引数]) {
+    //イベントが発生した際に処理すること
+}
+```
+
+### 例文
+```
+//test.cs
+using System;
+
+class Test {
+    static void Main() {
+        MyGame _myGame = new MyGame();
+        _myGame.GameOverEvent += GameOverHandler_myGame; //複数登録可能（+=、-=のみ）
+        //_myGame.GameOverEvent -= GameOverHandler_myGame; //イベントハンドラの削除
+        for (int i=0; i<10; i++) { //10回繰返す場合…
+            Console.WriteLine("得点:" + _myGame.Point);
+            _myGame.AddPoint();
+        }
+    }
+
+    static void GameOverHandler_myGame(object arg) { //イベントハンドラ
+        Console.WriteLine("ゲームオーバー! " + arg); //"ゲームオーバー! MyGame"
     }
 }
 
-class Robot {
-    private int _energy = 80;
-    private Ixxx_robot _dieHandler; //無名関数を格納する変数の宣言
-    public void addEventListener(String _event, Ixxx_robot function_) {
-        if (_event == "die") {
-            _dieHandler = function_; //無名関数を格納する
-        } else { //該当のイベントが無い場合、実行時にErrorを出す（オプション）
-            System.out.println("Error: Robot.addEventListener()");
+//イベントを設定するクラス
+class MyGame {
+    private int _point = 0;
+    public delegate void MyEventHandler(object arg); //デリゲート宣言
+    public event MyEventHandler GameOverEvent; //これにイベントハンドラを登録
+    public void AddPoint() { //イベントを発生させたいメソッド
+        if (++_point >= 10) {
+            if (GameOverEvent != null) {
+                GameOverEvent(this); //イベントハンドラの呼出し
+            }
         }
     }
-    public void fight() {
-        _energy -= 20;
-        if (_energy <= 0) {
-            _dieHandler.exec(this); //無名関数の呼び出し
-        }
+    public int Point {
+        get { return _point; }
+        private set {} //読取専用
     }
-}
-
-interface Ixxx_robot { //無名関数用インターフェース（Java独特）
-    public void exec(Robot arg);
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月25日  
+更新日：2017年04月21日
 
 
 <a name="数学関数（Math）"></a>
