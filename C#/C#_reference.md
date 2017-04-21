@@ -3414,8 +3414,8 @@ class Program     {
             //速度計測したい処理
         }
         _stopWatch.Stop(); //計測終了
-        Console.WriteLine(_stopWatch.ElapsedMilliseconds); //2826（ミリ秒）
-        Console.WriteLine(_stopWatch.Elapsed); //00:00:02.8268529（秒）
+        Console.WriteLine(_stopWatch.ElapsedMilliseconds); //3230（ミリ秒）
+        Console.WriteLine(_stopWatch.Elapsed); //00:00:03.2302265（秒）
     }
 }
 ```
