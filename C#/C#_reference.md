@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>C# 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -40,7 +38,6 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -3464,7 +3461,7 @@ class Test {
         StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
         string _string = _stream.ReadToEnd(); //全ての内容を読み込む
         _stream.Close(); //閉じる
-        Debug.Log(_string); //結果を出力
+        Console.WriteLine(_string); //結果を出力
     }
 }
 ```
