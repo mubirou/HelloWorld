@@ -32,8 +32,8 @@
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
-***
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
+***
 * [super キーワード](#superキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
@@ -2798,9 +2798,9 @@ class SubClass : Abstract○○ { //抽象クラスの継承
 using System;
 class Test {
     static void Main() {
-SubClass _subClass = new SubClass();
-_subClass.Common(); //"AbstractClass.Common()"
-_subClass.Method(); //"SubClass.Method()"
+        SubClass _subClass = new SubClass();
+        _subClass.Common(); //"AbstractClass.Common()"
+        _subClass.Method(); //"SubClass.Method()"
     }
 }
 abstract class AbstractClass { //「抽象クラス」の定義
