@@ -37,8 +37,8 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
-***
 * [乱数](#乱数)
+***
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
@@ -3218,73 +3218,47 @@ class Test {
 
 <a name="乱数"></a>
 # <b>乱数</b>
+* システム時間を元に発生させているためfor文で同時に異なる乱数を発生できない
 
-### Randomクラスを使う方法
+### 書式
 ```
-//Main.java
-import java.util.Random; //Randomクラスに必要
-
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _0=0, _1=0, _2=0, _3=0, _4=0, _5=0, _6=0, _7=0, _8=0, _9=0;
-        Random rando_m = new Random(); //Randomクラスのインスタンス化
-        for (int i=0; i<100000000; i++) { //1億回繰り返します
-            switch (rando_m.nextInt(10)) {
-                case 0: _0++; break;
-                case 1: _1++; break;
-                case 2: _2++; break;
-                case 3: _3++; break;
-                case 4: _4++; break;
-                case 5: _5++; break;
-                case 6: _6++; break;
-                case 7: _7++; break;
-                case 8: _8++; break;
-                case 9: _9++; break;
-                default: System.out.println("Error"); break;
-            }
-        }
-        System.out.println(_0+","+_1+","+_2+","+_3+","+_4);
-        //=> "9998750,9995016,10002279,10005150,10002463"
-        System.out.println(_5+","+_6+","+_7+","+_8+","+_9);
-        //=> "9997912,9998089,9999414,9998470,10002457"
-    }
-}
+Random ○ = new Random([seed値]);
+//↑引数（シード値）を省略するとEnvironment.TickCount（システム時間）を利用
+○.NextDouble(); //0〜1.0までの浮動小数点数の乱数
+○.Next(); //整数値の乱数（百万〜数十億等）
+○.Next(整数値); //0〜整数値の値の乱数（整数）
 ```
 
-### Mathクラスを使う方法
+### 例文
 ```
-//Main.java
-//インポートは不要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        int _0=0, _1=0, _2=0, _3=0, _4=0, _5=0, _6=0, _7=0, _8=0, _9=0;
-        for (int i=0; i<100000000; i++) { //1億回繰り返します
-            switch ((int)(Math.random()*10)) {
-                case 0: _0++; break;
-                case 1: _1++; break;
-                case 2: _2++; break;
-                case 3: _3++; break;
-                case 4: _4++; break;
-                case 5: _5++; break;
-                case 6: _6++; break;
-                case 7: _7++; break;
-                case 8: _8++; break;
-                case 9: _9++; break;
-                default: System.out.println("Error"); break;
-            }
-        }
-        System.out.println(_0+","+_1+","+_2+","+_3+","+_4);
-        //=> "10000717,10000466,10000525,9993501,9999160"
-        System.out.println(_5+","+_6+","+_7+","+_8+","+_9);
-        //=> "10001492,10000658,9997803,10000333,10005345"
+//Test.cs
+using System;
+class Test {
+    static void Main() {
+        Random _random = new Random();
+        
+        //0〜1.0までの乱数
+        Console.WriteLine(_random.NextDouble()); //0.0432652673350072
+        Console.WriteLine(_random.NextDouble()); //0.78664848541429
+        Console.WriteLine(_random.NextDouble()); //0.545385330900118
+        
+        //整数値の乱数
+        Console.WriteLine(_random.Next()); //369339869
+        Console.WriteLine(_random.Next()); //1966699381
+        Console.WriteLine(_random.Next()); //6900123
+        
+        //任意の値までの整数値の乱数
+        Console.WriteLine(_random.Next(10)); //0
+        Console.WriteLine(_random.Next(10)); //3
+        Console.WriteLine(_random.Next(10)); //9
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月26日  
+更新日：2017年04月21日
 
 
 <a name="日時情報"></a>
