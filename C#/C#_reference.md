@@ -2777,50 +2777,49 @@ class Moneybox : IMoneybox {
 # <b>抽象クラス（abstract）</b>
 
 ### 概要
-* 派生クラスに実装しなければならないメソッドを、抽象クラスで定義
-* 実際の処理は、抽象クラスを継承した派生クラスで抽象メソッドをオーバーライドして記述
+* 派生クラスに"実装しなければならないメソッド"を抽象クラスで定義する
+* 実際の処理は、抽象クラスを継承した派生クラスで、抽象メソッドを override して記述
 
 ### 構文
 ```
 abstract class Abstract○○ { //抽象クラスの定義
-    abstract public 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
+    public abstract 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
 }
 class SubClass : Abstract○○ { //抽象クラスの継承
-    public 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
+    public override 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
         //実際の処理
     }
-    :
+    ……
 ```
 
 ### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
-        SubClass _subClass = new SubClass();
-        _subClass.common(); //=> "AbstractClass.common()"
-        _subClass.method(); //=> "SubClass.method()"
+//test.cs
+using System;
+class Test {
+    static void Main() {
+SubClass _subClass = new SubClass();
+_subClass.Common(); //"AbstractClass.Common()"
+_subClass.Method(); //"SubClass.Method()"
     }
 }
-
 abstract class AbstractClass { //「抽象クラス」の定義
-    public void common() { //共通のメソッド
-        System.out.println("AbstractClass.common()");
+    public void Common() { //共通のメソッド
+        Console.WriteLine("AbstractClass.Common()");
     }
-    abstract public void method(); //抽象メソッドの宣言（実際の処理は書かない）
+    public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
 }
-
-class SubClass extends AbstractClass { //抽象クラスを継承
-    public void method() { //オーバーライドして実際の処理を記述
-        System.out.println("SubClass.method()"); //実際の処理
+class SubClass : AbstractClass { //抽象クラスを継承
+    public override void Method() { //オーバーライドして実際の処理を記述
+        Console.WriteLine("SubClass.Method()"); //実際の処理
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月24日  
+更新日：2017年04月21日
 
 
 <a name="superキーワード"></a>
