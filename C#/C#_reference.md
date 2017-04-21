@@ -3264,48 +3264,52 @@ class Test {
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
-### 概要
-* Javaでは日時情報を扱うものに java.util.Date と java.util.Calendar クラスがある
-* 以下のサンプルはJava SE 8（1.8）から導入された java.time.LocalDateTime クラスを使ったもの
-* この新しいAPIには、デフォルトの <b>LocalDateTime</b> のほかに、UTC（グリニッジ）から時差付きの <b>OffsetDateTime</b>、タイムゾーンを持つ <b>ZonedDateTime</b> の３つのクラスがある
+### 書式
+```
+DateTime ○ = DateTime.Now; //DateTimeは構造体
+○.Year; //年（2017等）
+○.Month; //月（1〜12）
+○.Day; //日（1〜31）
+○.DayOfYear; //元日から日数（1〜366）
+○.DayOfWeek; //曜日（Sanday〜Saturday）
+○.Hour; //時間（0〜23）
+○.Minute; //分（0〜59）
+○.Second; //秒（0〜59）
+○.Millisecond; //ミリ秒（0〜999）
+○.Ticks; //0001年1月1日00:00:00からの経過時間（ナノ秒）：但し精度は10ミリ秒
+```
 
 ### 例文
 ```
-//Main.java
-import java.time.*; //LocalDateTimeに必要
-
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        //デフォルトの日時情報
-        LocalDateTime _now = LocalDateTime.now();
-        System.out.println(_now); //=> 2017-04-12T16:32:02.988
-        System.out.println(_now.getYear()); //=> 2017
-        System.out.println(_now.getMonth()); //=> APRIL
-        System.out.println(_now.getMonthValue()); //=> 4（1〜12月）
-        System.out.println(_now.getDayOfMonth()); //=> 12（1〜31日）
-        System.out.println(_now.getDayOfYear()); //=> 102（元日からの日数1〜366）
-        System.out.println(_now.getDayOfWeek()); //=> WEDNESDAY
-        System.out.println(_now.getHour()); //=> 16（0〜23時）
-        System.out.println(_now.getMinute()); //=> 32（0〜59分）
-        System.out.println(_now.getSecond()); //=> 2（0〜59秒）
-        System.out.println(_now.getNano()); //=> 988000000
-        
+//Test.cs
+using System;
+class Test {
+    static void Main() {
+        DateTime _now = DateTime.Now;
+        Console.WriteLine(_now); //4/21/2017 10:16:04 AM
+        Console.WriteLine(_now.Year); //2017
+        Console.WriteLine(_now.Month); //4
+        Console.WriteLine(_now.Day); //21
+        Console.WriteLine(_now.DayOfYear); //111（元日からの日数）
+        Console.WriteLine(_now.DayOfWeek); //Friday
+        Console.WriteLine(_now.Hour); //10
+        Console.WriteLine(_now.Minute); //16
+        Console.WriteLine(_now.Second); //4
+        Console.WriteLine(_now.Millisecond); //337
+        Console.WriteLine(_now.Ticks); //636283665643372990（100ナノ秒単位）
         //"hh:mm:ss"で現在の時間を表示する方法
-        String _h 
-        =(_now.getHour()<10) ? "0"+_now.getHour() : String.valueOf(_now.getHour());
-        String _m 
-        =(_now.getMinute()<10) ? "0"+_now.getMinute() : String.valueOf(_now.getMinute());
-        String _s 
-        =(_now.getSecond()<10) ? "0"+_now.getSecond() : String.valueOf(_now.getSecond());
-        System.out.println(_h + ":" + _m + ":" + _s); //=> "16:32:02"
+        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
+        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
+        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
+        Console.WriteLine(_h + ":" + _m + ":" + _s); //"10:16:04"
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月20日  
-更新日：2017年04月12日
+作成日：2015年11月27日  
+更新日：2017年04月21日
 
 
 <a name="タイマー"></a>
