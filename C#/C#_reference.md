@@ -33,8 +33,8 @@
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
-***
-* [super キーワード](#superキーワード)
+
+* [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -2822,52 +2822,50 @@ class SubClass : AbstractClass { //抽象クラスを継承
 更新日：2017年04月21日
 
 
-<a name="superキーワード"></a>
-# <b>super キーワード</b>
+<a name="baseキーワード"></a>
+# <b>base キーワード</b>
 
+### 概要
+基本クラスに定義されたコンストラクタ（private 以外）は、派生クラスのコンストラクタが実行される直前に必ず実行される。その際、基本クラスのコンストラクタへ、派生クラスのコンストラクタから引数を渡すことがbaseを使うことで可能になる（≒ super）。base.メソッド() で基本クラスのメソッドを呼び出す事が可能（[オーバーライド](#オーバーライド) 参照）。
+
+### 書式
 ```
-//Main.java
-//メインクラス（publicは省略可）
-public class Main {
-    public static void main(String[] args) { //決め打ち ←最初に自動的に実行される
-        SubClass _SubClass = new SubClass(); //サブクラスのインスタンスの生成
-        //=> "スーパークラスのコンストラクタ：サブクラスからの呼び出し"
-        _SubClass.methodSub("サブクラスからの呼び出し");
-        //=> "スーパークラスのメソッド：サブクラスからの呼び出し"
+class 基本クラス名 { 
+    public 基本クラス名(型 引数) { //基本クラスのコンストラクタ
+        //引数を使った処理etc.
     }
 }
-
-//スーパークラス
-class SuperClass {
-    //コンストラクタ
-    public SuperClass(String arg) {
-        System.out.println("スーパークラスのコンストラクタ：" + arg);
-    }
-    //メソッド
-    public void methodSuper(String arg) {
-        System.out.println("スーパークラスのメソッド：" + arg);
+class 派生クラス名 : 基本クラス名 { //派生クラス（基本クラスを継承）
+    public 派生クラス名() : base(引数) { //派生クラスのコンストラクタ
     }
 }
+```
 
-//サブクラス
-class SubClass extends SuperClass {
-    //コンストラクタ
-    public SubClass() {
-        //System.out.println("ここはエラー"); //コンストラクタのsuper()は冒頭に!
-        super("サブクラスからの呼び出し"); //スーパークラスのコンストラクタを呼出す
+### 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        SubClass _subClass = new SubClass("A");
     }
-    //メソッド
-    public void methodSub(String arg) {
-        System.out.println("ここはエラーなし"); //メソッド内のsuper()はどこでもOK!
-        super.methodSuper(arg); //スーパークラスのメソッドを呼出す
+}
+class SuperClass { //基本クラス
+    public SuperClass(string p1, string p2) { //基本クラスのコンストラクタ
+        Console.WriteLine("SuperClass:" + p1 + ":" + p2); //①番目（p1は"A"、p2は"B"）
     }
+}
+class SubClass : SuperClass { //派生クラス
+    public SubClass(string p) : base(p, "B") { //派生クラスのコンストラクタ
+        Console.WriteLine("SubClass:" + p); //②番目（pは"A"）
+    } 
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月24日  
+更新日：2017年04月21日
 
 
 <a name="オーバーライド"></a>
