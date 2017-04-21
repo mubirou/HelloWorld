@@ -36,8 +36,8 @@
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
-***
 * [数学関数（Math）](#数学関数（Math）)
+***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -3043,113 +3043,177 @@ class MyGame {
 <a name="数学関数（Math）"></a>
 # <b>数学関数（Math）</b>
 
-### 概要
-* Math クラスは java.lang パッケージに含まれているため importする必要はない
-* Math クラスは全て静的メンバ（static）である
-* Math クラスのクラス定義は public final class Math extends Object である
-
-### Math.sin() : サイン（正弦）
+### Math.Sin() : サイン（正弦）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(Math.sin(0)); //=> 0.0 ←0°
-        System.out.println(Math.sin(Math.PI/2)); //=> 1.0 ←90°
-        System.out.println(Math.sin(Math.PI)); //=> 1.2246467991473532E-16（≒0）←180°
-        System.out.println(Math.sin(Math.PI*3/2)); //=> -1.0 ←270°
-        System.out.println(Math.sin(Math.PI*2)); //=> -2.4492935982947064E-16（≒0）
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Sin(0)); //0 ←0°
+        Console.WriteLine(Math.Sin(Math.PI/2)); //1 ←90°
+        Console.WriteLine(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
+        Console.WriteLine(Math.Sin(Math.PI*3/2)); //-1 ←270°
+        Console.WriteLine(Math.Sin(Math.PI*2)); //-2.44921270764475E-16（≒0）←360°
     }
 }
 ```
 
-### Math.cos() : コサイン（余弦）
+### Math.Cos() : コサイン（余弦）
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        System.out.println(Math.cos(0)); //=> 1.0 ←0°
-        System.out.println(Math.cos(Math.PI/2)); //=> 6.123233995736766E-17（≒0）←90°
-        System.out.println(Math.cos(Math.PI)); //=> -1.0 ←180°
-        System.out.println(Math.cos(Math.PI*3/2)); //=> -1.8369701987210297E-16（≒0）←270°
-        System.out.println(Math.cos(Math.PI*2)); //=> 1.0 ←360°
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Cos(0)); //1 ←0°
+        Console.WriteLine(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
+        Console.WriteLine(Math.Cos(Math.PI)); //-1 ←180°
+        Console.WriteLine(Math.Cos(Math.PI*3/2)); //-1.83690953073357E-16（≒0）←270°
+        Console.WriteLine(Math.Cos(Math.PI*2)); //1 ←360°
     }
 }
 ```
 
-### Math.atan2() : アークタンジェント2
-* 2つの値のアークタンジェント（逆タンジェント）
-* X、Y座標の角度をラジアン単位で返す
-* Πラジアン（3.141592...）は180°
+### Math.Atan2() : アークタンジェント2
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
+        //Πラジアン（3.141592…）は180°
         //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
-        double disX_ = Math.sqrt(3); //√3のこと
-        int disY_ = 1;
-        System.out.println(Math.atan2(disY_, disX_)); //0.5235987755982989（ラジアン）
-        System.out.println(180*Math.atan2(disY_, disX_)/Math.PI); //30.000000000000004（度）
+        double _disX = Math.Sqrt(3); //√3のこと
+        int _disY = 1;
+        Console.WriteLine(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
+        Console.WriteLine(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
     }
 }
 ```
 
 ### Math.PI : 円周率
 ```
-System.out.println(Math.PI); //=> 3.141592653589793 ※Math.PIラジアン=180°
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
+    }
+}
 ```
 
-### Math.floor() : 切り捨て
+### Math.Floor() : 切り捨て
 ```
-System.out.println(Math.floor(1.001)); //=> 1.0
-System.out.println(Math.floor(1.999)); //=> 1.0
-```
-
-### Math.ceil() : 切り上げ
-```
-System.out.println(Math.ceil(1.001)); //=> 2.0
-System.out.println(Math.ceil(1.999)); //=> 2.0
-```
-
-### Math.round() : 四捨五入
-```
-System.out.println(Math.round(1.499)); //=> 1
-System.out.println(Math.round(1.500)); //=> 2
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Floor(1.001)); //1
+        Console.WriteLine(Math.Floor(1.999)); //1
+    }
+}
 ```
 
-### Math.abs() : 絶対値
+### Math.Ceiling() : 切り上げ
 ```
-System.out.println(Math.abs(100)); //=> 100
-System.out.println(Math.abs(-100)); //=> 100
-```
-
-### Math.pow() : 累乗（○の□乗）
-```
-System.out.println(Math.pow(2, 0)); //=> 1.0（2の0乗）
-System.out.println(Math.pow(2, 8)); //=> 256.0（2の8乗）
-```
-
-### Math.sqrt() : 平方根（√○）
-```
-System.out.println(Math.sqrt(2)); //=> 1.4142135623730951（一夜一夜にひとみごろ）
-System.out.println(Math.sqrt(3)); //=> 1.7320508075688772（人並みに奢れや）
-System.out.println(Math.sqrt(4)); //=> 2.0
-System.out.println(Math.sqrt(5)); //=> 2.23606797749979（富士山麓オウム鳴く）
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Ceiling(1.001)); //2
+        Console.WriteLine(Math.Ceiling(1.999)); //2
+    }
+}
 ```
 
-### Math.max() : 比較（最大値）
+### Math.Round() : 四捨五入
 ```
-System.out.println(Math.max(5.01, -10)); //=> 5.01 ←「2つ」の数値の比較
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Round(1.499)); //1
+        Console.WriteLine(Math.Round(1.500)); //2
+    }
+}
 ```
 
-### Math.min() : 比較（最小値）
+### Math.Abs() : 絶対値
 ```
-System.out.println(Math.min(5.01, -10)); //=> -10.0 ←「2つ」の数値の比較
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Abs(100)); //100
+        Console.WriteLine(Math.Abs(-100)); //100
+    }
+}
+```
+
+### Math.Pow() : 累乗（○の□乗）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Pow(2, 0)); //1（2の0乗）
+        Console.WriteLine(Math.Pow(2, 8)); //256（2の8乗）
+    }
+}
+```
+
+### Math.Sqrt() : 平方根（√○）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
+        Console.WriteLine(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
+        Console.WriteLine(Math.Sqrt(4)); //2
+        Console.WriteLine(Math.Sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+    }
+}
+```
+
+### Math.Max() : 比較（最大値）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
+    }
+}
+```
+
+### Math.Min() : 比較（最小値）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
+    }
+}
+```
+
+### Math.Sign() : 符号（正か負の値か）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Console.WriteLine(Math.Sign(-0.1)); //-1（負の値）
+        Console.WriteLine(Math.Sign(0)); //0（0）
+        Console.WriteLine(Math.Sign(0.1)); //1（正の値）
+    }
+}
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月26日  
+更新日：2017年04月21日
 
 
 <a name="乱数"></a>
