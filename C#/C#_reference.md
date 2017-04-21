@@ -39,8 +39,8 @@
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-***
 * [タイマー](#タイマー)
+***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -3315,32 +3315,67 @@ class Test {
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### java.util.Timer を使う方法
-* 他にも javax.swing.Timer もあり
+### スレッドタイマー（System.Threading.Timer）を使う方法
 ```
-//Main.java
-import java.util.Timer; //Timerに必要
-import java.util.TimerTask; //TimerTaskに必要
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        Timer _timer = new Timer();
-        //↓2000ミリ秒（2秒）後に1回だけ実行する場合...
-        //_timer.schedule(new OnceExecute(), 2000);
-        //0秒後から10fps（100ミリ秒毎）の間隔で繰返し実行する場合...
-        _timer.schedule(new LoopExec(), 0, 100); 
+//Test.cs
+/*
+システムタイマー（後述）と比較すると軽量
+Windows Formでの使用は非推奨
+*/
+using System;
+using System.Threading; //System.Threading.Timerに必要
+
+class Test {
+    private static Timer _timer; //privateは省略可
+        
+    static void Main() {
+        _timer = new Timer(new TimerCallback(Loop)); //タイマーの生成
+        _timer.Change(0, 1000); //0ミリ秒後から、1000ミリ秒間隔で開始!
+        Console.ReadLine(); //ここでは必須（要注意）
+    }
+
+    static void Loop(object arg) { //1000ミリ秒毎に実行される
+        Console.WriteLine(arg); //System.Threading.Timer
+        //_timer.Change(Timeout.Infinite, Timeout.Infinite); //停止 ←力技
     }
 }
-class LoopExec extends TimerTask {
-    public void run() { //決め打ち
-        System.out.println("繰り返しまたは、指定秒後に１度だけ実行したい処理");
+```
+
+### システムタイマー（System.Timers.Timer）を使う方法
+```
+//Test.cs
+/* 
+サーバベース・タイマーとも呼ばれる
+スレッドタイマー（前述）と比較すると重いが精度が高い
+スレッドの経過時間とは独立した時間監視をする
+Windows Formでの使用もＯＫ
+*/
+using System;
+using System.Timers; //System.Timers.Timerに必要
+
+class Test {
+    private static Timer _timer; //privateは省略可
+
+    static void Main() {
+        _timer = new Timer(); //タイマーの生成
+        _timer.Interval = 1000; //1000ミリ秒間隔
+        _timer.Elapsed += new ElapsedEventHandler(Loop); //イベントハンドラの追加
+        _timer.Start(); //開始!
+        Console.ReadLine(); //ここでは必須（要注意）
+    }
+    
+    static void Loop(object arg1, EventArgs arg2) { //1000ミリ秒毎に実行される
+        Console.WriteLine(arg1); //System.Timers.Timer（タイマー本体）
+        Console.WriteLine(arg2); //System.Timers.ElapsedEventArgs（各種情報）
+        //_timer.Stop(); //停止 ←この場合１回で停止
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月20日  
-更新日：2017年04月12日
+作成日：2015年11月27日  
+更新日：2017年04月21日
 
 
 <a name="処理速度計測"></a>
