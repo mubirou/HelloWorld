@@ -34,8 +34,8 @@
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
-***
 * [オーバーライド](#オーバーライド)
+***
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
@@ -2871,49 +2871,97 @@ class SubClass : SuperClass { //派生クラス
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
 
-### 抽象メソッドのオーバーライドの書式
+### 概要
+* 基本クラス（または抽象クラス）で定義したメソッドを、派生クラスで再定義することをオーバーライドと呼ぶ
+* オーバーライドできるメソッドは、基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
+* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（[base キーワード](#baseキーワード)参照）。
+
+### 「仮想メソッド」のオーバーライド
+* 書式
+```
+class 基本クラス名 {
+    アクセス修飾子 virtual 戻り値の型 メソッド名([型 引数]) {
+        ……
+    }
+    ……
+}
+class 派生クラス名 : 基本クラス { //派生クラス（基本クラスを継承）
+    アクセス修飾子 override 戻り値の型 メソッド名([型 引数]) { 
+        base.メソッド名(引数); //基本クラスのメソッドを呼び出す（オプション）
+        …… 
+    }
+    ……
+}
+```
+
+### 例文
+```
+//Test.cs
+using System;
+
+class Test {
+    static void Main() {
+        SubClass _subClass = new SubClass();
+        _subClass.Method();
+    }
+}
+
+class SuperClass { //基本クラス
+    public virtual void Method() { //オーバーライドを許可
+        Console.WriteLine("SuperClass.Method");
+    }
+}
+
+class SubClass : SuperClass { //派生クラス（基本クラスを継承）
+    public override void Method() { //基本クラスのメソッドのオーバーライド
+        Console.WriteLine("SubClass.Method");
+        base.Method(); //"SuperClass.Method"←基本クラスのメソッド実行（オプション）
+    } 
+}
+```
+
+### 「抽象メソッド」のオーバーライド（「[抽象クラス（abstract）](#抽象クラス（abstract）」参照）
+* 書式
 ```
 abstract class 抽象クラス名 { //抽象クラスの定義
-    //抽象メソッド宣言 ※{}は記述しない
-    abstract [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]);
-    :
+    アクセス修飾子 abstract 型 抽象メソッド名([型 引数]); //抽象メソッド宣言
+    ……
 }
-class 派生クラス extends 抽象クラス名 { //抽象クラスを継承
-    [アクセス修飾子] 戻り値の型 抽象メソッド名([型 引数]) { //オーバーライド
+class 派生クラス : 抽象クラス名 { //抽象クラスを継承
+    アクセス修飾子 override 型 抽象メソッド名([型 引数]) { //オーバーライド
         //実際の処理
     }
-    :
+    ……
+}
 ```
 
-### 通常のメソッドのオーバーライド
+### 例文
 ```
-//Main.java
-public class Main { //public は省略可
-    public static void main(String[] args) { //決め打ち(自動的に実行)
+//Test.cs
+using System;
+
+class Test {
+    static void Main() {
         SubClass _subClass = new SubClass();
-        _subClass.method(); //=> "SubClass.method"←サブクラスのメソッドが実行される
+        _subClass.Method();
     }
 }
 
-class SuperClass {
-    //final public void method() { ...とするとオーバーライドを禁止にできます
-    public void method() {
-        System.out.println("SuperClass.method");
-    }
+abstract class AbstractClass { //抽象クラス
+    public abstract void Method(); //抽象メソッドの宣言
 }
 
-class SubClass extends SuperClass {
-    public void method() { //スーパークラスのメソッドと同名（同じ引数）
-        System.out.println("SubClass.method"); //これにオーバーライドされる
-        //super.method(); //上書きしたスーパークラスのメソッドを実行する場合
-    }
+class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
+    public override void Method() { //オーバーライドして実際の処理を記述
+        Console.WriteLine("AbstractClass.Method");
+    } 
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月19日  
-更新日：2017年04月12日
+作成日：2015年11月24日  
+更新日：2017年04月21日
 
 
 <a name="カスタムイベント"></a>
