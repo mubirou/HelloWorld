@@ -3231,7 +3231,7 @@ Random ○ = new Random([seed値]);
 
 ### 例文
 ```
-//Test.cs
+//test.cs
 using System;
 class Test {
     static void Main() {
@@ -3281,7 +3281,7 @@ DateTime ○ = DateTime.Now; //DateTimeは構造体
 
 ### 例文
 ```
-//Test.cs
+//test.cs
 using System;
 class Test {
     static void Main() {
@@ -3317,7 +3317,7 @@ class Test {
 
 ### スレッドタイマー（System.Threading.Timer）を使う方法
 ```
-//Test.cs
+//test.cs
 /*
 システムタイマー（後述）と比較すると軽量
 Windows Formでの使用は非推奨
@@ -3343,7 +3343,7 @@ class Test {
 
 ### システムタイマー（System.Timers.Timer）を使う方法
 ```
-//Test.cs
+//test.cs
 /* 
 サーバベース・タイマーとも呼ばれる
 スレッドタイマー（前述）と比較すると重いが精度が高い
@@ -3381,47 +3381,48 @@ class Test {
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### currentTimeMillisメソッドを使う方法
-* ミリ秒で表される現在の時間を返す
-* 戻り値の時間単位はミリ秒だが、値の粒度（りゅうど）は基本となるＯＳによって異なり、単位がより大きくなる場合がある（多くのＯＳでは、時間を10ミリ秒の単位で計測する）
-
-* 例文
+### DateTime構造体を使う方法
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        long _start = System.currentTimeMillis(); //1970年1月1日からのミリ秒
-        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合...
+//test.cs
+//日時情報を得るためのDatetime構造体を利用して計測する方法
+using System; //DateTimeに必要
+class Test {
+    static void Main() {
+        long _start = DateTime.Now.Ticks; //100ナノ秒単位（精度は10ミリ秒）
+        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
             //速度計測したい処理
         }
-        long _end = System.currentTimeMillis();
-        System.out.println((_end - _start)  + "ミリ秒"); //=> 3252ミリ秒
+        Console.WriteLine(DateTime.Now.Ticks - _start); //33060210（≒3.3秒）
     }
 }
 ```
 
-### nanoTimeメソッドを使う方法（推奨）
-* 利用可能でもっとも正確なシステムタイマーの現在の値をナノ秒単位で返す
-* 返される値は、固定された任意の時間からの経過時間 (ナノ秒) 
-
-* 例文
+### Stopwatchクラスを使う方法
 ```
-//Main.java
-public class Main { //publicは省略可
-    public static void main(String[] args) { //決め打ち（自動的に実行）
-        long _start = System.nanoTime();
-        for (long i=0; i<10000000000L; i++) { //100億回繰り返す場合...
+//test.cs
+/*
+.NET Framework 2.0から追加された機能
+Stopwatchクラスのインスタンスを生成しStart/Stopメソッドを実行するだけで可能
+*/
+using System; 
+using System.Diagnostics; //Stopwatchに必要
+class Program     { 
+    static void Main() { 
+        Stopwatch _stopWatch = new Stopwatch(); //インスタンスの生成
+        _stopWatch.Start(); //計測開始
+        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
             //速度計測したい処理
         }
-        long _end = System.nanoTime();
-        System.out.println((_end - _start) / 1000000f + "ミリ秒"); //=> 3253.8875ミリ秒
+        _stopWatch.Stop(); //計測終了
+        Console.WriteLine(_stopWatch.ElapsedMilliseconds); //2826（ミリ秒）
+        Console.WriteLine(_stopWatch.Elapsed); //00:00:02.8268529（秒）
     }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成日：2016年07月20日  
-更新日：2017年04月12日
+作成日：2015年11月28日  
+更新日：2017年04月21日
 
 
 <a name="外部テキストの読み込み"></a>
