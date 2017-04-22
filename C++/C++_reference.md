@@ -140,28 +140,9 @@ int main() {
     // その他
     //================
     //列挙型（enum）
-    enum Member {TAKASHI=12, TOHRU=9, SACHIKO=4}; //列挙の定義（関数の外で定義可）
-    Member _member = TOHRU; //列挙以外の値だとエラー
-    cout << _member << "\n"; //9（値を省略すると0から始まる順番が返る）
-    
-    //構造体型（※注意：private/publicを省略した場合public扱い）
-    struct Person { //定義は先に記述する必要あり（関数の外で定義可）
-        string name;
-        int age;
-    };
-    Person _tohru = {"Tohru Nishimura", 13};
-    Person _sachiko = {"Sachiko Nishimura", 10};
-    cout << _tohru.name << "\n" << _tohru.age << "\n";
-    cout << _sachiko.name << "\n" << _sachiko.age << "\n";
-    
-    //クラス
-    MyClass _myClass; //MyClassのオブジェクトを生成
-    cout << typeid(_myClass).name() << "\n"; //7MyClass
-    
-    //配列
-    int _array[4]; //4個の空の要素を持つ配列の場合
-    cout << _array << "\n"; //0x7ffd12f9f970
-    cout << typeid(_array).name() << "\n"; //A4_i
+    XXXX
+    XXXX
+    XXXX
  
     return 0;
 }
