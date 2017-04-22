@@ -53,166 +53,118 @@
     * bool型 : true または false
 
 * 整数型
-    * byte 型 : 0〜255（8 bit）
-    * sbyte 型 : -128〜127（8 bit）
-    * short 型 : -32768〜32767（16 bit）←約±3万
-    * ushort 型 :  0〜65535（16 bit）←約6万
-    * int 型 : -2147483648〜2147483647（32 bit）←約±20億／16進数（0xFFCC00等）も可
-    * uint 型 :  0〜4294967295（32 bit）←約40億（初期値）
-    * long 型 : -9223372036854775808〜9223372036854775807（64 bit）←約±900京
-    * ulong 型 : 0〜18446744073709551615（64 bit）←約1800京
+    * unsigned short 型 : 0〜65535（16bit）←約6万
+    * short int 型 : -32768〜32767（16bit）←約±3万
+    * unsigned int 型 : 0〜4294967295（32bit）←約40億
+    * int 型 : -2147483648〜2147483647（32bit）←約±20億／16進数（0xFFCC00等）も可／初期値
 
 * 浮動小数点数型
-    * float 型 : 小数点第6位までの値（第7位を四捨五入）←最後に f を付ける
-    * double 型 : 小数点第14位までの値（第15位を四捨五入）←デフォルト
-    * decimal 型 : 小数点第28位までの値（第29位を四捨五入）←最後に m を付ける
+    * float 型 : 有効数字7桁
+    * double 型 : 有効数字15桁 ←初期値
 
 * 文字型
     * char 型 : 1文字（シングルクォーテーションで囲む）
     * string 型 : 2文字以上（ダブルクォーテーションで囲む）
 
-* その他のデータ型
-    * null 許容型 : 変数の値が未定義（宣言には ? を追記）
-    * 列挙型（enum） : 内部的には0、1、2...（int 型）で処理
-    * 構造体（struct）: 継承が出来ないクラスに似たもの
-    * 匿名型クラス（new {}）: class を使わないクラス（プロパティは読取専用）
-    * クラス（class）: class を使った参照型（データそのものではなくアドレスを保持）
-    * dynamic 型 : 動的型（型が未確定）←TypeScript の any 相当
-    * Object[] 型 : 配列の場合
+※上記の他に以下のデータ型などもあります
+列挙型（enum） …… 内部的には0、1、2…（int型）で処理 
+構造体（struct）…… 継承が出来ない、クラスに似たもの
+クラス（class）…… classを使った参照型（データそのものではなくアドレスを保持）
 
-### 検証
-```
-//test.cs
-using System; //Console.WriteLine()に必要
+◆検証（Test.cpp）
+#include <iostream> //coutに必要←…UE4でも必要
+#include <typeinfo> //typeid()に必要←…UE4ではERRORは出ないがtypeid()が使えず??
+using namespace std; //←…UE4でも必要
+class MyClass {}; //先に記述する必要がある
+int main() {
+    //===================
+    // 論理型（bool型）
+    //===================
+    bool _bool = true;
+    cout << _bool << "\n"; //1
+    cout << typeid(_bool).name() << "\n"; //b（bool）
+    //===============
+    // 整数型
+    //===============
+    // ①unsigned short型（0〜65,535）
+    unsigned short int _uShortInt = 65535;
+    cout << _uShortInt << "\n"; //65535
+    cout << typeid(_uShortInt).name() << "\n"; //t（unsigned short int）
+    
+    // ②short int型（-32,768〜32,767）
+    short int _shortInt = -32768;
+    cout << _shortInt << "\n"; //-32768
+    cout << typeid(_shortInt).name() << "\n"; //s（short int）
+    
+    // ③unsigned int型（0〜4,294,967,295）
+    unsigned int _uInt = 4294967295;
+    cout << _uInt << "\n"; //4294967295
+    cout << typeid(_uInt).name() << "\n"; //j（unsigned int）
+    
+    // ④int型（-2,147,483,648〜2,147,483,647）
+    int _int = -2147483648;
+    cout << _int << "\n"; //-2147483648
+    cout << typeid(_int).name() << "\n"; //i（int）
+    
+    int _int16 = 0xFFCC00; //←…16進数の場合
+    cout << _int16 << "\n"; //16763904
+    cout << typeid(_int16).name() << "\n"; //i（int）
+    
+    //================
+    // 浮動小数点数型
+    //================
+    // ①float型（有効数字7桁：要調査）
+    float _float = 3.14159265358979323846264338327950288;
+    cout << _float << "\n"; //3.14159
+    cout << typeid(_float).name() << "\n"; //f（float）
+    
+    // ②double型（有効数字15桁：要調査）
+    double _double = 3.14159265358979323846264338327950288;
+    cout << _double << "\n"; //3.14159（floatと同じ：要調査）
+    cout << typeid(_double).name() << "\n"; //d（double）
+    
+    //================
+    // 文字型
+    //================
+    // ①char型（1文字）
+    char _char = 'a';
+    cout << _char << "\n"; //a
+    cout << typeid(_char).name() << "\n"; //c（char）
+    
+    // ②string型（2文字以上）
+    string _string = "999";
+    cout << _string << "\n"; //999
+    cout << typeid(_string).name() << "\n"; //NSt7__cxx1112basic…
 
-class Test {
-    static void Main() {
-        //bool型
-        bool _bool = true;
-        Console.WriteLine(_bool); //True
-        Console.WriteLine(_bool.GetType()); //System.Boolean
-        
-        //整数型①（0〜255）
-        byte _byte = 255;
-        Console.WriteLine(_byte); //255
-        Console.WriteLine(_byte.GetType()); //System.Byte
-        
-        //整数型②（-128〜127）
-        sbyte _sbyte = -128;
-        Console.WriteLine(_sbyte); //-128
-        Console.WriteLine(_sbyte.GetType()); //System.SByte
-        
-        //整数型③（-32768〜32767）
-        short _short = -32768;
-        Console.WriteLine(_short); //-32768
-        Console.WriteLine(_short.GetType()); //System.Int16
-        
-        //整数型④（0〜65535）
-        ushort _ushort = 65535;
-        Console.WriteLine(_ushort); //65535
-        Console.WriteLine(_ushort.GetType()); //System.UInt16
-        
-        //整数型⑤（-2147483648〜2147483647）
-        int _int = -2147483648;
-        Console.WriteLine(_int); //-2147483648
-        Console.WriteLine(_int.GetType()); //System.Int32
-
-        int _int16 = 0xFFCC00; //16進数の場合
-        Console.WriteLine(_int16); //16763904
-        Console.WriteLine(_int16.GetType()); //System.Int32
-        
-        //整数型⑥（0〜4294967295）
-        uint _uint = 4294967295;
-        Console.WriteLine(_uint); //4294967295
-        Console.WriteLine(_uint.GetType()); //System.UInt32
-        
-        //整数型⑦（-9223372036854775808〜9223372036854775807）
-        long _long = -9223372036854775808;
-        Console.WriteLine(_long); //-9223372036854775808
-        Console.WriteLine(_long.GetType()); //System.Int64
-        
-        //整数型⑧（0〜18446744073709551615）
-        ulong _ulong = 18446744073709551615;
-        Console.WriteLine(_ulong); //18446744073709551615
-        Console.WriteLine(_ulong.GetType()); //System.UInt64
-        
-        //浮動小数点数型①
-        float _float = 3.1415926f; //最期に「f」
-        Console.WriteLine(_float); //3.141593
-        Console.WriteLine(_float.GetType()); //System.Single
-        
-        //浮動小数点数型②
-        double _double = 3.141592653589793d; //「d」をつけなくても同じ
-        Console.WriteLine(_double); //3.14159265358979
-        Console.WriteLine(_double.GetType()); //System.Double
-        
-        //浮動小数点数型③
-        decimal _decimal = 3.14159265358979323846264338327m; //最期に「m」
-        Console.WriteLine(_decimal); //3.1415926535897932384626433833
-        Console.WriteLine(_decimal.GetType()); //System.Decimal
-        
-        //文字型①（char型＝1文字）
-        char _char = 'a'; //シングルクォーテーション
-        Console.WriteLine(_char); //a
-        Console.WriteLine(_char.GetType()); //System.Char
-        
-        //文字型②（string型）
-        string _string = "999"; //ダブルクォーテーション
-        Console.WriteLine(_string); //999
-        Console.WriteLine(_string.GetType()); //System.string
-
-        //null許容型
-        int? _null = null; //string型は不可
-        Console.WriteLine(_null); //（null）
-        Console.WriteLine(_null == null); //True
-
-        //列挙型（enum）
-        Console.WriteLine(Signal.BLUE); //BLUE
-        Console.WriteLine(Signal.BLUE.GetType()); //Signal
-        Console.WriteLine((int)Signal.BLUE); //0 ←キャストによる型変換が必要
-
-        //構造体（クラスに似ているが継承は不可）
-        MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
-        Console.WriteLine(_struct); //MyStruct
-        Console.WriteLine(_struct.GetType()); //MyStruct
-        
-        //匿名型クラス（宣言には、必ずvarキーワードを使います）
-        var _anon = new { Name="Takashi Nishimrua", Age=49 }; //読み取り専用（注意）
-        Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 49 }
-        Console.WriteLine(_anon.Name); //"Takashi Nishimura ←取得方法
-        Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
-
-        //クラス
-        MyClass _myClass = new MyClass("Takashi Nishimura", 48);
-        Console.WriteLine(_myClass); //MyClass
-        Console.WriteLine(_myClass.GetType()); //MyClass
-
-        //配列
-        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
-        Console.WriteLine(_array); //System.Object[]
-    }
+    //================
+    // その他
+    //================
+    //列挙型（enum）
+    enum Member {TAKASHI=12, TOHRU=9, SACHIKO=4}; //列挙の定義（関数の外で定義可）
+    Member _member = TOHRU; //列挙以外の値だとエラー
+    cout << _member << "\n"; //9（値を省略すると0から始まる順番が返る）
+    
+    //構造体型（※注意：private/publicを省略した場合public扱い）
+    struct Person { //定義は先に記述する必要あり（関数の外で定義可）
+        string name;
+        int age;
+    };
+    Person _tohru = {"Tohru Nishimura", 13};
+    Person _sachiko = {"Sachiko Nishimura", 10};
+    cout << _tohru.name << "\n" << _tohru.age << "\n";
+    cout << _sachiko.name << "\n" << _sachiko.age << "\n";
+    
+    //クラス
+    MyClass _myClass; //MyClassのオブジェクトを生成
+    cout << typeid(_myClass).name() << "\n"; //7MyClass
+    
+    //配列
+    int _array[4]; //4個の空の要素を持つ配列の場合
+    cout << _array << "\n"; //0x7ffd12f9f970
+    cout << typeid(_array).name() << "\n"; //A4_i
+ 
+    return 0;
 }
-
-enum Signal { BLUE,YELLOW,RED }; //列挙（enum）の定義
-
-struct MyStruct { //構造体の定義
-    public string name;
-    public byte age;
-    public MyStruct(string p1, byte p2) {
-        name = p1;
-        age = p2;
-    }
-}
-
-class MyClass { //クラスの定義
-    public string name;
-    public byte age;
-    public MyClass(string p1, byte p2) {
-        name = p1;
-        age = p2;
-    }
-}
-```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
@@ -2826,7 +2778,7 @@ class SubClass : AbstractClass { //抽象クラスを継承
 # <b>base キーワード</b>
 
 ### 概要
-基本クラスに定義されたコンストラクタ（private 以外）は、派生クラスのコンストラクタが実行される直前に必ず実行される。その際、基本クラスのコンストラクタへ、派生クラスのコンストラクタから引数を渡すことがbaseを使うことで可能になる（≒ super）。base.メソッド() で基本クラスのメソッドを呼び出す事が可能（「[オーバーライド](#オーバーライド)」参照）。
+基本クラスに定義されたコンストラクタ（private 以外）は、派生クラスのコンストラクタが実行される直前に必ず実行されるその際、基本クラスのコンストラクタへ、派生クラスのコンストラクタから引数を渡すことがbaseを使うことで可能になる（≒ super）base.メソッド() で基本クラスのメソッドを呼び出す事が可能（「[オーバーライド](#オーバーライド)」参照）
 
 ### 書式
 ```
@@ -2874,7 +2826,7 @@ class SubClass : SuperClass { //派生クラス
 ### 概要
 * 基本クラス（または抽象クラス）で定義したメソッドを、派生クラスで再定義することをオーバーライドと呼ぶ
 * オーバーライドできるメソッドは、基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
-* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[base キーワード](#baseキーワード)」参照）。
+* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[base キーワード](#baseキーワード)」参照）
 
 ### 「仮想メソッド」のオーバーライド
 * 書式
@@ -2968,7 +2920,7 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 # <b>カスタムイベント</b>
 
 ### 概要
-イベントとは、あるアクションが発生したことを自動的に通知する仕組み。カスタムクラス内で何か処理をし終えた際、別のオブジェクトにそのことを知らせる場合に、このイベント機能を使用。イベントを設定したカスタムクラスからは、情報（イベント）を発信するだけ。情報を受けたいオブジェクトは、リスナーメソッドを準備して待ち受ける...。このことにより、カスタムクラスを汚さずに済む、というメリットが生まれる。C# に用意された event は、特殊なデリゲート（delegate）と言えるものです。デリゲートとの違いは、event 宣言した変数（イベント名）には、イベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等。
+イベントとは、あるアクションが発生したことを自動的に通知する仕組みカスタムクラス内で何か処理をし終えた際、別のオブジェクトにそのことを知らせる場合に、このイベント機能を使用イベントを設定したカスタムクラスからは、情報（イベント）を発信するだけ情報を受けたいオブジェクトは、リスナーメソッドを準備して待ち受ける...このことにより、カスタムクラスを汚さずに済む、というメリットが生まれるC# に用意された event は、特殊なデリゲート（delegate）と言えるものですデリゲートとの違いは、event 宣言した変数（イベント名）には、イベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等
 
 ### 書式
 * イベントの設定
@@ -3079,7 +3031,7 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        //2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
+        //2つの値のアークタンジェント（逆タンジェント）X、Y座標の角度をラジアン単位で返す
         //Πラジアン（3.141592…）は180°
         //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
         double _disX = Math.Sqrt(3); //√3のこと
@@ -3444,7 +3396,7 @@ using System.IO; //StreamReaderに必要
 class Test { 
     static void Main() {
         string _path = "sample.txt";
-        //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
+        //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します
         StreamReader _stream = new StreamReader(_path); //.txt以外も可能
         string _string = _stream.ReadToEnd(); //全ての内容を読み込む
         _stream.Close(); //閉じる
