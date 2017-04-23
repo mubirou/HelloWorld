@@ -66,12 +66,14 @@
     * char 型 : 1文字（シングルクォーテーションで囲む）
     * string 型 : 2文字以上（ダブルクォーテーションで囲む）
 
-※上記の他に以下のデータ型などもあります
-列挙型（enum） …… 内部的には0、1、2…（int型）で処理 
-構造体（struct）…… 継承が出来ない、クラスに似たもの
-クラス（class）…… classを使った参照型（データそのものではなくアドレスを保持）
+上記の他に以下のデータ型などもあり
+* 列挙型（enum） : 内部的には0、1、2...（int型）で処理 
+* 構造体（struct） : 継承が出来ない、クラスに似たもの
+* クラス（class） : classを使った参照型（データそのものではなくアドレスを保持）
 
-◆検証（Test.cpp）
+### 検証
+```
+#test.cpp
 #include <iostream> //coutに必要←…UE4でも必要
 #include <typeinfo> //typeid()に必要←…UE4ではERRORは出ないがtypeid()が使えず??
 using namespace std; //←…UE4でも必要
@@ -146,6 +148,7 @@ int main() {
  
     return 0;
 }
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
