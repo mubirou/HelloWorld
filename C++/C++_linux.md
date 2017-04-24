@@ -53,7 +53,7 @@ int main() {
 $ cd /home/（ユーザー名）/デスクトップ/C++
 
 1. コンパイル（.c → a.out）  
-$ g++ -o test test.cpp ←「g++ -o 保存名 xx.cpp」  
+$ g++ -std=c++14 -o test test.cpp ←「g++ [-std=c++14] -o 保存名 xx.cpp」  
 ※「g++ --std=c++0x test.cpp」とすると a.out が生成される
 
 1. test.cpp ファイルと同階層に、指定した保存名のファイル（test）が生成されているのを確認
