@@ -5,8 +5,8 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_win.md)）
-***
 * [データ型](#データ型)
+***
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
@@ -73,11 +73,11 @@
 
 ### 検証
 ```
-#test.cpp
-#include <iostream> //coutに必要←…UE4でも必要
-#include <typeinfo> //typeid()に必要←…UE4ではERRORは出ないがtypeid()が使えず??
-using namespace std; //←…UE4でも必要
-class MyClass {}; //先に記述する必要がある
+//test.cpp
+#include <iostream> //coutに必要
+#include <typeinfo> //typeid()に必要
+using namespace std;
+class MyClass {}; //前方宣言が必要
 int main() {
     //===================
     // 論理型（bool型）
@@ -108,21 +108,21 @@ int main() {
     cout << _int << "\n"; //-2147483648
     cout << typeid(_int).name() << "\n"; //i（int）
     
-    int _int16 = 0xFFCC00; //←…16進数の場合
+    int _int16 = 0xFFCC00; //16進数の場合
     cout << _int16 << "\n"; //16763904
     cout << typeid(_int16).name() << "\n"; //i（int）
     
     //================
     // 浮動小数点数型
     //================
-    // ①float型（有効数字7桁：要調査）
+    // ①float型（有効数字7桁）
     float _float = 3.14159265358979323846264338327950288;
     cout << _float << "\n"; //3.14159
     cout << typeid(_float).name() << "\n"; //f（float）
     
-    // ②double型（有効数字15桁：要調査）
+    // ②double型（有効数字15桁）
     double _double = 3.14159265358979323846264338327950288;
-    cout << _double << "\n"; //3.14159（floatと同じ：要調査）
+    cout << _double << "\n"; //3.14159
     cout << typeid(_double).name() << "\n"; //d（double）
     
     //================
@@ -136,15 +136,34 @@ int main() {
     // ②string型（2文字以上）
     string _string = "999";
     cout << _string << "\n"; //999
-    cout << typeid(_string).name() << "\n"; //NSt7__cxx1112basic…
+    cout << typeid(_string).name() << "\n"; //NSt7__cxx1112...
 
     //================
     // その他
     //================
     //列挙型（enum）
-    XXXX
-    XXXX
-    XXXX
+    enum ABC {AAA=1, BBB=2, CCC=3}; //列挙の定義（関数の外で定義可）
+    ABC _bbb = BBB; //列挙以外の値だとエラー
+    cout << _bbb << "\n"; //2（値を省略すると0から始まる順番が返る）
+    
+    //構造体型（注意：private/publicを省略した場合public扱い）
+    struct Name { //定義は先に記述する必要あり（関数の外で定義可）
+        string romaji;
+        string kanji;
+    };
+    Name _taro = {"TARO", "太郎"};
+    Name _hanako = {"HANAKO", "花子"};
+    cout << _taro.romaji << "\n" << _taro.kanji << "\n";
+    cout << _hanako.romaji << "\n" << _hanako.kanji << "\n";
+    
+    //クラス
+    MyClass _myClass; //MyClassのオブジェクトを生成
+    cout << typeid(_myClass).name() << "\n"; //7MyClass
+    
+    //配列
+    int _array[4]; //4個の空の要素を持つ配列の場合
+    cout << _array << "\n"; //0x7fff9849e280
+    cout << typeid(_array).name() << "\n"; //A4_i
  
     return 0;
 }
@@ -152,8 +171,8 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月14日  
-更新日：2017年04月16日
+作成日：2016年05月12日  
+更新日：2017年04月24日
 
 
 <a name="データ型の操作"></a>
