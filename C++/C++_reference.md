@@ -319,6 +319,9 @@ int main() {
 #include <iostream> //coutに必要
 using namespace std;
 
+//==============
+// 長方形クラス
+//==============
 class Rectangle { //長方形クラスの「宣言」
     private: //省略可能
         int _width; //メンバ変数（＝プロパティ）
@@ -373,7 +376,11 @@ int Rectangle::GetArea() {
     return _width * _height;
 } 
 
-int main() { //注意：クラス定義の後に記述する必要がある
+
+//==============
+// メインクラス
+//==============
+int main() { //注意：利用するクラスは前方宣言が必要
     //①インスタンスの生成
     Rectangle _rectangle(640,480); //引数なしも可
     // Rectangle _rectangle; //注意：引数なしの場合()はいらない
