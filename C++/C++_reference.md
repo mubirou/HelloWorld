@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
@@ -178,170 +178,137 @@ int main() {
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
-### データ型の調べ方
-1. is 演算子
-    * クラスか否かを調べる（○ is int といった使い方も可能）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            //クラスの場合
-            var _tmp = new SubClass();
-            Console.WriteLine(_tmp is SubClass); //True
-            Console.WriteLine(_tmp is SuperClass); //True
+### データ型の調べ方 : typeid()
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <typeinfo>  //typeid()に必要
+using namespace std;
+class MyClass {}; //前方宣言が必要
 
-            //匿名型クラスの場合
-            var _tmp2 = new {};
-            Console.WriteLine(_tmp2 is object); //True;
-        }
-    }
-
-    class SuperClass {} //基本クラスの定義
-    class SubClass : SuperClass {} //派生クラスの定義
-    ```
-
-1. as 演算子
-    * キャスト成功時に変換後の値が返され、失敗するとエラー
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            var _myClass = new MyClass();
-            Console.WriteLine(_myClass as MyClass); //=> MyClass
-            //Console.WriteLine(_myClass as HogeClass); //=> エラー
-        }
-    }
-
-    class MyClass {}
-    class HogeClass {};
-    ```
-
-1. GetType() メソッド
-    * Object.GetType() メソッド（オブジェクトの型を返す）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            Console.WriteLine(true.GetType()); //=> System.Boolean
-            Console.WriteLine(100.GetType()); //=> System.Int32
-            Console.WriteLine(10000000000.GetType()); //=> System.UInt64
-            Console.WriteLine(0.1.GetType()); //=> System.Double
-            Console.WriteLine('1'.GetType()); //=> System.Char
-            Console.WriteLine("1".GetType()); //=> System.String
-            Console.WriteLine(new {}.GetType()); //=> <>__AnonType0
-            Console.WriteLine(new MyClass().GetType()); //=> MyClass
-        }
-    }
-
-    class MyClass {}
-    ```
+int main() {
+    cout << typeid(true).name() << "\n"; //b（bool）
+    cout << typeid(100).name() << "\n"; //i（int）
+    cout << typeid(2147483648).name() << "\n"; //l（long int）
+    cout << typeid(0.1).name() << "\n"; //d（double）
+    cout << typeid('1').name() << "\n"; //c（char）
+    cout << typeid("1").name() << "\n"; //A2_c ←string
+    MyClass _myClass;
+    cout << typeid(_myClass).name() << "\n"; //7MyClass
+    return 0;
+}
+```
 
 ### データ型のキャスト
-1. 数値↔ bool 型（不可）
+1. 数値→bool型へ変換
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            //bool _tmp = (bool)1; //error（数値→bool型への変換は不可）
-            //int _tmp = (int)true; //error（bool型→数値への変換は不可）
-        }
-    }
-    ```
-
-1. 数値→ bool 型へ変換（力技）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _tmp = 0;
-            bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
-            Console.WriteLine(_tmp2); //False
-        }
+    //test.cpp
+    #include <iostream> //coutに必要
+    #include <typeinfo>  //typeid()に必要
+    using namespace std;
+    int main() {
+        bool _tmp = (bool)1;
+        cout << _tmp << "\n"; //1
+        cout << typeid(_tmp).name() << "\n"; //b（bool）
+        return 0;
     }
     ```
 
 1. bool型→数値へ変換
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            bool _tmp = true;
-            int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
-            Console.WriteLine(_tmp2); //1
-        }
+    //test.cpp
+    #include <iostream> //coutに必要
+    #include <typeinfo>  //typeid()に必要
+    using namespace std;
+    int main() {
+        int _tmp = (int)true;
+        cout << _tmp << "\n"; //1（falseの場合0）
+        cout << typeid(_tmp).name() << "\n"; //i（int）
+        return 0;
     }
     ```
 
-1. 数値↔数値（縮小変換）
+1. 数値→数値（整数の縮小変換）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            //整数の場合
-            long _tmp1 = 2147483648; //intは-2147483648〜2147483647
-            int _tmp2 = (int)_tmp1; //long型→int型へ変換
-            Console.WriteLine(_tmp2); //-2147483648 ←元のデータが失われる
+    //test.cpp
+    #include <iostream> //coutに必要
+    #include <typeinfo>  //typeid()に必要
+    using namespace std;
+    int main() {
+        int _tmp = 3350000; //intは-2,147,483,648〜2,147,483,647
+        short int _tmp2= (short int)_tmp;
+        cout << _tmp2 << "\n"; //776 ←元のデータが失われる
+    }
+    ```
 
-            //浮動小数点数の場合
-            decimal _decimal = 3.14159265358979323846264338327m;
-            double _tmp3 = (double)_decimal;
-            Console.WriteLine(_tmp3); //3.14159265358979 ←データの一部が失われる
-        }
+1. 数値→数値（浮動小数点数の縮小変換）
+    ```
+    //test.cpp
+    #include <iostream> //coutに必要
+    #include <typeinfo>  //typeid()に必要
+    using namespace std;
+    int main() {
+        double _double = 3.14159265358979323846264338327950288;
+        float _float = (float)_double;
+        cout << _float << "\n"; //3.14159 ←元のデータが失われる
     }
     ```
 
 1. 数値↔数値（拡張変換）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _tmp = 2147483647; //intは-2147483648〜2147483647
-            long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
-            Console.WriteLine(_tmp2); //2147483648
-        }
+    //test.cpp
+    #include <iostream> //coutに必要
+    #include <typeinfo>  //typeid()に必要
+    using namespace std;
+    int main() {
+        short int _tmp = 32767; //short int型は-32,768〜32,767
+        int _tmp2 = (int)_tmp + 1; //short int型→int型へ変換
+        cout << _tmp2 << "\n"; //32768
+        cout << typeid(_tmp2).name() << "\n"; //i（int）
     }
     ```
 
-1. 数値↔ string 型
+1. string型→数値
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string _tmp = "001";
-            int _tmp2 = Int32.Parse(_tmp); //"001"（string型）→1（int型）に変換
-            Console.WriteLine(_tmp2); //1
-            Console.WriteLine(_tmp2.GetType()); //System.Int32
-        }
+    //test.cpp
+    #include <iostream> //coutに必要
+    #include <typeinfo> //typeid()に必要
+    #include <cstdlib> //atoiに必要
+    using namespace std;
+
+    int main() {
+        string _tmp = "001";
+        int _tmp2 = atoi(_tmp.c_str()); //string型→int型に変換
+        cout << _tmp2 << "\n"; //1
+        cout << typeid(_tmp2).name() << "\n"; //i（int）
+        return 0;
     }
     ```
 
-1. 数値→ string 型
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+1. 数値→string型
+    ```
+    //test.cpp
+    #include <iostream> //coutに必要
+    #include <typeinfo> //typeid()に必要
+    #include <sstream> //ostringstreamに必要
+    using namespace std;
+
+    int main() {
         int _tmp = 100;
-        string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
-        Console.WriteLine(_tmp2); //"100"
-        Console.WriteLine(_tmp2.GetType()); //System.String
+        ostringstream _stream;
+        _stream << _tmp;
+        string _tmp2 = _stream.str();
+        cout << _tmp2 << "\n"; //"100"
+        cout << typeid(_tmp2).name() << "\n"; //NSt7__cxx1112basic…
+        return 0;
     }
-}
-```
+    ```
+
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月07日  
-更新日：2017年04月17日
+作成日：2016年05月12日  
+更新日：2017年04月25日
 
 
 <a name="クラス"></a>
