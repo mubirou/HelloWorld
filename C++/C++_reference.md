@@ -7,8 +7,8 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-***
 * [クラス](#クラス)
+***
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -315,52 +315,91 @@ int main() {
 # <b>クラス</b>
 
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
-class Test { //Mainは不可
-    static void Main() { //自動的に最初に実行される
-        //①インタンスの生成
-        Rectangle _rectangle = new Rectangle();
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+class Rectangle { //長方形クラスの「宣言」
+    private: //省略可能
+        int _width; //メンバ変数（＝プロパティ）
+        int _height; //メンバ変数
+    
+    public:
+        Rectangle(); //引数なしのコンストラクタ
+        Rectangle(int _w, int _h); //引数ありのコンストラクタ
         
-        //②プロパティの更新
-        _rectangle.width = 1920;
-        _rectangle.height = 1080;
-        //③プロパティの取得
-        Console.WriteLine(_rectangle.width); //1920
-        Console.WriteLine(_rectangle.height); //1080
+        //_widthのアクセス用メンバ関数（＝メソッド）
+        int Width(); //getter
+        void Width(int _w); //setter
         
-        //④メソッドの実行
-        Console.WriteLine(_rectangle.getArea()); //2073600
-    }
+        //_heightのアクセス用メンバ関数
+        int Height(); //getter
+        void Height(int _h); //setter
+        
+        //面積の計算用のメンバ関数
+        int GetArea();  
+};
+
+//コンストラクタ（引数なし）
+Rectangle::Rectangle() {
+    _width = 0;
+    _height = 0;
 }
 
-class Rectangle { //長方形クラス
-    //プロパティの定義･初期値の設定
-    private int _width = 0; //privateは省略可
-    private int _height = 0; //privateは省略可
+//コンストラクタ（引数あり）
+Rectangle::Rectangle(int _w, int _h) {
+    _width = _w;
+    _height = _h;
+}
 
-    //コンストラクタは省略可（初期値はここで設定してもよい）
-    public Rectangle() {}
+//_widthのアクセス用メンバ関数
+int Rectangle::Width() { //getter
+    return _width;
+}
+void Rectangle::Width(int _w) { //setter
+    _width = _w;
+}
+
+//_heightのアクセス用メンバ関数
+int Rectangle::Height() { //getter
+    return _height;
+}
+void Rectangle::Height(int _h) { //setter
+    _height = _h;
+}
+
+//面積の計算用のメンバ関数
+int Rectangle::GetArea() {
+    return _width * _height;
+} 
+
+int main() { //注意：クラス定義の後に記述する必要がある
+    //①インスタンスの生成
+    Rectangle _rectangle(640,480); //引数なしも可
+    // Rectangle _rectangle; //注意：引数なしの場合()はいらない
     
-    //メソッド群の定義
-    public int width {
-        get { return this._width; } //thisは省略可
-        set { this._width = value; } //valueは決め打ち
-    }
-    public int height {
-        get { return this._height; } //thisは省略可
-        set { this._height = value; } //valueは決め打ち
-    }
-    public int getArea() { //面積を計算して値を返す
-        return this._width * this._height; //thisは省略可
-    }
+    cout << _rectangle.Width() << "\n"; //640
+    cout << _rectangle.Height() << "\n"; //480
+    
+    //②メンバ変数の更新
+    _rectangle.Width(1920);
+    _rectangle.Height(1080);
+    
+    //③メンバ変数の取得
+    cout << _rectangle.Width() << "\n"; //1920
+    cout << _rectangle.Height() << "\n"; //1080
+    
+    //④メンバ関数の実行
+    cout << _rectangle.GetArea() << "\n"; //2073600
+    
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月02日  
-更新日：2017年04月17日
+作成日：2016年05月12日  
+更新日：2017年04月26日
 
 
 <a name="基本クラスと派生クラス"></a>
