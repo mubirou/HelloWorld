@@ -412,72 +412,138 @@ int main() { //注意：利用するクラスは前方宣言が必要
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
+### 概要
+1. 呼び名
+    * 基本クラス ≒ 基底クラス、スーパークラス、親クラス
+    * 派生クラス ≒ サブクラス、子クラス
+    * メンバ変数 ≒ プロパティ
+    * メンバ関数 ≒ メソッド
+
+1. 多重継承（複数の基本クラスを継承する）が可能
+    ```
+    //多重継承の構文
+    class 派生クラス : アクセス指定子 基本クラスA, アクセス指定子 基本クラスB,… {
+    ……
+    }
+    ```
+    * 複数の基本クラスで同じメンバ関数を持つ場合、以下の方法でそれぞれのメンバ関数にアクセス可能
+    ```
+    _subclass.SuperClassA::mSuperClass();
+    ```
+
+### 例文
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
+//Test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-class Test { //メインクラス（Main()メソッドを含む）←Mainは不可
-    static void Main() { //自動的に最初に実行される
-        //派生クラスＡのインスタンス
-        SubClassA _subclassA = new SubClassA();
-        Console.WriteLine(_subclassA.pSuperClass); //"基本クラスのプロパティ"
-        Console.WriteLine(_subclassA.pSubClassA); //"派生クラスＡのプロパティ"
-        Console.WriteLine(_subclassA.mSuperClass()); //"基本クラスのメソッド"
-        Console.WriteLine(_subclassA.mSubClassA()); //"派生クラスＡのメソッド"
-        
-        //派生クラスＢのインスタンス
-        SubClassB _subclassB = new SubClassB();
-        Console.WriteLine(_subclassB.pSuperClass); //"基本クラスのプロパティ"
-        Console.WriteLine(_subclassB.pSubClassB); //"派生クラスＢのプロパティ"
-        Console.WriteLine(_subclassB.mSuperClass()); //"基本クラスのメソッド"
-        Console.WriteLine(_subclassB.mSubClassB()); //"派生クラスＢのメソッド"
-    }
+//=====================================================================
+// 基本クラス（スーパークラス）
+//=====================================================================
+class SuperClass { //基本クラスの「宣言」
+    private: //省略可能
+        string _vSuperClass; //メンバ変数（プロパティ）の「宣言」
+    public:
+        SuperClass(); //コンストラクタの「宣言」
+        string vSuperClass(); //メンバ変数（プロパティ）のgetter
+        string mSuperClass(); //メンバ関数（メソッド）の「宣言」
+};
+
+//コンストラクタの「定義」
+SuperClass::SuperClass() {
+    _vSuperClass = "基本クラスのメンバ変数";
 }
 
-//基本クラス（スーパークラス）
-class SuperClass {
-    //①プロパティの定義
-    string _pSuperClass = "基本クラスのプロパティ"; //privateは省略
-    //②メソッド群の定義
-    public string pSuperClass {
-        get { return _pSuperClass; } //thisは省略
-    }
-    public string mSuperClass() {
-        return "基本クラスのメソッド";
-    }
+//getterの「定義」
+string SuperClass::vSuperClass() {
+    return _vSuperClass; //getter
 }
 
-//派生クラスＡ
-class SubClassA : SuperClass { //基本クラスを継承（多重継承は不可）
-    //①プロパティの定義
-    string _pSubClassA = "派生クラスＡのプロパティ"; //privateは省略
-    //②メソッド群の定義
-    public string pSubClassA {
-        get { return _pSubClassA; } //thisは省略
-    }
-    public string mSubClassA() {
-        return "派生クラスＡのメソッド";
-    }
+//メンバ関数（メソッド）の「定義」
+string SuperClass::mSuperClass() {
+    return "基本クラスのメンバ関数";
 }
 
-//派生クラスＡ
-class SubClassB : SuperClass { //基本クラスを継承（多重継承は不可）
-    //①プロパティの定義
-    string _pSubClassB = "派生クラスＢのプロパティ"; //privateは省略
-    //②メソッド群の定義
-    public string pSubClassB {
-        get { return _pSubClassB; } //thisは省略
-    }
-    public string mSubClassB() {
-        return "派生クラスＢのメソッド";
-    }
+//=====================================================================
+// 派生クラスA（サブクラスA）
+//=====================================================================
+class SubClassA : public SuperClass { //派生クラスAの「宣言」
+    private: //省略可能
+        string _vSubClassA; //メンバ変数（プロパティ）の「宣言」
+    public:
+        SubClassA(); //コンストラクタの「宣言」
+        string vSubClassA(); //メンバ変数（プロパティ）のgetter
+        string mSubClassA(); //メンバ関数（メソッド）の「宣言」
+};
+
+//コンストラクタの「定義」
+SubClassA::SubClassA() {
+    _vSubClassA = "派生クラスAのメンバ変数";
+}
+
+//getterの「定義」
+string SubClassA::vSubClassA() {
+    return _vSubClassA; //getter
+}
+
+//メンバ関数（メソッド）の「定義」
+string SubClassA::mSubClassA() {
+    return "派生クラスAのメンバ関数";
+}
+
+//=====================================================================
+// 派生クラスB（サブクラスB）
+//=====================================================================
+class SubClassB : public SuperClass { //派生クラスBの「宣言」
+    private: //省略可能
+        string _vSubClassB; //メンバ変数（プロパティ）の「宣言」
+    public:
+        SubClassB(); //コンストラクタの「宣言」
+        string vSubClassB(); //メンバ変数（プロパティ）のgetter
+        string mSubClassB(); //メンバ関数（メソッド）の「宣言」
+};
+
+//コンストラクタの「定義」
+SubClassB::SubClassB() {
+    _vSubClassB = "派生クラスBのメンバ変数";
+}
+
+//getterの「定義」
+string SubClassB::vSubClassB() {
+    return _vSubClassB; //getter
+}
+
+//メンバ関数（メソッド）の「定義」
+string SubClassB::mSubClassB() {
+    return "派生クラスBのメンバ関数";
+}
+
+//=====================================================================
+// メイン関数
+//=====================================================================
+int main() {
+    //派生クラスA
+    SubClassA _subclassA; //インスタンスの生成
+    cout << _subclassA.vSuperClass() << "\n"; //基本クラスのメンバ変数
+    cout << _subclassA.mSuperClass() << "\n"; //基本クラスのメンバ関数
+    cout << _subclassA.vSubClassA() << "\n"; //派生クラスAのメンバ変数
+    cout << _subclassA.mSubClassA() << "\n"; //派生クラスAのメンバ関数
+    
+    //派生クラスB
+    SubClassB _subclassB; //インステンスの生成
+    cout << _subclassB.vSuperClass() << "\n"; //基本クラスのメンバ変数
+    cout << _subclassB.mSuperClass() << "\n"; //基本クラスのメンバ関数
+    cout << _subclassB.vSubClassB() << "\n"; //派生クラスBのメンバ変数
+    cout << _subclassB.mSubClassB() << "\n"; //派生クラスBのメンバ関数
+    
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月05日  
-更新日：2017年04月17日
+作成日：2016年05月13日  
+更新日：2017年04月26日
 
 
 <a name="名前空間"></a>
