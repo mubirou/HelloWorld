@@ -555,43 +555,49 @@ int main() {
 * デフォルトでは無名の名前空間（global名前空間）が使用される
 * 1つの名前空間の中に、クラス/構造体/デリゲート/列挙/インターフェース等を宣言できる他、別の名前空間を宣言することも可能
 
+### 概要
+* 名前空間（namespace）とは、関数名や変数名の重複を防ぐための機能
+* 名前空間を使うと、関数や変数の有効範囲を限定できる
+* フォルダによる階層構造でファイルを管理するかのようにクラスを管理（但し論理的）
+
 ### 書式
 ```
 namespace 名前空間名 {
     class ○○ {
     }
-    ......
+    ……
 }
 ```
 
 ### 例文
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
 
-class Test { //メインクラス（Main()メソッドを含む）←Mainは不可
-    static void Main() { //自動的に最初に実行される
-        MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
-        Console.WriteLine(_myClass); //MyLibrary.MyClass
+namespace Shinano { //名前空間の定義（前方宣言が必要）
+    //名前空間の中↓は変更なし
+    class MyClass {
+        public:
+            void MyFunction(); //メンバ関数の宣言
+    };
+    void MyClass::MyFunction() {
+        cout << "ほげほげ" << endl;
     }
 }
 
-namespace MyLibrary {
-    //インターフェース等
-    class MyClass {
-        public MyClass() { //コンストラクタ
-            //いろいろな処理
-        }
-        //いろいろなメソッド
-    }
-    //いろいろなクラス
+int main() {
+using namespace Shinano;
+MyClass myClass_; //「Shinano::」が省略可能になる
+    myClass_.MyFunction(); //"ほげほげ"
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月23日  
-更新日：2017年04月17日
+作成日：2016年05月25日  
+更新日：2017年04月26日
 
 
 <a name="継承と委譲"></a>
