@@ -781,7 +781,7 @@ class MyClass {
     public: //悪い例（通常はprivateにする）
         MyClass(); //コンストラクタの「宣言」
         string P(); //getter用メンバ関数の「宣言」
-        void P(string str_); //setter用メンバ関数の「宣言」
+        void P(string _str); //setter用メンバ関数の「宣言」
 };
 
 MyClass::MyClass() { //コンストラクタの「定義」
@@ -792,8 +792,8 @@ string MyClass::P() { //getter用メンバ関数の「定義」
     return _p;
 }
 
-void MyClass::P(string str_) { //setter用メンバ関数の「定義」
-    _p = str_;
+void MyClass::P(string _str) { //setter用メンバ関数の「定義」
+    _p = _str;
 }
 
 //============
@@ -832,10 +832,10 @@ int main() {
     }
 
     void MyClass::MyMethod() { //getter用メンバ関数の「定義」
-    cout << _p << "\n"; //…→"private変数"
-    string _p = "ローカル変数"; //これがローカル変数!!
-    cout << _p << "\n"; //…→"ローカル変数"（ポイント）
-    cout << MyClass::_p << "\n"; //…→"private変数"（ポイント）
+        cout << _p << "\n"; //=> "private変数"
+        string _p = "ローカル変数"; //これがローカル変数
+        cout << _p << "\n"; //=> "ローカル変数"（ポイント）
+        cout << MyClass::_p << "\n"; //=> "private変数"（ポイント）
     }
 
     //===============================================
