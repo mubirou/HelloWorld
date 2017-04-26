@@ -582,8 +582,8 @@ namespace Shinano { //名前空間の定義（前方宣言が必要）
 
 int main() {
 using namespace Shinano;
-MyClass myClass_; //「Shinano::」が省略可能になる
-    myClass_.MyFunction(); //"ほげほげ"
+MyClass _myClass; //「Shinano::」が省略可能になる
+    _myClass.MyFunction(); //"ほげほげ"
     return 0;
 }
 ```
@@ -686,161 +686,209 @@ int main() {
 # <b>変数とスコープ</b>
 
 ### 変数の種類
-1. public 変数 : 全クラスからアクセス可能
-1. protected 変数 : 同じクラスおよび派生クラス内でのみアクセス可能
-1. private 変数 : 同じクラス内のみアクセス可能（省略すると private 扱い）
-1. ローカル変数 : メソッド内でのみアクセス可能（メソッド内で宣言したもの）
-* その他「ブロックスコープ」等あり
+1. [public 変数](#public変数) : 全クラスからアクセス可能（非推奨）
+1. [protected 変数](#protected変数) : 同じクラスおよび派生クラス内でのみアクセス可能
+1. [private 変数](#private変数) : 同じクラス内のみアクセス可能（省略すると private 扱い）
+1. [ローカル変数](#ローカル変数) : 関数、for 文、if 文内でのみアクセス可能
+* その他に「名前空間変数」「グローバル変数」もあり
 
-###  public 変数
-* 特徴
-    * 全クラスからアクセスが可能
-    * クラス定義の直後、コンストラクタの直前に定義
-    * 通常は private 変数を利用し、アクセスには「get / set アクセサ」を使用する
+<a name="public変数"></a>
+### public 変数（非推奨）
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-* 書式
-```
-class クラス名 { //クラス定義
-public データ型 変数名; //public変数宣言（初期化も可）
-    public クラス名() {} //コンストラクタ（省略可）
-    ......
-```
-
-* 悪い例
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        MyClass _myClass = new MyClass();
-        Console.WriteLine(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
-     }
-}
+//=========
+// MyClass
+//=========
 class MyClass {
-    public string _p = "public変数"; //public宣言は冒頭でおこなう
+    public:
+        MyClass(); //コンストラクタの「宣言」
+        string _string; //ここではメンバ変数の「宣言」だけ行う
+};
+
+MyClass::MyClass() { //コンストラクタの「定義」
+    _string = "public変数"; //ここでメンバ変数の「初期化」を行う
+}
+
+//============
+// メイン関数
+//============
+int main() {
+    MyClass _myClass; //MyClassクラスのインスタンスの生成
+    cout << _myClass._string << "\n"; //"public変数"
+    return 0;
 }
 ```
 
+<a name="protected変数"></a>
 ### protected 変数
-* 特徴
-    * 同じクラスおよび派生クラス内でのみアクセス可能
-    * 基本クラス（スーパークラス）の定義の直後、コンストラクタの直前に定義
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-* 書式
-```
-class 基本クラス { //スーパークラス定義
-    protected データ型 変数名; //protected変数宣言（初期化も可）
-    public クラス名() {} //コンストラクタ（省略可）
-    ......
-```
+//==========================
+// SuperClass（基本クラス）
+//==========================
+class SuperClass {
+    public:
+        SuperClass(); //コンストラクタの「宣言」
+    protected:
+        string _p; //メンバ変数の「宣言」
+};
 
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass();
-        Console.WriteLine(_subClass); //SubClass
-        //Console.WriteLine(_subClass._pSuperClass); //error（アクセス不可）
-     }
+SuperClass::SuperClass() { //コンストラクタの「定義」
+    _p = "SuperClass変数"; //メンバ変数の「初期化」
 }
 
-class SuperClass { //基本クラス
-    protected string _pSuperClass = "SuperClass変数"; //protected変数宣言
+//===============================================
+// SubClass（派生クラス）
+//===============================================
+class SubClass : public SuperClass {
+    public:
+        SubClass(); //コンストラクタの「宣言」
+};
+
+SubClass::SubClass() { //コンストラクタの「定義」
+   cout << _p << "\n"; //派生クラスからもアクセス可（ポイント）
 }
 
-class SubClass : SuperClass { //派生クラス
-    public SubClass() {
-        Console.WriteLine(_pSuperClass); //アクセス可能
-    }
+//============
+// メイン関数
+//============
+int main() {
+    SubClass _subClass; //SubClassクラスのインスタンスの生成
+    //cout << _subClass._p << "\n"; //アクセス不可（ポイント）
+    return 0;
 }
 ```
 
+<a name="private変数"></a>
 ### private 変数
-* 特徴
-    * 同じクラス内のみアクセス可能（省略すると private 扱い）
-    * クラス定義の直後、コンストラクタの直前に定義
-    * 「他人の変数を勝手にいじってはいけない」というルールに則り、インスタンス変数は通常、private 変数とし、外部からは「get / set アクセサ」を使ってアクセスする
-
-* 書式
 ```
-class クラス名 { //クラス定義
-private データ型 変数名; //private変数宣言（初期化も可）←privateは省略可
-    public クラス名() {} //コンストラクタ（省略可）
-    ......
-```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        MyClass _myClass = new MyClass();
-        Console.WriteLine(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
-     }
-}
-
+//=========
+// MyClass
+//=========
 class MyClass {
-    private string _p = "private変数"; //private宣言は冒頭でおこなう
-    public string P {
-        get { return _p; }
-        set { _p = value; }
-    }
+    private:
+        string _p; //メンバ変数の「宣言」
+    public: //悪い例（通常はprivateにする）
+        MyClass(); //コンストラクタの「宣言」
+        string P(); //getter用メンバ関数の「宣言」
+        void P(string str_); //setter用メンバ関数の「宣言」
+};
+
+MyClass::MyClass() { //コンストラクタの「定義」
+    _p = "private変数"; //メンバ変数の「初期化」
+}
+
+string MyClass::P() { //getter用メンバ関数の「定義」
+    return _p;
+}
+
+void MyClass::P(string str_) { //setter用メンバ関数の「定義」
+    _p = str_;
+}
+
+//============
+// メイン関数
+//============
+int main() {
+    MyClass _myClass; //MyClassクラスのインスタンスの生成
+    //_myClass.P("○○"); //メンバ変数の値を変更したい場合はsetterを利用する
+    cout << _myClass.P() << "\n"; //"private変数" ←getterでアクセス
+    return 0;
 }
 ```
 
+<a name="ローカル変数"></a>
 ### ローカル変数
-* 特徴
-    * ①メソッド ② for ③ foreach 文内で宣言
-    * 宣言した ①メソッド ② for ③ foreach 文内でのみアクセス可能
 
-1. メソッド内で宣言する場合
+1. 関数内で宣言する場合
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            MyClass _myClass = new MyClass();
-            _myClass.MyMethod();
-        }
-    }
+    //test.cpp
+    #include <iostream> //coutに必要
+    using namespace std;
 
+    //===============================================
+    // MyClass
+    //===============================================
     class MyClass {
-        private string _string = "private変数";
-        public MyClass() { //コンストラクタ
-            Console.WriteLine(_string); //private変数（ここはthisは無くても良い）
-        }
-        public void MyMethod() {
-            string _string = "ローカル変数"; //ローカル変数宣言
-            Console.WriteLine(_string); //ローカル変数
-            Console.WriteLine(this._string); //private変数（ここではthisが必須）
-        }
+        private:
+            string _p; //メンバ変数の「宣言」←これはprivate変数
+        public:
+            MyClass(); //コンストラクタの「宣言」
+            void MyMethod(); //メンバ関数の「宣言」
+    };
+
+    MyClass::MyClass() { //コンストラクタの「定義」
+        _p = "private変数"; //メンバ変数の「初期化」←これはprivate変数
+    }
+
+    void MyClass::MyMethod() { //getter用メンバ関数の「定義」
+    cout << _p << "\n"; //…→"private変数"
+    string _p = "ローカル変数"; //これがローカル変数!!
+    cout << _p << "\n"; //…→"ローカル変数"（ポイント）
+    cout << MyClass::_p << "\n"; //…→"private変数"（ポイント）
+    }
+
+    //===============================================
+    // メイン関数
+    //===============================================
+    int main() {
+        MyClass _myClass; //MyClassクラスのインスタンスの生成
+        _myClass.MyMethod();
+        return 0;
     }
     ```
 
-1. for 文内で宣言する場合（foreach 文も同様）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        new MyClass();
-     }
-}
-class MyClass {
-    private int _i = 999; //private変数
-    public MyClass() { //コンストラクタ
-        for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-            Console.WriteLine("A: " + _i); //0、1、2、...、5
-            Console.WriteLine("B: " + this._i); //999（private変数）
+1. for文、if文内で宣言する場合
+    ```
+    //test.cpp
+    #include <iostream> //coutに必要
+    using namespace std;
+
+    //===============================================
+    // MyClass
+    //===============================================
+    class MyClass {
+        private:
+            int i; //private変数
+        public:
+            MyClass(); //コンストラクタの「宣言」
+    };
+
+    MyClass::MyClass() { //コンストラクタの「定義」
+        i = 999; //private変数
+
+        for (int i=0; i<=5; i++) { //iはローカル変数
+            string _string = "test"; //ローカル変数（for文内のみ有効）
+            cout << i << "\n"; //0、1、2、…、5 ←ローカル変数にアクセス
+            cout << MyClass::i << "\n"; //999 ←private変数（i）にアクセス
         }
-        //Console.WriteLine("C: " + _i); //error（ロカール変数はアクセス不可）
-        Console.WriteLine("C: " + this._i); //999（private変数はthisが必須）
+        //cout << _string << "\n"; //ERROR（for文外はアクセス不可）
+
+        if (true) {
+            string string2_ = "test2"; //ローカル変数（if文内のみ有効）
+        }
+        //cout << string2_ << "\n"; //ERROR（if文外はアクセス不可）
+
     }
-}
-```
+
+    //===============================================
+    // メイン関数
+    //===============================================
+    int main() {
+        MyClass _myClass; //MyClassクラスのインスタンスの生成
+        return 0;
+    }
+    ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
