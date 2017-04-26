@@ -10,8 +10,8 @@
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
-***
 * [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -377,9 +377,9 @@ int Rectangle::GetArea() {
 } 
 
 
-//==============
-// メインクラス
-//==============
+//============
+// メイン関数
+//============
 int main() { //注意：利用するクラスは前方宣言が必要
     //①インスタンスの生成
     Rectangle _rectangle(640,480); //引数なしも可
@@ -437,9 +437,9 @@ int main() { //注意：利用するクラスは前方宣言が必要
 #include <iostream> //coutに必要
 using namespace std;
 
-//=====================================================================
+//=============================
 // 基本クラス（スーパークラス）
-//=====================================================================
+//=============================
 class SuperClass { //基本クラスの「宣言」
     private: //省略可能
         string _vSuperClass; //メンバ変数（プロパティ）の「宣言」
@@ -464,9 +464,9 @@ string SuperClass::mSuperClass() {
     return "基本クラスのメンバ関数";
 }
 
-//=====================================================================
+//============================
 // 派生クラスA（サブクラスA）
-//=====================================================================
+//============================
 class SubClassA : public SuperClass { //派生クラスAの「宣言」
     private: //省略可能
         string _vSubClassA; //メンバ変数（プロパティ）の「宣言」
@@ -491,9 +491,9 @@ string SubClassA::mSubClassA() {
     return "派生クラスAのメンバ関数";
 }
 
-//=====================================================================
+//============================
 // 派生クラスB（サブクラスB）
-//=====================================================================
+//============================
 class SubClassB : public SuperClass { //派生クラスBの「宣言」
     private: //省略可能
         string _vSubClassB; //メンバ変数（プロパティ）の「宣言」
@@ -518,9 +518,9 @@ string SubClassB::mSubClassB() {
     return "派生クラスBのメンバ関数";
 }
 
-//=====================================================================
+//============
 // メイン関数
-//=====================================================================
+//============
 int main() {
     //派生クラスA
     SubClassA _subclassA; //インスタンスの生成
@@ -599,45 +599,80 @@ MyClass myClass_; //「Shinano::」が省略可能になる
 
 ### 概要
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は <b>:クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
+* 継承の場合は <b>class ClassB : public ClassA</b> といった使い方で、委譲の場合は <b>ClassA _classA</b> といった記述をしてオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
 ```
-//test.cs
-using System;
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-class Test {
-    static void Main() {
-        ClassB _classB = new ClassB();
-        _classB.MyMethod();
-    }
-}
-
+//===========================
+// ClassA : 委譲版と全く同じ
+//===========================
 class ClassA {
-    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
+    public:
+        void MyMethod();
+};
+
+void ClassA::MyMethod() {
+    cout << "ClassA.MyMethod()" << "\n";
 }
-class ClassB : ClassA {} //ClassAを継承
+
+//=================================
+// ClassB : ここだけ委譲版と異なる
+//=================================
+class ClassB : public ClassA {}; //ClassAを継承
+
+//===============================
+// メイン関数 : 委譲版と全く同じ
+//===============================
+int main() {
+    ClassB _classB;
+    _classB.MyMethod();
+    return 0;
+}
 ```
 
 ### 委譲版
 ```
-//test.cs
-using System;
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-class Test {
-    static void Main() {
-        ClassB _classB = new ClassB();
-        _classB.MyMethod();
-    }
-}
-
+//===========================
+// ClassA : 委譲版と全く同じ
+//===========================
 class ClassA {
-    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
+    public:
+        void MyMethod();
+};
+
+void ClassA::MyMethod() {
+    cout << "ClassA.MyMethod()" << "\n";
 }
-class ClassB { //この内容だけが継承と異なる
-    private ClassA _classA;
-    public ClassB() { _classA = new ClassA(); } //コンストラクタでオブジェクト生成
-    public void MyMethod() { _classA.MyMethod(); }
+
+//=================================
+// ClassB : ここだけ委譲版と異なる
+//=================================
+class ClassB {
+    private:
+        ClassA _classA; //ClassAのインスタンスを生成＆管理（ポイント）
+    public:
+        void MyMethod(); //メンバ関数の「宣言」
+};
+
+void ClassB::MyMethod() { //メンバ関数の「定義」
+    _classA.MyMethod(); //ClassAのメンバ関数の実行（ポイント）
+}
+
+//===============================
+// メイン関数 : 委譲版と全く同じ
+//===============================
+int main() {
+    ClassB _classB;
+    _classB.MyMethod();
+    return 0;
 }
 ```
 
