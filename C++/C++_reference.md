@@ -1076,6 +1076,9 @@ class クラス名 {
 #include <iostream>
 using namespace std;
 
+//========
+// クラス
+//========
 class MyClass {
     public:
         int Tashizan(int start_, int end_); //メンバ関数の「宣言」
@@ -1090,6 +1093,9 @@ int MyClass::Tashizan(int start_, int end_) { //メンバ関数の「定義」
     return result_;
 }
 
+//============
+// メイン関数
+//============
 int main() {
     MyClass myClass_;
     cout << myClass_.Tashizan(1,10) << "\n"; //55
@@ -1116,6 +1122,9 @@ int main() { //C++では原則としてmain()関数から処理が行われま�
 #include <iostream>
 using namespace std;
 
+//========
+// クラス
+//========
 class MyClass {
     public:
         MyClass(); //引数なしのコンストラクタの「宣言」
@@ -1130,6 +1139,9 @@ MyClass::MyClass(string str_) { //引数ありのコンストラクタの「定�
     cout << "インスタンスが生成:" << str_ << "\n";
 }
 
+//============
+// メイン関数
+//============
 int main() {
     MyClass myClass1_; //引数なしでインスタンスを生成 ←()は付けない（注意）
     MyClass myClass2_("引数あり"); //引数ありでインスタンスを生成
@@ -1143,6 +1155,9 @@ int main() {
 #include <iostream>
 using namespace std;
 
+//========
+// クラス
+//========
 class Math {
     public:
        static int Pow(int arg1, int arg2); //静的メンバ関数の「宣言」
@@ -1157,6 +1172,9 @@ int Math::Pow(int arg1, int arg2) { //ここに"static"の記述はいらない
     return result_;
 }
 
+//============
+// メイン関数
+//============
 int main() {
     cout << Math::Pow(2,0) << "\n"; //1（2の0乗）
     cout << Math::Pow(2,1) << "\n"; //2（2の1乗）
@@ -1171,6 +1189,9 @@ int main() {
 #include <iostream>
 using namespace std;
 
+//========
+// クラス
+//========
 class MyClass {
     private:
         int point_; 
@@ -1191,6 +1212,9 @@ void MyClass::AddPoint(int arg = 1) { //デフォルト値が1の場合
     cout << point_ << "\n";
 }
 
+//============
+// メイン関数
+//============
 int main() {
     MyClass myClass_; //インスタンスを生成
     myClass_.AddPoint(); //1（引数を省略してメンバ関数を実行）
@@ -1205,6 +1229,9 @@ int main() {
 #include <iostream>
 using namespace std;
 
+//========
+// クラス
+//========
 class MyClass {
     public: 
         void Sum(int arg[], int listLength_);
@@ -1218,6 +1245,9 @@ void MyClass::Sum(int arg[], int listLength_) {
     cout << result_ << "\n";
 }
 
+//============
+// メイン関数
+//============
 int main() { MyClass _myClass;
     //1,1を足す
     int tmp1[] = {1,1}; 
