@@ -904,9 +904,9 @@ int main() {
 # <b>アクセサ （getter / setter）</b>
 
 ### 概要
-* OOP（オブジェクト指向プログラミング）の「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は通常 private 変数とし、外部からは関数を使ってアクセスする。
-* C++ には、C# のような get、set アクセサといったものが用意されていない。
-* GetXXX()、SetXXX(型,引数) といった記述もできるが、C++ の場合は「引数が異なる同名の関数を定義することが可能」なため以下のような記述をする。
+* OOP（オブジェクト指向プログラミング）の「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は通常 private 変数とし、外部からは関数を使ってアクセスする
+* C++ には、C# のような get、set アクセサといったものが用意されていない
+* GetXXX()、SetXXX(型,引数) といった記述もできるが、C++ の場合は「引数が異なる同名の関数を定義することが可能」なため以下のような記述をする
 
 ### 例文
 ```
@@ -956,48 +956,48 @@ int main() {
 # <b>演算子</b>
 
 ```
-//test.cs
-using System;
+//test.cpp
+#include <iostream> //標準ライブラリ（coutに必要）
+using namespace std;
 
-class Test {
-    static void Main() {
-        Console.WriteLine(3 + 2); //5 (可算) 
-        Console.WriteLine(5 - 8); //-3 (減算)
-        Console.WriteLine(3 * 4); //12 (乗算)
-        Console.WriteLine(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-        Console.WriteLine(63 % 60); //3 (余剰)
-        
-        // 除算（注意が必要です）
-        Console.WriteLine(8 / 3); //2(除算) ←整数同士の場合、余りは切り捨てられる
-        Console.WriteLine(8 / 3.0); //2.66666666666667（小数点第14位までの値＝double型）
+int main() {
+    cout << 3 + 2 << "\n"; //5(可算)
+    cout << 5 - 8 << "\n"; //-3(減算)
+    cout << 3 * 4 << "\n"; //12(乗算)
+    cout << 7 / 3 << "\n"; //2(除算) ←整数の場合、余りは切り捨てられる(要注意)
+    cout << 7.0 / 3 << "\n"; //2.33333(除算:5 位迄)
+    cout << 1 + 2 * 3 - 4 / 2 << "\n"; //5(複雑な計算)
+    cout << 63 % 60 << "\n"; //3(余剰)
+    
+    //除算（注意が必要）
+    cout << 8 / 3 << "\n"; //2(除算) ←整数同士の場合、余りは切り捨てられる
+    cout << 8 / 3.0 << "\n"; //2.66667（小数点第5位までの値）
+    
+    float _float = (float)8.0 / 3;
+    cout << _float << "\n"; //2.66667 ←(double)XXXの場合も同じ（要検証）
+    
+    // 後ろに付けるインクリメント（デクリメント）
+    // _hoge++（_hoge--）が返す値は、加算（減算）する前の_hogeの値です
+    int _hoge = 0;
+    int _piyo = _hoge++; //デクリメントの場合_hoge--
+    cout << _hoge << "\n"; //1（デクリメントの場合-1）
+    cout << _piyo << "\n"; //0（デクリメントの場合0）
 
-        float _float = (float)8.0 / 3;
-        Console.WriteLine(_float); //2.666667（小数点第6位までの値）
-
-        decimal _decimal = (decimal)8.0 / 3;
-        Console.WriteLine(_decimal); //2.6666666666666666666666666667（第28位まで）
-
-        // 後ろに付けるインクリメント（デクリメント）
-        // _hoge++（_hoge--）が返す値は、加算（減算）する前の_hogeの値です
-        int _hoge = 0;
-        int _piyo = _hoge++; //デクリメントの場合_hoge--
-        Console.WriteLine(_hoge); //1（デクリメントの場合-1）
-        Console.WriteLine(_piyo); //0（デクリメントの場合0）
-
-        // 前に付けるインクリメント（デクリメント）
-        // ++_hoge（--_hoge）が返す値は、加算（減算）後の_hogeの値です
-        _hoge = _piyo = 0;
-        _piyo = ++_hoge; //デクリメントの場合--_hoge
-        Console.WriteLine(_hoge); //1（デクリメントの場合-1）
-        Console.WriteLine(_piyo); //1（デクリメントの場合-1） ←注目
-    }
+    // 前に付けるインクリメント（デクリメント）
+    // ++_hoge（--_hoge）が返す値は、加算（減算）後の_hogeの値です
+    _hoge = _piyo = 0;
+    _piyo = ++_hoge; //デクリメントの場合--_hoge
+    cout << _hoge << "\n"; //1（デクリメントの場合-1）
+    cout << _piyo << "\n"; //1（デクリメントの場合-1） ←注目
+    
+    return 0; //関数 main()の終了部分
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月06日  
-更新日：2017年04月17日
+作成日：2016年05月16日  
+更新日：2017年04月26日
 
 
 <a name="定数"></a>
