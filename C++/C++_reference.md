@@ -694,6 +694,7 @@ int main() {
 
 <a name="public変数"></a>
 ### public 変数（非推奨）
+
 ```
 //test.cpp
 #include <iostream> //coutに必要
@@ -723,6 +724,7 @@ int main() {
 ```
 
 <a name="protected変数"></a>
+
 ### protected 変数
 ```
 //test.cpp
@@ -766,6 +768,7 @@ int main() {
 ```
 
 <a name="private変数"></a>
+
 ### private 変数
 ```
 //test.cpp
@@ -808,6 +811,7 @@ int main() {
 ```
 
 <a name="ローカル変数"></a>
+
 ### ローカル変数
 
 1. 関数内で宣言する場合
@@ -899,56 +903,46 @@ int main() {
 <a name="アクセサ"></a>
 # <b>アクセサ （getter / setter）</b>
 
-### 読み書き可能なプロパティ
+### 概要
+* OOP（オブジェクト指向プログラミング）の「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は通常 private 変数とし、外部からは関数を使ってアクセスする。
+* C++ には、C# のような get、set アクセサといったものが用意されていない。
+* GetXXX()、SetXXX(型,引数) といった記述もできるが、C++ の場合は「引数が異なる同名の関数を定義することが可能」なため以下のような記述をする。
+
+### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Nishimura _nishimura = new Nishimura();
-        Console.WriteLine(_nishimura.Age); //49
-        _nishimura.Age = 50; //値を変更可能
-        Console.WriteLine(_nishimura.Age); //50
-    }
-}
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
 class Nishimura {
-    int _age = 49; //privateは省略
-    public int Age {
-        get { return _age; } //thisは省略
-        set { _age = value; } //thisは省略 ←valueは予め定義された変数（決め打ち）
-    }
+    private: int _age; //private変数（外部から勝手にいじらせない為）
+    public:
+        Nishimura(int _age); //コンストラクタの「宣言」
+        int Age(); //メンバ関数（getter）の「宣言」
+        void Age(int _age); //メンバ関数（setter）の「宣言」
+};
+Nishimura::Nishimura(int _age) { //コンストラクタの「定義」
+    Nishimura::_age = _age;
 }
-```
-
-### 読み取り専用のプロパティ
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Nishimura _nishimura = new Nishimura();
-        Console.WriteLine(_nishimura.Age); //49
-        //_nishimura.Age = 50; //error（値の変更は不可）
-        _nishimura.NextYear();
-        Console.WriteLine(_nishimura.Age); //50
-    }
+int Nishimura::Age() { //メンバ関数（getter）の定義
+    return _age;
+}
+void Nishimura::Age(int _age) { //メンバ関数（setter）の定義
+    Nishimura::_age = _age;
 }
 
-class Nishimura {
-    int _age = 49; //privateは省略
-    public int Age {
-        get { return _age; } //thisは省略
-        private set {} //外部からアクセス不可（読み取り専用にする）
-    }
-    public void NextYear() { _age += 1; } //クラスの内部からに限り変更可能
+int main() { // メイン関数
+    Nishimura _nishimura(49); //Nishimuraクラスのインスタンスの生成
+    cout << _nishimura.Age() << "\n"; //49 ←getterを使って値を取得
+    _nishimura.Age(50); //setterを使って値を変更
+    cout << _nishimura.Age() << "\n"; //50 ←getterを使って値を取得
+    return 0;
 }
-```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月17日
+作成日：2016年05月16日  
+更新日：2017年04月26日
 
 
 <a name="演算子"></a>
