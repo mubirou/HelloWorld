@@ -1193,45 +1193,41 @@ void MyClass::AddPoint(int arg = 1) { //デフォルト値が1の場合
 
 int main() {
     MyClass myClass_; //インスタンスを生成
-    myClass_.AddPoint(); //引数を省略してメンバ関数を実行
-    myClass_.AddPoint(10); //引数付でメンバ関数を実行
+    myClass_.AddPoint(); //1（引数を省略してメンバ関数を実行）
+    myClass_.AddPoint(10); //11（引数付でメンバ関数を実行）
     return 0;
 }
 ```
 
 ### 可変長引数
 ```
-```
 //test.cpp
-#include <iostream> //coutに必要
+#include <iostream>
 using namespace std;
 
 class MyClass {
-    public:
+    public: 
         void Sum(int arg[], int listLength_);
 };
 
-void MyClass::Sum(int arg[], int listLength_) {
-    int result_ = 0;
-    //ここで"sizeof(arg)"で配列の要素数がわかれば簡単なのですが…
+void MyClass::Sum(int arg[], int listLength_) { 
+    int result_ = 0; 
     for (int i=0; i<listLength_; i++) {
-        result_ += arg[i];
-    }
+         result_ += arg[i]; 
+    } 
     cout << result_ << "\n";
 }
 
-int main() {
-    MyClass _myClass;
-    
+int main() { MyClass _myClass;
     //1,1を足す
     int tmp1[] = {1,1}; 
     int listLength_ = sizeof(tmp1) / sizeof(tmp1[0]); //配列の要素数を調べる
-    _myClass.Sum(tmp1, listLength_); //→2
-    
+    _myClass.Sum(tmp1, listLength_); //=> 2
+
     //1,2,3...9,10を足す
     int tmp2[] = {1,2,3,4,5,6,7,8,9,10};
     listLength_ = sizeof(tmp2) / sizeof(tmp2[0]); //配列の要素数を調べる
-    _myClass.Sum(tmp2, listLength_); //→55   
+    _myClass.Sum(tmp2, listLength_); //=> 55
 }
 ```
 
