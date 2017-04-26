@@ -914,6 +914,9 @@ int main() {
 #include <iostream> //coutに必要
 using namespace std;
 
+//========
+// クラス
+//========
 class Nishimura {
     private: int _age; //private変数（外部から勝手にいじらせない為）
     public:
@@ -931,7 +934,10 @@ void Nishimura::Age(int _age) { //メンバ関数（setter）の定義
     Nishimura::_age = _age;
 }
 
-int main() { // メイン関数
+//============
+// メイン関数
+//============
+int main() {
     Nishimura _nishimura(49); //Nishimuraクラスのインスタンスの生成
     cout << _nishimura.Age() << "\n"; //49 ←getterを使って値を取得
     _nishimura.Age(50); //setterを使って値を変更
