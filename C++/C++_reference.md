@@ -1313,37 +1313,51 @@ int main() { // メイン関数
 # <b>静的メンバ（static）</b>
 * 静的メンバはクラスをインスタンス化せずにアクセスが可能
 
+### 構文（宣言部分）
 ```
-//test.cs
-using System;
+class クラス名 {
+    public:
+        static データ型 静的メンバ変数名;
+        static 戻り値の型 静的メンバ関数名(引数);
+};
+```
 
-class Test {
-    static void Main() { //インスタンス化せずにOSから自動的に呼ぶ出すため
-        Console.WriteLine(Math.PI); //3.14159265358979 ←静的変数の呼び出し
-        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
+### 例文
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+class MyClass {
+    public:
+        static double pi; //静的メンバ変数の「宣言」
+        static int Pow(int arg1, int arg2); //静的メンバ関数の「宣言」
+};
+
+//静的メンバ変数の「定義」
+double MyClass::pi = 3.14159; 
+
+//静的メンバ関数の「定義」※MyClass内で定義することも可能
+int MyClass::Pow(int arg1, int arg2) {
+    if (arg2 == 0) { return 1; } //0乗対策
+    long result_ = arg1;
+    for (int i=1; i<arg2; i++) {
+        result_ = result_ * arg1;
     }
+    return result_;
 }
 
-class Math { //独自クラス
-    //静的変数
-    public static double PI = 3.14159265358979;
-
-    //静的メソッド
-    public static long Pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
-        long _result = arg1;
-        for (int i=1; i<arg2; i++) {
-            _result = _result * arg1;
-        }
-        return _result;
-    }
+int main() { // メイン関数
+    cout << MyClass::pi << endl; //3.14159
+    cout << MyClass::Pow(2,8) << endl; //256（2の8乗）
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月21日  
-更新日：2017年04月18日
+作成日：2016年05月18日  
+更新日：2017年04月27日
 
 
 <a name="if文"></a>
