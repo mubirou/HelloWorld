@@ -15,8 +15,8 @@
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-***
 * [関数](#関数)
+***
 * [匿名関数](#匿名関数)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
@@ -1053,197 +1053,192 @@ int main() {
 
 ### 基本構文
 ```
-アクセス修飾子 [static] 戻り値のデータ型 メソッド名([データ型 引数, ...]) {
+class クラス名 {
+    アクセス指定子:
+        //メンバ関数の「宣言」
+        [static] 戻り値のデータ型 メソッド名([データ型 引数, ...]); 
+}
+戻り値のデータ型 クラス名::メソッド名([データ型 引数, …]) { //メンバ関数の「定義」
     [return 戻り値;]
 }
 ```
 
-### アクセス修飾子
+### アクセス指定子
 1. public : 全クラスからアクセス可能
 1. protected : 同じクラスおよび派生クラス内でのみアクセス可能
-1. private : 同じクラス内のみアクセス可能（省略すると private 扱い）
-1. internal : アセンブリ内でのみアクセス可能
-* static : 静的メソッド＝クラスメソッド
+1. private : 同じクラス内のみアクセス可能（省略するとprivate扱い）
+* 他にも internal （アセンブリ内でのみアクセス可能）などあり
+* static（静的メンバ関数）: クラスメソッドクラスのインスタンスを作らなくても <b>クラス名::静的メンバ関数()</b> でメソッドが使用可能（アクセス指定子は通常 public にする）
 
 ### 基本例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        Console.WriteLine(_myClass.Tashizan(1,10)); //55
-        Console.WriteLine(_myClass.Tashizan(1,100)); //5050
-    }
-}
+//test.cpp
+#include <iostream>
+using namespace std;
 
 class MyClass {
-    //○〜○までの値を足した合計を返す
-    public int Tashizan(int _start, int _end) {
-        int _result = 0; //ローカル変数
-        for (int _i = _start; _i <= _end; _i++) {
-            _result += _i;
-        }
-        return _result;
+    public:
+        int Tashizan(int start_, int end_); //メンバ関数の「宣言」
+};
+
+//○〜○までの値を足した合計を返す
+int MyClass::Tashizan(int start_, int end_) { //メンバ関数の「定義」
+    int result_ = 0; //ローカル変数
+    for (int i = start_; i <= end_; i++) {
+        result_ += i;
     }
+    return result_;
+}
+
+int main() {
+    MyClass myClass_;
+    cout << myClass_.Tashizan(1,10) << "\n"; //55
+    cout << myClass_.Tashizan(1,100) << "\n"; //5050
+    return 0;
 }
 ```
 
-### Main()メソッド
-* 特徴
-    * 記述できるクラスは１つだけ（複数存在するとエラー）
-    * 自動的に最初に実行
-    * static キーワードが必須（オブジェクトの生成をしなくても Main() を呼び出す必要がある為）
-    * 値を返したり、引数を渡すことも可能
-
-* 例文
+### Main() 関数
 ```
-//test.cs
-using System;
-class Test { //メインクラス（Mainは不可）
-    static void Main() { //自動的に最初に実行される
-        Method(); //"Test.Method()"
-    }
-    static void Method() { //staticなメソッドならMain()から呼び出せる
-        Console.WriteLine("Test.Method()");
-    }
+//test.cpp
+#include <iostream>
+using namespace std;
+int main() { //C++では原則としてmain()関数から処理が行われます
+    cout << "自動的に実行" << "\n";
+    return 0;
 }
 ```
 
 ### コンストラクタ
-* 書式】
+* 引数なしと引数ありの場合を同時に定義することが可能
 ```
-class クラス名 {
-    public クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
-        ......
-    }
-    ......
-```
-
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
-        Console.WriteLine(_point.X); //100
-        Console.WriteLine(_point.Y); //150
-     }
-}
-
-class Point {
-    private int _x, _y;
-    public Point(int _x=0, int _y=0) { //コンストラクタ
-        this._x = _x;
-        this._y = _y;
-    }
-    public int X {
-        get { return _x; }
-        set { _x = value; }
-    }
-    public int Y {
-        get { return _y; }
-        set { _y = value; }
-    }
-}
-```
-
-### 静的メソッド（クラスメソッド）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        Console.WriteLine(Math.Pow(2,0)); //1（2の0乗）
-        Console.WriteLine(Math.Pow(2,1)); //2（2の1乗）
-        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗）
-    }
-}
-
-class Math {
-    public static long Pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
-        long _result = arg1;
-        for (int i=1; i<arg2; i++) {
-            _result = _result * arg1;
-        }
-        return _result;
-    }
-}
-```
-
-### デフォルト値付き引数
-* オプション引数（引数は省略可）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.AddPoint(); //→1
-        _myClass.AddPoint(10); //→11
-    }
-}
+//test.cpp
+#include <iostream>
+using namespace std;
 
 class MyClass {
-    private int _point = 0;
-    public void AddPoint(int arg = 1) { //初期値を1とした場合
-        _point += arg;
-        Console.WriteLine(_point);
+    public:
+        MyClass(); //引数なしのコンストラクタの「宣言」
+        MyClass(string str_); //引数ありのコンストラクタの「宣言」
+};
+
+MyClass::MyClass() { //引数なしのコンストラクタの「定義」
+    cout << "インスタンスが生成" << "\n";
+}
+
+MyClass::MyClass(string str_) { //引数ありのコンストラクタの「定義」
+    cout << "インスタンスが生成:" << str_ << "\n";
+}
+
+int main() {
+    MyClass myClass1_; //引数なしでインスタンスを生成 ←()は付けない（注意）
+    MyClass myClass2_("引数あり"); //引数ありでインスタンスを生成
+    return 0;
+}
+```
+
+### 静的メンバ関数（クラスメソッド）
+```
+//test.cpp
+#include <iostream>
+using namespace std;
+
+class Math {
+    public:
+       static int Pow(int arg1, int arg2); //静的メンバ関数の「宣言」
+};
+
+int Math::Pow(int arg1, int arg2) { //ここに"static"の記述はいらない
+    if (arg2 == 0) { return 1; } //0乗対策
+    int result_ = arg1;
+    for (int i=1; i<arg2; i++) {
+        result_ = result_ * arg1;
     }
+    return result_;
+}
+
+int main() {
+    cout << Math::Pow(2,0) << "\n"; //1（2の0乗）
+    cout << Math::Pow(2,1) << "\n"; //2（2の1乗）
+    cout << Math::Pow(2,8) << "\n"; //256（2の8乗）
+    return 0;
+}
+```
+
+### デフォルト値付き引数（引数は省略可能オプション引数）
+```
+//test.cpp
+#include <iostream>
+using namespace std;
+
+class MyClass {
+    private:
+        int point_; 
+    public:
+        MyClass(); //コンストラクタの「宣言」
+        //↓デフォルト引数付のメンバ関数の「宣言」
+        void AddPoint(int arg); //ここにデフォルト値は記述しない
+};
+
+MyClass::MyClass() { //コンストラクタの「定義」
+    point_ = 0;
+}
+
+//デフォルト引数付のメンバ関数の「定義」
+//引数が複数ある場合、デフォルト値がある引数を右側に記述
+void MyClass::AddPoint(int arg = 1) { //デフォルト値が1の場合
+    point_ += arg;
+    cout << point_ << "\n";
+}
+
+int main() {
+    MyClass myClass_; //インスタンスを生成
+    myClass_.AddPoint(); //引数を省略してメンバ関数を実行
+    myClass_.AddPoint(10); //引数付でメンバ関数を実行
+    return 0;
 }
 ```
 
 ### 可変長引数
-* 引数を固定の数ではなく任意の数にすることが可能
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Sum(1,1); //2（1+1）
-        _myClass.Sum(1,2,3,4,5); //15（1+2+3+4+5）
-    }
-}
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
 class MyClass {
-    public void Sum(params int[] args) {
-        int _result = 0; //ローカル変数
-        foreach (int tmp in args) {
-            _result += tmp;
-        }
-        Console.WriteLine(_result);
-    }
-}
-```
+    public:
+        void Sum(int arg[], int listLength_);
+};
 
-### 名前付き引数
-* 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Rect(endX:100, endY:100); //面積:10000m2
-        _myClass.Rect(10,10,100,100); //面積:8100m2
+void MyClass::Sum(int arg[], int listLength_) {
+    int result_ = 0;
+    //ここで"sizeof(arg)"で配列の要素数がわかれば簡単なのですが…
+    for (int i=0; i<listLength_; i++) {
+        result_ += arg[i];
     }
+    cout << result_ << "\n";
 }
 
-class MyClass {
-    public void Rect(int startX=0, int startY=0, int endX=0, int endY=0) {
-        int _result = (endX - startX) * (endY - startY);
-        Console.WriteLine("面積:" + _result + "m2");
-    }
+int main() {
+    MyClass _myClass;
+    
+    //1,1を足す
+    int tmp1[] = {1,1}; 
+    int listLength_ = sizeof(tmp1) / sizeof(tmp1[0]); //配列の要素数を調べる
+    _myClass.Sum(tmp1, listLength_); //→2
+    
+    //1,2,3...9,10を足す
+    int tmp2[] = {1,2,3,4,5,6,7,8,9,10};
+    listLength_ = sizeof(tmp2) / sizeof(tmp2[0]); //配列の要素数を調べる
+    _myClass.Sum(tmp2, listLength_); //→55   
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年11月25日  
-更新日：2017年04月18日
+作成日：2016年05月17日  
+更新日：2017年04月26日
 
 
 <a name="匿名関数"></a>
