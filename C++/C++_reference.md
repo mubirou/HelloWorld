@@ -16,9 +16,8 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [関数](#関数)
+* [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 ***
-* [匿名関数](#匿名関数)
-* [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -1267,106 +1266,47 @@ int main() { MyClass _myClass;
 更新日：2017年04月26日
 
 
-<a name="匿名関数"></a>
-# <b>匿名関数</b>
+<a name="匿名関数（ラムダ式）"></a>
+# <b>匿名関数（ラムダ式）</b>
 
+### 基本構文
 ```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Move(1); //→
-        _myClass.change();
-        _myClass.Move(3); //←←←
-    }
+function<戻り値の型(引数の型)> 変数名 = [](引数の型 引数) [-> 戻り値の型] {
+    ......
 }
+```
+
+### 例文
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <functional> //functionに必要
+using namespace std;
+
 class MyClass {
-    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
-    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
-    private bool _right = true;
-    public MyClass() { //コンストラクタ
-        //匿名メソッドの定義
-        Move = delegate(int arg) {
-            string _tmp = "";
-            for (int i=0; i<arg; i++) _tmp += "→";
-            Console.WriteLine(_tmp);
-        };
-    }
-    public void change() {
-        _right = ! _right;
-        if (_right) {
-            Move = delegate(int arg) {
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "→";
-                Console.WriteLine(_tmp);
-            }; //...匿名メソッドの再定義（メソッドの内容を変更）
-        } else {
-            Move = delegate(int arg) { //匿名メソッドの再定義（メソッドの内容を変更）
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "←";
-                Console.WriteLine(_tmp);
-            };
-        }
-    }
+    public:
+        MyClass(); //コンストラクタの「宣言」
+        function<int(int, int)> _kakezan; //匿名関数の「宣言」
+};
+
+MyClass::MyClass() { //コンストラクタの「定義」
+    //匿名関数の「定義」
+    _kakezan = [](int arg1, int arg2) -> int { //ラムダ式（-> intは省略可）
+        return arg1 * arg2; 
+    };
+}
+
+int main() { // メイン関数
+    MyClass _myClass;
+    cout << _myClass._kakezan(9,9) << endl; //81
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
-
-
-<a name="ラムダ式"></a>
-# <b>ラムダ式</b>
-* [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
-
-```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Move(1); //→
-        _myClass.change();
-        _myClass.Move(3); //←←←
-    }
-}
-class MyClass {
-    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
-    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
-    private bool _right = true;
-    public MyClass() { //コンストラクタ
-        Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
-            string _tmp = "";
-            for (int i=0; i<arg; i++) _tmp += "→";
-            Console.WriteLine(_tmp);
-        }; //メソッドの内容を変更
-    }
-    public void change() {
-        _right = ! _right;
-        if (_right) {
-            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "→";
-                Console.WriteLine(_tmp);
-            }; //メソッドの内容を変更
-        } else {
-            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "←";
-                Console.WriteLine(_tmp);
-            }; //メソッドの内容を変更
-        }
-    }
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2016年05月18日  
+更新日：2017年04月27日
 
 
 <a name="静的メンバ（static）"></a>
