@@ -938,6 +938,7 @@ int main() { // メイン関数
     cout << _nishimura.Age() << "\n"; //50 ←getterを使って値を取得
     return 0;
 }
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
