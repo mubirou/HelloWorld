@@ -848,7 +848,7 @@ int main() {
     }
     ```
 
-1. for文、if文内で宣言する場合
+1. for 文、if 文内で宣言する場合
     ```
     //test.cpp
     #include <iostream> //coutに必要
