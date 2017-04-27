@@ -18,8 +18,8 @@
 * [関数](#関数)
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [静的メンバ（static）](#静的メンバ（static）)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -1364,20 +1364,19 @@ int main() { // メイン関数
 
 ### 基本例文
 ```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
-        int _age = 49;
-        if (_age <= 20) {
-            Console.WriteLine("20歳以下");
-        } else if (_age <= 40) {
-            Console.WriteLine("21〜40歳");
-        } else if (_age <= 60) {
-            Console.WriteLine("41〜60歳"); //これが出力される
-        } else {
-            Console.WriteLine("61歳以上");
-        }
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+int main() {
+    int _age = 48;
+    if (_age <= 20) {
+        cout << "20歳以下" << endl;
+    } else if (_age <= 40) {
+        cout << "21〜40歳" << endl;
+    } else if (_age <= 60) {
+        cout << "41〜60歳" << endl; //これが出力される
+    } else {
+        cout << "61歳以上" << endl;
     }
 }
 ```
@@ -1392,7 +1391,7 @@ class Test { //メインクラス
     }
     ```
 
-1. ifのネストを使う方法
+1. if のネストを使う方法
     ```
     if (条件式①) {
         if (条件②) {
@@ -1415,7 +1414,7 @@ class Test { //メインクラス
     }
     ```
 
-2. ifのネストを使う方法
+1. ifのネストを使う方法
     ```
     if (条件式①) {
         処理A ←条件式①がtrueの場合に実行
@@ -1429,40 +1428,38 @@ class Test { //メインクラス
 ### 排他的論理和（XOR）
 1. ^ 演算子を使う方法
     ```
-    //test.cs
-    using System;
-    class Test { //メインクラス
-        static void Main() { //自動的最初に実行され
-            bool _a = true, _b = false;
-            if (_a ^ _b) {
-                Console.WriteLine("どちらか一方だけtrueです");
-            } else {
-                Console.WriteLine("両方共にtrueかfalseです");
-            }
+    //test.cpp
+    #include <iostream> //coutに必要
+    using namespace std;
+    int main() {
+        bool a_ = true, b_ = false;
+        if (a_ ^ b_) {
+            cout << "どちらか一方だけtrueです" << endl; //これが出力される
+        } else {
+            cout << "両方共にtrue（false）です" << endl;
         }
     }
     ```
 
-1. ^ 演算子を使わない方法
+2. ^ 演算子を使わない方法
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            bool _a = true, _b = false;
-            if ((_a || _b) && !(_a && _b)) {
-                Console.WriteLine("どちらか一方だけtrueです");
-            } else {
-                Console.WriteLine("両方共にtrueかfalseです");
-            }
+    //test.cpp
+    #include <iostream> //coutに必要
+    using namespace std;
+    int main() {
+        bool a_ = true, b_ = false;
+        if ((a_ || b_) && !(a_ && b_)) {
+            cout << "どちらか一方だけtrueです" << endl; //これが出力される
+        } else {
+            cout << "両方共にtrue（false）です" << endl;
         }
     }
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2016年05月18日  
+更新日：2017年04月27日
 
 
 <a name="三項演算子"></a>
