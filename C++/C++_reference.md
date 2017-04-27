@@ -33,9 +33,9 @@
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス](#抽象クラス)
-***
 * [基本クラスのコンストラクタを呼ぶ](#基本クラスのコンストラクタを呼ぶ)
 * [オーバーライド](#オーバーライド)
+***
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
@@ -1097,9 +1097,9 @@ int MyClass::Tashizan(int start_, int end_) { //メンバ関数の「定義」
 // メイン関数
 //============
 int main() {
-    MyClass myClass_;
-    cout << myClass_.Tashizan(1,10) << "\n"; //55
-    cout << myClass_.Tashizan(1,100) << "\n"; //5050
+    MyClass _myClass;
+    cout << _myClass.Tashizan(1,10) << "\n"; //55
+    cout << _myClass.Tashizan(1,100) << "\n"; //5050
     return 0;
 }
 ```
@@ -1216,9 +1216,9 @@ void MyClass::AddPoint(int arg = 1) { //デフォルト値が1の場合
 // メイン関数
 //============
 int main() {
-    MyClass myClass_; //インスタンスを生成
-    myClass_.AddPoint(); //1（引数を省略してメンバ関数を実行）
-    myClass_.AddPoint(10); //11（引数付でメンバ関数を実行）
+    MyClass _myClass; //インスタンスを生成
+    _myClass.AddPoint(); //1（引数を省略してメンバ関数を実行）
+    _myClass.AddPoint(10); //11（引数付でメンバ関数を実行）
     return 0;
 }
 ```
@@ -2933,96 +2933,105 @@ int main() {
 # <b>オーバーライド</b>
 
 ### 概要
-* 基本クラス（または抽象クラス）で定義したメソッドを、派生クラスで再定義することをオーバーライドと呼ぶ
-* オーバーライドできるメソッドは、基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
-* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[基本クラスのコンストラクタを呼ぶ](#基本クラスのコンストラクタを呼ぶ)」参照）
+基本クラス（または抽象クラス、インターフェースクラス）で定義した関数を、派生クラスで再定義することをオーバーライドと呼ぶ
 
-### 「仮想メソッド」のオーバーライド
-* 書式
+### 普通のメンバ関数のオーバーライド
 ```
-class 基本クラス名 {
-    アクセス修飾子 virtual 戻り値の型 メソッド名([型 引数]) {
-        ……
-    }
-    ……
-}
-class 派生クラス名 : 基本クラス { //派生クラス（基本クラスを継承）
-    アクセス修飾子 override 戻り値の型 メソッド名([型 引数]) { 
-        base.メソッド名(引数); //基本クラスのメソッドを呼び出す（オプション）
-        …… 
-    }
-    ……
-}
-```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-* 例文
-```
-//test.cs
-using System;
-
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass();
-        _subClass.Method();
-    }
+//============
+// 基本クラス
+//============
+class SuperClass {
+    public:
+        void MyFunction(); //メンバ関数の宣言
+};
+void SuperClass::MyFunction() { //メンバ関数の定義
+    cout << "基本クラスの関数" << endl;
 }
 
-class SuperClass { //基本クラス
-    public virtual void Method() { //オーバーライドを許可
-        Console.WriteLine("SuperClass.Method");
-    }
+//============
+// 派生クラス
+//============
+class SubClass : public SuperClass {
+    public:
+        void MyFunction(); //自動的にオーバーライドされる
+};
+void SubClass::MyFunction() { //自動的にオーバーライドされる
+    cout << "派生クラスの関数" << endl;
 }
 
-class SubClass : SuperClass { //派生クラス（基本クラスを継承）
-    public override void Method() { //基本クラスのメソッドのオーバーライド
-        Console.WriteLine("SubClass.Method");
-        base.Method(); //"SuperClass.Method"←基本クラスのメソッド実行（オプション）
-    } 
+//============
+// メイン関数
+//============
+int main() {
+    SubClass subClass_;
+    subClass_.MyFunction();
+    return 0;
 }
 ```
 
-### 「抽象メソッド」のオーバーライド
-* 書式
+###「仮想関数」のオーバーライド
 ```
-abstract class 抽象クラス名 { //抽象クラスの定義
-    アクセス修飾子 abstract 型 抽象メソッド名([型 引数]); //抽象メソッド宣言
-    ……
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+class AbstractClass { //基本クラス（抽象クラス）
+    public:
+        virtual void MyFunction(); //「仮想関数」の宣言
+};
+void AbstractClass::MyFunction() { //「仮想関数」の定義
+    cout << "抽象クラスの関数" << endl;
 }
-class 派生クラス : 抽象クラス名 { //抽象クラスを継承
-    アクセス修飾子 override 型 抽象メソッド名([型 引数]) { //オーバーライド
-        //実際の処理
-    }
-    ……
+
+class MyClass : public AbstractClass { //派生クラス
+    public:
+        void MyFunction(); //これが無い場合は抽象クラスの関数が実行される
+};
+void MyClass::MyFunction() { //これが無い場合は抽象クラスの関数が実行される
+    cout << "派生クラスの関数" << endl;
+}
+
+int main() { //メイン関数
+    MyClass _myClass;
+    _myClass.MyFunction(); //"MyClassの関数"
+    return 0;
 }
 ```
 
-* 例文
+### 「純粋仮想関数」のオーバーライド
 ```
-//test.cs
-using System;
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
 
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass();
-        _subClass.Method();
-    }
+class AbstractClass { //基本クラス（抽象クラス）
+    public:
+        virtual void MyFunction() = 0; //「純粋仮想関数」（定義はしない）
+};
+
+class MyClass : public AbstractClass { //派生クラス
+    public:
+        void MyFunction(); //必ず定義（オーバーライド）する必要がある
+};
+void MyClass::MyFunction() { //必ず定義（オーバーライド）する必要がある
+    cout << "派生クラスの関数" << endl; //実際の処理
 }
 
-abstract class AbstractClass { //抽象クラス
-    public abstract void Method(); //抽象メソッドの宣言
-}
-
-class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
-    public override void Method() { //オーバーライドして実際の処理を記述
-        Console.WriteLine("AbstractClass.Method");
-    } 
+int main() { //メイン関数
+    MyClass _myClass;
+    _myClass.MyFunction(); //"MyClassの関数"
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2016年05月26日  
+更新日：2017年04月27日
 
 
 <a name="カスタムイベント"></a>
