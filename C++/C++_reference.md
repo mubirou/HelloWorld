@@ -1672,117 +1672,88 @@ int main() {
 
 <a name="foreach文"></a>
 # <b>foreach 文</b>
+* 他の多くの言語にある foreach キーワードと同等（構文は異なる）
 
 ### 基本構文
 ```
-foreach (データ型 変数名 in 配列等) {
-    Console.WriteLine(変数名);
+for (auto 変数名 : 配列等) {
+    cout << 変数名 << endl;
 }
 ```
 
 ### 配列（1次元）の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string[] _array = {"A","B","C","D"}; 
-        foreach (string value in _array) {
-            Console.WriteLine(value); //"A"→"B"→"C"→"D"
-        }
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    string array_[] = {"A","B","C"};
+    for (auto tmp : array_) {
+        cout << tmp << endl; //"A"→"B"→"C"
     }
+    return 0;
 }
 ```
 
 ### 配列（2次元）の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string[,] _array = {
-            {"x0y0","x1y0","x2y0"}, //0行目
-            {"x0y1","x1y1","x2y1"}  //1行目
-        }; 
-        foreach (string value in _array) {
-            Console.WriteLine(value); //"x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
-        }
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    string array_[2][3] = {{"x0y0","x1y0","x2y0"},{"x0y1","x1y1","x2y1"}}; 
+    for (auto tmp : array_) {
+        cout << tmp << endl; //0x7ffed94ea9c0 → 0x7ffed94eaa20 等（要検証）
+        cout << tmp[0] << endl; //"x0y0" → "x0y1" のようにアクセス可
     }
+    return 0;
 }
 ```
 
-### 配列（ジャグ配列）の場合
+### 動的配列（vectorクラス)の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        dynamic[][] _array = new dynamic[2][];
-            _array[0] = new dynamic[]{"A","あ"};
-            _array[1] = new dynamic[]{"I","い"};
-        foreach (object[] theArray in _array) {
-            foreach (object value in theArray) {
-                Console.WriteLine(value); //"A"→"あ"、"I"→"い"
-            }
-            Console.WriteLine(); //オプション（改行）
-        }
-    }
-}
-```
+//test.cpp
+#include <iostream> //coutに必要
+#include <vector> //vectorクラスに必要
+using namespace std;
 
-### 動的配列（ArrayList）の場合
-```
-//test.cs
-using System;
-using System.Collections; //ArrayListに必要
-class Test {
-    static void Main() {
-        ArrayList _array = new ArrayList();
-        _array.Add("TAKASHI");
-        _array.Add(49);
-        foreach (object value in _array) {
-            Console.WriteLine(value); //"TAKASHI"→49
-        }
+int main() {
+    vector<string> vector_; //string型を格納するvectorオブジェクトを生成
+    vector_.push_back("A"); //配列の最後に追加
+    vector_.push_back("B"); //配列の最後に追加
+    for (auto tmp : vector_) {
+        cout << tmp << endl; //"A"→"B"
     }
-}
-```
-
-### 動的配列（List）の場合
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B" };
-        foreach (string value in _list) {
-            Console.WriteLine(value); //"A"→"B"
-        }
-    }
+    return 0;
 }
 ```
 
 ### 連想配列の場合
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Dictionaryに必要
-class Test {
-    static void Main() {
-        Dictionary<string, string> _dic = new Dictionary<string, string>() {
-            {"A", "あ"},    {"I", "い"}
-        };
-        foreach (KeyValuePair<string, string> tmp in _dic) {
-            Console.WriteLine(tmp.Key + ":" + tmp.Value); //A:あ → I:い
-        }
+//test.cpp
+#include <iostream> //coutに必要
+#include <map> //mapクラスに必要
+using namespace std;
+
+int main() {
+    map<string, string> _map; //キーの型（string）と値の型（int）のmapインスタンスの生成
+    _map["A"] = "あ";
+    _map["I"] = "い";
+    _map["U"] = "う";
+    for (auto tmp : _map) {
+        cout << tmp.first << ":" << tmp.second << endl;
+        //「A:あ」→「I:い」→「U:う」の順で出力
     }
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年01月21日  
-更新日：2017年04月19日
+作成日：2016年05月19日  
+更新日：2017年04月27日
 
 
 <a name="while文"></a>
