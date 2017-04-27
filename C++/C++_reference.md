@@ -1769,17 +1769,18 @@ while (ループ判定式) {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _i = 0;
-        while (_i < 10) { //ループ判定式にはbool型しか使えない
-            Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
-            _i++;
-        }
-        Console.WriteLine(_i); //10（変数はまだ有効）
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    int _i = 0;
+    while (_i < 10) {
+        cout << _i << endl; //0,1,2,3,4,5,6,7,8,9
+        _i++;
     }
+    cout << _i << endl; //10（変数はまだ有効）
+    return 0;
 }
 ```
 
@@ -1793,61 +1794,64 @@ do {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _i = 0;
-        do {
-            Console.WriteLine(_i); //0 ←ループ判定式はfalseだが１回実行される
-            _i++;
-        } while(_i < 0);
-    }
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    int _i = 0;
+    do {
+        cout << _i << endl; //0 ←ループ判定式はfalseだが１回実行される
+        _i++;
+    } while(_i < 0);
+    return 0;
 }
 ```
 
 ### while 文と break 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _count = 0;
-        while (true) { //ループ判別式をtrueにすると無限ループに
-            _count++;
-            if (_count > 100) {
-                break; //break文を使ってループを終了→★
-            }
-            Console.WriteLine(_count); //1,2,....,99,100（1〜100までを出力）
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    int count_ = 0;
+    while (true) { //ループ判別式をtrueにすると無限ループ
+        count_++;
+        if (count_ > 100) {
+            break; //break文を使ってループを終了→★へ
         }
-        Console.WriteLine("while文終了"); //★
+        cout << count_ << endl; //1,2,....,99,100（1〜100までを出力）
     }
+    cout << "while文終了" << endl; //★
+    return 0;
 }
 ```
 
 ### while 文と continue 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _i = 1;
-        while (_i <= 20) {
-            if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                _i++;
-                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
-            }
-            Console.WriteLine(_i); //3,6,9,12,15,18（3の倍数を出力）
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    int _i = 1;
+    while (_i <= 20) {
+        if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
             _i++;
+            continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
         }
+        cout << _i << endl; //3,6,9,12,15,18（3の倍数を出力）
+        _i++;
     }
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月19日
+作成日：2016年05月19日  
+更新日：2017年04月27日
 
 
 <a name="配列"></a>
