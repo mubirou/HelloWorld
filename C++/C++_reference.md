@@ -2499,16 +2499,18 @@ int main() {
     using namespace std;
     int main() {
         using namespace std;
-        string array_[] = {"A","B","C"};
-        cout << array_[0] << endl; //"A"
-        cout << array_[1] << endl; //"B"
-        cout << array_[2] << endl; //"C"
+        string _array[] = {"A","B","C"};
+        cout << _array[0] << endl; //"A"
+        cout << _array[1] << endl; //"B"
+        cout << _array[2] << endl; //"C"
+        
         //検証
-        cout << &array_ << endl;    //0x7ffce5dadf50 ←配列の先頭の要素の「アドレス」
-        cout << &array_[0] << endl; //0x7ffce5dadf50 ←配列の先頭の要素の「アドレス」
-        cout << *array_ << endl;    //"A" ←配列の先頭の要素の値
-        //cout << *array_[0] << endl;    //ERROR
-        cout << array_[0] << endl;  //"A" ←配列の先頭の要素の値
+        cout << &_array << endl;    //0x7ffe74921f90 ←配列の先頭の要素の「アドレス」
+        cout << &_array[0] << endl; //0x7ffe74921f90 ←配列の先頭の要素の「アドレス」
+        cout << *_array << endl;    //"A" ←配列の先頭の要素の値
+        //cout << *_array[0] << endl; //エラー
+        cout << _array[0] << endl;  //"A" ←配列の先頭の要素の値
+        
         return 0;
     }
     ```
@@ -2520,16 +2522,19 @@ int main() {
     using namespace std;
     int main() {
         using namespace std;
-        string array_[] = {"A","B","C"};
+        string _array[] = {"A","B","C"};
+        
         //ポインタ演算
-        cout << *array_ << endl; //"A" ←配列の「先頭」の要素の値
-        cout << *(array_ + 1) << endl; //"B" ←配列の「先頭+1」の要素の値
-        cout << *(array_ + 2) << endl; //"C" ←配列の「先頭+2」の要素の値
+        cout << *_array << endl; //"A" ←配列の「先頭」の要素の値
+        cout << *(_array + 1) << endl; //"B" ←配列の「先頭+1」の要素の値
+        cout << *(_array + 2) << endl; //"C" ←配列の「先頭+2」の要素の値
+        
         //「ポインタ演算」を使って全要素を取り出す
-        int arrayLength_ = sizeof(array_) / sizeof(array_[0]);
-        for (int i=0; i<arrayLength_; i++) {
-            cout << *(array_ + i) << endl; //"A"→"B"→"C"
+        int _arrayLength = sizeof(_array) / sizeof(_array[0]);
+        for (int i=0; i<_arrayLength; i++) {
+            cout << *(_array + i) << endl; //"A"→"B"→"C"
         }
+
         return 0;
     }
     ```
