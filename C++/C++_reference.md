@@ -23,8 +23,8 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
-***
 * [while 文](#while文)
+***
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
