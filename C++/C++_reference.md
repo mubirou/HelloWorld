@@ -20,8 +20,8 @@
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-***
 * [switch 文](#switch文)
+***
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
@@ -1085,11 +1085,11 @@ class MyClass {
 
 //○〜○までの値を足した合計を返す
 int MyClass::Tashizan(int start_, int end_) { //メンバ関数の「定義」
-    int result_ = 0; //ローカル変数
+    int _result = 0; //ローカル変数
     for (int i = start_; i <= end_; i++) {
-        result_ += i;
+        _result += i;
     }
-    return result_;
+    return _result;
 }
 
 //============
@@ -1164,11 +1164,11 @@ class Math {
 
 int Math::Pow(int arg1, int arg2) { //ここに"static"の記述はいらない
     if (arg2 == 0) { return 1; } //0乗対策
-    int result_ = arg1;
+    int _result = arg1;
     for (int i=1; i<arg2; i++) {
-        result_ = result_ * arg1;
+        _result = _result * arg1;
     }
-    return result_;
+    return _result;
 }
 
 //============
@@ -1193,7 +1193,7 @@ using namespace std;
 //========
 class MyClass {
     private:
-        int point_; 
+        int po_int; 
     public:
         MyClass(); //コンストラクタの「宣言」
         //↓デフォルト引数付のメンバ関数の「宣言」
@@ -1201,14 +1201,14 @@ class MyClass {
 };
 
 MyClass::MyClass() { //コンストラクタの「定義」
-    point_ = 0;
+    po_int = 0;
 }
 
 //デフォルト引数付のメンバ関数の「定義」
 //引数が複数ある場合、デフォルト値がある引数を右側に記述
 void MyClass::AddPoint(int arg = 1) { //デフォルト値が1の場合
-    point_ += arg;
-    cout << point_ << "\n";
+    po_int += arg;
+    cout << po_int << "\n";
 }
 
 //============
@@ -1237,11 +1237,11 @@ class MyClass {
 };
 
 void MyClass::Sum(int arg[], int listLength_) { 
-    int result_ = 0; 
+    int _result = 0; 
     for (int i=0; i<listLength_; i++) {
-         result_ += arg[i]; 
+         _result += arg[i]; 
     } 
-    cout << result_ << "\n";
+    cout << _result << "\n";
 }
 
 //============
@@ -1339,11 +1339,11 @@ double MyClass::pi = 3.14159;
 //静的メンバ関数の「定義」※MyClass内で定義することも可能
 int MyClass::Pow(int arg1, int arg2) {
     if (arg2 == 0) { return 1; } //0乗対策
-    long result_ = arg1;
+    long _result = arg1;
     for (int i=1; i<arg2; i++) {
-        result_ = result_ * arg1;
+        _result = _result * arg1;
     }
-    return result_;
+    return _result;
 }
 
 int main() { // メイン関数
@@ -1479,8 +1479,8 @@ using namespace std;
 
 int main() {
     int age_ = 49;
-    string result_ = (age_ < 60) ? "現役" : "退職";
-    cout << result_ << endl; //"現役"
+    string _result = (age_ < 60) ? "現役" : "退職";
+    cout << _result << endl; //"現役"
 }
 ```
 
@@ -1500,10 +1500,10 @@ using namespace std;
 
 int main() {
     int age_ = 49;
-    string result_ = (age_ < 20) ? "未成年" : //条件がfalseの場合↓
+    string _result = (age_ < 20) ? "未成年" : //条件がfalseの場合↓
     (age_ < 60) ? "現役" : //条件がfalseの場合↓
     "退職"; //上記の条件が全てfalseの場合
-    cout << result_ << endl; //"現役"が出力
+    cout << _result << endl; //"現役"が出力
 }
 ```
 
@@ -1516,93 +1516,49 @@ int main() {
 <a name="switch文"></a>
 # <b>switch 文</b>
 
-### 基本サンプル
+### 基本例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _name = "TAKASHI";
-        switch (_name) { //判別式には「整数型」「文字型」しか使えない!
-            case "TAKASHI" :
-                Console.WriteLine("父");
-                break;
-            case "HANAKO" : 
-                Console.WriteLine("母");
-                break;
-            case "TARO" :
-                Console.WriteLine("長男");
-                break;
-            case "JISO" :
-                Console.WriteLine("次男");
-                break;
-            default:
-                Console.WriteLine("家族以外");
-                break; //defaultのbreakは省略不可（注意）
-        }
+//test.cpp
+#include <stdio.h> //puts()に必要
+int main() {
+    char char_ = 'u';
+    switch (char_) { //intやchar型は可（stringやbool型は不可）
+        case 'a' : puts("あ"); break;
+        case 'i' : puts("い"); break;
+        case 'u' : puts("う"); break; //'u'の場合、これが出力
+        case 'e' : puts("え"); break;
+        case 'o' : puts("お"); break;
+        default : puts("あ行以外"); break; //省略可能
     }
+    return 0;
 }
 ```
 
-### 注意その１ : 判別式にbool型が使えない
-* 判別式に指定可能なもの
-    * byte 型、short 型、int 型 などの整数型（浮動小数点型は指定不可）
-    * char 型、string 型といった文字型
-
-* 悪い例（エラー発生）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _age = 49;
-            switch (true) { //bool型はエラー（注意）
-                case _age < 20 :
-                    Console.WriteLine("未成年");
-                    break;
-                default:
-                    Console.WriteLine("成人");
-                    break;
-            }
-        }
+### break 文を意図的に記述しない方法
+```
+//test.cpp
+#include <stdio.h> //puts()に必要
+int main() {
+    int _int = 3;
+    switch (_int) { //intやchar型は可（stringやbool型は不可）注意!!
+        case 1 : puts("①"); //何か処理した後breakを書かないのも可（C#では不可）
+        case 2 : puts("②"); break;
+        case 3 : puts("③");
+        case 4 : puts("④"); break;
+        case 5 : puts("⑤"); 
+        default : puts("？"); break; //省略可能
     }
-    ```
-
-### 注意その２ : フォールスルーの禁止規則
-* C#では、下記のように case で何か処理をしておきながら break 文を書かないで次の case の処理に入っていくことは不可（フォールスルーの禁止規則）
-```
-case "○○" : 何か処理; //何か処理をしておきながらbreakを書かないとエラー
-case "□□" : 何か処理; break;
-```
-
-* 良い例
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _name = "JIRO";
-        switch (_name) {
-            case "TAKASHI" : //breakが無いと次のcaseも処理
-            case "HANAKO" : 
-                Console.WriteLine("親");
-                break;
-            case "TARO" : //breakが無いと次のcaseも処理
-            case "JIRO" :
-                Console.WriteLine("子");
-                break;
-            default:
-                Console.WriteLine("家族以外");
-                break; //defaultのbreakは省略不可
-        }
-    }
+    return 0;
 }
 ```
+
+_int の値が「1の場合①」「2の場合①②」「3の場合③④」「4の場合④」「5の場合⑤？」
+「それ以外の場合？」が出力される（各行で何も処理しないのことも可能）
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月18日
+作成日：2016年05月19日  
+更新日：2017年04月27日
 
 
 <a name="for文"></a>
