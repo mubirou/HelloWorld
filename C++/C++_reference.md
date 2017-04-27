@@ -2370,8 +2370,10 @@ int main() {
     ```
 
 ### ポインタ
-* 「ポインタ」とは、メモリ上の位置（アドレス）を格納する特殊な変数
-* 「ポインタ」に、別の変数の「アドレス」を代入して置換することも可能
+* 概要
+    * <b>ポインタ</b>とは、メモリ上の位置（<b>アドレス</b>）を格納する特殊な変数
+    * <b>ポインタ</b>に、別の変数の<b>アドレス</b>を代入して置換することも可能
+* 例文
     ```
     //test.cpp
     #include <iostream> //cout に必要
@@ -2390,83 +2392,87 @@ int main() {
     ```
 
 ### 引数にポインタを使う
-通常、関数に引数を渡すときにはコピーが必要である。もし大量のデータをコピーしなければならない場合とても時間がかかりますが、ポインタを使うことでこれを回避できる。
-
+* 概要
+    通常、関数に引数を渡すときにはコピーが必要である。もし大量のデータをコピーしなければならない場合とても時間を要するが、ポインタを使うことでこれを回避できる。
 * 利用方法
-```
-値の型 変数名 = 値; //通常の変数の定義①
-cout << &変数名 << endl; //→変数の「アドレス」が返る②
-値の型* ポインタ変数名 = &変数名; //変数の「アドレス」を「ポインタ」変数に格納③③'
-cout << ポインタ変数名 << endl; //→「ポインタ」変数＝変数の「アドレス」が返る④
-cout << *ポインタ変数名 << endl; //→「ポインタ」変数の値＝変数の値 が返る⑤
-*ポインタ変数名 = 新しい値; //「ポインタ」変数の値＝変数の値 を変更する⑥
-cout << 変数名_ << endl; //→「ポインタ」変数に代入した新しい値が返る⑦
-```
-
+    ```
+    値の型 変数名 = 値; //通常の変数の定義①
+    cout << &変数名 << endl; //→変数の「アドレス」が返る②
+    値の型* ポインタ変数名 = &変数名; //変数の「アドレス」を「ポインタ」変数に格納③③'
+    cout << ポインタ変数名 << endl; //→「ポインタ」変数＝変数の「アドレス」が返る④
+    cout << *ポインタ変数名 << endl; //→「ポインタ」変数の値＝変数の値 が返る⑤
+    *ポインタ変数名 = 新しい値; //「ポインタ」変数の値＝変数の値 を変更する⑥
+    cout << 変数名_ << endl; //→「ポインタ」変数に代入した新しい値が返る⑦
+    ```
 * 例文
-```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
+    ```
+    //test.cpp
+    #include <iostream> //cout に必要
+    using namespace std;
 
-void myFunction(string* _pName) { //渡された「アドレス」を「ポインタ」として引数に③'
-    cout << _pName << endl; //0x7fff9c1ec060 ←変数の「アドレス」を格納したポインタ④
-    cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得⑤
-    *_pName = "TARO"; //変数の値を変更⑥
-}
+    void myFunction(string* _pName) { //渡された「アドレス」を「ポインタ」として引数に③'
+        cout << _pName << endl; //0x7fff9c1ec060 ←変数の「アドレス」を格納したポインタ④
+        cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得⑤
+        *_pName = "TARO"; //変数の値を変更⑥
+    }
 
-int main() {
-    string _name = "TAKASHI"; //変数の定義①
-    cout << &_name << endl; //0x7fff9c1ec060 ←変数の「アドレス」②
-    myFunction(&_name); //「アドレス」を渡して関数を呼出す③
-    cout << _name << endl; //"TARO" ←関数内で変数の値が変更されているため⑦
-    return 0;
-}
-```
+    int main() {
+        string _name = "TAKASHI"; //変数の定義①
+        cout << &_name << endl; //0x7fff9c1ec060 ←変数の「アドレス」②
+        myFunction(&_name); //「アドレス」を渡して関数を呼出す③
+        cout << _name << endl; //"TARO" ←関数内で変数の値が変更されているため⑦
+        return 0;
+    }
+    ```
 
 ### ポインタからメンバへのアクセス
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+* 概要
+    <b>ポインタ</b>からメンバにアクセスする場合には <b>アロー演算子（->）</b> を利用
+* 例文
+    ```
+    //test.cpp
+    #include <iostream> //coutに必要
+    using namespace std;
 
-class MyClass {
-    public:
-        void MyFunction();
-};
-void MyClass::MyFunction() {
-    cout << "こんにちは" << endl;
-}
+    class MyClass {
+        public:
+            void MyFunction();
+    };
+    void MyClass::MyFunction() {
+        cout << "こんにちは" << endl;
+    }
 
-int main() {
-MyClass* _pMyClass = new MyClass; //クラスのインスタンスを「ポインタ」に格納
-    //_pMyClass.MyFunction(); //エラー
-    //「ポインタ」からメンバにアクセスする場合には「アロー演算子（->）」を利用
-    _pMyClass -> MyFunction(); //こんにちは ←ポインタからメンバ関数にアクセス
-    return 0;
-}
-```
+    int main() {
+    MyClass* _pMyClass = new MyClass; //クラスのインスタンスを「ポインタ」に格納
+        //_pMyClass.MyFunction(); //エラー
+        //「ポインタ」からメンバにアクセスする場合には「アロー演算子（->）」を利用
+        _pMyClass -> MyFunction(); //こんにちは ←ポインタからメンバ関数にアクセス
+        return 0;
+    }
+    ```
 
 ### thisポインタ
-「this」ポインタは、class 型や struct 型（構造体型）のメンバー関数内でのみアクセスできる特殊なポインタ
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+* 概要
+    <b>this</b> ポインタは、class 型や struct 型（構造体型）のメンバー関数内でのみアクセスできる特殊なポインタ
+* 例文
+    ```
+    //test.cpp
+    #include <iostream> //coutに必要
+    using namespace std;
 
-class MyClass {
-    public:	MyClass Clone();
-};
-MyClass MyClass::Clone() {
-return *this; //thisポインタのオブジェクト自身の値（≒アドレス）を返す
-}
-int main() {
-    MyClass _myClass;
-    MyClass _copy = _myClass.Clone();
-    cout << (&_myClass == &_copy) << endl; //0（アドレスが異なる＝参照ではなく複製）
-    return 0;
-}
-```
+    class MyClass {
+        public:	MyClass Clone();
+    };
+    MyClass MyClass::Clone() {
+    return *this; //thisポインタのオブジェクト自身の値（≒アドレス）を返す
+    }
+    int main() {
+        MyClass _myClass;
+        MyClass _copy = _myClass.Clone();
+        cout << (&_myClass == &_copy) << endl; //0（アドレスが異なる＝参照ではなく複製）
+        return 0;
+    }
+    ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
