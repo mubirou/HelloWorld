@@ -30,8 +30,8 @@
 * [ポインタ](#ポインタ)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
-***
 * [正規表現](#正規表現)
+***
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
@@ -2685,62 +2685,50 @@ int main() {
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* C# には以下のサンプル以外にも多くの正規表現の機能が用意されています
+* C++ には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
-### マッチした数
+### 文字列を検索する
 ```
-//test.cs
-using System;
-using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
-        string _string = "cabacbbacbcba";
-        //"a"がいくつ含まれるか
-        MatchCollection _mc = Regex.Matches(_string, "a");
-        Console.WriteLine(_mc.Count); //4
+//test.cpp
+#include <iostream> //cout に必要
+#include <regex> //regex に必要
+using namespace std;
+
+int main() {
+    string string_ = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+    regex regex_("吉田"); //完全一致
+    //regex regex_("西*"); //部分一致
+    if (regex_search(string_, regex_)) {
+        cout << "吉田は含まれています" << endl;	
+    } else {
+        cout << "吉田は含まれていません" << endl;
     }
+    return 0;
 }
 ```
 
-### パスワード
+### 文字列を検索＆置換する
 ```
-//test.cs
-using System;
-using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
-        string _string = @"U7eLoERa"; //任意のパスワード（@を付ける）
-        /* 条件
-        8文字以上（全て半角）
-        1文字以上の「数字」を含む
-        1文字以上の大文字および小文字の「英字」を含む
-        */
-        Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");//②
-        Match _match = _regex.Match(_string);
-        Console.WriteLine(_match.Success); //True ←パスワードとして条件に合致
-    }
-}
-```
+//test.cpp
+#include <iostream> //cout に必要
+#include <regex> //regex に必要
+using namespace std;
 
-### 郵便番号（7桁）
-```
-//test.cs
-using System;
-using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
-        string _string = "156-0057"; //任意の郵便番号
-        Regex _regex = new Regex("\\d{3}-\\d{4}");
-        Match _match = _regex.Match(_string);
-        Console.WriteLine(_match.Success); //True ←郵便番号として条件に合致
+int main() {
+    string string_ = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+    regex regex_("吉田"); //完全一致
+    if (regex_search(string_, regex_)) { //検索して見つかったら…
+        cout << regex_replace(string_, regex_, "よしだ") << endl;
+        //"よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文" が返る
     }
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月19日  
-更新日：2017年04月19日
+作成日：2016年05月24日  
+更新日：2017年04月27日
 
 
 <a name="インターフェース"></a>
