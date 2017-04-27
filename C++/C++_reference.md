@@ -29,7 +29,6 @@
 * [連想配列（map）](#連想配列（map）)
 ***
 * [ポインタ](#ポインタ)
-* [配列のポインタ](#配列のポインタ)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -2492,19 +2491,53 @@ int main() {
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2016年06月01日  
-更新日：2017年04月27日
+### 配列のポインタ
+* 基本例文
+    ```
+    //test.cpp
+    #include <iostream> //cout に必要
+    using namespace std;
+    int main() {
+        using namespace std;
+        string array_[] = {"A","B","C"};
+        cout << array_[0] << endl; //"A"
+        cout << array_[1] << endl; //"B"
+        cout << array_[2] << endl; //"C"
+        //検証
+        cout << &array_ << endl;    //0x7ffce5dadf50 ←配列の先頭の要素の「アドレス」
+        cout << &array_[0] << endl; //0x7ffce5dadf50 ←配列の先頭の要素の「アドレス」
+        cout << *array_ << endl;    //"A" ←配列の先頭の要素の値
+        //cout << *array_[0] << endl;    //ERROR
+        cout << array_[0] << endl;  //"A" ←配列の先頭の要素の値
+        return 0;
+    }
+    ```
 
-
-<a name="配列のポインタ"></a>
-# <b>配列のポインタ</b>
+* ポインタ演算
+    ```
+    //test.cpp
+    #include <iostream> //cout に必要
+    using namespace std;
+    int main() {
+        using namespace std;
+        string array_[] = {"A","B","C"};
+        //ポインタ演算
+        cout << *array_ << endl; //"A" ←配列の「先頭」の要素の値
+        cout << *(array_ + 1) << endl; //"B" ←配列の「先頭+1」の要素の値
+        cout << *(array_ + 2) << endl; //"C" ←配列の「先頭+2」の要素の値
+        //「ポインタ演算」を使って全要素を取り出す
+        int arrayLength_ = sizeof(array_) / sizeof(array_[0]);
+        for (int i=0; i<arrayLength_; i++) {
+            cout << *(array_ + i) << endl; //"A"→"B"→"C"
+        }
+        return 0;
+    }
+    ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
 作成日：2016年05月24日  
-更新日：2017年04月XX日
+更新日：2017年04月27日
 
 
 <a name="this"></a>
