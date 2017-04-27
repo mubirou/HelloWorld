@@ -29,8 +29,8 @@
 * [連想配列（map）](#連想配列（map）)
 * [ポインタ](#ポインタ)
 * [this](#this)
-***
 * [文字列の操作](#文字列の操作)
+***
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
@@ -2608,145 +2608,78 @@ int main() {
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### string オブジェクトの作成
-* 構文
+### 文字列オブジェクトの作成
 ```
-string 変数名 = "○○"; //文字列リテラルを使う方法
-string 変数名 = new string(new char[]{'○','○',...}); //new演算子とchar型配列を使う方法
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        //①文字列リテラルを使う
-        string _string1 = "ABCDE";
-        Console.WriteLine(_string1); //"ABCDE"
-
-        //②new演算子とchar型配列を使う
-        string _string2 = new string(new char[]{'A','B','C','D','E'});
-        Console.WriteLine(_string2); //"ABCDE" 
-    }
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+int main() {
+    string string_ = "あいうえお";
+    cout << string_ << endl; //"あいうえお"
+    return 0;
 }
-```
+``` 
 
 ### 長さを調べる
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "ABCDE";
-        Console.WriteLine(_string.Length); //5
-    }
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+int main() {
+    string string_ = "ABCDE";
+    cout << string_.size() << endl; //5（string_.length()でも同じ）
 }
 ```
 
 ### 一部分を取得
-* 構文
 ```
-String[番号] ←0（最初）〜String.Length-1（最後）
-String.Substring(開始 [,文字数])
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "0123456789";
-        Console.WriteLine(_string[4]); //"4"
-        Console.WriteLine(_string.Substring(4)); //"456789"
-        Console.WriteLine(_string.Substring(4,3)); //"456"
-    }
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+int main() {
+    string string_ = "0123456789";
+    cout << string_[4] << endl; //"4" ←1文字だけ取得（string.length()-1まで指定可）
+    cout << string_.substr(4) << endl; //"456789"
+    cout << string_.substr(4,3) << endl; //"456"
 }
 ```
 
 ### 一部分を削除
-* 構文
 ```
-String.Remove(開始位置, 削除する文字数);
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "にしむらたかし";
-        Console.WriteLine(_string.Remove(0, 4)); //"たかし"
-    }
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+int main() {
+    string string_ = "0123456789";
+    //string_.erase(4); //この場合4文字目以降を削除（0123となる）
+    string_.erase(4,3); //4文字目（含む）から3文字を削除
+    cout << string_ << endl; //0123789
 }
 ```
 
-### 置換
-* 構文
+### 検索＆置換
 ```
-String.Replace("置換前の文字列", "置換後の文字列");
-String.Replace('置換前の文字', '置換後の文字');
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "2017年04月19日";
-        Console.WriteLine(_string.Replace("2017年", "平成29年")); //"平成29年04月19日"
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+int main() {
+    string string_ = "2016-05-24";
+    string old_ = "2016";
+    string new_ = "H28";
+    string::size_type pos_ = string_.find(old_, 0); //見つかった位置を返す
+    while(pos_ != string::npos){
+        string_.replace(pos_, old_.size(), new_);
+        pos_ = string_.find(old_, pos_ + new_.size()); //これが無いと無限ループ
     }
-}
-```
-
-### 検索
-* 構文
-```
-String.IndexOf("検索したい文字列", 開始位置);
-String.IndexOf('検索したい文字', 開始位置);
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "ABCDEFG-ABCDEFG";
-        string _word = "CD";
-        int _i = 0;
-        while (_string.IndexOf(_word, _i) != -1) { //見つからない場合「-1」
-            int _num = _string.IndexOf(_word, _i);
-            Console.WriteLine(_num); //2、10 ←"CD"が見つかった位置を出力
-            Console.WriteLine(_string.Substring(_num, _word.Length)); //"CD"、"CD"
-            _i = _num + 1;
-        }
-    }
-}
-```
-
-### 文字列→配列
-* 構文
-```
-String.Split('区切り文字');
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "A,B,C,D"; //「,」区切りの文字列
-        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
-        foreach (object value in _array) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"
-        }
-    }
+    cout << string_ << endl;  // "H28-05-24"
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月17日  
-更新日：2017年04月19日
+作成日：2016年05月24日  
+更新日：2017年04月27日
 
 
 <a name="正規表現"></a>
