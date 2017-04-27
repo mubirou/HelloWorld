@@ -2973,7 +2973,7 @@ int main() {
 }
 ```
 
-###「仮想関数」のオーバーライド
+### 「仮想関数」のオーバーライド
 ```
 //test.cpp
 #include <iostream> //coutに必要
