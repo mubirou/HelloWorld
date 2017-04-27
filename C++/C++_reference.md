@@ -25,9 +25,9 @@
 * [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
-***
 * [動的配列（vector）](#動的配列（vector）)
-* [連想配列（Dictionary）](#連想配列（Dictionary）)
+***
+* [連想配列（map）](#連想配列（map）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -2130,7 +2130,7 @@ int main() {
 ```
 
 ### 並べ替え（反転）
-1. algorithm を使用する方法
+1. algorithm ライブラリを使用する方法
     ```
     //test.cpp
     #include <iostream> //cout に必要
@@ -2147,7 +2147,7 @@ int main() {
     }
     ```
 
-1. algorithm を使用しない方法
+1. algorithm ライブラリを使用しない方法
     ```
     //test.cpp
     #include <iostream> //cout に必要
@@ -2173,25 +2173,26 @@ int main() {
     ```
 
 ### 並べ替え（ソート）
-//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
+```
+//test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
 #include <algorithm> //sorに必要
 using namespace std;
 
 int main() {
-    vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL","FLSTFBS","FLSTC"};
+    vector<string> _vector = {"C", "02", "A", "01", "03", "B"};
     sort(_vector.begin(), _vector.end()); //ソート
     for (auto tmp : _vector) {
-        cout <<tmp<< endl; //"FLSTC"→"FLSTFBS"→"FXDL"→"XG750"→"XL1200X"→"XL883N"
+        cout <<tmp<< endl; //"01"→"02"→"03"→"A"→"B"→"C"
     }
     return 0;
 }
+```
 
-◆結合
-//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
+### 結合
+```
+//test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
 using namespace std;
@@ -2209,10 +2210,11 @@ int main() {
     }
     return 0;
 }
+```
 
-◆複製（参照ではありません／ここでは力技で処理をしています）
-//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
+### 複製（力技）
+```
+//test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
 using namespace std;
@@ -2233,21 +2235,21 @@ int main() {
     }
     return 0;
 }
+```
 
-◆文字列→vector（※参照：Interpreterパターン）
-//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
+### 文字列→vector
+```
+//test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
 #include <string.h> //strtokに必要
 using namespace std;
 
 int main() {
-    //↓右辺がstring（文字列）扱いにして関数にできると良いですが…（要検証）
-    char string_[] = "XG750,XL883N,XL1200X,FXDL,FLSTFBS,FLSTC";
+    char _string[] = "A,B,C,D,E,F";
     char *tp;
     vector<string> _vector; //文字列を格納する配列
-    tp = strtok(string_, ","); //カンマ区切り（,）で分割する場合
+    tp = strtok(_string, ","); //カンマ区切り（,）で分割する場合
     _vector.push_back(tp); //1個目を配列に格納
     while ( tp != NULL ) {
             tp = strtok(NULL,","); //カンマ区切り（,）で分割する場合
@@ -2258,16 +2260,16 @@ int main() {
 
     //動作確認
     for (auto tmp : _vector) {
-        cout << tmp << endl; //XG750→XL883N→XL1200X→FXDL→FLSTFBS→FLSTC
+        cout << tmp << endl; //A→B→C→D→E→F
     }
 
     return 0;
 }
+```
 
-◆全要素を取り出す
-	//Test.cpp
-	//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
+### 全要素を取り出す
+```
+//test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
 using namespace std;
@@ -2279,15 +2281,16 @@ int main() {
     }
     return 0;
 }
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月14日  
-更新日：2017年04月19日
+作成日：2015年05月23日  
+更新日：2017年04月27日
 
 
-<a name="連想配列（Dictionary）"></a>
-# <b>連想配列（Dictionary）</b>
+<a name="連想配列（map）"></a>
+# <b>連想配列（map）</b>
 
 ### 概要
 * ディクショナリ、ハッシュとも呼ばれる「キー」と「値」の組み合わせを格納するデータ構造
