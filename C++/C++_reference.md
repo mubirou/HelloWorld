@@ -31,8 +31,8 @@
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-***
 * [インターフェース](#インターフェース)
+***
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
@@ -2735,55 +2735,46 @@ int main() {
 # <b>インターフェース</b>
 
 ### 概要
-* クラスにどのような機能（メソッド）を持たせるか、ということだけを定める
-* 抽象クラスと似ているが、抽象クラスとは異なり、実際の処理は一切記述できない
-* 実際の処理はインターフェースを継承したクラスで定義（実装しないとエラー）
-* 多重実装（複数のインターフェースを同時に指定）や多重継承も可能
-
-### 構文
-```
-//インターフェースの宣言
-interface Iインターフェース名 { //慣例的にインターフェース名の先頭にIを付けます
-    戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]); //暗黙的にpublic扱い
-    ......
-}
-//インターフェースの実装
-class クラス名 : Iインターフェース名 { ......
-```
+* interface キーワードは存在しない
+* インターフェースと同等の処理を行うためには「純粋仮想関数」を利用する
+* インターフェースクラスにはどんな機能（関数）を持たせるかということだけを定める
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Moneybox _moneybox = new Moneybox();
-        _moneybox.Add(5000);
-        Console.WriteLine(_moneybox.Total); //5000
-    }
-}
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+class IMoneybox { //インターフェースクラス
+    public:
+        virtual void Add(int _money) = 0; //純粋仮想関数
+        virtual int Total() = 0; //純粋仮想関数
+        virtual void Total(int _total) = 0; //純粋仮想関数
+};
+class Moneybox : public IMoneybox { //インターフェースクラスの継承
+    private: int _total;
+    public:
+        Moneybox(); //コンストラクタの「宣言」
+        void Add(int _money); //メンバ関数の「宣言」
+        int Total(); //_totalのアクセス用メンバ関数（getter）
+        void Total(int _total); //_totalのアクセス用メンバ関数（setter）
+};
+Moneybox::Moneybox() { _total = 0; }
+void Moneybox::Add(int _money) { _total += _money; }
+int Moneybox::Total() { return _total; }
+void Moneybox::Total(int _total) { this->_total = _total; }
 
-//インターフェースの宣言
-interface IMoneybox {
-    void Add(int _money); //通常のメソッド（暗黙的にpublicになる）
-    int Total { get; set; } //get/setアクセサ（暗黙的にpublicになる）
-}
-
-//インターフェースの実装（継承との併用は,を使う）
-class Moneybox : IMoneybox {
-    private int _total = 0;
-    public void Add(int _money) { _total += _money; } 
-    public int Total {
-        get { return _total; }
-        set { _total = value; }
-    }
+int main() {
+    Moneybox _moneybox; //インスタンスの生成
+    _moneybox.Add(5000);
+    cout << _moneybox.Total() << endl; //5000
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月21日  
-更新日：2017年04月19日
+作成日：2016年05月25日  
+更新日：2017年04月27日
 
 
 <a name="抽象クラス（abstract）"></a>
