@@ -2412,12 +2412,18 @@ int main() {
     #include <iostream> //cout に必要
     using namespace std;
 
+    //======
+    // 関数
+    //======
     void myFunction(string* _pName) { //渡された「アドレス」を「ポインタ」として引数に③'
         cout << _pName << endl; //0x7fff9c1ec060 ←変数の「アドレス」を格納したポインタ④
         cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得⑤
         *_pName = "TARO"; //変数の値を変更⑥
     }
 
+    //============
+    // メイン関数
+    //============
     int main() {
         string _name = "TAKASHI"; //変数の定義①
         cout << &_name << endl; //0x7fff9c1ec060 ←変数の「アドレス」②
@@ -2436,6 +2442,9 @@ int main() {
     #include <iostream> //coutに必要
     using namespace std;
 
+    //========
+    // クラス
+    //========
     class MyClass {
         public:
             void MyFunction();
@@ -2444,6 +2453,9 @@ int main() {
         cout << "こんにちは" << endl;
     }
 
+    //============
+    // メイン関数
+    //============
     int main() {
     MyClass* _pMyClass = new MyClass; //クラスのインスタンスを「ポインタ」に格納
         //_pMyClass.MyFunction(); //エラー
@@ -2462,12 +2474,19 @@ int main() {
     #include <iostream> //coutに必要
     using namespace std;
 
+    //========
+    // クラス
+    //========
     class MyClass {
         public:	MyClass Clone();
     };
     MyClass MyClass::Clone() {
-    return *this; //thisポインタのオブジェクト自身の値（≒アドレス）を返す
+        return *this; //thisポインタのオブジェクト自身の値（≒アドレス）を返す
     }
+
+    //============
+    // メイン関数
+    //============
     int main() {
         MyClass _myClass;
         MyClass _copy = _myClass.Clone();
