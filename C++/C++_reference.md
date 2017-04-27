@@ -35,8 +35,8 @@
 * [抽象クラス](#抽象クラス)
 * [基本クラスのコンストラクタを呼ぶ](#基本クラスのコンストラクタを呼ぶ)
 * [オーバーライド](#オーバーライド)
-***
 * [カスタムイベント](#カスタムイベント)
+***
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
@@ -2967,8 +2967,8 @@ void SubClass::MyFunction() { //自動的にオーバーライドされる
 // メイン関数
 //============
 int main() {
-    SubClass subClass_;
-    subClass_.MyFunction();
+    SubClass _subClass;
+    _subClass.MyFunction();
     return 0;
 }
 ```
@@ -3037,77 +3037,71 @@ int main() { //メイン関数
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-### 概要
-イベントとは、あるアクションが発生したことを自動的に通知する仕組みカスタムクラス内で何か処理をし終えた際、別のオブジェクトにそのことを知らせる場合に、このイベント機能を使用イベントを設定したカスタムクラスからは、情報（イベント）を発信するだけ情報を受けたいオブジェクトは、リスナーメソッドを準備して待ち受ける...このことにより、カスタムクラスを汚さずに済む、というメリットが生まれるC# に用意された event は、特殊なデリゲート（delegate）と言えるものですデリゲートとの違いは、event 宣言した変数（イベント名）には、イベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等
-
-### 書式
-* イベントの設定
-```
-class クラス名 {
-    public delegate void デリゲート名([型 引数]); //デリゲート宣言
-    public event デリゲート名 イベント名; //これにイベントハンドラを登録
-    public 戻り値の型 メソッド名([型 引数]) { //イベントを発生させたいメソッド
-        ……
-        イベント名([引数]); //ここでイベントハンドラを呼出す!
-    }
-    ……
-}
-```
-
-* イベントハンドラの登録
-```
-クラス名 ○ = new クラス名();
-○.イベント名 += イベントハンドラ名; //イベントハンドラを削除する場合「-=」
-……
-static 戻り値の型 イベントハンドラ名([型 引数]) {
-    //イベントが発生した際に処理すること
-}
-```
-
 ### 例文
 ```
-//test.cs
-using System;
+//test.cpp
+#include <iostream> //coutに必要
+#include <functional> //functionに必要
+using namespace std;
 
-class Test {
-    static void Main() {
-        MyGame _myGame = new MyGame();
-        _myGame.GameOverEvent += GameOverHandler_myGame; //複数登録可能（+=、-=のみ）
-        //_myGame.GameOverEvent -= GameOverHandler_myGame; //イベントハンドラの削除
-        for (int i=0; i<10; i++) { //10回繰返す場合…
-            Console.WriteLine("得点:" + _myGame.Point);
-            _myGame.AddPoint();
-        }
-    }
+//=================================
+// カスタムクラス（Robotクラス）
+//=================================
+class Robot {
+    private:
+        int _energy = 100;
+        //↓「匿名関数」を参照
+        function<void()> _dieHandler; //die用のリスナー関数を格納する
+    
+    public:
+        static const string DIE; //オプション
+        //↓リスナー関数の「宣言」
+        void AddEventListener(string event_, function<void()> function_);
+        void Fight(); //メンバ関数の「宣言」
+};
 
-    static void GameOverHandler_myGame(object arg) { //イベントハンドラ
-        Console.WriteLine("ゲームオーバー! " + arg); //"ゲームオーバー! MyGame"
+const string Robot::DIE = "die"; //オプション
+
+//今回は removeEventListener() は省略
+void Robot::AddEventListener(string event_, function<void()> function_) {
+    if (event_ == "die") {
+        _dieHandler = function_; //die用のリスナー関数を設定（記憶）する
+    } else {
+        cout << "ERROR: Robot::AddEventListener()" << endl;
     }
 }
 
-//イベントを設定するクラス
-class MyGame {
-    private int _point = 0;
-    public delegate void MyEventHandler(object arg); //デリゲート宣言
-    public event MyEventHandler GameOverEvent; //これにイベントハンドラを登録
-    public void AddPoint() { //イベントを発生させたいメソッド
-        if (++_point >= 10) {
-            if (GameOverEvent != null) {
-                GameOverEvent(this); //イベントハンドラの呼出し
-            }
-        }
+void Robot::Fight() { //メンバ関数の「定義」
+    _energy -= 20; //戦う度に25%エネルギーが減る…みたいな
+    if (_energy <= 0) {
+        _dieHandler(); //dieイベントの発生（リスナー関数を呼出す!!）
     }
-    public int Point {
-        get { return _point; }
-        private set {} //読取専用
-    }
+}
+
+//================
+// メイン関数ほか
+//================
+void die_robot() { //リスナー関数
+    cout << "GAME OVER!" << endl; //dieイベントが発生した時に実行すること
+}
+
+int main() {
+    Robot _robot;
+    _robot.AddEventListener("die", die_robot);
+    //_robot.AddEventListener(Robot::DIE, die_robot); //これでも同じ
+    _robot.Fight();	
+    _robot.Fight();	
+    _robot.Fight();
+    _robot.Fight();	
+    _robot.Fight(); //"GAME OVER!" ←ここでenery_が0となりdieイベント発生
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月25日  
-更新日：2017年04月21日
+作成日：2016年05月26日  
+更新日：2017年04月27日
 
 
 <a name="数学関数（Math）"></a>
