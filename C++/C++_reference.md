@@ -3037,7 +3037,6 @@ int main() { //メイン関数
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-### 例文
 ```
 //test.cpp
 #include <iostream> //coutに必要
