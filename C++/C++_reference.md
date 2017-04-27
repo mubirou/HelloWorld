@@ -19,8 +19,8 @@
 * [匿名関数（ラムダ式）](#匿名関数（ラムダ式）)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
-***
 * [三項演算子](#三項演算子)
+***
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
@@ -1368,7 +1368,7 @@ int main() { // メイン関数
 #include <iostream> //coutに必要
 using namespace std;
 int main() {
-    int _age = 48;
+    int _age = 49;
     if (_age <= 20) {
         cout << "20歳以下" << endl;
     } else if (_age <= 40) {
@@ -1473,14 +1473,14 @@ int main() {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _age = 49;
-        string _result = (_age < 60) ? "現役" : "退職";
-        Console.WriteLine(_result); //"現役"
-    }
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    int age_ = 49;
+    string result_ = (age_ < 60) ? "現役" : "退職";
+    cout << result_ << endl; //"現役"
 }
 ```
 
@@ -1488,29 +1488,29 @@ class Test {
 * 構文
 ```
 データ型 変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
-変数名 = (比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
-変数名 = (①②の全てがfalseの場合の返り値);
+(比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
+(①②の全てがfalseの場合の返り値);
 ```
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _age = 49;
-        string _result = (_age < 20) ? "未成年" :
-        _result = (_age < 60) ? "現役" :
-        _result = "退職";
-        Console.WriteLine(_result); //"現役"
-    }
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+int main() {
+    int age_ = 49;
+    string result_ = (age_ < 20) ? "未成年" : //条件がfalseの場合↓
+    (age_ < 60) ? "現役" : //条件がfalseの場合↓
+    "退職"; //上記の条件が全てfalseの場合
+    cout << result_ << endl; //"現役"が出力
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2016年05月18日  
+更新日：2017年04月27日
 
 
 <a name="switch文"></a>
