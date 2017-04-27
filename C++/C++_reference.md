@@ -36,8 +36,8 @@
 * [基本クラスのコンストラクタを呼ぶ](#基本クラスのコンストラクタを呼ぶ)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
+* [数学関数](#数学関数)
 ***
-* [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -3103,180 +3103,184 @@ int main() {
 更新日：2017年04月27日
 
 
-<a name="数学関数（Math）"></a>
-# <b>数学関数（Math）</b>
+<a name="数学関数"></a>
+# <b>数学関数</b>
 
-### Math.Sin() : サイン（正弦）
+### sin() : サイン（正弦）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Sin(0)); //0 ←0°
-        Console.WriteLine(Math.Sin(Math.PI/2)); //1 ←90°
-        Console.WriteLine(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
-        Console.WriteLine(Math.Sin(Math.PI*3/2)); //-1 ←270°
-        Console.WriteLine(Math.Sin(Math.PI*2)); //-2.44921270764475E-16（≒0）←360°
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << sin(0) << endl; //0 ←0°
+    cout << sin(M_PI_2) << endl; //1（sin(M_PI/2)と同じ）←90°
+    cout << sin(M_PI) << endl; //1.22465e-16（≒0）←180°
+    cout << sin(M_PI*3/2) << endl; //-1 ←270°
+    cout << sin(M_PI*2) << endl; //-2.44929e-16（≒0）←360°
+    return 0;
 }
 ```
 
-### Math.Cos() : コサイン（余弦）
+### cos() : コサイン（余弦）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Cos(0)); //1 ←0°
-        Console.WriteLine(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
-        Console.WriteLine(Math.Cos(Math.PI)); //-1 ←180°
-        Console.WriteLine(Math.Cos(Math.PI*3/2)); //-1.83690953073357E-16（≒0）←270°
-        Console.WriteLine(Math.Cos(Math.PI*2)); //1 ←360°
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << cos(0) << endl; //1 ←0°
+    cout << cos(M_PI_2) << endl; //6.12323e-17（≒0）（cos(M_PI/2)と同じ）←90°
+    cout << cos(M_PI) << endl; //-1 ←180°
+    cout << cos(M_PI*3/2) << endl; //-1.83697e-16（≒0）←270°
+    cout << cos(M_PI*2) << endl; //1 ←360°
+    return 0;
 }
 ```
 
-### Math.Atan2() : アークタンジェント2
+### atan2() : アークタンジェント2
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        //2つの値のアークタンジェント（逆タンジェント）X、Y座標の角度をラジアン単位で返す
-        //Πラジアン（3.141592…）は180°
-        //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
-        double _disX = Math.Sqrt(3); //√3のこと
-        int _disY = 1;
-        Console.WriteLine(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
-        Console.WriteLine(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    // 2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
+    // Πラジアン（3.141592…）は180°
+    // 以下では、三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
+    double _disX = sqrt(3); //√3のこと
+    int _disY = 1;
+    cout << atan2(_disY, _disX) << endl; //0.523599（単位：ラジアン）
+    cout << 180 * atan2(_disY, _disX) / M_PI << endl; //30（単位：度）
+    return 0;
 }
 ```
 
-### Math.PI : 円周率
+### M_PI : 円周率
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << M_PI << endl; //3.14159（π）
+    cout << M_PI_2 << endl; //1.5708（π/2）
+    cout << M_PI_4 << endl; //0.785398（π/4）
+    cout << M_1_PI << endl; //0.31831（1/π）
+    cout << M_2_PI << endl; //0.63662（2/π）
+    cout << M_SQRT2 << endl; //1.41421（sqrt(2)）
+    return 0;
 }
 ```
 
-### Math.Floor() : 切り捨て
+### floor() : 切り捨て
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Floor(1.001)); //1
-        Console.WriteLine(Math.Floor(1.999)); //1
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << floor(1.001) << endl; //1
+    cout << floor(1.999) << endl; //1
+    return 0;
 }
 ```
 
-### Math.Ceiling() : 切り上げ
+### ceil() : 切り上げ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Ceiling(1.001)); //2
-        Console.WriteLine(Math.Ceiling(1.999)); //2
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << ceil(1.001) << endl; //2
+    cout << ceil(1.999) << endl; //2
+    return 0;
 }
 ```
 
-### Math.Round() : 四捨五入
+### rint() : 四捨五入
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Round(1.499)); //1
-        Console.WriteLine(Math.Round(1.500)); //2
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << rint(1.499) << endl; //1
+    cout << rint(1.500) << endl; //2
+    return 0;
 }
 ```
 
-### Math.Abs() : 絶対値
+### fabs() : 絶対値
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Abs(100)); //100
-        Console.WriteLine(Math.Abs(-100)); //100
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << fabs(100) << endl; //100
+    cout << fabs(-100) << endl; //100
+    return 0;
 }
 ```
 
-### Math.Pow() : 累乗（○の□乗）
+### pow() : 累乗（○の□乗）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Pow(2, 0)); //1（2の0乗）
-        Console.WriteLine(Math.Pow(2, 8)); //256（2の8乗）
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << pow(2, 0) << endl; //1（2の0乗）
+    cout << pow(2, 8) << endl; //256（2の8乗）
+    return 0;
 }
 ```
 
-### Math.Sqrt() : 平方根（√○）
+### sqrt() : 平方根（√○）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
-        Console.WriteLine(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
-        Console.WriteLine(Math.Sqrt(4)); //2
-        Console.WriteLine(Math.Sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << sqrt(2) << endl; //1.41421（一夜一夜にひとみごろ）
+    cout << sqrt(3) << endl; //1.73205（人並みに奢れや）
+    cout << sqrt(4) << endl; //2
+    cout << sqrt(5) << endl; //2.23607（富士山麓オウム鳴く）
+    return 0;
 }
 ```
 
-### Math.Max() : 比較（最大値）
+### fmaxf() : 比較（最大値）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << fmaxf(5.01, -10) << endl; //5.01 ←「2つ」の数値の比較
+    return 0;
 }
 ```
 
-### Math.Min() : 比較（最小値）
+### fminf() : 比較（最小値）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
-    }
-}
-```
-
-### Math.Sign() : 符号（正か負の値か）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Sign(-0.1)); //-1（負の値）
-        Console.WriteLine(Math.Sign(0)); //0（0）
-        Console.WriteLine(Math.Sign(0.1)); //1（正の値）
-    }
+//test.cpp
+#include <iostream> //coutに必要
+#include <math.h> //「数学関数」に必要
+using namespace std;
+int main() {
+    cout << fminf(5.01, -10) << endl; //-10 ←「2つ」の数値の比較
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月26日  
-更新日：2017年04月21日
+作成日：2016年05月26日  
+更新日：2017年04月27日
 
 
 <a name="乱数"></a>
