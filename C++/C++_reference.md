@@ -26,8 +26,8 @@
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（vector）](#動的配列（vector）)
-***
 * [連想配列（map）](#連想配列（map）)
+***
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -2292,68 +2292,51 @@ int main() {
 <a name="連想配列（map）"></a>
 # <b>連想配列（map）</b>
 
-### 概要
-* ディクショナリ、ハッシュとも呼ばれる「キー」と「値」の組み合わせを格納するデータ構造
-* 匿名型クラスは、同様のデータ構造を持てるが読取り専用
-
-### 作成方法
+### 作成と操作の基本
 ```
-Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>();
-Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>() {
-    {"キー①", 値①},
-    {"キー②", 値②}, 
-    ......…
-};
+//test.cpp
+#include <iostream> //cout に必要
+#include <map> //map クラスに必要
+using namespace std;
+int main() {
+    //①作成
+    map<string, string> _map;
+    //②追加
+    _map["A"] = "あ"; //③削除は_map.erase("A")
+    //_map.insert(make_pair("A", "あ")); //これでも可能
+    _map["I"] = "い";
+    _map["U"] = "う";
+    //④更新
+    _map["A"] = "ア";
+    //⑤取得
+    cout << _map["A"] << endl;
+    return 0;
+}
 ```
 
-* 例文
-    ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
-    class Test {
-        static void Main() {
-            //①作成（空のDictionaryを作成する場合、{}は不要）
-            Dictionary<string, string> _dic = new Dictionary<string, string>() {
-                {"A", "あ"},
-                {"I", "い"}
-            };
-
-            //②追加
-            _dic.Add("U", "う");
-            _dic.Add("E", "え");
-
-            //③更新
-            _dic["A"] = "ア"; //上書き変更
-
-            //④取得
-            Console.WriteLine(_dic["A"]); //"ア"
-        }
-    }
-    ```
-
-### キー、値の検索
+### キーの検索
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
-class Test {
-    static void Main() {
-        //①作成（空のDictionaryを作成する場合、{}は不要）
-        Dictionary<string, string> _dic = new Dictionary<string, string>() {
-            {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
-        };
-
-        Console.WriteLine(_dic.ContainsKey("B")); //任意のキーがあるか否か（True／False）
-        Console.WriteLine(_dic.ContainsValue("え")); //任意の値があるか否か（True／False）
-    }
+//test.cpp
+#include <iostream> //cout に必要
+#include <map> //map クラスに必要
+using namespace std;
+int main() {
+    map<string, string> map_;
+    map_["A"] = "あ";
+    map_["I"] = "い";
+    map_["U"] = "う";
+    auto iterator_ = map_.find("U");
+    if (iterator_ != map_.end()) { cout << "存在します" << endl; //これが出力される
+    } else { cout << "存在しません" << endl;
+    } 
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年12月11日  
-更新日：2017年04月19日
+作成日：2016年05月23日  
+更新日：2017年04月27日
 
 
 <a name="this"></a>
