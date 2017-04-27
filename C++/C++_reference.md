@@ -28,6 +28,8 @@
 * [動的配列（vector）](#動的配列（vector）)
 * [連想配列（map）](#連想配列（map）)
 ***
+* [ポインタ](#ポインタ)
+* [配列のポインタ](#配列のポインタ)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -2337,6 +2339,149 @@ int main() {
 作成者：Takashi Nishimura  
 作成日：2016年05月23日  
 更新日：2017年04月27日
+
+
+<a name="ポインタ"></a>
+# <b>ポインタ</b>
+
+### ポインタのメリット
+* 大きなオブジェクトを簡単に扱える
+* データそのものをコピーすることなく、複数の場所から同じデータを参照することが出来る
+
+### 「参照」と「アドレス」
+* <b>参照</b> は、C++ になって追加された機能で <b>変数につける別名</b> をいう
+* <b>&別名</b> は、メモリ上の位置（<b>アドレス</b>）を表します
+* <b>別名</b> の値にアクセスする場合は <b>&</b> は必要ない
+* <b>別名</b> もしくは元となる変数の値を変更すると、もう一方の値も変更されます
+
+```
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+
+int main() {
+    string _tNishimura = "Takashi Nishimura"; //元となる変数
+    string &tn = _tNishimura; //「別名」（&別名）を付ける
+    _tNishimura = "Taro Nishimura";
+    cout << _tNishimura << endl; //"Taro Nishimura"
+    cout << tn << endl; //「別名」の値も"Taro Nishimura"に変更される
+    cout << &tn << endl; //0x7ffce8727890 ←「&別名」で「アドレス」が返ります
+    return 0;
+}
+```
+
+### ポインタ
+* 「ポインタ」とは、メモリ上の位置（アドレス）を格納する特殊な変数
+* 「ポインタ」に、別の変数の「アドレス」を代入して置換することも可能
+```
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+
+int main() {
+    string _name = "TAKASHI"; //変数の定義
+    string* _pName = &_name; //変数の「アドレス」を「ポインタ」に格納
+    
+    //検証
+    cout << _name << endl; //"TAKASHI" ←変数の値
+    cout << &_name << endl; //0x7ffc37c32e90 ←変数の「アドレス」
+    cout << _pName << endl; //0x7ffc37c32e90 ←「ポインタ」
+    cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得
+}
+```
+
+### 引数にポインタを使う
+通常、関数に引数を渡すときにはコピーが必要である。もし大量のデータをコピーしなければならない場合とても時間がかかりますが、ポインタを使うことでこれを回避できる。
+
+* 利用方法
+```
+値の型 変数名 = 値; //通常の変数の定義①
+cout << &変数名 << endl; //→変数の「アドレス」が返る②
+値の型* ポインタ変数名 = &変数名; //変数の「アドレス」を「ポインタ」変数に格納③③'
+cout << ポインタ変数名 << endl; //→「ポインタ」変数＝変数の「アドレス」が返る④
+cout << *ポインタ変数名 << endl; //→「ポインタ」変数の値＝変数の値 が返る⑤
+*ポインタ変数名 = 新しい値; //「ポインタ」変数の値＝変数の値 を変更する⑥
+cout << 変数名_ << endl; //→「ポインタ」変数に代入した新しい値が返る⑦
+```
+
+* 例文
+```
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+
+void myFunction(string* _pName) { //渡された「アドレス」を「ポインタ」として引数に③'
+    cout << _pName << endl; //0x7fff9c1ec060 ←変数の「アドレス」を格納したポインタ④
+    cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得⑤
+    *_pName = "TARO"; //変数の値を変更⑥
+}
+
+int main() {
+    string _name = "TAKASHI"; //変数の定義①
+    cout << &_name << endl; //0x7fff9c1ec060 ←変数の「アドレス」②
+    myFunction(&_name); //「アドレス」を渡して関数を呼出す③
+    cout << _name << endl; //"TARO" ←関数内で変数の値が変更されているため⑦
+    return 0;
+}
+```
+
+### ポインタからメンバへのアクセス
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+class MyClass {
+    public:
+        void MyFunction();
+};
+void MyClass::MyFunction() {
+    cout << "こんにちは" << endl;
+}
+
+int main() {
+MyClass* _pMyClass = new MyClass; //クラスのインスタンスを「ポインタ」に格納
+    //_pMyClass.MyFunction(); //エラー
+    //「ポインタ」からメンバにアクセスする場合には「アロー演算子（->）」を利用
+    _pMyClass -> MyFunction(); //こんにちは ←ポインタからメンバ関数にアクセス
+    return 0;
+}
+```
+
+### thisポインタ
+「this」ポインタは、class 型や struct 型（構造体型）のメンバー関数内でのみアクセスできる特殊なポインタ
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+class MyClass {
+    public:	MyClass Clone();
+};
+MyClass MyClass::Clone() {
+return *this; //thisポインタのオブジェクト自身の値（≒アドレス）を返す
+}
+int main() {
+    MyClass _myClass;
+    MyClass _copy = _myClass.Clone();
+    cout << (&_myClass == &_copy) << endl; //0（アドレスが異なる＝参照ではなく複製）
+    return 0;
+}
+```
+
+実行環境：Ubuntu 16.04.2 LTS、C++14  
+作成者：Takashi Nishimura  
+作成日：2016年06月01日  
+更新日：2017年04月27日
+
+
+<a name="配列のポインタ"></a>
+# <b>配列のポインタ</b>
+
+実行環境：Ubuntu 16.04.2 LTS、C++14  
+作成者：Takashi Nishimura  
+作成日：2016年05月24日  
+更新日：2017年04月XX日
 
 
 <a name="this"></a>
