@@ -2353,7 +2353,6 @@ int main() {
 * <b>&別名</b> は、メモリ上の位置（<b>アドレス</b>）を表します
 * <b>別名</b> の値にアクセスする場合は <b>&</b> は必要ない
 * <b>別名</b> もしくは元となる変数の値を変更すると、もう一方の値も変更されます
-* 例文
     ```
     //test.cpp
     #include <iostream> //cout に必要
@@ -2373,22 +2372,22 @@ int main() {
 ### ポインタ
 * 「ポインタ」とは、メモリ上の位置（アドレス）を格納する特殊な変数
 * 「ポインタ」に、別の変数の「アドレス」を代入して置換することも可能
-```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
+    ```
+    //test.cpp
+    #include <iostream> //cout に必要
+    using namespace std;
 
-int main() {
-    string _name = "TAKASHI"; //変数の定義
-    string* _pName = &_name; //変数の「アドレス」を「ポインタ」に格納
-    
-    //検証
-    cout << _name << endl; //"TAKASHI" ←変数の値
-    cout << &_name << endl; //0x7ffc37c32e90 ←変数の「アドレス」
-    cout << _pName << endl; //0x7ffc37c32e90 ←「ポインタ」
-    cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得
-}
-```
+    int main() {
+        string _name = "TAKASHI"; //変数の定義
+        string* _pName = &_name; //変数の「アドレス」を「ポインタ」に格納
+        
+        //検証
+        cout << _name << endl; //"TAKASHI" ←変数の値
+        cout << &_name << endl; //0x7ffc37c32e90 ←変数の「アドレス」
+        cout << _pName << endl; //0x7ffc37c32e90 ←「ポインタ」
+        cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得
+    }
+    ```
 
 ### 引数にポインタを使う
 通常、関数に引数を渡すときにはコピーが必要である。もし大量のデータをコピーしなければならない場合とても時間がかかりますが、ポインタを使うことでこれを回避できる。
