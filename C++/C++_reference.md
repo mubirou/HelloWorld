@@ -2695,10 +2695,10 @@ int main() {
 using namespace std;
 
 int main() {
-    string string_ = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+    string _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
     regex regex_("吉田"); //完全一致
     //regex regex_("西*"); //部分一致
-    if (regex_search(string_, regex_)) {
+    if (regex_search(_string, regex_)) {
         cout << "吉田は含まれています" << endl;	
     } else {
         cout << "吉田は含まれていません" << endl;
@@ -2715,10 +2715,10 @@ int main() {
 using namespace std;
 
 int main() {
-    string string_ = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
+    string _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
     regex regex_("吉田"); //完全一致
-    if (regex_search(string_, regex_)) { //検索して見つかったら…
-        cout << regex_replace(string_, regex_, "よしだ") << endl;
+    if (regex_search(_string, regex_)) { //検索して見つかったら…
+        cout << regex_replace(_string, regex_, "よしだ") << endl;
         //=> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
     }
     return 0;
@@ -2792,49 +2792,46 @@ int main() {
 # <b>抽象クラス</b>
 
 ### 概要
-* 派生クラスに"実装しなければならないメソッド"を抽象クラスで定義する
-* 実際の処理は、抽象クラスを継承した派生クラスで、抽象メソッドを override して記述
-
-### 構文
-```
-abstract class Abstract○○ { //抽象クラスの定義
-    public abstract 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
-}
-class SubClass : Abstract○○ { //抽象クラスの継承
-    public override 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
-        //実際の処理
-    }
-    ……
-```
+* 標準では abstract キーワードは存在しない
+* 抽象クラスと同等の処理を行うために「純粋仮想関数」を利用する
+* インターフェースとは異なり、実装しなければならない関数の宣言だけでなく、共通の関数については実際の処理を記述することも可能
+* 抽象クラスのインスタンスは生成することはできない
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass();
-        _subClass.Common(); //"AbstractClass.Common()"
-        _subClass.Method(); //"SubClass.Method()"
-    }
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
+
+class AbstractMakePage { //抽象クラス
+    public:
+        void MakeHeader(); //共通の関数の宣言
+        virtual void MakeBody(string _string) = 0; //純粋仮想関数
+};
+void AbstractMakePage::MakeHeader() { //共通の関数の定義
+    cout << "共通のお題：○○○" << endl;
 }
-abstract class AbstractClass { //「抽象クラス」の定義
-    public void Common() { //共通のメソッド
-        Console.WriteLine("AbstractClass.Common()");
-    }
-    public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
+
+class MakePageA : public AbstractMakePage { //抽象クラスの継承
+    public:
+        void MakeBody(string _string);
+};
+void MakePageA::MakeBody(string _string) {
+    cout << _string << endl;
 }
-class SubClass : AbstractClass { //抽象クラスを継承
-    public override void Method() { //オーバーライドして実際の処理を記述
-        Console.WriteLine("SubClass.Method()"); //実際の処理
-    }
+
+int main() {
+    MakePageA _makePageA;
+    _makePageA.MakeHeader();
+    _makePageA.MakeBody("本文：○○○○○○");
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2016年05月25日  
+更新日：2017年04月27日
 
 
 <a name="baseキーワード"></a>
