@@ -2353,22 +2353,22 @@ int main() {
 * <b>&別名</b> は、メモリ上の位置（<b>アドレス</b>）を表します
 * <b>別名</b> の値にアクセスする場合は <b>&</b> は必要ない
 * <b>別名</b> もしくは元となる変数の値を変更すると、もう一方の値も変更されます
+* 例文
+    ```
+    //test.cpp
+    #include <iostream> //cout に必要
+    using namespace std;
 
-```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
-
-int main() {
-    string _tNishimura = "Takashi Nishimura"; //元となる変数
-    string &tn = _tNishimura; //「別名」（&別名）を付ける
-    _tNishimura = "Taro Nishimura";
-    cout << _tNishimura << endl; //"Taro Nishimura"
-    cout << tn << endl; //「別名」の値も"Taro Nishimura"に変更される
-    cout << &tn << endl; //0x7ffce8727890 ←「&別名」で「アドレス」が返ります
-    return 0;
-}
-```
+    int main() {
+        string _tNishimura = "Takashi Nishimura"; //元となる変数
+        string &tn = _tNishimura; //「別名」（&別名）を付ける
+        _tNishimura = "Taro Nishimura";
+        cout << _tNishimura << endl; //"Taro Nishimura"
+        cout << tn << endl; //「別名」の値も"Taro Nishimura"に変更される
+        cout << &tn << endl; //0x7ffce8727890 ←「&別名」で「アドレス」が返ります
+        return 0;
+    }
+    ```
 
 ### ポインタ
 * 「ポインタ」とは、メモリ上の位置（アドレス）を格納する特殊な変数
