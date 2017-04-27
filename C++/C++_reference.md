@@ -22,8 +22,8 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-***
 * [foreach 文](#foreach文)
+***
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
@@ -1705,8 +1705,8 @@ using namespace std;
 int main() {
     string array_[2][3] = {{"x0y0","x1y0","x2y0"},{"x0y1","x1y1","x2y1"}}; 
     for (auto tmp : array_) {
-        cout << tmp << endl; //0x7ffed94ea9c0 → 0x7ffed94eaa20 等（要検証）
-        cout << tmp[0] << endl; //"x0y0" → "x0y1" のようにアクセス可
+        cout << tmp << endl; //0x7ffed94ea9c0 → 0x7ffed94eaa20 等
+        cout << tmp[0] << endl; //"x0y0" → "x0y1"
     }
     return 0;
 }
@@ -1744,7 +1744,7 @@ int main() {
     _map["U"] = "う";
     for (auto tmp : _map) {
         cout << tmp.first << ":" << tmp.second << endl;
-        //「A:あ」→「I:い」→「U:う」の順で出力
+        //「A:あ」→「I:い」→「U:う」
     }
     return 0;
 }
