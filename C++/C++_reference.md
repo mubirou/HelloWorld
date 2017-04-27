@@ -2614,8 +2614,8 @@ int main() {
 #include <iostream> //cout に必要
 using namespace std;
 int main() {
-    string string_ = "あいうえお";
-    cout << string_ << endl; //"あいうえお"
+    string _string = "あいうえお";
+    cout << _string << endl; //"あいうえお"
     return 0;
 }
 ``` 
@@ -2626,8 +2626,8 @@ int main() {
 #include <iostream> //cout に必要
 using namespace std;
 int main() {
-    string string_ = "ABCDE";
-    cout << string_.size() << endl; //5（string_.length()でも同じ）
+    string _string = "ABCDE";
+    cout << _string.size() << endl; //5（_string.length()でも同じ）
 }
 ```
 
@@ -2637,10 +2637,10 @@ int main() {
 #include <iostream> //cout に必要
 using namespace std;
 int main() {
-    string string_ = "0123456789";
-    cout << string_[4] << endl; //"4" ←1文字だけ取得（string.length()-1まで指定可）
-    cout << string_.substr(4) << endl; //"456789"
-    cout << string_.substr(4,3) << endl; //"456"
+    string _string = "0123456789";
+    cout << _string[4] << endl; //"4" ←1文字だけ取得（string.length()-1まで指定可）
+    cout << _string.substr(4) << endl; //"456789"
+    cout << _string.substr(4,3) << endl; //"456"
 }
 ```
 
@@ -2650,10 +2650,10 @@ int main() {
 #include <iostream> //cout に必要
 using namespace std;
 int main() {
-    string string_ = "0123456789";
-    //string_.erase(4); //この場合4文字目以降を削除（0123となる）
-    string_.erase(4,3); //4文字目（含む）から3文字を削除
-    cout << string_ << endl; //0123789
+    string _string = "0123456789";
+    //_string.erase(4); //この場合4文字目以降を削除（0123となる）
+    _string.erase(4,3); //4文字目（含む）から3文字を削除
+    cout << _string << endl; //0123789
 }
 ```
 
@@ -2663,15 +2663,15 @@ int main() {
 #include <iostream> //cout に必要
 using namespace std;
 int main() {
-    string string_ = "2016-05-24";
-    string old_ = "2016";
-    string new_ = "H28";
-    string::size_type pos_ = string_.find(old_, 0); //見つかった位置を返す
-    while(pos_ != string::npos){
-        string_.replace(pos_, old_.size(), new_);
-        pos_ = string_.find(old_, pos_ + new_.size()); //これが無いと無限ループ
+    string _string = "2017-04-27";
+    string _old = "2017";
+    string _new = "H29";
+    string::size_type _pos = _string.find(_old, 0); //見つかった位置を返す
+    while(_pos != string::npos){
+        _string.replace(_pos, _old.size(), _new);
+        _pos = _string.find(_old, _pos + _new.size()); //これが無いと無限ループ
     }
-    cout << string_ << endl;  // "H28-05-24"
+    cout << _string << endl;  // "H29-04-27"
     return 0;
 }
 ```
