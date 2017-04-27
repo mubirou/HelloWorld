@@ -1720,10 +1720,10 @@ int main() {
 using namespace std;
 
 int main() {
-    vector<string> vector_; //string型を格納するvectorオブジェクトを生成
-    vector_.push_back("A"); //配列の最後に追加
-    vector_.push_back("B"); //配列の最後に追加
-    for (auto tmp : vector_) {
+    vector<string> _vector; //string型を格納するvectorオブジェクトを生成
+    _vector.push_back("A"); //配列の最後に追加
+    _vector.push_back("B"); //配列の最後に追加
+    for (auto tmp : _vector) {
         cout << tmp << endl; //"A"→"B"
     }
     return 0;
@@ -1943,410 +1943,265 @@ int main() {
 <a name="動的配列（vector）"></a>
 # <b>動的配列（vector）</b>
 
-### 概要
-* 配列と異なり List は要素の数を変更したり追加･削除などが可能
-* 動的配列（ArrayList）の.NET framework 2.0 対応版
-
 ### 作成
 * 構文
 ```
-List<データ型> 変数名 = new List<データ型>(); //空のListを作成
-List<データ型> 変数名 = new List<データ型>(数); //指定数の空の要素を持つList作成
-List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,... };
+vector<データ型> 変数名(数); //指定数の空の要素を持つList作成
+vector<データ型> 変数名{要素①,要素②,...};
+vector<データ型> 変数名 = {要素①,要素②,...}; //これが分かりやすい
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B" };
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"A"→"B"
-        }
+//test.cpp
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+int main() {
+    vector<string> _vector = {"A","B","C"};
+    for (auto tmp : _vector ) {
+        cout << tmp << endl; //"A"→"B"→"C"
     }
+    return 0;
 }
 ```
 
 ### 追加（最後）
 * 構文
 ```
-List.Add(値); //値はobject型（文字型、数値型等）で混在不可（dynamic型は除く）
+vector.push_back(値);
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //空 → "A" → "A","B"
-        List<string> _list = new List<string>();
-        _list.Add("A");
-        _list.Add("B");
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"A"→"B"
+//test.cpp
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+int main() {
+    vector<string> _vector = {}; //空のvectorを作成
+    _vector.push_back("XL883N"); //追加
+    _vector.push_back("FXDL"); //最後に追加
+}
+```
+
+◆追加（最初）
+【構文】
+vector.insert(vector.begin(), 値);
+【例文】
+vector<string> _vector = {"XL883N","FXDL"};
+_vector.insert(_vector.begin(), "XG750"); //最初に追加
+
+◆追加（指定位置）
+【構文】
+vector.insert(vector.begin() + インデックス番号,値);
+※インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
+【例文】
+//"XL883N","FXDL" → "XG750","XL883N","FXDL"
+_vector.insert(_vector.begin() + 0,"XG750"); //先頭に追加する場合は0
+
+◆更新（任意の値）
+【構文】
+vector[インデックス番号] = 値;
+【例文】
+//"XL883N","FXDL","FLSTC" → "XL1200X","FXDL","FLSTC"
+_list[0] = "XL1200X"; //0番目を変更する場合
+
+◆削除（指定のインデックス）
+【構文】
+vector.erase(vector.begin() + インデックス番号);
+※インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
+【例文】
+//"XG750","XL883N","XL1200X","FXDL" → "XL883N","XL1200X","FXDL"
+_vector.erase(_vector.begin() + 0); //先頭を削除する場合
+_vector.erase(_vector.begin() + _vector.size()); //最後を削除する場合
+
+◆抽出（指定位置）
+【構文】
+vector[インデックス番号]
+【例文】
+vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL"};
+cout << _vector[0] << endl; //"XG750"
+※インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
+
+◆検索（ここでは力技で処理をしています）
+//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+
+//検索用の自作関数
+int indexOf(vector<string> arg1, string arg2) {
+    for (int i=0; i<arg1.size(); i++) {
+        if (arg1[i] == arg2) {
+            return i; //見つかった場合インデックス番号を返す
         }
     }
+    return -1; //見つからなければ-1を返す
 }
-```
 
-### 追加（指定位置）
-* 構文
-```
-List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capacity-1）まで指定可能
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B" → "C","A","B"
-        List<string> _list = new List<string>() { "A", "B" };
-        _list.Insert(0,"C"); //先頭に追加する場合は0
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"C"→"A"→"B"
-        }
+int main() {
+    vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL"};
+    cout << indexOf(_vector, "XL883N") << endl; //1
+    cout << indexOf(_vector, "XL883L") << endl; //-1
+    return 0;
+}
+
+◆要素の数
+【構文】
+vector.size(); 
+【例文】
+	vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL"};
+	cout << _vector.size() << endl;
+
+◆並べ替え（反転）
+【通常の方法】
+//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+#include <algorithm> //reverseに必要
+using namespace std;
+
+int main() {
+    vector<string> _vector = {"A","B","C","D","E","F"};
+    reverse(_vector.begin(), _vector.end());
+    for (auto tmp : _vector) {
+        cout <<tmp<< endl; //"F"→"E"→"D"→"C"→"B"→"A"
     }
+    return 0;
 }
-```
 
-### 更新（任意の値）
-* 構文
-```
-List[インデックス番号] = 値;
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B" → "C","B"
-        List<string> _list = new List<string>() { "A", "B" };
-        _list[0] = "C"; //0番目を変更する場合
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"C"→"B"
-        }
+【力技で行う方法】
+//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+
+vector<string> myReverse(vector<string> arg) {
+    vector<string> result_ = {};
+    for (auto tmp : arg) {
+        result_.insert(result_.begin(), tmp);
     }
+    return result_;
 }
-```
 
-###更新（null型）
-* 構文
-```
-List[インデックス番号] = null;
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C" → "A","B",null
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list[2] = null;
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"B"→（null）
-        }
+int main() {
+    vector<string> _vector = {{"A","B","C","D","E","F"}};
+    vector<string> vector2_ = myReverse(_vector);
+    for (auto tmp : vector2_) {
+        cout <<tmp<< endl; //"F"→"E"→"D"→"C"→"B"→"A"
     }
+    return 0;
 }
-```
 
-### 削除（指定のオブジェクト）
-* 構文
-```
-List.Remove(object); //最初に見つかった指定のオブジェクトを削除
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C" → "A","C"
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list.Remove("B");
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"C"
-        }
+◆並べ替え（ソート）
+//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+#include <algorithm> //sorに必要
+using namespace std;
+
+int main() {
+    vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL","FLSTFBS","FLSTC"};
+    sort(_vector.begin(), _vector.end()); //ソート
+    for (auto tmp : _vector) {
+        cout <<tmp<< endl; //"FLSTC"→"FLSTFBS"→"FXDL"→"XG750"→"XL1200X"→"XL883N"
     }
+    return 0;
 }
-```
 
-### 削除（指定のインデックス）
-* 構文
-```
-List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacity-1）まで指定可能
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C" → "B","C"
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list.RemoveAt(0); //先頭を削除する場合
-        //_list.RemoveAt(_list.Capacity-1); //最後を削除する場合
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "B"→"C"
-        }
+◆結合
+//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+
+int main() {
+    vector<string> vector1_ = {"A","B","C","D"};
+    vector<string> vector2_ = {"a","b","c","d"};
+    vector1_.insert(vector1_.end(), vector2_.begin(), vector2_.end()); //結合
+    //copy(vector2_.begin(), vector2_.end(), back_inserter(vector1_)); //これでも可
+    for (auto tmp : vector1_) {
+        cout << tmp << endl; //"A","B","C","D","a","b","c","d" ←追加されている
+    }    
+    for (auto tmp : vector2_) {
+        cout << tmp << endl; //"a","b","c","d"
     }
+    return 0;
 }
-```
 
-### 削除（○番目から□個）
-* 構文
-```
-List.RemoveRange(開始, 削除する個数); //開始＝削除開始したいインデックス番号
-List.RemoveRange(開始, List.Capacity-開始); //○番目から最後まで削除
-List.Clear(); //全て削除
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C","D" → "A","B"
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        _list.RemoveRange(2, 2); //2番目から2個削除
-        //]_list.RemoveRange(1, _list.Capacity-1); //1番目〜最後を削除する場合
-        //_list.Clear(); //全て削除する場合
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"B"
-        }
+◆複製（参照ではありません／ここでは力技で処理をしています）
+//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+
+int main() {
+    vector<string> vectorOrign_ = {"A","B","C","D"}; //元の配列
+    vector<string> vectorCopy_ = {}; //コピーしたものを格納する配列
+    for (auto tmp : vectorOrign_) {
+        vectorCopy_.push_back(tmp); 
     }
-}
-```
-
-### 抽出（○番目から□個）
-* 構文
-```
-List.GetRange(開始, 抜き出す個数); //開始＝抜出しを開始したいインデックス番号
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C","D" → "C","D"を返す
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
-        //List<string> _result = _list.GetRange(1, _list.Capacity-1);//1番目〜最後を抽出
-        foreach (object value in _result) {
-            Console.WriteLine(value); // "C"→"D"
-        }
+    vectorCopy_.push_back("E"); //コピーしたものにだけ要素を追加してみる
+    for (auto tmp : vectorOrign_) {
+        cout << tmp << endl; //"a","b","c","d"
     }
-}
-```
-
-### 検索(前から）
-* 構文
-```
-List.IndexOf(object [,検索開始するインデックス番号]);
-//最初に見つかったインデックス番号を返す（無い場合-1）
-//第2引数を省略すると最初（0）から検索
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        Console.WriteLine(_list.IndexOf("C",0)); //2
-        //最初から検索する場合（第2引数が0の場合は省略可能）
+    cout << "----------------" << endl;
+    for (auto tmp : vectorCopy_) {
+        cout << tmp << endl; //"a","b","c","d","E" ←こっちだけ追加されている
     }
+    return 0;
 }
-```
 
-### 検索（後ろから）
-* 構文
-```
-List.LastIndexOf(object [,検索開始するインデックス番号]);
-//最後に見つかったインデックス番号を返す（無い場合-1）
-//第2引数を省略すると最後（List.Capacity-1）から検索
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        Console.WriteLine(_list.LastIndexOf("C")); //2
-        //最初から検索する場合（第2引数が0の場合は省略可能）
-    }
-}
-```
+◆文字列→vector（※参照：Interpreterパターン）
+//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+#include <string.h> //strtokに必要
+using namespace std;
 
-### 要素の数
-* 構文
-```
-List.Count; //実際に格納されている要素の数
-List.Capacity; //格納可能な要素の数
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //List<string> _list = new List<string>() { "A", "B", "C"};
-        List<string> _list = new List<string>(3); //空のArrayListを作成
-        Console.WriteLine(_list.Count); //0 ←実際に格納されている要素の数
-        Console.WriteLine(_list.Capacity); //3 ←格納可能な要素の数
-    }
-}
-```
-
-### 並べ替え（反転）
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        _list.Reverse();
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "D"→"C"→"B"→"A"
-        }
-    }
-}
-```
-
-### 並べ替え（ソート）
-* 構文
-```
-List.Sort(); //引数で範囲や比較方法を指定することも可能
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"C", "02", "A", "01", "03", "B" → "01", "02", "03", "A", "B", "C"
-        List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
-        _list.Sort();
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "01"→"02"→"03"→"A"→"B"→"C"
-        }
-    }
-}
-```
-
-### 結合
-* 構文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list1 = new List<string>() { "A", "B", "C" };
-        List<string> _list2 = new List<string>() { "D", "E", "F" };
-
-        //_list1の末尾に_list2を結合
-        _list1.AddRange(_list2);
-
-        foreach (object value in _list1) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"→"E"→"F"
-        }
-    }
-}
-```
-
-### 複製
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        List<string> _listCopy = new List<string>(_list); //簡易型コピー方法
-        _list[0] = "X";
-        Console.WriteLine(_list[0]); //"X"
-        Console.WriteLine(_listCopy[0]); //"A（参照コピーではない）
-    }
-}
-```
-
-### 文字列→ List
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        string _string = "A,B,C,D"; //①元となる文字列
-        string[] _array = _string.Split(','); //②文字列→配列に変換（「配列」参照）
-        List<string> _list = new List<string>(); //③空のListを作成
-        foreach (string _tmp in _array) { //データ型に注意
-            _list.Add(_tmp); //④配列の要素を1つずつListに追加
-        }
-
-        //確認
-        foreach (object value in _array) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"
-        }
-    }
-}
-```
-
-
-### 全要素を取り出す
-1. foreach 文を使う方法
-    ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Listに必要
-    class Test {
-        static void Main() {
-            List<string> _list = new List<string>() { "A", "B", "C" };
-
-            //全要素を取り出す
-            foreach (object value in _list) {
-                Console.WriteLine(value); // "A"→"B"→"C"
+int main() {
+    //↓右辺がstring（文字列）扱いにして関数にできると良いですが…（要検証）
+    char string_[] = "XG750,XL883N,XL1200X,FXDL,FLSTFBS,FLSTC";
+    char *tp;
+    vector<string> _vector; //文字列を格納する配列
+    tp = strtok(string_, ","); //カンマ区切り（,）で分割する場合
+    _vector.push_back(tp); //1個目を配列に格納
+    while ( tp != NULL ) {
+            tp = strtok(NULL,","); //カンマ区切り（,）で分割する場合
+            if ( tp != NULL ) {
+                _vector.push_back(tp); //2個目以降を配列に格納
             }
-        }
     }
-    ```
 
-1. for 文を使う方法
-    ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Listに必要
-    class Test {
-        static void Main() {
-            List<string> _list = new List<string>() { "A", "B", "C" };
-
-            //全要素を取り出す
-            for (int i=0; i < _list.Count; i++) {
-                Console.WriteLine(_list[i]); // "A"→"B"→"C"
-            }
-        }
+    //動作確認
+    for (auto tmp : _vector) {
+        cout << tmp << endl; //XG750→XL883N→XL1200X→FXDL→FLSTFBS→FLSTC
     }
-    ```
+
+    return 0;
+}
+
+◆全要素を取り出す
+	//Test.cpp
+	//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
+//「./a.out」で実行 ←重要!!
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+
+int main() {
+    vector<string> _vector = {"あ","い","う","え","お"};
+    for (auto tmp : _vector) {
+        cout <<tmp<< endl; //"あ"→"い"→"う"→"え"→"お"
+    }
+    return 0;
+}
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
