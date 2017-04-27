@@ -2744,13 +2744,21 @@ int main() {
 //test.cpp
 #include <iostream> //cout に必要
 using namespace std;
-class IMoneybox { //インターフェースクラス
+
+//======================
+// 擬似インターフェース
+//======================
+class IMoneybox {
     public:
         virtual void Add(int _money) = 0; //純粋仮想関数
         virtual int Total() = 0; //純粋仮想関数
         virtual void Total(int _total) = 0; //純粋仮想関数
 };
-class Moneybox : public IMoneybox { //インターフェースクラスの継承
+
+//======================================
+// 擬似インターフェースを継承するクラス
+//======================================
+class Moneybox : public IMoneybox { //擬似インターフェースクラスの継承
     private: int _total;
     public:
         Moneybox(); //コンストラクタの「宣言」
@@ -2763,6 +2771,9 @@ void Moneybox::Add(int _money) { _total += _money; }
 int Moneybox::Total() { return _total; }
 void Moneybox::Total(int _total) { this->_total = _total; }
 
+//============
+// メイン関数
+//============
 int main() {
     Moneybox _moneybox; //インスタンスの生成
     _moneybox.Add(5000);
