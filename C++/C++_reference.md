@@ -1637,11 +1637,11 @@ int main() {
     #include <iostream> //coutに必要
     using namespace std;
     int main() {
-        int count_ = 0;
+        int _count = 0;
         for (;;) { //①初期化②ループ判定式③更新処理...の全てを省略すると無限ループに
-            count_ ++;
-            if (count_ > 100) break; //ループを終了
-            cout << count_ << endl; //1,2,...,99,100
+            _count ++;
+            if (_count > 100) break; //ループを終了
+            cout << _count << endl; //1,2,...,99,100
         }
         cout << "for文終了" << endl;
         return 0;
@@ -1815,13 +1815,13 @@ int main() {
 using namespace std;
 
 int main() {
-    int count_ = 0;
+    int _count = 0;
     while (true) { //ループ判別式をtrueにすると無限ループ
-        count_++;
-        if (count_ > 100) {
+        _count++;
+        if (_count > 100) {
             break; //break文を使ってループを終了→★へ
         }
-        cout << count_ << endl; //1,2,....,99,100（1〜100までを出力）
+        cout << _count << endl; //1,2,....,99,100（1〜100までを出力）
     }
     cout << "while文終了" << endl; //★
     return 0;
