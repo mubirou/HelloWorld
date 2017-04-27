@@ -28,8 +28,8 @@
 * [動的配列（vector）](#動的配列（vector）)
 * [連想配列（map）](#連想配列（map）)
 * [ポインタ](#ポインタ)
-***
 * [this](#this)
+***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
@@ -2548,54 +2548,61 @@ int main() {
 <a name="this"></a>
 # <b>this</b>
 
-### thisが必要な場合
-1. 「引数」と「インスタンス変数」が同じ場合
-1. 「ローカル変数」と「インスタンス変数」が同じ場合
-* this は、this を記述したメソッドを所有するクラス（オブジェクト）を指す
+### 概要
+* this が必要な場合は...
+    * 「引数」と「メンバ変数」が同じ場合
+    * 「ローカル変数」と「メンバ変数」が同じ場合
+* this は、<b>this-></b> を記述したメソッドを所有するクラス（オブジェクト）を指す
 
 ### 例文
 ```
-//test.cs
-using System;
+//test.cpp
+#include <iostream> //cout に必要
+using namespace std;
 
-//メインクラス
-class Test {
-    static void Main() {
-        Robot _robot = new Robot(500);
-        _robot.Move();
-        Console.WriteLine(_robot.X); //510
-        //Console.WriteLine(this); //error（staticメソッド内では参照できず）
-    }
+//========
+// クラス
+//========
+class Robot {
+    private:
+        int _x; //「メンバ変数」の「宣言」
+    public:
+        Robot(int _x); //コンストラクタの「宣言」
+        void Move(); //メンバ関数の「宣言」
+        int X(); //_xのアクセス用メンバ関数（getter）	
+};
+
+Robot::Robot(int _x) {
+    this->_x = _x; //①「this->」が無いと「引数」と「メンバ変数」がぶつかる
+    cout << this << endl; //0x7ffdbae24810（この関数を実行されたオブジェクトを指す）
 }
 
-//カスタムクラス
-class Robot {
-    private int _x; //インスタンス変数（thisは不要）
-    
-    public Robot(int _x) { //引数
-        this._x = _x; //①thisが無いとWarning（引数を参照してしまう）
-        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
-    }
+void Robot::Move() {
+    int _x; //「ローカル変数」の「宣言」
+    _x = this->_x + 10; //←②「this->」が無いと「ローカル変数」と「メンバ変数」がぶつかる
+    if (_x >= 1920) _x = 0;
+    this->_x = _x; //②「this->」が無いと「ローカル変数」と「メンバ変数」がぶつかる
+    cout << this << endl; //0x7ffdbae24810（この関数を実行されたオブジェクトを指す）
+}
 
-    public void Move() {
-        int _x; //ローカル変数
-        _x = this._x + 10; //②thisが無いとerror（ローカル変数を参照してしまう）
-        if (_x >= 1920) _x = 0;
-        this._x = _x; //②thisが無いとWarning（ローカル変数を参照してしまう）
-        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
-    }
+int Robot::X() { return _x; } //「this->」を付けてもよい（通常は省略）
 
-    public int X {
-        get { return _x; } //thisを付けてもよい（通常は省略）
-        private set {}
-    }
+//============
+// メイン関数
+//============
+int main() {
+    Robot _robot(500); //インスタンスの生成
+    _robot.Move();
+    cout << _robot.X() << endl; //510
+    //cout << this << endl; //エラー（参照できず）
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月15日  
-更新日：2017年04月19日
+作成日：2016年05月24日  
+更新日：2017年04月27日
 
 
 <a name="文字列の操作"></a>
