@@ -2719,7 +2719,7 @@ int main() {
     regex regex_("吉田"); //完全一致
     if (regex_search(string_, regex_)) { //検索して見つかったら…
         cout << regex_replace(string_, regex_, "よしだ") << endl;
-        //"よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文" が返る
+        //=> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
     }
     return 0;
 }
