@@ -1978,53 +1978,118 @@ vector.push_back(値);
 using namespace std;
 int main() {
     vector<string> _vector = {}; //空のvectorを作成
-    _vector.push_back("XL883N"); //追加
-    _vector.push_back("FXDL"); //最後に追加
+    _vector.push_back("A"); //追加
+    _vector.push_back("B"); //最後に追加
+    for (auto tmp : _vector ) {
+        cout << tmp << endl; //"A"→"B"
+    }
 }
 ```
 
-◆追加（最初）
-【構文】
+### 追加（最初）
+* 構文
+```
 vector.insert(vector.begin(), 値);
-【例文】
-vector<string> _vector = {"XL883N","FXDL"};
-_vector.insert(_vector.begin(), "XG750"); //最初に追加
+```
+* 例文
+```
+//test.cpp
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+int main() {
+    vector<string> _vector = {"A","B"};
+    _vector.insert(_vector.begin(), "X"); //最初に追加
+    for (auto tmp : _vector ) {
+        cout << tmp << endl; //"X"→"A"→"B"
+    }
+}
+```
 
-◆追加（指定位置）
-【構文】
+### 追加（指定位置）
+* 構文
+```
 vector.insert(vector.begin() + インデックス番号,値);
-※インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
-【例文】
-//"XL883N","FXDL" → "XG750","XL883N","FXDL"
-_vector.insert(_vector.begin() + 0,"XG750"); //先頭に追加する場合は0
+//インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
+```
+* 例文
+```
+//test.cpp
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+int main() {
+    vector<string> _vector = {"A","B"};
+    _vector.insert(_vector.begin() + 0,"X"); //先頭に追加する場合は0
+    for (auto tmp : _vector ) {
+        cout << tmp << endl; //"X"→"A"→"B"
+    }
+}
+```
 
-◆更新（任意の値）
-【構文】
+### 更新（任意の値）
+* 構文
+```
 vector[インデックス番号] = 値;
-【例文】
-//"XL883N","FXDL","FLSTC" → "XL1200X","FXDL","FLSTC"
-_list[0] = "XL1200X"; //0番目を変更する場合
+```
+* 例文
+```
+//test.cpp
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+int main() {
+    vector<string> _vector = {"A","B","C"};
+    _vector[0] = "X"; //0番目を変更する場合
+    for (auto tmp : _vector ) {
+        cout << tmp << endl; //"X"→"B"→"C"
+    }
+}
+```
 
-◆削除（指定のインデックス）
-【構文】
+### 削除（指定のインデックス）
+* 構文
+```
 vector.erase(vector.begin() + インデックス番号);
-※インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
-【例文】
-//"XG750","XL883N","XL1200X","FXDL" → "XL883N","XL1200X","FXDL"
-_vector.erase(_vector.begin() + 0); //先頭を削除する場合
-_vector.erase(_vector.begin() + _vector.size()); //最後を削除する場合
+//インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
+```
+* 例文
+```
+//test.cpp
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+int main() {
+    vector<string> _vector = {"A","B","C","D"};
+    _vector.erase(_vector.begin() + 0); //先頭を削除する場合
+    //_vector.erase(_vector.begin() + _vector.size()); //最後を削除する場合
+    for (auto tmp : _vector ) {
+        cout << tmp << endl; //"B"→"C"→"D"
+    }
+}
+```
 
-◆抽出（指定位置）
-【構文】
+### 抽出（指定位置）
+* 構文
+```
 vector[インデックス番号]
-【例文】
-vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL"};
-cout << _vector[0] << endl; //"XG750"
-※インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
+```
+* 例文
+```
+//test.cpp
+#include <iostream> //cout に必要
+#include <vector> //vector クラスに必要
+using namespace std;
+int main() {
+    vector<string> _vector = {"A","B","C","D"};
+    cout << _vector[0] << endl; //=> "A"
+    //インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
+}
+```
 
-◆検索（ここでは力技で処理をしています）
-//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
+### 検索（力技）
+```
+//test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
 using namespace std;
@@ -2040,62 +2105,74 @@ int indexOf(vector<string> arg1, string arg2) {
 }
 
 int main() {
-    vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL"};
-    cout << indexOf(_vector, "XL883N") << endl; //1
-    cout << indexOf(_vector, "XL883L") << endl; //-1
+    vector<string> _vector = {"A","B","C","D"};
+    cout << indexOf(_vector, "B") << endl; //1
+    cout << indexOf(_vector, "X") << endl; //-1
     return 0;
 }
+```
 
-◆要素の数
-【構文】
-vector.size(); 
-【例文】
-	vector<string> _vector = {"XG750","XL883N","XL1200X","FXDL"};
-	cout << _vector.size() << endl;
-
-◆並べ替え（反転）
-【通常の方法】
-//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
-#include <iostream> //cout に必要
-#include <vector> //vector クラスに必要
-#include <algorithm> //reverseに必要
-using namespace std;
-
-int main() {
-    vector<string> _vector = {"A","B","C","D","E","F"};
-    reverse(_vector.begin(), _vector.end());
-    for (auto tmp : _vector) {
-        cout <<tmp<< endl; //"F"→"E"→"D"→"C"→"B"→"A"
-    }
-    return 0;
-}
-
-【力技で行う方法】
-//「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
-//「./a.out」で実行 ←重要!!
+### 要素の数
+* 構文
+```
+vector.size();
+```
+* 例文
+```
+//test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
 using namespace std;
-
-vector<string> myReverse(vector<string> arg) {
-    vector<string> result_ = {};
-    for (auto tmp : arg) {
-        result_.insert(result_.begin(), tmp);
-    }
-    return result_;
-}
-
 int main() {
-    vector<string> _vector = {{"A","B","C","D","E","F"}};
-    vector<string> vector2_ = myReverse(_vector);
-    for (auto tmp : vector2_) {
-        cout <<tmp<< endl; //"F"→"E"→"D"→"C"→"B"→"A"
-    }
-    return 0;
+    vector<string> _vector = {"A","B","C","D"};
+    cout << _vector.size() << endl; //=> 4
 }
+```
 
-◆並べ替え（ソート）
+### 並べ替え（反転）
+1. algorithm を使用する方法
+    ```
+    //test.cpp
+    #include <iostream> //cout に必要
+    #include <vector> //vector クラスに必要
+    #include <algorithm> //reverseに必要
+    using namespace std;
+    int main() {
+        vector<string> _vector = {"A","B","C","D","E","F"};
+        reverse(_vector.begin(), _vector.end());
+        for (auto tmp : _vector) {
+            cout <<tmp<< endl; //"F"→"E"→"D"→"C"→"B"→"A"
+        }
+        return 0;
+    }
+    ```
+
+1. algorithm を使用しない方法
+    ```
+    //test.cpp
+    #include <iostream> //cout に必要
+    #include <vector> //vector クラスに必要
+    using namespace std;
+
+    vector<string> myReverse(vector<string> arg) {
+        vector<string> result_ = {};
+        for (auto tmp : arg) {
+            result_.insert(result_.begin(), tmp);
+        }
+        return result_;
+    }
+
+    int main() {
+        vector<string> _vector = {{"A","B","C","D","E","F"}};
+        vector<string> vector2_ = myReverse(_vector);
+        for (auto tmp : vector2_) {
+            cout <<tmp<< endl; //"F"→"E"→"D"→"C"→"B"→"A"
+        }
+        return 0;
+    }
+    ```
+
+### 並べ替え（ソート）
 //「g++ --std=c++0x ○.cpp」でコンパイル(a.out が自動生成)←重要!!
 //「./a.out」で実行 ←重要!!
 #include <iostream> //cout に必要
