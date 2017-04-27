@@ -24,8 +24,8 @@
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
-***
 * [配列](#配列)
+***
 * [動的配列（vector）](#動的配列（vector）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
