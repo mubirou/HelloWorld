@@ -26,7 +26,7 @@
 * [while 文](#while文)
 ***
 * [配列](#配列)
-* [動的配列（List）](#動的配列（List）)
+* [動的配列（vector）](#動的配列（vector）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
@@ -1688,8 +1688,8 @@ for (auto 変数名 : 配列等) {
 using namespace std;
 
 int main() {
-    string array_[] = {"A","B","C"};
-    for (auto tmp : array_) {
+    string _array[] = {"A","B","C"};
+    for (auto tmp : _array) {
         cout << tmp << endl; //"A"→"B"→"C"
     }
     return 0;
@@ -1703,8 +1703,8 @@ int main() {
 using namespace std;
 
 int main() {
-    string array_[2][3] = {{"x0y0","x1y0","x2y0"},{"x0y1","x1y1","x2y1"}}; 
-    for (auto tmp : array_) {
+    string _array[2][3] = {{"x0y0","x1y0","x2y0"},{"x0y1","x1y1","x2y1"}}; 
+    for (auto tmp : _array) {
         cout << tmp << endl; //0x7ffed94ea9c0 → 0x7ffed94eaa20 等
         cout << tmp[0] << endl; //"x0y0" → "x0y1"
     }
@@ -1856,147 +1856,93 @@ int main() {
 
 <a name="配列"></a>
 # <b>配列</b>
-* C# では配列宣言後の要素数変更は不可
 
 ### １次元配列の作成
-* 構文（他にも var キーワードを使ってデータ型を省略した定義も可能）
+* 構文
 ```
-データ型[] 変数名 = new データ型[要素数];
-データ型[] 変数名 = new データ型[]{要素①,要素②,...};
-データ型[] 変数名 = {要素①,要素②,...}; //簡単
+データ型 変数名[] = {要素①,要素②,...};
 ```
+* 配列の宣言後、要素数の変更は不可
 
 * 例文
 ```
-dynamic[] _array1 = new dynamic[4]; //4つの空の要素（動的型）を持つ配列を作成
-string[] _array2 = new string[]{"A","B","C","D"};
-string[] _array3 = {"A","B","C","D"}; //簡単
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+int main() {
+    string _array[] = {"A","B","C"};
+    for (auto tmp : _array) {
+        cout << tmp << endl; //"A"→"B"→"C"
+    }
+    return 0;
+}
 ```
 
 ### ２次元配列（四角配列）の作成
 * 構文
 ```
-データ型[,] 変数名 = new データ型[行数,列数]; //縦x横の空の要素を持つ２次元配列
-データ型[,] 変数名 = {{1行目の配列},{2行目の配列},...};
+データ型 変数名[○行][○個] = {{1行目の配列},...,{○行目の配列}};
 ```
 
-1. new 演算子を使う方法（≒５行x４列のコインロッカー）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string[,] _coinlocker = new string[5,4];
-            _coinlocker[0,0] = "1083"; //0,0の値
-            _coinlocker[0,1] = "7777"; //0,1の値
-            _coinlocker[2,1] = "0135"; //2,1の値
-            _coinlocker[4,3] = "1234"; //4,3の値
-        }
-    }
-    ```
-
-1. 配列リテラルを使う方法（≒５行x４列のコインロッカー）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string[,] _coinlocker = 
-            {{"1083","7777","",""}, //0行目
-            {"","","",""},         //1行目
-            {"","0135","",""},     //2行目
-            {"","","",""},         //3行目
-            {"","","","1234"}};    //4行目
-
-            //確認
-            Console.WriteLine(_coinlocker[0,0]); //"1083"
-            Console.WriteLine(_coinlocker[0,1]); //"7777"
-            Console.WriteLine(_coinlocker[2,1]); //"0135"
-            Console.WriteLine(_coinlocker[4,3]); //"1234"
-        }
-    }
-    ```
-
-### 配列の配列（ジャグ配列）の作成
-* 構文（それぞれの配列の長さは異なるものにできる）
+* 例文
 ```
-①データ型[][] 変数名 = new データ型[要素数][];
-②データ型[][] 変数名 = new データ型[][]{new データ型[]{配列①},...};
-```
-
-1. ジャグ配列の宣言→後で値を割り当てる方法
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            dynamic[][] _array = new dynamic[4][];
-            _array[0] = new dynamic[]{"A","あ","ア"}; //配列リテラルは不可
-            _array[1] = new dynamic[]{"I","い","イ"};
-            _array[2] = new dynamic[]{"U","う","ウ"};
-            _array[3] = new dynamic[]{"E","え","エ"};
-        }
-    }
-    ```
-
-1. ジャグ配列の宣言と同時に値を割り当てる方法
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            dynamic[][] _array = new dynamic[][]{
-            new dynamic[]{"A","あ","ア"},
-            new dynamic[]{"I","い","イ"},
-            new dynamic[]{"U","う","ウ"},
-            new dynamic[]{"E","え","エ"}
-            };
-            foreach (dynamic[] theArray in _array) { //確認 (コマンドライン版の例）
-                foreach (object theValue in theArray) {
-                    Console.WriteLine(theValue);
-                }
-            }
-        }
-    }
-    ```
-
-### 配列の Length プロパティ
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string[] _array = {"A","B","C","D"};
-        for (int i=0; i<_array.Length; i++) { //配列の要素の数
-            Console.WriteLine(_array[i]);
-        }
-    }
+//test.cpp
+//最初に宣言のみ行ない後でデータを入れる方法
+#include <iostream> //coutに必要
+using namespace std;
+int main() {
+    //最初に宣言のみ（5行x4個で固定）
+    string coinlocker_[5][4];
+    coinlocker_[0][0] = "1083";
+    coinlocker_[0][1] = "7777";
+    coinlocker_[2][1] = "0135";
+    coinlocker_[4][3] = "1234";
+    //coinlocker_[6][0] = "9999"; //ERROR（6行目は不可）
+    //coinlocker_[4][5] = "9999"; //ERROR（5個目は不可）
+    cout << coinlocker_[0][0] << endl; //"1083"
+    cout << coinlocker_[0][1] << endl; //"7777"
+    cout << coinlocker_[2][1] << endl; //"0135"
+    cout << coinlocker_[4][3] << endl; //"1234"
 }
 ```
 
-### 文字列→配列
+* 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "A,B,C,D"; //「,」区切りの文字列
-        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
-        foreach (string value in _array) {
-            Console.WriteLine(value); //"A"→"B"→"C"→"D"
-        }
-    }
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+int main() {
+    //配列リテラルを使った方法
+    string coinlocker_[5][4] = { //5行x4個で固定
+        {"1083","7777","",""}, //0行目
+        {"","","",""},         //1行目
+        {"","0135","",""},     //2行目
+        {"","","",""},         //3行目
+        {"","","","1234"}      //4行目
+    };
+}
+```
+
+### 配列の要素の数を調べる
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+int main() {
+    string _array[] = {"A","B","C"};
+    cout << sizeof(_array) << endl; //96
+    cout << sizeof(_array) / sizeof(_array[0]) << endl; //3 ←要素数
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年01月21日  
-更新日：2017年04月19日
+作成日：2016年05月20日  
+更新日：2017年04月27日
 
 
-<a name="動的配列（List）"></a>
-# <b>動的配列（List）</b>
+<a name="動的配列（vector）"></a>
+# <b>動的配列（vector）</b>
 
 ### 概要
 * 配列と異なり List は要素の数を変更したり追加･削除などが可能
