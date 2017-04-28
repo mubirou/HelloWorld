@@ -40,7 +40,6 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -3529,7 +3528,7 @@ int main() {
 
     clock_t _end = clock(); //計測終了
 
-    cout << (double)(_end - _start) / CLOCKS_PER_SEC << "秒\n"; //2.5304秒
+    cout << (double)(_end - _start) / CLOCKS_PER_SEC << "秒\n"; //2.36981秒
 
     return 0;
 }
@@ -3554,7 +3553,7 @@ int main() {
 
     cout << 
     chrono::duration_cast<chrono::milliseconds>(_end - _start).count()
-    << "ミリ秒\n"; //2501ミリ秒
+    << "ミリ秒\n"; //2338ミリ秒
 
     return 0;
 }
@@ -3576,40 +3575,41 @@ int main() {
 さしすせそ
 ```
 
-### 例文（StreamReader クラスを使う方法）
+### 例文
 ```
-//test.cs
-using System;
-using System.IO; //StreamReaderに必要
-class Test { 
-    static void Main() {
-        string _path = "sample.txt";
-        //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します
-        StreamReader _stream = new StreamReader(_path); //.txt以外も可能
-        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-        Console.WriteLine(_string); //結果を出力
-    }
-}
-```
+//test.cpp
+#include <iostream> //coutに必要
+#include <fstream> //ファイルの入出力に必要
+#include <string>
+using namespace std;
 
-###  例文（File.OpenTextメソッドを使う方法）
-```
-//test.cs
-using System;
-using System.IO; //StreamReaderに必要
-class Test { 
-    static void Main() {
-        string _path = "sample.txt";
-        StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
-        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-        Console.WriteLine(_string); //結果を出力
+int main() {
+    //①ファイルをオープン
+    ifstream _stream("sample.txt");
+    
+    //ファイルのオープンに成功したか否か調べる（オプション）
+    if (_stream.fail()) {
+        cout << "ファイルのオープンに失敗" << endl;
+            return -1;		
+    } else {
+        cout << "ファイルのオープンに成功" << endl;
     }
+    
+    //②ファイルの読み込み
+    string _string;
+    while (getline(_stream, _string)) { //1行ずつ読み込む場合…
+        cout << _string << endl;
+    }
+    //"あいうえお"→"かきくけこ"が出力
+
+    //③ファイルをクローズ（オプション）
+    _stream.close();
+    
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月30日  
-更新日：2017年04月21日
+作成日：2016年05月30日  
+更新日：2017年04月28日
