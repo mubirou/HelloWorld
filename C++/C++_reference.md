@@ -1234,12 +1234,12 @@ using namespace std;
 //========
 class MyClass {
     public: 
-        void Sum(int arg[], int listLength_);
+        void Sum(int arg[], int _listLength);
 };
 
-void MyClass::Sum(int arg[], int listLength_) { 
+void MyClass::Sum(int arg[], int _listLength) { 
     int _result = 0; 
-    for (int i=0; i<listLength_; i++) {
+    for (int i=0; i<_listLength; i++) {
          _result += arg[i]; 
     } 
     cout << _result << "\n";
@@ -1251,13 +1251,13 @@ void MyClass::Sum(int arg[], int listLength_) {
 int main() { MyClass _myClass;
     //1,1を足す
     int tmp1[] = {1,1}; 
-    int listLength_ = sizeof(tmp1) / sizeof(tmp1[0]); //配列の要素数を調べる
-    _myClass.Sum(tmp1, listLength_); //=> 2
+    int _listLength = sizeof(tmp1) / sizeof(tmp1[0]); //配列の要素数を調べる
+    _myClass.Sum(tmp1, _listLength); //=> 2
 
     //1,2,3...9,10を足す
     int tmp2[] = {1,2,3,4,5,6,7,8,9,10};
-    listLength_ = sizeof(tmp2) / sizeof(tmp2[0]); //配列の要素数を調べる
-    _myClass.Sum(tmp2, listLength_); //=> 55
+    _listLength = sizeof(tmp2) / sizeof(tmp2[0]); //配列の要素数を調べる
+    _myClass.Sum(tmp2, _listLength); //=> 55
 }
 ```
 
@@ -3373,52 +3373,49 @@ int main() {
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
-### 書式
 ```
-DateTime ○ = DateTime.Now; //DateTimeは構造体
-○.Year; //年（2017等）
-○.Month; //月（1〜12）
-○.Day; //日（1〜31）
-○.DayOfYear; //元日から日数（1〜366）
-○.DayOfWeek; //曜日（Sanday〜Saturday）
-○.Hour; //時間（0〜23）
-○.Minute; //分（0〜59）
-○.Second; //秒（0〜59）
-○.Millisecond; //ミリ秒（0〜999）
-○.Ticks; //0001年1月1日00:00:00からの経過時間（ナノ秒）：但し精度は10ミリ秒
-```
+//test.cpp
+#include <iostream> //coutに必要
+#include <sstream> //ostringstreamに必要。
+using namespace std;
 
-### 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        DateTime _now = DateTime.Now;
-        Console.WriteLine(_now); //4/21/2017 10:16:04 AM
-        Console.WriteLine(_now.Year); //2017
-        Console.WriteLine(_now.Month); //4
-        Console.WriteLine(_now.Day); //21
-        Console.WriteLine(_now.DayOfYear); //111（元日からの日数）
-        Console.WriteLine(_now.DayOfWeek); //Friday
-        Console.WriteLine(_now.Hour); //10
-        Console.WriteLine(_now.Minute); //16
-        Console.WriteLine(_now.Second); //4
-        Console.WriteLine(_now.Millisecond); //337
-        Console.WriteLine(_now.Ticks); //636283665643372990（100ナノ秒単位）
-        //"hh:mm:ss"で現在の時間を表示する方法
-        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
-        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
-        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
-        Console.WriteLine(_h + ":" + _m + ":" + _s); //"10:16:04"
+string changeHoge(int arg) { //ひと桁の場合はふた桁表示にする関数
+    ostringstream _stream;
+    _stream << arg;
+    if (arg < 10) { //0〜9の場合…
+        return "0" + _stream.str();
+    } else { //10以上の場合…
+        return _stream.str();
     }
+}
+
+int main() {
+time_t now_ = time(NULL);
+struct tm *_pNow = localtime(&now_);
+    
+    cout << _pNow -> tm_year + 1900 << endl; //2016（年）
+    cout << _pNow -> tm_mon + 1 << endl; //5（月）
+    cout << _pNow -> tm_mday << endl; //27（日）
+    cout << _pNow -> tm_yday << endl; //147（年内通算日, 元日が0）
+    cout << _pNow -> tm_wday << endl; //5（曜日, 0日曜〜6土曜）	
+    cout << _pNow -> tm_hour << endl; //11（時間, 0〜23）
+    cout << _pNow -> tm_min << endl; //39（分）
+    cout << _pNow -> tm_sec << endl; //41（秒）
+    
+    //"hh:mm:ss"で現在の時間を表示する方法
+    string _h = changeHoge(_pNow -> tm_hour);
+    string _m = changeHoge(_pNow -> tm_min);
+    string _s = changeHoge(_pNow -> tm_sec);
+    cout << _h + ":" + _m + ":" + _s << endl; //"12:12:02"
+    
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月27日  
-更新日：2017年04月21日
+作成日：2016年05月27日  
+更新日：2017年04月28日
 
 
 <a name="タイマー"></a>
