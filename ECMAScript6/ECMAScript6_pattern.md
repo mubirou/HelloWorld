@@ -89,44 +89,59 @@ console.log(Singleton.getSingleton()); //=> "改竄できますよ"
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
 ### 目的
-生成すべきオブジェクトの種類を原型となるインスタンスを使って明確にし、それをコピーすることで新たなオブジェクトの生成を行う。
-『オブジェクト指向における再利用のためのデザインパターン 改訂版』より
-言い換えると... new クラス名() などによってインスタンスを作るのではなく、作成済みのインスタンスをコピー（複製）して新しいインスタンスを作る。
+* 生成すべきオブジェクトの種類を原型となるインスタンスを使って明確にし、それをコピーすることで新たなオブジェクトの生成を行う。（『オブジェクト指向における再利用のためのデザインパターン 改訂版』より）
+* 言い換えると new クラス名() などによってインスタンスを作るのではなく、作成済みのインスタンスをコピー（複製）して新しいインスタンスを作る。
 
 ### プログラミングの肝
-パブリックなclone()メソッドを用意 → そのメソッドの中で自分自身（同じクラス）のインスタンスを生成 → 生成したインスタンスにコピー元の全てのインスタンス･プロパティの値をセット → そのインスタンスを返す。（各メソッドやアクセサは、何もせずにそのまま使えます）
+1. パブリックな clone()メソッドを用意
+1. そのメソッドの中で自分自身（同じクラス）のインスタンスを生成
+1. 生成したインスタンスにコピー元の全てのインスタンス･プロパティの値をセット
+1. そのインスタンスを返す。（各メソッドやアクセサは、何もせずにそのまま利用可能）
 
 ### 例文
 ```
+<script>
+
+//=================
+// Prototypeクラス
+//=================
 class Prototype {
-constructor(_name, _address) { //コンストラクタ
-    this.__name = _name;
-    this.__address = _address;
-}
-clone() {
-    var _prototype = new Prototype(); //自分自身（同じクラス）のインスタンスを生成
-    _prototype.name = this.name; //コピー元のインスタンス･プロパティの値をセット
-    _prototype.address = this.address; //コピー元のインスタンス･プロパティの値をセット
-    return _prototype; //インスタンスをかえす
-}
-//各プロパティのアクセサ
-get name() { return this.__name; }
-set name(_newValue) { this.__name = _newValue; }
-get address() { return this.__address; }
-set address(_newValue) { this.__address = _newValue; }
+    //コンストラクタ
+    constructor(_name, _address) {
+        this.__name = _name;
+        this.__address = _address;
+    }
+
+    clone() {
+        var _prototype = new Prototype(); //自分自身（同じクラス）のインスタンスを生成
+        _prototype.name = this.name; //コピー元のインスタンス･プロパティの値をセット
+        _prototype.address = this.address; //コピー元のインスタンス･プロパティの値をセット
+        return _prototype; //インスタンスをかえす
+    }
+
+    //各プロパティのアクセサ
+    get name() { return this.__name; }
+    set name(_newValue) { this.__name = _newValue; }
+    get address() { return this.__address; }
+    set address(_newValue) { this.__address = _newValue; }
 }
 
+//=====
+//実行
+//=====
 var _memberA = new Prototype("鈴木一郎", "新宿区XX町X-X-X");
 var _memberB = _memberA.clone(); //インスタンスをコピー（複製）
 _memberB.name = "鈴木花子"; //プロパティを変更
 console.log(_memberA.name, _memberA.address); //=> "鈴木一郎 新宿区XX町X-X-X"
 console.log(_memberB.name, _memberB.address); //=> "鈴木花子 新宿区XX町X-X-X"
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月05日  
-更新日：2017年0X月XX日
+更新日：2017年04月28日
 
 
 <a name="Builder"></a>
