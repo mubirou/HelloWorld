@@ -1081,13 +1081,13 @@ using namespace std;
 //========
 class MyClass {
     public:
-        int Tashizan(int start_, int end_); //メンバ関数の「宣言」
+        int Tashizan(int _start, int _end); //メンバ関数の「宣言」
 };
 
 //○〜○までの値を足した合計を返す
-int MyClass::Tashizan(int start_, int end_) { //メンバ関数の「定義」
+int MyClass::Tashizan(int _start, int _end) { //メンバ関数の「定義」
     int _result = 0; //ローカル変数
-    for (int i = start_; i <= end_; i++) {
+    for (int i = _start; i <= _end; i++) {
         _result += i;
     }
     return _result;
@@ -3512,48 +3512,57 @@ int main() {
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### DateTime構造体を使う方法
+### clock を使う方法
+* C 言語標準の関数（単位はミリ秒）
 ```
-//test.cs
-//日時情報を得るためのDatetime構造体を利用して計測する方法
-using System; //DateTimeに必要
-class Test {
-    static void Main() {
-        long _start = DateTime.Now.Ticks; //100ナノ秒単位（精度は10ミリ秒）
-        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
-            //速度計測したい処理
-        }
-        Console.WriteLine(DateTime.Now.Ticks - _start); //33060210（≒3.3秒）
+//test.cpp
+#include <iostream> //coutに必要
+#include <time.h> //clock系に必要
+using namespace std;
+
+int main() {
+    clock_t _start = clock(); //計測スタート
+
+    for (int i=0; i<1000000000; ++i) { //10億回繰り返す場合
+        //速度計測したい処理
     }
+
+    clock_t _end = clock(); //計測終了
+
+    cout << (double)(_end - _start) / CLOCKS_PER_SEC << "秒\n"; //2.5304秒
+
+    return 0;
 }
 ```
 
-### Stopwatchクラスを使う方法
+### chrono を使う方法
+* C++11 で追加された機能
 ```
-//test.cs
-/*
-.NET Framework 2.0から追加された機能
-Stopwatchクラスのインスタンスを生成しStart/Stopメソッドを実行するだけで可能
-*/
-using System; 
-using System.Diagnostics; //Stopwatchに必要
-class Program     { 
-    static void Main() { 
-        Stopwatch _stopWatch = new Stopwatch(); //インスタンスの生成
-        _stopWatch.Start(); //計測開始
-        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
-            //速度計測したい処理
-        }
-        _stopWatch.Stop(); //計測終了
-        Console.WriteLine(_stopWatch.ElapsedMilliseconds); //3230（ミリ秒）
-        Console.WriteLine(_stopWatch.Elapsed); //00:00:03.2302265（秒）
+//test.cpp
+#include <iostream> //coutに必要
+#include <chrono> //chronoに必要
+using namespace std;
+
+int main() {
+    auto _start = chrono::system_clock::now(); //計測スタート
+
+    for (int i=0; i<1000000000; ++i) { //10億回繰り返す場合
+        //速度計測したい処理
     }
+    
+    auto _end = chrono::system_clock::now(); //計測終了
+
+    cout << 
+    chrono::duration_cast<chrono::milliseconds>(_end - _start).count()
+    << "ミリ秒\n"; //2501ミリ秒
+
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成日：2015年11月28日  
-更新日：2017年04月21日
+作成日：2016年05月30日  
+更新日：2017年04月28日
 
 
 <a name="外部テキストの読み込み"></a>
