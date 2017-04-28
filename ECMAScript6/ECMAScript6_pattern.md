@@ -376,43 +376,56 @@ _card.print();
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
 ```
-// xx.js
-// カードショップ ////////////////////////////////////////////////////////////////////////
-class AbstracShop { //抽象クラス
-static getShop(_className) { //静的メソッド（＝Get Factory, Create Factory）
-    if (_className == "CardShopICHIRO") {
-        return new CardShopICHIRO(); //ここでインスタンス化
-    } else if (_className == "CardShopHANAKO") {
-        return new CardShopHANAKO(); //ここでインスタンス化
+<script>
+
+// カードショップ
+//==========================
+// 抽象クラス（抽象的な工場）
+//==========================
+class AbstracShop {
+    //静的メソッド
+    static getShop(_className) {
+        if (_className == "CardShopICHIRO") {
+            return new CardShopICHIRO(); //ここでインスタンス化
+        } else if (_className == "CardShopHANAKO") {
+            return new CardShopHANAKO(); //ここでインスタンス化
+        }
     }
-}
-    //↓抽象メソッド
+
+    //抽象メソッド
     createSummerCard() { throw new Error("サブクラスで実装して下さい"); }
     createNewYearCard() { throw new Error("サブクラスで実装して下さい"); }
     createMourningCard() { throw new Error("サブクラスで実装して下さい"); }
-    //↓共通の機能（オプション）
+
+    //共通の機能（オプション）
     makeFooter() { console.log("〒XXX-XXXX 新宿区XX町X-X-X"); }
 }
 
-class CardShopICHIRO extends AbstracShop { //サブクラス（抽象クラスを継承）
+//=============
+// サブクラスＡ
+//=============
+class CardShopICHIRO extends AbstracShop { //抽象クラスを継承
     createSummerCard() { //抽象クラスをオーバーライド
         console.log("HAPPY SUMMER HOLIDAYS!");
         console.log("サーフィンのイラスト");
         this.makeFooter();
     }
-    createNewYearCard() { //抽象クラスをオーバーライド
+    createNewYearCard() { //抽象メソッドをオーバーライド
         console.log("HAPPY NEW YEAR!");
         console.log("干支のイラスト");
         this.makeFooter();
     }
-    createMourningCard() { //抽象クラスをオーバーライド
+    createMourningCard() { //抽象メソッドをオーバーライド
         console.log("喪中のため年頭のご挨拶をご遠慮申し上げます");
         console.log("白黒のイラスト");
         this.makeFooter();
     }
 }
 
-class CardShopHANAKO extends AbstracShop { //サブクラス（抽象クラスを継承）
+//=============
+// サブクラスＢ
+//=============
+class CardShopHANAKO extends AbstracShop { //抽象クラスを継承
     createSummerCard() { //抽象クラスをオーバーライド
         console.log("暑中お見舞い申し上げます");
         console.log("スイカのイラスト");
@@ -428,38 +441,50 @@ class CardShopHANAKO extends AbstracShop { //サブクラス（抽象クラス�
     }
 }
 
-// 実行（ICHIROショップ）/////////////////////////////////////////////////////////////////
+//=======================
+// 実行（ICHIROショップ）
+//=======================
 var _ichiro = AbstracShop.getShop("CardShopICHIRO"); //静的メソッドを使用
+
 _ichiro.createSummerCard();
 //=> HAPPY SUMMER HOLIDAYS!
 //=> サーフィンのイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
+
 _ichiro.createNewYearCard();
 //=> HAPPY NEW YEAR!
 //=> 干支のイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
+
 _ichiro.createMourningCard();
 //=> 喪中のため年頭のご挨拶をご遠慮申し上げます
 //=> 白黒のイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-// 実行（HANAKOショップ）///////////////////////////////////////////////////////////////
+//=======================
+// 実行（HANAKOショップ）
+//=======================
 var _hanako = AbstracShop.getShop("CardShopHANAKO"); //静的メソッドを使用
+
 _hanako.createSummerCard();
 //=> 暑中お見舞い申し上げます
 //=> スイカのイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
+
 _hanako.createNewYearCard();
 //=> 明けましておめでとうございます
 //=> お餅のイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
-_hanako.createMourningCard(); //=> Error: 喪中はがきにはまだ対応しておりません
+
+//_hanako.createMourningCard(); //=> Error: 喪中はがきにはまだ対応しておりません
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月11日  
-更新日：2017年0X月XX日
+更新日：2017年04月28日
 
 
 <a name="Adapter（継承）"></a>
