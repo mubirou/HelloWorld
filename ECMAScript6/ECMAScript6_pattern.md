@@ -148,49 +148,71 @@ console.log(_memberB.name, _memberB.address); //=> "鈴木花子 新宿区XX町X
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
 ```
-class AbstractBuilder { // Builder役＝抽象クラス（全て抽象メソッドである必要はない）
+<script>
+
+//===========================================================
+// Builder役＝抽象クラス（全て抽象メソッドである必要はない）
+//===========================================================
+class AbstractBuilder {
     makeHeader() { throw new Error("サブクラスで実装して下さい"); }
     makeContent() { throw new Error("サブクラスで実装して下さい"); }
     makeFooter() { throw new Error("サブクラスで実装して下さい"); }
 }
-class SummerCardBuilder extends AbstractBuilder { // ConcreateBuilder役＝制作者Ａ
+
+//==============================
+// ConcreateBuilder役＝制作者Ａ
+//==============================
+class SummerCardBuilder extends AbstractBuilder {
     makeHeader() { console.log("暑中お見舞い申し上げます"); }
     makeContent() { console.log("スイカのイラスト"); }
     makeFooter() { console.log("盛夏"); }
 }
-class NewYearCardBuilder extends AbstractBuilder { // ConcreateBuilder役＝制作者Ｂ
+
+//==============================
+// ConcreateBuilder役＝制作者Ｂ
+//==============================
+class NewYearCardBuilder extends AbstractBuilder {
     makeHeader() { console.log("明けましておめでとうございます"); }
     makeContent() { console.log("干支のイラスト"); }
     makeFooter() { console.log("元旦"); }
 }
 
-class Director { // Director役＝監督（作成手順を決め実行する）
-constructor(_builder) { 
-    this.__builder = _builder;
-}
-construct() { //作成過程（ConcreteBuilder役特有のメソッドは使わないこと）
-    this.__builder.makeHeader();
-    this.__builder.makeContent();
-    this.__builder.makeFooter();
-}
+//============================================
+// Director役＝監督（作成手順を決め実行する）
+//============================================
+class Director {
+    constructor(_builder) { 
+        this.__builder = _builder;
+    }
+    construct() { //作成過程（ConcreteBuilder役特有のメソッドは使わないこと）
+        this.__builder.makeHeader();
+        this.__builder.makeContent();
+        this.__builder.makeFooter();
+    }
 }
 
+//======
+// 実行
+//======
 var _summerCard = new Director(new SummerCardBuilder());
 _summerCard.construct(); //作成過程の実行
 //=> 暑中お見舞い申し上げます
 //=> スイカのイラスト
 //=> 盛夏
+
 var _newYearCard = new Director(new NewYearCardBuilder());
 _newYearCard.construct(); //作成過程の実行
 //=> 明けましておめでとうございます
 //=> 干支のイラスト
 //=> 元旦
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月05日  
-更新日：2017年0X月XX日
+更新日：2017年04月28日
 
 
 <a name="FactoryMethod"></a>
