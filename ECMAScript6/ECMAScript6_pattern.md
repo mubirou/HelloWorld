@@ -5,34 +5,34 @@
 ### <b>INDEX</b>
 
 * オブジェクトの「生成」に関するパターン
-    1. [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton)
-    1. [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype)
-    1. [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder)
-    1. [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod)
-    1. [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory)
+    * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton)
+    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype)
+    * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder)
+    * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod)
+    * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory)
 
 * プログラムの「構造」に関するパターン
-    1. [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）)
-    1. [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）)
-    1. [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge)
-    1. [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite)
-    1. [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator)
-    1. [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade)
-    1. [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight)
-    1. [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy)
+    * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）)
+    * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）)
+    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge)
+    * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite)
+    * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator)
+    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade)
+    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight)
+    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy)
 
 * オブジェクトの「振る舞い」に関するパターン
-    1. [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator)
-    1. [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod)
-    1. [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy)
-    1. [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor)
-    1. [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility)
-    1. [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator)
-    1. [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer)
-    1. [<ruby>Memento<rt>メメント</rt></ruby>](#Memento)
-    1. [<ruby>State<rt>ステート</rt></ruby>](#State)
-    1. [<ruby>Command<rt>コマンド</rt></ruby>](#Command)
-    1. [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter)
+    * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator)
+    * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod)
+    * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy)
+    * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor)
+    * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility)
+    * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator)
+    * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer)
+    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento)
+    * [<ruby>State<rt>ステート</rt></ruby>](#State)
+    * [<ruby>Command<rt>コマンド</rt></ruby>](#Command)
+    * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter)
 
 
 <a name="Singleton"></a>
@@ -43,8 +43,8 @@
 言い方を変えると...クラスを利用するプログラマがいかに記述したとしても、そのインスタンスを勝手に生成できないようにし、かつ、唯一のインスタンスを利用できる機能を提供する。
 
 ### プログラミングの肝
-1. new クラス名() など（言語によって異なる）を使ったインスタンス生成をできないようにする。
-1. 唯一のインスタンスを呼び出す機能（メソッドの場合がほとんど）を用意する。
+* new クラス名() など（言語によって異なる）を使ったインスタンス生成をできないようにする。
+* 唯一のインスタンスを呼び出す機能（メソッドの場合がほとんど）を用意する。
 
 ### 例文
 ```
