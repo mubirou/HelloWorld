@@ -39,8 +39,8 @@
 * [数学関数](#数学関数)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-***
 * [タイマー](#タイマー)
+***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -3055,16 +3055,16 @@ class Robot {
     public:
         static const string DIE; //オプション
         //↓リスナー関数の「宣言」
-        void AddEventListener(string event_, function<void()> function_);
+        void AddEventListener(string _event, function<void()> _function);
         void Fight(); //メンバ関数の「宣言」
 };
 
 const string Robot::DIE = "die"; //オプション
 
 //今回は removeEventListener() は省略
-void Robot::AddEventListener(string event_, function<void()> function_) {
-    if (event_ == "die") {
-        _dieHandler = function_; //die用のリスナー関数を設定（記憶）する
+void Robot::AddEventListener(string _event, function<void()> _function) {
+    if (_event == "die") {
+        _dieHandler = _function; //die用のリスナー関数を設定（記憶）する
     } else {
         cout << "ERROR: Robot::AddEventListener()" << endl;
     }
@@ -3421,67 +3421,92 @@ struct tm *_pNow = localtime(&_now);
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### スレッドタイマー（System.Threading.Timer）を使う方法
+### 概要
+* C++ の標準機能では、他の多くの言語で可能なスマートな機能は無い
+* 各 OS 限定では様々な方法は存在する
+
+### 基本編
 ```
-//test.cs
-/*
-システムタイマー（後述）と比較すると軽量
-Windows Formでの使用は非推奨
-*/
-using System;
-using System.Threading; //System.Threading.Timerに必要
+//test.cpp
+#include <iostream> //coutに必要
+#include <unistd.h> //usleepに必要
+using namespace std;
 
-class Test {
-    private static Timer _timer; //privateは省略可
-        
-    static void Main() {
-        _timer = new Timer(new TimerCallback(Loop)); //タイマーの生成
-        _timer.Change(0, 1000); //0ミリ秒後から、1000ミリ秒間隔で開始!
-        Console.ReadLine(); //ここでは必須（要注意）
+int main() {
+    int _cout = 0;
+    for (;;) { //無限ループ
+        if (_cout++ < 30) { //30回繰り返す場合…
+            //sleep(1); //1秒間隔の場合
+            //usleep(1000000); //1秒（1,000,000マイクロ秒）間隔の場合
+            usleep(33670); //≒29.7fpsの場合
+            cout << "繰り返したい処理をここに記述" << endl;
+        } else {
+            break; //繰り返しを終了
+        }
     }
-
-    static void Loop(object arg) { //1000ミリ秒毎に実行される
-        Console.WriteLine(arg); //System.Threading.Timer
-        //_timer.Change(Timeout.Infinite, Timeout.Infinite); //停止 ←力技
-    }
+    return 0;
 }
 ```
 
-### システムタイマー（System.Timers.Timer）を使う方法
+### 応用編
 ```
-//test.cs
-/* 
-サーバベース・タイマーとも呼ばれる
-スレッドタイマー（前述）と比較すると重いが精度が高い
-スレッドの経過時間とは独立した時間監視をする
-Windows Formでの使用もＯＫ
-*/
-using System;
-using System.Timers; //System.Timers.Timerに必要
+//test.cpp
+#include <iostream> //coutに必要
+#include <unistd.h> //usleepに必要
+#include <functional> //functionに必要
+using namespace std;
 
-class Test {
-    private static Timer _timer; //privateは省略可
-
-    static void Main() {
-        _timer = new Timer(); //タイマーの生成
-        _timer.Interval = 1000; //1000ミリ秒間隔
-        _timer.Elapsed += new ElapsedEventHandler(Loop); //イベントハンドラの追加
-        _timer.Start(); //開始!
-        Console.ReadLine(); //ここでは必須（要注意）
-    }
+//================================
+// カスタムクラス（Canvasクラス）
+//================================
+class Canvas {
+    private:
+        int _cout = 0; //タイマー用カウンター
+        function<void()> enterframeHandler; //enterframe用のリスナー関数を格納
     
-    static void Loop(object arg1, EventArgs arg2) { //1000ミリ秒毎に実行される
-        Console.WriteLine(arg1); //System.Timers.Timer（タイマー本体）
-        Console.WriteLine(arg2); //System.Timers.ElapsedEventArgs（各種情報）
-        //_timer.Stop(); //停止 ←この場合１回で停止
+    public:
+        void AddEventListener(string _event, function<void()> _function);
+};
+
+void Canvas::AddEventListener(string _event, function<void()> _function) {
+    if (_event == "enterframe") {
+        enterframeHandler = _function; //enterframe用リスナー関数を設定（記憶）
+        //タイマー関連
+        for (;;) { //無限ループ
+            if (_cout++ < 9e9) { //9000000000回（約9.6年）繰り返す場合
+                //sleep(1); //1秒間隔の場合
+                //usleep(1000000); //1秒（1,000,000マイクロ秒）間隔の場合
+                usleep(33670); //≒29.7fpsの場合
+                enterframeHandler(); //enterframeイベント発生（リスナー関数を呼出す）
+            } else {
+                break; //繰り返しを終了
+                //↑実際にはremoveEventListener()を用意して他で終了することも可能
+            }
+        }
+    } else {
+        cout << "ERROR: Canvas::AddEventListener()" << endl;
     }
+}
+
+//================
+// メイン関数ほか
+//================
+void enterframe_Canvas() { //リスナー関数
+    cout << "繰り返し実行したいことをここに記述" << endl;
+}
+
+int main() {
+    Canvas Canvas_;
+    Canvas_.AddEventListener("enterframe", enterframe_Canvas);
+    //↑この記述で直ちにenterframe_Canvas()が29.7fpsで繰り返し実行されます。
+    return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2015年11月27日  
-更新日：2017年04月21日
+作成日：2016年05月27日  
+更新日：2017年04月28日
 
 
 <a name="処理速度計測"></a>
