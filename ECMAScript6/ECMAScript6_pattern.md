@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -220,59 +220,70 @@ _newYearCard.construct(); //作成過程の実行
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
 ```
-// xx.js
-//========================================================================================
-// カードショップ
-//========================================================================================
-class AbstracShop { //抽象クラス
-order(_type) { //templateMethod()のこと
-    //↓「変化する部分」をカプセル化（汎用化にも寄与）
-    var _card = this.factoryMethod(_type); //ここで new しない!
-    //↓「変化しない部分」（一連の処理／具体的な処理内容は各カードのクラスまかせ）
-    _card.makeHeader();
-    _card.makeContent();
-    _card.makeFooter();
-    return _card;
-}
-    factoryMethod() { //抽象メソッド（オプション）
+<script>
+
+//===========
+// 抽象クラス
+//===========
+class AbstracShop {
+    //templateMethod()のこと
+    order(_type) {
+        //↓「変化する部分」をカプセル化（汎用化にも寄与）
+        var _card = this.factoryMethod(_type); //ここで new しない
+        //↓変化しない部分（一連の処理／具体的な処理内容は各カードのクラスまかせ）
+        _card.makeHeader();
+        _card.makeContent();
+        _card.makeFooter();
+        return _card;
+    }
+
+    //抽象メソッド（オプション）
+    factoryMethod() {
         throw new Error("サブクラスで実装して下さい");
     }
 }
 
-class CardShopICHIRO extends AbstracShop { //サブクラス（抽象クラスを継承）
-//↓インスタンスの作成をサブクラスのfactoryMedthod()で行う!!
-factoryMethod(_type) {
-    //↓「変化する部分」（手紙の種類は時とともに変化する可能性がある）
-    if (_type == "暑中見舞い") {
-        return new IchiroSummerCard(); //ここでインスタンス化
-    } else if (_type == "年賀状") {
-        return new IchiroNewYearCard(); //ここでインスタンス化
-    } else if (_type == "喪中はがき") {
-        return new IchiroMourningCard(); //ここでインスタンス化
-    } else {
-        throw new Error(_type + " にはまだ対応しておりません");
+//=============
+// サブクラスＡ
+//=============
+class CardShopICHIRO extends AbstracShop { //抽象クラスを継承
+    //↓インスタンスの作成をサブクラスのfactoryMedthod()で行う
+    factoryMethod(_type) {
+        //↓「変化する部分」（手紙の種類は時とともに変化する可能性がある）
+        if (_type == "暑中見舞い") {
+            return new IchiroSummerCard(); //ここでインスタンス化
+        } else if (_type == "年賀状") {
+            return new IchiroNewYearCard(); //ここでインスタンス化
+        } else if (_type == "喪中はがき") {
+            return new IchiroMourningCard(); //ここでインスタンス化
+        } else {
+            throw new Error(_type + " にはまだ対応しておりません");
+        }
     }
 }
-}
 
-class CardShopHANAKO extends AbstracShop { // サブクラス（抽象クラスを継承）
-    //↓インスタンスの作成をサブクラスのfactoryMedthod()で行う!!
-factoryMethod(_type) {
-    //↓「変化する部分」（手紙の種類は時とともに変化する可能性がある）
-    if (_type == "暑中見舞い") {
-        return new HanakoSummerCard(); //ここでインスタンス化
-    } else if (_type == "年賀状") {
-        return new HanakoNewYearCard(); //ここでインスタンス化
-    } else {
-        throw new Error(_type + "にはまだ対応しておりません");
+//=============
+// サブクラスＢ
+//=============
+class CardShopHANAKO extends AbstracShop { //抽象クラスを継承
+    //↓インスタンスの作成をサブクラスのfactoryMedthod()で行う
+    factoryMethod(_type) {
+        //↓「変化する部分」（手紙の種類は時とともに変化する可能性がある）
+        if (_type == "暑中見舞い") {
+            return new HanakoSummerCard(); //ここでインスタンス化
+        } else if (_type == "年賀状") {
+            return new HanakoNewYearCard(); //ここでインスタンス化
+        } else {
+            throw new Error(_type + "にはまだ対応しておりません");
+        }
     }
 }
-}
 
-//========================================================================================
-// カード（このクラスのインスタンス化をパブリックで実行しない!!）
-//========================================================================================
-class AbstractCard { //抽象カード
+//===================
+// 生成したいクラス群
+//===================
+//抽象クラス
+class AbstractCard {
     //↓共通の機能
     makeFooter() { this.__footer = "〒XXX-XXXX 新宿区XX町X-X-X"; }
     print() {
@@ -282,71 +293,83 @@ class AbstractCard { //抽象カード
     }
 }
 
-class IchiroSummerCard extends AbstractCard { //ICHIROショップスタイルの暑中見舞い
+//ICHIROショップスタイルの暑中見舞い
+class IchiroSummerCard extends AbstractCard {
     makeHeader() { this.__header = "HAPPY SUMMER HOLIDAYS!"; }
     makeContent() { this.__content = "サーフィンのイラスト"; }
 }
 
-class IchiroNewYearCard extends AbstractCard { //ICHIROショップスタイルの年賀状
+//ICHIROショップスタイルの年賀状
+class IchiroNewYearCard extends AbstractCard {
     makeHeader() { this.__header = "HAPPY NEW YEAR!"; }
     makeContent() { this.__content = "干支のイラスト"; }
 }
 
-class IchiroMourningCard extends AbstractCard { //ICHIROショップスタイルの喪中はがき
+//ICHIROショップスタイルの喪中はがき
+class IchiroMourningCard extends AbstractCard {
     makeHeader() { this.__header = "喪中のため年頭のご挨拶をご遠慮申し上げます"; }
     makeContent() { this.__content = "白黒のイラスト"; }
 }
 
-class HanakoSummerCard extends AbstractCard { //HANAKOショップスタイルの暑中お見舞い
+//HANAKOショップスタイルの暑中お見舞い
+class HanakoSummerCard extends AbstractCard {
     makeHeader() { this.__header = "暑中お見舞い申し上げます"; }
     makeContent() { this.__content = "スイカのイラスト"; }
 }
 
-class HanakoNewYearCard extends AbstractCard { //HANAKOショップスタイルの年賀状
+//HANAKOショップスタイルの年賀状
+class HanakoNewYearCard extends AbstractCard {
     makeHeader() { this.__header = "明けましておめでとうございます"; }
     makeContent() { this.__content = "お餅のイラスト"; }
 }
 
-//========================================================================================
+//======================
 // 実行（ICHIROショップ）
-//========================================================================================
+//======================
 var _ichiro = new CardShopICHIRO();
+
 var _card = _ichiro.order("暑中見舞い"); //templateMethod()のこと
 _card.print();
 //=> HAPPY SUMMER HOLIDAYS!
 //=> サーフィンのイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
+
 var _card = _ichiro.order("年賀状"); //templateMethod()のこと
 _card.print();
 //=> HAPPY NEW YEAR!
 //=> 干支のイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
+
 var _card = _ichiro.order("喪中はがき"); //templateMethod()のこと
 _card.print();
 //=> 喪中のため年頭のご挨拶をご遠慮申し上げます
 //=> 白黒のイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-//========================================================================================
+//======================
 // 実行（HANAKOショップ）
-//========================================================================================
+//======================
 var _hanako = new CardShopHANAKO();
+
 var _card = _hanako.order("暑中見舞い"); //templateMethod()のこと
 _card.print();
 //=> 暑中お見舞い申し上げます
 //=> スイカのイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
+
 var _card = _hanako.order("年賀状"); //templateMethod()のこと
 _card.print();
 //=> 明けましておめでとうございます
 //=> お餅のイラスト
 //=> 〒XXX-XXXX 新宿区XX町X-X-X
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月07日  
-更新日：2017年0X月XX日
+更新日：2017年04月28日
 
 
 <a name="AbstractFactory"></a>
