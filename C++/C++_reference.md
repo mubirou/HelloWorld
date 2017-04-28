@@ -37,9 +37,9 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数](#数学関数)
-***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
+***
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -3390,23 +3390,23 @@ string changeHoge(int arg) { //ひと桁の場合はふた桁表示にする関�
 }
 
 int main() {
-time_t now_ = time(NULL);
-struct tm *_pNow = localtime(&now_);
+time_t _now = time(NULL);
+struct tm *_pNow = localtime(&_now);
     
-    cout << _pNow -> tm_year + 1900 << endl; //2016（年）
-    cout << _pNow -> tm_mon + 1 << endl; //5（月）
-    cout << _pNow -> tm_mday << endl; //27（日）
-    cout << _pNow -> tm_yday << endl; //147（年内通算日, 元日が0）
+    cout << _pNow -> tm_year + 1900 << endl; //2017（年）
+    cout << _pNow -> tm_mon + 1 << endl; //4（月）
+    cout << _pNow -> tm_mday << endl; //28（日）
+    cout << _pNow -> tm_yday << endl; //117（年内通算日, 元日が0）
     cout << _pNow -> tm_wday << endl; //5（曜日, 0日曜〜6土曜）	
-    cout << _pNow -> tm_hour << endl; //11（時間, 0〜23）
-    cout << _pNow -> tm_min << endl; //39（分）
-    cout << _pNow -> tm_sec << endl; //41（秒）
+    cout << _pNow -> tm_hour << endl; //9（時間, 0〜23）
+    cout << _pNow -> tm_min << endl; //12（分）
+    cout << _pNow -> tm_sec << endl; //4（秒）
     
     //"hh:mm:ss"で現在の時間を表示する方法
     string _h = changeHoge(_pNow -> tm_hour);
     string _m = changeHoge(_pNow -> tm_min);
     string _s = changeHoge(_pNow -> tm_sec);
-    cout << _h + ":" + _m + ":" + _s << endl; //"12:12:02"
+    cout << _h + ":" + _m + ":" + _s << endl; //"09:12:04"
     
     return 0;
 }
