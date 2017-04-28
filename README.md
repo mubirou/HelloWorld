@@ -1,5 +1,5 @@
 # HelloWorld
-各言語 x 各OSによる"Hello,world!"
+各言語 x 各OSによる "Hello,world!" など
 
 |言語|Linux|macOS|Windows|基礎文法|デザパタ|
 |:--|:--:|:--:|:--:|:--:|:--:|
