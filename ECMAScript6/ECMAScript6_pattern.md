@@ -398,7 +398,7 @@ _hanako.createMourningCard(); //=> Error: 喪中はがきにはまだ対応し�
 更新日：2017年0X月XX日
 
 
-<a name="Adapter"></a>
+<a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
 ```
@@ -446,7 +446,7 @@ console.log(_exchange.getDollar()); //=> 173.28519855595667（ドル）
 更新日：2017年0X月XX日
 
 
-<a name="Adapter"></a>
+<a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
 ```
