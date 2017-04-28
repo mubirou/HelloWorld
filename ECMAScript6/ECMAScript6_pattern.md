@@ -5,34 +5,34 @@
 ### <b>INDEX</b>
 
 * オブジェクトの「生成」に関するパターン
-    * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton)
-    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype)
-    * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder)
-    * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod)
-    * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory)
+    * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
-    * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）)
-    * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）)
-    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge)
-    * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite)
-    * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator)
-    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade)
-    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight)
-    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy)
+    * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
+    * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
+    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator)
-    * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod)
-    * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy)
-    * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor)
-    * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility)
-    * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator)
-    * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer)
-    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento)
-    * [<ruby>State<rt>ステート</rt></ruby>](#State)
-    * [<ruby>Command<rt>コマンド</rt></ruby>](#Command)
-    * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter)
+    * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
+    * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
 <a name="Singleton"></a>
