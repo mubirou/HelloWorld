@@ -10,10 +10,10 @@
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
-    ***
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
@@ -492,48 +492,53 @@ _hanako.createNewYearCard();
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
 ```
-// xx.js
-//========================================================================================
-// スーパークラス
-//========================================================================================
-class Moneybox {
-    constructor(_firstYen) {
-        this.__yen = _firstYen;
+<script>
+    
+    //===============
+    // スーパークラス
+    //===============
+    class Moneybox {
+        constructor(_firstYen) {
+            this.__yen = _firstYen;
+        }
+        addYen(_yen) {
+            this.__yen += _yen;
+        }
+        getYen() {
+            return this.__yen;
+        }
     }
-    addYen(_yen) {
-        this.__yen += _yen;
-    }
-    getYen() {
-        return this.__yen;
-    }
-}
 
-//========================================================================================
-// サブクラス（本来はインターフェースも実装）←このクラスの内容のみ「委譲」版と異なる
-//========================================================================================
-class Exchange extends Moneybox { //スーパークラスの継承
-    constructor(_firstYen, _rate) { //コンストラクタ
-        super(_firstYen); //スーパーラスのコンストラクタの呼出し
-        this.__rate = _rate;
+    //=====================================================
+    // サブクラス（このクラスの内容のみ「委譲」版と異なる）
+    //=====================================================
+    class Exchange extends Moneybox { //スーパークラスの継承
+        constructor(_firstYen, _rate) { //コンストラクタ
+            super(_firstYen); //スーパーラスのコンストラクタの呼出し
+            this.__rate = _rate;
+        }
+        addYen(_yen) { //継承するスーパークラスのaddYen()と内容が同じなので省略可能ですが...
+            super.addYen(_yen); //スーパークラスの同名メソッドの呼出し
+        }
+        getDollar() {
+            return this.getYen() / this.__rate;
+        }
     }
-    addYen(_yen) { //継承するスーパークラスのaddYen()と内容が同じなので省略可能ですが...
-        super.addYen(_yen); //スーパークラスの同名メソッドの呼出し
-    }
-    getDollar() {
-        return this.getYen() / this.__rate;
-    }
-}
 
-// 実行 ==================================================================================
-var _exchange = new Exchange(10000, 103.875); //最初の貯金, レート
-_exchange.addYen(8000);
-console.log(_exchange.getDollar()); //=> 173.28519855595667（ドル）
+    //=====
+    // 実行
+    //=====
+    var _exchange = new Exchange(10000, 111.520); //最初の貯金, レート
+    _exchange.addYen(8000);
+    console.log(_exchange.getDollar()); //=> 161.40602582496413（ドル）
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月11日  
-更新日：2017年0X月XX日
+更新日：2017年04月29日
 
 
 <a name="Adapter（委譲）"></a>
