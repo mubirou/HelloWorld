@@ -1572,9 +1572,9 @@ class iPadPro extends IObserver {
     }
 }
 
-//========================================================================================
+//=======
 // 実行
-//========================================================================================
+//=======
 var _apple = new Apple(); //Subject（観察される側）の生成
 
 //Observer（観察者）の生成
@@ -1605,22 +1605,23 @@ _apple.notify(); //全リスナー（Observer）への通知
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
 ```
-// xx.js
-//========================================================================================
+<script>
+
+//========================
 // 主人公 + バックアップ係
-//========================================================================================
+//========================
 class Game {
     constructor(_point) { //コンストラクタ
-this.__history = []; //履歴用リスト
+        this.__history = []; //履歴用リスト
         this.__point = _point;
         this.__count = undefined; //Undo、Redo用
     }
-save() { //状態を保存
-    var _snapShot = new SnapShot(this.__point);
-    this.__history.push(_snapShot);
-    this.__count = this.__history.length - 1;
-    return _snapShot;
-}
+    save() { //状態を保存
+        var _snapShot = new SnapShot(this.__point);
+        this.__history.push(_snapShot);
+        this.__count = this.__history.length - 1;
+        return _snapShot;
+    }
     history() { //履歴
         for (let i=0; i<this.__history.length; i++) {
             console.log(i + ":" + this.__history[i].point);
@@ -1648,9 +1649,9 @@ save() { //状態を保存
     set point(_newPoint) { this.__point = _newPoint; } //アクセサ（setter）
 }
 
-//========================================================================================
+//===========================================
 // Memento役（その瞬間の状態をオブジェクト化）
-//========================================================================================
+//===========================================
 class SnapShot {
     constructor(_point) {
         this.__point = _point;
@@ -1658,37 +1659,47 @@ class SnapShot {
     get point() { return this.__point; }
 }
 
-// 実行 ==================================================================================
-var _game = new Game(100); //ゲームスタート（最初のポイントは100）←①
+//========
+// 実行
+//========
+//ゲームスタート（最初のポイントは100）←①
+var _game = new Game(100);
+
 var _snapShot = _game.save(); //最初の状態を保存
 _game.point = 2000; //ゲームが進行して2000ポイントに... ←②
 _snapShot = _game.save(); //この時点での状態を保存
 _game.point = 8000; //更にゲームが進行して8000ポイントに... ←③
 _snapShot = _game.save(); //この時点での状態を保存
-_game.history(); //履歴を調べる
+
+//履歴を調べる
+_game.history();
 //=> 0:100 ←①
 //=> 1:2000 ←②
 //=> 2:8000 ←③
-//↓Undo（やり直し）
+
+//Undo（やり直し）
 _snapShot = _game.undo();
 console.log(_snapShot.point); //=> 2000
 _snapShot = _game.undo();
 console.log(_snapShot.point); //=> 100
 _snapShot = _game.undo(); //=> "これ以上、Undoできません"
 console.log(_snapShot.point); //=> 100
-//↓Redo（再実行）
+
+//Redo（再実行）
 _snapShot = _game.redo();
 console.log(_snapShot.point); //=> 2000
 _snapShot = _game.redo();
 console.log(_snapShot.point); //=> 8000
 _snapShot = _game.redo(); //=> "これ以上、Redoできません"
 console.log(_snapShot.point); //=> 8000
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月18日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="State"></a>
