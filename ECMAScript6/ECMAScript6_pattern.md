@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1341,35 +1341,55 @@ _高橋家.accept(_エアコン設置業者); //=> 高橋家のインスタン�
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
 ```
-class AbstractPO { //各郵便局の抽象クラス
-setNext(_nextPO) { //共通のメソッド（責任の「たらい回し先」のセット）
-    this.__nextPO = _nextPO;
-    return this.__nextPO;
-}
+<script>
+
+/**********************
+ * 各郵便局の抽象クラス
+**********************/
+class AbstractPO {
+    setNext(_nextPO) { //共通のメソッド（責任の「たらい回し先」のセット）
+        this.__nextPO = _nextPO;
+        return this.__nextPO;
+    }
     send(_address) { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
 }
 
-class SetagayaPO extends AbstractPO { //新宿郵便局
+/************
+ * 新宿郵便局
+************/
+class SetagayaPO extends AbstractPO {
     send(_address) { //オーバーライドして実装
         if (_address.indexOf("新宿", 0) != -1) {
             console.log("本日中に届きます");
         } else {
-this.__nextPO.send(_address); //「たらいまわし先」に送る
-        }}}
+            this.__nextPO.send(_address); //「たらいまわし先」に送る
+        }
+    }
+}
 
-class TokyoPO extends AbstractPO { //東京郵便局
+/************
+ * 東京郵便局
+************/
+class TokyoPO extends AbstractPO {
     send(_address) { //オーバーライドして実装
         if (_address.indexOf("東京", 0) != -1) {
             console.log("明後日中に届きます");
         } else {
-this.__nextPO.send(_address); //「たらいまわし先」に送る
-        }}}
+            this.__nextPO.send(_address); //「たらいまわし先」に送る
+        }
+    }
+}
 
-class JapanPO extends AbstractPO { //日本郵便局
+/************
+ * 日本郵便局
+************/
+class JapanPO extends AbstractPO {
     send(_address) { console.log("一週間前後で届きます"); }
 }
 
-// 実行 ==================================================================================
+/******
+ * 実行
+******/
 var _setagayaPO = new SetagayaPO(); //新宿郵便局の設置
 var _tokyoPO = new TokyoPO(); //東京郵便局の設置
 var _japanPO = new JapanPO(); //日本郵便局の設置
@@ -1377,12 +1397,14 @@ _setagayaPO.setNext(_tokyoPO).setNext(_japanPO); //責任の「たらい回し�
 _setagayaPO.send("新宿区XX町X-X-X"); //=> "本日中に届きます"
 _setagayaPO.send("東京都青梅市XXX町X-X-X"); //=> "明後日中に届きます"
 _setagayaPO.send("北海道XXX市XXX町X-X-X"); //=> "一週間前後で届きます"
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月17日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Mediator"></a>
