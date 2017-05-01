@@ -740,9 +740,9 @@ class File extends Component {
         super();
         this.__name = _name;
     }
-getList() { //抽象メソッドをオーバーライド
-    console.log(this.parent.name + "/" + this.name + "(File)");
-}
+    getList() { //抽象メソッドをオーバーライド
+        console.log(this.parent.name + "/" + this.name + "(File)");
+    }
 }
 
 //===============================================
