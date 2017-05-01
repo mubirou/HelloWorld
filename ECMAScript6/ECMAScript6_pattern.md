@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -1411,10 +1411,11 @@ _setagayaPO.send("北海道XXX市XXX町X-X-X"); //=> "一週間前後で届き�
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
 ```
-// xx.js
-//========================================================================================
-// 各メンバー関連
-//========================================================================================
+<script>
+
+/****************
+ * 各メンバー関連
+****************/
 class AbstractMember { //（擬似）抽象クラス
     setMediator(_mediator) { //共通の機能
         this.__mediator = _mediator;
@@ -1423,7 +1424,7 @@ class AbstractMember { //（擬似）抽象クラス
 }
 
 class YesButton extends AbstractMember { //メンバー①（YesButtonクラス）
-on() { this.__mediator.report(this, "on"); } //...→相談役に報告
+    on() { this.__mediator.report(this, "on"); } //→相談役に報告
     advice(_string) {
         if (_string == "off") {
             console.log("YesButtonをoffにします");
@@ -1432,7 +1433,7 @@ on() { this.__mediator.report(this, "on"); } //...→相談役に報告
 }
 
 class NoButton extends AbstractMember { //メンバー②（NoButtonクラス）
-on() { this.__mediator.report(this, "on"); } //...→相談役に報告
+    on() { this.__mediator.report(this, "on"); } //→相談役に報告
     advice(_string) {
         if (_string == "off") {
             console.log("NoButtonをoffにします");
@@ -1449,9 +1450,10 @@ class TextBox extends AbstractMember { //メンバー③（TextBoxクラス）
         }
     }
 }
-//========================================================================================
-// 相談役（専門性が高いため使い捨て）
-//========================================================================================
+
+/**********************************
+ * 相談役（専門性が高いため使い捨て）
+**********************************/
 class Mediator {
     constructor() {
         this.__yesButton = new YesButton(); //YesButtonの生成
@@ -1466,23 +1468,25 @@ class Mediator {
     get yesButton() { return this.__yesButton; } //外部からYesButtonにアクセス可能に
     get NoButton() { return this.__noButton; } //外部からNoButtonにアクセス可能に
 
-report(_member, _string) { //メンバーからの報告を受けて指示を出す
-    if (_member == this.__yesButton) { //YesButtonからの報告の場合...
-        if (_string == "on") {
-            this.__noButton.advice("off");
-            this.__textBox.advice("enable");
+    report(_member, _string) { //メンバーからの報告を受けて指示を出す
+        if (_member == this.__yesButton) { //YesButtonからの報告の場合...
+            if (_string == "on") {
+                this.__noButton.advice("off");
+                this.__textBox.advice("enable");
+            }
+        }
+        if (_member == this.__noButton) { //NoButtonからの報告の場合...
+            if (_string == "on") {
+                this.__yesButton.advice("off");
+                this.__textBox.advice("disabled");
+            }
         }
     }
-    if (_member == this.__noButton) { //NoButtonからの報告の場合...
-        if (_string == "on") {
-            this.__yesButton.advice("off");
-            this.__textBox.advice("disabled");
-        }
-    }
-}
 }
 
-// 実行 ==================================================================================
+/******
+ * 実行
+******/
 var _mediator = new Mediator();
 _mediator.yesButton.on();
 //=> "NoButtonをoffにします"
@@ -1490,12 +1494,14 @@ _mediator.yesButton.on();
 _mediator.NoButton.on();
 //=> "YesButtonをoffにします"
 //=> "TextBoxを入力不可にします"
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月17日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Observer"></a>
