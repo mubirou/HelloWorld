@@ -692,7 +692,7 @@ _smartPhoneB.phone(); //=> "電話をかける"
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
 <b>root</b> ─ <b>Authoring</b> ──┬─ Unity3D  
-<font color="#fff"><b>root</b> ─ <b>Authoring</b></font> ──└─ Unreal Engine  
+<font color="#fff">root ─ Authoring</font> ──└─ Unreal Engine  
 ※太文字がフォルダ、細字がファイル
 
 ```
