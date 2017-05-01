@@ -1765,6 +1765,8 @@ _janken.exec(); //=> "パー、グー、チョキ"
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
 ```
+<script>
+
 class Inkscape { //グラフィックソフト（今回はバッチ処理は省略）
     constructor() {
         this.__canvas = new Canvas();
@@ -1796,17 +1798,19 @@ class Canvas { //結果を表示する役（Receiver＝受信者の役）
         console.log("---描画---");
     }
 }
-```
 
 var _inkscape = new Inkscape(); //グラフィックソフト
 _inkscape.draw("線を引く"); //命令の実行
 _inkscape.draw("縁取る"); //命令の実行
 _inkscape.draw("影をつける"); //命令の実行
 
+</script>
+```
+
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月18日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Interpreter"></a>
