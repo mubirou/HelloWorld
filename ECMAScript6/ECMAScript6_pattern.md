@@ -28,9 +28,9 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
@@ -1488,9 +1488,11 @@ class Mediator {
  * 実行
 ******/
 var _mediator = new Mediator();
+
 _mediator.yesButton.on();
 //=> "NoButtonをoffにします"
 //=> "TextBoxを入力可能にします"
+
 _mediator.NoButton.on();
 //=> "YesButtonをoffにします"
 //=> "TextBoxを入力不可にします"
@@ -1508,10 +1510,11 @@ _mediator.NoButton.on();
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
 ```
-// xx.js
-//========================================================================================
+<script>
+
+//===========================
 // Subject（観察される側）関連
-//========================================================================================
+//===========================
 //↓Subject役＝（擬似）抽象クラス
 class abstractSubject {
     addObserver(_observer) { throw new Error("サブクラスで実装して下さい"); }
@@ -1519,7 +1522,9 @@ class abstractSubject {
     notify() { throw new Error("サブクラスで実装して下さい"); }
 }
 
-//↓ConcreteSubject役
+//=================
+// ConcreteSubject役
+//=================
 class Apple extends abstractSubject {
     constructor() {
         super(); //必須（要注意）
@@ -1528,43 +1533,43 @@ class Apple extends abstractSubject {
     addObserver(_observer) {
         this.__observerList.push(_observer); //リスナーの登録
     }
-notify() { //全リスナーへの通知
-    for (let _indexNum in this.__observerList) {
-        this.__observerList[_indexNum].update(this);
+    notify() { //全リスナーへの通知
+        for (let _indexNum in this.__observerList) {
+            this.__observerList[_indexNum].update(this);
+        }
     }
-}
     get version() {
         return "10.0.3";
     }
 }
 
-//========================================================================================
+//================================
 // Observer（観察者＝リスナー）関連
-//========================================================================================
-//↓（擬似）インターフェース
+//================================
+//（擬似）インターフェース
 class IObserver {
     update(_apple) { throw new Error("サブクラスで実装して下さい"); }
 }
 
 //↓ConcreteObserver役①（iPhoneクラス）
 class iPhone extends IObserver {
-update(_apple) {
-    console.log("iPhoneは" + _apple.version + "にアップデート可能です");
-}
+    update(_apple) {
+        console.log("iPhoneは" + _apple.version + "にアップデート可能です");
+    }
 }
 
 //↓ConcreteObserver役②（iPadクラス）
 class iPad extends IObserver {
-update(_apple) {
-    console.log("iPadは" + _apple.version + "にアップデート可能です");
-}
+    update(_apple) {
+        console.log("iPadは" + _apple.version + "にアップデート可能です");
+    }
 }
 
 //↓ConcreteObserver役③（iPadProクラス）
 class iPadPro extends IObserver {
-update(_apple) {
-    console.log("iPadProは" + _apple.version + "にアップデート可能です");
-}
+    update(_apple) {
+        console.log("iPadProは" + _apple.version + "にアップデート可能です");
+    }
 }
 
 //========================================================================================
@@ -1586,12 +1591,14 @@ _apple.notify(); //全リスナー（Observer）への通知
 //=> iPhoneは10.0.3にアップデート可能です
 //=> iPadは10.0.3にアップデート可能です
 //=> iPadProは10.0.3にアップデート可能です
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月18日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Memento"></a>
