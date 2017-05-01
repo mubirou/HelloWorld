@@ -1577,12 +1577,12 @@ class iPadPro extends IObserver {
 //========================================================================================
 var _apple = new Apple(); //Subject（観察される側）の生成
 
-//↓Observer（観察者）の生成
+//Observer（観察者）の生成
 var _iPhone = new iPhone();
 var _iPad = new iPad();
 var _iPadPro = new iPadPro();
 
-//↓観察される側に、観察者（リスナー）の登録
+//観察される側に、観察者（リスナー）の登録
 _apple.addObserver(_iPhone);
 _apple.addObserver(_iPad);
 _apple.addObserver(_iPadPro);
