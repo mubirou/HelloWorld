@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1116,7 +1116,7 @@ class BikePark {
         this.__list = []; //空の配列を作成
     }
 
-    //↓以下の4つのメソッドは必須（ES6はinterfaceは非サポートのため簡略化）
+    // 以下の4つのメソッドは必須（ES6はinterfaceは非サポートのため簡略化）
     add(_bike) {
         this.__list.push(_bike);
     }
@@ -1126,9 +1126,9 @@ class BikePark {
     getLength() {
         return this.__list.length;
     }
-createIterator() {
-    return new Iterator(this); //ここでイテレータ（管理人）の生成
-}
+    createIterator() {
+        return new Iterator(this); //ここでイテレータ（管理人）の生成
+    }
 }
 
 /***********************************
@@ -1141,13 +1141,13 @@ class Iterator {
         this.__count = 0;
     }
 
-    //↓以下の2つのメソッドは必須（ES6はinterfaceは非サポートのため簡略化）
-hasNext() {
-    return this.__bikePark.getLength() > this.__count;
-}
-next() {
-    return this.__bikePark.getElementAt(this.__count++); //次のバイクを返す
-}
+    // 以下の2つのメソッドは必須（ES6はinterfaceは非サポートのため簡略化）
+    hasNext() {
+        return this.__bikePark.getLength() > this.__count;
+    }
+    next() {
+        return this.__bikePark.getElementAt(this.__count++); //次のバイクを返す
+    }
 }
 
 /******
@@ -1181,14 +1181,15 @@ while (_iterator.hasNext()) {
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
 ```
-// xx.js
+<script>
+
 class AbstractCard {
-templateMethod() { //一連の連続した処理の枠組みを定義
-    this.makeHeader();
-    this.makeContent();
-    if (this.isMakeDate()) { this.__makeDate(); } //フックメソッド（状況により実行）
-    this.__makeFooter();
-}
+    templateMethod() { //一連の連続した処理の枠組みを定義
+        this.makeHeader();
+        this.makeContent();
+        if (this.isMakeDate()) { this.__makeDate(); } //フックメソッド（状況により実行）
+        this.__makeFooter();
+    }
     makeHeader() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
     makeContent() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
     isMakeDate() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
@@ -1211,18 +1212,21 @@ _summerCard.templateMethod();
 //=> HAPPY SUMMER HOLIDAYS!
 //=> 夏のイラスト
 //=> 〒XXX-XXXX 千代田区XXX町X-X-X
+
 var _newYearCard = new NewYearCard();
 _newYearCard.templateMethod();
 //=> HAPPY NEW YEAR!
 //=> 干支のイラスト
 //=> 2017年 元旦
 //=> 〒XXX-XXXX 千代田区XXX町X-X-X
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月14日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Strategy"></a>
