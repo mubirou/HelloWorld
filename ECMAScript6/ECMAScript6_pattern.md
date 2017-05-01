@@ -696,21 +696,22 @@ _smartPhoneB.phone(); //=> "電話をかける"
 ※太文字がフォルダ、細字がファイル
 
 ```
-// xx.js
-//========================================================================================
+<script>
+
+//============
 // Component役
-//========================================================================================
+//============
 class Component { //抽象クラス
     get name() { return this.__name; }
     set name(_newValue) { this.__name = _newValue;} 
     get parent() { return this.__parent; }
     set parent(_newValue) { this.__parent = _newValue; }
-getList() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
+    getList() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
 }
 
-//========================================================================================
+//=====================
 // Composite（複合体）役
-//========================================================================================
+//=====================
 class Folder extends Component {
     constructor(_name) {
         super();
@@ -721,23 +722,23 @@ class Folder extends Component {
         this.__childList.push(_arg);
         _arg.parent = this;
     }
-getList() { //抽象メソッドをオーバーライド
-    var _theList =this.__childList;
-    for (let _indexNum in _theList) {
-        let _result = this.name + "/" + _theList[_indexNum].name;
-        if (_theList[_indexNum] instanceof Folder) {
-            _result = _result + "(Folder)";
-        } else {
-            _result = _result + "(File)";
+    getList() { //抽象メソッドをオーバーライド
+        var _theList =this.__childList;
+        for (let _indexNum in _theList) {
+            let _result = this.name + "/" + _theList[_indexNum].name;
+            if (_theList[_indexNum] instanceof Folder) {
+                _result = _result + "(Folder)";
+            } else {
+                _result = _result + "(File)";
+            }
+            console.log(_result);
         }
-        console.log(_result);
     }
 }
-}
 
-//========================================================================================
+//=============
 // Leaf（葉）役
-//========================================================================================
+//=============
 class File extends Component {
     constructor(_name) {
         super();
@@ -748,9 +749,11 @@ getList() { //抽象メソッドをオーバーライド
 }
 }
 
-//========================================================================================
+//===============================================
 // 実行
-//========================================================================================
+// root に Authoring フォルダを作成し、その中に 
+// Unity3D と Unreal Engine ファイルを格納してみる
+//===============================================
 // ①フォルダの作成
 var _root = new Folder("root");
 var _authoring = new Folder("Authoring");
@@ -771,12 +774,14 @@ _authoring.getList();
 //=> "Authoring/Unity3D(File)"
 //=> "Authoring/Unreal Engine(File)"
 _unity3D.getList(); //=> "Authoring/Unity3D(File)"
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月13日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Decorator"></a>
