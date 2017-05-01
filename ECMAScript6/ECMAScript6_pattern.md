@@ -1539,7 +1539,7 @@ class Apple extends abstractSubject {
         }
     }
     get version() {
-        return "10.0.3";
+        return "10.3.1";
     }
 }
 
@@ -1588,9 +1588,9 @@ _apple.addObserver(_iPad);
 _apple.addObserver(_iPadPro);
 
 _apple.notify(); //全リスナー（Observer）への通知
-//=> iPhoneは10.0.3にアップデート可能です
-//=> iPadは10.0.3にアップデート可能です
-//=> iPadProは10.0.3にアップデート可能です
+//=> iPhoneは10.3.1にアップデート可能です
+//=> iPadは10.3.1にアップデート可能です
+//=> iPadProは10.3.1にアップデート可能です
 
 </script>
 ```
