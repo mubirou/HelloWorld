@@ -1354,7 +1354,7 @@ class AbstractPO {
 /************
  * 新宿郵便局
 ************/
-class SetagayaPO extends AbstractPO {
+class ShinjukuPO extends AbstractPO {
     send(_address) { //オーバーライドして実装
         if (_address.indexOf("新宿", 0) != -1) {
             console.log("本日中に届きます");
@@ -1387,13 +1387,13 @@ class JapanPO extends AbstractPO {
 /******
  * 実行
 ******/
-var _setagayaPO = new SetagayaPO(); //新宿郵便局の設置
+var _shinjukuPO = new ShinjukuPO(); //新宿郵便局の設置
 var _tokyoPO = new TokyoPO(); //東京郵便局の設置
 var _japanPO = new JapanPO(); //日本郵便局の設置
-_setagayaPO.setNext(_tokyoPO).setNext(_japanPO); //責任の「たらい回し先」のセット
-_setagayaPO.send("新宿区XX町X-X-X"); //=> "本日中に届きます"
-_setagayaPO.send("東京都青梅市XXX町X-X-X"); //=> "明後日中に届きます"
-_setagayaPO.send("北海道XXX市XXX町X-X-X"); //=> "一週間前後で届きます"
+_shinjukuPO.setNext(_tokyoPO).setNext(_japanPO); //責任の「たらい回し先」のセット
+_shinjukuPO.send("新宿区XX町X-X-X"); //=> "本日中に届きます"
+_shinjukuPO.send("東京都青梅市XXX町X-X-X"); //=> "明後日中に届きます"
+_shinjukuPO.send("北海道XXX市XXX町X-X-X"); //=> "一週間前後で届きます"
 
 </script>
 ```

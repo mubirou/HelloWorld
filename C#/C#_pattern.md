@@ -38,1833 +38,2005 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-### 目的
-* あるクラスに対してインスタンスが1つしか存在しないことを保証し、それをアクセスするためのグローバルな方法を提供する。（『オブジェクト指向における再利用のためのデザインパターン』より）
-* 言い方を変えると、クラスを利用するプログラマがどのような方法で記述したとしても、そのインスタンスを勝手に生成できないようにし、かつ、唯一のインスタンスを利用できる機能を提供する。
+### 概要
+たった１つのインスタンス。一人っ子。
+クラスのインスタンスが絶対に１個しか存在しないことを保証し、そこに外部からアクセスする唯一の方法を提供するデザインパターン。
+もちろん、注意深くプログラミングして、new クラス名()を１回しか実行しないようにすれば良いわけですが、絶対にミスしないと保証することはできませんから…。
 
-### プログラミングの肝
-* new クラス名() など（言語によって異なる）を使ったインスタンス生成をできないようにする。
-* 唯一のインスタンスを呼び出す機能（メソッドの場合がほとんど）を用意する。
+### ポイント
+1. コンストラクタをprivateにする。つまり、Singletonクラスの外からnew Singleton()とするとエラーが発生するようにする。
+1. Singletonクラスの静的変数（クラス変数）を定義する際、同時にnew Singleton()で唯一のインスタンスを生成して格納する。
+1. 唯一のインスタンスにアクセスする場合、Singleton.getInstance()を使う。このメソッドは、インスタンスを生成するのではなく、既に存在する唯一のインスタンスを呼出します。
 
 ### 例文
 ```
-<script>
-
-class Singleton {
-    constructor() { //コンストラクタ
-        if (! Singleton.__isInstance) {
-            throw new Error("Singleton.getSingleton()を使って下さい");
-        }
-    }
-    static getSingleton() { //クラスメソッド
-        if (Singleton.__singleton == undefined) { //もしまだ生成されていないなら...
-            Singleton.__isInstance = true; //←↓（擬似）プライベートなクラスメンバ
-            Singleton.__singleton = new Singleton(); //ここでインスタンス生成!!
-            console.log("インスタンスが生成されました"); //DEBUG
-            Singleton.__isInstance = false; //必須
-        }
-        return Singleton.__singleton; //←唯一のインスタンスを返す
+//test.cs
+using System;
+class Test { 
+    static void Main() {
+        //new Singleton(); //error ←外からはnewによるインスタンス生成は不可
+        Singleton _singleton1 = Singleton.GetInstance(); //唯一のインスタンスを呼出す
+        Singleton _singleton2 = Singleton.GetInstance(); //唯一のインスタンスを呼出す
+        Console.WriteLine(_singleton1 == _singleton2); //True ←同じインスタンス
     }
 }
-
-var _singleton1 = Singleton.getSingleton(); //=> "インスタンスが生成されました"
-var _singleton2 = Singleton.getSingleton(); //2度目はインスタンスは生成されない
-console.log(_singleton1 == _singleton2); //=> true（中身は全く同じインスタンス）
-//var _singleton3 = new Singleton(); //=> Error: Singleton.getSingleton()を使って下さい
-
-//問題点：実はパブリックのため外部から変更できてしまう（これは致し方ないでしょう...）
-Singleton.__singleton = "改竄できますよ";
-console.log(Singleton.getSingleton()); //=> "改竄できますよ"
-
-</script>
+class Singleton { //シングルトンクラス
+    private static Singleton _singleton = new Singleton(); //唯一のインスタンスを格納
+    private Singleton() { //外部からnew Singleton()できないようにする
+        Console.WriteLine("インスタンスを生成しました");
+    }
+    public static Singleton GetInstance() { //外部から唯一のインスタンスを呼出す
+        return _singleton; //唯一のインスタンス（静的変数）を返す
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月05日  
-更新日：2017年04月28日
+作成日：2015年12月01日  
+更新日：2017年05月XX日
 
 
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-### 目的
-* 生成すべきオブジェクトの種類を原型となるインスタンスを使って明確にし、それをコピーすることで新たなオブジェクトの生成を行う。（『オブジェクト指向における再利用のためのデザインパターン 改訂版』より）
-* 言い換えると new クラス名() などによってインスタンスを作るのではなく、作成済みのインスタンスをコピー（複製）して新しいインスタンスを作る。
+### 概要
+コピーしてインスタンスを作る。原型。
+new クラス名()でインスタンスを生成するのではなく、インスタンスを複製（≠参照）して新しいインスタンスを作ります。
+Javaにはclone()が、PHPには__clone()があります。C#もBitmapクラス等にはClone()メソッドが用意されていますが、汎用メソッドはECMAScript系同様に用意されていません。
 
-### プログラミングの肝
-1. パブリックな clone() メソッドを用意
-1. そのメソッドの中で自分自身（同じクラス）のインスタンスを生成
-1. 生成したインスタンスにコピー元の全てのインスタンス･プロパティの値をセット
-1. そのインスタンスを返す。（各メソッドやアクセサは、何もせずにそのまま利用可能）
+### ポイント
+1. 複製には、インスタンス.Clone()を使う。
+1. Clone()メソッド内では、newを使ってインスタンスを生成。そのインスタンスに複製元のプロパティをそのままコピーする。
 
 ### 例文
 ```
-<script>
-
-//=================
-// Prototypeクラス
-//=================
-class Prototype {
-    //コンストラクタ
-    constructor(_name, _address) {
-        this.__name = _name;
-        this.__address = _address;
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //インスタンスを生成
+        Prototype _prototype1 = new Prototype("Nishimura");
+        _prototype1.FirstName = "Takashi";
+        _prototype1.Age = 49;
+        
+        //コピーを作成
+        Prototype _prototype2 = _prototype1.Clone(); //複製する（newを使わない）
+        _prototype2.FirstName = "Hanako";
+        _prototype2.Age = 45;
+        
+        //検証（コピー元）
+        Console.WriteLine(_prototype1.FirstName); //"Takshi"
+        Console.WriteLine(_prototype1.LastName); //"Nishimura"
+        Console.WriteLine(_prototype1.Age); //49
+        
+        //検証（複製したもの）
+        Console.WriteLine(_prototype2.FirstName); //"Hanako" ←「参照」ではない
+        Console.WriteLine(_prototype2.LastName); //"Nishimura"
+        Console.WriteLine(_prototype2.Age); //45
     }
-
-    clone() {
-        var _prototype = new Prototype(); //自分自身（同じクラス）のインスタンスを生成
-        _prototype.name = this.name; //コピー元のインスタンス･プロパティの値をセット
-        _prototype.address = this.address; //コピー元のインスタンス･プロパティの値をセット
-        return _prototype; //インスタンスをかえす
-    }
-
-    //各プロパティのアクセサ
-    get name() { return this.__name; }
-    set name(_newValue) { this.__name = _newValue; }
-    get address() { return this.__address; }
-    set address(_newValue) { this.__address = _newValue; }
 }
 
-//=====
-//実行
-//=====
-var _memberA = new Prototype("鈴木一郎", "新宿区XX町X-X-X");
-var _memberB = _memberA.clone(); //インスタンスをコピー（複製）
-_memberB.name = "鈴木花子"; //プロパティを変更
-console.log(_memberA.name, _memberA.address); //=> "鈴木一郎 新宿区XX町X-X-X"
-console.log(_memberB.name, _memberB.address); //=> "鈴木花子 新宿区XX町X-X-X"
+//インターフェースの宣言
+interface IPrototype {
+    Prototype Clone(); //暗黙的にpublicになる
+    string FirstName { get; set; } //get/setアクセサ（暗黙的にpublicになる）
+    string LastName { get; set; }
+    int Age { get; set; }
+}
 
-</script>
+//インターフェースの実装
+class Prototype : IPrototype {
+    private string _firstName, _lastName;
+    private int _age;
+    //コンストラクタ
+    public Prototype(string _lastName) {
+        this._lastName = _lastName;
+    }
+    public Prototype Clone() {
+        Prototype _copy = new Prototype(_lastName); //自分自身を生成
+        _copy.FirstName = _firstName; //プロパティを複製
+        _copy.Age = _age; //プロパティを複製
+        return _copy; //全てのプロパティを複製したインスタンスを返す
+    }
+    public string FirstName {
+        get { return _firstName; }
+        set { _firstName = value; }
+    }
+    public string LastName {
+        get { return _lastName; }
+        set { _lastName = value; }
+    }
+    public int Age {
+        get { return _age; }
+        set { _age = value; }
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月05日  
-更新日：2017年04月28日
+作成日：2015年12月02日  
+更新日：2017年05月XX日
 
 
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
+### 概要
+複雑なインスタンスを組み立てる。構築者。
+複雑な構造を持ったものを一気に完成させるのではなく、段階を踏んで組み上げていきます。
+"手順"と"材料"を分けておき、"同じ手順"で異なるオブジェクトを生成させます。
+ポリモーフィズム（多態性）と委譲を活用したパターンです。
+結城浩著『Java言語で学ぶデザインパターン入門』では、右図および例文のIBuilderを"インターフェース"ではなく"抽象クラス"として記述しています。
+
+### 例文
 ```
-<script>
-
-//===========================================================
-// Builder役＝抽象クラス（全て抽象メソッドである必要はない）
-//===========================================================
-class AbstractBuilder {
-    makeHeader() { throw new Error("サブクラスで実装して下さい"); }
-    makeContent() { throw new Error("サブクラスで実装して下さい"); }
-    makeFooter() { throw new Error("サブクラスで実装して下さい"); }
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Director _director1 = new Director(new Builder009());
+        _director1.Construct(); //共通の手順を実行
+        /*
+        あけましておめでとうございます
+        タイプ194用のイラスト
+        元旦
+        */
+        
+        Director _director2 = new Director(new Builder108());
+        _director2.Construct(); //共通の手順を実行
+        /*
+        HAPPY NEW YEAR
+        タイプ023用のイラスト
+        2016.1.1
+        */
+    }
 }
-
-//==============================
-// ConcreateBuilder役＝制作者Ａ
-//==============================
-class SummerCardBuilder extends AbstractBuilder {
-    makeHeader() { console.log("暑中お見舞い申し上げます"); }
-    makeContent() { console.log("スイカのイラスト"); }
-    makeFooter() { console.log("盛夏"); }
-}
-
-//==============================
-// ConcreateBuilder役＝制作者Ｂ
-//==============================
-class NewYearCardBuilder extends AbstractBuilder {
-    makeHeader() { console.log("明けましておめでとうございます"); }
-    makeContent() { console.log("干支のイラスト"); }
-    makeFooter() { console.log("元旦"); }
-}
-
-//============================================
-// Director役＝監督（作成手順を決め実行する）
-//============================================
+//================================
+//Directorクラス（年賀印刷業者）
+//================================
 class Director {
-    constructor(_builder) { 
-        this.__builder = _builder;
+    private IBuilder _builder; //Builder○○クラスのインスタンスを格納（委譲）
+    public Director(IBuilder _builder) {
+        this._builder = _builder; //_builerはBuilder○○クラスのインスタンス
     }
-    construct() { //作成過程（ConcreteBuilder役特有のメソッドは使わないこと）
-        this.__builder.makeHeader();
-        this.__builder.makeContent();
-        this.__builder.makeFooter();
+    public void Construct() { //共通の手順（≠コンストラクタ。紛らわしいですが…）
+        _builder.makeHeader();  //手順①
+        _builder.makeContent(); //手順②
+        _builder.makeFooter();  //手順③
     }
 }
 
-//======
-// 実行
-//======
-var _summerCard = new Director(new SummerCardBuilder());
-_summerCard.construct(); //作成過程の実行
-//=> 暑中お見舞い申し上げます
-//=> スイカのイラスト
-//=> 盛夏
+//=================================================
+//BuilderXXXクラスのインターフェース（オプション）
+//=================================================
+interface IBuilder {
+    void makeHeader(); //暗黙的にpublicになる
+    void makeContent();
+    void makeFooter();
+}
 
-var _newYearCard = new Director(new NewYearCardBuilder());
-_newYearCard.construct(); //作成過程の実行
-//=> 明けましておめでとうございます
-//=> 干支のイラスト
-//=> 元旦
+//==========================================
+//Builder○○クラス群（年賀状のタイプ群）
+//==========================================
+class Builder009 : IBuilder { //タイプ009の年賀状
+    public void makeHeader() {
+        new Header051().exec(); //ヘッダー用素材の呼出しと実行
+    }
+    public void makeContent() {
+        new Content194().exec(); //コンテンツ用素材の呼出しと実行
+    }
+    public void makeFooter() {
+        new Footer004().exec(); //フッター用素材の呼出しと実行
+    }
+}
 
-</script>
+class Builder108 : IBuilder { //タイプ108の年賀状
+    public void makeHeader() {
+        new Header040().exec(); //ヘッダー用素材の呼出しと実行
+    }
+    public void makeContent() {
+        new Content023().exec(); //コンテンツ用素材の呼出しと実行
+    }
+    public void makeFooter() {
+        new Footer011().exec(); //フッター用素材の呼出しと実行
+    }
+}
+
+//==========================================
+//Header○○クラス群（ヘッダー用材料群）
+//==========================================
+class Header040 {
+    public void exec() { Console.WriteLine("HAPPY NEW YEAR"); }
+}
+
+class Header051 {
+    public void exec() { Console.WriteLine("あけましておめでとうございます"); }
+}
+
+//==========================================
+//Content○○クラス群（コンテンツ用材料群）
+//==========================================
+class Content023 {
+    public void exec() { Console.WriteLine("タイプ023用のイラスト"); }
+}
+
+class Content194 {
+    public void exec() { Console.WriteLine("タイプ194用のイラスト"); }
+}
+
+//==========================================
+//Footer○○クラス群（フッター用材料群）
+//==========================================
+class Footer004 {
+    public void exec() { Console.WriteLine("元旦"); }
+}
+
+class Footer011 {
+    public void exec() { Console.WriteLine("2016.1.1"); }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月05日  
-更新日：2017年04月28日
+作成日：2015年12月02日  
+更新日：2017年05月XX日
 
 
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
+### 概要
+インスタンス作成をサブクラスにまかせる。
+Factoryとは「工場」、つまり工場メソッド。
+Template Methodパターンの典型的な応用。
+インスタンスを生成する工場を、Template Methodパターンで構成したもの。
+
+### 例文
 ```
-<script>
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        CardICHIRO _cardICHIRO = new CardICHIRO();
+        _cardICHIRO.templateMethod("先生");
+        /*
+        謹賀新年
+        〒XXX-XXXX 〒XXX-XXXX
+        西村一郎
+        */
+        _cardICHIRO.templateMethod("同級生");
+        /*
+        HAPPY NEW YEAR
+        〒XXX-XXXX 〒XXX-XXXX
+        西村一郎
+        */
 
-//===========
-// 抽象クラス
-//===========
-class AbstracShop {
-    //templateMethod()のこと
-    order(_type) {
-        //↓「変化する部分」をカプセル化（汎用化にも寄与）
-        var _card = this.factoryMethod(_type); //ここで new しない
-        //↓変化しない部分（一連の処理／具体的な処理内容は各カードのクラスまかせ）
-        _card.makeHeader();
-        _card.makeContent();
-        _card.makeFooter();
-        return _card;
-    }
-
-    //抽象メソッド（オプション）
-    factoryMethod() {
-        throw new Error("サブクラスで実装して下さい");
-    }
-}
-
-//=============
-// サブクラスＡ
-//=============
-class CardShopICHIRO extends AbstracShop { //抽象クラスを継承
-    //↓インスタンスの作成をサブクラスのfactoryMedthod()で行う
-    factoryMethod(_type) {
-        //↓「変化する部分」（手紙の種類は時とともに変化する可能性がある）
-        if (_type == "暑中見舞い") {
-            return new IchiroSummerCard(); //ここでインスタンス化
-        } else if (_type == "年賀状") {
-            return new IchiroNewYearCard(); //ここでインスタンス化
-        } else if (_type == "喪中はがき") {
-            return new IchiroMourningCard(); //ここでインスタンス化
-        } else {
-            throw new Error(_type + " にはまだ対応しておりません");
-        }
+        CardHARUKO _cardHARUKO = new CardHARUKO();
+        _cardHARUKO.templateMethod("先生");
+        /*
+        明けましておめでとうございます
+        〒XXX-XXXX 〒XXX-XXXX
+        西村春子
+        */
+        _cardHARUKO.templateMethod("同級生");
+        /*
+        あけましておめでとう
+        〒XXX-XXXX 〒XXX-XXXX
+        西村春子
+        */
     }
 }
 
-//=============
-// サブクラスＢ
-//=============
-class CardShopHANAKO extends AbstracShop { //抽象クラスを継承
-    //↓インスタンスの作成をサブクラスのfactoryMedthod()で行う
-    factoryMethod(_type) {
-        //↓「変化する部分」（手紙の種類は時とともに変化する可能性がある）
-        if (_type == "暑中見舞い") {
-            return new HanakoSummerCard(); //ここでインスタンス化
-        } else if (_type == "年賀状") {
-            return new HanakoNewYearCard(); //ここでインスタンス化
-        } else {
-            throw new Error(_type + "にはまだ対応しておりません");
-        }
-    }
-}
-
-//===================
-// 生成したいクラス群
-//===================
+//=================================
 //抽象クラス
-class AbstractCard {
-    //↓共通の機能
-    makeFooter() { this.__footer = "〒XXX-XXXX 新宿区XX町X-X-X"; }
-    print() {
-        console.log(this.__header);
-        console.log(this.__content);
-        console.log(this.__footer);
+//=================================
+abstract class AbstractCard {
+    public void templateMethod(string _arg) { //このメソッドはoverrideしない
+        //↓ここでnewと記述しない（条件分岐は派生クラスで行う＝ここを汚さない)
+        IMessage _message = factoryMethod(_arg); //派生クラスのメソッドを呼び出す
+        _message.Exec(); //処理①
+        order1(); //処理②
+        order2(); //処理③
+    }
+    protected abstract IMessage factoryMethod(string _arg); //派生クラスでoverride
+    public void order1() { //共通の処理
+        Console.WriteLine("〒XXX-XXXX 〒XXX-XXXX");
+    }
+    protected abstract void order2(); //派生クラスでoverride
+}
+
+//=================================
+//派生クラス群（抽象クラスを継承）
+//=================================
+class CardICHIRO : AbstractCard { //抽象クラスを継承
+    protected override IMessage factoryMethod(string _arg) { //具体的処理を記述
+        if (_arg == "先生") {
+            return new Message1(); //ここでnewを記述
+        } else if (_arg == "同級生") {
+            return new Message2(); //ここでnewを記述 
+        } else {
+            Console.WriteLine("error:CardICHIRO.factoryMethod()");
+            return null; //returnが必要（注意）
+        }
+    }
+    protected override void order2() { //具体的処理を記述
+        Console.WriteLine("西村一郎");
     }
 }
 
-//ICHIROショップスタイルの暑中見舞い
-class IchiroSummerCard extends AbstractCard {
-    makeHeader() { this.__header = "HAPPY SUMMER HOLIDAYS!"; }
-    makeContent() { this.__content = "サーフィンのイラスト"; }
+class CardHARUKO : AbstractCard { //抽象クラスを継承
+    protected override IMessage factoryMethod(string _arg) { //具体的処理を記述
+        if (_arg == "先生") {
+            return new Message3(); //ここでnew クラス名()を記述
+        } else if (_arg == "同級生") {
+            return new Message4(); //ここでnew クラス名()を記述
+        } else {
+            Console.WriteLine("error:CardSCAHIKO.factoryMethod()");
+            return null; //returnが必要（注意）
+        }
+    }
+    protected override void order2() { //具体的処理を記述
+        Console.WriteLine("西村春子");
+    }
 }
 
-//ICHIROショップスタイルの年賀状
-class IchiroNewYearCard extends AbstractCard {
-    makeHeader() { this.__header = "HAPPY NEW YEAR!"; }
-    makeContent() { this.__content = "干支のイラスト"; }
+//=================================
+//生成したいクラス群
+//=================================
+interface IMessage { //インターフェース宣言 ←オプション
+    void Exec(); //共通のメソッド
 }
 
-//ICHIROショップスタイルの喪中はがき
-class IchiroMourningCard extends AbstractCard {
-    makeHeader() { this.__header = "喪中のため年頭のご挨拶をご遠慮申し上げます"; }
-    makeContent() { this.__content = "白黒のイラスト"; }
+class Message1 : IMessage {
+    public void Exec() { Console.WriteLine("謹賀新年"); }
 }
 
-//HANAKOショップスタイルの暑中お見舞い
-class HanakoSummerCard extends AbstractCard {
-    makeHeader() { this.__header = "暑中お見舞い申し上げます"; }
-    makeContent() { this.__content = "スイカのイラスト"; }
+class Message2 : IMessage {
+    public void Exec() { Console.WriteLine("HAPPY NEW YEAR"); }
 }
 
-//HANAKOショップスタイルの年賀状
-class HanakoNewYearCard extends AbstractCard {
-    makeHeader() { this.__header = "明けましておめでとうございます"; }
-    makeContent() { this.__content = "お餅のイラスト"; }
+class Message3 : IMessage {
+    public void Exec() { Console.WriteLine("明けましておめでとうございます"); }
 }
 
-//======================
-// 実行（ICHIROショップ）
-//======================
-var _ichiro = new CardShopICHIRO();
-
-var _card = _ichiro.order("暑中見舞い"); //templateMethod()のこと
-_card.print();
-//=> HAPPY SUMMER HOLIDAYS!
-//=> サーフィンのイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-var _card = _ichiro.order("年賀状"); //templateMethod()のこと
-_card.print();
-//=> HAPPY NEW YEAR!
-//=> 干支のイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-var _card = _ichiro.order("喪中はがき"); //templateMethod()のこと
-_card.print();
-//=> 喪中のため年頭のご挨拶をご遠慮申し上げます
-//=> 白黒のイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-//======================
-// 実行（HANAKOショップ）
-//======================
-var _hanako = new CardShopHANAKO();
-
-var _card = _hanako.order("暑中見舞い"); //templateMethod()のこと
-_card.print();
-//=> 暑中お見舞い申し上げます
-//=> スイカのイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-var _card = _hanako.order("年賀状"); //templateMethod()のこと
-_card.print();
-//=> 明けましておめでとうございます
-//=> お餅のイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-</script>
+class Message4 : IMessage {
+    public void Exec() { Console.WriteLine("あけましておめでとう"); }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月07日  
-更新日：2017年04月28日
+作成日：2015年12月02日  
+更新日：2017年05月XX日
 
 
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-```
-<script>
+### 概要
+関連する部品を組み合わせて製品を作る。
+Abstractは「抽象的な」、Factoryは「工場」の意味。
+Factory Methodパターンに類似。クラスを作ってオブジェクトを生成するFactory〜に対し、Abstract〜はオブジェクトを作ってオブジェクトを作成…。
+生成を行うクラスの規格統一をしておく為に、抽象クラスを作ります。
 
-// カードショップ ///////////////////////////////////////////////////
-//==========================
-// 抽象クラス（抽象的な工場）
-//==========================
-class AbstracShop {
-    //静的メソッド
-    static getShop(_className) {
-        if (_className == "CardShopICHIRO") {
-            return new CardShopICHIRO(); //ここでインスタンス化
-        } else if (_className == "CardShopHANAKO") {
-            return new CardShopHANAKO(); //ここでインスタンス化
+### 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        AbstractFactory _factoryICHIRO = AbstractFactory.createFactory("ICHIRO");
+        _factoryICHIRO.CreateNewYear();
+        /*
+        HAPPY NEW YEAR
+        ICHIRO NISHIMURA
+        */
+        _factoryICHIRO.CreateSummer();
+        /*
+        暑中お見舞い申し上げます
+        西村一郎
+        */
+        
+        AbstractFactory _factoryHARUKO = AbstractFactory.createFactory("HARUKO");
+        _factoryHARUKO.CreateNewYear();
+        /*
+        明けましておめでとうございます
+        西村春子
+        */
+        _factoryHARUKO.CreateSummer();
+        /*
+        暑中おみまいもうしあげます
+        西村春子
+        */
+    }
+}
+
+//抽象クラス（抽象的な工場）
+abstract class AbstractFactory {
+    public static AbstractFactory createFactory(string _name) { //共通の静的メソッド
+        if (_name == "ICHIRO") {
+            return new ICHIRO(); //具体的な「一郎工場」を生成
+        } else if (_name == "HARUKO") {
+            return new HARUKO(); //具体的な「春子工場」を生成
+        } else {
+            return null; //必須（注意）
         }
     }
-
-    //抽象メソッド
-    createSummerCard() { throw new Error("サブクラスで実装して下さい"); }
-    createNewYearCard() { throw new Error("サブクラスで実装して下さい"); }
-    createMourningCard() { throw new Error("サブクラスで実装して下さい"); }
-
-    //共通の機能（オプション）
-    makeFooter() { console.log("〒XXX-XXXX 新宿区XX町X-X-X"); }
+    public abstract void CreateNewYear(); //抽象メソッド宣言（派生クラスでoverride）
+    public abstract void CreateSummer();  //抽象メソッド宣言（派生クラスでoverride）
 }
 
-//=============
-// サブクラスＡ
-//=============
-class CardShopICHIRO extends AbstracShop { //抽象クラスを継承
-    createSummerCard() { //抽象クラスをオーバーライド
-        console.log("HAPPY SUMMER HOLIDAYS!");
-        console.log("サーフィンのイラスト");
-        this.makeFooter();
+//派生クラス群（実際の工場群）
+class ICHIRO : AbstractFactory { //抽象クラスを継承
+    public override void CreateNewYear() { //overrideして具体的処理を記述
+        Console.WriteLine("HAPPY NEW YEAR");
+        Console.WriteLine("ICHIRO NISHIMURA");
     }
-    createNewYearCard() { //抽象メソッドをオーバーライド
-        console.log("HAPPY NEW YEAR!");
-        console.log("干支のイラスト");
-        this.makeFooter();
-    }
-    createMourningCard() { //抽象メソッドをオーバーライド
-        console.log("喪中のため年頭のご挨拶をご遠慮申し上げます");
-        console.log("白黒のイラスト");
-        this.makeFooter();
+    public override void CreateSummer() { //overrideして具体的処理を記述
+        Console.WriteLine("暑中お見舞い申し上げます");
+        Console.WriteLine("西村一郎");
     }
 }
 
-//=============
-// サブクラスＢ
-//=============
-class CardShopHANAKO extends AbstracShop { //抽象クラスを継承
-    createSummerCard() { //抽象クラスをオーバーライド
-        console.log("暑中お見舞い申し上げます");
-        console.log("スイカのイラスト");
-        this.makeFooter();
+class HARUKO : AbstractFactory { //抽象クラスを継承
+    public override void CreateNewYear() { //overrideして具体的処理を記述
+        Console.WriteLine("明けましておめでとうございます");
+        Console.WriteLine("西村春子");
     }
-    createNewYearCard() { //抽象クラスをオーバーライド
-        console.log("明けましておめでとうございます");
-        console.log("お餅のイラスト");
-        this.makeFooter();
-    }
-    createMourningCard() { //抽象クラスをオーバーライド
-        throw new Error("喪中はがきにはまだ対応しておりません");
+    public override void CreateSummer() { //overrideして具体的処理を記述
+        Console.WriteLine("暑中おみまいもうしあげます");
+        Console.WriteLine("西村春子");
     }
 }
-/////////////////////////////////////////////////////////////////////
-
-//=======================
-// 実行（ICHIROショップ）
-//=======================
-var _ichiro = AbstracShop.getShop("CardShopICHIRO"); //静的メソッドを使用
-
-_ichiro.createSummerCard();
-//=> HAPPY SUMMER HOLIDAYS!
-//=> サーフィンのイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-_ichiro.createNewYearCard();
-//=> HAPPY NEW YEAR!
-//=> 干支のイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-_ichiro.createMourningCard();
-//=> 喪中のため年頭のご挨拶をご遠慮申し上げます
-//=> 白黒のイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-//=======================
-// 実行（HANAKOショップ）
-//=======================
-var _hanako = AbstracShop.getShop("CardShopHANAKO"); //静的メソッドを使用
-
-_hanako.createSummerCard();
-//=> 暑中お見舞い申し上げます
-//=> スイカのイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-_hanako.createNewYearCard();
-//=> 明けましておめでとうございます
-//=> お餅のイラスト
-//=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-//_hanako.createMourningCard(); //=> Error: 喪中はがきにはまだ対応しておりません
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月11日  
-更新日：2017年04月28日
+作成日：2015年12月03日  
+更新日：2017年05月XX日
 
 
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
+### 概要
+一皮かぶせて再利用。接続装置。別名、Wrapper（ラッパー）パターン。クラスによるAdapterパターン。継承を使って、オリジナルのクラスを拡張。
+
+### 例文
 ```
-<script>
-    
-    //===============
-    // スーパークラス
-    //===============
-    class Moneybox {
-        constructor(_firstYen) {
-            this.__yen = _firstYen;
-        }
-        addYen(_yen) {
-            this.__yen += _yen;
-        }
-        getYen() {
-            return this.__yen;
-        }
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Exchange _exchange = new Exchange(10000, 122.60);
+        _exchange.AddYen(8000);
+        Console.WriteLine(_exchange.GetDollar()); //146.818923327896（ドル）
     }
-
-    //=====================================================
-    // サブクラス（このクラスの内容のみ「委譲」版と異なる）
-    //=====================================================
-    class Exchange extends Moneybox { //スーパークラスの継承
-        constructor(_firstYen, _rate) { //コンストラクタ
-            super(_firstYen); //スーパーラスのコンストラクタの呼出し
-            this.__rate = _rate;
-        }
-        addYen(_yen) { //継承するスーパークラスのaddYen()と内容が同じなので省略可能ですが...
-            super.addYen(_yen); //スーパークラスの同名メソッドの呼出し
-        }
-        getDollar() {
-            return this.getYen() / this.__rate;
-        }
+}
+class Moneybox { //基本クラス（親クラス）の定義
+    private int _yen; //privateは省略可
+    public Moneybox(int _yen) { this._yen = _yen; } //コンストラクタ（★）
+    public void Add(int _yen) { this._yen += _yen; }
+    public int GetYen() { return _yen; }
+}
+interface IExchange { //インターフェースの宣言
+    void AddYen(int _yen); //暗黙的にpublic
+    double GetDollar(); //暗黙的にpublic
+}
+class Exchange : Moneybox, IExchange { //継承, インターフェースの実装
+    private double _rate; //privateは省略可
+    //↓baseキーワードで基本クラスのコンストラクタ（★）を実行
+    public Exchange(int _firstYen, double _rate) : base(_firstYen) {
+        this._rate = _rate;
     }
-
-    //=====
-    // 実行
-    //=====
-    var _exchange = new Exchange(10000, 111.520); //最初の貯金, レート
-    _exchange.addYen(8000);
-    console.log(_exchange.getDollar()); //=> 161.40602582496413（ドル）
-
-</script>
+    public void AddYen(int _yen) { Add(_yen); } //Add()は基本クラスから継承
+    public double GetDollar() { return GetYen() / _rate; } //GetYen()は基本〜から継承
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月11日  
-更新日：2017年04月29日
+作成日：2015年12月04日  
+更新日：2017年05月XX日
 
 
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
 ```
-<script>
-    
-    //===============
-    // スーパークラス
-    //===============
-    class Moneybox {
-        constructor(_firstYen) {
-            this.__yen = _firstYen;
-        }
-        addYen(_yen) {
-            this.__yen += _yen;
-        }
-        getYen() {
-            return this.__yen;
-        }
+//test.cs
+using System;
+class Test {
+    static void Main() { //「継承」版と同じ
+        Exchange _exchange = new Exchange(10000, 122.60);
+        _exchange.AddYen(8000);
+        Console.WriteLine(_exchange.GetDollar()); //146.818923327896（ドル）
     }
-
-    //=====================================================
-    // サブクラス（このクラスの内容のみ「継承」版と異なる）
-    //=====================================================
-    class Exchange {
-        constructor(_firstYen, _rate) { //コンストラクタ
-            this.__moneybox = new Moneybox(_firstYen); //ポイント
-            this.__rate = _rate;
-        }
-        addYen(_yen) {
-            this.__moneybox.addYen(_yen); //スーパークラスの同名メソッドの呼出し
-        }
-        getDollar() {
-            return this.__moneybox.getYen() / this.__rate;
-        }
+}
+class Moneybox { //「継承」版と同じ
+    private int _yen;
+    public Moneybox(int _yen) { this._yen = _yen; }
+    public void Add(int _yen) { this._yen += _yen; }
+    public int GetYen() { return _yen; }
+}
+interface IExchange { //「継承」版と同じ
+    void AddYen(int _yen);
+    double GetDollar();
+}
+class Exchange : IExchange { //この内容が「継承」版と異なる
+    Moneybox _moneybox; //Moneyboxクラスのインスタンスを格納（委譲）
+    double _rate; //privateは省略
+    public Exchange(int _firstYen, double _rate) {
+        _moneybox = new Moneybox(_firstYen); //ここがポイント
+        this._rate = _rate;
     }
-
-    //=====
-    // 実行
-    //=====
-    var _exchange = new Exchange(10000, 111.520); //最初の貯金, レート
-    _exchange.addYen(8000);
-    console.log(_exchange.getDollar()); //=> 161.40602582496413（ドル）
-
-</script>
+    public void AddYen(int _yen) { 
+        _moneybox.Add(_yen); //ポイント
+    }
+    public double GetDollar() { 
+        return _moneybox.GetYen() / _rate; //ポイント
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月11日  
-更新日：2017年05月01日
+作成日：2015年12月04日  
+更新日：2017年05月XX日
 
 
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
+### 概要
+「機能」の階層と「実装」の階層を分ける。
+例えば、Linux、Windows、MacOSを対象にしたUIを実装する際、つい①LinuxButton ②WindowsButton③MacOSButtonの3つのクラスを作成してしまいがちですが、そうではなく①Linux②Windows③MacOS、そして④Buttonの4つのクラスに分けて考えて作るのが、このBridgeパターンです。Bridgeパターンを使うと、「新しい機能」や「新しい実装」を追加したい際、合理的です。
+「機能」クラスと「実装」クラスの「橋」渡しには「委譲」を使います。
+
+### 例文
 ```
-<script>
-    
-//==================
-//「機能クラス」関連
-//==================
-class SuperMobile {
-    constructor(_os) {
-        this.__os = _os; //「機能クラス」と「実装クラス」の「橋」（委譲）
-    }
-    get version() { //アクセサ（getter）
-        return this.__os.version; //「橋」を使って「実装クラス」にアクセス
-    }
-    set version(_newValue) { throw new Error("versionは読み取り専用です"); }
-}
-
-class Tablet extends SuperMobile {
-    constructor(_os) {
-        super(_os); //スーパークラスのコンストラクタの呼出し
-    }
-    bigScreen() { //タブレット特有の機能
-        console.log("大きな画面で見る");
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Tablet _tablet1 = new Tablet(new Android());
+        Console.WriteLine(_tablet1.Version); //Android 6.0
+        _tablet1.BigScreen(); //大きな画面で見る
+        
+        Tablet _tablet2 = new Tablet(new IOS());
+        Console.WriteLine(_tablet2.Version); //iOS 9.1
+        
+        SmartPhone _smartPhone1 = new SmartPhone(new Android());
+        Console.WriteLine(_smartPhone1.Version); //Android 6.0
+        _smartPhone1.Phone(); //電話をかける
+        
+        SmartPhone _smartPhone2 = new SmartPhone(new IOS());
+        Console.WriteLine(_smartPhone2.Version); //iOS 9.1
     }
 }
 
-class SmartPhone extends SuperMobile {
-    constructor(_os) {
-        super(_os); //スーパークラスのコンストラクタの呼出し
+class SuperMobile { //基本クラス＝「機能」のクラスの最上位
+    private AbstractOS _os; //「機能」クラスと「実装」クラスの「橋」（委譲）
+    public SuperMobile(AbstractOS _os) { //コンストラクタ
+        this._os = _os;
     }
-    phone() { //スマートフォン特有の機能
-        console.log("電話をかける");
+    public string Version {
+        get { return _os.rawVersion; } //「橋」を使って「実装」クラスにアクセス
+        private set {} //外部からアクセス不可（読み取り専用）
     }
 }
 
-//==================
-//「実装クラス」関連
-//==================
-class AbstractOS { //（擬似）抽象クラス
-    get version() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
+class Tablet : SuperMobile { //「機能」のクラスに機能を追加したクラス
+    public Tablet(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
+    public void BigScreen() { //タブレット特有の機能
+        Console.WriteLine("大きな画面で見る");
+    }
 }
 
-class Android extends AbstractOS {
-    constructor() {
-        super(); //何もしなくても必須
-        this.__version = "Android 7.1.2 Nougat ";
+class SmartPhone : SuperMobile { //「機能」のクラスに機能を追加したクラス
+    public SmartPhone(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
+    public void Phone() { //スマートフォン特有の機能
+        Console.WriteLine("電話をかける");
     }
-    get version() { //抽象メソッドの具体的な実装
-        return this.__version;
-    }
-    set version(_newValue) { throw new Error("Android社外は操作不可"); }
 }
 
-class IOS extends AbstractOS {
-    constructor() {
-        super(); //何もしなくても必須
-        this.__version = "iOS 10.3.1";
-    }
-    get version() { //抽象メソッドの具体的な実装
-        return this.__version;
-    }
-    set version(_newValue) { throw new Error("Apple社外は操作不可!"); }
+abstract class AbstractOS { //抽象クラス＝「実装」のクラスの最上位
+    public abstract string rawVersion { get; set; } //抽象メソッドの宣言
 }
 
-//========================================================================================
-// 実行
-//========================================================================================
-var _tabletA = new Tablet(new Android());
-console.log(_tabletA.version); //=> "Android 7.1.2 Nougat "
-_tabletA.bigScreen(); //=> "大きな画面で見る"
+class Android : AbstractOS { //「実装」の具体的な実装者
+    private string _version = "Android 6.0";
+    public override string rawVersion { //オーバーライドして実際の処理を記述
+        get { return _version; }
+        set {}
+    }
+}
 
-var _tabletB = new Tablet(new IOS());
-console.log(_tabletB.version); //=> "iOS 10.3.1"
-_tabletB.bigScreen(); //=> "大きな画面で見る"
-
-var _smartPhoneA = new SmartPhone(new Android());
-console.log(_smartPhoneA.version); //=> "Android 7.1.2 Nougat "
-_smartPhoneA.phone(); //=> "電話をかける"
-
-var _smartPhoneB = new SmartPhone(new IOS());
-console.log(_smartPhoneB.version); //=> "iOS 10.3.1"
-_smartPhoneB.phone(); //=> "電話をかける"
-
-</script>
+class IOS : AbstractOS { //「実装」の具体的な実装者
+    private string _version = "iOS 9.1";
+    public override string rawVersion { //オーバーライドして実際の処理を記述
+        get { return _version; }
+        set {}
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月12日  
-更新日：2017年05月01日
+作成日：2015年12月05日  
+更新日：2017年05月XX日
 
 
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-```
-<script>
+### 概要
+容器と中身の同一視。合成物。
+代表的な例はファイルシステム。ディレクトリとファイルは異なるものですが、どちらも「ディレクトリの中に入れることができるもの」です。つまり、同じ種類のものであると見なしている＝同一視です。
+ディレクトリ（＝容器）とファイル（＝中身）の両方にとって、共通のインターフェースとして機能し「同じメソッド」を呼び出せるようにするのです。
+root ─ Authoring ──┬─ Unity3D
+root │ adobe ──── └─ Unreal Engine
 
-//============
-// Component役
-//============
-class Component { //抽象クラス
-    get name() { return this.__name; }
-    set name(_newValue) { this.__name = _newValue;} 
-    get parent() { return this.__parent; }
-    set parent(_newValue) { this.__parent = _newValue; }
-    getList() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
+### 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //①フォルダの作成
+        Folder _root = new Folder("root");
+        Folder _authoring = new Folder("Authoring");
+        //②ファイルの作成
+        File _unity3d = new File("Unity3D");
+        File _unrealEngine = new File("Unreal Engine");
+        //③関連付け
+        _root.Add(_authoring); 
+        _authoring.Add(_unity3d);
+        _authoring.Add(_unrealEngine);
+        //④検証
+        Console.WriteLine(_unrealEngine.GetName()); //"Unreal Engine"
+        _root.GetList(); //"root/Authoring(Folder)"
+        _authoring.GetList();
+        //"Authoring/Unity3D(File)"
+        //"Authoring/Unreal Engine(File)"
+        _unity3d.GetList(); //"Authoring/Unity3D(File)"
+    }}
+abstract class Component { //抽象クラス（同一視するための役）
+    protected string _name; //共通プロパティ
+    protected Folder _parent; //共通プロパティ
+    public string GetName() { return _name; } //共通メソッド
+    public Folder Parent { //共通get/set
+        get { return _parent; }
+        set { _parent = value; }
+    }
+    public abstract void GetList(); //抽象メソッドの宣言（処理は派生クラスに記述）
 }
 
-//=====================
-// Composite（複合体）役
-//=====================
-class Folder extends Component {
-    constructor(_name) {
-        super();
-        this.__name = _name;
-        this.__childList = [];
+class Folder : Component { //Directoryは不可
+    private List<Component> _childList = new List<Component>(); //空のListを作成
+    public Folder(string _name) { //コンストラクタ
+        this._name = _name; 
     }
-    add(_arg) {
-        this.__childList.push(_arg);
-        _arg.parent = this;
+    public void Add(Component arg) { //Remove()は今回は省略
+        _childList.Add(arg);
+        arg.Parent = this;
     }
-    getList() { //抽象メソッドをオーバーライド
-        var _theList =this.__childList;
-        for (let _indexNum in _theList) {
-            let _result = this.name + "/" + _theList[_indexNum].name;
-            if (_theList[_indexNum] instanceof Folder) {
-                _result = _result + "(Folder)";
-            } else {
-                _result = _result + "(File)";
+    public override void GetList() { //オーバーライドして実際の処理を記述
+        foreach (Component tmp in _childList) {
+            string _result = this.GetName() + "/" + tmp.GetName();
+            if (tmp is Folder) {
+                _result += "(Folder)"; 
+            } else if (tmp is File) {
+                _result += "(File)";
             }
-            console.log(_result);
+            Console.WriteLine(_result);
         }
     }
 }
 
-//=============
-// Leaf（葉）役
-//=============
-class File extends Component {
-    constructor(_name) {
-        super();
-        this.__name = _name;
+class File : Component {
+    public File(string _name) { //コンストラクタ
+        this._name = _name;
     }
-    getList() { //抽象メソッドをオーバーライド
-        console.log(this.parent.name + "/" + this.name + "(File)");
+    public override void GetList() { //オーバーライドして実際の処理を記述
+        Console.WriteLine(this.Parent.GetName() + "/" + this.GetName() + "(File)");
     }
 }
-
-//===============================================
-// 実行
-// root に Authoring フォルダを作成し、その中に 
-// Unity3D と Unreal Engine ファイルを格納してみる
-//===============================================
-// ①フォルダの作成
-var _root = new Folder("root");
-var _authoring = new Folder("Authoring");
-
-// ②ファイルの作成
-var _unity3D = new File("Unity3D");
-var _unrealEngine = new File("Unreal Engine");
-
-// ③関連付け
-_root.add(_authoring);
-_authoring.add(_unity3D);
-_authoring.add(_unrealEngine);
-
-// ④検証
-console.log(_unrealEngine.name); //=> "Unreal Engine"
-_root.getList(); //=> "root/Authoring(Folder)"
-_authoring.getList(); 
-//=> "Authoring/Unity3D(File)"
-//=> "Authoring/Unreal Engine(File)"
-_unity3D.getList(); //=> "Authoring/Unity3D(File)"
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月13日  
-更新日：2017年05月01日
+作成日：2015年12月08日  
+更新日：2017年05月XX日
 
 
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-```
-<script>
+### 概要
+飾り枠と中身の同一視。装飾者。
+継承によって中身（Original）と飾り枠（Decorator○）に同じShow()メソッドを持たせることで、包まれるもの（Originalクラス）を変更することなく、機能の追加（装飾）をすることを可能にします。
+例文では、右図のSuperDecoratorを省略し、ICommon + SuperDecoratorを合わせてDisplayクラスにしています。
 
-/****************************************************
- * スーパークラス
- * 「中身」と「飾り枠」に同じshow()メソッドを持たせる
-****************************************************/
+### 例文
+```
+//test.cs
+using System;
+
+//メインクラス
+class Test {
+    static void Main() {
+        Display _original = new Original("TAKASHI");
+        _original.Show(); //TAKASHI
+        
+        Display _decorator1 = new Decorator1(new Original("TAKASHI"));
+        _decorator1.Show(); //-TAKASHI-
+        
+        Display _decorator2 = new Decorator2(new Original("TAKASHI"));
+        _decorator2.Show(); //<TAKASHI>
+        
+        Display _special = new Decorator2(
+                                    new Decorator1(
+                                        new Decorator1(
+                                            new Decorator1(
+                                                new Original("TAKASHI")
+                                            )
+                                        )
+                                    )
+                                );
+        _special.Show(); //<---TAKASHI--->
+    }
+}
+
+//「中身」と「飾り枠」に同じShow()メソッドを持たせるための基本クラス
 class Display {
-    constructor() { // コンストラクタ
-        this.__content = undefined; //宣言（無くてもＯＫ）
+    protected string _content;
+    public string getContent() {
+        return _content;
     }
-
-    // conentプロパティのアクセサ（getter/setter）
-    get content() {
-        return this.__content;
-    }
-    set content(_newValue) {
-        throw new Error("contentは読取り専用です");
-    }
-    
-    // 共通のメソッド
-    show() {
-        console.log(this.__content);
-    }
-
-    //本来はこのクラスは「抽象クラス」としここに「抽象メソッド」を記述すべきかもしれません...
-}
-
-/**************************
- * 中身（飾りを施す前の元）
-**************************/
-class Original extends Display {
-    constructor(_string) {
-        super(); //何もしなくても必須
-        this.__content = _string;
+    public void Show() {
+        Console.WriteLine(_content);
     }
 }
 
-/***********
- * 飾り枠Ａ
-***********/
-class DecoratorA extends Display {
-    constructor(_display) {
-        super(); //何もしなくても必須
-        this.__content = "-" + _display.content + "-";
+//中身（飾りを施す前の元）
+class Original : Display {
+    //コンストラクタ
+    public Original(string arg) {
+        _content = arg; //_conentは基本クラスからの継承
     }
 }
 
-/***********
- * 飾り枠Ｂ
-***********/
-class DecoratorB extends Display {
-    constructor(_display) {
-        super(); //何もしなくても必須
-        this.__content = "<" + _display.content + ">";
+//飾り枠①
+class Decorator1 : Display {
+    //コンストラクタ
+    public Decorator1(Display _display) {
+        _content = "-" + _display.getContent() + "-"; //飾り①を付ける
     }
 }
 
-/***********
- * 実行
-***********/
-var _original = new Original("NISHIMURA");
-_original.show(); //=> NISHIMURA
-
-var _decoratorA = new DecoratorA(new Original("NISHIMURA"));
-_decoratorA.show(); //=> -NISHIMURA-
-
-var _decoratorB = new DecoratorB(new Original("NISHIMURA"));
-_decoratorB.show(); //=> <NISHIMURA>
-
-var _special = new DecoratorB(
-                    new DecoratorA(
-                        new DecoratorA(
-                            new DecoratorA(
-                                new Original("NISHIMURA")
-                            )
-                        )
-                    )
-                );
-_special.show(); //=> <---NISHIMURA--->
-
-</script>
+//飾り枠②
+class Decorator2 : Display {
+    public Decorator2(Display _display) { //コンストラクタ
+        _content = "<" + _display.getContent() + ">"; //飾り②を付ける
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月13日  
-更新日：2017年05月01日
+作成日：2015年12月10日  
+更新日：2017年05月XX日
 
 
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-```
-<script>
+### 概要
+シンプルな窓口。見かけ。
+ファサード＝「建物の正面」の意味。
+たくさんのクラスやメソッドを、このパターン（窓口）を使うことでシンプルにして迷いを生じさせないようにします。
+右図の例では、たった１つのset()メソッドだけを「窓口」として、複雑なクラスの相互関係は外部からは全く見えなくしてしまうわけです（これ以上説明する必要はない…と）。
+以下の例文では、「Decoratorパターン」をFacadeパターンでシンプルにします。
+Display _special = new Decorator2(
+                            new Decorator1(
+                                new Decorator1(
+                                    new Decorator1(
+                                        new Original("TAKASHI")))));
+_special.Show();
+…としていたものを次の1行で実現可能になります。
+DecoratorFacade.exec("TAKASHI", 3, 1);
 
-/****************************************************
- * スーパークラス
- * 「中身」と「飾り枠」に同じshow()メソッドを持たせる
-****************************************************/
+### 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //メイン内がシンプルになります
+        DecoratorFacade.Exec("TAKASHI"); //TAKASHI
+        DecoratorFacade.Exec("TAKASHI", 1, 0); //-TAKASHI-
+        DecoratorFacade.Exec("TAKASHI", 0, 1); //<TAKASHI>
+        DecoratorFacade.Exec("TAKASHI", 3, 1); //<---TAKASHI--->
+    }
+}
+
+//シンプルな窓口。←Decoratorパターンにこのクラスを追加するだけ
+class DecoratorFacade { //Singletonパターン的に…
+    private DecoratorFacade() {} //privateにして外部からnewできないようにする
+    public static void Exec(string arg1, int arg2=0, int arg3=0) {
+        Display _result = new Original(arg1);
+        for (int i=0; i<arg2; i++) {
+            _result = new Decorator1(_result);
+        }
+        for (int j=0; j<arg3; j++) {
+            _result = new Decorator2(_result);
+        }
+        _result.Show();
+    }
+}
+
+//以下の4つのクラスはDecoratorパターンの例文と全く同じ。
 class Display {
-    constructor() { // コンストラクタ
-        this.__content = undefined; //宣言（無くてもＯＫ）
+    protected string _content;
+    public string getContent() {
+        return _content;
     }
-
-    // conentプロパティのアクセサ（getter/setter）
-    get content() {
-        return this.__content;
-    }
-    set content(_newValue) {
-        throw new Error("contentは読取り専用です");
-    }
-    
-    // 共通のメソッド
-    show() {
-        console.log(this.__content);
-    }
-
-    //本来はこのクラスは「抽象クラス」としここに「抽象メソッド」を記述すべきかもしれません...
-}
-
-/**************************
- * 中身（飾りを施す前の元）
-**************************/
-class Original extends Display {
-    constructor(_string) {
-        super(); //何もしなくても必須
-        this.__content = _string;
+    public void Show() {
+        Console.WriteLine(_content);
     }
 }
 
-/***********
- * 飾り枠Ａ
-***********/
-class DecoratorA extends Display {
-    constructor(_display) {
-        super(); //何もしなくても必須
-        this.__content = "-" + _display.content + "-";
+class Original : Display {
+    public Original(string arg) {
+        _content = arg;
     }
 }
 
-/***********
- * 飾り枠Ｂ
-***********/
-class DecoratorB extends Display {
-    constructor(_display) {
-        super(); //何もしなくても必須
-        this.__content = "<" + _display.content + ">";
-    }
-}
-// ↑以上4つのクラスはDecoratorパターンの例文と全く同じ
-
-/**************************************************************
- * シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
-**************************************************************/
-class DecoratorFacade { //Singletonパターンにする場合も...
-    static exec(_string, _decratorA_num, _decratorB_num) {
-        var _result = new Original(_string);
-        for (let i=0; i<_decratorA_num; i++) {
-            _result = new DecoratorA(_result);
-        }
-        for (let i=0; i<_decratorB_num; i++) {
-            _result = new DecoratorB(_result);
-        }
-        _result.show();
+class Decorator1 : Display {
+    public Decorator1(Display _display) {
+        _content = "-" + _display.getContent() + "-";
     }
 }
 
-/***********
- * 実行
-***********/
-DecoratorFacade.exec("NISHIMURA", 0, 0); //=> NISHIMURA
-DecoratorFacade.exec("NISHIMURA", 1, 0); //=> -NISHIMURA-
-DecoratorFacade.exec("NISHIMURA", 0, 1); //=> <NISHIMURA>
-DecoratorFacade.exec("NISHIMURA", 3, 1); //=> <---NISHIMURA--->
-
-</script>
+class Decorator2 : Display {
+    public Decorator2(Display _display) {
+        _content = "<" + _display.getContent() + ">";
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月13日  
-更新日：2017年05月01日
+作成日：2015年12月10日  
+更新日：2017年05月XX日
 
 
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-```
-<script>
+### 概要
+同じものを共有して無駄をなくす。
+フライ級（軽量級）。
+インスタンスをできるかぎり共有させて無駄にnewしない…ということがポイント。
+外部ファイルを読み込むなど「メモリの使用量」が多い場合などに有効です。
+以下の例文では、外部テキストとして2つのファイルを使用します。
+①A.txt（"あいうえお"＝あ行）
+②KA.txt（"かきくけこ"＝か行）
 
-/****************************************
- * インスタンスの管理人（Singletonクラス）
-****************************************/
+### 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Dictionaryに必要
+using System.IO; //StreamReaderに必要
+
+//メイン
+class Test {
+    static void Main() {
+        //インスタンスの管理者を作る（シングルトンクラス）
+        Manager _manager = Manager.GetInstance();
+        
+        //無駄に生成したくないオブジェクトを生成（既存の場合使いまわす）
+        Reader _A = _manager.CreateReader("A");
+        Reader _KA = _manager.CreateReader("KA");
+        
+        //既存のものを生成しようとすると…
+        Reader _A2 = _manager.CreateReader("A"); //Aは既存です
+        Console.WriteLine(_A == _A2); //True ←中身は同じインスタンス
+        
+        Console.WriteLine(_A.GetText()); //あいうえお
+        Console.WriteLine(_KA.GetText()); //かきくけこ
+    }
+}
+
+//============================================
+//インスタンスの管理人（シングルトンクラス）
+//============================================
 class Manager {
-    //コンストラクタ
-    constructor() {
-        if (! Manager.__isInstance) { throw new Error("newでのインスタンスは生成不可"); }
-        this.__pool = new Object(); //BigProcessをダブらずに保存する連想配列
+    private static Manager _manager = new Manager(); //シングルトン用
+    private Dictionary<string, Reader> _dic = new Dictionary<string, Reader>();
+    
+    private Manager() {} //外部からnew Singleton()できないようにする
+    
+    public static Manager GetInstance() { //外部から唯一のインスタンスを呼出す
+        return _manager; //唯一のインスタンス（静的変数）を返す
     }
-
-    //クラスメソッド（Singleton用）
-    static getInstance() {
-        if (Manager.__singleton == undefined) {
-            Manager.__isInstance = true;
-            Manager.__singleton = new Manager(); //Singletonパターン
-            Manager.__isInstance = false;
+    
+    public Reader CreateReader(string arg) {
+        //↓_dic.ContainsKey()でも可能。
+        bool _result = _dic.ContainsKey(arg); //既存か否か調べる
+        if ( _result) { //_dic[arg]が存在しない場合…
+            _dic.Add(arg, new Reader(arg)); //ここでやっとnew ○○
+        } else { //_dic[arg]が既存の場合…（確認用）
+            Console.WriteLine(arg + "は既存です");
         }
-        return Manager.__singleton;
-    }
-
-    //BigProcessインスタンスをダブらないように連想配列に保存
-    createBigProcess(_type) {
-        if (this.__pool[_type] == undefined) { //既存か否か調べる
-            this.__pool[_type] = new BigProcess(_type);
-        } else {
-            console.log(_type + "は既存です");
-        }
-        return this.__pool[_type];
+        return _dic[arg];
     }
 }
 
-/**************
- * Flayweight役
-**************/
-class BigProcess { 
-    constructor(_type) { this.__type = _type; }
-    getData() { return this.__type + "に対する重〜い処理の結果"; } //重い処理を実行
+//フライ級の役（メモリの使用量が多いため無駄に生成したくないもの）
+class Reader {
+    private string _text; //外部から読み込んだテキストを格納
+    public Reader(string arg) {
+        string _path = "/home/nishimura/デスクトップ/forC#/" + arg + ".txt";
+        StreamReader _stream = File.OpenText(_path);
+        _text = _stream.ReadToEnd(); //全ての内容を読み込む
+        _stream.Close(); //閉じる
+    }
+    public string GetText() {
+        return _text;
+    }
 }
-
-/*******
- * 実行
-*******/
-var _manager = Manager.getInstance(); //①インスタンスの管理者（Singletonクラス）
-var _a = _manager.createBigProcess("TypeA"); //②無駄にしたくないオブジェクトを生成
-var _b = _manager.createBigProcess("TypeB"); //←もしTypeAだと既存のものを共有します
-var _a2 = _manager.createBigProcess("TypeA"); //=> "TypeAは既存です"（既成のものを生成してみると...）
-console.log(_a == _a2); //=> true ←中身は同じインスタンス
-console.log(_a.getData()); //=> "TypeAに対する重〜い処理の結果"
-console.log(_b.getData()); //=> "TypeBに対する重〜い処理の結果"
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月14日  
-更新日：2017年05月01日
+作成日：2015年12月15日  
+更新日：2017年05月XX日
 
 
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
+### 概要
+必要になってから作る。代理人。
+本当に処理が必要になるまで、オブジェクトの生成を保留して待機。そして必要なタイミングでオブジェクトを生成します。
+右図下は「リモートプロキシ」と呼ばれるもので、ネットワークなどリモート環境が前提となります。実際の本人がネットワークの向こう側にいるにも関わらず、あたかも自分のそばにいるかのように、メソッドの呼出しができるものです。
+Proxyパターンを使う場面は…
+①オブジェクトのロードに時間を要する。
+②計算結果を出すのに時間がかかり、計算を実行している間に途中経過を表示する必要がある。
+③ネットワーク経由でロードするのに時間がかかる。
+④オブジェクトにアクセスする為に権限が必要で、Proxyがユーザに代り権利の承認を受ける。
+…といった場合です。
+
+### 例文
 ```
-<script>
+//test.cs
+using System;
+using System.IO; //StreamReaderに必要
 
-/*********************
- * ①代理人（Proxy役）
-*********************/
-class Loader {
-    constructor(_url) {
-        this.__url = _url;
-    }
-
-    load() {
-        //↓実際の本人登場（代理に実際の本人を知っている）
-        var _content = new Content(this.__url);
-        _content.load();
+class Test {
+    static void Main() {
+        string _path = "/home/nishimura/デスクトップ/forC#/sample.txt";
+        
+        //代理人（Proxy）役
+        Loader _loader = new Loader(_path);
+        
+        //通常は、必要になった時に実際にロード
+        _loader.Load();
     }
 }
 
-/*******************************
- * ②実際の本人（Real Subject役）
-*******************************/
-class Content {
-    constructor(_url) {
-        this.__url = _url;
-    }
+//=======================================
+//①Loaderと②Contentのインターフェース
+//=======================================
+interface ILoader {
+    void Load(); //暗黙的にpublicになる
+}
 
-    //↓重い処理をここで行う（ポイント）
-    load() {
-        // 今回のサンプルの中身はあまり重要ではない...
-        console.log("重い処理を実行中");
+//=====================
+//①代理人（Proxy）役
+//=====================
+class Loader : ILoader {
+    private string _path; //privateは省略可
+    public Loader(string _path) {
+        this._path = _path;
+    }
+    public void Load() {
+        //実際の本人が登場（代理人は実際の本人を知っている）
+        Content _content = new Content(_path);
+        _content.Load();
     }
 }
 
-/*****************
- * 実行（Cliant役）
-*****************/
-var _loader = new Loader("http://sample.mp4");
-_loader.load(); //=> "重い処理を実行中"
-
-</script>
+//=====================
+//②実際の本人
+//=====================
+class Content : ILoader {
+    private string _path; //privateは省略可
+    public Content(string _path) {
+        this._path = _path;
+    }
+    //重い処理をここで行う←ポイント
+    public void Load() {
+        //今回のサンプルの中身はあまり重要ではない…
+        StreamReader _stream = File.OpenText(_path);
+        string _text = _stream.ReadToEnd(); //全ての内容を読み込む
+        _stream.Close(); //閉じる
+        Console.WriteLine(_text);
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月14日  
-更新日：2017年05月01日
+作成日：2015年12月12日  
+更新日：2017年05月XX日
 
 
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-```
-<script>
+### 概要
+１つ１つ数え上げる。繰り返し。
+interate は「繰り返す」という意味。
+データの集合体に対して、for文等による操作でデータを取り出すのではなく、HasNext()とNext()メソッドを使って取り出します。
+データの集合体がどのような形態であれ、それを隠蔽することができるのがメリットです。
+例文のIteratorクラスは「駐輪場の管理人」と言えましょう。
 
-/************
- * Bikeクラス
-************/
+### 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+
+// メイン ///////////////////////////////////////////////////////////////////
+class Test {
+    static void Main() {
+        BikePark _bikePark = new BikePark();
+
+        _bikePark.Add(new Bike("CB1100F", "神戸 X XX-XX"));
+        _bikePark.Add(new Bike("W800", "宇都宮 X XX-XX"));
+        _bikePark.Add(new Bike("SR400", "杉並区 X XX-XX"));
+        
+        Iterator _iterator = _bikePark.CreateIterator(); //イテレータ（管理人）生成
+        
+        while(_iterator.HasNext()) {
+            Bike _nextBike = _iterator.Next();
+            Console.WriteLine(_nextBike.GetName() + "," + _nextBike.GetNum());
+        }
+    }
+}
+
+// Bikeクラス ///////////////////////////////////////////////////////////////////
 class Bike {
-    // コンストラクタ
-    constructor(_name, _num) {
-        this.__name = _name;
-        this.__num = _num;
+    string _name, _num; //privateは省略
+    public Bike(string _name, string _num) { //コンストラクタ
+        this._name = _name;
+        this._num = _num;
     }
-
-    //（擬似）プライベート変数のアクセサ（getter/setter）
-    get name() { return this.__name; }
-    set name(_newValue) { this.__name = _newValue; }
-    get num() { return this.__num; }
-    set num(_newValue) { this.__num = _newValue; }
+    public string GetName() {	return _name; }
+    public string GetNum() { return _num; }
 }
 
-/****************
- * BikeParkクラス
-****************/
-class BikePark {
-    // コンストラクタ
-    constructor() {
-        this.__list = []; //空の配列を作成
-    }
-
-    // 以下の4つのメソッドは必須（ES6はinterfaceは非サポートのため簡略化）
-    add(_bike) {
-        this.__list.push(_bike);
-    }
-    getElementAt(_num) {
-        return this.__list[_num];
-    }
-    getLength() {
-        return this.__list.length;
-    }
-    createIterator() {
-        return new Iterator(this); //ここでイテレータ（管理人）の生成
-    }
+// BikeParkクラス ///////////////////////////////////////////////////////////////////
+interface IBikePark {
+    void Add(Bike arg); //暗黙的にpublicになる
+    Bike GetBikeAt(int arg);
+    int GetLength();
+    Iterator CreateIterator();
 }
 
-/***********************************
- * Iteratorクラス（≒駐輪場の管理人）
-***********************************/
-class Iterator {
-    // コンストラクタ
-    constructor(_bikePark) {
-        this.__bikePark = _bikePark;
-        this.__count = 0;
-    }
-
-    // 以下の2つのメソッドは必須（ES6はinterfaceは非サポートのため簡略化）
-    hasNext() {
-        return this.__bikePark.getLength() > this.__count;
-    }
-    next() {
-        return this.__bikePark.getElementAt(this.__count++); //次のバイクを返す
-    }
+class BikePark : IBikePark {
+    List<Bike> _list = new List<Bike>(); //空のListを作成 
+    public void Add(Bike arg) { _list.Add(arg); }
+    public Bike GetBikeAt(int arg) {	return _list[arg]; }
+    public int GetLength() { return _list.Count; }
+    public Iterator CreateIterator() { return new Iterator(this); } //イテレータ生成
 }
 
-/******
- * 実行
-******/
-var _bikePark = new BikePark();
-_bikePark.add(new Bike("CB1100F", "神戸 X XX-XX"));
-_bikePark.add(new Bike("W800", "宇都宮 X XX-XX"));
-_bikePark.add(new Bike("SR400", "杉並区 X XX-XX"));
-
-_iterator = _bikePark.createIterator(); //イテレータ（管理人）生成
-
-while (_iterator.hasNext()) {
-    let _nextBike = _iterator.next();
-    console.log(_nextBike.name + "," + _nextBike.num);
+// Iteratorクラス（≒駐輪場の管理人）///////////////////////////////////////////////
+interface IIterator {
+    bool HasNext(); //暗黙的にpublicになる
+    Bike Next();
 }
-//=> "CB1100F", "神戸 X XX-XX";
-//=> "W800", "宇都宮 X XX-XX";
-//=> "SR400", "杉並区 X XX-XX";
 
-</script>
+class Iterator : IIterator {
+    BikePark _bikePark;
+    int _count = 0;
+    public Iterator(BikePark arg) { //コンストラクタ
+        this._bikePark = arg;
+    }
+    public bool HasNext() { return _bikePark.GetLength() > _count; }
+    public Bike Next() { return _bikePark.GetBikeAt(_count++); } //次のバイクを返す
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月14日  
-更新日：2017年05月01日
+作成日：2015年12月15日  
+更新日：2017年05月XX日
 
 
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-```
-<script>
+### 概要
+具体的な処理をサブクラスにまかせる。ひな型メソッド。
+基本クラス（親クラス）で、一連の（瞬時に実行する連続した）処理の枠組みを定義し、それを継承する派生クラス（子クラス）で具体的処理を定義する…というデザインパターン。
+処理フローは「ほぼ」同じだが、一部だけ処理内容が異なるといった場合に利用。
 
-class AbstractCard {
-    templateMethod() { //一連の連続した処理の枠組みを定義
-        this.makeHeader();
-        this.makeContent();
-        if (this.isMakeDate()) { this.__makeDate(); } //フックメソッド（状況により実行）
-        this.__makeFooter();
+### 例文
+```
+//test.cs
+using System;
+
+//メイン
+class Test {
+    static void Main() {
+        CardHaruko _cardHaruko = new CardHaruko();
+        _cardHaruko.TemplateMethod();
+        /*
+        HAPPY NEW YEAR
+        サッカーがんばろうね
+        */
+        
+        CardHanako _cardHanako = new CardHanako();
+        _cardHanako.TemplateMethod();
+        /*
+        HAPPY NEW YEAR
+        本年も宜しくお願い致します
+        今年みんなで集まろう
+        */
     }
-    makeHeader() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
-    makeContent() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
-    isMakeDate() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
-    __makeDate() { console.log("2017年 元旦"); } //共通の処理
-    __makeFooter() { console.log("〒XXX-XXXX 千代田区XXX町X-X-X"); } //共通の処理
-}
-class SummerCard extends AbstractCard {
-    makeHeader() { console.log("HAPPY SUMMER HOLIDAYS!"); } //オーバーライド
-    makeContent() { console.log("夏のイラスト"); } //オーバーライド
-    isMakeDate() { return false; } //オーバーライド
-}
-class NewYearCard extends AbstractCard {
-    makeHeader() { console.log("HAPPY NEW YEAR!"); } //オーバーライド
-    makeContent() { console.log("干支のイラスト"); } //オーバーライド
-    isMakeDate() { return true; } //オーバーライド
 }
 
-var _summerCard = new SummerCard();
-_summerCard.templateMethod();
-//=> HAPPY SUMMER HOLIDAYS!
-//=> 夏のイラスト
-//=> 〒XXX-XXXX 千代田区XXX町X-X-X
+//===================================
+//抽象クラス
+//===================================
+abstract class AbstractCard {
+    public void TemplateMethod() { //一連の連続した処理の枠組みを定義
+        Order1(); //共通の処理
+        if (IsAdult()) { //フックメソッド（派生クラスでoverride）
+            Order2(); //条件により実行
+        }
+        Order3(); //派生クラスでoverride
+    }
+    private void Order1() { //共通の処理（privateは省略可）
+        Console.WriteLine("HAPPY NEW YEAR");
+    }
+    protected abstract bool IsAdult(); //抽象メソッドの宣言
+    private void Order2() { //条件により実行（privateは省略可）
+        Console.WriteLine("本年も宜しくお願い致します");
+    }
+    protected abstract void Order3(); //抽象メソッドの宣言
+}
 
-var _newYearCard = new NewYearCard();
-_newYearCard.templateMethod();
-//=> HAPPY NEW YEAR!
-//=> 干支のイラスト
-//=> 2017年 元旦
-//=> 〒XXX-XXXX 千代田区XXX町X-X-X
+//===================================
+//派生クラス①（抽象クラスを継承）
+//===================================
+class CardHaruko : AbstractCard {
+    //フックメソッドの実際の定義
+    protected override bool IsAdult() {
+        return false;
+    }
+    protected override void Order3() {
+        Console.WriteLine("サッカーがんばろうね");
+    }
+}
 
-</script>
+//===================================
+//派生クラス②（抽象クラスを継承）
+//===================================
+class CardHanako : AbstractCard {
+    //フックメソッドをoverrideして具体的処理を記述
+    protected override  bool IsAdult() {
+        return true;
+    }
+    //抽象メソッドをoverrideして具体的処理を記述
+    protected override void Order3() {
+        Console.WriteLine("今年みんなで集まろう");
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月14日  
-更新日：2017年05月01日
+作成日：2015年12月15日  
+更新日：2017年05月XX日
 
 
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
+### 概要
+アルゴリズムをごっそり切り替える。戦略。Strategy＝作戦。アルゴリズム（手順）。
+Stateパターン（後述）に似ていますが、Stateパターンの場合は…
+    new Context()
+Strategyパターンの場合…
+    new Context(new Strategy())
+…となります。
+
+### 例文
 ```
-<script>
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        Janken _jankenA = new Janken(new StrategyA());
+        Janken _jankenB = new Janken(new StrategyB());
+        _jankenA.Exec(); //グー、グー、パー
+        _jankenB.Exec(); //パー、グー、チョキ
+    }}
 
-/*******************
- * Strategyクラス関連
-*******************/
-class IStrategy {
-    execute() { throw new Error("サブクラスで実装して下さい"); }
+// Strategy○クラス //////////////////////////////////////////////////////////////
+interface IStrategy {
+    void Execute(); //暗黙的にpublicになる
+}
+class StrategyA : IStrategy {
+    public void Execute() { Console.WriteLine("グー、グー、パー");	}
+}
+class StrategyB : IStrategy {
+    public void Execute() { Console.WriteLine("パー、グー、チョキ"); 	}
 }
 
-class StrategyA extends IStrategy {
-    execute() { console.log("グー、グー、パー"); } //オーバーライド
-}
-
-class StrategyB extends IStrategy {
-    execute() { console.log("パー、グー、チョキ"); } //オーバーライド
-}
-
-/*************
- * Jankenクラス
-*************/
+// Jankenクラス /////////////////////////////////////////////////////////////////
 class Janken {
-    constructor(_strategy) {
-        this.__strategy = _strategy;
-    }
-    exec() {
-        this.__strategy.execute(); //exec()だと紛らわしいので...
-    }
+    private IStrategy _strategy;
+    public Janken(IStrategy _strategy) { this._strategy = _strategy; }
+    public void Exec() { _strategy.Execute(); } //Exec()だと紛らわしいので…
 }
-
-/******
- * 実行
-******/
-var _jankenA = new Janken(new StrategyA());
-var _jankenB = new Janken(new StrategyB());
-_jankenA.exec(); //=> "グー、グー、パー"
-_jankenB.exec(); //=> "パー、グー、チョキ"
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月17日  
-更新日：2017年05月01日
+作成日：2015年12月15日  
+更新日：2017年05月XX日
 
 
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
+### 概要
+構造を渡り歩きながら仕事をする。訪問者。
+データ構造と処理を分離することがこのパターンの目的。
+新しい処理を追加したい時は、訪問者（Visitor）を追加する。
+家庭訪問に例えると…親御さん方は、訪問者＝先生が代わっても、これまで受け入れてきたのと同じメソッドを実行すれば良いのです。どの先生が来るかによって、いろいろとメソッドを用意していたら、親御さん方も大変ですから…。
+
+### 例文
 ```
-<script>
-
-/***************************
- * 訪問先（受入者＝Acceptor）
-***************************/
-class I受入者 { //（擬似）インターフェース
-    accept(_I訪問者) { throw new Error("サブクラスで実装して下さい"); }
-}
-class 佐藤家 extends I受入者 { //佐藤家
-    accept(_I訪問者) { _I訪問者.work(this); } //誰であっても「では、よろしく」とお任せする
-}
-class 高橋家 extends I受入者 { //高橋家
-    accept(_I訪問者) { _I訪問者.work(this); } //誰であっても「では、よろしく」とお任せする
-}
-
-/***********************
- * 訪問者（Visitor）の役
-***********************/
-class I訪問者 { //（擬似）インターフェース
-    work(_I受入者) { throw new Error("サブクラスで実装して下さい"); }
-}
-class 庭師 extends I訪問者 { //庭師
-    work(_I受入者) {
-        console.log(_I受入者, "生垣切り→枝落し→雑草除去...等");
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //訪問先
+        Hokkaido _saitama = new Hokkaido(); //北海道祖父母
+        Chiba _chiba = new Chiba(); //千葉県親戚
+        
+        //訪問者
+        Ichiro _ichiro = new Ichiro(); //一郎
+        Haruko _haruko = new Haruko(); //春子
+        
+        //訪問する（訪問側から見ると「受け入れる」）
+        _saitama.Accept(_ichiro);
+        _saitama.Accept(_haruko);
+        _chiba.Accept(_ichiro);
+        _chiba.Accept(_haruko);
+        
+        //結果…
+        Console.WriteLine(_ichiro.GetMoney()); //15000
+        Console.WriteLine(_haruko.GetMoney()); //15000
     }
 }
-class エアコン設置業者 extends I訪問者 { //エアコン設置業者
-    work(_I受入者) {
-        console.log(_I受入者, "室内機取付→ホース接続→室外機取付...等")
+//================
+// 訪問先
+//================
+interface IAcceptor {
+    void Accept(IVisitor _visitor); //暗黙的にpublicになる
+}
+
+class Hokkaido : IAcceptor {
+    private int _otoshidama = 5000*2; //お年玉
+    public void Accept(IVisitor _visitor) { //Accept＝受け入れる
+        _visitor.Visit(_otoshidama); //誰が訪問してきても同じメソッドを実行
     }
 }
 
-/******
- * 実行
-******/
-var _佐藤家 = new 佐藤家(); //訪問先①
-var _高橋家 = new 高橋家(); //訪問先②
-var _庭師 = new 庭師(); //訪問者❶
-var _エアコン設置業者 = new エアコン設置業者(); //訪問者❷
+class Chiba : IAcceptor {
+    private int _otoshidama = 5000; //お年玉
+    public void Accept(IVisitor _visitor) { //Accept＝受け入れる
+        _visitor.Visit(_otoshidama); //誰が訪問してきても同じメソッドを実行
+    }
+}
 
-_佐藤家.accept(_庭師); //=> 佐藤家のインスタンス→"生垣切り→枝落し→雑草除去...等"
-_佐藤家.accept(_エアコン設置業者); //=> 佐藤家のインスタンス→"生垣切り→枝落し→雑草除去...等"
-_高橋家.accept(_庭師); //=> 高橋家のインスタンス→"生垣切り→枝落し→雑草除去...等"
-_高橋家.accept(_エアコン設置業者); //=> 高橋家のインスタンス→"生垣切り→枝落し→雑草除去...等"
+//================
+// 訪問者
+//================
+interface IVisitor {
+    void Visit(int _otoshidama);  //暗黙的にpublicになる
+    int GetMoney(); //暗黙的にpublicになる
+}
 
-</script>
+class Ichiro : IVisitor { //一郎
+    private int _money = 0; //貯金
+    public void Visit(int _otoshidama) { _money += _otoshidama; }
+    public int GetMoney() { return _money; }
+}
+
+class Haruko : IVisitor { //春子
+    private int _money = 0; //貯金
+    public void Visit(int _otoshidama) { _money += _otoshidama; }
+    public int GetMoney() { return _money; }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月17日  
-更新日：2017年05月01日
+作成日：2015年12月16日  
+更新日：2017年05月XX日
 
 
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-```
-<script>
+### 概要
+責任のたらいまわし。責任の連鎖。
+自分（クラス）で処理できるなら処理する。処理できないなら、次の人（クラス）に、たらい回しにする…というのがこのパターン。
+マウス関連のイベント処理等で使用。
+新たな処理者のクラス（右図のHandler○）を簡単に追加することが容易に可能。
 
-/**********************
- * 各郵便局の抽象クラス
-**********************/
-class AbstractPO {
-    setNext(_nextPO) { //共通のメソッド（責任の「たらい回し先」のセット）
-        this.__nextPO = _nextPO;
-        return this.__nextPO;
+### 例文
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //郵便局の設置
+        AbstractPO _shinjukuPO = new ShinjukuPO();
+        AbstractPO _tokyoPO = new TokyoPO();
+        AbstractPO _japanPO = new JapanPO();
+        
+        //責任のたらいまわしのセット
+        _shinjukuPO.SetNext(_tokyoPO).SetNext(_japanPO);
+        
+        //投函（全て新宿郵便局に投函する）
+        _shinjukuPO.Send("新宿区XX町X-X-X"); //本日中に届きます
+        _shinjukuPO.Send("東京都青梅市XXX町X-X-X"); //明後日中に届きます
+        _shinjukuPO.Send("北海道XXX市XXX町X-X-X"); //一週間前後で届きます
     }
-    send(_address) { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
 }
 
-/************
- * 新宿郵便局
-************/
-class SetagayaPO extends AbstractPO {
-    send(_address) { //オーバーライドして実装
-        if (_address.indexOf("新宿", 0) != -1) {
-            console.log("本日中に届きます");
+//==========================
+// 各郵便局の抽象クラス
+//==========================
+abstract class AbstractPO {
+    //共通の機能
+    protected AbstractPO _nextPO; //たらいまわし先
+    public AbstractPO SetNext(AbstractPO _po) {
+        _nextPO = _po;
+        return _nextPO;
+    }
+    //抽象メソッド（子クラスでoverride）	
+    public abstract void Send(string _address);
+}
+
+//==========================
+// 新宿郵便局
+//==========================
+class ShinjukuPO : AbstractPO {
+    public override void Send(string _address) { //抽象メソッドの実際の処理
+        if (_address.IndexOf("新宿",0) = -1) {
+            Console.WriteLine("本日中に届きます");
         } else {
-            this.__nextPO.send(_address); //「たらいまわし先」に送る
+            _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
         }
     }
 }
 
-/************
- * 東京郵便局
-************/
-class TokyoPO extends AbstractPO {
-    send(_address) { //オーバーライドして実装
-        if (_address.indexOf("東京", 0) != -1) {
-            console.log("明後日中に届きます");
+//==========================
+// 東京郵便局
+//==========================
+class TokyoPO : AbstractPO {
+    public override void Send(string _address) { //抽象メソッドの実際の処理
+        if (_address.IndexOf("東京",0) = -1) {
+            Console.WriteLine("明後日中に届きます");
         } else {
-            this.__nextPO.send(_address); //「たらいまわし先」に送る
+            _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
         }
+    }	
+}
+
+//==========================
+//日本郵便局
+//==========================
+class JapanPO : AbstractPO {
+    public override void Send(string _address) { //抽象メソッドの実際の処理
+        Console.WriteLine("一週間前後で届きます");
     }
 }
-
-/************
- * 日本郵便局
-************/
-class JapanPO extends AbstractPO {
-    send(_address) { console.log("一週間前後で届きます"); }
-}
-
-/******
- * 実行
-******/
-var _setagayaPO = new SetagayaPO(); //新宿郵便局の設置
-var _tokyoPO = new TokyoPO(); //東京郵便局の設置
-var _japanPO = new JapanPO(); //日本郵便局の設置
-_setagayaPO.setNext(_tokyoPO).setNext(_japanPO); //責任の「たらい回し先」のセット
-_setagayaPO.send("新宿区XX町X-X-X"); //=> "本日中に届きます"
-_setagayaPO.send("東京都青梅市XXX町X-X-X"); //=> "明後日中に届きます"
-_setagayaPO.send("北海道XXX市XXX町X-X-X"); //=> "一週間前後で届きます"
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月17日  
-更新日：2017年05月01日
+作成日：2015年12月16日  
+更新日：2017年05月XX日
 
 
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
+### 概要
+相手は相談役１人だけ。調停者。
+メンバーの皆さん（Colleague○）は相談役の私（Mediator）に状況を報告して下さい。そうしたら、私は全体を考慮した上で皆さんに指示を出しましょう。でも私は、皆さんの仕事の詳細まではとやかく言いませんからね、というパターン。メンバー同士は、その存在すら知る必要はない。
+Mediator役のクラスは、専門性が高くなるので、使い捨てとなります。
+
+### 例文
 ```
-<script>
-
-/****************
- * 各メンバー関連
-****************/
-class AbstractMember { //（擬似）抽象クラス
-    setMediator(_mediator) { //共通の機能
-        this.__mediator = _mediator;
-    }
-    advice(_string) { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
-}
-
-class YesButton extends AbstractMember { //メンバー①（YesButtonクラス）
-    on() { this.__mediator.report(this, "on"); } //→相談役に報告
-    advice(_string) {
-        if (_string == "off") {
-            console.log("YesButtonをoffにします");
-        }
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        //相談役
+        new Mediator(); //今回のサンプルではこのインスタンスは使用しない
+        
+        //検証（今回は静的変数を使いました）
+        Mediator.MemberA.Request("西へ行く"); //メンバーAから報告
+        /*
+        MemberA: （Aよ）了解、そのまま西へ行け
+        MemberB: （Bよ）東へ行け
+        MemberC: （Cよ）その場で待機しろ
+        */
     }
 }
 
-class NoButton extends AbstractMember { //メンバー②（NoButtonクラス）
-    on() { this.__mediator.report(this, "on"); } //→相談役に報告
-    advice(_string) {
-        if (_string == "off") {
-            console.log("NoButtonをoffにします");
-        }
-    }
-}
-
-class TextBox extends AbstractMember { //メンバー③（TextBoxクラス）
-    advice(_string) {
-        if (_string == "enable") {
-            console.log("TextBoxを入力可能にします");
-        } else if (_string == "disabled") {
-            console.log("TextBoxを入力不可にします");
-        }
-    }
-}
-
-/**********************************
- * 相談役（専門性が高いため使い捨て）
-**********************************/
+//====================================
+// 相談役（専門性が高いため使い捨て）
+//====================================
 class Mediator {
-    constructor() {
-        this.__yesButton = new YesButton(); //YesButtonの生成
-        this.__noButton = new NoButton(); //NoButtonの生成
-        this.__textBox = new TextBox(); //TextButtonの生成
-
-        this.__yesButton.setMediator(this); //YesButtonに相談役が自分あることを教える
-        this.__noButton.setMediator(this); //NoButtonに相談役が自分あることを教える
-        this.__textBox.setMediator(this); //TextButtonに相談役が自分あることを教える
+    List<AbstractMember> _memberList = new List<AbstractMember>(); //メンバーリスト
+    public static AbstractMember MemberA = new MemberA(); //静的変数
+    public static AbstractMember MemberB = new MemberB(); //静的変数
+    public static AbstractMember MemberC = new MemberC(); //静的変数
+    
+    public Mediator() { //コンストラクタ
+        //メンバーの登録
+        AddMember(MemberA); //→★
+        AddMember(MemberB); //→★
+        AddMember(MemberC); //→★
     }
-
-    get yesButton() { return this.__yesButton; } //外部からYesButtonにアクセス可能に
-    get NoButton() { return this.__noButton; } //外部からNoButtonにアクセス可能に
-
-    report(_member, _string) { //メンバーからの報告を受けて指示を出す
-        if (_member == this.__yesButton) { //YesButtonからの報告の場合...
-            if (_string == "on") {
-                this.__noButton.advice("off");
-                this.__textBox.advice("enable");
+    
+    //メンバーリストに登録
+    private void AddMember(AbstractMember _member) { //←★
+        _memberList.Add(_member);
+        _member.SetMediator(this); //メンバーに相談役は自分であることを教える
+    }
+    
+    //メンバーからの報告を受け指示を出す（特に専門性が高いメソッド）←⦿
+    public void Request(AbstractMember _member, string _string) {
+        if (_member == MemberA) {
+            if (_string == "西へ行く") {
+                //「メンバーA」から「西へ行く」と報告があった場合の処理
+                _member.Advice("（Aよ）了解、そのまま西へ行け"); //→Aへ指示
+                foreach (AbstractMember theMember in _memberList) {
+                    if (theMember == MemberB) {
+                        theMember.Advice("（Bよ）東へ行け"); //→Bへ指示
+                    } else if (theMember == MemberC) {
+                        theMember.Advice("（Cよ）その場で待機しろ"); //→Cへ指示
+                    }
+                }
             }
         }
-        if (_member == this.__noButton) { //NoButtonからの報告の場合...
-            if (_string == "on") {
-                this.__yesButton.advice("off");
-                this.__textBox.advice("disabled");
-            }
-        }
+        //以降、各メンバーからの報告内容に対する処理を記述
     }
 }
 
-/******
- * 実行
-******/
-var _mediator = new Mediator();
+//====================
+// 登録するメンバー達
+//====================
+abstract class AbstractMember {
+    //共通の機能
+    protected Mediator _mediator;
+    public void SetMediator(Mediator _mediator) {
+        this._mediator = _mediator;
+    }	
+    //抽象メソッドの宣言（派生クラスでoverride）
+    public abstract void Request(string _string);
+    public abstract void Advice(string _string);
+}
 
-_mediator.yesButton.on();
-//=> "NoButtonをoffにします"
-//=> "TextBoxを入力可能にします"
+//メンバーA /////////////////////////////////////////////////////////////////////
+class MemberA : AbstractMember {
+    public override void Request(string _string) { //抽象メソッドをoverride
+        //ここにメンバーA独自の処理など
+        _mediator.Request(this, _string); //相談役に報告→⦿
+    }
+    public override void Advice(string _string) { //相談役からの指示を受ける
+        Console.WriteLine("MemberA: " + _string);
+    }
+}
 
-_mediator.NoButton.on();
-//=> "YesButtonをoffにします"
-//=> "TextBoxを入力不可にします"
+//メンバーB /////////////////////////////////////////////////////////////////////
+class MemberB : AbstractMember {
+    public override void Request(string _string) { //抽象メソッドをoverride
+        //ここにメンバーB独自の処理など
+        _mediator.Request(this, _string); //相談役に報告→⦿
+    }
+    public override void Advice(string _string) { //相談役からの指示を受ける
+        Console.WriteLine("MemberA: " + _string);
+    }
+}
 
-</script>
+//メンバーC /////////////////////////////////////////////////////////////////////
+class MemberC : AbstractMember {
+    public override void Request(string _string) { //抽象メソッドをoverride
+        //ここにメンバーC独自の処理など
+        _mediator.Request(this, _string); //相談役に報告→⦿
+    }
+    public override void Advice(string _string) { //相談役からの指示を受ける
+        Console.WriteLine("MemberA: " + _string);
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月17日  
-更新日：2017年05月01日
+作成日：2015年12月16日  
+更新日：2017年05月XX日
 
 
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-```
-<script>
+### 概要
+状態の変化を通知する。観察者。
+ECMAScriptのaddEventListenerは能動的な観察。それに対し、Observerパターンは、受動的な観察と言える。
+例えばOSメーカー（観察される役）が、OSをバージョンアップした場合、各端末に、状態の変化を通知。その通知を受けて各端末がアップデートをする…等。
+Mediatorパターン（前述）に似ているが、Subuject役、AddObserver()、RemoveObserver()、Notify()メソッドがあることが異なる。
 
-//===========================
-// Subject（観察される側）関連
-//===========================
-//↓Subject役＝（擬似）抽象クラス
-class abstractSubject {
-    addObserver(_observer) { throw new Error("サブクラスで実装して下さい"); }
-    // 今回は removeObserver() は省略
-    notify() { throw new Error("サブクラスで実装して下さい"); }
+### 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        ISubject _apple = new Apple(); //観察される（Subject）役
+        
+        //リスナー（Observer）役
+        IObserver _iPhone = new iPhone();
+        IObserver _iPad = new iPad();
+        IObserver _iPadPro = new iPadPro();
+        
+        //リスナー（Observer）の登録
+        _apple.AddObserver(_iPhone);
+        _apple.AddObserver(_iPad);
+        _apple.AddObserver(_iPadPro);
+        
+        _apple.Notify(); //全リスナー（Observer）への通知
+    }
 }
 
-//=================
-// ConcreteSubject役
-//=================
-class Apple extends abstractSubject {
-    constructor() {
-        super(); //必須（要注意）
-        this.__observerList = []; //リスナーのリスト
+interface ISubject {
+    void AddObserver(IObserver _observer); //暗黙的にpublic扱い
+    void RemoveObserver(IObserver _observer);
+    void Notify();
+}
+
+class Apple : ISubject {
+    List<IObserver> _observerList = new List<IObserver>(); //リスナーリスト
+    public void AddObserver(IObserver _observer) { //リスナーの登録
+        _observerList.Add(_observer);
     }
-    addObserver(_observer) {
-        this.__observerList.push(_observer); //リスナーの登録
+    public void RemoveObserver(IObserver _observer) { //リスナーの削除
+        _observerList.Remove(_observer);
     }
-    notify() { //全リスナーへの通知
-        for (let _indexNum in this.__observerList) {
-            this.__observerList[_indexNum].update(this);
+    public void Notify() { //全リスナーへの通知
+        foreach (IObserver _observer in _observerList) {
+            _observer.Update(this);
         }
     }
-    get version() {
-        return "10.3.1";
+    public string GetVersion() { return "9.2"; }
+}
+
+interface IObserver {
+    void Update(Apple _apple); //暗黙的にpublic扱い
+}
+
+class iPhone : IObserver { //本来は大文字で始まるべきですが…
+    public void Update(Apple _apple) {
+        Console.WriteLine("iPhoneは" + _apple.GetVersion() + "にアップデート可能");
     }
 }
 
-//================================
-// Observer（観察者＝リスナー）関連
-//================================
-//（擬似）インターフェース
-class IObserver {
-    update(_apple) { throw new Error("サブクラスで実装して下さい"); }
-}
-
-//↓ConcreteObserver役①（iPhoneクラス）
-class iPhone extends IObserver {
-    update(_apple) {
-        console.log("iPhoneは" + _apple.version + "にアップデート可能です");
+class iPad : IObserver { //本来は大文字で始まるべきですが…
+    public void Update(Apple _apple) {
+        Console.WriteLine("iPadは" + _apple.GetVersion() + "にアップデート可能");
     }
 }
 
-//↓ConcreteObserver役②（iPadクラス）
-class iPad extends IObserver {
-    update(_apple) {
-        console.log("iPadは" + _apple.version + "にアップデート可能です");
+class iPadPro : IObserver { //本来は大文字で始まるべきですが…
+    public void Update(Apple _apple) {
+        Console.WriteLine("iPadProは" + _apple.GetVersion() + "にアップデート可能");
     }
 }
-
-//↓ConcreteObserver役③（iPadProクラス）
-class iPadPro extends IObserver {
-    update(_apple) {
-        console.log("iPadProは" + _apple.version + "にアップデート可能です");
-    }
-}
-
-//=======
-// 実行
-//=======
-var _apple = new Apple(); //Subject（観察される側）の生成
-
-//Observer（観察者）の生成
-var _iPhone = new iPhone();
-var _iPad = new iPad();
-var _iPadPro = new iPadPro();
-
-//観察される側に、観察者（リスナー）の登録
-_apple.addObserver(_iPhone);
-_apple.addObserver(_iPad);
-_apple.addObserver(_iPadPro);
-
-_apple.notify(); //全リスナー（Observer）への通知
-//=> iPhoneは10.3.1にアップデート可能です
-//=> iPadは10.3.1にアップデート可能です
-//=> iPadProは10.3.1にアップデート可能です
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月18日  
-更新日：2017年05月01日
+作成日：2015年12月17日  
+更新日：2017年05月XX日
 
 
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-```
-<script>
+### 概要
+状態を保存する。形見。
+OOPでアンドゥを行うには、インスタンスの状態を保存し、さらに元の状態に復元できなければなりません。これを、カプセル化の破壊をせずにおこなうのが、このパターン。
+状態をさまざまなプロパティを格納したオブジェクト（Mementoクラス）としてカプセル化して、そのまま配列に格納する…というところがポイント。
+Undo（やり直し）、Redo（再実行）、History（作業履歴）、Snapshot（現在の状態の保存）等が行えるようになります。
+以下の例文では、主人公が世話人の役もつとめています。
 
-//========================
-// 主人公 + バックアップ係
-//========================
-class Game {
-    constructor(_point) { //コンストラクタ
-        this.__history = []; //履歴用リスト
-        this.__point = _point;
-        this.__count = undefined; //Undo、Redo用
+### 例文
+```
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        Gamer _gamer = new Gamer(100); //ゲームスタート（最初のポイントは100）
+        SnapShot _snapShot = _gamer.Save(); //最初の状態を保存
+        
+        _gamer.Point = 2000; //いろいろゲームが進行して2000ポイントに…
+        _snapShot = _gamer.Save(); //この時点での状態を保存
+        
+        _gamer.Point = 8000; //更にゲームが進行して8000ポイントに…
+        _snapShot = _gamer.Save(); //この時点での状態を保存
+        
+        _gamer.History(); //履歴を調べる
+        //	0:100
+        // 1:2000
+        // 2:8000
+        
+        _snapShot = _gamer.Undo(); //Undo（やり直し）
+        Console.WriteLine(_snapShot.Point); //2000
+        _snapShot = _gamer.Undo();
+        Console.WriteLine(_snapShot.Point); //100
+        _snapShot = _gamer.Undo();
+        Console.WriteLine(_snapShot.Point); //これ以上、Undoできません 100
+        
+        _snapShot = _gamer.Redo(); //Redo（再実行）
+        Console.WriteLine(_snapShot.Point); //2000
+        _snapShot = _gamer.Redo();
+        Console.WriteLine(_snapShot.Point); //8000
+        _snapShot = _gamer.Redo();
+        Console.WriteLine(_snapShot.Point); //これ以上、Redoできません 8000
     }
-    save() { //状態を保存
-        var _snapShot = new SnapShot(this.__point);
-        this.__history.push(_snapShot);
-        this.__count = this.__history.length - 1;
+}
+
+//============================
+//主人公役 + バックアップ係
+//============================
+class Gamer {
+    int _point;
+    List<SnapShot> _history = new List<SnapShot>(); //履歴用リスト
+    int _count; //Undo、Redo用
+    
+    public Gamer(int _point=0) { //コンストラクタ
+        this._point = _point;
+    }
+    
+    public int Point {
+        get { return _point; }
+        set { _point = value; }
+    }
+
+    //状態を保存	
+    public SnapShot Save() {
+        SnapShot _snapShot = new SnapShot(_point);
+        _history.Add(_snapShot);
+        _count = _history.Count - 1;
         return _snapShot;
     }
-    history() { //履歴
-        for (let i=0; i<this.__history.length; i++) {
-            console.log(i + ":" + this.__history[i].point);
+    
+    //履歴	
+    public void History() {
+        for (int i=0; i < _history.Count; i++) {
+            Console.WriteLine(i + ":" + _history[i].Point);
         }
     }
-    undo() { //Undo（やり直し）
-        if (this.__count > 0) {
-            return this.__history[--this.__count];
+    
+    //Undo（やり直し）
+    public SnapShot Undo() {
+        if (_count > 0) {
+            return _history[--_count];
         } else {
-            console.log("これ以上、Undoできません");
-            this.__count = 0;
-            return this.__history[0];
+            Console.WriteLine("これ以上、Undoできません");
+            _count = 0;
+            return _history[0];
         }
     }
-    redo() { //Redo（再実行）
-        if (this.__count < (this.__history.length - 1)) {
-            return this.__history[++this.__count];
+    
+    //Redo（再実行）
+    public SnapShot Redo() {
+        if (_count < _history.Count - 1) {
+            return _history[++_count];
         } else {
-            console.log("これ以上、Redoできません");
-            this.__count = this.__history.length - 1;
-            return this.__history[this.__count];
+            Console.WriteLine("これ以上、Redoできません");
+            _count = _history.Count-1;
+            return _history[_count];
         }
     }
-    get point() { return this.__point; } //アクセサ（getter）
-    set point(_newPoint) { this.__point = _newPoint; } //アクセサ（setter）
 }
 
-//===========================================
+//=============================================
 // Memento役（その瞬間の状態をオブジェクト化）
-//===========================================
+//=============================================
 class SnapShot {
-    constructor(_point) {
-        this.__point = _point;
+    private int _point; //今回はシンプルに1つだけにしておきます
+    public SnapShot(int _point) {
+        this._point = _point;
     }
-    get point() { return this.__point; }
+    public int Point {
+        get { return _point; }
+        set { _point = value; }
+    }
 }
-
-//========
-// 実行
-//========
-//ゲームスタート（最初のポイントは100）←①
-var _game = new Game(100);
-
-var _snapShot = _game.save(); //最初の状態を保存
-_game.point = 2000; //ゲームが進行して2000ポイントに... ←②
-_snapShot = _game.save(); //この時点での状態を保存
-_game.point = 8000; //更にゲームが進行して8000ポイントに... ←③
-_snapShot = _game.save(); //この時点での状態を保存
-
-//履歴を調べる
-_game.history();
-//=> 0:100 ←①
-//=> 1:2000 ←②
-//=> 2:8000 ←③
-
-//Undo（やり直し）
-_snapShot = _game.undo();
-console.log(_snapShot.point); //=> 2000
-_snapShot = _game.undo();
-console.log(_snapShot.point); //=> 100
-_snapShot = _game.undo(); //=> "これ以上、Undoできません"
-console.log(_snapShot.point); //=> 100
-
-//Redo（再実行）
-_snapShot = _game.redo();
-console.log(_snapShot.point); //=> 2000
-_snapShot = _game.redo();
-console.log(_snapShot.point); //=> 8000
-_snapShot = _game.redo(); //=> "これ以上、Redoできません"
-console.log(_snapShot.point); //=> 8000
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月18日  
-更新日：2017年05月01日
+作成日：2015年12月17日  
+更新日：2017年05月XX日
 
 
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-```
-<script>
+### 概要
+状態をクラスとして表現。状態。
+Contextオブジェクトが、異なる時点において、状態A（StateA）と状態B（StateB）のどちらとてでも振る舞うことができます。
+例えばトグルスイッチのような動作。
+if 文などの条件分岐が散在し、保護が複雑になるのを避けることが可能。
+Strategyパターンに似ている。
+Strategyパターンの場合は、new Context(new Strategy())
+Stateパターンの場合は、new Context() …となります。
 
-//=======================
-// Context（状態を管理）役
-//=======================
+### 例文
+```
+//test.cs
+using System;
+
+//メイン
+class Test {
+    static void Main() {
+        //Context役
+        Janken _janken = new Janken();
+        
+        //State（状態）役
+        IState _stateA = new StateA();
+        IState _stateB = new StateB();
+        
+        //状態の設定＆実行
+        _janken.SetState(_stateA);
+        _janken.Exec(); //グー、グー、パー
+        
+        //状態の変更＆実行
+        _janken.SetState(_stateB);
+        _janken.Exec(); //パー、グー、チョキ
+    }
+}
+
+//Context（状態を管理）役
 class Janken {
-    setState(_state) {
-        this.__state = _state;
+    private IState _state; //状態（State○）を格納
+    
+    public void SetState(IState _state) {
+        this._state = _state;
     }
-    exec() {
-        this.__state.execute();
+    
+    public void Exec() {
+        _state.Execute(); //…→State○.Execute()メソッドを呼出す
     }
 }
 
-//===============
+    //=====================
 // State（状態）役
-//===============
-class IState { //（擬似）インターフェース
-    execute() { throw new Error("サブクラスで実装して下さい"); }
+    //=====================
+interface IState {
+    void Execute(); //暗黙的にpublic扱い
 }
 
-class StateA extends IState { //State（状態）役 ①
-    execute() { //Janken.exec()から呼び出される
-        console.log("グー、グー、パー");
+//状態A
+class StateA : IState {
+    public void Execute() { //Janken.Exec()から呼び出される
+        Console.WriteLine("グー、グー、パー");	
     }
 }
 
-class StateB extends IState { //State（状態）役 ②
-    execute() { //Janken.exec()から呼び出される
-        console.log("パー、グー、チョキ");
+//状態B
+class StateB : IState {
+    public void Execute() { //Janken.Exec()から呼び出される
+        Console.WriteLine("パー、グー、チョキ");
     }
 }
-
-//=======
-// 実行
-//=======
-var _janken = new Janken(); //Context（状態を管理）役の生成
-
-_stateA = new StateA(); //State（状態）役 ①の生成
-_stateB = new StateB(); //State（状態）役 ②の生成
-
-_janken.setState(_stateA); //状態の設定
-_janken.exec(); //=> "グー、グー、パー"
-_janken.setState(_stateB); //状態の設定（変更）
-_janken.exec(); //=> "パー、グー、チョキ"
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月18日  
-更新日：2017年05月01日
+作成日：2015年12月17日  
+更新日：2017年05月XX日
 
 
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
+### 概要
+命令をクラスにする。命令。
+命令を実行する度にインスタンスを作り、履歴として管理する。
+Mementoパターンは「状態を保存」するのに対し、Commandパターンはクラス化した「命令を保存」する。
+
+### 例文
 ```
-<script>
-
-class Inkscape { //グラフィックソフト（今回はバッチ処理は省略）
-    constructor() {
-        this.__canvas = new Canvas();
-        this.__history = []; //履歴（命令クラスを保持）
-    }
-    draw(_command) {
-        //↓命令を実行する度にインスタンスを生成
-        var _drawCommand = new DrawCommand(this.__canvas, _command);
-        _drawCommand.execute();
-        this.__history.push(_drawCommand);
+//test.cs
+using System;
+using System.Collections.Generic; //Listに必要
+class Test {
+    static void Main() {
+        Inkscape _inkscape = new Inkscape(); //グラフィックソフト
+        
+        //命令の実行
+        _inkscape.Draw("線を引く");
+        _inkscape.Draw("縁取る");
+        _inkscape.Draw("影を付ける");
+        
+        //バッチ処理（オプション）
+        _inkscape.Batch(1,3); //実行履歴の1個目〜3個を再度実行する
+        //	……
+        // 線を引く
+        // 縁取る
+        // 影を付ける
+        // 線を引く
+        // 縁取る
+        // 影を付ける
     }
 }
 
-class DrawCommand { //命令クラス
-    constructor(_canvas, _command) {
-        this.__canvas = _canvas;
-        this.__command = _command;
+// グラフィックソフト //////////////////////////////////////////////////////////
+class Inkscape {
+    Canvas _canvas = new Canvas(); //Receiver（結果を表示する）役
+    List<DrawCommand> _history = new List<DrawCommand>(); //履歴（命令クラス）を保存
+    //命令の実行
+    public void Draw(string _command) {
+        //↓命令を実行する度にインスタンス生成
+        DrawCommand _drawCommand = new DrawCommand(_canvas, _command); 
+        _drawCommand.Execute(); //実行（＝キャンバスの再描画）→★
+        _history.Add(_drawCommand); //命令クラスを履歴に保存
     }
-    execute() { this.__canvas.update(this.__command); }
-}
-
-class Canvas { //結果を表示する役（Receiver＝受信者の役）
-    constructor() { this.__history = []; } //履歴（実際の処理を保持）
-    update(_command) {
-        this.__history.push(_command);
-        for (let _indexNum in this.__history) {
-            console.log(this.__history[_indexNum]);
+    
+    public void Batch(int _start, int _end) { //バッチ処理（オプション）
+        //_startと_endが配列の範囲外の場合のエラー処理は今回は省略
+        List<DrawCommand> _batch = _history.GetRange(_start-1, _end);
+        foreach (DrawCommand _drawCommand in _batch) {
+            _drawCommand.Execute();
         }
-        console.log("---描画---");
     }
 }
 
-var _inkscape = new Inkscape(); //グラフィックソフト
-_inkscape.draw("線を引く"); //命令の実行
-_inkscape.draw("縁取る"); //命令の実行
-_inkscape.draw("影をつける"); //命令の実行
+// 命令クラス ////////////////////////////////////////////////////////////////
+class DrawCommand {	
+    private Canvas _canvas;
+    private string _command;
+    public DrawCommand(Canvas _canvas, string _command) { //コンストラクタ
+        this._canvas = _canvas;
+        this._command = _command;
+    }
+    public void Execute() { //←★Inkscape.Draw()から呼び出される
+        _canvas.Update(_command); //→⦿
+    }
+}
 
-</script>
+// 結果を表示する役＝Receiver（受信者）の役 //////////////////////////////////
+class Canvas {
+    List<string> _history = new List<string>(); //履歴（実際の処理）を保存
+    //キャンバスの再描画
+    public void Update(string _command) { //←⦿DrawCommand.Execute()から呼び出される
+        _history.Add(_command);
+        foreach (string _string in _history) {
+            Console.WriteLine(_string);
+        }
+    }
+}
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月18日  
-更新日：2017年05月01日
+作成日：2015年12月18日  
+更新日：2017年05月XX日
 
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-```
-<script>
+### 概要
+文法規則をクラスで表現する。通訳。
+自作ミニ言語を使って、ミニ･プログラムを実行。ミニ･プログラムはそれだけでは動作しない為、通訳（interpreter）の役目（インタプリタ）を果たすものを用意。この通訳プログラムの事を、インタプリタと呼ぶ。
+例文は、ActionScript、SWF、AVM（ActionScript Virtual Machine）を自作ミニ言語と見立てています（今や風前の灯火のFlashですが…）。
+例文は「終端となる表現の役」を省略しています。
 
-class SWF {
-    constructor(_code) { //コンストラクタ 
-        this.__codeArray = _code.split(";"); //「;」区切りで配列化（≒中間コード）
-        this.__count = 0; //this.getNextCode()で使用
+### 例文
+```
+//test.cs
+using System;
+
+//メイン
+class Test {
+    static void Main() {
+        string _code = "+10;*50;/2;-4;="; //自作言語による記述（≒ActionScript）
+        SWF _swf = new SWF(_code); //≒SWFファイルに変換
+        AVM _avm = new AVM(); //≒ActionScript Virtual Machine
+        _avm.Execute(_swf); //≒SWFファイルをAVM上で実行（計算結果は246）
     }
-    getNextCode() { return this.__codeArray[this.__count++]; } //次の命令を調べる
-    isEnd() {	return this.__count >= this.__codeArray.length; } //次の命令があるか否か
 }
 
-class AVM { //≒ ActionScript Virtual Machine
-    execute(_swf) { //実行
-        var _result = 0;
-        while (! _swf.isEnd()) { //次の命令があれば...
-            let _nextCode = _swf.getNextCode(); //次の命令を調べる
-            //↓ここからはサンプルの独自処理
-            let _operator = _nextCode.substr(0,1); //「+*/-=」の何れか
-            if (_operator != "=") { //「=」以外の場合...
-                let _num = Number(_nextCode.substr(1));
+//================================
+//≒SWFファイルを生成するクラス
+//================================
+class SWF {
+    private string[] _codeArray; //命令を配列化（中間コード）
+    private int _count = 0; //GetNextCode()で使用
+    
+    //コンストラクタ
+    public SWF(string _code) {
+        _codeArray = _code.Split(';'); //「;」区切りで分割し配列化（中間コードに変換）
+    }
+    public string GetNextCode() { //次の命令を返す
+        return _codeArray[_count++];
+    }
+    
+    public bool IsEnd() { //次の命令があるかどうか…
+        return _count >= _codeArray.Length;
+    }
+}
+
+//================================
+//≒ActionScript Virtual Machine
+//================================
+class AVM {
+    public void Execute(SWF _swf) {
+        int _result = 0; //計算結果
+        
+        while ( _swf.IsEnd()) { //次の命令があれば…
+            string _nextCode = _swf.GetNextCode(); //次の命令を調べる
+
+            //ここからはサンプルの独自処理
+            string _operator = _nextCode.Substring(0,1); //「+*/-=」の何れか
+            if (_operator = "=") {
+                int _int = Int32.Parse(_nextCode.Substring(1));
                 switch (_operator) {
-                    case "+": _result += _num; break;
-                    case "-": _result -= _num; break;
-                    case "*": _result *= _num; break;
-                    case "/": _result /= _num; break;
-                    default: throw new Error(_operator + "はサポートしていません");
+                    case "+" : _result += _int; break;
+                    case "-" : _result -= _int; break;
+                    case "*" : _result *= _int; break;
+                    case "/" : _result /= _int; break;
+                    default :
+                        Console.WriteLine("error:演算子が異なります");
+                        break;
                 }
-            } else { //「=」の場合...
-                // 本来はここで「終端となる表現」のクラスを生成し処理しますが...
-                console.log(_result);
+            } else { //「=」の場合…
+                //本来はここで「終端となる表現」のクラスを生成して処理をしますが省略
+                Console.WriteLine(_result);
             }
         }
     }
 }
-
-//①自作ミニ言語によるソースコード（文字列）を記述
-var _code = "+10;*50;/2;-4;=";
-
-//②中間言語コンパイラを使って、ソースコードを中間コードに変換（構文解析＝配列化）
-var _swf = new SWF(_code); //≒SWFファイルに変換
-
-//③インタプリタ（通訳プログラム）を使って、中間コードをもとに実行
-var _avm = new AVM(); //インタプリタ（≒ActionScript Virtual Machine）の生成
-_avm.execute(_swf); //≒SWFファイルをAVM上で実行 => 246
-
-</script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
-作成日：2016年10月18日  
-更新日：2017年05月01日
+作成日：2015年12月19日  
+更新日：2017年05月XX日
