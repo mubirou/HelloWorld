@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -972,13 +972,20 @@ DecoratorFacade.exec("NISHIMURA", 3, 1); //=> <---NISHIMURA--->
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
 ```
-//xx.js
-class Manager { //インスタンスの管理人（Singletonクラス）
-    constructor() { //コンストラクタ
+<script>
+
+/****************************************
+ * インスタンスの管理人（Singletonクラス）
+****************************************/
+class Manager {
+    //コンストラクタ
+    constructor() {
         if (! Manager.__isInstance) { throw new Error("newでのインスタンスは生成不可"); }
-this.__pool = new Object(); //BigProcessをダブらずに保存する連想配列
+        this.__pool = new Object(); //BigProcessをダブらずに保存する連想配列
     }
-    static getInstance() { //クラスメソッド（Singleton用）
+
+    //クラスメソッド（Singleton用）
+    static getInstance() {
         if (Manager.__singleton == undefined) {
             Manager.__isInstance = true;
             Manager.__singleton = new Manager(); //Singletonパターン
@@ -986,21 +993,29 @@ this.__pool = new Object(); //BigProcessをダブらずに保存する連想配�
         }
         return Manager.__singleton;
     }
-createBigProcess(_type) { //BigProcessインスタンスをダブらないように連想配列に保存
-    if (this.__pool[_type] == undefined) { //既存か否か調べる
-        this.__pool[_type] = new BigProcess(_type);
-    } else {
-        console.log(_type + "は既存です");
+
+    //BigProcessインスタンスをダブらないように連想配列に保存
+    createBigProcess(_type) {
+        if (this.__pool[_type] == undefined) { //既存か否か調べる
+            this.__pool[_type] = new BigProcess(_type);
+        } else {
+            console.log(_type + "は既存です");
+        }
+        return this.__pool[_type];
     }
-    return this.__pool[_type];
-}
 }
 
-class BigProcess { //Flayweight役
+/**************
+ * Flayweight役
+**************/
+class BigProcess { 
     constructor(_type) { this.__type = _type; }
     getData() { return this.__type + "に対する重〜い処理の結果"; } //重い処理を実行
 }
 
+/*******
+ * 実行
+*******/
 var _manager = Manager.getInstance(); //①インスタンスの管理者（Singletonクラス）
 var _a = _manager.createBigProcess("TypeA"); //②無駄にしたくないオブジェクトを生成
 var _b = _manager.createBigProcess("TypeB"); //←もしTypeAだと既存のものを共有します
@@ -1008,12 +1023,14 @@ var _a2 = _manager.createBigProcess("TypeA"); //実験（既成のものを生�
 console.log(_a == _a2); //=> true ←中身は同じインスタンス
 console.log(_a.getData()); //=> "TypeAに対する重〜い処理の結果"
 console.log(_b.getData()); //=> "TypeBに対する重〜い処理の結果"
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月14日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Proxy"></a>
