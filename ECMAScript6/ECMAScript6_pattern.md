@@ -13,8 +13,8 @@
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
@@ -545,48 +545,53 @@ _hanako.createNewYearCard();
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
 ```
-// xx.js
-//========================================================================================
-// ↓このクラスは「継承」版と全く同じ
-//========================================================================================
-class Moneybox {
-    constructor(_firstYen) {
-        this.__yen = _firstYen;
+<script>
+    
+    //===============
+    // スーパークラス
+    //===============
+    class Moneybox {
+        constructor(_firstYen) {
+            this.__yen = _firstYen;
+        }
+        addYen(_yen) {
+            this.__yen += _yen;
+        }
+        getYen() {
+            return this.__yen;
+        }
     }
-    addYen(_yen) {
-        this.__yen += _yen;
-    }
-    getYen() {
-        return this.__yen;
-    }
-}
 
-//========================================================================================
-// ↓このクラスの内容のみ「継承」版と異なる（本来はインターフェースを実装）
-//========================================================================================
-class Exchange { //
-    constructor(_firstYen, _rate) { //コンストラクタ
-        this.__moneybox = new Moneybox(_firstYen); //ポイント!!
-        this.__rate = _rate;
+    //=====================================================
+    // サブクラス（このクラスの内容のみ「継承」版と異なる）
+    //=====================================================
+    class Exchange {
+        constructor(_firstYen, _rate) { //コンストラクタ
+            this.__moneybox = new Moneybox(_firstYen); //ポイント
+            this.__rate = _rate;
+        }
+        addYen(_yen) {
+            this.__moneybox.addYen(_yen); //スーパークラスの同名メソッドの呼出し
+        }
+        getDollar() {
+            return this.__moneybox.getYen() / this.__rate;
+        }
     }
-    addYen(_yen) {
-        this.__moneybox.addYen(_yen); //スーパークラスの同名メソッドの呼出し
-    }
-    getDollar() {
-        return this.__moneybox.getYen() / this.__rate;
-    }
-}
 
-// 実行 ==================================================================================
-var _exchange = new Exchange(10000, 103.875); //最初の貯金, レート
-_exchange.addYen(8000);
-console.log(_exchange.getDollar()); //=> 173.28519855595667（ドル）
+    //=====
+    // 実行
+    //=====
+    var _exchange = new Exchange(10000, 111.520); //最初の貯金, レート
+    _exchange.addYen(8000);
+    console.log(_exchange.getDollar()); //=> 161.40602582496413（ドル）
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月11日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Bridge"></a>
