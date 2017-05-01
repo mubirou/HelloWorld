@@ -1817,6 +1817,8 @@ _inkscape.draw("影をつける"); //命令の実行
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
 ```
+<script>
+
 class SWF {
     constructor(_code) { //コンストラクタ 
         this.__codeArray = _code.split(";"); //「;」区切りで配列化（≒中間コード）
@@ -1845,14 +1847,22 @@ class AVM { //≒ ActionScript Virtual Machine
             } else { //「=」の場合...
                 // 本来はここで「終端となる表現」のクラスを生成し処理しますが...
                 console.log(_result);
-            }}}}
+            }
+        }
+    }
+}
 
-var _code = "+10;*50;/2;-4;="; //①自作ミニ言語によるソースコード（文字列）を記述
-//↓②中間言語コンパイラを使って、ソースコードを中間コードに変換（構文解析＝配列化）
+//①自作ミニ言語によるソースコード（文字列）を記述
+var _code = "+10;*50;/2;-4;=";
+
+//②中間言語コンパイラを使って、ソースコードを中間コードに変換（構文解析＝配列化）
 var _swf = new SWF(_code); //≒SWFファイルに変換
-//↓③インタプリタ（通訳プログラム）を使って、中間コードをもとに実行
+
+//③インタプリタ（通訳プログラム）を使って、中間コードをもとに実行
 var _avm = new AVM(); //インタプリタ（≒ActionScript Virtual Machine）の生成
 _avm.execute(_swf); //≒SWFファイルをAVM上で実行 => 246
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
