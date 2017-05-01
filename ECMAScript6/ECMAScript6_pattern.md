@@ -1019,7 +1019,7 @@ class BigProcess {
 var _manager = Manager.getInstance(); //①インスタンスの管理者（Singletonクラス）
 var _a = _manager.createBigProcess("TypeA"); //②無駄にしたくないオブジェクトを生成
 var _b = _manager.createBigProcess("TypeB"); //←もしTypeAだと既存のものを共有します
-var _a2 = _manager.createBigProcess("TypeA"); //実験（既成のものを生成してみる...）
+var _a2 = _manager.createBigProcess("TypeA"); //=> "TypeAは既存です"（既成のものを生成してみると...）
 console.log(_a == _a2); //=> true ←中身は同じインスタンス
 console.log(_a.getData()); //=> "TypeAに対する重〜い処理の結果"
 console.log(_b.getData()); //=> "TypeBに対する重〜い処理の結果"
