@@ -39,9 +39,9 @@
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
 ### 概要
-たった１つのインスタンス。一人っ子。
-クラスのインスタンスが絶対に１個しか存在しないことを保証し、そこに外部からアクセスする唯一の方法を提供するデザインパターン。
-もちろん、注意深くプログラミングして、new クラス名()を１回しか実行しないようにすれば良いわけですが、絶対にミスしないと保証することはできませんから…。
+* たった１つのインスタンス。一人っ子。
+* クラスのインスタンスが絶対に１個しか存在しないことを保証し、そこに外部からアクセスする唯一の方法を提供するデザインパターン。
+* 注意深くプログラミングして、new クラス名()を１回しか実行しないようにすれば良いわけですが、絶対にミスしないと保証することはできませんから…。
 
 ### ポイント
 1. コンストラクタをprivateにする。つまり、Singletonクラスの外からnew Singleton()とするとエラーが発生するようにする。
@@ -1181,7 +1181,7 @@ class Test {
         _cardHaruko.TemplateMethod();
         /*
         HAPPY NEW YEAR
-        サッカーがんばろうね
+        テニスがんばろうね
         */
         
         CardHanako _cardHanako = new CardHanako();
@@ -1224,7 +1224,7 @@ class CardHaruko : AbstractCard {
         return false;
     }
     protected override void Order3() {
-        Console.WriteLine("サッカーがんばろうね");
+        Console.WriteLine("テニスがんばろうね");
     }
 }
 
