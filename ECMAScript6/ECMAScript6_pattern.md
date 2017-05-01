@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1706,8 +1706,11 @@ console.log(_snapShot.point); //=> 8000
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
 ```
-// xx.js
-// Context（状態を管理）役 ===============================================================
+<script>
+
+//=======================
+// Context（状態を管理）役
+//=======================
 class Janken {
     setState(_state) {
         this.__state = _state;
@@ -1717,7 +1720,9 @@ class Janken {
     }
 }
 
-// State（状態）役 =======================================================================
+//===============
+// State（状態）役
+//===============
 class IState { //（擬似）インターフェース
     execute() { throw new Error("サブクラスで実装して下さい"); }
 }
@@ -1734,20 +1739,26 @@ class StateB extends IState { //State（状態）役 ②
     }
 }
 
-// 実行 ==================================================================================
+//=======
+// 実行
+//=======
 var _janken = new Janken(); //Context（状態を管理）役の生成
+
 _stateA = new StateA(); //State（状態）役 ①の生成
 _stateB = new StateB(); //State（状態）役 ②の生成
+
 _janken.setState(_stateA); //状態の設定
 _janken.exec(); //=> "グー、グー、パー"
 _janken.setState(_stateB); //状態の設定（変更）
 _janken.exec(); //=> "パー、グー、チョキ"
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月18日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Command"></a>
