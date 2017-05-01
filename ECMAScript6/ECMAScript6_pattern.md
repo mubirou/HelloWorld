@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -598,13 +598,14 @@ _hanako.createNewYearCard();
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
 ```
-// xx.js
-//========================================================================================
+<script>
+    
+//==================
 //「機能クラス」関連
-//========================================================================================
+//==================
 class SuperMobile {
     constructor(_os) {
-this.__os = _os; //「機能クラス」と「実装クラス」の「橋」（委譲）
+        this.__os = _os; //「機能クラス」と「実装クラス」の「橋」（委譲）
     }
     get version() { //アクセサ（getter）
         return this.__os.version; //「橋」を使って「実装クラス」にアクセス
@@ -614,7 +615,7 @@ this.__os = _os; //「機能クラス」と「実装クラス」の「橋」（�
 
 class Tablet extends SuperMobile {
     constructor(_os) {
-super(_os); //スーパークラスのコンストラクタの呼出し
+        super(_os); //スーパークラスのコンストラクタの呼出し
     }
     bigScreen() { //タブレット特有の機能
         console.log("大きな画面で見る");
@@ -623,65 +624,68 @@ super(_os); //スーパークラスのコンストラクタの呼出し
 
 class SmartPhone extends SuperMobile {
     constructor(_os) {
-super(_os); //スーパークラスのコンストラクタの呼出し
+        super(_os); //スーパークラスのコンストラクタの呼出し
     }
     phone() { //スマートフォン特有の機能
         console.log("電話をかける");
     }
 }
 
-//========================================================================================
+//==================
 //「実装クラス」関連
-//========================================================================================
+//==================
 class AbstractOS { //（擬似）抽象クラス
     get version() { throw new Error("サブクラスで実装して下さい"); } //抽象メソッド
 }
+
 class Android extends AbstractOS {
     constructor() {
         super(); //何もしなくても必須
-        this.__version = "Android 7.0 Nougat";
+        this.__version = "Android 7.1.2 Nougat ";
     }
-get version() { //抽象メソッドの具体的な実装
-    return this.__version;
-}
-    set version(_newValue) { throw new Error("Android社外は操作不可!!"); }
+    get version() { //抽象メソッドの具体的な実装
+        return this.__version;
+    }
+    set version(_newValue) { throw new Error("Android社外は操作不可"); }
 }
 
 class IOS extends AbstractOS {
     constructor() {
         super(); //何もしなくても必須
-        this.__version = "iOS 10.0.2";
+        this.__version = "iOS 10.3.1";
     }
-get version() { //抽象メソッドの具体的な実装
-    return this.__version;
-}
-    set version(_newValue) { throw new Error("Apple社外は操作不可!!!"); }
+    get version() { //抽象メソッドの具体的な実装
+        return this.__version;
+    }
+    set version(_newValue) { throw new Error("Apple社外は操作不可!"); }
 }
 
 //========================================================================================
 // 実行
 //========================================================================================
 var _tabletA = new Tablet(new Android());
-console.log(_tabletA.version); //=> "Android 7.0 Nougat"
+console.log(_tabletA.version); //=> "Android 7.1.2 Nougat "
 _tabletA.bigScreen(); //=> "大きな画面で見る"
 
 var _tabletB = new Tablet(new IOS());
-console.log(_tabletB.version); //=> "iOS 10.0.2"
+console.log(_tabletB.version); //=> "iOS 10.3.1"
 _tabletB.bigScreen(); //=> "大きな画面で見る"
 
 var _smartPhoneA = new SmartPhone(new Android());
-console.log(_smartPhoneA.version); //=> "Android 7.0 Nougat"
+console.log(_smartPhoneA.version); //=> "Android 7.1.2 Nougat "
 _smartPhoneA.phone(); //=> "電話をかける"
 
 var _smartPhoneB = new SmartPhone(new IOS());
-console.log(_smartPhoneB.version); //=> "iOS 10.0.2"
+console.log(_smartPhoneB.version); //=> "iOS 10.3.1"
 _smartPhoneB.phone(); //=> "電話をかける"
+
+</script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月12日  
-更新日：2017年0X月XX日
+更新日：2017年05月01日
 
 
 <a name="Composite"></a>
