@@ -875,7 +875,7 @@ class Decorator2 : Display {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月10日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Facade"></a>
@@ -886,18 +886,18 @@ class Decorator2 : Display {
 * ファサード＝「建物の正面」の意味。
 * たくさんのクラスやメソッドを、このパターン（窓口）を使うことでシンプルにして迷いを生じさせないようにします。
 * 以下の例文では、「Decoratorパターン」をFacadeパターンでシンプルにします。
-```
-Display _special = new Decorator2(
-                            new Decorator1(
+    ```
+    Display _special = new Decorator2(
                                 new Decorator1(
                                     new Decorator1(
-                                        new Original("TAKASHI")))));
-_special.Show();
-```
-…としていたものを次の1行で実現可能になります。
-```
-DecoratorFacade.exec("TAKASHI", 3, 1);
-```
+                                        new Decorator1(
+                                            new Original("TAKASHI")))));
+    _special.Show();
+    ```
+    …としていたものを次の1行で実現可能になります。
+    ```
+    DecoratorFacade.exec("TAKASHI", 3, 1);
+    ```
 
 ### 例文
 ```
@@ -913,7 +913,7 @@ class Test {
     }
 }
 
-//シンプルな窓口。←Decoratorパターンにこのクラスを追加するだけ
+//シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
 class DecoratorFacade { //Singletonパターン的に…
     private DecoratorFacade() {} //privateにして外部からnewできないようにする
     public static void Exec(string arg1, int arg2=0, int arg3=0) {
@@ -928,7 +928,7 @@ class DecoratorFacade { //Singletonパターン的に…
     }
 }
 
-//以下の4つのクラスはDecoratorパターンの例文と全く同じ。
+//以下の4つのクラスはDecoratorパターンの例文と全く同じ
 class Display {
     protected string _content;
     public string getContent() {
