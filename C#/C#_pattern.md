@@ -1499,7 +1499,7 @@ abstract class AbstractPO {
 //=====================
 class ShinjukuPO : AbstractPO {
     public override void Send(string _address) { //抽象メソッドの実際の処理
-        if (_address.IndexOf("新宿",0) == -1) {
+        if (_address.IndexOf("新宿",0) != -1) {
             Console.WriteLine("本日中に届きます");
         } else {
             _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
@@ -1512,7 +1512,7 @@ class ShinjukuPO : AbstractPO {
 //=====================
 class TokyoPO : AbstractPO {
     public override void Send(string _address) { //抽象メソッドの実際の処理
-        if (_address.IndexOf("東京",0) == -1) {
+        if (_address.IndexOf("東京",0) != -1) {
             Console.WriteLine("明後日中に届きます");
         } else {
             _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
