@@ -805,7 +805,7 @@ class File : Component {
 ### 概要
 * 飾り枠と中身の同一視。装飾者。
 * 継承によって中身（Original）と飾り枠（DecoratorXXX）に同じ Show() メソッドを持たせることで、包まれるもの（Originalクラス）を変更することなく、機能の追加（装飾）をすることを可能にします。
-* 例文では、右図の SuperDecorator を省略し、ICommon + SuperDecorator を合わせて Display クラスにしています。
+* 例文では SuperDecorator を省略し、ICommon + SuperDecorator を合わせて Display クラスにしています。
 
 ### 例文
 ```
@@ -961,7 +961,7 @@ class Decorator2 : Display {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月10日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Flyweight"></a>
