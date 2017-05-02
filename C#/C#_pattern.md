@@ -1145,7 +1145,9 @@ class Content : ILoader {
 using System;
 using System.Collections.Generic; //Listに必要
 
-// メイン ///////////////////////////////////////////////////////////////////
+/**********
+ * メイン
+**********/
 class Test {
     static void Main() {
         BikePark _bikePark = new BikePark();
@@ -1163,7 +1165,9 @@ class Test {
     }
 }
 
-// Bikeクラス ///////////////////////////////////////////////////////////////////
+/***********
+ * Bikeクラス
+***********/
 class Bike {
     string _name, _num; //privateは省略
     public Bike(string _name, string _num) { //コンストラクタ
@@ -1174,7 +1178,9 @@ class Bike {
     public string GetNum() { return _num; }
 }
 
-// BikeParkクラス ///////////////////////////////////////////////////////////////////
+/***************
+ * BikeParkクラス
+***************/
 interface IBikePark {
     void Add(Bike arg); //暗黙的にpublicになる
     Bike GetBikeAt(int arg);
@@ -1190,7 +1196,9 @@ class BikePark : IBikePark {
     public Iterator CreateIterator() { return new Iterator(this); } //イテレータ生成
 }
 
-// Iteratorクラス（≒駐輪場の管理人）///////////////////////////////////////////////
+/***********************************
+ * Iteratorクラス（≒駐輪場の管理人）
+***********************************/
 interface IIterator {
     bool HasNext(); //暗黙的にpublicになる
     Bike Next();
