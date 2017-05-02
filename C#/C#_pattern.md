@@ -23,7 +23,6 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1306,7 +1305,7 @@ class CardHanako : AbstractCard {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月15日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Strategy"></a>
@@ -1315,28 +1314,31 @@ class CardHanako : AbstractCard {
 ### 概要
 * アルゴリズムをごっそり切り替える。戦略。Strategy ＝作戦。アルゴリズム（手順）。
 * State パターン（後述）に似ていますが、State パターンの場合は…
-```
-new Context()
-```
-Strategyパターンの場合…
-```
-new Context(new Strategy())
-```
-…となります。
+    ```
+    new Context()
+    ```
+    Strategyパターンの場合…
+    ```
+    new Context(new Strategy())
+    ```
+    …となります。
 
 ### 例文
 ```
 //test.cs
 using System;
+
+// メインクラス
 class Test {
     static void Main() {
         Janken _jankenA = new Janken(new StrategyA());
         Janken _jankenB = new Janken(new StrategyB());
         _jankenA.Exec(); //グー、グー、パー
         _jankenB.Exec(); //パー、グー、チョキ
-    }}
+    }
+}
 
-// Strategy○クラス //////////////////////////////////////////////////////////////
+// StrategyXXX クラス
 interface IStrategy {
     void Execute(); //暗黙的にpublicになる
 }
@@ -1347,7 +1349,7 @@ class StrategyB : IStrategy {
     public void Execute() { Console.WriteLine("パー、グー、チョキ"); 	}
 }
 
-// Jankenクラス /////////////////////////////////////////////////////////////////
+// Janken クラス
 class Janken {
     private IStrategy _strategy;
     public Janken(IStrategy _strategy) { this._strategy = _strategy; }
@@ -1358,7 +1360,7 @@ class Janken {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月15日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Visitor"></a>
@@ -1374,6 +1376,8 @@ class Janken {
 ```
 //test.cs
 using System;
+
+// メインクラス
 class Test {
     static void Main() {
         //訪問先
@@ -1395,9 +1399,10 @@ class Test {
         Console.WriteLine(_haruko.GetMoney()); //15000
     }
 }
-//================
+
+//=========
 // 訪問先
-//================
+//=========
 interface IAcceptor {
     void Accept(IVisitor _visitor); //暗黙的にpublicになる
 }
@@ -1416,9 +1421,9 @@ class Chiba : IAcceptor {
     }
 }
 
-//================
+//========
 // 訪問者
-//================
+//========
 interface IVisitor {
     void Visit(int _otoshidama);  //暗黙的にpublicになる
     int GetMoney(); //暗黙的にpublicになる
@@ -1440,7 +1445,7 @@ class Haruko : IVisitor { //春子
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月16日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="ChainofResponsibility"></a>
@@ -1456,6 +1461,8 @@ class Haruko : IVisitor { //春子
 ```
 //test.cs
 using System;
+
+// メインクラス
 class Test {
     static void Main() {
         //郵便局の設置
@@ -1473,9 +1480,9 @@ class Test {
     }
 }
 
-//==========================
+//=====================
 // 各郵便局の抽象クラス
-//==========================
+//=====================
 abstract class AbstractPO {
     //共通の機能
     protected AbstractPO _nextPO; //たらいまわし先
@@ -1487,12 +1494,12 @@ abstract class AbstractPO {
     public abstract void Send(string _address);
 }
 
-//==========================
+//=====================
 // 新宿郵便局
-//==========================
+//=====================
 class ShinjukuPO : AbstractPO {
     public override void Send(string _address) { //抽象メソッドの実際の処理
-        if (_address.IndexOf("新宿",0) = -1) {
+        if (_address.IndexOf("新宿",0) == -1) {
             Console.WriteLine("本日中に届きます");
         } else {
             _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
@@ -1500,12 +1507,12 @@ class ShinjukuPO : AbstractPO {
     }
 }
 
-//==========================
+//=====================
 // 東京郵便局
-//==========================
+//=====================
 class TokyoPO : AbstractPO {
     public override void Send(string _address) { //抽象メソッドの実際の処理
-        if (_address.IndexOf("東京",0) = -1) {
+        if (_address.IndexOf("東京",0) == -1) {
             Console.WriteLine("明後日中に届きます");
         } else {
             _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
@@ -1526,7 +1533,7 @@ class JapanPO : AbstractPO {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月16日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Mediator"></a>
@@ -1534,7 +1541,7 @@ class JapanPO : AbstractPO {
 
 ### 概要
 * 相手は相談役１人だけ。調停者。
-* メンバーの皆さん（Colleague○）は相談役の私（Mediator）に状況を報告して下さい。そうしたら、私は全体を考慮した上で皆さんに指示を出しましょう。でも私は、皆さんの仕事の詳細まではとやかく言いませんからね、というパターン。メンバー同士は、その存在すら知る必要はない。
+* メンバーの皆さん（ColleagueXXX）は相談役の私（Mediator）に状況を報告して下さい。そうしたら、私は全体を考慮した上で皆さんに指示を出しましょう。でも私は、皆さんの仕事の詳細まではとやかく言いませんからね、というパターン。メンバー同士は、その存在すら知る必要はない。
 * Mediator 役のクラスは、専門性が高くなるので、使い捨てとなります。
 
 ### 例文
@@ -1601,6 +1608,7 @@ class Mediator {
 //====================
 // 登録するメンバー達
 //====================
+//抽象クラス
 abstract class AbstractMember {
     //共通の機能
     protected Mediator _mediator;
@@ -1612,7 +1620,7 @@ abstract class AbstractMember {
     public abstract void Advice(string _string);
 }
 
-//メンバーA /////////////////////////////////////////////////////////////////////
+//メンバーA
 class MemberA : AbstractMember {
     public override void Request(string _string) { //抽象メソッドをoverride
         //ここにメンバーA独自の処理など
@@ -1623,7 +1631,7 @@ class MemberA : AbstractMember {
     }
 }
 
-//メンバーB /////////////////////////////////////////////////////////////////////
+//メンバーB
 class MemberB : AbstractMember {
     public override void Request(string _string) { //抽象メソッドをoverride
         //ここにメンバーB独自の処理など
@@ -1634,7 +1642,7 @@ class MemberB : AbstractMember {
     }
 }
 
-//メンバーC /////////////////////////////////////////////////////////////////////
+//メンバーC
 class MemberC : AbstractMember {
     public override void Request(string _string) { //抽象メソッドをoverride
         //ここにメンバーC独自の処理など
@@ -1649,7 +1657,7 @@ class MemberC : AbstractMember {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月16日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Observer"></a>
@@ -1666,6 +1674,7 @@ class MemberC : AbstractMember {
 //test.cs
 using System;
 using System.Collections.Generic; //Listに必要
+
 class Test {
     static void Main() {
         ISubject _apple = new Apple(); //観察される（Subject）役
@@ -1703,7 +1712,7 @@ class Apple : ISubject {
             _observer.Update(this);
         }
     }
-    public string GetVersion() { return "9.2"; }
+    public string GetVersion() { return "10.3.1"; }
 }
 
 interface IObserver {
@@ -1732,7 +1741,7 @@ class iPadPro : IObserver { //本来は大文字で始まるべきですが…
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月17日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Memento"></a>
@@ -1855,7 +1864,7 @@ class SnapShot {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月17日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="State"></a>
@@ -1866,16 +1875,15 @@ class SnapShot {
 * Context オブジェクトが、異なる時点において、状態A（StateA）と状態B（StateB）のどちらとてでも振る舞うことができます。
 * 例えばトグルスイッチのような動作。
 * if 文などの条件分岐が散在し、保護が複雑になるのを避けることが可能。
-* Strategy パターンに似ている。
-* Strategy パターンの場合は…
-```
-new Context(new Strategy())
-```
-State パターンの場合は…
-```
-new Context()
-```
-…となります。
+* Strategy パターンに似ていて Strategy パターンの場合は…
+    ```
+    new Context(new Strategy())
+    ```
+    State パターンの場合は…
+    ```
+    new Context()
+    ```
+    …となります。
 
 ### 例文
 ```
@@ -1915,9 +1923,9 @@ class Janken {
     }
 }
 
-    //=====================
+//=====================
 // State（状態）役
-    //=====================
+//=====================
 interface IState {
     void Execute(); //暗黙的にpublic扱い
 }
@@ -1940,7 +1948,7 @@ class StateB : IState {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月17日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Command"></a>
@@ -1956,6 +1964,8 @@ class StateB : IState {
 //test.cs
 using System;
 using System.Collections.Generic; //Listに必要
+
+// メインクラス
 class Test {
     static void Main() {
         Inkscape _inkscape = new Inkscape(); //グラフィックソフト
@@ -1977,7 +1987,7 @@ class Test {
     }
 }
 
-// グラフィックソフト //////////////////////////////////////////////////////////
+// グラフィックソフト
 class Inkscape {
     Canvas _canvas = new Canvas(); //Receiver（結果を表示する）役
     List<DrawCommand> _history = new List<DrawCommand>(); //履歴（命令クラス）を保存
@@ -1998,7 +2008,7 @@ class Inkscape {
     }
 }
 
-// 命令クラス ////////////////////////////////////////////////////////////////
+// 命令クラス
 class DrawCommand {	
     private Canvas _canvas;
     private string _command;
@@ -2011,7 +2021,7 @@ class DrawCommand {
     }
 }
 
-// 結果を表示する役＝Receiver（受信者）の役 //////////////////////////////////
+// 結果を表示する役＝Receiver（受信者）の役
 class Canvas {
     List<string> _history = new List<string>(); //履歴（実際の処理）を保存
     //キャンバスの再描画
@@ -2020,6 +2030,7 @@ class Canvas {
         foreach (string _string in _history) {
             Console.WriteLine(_string);
         }
+        Console.WriteLine("-----");
     }
 }
 ```
@@ -2027,7 +2038,7 @@ class Canvas {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月18日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Interpreter"></a>
@@ -2080,13 +2091,14 @@ class SWF {
 class AVM {
     public void Execute(SWF _swf) {
         int _result = 0; //計算結果
-        
-        while ( _swf.IsEnd()) { //次の命令があれば…
+
+        while (!_swf.IsEnd()) { //次の命令があれば…
+
             string _nextCode = _swf.GetNextCode(); //次の命令を調べる
 
             //ここからはサンプルの独自処理
             string _operator = _nextCode.Substring(0,1); //「+*/-=」の何れか
-            if (_operator = "=") {
+            if (_operator != "=") {
                 int _int = Int32.Parse(_nextCode.Substring(1));
                 switch (_operator) {
                     case "+" : _result += _int; break;
@@ -2109,4 +2121,4 @@ class AVM {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月19日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
