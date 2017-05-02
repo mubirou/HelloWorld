@@ -1165,9 +1165,9 @@ class Test {
     }
 }
 
-/***********
+/*************
  * Bikeクラス
-***********/
+*************/
 class Bike {
     string _name, _num; //privateは省略
     public Bike(string _name, string _num) { //コンストラクタ
@@ -1178,9 +1178,9 @@ class Bike {
     public string GetNum() { return _num; }
 }
 
-/***************
+/*****************
  * BikeParkクラス
-***************/
+*****************/
 interface IBikePark {
     void Add(Bike arg); //暗黙的にpublicになる
     Bike GetBikeAt(int arg);
