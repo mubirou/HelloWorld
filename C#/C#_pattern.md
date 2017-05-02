@@ -16,6 +16,7 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -63,7 +64,7 @@ class Test {
 class Singleton { //シングルトンクラス
     private static Singleton _singleton = new Singleton(); //唯一のインスタンスを格納
     private Singleton() { //外部からnew Singleton()できないようにする
-        Console.WriteLine("インスタンスを生成しました");
+        Console.WriteLine("インスタンスを生成しました"); //DEBUG
     }
     public static Singleton GetInstance() { //外部から唯一のインスタンスを呼出す
         return _singleton; //唯一のインスタンス（静的変数）を返す
@@ -74,7 +75,7 @@ class Singleton { //シングルトンクラス
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月01日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Prototype"></a>
@@ -86,8 +87,8 @@ class Singleton { //シングルトンクラス
 * Java には clone() が、PHPには __clone() があります。C# も Bitmap クラス等には Clone() メソッドが用意されていますが、汎用のメソッドは用意されていません。
 
 ### ポイント
-1. 複製には、インスタンス.Clone()を使う。
-1. Clone()メソッド内では、newを使ってインスタンスを生成。そのインスタンスに複製元のプロパティをそのままコピーする。
+1. 複製には、インスタンス.Clone() を使う。
+1. Clone() メソッド内では、new を使ってインスタンスを生成。そのインスタンスに複製元のプロパティをそのままコピーする。
 
 ### 例文
 ```
@@ -157,7 +158,7 @@ class Prototype : IPrototype {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月02日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Builder"></a>
@@ -174,6 +175,10 @@ class Prototype : IPrototype {
 ```
 //test.cs
 using System;
+
+/*************
+ * メインクラス
+*************/
 class Test {
     static void Main() {
         Director _director1 = new Director(new Builder009());
@@ -189,13 +194,14 @@ class Test {
         /*
         HAPPY NEW YEAR
         タイプ023用のイラスト
-        2016.1.1
+        2018.1.1
         */
     }
 }
-//================================
-//Directorクラス（年賀印刷業者）
-//================================
+
+/*******************************
+ * Directorクラス（年賀印刷業者）
+*******************************/
 class Director {
     private IBuilder _builder; //Builder○○クラスのインスタンスを格納（委譲）
     public Director(IBuilder _builder) {
@@ -208,18 +214,18 @@ class Director {
     }
 }
 
-//=================================================
-//BuilderXXXクラスのインターフェース（オプション）
-//=================================================
+/*************************************************
+ * BuilderXXXクラスのインターフェース（オプション）
+*************************************************/
 interface IBuilder {
     void makeHeader(); //暗黙的にpublicになる
     void makeContent();
     void makeFooter();
 }
 
-//==========================================
-//Builder○○クラス群（年賀状のタイプ群）
-//==========================================
+/****************************************
+ * Builder○○クラス群（年賀状のタイプ群）
+****************************************/
 class Builder009 : IBuilder { //タイプ009の年賀状
     public void makeHeader() {
         new Header051().exec(); //ヘッダー用素材の呼出しと実行
@@ -244,9 +250,9 @@ class Builder108 : IBuilder { //タイプ108の年賀状
     }
 }
 
-//==========================================
-//Header○○クラス群（ヘッダー用材料群）
-//==========================================
+/***************************************
+ * Header○○クラス群（ヘッダー用材料群）
+***************************************/
 class Header040 {
     public void exec() { Console.WriteLine("HAPPY NEW YEAR"); }
 }
@@ -255,9 +261,9 @@ class Header051 {
     public void exec() { Console.WriteLine("あけましておめでとうございます"); }
 }
 
-//==========================================
-//Content○○クラス群（コンテンツ用材料群）
-//==========================================
+/******************************************
+ * Content○○クラス群（コンテンツ用材料群）
+******************************************/
 class Content023 {
     public void exec() { Console.WriteLine("タイプ023用のイラスト"); }
 }
@@ -266,22 +272,22 @@ class Content194 {
     public void exec() { Console.WriteLine("タイプ194用のイラスト"); }
 }
 
-//==========================================
-//Footer○○クラス群（フッター用材料群）
-//==========================================
+/***************************************
+ * Footer○○クラス群（フッター用材料群）
+***************************************/
 class Footer004 {
     public void exec() { Console.WriteLine("元旦"); }
 }
 
 class Footer011 {
-    public void exec() { Console.WriteLine("2016.1.1"); }
+    public void exec() { Console.WriteLine("2018.1.1"); }
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月02日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="FactoryMethod"></a>
@@ -303,13 +309,13 @@ class Test {
         _cardICHIRO.templateMethod("先生");
         /*
         謹賀新年
-        〒XXX-XXXX 〒XXX-XXXX
+        〒XXX-XXXX
         西村一郎
         */
         _cardICHIRO.templateMethod("同級生");
         /*
         HAPPY NEW YEAR
-        〒XXX-XXXX 〒XXX-XXXX
+        〒XXX-XXXX
         西村一郎
         */
 
@@ -317,21 +323,21 @@ class Test {
         _cardHARUKO.templateMethod("先生");
         /*
         明けましておめでとうございます
-        〒XXX-XXXX 〒XXX-XXXX
+        〒XXX-XXXX
         西村春子
         */
         _cardHARUKO.templateMethod("同級生");
         /*
         あけましておめでとう
-        〒XXX-XXXX 〒XXX-XXXX
+        〒XXX-XXXX
         西村春子
         */
     }
 }
 
-//=================================
-//抽象クラス
-//=================================
+/************
+ * 抽象クラス
+************/
 abstract class AbstractCard {
     public void templateMethod(string _arg) { //このメソッドはoverrideしない
         //↓ここでnewと記述しない（条件分岐は派生クラスで行う＝ここを汚さない)
@@ -342,14 +348,14 @@ abstract class AbstractCard {
     }
     protected abstract IMessage factoryMethod(string _arg); //派生クラスでoverride
     public void order1() { //共通の処理
-        Console.WriteLine("〒XXX-XXXX 〒XXX-XXXX");
+        Console.WriteLine("〒XXX-XXXX");
     }
     protected abstract void order2(); //派生クラスでoverride
 }
 
-//=================================
-//派生クラス群（抽象クラスを継承）
-//=================================
+/*********************************
+ * 派生クラス群（抽象クラスを継承）
+*********************************/
 class CardICHIRO : AbstractCard { //抽象クラスを継承
     protected override IMessage factoryMethod(string _arg) { //具体的処理を記述
         if (_arg == "先生") {
@@ -382,9 +388,9 @@ class CardHARUKO : AbstractCard { //抽象クラスを継承
     }
 }
 
-//=================================
-//生成したいクラス群
-//=================================
+/********************
+ * 生成したいクラス群
+********************/
 interface IMessage { //インターフェース宣言 ←オプション
     void Exec(); //共通のメソッド
 }
@@ -409,7 +415,7 @@ class Message4 : IMessage {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月02日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="AbstractFactory"></a>
@@ -495,7 +501,7 @@ class HARUKO : AbstractFactory { //抽象クラスを継承
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月03日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Adapter（継承）"></a>
@@ -510,24 +516,32 @@ class HARUKO : AbstractFactory { //抽象クラスを継承
 ```
 //test.cs
 using System;
+
+//メインクラス
 class Test {
     static void Main() {
-        Exchange _exchange = new Exchange(10000, 122.60);
+        Exchange _exchange = new Exchange(10000, 111.844);
         _exchange.AddYen(8000);
-        Console.WriteLine(_exchange.GetDollar()); //146.818923327896（ドル）
+        Console.WriteLine(_exchange.GetDollar()); //160.938449983906（ドル）
     }
 }
-class Moneybox { //基本クラス（親クラス）の定義
+
+//基本クラス（親クラス）の定義
+class Moneybox {
     private int _yen; //privateは省略可
     public Moneybox(int _yen) { this._yen = _yen; } //コンストラクタ（★）
     public void Add(int _yen) { this._yen += _yen; }
     public int GetYen() { return _yen; }
 }
-interface IExchange { //インターフェースの宣言
+
+//インターフェースの宣言
+interface IExchange {
     void AddYen(int _yen); //暗黙的にpublic
     double GetDollar(); //暗黙的にpublic
 }
-class Exchange : Moneybox, IExchange { //継承, インターフェースの実装
+
+//継承、インターフェースの実装
+class Exchange : Moneybox, IExchange {
     private double _rate; //privateは省略可
     //↓baseキーワードで基本クラスのコンストラクタ（★）を実行
     public Exchange(int _firstYen, double _rate) : base(_firstYen) {
@@ -541,7 +555,7 @@ class Exchange : Moneybox, IExchange { //継承, インターフェースの実�
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月04日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Adapter（委譲）"></a>
@@ -550,24 +564,32 @@ class Exchange : Moneybox, IExchange { //継承, インターフェースの実�
 ```
 //test.cs
 using System;
+
+//メインクラス（「継承」版と同じ）
 class Test {
-    static void Main() { //「継承」版と同じ
-        Exchange _exchange = new Exchange(10000, 122.60);
+    static void Main() {
+        Exchange _exchange = new Exchange(10000, 111.844);
         _exchange.AddYen(8000);
-        Console.WriteLine(_exchange.GetDollar()); //146.818923327896（ドル）
+        Console.WriteLine(_exchange.GetDollar()); //160.938449983906（ドル）
     }
 }
-class Moneybox { //「継承」版と同じ
+
+//基本クラス（親クラス）の定義（「継承」版と同じ）
+class Moneybox {
     private int _yen;
     public Moneybox(int _yen) { this._yen = _yen; }
     public void Add(int _yen) { this._yen += _yen; }
     public int GetYen() { return _yen; }
 }
-interface IExchange { //「継承」版と同じ
+
+//インターフェースの宣言（「継承」版と同じ）
+interface IExchange {
     void AddYen(int _yen);
     double GetDollar();
 }
-class Exchange : IExchange { //この内容が「継承」版と異なる
+
+//継承、インターフェースの実装（この内容が「継承」版と異なる）
+class Exchange : IExchange {
     Moneybox _moneybox; //Moneyboxクラスのインスタンスを格納（委譲）
     double _rate; //privateは省略
     public Exchange(int _firstYen, double _rate) {
@@ -586,7 +608,7 @@ class Exchange : IExchange { //この内容が「継承」版と異なる
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月04日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Bridge"></a>
@@ -601,25 +623,28 @@ class Exchange : IExchange { //この内容が「継承」版と異なる
 ```
 //test.cs
 using System;
+
+//メインクラス
 class Test {
     static void Main() {
         Tablet _tablet1 = new Tablet(new Android());
-        Console.WriteLine(_tablet1.Version); //Android 6.0
+        Console.WriteLine(_tablet1.Version); //Android 7.1.2
         _tablet1.BigScreen(); //大きな画面で見る
         
         Tablet _tablet2 = new Tablet(new IOS());
-        Console.WriteLine(_tablet2.Version); //iOS 9.1
+        Console.WriteLine(_tablet2.Version); //iOS 10.3.1
         
         SmartPhone _smartPhone1 = new SmartPhone(new Android());
-        Console.WriteLine(_smartPhone1.Version); //Android 6.0
+        Console.WriteLine(_smartPhone1.Version); //Android 7.1.2
         _smartPhone1.Phone(); //電話をかける
         
         SmartPhone _smartPhone2 = new SmartPhone(new IOS());
-        Console.WriteLine(_smartPhone2.Version); //iOS 9.1
+        Console.WriteLine(_smartPhone2.Version); //iOS 10.3.1
     }
 }
 
-class SuperMobile { //基本クラス＝「機能」のクラスの最上位
+//基本クラス＝「機能」のクラスの最上位
+class SuperMobile {
     private AbstractOS _os; //「機能」クラスと「実装」クラスの「橋」（委譲）
     public SuperMobile(AbstractOS _os) { //コンストラクタ
         this._os = _os;
@@ -630,34 +655,39 @@ class SuperMobile { //基本クラス＝「機能」のクラスの最上位
     }
 }
 
-class Tablet : SuperMobile { //「機能」のクラスに機能を追加したクラス
+//「機能」のクラスに機能を追加したクラス
+class Tablet : SuperMobile {
     public Tablet(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
     public void BigScreen() { //タブレット特有の機能
         Console.WriteLine("大きな画面で見る");
     }
 }
 
-class SmartPhone : SuperMobile { //「機能」のクラスに機能を追加したクラス
+//「機能」のクラスに機能を追加したクラス
+class SmartPhone : SuperMobile {
     public SmartPhone(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
     public void Phone() { //スマートフォン特有の機能
         Console.WriteLine("電話をかける");
     }
 }
 
-abstract class AbstractOS { //抽象クラス＝「実装」のクラスの最上位
+//抽象クラス＝「実装」のクラスの最上位
+abstract class AbstractOS {
     public abstract string rawVersion { get; set; } //抽象メソッドの宣言
 }
 
-class Android : AbstractOS { //「実装」の具体的な実装者
-    private string _version = "Android 6.0";
+//「実装」の具体的な実装者
+class Android : AbstractOS {
+    private string _version = "Android 7.1.2";
     public override string rawVersion { //オーバーライドして実際の処理を記述
         get { return _version; }
         set {}
     }
 }
 
-class IOS : AbstractOS { //「実装」の具体的な実装者
-    private string _version = "iOS 9.1";
+//「実装」の具体的な実装者
+class IOS : AbstractOS {
+    private string _version = "iOS 10.3.1";
     public override string rawVersion { //オーバーライドして実際の処理を記述
         get { return _version; }
         set {}
@@ -668,7 +698,7 @@ class IOS : AbstractOS { //「実装」の具体的な実装者
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月05日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Composite"></a>
@@ -685,6 +715,10 @@ class IOS : AbstractOS { //「実装」の具体的な実装者
 //test.cs
 using System;
 using System.Collections.Generic; //Listに必要
+
+/**************
+ * メインクラス
+**************/
 class Test {
     static void Main() {
         //①フォルダの作成
@@ -704,8 +738,13 @@ class Test {
         //"Authoring/Unity3D(File)"
         //"Authoring/Unreal Engine(File)"
         _unity3d.GetList(); //"Authoring/Unity3D(File)"
-    }}
-abstract class Component { //抽象クラス（同一視するための役）
+    }
+}
+
+/*********************************
+ * 抽象クラス（同一視するための役）
+*********************************/
+abstract class Component {
     protected string _name; //共通プロパティ
     protected Folder _parent; //共通プロパティ
     public string GetName() { return _name; } //共通メソッド
@@ -716,6 +755,9 @@ abstract class Component { //抽象クラス（同一視するための役）
     public abstract void GetList(); //抽象メソッドの宣言（処理は派生クラスに記述）
 }
 
+/*********************************
+ * Folderクラス（抽象クラスを実装）
+*********************************/
 class Folder : Component { //Directoryは不可
     private List<Component> _childList = new List<Component>(); //空のListを作成
     public Folder(string _name) { //コンストラクタ
@@ -738,6 +780,9 @@ class Folder : Component { //Directoryは不可
     }
 }
 
+/*******************************
+ * Fileクラス（抽象クラスを実装）
+*******************************/
 class File : Component {
     public File(string _name) { //コンストラクタ
         this._name = _name;
@@ -751,7 +796,7 @@ class File : Component {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月08日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Decorator"></a>
