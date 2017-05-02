@@ -983,7 +983,9 @@ using System;
 using System.Collections.Generic; //Dictionaryに必要
 using System.IO; //StreamReaderに必要
 
-//メイン
+/********
+ * メイン
+********/
 class Test {
     static void Main() {
         //インスタンスの管理者を作る（シングルトンクラス）
@@ -1002,9 +1004,9 @@ class Test {
     }
 }
 
-//============================================
-//インスタンスの管理人（シングルトンクラス）
-//============================================
+/******************************************
+ * インスタンスの管理人（シングルトンクラス）
+******************************************/
 class Manager {
     private static Manager _manager = new Manager(); //シングルトン用
     private Dictionary<string, Reader> _dic = new Dictionary<string, Reader>();
@@ -1016,10 +1018,9 @@ class Manager {
     }
     
     public Reader CreateReader(string arg) {
-        //↓_dic.ContainsKey()でも可能。
         bool _result = _dic.ContainsKey(arg); //既存か否か調べる
-        if ( _result) { //_dic[arg]が存在しない場合…
-            _dic.Add(arg, new Reader(arg)); //ここでやっとnew ○○
+        if (!_result) { //_dic[arg]が存在しない場合…
+            _dic.Add(arg, new Reader(arg)); //ここでやっと new Reader()
         } else { //_dic[arg]が既存の場合…（確認用）
             Console.WriteLine(arg + "は既存です");
         }
@@ -1027,11 +1028,13 @@ class Manager {
     }
 }
 
-//フライ級の役（メモリの使用量が多いため無駄に生成したくないもの）
+/***************************************************************
+ * フライ級の役（メモリの使用量が多いため無駄に生成したくないもの）
+***************************************************************/
 class Reader {
     private string _text; //外部から読み込んだテキストを格納
     public Reader(string arg) {
-        string _path = "/home/nishimura/デスクトップ/forC#/" + arg + ".txt";
+        string _path = arg + ".txt";
         StreamReader _stream = File.OpenText(_path);
         _text = _stream.ReadToEnd(); //全ての内容を読み込む
         _stream.Close(); //閉じる
@@ -1045,7 +1048,7 @@ class Reader {
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
 作成者：Takashi Nishimura  
 作成日：2015年12月15日  
-更新日：2017年05月XX日
+更新日：2017年05月02日
 
 
 <a name="Proxy"></a>
