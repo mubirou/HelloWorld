@@ -1069,6 +1069,7 @@ class Reader {
 using System;
 using System.IO; //StreamReaderに必要
 
+// メインクラス
 class Test {
     static void Main() {
         string _path = "sample.txt";
@@ -1081,16 +1082,16 @@ class Test {
     }
 }
 
-//=======================================
-//①Loaderと②Contentのインターフェース
-//=======================================
+//==========================================
+// ① Loader と ② Content のインターフェース
+//==========================================
 interface ILoader {
     void Load(); //暗黙的にpublicになる
 }
 
-//=====================
-//①代理人（Proxy）役
-//=====================
+//====================
+// ①代理人（Proxy）役
+//====================
 class Loader : ILoader {
     private string _path; //privateは省略可
     public Loader(string _path) {
@@ -1103,9 +1104,9 @@ class Loader : ILoader {
     }
 }
 
-//=====================
-//②実際の本人
-//=====================
+//=============
+// ②実際の本人
+//=============
 class Content : ILoader {
     private string _path; //privateは省略可
     public Content(string _path) {
@@ -1113,7 +1114,7 @@ class Content : ILoader {
     }
     //重い処理をここで行う←ポイント
     public void Load() {
-        //今回のサンプルの中身はあまり重要ではない…
+        //今回のサンプルの中身は重要ではない
         StreamReader _stream = File.OpenText(_path);
         string _text = _stream.ReadToEnd(); //全ての内容を読み込む
         _stream.Close(); //閉じる
