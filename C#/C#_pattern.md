@@ -1071,7 +1071,7 @@ using System.IO; //StreamReaderに必要
 
 class Test {
     static void Main() {
-        string _path = "/home/nishimura/デスクトップ/forC#/sample.txt";
+        string _path = "sample.txt";
         
         //代理人（Proxy）役
         Loader _loader = new Loader(_path);
