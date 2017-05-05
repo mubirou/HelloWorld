@@ -821,12 +821,126 @@ int main() {
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-XXXX
+### 概要
+* 容器と中身の同一視。合成物。
+* 代表的な例はファイルシステム。ディレクトリとファイルは異なるものですが、どちらも「ディレクトリの中に入れることができるもの」です。つまり、同じ種類のものであると見なしている＝同一視です。 ディレクトリ（＝容器）とファイル（＝中身）の両方にとって、共通のインターフェースとして機能し「同じメソッド」を呼び出せるようにするのです。
+* 以下のサンプルは root に Authoring フォルダを作成し、その中に Unity3D と Unreal Engine ファイルを格納してみます。
+
+### 例文
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <vector> //vectorに必要
+using namespace std;
+
+class Folder; //前方宣言
+
+/*********************************
+ * 抽象クラス（同一視するための役）
+*********************************/
+class Component {
+    protected:
+        //共通のメンバ変数の「宣言」
+        string _name;
+        Folder* _parent; //前方宣言が必須
+    public:
+        //共通のメンバ関数の「宣言」
+        string GetName();
+        Folder* Parent(); //getter
+        void Parent(Folder* arg); //setter
+        //純粋仮想関数（オーバーライド必須）
+        virtual void GetList() = 0;
+};
+//共通のメンバ関数の「定義」
+string Component::GetName() {
+    return _name;
+}
+Folder* Component::Parent() { //getter
+    return _parent;
+}
+void Component::Parent(Folder* arg) { //setter
+    _parent = arg;
+}
+
+/***********
+ * フォルダ
+***********/
+class Folder : public Component { //抽象クラスを継承
+    private:
+        vector<Component*> _childList; //フォルダやファイルを格納する配列
+    public:
+        Folder(string _name); //コンストラクタの「宣言」
+        void Add(Component* arg); //メンバ関数の「宣言」
+        void GetList(); //純粋仮想関数のオーバーライドの「宣言」
+};
+Folder::Folder(string _name) { //コンストラクタの「定義」
+    this -> _name = _name; //抽象クラスから継承したメンバ変数
+}
+void Folder::Add(Component* arg) { //メンバ関数の「定義」（Remove()は今回は省略）
+    _childList.push_back(arg);
+    arg -> Parent(this);
+}
+void Folder::GetList() { //純粋仮想関数のオーバーライドの「定義」
+    for (auto tmp : _childList) {
+        string _result = this -> GetName() + "/" + tmp -> GetName();
+        //↓tmpが「Folder」クラスのインスタンスか調べる
+        if (dynamic_cast<Folder*>(tmp) == false) { //普通は「!」を使いますが...
+            _result += "(File)";
+        } else {
+            _result += "(Folder)";
+        }
+        cout << _result << endl;
+    }
+}
+
+/***********
+ * ファイル
+***********/
+class File : public Component { //抽象クラスを継承
+    public:
+        File(string _name); //コンストラクタの「宣言」
+        void GetList(); //純粋仮想関数のオーバーライドの「宣言」
+};
+File::File(string _name) { //コンストラクタの「定義」
+    this -> _name = _name; //抽象クラスから継承したメンバ変数
+}
+void File::GetList() { //純粋仮想関数のオーバーライドの「定義」
+    cout << this->Parent()->GetName() + "/" + this->GetName() + "(File)" << endl;
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    //①フォルダの作成
+    Folder _root("root");
+    Folder authoring_("Authoring");
+
+    //②ファイルの作成
+    File _unity3D("Unity3D");
+    File _unrealEngine("Unreal Engine");
+
+    //③関連付け
+    _root.Add(&authoring_); //&○○にする（変数のアドレス）
+    authoring_.Add(&_unity3D); //&○○にする（変数のアドレス）
+    authoring_.Add(&_unrealEngine); //&○○にする（変数のアドレス）
+    
+    //④検証
+    cout << _unrealEngine.GetName() << endl; // Unreal Engine
+    _root.GetList(); // root/Authoring(Folder)
+    authoring_.GetList();
+    // Authoring/Unity3D(File)
+    // Authoring/Unreal Engine(File)
+    _unity3D.GetList(); //Authoring/Unity3D(File)
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月06日  
+更新日：2017年05月05日
 
 
 <a name="Decorator"></a>
