@@ -615,7 +615,7 @@ int main() {
 using namespace std;
 
 /***************************************************
- * 基底クラス（Moneyboxクラス） ←「継承」版と全く同じ
+* 基底クラス（Moneyboxクラス） ←「継承」版と全く同じ
 ***************************************************/
 class Moneybox {
     private:
@@ -639,7 +639,7 @@ int Moneybox::GetYen() { //メンバ関数の「定義」★
 }
 
 /*****************************************************
- * インターフェース（オプション） ←「継承」版と全く同じ
+* インターフェース（オプション） ←「継承」版と全く同じ
 *****************************************************/
 class IExchange { //インターフェースクラス
     public:
@@ -648,7 +648,7 @@ class IExchange { //インターフェースクラス
 };
 
 /*************************************************************
- * 派生クラス（Exchangeクラス） ←この内容のみ「継承」版と異なる
+* 派生クラス（Exchangeクラス） ←この内容のみ「継承」版と異なる
 *************************************************************/
 class Exchange : IExchange {
     private:
@@ -679,7 +679,7 @@ int Exchange::GetYen() {
 }
 
 /************************************
- * メインクラス ←「継承」版と全く同じ
+* メインクラス ←「継承」版と全く同じ
 ************************************/
 int main() {
     Exchange _exchange(10000, 112.258); //最初の貯金10,000円、レート112.258円/ドル
@@ -699,12 +699,123 @@ int main() {
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/***********************************
+ * 抽象クラス＝「実装」クラスの最上位
+***********************************/
+class AbstractOS { //抽象クラス
+    public: virtual string RawVersion() = 0; //純粋仮想関数
+};
+
+/************************************
+ *「実装」の具体的な実装者① : Android
+************************************/
+class Android : public AbstractOS {
+    private: string _version; //メンバ定数の宣言
+    public:
+        Android(); //コンストラクタの宣言
+        string RawVersion(); //純粋仮想関数のオーバーライドの宣言 
+};
+Android::Android() { //コンストラクタの定義
+    _version = "Android 7.1.2";
+}
+string Android::RawVersion() { //純粋仮想関数のオーバーライドの定義
+    return _version;
+}
+
+/**********************************
+ * 「実装」の具体的な実装者② : iOS
+**********************************/
+class IOS : public AbstractOS {
+    private: string _version; //メンバ定数の宣言
+    public:
+        IOS(); //コンストラクタの宣言
+        string RawVersion(); //純粋仮想関数のオーバーライドの宣言 
+};
+IOS::IOS() { //コンストラクタの定義
+    _version = "iOS 10.3.1";
+}
+string IOS::RawVersion() { //純粋仮想関数のオーバーライドの定義
+    return _version;
+}
+
+/*************************************
+ * 基底クラス＝「機能」のクラスの最上位
+*************************************/
+class SuperMobile {
+private: AbstractOS* _os; //「機能」クラスと「実装」クラスの「橋」（委譲）
+    public:
+        SuperMobile(AbstractOS* _os); //コンストラクタの宣言
+        string Version(); //メンバ関数の宣言（派生クラスに継承）
+};
+SuperMobile::SuperMobile(AbstractOS* _os) { //コンストラクタの定義
+    this -> _os = _os;
+}
+string SuperMobile::Version() {
+    return _os -> RawVersion(); //「橋」を使って「実装」クラスにアクセス
+}
+
+/**************************************************
+ * 「機能」のクラスに機能を追加したクラス① : Tablet
+**************************************************/
+class Tablet : public SuperMobile {
+    public:
+        Tablet(AbstractOS* _os); //コンストラクタの宣言
+        void BigScreen(); //メンバ関数の宣言
+};
+//コンストラクタの定義（基底クラスのコンストラクタを呼出します）
+Tablet::Tablet(AbstractOS* _os) : SuperMobile(_os) {}
+void Tablet::BigScreen() { //メンバ関数の定義（タブレット特有の機能）
+    cout << "大きな画面で見る" << endl;
+}
+
+/******************************************************
+ * 「機能」のクラスに機能を追加したクラス② : SmartPhone
+******************************************************/
+class SmartPhone : public SuperMobile {
+    public:
+        SmartPhone(AbstractOS* _os); //コンストラクタの宣言
+        void Phone(); //メンバ関数の宣言
+};
+//コンストラクタの定義（基底クラスのコンストラクタを呼出します）
+SmartPhone::SmartPhone(AbstractOS* _os) : SuperMobile(_os) {}
+void SmartPhone::Phone() { //メンバ関数の定義（スマートフォン特有の機能）
+    cout << "電話をかける" << endl;
+}
+
+/********
+ * main
+********/
+int main() {
+    //タブレット（Android）
+    Tablet* _tablet1 = new Tablet(new Android); //インスタンスの生成
+    cout << _tablet1 -> Version() << endl; //→"Android 7.1.2"
+    _tablet1 -> BigScreen(); //→"おおきな画面で見る"
+    
+    //タブレット（iOS）
+    Tablet* _tablet2 = new Tablet(new IOS); //インスタンスの生成
+    cout << _tablet2 -> Version() << endl; //→"Android 7.1.2"
+    
+    //スマホ（Android）
+    SmartPhone* _smartPhone1 = new SmartPhone(new Android); //インスタンスの生成
+    cout << _smartPhone1 -> Version() << endl; //→"Android 7.1.2"
+    _smartPhone1 -> Phone(); //→"おおきな画面で見る"
+    
+    //スマホ（iOS）
+    SmartPhone* _smartPhone2 = new SmartPhone(new IOS); //インスタンスの生成
+    cout << _smartPhone2 -> Version() << endl; //→"Android 7.1.2"
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月06日  
+更新日：2017年05月05日
 
 
 <a name="Composite"></a>
