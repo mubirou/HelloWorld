@@ -1306,12 +1306,122 @@ int main() {
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <vector> //vectorに必要
+using namespace std;
+
+class BikePark; //前方宣言
+
+/*************
+ * Bikeクラス
+*************/
+class Bike {
+    private:
+        string _name, _number;
+    public:
+        Bike(string _name, string _number); //コンストラクタの宣言
+        string Name(); //getter
+        string Number(); //getter
+};
+Bike::Bike(string _name, string _number) { //コンストラクタの定義
+    this -> _name = _name;
+    this -> _number = _number;
+}
+string Bike::Name() { return _name; } //getter
+string Bike::Number() { return _number; } //getter
+
+/***********************************
+ * Iteratorクラス（≒駐輪場の管理人）
+***********************************/
+class IIterator { //インターフェース
+    public:
+        virtual bool HasNext() = 0; //純粋仮想関数（オーバーライド必須）
+        virtual Bike* Next() =0; //純粋仮想関数（オーバーライド必須）
+};
+class Iterator : public IIterator { //インターフェースの実装
+    private:
+        BikePark* _bikePark; //メンバ定数の宣言
+        int _count;
+    public:
+        Iterator(BikePark* arg); //コンストラクタの宣言（前方宣言が前提）
+        bool HasNext(); //純粋仮想関数のオーバーライドの宣言
+        Bike* Next(); //純粋仮想関数のオーバーライドの宣言
+};
+Iterator::Iterator(BikePark* arg) { //コンストラクタの定義
+    _bikePark = arg;
+    _count = 0;
+}
+
+/****************
+ * BikeParkクラス
+****************/
+class IBikePark { //インターフェース
+    public:
+        //純粋仮想関数（オーバーライド必須）
+        virtual void Add(Bike* _bike) = 0;
+        virtual Bike* GetBikeAt(int arg) = 0;
+        virtual int Length() = 0;
+        virtual Iterator* CreateIterator() = 0;
+};
+class BikePark : public IBikePark { //インターフェースの実装
+    private:
+        vector<Bike*> _vector; //vector配列の宣言
+    public:
+        //メンバ関数の宣言
+        void Add(Bike* _bike);
+        Iterator* CreateIterator(); 
+        int Length();
+        Bike* GetBikeAt(int arg);
+};
+void BikePark::Add(Bike* _bike) { //純粋仮想関数のオーバーライドの実装
+    _vector.push_back(_bike); //配列に値を追加
+}
+Bike* BikePark::GetBikeAt(int arg) { //純粋仮想関数のオーバーライドの実装
+    return _vector[arg]; //配列の値を取得
+}
+int BikePark::Length() { //純粋仮想関数のオーバーライドの実装
+    return _vector.size(); //配列の要素数を調べる
+}
+Iterator* BikePark::CreateIterator() { //純粋仮想関数のオーバーライドの実装
+    return new Iterator(this); //Iteratorの生成
+}
+
+/*************************************************
+ * Iteratorクラス純粋仮想関数のオーバーライドの実装
+*************************************************/
+bool Iterator::HasNext() {
+    return _bikePark -> Length() > _count; //次のバイクがあるか否か
+}
+Bike* Iterator::Next() {
+    return _bikePark -> GetBikeAt(_count++); //次のバイクを返す
+}
+
+/***********
+ * main関数
+***********/
+int main() {
+    BikePark* _bikePark = new BikePark;
+    _bikePark -> Add(new Bike("FLSTC", "岐阜 の 45-03"));
+    _bikePark -> Add(new Bike("FXDL", "春日部 し 33-73"));
+    _bikePark -> Add(new Bike("XL883N", "秋田 ら 14-28"));
+
+    Iterator* _iterator = _bikePark -> CreateIterator(); //イテレータ（管理人）生成
+
+    while (_iterator -> HasNext()) {
+        Bike* next_bike = _iterator -> Next();
+        cout << next_bike -> Name() << "/" << next_bike -> Number() << endl;
+    }
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月08日  
+更新日：2017年05月05日
 
 
 <a name="TemplateMethod"></a>
