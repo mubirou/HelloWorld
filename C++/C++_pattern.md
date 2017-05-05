@@ -45,7 +45,7 @@
 using namespace std;
 
 /*********************
- * シングルトンクラス
+* シングルトンクラス
 *********************/
 class Singleton {
     private:
@@ -66,7 +66,7 @@ Singleton* Singleton::Instance() { //静的メンバ関数 の「実装」
 }
 
 /*************
- * メイン関数
+* メイン関数
 *************/
 int main() {
     Singleton* _singleton1 = Singleton::Instance();
@@ -180,7 +180,7 @@ int main() {
 using namespace std;
 
 /*****************************
- * BuilderXXXのインターフェース
+* BuilderXXXのインターフェース
 *****************************/
 class IBuilder {
     public:
@@ -190,7 +190,7 @@ class IBuilder {
 };
 
 /*****************************
- * BuilderA（タイプＡの年賀状）
+* BuilderA（タイプＡの年賀状）
 *****************************/
 class BuilderA : public IBuilder {
     public:
@@ -204,7 +204,7 @@ void BuilderA::MakeContent() { cout << "○○○○○○○" << endl; }
 void BuilderA::MakeFooter() { cout << "2018.1.1" << endl; }
 
 /*****************************
- * BuilderB（タイプＢの年賀状）
+* BuilderB（タイプＢの年賀状）
 *****************************/
 class BuilderB : public IBuilder {
     public:
@@ -218,7 +218,7 @@ void BuilderB::MakeContent() { cout << "□□□□□□□" << endl; }
 void BuilderB::MakeFooter() { cout << "元旦" << endl; }
 
 /*****************************
- * Director（年賀状の印刷業者）
+* Director（年賀状の印刷業者）
 *****************************/
 class Director {
     private:
@@ -238,7 +238,7 @@ void Director::Construct() { //メンバ関数の「実装」
 }
 
 /*************
- * メイン関数
+* メイン関数
 *************/
 int main() {
     Director _director1(new BuilderA);
@@ -273,7 +273,7 @@ int main() {
 using namespace std;
 
 /*******************
- * 生成したいクラス群
+* 生成したいクラス群
 *******************/
 class IMessage { //インターフェース（オプション）
     public: virtual void Exec() = 0; //純粋仮想関数
@@ -296,7 +296,7 @@ class Message4 : public IMessage {
 };
 
 /*******************
- * 抽象（基底）クラス
+* 抽象（基底）クラス
 *******************/
 class AbstractCard {
     private: void Order1(); //メンバ関数の「宣言」←共通の処理（処理②用）
@@ -318,7 +318,7 @@ void AbstractCard::Order1() { //共通の処理（処理②）
 }
 
 /***********************
- * 派生クラス（ICHIRO用）
+* 派生クラス（ICHIRO用）
 ***********************/
 class CardICHIRO : public AbstractCard { //抽象クラスを継承
     protected:
@@ -338,7 +338,7 @@ void CardICHIRO::Order2() { //独自の処理（処理③）
 }
 
 /***********************
- * 派生クラス（HANAKO用）
+* 派生クラス（HANAKO用）
 ***********************/
 class CardHANAKO : public AbstractCard { //抽象クラスを継承
     protected:
@@ -358,7 +358,7 @@ void CardHANAKO::Order2() { //独自の処理（処理③）
 }
 
 /*************
- * メイン関数
+* メイン関数
 *************/
 int main() {
     CardICHIRO _cardICHIRO; //インスタンスの生成
@@ -398,12 +398,122 @@ int main() {
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+### 概要
+* 関連する部品を組み合わせて製品を作る。
+* Abstract は「抽象的な」、Factory は「工場」の意味。
+* Factory Method パターンに類似。クラスを作ってオブジェクトを生成する Factory Method に対し、Abstract Factory はオブジェクトを作ってオブジェクトを作成。
+* 生成を行うクラスの規格統一をしておく為に、抽象クラスを作ります。
+
+### 注意
+* C++ は、クラスの「前方宣言」が必要です。しかも単に <b>class XXX;</b> とだけ前方に記述した場合、クラスの<b>ポインタ</b>つまり、メモリ上の<b>アドレス</b>の確保だけしかできません。
+* <b>new クラス名</b> を使って実際にインスタンスを生成する場合、記述する順序を工夫する必要があります。
+
+### 例文
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/****************************************
+* 抽象クラス（抽象的な工場）＝「宣言」のみ
+****************************************/
+class AbstractFactory {
+    public:
+        //↓静的メンバ関数の「宣言」
+        static AbstractFactory* CreateFactory(string _name);
+        //↓純粋仮想関数の「宣言」（派生クラスでオーバーライドが必要）
+        virtual void CreateNewYear() = 0;
+        virtual void CreateSummer() = 0;
+};
+
+/********************************
+ * 派生クラス（実際の工場 ICHIRO）
+********************************/
+class ICHIRO : public AbstractFactory { //抽象クラスを継承
+    public:
+        void CreateNewYear(); //純粋仮想関数のオーバーライドの「宣言」
+        void CreateSummer(); //純粋仮想関数のオーバーライドの「宣言」
+};
+
+void TOHRU::CreateNewYear() { //オーバーライド
+    cout << "HAPPY NEW YEAR!" << endl;
+    cout << "ICHIRO NISHIMURA" << endl;
+}
+
+void TOHRU::CreateSummer() { //オーバーライド
+    cout << "暑中御見舞申し上げます" << endl;
+    cout << "西村一郎" << endl;
+}
+
+/********************************
+ * 派生クラス（実際の工場 HANAKO）
+********************************/
+class HANAKO : public AbstractFactory { //抽象クラスを継承
+    public:
+        void CreateNewYear(); //純粋仮想関数のオーバーライドの「宣言」
+        void CreateSummer(); //純粋仮想関数のオーバーライドの「宣言」
+};
+
+void SACHIKO::CreateNewYear() { //オーバーライド
+    cout << "明けましておめでとうございます" << endl;
+    cout << "西村花子" << endl;
+}
+
+void SACHIKO::CreateSummer() { //オーバーライド
+    cout << "暑中おみまいもうしあげます" << endl;
+    cout << "西村花子" << endl;
+}
+
+/*************************************
+ * 抽象クラスの静的メンバ関数の「実装」
+ *
+ * ポインタの宣言（アドレスの確保）だけでなくインスタンスを生成する場合、
+ * クラスの「前方宣言」だけでなく「実装」も必要です
+ * つまり、ICHIRO / HANAKO クラスの後に記述する必要があるのです
+*************************************/
+AbstractFactory* AbstractFactory::CreateFactory(string _name) {
+    if (_name == "ICHIRO") {
+        ICHIRO* _ichiro = new ICHIRO; //アドレスだけでなくインスタンスの生成が必要
+        //↓TOHRUクラス→AbstractFactoryクラスへの「ポインタ間の変換」
+        AbstractFactory* _result =  reinterpret_cast<AbstractFactory*>(_ichiro);
+        return _result;
+
+    } else if (_name == "HANAKO") {
+        HANAKO* _hanako = new HANAKO; //アドレスだけでなくインスタンスの生成が必要
+        //↓SACHIKOクラス→AbstractFactoryクラスへの「ポインタ間の変換」
+        AbstractFactory* _result =  reinterpret_cast<AbstractFactory*>(_hanako);
+        return _result;	
+
+    } else {
+        //↓"ICHIRO" "HANAKO" 以外を指定した場合エラーを発生させます（オプション）
+        cout << "ERROR:AbstractFactory::CreateFactory()" << endl;
+    }
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+AbstractFactory* _factoryICHIRO = AbstractFactory::CreateFactory("ICHIRO");
+_factoryICHIRO -> CreateNewYear();
+    //↑ポインタが指しているオブジェクト（factoryTOHRU）が指している関数を呼出します
+    // HAPPY NEW YEAR!
+    // ICHIRO NISHIMURA
+
+    AbstractFactory* _factoryHANAKO = AbstractFactory::CreateFactory("HANAKO");
+    _factoryHANAKO -> CreateNewYear();
+    //↑ポインタが指しているオブジェクト（factorySACHIKO）が指している関数を呼出します
+    // 明けましておめでとうございます
+    // 西村花子
+    
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月03日  
+更新日：2017年05月05日
 
 
 <a name="Adapter（継承）"></a>
