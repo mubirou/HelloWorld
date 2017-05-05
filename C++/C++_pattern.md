@@ -427,7 +427,7 @@ class AbstractFactory {
 };
 
 /********************************
- * 派生クラス（実際の工場 ICHIRO）
+* 派生クラス（実際の工場 ICHIRO）
 ********************************/
 class ICHIRO : public AbstractFactory { //抽象クラスを継承
     public:
@@ -446,7 +446,7 @@ void ICHIRO::CreateSummer() { //オーバーライド
 }
 
 /********************************
- * 派生クラス（実際の工場 HANAKO）
+* 派生クラス（実際の工場 HANAKO）
 ********************************/
 class HANAKO : public AbstractFactory { //抽象クラスを継承
     public:
@@ -465,11 +465,11 @@ void HANAKO::CreateSummer() { //オーバーライド
 }
 
 /*************************************
- * 抽象クラスの静的メンバ関数の「実装」
- *
- * ポインタの宣言（アドレスの確保）だけでなくインスタンスを生成する場合、
- * クラスの「前方宣言」だけでなく「実装」も必要です
- * つまり、ICHIRO / HANAKO クラスの後に記述する必要があるのです
+* 抽象クラスの静的メンバ関数の「実装」
+*
+* ポインタの宣言（アドレスの確保）だけでなくインスタンスを生成する場合、
+* クラスの「前方宣言」だけでなく「実装」も必要です
+* つまり、ICHIRO / HANAKO クラスの後に記述する必要があるのです
 *************************************/
 AbstractFactory* AbstractFactory::CreateFactory(string _name) {
     if (_name == "ICHIRO") {
@@ -491,7 +491,7 @@ AbstractFactory* AbstractFactory::CreateFactory(string _name) {
 }
 
 /*************
- * メイン関数
+* メイン関数
 *************/
 int main() {
 AbstractFactory* _factoryICHIRO = AbstractFactory::CreateFactory("ICHIRO");
@@ -519,12 +519,91 @@ _factoryICHIRO -> CreateNewYear();
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-XXXX
+### 概要
+* 一皮かぶせて再利用。接続装置。
+* 別名、Wrapper パターン。
+* クラスによるAdapterパターン。継承を使って、オリジナルのクラスを拡張。
+
+### 例文
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*****************************
+ * 基底クラス（Moneyboxクラス）
+*****************************/
+class Moneybox {
+    private:
+        int _yen; //メンバ変数の「宣言」
+    public:
+        Moneybox(int _yen); //コンストラクタの「宣言」
+        void Add(int _yen); //メンバ関数の「宣言」
+        int GetYen(); //メンバ関数の「宣言」
+};
+
+Moneybox::Moneybox(int _yen) { //コンストラクタの「定義」
+    this -> _yen = _yen;
+}
+
+void Moneybox::Add(int _yen) { //メン関数の「定義」★
+    this -> _yen += _yen;
+}
+
+int Moneybox::GetYen() { //メンバ関数の「定義」★
+    return _yen;
+}
+
+/*******************************
+ * インターフェース（オプション）
+*******************************/
+class IExchange { //インターフェースクラス
+    public:
+        virtual void AddYen(int _yen) = 0; //純粋仮想関数
+        virtual double GetDollar() = 0; //純粋仮想関数
+};
+
+/*****************************
+ * 派生クラス（Exchangeクラス）
+******************************/
+class Exchange : public Moneybox, IExchange { //継承とインターフェースの実装
+    private:
+        double _rate; //メンバ変数の「宣言」
+    public:
+        Exchange(int _firstYen, double _rate); //コンストラクタの「宣言」
+        void AddYen(int _yen); //純粋仮想関数のオーバーライドの「宣言」
+        double GetDollar(); //純粋仮想関数のオーバーライドの「宣言」
+};
+
+//コンストラクタの「実装」（基底クラスのコンストラクタを呼出す）
+Exchange::Exchange(int _firstYen, double _rate) : Moneybox(_firstYen) {
+    this -> _rate = _rate;
+}
+
+void Exchange::AddYen(int _yen) { //オーバーライド
+    Add(_yen); //基底クラス（Monebox）から継承★
+}
+
+double Exchange::GetDollar() { //オーバーライド
+    return GetYen() / _rate; //基底クラス（Moneybox）から継承★
+} 
+
+/**************
+ * メインクラス
+**************/
+int main() {
+    Exchange _exchange(10000, 112.258); //最初の貯金10,000円、レート112.258円/ドル
+    _exchange.AddYen(8000); //8,000円追加貯金
+    cout << _exchange.GetYen() << endl; //残金18,000円
+    cout << _exchange.GetDollar() << endl; //残金160.345ドル
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月03日  
+更新日：2017年05月05日
 
 
 <a name="Adapter（委譲）"></a>
