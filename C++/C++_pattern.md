@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -1151,12 +1151,85 @@ int main() {
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <map> //mapクラスに必須
+using namespace std;
+
+/****************************************************************
+ * フライ級の役（メモリの使用量が多いため無駄に生成したくないもの）
+****************************************************************/
+class Big {
+    private:
+        string _type;
+    public:
+        Big(string arg); //コンストラクタの「宣言」
+        void Exec(); //メンバ関数の「宣言」
+};
+Big::Big(string arg) { //コンストラクタの「実装」
+    _type = arg;
+}
+void Big::Exec() {
+    cout << _type <<"に対応した非常に重い処理" << endl;
+}
+
+/*******************************************
+ * インスタンスの管理人（シングルトンクラス）
+*******************************************/
+class Manager { //シングルトンクラス
+    private:
+        Manager() {}; //コンストラクタ（private）
+        static Manager* _manager; //静的メンバ変数の「宣言」
+        map<string, Big*> _map; //連想配列
+    public:
+        static Manager* Instance(); //静的メンバ関数 の「宣言」
+        Big* CreateReader(string arg);
+};
+
+Manager* Manager::_manager = new Manager; //静的メンバ変数 の「実装」
+
+Manager* Manager::Instance() { //静的メンバ関数 の「実装」
+    return _manager;
+}
+
+Big* Manager::CreateReader(string arg) {
+    auto _iterator = _map.find(arg); //既存か否か調べる
+    if (_iterator == _map.end()) { //存在しない場合...
+        _map[arg] = new Big(arg); //ここでやっとnew XXX
+    } else { //存在する場合...
+        cout << "既存です" << endl;
+    }
+    return _map[arg];
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    //インスタンスの管理者を作る（シングルトンクラス）
+    Manager* _manager = Manager::Instance();
+
+    //無駄に生成したくないオブジェクトを生成（既存の場合は使い回す）
+    Big* A_ = _manager -> CreateReader("A");
+    Big* B_ = _manager -> CreateReader("B");
+
+    //既存のものを生成しようとすると...
+    Big* A2_ = _manager -> CreateReader("A"); //=> "既存です"
+    cout << (int)(A_ == A2_) << endl; //1（true）←中身は同じインスタンス
+
+    //処理
+    A_ -> Exec(); //=> "Aに対応した非常に重い処理"
+    B_ -> Exec(); //=> "Bに対応した非常に重い処理"
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月07日  
+更新日：2017年05月05日
 
 
 <a name="Proxy"></a>
