@@ -1427,12 +1427,88 @@ int main() {
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*************
+ * 抽象クラス
+*************/
+class AbstractCard {
+    public:
+        void TemplateMethod(); //継承するメンバ関数（＝一連の連続した処理の枠組み）の宣言
+    private:
+        void Order1(); //メンバ関数（＝共通の処理①）の宣言
+        void Order2(); //メンバ関数（＝共通の処理②）の宣言
+    protected:
+        virtual void Order3() = 0; //純粋仮想関数（オーバーライド必須）
+        virtual bool IsChild() = 0; //純粋仮想関数（オーバーライド必須）
+};
+//継承するメンバ関数（＝一連の連続した処理の枠組み）の定義
+void AbstractCard::TemplateMethod() {
+    Order1(); //共通の処理①
+    if (!IsChild()) { //児童（小学生以下）でなければ...
+        Order2(); //条件により実行
+    }
+    Order3(); //独自の処理（派生クラスでオーバーライド）
+}
+void AbstractCard::Order1() { //メンバ関数（＝共通の処理①）の定義
+    cout << "HAPPY NEY YEAR!" << endl;
+};
+void AbstractCard::Order2() { //メンバ関数（＝共通の処理②）の定義
+    cout << "勉強頑張ろう" << endl;
+};
+
+/*********************************
+ * 派生クラス①（抽象クラスを継承）
+*********************************/
+class CardHanako : public AbstractCard {
+    protected:
+        void Order3(); //純粋仮想関数のオーバーライドの宣言
+        bool IsChild(); //純粋仮想関数のオーバーライドの宣言
+};
+void CardHanako::Order3() { //純粋仮想関数のオーバーライドの定義
+    cout << "テニスがんばろうね" << endl;
+}
+bool CardHanako::IsChild() { return true; } //純粋仮想関数のオーバーライドの定義
+
+/*********************************
+ * 派生クラス②（抽象クラスを継承）
+*********************************/
+class CardICHIRO : public AbstractCard {
+    protected:
+        void Order3(); //純粋仮想関数のオーバーライドの宣言
+        bool IsChild(); //純粋仮想関数のオーバーライドの宣言
+};
+void CardICHIRO::Order3() { //純粋仮想関数のオーバーライドの定義
+    cout << "テニス頑張ろう" << endl;
+}
+bool CardICHIRO::IsChild() { return false; } //純粋仮想関数のオーバーライドの定義
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    CardHanako* cardHanako_ = new CardHanako;
+    cardHanako_ -> TemplateMethod();
+    //HAPPY NEY YEAR!
+    //テニスがんばろうね
+
+    CardICHIRO* _CardIchiro = new CardICHIRO;
+    _CardIchiro -> TemplateMethod();
+    //HAPPY NEY YEAR!
+    //勉強頑張ろう
+    //テニス頑張ろう
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月08日  
+更新日：2017年05月05日
 
 
 <a name="Strategy"></a>
