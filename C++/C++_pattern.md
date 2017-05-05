@@ -435,12 +435,12 @@ class ICHIRO : public AbstractFactory { //抽象クラスを継承
         void CreateSummer(); //純粋仮想関数のオーバーライドの「宣言」
 };
 
-void TOHRU::CreateNewYear() { //オーバーライド
+void ICHIRO::CreateNewYear() { //オーバーライド
     cout << "HAPPY NEW YEAR!" << endl;
     cout << "ICHIRO NISHIMURA" << endl;
 }
 
-void TOHRU::CreateSummer() { //オーバーライド
+void ICHIRO::CreateSummer() { //オーバーライド
     cout << "暑中御見舞申し上げます" << endl;
     cout << "西村一郎" << endl;
 }
@@ -454,12 +454,12 @@ class HANAKO : public AbstractFactory { //抽象クラスを継承
         void CreateSummer(); //純粋仮想関数のオーバーライドの「宣言」
 };
 
-void SACHIKO::CreateNewYear() { //オーバーライド
+void HANAKO::CreateNewYear() { //オーバーライド
     cout << "明けましておめでとうございます" << endl;
     cout << "西村花子" << endl;
 }
 
-void SACHIKO::CreateSummer() { //オーバーライド
+void HANAKO::CreateSummer() { //オーバーライド
     cout << "暑中おみまいもうしあげます" << endl;
     cout << "西村花子" << endl;
 }
@@ -474,13 +474,13 @@ void SACHIKO::CreateSummer() { //オーバーライド
 AbstractFactory* AbstractFactory::CreateFactory(string _name) {
     if (_name == "ICHIRO") {
         ICHIRO* _ichiro = new ICHIRO; //アドレスだけでなくインスタンスの生成が必要
-        //↓TOHRUクラス→AbstractFactoryクラスへの「ポインタ間の変換」
+        //↓ICHIROクラス→AbstractFactoryクラスへの「ポインタ間の変換」
         AbstractFactory* _result =  reinterpret_cast<AbstractFactory*>(_ichiro);
         return _result;
 
     } else if (_name == "HANAKO") {
         HANAKO* _hanako = new HANAKO; //アドレスだけでなくインスタンスの生成が必要
-        //↓SACHIKOクラス→AbstractFactoryクラスへの「ポインタ間の変換」
+        //↓HANAKOクラス→AbstractFactoryクラスへの「ポインタ間の変換」
         AbstractFactory* _result =  reinterpret_cast<AbstractFactory*>(_hanako);
         return _result;	
 
@@ -496,13 +496,13 @@ AbstractFactory* AbstractFactory::CreateFactory(string _name) {
 int main() {
 AbstractFactory* _factoryICHIRO = AbstractFactory::CreateFactory("ICHIRO");
 _factoryICHIRO -> CreateNewYear();
-    //↑ポインタが指しているオブジェクト（factoryTOHRU）が指している関数を呼出します
+    //↑ポインタが指しているオブジェクト（factoryICHIRO）が指している関数を呼出します
     // HAPPY NEW YEAR!
     // ICHIRO NISHIMURA
 
     AbstractFactory* _factoryHANAKO = AbstractFactory::CreateFactory("HANAKO");
     _factoryHANAKO -> CreateNewYear();
-    //↑ポインタが指しているオブジェクト（factorySACHIKO）が指している関数を呼出します
+    //↑ポインタが指しているオブジェクト（factoryHANAKO）が指している関数を呼出します
     // 明けましておめでとうございます
     // 西村花子
     
