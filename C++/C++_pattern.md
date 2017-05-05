@@ -268,8 +268,6 @@ int main() {
 
 ### 例文
 ```
-
-//例文
 #include <iostream> //coutに必要
 using namespace std;
 
