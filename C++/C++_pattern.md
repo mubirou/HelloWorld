@@ -7,8 +7,8 @@
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
-    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -174,12 +174,87 @@ int main() {
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*****************************
+ * BuilderXXXのインターフェース
+*****************************/
+class IBuilder {
+    public:
+        virtual void MakeHeader() = 0; //純粋仮想関数（オーバーライドが必須）
+        virtual void MakeContent() = 0; //純粋仮想関数（オーバーライドが必須）
+        virtual void MakeFooter() = 0; //純粋仮想関数（オーバーライドが必須）
+};
+
+/*****************************
+ * BuilderA（タイプＡの年賀状）
+*****************************/
+class BuilderA : public IBuilder {
+    public:
+        void MakeHeader(); //純粋仮想関数のオーバーライド（宣言のみ）
+        void MakeContent(); //純粋仮想関数のオーバーライド（宣言のみ）
+        void MakeFooter(); //純粋仮想関数のオーバーライドの（宣言のみ）
+};
+//純粋仮想関数のオーバーライド（実装）
+void BuilderA::MakeHeader() { cout << "HAPPY NEW YEAR!" << endl; }
+void BuilderA::MakeContent() { cout << "○○○○○○○" << endl; }
+void BuilderA::MakeFooter() { cout << "2018.1.1" << endl; }
+
+/*****************************
+ * BuilderB（タイプＢの年賀状）
+*****************************/
+class BuilderB : public IBuilder {
+    public:
+        void MakeHeader(); //純粋仮想関数のオーバーライドの「宣言」
+        void MakeContent(); //純粋仮想関数のオーバーライドの「宣言」
+        void MakeFooter(); //純粋仮想関数のオーバーライドの「宣言」
+};
+//純粋仮想関数のオーバーライド（実装）
+void BuilderB::MakeHeader() { cout << "あけましておめでとうございます" << endl; }
+void BuilderB::MakeContent() { cout << "□□□□□□□" << endl; }
+void BuilderB::MakeFooter() { cout << "元旦" << endl; }
+
+/*****************************
+ * Director（年賀状の印刷業者）
+*****************************/
+class Director {
+    private:
+        IBuilder* _builder; //Builder○のインスタンスを管理（委譲）←注意
+    public:
+        Director(IBuilder* _builder); //コンストラクタの「宣言」←注意
+        void Construct();
+};
+Director::Director(IBuilder* _builder) { //コンストラクタの「実装」←注意
+    this->_builder = _builder;
+}
+void Director::Construct() { //メンバ関数の「実装」
+    //共通の手順（ポリモーフィズムを利用）
+    _builder -> MakeHeader(); //手順① ←ポインタからメンバを呼出す場合「アロー演算子」を使う
+    _builder -> MakeContent(); //手順② ←ポインタからメンバを呼出す場合「アロー演算子」を使う
+    _builder -> MakeFooter(); //手順③ ←ポインタからメンバを呼出す場合「アロー演算子」を使う
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    Director _director1(new BuilderA);
+    _director1.Construct();
+
+    Director _director2(new BuilderB);
+    _director2.Construct();
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月01日  
+更新日：2017年05月05日
 
 
 <a name="FactoryMethod"></a>
