@@ -39,6 +39,7 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
+```
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -77,6 +78,7 @@ int main() {
     //Singleton _singleton = new Singleton; //エラー：外部からインスタンスは生成不可
     return 0;
 }
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
