@@ -6,6 +6,7 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -38,12 +39,49 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*********************
+ * シングルトンクラス
+*********************/
+class Singleton {
+    private:
+        Singleton() {}; //コンストラクタ←外からのインスタンス生成不可
+        //↓ "唯一のインスタンス"の「アドレス」を「ポインタ」に格納する
+        static Singleton* _singleton; //静的メンバ変数の「宣言」
+        
+    public:
+        //インスタンスを生成＝既存のインスタンス（のアドレス）を呼出す
+        static Singleton* Instance(); //静的メンバ関数 の「宣言」
+};
+
+//new ○○でメモリ上に「アドレス」を確保
+Singleton* Singleton::_singleton = new Singleton; //静的メンバ変数 の「実装」
+
+Singleton* Singleton::Instance() { //静的メンバ関数 の「実装」
+    return _singleton; //既存の"唯一のインスタンス"（のアドレス）を呼出す
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    Singleton* _singleton1 = Singleton::Instance();
+    Singleton* _singleton2 = Singleton::Instance(); //上と同じ「アドレス」を格納
+    cout << (_singleton1 == _singleton2) << endl; //=> 1（同じインスタンス）
+    //Singleton* _singleton; //←これはアドレスを確保しただけなのでエラーなし
+    //Singleton _singleton; //エラー：外部からインスタンスは生成不可
+    //Singleton* _singleton = new Singleton; //エラー：外部からインスタンスは生成不可
+    //Singleton _singleton = new Singleton; //エラー：外部からインスタンスは生成不可
+    return 0;
+}
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年05月31日  
+更新日：2017年05月05日
 
 
 <a name="Prototype"></a>
