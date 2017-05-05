@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -89,12 +89,87 @@ int main() {
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+### ポイント
+1. 複製には、自作のインスタンス.Clone()を使います。
+1. Clone() メソッド内では、通常インスタンスを生成するようですが、
+今回は <b>this ポインタ</b> を使って <b>*this</b> でそのインスタンスの「値」をコピーしています。
+
+### 例文
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*******************
+* Prototypeクラス
+*******************/
+class Prototype; //クラスの「宣言」←先に宣言しないとインターフェース内で使えない為
+
+class IPrototype { //インターフェースクラス（オプション）
+    public: virtual Prototype Clone() = 0; //純粋仮想関数
+};
+
+class Prototype : public IPrototype { //Prototypeクラス ←コピー元となるクラス
+    private:
+        string _firstName, _lastName, _address; //メンバ変数の「宣言」
+
+    public:
+        //コンストラクタの「宣言」
+        Prototype(string _firstName, string _lastName, string _address); 
+        Prototype Clone(); //メンバ関数の「宣言」
+        
+        //アクセサ（getter）の「宣言」
+        string FirstName(); 
+        string LastName(); 
+        string Address();
+        //アクセサ（setter）の「宣言」
+        void FirstName(string _firstName);
+        void LastName(string _lastName);	
+        void Address(string _address);
+};
+
+//コンストラクタの「実装」
+Prototype::Prototype(string _firstName, string _lastName, string _address) { 
+    this->_firstName = _firstName;
+    this->_lastName = _lastName;
+    this->_address = _address;
+}
+
+Prototype Prototype::Clone() {
+    return *this; //「*XXX」で「ポインタ」から「値」を取得
+}
+
+//アクセサ（getter/setter）の「実装」
+string Prototype::FirstName() { return _firstName; }
+string Prototype::LastName() { return _lastName; }
+string Prototype::Address() { return _address; }
+void Prototype::FirstName(string _firstName) { this->_firstName = _firstName; }
+void Prototype::LastName(string _lastName) { this->_lastName = _lastName; }
+void Prototype::Address(string _address) { this->_address = _address; }
+
+/************
+* メイン関数
+************/
+int main() {
+    //インスタンス①を生成
+    Prototype _prototype1("Takashi", "Nishimura", "X-X-X XX-cho, Shinjuku-ku");
+
+    //インスタンス①のコピーを作成
+    Prototype _prototype2 = _prototype1.Clone(); 
+    
+    //複製したものだけ変数を変更
+    _prototype2.FirstName("Hanako");
+    
+    //検証
+    cout << _prototype1.FirstName() << " : " << _prototype2.FirstName() << endl; 
+    //"Takashi : Hanako" ←値が異なるので「参照」ではなく「複製」であることが判明
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年05月31日  
+更新日：2017年05月05日
 
 
 <a name="Builder"></a>
