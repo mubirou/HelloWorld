@@ -17,8 +17,8 @@
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
+    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
@@ -1039,12 +1039,113 @@ int main() {
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-XXXX
+### 概要
+* シンプルな窓口。見かけ。
+* ファサード＝「建物の正面」の意味。
+* たくさんのクラスやメソッドを、このパターン（窓口）を使うことでシンプルにして迷いを生じさせないようにします。
+* 以下の例文では、「Decoratorパターン」をFacadeパターンでシンプルにします。
+    ```
+    Display* _special = new Decorator2(
+                                new Decorator1(
+                                    new Decorator1(
+                                        new Decorator1(
+                                            new Original("TAKASHI")))));
+    _special -> Show();
+    ```
+    …としていたものを次の1行で実現可能になります。
+    ```
+    DecoratorFacade::Exec("TAKASHI", 3, 1)
+    ```
+
+### 例文
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*************************************************
+ * 基本クラス
+ *「中身」と「飾り」に同じShow()関数を持たせるため
+*************************************************/
+class Display {
+    protected: string _content; //メンバ定数の「宣言」
+    public:
+        string Content(); //getterの「浅間」
+        void Show(); //メンバ関数の「宣言」
+};
+string Display::Content() { //getterの「定義」
+    return _content;
+}
+void Display::Show() { //メンバ関数の「定義」
+    cout << _content << endl;
+}
+
+/*************************
+ * 中身（飾りを施す魔の元）
+*************************/
+class Original : public Display {
+    public: Original(string arg); //コンストラクタの「宣言」
+};
+Original::Original(string arg) { //コンストラクタの「定義」
+    _content = arg;
+}
+
+/***********
+ * 飾り枠①
+***********/
+class Decorator1 : public Display {
+    public: Decorator1(Display* _display); //コンストラクタの「宣言」
+};
+Decorator1::Decorator1(Display* _display) { //コンストラクタの「定義」
+    _content = "-" + (_display -> Content()) + "-"; //飾り①を付ける
+}
+
+/***********
+ * 飾り枠②
+***********/
+class Decorator2 : public Display {
+    public: Decorator2(Display* _display); //コンストラクタの「宣言」
+};
+Decorator2::Decorator2(Display* _display) { //コンストラクタの「定義」
+    _content = "<" + (_display -> Content()) + ">"; //飾り②を付ける
+}
+
+/*************************************************************
+ * シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
+*************************************************************/
+class DecoratorFacade {
+    private:
+        DecoratorFacade() {}; //コンストラクタ←外部からnewできないようにする
+    public:
+        static void Exec(string arg1, int arg2, int arg3);
+};
+void DecoratorFacade::Exec(string arg1, int arg2=0, int arg3=0) {
+    Display* _result = new Original(arg1);
+    for (int i=0; i<arg2; i++) {
+        _result = new Decorator1(_result);
+    }
+    for (int j=0; j<arg3; j++) {
+        _result = new Decorator2(_result);
+    }
+    _result -> Show();
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    DecoratorFacade::Exec("TAKASHI"); //"TAKASHI"
+    DecoratorFacade::Exec("TAKASHI", 1, 0); //"-TAKASHI-"
+    DecoratorFacade::Exec("TAKASHI", 0, 1); //"<TAKASHI>"
+    DecoratorFacade::Exec("TAKASHI", 3, 1); //<---TAKASHI--->
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月07日  
+更新日：2017年05月05日
 
 
 <a name="Flyweight"></a>
