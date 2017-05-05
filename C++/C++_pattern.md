@@ -946,12 +946,94 @@ int main() {
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*************************************************
+ * 基本クラス
+ *「中身」と「飾り」に同じShow()関数を持たせるため
+*************************************************/
+class Display {
+    protected: string _content; //メンバ定数の「宣言」
+    public:
+        string Content(); //getterの「浅間」
+        void Show(); //メンバ関数の「宣言」
+};
+string Display::Content() { //getterの「定義」
+    return _content;
+}
+void Display::Show() { //メンバ関数の「定義」
+    cout << _content << endl;
+}
+
+/*************************
+ * 中身（飾りを施す魔の元）
+*************************/
+class Original : public Display {
+    public: Original(string arg); //コンストラクタの「宣言」
+};
+Original::Original(string arg) { //コンストラクタの「定義」
+    _content = arg;
+}
+
+/***********
+ * 飾り枠①
+***********/
+class Decorator1 : public Display {
+    public: Decorator1(Display* _display); //コンストラクタの「宣言」
+};
+Decorator1::Decorator1(Display* _display) { //コンストラクタの「定義」
+    _content = "-" + (_display -> Content()) + "-"; //飾り①を付ける
+}
+
+/***********
+ * 飾り枠②
+***********/
+class Decorator2 : public Display {
+    public: Decorator2(Display* _display); //コンストラクタの「宣言」
+};
+Decorator2::Decorator2(Display* _display) { //コンストラクタの「定義」
+    _content = "<" + (_display -> Content()) + ">"; //飾り②を付ける
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    //検証（その１）
+    Display* _original = new Original("TAKASHI");
+    _original -> Show(); //"TAKASHI"
+
+    //検証（その２）
+    Display* _decorator1 = new Decorator1(new Original("TAKASHI"));
+    _decorator1 -> Show(); //"-TAKASHI-"
+
+    //検証（その３）
+    Display* _decorator2 = new Decorator2(new Original("TAKASHI"));
+    _decorator2 -> Show(); //"<TAKASHI>"
+
+    //検証（その４）
+    Display* _special = new Decorator2(
+                                new Decorator1(
+                                    new Decorator1(
+                                        new Decorator1(
+                                            new Original("TAKASHI")
+                                        )
+                                    )
+                                )
+                            );
+    _special -> Show(); //<---TAKASHI--->
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月06日  
+更新日：2017年05月05日
 
 
 <a name="Facade"></a>
