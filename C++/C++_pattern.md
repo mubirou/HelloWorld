@@ -268,6 +268,7 @@ int main() {
 
 ### 例文
 ```
+//test.cpp
 #include <iostream> //coutに必要
 using namespace std;
 
