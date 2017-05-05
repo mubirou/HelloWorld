@@ -260,11 +260,138 @@ int main() {
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+### 概要
+* インスタンス作成をサブクラスにまかせる。
+* Factoryとは「工場」、つまり工場メソッド。
+* Template Methodパターンの典型的な応用。
+* インスタンスを生成する工場を、Template Methodパターンで構成したもの。
+
+### 例文
+```
+
+//例文
+#include <iostream> //coutに必要
+using namespace std;
+//================================================
+// 生成したいクラス群
+//================================================
+class IMessage { //インターフェース（オプション）
+    public: virtual void Exec() = 0; //純粋仮想関数
+};
+
+class Message1 : public IMessage {
+    public: void Exec() { cout << "謹賀新年" << endl; }
+};
+
+class Message2 : public IMessage {
+    public: void Exec() { cout << "HAPPY NEW YEAR!" << endl; }
+};
+
+class Message3 : public IMessage {
+    public: void Exec() { cout << "明けましておめでとうございます" << endl; }
+};
+
+class Message4 : public IMessage {
+    public: void Exec() { cout << "あけましておめでとうございます" << endl; }
+};
+
+//================================================
+// 抽象（基底）クラス
+//================================================
+class AbstractCard {
+    private: void Order1(); //メンバ関数の「宣言」←共通の処理（処理②用）
+    protected: virtual void Order2() = 0; //純粋仮想関数の「宣言」←独自の処理（処理③用）
+    public:
+        void TemplateMethod(string _target); //共通のメンバ関数の「宣言」
+        virtual IMessage* FactoryMethod(string _target) = 0; //純粋仮想関数
+};
+void AbstractCard::TemplateMethod(string _target) { //共通のメンバ関数の「実装」
+    //ここでnewを記述しない（条件分岐は派生クラスで行ない、ここを汚さない）
+    //↓「純粋仮想関数」なので基底（抽象）クラスから派生クラスの関数を呼出すことが可能
+    IMessage* _message = FactoryMethod(_target); //派生クラスのメソッドを呼出す
+    _message -> Exec(); //処理① ←アロー演算子（ポインタからメンバ関数にアクセス）
+    Order1(); //処理②（共通の処理）
+    Order2(); //処理③（独自の処理）
+}
+void AbstractCard::Order1() { //共通の処理（処理②）
+    cout << "〒XXX-XXXX 新宿区XX町X-X-X" << endl;
+}
+
+//================================================
+// 派生クラス（ICHIRO用）
+//================================================
+class CardICHIRO : public AbstractCard { //抽象クラスを継承
+    protected:
+        void Order2(); //純粋仮想関数のオーバーライドの「宣言」
+    public:
+        IMessage* FactoryMethod(string _target); //純粋仮想関数のオーバーライドの「宣言」
+};
+IMessage* CardICHIRO::FactoryMethod(string _target) { //純粋仮想関数のオーバーライドの「実装」
+    if (_target == "teacher") {
+        return new Message1; //ここでnewを記述！
+    } else if (_target == "friend") {
+        return new Message2; //ここでnewを記述！
+    }
+}
+void CardICHIRO::Order2() { //独自の処理（処理③）
+    cout << "西村一郎" << endl;
+}
+
+//================================================
+// 派生クラス（HANAKO用）
+//================================================
+class CardHANAKO : public AbstractCard { //抽象クラスを継承
+    protected:
+        void Order2(); //純粋仮想関数のオーバーライドの「宣言」
+    public:
+        IMessage* FactoryMethod(string _target); //純粋仮想関数のオーバーライドの「宣言」
+};
+IMessage* CardHANAKO::FactoryMethod(string _target) { //純粋仮想関数のオーバーライドの「実装」
+    if (_target == "teacher") {
+        return new Message3; //ここでnewを記述！
+    } else if (_target == "friend") {
+        return new Message4; //ここでnewを記述！
+    }
+}
+void CardHANAKO::Order2() { //独自の処理（処理③）
+    cout << "西村花子" << endl;
+}
+
+//================================================
+// メイン関数
+//================================================
+int main() {
+    CardICHIRO _cardICHIRO; //インスタンスの生成
+
+    _cardICHIRO.TemplateMethod("teacher");
+    // 謹賀新年
+    // 〒XXX-XXXX 新宿区XX町X-X-X
+    // 西村一郎
+
+    _cardICHIRO.TemplateMethod("friend");
+    // HAPPY NEW YEAR!
+    // 〒XXX-XXXX 新宿区XX町X-X-X
+    // 西村一郎
+    
+    CardHANAKO _cardHANAKO; //インスタンスの生成
+
+    _cardHANAKO.TemplateMethod("teacher");
+    // 明けましておめでとうございます
+    // 〒XXX-XXXX 新宿区XX町X-X-X
+    // 西村花子
+
+    _cardHANAKO.TemplateMethod("friend");
+    // あけましておめでとうございます
+    // 〒XXX-XXXX 新宿区XX町X-X-X
+    // 西村花子
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2016年06月02日  
 更新日：2017年05月XX日
 
 
