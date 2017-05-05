@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
