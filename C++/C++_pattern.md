@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -262,9 +262,9 @@ int main() {
 
 ### 概要
 * インスタンス作成をサブクラスにまかせる。
-* Factoryとは「工場」、つまり工場メソッド。
-* Template Methodパターンの典型的な応用。
-* インスタンスを生成する工場を、Template Methodパターンで構成したもの。
+* Factory とは「工場」、つまり工場メソッド。
+* Template Method パターンの典型的な応用。
+* インスタンスを生成する工場を Template Method パターンで構成したもの。
 
 ### 例文
 ```
