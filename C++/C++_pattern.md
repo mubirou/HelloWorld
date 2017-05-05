@@ -531,7 +531,7 @@ _factoryICHIRO -> CreateNewYear();
 using namespace std;
 
 /*****************************
- * 基底クラス（Moneyboxクラス）
+* 基底クラス（Moneyboxクラス）
 *****************************/
 class Moneybox {
     private:
@@ -555,7 +555,7 @@ int Moneybox::GetYen() { //メンバ関数の「定義」★
 }
 
 /*******************************
- * インターフェース（オプション）
+* インターフェース（オプション）
 *******************************/
 class IExchange { //インターフェースクラス
     public:
@@ -564,7 +564,7 @@ class IExchange { //インターフェースクラス
 };
 
 /*****************************
- * 派生クラス（Exchangeクラス）
+* 派生クラス（Exchangeクラス）
 ******************************/
 class Exchange : public Moneybox, IExchange { //継承とインターフェースの実装
     private:
@@ -589,7 +589,7 @@ double Exchange::GetDollar() { //オーバーライド
 } 
 
 /**************
- * メインクラス
+* メインクラス
 **************/
 int main() {
     Exchange _exchange(10000, 112.258); //最初の貯金10,000円、レート112.258円/ドル
@@ -609,12 +609,91 @@ int main() {
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/***************************************************
+ * 基底クラス（Moneyboxクラス） ←「継承」版と全く同じ
+***************************************************/
+class Moneybox {
+    private:
+        int _yen; //メンバ変数の「宣言」
+    public:
+        Moneybox(int _yen); //コンストラクタの「宣言」
+        void Add(int _yen); //メンバ関数の「宣言」
+        int GetYen(); //メンバ関数の「宣言」
+};
+
+Moneybox::Moneybox(int _yen) { //コンストラクタの「定義」
+    this -> _yen = _yen;
+}
+
+void Moneybox::Add(int _yen) { //メン関数の「定義」★
+    this -> _yen += _yen;
+}
+
+int Moneybox::GetYen() { //メンバ関数の「定義」★
+    return _yen;
+}
+
+/*****************************************************
+ * インターフェース（オプション） ←「継承」版と全く同じ
+*****************************************************/
+class IExchange { //インターフェースクラス
+    public:
+        virtual void AddYen(int _yen) = 0; //純粋仮想関数
+        virtual double GetDollar() = 0; //純粋仮想関数
+};
+
+/*************************************************************
+ * 派生クラス（Exchangeクラス） ←この内容のみ「継承」版と異なる
+*************************************************************/
+class Exchange : IExchange {
+    private:
+        Moneybox* _moneybox; //Moneyboxクラスのインスタンス（ポインタ）を格納（委譲）
+        double _rate;
+    public:
+        Exchange(int _firstYen, double _rate); //コンストラクタ
+        void AddYen(int _yen); //純粋仮想関数のオーバーライドの「宣言」
+        double GetDollar(); //純粋仮想関数のオーバーライドの「宣言」
+        int GetYen(); //Moneyboxを継承していないのでここでも記述
+};
+
+Exchange::Exchange(int _firstYen, double _rate) {
+    _moneybox = new Moneybox(_firstYen); //ここがポイント
+    this -> _rate = _rate;
+}
+
+void Exchange::AddYen(int _yen) {
+    _moneybox -> Add(_yen); //ポイント
+}
+
+double Exchange::GetDollar() {
+    return _moneybox -> GetYen() / _rate; //ポイント
+}
+
+int Exchange::GetYen() {
+    return _moneybox -> GetYen(); //ポイント
+}
+
+/************************************
+ * メインクラス ←「継承」版と全く同じ
+************************************/
+int main() {
+    Exchange _exchange(10000, 112.258); //最初の貯金10,000円、レート112.258円/ドル
+    _exchange.AddYen(8000); //8,000円追加貯金
+    cout << _exchange.GetYen() << endl; //残金18,000円
+    cout << _exchange.GetDollar() << endl; //残金160.345ドル
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月06日  
+更新日：2017年05月05日
 
 
 <a name="Bridge"></a>
