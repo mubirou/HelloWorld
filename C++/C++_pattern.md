@@ -1235,12 +1235,72 @@ int main() {
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*************************
+ * ①と②のインターフェース
+*************************/
+class ILoader {
+    public: virtual void Load() = 0; //純粋可能関数（オーバーロードが必須）
+};
+
+/***************
+ * ②実際の本人
+***************/
+class Content : public ILoader { //インターフェースを実装
+    private:
+        string _path;
+    public:
+        Content(string _path); //コンストラクタの「宣言」
+        void Load(); //純粋可能関数のオーバーロードの「宣言」
+};
+
+Content::Content(string _path) { //コンストラクタの「定義」
+    this -> _path = _path;
+}
+
+void Content::Load() { //純粋可能関数のオーバーロードの「定義」
+    //↓重い処理をここで行う（ポイント）
+    cout << _path << " から重いファイルをダウンロード" << endl;
+}
+
+/********************
+ * ①代理人（Proxy）役
+********************/
+class Loader : public ILoader { //インターフェースを実装
+    private:
+        string _path;
+    public:
+        Loader(string _path); //コンストラクタの「宣言」
+        void Load(); //純粋可能関数のオーバーロードの「宣言」
+};
+
+Loader::Loader(string _path) { //コンストラクタの「定義」
+    this -> _path = _path;
+}
+
+void Loader::Load() { //純粋可能関数のオーバーロードの「定義」
+    //②実際の本人が登場←代理人は実際の本人を知っている
+    Content* _content = new Content(_path);
+    _content -> Load();
+}
+
+// メイン関数 ====================================================================
+int main() {
+    Loader* loader_ = new Loader("http://XXXX"); //代理人（Proxy）役
+    //実際には必要になった時にロードしますが...
+    loader_ -> Load(); //http://XXXX から重いファイルをダウンロード
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月07日  
+更新日：2017年05月05日
 
 
 <a name="Iterator"></a>
