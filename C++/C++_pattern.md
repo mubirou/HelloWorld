@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1605,12 +1605,119 @@ int main() {
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+/*********
+ * 訪問者
+*********/
+class IVisitor { //訪問者のインターフェース
+    public:
+        virtual int GetMoney() = 0; //純粋仮想関数
+        virtual void Visit(int otoshidama_) = 0; //純粋仮想関数
+};
+
+/*******
+ * 一郎
+*******/
+class Ichiro : public IVisitor { //←インターフェースの実装
+    private:
+        int money_; //メンバ変数の宣言
+    public:
+        Ichiro(); //コンストラクタの宣言
+        int GetMoney(); //メンバ関数の宣言
+        void Visit(int otoshidama_);
+};
+Ichiro::Ichiro() { //コンストラクタの定義
+    money_ = 0;
+}
+
+int Ichiro::GetMoney() {
+    return money_;
+}
+
+void Ichiro::Visit(int otoshidama_) {
+    money_ += otoshidama_;
+}
+
+/*******
+ * 花子
+*******/
+class Hanako : public IVisitor { //←インターフェースの実装
+    private:
+        int money_; //メンバ変数の宣言
+    public:
+        Hanako(); //コンストラクタの宣言
+        int GetMoney(); //メンバ関数の宣言
+        void Visit(int otoshidama_);
+};
+Hanako::Hanako() { //コンストラクタの定義
+    money_ = 0;
+}
+int Hanako::GetMoney() {
+    return money_;
+}
+void Hanako::Visit(int otoshidama_) {
+    money_ += otoshidama_;
+}
+
+/*********
+ * 訪問先
+*********/
+class IAcceptor { //訪問先のインターフェース
+    public:
+        virtual void Accept(IVisitor* visitor_) = 0; //純粋仮想関数（オーバーライド必須）
+};
+
+class Hokkaido : public IAcceptor { //←インターフェースの実装
+    public:
+        void Accept(IVisitor* visitor_); //純粋仮想関数のオーバーライドの宣言
+};
+void Hokkaido::Accept(IVisitor* visitor_) { //純粋仮想関数のオーバーライドの定義
+    visitor_ -> Visit(5000*2); //←誰が訪問してきても同じメソッドを実行
+}
+
+class Chiba : public IAcceptor { //←インターフェースの実装
+    public:
+        void Accept(IVisitor* visitor_); //純粋仮想関数のオーバーライドの宣言
+};
+
+void Chiba::Accept(IVisitor* visitor_) { //純粋仮想関数のオーバーライドの定義
+    visitor_ -> Visit(5000); //誰が訪問してきても同じメソッドを実行
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    //訪問先
+    Hokkaido* Hokkaido_ = new Hokkaido; //埼玉実家
+    Chiba* Chiba_ = new Chiba; //宮島家
+
+    //訪問者
+    Ichiro* _ichiro = new Ichiro; //一郎
+    Hanako* _hanako = new Hanako; //花子 
+
+    //訪問する（訪問側から見ると「受け入れる」）
+    Hokkaido_ -> Accept(_ichiro);
+    Hokkaido_ -> Accept(_hanako);
+    Chiba_ -> Accept(_ichiro);
+    Chiba_ -> Accept(_hanako);
+
+    //結果...
+    cout << _ichiro -> GetMoney() << endl; //15000
+    cout << _hanako -> GetMoney() << endl; //15000
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月08日  
+更新日：2017年05月06日
 
 
 <a name="ChainofResponsibility"></a>
