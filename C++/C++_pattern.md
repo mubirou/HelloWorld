@@ -2089,12 +2089,157 @@ int main() {
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <vector> //vector配列に必要
+using namespace std;
+
+//===========================================
+// Memento役（その瞬間の状態をオブジェクト化）
+//===========================================
+class SnapShot {
+    private:
+        //↓今回はシンプルにするため１項目だけですが通常は複数の変数を保存します
+        int _point;
+    public:
+        SnapShot(int _point); //コンストラクタの宣言
+        int Point(); //getter
+        void Point(int _point); //setter
+};
+
+//コンストラクタの定義
+SnapShot::SnapShot(int _point) {
+    this -> _point = _point;
+}
+
+//getter
+int SnapShot::Point() {
+    return _point;
+}
+
+//setter
+void SnapShot::Point(int _point) {
+    this -> _point = _point;
+}
+
+//========================
+// 主人公 + バックアップ係
+//========================
+class Gamer {
+    private:
+        int _point;
+        vector<SnapShot*> _history; //履歴用リスト
+        int _count; //Undo、Redo用
+    public:
+        Gamer(int _point); //コンストラクタの宣言
+        SnapShot* Save(); //メンバ関数の宣言
+        int Point(); //getter
+        void Point(int _point); //setter
+        void History(); //メンバ関数の宣言
+        SnapShot* Undo(); //メンバ関数の宣言
+        SnapShot* Redo(); //メンバ関数の宣言
+};
+
+//コンストラクタの定義
+Gamer::Gamer(int _point=0) {
+    this -> _point = _point;
+}
+
+//メンバ関数の実装（状態を保存）
+SnapShot* Gamer::Save() {
+    SnapShot* _snapShot = new SnapShot(_point);
+    _history.push_back(_snapShot); //履歴に追加
+    _count = _history.size() - 1;
+    return _snapShot;
+}
+
+//getter
+int Gamer::Point() {
+    return _point;
+}
+
+//setter
+void Gamer::Point(int _point) {
+    this -> _point = _point;
+}
+
+//メンバ関数の実装（履歴）
+void Gamer::History() {
+    for (int i=0; i<_history.size(); i++) {
+        cout << i << ":" << _history[i] -> Point() << endl;
+    }
+}
+
+//メンバ関数の実装（アンドゥ）
+SnapShot* Gamer::Undo() {
+    if (_count > 0) {
+        return _history[--_count];
+    } else {
+        cout << "これ以上、Undoできません" << endl;
+        _count = 0;
+        return _history[0];
+    }
+}
+
+//メンバ関数の実装（リドゥ）
+SnapShot* Gamer::Redo() {
+    if (_count < _history.size() - 1) {
+        return _history[++_count];
+    } else {
+        cout << "これ以上、Redoできません" << endl;
+        _count = _history.size() - 1;
+        return _history[_count];
+    }
+}
+
+
+//===============================================================
+// メイン関数
+//===============================================================
+int main() {
+    Gamer* _gamer = new Gamer(100); //ゲームスタート（最初のポイントは100）①
+    SnapShot* _snapShot = _gamer -> Save(); //最初の状態を保存
+
+    _gamer -> Point(2000); //いろいろゲームが進行して2000ポイントに...②
+    _snapShot = _gamer -> Save(); //この時点での状態を保存
+
+    _gamer -> Point(8000); //更にゲームが進行して8000ポイントに...③
+    _snapShot = _gamer -> Save(); //この時点での状態を保存
+
+    _gamer -> History(); //履歴を調べる
+    // 0:100 ←①
+    // 1:2000 ←②
+    // 2:8000 ←③
+
+    cout << "------------------------" << endl;
+
+    //実験（アンドゥ）
+    _snapShot = _gamer -> Undo(); //Undo（やり直し）
+    cout << _snapShot -> Point() << endl; //2000 ←②
+    _snapShot = _gamer -> Undo(); //Undo（やり直し）
+    cout << _snapShot -> Point() << endl; //100 ←①
+    _snapShot = _gamer -> Undo(); //Undo（やり直し）
+    cout << _snapShot -> Point() << endl; //これ以上、Undoできません 100 ←②
+
+    cout << "------------------------" << endl;
+
+    //実験（リドゥ）
+    _snapShot = _gamer -> Redo(); //Redo（再実行）
+    cout << _snapShot -> Point() << endl; //2000 ←②
+    _snapShot = _gamer -> Redo(); //Redo（再実行）
+    cout << _snapShot -> Point() << endl; //8000 ←③
+    _snapShot = _gamer -> Redo(); //Redo（再実行）
+    cout << _snapShot -> Point() << endl; //これ以上、Redoできません 8000 ←③
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月10日  
+更新日：2017年05月06日
 
 
 <a name="State"></a>
