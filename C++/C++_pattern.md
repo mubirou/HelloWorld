@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1515,8 +1515,8 @@ int main() {
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
 ### 概要
-* アルゴリズムをごっそり切り替える。戦略。Strategy＝作戦。アルゴリズム（手順）。
-* Stateパターン（後述）に似ていますが、Stateパターンの場合は...
+* アルゴリズムをごっそり切り替える。戦略。Strategy ＝作戦。アルゴリズム（手順）。
+* State パターン（後述）に似ていますが、State パターンの場合は...
     ```
     new Context()
     ```
@@ -2245,12 +2245,73 @@ int main() {
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+using namespace std;
+
+//================
+// State（状態）役
+//================
+class IState { //State○のインターフェース
+    public: virtual void Execute() = 0; //純粋仮想関数（オーバーライド必須）
+};
+
+// StateA（状態Ａ）
+class StateA : public IState {
+    public: virtual void Execute(); //純粋仮想関数のオーバーライドの宣言
+};
+void StateA::Execute() { //純粋仮想関数のオーバーライドの実装
+    cout << "グー、グー、パー" << endl;
+}
+
+// StateB（状態Ｂ）
+class StateB : public IState {
+    public: virtual void Execute(); //純粋仮想関数のオーバーライドの宣言
+};
+void StateB::Execute() { //純粋仮想関数のオーバーライドの実装
+    cout << "パー、グー、チョキ" << endl;
+}
+
+//========================
+// Context（状態を管理）役
+//========================
+class Janken {
+    private: IState* state_; //メンバ変数の宣言（状態＝State○を格納）
+    public:
+        void SetState(IState* state_); //メンバ関数の宣言
+        void Exec(); //メンバ関数の宣言
+};
+void Janken::SetState(IState* state_) { //メンバ関数の実装
+    this -> state_ = state_;
+}
+void Janken::Exec() { //メンバ関数の実装
+    state_ -> Execute(); //...→State○::Execute()を呼び出す
+}
+
+//===========
+// メイン関数
+//===========
+int main() {
+    Janken* _janken = new Janken; //Context（状態を管理）役
+    
+    IState* _stateA = new StateA; //State（状態）役
+    IState* _stateB = new StateB; //State（状態）役
+
+    _janken -> SetState(_stateA); //状態の設定
+    _janken -> Exec(); //グー、グー、パー
+
+    _janken -> SetState(_stateB); //状態の設定
+    _janken -> Exec(); //パー、グー、チョキ
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月10日  
+更新日：2017年05月06日
 
 
 <a name="Command"></a>
