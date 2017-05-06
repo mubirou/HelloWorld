@@ -72,7 +72,7 @@ int main() {
     Singleton* _singleton1 = Singleton::Instance();
     Singleton* _singleton2 = Singleton::Instance(); //上と同じ「アドレス」を格納
     cout << (_singleton1 == _singleton2) << endl; //=> 1（同じインスタンス）
-    //Singleton* _singleton; //←これはアドレスを確保しただけなのでエラーなし
+    //Singleton* _singleton; //これはアドレスを確保しただけなのでエラーなし
     //Singleton _singleton; //エラー：外部からインスタンスは生成不可
     //Singleton* _singleton = new Singleton; //エラー：外部からインスタンスは生成不可
     //Singleton _singleton = new Singleton; //エラー：外部からインスタンスは生成不可
@@ -1579,7 +1579,7 @@ Janken::Janken(IStrategy* _strategy) { //コンストラクタの定義
 }
 
 void Janken::Exec() { //メンバ関数の定義
-    _strategy -> Execute(); //←Exec()だと紛らわしいので...
+    _strategy -> Execute(); //Exec()だと紛らわしいので...
 }
 
 /*************
@@ -1622,7 +1622,7 @@ class IVisitor { //訪問者のインターフェース
 /*******
  * 一郎
 *******/
-class Ichiro : public IVisitor { //←インターフェースの実装
+class Ichiro : public IVisitor { //インターフェースの実装
     private:
         int money_; //メンバ変数の宣言
     public:
@@ -1645,7 +1645,7 @@ void Ichiro::Visit(int otoshidama_) {
 /*******
  * 花子
 *******/
-class Hanako : public IVisitor { //←インターフェースの実装
+class Hanako : public IVisitor { //インターフェースの実装
     private:
         int money_; //メンバ変数の宣言
     public:
@@ -1671,15 +1671,15 @@ class IAcceptor { //訪問先のインターフェース
         virtual void Accept(IVisitor* visitor_) = 0; //純粋仮想関数（オーバーライド必須）
 };
 
-class Hokkaido : public IAcceptor { //←インターフェースの実装
+class Hokkaido : public IAcceptor { //インターフェースの実装
     public:
         void Accept(IVisitor* visitor_); //純粋仮想関数のオーバーライドの宣言
 };
 void Hokkaido::Accept(IVisitor* visitor_) { //純粋仮想関数のオーバーライドの定義
-    visitor_ -> Visit(5000*2); //←誰が訪問してきても同じメソッドを実行
+    visitor_ -> Visit(5000*2); //誰が訪問してきても同じメソッドを実行
 }
 
-class Chiba : public IAcceptor { //←インターフェースの実装
+class Chiba : public IAcceptor { //インターフェースの実装
     public:
         void Accept(IVisitor* visitor_); //純粋仮想関数のオーバーライドの宣言
 };
@@ -1813,12 +1813,158 @@ int main() {
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <vector> //vector配列に必要
+using namespace std;
+
+class Mediator; //前方宣言
+
+/**********************
+ * メンバXXXの抽象クラス
+**********************/
+class AbstractMember {
+    protected:
+        Mediator* mediator_; //継承する変数（共通の変数）の宣言←相談役を格納
+    public:
+        void SetMediator(Mediator* mediator_); //継承する関数（共通の機能）の宣言
+        //↓純粋仮想関数（オーバーライド必須）
+        virtual void Request(string arg) = 0; 
+        virtual void Advice(string arg) = 0;
+};
+
+void AbstractMember::SetMediator(Mediator* mediator_) { //継承する関数（共通の機能）の定義
+    this -> mediator_ = mediator_;
+}
+
+/****************************
+ *  メンバXXX : 関数の「宣言」
+****************************/
+class MemberA : public AbstractMember { //抽象クラスの実装
+    public:
+        void Request(string arg); //純粋仮想関数のオーバーライドの宣言
+        void Advice(string arg); //純粋仮想関数のオーバーライドの宣言
+};
+
+class MemberB : public AbstractMember { //抽象クラスの実装
+    public:
+        void Request(string arg); //純粋仮想関数のオーバーライドの宣言
+        void Advice(string arg); //純粋仮想関数のオーバーライドの宣言
+};
+
+class MemberC : public AbstractMember { //抽象クラスの実装
+    public:
+        void Request(string arg); //純粋仮想関数のオーバーライドの宣言
+        void Advice(string arg); //純粋仮想関数のオーバーライドの宣言
+};
+
+/***********************************
+ * 相談役（専門性が高いため使い捨て）
+***********************************/
+class Mediator {
+    private:
+        static vector<AbstractMember*> MEMBER_LIST; //vector配列の宣言
+    public:
+        Mediator(); //コンストラクタの宣言
+        static AbstractMember* MEMBER_A; //静的メンバ変数の宣言
+        static AbstractMember* MEMBER_B; //静的メンバ変数の宣言
+        static AbstractMember* MEMBER_C; //静的メンバ変数の宣言
+        void AddMember(AbstractMember* member_); //メンバ関数の宣言
+        void RequestBack(AbstractMember* member_, string string_); //メンバ関数の宣言
+};
+
+//静的メンバ変数の定義
+vector<AbstractMember*> Mediator::MEMBER_LIST = {}; 
+AbstractMember* Mediator::MEMBER_A = new MemberA;
+AbstractMember* Mediator::MEMBER_B = new MemberB;
+AbstractMember* Mediator::MEMBER_C = new MemberC;
+
+Mediator::Mediator() { //コンストラクタの実装
+    //メンバの登録
+    AddMember(MEMBER_A);
+    AddMember(MEMBER_B);
+    AddMember(MEMBER_C);
+}
+
+//メンバリストに登録
+void Mediator::AddMember(AbstractMember* member_) { //メンバ関数の実装
+    MEMBER_LIST.push_back(member_); //vector配列に追加
+    member_ -> SetMediator(this); //メンバーに相談役は自分であることを教える
+}
+
+//メンバから報告を受けて指示を出す（特に専門性が高い関数）
+void Mediator::RequestBack(AbstractMember* member_, string string_) {
+    if (member_ == MEMBER_A) {
+        if (string_ == "西へ行く") {
+            //メンバＡから”西へ行く"と報告があった場合の処理...
+            member_ -> Advice("（Ａよ）了解、そのまま西へ行け"); //Ａへの指示
+
+            //↓メンバＡ以外への処理
+            for (AbstractMember* theMember_ : MEMBER_LIST) {
+                if (theMember_ == MEMBER_B) {
+                    theMember_ -> Advice("（Ｂよ）東へ行け"); //Ｂへの指示
+                } else if (theMember_ == MEMBER_C) {
+                    theMember_ -> Advice("（Ｃよ）その場で待機しろ"); //Ｃへの指示
+                }
+            }
+        }
+    }
+    //以後、各メンバからの報告内容に対する処理を記述......
+}
+
+/***************************
+ *  メンバXXX : 関数の「実装」
+***************************/
+//メンバＡ用
+void MemberA::Request(string arg) { //純粋仮想関数のオーバーライドの実装
+    //ここにメンバＡ独自の処理
+    mediator_ -> RequestBack(this, arg); //相談役に報告
+}
+void MemberA::Advice(string arg) { //純粋仮想関数のオーバーライドの実装
+    cout << "MemberA: "  << arg << endl;
+}
+
+//メンバＢ用
+void MemberB::Request(string arg) { //純粋仮想関数のオーバーライドの実装
+    //ここにメンバＢ独自の処理
+    mediator_ -> RequestBack(this, arg); //相談役に報告
+}
+void MemberB::Advice(string arg) { //純粋仮想関数のオーバーライドの実装
+    cout << "MemberB: "  << arg << endl;
+}
+
+//メンバＣ用
+void MemberC::Request(string arg) { //純粋仮想関数のオーバーライドの実装
+    //ここにメンバＣ独自の処理
+    mediator_ -> RequestBack(this, arg); //相談役に報告
+}
+
+void MemberC::Advice(string arg) { //純粋仮想関数のオーバーライドの実装
+    cout << "MemberC: "  << arg << endl;
+}
+
+/*************
+ * メイン関数
+*************/
+int main() {
+    //相談役（コンストラクタを呼び出すだけが目的）
+    new Mediator; //今回のサンプルではインスタンスは未使用
+
+    //相談役へ、メンバＡから「西へ行く」と報告があった場合...
+    Mediator::MEMBER_A -> Request("西へ行く"); //今回は静的メンバ変数を利用
+    //MemberA: （Ａよ）了解、そのまま西へ行け
+    //MemberB: （Ｂよ）東へ行け
+    //MemberC: （Ｃよ）その場で待機しろ
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月09日  
+更新日：2017年05月06日
 
 
 <a name="Observer"></a>
