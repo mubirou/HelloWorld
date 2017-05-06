@@ -1586,11 +1586,11 @@ void Janken::Exec() { //メンバ関数の定義
  * メイン関数
 *************/
 int main() {
-Janken* _jankenA = new Janken(new StrategyA);
-Janken* _jankenB = new Janken(new StrategyB);
+    Janken* _jankenA = new Janken(new StrategyA);
+    Janken* _jankenB = new Janken(new StrategyB);
 
-_jankenA -> Exec(); //グー、グー、パー
-_jankenB -> Exec(); //パー、グー、チョキ
+    _jankenA -> Exec(); //グー、グー、パー
+    _jankenB -> Exec(); //パー、グー、チョキ
 
     return 0;
 }
