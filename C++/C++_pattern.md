@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>C++ デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -32,7 +30,6 @@
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
-    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -2436,10 +2433,118 @@ int main() {
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
+```
+//test.cpp
+/*******************************************************************
+* ここでは ActionScript、SWF、AVM（ActionScript Virtual Machine）を
+* を自作ミニ言語と見立てています。「終端となる表現の役」を省略。
+*******************************************************************/
+#include <iostream> //coutに必要
+#include <vector> //vector配列に必要
+#include <string.h> //strtokに必要
+using namespace std;
 
-XXXX
+//==============================
+// ≒SWFファイルを生成するクラス
+//==============================
+class SWF {
+    private:
+        vector<string> _codeArray; //命令を配列化（中間コード）
+        int _count; //GetNextCode()で使用
+    public:
+        SWF(char* _code); //コンストラクタの宣言
+        string GetNextCode(); //メンバ関数の宣言
+        bool IsEnd(); //メンバ関数の宣言
+};
+
+//コンストラクタの定義
+SWF::SWF(char* _code) {
+    _count = 0;
+
+    //↓右辺がstring（文字列）扱いにして関数にできると良いですが...（要検証）
+    char *tp;
+    tp = strtok(_code, ";"); //（;）区切りで分割する場合
+    _codeArray.push_back(tp); //1個目を配列に格納
+    while ( tp != NULL ) {
+        tp = strtok(NULL, ";"); //（;）区切りで分割する場合
+        if ( tp != NULL ) {
+            _codeArray.push_back(tp); //2個目以降を配列に格納
+        }
+    }
+}
+
+//メンバ関数の実装
+string SWF::GetNextCode() { //次の命令を返す
+    return _codeArray[_count++];
+}
+
+//メンバ関数の実装
+bool SWF::IsEnd() { //次の命令があるか否か...
+    return _count >= _codeArray.size();
+}
+
+//=====================================
+// ≒AVM（ActionScript Virtual Machine）
+//=====================================
+class AVM {
+    public:
+        void Execute(SWF* swf); //メンバ関数の宣言
+};
+
+//メンバ関数の実装
+void AVM::Execute(SWF* _swf) {
+    int _result = 0; //計算結果
+
+    while (! _swf -> IsEnd()) { //次の命令があれば...
+        string _nextCode = _swf -> GetNextCode(); //次の命令を取得
+
+        //ここからはサンプルの独自処理
+        //--------------------------
+        string _operator = _nextCode.substr(0,1); //「+*/-=」の何れか
+        if (_operator != "=") { //最終計算（=）でなければ...
+            string _str = _nextCode.substr(1); //「+*/-=」以外の値を取得
+            int _int = atoi(_str.c_str()); //string型→int型に変換
+            
+            if (_operator == "+") {
+                _result += _int;
+            } else if (_operator == "-") {
+                _result -= _int;
+            } else if (_operator == "*") {
+                _result *= _int;
+            } else if (_operator == "/") {
+                _result /= _int;
+            } else {
+                cout << "ERROR: 演算子が異なります" << endl;
+            }
+
+        } else { //「=」の場合...
+            cout << _result << endl;
+        }
+        //--------------------------
+    }
+}
+
+//===========
+// メイン関数
+//===========
+int main() {
+    //自作言語による記述（≒ActionScript）
+    char _code[] = "+10;*50;/2;-4;="; //←C++独特の処理
+
+    //≒SWFファイルに変換
+    SWF* _swf = new SWF(_code);
+
+    //≒AVM（ActionScript Virtual Machine）
+    AVM* _avm = new AVM;
+
+    //≒SWFファイルをAVM上で実行（計算結果は246）
+    _avm -> Execute(_swf);
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月10日  
+更新日：2017年05月06日
