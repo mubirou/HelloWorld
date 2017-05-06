@@ -1970,11 +1970,119 @@ int main() {
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <vector> //vector配列に必要
+using namespace std;
+
+class Apple; //前方宣言
+
+//==================
+// リスナー役（宣言）
+//==================
+class IObserver {
+    public:
+        virtual void Update(Apple* _apple) = 0; //純粋仮想関数（前方宣言必須）
+};
+
+// iPhone /////////////////////////
+class iPhone : public IObserver {
+    public: void Update(Apple* _apple); //純粋仮想関数のオーバーライドの宣言
+};
+
+// iPad /////////////////////////
+class iPad : public IObserver {
+    public: void Update(Apple* _apple); //純粋仮想関数のオーバーライドの宣言
+};
+
+// iPadPro /////////////////////////
+class iPadPro : public IObserver {
+    public: void Update(Apple* _apple); //純粋仮想関数のオーバーライドの宣言
+};
+
+//=============
+// 観察される役
+//=============
+class ISubject {
+    public:
+        virtual void AddObserver(IObserver* _observer) = 0; //純粋仮想関数
+        virtual void RemoveObserver(IObserver* _observer) = 0; //純粋仮想関数
+        virtual void Notify() = 0; //純粋仮想関数（オーバーライド必須）
+};
+
+class Apple : public ISubject {
+    private: vector<IObserver*> _observerList; //←リスナーのリスト
+    public:
+        void AddObserver(IObserver* _observer); //リスナー登録用関数の宣言
+        void RemoveObserver(IObserver* _observer); //純粋仮想関数のオーバーライドの宣言
+        void Notify(); //純粋仮想関数のオーバーライドの宣言
+        string GetVersion(); //メンバ関数
+};
+
+void Apple::AddObserver(IObserver* _observer) { //リスナー登録用関数の実装
+    _observerList.push_back(_observer); //リスナーの登録
+}
+
+void Apple::RemoveObserver(IObserver* _observer) {
+    //リスナーの検索＆削除
+    for (int i=0; i<_observerList.size(); i++) {
+        if (_observerList[i] == _observer) {
+            _observerList.erase(_observerList.begin() + i);
+        }
+    }
+}
+
+void Apple::Notify() { //全リスナーへの通知
+    for (IObserver* _observer : _observerList) { //foreach文
+        _observer -> Update(this);
+    }
+}
+
+string Apple::GetVersion() {
+    return "10.3.1";
+}
+
+//===================
+// リスナー役（実装）
+//===================
+void iPhone::Update(Apple* _apple) { //純粋仮想関数のオーバーライドの定義
+    cout << "iPhoneは" << _apple -> GetVersion() << "にアップデート可能" << endl;
+}
+void iPad::Update(Apple* _apple) { //純粋仮想関数のオーバーライドの定義
+    cout << "iPadは" << _apple -> GetVersion() << "にアップデート可能" << endl;
+}
+void iPadPro::Update(Apple* _apple) { //純粋仮想関数のオーバーライドの定義
+    cout << "iPadProは" << _apple -> GetVersion() << "にアップデート可能" << endl;
+}
+
+//===========
+// メイン関数
+//===========
+int main() {
+    //観察される（Subject）役
+    ISubject* _apple = new Apple;
+
+    //リスナー（Observer）役
+    IObserver* _iPhone = new iPhone;
+    IObserver* _iPad = new iPad;
+    IObserver* _iPadPro = new iPadPro;
+
+    //リスナー（Observer）の登録
+    _apple -> AddObserver(_iPhone);
+    _apple -> AddObserver(_iPad);
+    _apple -> AddObserver(_iPadPro);
+
+    //全リスナー（Observer）への通知
+    _apple -> Notify();
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2016年06月10日  
 更新日：2017年05月XX日
 
 
