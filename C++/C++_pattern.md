@@ -31,8 +31,8 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
+    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -1871,7 +1871,7 @@ class Mediator {
         static AbstractMember* MEMBER_B; //静的メンバ変数の宣言
         static AbstractMember* MEMBER_C; //静的メンバ変数の宣言
         void AddMember(AbstractMember* member_); //メンバ関数の宣言
-        void RequestBack(AbstractMember* member_, string string_); //メンバ関数の宣言
+        void RequestBack(AbstractMember* member_, string _string); //メンバ関数の宣言
 };
 
 //静的メンバ変数の定義
@@ -1894,9 +1894,9 @@ void Mediator::AddMember(AbstractMember* member_) { //メンバ関数の実装
 }
 
 //メンバから報告を受けて指示を出す（特に専門性が高い関数）
-void Mediator::RequestBack(AbstractMember* member_, string string_) {
+void Mediator::RequestBack(AbstractMember* member_, string _string) {
     if (member_ == MEMBER_A) {
-        if (string_ == "西へ行く") {
+        if (_string == "西へ行く") {
             //メンバＡから”西へ行く"と報告があった場合の処理...
             member_ -> Advice("（Ａよ）了解、そのまま西へ行け"); //Ａへの指示
 
@@ -2317,12 +2317,121 @@ int main() {
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <vector> //vector配列に必要
+using namespace std;
+
+//=========================================
+// 結果を表示する役＝Receiver（受信者）の役
+//=========================================
+class Canvas {
+    private:
+        vector<string> _history; //履歴（実際の処理を保存）
+    public:
+        void Update(string _command); //メンバ関数の宣言
+};
+
+//メンバ関数の定義
+void Canvas::Update(string _command) { //キャンバスの再描画 ←◎
+    //履歴に実際の処理を内容を（先に）保存し、それ順々に実行します。
+    _history.push_back(_command);
+    for (string _string : _history) {
+        cout << _string << endl; //描画
+    }
+    cout << "------------再描画" << endl; //←フレームレート毎の動き
+}
+
+//===========
+// 命令クラス
+//===========
+class DrawCommand {
+    private:
+        Canvas* _canvas; //メンバ変数の宣言
+        string _command; //メンバ変数の宣言
+    public:
+        DrawCommand(Canvas* _canvas, string _command); //コンストラクタの宣言
+        void Execute(); //メンバ関数の宣言
+};
+
+//コンストラクタの定義
+DrawCommand::DrawCommand(Canvas* _canvas, string _command) {
+    this -> _canvas = _canvas;
+    this -> _command = _command;
+}
+
+//メンバ関数の定義
+void DrawCommand::Execute() { //←Inkscape::Draw()から呼び出される★
+    _canvas -> Update(_command); //→◎
+}
+
+//===================
+// グラフィックソフト
+//===================
+class Inkscape {
+    private:
+        Canvas* _canvas; //Receiver（受信者）の役
+        vector<DrawCommand*> _history; //履歴（命令クラス）を保存
+    public:
+        Inkscape(); //コンストラクタの宣言
+        void Draw(string _command); //メンバ関数の宣言
+        void Batch(int start_, int end_); //メンバ関数の宣言
+};
+
+//コンストラクタの定義
+Inkscape::Inkscape() {
+    _canvas = new Canvas; //Receiver（受信者）の役
+}
+
+//メンバ関数の実装（命令の実行）
+void Inkscape::Draw(string _command) {
+    //↓命令を実行する度にインスタンスを生成（ポイント!!）
+    DrawCommand* _drawCommand = new DrawCommand(_canvas, _command);
+    _drawCommand -> Execute(); //実行（＝キャンバスの再描画）→★
+    _history.push_back(_drawCommand); //履歴に命令クラスを保存
+}
+
+//メンバ関数の実装（バッチ処理＝オプション）
+void Inkscape::Batch(int start_, int end_) {
+    //start_とend_がvector配列の範囲外の場合のエラー処理は今回は省略
+    
+    //↓C#のList.GetRange(開始,終了)の代りです
+    vector<DrawCommand*> batch_;
+    for (int i = start_-1; i < end_; i++) {
+        batch_.push_back(_history[i]);
+    }
+
+    for (DrawCommand* _drawCommand : batch_) {
+        _drawCommand -> Execute();
+    }
+}
+
+//===========
+// メイン関数
+//===========
+int main() {
+    //グラフィックソフト
+    Inkscape* _inkscape = new Inkscape;
+
+    //命令の実行
+    _inkscape -> Draw("線を引く");
+    _inkscape -> Draw("縁取る");
+    _inkscape -> Draw("影を付ける");
+
+    cout << "------------------------バッチ処理" << endl;
+
+    //バッチ処理（オプション）
+    _inkscape -> Batch(1,3); //実行履歴の1〜3個目を再度実行する
+
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月10日  
+更新日：2017年05月06日
 
 
 <a name="Interpreter"></a>
