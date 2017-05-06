@@ -389,7 +389,7 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
 作成日：2016年06月02日  
-更新日：2017年05月XX日
+更新日：2017年05月05日
 
 
 <a name="AbstractFactory"></a>
