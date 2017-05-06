@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1723,12 +1723,91 @@ int main() {
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+//test.cpp
+#include <iostream> //coutに必要
+#include <regex> //正規表現に必要
+using namespace std;
+
+//=====================
+// 各郵便局の抽象クラス
+//=====================
+class AbstractPO {
+    protected: //派生クラスでも利用するので...
+        AbstractPO* nextPO_; //継承するメンバ変数 ←たらいまわし先（ポイント）
+    public:
+        AbstractPO* SetNext(AbstractPO* po_); //継承する関数（共通の機能）の宣言
+        virtual void Send(string address_) = 0; //純粋仮想関数（オーバーライド必須）
+};
+AbstractPO* AbstractPO::SetNext(AbstractPO* po_) { //継承する関数（共通の機能）の定義
+    nextPO_ = po_;
+}
+
+//=====================
+// 新宿郵便局
+//=====================
+class ShinjukuPO : public AbstractPO { //抽象クラスの実装
+    public: void Send(string address_); //純粋仮想関数のオーバーライドの宣言
+};
+void ShinjukuPO::Send(string address_) { //純粋仮想関数のオーバーライドの定義
+    regex regex_("新宿");
+    if (regex_search(address_, regex_)) { //住所に"新宿"が含まれている場合...
+        cout << "本日中に届きます" << endl;
+    } else { //住所に"新宿"が含まれていない場合...
+        nextPO_ -> Send(address_); //たらいまわし先に振る（ポイント）
+    }
+}
+
+//=====================
+// 東京郵便局
+//=====================
+class TokyoPO : public AbstractPO { //抽象クラスの実装
+    public: void Send(string address_); //純粋仮想関数のオーバーライドの宣言
+};
+void TokyoPO::Send(string address_) { //純粋仮想関数のオーバーライドの定義
+    regex regex_("東京");
+    if (regex_search(address_, regex_)) { //住所に"東京"が含まれている場合...
+        cout << "明後日中に届きます" << endl;
+    } else { //住所に"東京"が含まれていない場合...
+        nextPO_ -> Send(address_); //たらいまわし先に振る（ポイント）
+    }
+}
+
+//==========================
+// 日本郵便局
+//==========================
+class JapanPO : public AbstractPO { //抽象クラスの実装
+    public: void Send(string address_); //純粋仮想関数のオーバーライドの宣言
+};
+void JapanPO::Send(string address_) { //純粋仮想関数のオーバーライドの定義
+    cout << "一週間前後で届きます" << endl;
+}
+
+//==========================
+// メイン関数
+//==========================
+int main() {
+    //各郵便局の設置
+    AbstractPO* _setagayaPO = new ShinjukuPO;
+    AbstractPO* _tokyoPO = new TokyoPO;
+    AbstractPO* _japanPO = new JapanPO;
+
+    //責任のたらいまわし先のセット（注意：C#等とは異なり別々に設定）
+    _setagayaPO -> SetNext(_tokyoPO);
+    _tokyoPO -> SetNext(_japanPO);
+
+    //投函（ぜんぶ新宿郵便局に投函する）
+    _setagayaPO -> Send("新宿区XX町X-X-X"); //本日中に届きます
+    _setagayaPO -> Send("東京都青梅市XXX町X-X-X"); //明後日中に届きます
+    _setagayaPO -> Send("北海道XXX市XXX町X-X-X"); //一週間前後で届きます
+    return 0;
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月08日  
+更新日：2017年05月06日
 
 
 <a name="Mediator"></a>
