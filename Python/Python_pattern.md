@@ -38,9 +38,8 @@
 
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
-
-#test.py
 ```
+#test.py
 """
 Singletonクラス
 """
