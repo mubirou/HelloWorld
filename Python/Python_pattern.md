@@ -74,7 +74,7 @@ print(_singleton1 == _singleton2) #True ←中身は全く同じインスタン�
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
 作成日：2016年06月30日  
-更新日：2017年05月XX日
+更新日：2017年05月08日
 
 
 <a name="Prototype"></a>
