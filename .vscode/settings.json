@@ -4,5 +4,6 @@
         "initializer_list": "cpp",
         "array": "cpp",
         "utility": "cpp"
-    }
+    },
+    "python.linting.pylintEnabled": false
 }

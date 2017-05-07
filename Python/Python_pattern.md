@@ -6,6 +6,7 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -38,11 +39,42 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
+#test.py
+```
+"""
+Singletonクラス
+"""
+class Singleton(object):
+    __singleton = None #唯一のインスタンスを格納
+    __boolean = False #インスタンスを生成して良いか否か
+
+    def __init__(self): #コンストラクタ関数
+        if (not self.__boolean):
+            print("ERROR:Singleton.getInstance()でインスタンスを生成して下さい")
+            raise NotImplementedError() #外部からSingleton()出来ないようにする
+
+    @classmethod #クラスメソッドの宣言
+    def getInstance(self):
+        if (self.__singleton == None): #インスタンスがまだ無い場合...
+            self.__boolean = True #インスタンスの生成を許可
+            self.__singleton = Singleton() #唯一となるインスタンスを生成＆格納
+            print("インスタンスが生成されました") #DEBUG
+        return self.__singleton #唯一のインスタンスを返す
+
+"""
+実行
+"""
+#singleton_ = Singleton() #外からインスタンスの生成は不可
+_singleton1 = Singleton.getInstance() #唯一のインスタンスにアクセスする方法
+_singleton2 = Singleton.getInstance() #唯一のインスタンスにアクセスする方法
+print(_singleton1) #<__main__.Singleton object at 0x7ff6ed059b00>
+print(_singleton2) #<__main__.Singleton object at 0x7ff6ed059b00>
+print(_singleton1 == _singleton2) #True ←中身は全く同じインスタンス
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2016年06月30日  
 更新日：2017年05月XX日
 
 
