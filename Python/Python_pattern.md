@@ -40,6 +40,7 @@
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 ```
 #test.py
+
 """
 Singletonクラス
 """
