@@ -1730,7 +1730,7 @@ using namespace std;
 // 各郵便局の抽象クラス
 //=====================
 class AbstractPO {
-    protected: //派生クラスでも利用するので...
+    protected: //派生クラスでも利用する為
         AbstractPO* nextPO_; //継承するメンバ変数 ←たらいまわし先（ポイント）
     public:
         AbstractPO* SetNext(AbstractPO* po_); //継承する関数（共通の機能）の宣言
@@ -1748,7 +1748,7 @@ class ShinjukuPO : public AbstractPO { //抽象クラスの実装
 };
 void ShinjukuPO::Send(string address_) { //純粋仮想関数のオーバーライドの定義
     regex regex_("新宿");
-    if (regex_search(address_, regex_)) { //住所に"新宿"が含まれている場合...
+    if (regex_search(address_, regex_)) { //住所に"新宿"が含まれている場合
         cout << "本日中に届きます" << endl;
     } else { //住所に"新宿"が含まれていない場合...
         nextPO_ -> Send(address_); //たらいまわし先に振る（ポイント）
@@ -1763,7 +1763,7 @@ class TokyoPO : public AbstractPO { //抽象クラスの実装
 };
 void TokyoPO::Send(string address_) { //純粋仮想関数のオーバーライドの定義
     regex regex_("東京");
-    if (regex_search(address_, regex_)) { //住所に"東京"が含まれている場合...
+    if (regex_search(address_, regex_)) { //住所に"東京"が含まれている場合
         cout << "明後日中に届きます" << endl;
     } else { //住所に"東京"が含まれていない場合...
         nextPO_ -> Send(address_); //たらいまわし先に振る（ポイント）
