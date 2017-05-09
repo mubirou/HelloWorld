@@ -137,9 +137,9 @@ print(_prototype2.firstName, _prototype2.lastName) #HANAKO NISHIMURA
 ```
 # test.py
 
-"""
-Drectorクラス（≒年賀状印刷業者）
-"""
+#=================================
+# Drectorクラス（≒年賀状印刷業者）
+#=================================
 class Director(object):
     __builder = None #Builder○のインスタンスを格納（委譲）
 
@@ -151,17 +151,17 @@ class Director(object):
         self.__builder.makeContent() #手順②
         self.__builder.makeFooter() #手順③
 
-"""
-BuilderXXXクラスのインターフェース
-"""
+#==================================
+# BuilderXXXクラスのインターフェース
+#==================================
 class IBuilder(object): #擬似インターフェース（実際は普通の基本クラス）
     def makeHeader(self): raise NotImplementedError() #派生クラスで強制的に実装させる為...
     def makeContent(self): raise NotImplementedError()
     def makeFooter(self): raise NotImplementedError()
 
-"""
-BuilderAクラス（≒年賀状のタイプＡ）
-"""
+#====================================
+# BuilderAクラス（≒年賀状のタイプＡ）
+#====================================
 class BuilderA(IBuilder): #擬似インターフェースを実装（継承）
     def makeHeader(self): #擬似インターフェースの関数をオーバーライド
         print("あけましておめでとうございます") #今回のサンプルは簡単に...(^^;
@@ -170,9 +170,9 @@ class BuilderA(IBuilder): #擬似インターフェースを実装（継承）
     def makeFooter(self): #擬似インターフェースの関数をオーバーライド
        print("元旦")
 
-"""
-BuilderBクラス（≒年賀状のタイプＢ）
-"""
+#====================================
+# BuilderBクラス（≒年賀状のタイプＢ）
+#====================================
 class BuilderB(IBuilder): #擬似インターフェースを実装（継承）
     def makeHeader(self): #擬似インターフェースの関数をオーバーライド
         print("HAPPY NEW YEAR!")
@@ -181,9 +181,9 @@ class BuilderB(IBuilder): #擬似インターフェースを実装（継承）
     def makeFooter(self): #擬似インターフェースの関数をオーバーライド
         print("2018.1.1")
 
-"""
-実行
-"""
+#======
+# 実行
+#======
 directorA_ = Director(BuilderA())
 directorA_.construct()
 """
