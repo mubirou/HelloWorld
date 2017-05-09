@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -38,6 +38,7 @@
 
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
+
 ```
 #test.py
 
@@ -81,12 +82,56 @@ print(_singleton1 == _singleton2) #True ←中身は全く同じインスタン�
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+### 概要＆ポイント
+1. コピーしてインスタンスを作る。クラス名()でインスタンスを生成せずに、インスタンスを複製（≠参照）して新しいインスタンスを作成。Javaにはclone()が、PHPには
+__clone()が、Pythonにはcopy.deepcopy()があります。
+1. 複製にはインスタンス.clone()を使う。
+
+### 例文
+```
+# test.py
+
+"""
+擬似インターフェース（実際はふつうの基本クラス）
+"""
+class IPrototype(object):
+    def clone(self): raise NotImplementedError() #派生クラスで強制的に実装させる為
+
+class Prototype(IPrototype): #擬似インターフェース（基本クラス）を実装（継承）
+    __firstName = __lastName = None #プライベート変数の宣言
+    def __init__(self, _lastName): #コンストラクタ
+        self.__lastName = _lastName
+    def clone(self): #基本クラス（擬似インターフェース）の関数をオーバーライド
+       import copy #copy.deepcopy()に必要
+       return copy.deepcopy(self)
+
+    #以下__firstNameと__lastName（読取り専用）のアクセサ
+    def __getFirstName(self):
+        return self.__firstName
+    def __setFirstName(self, value):
+        self.__firstName = value
+    firstName = property(__getFirstName, __setFirstName)
+    def __getLastName(self):
+        return self.__lastName
+    lastName = property(__getLastName)
+
+"""
+検証
+"""
+_prototype1 = Prototype("NISHIMURA") #インスタンスを生成
+_prototype1.firstName = "ICHIRO"
+_prototype2 = _prototype1.clone() #複製する（Prototype()を使わない）
+_prototype2.firstName = "HANAKO" #変更しないと複製時の"ICHIRO"のまま
+print(_prototype1.firstName, _prototype1.lastName) #ICHIRO NISHIMURA
+print(_prototype2.firstName, _prototype2.lastName) #HANAKO NISHIMURA
+```
+
+作成日：2016年6月30日（木）
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月30日  
+更新日：2017年05月09日
 
 
 <a name="Builder"></a>
