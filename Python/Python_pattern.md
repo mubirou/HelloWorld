@@ -125,8 +125,6 @@ print(_prototype1.firstName, _prototype1.lastName) #ICHIRO NISHIMURA
 print(_prototype2.firstName, _prototype2.lastName) #HANAKO NISHIMURA
 ```
 
-作成日：2016年6月30日（木）
-
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
 作成日：2016年06月30日  
