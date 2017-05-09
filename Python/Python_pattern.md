@@ -7,8 +7,8 @@
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
-    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -134,12 +134,77 @@ print(_prototype2.firstName, _prototype2.lastName) #HANAKO NISHIMURA
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+# test.py
+
+"""
+Drectorクラス（≒年賀状印刷業者）
+"""
+class Director(object):
+    __builder = None #Builder○のインスタンスを格納（委譲）
+
+    def __init__(self, _builder): #コンストラクタ関数
+        self.__builder = _builder
+
+    def construct(self): #共通の手順（カスタム関数）
+        self.__builder.makeHeader() #手順①
+        self.__builder.makeContent() #手順②
+        self.__builder.makeFooter() #手順③
+
+"""
+BuilderXXXクラスのインターフェース
+"""
+class IBuilder(object): #擬似インターフェース（実際は普通の基本クラス）
+    def makeHeader(self): raise NotImplementedError() #派生クラスで強制的に実装させる為...
+    def makeContent(self): raise NotImplementedError()
+    def makeFooter(self): raise NotImplementedError()
+
+"""
+BuilderAクラス（≒年賀状のタイプＡ）
+"""
+class BuilderA(IBuilder): #擬似インターフェースを実装（継承）
+    def makeHeader(self): #擬似インターフェースの関数をオーバーライド
+        print("あけましておめでとうございます") #今回のサンプルは簡単に...(^^;
+    def makeContent(self): #擬似インターフェースの関数をオーバーライド
+        print("□□イラ□スト□□")
+    def makeFooter(self): #擬似インターフェースの関数をオーバーライド
+       print("元旦")
+
+"""
+BuilderBクラス（≒年賀状のタイプＢ）
+"""
+class BuilderB(IBuilder): #擬似インターフェースを実装（継承）
+    def makeHeader(self): #擬似インターフェースの関数をオーバーライド
+        print("HAPPY NEW YEAR!")
+    def makeContent(self): #擬似インターフェースの関数をオーバーライド
+        print("○イ○ラ○ス○ト○")
+    def makeFooter(self): #擬似インターフェースの関数をオーバーライド
+        print("2018.1.1")
+
+"""
+実行
+"""
+directorA_ = Director(BuilderA())
+directorA_.construct()
+"""
+あけましておめでとうございます
+□□イラ□スト□□
+元旦
+"""
+
+directorB_ = Director(BuilderB())
+directorB_.construct()
+"""
+HAPPY NEW YEAR!
+○イ○ラ○ス○ト○
+2018.1.1
+"""
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月30日  
+更新日：2017年05月10日
 
 
 <a name="FactoryMethod"></a>
