@@ -83,9 +83,8 @@ print(_singleton1 == _singleton2) #True ←中身は全く同じインスタン�
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
 ### 概要＆ポイント
-1. コピーしてインスタンスを作る。クラス名()でインスタンスを生成せずに、インスタンスを複製（≠参照）して新しいインスタンスを作成。Javaにはclone()が、PHPには
-__clone()が、Pythonにはcopy.deepcopy()があります。
-1. 複製にはインスタンス.clone()を使う。
+1. コピーしてインスタンスを作る。クラス名()でインスタンスを生成せずに、インスタンスを複製（≠参照）して新しいインスタンスを作成。Java には clone() が、PHP には __clone() が、Python には copy.deepcopy() があります。
+1. 複製には インスタンス.clone() を使う。
 
 ### 例文
 ```
