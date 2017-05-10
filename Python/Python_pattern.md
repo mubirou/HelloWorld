@@ -491,7 +491,7 @@ class Exchange(IExchange): #この内容が「継承」版と異なる
         self.__moneybox = Moneybox(firstYen_) #ここがポイント
         self.__rate = rate_
     def addYen(self, yen_):
-        self.__moneybox.add(yen_) #ポイント!!
+        self.__moneybox.add(yen_) #ポイント
     def getDollar(self):
         return self.__moneybox.getYen() / self.__rate #ポイント
 
