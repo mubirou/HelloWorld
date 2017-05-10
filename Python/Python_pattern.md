@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -210,12 +210,128 @@ HAPPY NEW YEAR!
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#========================================
+# 擬似抽象クラス ←実際は普通の基本クラス
+#========================================
+class AbstractCard(object):
+    # 擬似抽象関数（派生クラスでオーバーライド）
+    def factoryMethod(self, arg):
+        raise NotImplementedError() 
+        #↑派生クラスで強制的に実装させる為...
+
+    # 派生クラスに継承される関数
+    def templateMethod(self, arg):
+        #条件分岐をここで行わない＝ここを汚さない
+        _message = self.factoryMethod(arg) #派生クラスに定義した関数を呼出す
+        _message.exec() #処理①
+        self.order1() #処理②
+        self.order2() #処理③
+
+    # 共通の処理
+    def order1(self):
+        print("〒XXX-XXXX 新宿区XX町X-X-X") 
+    
+    # 擬似抽象関数（派生クラスでオーバーライド）
+    def order2(self): 
+        raise NotImplementedError() #例外処理（派生クラスで強制的に実装させる為）
+
+#========================
+# 派生クラス（CardICHIRO）
+#========================
+#↓擬似抽象クラスの実装（実際は普通の基本クラス）
+class CardICHIRO(AbstractCard):
+    #↓抽象クラスの関数をオーバーライド
+    def factoryMethod(self, arg):
+        if (arg == "先生") :
+            return Message1() #ここでインスタンス生成
+        elif (arg == "同級生") : 
+            return Message2() #ここでインスタンス生成
+        else: 
+            print("Error:CardICHIRO.factoryMethod()")
+            raise NotImplementedError() #例外処理（Errorを発生させる）
+
+    #↓抽象クラスの関数をオーバーライド    
+    def order2(self):
+        print("西村一郎") #具体的な処理を記述
+
+#========================
+# 派生クラス（CardHANAKO）
+#========================
+#↓擬似抽象クラスの実装（実際は普通の基本クラス）
+class CardHANAKO(AbstractCard):
+    #↓抽象クラスの関数をオーバーライド
+    def factoryMethod(self, arg):
+        if (arg == "先生") :
+            return Message3() #ここでインスタンス生成
+        elif (arg == "同級生") : 
+            return Message4() #ここでインスタンス生成
+        else: 
+            print("Error:CardHANAKO.factoryMethod()")
+            raise NotImplementedError() #例外処理（Errorを発生させる）
+
+    #↓抽象クラスの関数をオーバーライド    
+    def order2(self):
+        print("西村花子") #具体的な処理を記述
+
+#===================
+# 生成したいクラス群
+#===================
+#インターフェース（実際は普通の基本クラス）
+class IMessage(object):
+    def exec(self): raise NotImplementedError()
+    #↑派生クラスでオーバーライドして実装しないと実行時にErrorを発生させる
+
+class Message1(IMessage):
+    def exec(self): print("謹賀新年")
+
+class Message2(IMessage):
+    def exec(self): print("HAPPY NEW YEAR!")
+
+class Message3(IMessage):
+    def exec(self): print("明けましておめでとうございます")
+
+class Message4(IMessage):
+    def exec(self): print("あけましておめでとう!")
+
+#======
+# 実行
+#======
+_cardICHIRO = CardICHIRO()
+_cardICHIRO.templateMethod("先生")
+"""
+謹賀新年
+〒XXX-XXXX 新宿区XX町X-X-X
+西村一郎
+"""
+_cardICHIRO.templateMethod("同級生")
+"""
+HAPPY NEW YEAR!
+〒XXX-XXXX 新宿区XX町X-X-X
+西村一郎
+"""
+
+_cardHANAKO = CardHANAKO()
+_cardHANAKO.templateMethod("先生")
+"""
+明けましておめでとうございます
+〒XXX-XXXX 新宿区XX町X-X-X
+西村花子
+"""
+_cardHANAKO.templateMethod("同級生")
+"""
+あけましておめでとう!
+〒XXX-XXXX 新宿区XX町X-X-X
+西村花子
+"""
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月30日  
+更新日：2017年05月10日
 
 
 <a name="AbstractFactory"></a>
