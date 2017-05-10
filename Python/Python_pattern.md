@@ -628,10 +628,10 @@ class Directory(Component): #Pythonでは"Directory"という名前も可
     
     def getList(self): #オーバーライドして実際の処理を記述
         for tmp in self.__childList:
-            result_ = self.name + "/" + tmp.name
-            if isinstance(tmp,Directory): result_ = result_ + "(Directory)"
-            elif isinstance(tmp,File): result_ = result_ + "(File)"
-            print(result_)
+            _result = self.name + "/" + tmp.name
+            if isinstance(tmp,Directory): _result = _result + "(Directory)"
+            elif isinstance(tmp,File): _result = _result + "(File)"
+            print(_result)
 
 #========================
 # 派生クラス（Fileクラス）
@@ -646,23 +646,23 @@ class File(Component):
 # 実行
 #=======
 # ①ディレクトリの作成
-root_ = Directory("root")
+_root = Directory("root")
 authoring_ = Directory("Authoring")
 
 # ②ファイルの作成
-unity3D_ = File("Unity3D")
-unrealEngine_ = File("Unreal Engine")
+_unity3D = File("Unity3D")
+_unrealEngine = File("Unreal Engine")
 
 # ③関連付け
-root_.add(authoring_) #ディレクトリ内にフォルダを入れる
-authoring_.add(unity3D_) #ディレクトリ内にファイルを入れる
-authoring_.add(unrealEngine_) #ディレクトリ内にファイルを入れる
+_root.add(authoring_) #ディレクトリ内にフォルダを入れる
+authoring_.add(_unity3D) #ディレクトリ内にファイルを入れる
+authoring_.add(_unrealEngine) #ディレクトリ内にファイルを入れる
 
 # ④検証
-print(unrealEngine_.name) # Unreal Engine
-root_.getList() # root/Authoring(Directory)
+print(_unrealEngine.name) # Unreal Engine
+_root.getList() # root/Authoring(Directory)
 authoring_.getList() #Authoring/Unity3D(File)、Authoring/Unreal Engine(File)
-unity3D_.getList() #Authoring/Unity3D(File)
+_unity3D.getList() #Authoring/Unity3D(File)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
@@ -720,16 +720,16 @@ class Decorator2(Display):
 #=======
 # 実行
 #=======
-original_ = Original("TAKASHI")
-original_.show() # TAKASHI
+_original = Original("TAKASHI")
+_original.show() # TAKASHI
 
-decorator1_ = Decorator1(Original("TAKASHI"))
-decorator1_.show() # -TAKASHI-
+_decorator1 = Decorator1(Original("TAKASHI"))
+_decorator1.show() # -TAKASHI-
 
-decorator2_ = Decorator2(Original("TAKASHI"))
-decorator2_.show() # <TAKASHI>
+_decorator2 = Decorator2(Original("TAKASHI"))
+_decorator2.show() # <TAKASHI>
 
-special_ = Decorator2(
+_special = Decorator2(
             Decorator1(
                 Decorator1(
                     Decorator1(
@@ -738,7 +738,7 @@ special_ = Decorator2(
                 )
             )
 )
-special_.show() # <---TAKASHI--->
+_special.show() # <---TAKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
@@ -749,13 +749,83 @@ special_.show() # <---TAKASHI--->
 
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
+* 以下の例文では「Decoratorパターン」をFacadeパターンでシンプルにします。
+```
+_special = Decorator2(
+            Decorator1(
+                Decorator1(
+                    Decorator1(
+                        Original("TAKASHI")))));
+_special.show();
+```
+...としていたものを次の1行で実現可能になります。
+```
+DecoratorFacade.Set("TAKASHI", 3, 1);
+```
 
-XXXX
+```
+#test.py
+
+#=====================================================
+# 以下の４つのクラスはDecoratorパターンの例文と全く同じ
+#=====================================================
+# 基本クラス（「中身」と「飾り枠」に同じshow()関数を持たせるため）
+class Display(object):
+    __content = None
+    def show(self):
+        print(self.__content)
+    def __getContent(self):
+    	return self.__content
+    def __setContent(self, value):
+    	self.__content = value
+    content = property(__getContent, __setContent)
+
+# 派生クラス「中身」（飾りを施す前の元）
+class Original(Display):
+    def __init__(self, _string):
+        self.content = _string
+
+# 派生クラス「飾り枠①」    
+class Decorator1(Display):
+    def __init__(self, display_):
+        self.content = "-" + display_.content + "-"
+
+# 派生クラス「飾り枠②」
+class Decorator2(Display):
+    def __init__(self, display_):
+        self.content = "<" + display_.content + ">"
+
+#============================================================
+# シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
+#============================================================
+class DecoratorFacade(object): #Singletonパターン的に
+    #コンストラクタ関数
+    def __init__(self):
+        raise NotImplementedError() #外からインスタンスを生成できないようにする
+    
+    #クラスメソッド
+    @classmethod
+    def Set(cls, arg1, arg2=0, arg3=0): #第１引数（cls）は必須
+        result_ = Original(arg1)
+        for i in range(0, arg2):
+            result_ = Decorator1(result_)
+        for j in range(0, arg3):
+            result_ = Decorator2(result_)
+        result_.show()
+
+#=======
+# 実行
+#=======
+DecoratorFacade.Set("TAKASHI") # TAKASHI
+DecoratorFacade.Set("TAKASHI", 1, 0) # -TAKASHI-
+DecoratorFacade.Set("TAKASHI", 0, 1) # <TAKASHI>
+DecoratorFacade.Set("TAKASHI", 3, 1) # <---TAKASHI--->
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月01日  
+更新日：2017年05月11日
 
 
 <a name="Flyweight"></a>
