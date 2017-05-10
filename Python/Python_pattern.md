@@ -9,8 +9,8 @@
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
+    ***
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
@@ -337,12 +337,84 @@ _cardHANAKO.templateMethod("同級生")
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#=================================
+# （擬似）抽象クラス＝抽象的な工場
+#=================================
+class AbstractFactory(object):
+    #↓クラスメソッド（≒静的関数）
+    @classmethod
+    def createFactory(self, _name):
+        if (_name == "ICHIRO"):
+            return ICHIRO() #具体的な「亨工場」（インスタンス）を生成
+        elif (_name == "HANAKO"):
+            return HANAKO() #具体的な「幸子工場」（インスタンス）を生成
+        else:
+            print("Error:AbstractFactory.createFactory()")
+    
+    #↓擬似抽象関数（派生クラスでオーバーライド）
+    def createNewYear(self):
+        raise NotImplementedError() 
+        #↑派生クラスで実装しないと実行時にError
+    
+    #↓擬似抽象関数（派生クラスでオーバーライド）
+    def createSummer(self):
+        raise NotImplementedError() 
+        #↑派生クラスで実装しないと実行時にError
+    
+#=========================
+# 派生クラス＝実際の工場群
+#=========================
+class ICHIRO(AbstractFactory):
+    #↓抽象クラスの関数をオーバーライド
+    def createNewYear(self):
+        print("HAPPY NEW YEAR!\nICHIRO NISHIMURA")
+    
+    def createSummer(self):
+        print("暑中お見舞い申し上げます\n西村一郎")
+
+class HANAKO(AbstractFactory):
+    #↓抽象クラスの関数をオーバーライド
+    def createNewYear(self):
+        print("明けましておめでとうございます\n西村花子")
+    
+    def createSummer(self):
+        print("暑中おみまいもうしあげます\n西村花子")
+
+#======
+# 実行
+#======
+_factoryICHIRO = AbstractFactory.createFactory("ICHIRO")
+_factoryICHIRO.createNewYear()
+"""
+HAPPY NEW YEAR!
+ICHIRO NISHIMURA
+"""
+_factoryICHIRO.createSummer()
+"""
+暑中お見舞い申し上げます
+西村一郎
+"""
+
+_factoryHANAKO = AbstractFactory.createFactory("HANAKO")
+_factoryHANAKO.createNewYear()
+"""
+明けましておめでとうございます
+西村花子
+"""
+_factoryHANAKO.createSummer()
+"""
+暑中おみまいもうしあげます
+西村花子
+"""
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月30日  
+更新日：2017年05月10日
 
 
 <a name="Adapter（継承）"></a>
