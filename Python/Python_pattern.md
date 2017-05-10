@@ -749,7 +749,7 @@ _special.show() # <---TAKASHI--->
 
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
-* 以下の例文では「Decoratorパターン」をFacadeパターンでシンプルにします。
+* 以下の例文では「Decorator パターン」を「Facade パターン」でシンプルにします。
 ```
 _special = Decorator2(
             Decorator1(
