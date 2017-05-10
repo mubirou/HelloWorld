@@ -16,8 +16,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
@@ -674,12 +674,77 @@ unity3D_.getList() #Authoring/Unity3D(File)
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#================================================================
+# 基本クラス（「中身」と「飾り枠」に同じshow()関数を持たせるため）
+#================================================================
+class Display(object):
+    __content = None #protectedに出来ないのでアクセサと併用...
+    
+    def show(self):
+        print(self.__content)
+    
+    #__contentのアクセサ（getter）←派生クラスで利用
+    def __getContent(self):
+    	return self.__content
+    def __setContent(self, value):
+    	self.__content = value
+    content = property(__getContent, __setContent)
+
+#======================================
+# 派生クラス「中身」（飾りを施す前の元）
+#======================================
+class Original(Display):
+    #コンストラクタ
+    def __init__(self, _string):
+        self.content = _string
+    
+#======================
+# 派生クラス「飾り枠①」
+#======================
+class Decorator1(Display):
+    #コンストラクタ
+    def __init__(self, display_):
+        self.content = "-" + display_.content + "-" #飾り「--」を付ける
+
+#======================
+# 派生クラス「飾り枠②」
+#======================
+class Decorator2(Display):
+    #コンストラクタ
+    def __init__(self, display_):
+        self.content = "<" + display_.content + ">" #飾り「<>」を付ける
+
+#=======
+# 実行
+#=======
+original_ = Original("TAKASHI")
+original_.show() # TAKASHI
+
+decorator1_ = Decorator1(Original("TAKASHI"))
+decorator1_.show() # -TAKASHI-
+
+decorator2_ = Decorator2(Original("TAKASHI"))
+decorator2_.show() # <TAKASHI>
+
+special_ = Decorator2(
+            Decorator1(
+                Decorator1(
+                    Decorator1(
+                        Original("TAKASHI")
+                    )
+                )
+            )
+)
+special_.show() # <---TAKASHI--->
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月01日  
+更新日：2017年05月11日
 
 
 <a name="Facade"></a>
