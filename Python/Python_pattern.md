@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -512,12 +512,79 @@ print(exchange_.getDollar()) #158.25600058618022（ドル）
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#================
+#「機能」のクラス
+#================
+# SuperMobileクラス（基本クラス）
+class SuperMobile(object): #「機能」クラスの最上位
+    __os = None #「機能」⇔「実装」クラスの「橋」（委譲）
+    def __init__(self, _os): #コンストラクタ
+        self.__os = _os
+    #OSの__versionのアクセサ（getter）
+    def __getRawVersion(self):
+        return self.__os.rawVersion
+    version = property(__getRawVersion) 
+
+# Tabletクラス（派生クラス）
+class Tablet(SuperMobile): #「機能」のクラスに機能を追加したクラス
+    def __init__(self, _os): #コンストラクタ
+        super(Tablet, self).__init__(_os) #基本クラスのコンストラクタの呼出し
+    def bigScreen(self): #タブレット特有の機能
+        print("大きな画面で見る")
+
+# SmartPhoneクラス（派生クラス）
+class SmartPhone(SuperMobile): #「機能」のクラスに機能を追加したクラス
+    def __init__(self, _os): #コンストラクタ
+        super(SmartPhone, self).__init__(_os) #基本クラスのコンストラクタの呼出し
+    def phone(self): #スマートフォン特有の機能
+        print("電話をかける")
+
+#===================================
+#「実装」のクラス（抽象クラスは省略）
+#===================================
+# Androidクラス
+class Android(object): #「実装」の具体的な実装者
+    __version = "Android 7.1.2"
+    #__versionのアクセサ（getter）
+    def __getVersion(self): 
+        return self.__version
+    rawVersion = property(__getVersion)
+
+# IOSクラス
+class IOS(object): #「実装」の具体的な実装者
+    __version = "iOS 10.3.1"
+    #__versionのアクセサ（getter）
+    def __getVersion(self):
+        return self.__version
+    rawVersion = property(__getVersion)
+
+#======
+# 実行
+#======
+_tablet1 = Tablet(Android())
+print(_tablet1.version) # "Android 7.1.2"
+_tablet1.bigScreen() #大きな画面で見る
+
+_tablet2 = Tablet(IOS())
+print(_tablet2.version) # "iOS 10.3.1"
+_tablet2.bigScreen() #大きな画面で見る
+
+_smartPhone1 = SmartPhone(Android())
+print(_smartPhone1.version) # "Android 7.1.2"
+_smartPhone1.phone() #電話をかける
+
+_smartPhone2 = SmartPhone(IOS())
+print(_smartPhone2.version) # "iOS 10.3.1"
+_smartPhone2.phone() #電話をかける
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月01日  
+更新日：2017年05月11日
 
 
 <a name="Composite"></a>
