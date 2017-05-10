@@ -344,7 +344,7 @@ _cardHANAKO.templateMethod("同級生")
 # （擬似）抽象クラス＝抽象的な工場
 #=================================
 class AbstractFactory(object):
-    #↓クラスメソッド（≒静的関数）
+    #クラスメソッド（≒静的関数）
     @classmethod
     def createFactory(self, _name):
         if (_name == "ICHIRO"):
@@ -354,12 +354,12 @@ class AbstractFactory(object):
         else:
             print("Error:AbstractFactory.createFactory()")
     
-    #↓擬似抽象関数（派生クラスでオーバーライド）
+    #擬似抽象関数（派生クラスでオーバーライド）
     def createNewYear(self):
         raise NotImplementedError() 
         #↑派生クラスで実装しないと実行時にError
     
-    #↓擬似抽象関数（派生クラスでオーバーライド）
+    #擬似抽象関数（派生クラスでオーバーライド）
     def createSummer(self):
         raise NotImplementedError() 
         #↑派生クラスで実装しないと実行時にError
@@ -368,7 +368,7 @@ class AbstractFactory(object):
 # 派生クラス＝実際の工場群
 #=========================
 class ICHIRO(AbstractFactory):
-    #↓抽象クラスの関数をオーバーライド
+    #抽象クラスの関数をオーバーライド
     def createNewYear(self):
         print("HAPPY NEW YEAR!\nICHIRO NISHIMURA")
     
@@ -376,7 +376,7 @@ class ICHIRO(AbstractFactory):
         print("暑中お見舞い申し上げます\n西村一郎")
 
 class HANAKO(AbstractFactory):
-    #↓抽象クラスの関数をオーバーライド
+    #抽象クラスの関数をオーバーライド
     def createNewYear(self):
         print("明けましておめでとうございます\n西村花子")
     
