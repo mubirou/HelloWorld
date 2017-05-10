@@ -589,13 +589,86 @@ _smartPhone2.phone() #電話をかける
 
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
+* 以下のサンプルは root に Authoring フォルダを作成し、その中に Unity3D と Unreal Engine ファイルを格納してみます。
 
-XXXX
+```
+#test.py
+
+#===============================
+# 抽象クラス＝同一視するための役
+#===============================
+class Component(object):
+    # 共通のプロパティ「name」関連
+    _name = None #protectedで出来ないためパブリック変数で（プライベートにする?）
+    def __getName(self): return self._name
+    name = property(__getName) #getter
+
+    # 共通のプロパティ「parent」関連
+    parent_ = None #protectedで出来ないためパブリック変数で（プライベートにする?）
+    def __getParent(self): return self.parent_
+    def __setParent(self, value): self.parent_ = value
+    parent = property(__getParent, __setParent)
+
+    def getList(self): # 抽象関数（派生クラスでオーバーライドが必要）
+        raise NotImplementedError() #派生クラスで実装しないと実行時にError
+
+#=============================
+# 派生クラス（Directoryクラス）
+#=============================
+class Directory(Component): #Pythonでは"Directory"という名前も可
+    __childList = None #ここで初期化[]すると静的変数扱いになる（要注意!!!）
+
+    def __init__(self, _name): #コンストラクタ関数
+        self._name = _name
+        self.__childList = [] #ここで初期化する（!!!）
+    
+    def add(self, arg):
+        self.__childList.append(arg)
+        arg.parent = self
+    
+    def getList(self): #オーバーライドして実際の処理を記述
+        for tmp in self.__childList:
+            result_ = self.name + "/" + tmp.name
+            if isinstance(tmp,Directory): result_ = result_ + "(Directory)"
+            elif isinstance(tmp,File): result_ = result_ + "(File)"
+            print(result_)
+
+#========================
+# 派生クラス（Fileクラス）
+#========================
+class File(Component):
+    def __init__(self, _name):
+        self._name = _name
+    def getList(self): #オーバーライドして実際の処理を記述
+        print(self.parent.name + "/" + self.name + "(File)")
+
+#=======
+# 実行
+#=======
+# ①ディレクトリの作成
+root_ = Directory("root")
+authoring_ = Directory("Authoring")
+
+# ②ファイルの作成
+unity3D_ = File("Unity3D")
+unrealEngine_ = File("Unreal Engine")
+
+# ③関連付け
+root_.add(authoring_) #ディレクトリ内にフォルダを入れる
+authoring_.add(unity3D_) #ディレクトリ内にファイルを入れる
+authoring_.add(unrealEngine_) #ディレクトリ内にファイルを入れる
+
+# ④検証
+print(unrealEngine_.name) # Unreal Engine
+root_.getList() # root/Authoring(Directory)
+authoring_.getList() #Authoring/Unity3D(File)、Authoring/Unreal Engine(File)
+unity3D_.getList() #Authoring/Unity3D(File)
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月01日  
+更新日：2017年05月11日
 
 
 <a name="Decorator"></a>
