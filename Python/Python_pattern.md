@@ -420,12 +420,45 @@ _factoryHANAKO.createSummer()
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-XXXX
+```
+#test.py
+
+#======================
+# 基本クラス（Moneybox）
+#======================
+class Moneybox(object):
+    __yen = None #プライベート変数
+    def __init__(self, yen_): self.__yen = yen_ #コンストラクタ
+    def add(self, yen_): self.__yen += yen_
+    def getYen(self): return self.__yen
+
+#===========
+# 派生クラス
+#===========
+class IExchange(object): #インターフェース（オプション）
+    def addYen(self, yen_): raise NotImplementedError() #例外処理
+    def getDollar(self): raise NotImplementedError() #例外処理
+
+class Exchange(Moneybox, IExchange): #継承、擬似インターフェースの実装
+    __rate = None #プライベート変数
+    def __init__(self, firstYen_, rate_): #コンストラクタ
+        self.__rate = rate_
+        super(Exchange, self).__init__(firstYen_) #基本クラスの呼出し
+    def addYen(self, yen_): self.add(yen_) #オーバーライド（add()は基本クラスから継承）
+    def getDollar(self): return self.getYen() / self.__rate #オーバーライド
+
+#=======
+# 実行
+#=======
+exchange_ = Exchange(10000, 113.739763)
+exchange_.addYen(8000)
+print(exchange_.getDollar()) #158.25600058618022（ドル）
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年06月30日  
+更新日：2017年05月10日
 
 
 <a name="Adapter（委譲）"></a>
