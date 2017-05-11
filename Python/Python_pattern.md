@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -830,13 +830,82 @@ DecoratorFacade.Set("TAKASHI", 3, 1) # <---TAKASHI--->
 
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
+* 以下の例文では、外部テキストとして2つのファイルを使用します。
+    * A.txt（"あいうえお"）
+    * KA.txt（"かきくけこ"）
 
-XXXX
+```
+#test.py
+
+#===========================================
+# インスンタンスの管理人（Singletonパターン）
+#===========================================
+class Manager(object):
+    #プライベート変数の宣言
+    __manager = None #唯一のインスタンスを格納
+    __boolean = None #インスタンスを生成して良いか否か
+    __dict = None #←インスタンスを格納する辞書
+
+    #↓コンストラクタ関数
+    def __init__(self): 
+        if (not self.__boolean):
+            print("ERROR:Singleton.getInstance()でインスタンスを生成して下さい")
+            raise NotImplementedError() #外部からSingleton()出来ないようにする
+
+    #クラスメソッド（Singletonパターン用）
+    @classmethod
+    def GetInstance(self):
+        if (self.__manager == None): #インスタンスがまだ無い場合...
+            self.__boolean = True #インスタンスの生成を許可
+            self.__manager = Manager() #唯一となるインスタンスを生成＆格納
+            print("インスタンスが生成されました") #DEBUG
+            self.__dict = {} #辞書の初期化
+        return self.__manager #唯一のインスタンスを返す
+
+    # フライ級の生成（既存の場合、既に生成したインスタンスを返す）   
+    def createReader(self, arg):
+        isKey_ = arg in self.__dict #既存のインスタンスか調べる（ポイント!!）
+        if (not isKey_) : #self.__dict[arg]が存在しない場合...
+            self.__dict[arg] = Reader(arg) #ここでやっとインスタンス生成
+        else: #self.__dict[arg]が存在する場合（オプション）...
+            print(arg + "は既存です")
+        return self.__dict[arg] #辞書に登録されたReaderクラスのインスタンスを返す
+
+#============================================================
+# フライ級（メモリの使用量が多いため無駄に生成したくないもの）
+#============================================================
+class Reader(object):
+    __text = None #外部から読み込んだテキストを格納
+
+    def __init__(self, arg):
+        #↓外部テキストの読み込み
+        file_ = open(arg + ".txt", "r")
+        self.__text = file_.read()
+
+    def getText(self):
+        print(self.__text)
+
+#=======
+# 実行
+#=======
+# インスタンスの管理人者を作る（Singletonパターン）
+manager_ = Manager.GetInstance()
+readerA_ = manager_.createReader("A")
+readerKA_ = manager_.createReader("KA")
+
+# 既成のものを生成しようとすると...
+readerA2_ = manager_.createReader("A") #"Aは既存です"
+print(readerA_ == readerA2_) #True ←中身は同じインスタンス（参照しているだけ）
+
+# 処理の実行
+readerA_.getText() #"あいうえお"
+readerKA_.getText() #"かきくけこ"
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月01日  
+更新日：2017年05月11日
 
 
 <a name="Proxy"></a>
