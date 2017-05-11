@@ -23,9 +23,9 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
@@ -949,7 +949,7 @@ _loader.load() #実際は必要になった時にロードしますが...
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年07月01日  
+作成日：2016年07月02日  
 更新日：2017年05月11日
 
 
@@ -1052,23 +1052,111 @@ while _iterator.hasNext():
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#======================================
+# 抽象クラス（実際はふつうの基本クラス）
+#======================================
+class AbstractCard(object):
+    def templateMethod(self): #一連の連続した処理の枠組みを定義
+        self.order1() #①共通の処理 ←selfは必須
+        if (not self.isChild()) : #児童（小学生以下）でなければ...
+            self.order2() #②条件により実行する処理
+        self.order3() #③独自の処理（派生クラスでオーバーライド）
+    def isChild(self): #抽象関数の宣言（派生クラスでオーバーライド）
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+    def order1(self): print("HAPPY NEW YEAR!") #①共通の処理
+    def order2(self): print("勉強頑張ろう!!") #②条件により実行する処理
+    def order3(self): raise NotImplementedError() #③独自の処理（派生クラスでオーバーライド）
+
+#==============
+# 派生クラス①
+#==============
+class CardHanako(AbstractCard):
+    def isChild(self): return True #オーバーライド
+    def order3(self): print("卓球がんばろうね") #オーバーライド
+
+#==============
+# 派生クラス②
+#==============
+class CardTaro(AbstractCard):
+    def isChild(self): return False #オーバーライド
+    def order3(self): print("卓球頑張ろう!!") #オーバーライド
+
+#=======
+# 実行
+#=======
+_cardHanako = CardHanako()
+_cardHanako.templateMethod()
+# HAPPY NEY YEAR!
+# 卓球がんばろうね
+
+_cardTaro = CardTaro()
+_cardTaro.templateMethod()
+# HAPPY NEY YEAR!
+# 勉強頑張ろう!!
+# 卓球頑張ろう!!
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月03日  
+更新日：2017年05月11日
 
 
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+### 概要
+* アルゴリズムをごっそり切り替える。Strategy とは作戦の意。アルゴリズム（手順）。
+* State パターンに似ていますが、State パターンの場合は Context() とするところを Strategy パターンの場合は Context(Strategy()) となります。
+
+### 例文
+```
+# test.py
+
+#=============
+# Jankenクラス
+#=============
+class Janken(object):
+    __strategy = None #プライベート変数宣言
+
+    def __init__(self, strategy_): #コンストラクタ
+        self.__strategy = strategy_
+    
+    def exec(self):
+        self.__strategy.execute()
+
+#=================
+# StrageyXXXクラス
+#=================
+class IStrategy(object): #擬似インターフェース（実際はふつうの基本クラス）
+    def execute(self): #派生クラスでオーバーライド
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+
+class StrategyA(IStrategy):
+    def execute(self): #オーバーライド
+        print("グー、グー、パー")
+
+class StrategyB(IStrategy):
+    def execute(self): #オーバーライド
+        print("パー、グー、チョキ")
+
+#======
+# 実行
+#======
+_janken = Janken(StrategyA())
+_janken.exec() #グー、グー、パー
+
+_janken = Janken(StrategyB()) #アルゴリズムをごっそり切り替える
+_janken.exec() #パー、グー、チョキ
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月03日  
+更新日：2017年05月11日
 
 
 <a name="Visitor"></a>
