@@ -1613,7 +1613,7 @@ using namespace std;
 class IVisitor { //訪問者のインターフェース
     public:
         virtual int GetMoney() = 0; //純粋仮想関数
-        virtual void Visit(int otoshidama_) = 0; //純粋仮想関数
+        virtual void Visit(int _otoshidama) = 0; //純粋仮想関数
 };
 
 /*******
@@ -1621,22 +1621,22 @@ class IVisitor { //訪問者のインターフェース
 *******/
 class Ichiro : public IVisitor { //インターフェースの実装
     private:
-        int money_; //メンバ変数の宣言
+        int _money; //メンバ変数の宣言
     public:
         Ichiro(); //コンストラクタの宣言
         int GetMoney(); //メンバ関数の宣言
-        void Visit(int otoshidama_);
+        void Visit(int _otoshidama);
 };
 Ichiro::Ichiro() { //コンストラクタの定義
-    money_ = 0;
+    _money = 0;
 }
 
 int Ichiro::GetMoney() {
-    return money_;
+    return _money;
 }
 
-void Ichiro::Visit(int otoshidama_) {
-    money_ += otoshidama_;
+void Ichiro::Visit(int _otoshidama) {
+    _money += _otoshidama;
 }
 
 /*******
@@ -1644,20 +1644,20 @@ void Ichiro::Visit(int otoshidama_) {
 *******/
 class Hanako : public IVisitor { //インターフェースの実装
     private:
-        int money_; //メンバ変数の宣言
+        int _money; //メンバ変数の宣言
     public:
         Hanako(); //コンストラクタの宣言
         int GetMoney(); //メンバ関数の宣言
-        void Visit(int otoshidama_);
+        void Visit(int _otoshidama);
 };
 Hanako::Hanako() { //コンストラクタの定義
-    money_ = 0;
+    _money = 0;
 }
 int Hanako::GetMoney() {
-    return money_;
+    return _money;
 }
-void Hanako::Visit(int otoshidama_) {
-    money_ += otoshidama_;
+void Hanako::Visit(int _otoshidama) {
+    _money += _otoshidama;
 }
 
 /*********
@@ -1665,24 +1665,24 @@ void Hanako::Visit(int otoshidama_) {
 *********/
 class IAcceptor { //訪問先のインターフェース
     public:
-        virtual void Accept(IVisitor* visitor_) = 0; //純粋仮想関数（オーバーライド必須）
+        virtual void Accept(IVisitor* _visitor) = 0; //純粋仮想関数（オーバーライド必須）
 };
 
 class Hokkaido : public IAcceptor { //インターフェースの実装
     public:
-        void Accept(IVisitor* visitor_); //純粋仮想関数のオーバーライドの宣言
+        void Accept(IVisitor* _visitor); //純粋仮想関数のオーバーライドの宣言
 };
-void Hokkaido::Accept(IVisitor* visitor_) { //純粋仮想関数のオーバーライドの定義
-    visitor_ -> Visit(5000*2); //誰が訪問してきても同じメソッドを実行
+void Hokkaido::Accept(IVisitor* _visitor) { //純粋仮想関数のオーバーライドの定義
+    _visitor -> Visit(5000*2); //誰が訪問してきても同じメソッドを実行
 }
 
 class Chiba : public IAcceptor { //インターフェースの実装
     public:
-        void Accept(IVisitor* visitor_); //純粋仮想関数のオーバーライドの宣言
+        void Accept(IVisitor* _visitor); //純粋仮想関数のオーバーライドの宣言
 };
 
-void Chiba::Accept(IVisitor* visitor_) { //純粋仮想関数のオーバーライドの定義
-    visitor_ -> Visit(5000); //誰が訪問してきても同じメソッドを実行
+void Chiba::Accept(IVisitor* _visitor) { //純粋仮想関数のオーバーライドの定義
+    _visitor -> Visit(5000); //誰が訪問してきても同じメソッドを実行
 }
 
 /*************
@@ -1690,18 +1690,18 @@ void Chiba::Accept(IVisitor* visitor_) { //純粋仮想関数のオーバーラ�
 *************/
 int main() {
     //訪問先
-    Hokkaido* Hokkaido_ = new Hokkaido; //埼玉実家
-    Chiba* Chiba_ = new Chiba; //宮島家
+    Hokkaido* _Hokkaido = new Hokkaido; //埼玉実家
+    Chiba* _Chiba = new Chiba; //宮島家
 
     //訪問者
     Ichiro* _ichiro = new Ichiro; //一郎
     Hanako* _hanako = new Hanako; //花子 
 
     //訪問する（訪問側から見ると「受け入れる」）
-    Hokkaido_ -> Accept(_ichiro);
-    Hokkaido_ -> Accept(_hanako);
-    Chiba_ -> Accept(_ichiro);
-    Chiba_ -> Accept(_hanako);
+    _Hokkaido -> Accept(_ichiro);
+    _Hokkaido -> Accept(_hanako);
+    _Chiba -> Accept(_ichiro);
+    _Chiba -> Accept(_hanako);
 
     //結果...
     cout << _ichiro -> GetMoney() << endl; //15000

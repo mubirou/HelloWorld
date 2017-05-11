@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1162,12 +1162,78 @@ _janken.exec() #パー、グー、チョキ
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#========
+# 訪問先
+#========
+class IAcceptor(object): #擬似インターフェース
+    def accept(self, visitor_): #派生クラスでオーバーライド
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+
+class Hokkaido(IAcceptor):
+    __otoshidama = None
+    def __init__(self): self.__otoshidama = 5000*2
+    def accept(self, visitor_): #オーバーライド
+        visitor_.visit(self.__otoshidama) #訪問者が誰でも同じ関数を実行!!
+
+class Chiba(IAcceptor):
+    __otoshidama = None
+    def __init__(self): self.__otoshidama = 5000
+    def accept(self, visitor_): #オーバーライド
+        visitor_.visit(self.__otoshidama) #訪問者が誰でも同じ関数を実行!!
+
+#========
+# 訪問者
+#========
+class IVisitor(object): #擬似インターフェース
+    def visit(self, _otoshidama): #派生クラスでオーバーライド
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+    
+    def getMoney(self): #派生クラスでオーバーライド
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+
+class Tohru(IVisitor):
+    __money = None #プライベート変数（貯金）の宣言
+    def __init__(self): self.__money = 0 #コンストラクタ
+    def visit(self, _otoshidama): #オーバーライド
+        self.__money += _otoshidama
+    def getMoney(self): return self.__money
+
+class Sachiko(IVisitor):
+    __money = None #プライベート変数（貯金）の宣言
+    def __init__(self): self.__money = 0 #コンストラクタ
+    def visit(self, _otoshidama): #オーバーライド
+        self.__money += _otoshidama
+    def getMoney(self): return self.__money
+
+#========
+# 実行
+#========
+#訪問先
+_hokkaido = Hokkaido()
+_chiba = Chiba()
+
+#訪問者
+_ichiro = Tohru()
+_hanako = Sachiko()
+
+#訪問する（訪問先側から見ると「受け入れる」）
+_hokkaido.accept(_ichiro)
+_hokkaido.accept(_hanako)
+_chiba.accept(_ichiro)
+_chiba.accept(_hanako)
+
+#結果...
+print(_ichiro.getMoney()) #15000
+print(_hanako.getMoney()) #15000
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月03日  
+更新日：2017年05月11日
 
 
 <a name="ChainofResponsibility"></a>
