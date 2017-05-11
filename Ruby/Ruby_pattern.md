@@ -216,12 +216,135 @@ _directorB.construct()
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#==================
+#（擬似）抽象クラス
+#==================
+class AbstractCard
+    def factoryMethod(arg) #抽象メソッド
+        raise "派生クラスで実装して下さい"
+    end
+   
+    def templateMethod(arg) #継承するメソッド
+        #条件分岐をここで行わない＝ここを汚さない
+        _message = self.factoryMethod(arg) #派生クラスのメソッドを呼出す
+        _message.exec() #処理①
+        order1() #処理②
+        order2() #処理③
+    end
+
+    def order1() #共通の処理
+        puts("〒XXX-XXXX 新宿区XX町X-X-X") 
+    end
+    
+    def order2() #（擬似）抽象メソッド（派生クラスでオーバーライド）
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+#========================
+# 派生クラス（CardICHIRO）
+#========================
+class CardICHIRO < AbstractCard  #（擬似）抽象クラスの実装
+    def factoryMethod(arg) #抽象メソッドをオーバーライド
+        if (arg == "先生") then
+            return Message1.new() #ここでインスタンス生成
+        elsif (arg == "同級生") then
+            return Message2.new() #ここでインスタンス生成
+        else 
+            raise "Error:CardICHIRO.factoryMethod()" #Errorを発生させる
+        end
+    end
+  
+    def order2()  #抽象メソッドをオーバーライド  
+        puts("西村一郎") #具体的な処理を記述
+    end
+end
+
+#========================
+# 派生クラス（CardHANAKO）
+#========================
+class CardHANAKO < AbstractCard #（擬似）抽象クラスの実装
+    def factoryMethod(arg) #抽象メソッドをオーバーライド
+        if (arg == "先生") then
+            return Message3.new() #ここでインスタンス生成
+        elsif (arg == "同級生") then
+            return Message4.new() #ここでインスタンス生成
+        else
+            raise "Error:CardICHIRO.factoryMethod()" #Errorを発生させる
+        end
+    end
+
+    def order2()  #抽象メソッドをオーバーライド  
+        puts("西村花子") #具体的な処理を記述
+    end
+end
+
+#===================
+# 生成したいクラス群
+#===================
+class IMessage #インターフェース（実際は普通の基本クラス）
+    def exec()
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+class Message1 < IMessage
+    def exec()
+        puts("謹賀新年")
+    end
+end
+
+class Message2 < IMessage
+    def exec()
+        puts("HAPPY NEW YEAR!")
+    end
+end
+
+class Message3 < IMessage
+    def exec()
+        puts("明けましておめでとうございます")
+    end
+end
+
+class Message4 < IMessage
+    def exec()
+        puts("あけましておめでとう!")
+    end
+end
+
+#=======
+# 実行
+#=======
+#CardICHIROインスタンスの生成
+_cardTOHRU = CardICHIRO.new()
+_cardTOHRU.templateMethod("先生")
+#=> 謹賀新年
+#=> 〒XXX-XXXX 新宿区XX町X-X-X
+#=> 西村一郎
+_cardTOHRU.templateMethod("同級生")
+#=> HAPPY NEW YEAR!
+#=> 〒XXX-XXXX 新宿区XX町X-X-X
+#=> 西村一郎
+
+#CardHANAKOインスタンスの生成
+_cardSACHIKO = CardHANAKO.new()
+_cardSACHIKO.templateMethod("先生")
+#=> 明けましておめでとうございます
+#=> 〒XXX-XXXX 新宿区XX町X-X-X
+#=> 西村花子
+_cardSACHIKO.templateMethod("同級生")
+#=> あけましておめでとう!
+#=> 〒XXX-XXXX 新宿区XX町X-X-X
+#=> 西村花子
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月11日  
+更新日：2017年05月11日
 
 
 <a name="AbstractFactory"></a>
