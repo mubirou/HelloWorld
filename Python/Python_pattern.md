@@ -1518,7 +1518,111 @@ iPadは10.3.1にアップデート可能
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+# test.py
+#===================================================
+# 主人公役＋バックアップ係
+#===================================================
+class Gamer(object):
+    __point = __history = None
+    _count = None #Undo/Redo用
+
+    def __init__(self, _point=0):
+        self.__point = _point
+        self.__history = []
+
+    #__pointのアクセサ
+    def __getPoint(self): 
+        return self.__point
+    def __setPoint(self, value): 
+        self.__point = value
+    point = property(__getPoint, __setPoint)
+
+    #状態を保存
+    def save(self):
+        _snapShot = SnapShot(self.point)
+        self.__history.append(_snapShot) #履歴に記録
+        self.__count = len(self.__history) -1
+        return _snapShot
+
+    #履歴
+    def history(self):
+        for i, theSnapShot in enumerate(self.__history):
+            print(i, theSnapShot.point)
+
+    #Undo（やり直し）
+    def undo(self):
+        if self.__count > 0 :
+            self.__count -= 1
+            return self.__history[self.__count]
+        else:
+            print("これ以上、Undoできません")
+            self.__count = 0
+            return self.__history[0]
+
+    #Redo（再実行）
+    def redo(self):
+        if (self.__count < len(self.__history)-1) :
+            self.__count += 1
+            return self.__history[self.__count]
+        else:
+            print("これ以上、Redoできません")
+            self.__count = len(self.__history) -1
+            return self.__history[self.__count]
+
+#===========================================
+# Memento役（その瞬間の状態をオブジェクト化）
+#===========================================
+class SnapShot(object):
+    __point = None #今回はシンプルに１つだけにしておきます
+    
+    def __init__(self, _point):
+        self.__point = _point
+
+    #__pointのアクセサ
+    def __getPoint(self):
+        return self.__point
+    def __setPoint(self, value):
+        self.__point = value
+    point = property(__getPoint, __setPoint)
+
+#=======
+# 実行
+#=======
+_gamer = Gamer(100)
+_gamer.save() #最初の状態を保存
+
+_gamer.point = 2000
+_gamer.save() #この時点での状態を保存
+
+_gamer.point = 8000
+_gamer.save() #この時点での状態を保存
+
+_gamer.history() #履歴を調べる
+# 0 100
+# 1 2000
+# 2 8000
+
+#Undo（やり直し）
+_snapShot = _gamer.undo()
+print(_snapShot.point) #2000
+
+_snapShot = _gamer.undo()
+print(_snapShot.point) #100
+
+_snapShot = _gamer.undo()
+print(_snapShot.point) #これ以上、Undoできません → 100
+
+#Redo（再実行）
+_snapShot = _gamer.redo()
+print(_snapShot.point) #2000
+
+_snapShot = _gamer.redo()
+print(_snapShot.point) #8000
+
+_snapShot = _gamer.redo()
+print(_snapShot.point) #これ以上、Redoできません → 8000
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
@@ -1533,8 +1637,8 @@ XXXX
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月03日  
+更新日：2017年05月11日
 
 
 <a name="Command"></a>
