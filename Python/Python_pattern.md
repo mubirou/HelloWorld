@@ -19,11 +19,11 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -956,12 +956,97 @@ _loader.load() #実際は必要になった時にロードしますが...
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+### 概要
+* １つ１つ数え上げる。繰り返し。
+* interate は「繰り返す」という意味。
+* データの集合体に対して、for 文等による操作でデータを取り出すのではなく、hasNext() と Next() メソッドを使って取り出します。
+
+### 例文
+```
+# test.py
+
+#===========
+# Bikeクラス
+#===========
+class Bike(object):
+    __model = __number = None #プライベート変数の宣言
+
+    def __init__(self, model_, number_): #コンストラクタ
+        self.__model = model_
+        self.__number = number_
+
+    def __getModel(self):
+        return self.__model
+    model = property(__getModel) #__modelのアクセサ（getter）
+
+    def __getNumber(self):
+        return self.__number
+    number = property(__getNumber) #__numberのアクセサ（getter）
+
+#==============
+# BikeParkクラス
+#==============
+class IBikePark(object): #擬似インターフェース
+    def add(self, bike_): raise NotImplementedError() #オーバーライドしないとError
+    def getBikeAt(self, num_): raise NotImplementedError() #オーバーライドしないとError
+    def getLength(self): raise NotImplementedError() #オーバーライドしないとError
+    def createIterator(self): raise NotImplementedError() #オーバーライドしないとError
+
+class BikePark(IBikePark):
+    __list = None #リスト（プライベート変数）の宣言
+
+    def __init__(self): #コンストラクタ
+        self.__list = [] #リストの初期化
+
+    def add(self, bike_):
+        self.__list.append(bike_)
+
+    def getBikeAt(self, num_):
+        return self.__list[num_]
+
+    def getLength(self):
+        return len(self.__list)
+    
+    def createIterator(self):
+        return Iterator(self) #イテレータの生成
+
+#==================================
+# Iteratorクラス（≒駐輪場の管理人）
+#==================================
+class Iterator(object):
+    __bikePark = __count = None #プライベート変数の宣言
+
+    def __init__(self, _bikePark):
+        self.__bikePark = _bikePark
+        self.__count = 0
+    
+    def hasNext(self):
+        return self.__bikePark.getLength() > self.__count
+    
+    def next(self):
+        _nextBike = self.__bikePark.getBikeAt(self.__count)
+        self.__count += 1
+        return _nextBike
+
+#=======
+# 実行
+#=======
+_bikePark = BikePark()
+_bikePark.add(Bike("ESTRELLA", "神戸 こ 17-33"))
+_bikePark.add(Bike("SRV250S", "豊橋 え 18-53"))
+_bikePark.add(Bike("GB250 CLUBMAN", "品川 く 11-56"))
+
+_iterator = _bikePark.createIterator() #イテレータ（管理人）の生成
+
+while _iterator.hasNext():
+    _nextBike = _iterator.next()
+    print(_nextBike.model, _nextBike.number)
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月02日  
+更新日：2017年05月11日
 
 
 <a name="TemplateMethod"></a>
