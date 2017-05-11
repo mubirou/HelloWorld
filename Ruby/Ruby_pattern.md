@@ -38,12 +38,27 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
+### Singletonモジュールを使う方法（推奨）
+```
+#test.rb
+require "singleton" #Singletonモジュールをインストール（必須）
+
+class SingletonClass
+    include Singleton #Singletonパターン化（ポイント）
+end
+
+#SingletonClass.new() #クラス.new()でインスタンスを生成しようとするとError
+_singletonClass1 = SingletonClass.instance #唯一のインスタンスにアクセスする方法
+_singletonClass2 = SingletonClass.instance #唯一のインスタンスにアクセスする方法
+puts(_singletonClass1) #=> #<SingletonClass:0x000000012db328>
+puts(_singletonClass2) #=> #<SingletonClass:0x000000012db328>
+p _singletonClass1.eql?(_singletonClass2) #=> true ←中身は全く同じインスタンス
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月11日  
+更新日：2017年05月11日
 
 
 <a name="Prototype"></a>
