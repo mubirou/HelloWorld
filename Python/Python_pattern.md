@@ -31,7 +31,6 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1702,12 +1701,81 @@ _janken.exec() #パー、グー、チョキ
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#=====================================================================
+# グラフィックソフト
+# ※バッチ処理（batch(_start, _end)を追加することも可能ですが今回は省略
+#=====================================================================
+class Inkscape(object):
+    #プライベート変数の宣言
+    __canvas = None #Receiver（結果を表示する）役
+    __history = None #履歴（命令クラス）を保存
+    
+    #コンストラクタ
+    def __init__(self):
+        self.__canvas = Canvas()
+        self.__history = []
+
+    #命令の実行
+    def draw(self, command_):
+        #↓命令を実行する度にインスタンス生成!!
+        drawCommand_ = DrawCommand(self.__canvas, command_)
+        drawCommand_.execute() #実行＝キャンバスの再描画
+        self.__history.append(drawCommand_) #命令クラスを履歴に保存
+
+#===========
+# 命令クラス
+#===========
+class DrawCommand(object):
+    #プライベート変数の宣言
+    __canvas = None #Receiver（結果を表示する）役
+    __command = None
+
+    #コンストラクタ
+    def __init__(self, canvas_, command_):
+        self.__canvas = canvas_
+        self.__command = command_
+    
+    #↓Inkscape.draw()から呼び出される
+    def execute(self):
+        self.__canvas.update(self.__command)
+
+#=========================================
+# 結果を表示する役＝Receiver（受信者）の役
+#=========================================
+class Canvas(object):
+    #プライベート変数の宣言
+    __history = None #履歴（実際の処理）を保存
+
+    #コンストラクタ
+    def __init__(self):
+        self.__history = []
+
+    #キャンバスの再描画
+    def update(self, command_): #DrawCommand.execute()からの呼出し
+        self.__history.append(command_)
+        for theCommand in self.__history:
+            print(theCommand)
+        print("\n")
+
+#===========
+# 実行
+#===========
+#グラフィックソフトの起動
+_inkscape = Inkscape()
+
+#命令の実行
+_inkscape.draw("線を引く")
+_inkscape.draw("縁取る")
+_inkscape.draw("影を付ける")
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月04日  
+更新日：2017年05月11日
 
 
 <a name="Interpreter"></a>
@@ -1717,5 +1785,5 @@ XXXX
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月04日  
+更新日：2017年05月11日
