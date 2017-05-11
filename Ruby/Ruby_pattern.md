@@ -352,16 +352,17 @@ _cardSACHIKO.templateMethod("同級生")
 
 ```
 #test.rb
-#=====================================================================================
+
+#================================
 # （擬似）抽象クラス＝抽象的な工場
-#=====================================================================================
+#================================
 class AbstractFactory
     class << self #静的メソッド（決め打ち）
         def createFactory(_name)
             if (_name == "ICHIRO") then
-                return ICHIRO.new() #具体的な「亨工場」（インスタンス）を生成
+                return ICHIRO.new() #具体的な「一郎工場」（インスタンス）を生成
             elsif (_name == "HANAKO") then
-                return HANAKO.new() #具体的な「幸子工場」（インスタンス）を生成
+                return HANAKO.new() #具体的な「花子工場」（インスタンス）を生成
             else
                 raise "Error: AbstractFactory.createFactory()"
             end
@@ -378,9 +379,9 @@ class AbstractFactory
 end
 
 
-#=====================================================================================
+#=========================
 # 派生クラス＝実際の工場群
-#=====================================================================================
+#=========================
 class ICHIRO
     def createNewYear() #抽象メソッドをオーバーライド
         puts("HAPPY NEW YEAR!\nICHIRO NISHIMURA")
@@ -401,9 +402,9 @@ class HANAKO
     end
 end
 
-#=====================================================================================
+#======
 # 実行
-#=====================================================================================
+#======
 _factoryICHIRO = AbstractFactory.createFactory("ICHIRO") #new()を使わない
 _factoryICHIRO.createNewYear()
 #=> HAPPY NEW YEAR!
