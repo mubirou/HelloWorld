@@ -39,7 +39,6 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-### Singletonモジュールを使う方法（推奨）
 ```
 #test.rb
 require "singleton" #Singletonモジュールをインストール（必須）
