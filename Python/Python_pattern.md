@@ -1781,7 +1781,68 @@ _inkscape.draw("影を付ける")
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-XXXX
+```
+# test.py
+
+#==============================
+# ≒SWFファイルを生成するクラス
+#==============================
+class SWF(object):
+    #プライベート変数
+    __codeList = None #命令を配列化（≒中間コード）
+    __count = None #getNextCode()で使用
+
+    #コンストラクタ
+    def __init__(self, _code):
+        self.__codeList = _code.split(';') #「;」区切りで配列化
+        self.__count = 0
+
+    #次の命令を返す
+    def getNextCode(self):
+        self.__count += 1
+        return self.__codeList[self.__count -1]
+    
+    #次の命令があるか否か...
+    def isEnd(self):
+        return self.__count >= len(self.__codeList)
+
+#===============================
+# ≒ActionScript Virtual Machine
+#===============================
+class AVM(object):
+    #≒SWFファイルをAVM上で実行
+    def execute(self, _swf):
+        _result = 0 #計算結果
+
+        #次の命令があれば...
+        while (not _swf.isEnd()) :
+            nextCode_ = _swf.getNextCode() #次の命令を調べる
+
+            #ここからは特にサンプルの独自処理
+            #................................
+            _operator = nextCode_[0] #「+*/-=」の何れか
+            if (_operator != "="):
+                str_ = nextCode_[1:len(nextCode_)] #「+*/-」を除いた数字
+                int_ = int(str_)
+                if (_operator == "+"): _result += int_
+                elif (_operator == "-"): _result -= int_
+                elif (_operator == "*"): _result *= int_
+                elif (_operator == "/"): _result /= int_
+                else: print("Error: 演算子が異なります")
+            else:
+                #本来はここで「終端となる表現」のクラスを生成して処理しますが省略
+                print(_result)
+            #................................
+
+#=======
+# 実行
+#=======
+_code = "+10;*50;/2;-4;=" #自作言語による記述（≒ActionScript）
+_swf = SWF(_code) #≒SWFファイルに変換
+_avm = AVM() #≒ActionScript Virtual Machine
+_avm.execute(_swf) #≒SWFファイルをAVM上で実行
+#246.0 ←(0+10)*50/2-4
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
