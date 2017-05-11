@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -64,12 +64,65 @@ p _singletonClass1.eql?(_singletonClass2) #=> true ←中身は全く同じイ�
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+=begin
+「コピーしてインスタンスを作る」
+ポイント① : 2つ目はクラス .new() を使って生成しない
+ポイント② : 複製にはインスタンス.clone() を使う
+=end
+
+#インターフェース（実際はふつうのスーパークラス）
+class IPrototype
+    def clone() #抽象メソッド
+        raise "派生クラスで実装して下さい" #派生クラスで強制的に実装させる為...
+    end
+end
+
+#インターフェースの実装（継承）
+class Prototype < IPrototype
+    @firstName; @lastName; #インスタンス変数＝プライベート変数宣言（省略可）
+
+    #コンストラクタ
+    def initialize(_lastName)
+        @lastName = _lastName
+    end
+
+    # @firstNameのアクセサ（getter）
+    def firstName
+        @firstName
+    end
+
+    # @firstNameのアクセサ（setter）
+    def firstName=(value)
+        @firstName = value
+    end
+
+    # @firstNameのアクセサ（getter）
+    def lastName
+        @lastName
+    end
+
+     #スーパークラス（擬似インターフェース）のメソッドをオーバーライド
+    def clone()
+        return self.dup #参考:配列（Array）
+    end
+end
+
+# 実行
+_prototype1 = Prototype.new("NISHIMURA") #インスタンスを生成
+_prototype1.firstName = "ICHIRO"
+_prototype2 = _prototype1.clone() #複製する（Prototype.new()を使わない）
+_prototype2.firstName = "HANAKO" #変更しないと複製時の"ICHIRO"のまま
+puts(_prototype1.firstName, _prototype1.lastName) #=> "ICHIRO" → "NISHIMURA"
+puts(_prototype2.firstName, _prototype2.lastName) #=> "HANAKO" → "NISHIMURA"
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月11日  
+更新日：2017年05月11日
 
 
 <a name="Builder"></a>
