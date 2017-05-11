@@ -624,13 +624,99 @@ _smartPhone2.phone() #電話をかける
 
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
+* 以下のサンプルは root に Authoring フォルダを作成し、その中に Unity3D と Unreal Engine ファイルを格納してみます。
 
-XXXX
+```
+# test.rb
+
+#===============================
+# 抽象クラス＝同一視するための役
+#===============================
+class Component
+    attr_reader :name #@nameのgetter
+    attr_accessor :parent #@parentのgetter/setter
+
+    def initialize()
+        #共通のプロパティ（インスタンス変数）
+        @name = nil
+        @parent = nil
+    end
+
+    def getList() # 抽象メソッド（派生クラスでオーバーライドが必要）
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+#=============================
+# 派生クラス（Directoryクラス）
+#=============================
+class Directory < Component #Rubyでは"Directory"という名前も可
+    @childList #インスタンス変数宣言（省略可）
+
+    def initialize(_name) #コンストラクタ関数
+        super() #必須
+        @name = _name
+        @childList = []
+    end
+
+    def add(arg)
+        @childList.push(arg)
+        arg.parent = self
+    end
+    
+    def getList() #オーバーライドして実際の処理を記述
+        for tmp in @childList do
+            _result = @name + "/" + tmp.name
+            if tmp.instance_of?(Directory) then
+                _result += "(Directory)"
+            elsif tmp.instance_of?(FileName) then
+                _result += "(FileName)"
+            end
+            puts(_result)
+        end
+    end
+end
+
+#=============================
+# 派生クラス（FileNameクラス）
+#=============================
+class FileName < Component #Rubyでは"FileName"という名前は不可
+    def initialize(_name)
+        @name = _name
+    end
+
+    def getList() #オーバーライドして実際の処理を記述
+        puts(@parent.name + "/" + name + "(FileName)")
+    end
+end
+
+#=======
+# 実行
+#=======
+# ①ディレクトリの作成
+_root = Directory.new("root")
+_authoring = Directory.new("Authoring")
+
+# ②ファイルの作成
+_unity3D = FileName.new("Unity3D")
+unrealEngine_ = FileName.new("Unreal Engine")
+
+# ③関連付け
+_root.add(_authoring) #ディレクトリ内にフォルダを入れる
+_authoring.add(_unity3D) #ディレクトリ内にファイルを入れる
+_authoring.add(unrealEngine_) #ディレクトリ内にファイルを入れる
+
+# ④検証
+puts(unrealEngine_.name) #=> Unreal Engine
+_root.getList() #=> root/Authoring(Directory)
+_authoring.getList() #=> Authoring/Unity3D(FileName)、Authoring/Unreal Engine(FileName)
+_unity3D.getList() #=> Authoring/Unity3D(FileName)
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月12日
 
 
 <a name="Decorator"></a>
