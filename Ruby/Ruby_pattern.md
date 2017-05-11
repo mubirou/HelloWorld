@@ -7,8 +7,8 @@
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
-    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -128,12 +128,89 @@ puts(_prototype2.firstName, _prototype2.lastName) #=> "HANAKO" → "NISHIMURA"
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#==================================
+# Directorクラス（≒年賀状印刷業者）
+#==================================
+class Director
+    @builder #Builder○のインスタンスを格納（委譲）
+    def initialize(_builder)
+        @builder = _builder
+    end
+    def construct() #共通の手順（カスタムメソッド）
+        @builder.makeHeader() #手順①
+        @builder.makeContent() #手順②
+        @builder.makeFooter() #手順③
+    end
+end
+
+#==================================
+# BuilderXXXクラスのインターフェース
+#==================================
+class IBuilder
+    def makeHeader()
+        raise "派生クラスで実装して下さい"
+    end
+    def makeContent()
+        raise "派生クラスで実装して下さい"
+    end
+    def makeFooter()
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+#====================================
+# BuilderAクラス（≒年賀状のタイプＡ）
+#====================================
+class BuilderA < IBuilder
+    def makeHeader() #擬似インターフェースの関数をオーバーライド
+        puts("あけましておめでとうございます")
+    end
+    def makeContent() #擬似インターフェースの関数をオーバーライド
+        puts("□□イラ□スト□□")
+    end
+    def makeFooter() #擬似インターフェースの関数をオーバーライド
+        puts("元旦")
+    end
+end
+
+#====================================
+# BuilderBクラス（≒年賀状のタイプＢ）
+#====================================
+class BuilderB < IBuilder
+    def makeHeader() #擬似インターフェースの関数をオーバーライド
+        puts("HAPPY NEW YEAR!")
+    end
+    def makeContent() #擬似インターフェースの関数をオーバーライド
+        puts("○イ○ラ○ス○ト○")
+    end
+    def makeFooter() #擬似インターフェースの関数をオーバーライド
+        puts("2018.1.1")
+    end
+end
+
+#========
+# 実行
+#========
+_directorA = Director.new(BuilderA.new())
+_directorA.construct()
+#=> あけましておめでとうございます
+#=> □□イラ□スト□□
+#=> 元旦
+
+_directorB = Director.new(BuilderB.new())
+_directorB.construct()
+#=> HAPPY NEW YEAR!
+#=> ○イ○ラ○ス○ト○
+#=> 2018.1.1
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月11日  
+更新日：2017年05月11日
 
 
 <a name="FactoryMethod"></a>
