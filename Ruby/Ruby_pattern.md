@@ -350,12 +350,81 @@ _cardSACHIKO.templateMethod("同級生")
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+#=====================================================================================
+# （擬似）抽象クラス＝抽象的な工場
+#=====================================================================================
+class AbstractFactory
+    class << self #静的メソッド（決め打ち）
+        def createFactory(_name)
+            if (_name == "ICHIRO") then
+                return ICHIRO.new() #具体的な「亨工場」（インスタンス）を生成
+            elsif (_name == "HANAKO") then
+                return HANAKO.new() #具体的な「幸子工場」（インスタンス）を生成
+            else
+                raise "Error: AbstractFactory.createFactory()"
+            end
+        end
+    end
+
+    def createNewYear() #擬似抽象メソッド
+        raise "派生クラスで実装して下さい"
+    end
+    
+    def createSummer() #擬似抽象メソッド
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+
+#=====================================================================================
+# 派生クラス＝実際の工場群
+#=====================================================================================
+class ICHIRO
+    def createNewYear() #抽象メソッドをオーバーライド
+        puts("HAPPY NEW YEAR!\nICHIRO NISHIMURA")
+    end
+
+    def createSummer() #擬似抽象メソッド
+        puts("暑中お見舞い申し上げます\n西村一郎")
+    end
+end
+
+class HANAKO
+    def createNewYear() #抽象メソッドをオーバーライド
+        puts("明けましておめでとうございます\n西村花子")
+    end
+
+    def createSummer() #擬似抽象メソッド
+        puts("暑中おみまいもうしあげます\n西村花子")
+    end
+end
+
+#=====================================================================================
+# 実行
+#=====================================================================================
+_factoryICHIRO = AbstractFactory.createFactory("ICHIRO") #new()を使わない
+_factoryICHIRO.createNewYear()
+#=> HAPPY NEW YEAR!
+#=> ICHIRO NISHIMURA
+_factoryICHIRO.createSummer()
+#=> 暑中お見舞い申し上げます
+#=> 西村一郎
+
+_factoryHANAKO = AbstractFactory.createFactory("HANAKO") #new()を使わない
+_factoryHANAKO.createNewYear()
+#=> 明けましておめでとうございます
+#=> 西村花子
+_factoryHANAKO.createSummer()
+#=> 暑中おみまいもうしあげます
+#=> 西村花子
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月11日  
+更新日：2017年05月11日
 
 
 <a name="Adapter（継承）"></a>
