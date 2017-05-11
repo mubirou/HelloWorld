@@ -13,8 +13,8 @@
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
@@ -483,12 +483,51 @@ puts _exchange.getDollar() #157.60799950258914（ドル）
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-XXXX
+```
+#test.rb
+
+# 基本クラス（「継承」版と同じ）
+class Moneybox
+    @yen #プライベート変数宣言
+    def initialize(_yen) #コンストラクタ
+       @yen = _yen
+    end
+    def add(_yen)
+        @yen += _yen
+    end
+    def getYen()
+        return @yen
+    end
+end
+
+# 派生クラス（この内容が「継承」版と異なる）
+class Exchange
+    @moneybox; @rate; #インスタンス変数宣言
+
+    def initialize(_firstYen, _rate) #コンストラクタ
+        @moneybox = Moneybox.new(_firstYen) #ここがポイント(委譲）
+        @rate = _rate
+    end
+
+    def addYen(_yen)
+        @moneybox.add(_yen) #ポイント
+    end
+
+    def getDollar()
+        return @moneybox.getYen() / @rate #ポイント
+    end
+end
+
+# 実行
+_exchange = Exchange.new(10000, 114.207401)
+_exchange.addYen(8000)
+puts _exchange.getDollar() #157.60799950258914（ドル）
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月11日  
+更新日：2017年05月11日
 
 
 <a name="Bridge"></a>
