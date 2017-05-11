@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -533,12 +533,93 @@ puts _exchange.getDollar() #157.60799950258914（ドル）
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+# test.rb
+
+#================
+#「機能」のクラス
+#================
+class SuperMobile #「機能」クラスの最上位
+    @os #「機能」⇔「実装」クラスの「橋」（委譲）
+    
+    def initialize(_os) #コンストラクタ
+        @os = _os
+    end
+    
+    def version #OSの@versionのアクセサ（getter）
+        @os.rawVersion
+    end
+end
+
+class Tablet < SuperMobile #「機能」のクラスに機能を追加したクラス
+    def initialize(_os) #コンストラクタ
+        super(_os) #スーパークラスのコンストラクタの呼出し
+    end
+
+    def bigScreen() #タブレット特有の機能
+        puts("大きな画面で見る")
+    end
+end
+
+class SmartPhone < SuperMobile #「機能」のクラスに機能を追加したクラス
+    def initialize(_os) #コンストラクタ
+        super(_os) #スーパークラスのコンストラクタの呼出し
+    end
+
+    def phone() #スマートフォン特有の機能
+        puts("電話をかける")
+    end
+end
+
+
+#===================================
+#「実装」のクラス（抽象クラスは省略）
+#===================================
+class Android #「実装」の具体的な実装者
+    @version #インスタンス変数の宣言
+    def initialize() #コンストラクタ
+        @version = "Android 7.1.2"
+    end
+
+    def rawVersion #@versionのアクセサ（getter）
+        return @version
+    end
+end
+
+class IOS #「実装」の具体的な実装者
+    @version #インスタンス変数の宣言
+    def initialize() #コンストラクタ
+        @version = "iOS 10.3.1"
+    end
+    def rawVersion #@versionのアクセサ（getter）
+        return @version
+    end
+end
+
+#========
+# 実行
+#========
+_tablet1 = Tablet.new(Android.new())
+puts(_tablet1.version) # "Android 7.1.2"
+_tablet1.bigScreen() #大きな画面で見る
+
+_tablet2 = Tablet.new(IOS.new())
+puts(_tablet2.version) # "iOS 10.3.1"
+_tablet2.bigScreen() #大きな画面で見る
+
+_smartPhone1 = SmartPhone.new(Android.new())
+puts(_smartPhone1.version) # "Android 7.1.2"
+_smartPhone1.phone() #電話をかける
+
+_smartPhone2 = SmartPhone.new(IOS.new())
+puts(_smartPhone2.version) # "iOS 10.3.1"
+_smartPhone2.phone() #電話をかける
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月11日  
+更新日：2017年05月12日
 
 
 <a name="Composite"></a>
