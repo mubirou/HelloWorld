@@ -27,9 +27,9 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
@@ -1441,12 +1441,78 @@ Mediator.MEMBER_A.request("西へ行く")
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#=======================
+# Subjec（観察される側）
+#=======================
+class ISubject(object):
+    #派生クラスでオーバーライドしないと実行時にErrorさせる
+    def addObserver(self, _observer): raise NotImplementedError()
+    def removeObserver(self, _observer): raise NotImplementedError()
+    def notify(self): raise NotImplementedError()
+
+class Apple(ISubject):
+    __observerList = None #プライベート変数宣言
+
+    def __init__(self):
+        self.__observerList = [] #リスナーリストの初期化
+
+    def addObserver(self, _observer): #リスナーの登録
+        self.__observerList.append(_observer)
+    
+    def removeObserver(self, _observer): #リスナーの削除
+        self.__observerList.remove(_observer)
+
+    def notify(self): #全リスナーへの通知
+        for theObserver in self.__observerList:
+            theObserver.update(self)
+
+    def getVersion(self):
+        return "10.3.1"
+
+#===================
+# Observer（観察者）
+#===================
+class IObserver(object):
+    #派生クラスでオーバーライドしないと実行時にErrorさせる
+    def update(self, _apple): raise NotImplementedError()
+
+class iPhone(IObserver):
+    def update(self, _apple):
+        print("iPhoneは" + _apple.getVersion() + "にアップデート可能")
+
+class iPad(IObserver):
+    def update(self, _apple):
+        print("iPadは" + _apple.getVersion() + "にアップデート可能")
+
+#=========
+# 実行
+#=========
+#観察される（Subject）役
+_apple = Apple()
+
+#リスナー（Object）役
+_iPhone = iPhone()
+_iPad = iPad()
+
+#リスナー（Object）役の登録
+_apple.addObserver(_iPhone)
+_apple.addObserver(_iPad)
+
+#全リスナー（Object)への通知
+_apple.notify()
+"""
+iPhoneは10.3.1にアップデート可能
+iPadは10.3.1にアップデート可能
+"""
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月03日  
+更新日：2017年05月11日
 
 
 <a name="Memento"></a>
