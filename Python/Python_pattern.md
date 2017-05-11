@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1239,12 +1239,80 @@ print(_hanako.getMoney()) #15000
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+# test.py
+
+#=====================
+# 各郵便局の抽象クラス
+#=====================
+class AbstractPO(object):
+    _nextPO = None #たらいまわし先
+    #↑protectedが無いのでパブリック変数にします...
+
+    #共通の関数
+    def setNext(self, _po):
+        self._nextPO = _po
+        return self._nextPO
+
+    #抽象関数（派生クラスでオーバーライド）
+    def send(self, _address):
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+
+#===========
+# 新宿郵便局
+#===========
+class ShinjukuPO(AbstractPO):
+    #抽象関数をオーバーライド
+    def send(self, _address):
+        #文字列.find("検索したい文字列" [,開始位置,終了位置])...見つからない場合-1
+        if (_address.find("新宿") != -1) : #住所に"新宿"が含まれていたら...
+            print("本日中に届きます")
+        else:
+            self._nextPO.send(_address) #たらいまわし先に振る ←ポイント
+
+#===========
+# 東京郵便局
+#===========
+class TokyoPO(AbstractPO):
+    #抽象関数をオーバーライド
+    def send(self, _address):
+        #文字列.find("検索したい文字列" [,開始位置,終了位置])...見つからない場合-1
+        if (_address.find("東京") != -1) : #住所に"東京"が含まれていたら...
+            print("明後日中に届きます")
+        else:
+            self._nextPO.send(_address) #たらいまわし先に振る ←ポイント
+
+#===========
+# 日本郵便局
+#===========
+class JapanPO(AbstractPO):
+    #抽象関数をオーバーライド
+    def send(self, _address):
+        print("一週間前後で届きます")
+
+#===========
+# 実行
+#===========
+#郵便局の設置
+_shinjukuPO = ShinjukuPO()
+_tokyoPO = TokyoPO()
+_japanPO = JapanPO()
+
+#責任のたらいまわしのセット
+_shinjukuPO.setNext(_tokyoPO).setNext(_japanPO)
+
+#投函（今回は全て新宿郵便局に投函する）
+_shinjukuPO.send("新宿区XX町X-X-X") #本日中に届きます
+_shinjukuPO.send("東京都品川区XX町X-X-X") #明後日中に届きます
+_shinjukuPO.send("千葉県我孫子市XX町X-X-X") #一週間前後で届きます
+#新宿以外の郵便局へ投函する場合は更に複雑な処理をする必要があります...
+#現状は新宿以外に投函しても一度（一瞬で!）新宿郵便局を経由して配達されます
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月03日  
+更新日：2017年05月11日
 
 
 <a name="Mediator"></a>
