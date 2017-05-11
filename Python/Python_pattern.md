@@ -879,8 +879,8 @@ class Reader(object):
 
     def __init__(self, arg):
         #↓外部テキストの読み込み
-        file_ = open(arg + ".txt", "r")
-        self.__text = file_.read()
+        _file = open(arg + ".txt", "r")
+        self.__text = _file.read()
 
     def getText(self):
         print(self.__text)
@@ -889,17 +889,17 @@ class Reader(object):
 # 実行
 #=======
 # インスタンスの管理人者を作る（Singletonパターン）
-manager_ = Manager.GetInstance()
-readerA_ = manager_.createReader("A")
-readerKA_ = manager_.createReader("KA")
+_manager = Manager.GetInstance()
+_readerA = _manager.createReader("A")
+_readerKA = _manager.createReader("KA")
 
 # 既成のものを生成しようとすると...
-readerA2_ = manager_.createReader("A") #"Aは既存です"
-print(readerA_ == readerA2_) #True ←中身は同じインスタンス（参照しているだけ）
+_readerA2 = _manager.createReader("A") #"Aは既存です"
+print(_readerA == _readerA2) #True ←中身は同じインスタンス（参照しているだけ）
 
 # 処理の実行
-readerA_.getText() #"あいうえお"
-readerKA_.getText() #"かきくけこ"
+_readerA.getText() #"あいうえお"
+_readerKA.getText() #"かきくけこ"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
@@ -911,12 +911,46 @@ readerKA_.getText() #"かきくけこ"
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+#test.py
+
+#============================
+# ①と②の擬似インターフェース
+#============================
+class ILoader(object):
+    def load(self): raise NotImplementedError() #オーバーライドしないと実行時にError
+
+#=====================
+# ①代理人（Proxy）役
+#=====================
+class Loader(ILoader): #擬似インターフェースを実装
+    __path = None
+    def __init__(self, path_): self.__path = path_ #コンストラクタ関数
+    def load(self): #オーバーライド
+        _content = Content(self.__path) #←実際の本人登場（代理人は実際の本人を知っている）
+        _content.load()
+
+#==============
+# ②実際の本人
+#==============
+class Content(ILoader): #擬似インターフェースを実装
+    __path = None
+    def __init__(self, path_): self.__path = path_ #コンストラクタ関数
+    def load(self): #オーバーライド ←重い処理をここで行う（ポイント!!）
+        _file = open(self.__path, "r") #今回のサンプルでは外部テキストを読み込む
+        print(_file.read())
+
+#======
+# 実行
+#======
+_loader = Loader("sample.txt") #代理人（Proxy）役
+_loader.load() #実際は必要になった時にロードしますが...
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月01日  
+更新日：2017年05月11日
 
 
 <a name="Iterator"></a>
