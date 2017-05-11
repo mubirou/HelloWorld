@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1634,7 +1634,64 @@ print(_snapShot.point) #これ以上、Redoできません → 8000
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+# test.py
+
+#========================
+# Context（状態を管理）役
+#========================
+class Janken(object):
+    #プライベート変数
+    __state = None #状態（State○）を格納
+    
+    #状態の設定   
+    def setState(self, _state):
+        self.__state = _state
+
+    #状態の実行
+    def exec(self):
+        self.__state.execute() 
+        #State○.execute()を呼び出す
+
+#================
+# State（状態）役
+#================
+#擬似インターフェース
+class IState(object):
+    #↓派生クラスでオーバーライドしないと実行時にErrorさせる
+    def execute(self):
+        raise NotImplementedError()
+
+#状態Ａ
+class StateA(IState):
+    #↓Janken.exec()から呼び出される
+    def execute(self): 
+        print("グー、グー、パー")
+
+#状態Ｂ
+class StateB(IState):
+    #↓Janken.exec()から呼び出される
+    def execute(self):
+        print("パー、グー、チョキ")
+
+#=======
+# 実行
+#=======
+#Context（状態を管理）役
+_janken = Janken()
+
+#State（状態）役
+_stateA = StateA()
+_stateB = StateB()
+
+#状態の設定＆実行
+_janken.setState(_stateA)
+_janken.exec() #グー、グー、パー
+
+#状態の変更＆実行
+_janken.setState(_stateB)
+_janken.exec() #パー、グー、チョキ
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
