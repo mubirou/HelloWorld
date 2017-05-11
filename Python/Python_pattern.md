@@ -1318,12 +1318,124 @@ _shinjukuPO.send("千葉県我孫子市XX町X-X-X") #一週間前後で届きま
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+# test.py
+
+#==================================
+# 相談役（専門性が高いため使い捨て）
+#==================================
+class Mediator(object):
+    __memberList = None #プライベート変数の宣言
+
+    #静的変数（扱い）の宣言
+    MEMBER_A = MEMBER_B = MEMBER_C = 1
+
+    #コンストラクタ関数
+    def __init__(self):
+        self.__memberList = [] #初期化
+
+        #静的変数の初期化
+        Mediator.MEMBER_A = MemberA()
+        Mediator.MEMBER_B = MemberB()
+        Mediator.MEMBER_C = MemberC()
+
+        #メンバーの登録
+        self.addMember(Mediator.MEMBER_A)
+        self.addMember(Mediator.MEMBER_B)
+        self.addMember(Mediator.MEMBER_C)
+
+    #メンバーリストに登録
+    def addMember(self, _member):
+        self.__memberList.append(_member)
+        _member.setMediator(self) #メンバーに相談役は自分であることを教える
+
+    #メンバーからの報告を受け支持を出す（特に専門性が高い関数）
+    def request(self, _member, _string):
+        if (_member == Mediator.MEMBER_A) :
+            #「メンバーＡ」から「西へ行く」と報告があった場合の処理
+            _member.advice("（Ａよ）了解、そのまま西へいけ") #Ａへ指示
+        for theMember in self.__memberList:
+            if (theMember == Mediator.MEMBER_B):
+                theMember.advice("（Ｂよ）東へ行け") #Ｂへ指示
+            elif (theMember == Mediator.MEMBER_C):
+                theMember.advice("（Ｃよ）その場で待機しろ") #Cへ指示
+        #以降、各メンバーからの報告内容に対する処理を記述
+
+#============================
+# 登録するメンバー達
+#============================
+#===============
+# 擬似抽象クラス
+#===============
+class AbstractMember(object):
+    _mediator = None #protectedに出来ないのとりあえずパブリック...
+
+    #共通の機能
+    def setMediator(self, _mediator):
+        self._mediator = _mediator
+
+    #抽象関数の宣言（派生クラスでオーバーライド）
+    def request(self, _string):
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+    
+    #抽象関数の宣言（派生クラスでオーバーライド）
+    def advice(self, _string):
+        raise NotImplementedError() #オーバーライドしないと実行時にError
+
+#============
+# メンバーＡ
+#============
+class MemberA(AbstractMember):
+    #抽象関数のオーバーライド
+    def request(self, _string):
+        #ここにメンバーＡ独自の処理など
+        self._mediator.request(self, _string) #相談役に報告
+
+    #抽象関数のオーバーライド
+    def advice(self, _string):
+        print("A: " + _string)
+
+#============
+# メンバーＢ
+#============
+class MemberB(AbstractMember):
+    #抽象関数のオーバーライド
+    def request(self, _string):
+        #ここにメンバーＢ独自の処理など
+        self._mediator.request(self, _string) #相談役に報告
+
+    #抽象関数のオーバーライド
+    def advice(self, _string):
+        print("B: " + _string)
+
+#============
+# メンバーＣ
+#============
+class MemberC(AbstractMember):
+    #抽象関数のオーバーライド
+    def request(self, _string):
+        #ここにメンバーＢ独自の処理など
+        self._mediator.request(self, _string) #相談役に報告
+
+    #抽象関数のオーバーライド
+    def advice(self, _string):
+        print("C: " + _string)
+
+#============
+# 実行
+#============
+Mediator() #今回のサンプルではこのインスタンスは使用しません
+
+Mediator.MEMBER_A.request("西へ行く")
+# A: （Ａよ）了解、そのまま西へいけ
+# B: （Ｂよ）東へ行け
+# C: （Ｃよ）その場で待機しろ
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月03日  
+更新日：2017年05月11日
 
 
 <a name="Observer"></a>
