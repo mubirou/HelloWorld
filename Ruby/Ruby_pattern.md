@@ -31,7 +31,6 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1767,12 +1766,81 @@ _janken.exec() #パー、グー、チョキ
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#============================================================
+# グラフィックソフト
+# バッチ処理（batch(_start, _end)を追加することも可能ですが省略
+#============================================================
+class Inkscape
+    #コンストラクタ
+    def initialize()
+        #インスタンス変数の定義
+        @canvas = Canvas.new() #Receiver（結果を表示する）役
+        @history = [] #履歴（命令クラス）を保存（Batch処理等で利用したり...）
+    end
+
+    #命令の実行
+    def draw(_command)
+        #↓命令を実行する度にインスタンス生成!!
+        _drawCommand = DrawCommand.new(@canvas, _command)
+        _drawCommand.execute() #実行＝キャンバスの再描画
+        @history.push(_drawCommand) #命令クラスを履歴に保存
+    end
+end
+
+#===========
+# 命令クラス
+#===========
+class DrawCommand
+    #コンストラクタ
+    def initialize(_canvas, _command)
+        @canvas = _canvas  #Receiver（結果を表示する）役
+        @command = _command
+    end
+
+    #↓Inkscape.draw()から呼び出される
+    def execute()
+        @canvas.update(@command)
+    end
+end
+
+#=========================================
+# 結果を表示する役＝Receiver（受信者）の役
+#=========================================
+class Canvas
+    #コンストラクタ
+    def initialize()
+        @history = [] #履歴（実際の処理）を保存
+    end
+
+    #キャンバスの再描画
+    def update(_command) #DrawCommand.execute()からの呼出し
+        @history.push(_command)
+        for theCommand in @history do
+            puts(theCommand)
+        end
+        puts("\n")
+    end
+end
+
+#=======
+# 実行
+#=======
+#グラフィックソフトの起動
+inkscape_ = Inkscape.new()
+
+#命令の実行
+inkscape_.draw("線を引く")
+inkscape_.draw("縁取る")
+inkscape_.draw("影を付ける")
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月13日  
+更新日：2017年05月13日
 
 
 <a name="Interpreter"></a>
@@ -1782,5 +1850,5 @@ XXXX
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2016年07月XX日  
 更新日：2017年05月XX日
