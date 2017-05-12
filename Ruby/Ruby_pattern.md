@@ -1846,9 +1846,79 @@ inkscape_.draw("影を付ける")
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-XXXX
+* 例文は ActionScript、SWF、AVM（ActionScript Virtual Machine）を自作ミニ言語と見立てています。
+* 例文は「終端となる表現の役」を省略しています。
+
+### 例文
+```
+#test.rb
+
+#==============================
+# ≒SWFファイルを生成するクラス
+#==============================
+class SWF
+    def initialize(_code) #コンストラクタ
+        #インスタンス変数の定義
+        @codeList = _code.split(';') #命令を配列化（≒中間コード）
+        @count = 0 #getNextCode()で使用
+    end
+
+    def getNextCode() #次の命令を返す
+        @count += 1
+        return @codeList[@count -1]
+    end
+    
+    def isEnd() #次の命令があるか否か...
+        return @count >= @codeList.size
+    end
+end
+
+#===============================
+# ≒ActionScript Virtual Machine
+#===============================
+class AVM
+    def execute(_swf)
+        _result = 0 #計算結果
+
+        while (! _swf.isEnd()) do #次の命令があれば...
+            _nextCode = _swf.getNextCode() #次の命令を調べる
+            
+            # ここからは特にサンプルの独自処理 .........
+            _operator = _nextCode[0] #「+*/-=」の何れか
+            if (_operator != "=")
+                _str = _nextCode[1.._nextCode.size] #「+*/-」を除いた数字
+                _int = _str.to_i
+                if (_operator == "+") then
+                    _result += _int
+                elsif (_operator == "-") then
+                    _result -= _int
+                elsif (_operator == "*") then
+                    _result *= _int
+                elsif (_operator == "/") then
+                    _result /= _int
+                else
+                    puts("Error: 演算子が異なります")
+                end
+            else
+                #本来はここで「終端となる表現」のクラスを生成して処理しますが省略
+                puts(_result)
+            end
+            #............................................
+        end
+    end
+end
+
+#======
+# 実行
+#======
+_code = "+10;*50;/2;-4;=" #自作言語による記述（≒ActionScript）
+_swf = SWF.new(_code) #≒SWFファイルに変換
+_avm = AVM.new() #≒ActionScript Virtual Machine
+_avm.execute(_swf) #≒SWFファイルをAVM上で実行
+#246 ←(0+10)*50/2-4
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年07月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月13日  
+更新日：2017年05月13日
