@@ -798,12 +798,86 @@ _special.show() #=> <---TAKASHI--->
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-XXXX
+* 以下の例文では「Decoratorパターン」を Facade パターンでシンプルにします。
+```
+_special = Decorator2.new(
+                Decorator1.new(
+                    Decorator1.new(
+                        Decorator1.new(
+                            Original.new("TAKASHI")))))
+_special.show()
+```
+...としていたものを次の1行で実現可能になります。
+```
+DecoratorFacade.set("TAKASHI", 3, 1)
+```
+
+### 例文
+```
+#test.rb
+#=====================================================
+# 以下の４つのクラスはDecoratorパターンの例文と全く同じ
+#=====================================================
+class Display # 基本クラス（「中身」と「飾り枠」に同じshow()関数を持たせるため）
+    attr_reader :content #@contentのアクセサ（getter/setter）←派生クラスで利用
+    @content #省略可
+
+    def show()
+        puts(@content)
+    end
+end
+
+class Original < Display # 派生クラス「中身」（飾りを施す前の元）
+    def initialize(_string) #コンストラクタ
+    @content = _string
+    end
+end
+
+class Decorator1 < Display # 派生クラス「飾り枠①」
+    def initialize(_display) #コンストラクタ
+    @content = "-" + _display.content + "-" #飾り「--」を付ける
+    end
+end
+
+class Decorator2 < Display # 派生クラス「飾り枠②」
+    def initialize(_display) #コンストラクタ
+    @content = "<" + _display.content + ">" #飾り「<>」を付ける
+    end
+end
+
+#============================================================
+# シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
+#============================================================
+require "singleton" #Singletonモジュールをインストール（必須）
+class DecoratorFacade #Singletonパターン
+    include Singleton #Singletonパターン化（ポイント）
+    class << self #クラスメソッド（静的メソッド）宣言
+        def set(arg1, arg2=0, arg3=0)
+            _result = Original.new(arg1)
+            for i in 1..arg2 do
+                _result = Decorator1.new(_result)
+            end
+            for j in 1..arg3 do
+                _result = Decorator2.new(_result)
+            end
+            _result.show()
+        end
+    end
+end
+
+#========
+# 実行
+#========
+DecoratorFacade.set("TAKASHI") #=> TAKASHI
+DecoratorFacade.set("TAKASHI", 1, 0) #=> -TAKASHI-
+DecoratorFacade.set("TAKASHI", 0, 1) #=> <TAKASHI>
+DecoratorFacade.set("TAKASHI", 3, 1) #=> <---TAKASHI--->
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Flyweight"></a>
