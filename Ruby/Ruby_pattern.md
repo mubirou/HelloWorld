@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -1365,12 +1365,137 @@ _shinjukuPO.send("千葉県市川市XX町X-X-X") #一週間前後で届きます
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+# test.rb
+
+#==================================
+# 相談役（専門性が高いため使い捨て）
+#==================================
+class Mediator
+    def initialize() #コンストラクタ関数
+        @memberList = [] #初期化
+        #静的変数（クラス変数）の初期化
+        @@MEMBER_A = MemberA.new()
+        @@MEMBER_B = MemberB.new()
+        @@MEMBER_C = MemberC.new()
+        #メンバーの登録
+        addMember(@@MEMBER_A)
+        addMember(@@MEMBER_B)
+        addMember(@@MEMBER_C)
+    end
+
+    #クラス変数（静的変数）のアクセサ
+    def Mediator.MEMBER_A; @@MEMBER_A; end # @@MEMBER_Aのアクセサ
+    def Mediator.MEMBER_B; @@MEMBER_B; end # @@MEMBER_Bのアクセサ
+    def Mediator.MEMBER_C; @@MEMBER_C; end # @@MEMBER_Cのアクセサ
+
+    def addMember(_member) #メンバーリストに登録
+        @memberList.push(_member)
+        _member.setMediator(self) #メンバーに相談役は自分であることを教える
+    end
+
+    #メンバーからの報告を受け支持を出す（特に専門性が高い関数）
+    def houkoku(_member, _string)
+        if (_member == @@MEMBER_A) then
+            #「メンバーＡ」から「西へ行く」と報告があった場合の処理
+            _member.advice("（Ａよ）了解、そのまま西へいけ") #Ａへ指示
+            for theMember in @memberList do
+                if (theMember == @@MEMBER_B) then
+                    theMember.advice("（Ｂよ）東へ行け") #Ｂへ指示
+                elsif (theMember == @@MEMBER_C) then
+                    theMember.advice("（Ｃよ）その場で待機しろ") #Cへ指示
+                end
+            end
+        end
+        #以降、各メンバーからの報告内容に対する処理を記述
+    end
+end
+
+#===================
+# 登録するメンバー達
+#===================
+#---------------
+# 擬似抽象クラス
+#---------------
+class AbstractMember
+   #共通の機能
+    def setMediator(_mediator)
+        @mediator = _mediator #インスタンス変数に格納
+    end
+
+    #抽象関数の宣言（派生クラスでオーバーライド）
+    def request(_string)
+        raise "派生クラスで実装して下さい"
+    end
+    
+    #抽象関数の宣言（派生クラスでオーバーライド）
+    def advice(_string)
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+#-----------
+# メンバーＡ
+#-----------
+class MemberA < AbstractMember
+    #抽象関数のオーバーライド
+    def request(_string)
+        #ここにメンバーＡ独自の処理など
+        @mediator.houkoku(self, _string) #相談役に報告
+    end
+
+    #抽象関数のオーバーライド
+    def advice(_string)
+        puts("A: " + _string)
+    end
+end
+
+#-----------
+# メンバーＢ
+#-----------
+class MemberB < AbstractMember
+    #抽象関数のオーバーライド
+    def request(_string)
+        #ここにメンバーＢ独自の処理など
+        @mediator.houkoku(self, _string) #相談役に報告
+    end
+
+    #抽象関数のオーバーライド
+    def advice(_string)
+        puts("B: " + _string)
+    end
+end
+
+#-----------
+# メンバーＣ
+#-----------
+class MemberC < AbstractMember
+    #抽象関数のオーバーライド
+    def request(_string)
+        #ここにメンバーＢ独自の処理など
+        @mediator.houkoku(self, _string) #相談役に報告
+    end
+
+    #抽象関数のオーバーライド
+    def advice(_string)
+        puts("C: " + _string)
+    end
+end
+
+#=======
+# 実行
+#=======
+Mediator.new() #今回のサンプルではこのインスタンスは使用しません
+Mediator.MEMBER_A.request("西へ行く") #静的変数（クラス変数）にアクセス
+# A: （Ａよ）了解、そのまま西へいけ
+# B: （Ｂよ）東へ行け
+# C: （Ｃよ）その場で待機しろ
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Observer"></a>
