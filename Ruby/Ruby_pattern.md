@@ -1501,12 +1501,79 @@ Mediator.MEMBER_A.request("西へ行く") #静的変数（クラス変数）に�
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#======================
+# Subjec（観察される側）
+#======================
+class ISubject
+    def addObserver(_observer); raise "派生クラスで実装して下さい"; end
+    def removeObserver(_observer); raise "派生クラスで実装して下さい"; end
+    def notify(); raise "派生クラスで実装して下さい"; end
+end
+class Apple < ISubject
+    def initialize()
+        @observerList = [] #リスナーリストの初期化
+    end
+    def addObserver(_observer) #リスナーの登録
+        @observerList.push(_observer)
+    end
+    def removeObserver(_observer) #リスナーの削除
+        @observerList.delete(_observer)
+    end
+    def notify() #全リスナーへの通知
+        for theObserver in @observerList do
+            theObserver.update(self)
+        end
+    end
+    def getVersion()
+        return "10.3.1"
+    end
+end
+
+#==================
+# Observer（観察者）
+#==================
+class IObserver
+    #派生クラスでオーバーライドしないと実行時にErrorさせる
+    def update(_apple); raise "派生クラスで実装して下さい"; end
+end
+class IPhone < IObserver #クラス名は必ず大文字で始めなければならない!!
+    def update(_apple)
+        puts("iPhoneは" + _apple.getVersion() + "にアップデート可能")
+    end
+end
+class IPad < IObserver #クラス名は必ず大文字で始めなければならない!!
+    def update(_apple)
+        puts("iPadは" + _apple.getVersion() + "にアップデート可能")
+    end
+end
+
+#=======
+# 実行
+#=======
+#観察される（Subject）役
+_apple = Apple.new()
+
+#リスナー（Object）役
+_iPhone = IPhone.new()
+_iPad = IPad.new()
+
+#リスナー（Object）役の登録
+_apple.addObserver(_iPhone)
+_apple.addObserver(_iPad)
+
+#全リスナー（Object)への通知
+_apple.notify()
+#=> IPhoneは10.3.1にアップデート可能
+#=> IPadは10.3.1にアップデート可能
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Memento"></a>
