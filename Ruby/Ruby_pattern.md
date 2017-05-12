@@ -1284,12 +1284,82 @@ puts(_hanako.getMoney()) #15000
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+# test.rb
+
+#=====================
+# 各郵便局の抽象クラス
+#=====================
+class AbstractPO
+    def setNext(_po) #共通の関数
+        @nextPO = _po
+        return @nextPO
+    end
+    def send(_address) #抽象関数（派生クラスでオーバーライド）
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+#==============
+# 新宿郵便局
+#==============
+class ShinjukuPO < AbstractPO
+    def send(_address) #抽象メソッドをオーバーライド
+        #文字列.include?("検索したい文字列")......見つからない場合false
+        if _address.include?("新宿") then #住所に"新宿"が含まれていたら...
+            puts("本日中に届きます")
+        else
+            @nextPO.send(_address) #たらいまわし先に振る ←ポイント
+        end
+    end
+end
+
+#============
+# 東京郵便局
+#============
+class TokyoPO < AbstractPO
+    def send(_address) #抽象メソッドをオーバーライド
+        #文字列.include?("検索したい文字列")......見つからない場合false
+        if _address.include?("東京") then #住所に"東京"が含まれていたら...
+            puts("明後日中に届きます")
+        else
+            @nextPO.send(_address) #たらいまわし先に振る ←ポイント
+        end
+    end
+end
+
+#============
+# 日本郵便局
+#============
+class JapanPO < AbstractPO
+    def send(_address) #抽象メソッドをオーバーライド
+        puts("一週間前後で届きます")
+    end
+end
+
+#========
+# 実行
+#========
+#郵便局の設置
+_shinjukuPO = ShinjukuPO.new()
+_tokyoPO = TokyoPO.new()
+_japanPO = JapanPO.new()
+
+#責任のたらいまわしのセット
+_shinjukuPO.setNext(_tokyoPO).setNext(_japanPO)
+
+#投函（今回は全て新宿郵便局に投函する）
+_shinjukuPO.send("新宿区XX町X-X-X") #本日中に届きます
+_shinjukuPO.send("東京都日野市XX町X-X-X") #明後日中に届きます
+_shinjukuPO.send("千葉県市川市XX町X-X-X") #一週間前後で届きます
+#新宿以外の郵便局へ投函する場合は更に複雑な処理をする必要があります...
+#現状は新宿以外に投函しても一度（一瞬で!）新宿郵便局を経由して配達されます
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Mediator"></a>
