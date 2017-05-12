@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1353,7 +1353,7 @@ _shinjukuPO.send("新宿区XX町X-X-X") #本日中に届きます
 _shinjukuPO.send("東京都日野市XX町X-X-X") #明後日中に届きます
 _shinjukuPO.send("千葉県市川市XX町X-X-X") #一週間前後で届きます
 #新宿以外の郵便局へ投函する場合は更に複雑な処理をする必要があります...
-#現状は新宿以外に投函しても一度（一瞬で!）新宿郵便局を経由して配達されます
+#現状は新宿以外に投函しても一度（一瞬で）新宿郵便局を経由して配達されます
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
