@@ -29,8 +29,8 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
@@ -1579,12 +1579,118 @@ _apple.notify()
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+# test.rb
+
+#=========================
+# 主人公役＋バックアップ係
+#=========================
+class Gamer
+    #@pointのアクセサ（getter/setter）
+    attr_accessor :point
+
+    #コンストラクタ
+    def initialize(_point=0)
+        @point = _point
+        @history = [] #履歴用配列（Array）
+        #@count = 0
+    end
+
+    #状態を保存
+    def save()
+        _snapShot = SnapShot.new(@point)
+        @history.push(_snapShot) #履歴に記録
+        @count = @history.size - 1 #Undo/Redo用
+        return _snapShot
+    end
+
+    #履歴
+    def history()
+        for theSnapShot in @history do
+            puts theSnapShot.point
+        end
+    end
+
+    #Undo（やり直し）
+    def undo()
+        if @count > 0 then
+            @count -= 1
+            return @history[@count]
+        else
+            puts("これ以上、Undoできません")
+            @count = 0
+            return @history[0]
+        end
+    end
+
+    #Redo（再実行）
+    def redo()
+        if (@count < @history.size-1) then
+            @count += 1
+            return @history[@count]
+        else
+            puts("これ以上、Redoできません")
+            @count = @history.size - 1
+            return @history[@count]
+        end
+    end
+end
+
+#===================================================
+# Memento役（その瞬間の状態をオブジェクト化）
+#===================================================
+class SnapShot
+    #@pointのアクセサ（getter/setter）
+    attr_accessor :point
+    
+    def initialize(_point)
+        #↓今回はシンプルに１つだけにしておきます
+        @point = _point
+    end
+end
+
+#===================================================
+# 実行
+#===================================================
+_gamer = Gamer.new(100)
+_gamer.save() #最初の状態を保存
+
+_gamer.point = 2000
+_gamer.save() #この時点での状態を保存
+
+_gamer.point = 8000
+_gamer.save() #この時点での状態を保存
+
+_gamer.history() #履歴を調べる
+#=> 100
+#=> 2000
+#=> 8000
+
+#Undo（やり直し）
+_snapShot = _gamer.undo()
+puts(_snapShot.point) #=> 2000
+
+_snapShot = _gamer.undo()
+puts(_snapShot.point) #=> 100
+
+_snapShot = _gamer.undo()
+puts(_snapShot.point) #=> これ以上、Undoできません => 100
+
+#Redo（再実行）
+_snapShot = _gamer.redo()
+puts(_snapShot.point) #=> 2000
+
+_snapShot = _gamer.redo()
+puts(_snapShot.point) #=> 8000
+
+_snapShot = _gamer.redo()
+puts(_snapShot.point) #=> これ以上、Redoできません => 8000
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月13日  
+更新日：2017年05月13日
 
 
 <a name="State"></a>
