@@ -22,8 +22,8 @@
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -104,7 +104,7 @@ class Prototype < IPrototype
         @lastName
     end
 
-     #スーパークラス（擬似インターフェース）のメソッドをオーバーライド
+    #スーパークラス（擬似インターフェース）のメソッドをオーバーライド
     def clone()
         return self.dup #参考:配列（Array）
     end
@@ -226,7 +226,7 @@ class AbstractCard
     def factoryMethod(arg) #抽象メソッド
         raise "派生クラスで実装して下さい"
     end
-   
+
     def templateMethod(arg) #継承するメソッド
         #条件分岐をここで行わない＝ここを汚さない
         _message = self.factoryMethod(arg) #派生クラスのメソッドを呼出す
@@ -257,7 +257,7 @@ class CardICHIRO < AbstractCard  #（擬似）抽象クラスの実装
             raise "Error:CardICHIRO.factoryMethod()" #Errorを発生させる
         end
     end
-  
+
     def order2()  #抽象メソッドをオーバーライド  
         puts("西村一郎") #具体的な処理を記述
     end
@@ -443,7 +443,7 @@ _factoryHANAKO.createSummer()
 class Moneybox
     @yen #プライベート変数宣言
     def initialize(_yen) #コンストラクタ
-       @yen = _yen
+    @yen = _yen
     end
     def add(_yen)
         @yen += _yen
@@ -490,7 +490,7 @@ puts _exchange.getDollar() #157.60799950258914（ドル）
 class Moneybox
     @yen #プライベート変数宣言
     def initialize(_yen) #コンストラクタ
-       @yen = _yen
+    @yen = _yen
     end
     def add(_yen)
         @yen += _yen
@@ -742,7 +742,7 @@ end
 #======================================
 class Original < Display
     def initialize(_string) #コンストラクタ
-       @content = _string
+    @content = _string
     end
 end
 
@@ -752,7 +752,7 @@ end
 #======================
 class Decorator1 < Display
     def initialize(_display) #コンストラクタ
-       @content = "-" + _display.content + "-" #飾り「--」を付ける
+    @content = "-" + _display.content + "-" #飾り「--」を付ける
     end
 end
 
@@ -761,7 +761,7 @@ end
 #======================
 class Decorator2 < Display
     def initialize(_display) #コンストラクタ
-       @content = "<" + _display.content + ">" #飾り「<>」を付ける
+    @content = "<" + _display.content + ">" #飾り「<>」を付ける
     end
 end
 
@@ -998,12 +998,94 @@ loader_.load() #実際は必要になった時にロードしますが...
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#============
+# Bikeクラス
+#============
+class Bike
+    attr_reader :model #@modelのアクセサ（getter）
+    attr_reader :number #@numberのアクセサ（getter）
+
+    def initialize(_model, _number) #コンストラクタ
+        @model = _model
+        @number = _number
+    end
+end
+
+#===============
+# BikeParkクラス
+#===============
+class IBikePark #擬似インターフェース
+    def add(_bike)
+        raise "派生クラスで実装して下さい"
+    end
+    def getBikeAt(_num)
+        raise "派生クラスで実装して下さい"
+    end
+    def getLength()
+        raise "派生クラスで実装して下さい"
+    end
+    def createIterator()
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+class BikePark < IBikePark
+    def initialize() #コンストラクタ
+        @list = [] #リストの初期化
+    end
+    def add(_bike)
+        @list.push(_bike)
+    end
+    def getBikeAt(_num)
+        return @list[_num]
+    end
+    def getLength()
+        return @list.size
+    end
+    def createIterator()
+        return Iterator.new(self) #イテレータの生成
+    end
+end
+
+#==================================
+# Iteratorクラス（≒駐輪場の管理人）
+#==================================
+class Iterator
+def initialize(_bikePark)
+        @bikePark = _bikePark
+        @count = 0
+    end
+    def hasNext()
+        return @bikePark.getLength() > @count
+    end    
+    def next()
+        _nextBike = @bikePark.getBikeAt(@count)
+        @count += 1
+        return _nextBike
+    end
+end
+
+#=======
+# 実行
+#=======
+_bikePark = BikePark.new()
+_bikePark.add(Bike.new("ESTRELLA", "神戸 け 12-63"))
+_bikePark.add(Bike.new("SRV250S", "豊橋 う 19-43"))
+_bikePark.add(Bike.new("GB250 CLUBMAN", "品川 け 13-66"))
+_iterator = _bikePark.createIterator() #イテレータ（管理人）の生成
+while _iterator.hasNext() do
+    _nextBike = _iterator.next()
+    puts(_nextBike.model, _nextBike.number)
+end
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="TemplateMethod"></a>
