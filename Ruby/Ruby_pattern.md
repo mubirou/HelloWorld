@@ -883,7 +883,8 @@ DecoratorFacade.set("TAKASHI", 3, 1) #=> <---TAKASHI--->
 
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
-* # 事前に①A.txt（"あいうえお"）②KA.txt（"かきくけこ"）を作成しておきます
+
+* 事前に①A.txt（"あいうえお"）②KA.txt（"かきくけこ"）を作成しておきます
 
 ```
 # test.rb
