@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1091,12 +1091,61 @@ end
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#======================================
+# 抽象クラス（実際はふつうの基本クラス）
+#======================================
+class AbstractCard
+    def templateMethod() #一連の連続した処理の枠組みを定義
+        order1() #①共通の処理
+        if ! isChild() then #児童（小学生以下）でなければ...
+            order2() #②条件により実行する処理
+        end
+        order3() #③独自の処理（派生クラスでオーバーライド）
+    end
+    def isChild(); raise "派生クラスで実装して下さい"; end
+    def order1(); puts("HAPPY NEW YEAR!"); end #①共通の処理
+    def order2(); puts("勉強頑張ろう!!"); end #②条件により実行する処理
+    def order3(); raise "派生クラスで実装して下さい"; end #③独自の処理
+end
+
+#=============
+# 派生クラス①
+#=============
+class CardHanako < AbstractCard
+    def isChild(); return true; end #オーバーライド
+    def order3(); puts("テニスがんばろうね"); end #オーバーライド
+end
+
+#=============
+# 派生クラス②
+#=============
+class CardIchiro < AbstractCard
+    def isChild(); return false; end #オーバーライド
+    def order3(); puts("テニス頑張ろう!!"); end #オーバーライド
+end
+
+#=======
+# 実行
+#=======
+_cardHanako = CardHanako.new()
+_cardHanako.templateMethod()
+# HAPPY NEY YEAR!
+# テニスがんばろうね
+
+_cardIchiro = CardIchiro.new()
+_cardIchiro.templateMethod()
+# HAPPY NEY YEAR!
+# 勉強頑張ろう!!
+# テニス頑張ろう!!
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Strategy"></a>
