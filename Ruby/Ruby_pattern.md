@@ -24,8 +24,8 @@
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
@@ -1151,12 +1151,59 @@ _cardIchiro.templateMethod()
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+```
+# test.rb
+
+=begin
+「アルゴリズムをごっそり切り替える」
+State パターンに似ています
+State パターンの場合は Context() とするところを Strategy パターンの場合は Context(Strategy()) とする
+=end
+
+#=============
+# Jankenクラス
+#=============
+class Janken
+    def initialize(_strategy) #コンストラクタ
+        @strategy = _strategy
+    end
+    def exec()
+        @strategy.execute()
+    end
+end
+
+#================
+# StrageyXXXクラス
+#================
+class IStrategy #擬似インターフェース（実際はふつうの基本クラス）
+    def execute()
+        raise "派生クラスで実装して下さい"
+    end
+end
+class StrategyA < IStrategy
+    def execute() #オーバーライド
+        puts("グー、グー、パー")
+    end
+end
+class StrategyB < IStrategy
+    def execute() #オーバーライド
+        puts("パー、グー、チョキ")
+    end
+end
+
+#=======
+# 実行
+#=======
+janken_ = Janken.new(StrategyA.new())
+janken_.exec() #グー、グー、パー
+janken_ = Janken.new(StrategyB.new()) #アルゴリズムをごっそり切り替える
+janken_.exec() #パー、グー、チョキ
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Visitor"></a>
