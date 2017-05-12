@@ -28,8 +28,8 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
