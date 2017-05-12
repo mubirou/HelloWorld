@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1580,7 +1580,7 @@ _apple.notify()
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
 ```
-# test.rb
+#test.rb
 
 #=========================
 # 主人公役＋バックアップ係
@@ -1696,12 +1696,72 @@ puts(_snapShot.point) #=> これ以上、Redoできません => 8000
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+# test.rb
+
+#========================
+# Context（状態を管理）役
+#========================
+class Janken
+    #状態の設定   
+    def setState(_state)
+        #状態（State○）を格納（インスタンス変数）
+        @state = _state
+    end
+
+    #状態の実行
+    def exec()
+        @state.execute() #State○.execute()を呼び出す
+    end
+end
+
+#================
+# State（状態）役
+#================
+#擬似インターフェース
+class IState
+    def execute()
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+#状態Ａ
+class StateA < IState
+    def execute() #Janken.exec()から呼び出される
+        puts("グー、グー、パー")
+    end
+end
+
+#状態Ｂ
+class StateB < IState
+    def execute() #Janken.exec()から呼び出される
+        puts("パー、グー、チョキ")
+    end
+end
+
+#========
+# 実行
+#========
+#Context（状態を管理）役
+_janken = Janken.new()
+
+#State（状態）役
+_stateA = StateA.new()
+_stateB = StateB.new()
+
+#状態の設定＆実行
+_janken.setState(_stateA)
+_janken.exec() #グー、グー、パー
+
+#状態の変更＆実行
+_janken.setState(_stateB)
+_janken.exec() #パー、グー、チョキ
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月13日  
+更新日：2017年05月13日
 
 
 <a name="Command"></a>
