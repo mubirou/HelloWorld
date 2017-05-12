@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
@@ -943,12 +943,56 @@ _readerKA.getText() #"かきくけこ"
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+# test.rb
+
+#============================
+# ①と②の擬似インターフェース
+#============================
+class ILoader
+    def load() 
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+#====================
+# ①代理人（Proxy）役
+#====================
+class Loader < ILoader #擬似インターフェースを実装
+    def initialize(_path) #コンストラクタ関数
+        @path = _path
+    end
+
+    def load() #オーバーライド
+        _content = Content.new(@path) #←実際の本人登場（代理人は実際の本人を知っている）
+        _content.load()
+    end
+end
+
+#==============
+# ②実際の本人
+#==============
+class Content < ILoader #擬似インターフェースを実装
+    @path
+    def initialize(_path) #コンストラクタ関数
+        @path = _path
+    end
+    def load() #オーバーライド ←重〜い処理をここで行う（ポイント!!）
+        puts(File.read(@path)) #今回のサンプルでは外部テキストを読み込む
+    end
+end
+
+#=======
+# 実行
+#=======
+loader_ = Loader.new("sample.txt") #代理人（Proxy）役
+loader_.load() #実際は必要になった時にロードしますが...
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Iterator"></a>
