@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1209,12 +1209,76 @@ janken_.exec() #パー、グー、チョキ
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#=======
+# 訪問先
+#=======
+class IAcceptor #擬似インターフェース
+    def accept(_visitor) #1行でも記述可能
+        raise "派生クラスで実装して下さい"
+    end
+end
+
+class Hokkaido < IAcceptor
+    def initialize(); @otoshidama = 5000*2; end
+    def accept(_visitor); _visitor.visit(@otoshidama); end
+    #↑訪問者が誰でも同じ関数を実行!!
+end
+
+class Chiba < IAcceptor
+    def initialize(); @otoshidama = 5000; end
+    def accept(_visitor); _visitor.visit(@otoshidama); end
+    #↑訪問者が誰でも同じ関数を実行!!
+end
+
+#=======
+# 訪問者
+#=======
+class IVisitor #擬似インターフェース
+    def visit(_otoshidama); raise "派生クラスで実装して下さい"; end
+    def getMoney(); raise "派生クラスで実装して下さい"; end
+end
+
+class Ichiro < IVisitor
+    def initialize(); @money = 0; end #コンストラクタ
+    def visit(_otoshidama); @money += _otoshidama; end #オーバーライド
+    def getMoney(); return @money; end
+end
+
+class Hanako < IVisitor
+    def initialize(); @money = 0; end #コンストラクタ
+    def visit(_otoshidama); @money += _otoshidama; end #オーバーライド
+    def getMoney(); return @money; end
+end
+
+#=======
+# 実行
+#=======
+#訪問先
+_hokkaido = Hokkaido.new()
+_chiba = Chiba.new()
+
+#訪問者
+_ichiro = Ichiro.new()
+_hanako = Hanako.new()
+
+#訪問する（訪問先側から見ると「受け入れる」）
+_hokkaido.accept(_ichiro)
+_hokkaido.accept(_hanako)
+_chiba.accept(_ichiro)
+_chiba.accept(_hanako)
+
+#結果...
+puts(_ichiro.getMoney()) #15000
+puts(_hanako.getMoney()) #15000
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="ChainofResponsibility"></a>
