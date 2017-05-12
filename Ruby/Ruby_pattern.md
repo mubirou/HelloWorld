@@ -17,9 +17,9 @@
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -883,13 +883,60 @@ DecoratorFacade.set("TAKASHI", 3, 1) #=> <---TAKASHI--->
 
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
+* # 事前に①A.txt（"あいうえお"）②KA.txt（"かきくけこ"）を作成しておきます
 
-XXXX
+```
+# test.rb
+
+require "singleton" #Singletonに必須
+
+#===========================================
+# インスンタンスの管理人（Singletonパターン）
+#===========================================
+class Manager
+    include Singleton #Singletonパターン化（ポイント）
+    def initialize() #コンストラクタ
+        @hash = Hash.new #←インスタンスを格納する空のハッシュを作成
+    end
+    def createReader(arg) # フライ級の生成（既存の場合、そのインスタンスを返す）   
+        _isKey = @hash.key?(arg)  #キーが既存か調べる（ポイント!!）
+        if (! _isKey) then #@hash[arg]が存在しない場合...
+            @hash[arg] = Reader.new(arg) #ここでやっとインスタンス生成
+        end #@hash[arg]が存在する場合はインスタンスの生成はしない
+        return @hash[arg] #ハッシュに登録されたReaderクラスのインスタンスを返す
+    end
+end
+
+#==========================================================
+#フライ級（メモリの使用量が多いため無駄に生成したくないもの）
+#==========================================================
+class Reader
+    def initialize(arg)
+        @text = File.read(arg + ".txt") #外部テキストの読み込み
+    end
+    def getText()
+        puts(@text)
+    end
+end
+
+#=======
+# 実行
+#=======
+_manager = Manager.instance #唯一のインスタンス（インスタンス管理人者）にアクセス（Singleton）
+_readerA = _manager.createReader("A")
+_readerKA = _manager.createReader("KA")
+# 既成のものを生成しようとすると...
+_readerA2 = _manager.createReader("A")
+puts(_readerA == _readerA2) #true ←中身は同じインスタンス（参照しているだけ）
+# 実行
+_readerA.getText() #"あいうえお"
+_readerKA.getText() #"かきくけこ"
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Proxy"></a>
