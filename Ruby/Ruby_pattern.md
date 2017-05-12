@@ -16,8 +16,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
@@ -722,12 +722,77 @@ _unity3D.getList() #=> Authoring/Unity3D(FileName)
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-XXXX
+```
+#test.rb
+
+#===============================================================
+# 基本クラス（「中身」と「飾り枠」に同じshow()関数を持たせるため）
+#===============================================================
+class Display
+    attr_reader :content #@contentのアクセサ（getter/setter）←派生クラスで利用
+    @content #省略可
+
+    def show()
+        puts(@content)
+    end
+end
+
+#======================================
+# 派生クラス「中身」（飾りを施す前の元）
+#======================================
+class Original < Display
+    def initialize(_string) #コンストラクタ
+       @content = _string
+    end
+end
+
+
+#======================
+# 派生クラス「飾り枠①」
+#======================
+class Decorator1 < Display
+    def initialize(_display) #コンストラクタ
+       @content = "-" + _display.content + "-" #飾り「--」を付ける
+    end
+end
+
+#======================
+# 派生クラス「飾り枠②」
+#======================
+class Decorator2 < Display
+    def initialize(_display) #コンストラクタ
+       @content = "<" + _display.content + ">" #飾り「<>」を付ける
+    end
+end
+
+#==========
+# 実行
+#==========
+_original = Original.new("TAKASHI")
+_original.show() #=> TAKASHI
+
+_decorator1 = Decorator1.new(Original.new("TAKASHI"))
+_decorator1.show() #=> -TAKASHI-
+
+_decorator2 = Decorator2.new(Original.new("TAKASHI"))
+_decorator2.show() #=> <TAKASHI>
+
+_special = Decorator2.new(
+            Decorator1.new(
+                Decorator1.new(
+                    Decorator1.new(
+                        Original.new("TAKASHI")
+                    )
+                )
+            )
+)
+_special.show() #=> <---TAKASHI--->
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月12日  
+更新日：2017年05月13日
 
 
 <a name="Facade"></a>
