@@ -12,8 +12,8 @@
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
@@ -438,12 +438,55 @@ class HANAKO extends AbstractFactory { //←抽象クラスを継承
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-XXXX
+```
+//Main.java
+
+//メインクラス
+public class Main {
+    public static void main(String[] args) {
+        Exchange _exchange = new Exchange(10000, 113.378685);
+        _exchange.addYen(8000);
+        System.out.println(_exchange.getDollar()); //158.759999730108（ドル）
+    }
+}
+
+//スーパークラス
+class Moneybox {
+    private int _yen;
+    public Moneybox(int _yen) { //コンストラクタ
+        this._yen = _yen;
+    }
+    public void add(int _yen) {
+        this._yen += _yen;
+    }
+    public int getYen() {
+        return _yen;
+    }
+}
+
+interface IExchange { //インターフェース
+    void addYen(int _yen);
+    double getDollar();
+}
+
+//継承+インターフェースの実装
+class Exchange extends Moneybox implements IExchange {
+    private double _rate;
+    public Exchange(int firstYen_, double _rate) { //コンストラクタ
+        //Javaの仕様で明示的にスーパークラスのコンストラクタを呼び出さないと
+        //自動的に引数なしのコンストラクタ「super()」を実行してしまうの注意!!
+        super(firstYen_);
+        this._rate = _rate;
+    }
+    public void addYen(int _yen) { add(_yen); } //←add()は継承したメソッド
+    public double getDollar() { return getYen() / _rate; } //←getYen()は継承したメソッド
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Adapter（委譲）"></a>
