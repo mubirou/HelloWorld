@@ -13,8 +13,8 @@
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
@@ -175,8 +175,8 @@ public class Main {
 
 // Director(年賀状の印刷業者)
 class Director {
-    private IBuilder _builder; //←Builder○クラスのインスタンスを格納（委譲）
-    public Director(IBuilder _builder) { //←コンストラクタ
+    private IBuilder _builder; //Builder○クラスのインスタンスを格納（委譲）
+    public Director(IBuilder _builder) { //コンストラクタ
         this._builder = _builder;
     }
     public void construct() { //共通の手順
@@ -392,9 +392,9 @@ public class Main {
 abstract class AbstractFactory {
     public static AbstractFactory createFactory(String _name) {
         if (_name == "ICHIRO") {
-            return new ICHIRO(); //←具体的な「亨工場」を生成
+            return new ICHIRO(); //具体的な「亨工場」を生成
         } else if (_name == "HANAKO") {
-            return new HANAKO(); //←具体的な「幸子工場」を生成
+            return new HANAKO(); //具体的な「幸子工場」を生成
         } else {
             return null; //必須
         }
@@ -406,23 +406,23 @@ abstract class AbstractFactory {
 //=====================================
 //サブクラス群（実際の工場）
 //=====================================
-class ICHIRO extends AbstractFactory { //←抽象クラスを継承
-    public void createNewYear(){ //←オーバーライドして具体的処理を記述
+class ICHIRO extends AbstractFactory { //抽象クラスを継承
+    public void createNewYear(){ //オーバーライドして具体的処理を記述
         System.out.println("HAPPY NEW YEAR!");
         System.out.println("ICHIRO NISHIMURA");
     }
-    public void createSummer() { //←オーバーライドして具体的処理を記述
+    public void createSummer() { //オーバーライドして具体的処理を記述
         System.out.println("暑中お見舞い申し上げます");
         System.out.println("西村一郎");
     }
 }
 
-class HANAKO extends AbstractFactory { //←抽象クラスを継承
-    public void createNewYear() { //←オーバーライドして具体的処理を記述
+class HANAKO extends AbstractFactory { //抽象クラスを継承
+    public void createNewYear() { //オーバーライドして具体的処理を記述
         System.out.println("明けましておめでとうございます");
         System.out.println("西村花子");
     }
-    public void createSummer() { //←オーバーライドして具体的処理を記述
+    public void createSummer() { //オーバーライドして具体的処理を記述
         System.out.println("暑中おみまいもうしあげます");
         System.out.println("西村一郎");
     }
@@ -464,7 +464,8 @@ class Moneybox {
     }
 }
 
-interface IExchange { //インターフェース
+//インターフェース
+interface IExchange {
     void addYen(int _yen);
     double getDollar();
 }
@@ -474,12 +475,12 @@ class Exchange extends Moneybox implements IExchange {
     private double _rate;
     public Exchange(int firstYen_, double _rate) { //コンストラクタ
         //Javaの仕様で明示的にスーパークラスのコンストラクタを呼び出さないと
-        //自動的に引数なしのコンストラクタ「super()」を実行してしまうの注意!!
+        //自動的に引数なしのコンストラクタ「super()」を実行してしまうの注意
         super(firstYen_);
         this._rate = _rate;
     }
-    public void addYen(int _yen) { add(_yen); } //←add()は継承したメソッド
-    public double getDollar() { return getYen() / _rate; } //←getYen()は継承したメソッド
+    public void addYen(int _yen) { add(_yen); } //add()は継承したメソッド
+    public double getDollar() { return getYen() / _rate; } //getYen()は継承したメソッド
 }
 ```
 
@@ -492,12 +493,59 @@ class Exchange extends Moneybox implements IExchange {
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-XXXX
+```
+//Main.java
+
+//メインクラス
+public class Main {
+    public static void main(String[] args) {
+        Exchange _exchange = new Exchange(10000, 113.378685);
+        _exchange.addYen(8000);
+        System.out.println(_exchange.getDollar()); //158.759999730108（ドル）
+    }
+}
+
+//スーパークラス
+class Moneybox {
+    private int _yen;
+    public Moneybox(int _yen) { //コンストラクタ
+        this._yen = _yen;
+    }
+    public void add(int _yen) {
+        this._yen += _yen;
+    }
+    public int getYen() {
+        return _yen;
+    }
+}
+
+//インターフェース
+interface IExchange {
+    void addYen(int _yen);
+    double getDollar();
+}
+
+//サブクラス+インターフェースの実装 ←この内容のみ「継承」版と異なる
+class Exchange implements IExchange {
+    private Moneybox moneybox_; //Moneyboxクラスのインスタンスを格納（委譲）
+    private double rate_;
+    public Exchange(int firstYen_, double rate_) { //コンストラクタ
+        moneybox_ = new Moneybox(firstYen_); //ここがポイント
+        this.rate_ = rate_;
+    }
+    public void addYen(int yen_) {
+        moneybox_.add(yen_); //ポイント
+    }
+    public double getDollar() {
+        return moneybox_.getYen() / rate_; //ポイント
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Bridge"></a>
