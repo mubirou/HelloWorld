@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1159,12 +1159,87 @@ class Iterator implements IIterator {
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//============
+//メインクラス
+//============
+public class Main {
+    public static void main(String[] args) {
+        CardIchiro _cardIchiro = new CardIchiro();
+        _cardIchiro.templateMethod();
+        /*
+        HAPPY NEW YEAR!
+        勉強頑張ろう
+        テニス頑張ろう
+        */
+
+        CardHanako _cardHanako = new CardHanako();
+        _cardHanako.templateMethod();
+        /*
+        HAPPY NEW YEAR!
+        テニスがんばろうね
+        */
+    }
+}
+
+//===================================
+//抽象クラス
+//===================================
+abstract class AbstractCard {
+    //↓一連の連続した処理の枠組みを定義
+    public void templateMethod() {
+        order1(); //共通の処理
+        if (isChild()) { //フックメソッド（サブクラスでオーバーライド）
+            order2(); //←条件により実行
+        }
+        order3(); //サブクラスでオーバーライド
+    }
+    private void order1() { //共通の処理
+        System.out.println("HAPPY NEW YEAR!");
+    }
+    abstract protected boolean isChild(); //抽象メソッドの宣言
+    //↓条件により実行
+    private void order2() {
+        System.out.println("勉強頑張ろう");
+    }
+    abstract protected void order3(); //抽象メソッドの宣言
+}
+
+//===================================
+//サブクラス①（抽象クラスを継承）
+//===================================
+class CardIchiro extends AbstractCard {
+    //フックメソッドをオーバーライドして具体的処理を記述
+    protected boolean isChild() {
+        return true;
+    }
+    //抽象メソッドをオーバーライドして具体的処理を記述
+    protected void order3() {
+        System.out.println("テニス頑張ろう");
+    }
+}
+
+//===================================
+//サブクラス②（抽象クラスを継承）
+//===================================
+class CardHanako extends AbstractCard {
+    //フックメソッドをオーバーライドして具体的処理を記述
+    protected boolean isChild() {
+        return false;
+    }
+    //抽象メソッドをオーバーライドして具体的処理を記述
+    protected void order3() {
+        System.out.println("テニスがんばろうね");
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Strategy"></a>
