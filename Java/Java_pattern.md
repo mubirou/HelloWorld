@@ -1069,7 +1069,13 @@ class Content implements ILoader {
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
 ```
+//Main.java
+
 import java.util.*; //LinkedListに必要
+
+//=============
+// メインクラス
+//=============
 public class Main {
     public static void main(String[] args) {
         BikePark _bikePark = new BikePark();
