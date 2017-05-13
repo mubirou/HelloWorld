@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
@@ -984,7 +984,80 @@ class Reader { //フライ級の役（メモリの使用量が多いため無駄
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+* 以下の例文では、"あいうえお" を入力した外部ファイル（sample.txt） を用意しておきます。
+
+```
+//Main.java
+
+import java.io.File; //テキストの読込み用
+import java.io.FileReader; //テキストの読込み用
+import java.io.FileNotFoundException; //テキストの読込み用
+import java.io.IOException; //テキストの読込み用
+
+//=============
+// メインクラス
+//=============
+public class Main {
+    public static void main(String[] args) {
+        String _path = "sample.txt";
+        Loader _loader = new Loader(_path); //代理人（Proxy）役
+        //↓通常は、必要になった時に実際にロード
+        _loader.load(); //=> あいうえお かきくけこ
+    }
+}
+
+//=====================================
+// ①Loaderと②Contentのインターフェース
+//=====================================
+interface ILoader {
+    void load(); //暗黙的にpublicになる
+}
+
+//===================
+// ①代理人（Proxy）役
+//===================
+class Loader implements ILoader {
+    private String _path;
+    public Loader(String _path) { //コンストラクタ
+        this._path = _path;
+    }
+    public void load() {
+        //実際の本人が登場（代理人は実際の本人を知っている）
+        Content _content = new Content(_path);
+        _content.load();
+    }
+}
+
+//=============
+// ②実際の本人
+//=============
+class Content implements ILoader {
+    private String _path;
+    public Content(String _path) { //コンストラクタ
+        this._path = _path;
+    }
+    public void load() { //重い処理をここで行う←ポイント
+        //今回のサンプルの中身はあまり重要ではない...
+        String _text = ""; //外部から読み込んだテキストを格納
+        try { //FileReaderクラスを扱う場合、例外処理が必要
+            File _file = new File(_path); //①Fileクラスのオブジェクトの生成
+            FileReader _filereader = new FileReader(_file); //②オブジェクトの生成
+            int _int;
+            while((_int = _filereader.read()) != -1){ //③１文字ずつ読み込んでいきます
+                //④文字コードを文字に変換
+                _text += (char)_int; //=>"あ"=>"い"=>"う"=>...
+            }
+            //⑤ファイルを閉じる
+            _filereader.close();
+        } catch(FileNotFoundException e) {
+            System.out.println(e);
+        } catch(IOException e) {
+            System.out.println(e);
+        }
+        System.out.println(_text);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
