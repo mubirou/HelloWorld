@@ -159,8 +159,8 @@ class Prototype implements IPrototype {
 
 public class Main {
     public static void main(String[] args) {
-        Director _directorB = new Director(new BuilderA());
-        _directorB.construct(); //共通の手順を実行
+        Director _directorA = new Director(new BuilderA());
+        _directorA.construct(); //共通の手順を実行
         //=> HAPPY NEW YEAR!
         //=> ○○○○○○○
         //=> 2018.1.1
