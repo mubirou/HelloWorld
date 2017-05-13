@@ -799,12 +799,96 @@ class Decorator2 extends Display {
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-XXXX
+以下の例文では、「Decoratorパターン」を Facade パターンでシンプルにします。
+```
+Display _special = new Decorator2(
+                            new Decorator1(
+                                new Decorator1(
+                                    new Decorator1(
+                                        new Original("TAKASHI")))));
+_special.show();
+```
+...としていたものを次の1行で実現可能になります。
+```
+DecoratorFacade.exec("TAKASHI", 3, 1);
+```
+
+```
+//Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        //メイン内がシンプルになります
+        DecoratorFacade.exec("TAKASHI", 0, 0); //=> TAKASHI
+        DecoratorFacade.exec("TAKASHI", 1, 0); //=> -TAKASHI-
+        DecoratorFacade.exec("TAKASHI", 0, 1); //=> <TAKASHI>
+        DecoratorFacade.exec("TAKASHI", 3, 1); //=> <---TAKASHI--->
+    }
+}
+
+//============================================================
+// シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
+//============================================================
+class DecoratorFacade { //Singletonパターン
+    private DecoratorFacade() {} //privateにして外部からnewできないようにする
+    public static void exec(String arg1, int arg2, int arg3) {
+        Display result_ = new Original(arg1);
+        for (int i=0; i<arg2; i++) {
+            result_ = new Decorator1(result_);
+        }
+        for (int j=0; j<arg3; j++) {
+            result_ = new Decorator2(result_);
+        }
+        result_.show();
+    }
+}
+
+//以下の4つのクラスはDecoratorパターンの例文と全く同じ
+//=====================================================================
+//「中身」と「飾り枠」に同じshow()メソッドを持たせるためのスーパークラス
+//=====================================================================
+class Display {
+    protected String _content;
+    public String getContent() {
+        return _content;
+    }
+    public void show() {
+        System.out.println(_content);
+    }
+}
+
+//=======================
+//中身（飾りを施す前の元）
+//=======================
+class Original extends Display {
+    public Original(String arg) { //コンストラクタ
+        _content = arg; //_conentは基本クラスからの継承
+    }
+}
+
+//=========
+//飾り枠①
+//=========
+class Decorator1 extends Display {
+    public Decorator1(Display _display) { //コンストラクタ
+        _content = "-" + _display.getContent() + "-"; //飾り①を付ける
+    }
+}
+
+//=========
+//飾り枠②
+//=========
+class Decorator2 extends Display {
+    public Decorator2(Display _display) { //コンストラクタ
+        _content = "<" + _display.getContent() + ">"; //飾り②を付ける
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Flyweight"></a>
