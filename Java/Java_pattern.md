@@ -22,8 +22,8 @@
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1068,12 +1068,86 @@ class Content implements ILoader {
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+import java.util.*; //LinkedListに必要
+public class Main {
+    public static void main(String[] args) {
+        BikePark _bikePark = new BikePark();
+
+        _bikePark.add(new Bike("ESTRELLA", "神戸 こ 19-63"));
+        _bikePark.add(new Bike("SRV250S", "豊橋 え 19-63"));
+        _bikePark.add(new Bike("GB250 CLUBMAN", "品川 く 14-56"));
+
+        Iterator _iterator = _bikePark.createIterator(); //イテレータ（管理人）生成
+        
+        while(_iterator.hasNext()) {
+            Bike _nextBike = _iterator.next();
+            System.out.println(_nextBike.getName() + "," + _nextBike.getNum());
+            //=> ESTRELLA,神戸 さ 19-03
+            //=> SRV250S,豊橋 あ 13-63
+            //=> GB250 CLUBMAN,品川 け 12-16
+        }
+    }
+}
+
+//===========
+// Bikeクラス
+//===========
+class Bike {
+    private String _name, _num;
+    public Bike(String _name, String _num) { //コンストラクタ
+        this._name = _name;
+        this._num = _num;
+    }
+    public String getName() { return _name; }
+    public String getNum() { return _num; }
+}
+
+//===============
+// BikeParkクラス
+//===============
+interface IBikePark {
+    void add(Bike arg); //暗黙的にpublicになる
+    Bike getBikeAt(int arg);
+    int getLength();
+    Iterator createIterator();
+}
+class BikePark implements IBikePark {
+    LinkedList<Bike> _list = new LinkedList<>();  //空のLinkedListを作成 
+    public void add(Bike arg) { _list.add(arg); }
+    public Bike getBikeAt(int arg) { return _list.get(arg); }
+    public int getLength() { return _list.size(); }
+    public Iterator createIterator() { 
+        return new Iterator(this); //イテレータ生成（管理人）生成
+    }
+}
+
+//==================================
+// Iteratorクラス（≒駐輪場の管理人）
+//==================================
+interface IIterator {
+    boolean hasNext(); //暗黙的にpublicになる
+    Bike next();
+}
+class Iterator implements IIterator {
+    BikePark _bikePark;
+    int _count = 0;
+    public Iterator(BikePark arg) { //コンストラクタ
+        this._bikePark = arg;
+    }
+    public boolean hasNext() { 
+        return _bikePark.getLength() > _count;
+    }
+    public Bike next() { 
+        return _bikePark.getBikeAt(_count++); //次のバイクを返す
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="TemplateMethod"></a>
