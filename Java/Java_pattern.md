@@ -9,10 +9,10 @@
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
@@ -356,12 +356,83 @@ class Message4 implements IMessage {
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        AbstractFactory _factoryICHIRO = AbstractFactory.createFactory("ICHIRO");
+        _factoryICHIRO.createNewYear();
+        /*
+        HAPPY NEW YEAR!
+        ICHIRO NISHIMURA
+        */
+        _factoryICHIRO.createSummer();
+        /*
+        暑中お見舞い申し上げます
+        西村一郎
+        */
+
+        AbstractFactory _factoryHANAKO = AbstractFactory.createFactory("HANAKO");
+        _factoryHANAKO.createNewYear();
+        /*
+        明けましておめでとうございます
+        西村花子
+        */
+        _factoryHANAKO.createSummer();
+        /*
+        暑中おみまいもうしあげます
+        西村一郎
+        */
+    }
+}
+//=====================================
+//抽象クラス（抽象的な工場）
+//=====================================
+abstract class AbstractFactory {
+    public static AbstractFactory createFactory(String _name) {
+        if (_name == "ICHIRO") {
+            return new ICHIRO(); //←具体的な「亨工場」を生成
+        } else if (_name == "HANAKO") {
+            return new HANAKO(); //←具体的な「幸子工場」を生成
+        } else {
+            return null; //必須
+        }
+    }
+    abstract public void createNewYear(); //抽象メソッド宣言（サブクラスでオーバーライド）
+    abstract public void createSummer(); //抽象メソッド宣言（サブクラスでオーバーライド）
+}
+
+//=====================================
+//サブクラス群（実際の工場）
+//=====================================
+class ICHIRO extends AbstractFactory { //←抽象クラスを継承
+    public void createNewYear(){ //←オーバーライドして具体的処理を記述
+        System.out.println("HAPPY NEW YEAR!");
+        System.out.println("ICHIRO NISHIMURA");
+    }
+    public void createSummer() { //←オーバーライドして具体的処理を記述
+        System.out.println("暑中お見舞い申し上げます");
+        System.out.println("西村一郎");
+    }
+}
+
+class HANAKO extends AbstractFactory { //←抽象クラスを継承
+    public void createNewYear() { //←オーバーライドして具体的処理を記述
+        System.out.println("明けましておめでとうございます");
+        System.out.println("西村花子");
+    }
+    public void createSummer() { //←オーバーライドして具体的処理を記述
+        System.out.println("暑中おみまいもうしあげます");
+        System.out.println("西村一郎");
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月20日  
+更新日：2017年05月13日
 
 
 <a name="Adapter（継承）"></a>
