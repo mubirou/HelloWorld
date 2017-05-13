@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -229,12 +229,128 @@ class BuilderB implements IBuilder {
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//============
+//メインクラス
+//============
+public class Main {
+    public static void main(String[] args) {
+        CardIchiro _cardIchiro = new CardIchiro();
+        _cardIchiro.templateMethod("teacher");
+        /*
+        謹賀新年
+        〒XXX-XXXX 品川区XX町X-XX-XX
+        西村一郎
+        */
+        _cardIchiro.templateMethod("friend");
+        /*
+        HAPPY NEW YEAR!
+        〒XXX-XXXX 品川区XX町X-XX-XX
+        西村一郎
+        */
+        CardHanako _cardHanako = new CardHanako();
+        _cardHanako.templateMethod("teacher");
+        /*
+        明けましておめでとうございます
+        〒XXX-XXXX 品川区XX町X-XX-XX
+        西村花子
+        */
+        _cardHanako.templateMethod("friend");
+        /*
+        あけましておめでとう
+        〒XXX-XXXX 品川区XX町X-XX-XX
+        西村花子
+        */
+    }
+}
+
+//============
+//抽象クラス
+//============
+abstract class AbstractCard {
+    public void templateMethod(String _arg) { //このメソッドはオーバーライドしない
+        //↓ここでnewと記述しない!（条件分岐は派生クラスで行う＝ここを汚さない)
+        IMessage _factoryMethod = factoryMethod(_arg);
+        _factoryMethod.exec(); //処理①
+        order1(); //処理②
+        order2(); //処理③
+    }
+    abstract protected IMessage factoryMethod(String _arg); //サブクラスでオーバーライド
+    public void order1() { //共通の処理
+        System.out.println("〒XXX-XXXX 品川区XX町X-XX-XX");
+    }
+    abstract protected void order2(); //サブクラスでオーバーライド
+}
+
+//===============================
+//サブクラス群（抽象クラスを継承）
+//===============================
+class CardIchiro extends AbstractCard {
+    protected IMessage factoryMethod(String _arg) { //具体的処理を記述
+        if (_arg == "teacher") {
+            return new Message1(); //ここでnewを記述!
+        } else if (_arg == "friend") {
+            return new Message2(); //ここでnewを記述!
+        } else {
+            System.out.println("Error: CardIchiro.factoryMethod()");
+            return null; //必須
+        }
+    }
+    protected void order2() {
+        System.out.println("西村一郎");
+    }
+}
+
+class CardHanako extends AbstractCard {
+    protected IMessage factoryMethod(String _arg) { //具体的処理を記述
+        if (_arg == "teacher") {
+            return new Message3(); //ここでnewを記述!
+        } else if (_arg == "friend") {
+            return new Message4(); //ここでnewを記述!
+        } else {
+            System.out.println("Error: CardHanako.factoryMethod()");
+            return null; //必須
+        }
+    }
+    protected void order2() {
+        System.out.println("西村花子");
+    }
+}
+
+//==================
+//生成したいクラス群
+//==================
+interface IMessage { //インターフェース宣言
+    void exec(); //共通のメソッド
+}
+class Message1 implements IMessage {
+    public void exec() { 
+        System.out.println("謹賀新年"); 
+    }
+}
+class Message2 implements IMessage {
+    public void exec() { 
+        System.out.println("HAPPY NEW YEAR!");
+    }
+}
+class Message3 implements IMessage {
+    public void exec() {
+        System.out.println("明けましておめでとうございます"); 
+    }
+}
+class Message4 implements IMessage {
+    public void exec() { 
+        System.out.println("あけましておめでとう"); 
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月20日  
+更新日：2017年05月13日
 
 
 <a name="AbstractFactory"></a>
