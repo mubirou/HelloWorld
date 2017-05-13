@@ -15,8 +15,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
-    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -644,13 +644,16 @@ public class Main {
         //①フォルダの作成
         Folder _root = new Folder("root");
         Folder _authoring = new Folder("Authoring");
+
         //②ファイルの作成
         File _unity3d = new File("Unity3D");
         File _unrealEngine = new File("Unreal Engine");
+
         //③関連付け
         _root.add(_authoring); 
         _authoring.add(_unity3d);
         _authoring.add(_unrealEngine);
+
         //④検証
         System.out.println(_unrealEngine.getName()); //=> "Unreal Engine"
         _root.getList(); //=> "root/Authoring(Folder)"
@@ -669,19 +672,23 @@ abstract class Component {
     public String getName() { return _name; }
     public Folder getParent() { return parent_; } //getter
     public void setParent(Folder parent_) { this.parent_ = parent_; } //setter
+
     //↓抽象メソッドの宣言（処理は派生クラスに記述）
     abstract public void getList();
 }
 
 class Folder extends Component {
     private LinkedList<Component> _childList = new LinkedList<>(); //空のリストを作成
+
     public Folder(String _name) { //コンストラクタ
         this._name = _name; 
     }
+
     public void add(Component arg) { //Remove()は今回は省略
         _childList.add(arg); //←LinkedList.add()
         arg.setParent(this);
     }
+
     public void getList() { //オーバーライドして実際の処理を記述
         for (Component tmp : _childList) {
             String _result = this.getName() + "/" + tmp.getName();
@@ -699,6 +706,7 @@ class File extends Component {
     public File(String _name) { //コンストラクタ
         this._name = _name;
     }
+
     public void getList() { //オーバーライドして実際の処理を記述
         System.out.println(this.getParent().getName()+"/"+this.getName()+"(File)");
     }
