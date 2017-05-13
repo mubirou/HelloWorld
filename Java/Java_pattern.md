@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1292,12 +1292,80 @@ class Janken {
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//=============
+// メインクラス
+//=============
+public class Main {
+    public static void main(String[] args) {
+        //訪問先
+        Hokkaido _hokkaido = new Hokkaido(); //北海道実家
+        Chiba _chiba = new Chiba(); //千葉親戚
+        
+        //訪問者
+        Ichiro _ichiro = new Ichiro(); //亨
+        Hanako _hanako = new Hanako(); //幸子
+        
+        //訪問する（訪問側から見ると「受け入れる」）
+        _hokkaido.accept(_ichiro);
+        _hokkaido.accept(_hanako);
+        _chiba.accept(_ichiro);
+        _chiba.accept(_hanako);
+        
+        //結果
+        System.out.println(_ichiro.getMoney()); //=> 15000
+        System.out.println(_hanako.getMoney()); //=> 15000
+    }
+}
+
+//========
+// 訪問先
+//========
+interface IAcceptor {
+    void accept(IVisitor _visitor); //暗黙的にpublicになる
+}
+
+class Hokkaido implements IAcceptor {
+    private int _otoshidama = 5000*2; //お年玉
+    public void accept(IVisitor _visitor) { //Accept＝受け入れる
+        _visitor.visit(_otoshidama); //誰が訪問してきても同じメソッドを実行
+    }
+}
+
+class Chiba implements IAcceptor {
+    private int _otoshidama = 5000; //お年玉
+    public void accept(IVisitor _visitor) { //Accept＝受け入れる
+        _visitor.visit(_otoshidama); //誰が訪問してきても同じメソッドを実行
+    }
+}
+
+//========
+// 訪問者
+//========
+interface IVisitor {
+    void visit(int _otoshidama); //暗黙的にpublicになる
+    int getMoney(); //暗黙的にpublicになる
+}
+
+class Ichiro implements IVisitor { //一郎
+    private int _money = 0; //貯金
+    public void visit(int _otoshidama) { _money += _otoshidama; }
+    public int getMoney() { return _money; }
+}
+
+class Hanako implements IVisitor { //花子
+    private int _money = 0; //貯金
+    public void visit(int _otoshidama) { _money += _otoshidama; }
+    public int getMoney() { return _money; }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="ChainofResponsibility"></a>
