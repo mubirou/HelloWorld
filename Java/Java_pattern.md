@@ -31,7 +31,6 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1852,12 +1851,70 @@ class StateB implements IState {
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+import java.util.*; //LinkedListに必要
+
+//===========
+//メインクラス
+//============
+public class Main {
+    public static void main(String[] args) {
+        Inkscape _inkscape = new Inkscape(); //グラフィックソフト
+        _inkscape.draw("線を引く"); //命令の実行
+        _inkscape.draw("縁取る"); //命令の実行
+        _inkscape.draw("影を付ける"); //命令の実行
+    }
+}
+
+//==========================================
+//グラフィックソフト（バッチ処理は今回は省略）
+//==========================================
+class Inkscape {
+    Canvas _canvas = new Canvas(); //Receiver（結果を表示する）役
+    LinkedList<DrawCommand> _history = new LinkedList<>(); //履歴（命令クラス）を保存
+    public void draw(String _command) { //命令の実行
+        //↓命令を実行する度にインスタンス生成
+        DrawCommand _drawCommand = new DrawCommand(_canvas, _command); 
+        _drawCommand.execute(); //実行（＝キャンバスの再描画）→★
+        _history.add(_drawCommand); //命令クラスを履歴に保存
+    }
+}
+
+//==========
+//命令クラス
+//==========
+class DrawCommand {
+    private Canvas _canvas;
+    private String _command;
+    public DrawCommand(Canvas _canvas, String _command) { //コンストラクタ
+        this._canvas = _canvas;
+        this._command = _command;
+    }
+    public void execute() { //←★Inkscape.draw()から呼び出される
+        _canvas.update(_command); //→⦿
+    }
+}
+
+//========================================
+// 結果を表示する役＝Receiver（受信者）の役
+//========================================
+class Canvas {
+    LinkedList<String> _history = new LinkedList<>(); //履歴（実際の処理）を保存
+    public void update(String _command) { //キャンバスの再描画←⦿
+        _history.add(_command);
+        for (String _string : _history) {
+            System.out.println(_string);
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月22日  
+更新日：2017年05月13日
 
 
 <a name="Interpreter"></a>
