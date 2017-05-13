@@ -24,8 +24,8 @@
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
@@ -1245,12 +1245,48 @@ class CardHanako extends AbstractCard {
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//==============
+// メインクラス
+//==============
+public class Main {
+    public static void main(String[] args) {
+        Janken _jankenA = new Janken(new StrategyA());
+        Janken _jankenB = new Janken(new StrategyB());
+        _jankenA.exec(); //=> グー、グー、パー
+        _jankenB.exec(); //=> パー、グー、チョキ
+    }
+}
+
+//=================
+// StrategyXXXクラス
+//=================
+interface IStrategy {
+    void execute(); //暗黙的にpublicになる
+}
+class StrategyA implements IStrategy {
+    public void execute() { System.out.println("グー、グー、パー");	}
+}
+class StrategyB implements IStrategy {
+    public void execute() { System.out.println("パー、グー、チョキ"); 	}
+}
+
+//=============
+// Jankenクラス
+//=============
+class Janken {
+    private IStrategy _strategy;
+    public Janken(IStrategy _strategy) { this._strategy = _strategy; }
+    public void exec() { _strategy.execute(); } //exec()だと紛らわしいので...
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Visitor"></a>
