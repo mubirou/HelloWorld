@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1781,12 +1781,72 @@ class SnapShot {
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//=============
+// メインクラス
+//=============
+public class Main {
+    public static void main(String[] args) {
+        //Context役
+        Janken _janken = new Janken();
+        
+        //State（状態）役
+        IState _stateA = new StateA();
+        IState _stateB = new StateB();
+        
+        //状態の設定＆実行
+        _janken.setState(_stateA);
+        _janken.exec(); //=> グー、グー、パー
+        
+        //状態の変更＆実行
+        _janken.setState(_stateB);
+        _janken.exec(); //=>パー、グー、チョキ
+    }
+}
+
+//=======================
+// Context（状態を管理）役
+//=======================
+class Janken {
+    private IState _state; //状態（State○）を格納
+    
+    public void setState(IState _state) {
+        this._state = _state;
+    }
+    
+    public void exec() {
+        _state.execute(); //→State○.execute()メソッドを呼出す
+    }
+}
+
+//================
+// State（状態）役
+//================
+interface IState {
+    void execute(); //暗黙的にpublic扱い
+}
+
+//状態A
+class StateA implements IState {
+    public void execute() { //←Janken.exec()から呼び出される
+        System.out.println("グー、グー、パー");
+    }
+}
+
+//状態B
+class StateB implements IState {
+    public void execute() { //←Janken.exec()から呼び出される
+        System.out.println("パー、グー、チョキ");
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月22日  
+更新日：2017年05月13日
 
 
 <a name="Command"></a>
@@ -1807,5 +1867,5 @@ XXXX
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2016年07月22日  
 更新日：2017年05月XX日
