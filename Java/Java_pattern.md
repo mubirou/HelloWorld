@@ -832,14 +832,14 @@ public class Main {
 class DecoratorFacade { //Singletonパターン
     private DecoratorFacade() {} //privateにして外部からnewできないようにする
     public static void exec(String arg1, int arg2, int arg3) {
-        Display result_ = new Original(arg1);
+        Display _result = new Original(arg1);
         for (int i=0; i<arg2; i++) {
-            result_ = new Decorator1(result_);
+            _result = new Decorator1(_result);
         }
         for (int j=0; j<arg3; j++) {
-            result_ = new Decorator2(result_);
+            _result = new Decorator2(_result);
         }
-        result_.show();
+        _result.show();
     }
 }
 
