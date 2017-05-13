@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>Java デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -1919,6 +1917,9 @@ class Canvas {
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
+
+* 例文は ActionScript、SWF、AVM（ActionScript Virtual Machine）を自作ミニ言語と見立てています。
+* 例文は「終端となる表現の役」を省略しています。
 
 ```
 //Main.java
