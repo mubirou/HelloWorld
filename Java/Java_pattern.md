@@ -392,9 +392,9 @@ public class Main {
 abstract class AbstractFactory {
     public static AbstractFactory createFactory(String _name) {
         if (_name == "ICHIRO") {
-            return new ICHIRO(); //具体的な「亨工場」を生成
+            return new ICHIRO(); //具体的な「一郎工場」を生成
         } else if (_name == "HANAKO") {
-            return new HANAKO(); //具体的な「幸子工場」を生成
+            return new HANAKO(); //具体的な「花子工場」を生成
         } else {
             return null; //必須
         }
@@ -1305,8 +1305,8 @@ public class Main {
         Chiba _chiba = new Chiba(); //千葉親戚
         
         //訪問者
-        Ichiro _ichiro = new Ichiro(); //亨
-        Hanako _hanako = new Hanako(); //幸子
+        Ichiro _ichiro = new Ichiro(); //一郎
+        Hanako _hanako = new Hanako(); //花子
         
         //訪問する（訪問側から見ると「受け入れる」）
         _hokkaido.accept(_ichiro);

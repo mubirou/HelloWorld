@@ -345,9 +345,9 @@ class AbstractFactory(object):
     @classmethod
     def createFactory(self, _name):
         if (_name == "ICHIRO"):
-            return ICHIRO() #具体的な「亨工場」（インスタンス）を生成
+            return ICHIRO() #具体的な「一郎工場」（インスタンス）を生成
         elif (_name == "HANAKO"):
-            return HANAKO() #具体的な「幸子工場」（インスタンス）を生成
+            return HANAKO() #具体的な「花子工場」（インスタンス）を生成
         else:
             print("Error:AbstractFactory.createFactory()")
     
