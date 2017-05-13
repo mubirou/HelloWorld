@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -894,12 +894,91 @@ class Decorator2 extends Display {
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-XXXX
+* 以下の例文では、外部テキストとして2つのファイルを使用します。
+    * A.txt（"あいうえお"＝あ行）
+    * KA.txt（"かきくけこ"＝か行）
+
+### 例文
+```
+//Main.java
+
+import java.util.*; //HashMapに必要
+//↓テキストの読込み用
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        //インスタンスの管理者を作る（Singletonクラス）
+        Manager _manager = Manager.getInstance();
+
+        //無駄に生成したくないオブジェクトを生成（既存の場合使い回す）
+        Reader _A = _manager.createReader("A");
+        Reader _KA = _manager.createReader("KA");
+
+        //既存のものを生成しようとすると...
+        Reader _A2 = _manager.createReader("A");
+        System.out.println(_A == _A2); //=> true ←中身は同じインスタンス
+
+            //実行
+        System.out.println(_A.getText()); //=> "あいうえお"
+        System.out.println(_KA.getText()); //=> "かきくけこ"
+    }
+}
+class Manager { //インスタンスの管理人（Singletonクラス）
+    private static Manager _manager = new Manager(); //Singleton用
+    private Map<String,Reader> _map = new HashMap<>();
+
+    private Manager() {} //外部からnewできないようにする
+
+    public static Manager getInstance() { //外部から唯一のインスタンスを呼出す
+        return _manager; //唯一のインスタンス（静的変数）を返す
+    }
+
+    public Reader createReader(String arg) {
+        boolean bool_ = _map.containsKey(arg); //←参照「#172 マップ（HashMap）」
+        if (! bool_) { //_map.get(arg)が存在しない場合...
+            _map.put(arg, new Reader(arg)); //←ここでやっとnew!!
+        } else { //既存の場合...（確認用）
+            System.out.println(arg + "は既存です");
+        }
+        return _map.get(arg); //←Map.get()
+    }
+}
+
+class Reader { //フライ級の役（メモリの使用量が多いため無駄に生成したくないもの等）
+    private String _text = ""; //外部から読み込んだテキストを格納
+
+    public Reader(String arg) { //コンストラクタ
+        try { //FileReaderクラスを扱う場合、例外処理が必要
+            File file_ = new File(arg + ".txt"); //①Fileクラスのオブジェクトの生成
+            FileReader _filereader = new FileReader(file_); //②オブジェクトの生成
+            int int_;
+            while((int_ = _filereader.read()) != -1){ //③１文字ずつ読み込んでいきます
+                //④文字コードを文字に変換
+                _text += (char)int_; //=>"あ"=>"い"=>"う"=>...
+            }
+            //⑤ファイルを閉じる
+            _filereader.close();
+        } catch(FileNotFoundException e) {
+            System.out.println(e);
+        } catch(IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public String getText() {
+        return _text;
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Proxy"></a>
