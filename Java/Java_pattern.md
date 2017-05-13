@@ -29,8 +29,8 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
@@ -1658,12 +1658,124 @@ class iPadPro implements IObserver { //本来は大文字で始まるべきで�
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+import java.util.*; //LinkedListに必要
+
+//=============
+// メインクラス
+//=============
+public class Main {
+    public static void main(String[] args) {
+        Gamer _gamer = new Gamer(100); //ゲームスタート（最初のポイントは100）
+        SnapShot _snapShot = _gamer.save(); //最初の状態を保存
+        
+        _gamer.setPoint(2000); //いろいろゲームが進行して2000ポイントに...
+        _snapShot = _gamer.save(); //この時点での状態を保存
+        
+        _gamer.setPoint(8000); //更にゲームが進行して8000ポイントに...
+        _snapShot = _gamer.save(); //この時点での状態を保存
+        
+        _gamer.history(); //履歴を調べる
+        //=>  0:100
+        //=> 1:2000
+        //=> 2:8000
+        
+        _snapShot = _gamer.undo(); //Undo（やり直し）
+        System.out.println(_snapShot.getPoint()); //=> 2000
+        _snapShot = _gamer.undo();
+        System.out.println(_snapShot.getPoint()); //=> 100
+        _snapShot = _gamer.undo();
+        System.out.println(_snapShot.getPoint()); //=> これ以上、Undoできません 100
+        
+        _snapShot = _gamer.redo(); //Redo（再実行）
+        System.out.println(_snapShot.getPoint()); //=> 2000
+        _snapShot = _gamer.redo();
+        System.out.println(_snapShot.getPoint()); //=> 8000
+        _snapShot = _gamer.redo();
+        System.out.println(_snapShot.getPoint()); //=> これ以上、Redoできません 8000
+    }
+}
+
+//=========================
+// 主人公役 + バックアップ係
+//=========================
+class Gamer {
+    int _point;
+    LinkedList<SnapShot> _history = new LinkedList<>(); //履歴用リスト
+    int _count; //Undo、Redo用
+    
+    public Gamer(int _point) { //コンストラクタ
+        this._point = _point;
+    }
+    
+    public int getPoint() {
+        return _point;
+    }
+    public void setPoint(int _point) {
+        this._point = _point;
+    }
+
+    //状態を保存	
+    public SnapShot save() {
+        SnapShot _snapShot = new SnapShot(_point);
+        _history.add(_snapShot); //←LinkedList.add()
+        _count = _history.size() - 1; //←LinkedList.size()
+        return _snapShot;
+    }
+    
+    //履歴	
+    public void history() {
+        for (int i=0; i < _history.size(); i++) {
+            System.out.println(i + ":" + _history.get(i).getPoint());
+        }
+    }
+    
+    //Undo（やり直し）
+    public SnapShot undo() {
+        if (_count > 0) {
+            return _history.get(--_count);
+        } else {
+            System.out.println("これ以上、Undoできません");
+            _count = 0;
+            return _history.get(0);
+        }
+    }
+    
+    //Redo（再実行）
+    public SnapShot redo() {
+        if (_count < _history.size()-1) {
+            return _history.get(++_count);
+        } else {
+            System.out.println("これ以上、Redoできません");
+            _count = _history.size() - 1;
+            return _history.get(_count);
+        }
+    }
+}
+
+//===========================================
+// Memento役（その瞬間の状態をオブジェクト化）
+//===========================================
+class SnapShot {
+    private int _point; //今回はシンプルに1つだけにしておきます
+    public SnapShot(int _point) {
+        this._point = _point;
+    }
+    public int getPoint() { 
+        return _point; 
+    }
+    public void setPoint(int _point) {
+        this._point = _point;
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月22日  
+更新日：2017年05月13日
 
 
 <a name="State"></a>
