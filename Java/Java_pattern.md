@@ -1583,7 +1583,9 @@ class MemberC extends AbstractMember {
 
 ```
 //Main.java
+
 import java.util.*; //LinkedListに必要
+
 public class Main {
     public static void main(String[] args) {
         ISubject _apple = new Apple(); //観察される（Subject）役
