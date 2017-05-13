@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1371,12 +1371,83 @@ class Hanako implements IVisitor { //花子
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//=============
+// メインクラス
+//=============
+public class Main {
+    public static void main(String[] args) {
+        //郵便局の設置
+        AbstractPO _shinjukuPO = new ShinjukuPO();
+        AbstractPO _tokyoPO = new TokyoPO();
+        AbstractPO _japanPO = new JapanPO();
+        
+        //責任のたらいまわしのセット
+        _shinjukuPO.setNext(_tokyoPO).setNext(_japanPO);
+        
+        //投函（全て新宿郵便局に投函する）
+        _shinjukuPO.send("新宿区XX町X-X-X"); //=> 本日中に届きます
+        _shinjukuPO.send("東京都杉並区XX町X-X"); //=> 明後日中に届きます
+        _shinjukuPO.send("北海道函館市XX町X-X-X"); //=> 一週間前後で届きます
+    }
+}
+
+//=====================
+// 各郵便局の抽象クラス
+//=====================
+abstract class AbstractPO {
+    //共通の機能
+    protected AbstractPO _nextPO; //←たらいまわし先
+    public AbstractPO setNext(AbstractPO _po) {
+        _nextPO = _po;
+        return _nextPO;
+    }
+    //抽象メソッド（子クラスでオーバーライド）	
+    abstract public void send(String _address);
+}
+
+//===========
+// 新宿郵便局
+//===========
+class ShinjukuPO extends AbstractPO {
+    public void send(String _address) { //抽象メソッドの実際の処理
+        if (_address.indexOf("新宿",0) != -1) {
+            System.out.println("本日中に届きます");
+        } else {
+            _nextPO.send(_address); //たらいまわし先に振る ←ポイント
+        }
+    }
+}
+
+//===========
+// 東京郵便局
+//===========
+class TokyoPO extends AbstractPO {
+    public void send(String _address) { //抽象メソッドの実際の処理
+        if (_address.indexOf("東京",0) != -1) {
+            System.out.println("明後日中に届きます");
+        } else {
+            _nextPO.send(_address); //たらいまわし先に振る ←ポイント
+        }
+    }	
+}
+
+//===========
+// 日本郵便局
+//===========
+class JapanPO extends AbstractPO {
+    public void send(String _address) { //抽象メソッドの実際の処理
+        System.out.println("一週間前後で届きます");
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Mediator"></a>
