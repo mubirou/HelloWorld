@@ -38,12 +38,31 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+public class Main {
+    public static void main(String[] args) {
+        Singleton _singleton1 = Singleton.getInstance(); //唯一のインスタンスを呼出す
+        Singleton _singleton2 = Singleton.getInstance(); //唯一のインスタンスを呼出す
+        System.out.println(_singleton1 == _singleton2); //true ←同じインスタンス
+    }
+}
+
+class Singleton {
+    private static Singleton _singleton = new Singleton(); //唯一のインスタンスの生成
+    private Singleton() { //コンストラクタ
+        System.out.println("インスタンスを生成しました");
+    }
+    public static Singleton getInstance() {
+        return _singleton;
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月20日  
+更新日：2017年05月13日
 
 
 <a name="Prototype"></a>
