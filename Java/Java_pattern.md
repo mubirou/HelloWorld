@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -1453,23 +1453,204 @@ class JapanPO extends AbstractPO {
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+import java.util.*; //LinkedListに必要
+
+//=============
+// メインクラス
+//=============
+public class Main {
+    public static void main(String[] args) {
+        //相談役
+        new Mediator(); //今回のサンプルではこのインスタンスは使用しない
+        
+        //検証（今回は静的変数を使いました）
+        Mediator.MemberA.request("西へ行く"); //メンバーAから報告
+        /*
+        MemberA: （Aよ）了解、そのまま西へ行け
+        MemberB: （Bよ）東へ行け
+        MemberC: （Cよ）その場で待機しろ
+        */
+    }
+}
+
+//==================================
+// 相談役（専門性が高いため使い捨て）
+//==================================
+class Mediator {
+    LinkedList<AbstractMember> _memberList = new LinkedList<>(); //メンバーリスト
+    public static AbstractMember MemberA = new MemberA(); //静的変数
+    public static AbstractMember MemberB = new MemberB(); //静的変数
+    public static AbstractMember MemberC = new MemberC(); //静的変数
+    
+    //コンストラクタ
+    public Mediator() {
+        //メンバーの登録
+        addMember(MemberA); //→★
+        addMember(MemberB); //→★
+        addMember(MemberC); //→★
+    }
+    
+    //メンバーリストに登録
+    private void addMember(AbstractMember _member) { //←★
+        _memberList.add(_member); //LinkedList.add()
+        _member.setMediator(this); //メンバーに相談役は自分であることを教える
+    }
+    
+    //メンバーからの報告を受け指示を出す（特に専門性が高いメソッド）←⦿
+    public void request(AbstractMember _member, String _string) {
+        if (_member == MemberA) {
+            if (_string == "西へ行く") {
+                //「メンバーA」から「西へ行く」と報告があった場合の処理
+                _member.advice("（Aよ）了解、そのまま西へ行け"); //→Aへ指示
+                for (AbstractMember theMember : _memberList) {
+                    if (theMember == MemberB) {
+                        theMember.advice("（Bよ）東へ行け"); //→Bへ指示
+                    } else if (theMember == MemberC) {
+                        theMember.advice("（Cよ）その場で待機しろ"); //→Cへ指示
+                    }
+                }
+            }
+        }
+        //以降、各メンバーからの報告内容に対する処理を記述
+    }
+}
+
+//===================
+// 登録するメンバー達
+//===================
+abstract class AbstractMember {
+    //共通の機能
+    protected Mediator _mediator;
+    public void setMediator(Mediator _mediator) {
+        this._mediator = _mediator;
+    }	
+    //抽象メソッドの宣言（派生クラスでオーバーライド）
+    abstract public void request(String _string);
+    abstract public void advice(String _string);
+}
+
+//==========
+//メンバーA
+//==========
+class MemberA extends AbstractMember {
+    public void request(String _string) { //抽象メソッドをオーバーライド
+        //ここにメンバーＡ独自の処理など
+        _mediator.request(this, _string); //相談役に報告→⦿
+    }
+    public void advice(String _string) { //相談役からの指示を受ける
+        System.out.println("MemberA: " + _string);
+    }
+}
+
+//==========
+//メンバーB
+//==========
+class MemberB extends AbstractMember {
+    public void request(String _string) { //抽象メソッドをオーバーライド
+        //ここにメンバーB独自の処理など
+        _mediator.request(this, _string); //相談役に報告→⦿
+    }
+    public void advice(String _string) { //相談役からの指示を受ける
+        System.out.println("MemberA: " + _string);
+    }
+}
+
+//==========
+//メンバーC
+//==========
+class MemberC extends AbstractMember {
+    public void request(String _string) { //抽象メソッドをオーバーライド
+        //ここにメンバーC独自の処理など
+        _mediator.request(this, _string); //相談役に報告→⦿
+    }
+    public void advice(String _string) { //相談役からの指示を受ける
+        System.out.println("MemberA: " + _string);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+import java.util.*; //LinkedListに必要
+public class Main {
+    public static void main(String[] args) {
+        ISubject _apple = new Apple(); //観察される（Subject）役
+        
+        //リスナー（Observer）役
+        IObserver _iPhone = new iPhone();
+        IObserver _iPad = new iPad();
+        IObserver _iPadPro = new iPadPro();
+        
+        //リスナー（Observer）の登録
+        _apple.addObserver(_iPhone);
+        _apple.addObserver(_iPad);
+        _apple.addObserver(_iPadPro);
+        
+        _apple.notice(); //全リスナー（Observer）への通知 ←notify()は不可
+    }
+}
+
+interface ISubject {
+    void addObserver(IObserver _observer); //暗黙的にpublic扱い
+    void removeObserver(IObserver _observer);
+    void notice(); //←notify()は不可
+}
+
+class Apple implements ISubject {
+    LinkedList<IObserver> _observerList = new LinkedList<>(); //リスナーリスト
+    public void addObserver(IObserver _observer) { //リスナーの登録
+        _observerList.add(_observer); //←LinkedList.add()
+    }
+    public void removeObserver(IObserver _observer) { //リスナーの削除
+        _observerList.remove(_observer);
+    }
+    public void notice() { //全リスナーへの通知 ←notify()は不可
+        for (IObserver _observer : _observerList) {
+            _observer.update(this);
+        }
+    }
+    public String getVersion() { return "10.3.1"; }
+}
+
+interface IObserver {
+    void update(Apple _apple); //暗黙的にpublic扱い
+}
+
+class iPhone implements IObserver { //本来は大文字で始まるべきですが...
+    public void update(Apple _apple) {
+        System.out.println("iPhoneは" + _apple.getVersion() + "にアップデート可能");
+    }
+}
+
+class iPad implements IObserver { //本来は大文字で始まるべきですが...
+    public void update(Apple _apple) {
+        System.out.println("iPadは" + _apple.getVersion() + "にアップデート可能");
+    }
+}
+
+class iPadPro implements IObserver { //本来は大文字で始まるべきですが...
+    public void update(Apple _apple) {
+        System.out.println("iPad Proは" + _apple.getVersion() + "にアップデート可能");
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月22日  
+更新日：2017年05月13日
 
 
 <a name="Memento"></a>
