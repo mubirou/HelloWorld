@@ -6,7 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -40,6 +41,7 @@
 
 ```
 //Main.java
+
 public class Main {
     public static void main(String[] args) {
         Singleton _singleton1 = Singleton.getInstance(); //唯一のインスタンスを呼出す
@@ -68,12 +70,85 @@ class Singleton {
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Prototype _prototype = new Prototype("Nishimura");
+        _prototype.setFirstName("Tohru");
+        _prototype.setAge(13);
+
+        Prototype _prototype2 = _prototype.clone();
+        _prototype2.setFirstName("Sachiko");
+        _prototype2.setAge(10);
+
+        //検証（コピー元）
+        System.out.println(_prototype.getFirstName()); //=> "Tohru"
+        System.out.println(_prototype.getLastName()); //=> "Nishimura"
+        System.out.println(_prototype.getAge()); //=> 13
+
+        //検証（複製したもの）
+        System.out.println(_prototype2.getFirstName()); //=> "Sachiko"
+        System.out.println(_prototype2.getLastName()); //=> "Nishimura"
+        System.out.println(_prototype2.getAge()); //=> 10
+    }
+}
+
+interface IPrototype { //インターフェースの宣言
+    Prototype clone();
+    String getLastName();
+    void setFirstName(String _firstName);
+    String getFirstName();
+    void setAge(int _age);
+    int getAge();
+}
+
+class Prototype implements IPrototype {
+    //メンバ変数（private）
+    private String _firstName, _lastName;
+    private int _age; 
+
+    //コンストラクタ
+    public Prototype(String _lastName) {
+        this._lastName = _lastName;
+    }
+
+    public Prototype clone() {
+        Prototype _copy = new Prototype(_lastName); //自分自身を生成
+        _copy.setFirstName(_firstName); //メンバ変数を複製
+        _copy.setAge(_age); //メンバ変数を複製
+        return _copy; //ポインタが使えるC++なら「*this」が使えますが...
+        //↑全てのメンバ変数を複製したインスタンスを返す
+    }
+
+    //_lastNameのアクセサ（読取専用）
+    public String getLastName() {
+        return _lastName;
+    }
+
+    //_firstNameのアクセサ
+    public void setFirstName(String _firstName) {
+        this._firstName = _firstName;
+    }
+    public String getFirstName() {
+        return _firstName;
+    }
+
+    //age_のアセクサ
+    public void setAge(int _age) {
+        this._age = _age;
+    }
+    public int getAge() {
+        return _age;
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月20日  
+更新日：2017年05月13日
 
 
 <a name="Builder"></a>
