@@ -632,12 +632,83 @@ class IOS extends AbstractOS { //「実装」の具体的な実装者
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-XXXX
+* 以下のサンプルは root に Authoring フォルダを作成し、その中に Unity3D と Unreal Engine ファイルを格納してみます。
+
+```
+//Main.java
+
+import java.util.*; //LinkedListに必要
+
+public class Main {
+    public static void main(String[] args) {
+        //①フォルダの作成
+        Folder _root = new Folder("root");
+        Folder _authoring = new Folder("Authoring");
+        //②ファイルの作成
+        File _unity3d = new File("Unity3D");
+        File _unrealEngine = new File("Unreal Engine");
+        //③関連付け
+        _root.add(_authoring); 
+        _authoring.add(_unity3d);
+        _authoring.add(_unrealEngine);
+        //④検証
+        System.out.println(_unrealEngine.getName()); //=> "Unreal Engine"
+        _root.getList(); //=> "root/Authoring(Folder)"
+        _authoring.getList();
+        //=> "Authoring/Unity3D(File)"
+        //=> "Authoring/Unreal Engine(File)"
+        _unity3d.getList(); //=> "Authoring/Unity3D(File)"
+    }
+}
+
+//抽象クラス（同一視するための役）
+abstract class Component {
+    //↓共通の機能
+    protected String _name;
+    protected Folder parent_;
+    public String getName() { return _name; }
+    public Folder getParent() { return parent_; } //getter
+    public void setParent(Folder parent_) { this.parent_ = parent_; } //setter
+    //↓抽象メソッドの宣言（処理は派生クラスに記述）
+    abstract public void getList();
+}
+
+class Folder extends Component {
+    private LinkedList<Component> _childList = new LinkedList<>(); //空のリストを作成
+    public Folder(String _name) { //コンストラクタ
+        this._name = _name; 
+    }
+    public void add(Component arg) { //Remove()は今回は省略
+        _childList.add(arg); //←LinkedList.add()
+        arg.setParent(this);
+    }
+    public void getList() { //オーバーライドして実際の処理を記述
+        for (Component tmp : _childList) {
+            String _result = this.getName() + "/" + tmp.getName();
+            if (tmp instanceof Folder) {
+                _result += "(Folder)"; 
+            } else if (tmp instanceof File) {
+                _result += "(File)";
+            }
+            System.out.println(_result);
+        }
+    }
+}
+
+class File extends Component {
+    public File(String _name) { //コンストラクタ
+        this._name = _name;
+    }
+    public void getList() { //オーバーライドして実際の処理を記述
+        System.out.println(this.getParent().getName()+"/"+this.getName()+"(File)");
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Decorator"></a>
