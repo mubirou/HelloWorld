@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -473,10 +473,10 @@ interface IExchange {
 //継承+インターフェースの実装
 class Exchange extends Moneybox implements IExchange {
     private double _rate;
-    public Exchange(int firstYen_, double _rate) { //コンストラクタ
+    public Exchange(int _firstYen, double _rate) { //コンストラクタ
         //Javaの仕様で明示的にスーパークラスのコンストラクタを呼び出さないと
         //自動的に引数なしのコンストラクタ「super()」を実行してしまうの注意
-        super(firstYen_);
+        super(_firstYen);
         this._rate = _rate;
     }
     public void addYen(int _yen) { add(_yen); } //add()は継承したメソッド
@@ -527,17 +527,17 @@ interface IExchange {
 
 //サブクラス+インターフェースの実装 ←この内容のみ「継承」版と異なる
 class Exchange implements IExchange {
-    private Moneybox moneybox_; //Moneyboxクラスのインスタンスを格納（委譲）
-    private double rate_;
-    public Exchange(int firstYen_, double rate_) { //コンストラクタ
-        moneybox_ = new Moneybox(firstYen_); //ここがポイント
-        this.rate_ = rate_;
+    private Moneybox _moneybox; //Moneyboxクラスのインスタンスを格納（委譲）
+    private double _rate;
+    public Exchange(int _firstYen, double _rate) { //コンストラクタ
+        _moneybox = new Moneybox(_firstYen); //ここがポイント
+        this._rate = _rate;
     }
-    public void addYen(int yen_) {
-        moneybox_.add(yen_); //ポイント
+    public void addYen(int _yen) {
+        _moneybox.add(_yen); //ポイント
     }
     public double getDollar() {
-        return moneybox_.getYen() / rate_; //ポイント
+        return _moneybox.getYen() / _rate; //ポイント
     }
 }
 ```
@@ -551,12 +551,82 @@ class Exchange implements IExchange {
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//============
+//メインクラス
+//============
+public class Main {
+    public static void main(String[] args) {
+        Tablet _tablet1 = new Tablet(new Android());
+        System.out.println(_tablet1.getVersion()); //=> "Android 7.1.2"
+        _tablet1.bigScreen(); //=> "大きな画面で見る"
+        
+        Tablet _tablet2 = new Tablet(new IOS());
+        System.out.println(_tablet2.getVersion()); //=> "iOS 10.3.1"
+        
+        SmartPhone _smartPhone1 = new SmartPhone(new Android());
+        System.out.println(_smartPhone1.getVersion()); //=> "Android 7.1.2"
+        _smartPhone1.phone(); //=> "電話をかける"
+        
+        SmartPhone _smartPhone2 = new SmartPhone(new IOS());
+        System.out.println(_smartPhone2.getVersion()); //=> "iOS 10.3.1"
+    }
+}
+
+//====================
+//「機能」のクラス関連
+//====================
+class SuperMobile {
+    private AbstractOS _os; //「機能」クラスと「実装」クラスの「橋」（委譲）
+    public SuperMobile(AbstractOS _os) { //コンストラクタ
+        this._os = _os;
+    }
+    //↓「橋」を使って「実装」クラスにアクセス
+    public String getVersion() { return _os.getRawVersion(); } //読取専用
+}
+
+class Tablet extends SuperMobile { 
+    public Tablet(AbstractOS _os) { //コンストラクタ
+        super(_os); //親クラスのコンストラクタ呼出し
+    }
+    public void bigScreen() { //タブレット特有の機能
+        System.out.println("大きな画面で見る");
+    }
+}
+
+class SmartPhone extends SuperMobile {
+    public SmartPhone(AbstractOS _os) { //コンストラクタ
+        super(_os); //親クラスのコンストラクタ呼出し
+    }
+    public void phone() { //スマートフォン特有の機能
+        System.out.println("電話をかける");
+    }
+}
+
+//====================
+//「実装」のクラス関連
+//====================
+abstract class AbstractOS { //抽象クラス＝「実装」クラスの最上位
+    abstract public String getRawVersion(); //読取専用
+}
+
+class Android extends AbstractOS { //「実装」の具体的な実装者
+    private String _version = "Android 7.1.2";
+    public String getRawVersion() { return _version; } //読取専用
+}
+
+class IOS extends AbstractOS { //「実装」の具体的な実装者
+    private String _version = "iOS 10.3.1";
+    public String getRawVersion() { return _version; } //読取専用
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月21日  
+更新日：2017年05月13日
 
 
 <a name="Composite"></a>
