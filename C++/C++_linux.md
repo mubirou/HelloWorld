@@ -1,4 +1,4 @@
-# C++
+# C++（ Linux ）
 
 ## C++について
 
@@ -7,7 +7,7 @@
 * C言語にOOP（オブジェクト指向プログラミング）等の改良を加えたもの
 * C言語との間に厳密な互換性は無い
 * [ISO](http://bit.ly/1VLZ5lB) と [IEC](http://bit.ly/1InYqMk) によって標準化
-* 最新版は通称 C++14（2014年12月）、2017年に C++17 が登場予定
+* 最新版は通称 C++14（2014年12月）と呼ばれ、2017年に C++17 、2020年に C++20 が登場予定
 * [Unreal Engine](https://ja.m.wikipedia.org/wiki/Unreal_Engine)（3Dゲームエンジン）でも採用
 
 ## 開発環境の構築
@@ -22,18 +22,15 @@
 1. 端末でコンパイラのバージョン確認  
     $ g++ --version  
     g++ (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609  
-    Copyright (C) 2015 Free Software Foundation, Inc.  
-    This is free software; see the source for copying conditions.  There is NO  
-    warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示]→[機能拡張] から C/C++（Microsoft） を検索＆インストール
+    [表示] → [拡張機能] から C/C++（Microsoft） を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に C++ フォルダを作成）に test<b>.cpp</b> という名で保存
 
 1. コードの記述
@@ -50,20 +47,20 @@ int main() {
 
 ## コンパイル〜実行
 
-1. Visual Studio Code で [表示]→[総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
 
 1. test.cpp ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/C++
 
 1. コンパイル（.c → a.out）  
-$ g++ -o test test.cpp ←「g++ -o 保存名 xx.cpp」  
+$ g++ -std=c++14 -o test test.cpp ←「g++ [-std=c++14] -o 保存名 xx.cpp」  
 ※「g++ --std=c++0x test.cpp」とすると a.out が生成される
 
 1. test.cpp ファイルと同階層に、指定した保存名のファイル（test）が生成されているのを確認
 
 1. 実行  
-$ ./test ←「./保存名」で実行  
-Hello,world! ←…と表示されたら成功！
+$ ./test  
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

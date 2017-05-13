@@ -1,31 +1,36 @@
 # HelloWorld
+各言語 x 各OSによる "Hello,world!" など
 
-* [ActionScript 3.0](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/README.md)
-* [アセンブリ言語](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/README.md)
-* [C#](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/README.md)
-* [C++](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/README.md)
-* [C言語](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/README.md)
-* [COBOL](https://github.com/TakashiNishimura/HelloWorld/tree/master/COBOL/README.md)
-* CoffeeScript
-* D
-* ECMAScript 6
-* F#
-* FORTLAN
-* Go
-* Haskell
-* Haxe
-* HTML+CSS
-* Java
-* JavaScript
-* Objective-C
-* Perl
-* Perl 6
-* PHP
-* Python
-* R
-* Ruby
-* Scala
-* SQL
-* Swift
-* TypeScript
-* Visual Basic .NET
+|言語|Linux|macOS|Windows|基礎文法|デザパタ|
+|:--|:--:|:--:|:--:|:--:|:--:|
+|ActionScript 3.0|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_reference.md)|[○](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_pattern.md)|
+|アセンブリ言語|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_win.md)|||
+|C#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%23/C%23_pattern.md)|
+|C++|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_pattern.md)|
+|C言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_win.md)|||
+|COBOL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/COBOL/COBOL_win.md)|||
+|CoffeeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/CoffeeScript/CoffeeScript_win.md)|||
+|D言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/D/D_win.md)|||
+|Dart|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Dart/Dart_win.md)|||
+|ECMAScript 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_pattern.md)|
+|F#|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/F%23/F%23_win.md)|||
+|FORTRAN|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/FORTRAN/FORTRAN_win.md)|||
+|Go|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Go/Go_win.md)|||
+|HTML+CSS|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_win.md)|||
+|Haskell|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haskell/Haskell_win.md)|||
+|Haxe|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Haxe/Haxe_win.md)|||
+|Java|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Java/Java_pattern.md)|
+|JavaScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_reference.md)|[○](https://github.com/TakashiNishimura/HelloWorld/blob/master/JavaScript/JavaScript_pattern.md)|
+|Objective-C|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ObjectiveC/ObjectiveC_win.md)|||
+|PHP|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_reference.md)|[○](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_pattern.md)|
+|Perl|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl/Perl_win.md)|||
+|Perl 6|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Perl6/Perl6_win.md)|||
+|Python|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Python/Python_pattern.md)|
+|R言語|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/R/R_win.md)|||
+|Ruby|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Ruby/Ruby_pattern.md)|
+|Rust|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Rust/Rust_win.md)|||
+|SQL|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQL/SQL_win.md)|||
+|Scala|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Scala/Scala_win.md)|||
+|Swift|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_reference.md)|[○](https://github.com/TakashiNishimura/HelloWorld/blob/master/Swift/Swift_pattern.md)|
+|TypeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_reference.md)|[○](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_pattern.md)|
+|Visual Basic .NET|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_win.md)|||

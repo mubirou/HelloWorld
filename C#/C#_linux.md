@@ -1,13 +1,17 @@
-# C\# 
+# C#（ Linux ）
 
 ## C#について
 
-* 1990年代後半からMicrosoft社によって開発が開始され、2000年にアルファ版が登場
+* 2000年にアルファ版が登場、2002年に Ver.1.0 がリリース（現在 Ver.6.0）
 * C/C++ から構文・キーワード・演算子を譲り受けつつ、文法は Java に大きな影響を受けている
 * [.NET Framework](https://ja.wikipedia.org/wiki/.NET_Framework) 、[Mono](http://bit.ly/2l5Mzx1) 等のライブラリを使うことで最大限の力を発揮する
 * [Ecma インターナショナル](http://bit.ly/2lLMUZZ)、[ISO](http://bit.ly/1VLZ5lB) により標準化され、[JIS](http://bit.ly/2lQk5vD) で標準プログラミング言語として制定されている
+<<<<<<< HEAD:C#/README.md
 * [Unity](http://bit.ly/2l5GJMb) でも採用
 * バージョンアップ履歴: アルファ版（2000年）→ 1.0（2002年）→ 2.0（2005年）→3.0（2008年）→ 4.0（2010年）→5.0（2012年）→ 6.0（2015年）
+=======
+* [Unity](http://bit.ly/2l5GJMb) の開発言語して採用
+>>>>>>> 8d5f36b9cf118600efa69e138b44cfafe01db25a:C#/C#_linux.md
 
 ## 開発環境の構築
 
@@ -16,21 +20,22 @@
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |コンパイラ| mcs 4.2.1（[Mono](http://bit.ly/2l5Mzx1) C# compiler）|2015年11月|
 |エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|C#（Microsoft） 1.7.0|不明|
+|拡張機能|C#（Microsoft） 1.7.0|ー|
 
 1. 端末でコンパイラのインストール  
-    $ sudo apt-get install mono-mcs →指示に従う  
-    $ mcs --version  ← Mono compiler Suite（C#のコンパイラ）のバージョン確認  
+    $ sudo apt-get update  
+    $ sudo apt-get install mono-mcs  
+    $ mcs --version ←バージョン確認  
     Mono C# compiler version 4.2.1.0
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示]→[機能拡張] から C#（Microsoft） を検索＆インストール
+    [表示] → [拡張機能] から C#（Microsoft） を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に C# フォルダを作成）に test<b>.cs</b> という名で保存
 
 1. コードの記述
@@ -47,7 +52,7 @@ class HelloWorld { //Mainは不可
 
 ## コンパイル〜実行
 
-1. Visual Studio Code で [表示]→[総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
 
 1. test.cs ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/C#
@@ -59,7 +64,7 @@ $ mcs test.cs
 
 1. 実行  
 $ ./test.exe  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  

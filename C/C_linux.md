@@ -1,4 +1,4 @@
-# C言語
+# C言語（ Linux ）
 
 ## C言語について
 
@@ -18,18 +18,15 @@
 1. 端末でコンパイラのバージョン確認  
     $ gcc --version  
     gcc (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609 ←Ubuntuのデフォルト  
-    Copyright (C) 2015 Free Software Foundation, Inc.  
-    This is free software; see the source for copying conditions.  There is NO  
-    warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示]→[機能拡張] から C/C++（Microsoft） を検索＆インストール
+    [表示] → [拡張機能] から C/C++（Microsoft） を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル]→[新規ファイル] を選択
-    1. [ファイル]→[保存] を選択
+    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に C フォルダを作成）に test<b>.c</b> という名で保存
 
 1. コードの記述
@@ -45,7 +42,7 @@ int main(void) {
 
 ## コンパイル〜実行
 
-1. Visual Studio Code で [表示]→[総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
 
 1. test.c ファイルのあるディレクトリに移動  
 $ cd /home/（ユーザー名）/デスクトップ/C
@@ -57,7 +54,7 @@ $ gcc test.c
 
 1. 実行  
 $ ./a.out  
-Hello,world! ←…と表示されたら成功！
+Hello,world! ←と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
