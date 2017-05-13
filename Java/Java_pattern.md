@@ -7,8 +7,8 @@
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作
-    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -154,12 +154,76 @@ class Prototype implements IPrototype {
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        Director _directorB = new Director(new BuilderA());
+        _directorB.construct(); //共通の手順を実行
+        //=> HAPPY NEW YEAR!
+        //=> ○○○○○○○
+        //=> 2018.1.1
+
+        Director _directorB = new Director(new BuilderB());
+        _directorB.construct(); //共通の手順を実行
+        //=> あけましておめでとうございます
+        //=> □□□□□□□
+        //=> 元旦
+    }
+}
+
+// Director(年賀状の印刷業者)
+class Director {
+    private IBuilder _builder; //←Builder○クラスのインスタンスを格納（委譲）
+    public Director(IBuilder _builder) { //←コンストラクタ
+        this._builder = _builder;
+    }
+    public void construct() { //共通の手順
+        _builder.makeHeader(); //手順①
+        _builder.makeContent(); //手順②
+        _builder.makeFooter(); //手順③
+    }
+}
+
+// Builder○のインターフェース
+interface IBuilder {
+    void makeHeader(); //暗黙的にpublicになる
+    void makeContent();
+    void makeFooter();
+}
+
+// BuilderA(タイプＡの年賀状)
+class BuilderA implements IBuilder {
+    public void makeHeader() {
+        System.out.println("HAPPY NEW YEAR!");
+    }
+    public void makeContent() {
+        System.out.println("○○○○○○○");
+    }
+    public void makeFooter() {
+        System.out.println("2018.1.1");
+    }
+}
+
+// BuilderB(タイプＢの年賀状)
+class BuilderB implements IBuilder {
+    public void makeHeader() {
+        System.out.println("あけましておめでとうございます");
+    }
+    public void makeContent() {
+        System.out.println("□□□□□□□");
+    }
+    public void makeFooter() {
+        System.out.println("元旦");
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年07月20日  
+更新日：2017年05月13日
 
 
 <a name="FactoryMethod"></a>
