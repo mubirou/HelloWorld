@@ -76,22 +76,22 @@ class Singleton {
 public class Main {
     public static void main(String[] args) {
         Prototype _prototype = new Prototype("Nishimura");
-        _prototype.setFirstName("Tohru");
-        _prototype.setAge(13);
+        _prototype.setFirstName("Ichiro");
+        _prototype.setAge(5);
 
         Prototype _prototype2 = _prototype.clone();
-        _prototype2.setFirstName("Sachiko");
-        _prototype2.setAge(10);
+        _prototype2.setFirstName("Hanako");
+        _prototype2.setAge(1);
 
         //検証（コピー元）
-        System.out.println(_prototype.getFirstName()); //=> "Tohru"
+        System.out.println(_prototype.getFirstName()); //=> "Ichiro"
         System.out.println(_prototype.getLastName()); //=> "Nishimura"
-        System.out.println(_prototype.getAge()); //=> 13
+        System.out.println(_prototype.getAge()); //=> 5
 
         //検証（複製したもの）
-        System.out.println(_prototype2.getFirstName()); //=> "Sachiko"
+        System.out.println(_prototype2.getFirstName()); //=> "Hanako"
         System.out.println(_prototype2.getLastName()); //=> "Nishimura"
-        System.out.println(_prototype2.getAge()); //=> 10
+        System.out.println(_prototype2.getAge()); //=> 1
     }
 }
 
