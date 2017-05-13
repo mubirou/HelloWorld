@@ -1920,9 +1920,78 @@ class Canvas {
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-XXXX
+```
+//Main.java
+
+//============
+//メインクラス
+//============
+public class Main {
+    public static void main(String[] args) {
+        String _code = "+10;*50;/2;-4;="; //自作言語による記述（≒ActionScript）
+        SWF _swf = new SWF(_code); //≒SWFファイルに変換
+        AVM _avm = new AVM(); //≒ActionScript Virtual Machine
+        _avm.execute(_swf); //≒SWFファイルをAVM上で実行（計算結果は246）
+    }
+}
+
+//============================
+//≒SWFファイルを生成するクラス
+//============================
+class SWF {
+    private String[] _codeArray; //命令を配列化（中間コード）
+    private int _count = 0; //getNextCode()で使用
+    
+    //コンストラクタ
+    public SWF(String _code) {
+        _codeArray = _code.split(";"); //「;」区切りで分割し配列化（中間コードに変換）
+    }
+
+    //次の命令を返す
+    public String getNextCode() { 
+        return _codeArray[_count++];
+    }
+    
+    //次の命令があるかどうか...
+    public boolean isEnd() {
+        return _count >= _codeArray.length;
+    }
+}
+
+//==============================
+//≒ActionScript Virtual Machine
+//==============================
+class AVM {
+    public void execute(SWF _swf) {
+        int _result = 0; //計算結果
+        
+        while (! _swf.isEnd()) { //次の命令があれば...
+            String nextCode_ = _swf.getNextCode(); //次の命令を調べる
+
+            //ここからはサンプルの独自処理
+            String _operator = nextCode_.substring(0,1); //「+*/-=」の何れか
+            if (_operator.indexOf("=",0) == -1) { //←「=」以外の場合（力技）
+            //if (_operator != "=") { //←=が"="と認識せず？
+                int int_ = Integer.parseInt(nextCode_.substring(1,nextCode_.length()));
+                switch (_operator) {
+                    case "+" : _result += int_; break;
+                    case "-" : _result -= int_; break;
+                    case "*" : _result *= int_; break;
+                    case "/" : _result /= int_; break;
+                    default :
+                        System.out.println("Error:演算子が異なります");
+                        break;
+                }
+            } else { //「=」の場合...
+                //本来はここで「終端となる表現」のクラスを生成して処理をしますが省略
+                System.out.println(_result);
+            }
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
 作成者：Takashi Nishimura  
 作成日：2016年07月22日  
-更新日：2017年05月XX日
+更新日：2017年05月13日
