@@ -65,7 +65,7 @@ var _singleton2:Singleton = Singleton.getSingleton //唯一のインスタンス
 print(_singleton1 === _singleton2) //=> true
 ```
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年08月02日  
 更新日：2017年05月14日
@@ -76,7 +76,7 @@ print(_singleton1 === _singleton2) //=> true
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -87,7 +87,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -98,7 +98,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -109,7 +109,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -120,7 +120,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -131,7 +131,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -142,7 +142,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -153,7 +153,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -164,7 +164,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -175,7 +175,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -186,7 +186,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -197,7 +197,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -208,7 +208,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -219,7 +219,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -230,7 +230,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -241,7 +241,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -252,7 +252,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -263,7 +263,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -274,7 +274,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -285,7 +285,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -296,7 +296,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -307,7 +307,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
@@ -318,7 +318,7 @@ XXXX
 
 XXXX
 
-実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
+実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
