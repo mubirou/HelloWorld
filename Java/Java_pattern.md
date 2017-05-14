@@ -383,9 +383,9 @@ public class Main {
         */
     }
 }
-//=====================================
+//===========================
 //抽象クラス（抽象的な工場）
-//=====================================
+//===========================
 abstract class AbstractFactory {
     public static AbstractFactory createFactory(String _name) {
         if (_name == "ICHIRO") {
@@ -400,9 +400,9 @@ abstract class AbstractFactory {
     abstract public void createSummer(); //抽象メソッド宣言（サブクラスでオーバーライド）
 }
 
-//=====================================
+//===========================
 //サブクラス群（実際の工場）
-//=====================================
+//===========================
 class ICHIRO extends AbstractFactory { //抽象クラスを継承
     public void createNewYear(){ //オーバーライドして具体的処理を記述
         System.out.println("HAPPY NEW YEAR!");
