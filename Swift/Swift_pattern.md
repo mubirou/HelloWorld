@@ -6,6 +6,7 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -38,12 +39,36 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+internal class Singleton { //internalは省略可
+    internal static var isSinglton:Bool = false
+    //↓クラス定数（internalは省略可）
+    internal static let getSingleton:Singleton = Singleton() //インスタンス生成
+    
+    //コンストラクタ
+    private init() { //privateにしても外部からSingleton()出来てしまう（要調査）
+        if (!Singleton.isSinglton) {
+            print("インスタンスの生成")
+            Singleton.isSinglton = true
+        } else {
+            //本来はthrowを使ってエラーを出すべきでしょう...
+            print("Singleton()ではなくSingleton.getSingletonで生成して下さい")
+        }
+    }
+}
+
+//var tmp = Singleton() //=> "Singleton()ではなくSingleton.getSingletonで生成して下さい"
+var _singleton1:Singleton = Singleton.getSingleton //唯一のインスタンスを呼出す
+var _singleton2:Singleton = Singleton.getSingleton //唯一のインスタンスを呼出す
+print(_singleton1 === _singleton2) //=> true
+```
 
 実行環境：Ubuntu 16.04 LTS、Swift 3.0.2  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月02日  
+更新日：2017年05月14日
 
 
 <a name="Prototype"></a>
