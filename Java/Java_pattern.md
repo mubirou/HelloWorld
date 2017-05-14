@@ -183,7 +183,7 @@ class Director {
     }
 }
 
-// Builder○のインターフェース
+// BuilderXXXのインターフェース
 interface IBuilder {
     void makeHeader(); //暗黙的にpublicになる
     void makeContent();
