@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -247,7 +247,9 @@ class Footer011 {
     func exec() -> Void { print("2018.1.1") }
 }
 
-//実行 ======================================
+//=======
+//実行
+//=======
 var _director1:Director = Director(builder:Builder009())
 _director1.construct() //共通の手順を実行
 /*
@@ -274,12 +276,130 @@ HAPPY YEAR!
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//===========
+// 抽象クラス
+//===========
+class AbstractCard {
+    func templateMethod(target _arg: String) -> Void {
+        //↓ここでインスタンスを生成しない（汚さない）
+        var _factoryMethod:IMessage
+        _factoryMethod = factoryMethod(target:_arg)
+        _factoryMethod.exec() //処理①
+        order1() //処理②
+        order2() //処理③
+    }
+    func factoryMethod(target _arg: String) -> IMessage { //サブクラスでoverride
+        print("サブクラスでオーバーライドして実装して下さい")
+        return MessageDummy() //苦肉の策
+    }
+    func order1() -> Void { //共通の処理
+        print("〒XXX-XXXX 新宿区XX町-XX-XX")
+    }
+    func order2() -> Void { //サブクラスでoverride
+        print("サブクラスでオーバーライドして実装して下さい")
+    }
+}
+
+//===============================
+// サブクラス群（抽象クラスを継承）
+//===============================
+class CardIchiro : AbstractCard {
+    override func factoryMethod(target _arg: String) -> IMessage {
+        if (_arg == "teacher") {
+            return Message1() //ここでインスタンスを生成
+        } else if (_arg == "friend") {
+            return Message2() //ここでインスタンスを生成
+        }
+        return MessageDummy() //苦肉の策（Swift独特の力技）
+    }
+    override func order2() -> Void {
+        print("西村一郎")
+    }
+}
+
+class CardHanako : AbstractCard {
+    override func factoryMethod(target _arg: String) -> IMessage {
+        if (_arg == "teacher") {
+            return Message3() //ここでインスタンスを生成
+        } else if (_arg == "friend") {
+            return Message4() //ここでインスタンスを生成
+        } 
+        return MessageDummy() //苦肉の策（Swift独特の力技）
+    }
+    override func order2() -> Void {
+        print("西村花子")
+    }
+}
+
+//==================
+// 生成したいクラス群 
+//==================
+protocol IMessage { //プロトコル（≒インターフェース）の宣言
+    func exec() -> Void //共通のメソッド
+}
+class Message1 : IMessage {
+    func exec() -> Void {
+        print("謹賀新年")
+    }
+}
+class Message2 : IMessage {
+    func exec() -> Void {
+        print("HAPPY NEW YEAR!")
+    }
+}
+class Message3 : IMessage {
+    func exec() -> Void {
+        print("明けましておめでとうございます")
+    }
+}
+class Message4 : IMessage {
+    func exec() -> Void {
+        print("あけましておめでとう")
+    }
+}
+class MessageDummy : IMessage { //苦肉の策（Swift独特の力技）
+    func exec() -> Void { print("error:targetが存在しません") }
+}
+
+//=======
+// 実行
+//=======
+var _cardIchiro: CardIchiro = CardIchiro()
+_cardIchiro.templateMethod(target:"teacher")
+/*
+謹賀新年
+〒XXX-XXXX 新宿区XX町-XX-XX
+西村一郎
+*/
+_cardIchiro.templateMethod(target:"friend")
+/*
+HAPPY NEW YEAR!
+〒XXX-XXXX 新宿区XX町-XX-XX
+西村一郎
+*/
+
+var _cardHanako: CardHanako = CardHanako()
+_cardHanako.templateMethod(target:"teacher")
+/*
+明けましておめでとうございます
+〒XXX-XXXX 新宿区XX町-XX-XX
+西村花子
+*/
+_cardHanako.templateMethod(target:"friend")
+/*
+あけましておめでとう
+〒XXX-XXXX 新宿区XX町-XX-XX
+西村花子
+*/
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月08日  
+更新日：2017年05月15日
 
 
 <a name="AbstractFactory"></a>
