@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -953,12 +953,80 @@ DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1) //=> <---TAKASHI-
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//========================================
+// インスタンスの管理人（シングルトンクラス）
+//========================================
+class Manager {
+    static var isSinglton:Bool = false
+    static let getInstance:Manager = Manager() //クラス定数←インスタンス生成
+    //↓BigProcessインスタンスをダブらないように保存する辞書
+    var _dic:Dictionary<String, BigProcess> = Dictionary<String, BigProcess>()
+    
+    //コンストラクタ
+    private init() {
+        if (!Manager.isSinglton) {
+            print("インスタンスの生成")
+            Manager.isSinglton = true
+        } else {
+            //本来は throw を使ってエラーを出すべきですが...
+            print("Singleton()ではなく Singleton.getSingleton で生成して下さい")
+        }
+    }
+    
+    //BigProcessインスタンスをダブらないように辞書に保存
+    func createBigProcess(type arg:String) -> BigProcess! { //「!」が必須（要注意）
+        for tmp in _dic {
+            if (tmp.key == arg) { //既存か否か調べる
+                print(arg + "は既存です")
+                return _dic[arg]
+            }
+        }
+        //↓ここでやっとインスタンス生成
+        _dic.updateValue(BigProcess(type:arg), forKey:arg) 
+        return _dic[arg]
+    }
+}
+
+//=============================================================
+// フライ級の役（メモリの使用量が多いため無駄に生成したくないもの）
+//=============================================================
+class BigProcess {
+    private var _result:String = ""
+    init(type arg:String) {
+        //本来は（引数に対応する）重〜い処理をここで行う
+        _result = arg + "に対応する重〜い処理の結果"
+    }
+    func getData() -> String {
+        return _result
+    }
+}
+
+//=======
+// 実行
+//=======
+//インスタンスの管理者を作る（シングルトンクラス）
+var _manager:Manager = Manager.getInstance //唯一のインスタンスを呼出す
+print(_manager) //=> test.Manager
+
+//無駄に生成したくないオブジェクトを生成（既存の場合使いまわす）
+var _A:BigProcess = _manager.createBigProcess(type:"A")
+var _B:BigProcess = _manager.createBigProcess(type:"B")
+
+//既存のものを生成しようとすると...
+var _A2:BigProcess = _manager.createBigProcess(type:"A") //=> Aは既存です
+print(_A === _A2) //=> true ←中身は同じインスタンス
+
+print(_A.getData()) //=> Aに対応する重〜い処理の結果
+print(_B.getData()) //=> Bに対応する重〜い処理の結果
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月09日  
+更新日：2017年05月15日
 
 
 <a name="Proxy"></a>
