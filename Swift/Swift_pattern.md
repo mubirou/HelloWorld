@@ -12,9 +12,9 @@
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
@@ -534,12 +534,52 @@ print(_exchange.getDollar()) //=> 158.759999730108（ドル）
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-XXXX
+```
+//test.swift
+
+//スーパークラスの定義 ←「継承」版と同じ
+class Moneybox {
+    private var _yen:Int
+    //コンストラクタ（★）
+    init(yen _yen:Int) {
+        self._yen = _yen 
+    }
+    func add(yen _yen:Int) -> Void { self._yen += _yen }
+    func getYen() -> Int { return _yen }
+}
+
+//プロトコル（インターフェース）の宣言 ←「継承」版と同じ
+protocol IExchange {
+    func addYen(yen _yen:Int) -> Void
+    func getDollar() -> Double
+}
+
+//この内容が「継承」版と異なる
+class Exchange : IExchange {
+    private var _moneybox:Moneybox //Moneyboxクラスのインスタンスを格納（委譲）
+    private var _rate:Double
+    init(firstYen _firstYen_:Int, rate _rate:Double) {
+        _moneybox = Moneybox(yen:_firstYen_) //ここがポイント
+        self._rate = _rate
+    }
+    func addYen(yen _yen:Int) -> Void { 
+        _moneybox.add(yen:_yen) //ポイント
+    }
+    func getDollar() -> Double { 
+            return Double(_moneybox.getYen()) / _rate //ポイント
+    }
+}
+
+//実行
+var _exchange:Exchange = Exchange(firstYen:10000, rate:113.378685)
+_exchange.addYen(yen:8000)
+print(_exchange.getDollar()) //=> 158.759999730108（ドル）
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月08日  
+更新日：2017年05月15日
 
 
 <a name="Bridge"></a>
