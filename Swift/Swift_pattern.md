@@ -16,8 +16,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
@@ -772,12 +772,81 @@ _unity3d.getList() //=> "Authoring/Unity3D(File)"
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//===================================================================
+//「中身」と「飾り枠」に同じshow()メソッドを持たせるためのスーパークラス
+//===================================================================
+class Display {
+    var _content:String = ""
+    func getContent() -> String {
+        return _content
+    }
+    func show() -> Void {
+        print(_content)
+    }
+}
+
+//=======================
+// 中身（飾りを施す前の元）
+//=======================
+class Original : Display {
+    //コンストラクタ
+    init(text arg:String) {
+        super.init() //必須（要注意）
+        _content = arg //conent_は基本クラスからの継承
+    }
+}
+
+//=========
+// 飾り枠①
+//=========
+class Decorator1 : Display {
+    init(display _display:Display) { //コンストラクタ
+        super.init() //必須（要注意）
+        _content = "-" + _display.getContent() + "-" //飾り①を付ける
+    }
+}
+
+//=========
+// 飾り枠②
+//=========
+class Decorator2 : Display {
+    init(display _display:Display) { //コンストラクタ
+        super.init() //必須（要注意）
+        _content = "<" + _display.getContent() + ">" //飾り②を付ける
+    }
+}
+
+//=========
+// 実行
+//=========
+var _original:Display = Original(text:"TAKASHI")
+_original.show() //=> TAKASHI
+
+var _decorator1:Display = Decorator1(display:Original(text:"TAKASHI"))
+_decorator1.show() //=> -TAKASHI-
+
+var _decorator2:Display = Decorator2(display:Original(text:"TAKASHI"))
+_decorator2.show() //=> <TAKASHI>
+
+var _special:Display = Decorator2(display:
+                                Decorator1(display:
+                                    Decorator1(display:
+                                        Decorator1(display:
+                                            Original(text:"TAKASHI")
+                                        )
+                                    )
+                                )
+                            )
+_special.show() //=> <---TAKASHI--->
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月09日  
+更新日：2017年05月15日
 
 
 <a name="Facade"></a>
