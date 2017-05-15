@@ -9,10 +9,10 @@
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
@@ -405,12 +405,83 @@ _cardHanako.templateMethod(target:"friend")
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//抽象クラス（抽象的な工場）
+class AbstractFactory {
+    static func createFactory(name _name:String) -> AbstractFactory { //静的メソッド
+        if (_name == "ICHIRO") {
+            return Ichiro() //具体的な「亨工場」を生成
+        } else if (_name == "HANAKO") {
+            return Hanako() //具体的な「幸子工場」を生成
+        }
+        return Dummy() //←苦肉の策（Swift独特の力技）
+    }
+    func createNewYear() -> Void { //擬似抽象メソッド宣言
+        print("サブクラスでオーバーライドして実装して下さい")
+    }
+    func createSummer() -> Void { //擬似抽象メソッド宣言
+        print("サブクラスでオーバーライドして実装して下さい")
+    }
+}
+
+//派生クラス群（実際の工場群）
+class Ichiro : AbstractFactory { //←抽象クラスを継承
+    override func createNewYear() -> Void { //←overrideして具体的処理を記述
+        print("HAPPY NEW YEAR!")
+        print("ICHIRO NISHIMURA")
+    }
+    override func createSummer() -> Void { //←overrideして具体的処理を記述
+        print("暑中お見舞い申し上げます")
+        print("西村一郎")
+    }
+}
+
+class Hanako : AbstractFactory { //←抽象クラスを継承
+    override func createNewYear() -> Void { //←overrideして具体的処理を記述
+        print("明けましておめでとうございます")
+        print("西村花子")
+    }
+    override func createSummer() -> Void { //←overrideして具体的処理を記述
+        print("暑中おみまいもうしあげます")
+        print("西村花子")
+    }
+}
+
+class Dummy : AbstractFactory { //←苦肉の策（Swift独特の力技）
+    override func createNewYear() -> Void { print("error:nameが存在しません") }
+    override func createSummer() -> Void { print("error:nameが存在しません") }
+}
+
+var _factoryIchiro:AbstractFactory = AbstractFactory.createFactory(name:"ICHIRO")
+_factoryIchiro.createNewYear()
+/*
+HAPPY NEW YEAR!
+ICHIRO NISHIMURA
+*/
+_factoryIchiro.createSummer()
+/*
+暑中お見舞い申し上げます
+西村一郎
+*/
+var _factoryHanako:AbstractFactory = AbstractFactory.createFactory(name:"HANAKO")
+_factoryHanako.createNewYear()
+/*
+明けましておめでとうございます
+西村花子
+*/
+_factoryHanako.createSummer()
+/*
+暑中おみまいもうしあげます
+西村花子
+*/
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月08日  
+更新日：2017年05月15日
 
 
 <a name="Adapter（継承）"></a>
