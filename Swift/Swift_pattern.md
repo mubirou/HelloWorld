@@ -17,8 +17,8 @@
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
+    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
@@ -852,12 +852,101 @@ _special.show() //=> <---TAKASHI--->
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-XXXX
+* 以下の例文では、「Decoratorパターン」を Facade パターンでシンプルにします。
+```
+var _special:Display = Decorator2(display:
+                                Decorator1(display:
+                                    Decorator1(display:
+                                        Decorator1(display:
+                                            Original(text:"TAKASHI")))))
+_special.show()
+```
+...としていたものを次の1行で実現可能になります。
+```
+DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1)
+```
+
+```
+//test.swift
+
+//===================================================================
+//「中身」と「飾り枠」に同じshow()メソッドを持たせるためのスーパークラス
+//===================================================================
+class Display {
+    var _content:String = ""
+    func getContent() -> String {
+        return _content
+    }
+    func show() -> Void {
+        print(_content)
+    }
+}
+
+//=======================
+// 中身（飾りを施す前の元）
+//=======================
+class Original : Display {
+    //コンストラクタ
+    init(text arg:String) {
+        super.init() //必須（要注意）
+        _content = arg //conent_は基本クラスからの継承
+    }
+}
+
+//=========
+// 飾り枠①
+//=========
+class Decorator1 : Display {
+    init(display _display:Display) { //コンストラクタ
+        super.init() //必須（要注意）
+        _content = "-" + _display.getContent() + "-" //飾り①を付ける
+    }
+}
+
+//=========
+// 飾り枠②
+//=========
+class Decorator2 : Display {
+    init(display _display:Display) { //コンストラクタ
+        super.init() //必須（要注意）
+        _content = "<" + _display.getContent() + ">" //飾り②を付ける
+    }
+}
+
+//以上の4つのクラスはDecoratorパターンの例文と全く同じ
+
+//==========================================================
+//シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
+//==========================================================
+class DecoratorFacade {
+    static func exec(text arg1:String, decrator1 arg2:Int=0, decrator2 arg3:Int=0) -> Void {
+        var result_:Display //ローカル変数
+        result_ = Original(text:arg1)
+        for i in 0 ..< arg2 {
+            print(i) //無いとwarningが出るので...
+            result_ = Decorator1(display:result_)
+        }
+        for j in 0 ..< arg3 {
+            print(j) //無いとwarningが出るので...
+            result_ = Decorator2(display:result_)
+        }
+        result_.show()
+    }
+}
+
+//==========
+// 実行
+//==========
+DecoratorFacade.exec(text:"TAKASHI") //=> TAKASHI
+DecoratorFacade.exec(text:"TAKASHI", decrator1:1, decrator2:0) //=> -TAKASHI-
+DecoratorFacade.exec(text:"TAKASHI", decrator1:0, decrator2:1) //=> <TAKASHI>
+DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1) //=> <---TAKASHI--->
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月09日  
+更新日：2017年05月15日
 
 
 <a name="Flyweight"></a>
