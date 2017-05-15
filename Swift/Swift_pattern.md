@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -585,12 +585,98 @@ print(_exchange.getDollar()) //=> 158.759999730108（ドル）
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+//==================================
+//基本クラス＝「機能」のクラスの最上位
+//==================================
+class SuperMobile {
+    private var _os:AbstractOS //←「機能」クラスと「実装」クラスの「橋」（委譲）
+    init(os _os:AbstractOS) { //コンストラクタ
+        self._os = _os
+    }
+    var version:String { //getter（読取専用）
+        get { return _os.rawversion } //←「橋」を使って「実装」クラスにアクセス
+    }
+}
+
+//====================================
+//「機能」のクラスに機能を追加したクラス
+//====================================
+class Tablet : SuperMobile {
+    override init(os _os:AbstractOS) { //←overrideが必要（要注意）
+        super.init(os:_os) //スーパークラスのコンストラクタ呼出し
+    }
+    func bigScreen() -> Void { //←タブレット特有の機能
+        print("大きな画面で見る")
+    }
+}
+
+//====================================
+//「機能」のクラスに機能を追加したクラス
+//====================================
+class SmartPhone : SuperMobile {
+    override init(os _os:AbstractOS) { //←overrideが必要（要注意）
+        super.init(os:_os) //スーパークラスのコンストラクタ呼出し
+    }
+    func phone() -> Void { //←スマートフォン特有の機能
+        print("電話をかける")
+    }
+}
+
+//=====================================
+//擬似抽象クラス＝「実装」のクラスの最上位
+//=====================================
+class AbstractOS {
+    var rawversion:String {
+        get { 
+            print("サブクラスでオーバーライドして実装して下さい")
+            return ""
+        }
+    }
+}
+
+//=======================
+//「実装」の具体的な実装者
+//=======================
+class Android : AbstractOS {
+    private var _version:String = "Android 7.1.2"
+    override var rawversion:String { //オーバーライドして実際の処理を記述
+        get { return _version } //getter（読取専用）
+    }
+}
+
+//=======================
+//「実装」の具体的な実装者
+//=======================
+class IOS : AbstractOS {
+    private var _version:String = "iOS 10.3.1"
+    override var rawversion:String { //オーバーライドして実際の処理を記述
+        get { return _version } //getter（読取専用）
+    }
+}
+
+//=======
+// 実行
+//=======
+var _tablet1:Tablet = Tablet(os:Android())
+print(_tablet1.version) //=> Android 7.1.2
+_tablet1.bigScreen() //=> 大きな画面で見る
+
+var _tablet2:Tablet = Tablet(os:IOS())
+print(_tablet2.version) //=> iOS 10.3.1
+
+var _smartPhone1:SmartPhone = SmartPhone(os:Android())
+print(_smartPhone1.version) //=> Android 7.1.2
+_smartPhone1.phone() //=> 電話をかける
+
+var _smartPhone2:SmartPhone = SmartPhone(os:IOS())
+print(_smartPhone2.version) //=> iOS 10.3.1
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月08日  
+更新日：2017年05月15日
 
 
 <a name="Composite"></a>
