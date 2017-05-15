@@ -166,7 +166,7 @@ class Director {
     private var _builder:IBuilder
     //コンストラクタ
     init(builder _builder:IBuilder) {
-        self._builder = _builder //←builer_はBuilder○○クラスのインスタンス
+        self._builder = _builder //builer_はBuilder○○クラスのインスタンス
     }
     //共通の手順（≠コンストラクタ。紛らわしいですが...）
     func construct() -> Void {
@@ -416,7 +416,7 @@ class AbstractFactory {
         } else if (_name == "HANAKO") {
             return Hanako() //具体的な「幸子工場」を生成
         }
-        return Dummy() //←苦肉の策（Swift独特の力技）
+        return Dummy() //苦肉の策（Swift独特の力技）
     }
     func createNewYear() -> Void { //擬似抽象メソッド宣言
         print("サブクラスでオーバーライドして実装して下さい")
@@ -427,29 +427,29 @@ class AbstractFactory {
 }
 
 //派生クラス群（実際の工場群）
-class Ichiro : AbstractFactory { //←抽象クラスを継承
-    override func createNewYear() -> Void { //←overrideして具体的処理を記述
+class Ichiro : AbstractFactory { //抽象クラスを継承
+    override func createNewYear() -> Void { //overrideして具体的処理を記述
         print("HAPPY NEW YEAR!")
         print("ICHIRO NISHIMURA")
     }
-    override func createSummer() -> Void { //←overrideして具体的処理を記述
+    override func createSummer() -> Void { //overrideして具体的処理を記述
         print("暑中お見舞い申し上げます")
         print("西村一郎")
     }
 }
 
-class Hanako : AbstractFactory { //←抽象クラスを継承
-    override func createNewYear() -> Void { //←overrideして具体的処理を記述
+class Hanako : AbstractFactory { //抽象クラスを継承
+    override func createNewYear() -> Void { //overrideして具体的処理を記述
         print("明けましておめでとうございます")
         print("西村花子")
     }
-    override func createSummer() -> Void { //←overrideして具体的処理を記述
+    override func createSummer() -> Void { //overrideして具体的処理を記述
         print("暑中おみまいもうしあげます")
         print("西村花子")
     }
 }
 
-class Dummy : AbstractFactory { //←苦肉の策（Swift独特の力技）
+class Dummy : AbstractFactory { //苦肉の策（Swift独特の力技）
     override func createNewYear() -> Void { print("error:nameが存在しません") }
     override func createSummer() -> Void { print("error:nameが存在しません") }
 }
@@ -592,12 +592,12 @@ print(_exchange.getDollar()) //=> 158.759999730108（ドル）
 //基本クラス＝「機能」のクラスの最上位
 //==================================
 class SuperMobile {
-    private var _os:AbstractOS //←「機能」クラスと「実装」クラスの「橋」（委譲）
+    private var _os:AbstractOS //「機能」クラスと「実装」クラスの「橋」（委譲）
     init(os _os:AbstractOS) { //コンストラクタ
         self._os = _os
     }
     var version:String { //getter（読取専用）
-        get { return _os.rawversion } //←「橋」を使って「実装」クラスにアクセス
+        get { return _os.rawversion } //「橋」を使って「実装」クラスにアクセス
     }
 }
 
@@ -605,10 +605,10 @@ class SuperMobile {
 //「機能」のクラスに機能を追加したクラス
 //====================================
 class Tablet : SuperMobile {
-    override init(os _os:AbstractOS) { //←overrideが必要（要注意）
+    override init(os _os:AbstractOS) { //overrideが必要（要注意）
         super.init(os:_os) //スーパークラスのコンストラクタ呼出し
     }
-    func bigScreen() -> Void { //←タブレット特有の機能
+    func bigScreen() -> Void { //タブレット特有の機能
         print("大きな画面で見る")
     }
 }
@@ -617,10 +617,10 @@ class Tablet : SuperMobile {
 //「機能」のクラスに機能を追加したクラス
 //====================================
 class SmartPhone : SuperMobile {
-    override init(os _os:AbstractOS) { //←overrideが必要（要注意）
+    override init(os _os:AbstractOS) { //overrideが必要（要注意）
         super.init(os:_os) //スーパークラスのコンストラクタ呼出し
     }
-    func phone() -> Void { //←スマートフォン特有の機能
+    func phone() -> Void { //スマートフォン特有の機能
         print("電話をかける")
     }
 }
