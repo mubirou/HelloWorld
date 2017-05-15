@@ -15,8 +15,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
-    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -684,12 +684,89 @@ print(_smartPhone2.version) //=> iOS 10.3.1
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-XXXX
+* 以下のサンプルは root に Authoring フォルダを作成し、その中に Unity3D と Unreal Engine ファイルを格納してみます。
+
+```
+//test.swift
+
+class Component { //抽象クラス（同一視するための役）
+    var _name:String = "" //共通プロパティ
+    var _parent:Folder? = nil //共通プロパティ ←「?」が必須（要注意）
+    func getName() -> String { //共通メソッド
+        return _name
+    }
+    var parent:Folder! { //共通getter/setter ←「!」が必須（要注意）
+        get { return _parent }
+        set { _parent = newValue }
+    }
+    func getList() -> Void { //抽象メソッドの宣言（処理は派生クラスに記述）
+        print("サブクラスでオーバーライドして実装して下さい")
+    }
+}
+
+class Folder : Component {
+    private var _childList:[Component] = [] //空の配列を作成
+    init(name _name:String) { //コンストラクタ
+        super.init() //必須（要注意）
+        self._name = _name 
+    }
+    func add(component arg:Component) -> Void { //Remove()は今回は省略
+        _childList.append(arg) //←Array.append(値)
+        arg.parent = self
+    }
+    override func getList() -> Void { //オーバーライドして実際の処理を記述
+        for tmp in _childList {
+            var _result:String //ローカル変数宣言
+            _result = self.getName() + "/" + tmp.getName()
+            if (tmp is Folder) {
+                _result += "(Folder)" 
+            } else if (tmp is File) {
+                _result += "(File)"
+            }
+            print(_result)
+        }
+    }
+}
+
+class File : Component {
+    init(name _name:String) { //コンストラクタ
+        super.init() //必須（要注意）
+        self._name = _name 
+    }
+    override func getList() -> Void { //オーバーライドして実際の処理を記述
+        print(self.parent.getName() + "/" + self.getName() + "(File)")
+    }
+}
+
+//=======
+// 実行
+//=======
+//①フォルダの作成
+var _root:Folder = Folder(name:"root")
+var _authoring:Folder = Folder(name:"Authoring")
+
+//②ファイルの作成
+var _unity3d:File = File(name:"Unity3D")
+var _unrealEngine:File = File(name:"Unreal Engine")
+
+//③関連付け
+_root.add(component:_authoring) 
+_authoring.add(component:_unity3d)
+_authoring.add(component:_unrealEngine)
+
+//④検証
+print(_unrealEngine.getName()) //=> "Unreal Engine"
+_root.getList() //=> "root/Authoring(Folder)"
+_authoring.getList()
+//=> "Authoring/Unity3D(File)"
+//=> "Authoring/Unreal Engine(File)"
+_unity3d.getList() //=> "Authoring/Unity3D(File)"
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月08日  
+更新日：2017年05月15日
 
 
 <a name="Decorator"></a>
