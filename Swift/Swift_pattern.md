@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
@@ -1032,12 +1032,57 @@ print(_B.getData()) //=> Bに対応する重〜い処理の結果
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//=================================================
+//①Loaderと②Contentのプロトコル（インターフェース）
+protocol ILoader {
+    func load() -> Void
+}
+//=================================================
+
+//=================
+//①代理人（Proxy）役
+//=================
+class Loader : ILoader {
+    private var _path:String
+    init(path _path:String) {
+        self._path = _path
+    }
+    func load() -> Void {
+        var _content:Content //ローカル変数宣言
+        _content = Content(path:_path) //実際の本人が登場（代理人は実際の本人を知っている）
+        _content.load()
+    }
+}
+
+//============
+//②実際の本人
+//============
+class Content : ILoader {
+    private var _path:String
+    init(path _path:String) {
+        self._path = _path
+    }
+    //↓重い処理をここで行う（ポイント）
+    func load() -> Void {
+        //今回のサンプルの中身はあまり重要ではない...
+        print("重い処理中")
+    }
+}
+
+//=======
+//実行
+//=======
+var _loader:Loader = Loader(path:"http://...XXX.mp4") //代理人（Proxy）役
+_loader.load() //=> 重い処理中 ←通常は必要になった時に実際にロード
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月09日  
+更新日：2017年05月15日
 
 
 <a name="Iterator"></a>
