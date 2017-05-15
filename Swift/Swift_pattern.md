@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -74,7 +74,77 @@ print(_singleton1 === _singleton2) //=> true
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+### ポイント
+1. 複製には <b>インスタンス.clone()</b> を使う。
+1. clone() メソッド内では、<b>クラス()</b> を使ってインスタンスを生成。そのインスタンスに複製元のプロパティをそのままコピーする。
+
+### 例文
+```
+//test.swift
+
+//プロトコル（≒インターフェース）の宣言
+protocol IPrototype {
+    func clone() -> Prototype
+    var firstName:String { get set }
+    var lastName:String { get set }
+    var age:Int { get set }
+}
+
+internal class Prototype : IPrototype { //プロトコルの実装←internalは省略可
+    //インスタンス変数の初期化
+    private var _firstName:String = "HOGE"
+    private var _lastName:String = "FUGA"
+    private var _age:Int = 0
+    
+    //コンストラクタ
+    init(lastName _lastName:String) {
+        self._lastName = _lastName
+    }
+
+    internal func clone() -> Prototype { //internalは省略可
+        var _copy:Prototype
+        _copy = Prototype(lastName:_lastName) //自分自身を生成
+        _copy.firstName = _firstName //プロパティを複製
+        _copy.age = _age //プロパティを複製
+        return _copy //全てのプロパティを複製したインスタンスを返す
+    }
+
+    internal var firstName:String { //internalは省略可
+        get { return _firstName }
+        set { _firstName = newValue }
+    }
+
+    internal var lastName:String { //internalは省略可
+        get { return _lastName }
+        set { _lastName = newValue }
+    }
+
+    internal var age:Int { //internalは省略可
+        get { return _age }
+        set { _age = newValue }
+    }
+}
+
+//インスタンスを生成
+var _prototype1:Prototype = Prototype(lastName:"Nishimura")
+_prototype1.firstName = "Ichiro"
+_prototype1.age = 30
+
+//コピーを作成
+var _prototype2:Prototype = _prototype1.clone() //複製する（Prototype()を使わない）
+_prototype2.firstName = "Hanako"
+_prototype2.age = 25
+
+//検証（コピー元）
+print(_prototype1.firstName) //=> "Ichiro"
+print(_prototype1.lastName) //=> "Nishimura"
+print(_prototype1.age) //=> 30
+
+//検証（複製したもの）
+print(_prototype2.firstName) //=> "Hanako" ←「参照」ではない
+print(_prototype2.lastName) //=> "Nishimura"
+print(_prototype2.age) //=> 25
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
@@ -89,8 +159,8 @@ XXXX
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月05日  
+更新日：2017年05月15日
 
 
 <a name="FactoryMethod"></a>
