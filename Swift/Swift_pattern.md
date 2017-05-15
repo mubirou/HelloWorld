@@ -487,12 +487,48 @@ _factoryHanako.createSummer()
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-XXXX
+```
+//test.swift
+
+//スーパークラスの定義
+class Moneybox {
+    private var _yen:Int
+    //コンストラクタ（★）
+    init(yen _yen:Int) {
+        self._yen = _yen 
+    }
+    func add(yen _yen:Int) -> Void { self._yen += _yen }
+    func getYen() -> Int { return _yen }
+}
+
+//プロトコル（インターフェース）の宣言
+protocol IExchange {
+    func addYen(yen _yen:Int) -> Void
+    func getDollar() -> Double
+}
+
+//継承、プロトコルの実装
+class Exchange : Moneybox, IExchange {
+    private var _rate:Double
+    //↓super.init()でスーパークラスのコンストラクタ（★）を実行
+    init(firstYen _firstYen:Int, rate _rate:Double) {
+        self._rate = _rate
+        super.init(yen:_firstYen)
+    }
+    func addYen(yen _yen:Int) -> Void { add(yen:_yen) } //スーパークラスから継承
+    func getDollar() -> Double { return Double(getYen()) / _rate } //スーパークラスから継承
+}
+
+//実行
+var _exchange:Exchange = Exchange(firstYen:10000, rate:113.378685)
+_exchange.addYen(yen:8000)
+print(_exchange.getDollar()) //=> 158.759999730108（ドル）
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月08日  
+更新日：2017年05月15日
 
 
 <a name="Adapter（委譲）"></a>
