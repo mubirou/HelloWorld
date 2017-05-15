@@ -7,8 +7,8 @@
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
-    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -148,14 +148,122 @@ print(_prototype2.age) //=> 25
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月05日  
+更新日：2017年05月15日
 
 
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+//test.swift（アクセス修飾子internalは省略）
+
+//=============================
+//Directorクラス（年賀印刷業者）
+//=============================
+class Director {
+    //↓Builder○○クラスのインスタンスを格納（委譲）
+    private var _builder:IBuilder
+    //コンストラクタ
+    init(builder _builder:IBuilder) {
+        self._builder = _builder //←builer_はBuilder○○クラスのインスタンス
+    }
+    //共通の手順（≠コンストラクタ。紛らわしいですが...）
+    func construct() -> Void {
+        _builder.makeHeader()  //手順①
+        _builder.makeContent() //手順②
+        _builder.makeFooter()  //手順③
+    }
+}
+
+//=======================================
+//BuilderXXXクラスのプロトコル（オプション）
+//=======================================
+protocol IBuilder {
+    func makeHeader() -> Void
+    func makeContent() -> Void
+    func makeFooter() -> Void
+}
+
+//=====================================
+//Builder○○クラス群（年賀状のタイプ群）
+//=====================================
+//タイプ009の年賀状
+class Builder009 : IBuilder {
+    func makeHeader() -> Void {
+        Header051().exec() //ヘッダー用素材の呼出しと実行
+    }
+    func makeContent() -> Void {
+        Content194().exec() //コンテンツ用素材の呼出しと実行
+    }
+    func makeFooter() -> Void {
+        Footer004().exec() //フッター用素材の呼出しと実行
+    }
+}
+
+//タイプ108の年賀状
+class Builder108 : IBuilder {
+    func makeHeader() -> Void {
+        Header040().exec() //ヘッダー用素材の呼出しと実行
+    }
+    func makeContent() -> Void {
+        Content023().exec() //コンテンツ用素材の呼出しと実行
+    }
+    func makeFooter() -> Void {
+        Footer011().exec() //フッター用素材の呼出しと実行
+    }
+}
+
+//====================================
+//Header○○クラス群（ヘッダー用材料群）
+//====================================
+class Header040 {
+    func exec() -> Void { print("HAPPY YEAR!") }
+}
+
+class Header051 {
+    func exec() -> Void { print("あけましておめでとうございます") }
+}
+
+//=======================================
+//Content○○クラス群（コンテンツ用材料群）
+//=======================================
+class Content023 {
+    func exec() -> Void { print("タイプ023用のイラスト") }
+}
+
+class Content194 {
+    func exec() -> Void { print("タイプ194用のイラスト") }
+}
+
+//====================================
+//Footer○○クラス群（フッター用材料群）
+//====================================
+class Footer004 {
+    func exec() -> Void { print("元旦") }
+}
+
+class Footer011 {
+    func exec() -> Void { print("2018.1.1") }
+}
+
+//実行 ======================================
+var _director1:Director = Director(builder:Builder009())
+_director1.construct() //共通の手順を実行
+/*
+あけましておめでとうございます
+タイプ194用のイラスト
+元旦
+*/
+
+var _director2:Director = Director(builder:Builder108())
+_director2.construct() //共通の手順を実行
+/*
+HAPPY YEAR!
+タイプ023用のイラスト
+2018.1.1
+*/
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
