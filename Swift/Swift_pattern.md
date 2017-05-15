@@ -866,6 +866,7 @@ _special.show()
 DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1)
 ```
 
+### 例文
 ```
 //test.swift
 
