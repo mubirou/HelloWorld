@@ -22,8 +22,8 @@
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1088,12 +1088,88 @@ _loader.load() //=> 重い処理中 ←通常は必要になった時に実際�
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//==========
+//Bikeクラス
+//==========
+class Bike {
+    private var _name:String
+    private var _num:String
+    init(name _name:String, num _num:String) { //コンストラクタ
+        self._name = _name
+        self._num = _num
+    }
+    func getName() -> String {	return _name }
+    func getNum() -> String { return _num }
+}
+
+//==============
+//BikeParkクラス
+//==============
+protocol IBikePark {
+    func add(bike arg:Bike) -> Void
+    func getBikeAt(num arg:Int) -> Bike
+    func getLength() -> Int
+    func createIterator() -> Iterator
+}
+
+class BikePark : IBikePark {
+    private var _list:[Bike] = [] //空の配列を作成
+    func add(bike arg:Bike) -> Void { _list.append(arg) } //←Array.append(値)
+    func getBikeAt(num arg:Int) -> Bike {return _list[arg] }
+    func getLength() -> Int { return _list.count }
+    func createIterator() -> Iterator { return Iterator(bikePark:self) } //イテレータ生成
+}
+
+//==============================
+//Iteratorクラス（≒駐輪場の管理人）
+//==============================
+protocol IIterator {
+    func hasNext() -> Bool
+    func next() -> Bike
+}
+
+class Iterator : IIterator {
+    private var _bikePark:BikePark
+    private var _count:Int = 0
+    init(bikePark _bikePark:BikePark) { //コンストラクタ
+        self._bikePark = _bikePark
+    }
+    func hasNext() -> Bool {
+        return _bikePark.getLength() > _count 
+    }
+    func next() -> Bike { 
+        var _result:Bike
+        _result = _bikePark.getBikeAt(num:_count) //次のバイクを返す
+        _count += 1 //↑の処理後に加算すること
+        return _result
+    }
+}
+
+//=======
+//実行
+//=======
+var _bikePark:BikePark = BikePark()
+_bikePark.add(bike:Bike(name:"SR400", num:"神戸 き 15-63"))
+_bikePark.add(bike:Bike(name:"ESTRELLA", num:"豊橋 お 12-13"))
+_bikePark.add(bike:Bike(name:"W650", num:"品川 さ 13-46"))
+
+var _iterator:Iterator = _bikePark.createIterator() //イテレータ（管理人）生成
+
+while _iterator.hasNext() {
+    var _nextBike:Bike
+    _nextBike = _iterator.next()
+    print(_nextBike.getName() + "," + _nextBike.getNum())
+    //=> SR400,神戸 き 15-63 => ESTRELLA,豊橋 お 12-13 => W650,品川 さ 13-46
+}
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月09日  
+更新日：2017年05月16日
 
 
 <a name="TemplateMethod"></a>
