@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -1457,19 +1457,126 @@ _sinjukuPO.send(address: "北海道札幌市XX町X-X-X") //=> 一週間前後で
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月10日  
+更新日：2017年05月16日
 
 
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//=================================
+// 相談役（専門性が高いため使い捨て）
+//=================================
+class Mediator {
+    //メンバーリスト
+    private var _memberList: [AbstractMember] = [] 
+    //クラス定数
+    static let Member_A: AbstractMember = MemberA()
+    static let Member_B: AbstractMember = MemberB()
+    static let Member_C: AbstractMember = MemberC()
+
+    //コンストラクタ
+    init() {
+        addMember(member: Mediator.Member_A)
+        addMember(member: Mediator.Member_B)
+        addMember(member: Mediator.Member_C)
+    }
+
+    //メンバーリストに登録
+    private func addMember(member _member: AbstractMember) -> Void {
+        _memberList.append(_member) //Array.append(値)
+        _member.setMediator(mediator: self) //メンバーに相談役は自分であることを教える
+    }
+
+    //メンバーからの報告を受け指示を出す（特に専門性が高いメソッド）
+    func requestMediator(member _member: AbstractMember, string _string: String) {
+        if (_member === Mediator.Member_A) { //「===」にすること
+            if (_string == "西へ行く") {
+                //「メンバーA」から「西へ行く」と報告があった場合の処理
+                _member.advice(string: "（Aよ）了解、そのまま西へ行け") //→Aへ指示
+                //A以外への指示
+                for theMember in _memberList {
+                    if (theMember === Mediator.Member_B) { //「===」にすること
+                        theMember.advice(string: "（Bよ）東へ行け") //→Bへ指示
+                    } else if (theMember === Mediator.Member_C) { //「===」にすること
+                        theMember.advice(string: "（Cよ）その場で待機しろ") //→Cへ指示
+                    }
+                }
+            }
+        }
+        //以降、各メンバーからの報告内容に対する処理を記述
+    }
+}
+
+//==================
+// 登録するメンバー達
+//==================
+// 擬似抽象クラス //
+class AbstractMember {
+    var _mediator: Mediator? = nil //「?」が必須
+    func setMediator(mediator _mediator: Mediator) -> Void { //共通の機能
+        self._mediator = _mediator
+    }
+    //抽象メソッドの宣言（派生クラスでoverride）
+    func request(string _string: String) -> Void {
+        print("サブクラスでoverrideして実装して下さい")
+    }
+    func advice(string _string: String) -> Void {
+        print("サブクラスでoverrideして実装して下さい")
+    }
+}
+
+// メンバーA //
+class MemberA :  AbstractMember {
+    override func request(string _string: String) -> Void { //抽象メソッドをoverride
+        _mediator?.requestMediator(member: self, string: _string) //「?」が必須
+    }
+    //相談役からの指示を受ける
+    override func advice(string _string: String) -> Void {
+        print("MemberA: " + _string)
+    }
+}
+
+// メンバーB //
+class MemberB :  AbstractMember {
+    override func request(string _string: String) -> Void { //抽象メソッドをoverride
+        _mediator?.requestMediator(member: self, string: _string) //「?」が必須
+    }
+    //相談役からの指示を受ける
+    override func advice(string _string: String) -> Void {
+        print("MemberB: " + _string)
+    }
+}
+
+// メンバーC //
+class MemberC :  AbstractMember {
+    override func request(string _string: String) -> Void { //抽象メソッドをoverride
+        _mediator?.requestMediator(member: self, string: _string) //「?」が必須
+    }
+    //相談役からの指示を受ける
+    override func advice(string _string: String) -> Void {
+        print("MemberC: " + _string)
+    }
+}
+
+//=======
+// 実行
+//=======
+var mediator: Mediator = Mediator()
+//検証（今回はクラス定数を使いました）
+Mediator.Member_A.request(string: "西へ行く") //メンバーAから報告
+//=> MemberA: （Aよ）了解、そのまま西へ行け
+//=> MemberB: （Bよ）東へ行け
+//=> MemberC: （Cよ）その場で待機しろ
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月10日  
+更新日：2017年05月16日
 
 
 <a name="Observer"></a>
