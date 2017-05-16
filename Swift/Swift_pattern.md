@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1302,12 +1302,76 @@ _jankenB.exec() //=> パー、グー、チョキ
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//=======
+// 訪問先
+//=======
+protocol Iacceptor {
+    func accept(visitor _visitor: IVisitor) -> Void 
+}
+
+class Hokkaido :  Iacceptor {
+    private var _otoshidama: Int = 5000*2 //お年玉
+    func accept(visitor _visitor: IVisitor) -> Void { //accept＝受け入れる
+        _visitor.visit(otoshidama: _otoshidama) //←誰が訪問してきても同じメソッドを実行!
+    }
+}
+
+class Chiba :  Iacceptor {
+    private var _otoshidama: Int = 5000 //お年玉
+    func accept(visitor _visitor: IVisitor) -> Void { //accept＝受け入れる
+        _visitor.visit(otoshidama: _otoshidama) //←誰が訪問してきても同じメソッドを実行!
+    }
+}
+
+//=======
+// 訪問者
+//=======
+protocol IVisitor {
+    func visit(otoshidama _otoshidama: Int) -> Void
+    func getMoney() -> Int
+}
+
+class Tohru :  IVisitor { //亨
+    private var money_: Int = 0 //貯金
+    func visit(otoshidama _otoshidama: Int) -> Void { money_ += _otoshidama }
+    func getMoney() -> Int { return money_ }
+}
+
+class Sachiko :  IVisitor { //幸子
+    private var money_: Int = 0 //貯金
+    func visit(otoshidama _otoshidama: Int) -> Void { money_ += _otoshidama }
+    func getMoney() -> Int { return money_ }
+}
+
+//=======
+// 実行
+//=======
+//訪問先
+var _hokkaido: Hokkaido = Hokkaido() //埼玉実家
+var _chiba: Chiba = Chiba() //宮島家
+
+//訪問者
+var _ichiro: Tohru = Tohru() //亨
+var _hanako: Sachiko = Sachiko() //幸子
+
+//訪問する（訪問側から見ると「受け入れる」）
+_hokkaido.accept(visitor: _ichiro)
+_hokkaido.accept(visitor: _hanako)
+_chiba.accept(visitor: _ichiro)
+_chiba.accept(visitor: _hanako)
+
+//結果...
+print(_ichiro.getMoney()) //=> 15000
+print(_hanako.getMoney()) //=> 15000
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月09日  
+更新日：2017年05月16日
 
 
 <a name="ChainofResponsibility"></a>
