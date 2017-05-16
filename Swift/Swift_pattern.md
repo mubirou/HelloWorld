@@ -24,8 +24,8 @@
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
@@ -1259,12 +1259,44 @@ HAPPY NEW YEAR!
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//================
+// StrategyXXXクラス
+//================
+protocol IStrategy {
+    func execute() -> Void
+}
+class StrategyA : IStrategy {
+    func execute() -> Void { print("グー、グー、パー")	}
+}
+class StrategyB : IStrategy {
+    func execute() -> Void { print("パー、グー、チョキ") }
+}
+
+//============
+// Jankenクラス
+//============
+class Janken {
+    private var _strategy:IStrategy
+    init(strategy _strategy:IStrategy) { self._strategy = _strategy }
+    func exec() -> Void { _strategy.execute() } //exec()だと紛らわしいので...
+}
+
+//=========
+// 実行
+//=========
+var _jankenA:Janken = Janken(strategy:StrategyA())
+var _jankenB:Janken = Janken(strategy:StrategyB())
+_jankenA.exec() //=> グー、グー、パー
+_jankenB.exec() //=> パー、グー、チョキ
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月09日  
+更新日：2017年05月16日
 
 
 <a name="Visitor"></a>
