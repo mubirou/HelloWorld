@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>Swift デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -30,7 +28,6 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator): 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer): 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento): 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State): 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command): 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter): 文法規則を暮らすで表現する
@@ -1774,31 +1771,226 @@ print(_snapShot.point) //これ以上、redoできません 8000
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//=======================
+// Context（状態を管理）役
+//=======================
+class Janken {
+    //状態（State○）を格納
+    private var _state: IState? = nil //「?」が必須
+    
+    func setState(state _state: IState) -> Void {
+        self._state = _state
+    }
+    
+    func exec() -> Void {
+        _state?.execute() //→State○.execute()メソッドを呼出す（「?」が必須）
+    }
+}
+
+//================
+// State（状態）役
+//================
+//プロトコル（≒インターフェース）
+protocol IState {
+    func execute() -> Void
+}
+
+//状態A
+class StateA: IState {
+    func execute() -> Void { //←Janken.exec()から呼び出される
+        print("グー、グー、パー")	
+    }
+}
+
+//状態B
+class StateB: IState {
+    func execute() -> Void { //←Janken.exec()から呼び出される
+        print("パー、グー、チョキ")
+    }
+}
+
+//=======
+// 実行
+//=======
+//Context役
+var _janken: Janken = Janken()
+
+//State（状態）役
+var _stateA: IState = StateA()
+var _stateB: IState = StateB()
+
+//状態の設定＆実行
+_janken.setState(state: _stateA)
+_janken.exec() //=> グー、グー、パー
+
+//状態の変更＆実行
+_janken.setState(state: _stateB)
+_janken.exec() //=> パー、グー、チョキ
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月10日  
+更新日：2017年05月16日
 
 
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//================
+//グラフィックソフト
+//================
+class Inkscape {
+    private var _canvas: Canvas = Canvas() //Receiver（結果を表示する）役
+    private var _history: [DrawCommand] = [] //履歴（命令クラス）を保存
+    func draw(command _command: String) -> Void { //命令の実行
+        //↓命令を実行する度にインスタンス生成
+        var _drawCommand: DrawCommand //ローカル変数宣言
+        _drawCommand = DrawCommand(canvas: _canvas, command: _command) 
+        _drawCommand.execute()
+        _history.append(_drawCommand) //Array.append(値)
+    }
+}
+
+//==========
+//命令クラス
+//==========
+class DrawCommand {
+    private var _canvas: Canvas
+    private var _command: String
+    init(canvas _canvas: Canvas, command _command: String) { //コンストラクタ
+        self._canvas = _canvas
+        self._command = _command
+    }
+    func execute() -> Void { //←Inkscape.draw()から呼び出される
+        _canvas.update(command: _command)
+    }
+}
+
+//=======================================
+//結果を表示する役＝Receiver（受信者）の役
+//=======================================
+class Canvas {
+    private var _history: [String] = [] //履歴（実際の処理）を保存
+    func update(command _command: String) -> Void { //キャンバスの再描画
+        _history.append(_command)
+        for String_ in _history {
+            print(String_)
+        }
+    }
+}
+
+//=======
+// 実行
+//=======
+var _inkscape: Inkscape = Inkscape() //グラフィックソフト
+_inkscape.draw(command: "線を引く") //=> 線を引く
+_inkscape.draw(command: "縁取る") //=> 線を引く、縁取る
+_inkscape.draw(command: "影を付ける") //=> 線を引く、縁取る、影を付ける
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月10日  
+更新日：2017年05月16日
 
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-XXXX
+* 例文は ActionScript、SWF、AVM（ActionScript Virtual Machine）を自作ミニ言語と見立てています。
+* 例文は「終端となる表現の役」を省略しています。
+
+```
+//test.swift
+
+import Foundation //String.components()に必要
+
+//===========================
+//文字列の一部分を取得する関数
+//===========================
+func subString(String arg1: String, start arg2: Int, end arg3: Int) -> String {
+    var _result: String
+    _result = arg1[arg1.index(arg1.startIndex, offsetBy: arg2)
+    ...
+    arg1.index(arg1.startIndex, offsetBy: arg3)]
+    return _result
+}
+
+//===========================
+//≒SWFファイルを生成するクラス
+//===========================
+class SWF {
+    private var _codeArray: [String] = [] //命令を配列化（中間コード）
+    private var _count: Int = 0 //getNextCode()で使用
+    
+    //コンストラクタ
+    init(code _code: String) {
+        _codeArray = _code.components(separatedBy: ";") //「;」で分割配列化（中間コードに変換）
+    }
+
+    //次の命令を返す
+    func getNextCode() -> String { 
+        var _result: String //ローカル変数宣言
+        _result = _codeArray[_count]
+        _count += 1
+        return _result
+    }
+    
+    //次の命令があるかどうか...
+    func isEnd() -> Bool { 
+        return _count >= _codeArray.count
+    }
+}
+//=============================
+//≒ActionScript Virtual Machine
+//=============================
+class AVM {
+    func execute(swf _swf: SWF) -> Void {
+        var _result: Int //ローカル変数宣言
+        _result = 0 //計算結果
+        //↓次の命令があれば...
+        while !_swf.isEnd() {
+            var _nextCode: String //ローカル変数宣言
+            _nextCode = _swf.getNextCode() //次の命令を調べる
+
+            //ここからはサンプルの独自処理
+            var _operator: String //ローカル変数の宣言（必須）
+            _operator = subString(String: _nextCode, start: 0, end: 0) //「+*/-=」の何れか
+            if (_operator != "=") {
+                var _int: Int //ローカル変数宣言
+                _int = Int(subString(String: _nextCode, start: 1, end: _nextCode.characters.count-1))!
+                switch (_operator) {
+                    case "+" :  _result += _int
+                    case "-" :  _result -= _int
+                    case "*" :  _result *= _int
+                    case "/" :  _result /= _int
+                    default :  print("error: 演算子が異なります")
+                }
+            } else { //「=」の場合...
+                //本来はここで「終端となる表現」のクラスを生成して処理をしますが省略
+                print(_result)
+            }
+        }
+    }
+}
+
+//======
+// 実行
+//======
+var _code: String = "+10;*50;/2;-4;=" //自作言語による記述（≒ActionScript）
+var _swf: SWF = SWF(code: _code) //≒SWFファイルに変換
+var _avm_: AVM = AVM() //≒ActionScript Virtual Machine
+_avm_.execute(swf: _swf) //≒SWFファイルをAVM上で実行（計算結果は246）
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月10日  
+更新日：2017年05月16日
