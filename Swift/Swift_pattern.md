@@ -1912,9 +1912,9 @@ _inkscape.draw(command: "影を付ける") //=> 線を引く、縁取る、影�
 
 import Foundation //String.components()に必要
 
-//===========================
-//文字列の一部分を取得する関数
-//===========================
+//============================
+// 文字列の一部分を取得する関数
+//============================
 func subString(String arg1: String, start arg2: Int, end arg3: Int) -> String {
     var _result: String
     _result = arg1[arg1.index(arg1.startIndex, offsetBy: arg2)
@@ -1923,9 +1923,9 @@ func subString(String arg1: String, start arg2: Int, end arg3: Int) -> String {
     return _result
 }
 
-//===========================
-//≒SWFファイルを生成するクラス
-//===========================
+//============================
+// ≒ SWFファイルを生成するクラス
+//============================
 class SWF {
     private var _codeArray: [String] = [] //命令を配列化（中間コード）
     private var _count: Int = 0 //getNextCode()で使用
@@ -1948,9 +1948,9 @@ class SWF {
         return _count >= _codeArray.count
     }
 }
-//=============================
-//≒ActionScript Virtual Machine
-//=============================
+//==============================
+// ≒ ActionScript Virtual Machine
+//==============================
 class AVM {
     func execute(swf _swf: SWF) -> Void {
         var _result: Int //ローカル変数宣言
