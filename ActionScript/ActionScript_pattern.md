@@ -96,8 +96,8 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2013年  
-更新日：2017年05月16日
+作成日：2017年05月16日  
+
 
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
@@ -106,8 +106,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2013年  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Builder"></a>
@@ -117,8 +116,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2013年  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="FactoryMethod"></a>
@@ -128,7 +126,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="AbstractFactory"></a>
@@ -138,7 +136,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Adapter（継承）"></a>
@@ -148,7 +146,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Adapter（委譲）"></a>
@@ -158,7 +156,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Bridge"></a>
@@ -168,7 +166,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Composite"></a>
@@ -178,7 +176,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Decorator"></a>
@@ -188,7 +186,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Facade"></a>
@@ -198,7 +196,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Flyweight"></a>
@@ -208,7 +206,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Proxy"></a>
@@ -218,7 +216,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Iterator"></a>
@@ -228,7 +226,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="TemplateMethod"></a>
@@ -238,7 +236,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Strategy"></a>
@@ -248,7 +246,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Visitor"></a>
@@ -258,7 +256,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="ChainofResponsibility"></a>
@@ -268,7 +266,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Mediator"></a>
@@ -278,7 +276,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Observer"></a>
@@ -288,7 +286,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Memento"></a>
@@ -298,7 +296,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="State"></a>
@@ -308,7 +306,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Command"></a>
@@ -318,7 +316,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
 
 
 <a name="Interpreter"></a>
@@ -328,4 +326,4 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-更新日：2017年05月XX日
+作成日：2017年05月XX日  
