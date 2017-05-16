@@ -45,6 +45,9 @@
 package  {
     import flash.display.Sprite;
 
+    //============
+    // Main クラス
+    //============
     public class Main extends Sprite {
         public function Main() {
             var _instance1: Singleton = Singleton.getInstance(); //=> ["インスタンスが生成されました"]
@@ -56,7 +59,10 @@ package  {
     }
 }
 
-class console { //ブラウザのコンソール出力用（trace()の代替）
+//==========================================
+// ブラウザのコンソール出力用（trace()の代替）
+//==========================================
+class console {
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
@@ -67,6 +73,9 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 //Singleton.as
 
 package  {
+    //=================
+    // Singleton クラス
+    //=================
     public class Singleton {
         private static var _singleton: Singleton; 
 
@@ -83,10 +92,15 @@ package  {
     }
 }
 
-//packageブロックの下でクラス定義
+//==========================
+// Lock クラス（Singleton 用）
+//==========================
 internal class Lock {} //internalは同じパッケージ内からしか呼び出せない
 
-class console { //ブラウザのコンソール出力用（trace()の代替）
+//==========================================
+// ブラウザのコンソール出力用（trace()の代替）
+//==========================================
+class console {
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
