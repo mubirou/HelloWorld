@@ -59,9 +59,9 @@ package  {
     }
 }
 
-//==========================================
+//========================================
 // ブラウザのコンソール出力用（trace()の代替）
-//==========================================
+//========================================
 class console {
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: Array): void {
@@ -97,9 +97,9 @@ package  {
 //==========================
 internal class Lock {} //internalは同じパッケージ内からしか呼び出せない
 
-//==========================================
+//========================================
 // ブラウザのコンソール出力用（trace()の代替）
-//==========================================
+//========================================
 class console {
     import flash.external.ExternalInterface; //JavaScriptの実行用
     public static function log(...args: Array): void   {
