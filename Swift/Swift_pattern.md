@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1377,7 +1377,83 @@ print(_hanako.getMoney()) //=> 15000
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//文字列の一部分を取得する関数
+func subString(string arg1: String, start arg2: Int, end arg3: Int) -> String {
+    var _result: String
+    _result = arg1[arg1.index(arg1.startIndex, offsetBy: arg2)
+    ...
+    arg1.index(arg1.startIndex, offsetBy: arg3)]
+    return _result
+}
+
+//=======================
+//各郵便局の擬似抽象クラス
+//=======================
+class AbstractPO {
+    var _nextPO: AbstractPO? = nil //←たらいまわし先（「?」が必須）
+    func setNext(po _po: AbstractPO) -> Void { //共通の機能
+        _nextPO = _po
+    }
+    func send(address _address: String) -> Void { //擬似抽象メソッド（サブクラスでoverride）
+        print("サブクラスでoverrideして実装して下さい")
+    }
+}
+
+//===========
+//新宿郵便局
+//===========
+class ShinjukuPO :  AbstractPO {
+    override func send(address _address: String) -> Void { //擬似抽象メソッドの実際の処理
+        if (subString(string: _address, start: 0, end: 2) == "新宿区") {
+            print("本日中に届きます")
+        } else {
+            _nextPO?.send(address: _address) //たらいまわし先に振る（「?」が必須）
+        }
+    }
+}
+
+//===========
+//東京郵便局
+//===========
+class TokyoPO :  AbstractPO {
+    override func send(address _address: String) -> Void { //擬似抽象メソッドの実際の処理
+        if (subString(string: _address, start: 0, end: 2) == "東京都") {
+            print("明後日中に届きます")
+        } else {
+            _nextPO?.send(address: _address) //たらいまわし先に振る（「?」が必須）
+        }
+    }
+}
+
+//===========
+//日本郵便局
+//===========
+class JapanPO :  AbstractPO {
+    override func send(address _address: String) -> Void { //擬似抽象メソッドの実際の処理
+        print("一週間前後で届きます")
+    }
+}
+
+//=========
+//実行
+//=========
+//郵便局の設置
+var _sinjukuPO: AbstractPO = ShinjukuPO()
+var _tokyoPO: AbstractPO = TokyoPO()
+var _japanPO: AbstractPO = JapanPO()
+
+//責任のたらいまわしのセット
+_sinjukuPO.setNext(po: _tokyoPO)
+_tokyoPO.setNext(po: _japanPO)
+
+//投函（全て新宿郵便局に投函する）
+_sinjukuPO.send(address: "新宿区XX町X-X-X") //=> 本日中に届きます
+_sinjukuPO.send(address: "東京都中野区XX町X-X") //=> 明後日中に届きます
+_sinjukuPO.send(address: "北海道札幌市XX町X-X-X") //=> 一週間前後で届きます
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
