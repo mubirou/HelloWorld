@@ -5,35 +5,35 @@
 ### <b>INDEX</b>
 
 * オブジェクトの「生成」に関するパターン
-    * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
-    * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
+    * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton): たった１つのインスタンス
+    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype): コピーしてインスタンスを作る
+    * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder): 複雑なインスタンスを組み立てる
+    * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod): インスタンスの作成をサブクラスにまかせる
+    * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory): 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
-    * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
-    * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
-    * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
+    * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）): 一皮かぶせて再利用
+    * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）): クラスによる Adapter パターン
+    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge): 機能の階層と実装の階層を分ける
+    * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite): 容器と中身の同一視
+    * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator): 飾り枠と中身の同一視
+    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade): シンプルな窓口
+    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight): 同じものを共有して無駄をなくす
+    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy): 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator): １つ１つ数え上げる
+    * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod): 具体的な処理をサブクラスにまかせる
+    * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy): アルゴリズムをごっそり切り替える
+    * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor): 構造を渡り歩きながら仕事をする
+    * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility): 責任のたらいまわし
+    * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator): 相手は相談役１人だけ
+    * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer): 状態の変化を通知する
+    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento): 状態を保存する
     ***
-    * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
-    * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
+    * [<ruby>State<rt>ステート</rt></ruby>](#State): 状態をクラスとして表現
+    * [<ruby>Command<rt>コマンド</rt></ruby>](#Command): 命令をクラスにする
+    * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter): 文法規則を暮らすで表現する
 
 
 <a name="Singleton"></a>
@@ -43,9 +43,9 @@
 //test.swift
 
 internal class Singleton { //internalは省略可
-    internal static var isSinglton:Bool = false
+    internal static var isSinglton: Bool = false
     //↓クラス定数（internalは省略可）
-    internal static let getSingleton:Singleton = Singleton() //インスタンス生成
+    internal static let getSingleton: Singleton = Singleton() //インスタンス生成
     
     //コンストラクタ
     private init() { //privateにしても外部からSingleton()出来てしまう（要調査）
@@ -60,8 +60,8 @@ internal class Singleton { //internalは省略可
 }
 
 //var tmp = Singleton() //=> "Singleton()ではなくSingleton.getSingletonで生成して下さい"
-var _singleton1:Singleton = Singleton.getSingleton //唯一のインスタンスを呼出す
-var _singleton2:Singleton = Singleton.getSingleton //唯一のインスタンスを呼出す
+var _singleton1: Singleton = Singleton.getSingleton //唯一のインスタンスを呼出す
+var _singleton2: Singleton = Singleton.getSingleton //唯一のインスタンスを呼出す
 print(_singleton1 === _singleton2) //=> true
 ```
 
@@ -85,53 +85,53 @@ print(_singleton1 === _singleton2) //=> true
 //プロトコル（≒インターフェース）の宣言
 protocol IPrototype {
     func clone() -> Prototype
-    var firstName:String { get set }
-    var lastName:String { get set }
-    var age:Int { get set }
+    var firstName: String { get set }
+    var lastName: String { get set }
+    var age: Int { get set }
 }
 
-internal class Prototype : IPrototype { //プロトコルの実装←internalは省略可
+internal class Prototype: IPrototype { //プロトコルの実装←internalは省略可
     //インスタンス変数の初期化
-    private var _firstName:String = "HOGE"
-    private var _lastName:String = "FUGA"
-    private var _age:Int = 0
+    private var _firstName: String = "HOGE"
+    private var _lastName: String = "FUGA"
+    private var _age: Int = 0
     
     //コンストラクタ
-    init(lastName _lastName:String) {
+    init(lastName _lastName: String) {
         self._lastName = _lastName
     }
 
     internal func clone() -> Prototype { //internalは省略可
-        var _copy:Prototype
-        _copy = Prototype(lastName:_lastName) //自分自身を生成
+        var _copy: Prototype
+        _copy = Prototype(lastName: _lastName) //自分自身を生成
         _copy.firstName = _firstName //プロパティを複製
         _copy.age = _age //プロパティを複製
         return _copy //全てのプロパティを複製したインスタンスを返す
     }
 
-    internal var firstName:String { //internalは省略可
+    internal var firstName: String { //internalは省略可
         get { return _firstName }
         set { _firstName = newValue }
     }
 
-    internal var lastName:String { //internalは省略可
+    internal var lastName: String { //internalは省略可
         get { return _lastName }
         set { _lastName = newValue }
     }
 
-    internal var age:Int { //internalは省略可
+    internal var age: Int { //internalは省略可
         get { return _age }
         set { _age = newValue }
     }
 }
 
 //インスタンスを生成
-var _prototype1:Prototype = Prototype(lastName:"Nishimura")
+var _prototype1: Prototype = Prototype(lastName: "Nishimura")
 _prototype1.firstName = "Ichiro"
 _prototype1.age = 30
 
 //コピーを作成
-var _prototype2:Prototype = _prototype1.clone() //複製する（Prototype()を使わない）
+var _prototype2: Prototype = _prototype1.clone() //複製する（Prototype()を使わない）
 _prototype2.firstName = "Hanako"
 _prototype2.age = 25
 
@@ -163,9 +163,9 @@ print(_prototype2.age) //=> 25
 //=============================
 class Director {
     //↓Builder○○クラスのインスタンスを格納（委譲）
-    private var _builder:IBuilder
+    private var _builder: IBuilder
     //コンストラクタ
-    init(builder _builder:IBuilder) {
+    init(builder _builder: IBuilder) {
         self._builder = _builder //builer_はBuilder○○クラスのインスタンス
     }
     //共通の手順（≠コンストラクタ。紛らわしいですが...）
@@ -189,7 +189,7 @@ protocol IBuilder {
 //Builder○○クラス群（年賀状のタイプ群）
 //=====================================
 //タイプ009の年賀状
-class Builder009 : IBuilder {
+class Builder009: IBuilder {
     func makeHeader() -> Void {
         Header051().exec() //ヘッダー用素材の呼出しと実行
     }
@@ -202,7 +202,7 @@ class Builder009 : IBuilder {
 }
 
 //タイプ108の年賀状
-class Builder108 : IBuilder {
+class Builder108: IBuilder {
     func makeHeader() -> Void {
         Header040().exec() //ヘッダー用素材の呼出しと実行
     }
@@ -250,7 +250,7 @@ class Footer011 {
 //=======
 //実行
 //=======
-var _director1:Director = Director(builder:Builder009())
+var _director1: Director = Director(builder: Builder009())
 _director1.construct() //共通の手順を実行
 /*
 あけましておめでとうございます
@@ -258,7 +258,7 @@ _director1.construct() //共通の手順を実行
 元旦
 */
 
-var _director2:Director = Director(builder:Builder108())
+var _director2: Director = Director(builder: Builder108())
 _director2.construct() //共通の手順を実行
 /*
 HAPPY YEAR!
@@ -285,8 +285,8 @@ HAPPY YEAR!
 class AbstractCard {
     func templateMethod(target _arg: String) -> Void {
         //↓ここでインスタンスを生成しない（汚さない）
-        var _factoryMethod:IMessage
-        _factoryMethod = factoryMethod(target:_arg)
+        var _factoryMethod: IMessage
+        _factoryMethod = factoryMethod(target: _arg)
         _factoryMethod.exec() //処理①
         order1() //処理②
         order2() //処理③
@@ -306,7 +306,7 @@ class AbstractCard {
 //===============================
 // サブクラス群（抽象クラスを継承）
 //===============================
-class CardIchiro : AbstractCard {
+class CardIchiro: AbstractCard {
     override func factoryMethod(target _arg: String) -> IMessage {
         if (_arg == "teacher") {
             return Message1() //ここでインスタンスを生成
@@ -320,7 +320,7 @@ class CardIchiro : AbstractCard {
     }
 }
 
-class CardHanako : AbstractCard {
+class CardHanako: AbstractCard {
     override func factoryMethod(target _arg: String) -> IMessage {
         if (_arg == "teacher") {
             return Message3() //ここでインスタンスを生成
@@ -340,41 +340,41 @@ class CardHanako : AbstractCard {
 protocol IMessage { //プロトコル（≒インターフェース）の宣言
     func exec() -> Void //共通のメソッド
 }
-class Message1 : IMessage {
+class Message1: IMessage {
     func exec() -> Void {
         print("謹賀新年")
     }
 }
-class Message2 : IMessage {
+class Message2: IMessage {
     func exec() -> Void {
         print("HAPPY NEW YEAR!")
     }
 }
-class Message3 : IMessage {
+class Message3: IMessage {
     func exec() -> Void {
         print("明けましておめでとうございます")
     }
 }
-class Message4 : IMessage {
+class Message4: IMessage {
     func exec() -> Void {
         print("あけましておめでとう")
     }
 }
-class MessageDummy : IMessage { //苦肉の策（Swift独特の力技）
-    func exec() -> Void { print("error:targetが存在しません") }
+class MessageDummy: IMessage { //苦肉の策（Swift独特の力技）
+    func exec() -> Void { print("error: targetが存在しません") }
 }
 
 //=======
 // 実行
 //=======
 var _cardIchiro: CardIchiro = CardIchiro()
-_cardIchiro.templateMethod(target:"teacher")
+_cardIchiro.templateMethod(target: "teacher")
 /*
 謹賀新年
 〒XXX-XXXX 新宿区XX町-XX-XX
 西村一郎
 */
-_cardIchiro.templateMethod(target:"friend")
+_cardIchiro.templateMethod(target: "friend")
 /*
 HAPPY NEW YEAR!
 〒XXX-XXXX 新宿区XX町-XX-XX
@@ -382,13 +382,13 @@ HAPPY NEW YEAR!
 */
 
 var _cardHanako: CardHanako = CardHanako()
-_cardHanako.templateMethod(target:"teacher")
+_cardHanako.templateMethod(target: "teacher")
 /*
 明けましておめでとうございます
 〒XXX-XXXX 新宿区XX町-XX-XX
 西村花子
 */
-_cardHanako.templateMethod(target:"friend")
+_cardHanako.templateMethod(target: "friend")
 /*
 あけましておめでとう
 〒XXX-XXXX 新宿区XX町-XX-XX
@@ -410,7 +410,7 @@ _cardHanako.templateMethod(target:"friend")
 
 //抽象クラス（抽象的な工場）
 class AbstractFactory {
-    static func createFactory(name _name:String) -> AbstractFactory { //静的メソッド
+    static func createFactory(name _name: String) -> AbstractFactory { //静的メソッド
         if (_name == "ICHIRO") {
             return Ichiro() //具体的な「亨工場」を生成
         } else if (_name == "HANAKO") {
@@ -427,7 +427,7 @@ class AbstractFactory {
 }
 
 //派生クラス群（実際の工場群）
-class Ichiro : AbstractFactory { //抽象クラスを継承
+class Ichiro: AbstractFactory { //抽象クラスを継承
     override func createNewYear() -> Void { //overrideして具体的処理を記述
         print("HAPPY NEW YEAR!")
         print("ICHIRO NISHIMURA")
@@ -438,7 +438,7 @@ class Ichiro : AbstractFactory { //抽象クラスを継承
     }
 }
 
-class Hanako : AbstractFactory { //抽象クラスを継承
+class Hanako: AbstractFactory { //抽象クラスを継承
     override func createNewYear() -> Void { //overrideして具体的処理を記述
         print("明けましておめでとうございます")
         print("西村花子")
@@ -449,12 +449,12 @@ class Hanako : AbstractFactory { //抽象クラスを継承
     }
 }
 
-class Dummy : AbstractFactory { //苦肉の策（Swift独特の力技）
-    override func createNewYear() -> Void { print("error:nameが存在しません") }
-    override func createSummer() -> Void { print("error:nameが存在しません") }
+class Dummy: AbstractFactory { //苦肉の策（Swift独特の力技）
+    override func createNewYear() -> Void { print("error: nameが存在しません") }
+    override func createSummer() -> Void { print("error: nameが存在しません") }
 }
 
-var _factoryIchiro:AbstractFactory = AbstractFactory.createFactory(name:"ICHIRO")
+var _factoryIchiro: AbstractFactory = AbstractFactory.createFactory(name: "ICHIRO")
 _factoryIchiro.createNewYear()
 /*
 HAPPY NEW YEAR!
@@ -465,7 +465,7 @@ _factoryIchiro.createSummer()
 暑中お見舞い申し上げます
 西村一郎
 */
-var _factoryHanako:AbstractFactory = AbstractFactory.createFactory(name:"HANAKO")
+var _factoryHanako: AbstractFactory = AbstractFactory.createFactory(name: "HANAKO")
 _factoryHanako.createNewYear()
 /*
 明けましておめでとうございます
@@ -492,36 +492,36 @@ _factoryHanako.createSummer()
 
 //スーパークラスの定義
 class Moneybox {
-    private var _yen:Int
+    private var _yen: Int
     //コンストラクタ（★）
-    init(yen _yen:Int) {
+    init(yen _yen: Int) {
         self._yen = _yen 
     }
-    func add(yen _yen:Int) -> Void { self._yen += _yen }
+    func add(yen _yen: Int) -> Void { self._yen += _yen }
     func getYen() -> Int { return _yen }
 }
 
 //プロトコル（インターフェース）の宣言
 protocol IExchange {
-    func addYen(yen _yen:Int) -> Void
+    func addYen(yen _yen: Int) -> Void
     func getDollar() -> Double
 }
 
 //継承、プロトコルの実装
-class Exchange : Moneybox, IExchange {
-    private var _rate:Double
+class Exchange: Moneybox, IExchange {
+    private var _rate: Double
     //↓super.init()でスーパークラスのコンストラクタ（★）を実行
-    init(firstYen _firstYen:Int, rate _rate:Double) {
+    init(firstYen _firstYen: Int, rate _rate: Double) {
         self._rate = _rate
-        super.init(yen:_firstYen)
+        super.init(yen: _firstYen)
     }
-    func addYen(yen _yen:Int) -> Void { add(yen:_yen) } //スーパークラスから継承
+    func addYen(yen _yen: Int) -> Void { add(yen: _yen) } //スーパークラスから継承
     func getDollar() -> Double { return Double(getYen()) / _rate } //スーパークラスから継承
 }
 
 //実行
-var _exchange:Exchange = Exchange(firstYen:10000, rate:113.378685)
-_exchange.addYen(yen:8000)
+var _exchange: Exchange = Exchange(firstYen: 10000, rate: 113.378685)
+_exchange.addYen(yen: 8000)
 print(_exchange.getDollar()) //=> 158.759999730108（ドル）
 ```
 
@@ -539,31 +539,31 @@ print(_exchange.getDollar()) //=> 158.759999730108（ドル）
 
 //スーパークラスの定義 ←「継承」版と同じ
 class Moneybox {
-    private var _yen:Int
+    private var _yen: Int
     //コンストラクタ（★）
-    init(yen _yen:Int) {
+    init(yen _yen: Int) {
         self._yen = _yen 
     }
-    func add(yen _yen:Int) -> Void { self._yen += _yen }
+    func add(yen _yen: Int) -> Void { self._yen += _yen }
     func getYen() -> Int { return _yen }
 }
 
 //プロトコル（インターフェース）の宣言 ←「継承」版と同じ
 protocol IExchange {
-    func addYen(yen _yen:Int) -> Void
+    func addYen(yen _yen: Int) -> Void
     func getDollar() -> Double
 }
 
 //この内容が「継承」版と異なる
-class Exchange : IExchange {
-    private var _moneybox:Moneybox //Moneyboxクラスのインスタンスを格納（委譲）
-    private var _rate:Double
-    init(firstYen _firstYen_:Int, rate _rate:Double) {
-        _moneybox = Moneybox(yen:_firstYen_) //ここがポイント
+class Exchange: IExchange {
+    private var _moneybox: Moneybox //Moneyboxクラスのインスタンスを格納（委譲）
+    private var _rate: Double
+    init(firstYen _firstYen_: Int, rate _rate: Double) {
+        _moneybox = Moneybox(yen: _firstYen_) //ここがポイント
         self._rate = _rate
     }
-    func addYen(yen _yen:Int) -> Void { 
-        _moneybox.add(yen:_yen) //ポイント
+    func addYen(yen _yen: Int) -> Void { 
+        _moneybox.add(yen: _yen) //ポイント
     }
     func getDollar() -> Double { 
             return Double(_moneybox.getYen()) / _rate //ポイント
@@ -571,8 +571,8 @@ class Exchange : IExchange {
 }
 
 //実行
-var _exchange:Exchange = Exchange(firstYen:10000, rate:113.378685)
-_exchange.addYen(yen:8000)
+var _exchange: Exchange = Exchange(firstYen: 10000, rate: 113.378685)
+_exchange.addYen(yen: 8000)
 print(_exchange.getDollar()) //=> 158.759999730108（ドル）
 ```
 
@@ -592,11 +592,11 @@ print(_exchange.getDollar()) //=> 158.759999730108（ドル）
 //基本クラス＝「機能」のクラスの最上位
 //==================================
 class SuperMobile {
-    private var _os:AbstractOS //「機能」クラスと「実装」クラスの「橋」（委譲）
-    init(os _os:AbstractOS) { //コンストラクタ
+    private var _os: AbstractOS //「機能」クラスと「実装」クラスの「橋」（委譲）
+    init(os _os: AbstractOS) { //コンストラクタ
         self._os = _os
     }
-    var version:String { //getter（読取専用）
+    var version: String { //getter（読取専用）
         get { return _os.rawversion } //「橋」を使って「実装」クラスにアクセス
     }
 }
@@ -604,9 +604,9 @@ class SuperMobile {
 //====================================
 //「機能」のクラスに機能を追加したクラス
 //====================================
-class Tablet : SuperMobile {
-    override init(os _os:AbstractOS) { //overrideが必要（要注意）
-        super.init(os:_os) //スーパークラスのコンストラクタ呼出し
+class Tablet: SuperMobile {
+    override init(os _os: AbstractOS) { //overrideが必要（要注意）
+        super.init(os: _os) //スーパークラスのコンストラクタ呼出し
     }
     func bigScreen() -> Void { //タブレット特有の機能
         print("大きな画面で見る")
@@ -616,9 +616,9 @@ class Tablet : SuperMobile {
 //====================================
 //「機能」のクラスに機能を追加したクラス
 //====================================
-class SmartPhone : SuperMobile {
-    override init(os _os:AbstractOS) { //overrideが必要（要注意）
-        super.init(os:_os) //スーパークラスのコンストラクタ呼出し
+class SmartPhone: SuperMobile {
+    override init(os _os: AbstractOS) { //overrideが必要（要注意）
+        super.init(os: _os) //スーパークラスのコンストラクタ呼出し
     }
     func phone() -> Void { //スマートフォン特有の機能
         print("電話をかける")
@@ -629,7 +629,7 @@ class SmartPhone : SuperMobile {
 //擬似抽象クラス＝「実装」のクラスの最上位
 //=====================================
 class AbstractOS {
-    var rawversion:String {
+    var rawversion: String {
         get { 
             print("サブクラスでオーバーライドして実装して下さい")
             return ""
@@ -640,9 +640,9 @@ class AbstractOS {
 //=======================
 //「実装」の具体的な実装者
 //=======================
-class Android : AbstractOS {
-    private var _version:String = "Android 7.1.2"
-    override var rawversion:String { //オーバーライドして実際の処理を記述
+class Android: AbstractOS {
+    private var _version: String = "Android 7.1.2"
+    override var rawversion: String { //オーバーライドして実際の処理を記述
         get { return _version } //getter（読取専用）
     }
 }
@@ -650,9 +650,9 @@ class Android : AbstractOS {
 //=======================
 //「実装」の具体的な実装者
 //=======================
-class IOS : AbstractOS {
-    private var _version:String = "iOS 10.3.1"
-    override var rawversion:String { //オーバーライドして実際の処理を記述
+class IOS: AbstractOS {
+    private var _version: String = "iOS 10.3.1"
+    override var rawversion: String { //オーバーライドして実際の処理を記述
         get { return _version } //getter（読取専用）
     }
 }
@@ -660,18 +660,18 @@ class IOS : AbstractOS {
 //=======
 // 実行
 //=======
-var _tablet1:Tablet = Tablet(os:Android())
+var _tablet1: Tablet = Tablet(os: Android())
 print(_tablet1.version) //=> Android 7.1.2
 _tablet1.bigScreen() //=> 大きな画面で見る
 
-var _tablet2:Tablet = Tablet(os:IOS())
+var _tablet2: Tablet = Tablet(os: IOS())
 print(_tablet2.version) //=> iOS 10.3.1
 
-var _smartPhone1:SmartPhone = SmartPhone(os:Android())
+var _smartPhone1: SmartPhone = SmartPhone(os: Android())
 print(_smartPhone1.version) //=> Android 7.1.2
 _smartPhone1.phone() //=> 電話をかける
 
-var _smartPhone2:SmartPhone = SmartPhone(os:IOS())
+var _smartPhone2: SmartPhone = SmartPhone(os: IOS())
 print(_smartPhone2.version) //=> iOS 10.3.1
 ```
 
@@ -690,12 +690,12 @@ print(_smartPhone2.version) //=> iOS 10.3.1
 //test.swift
 
 class Component { //抽象クラス（同一視するための役）
-    var _name:String = "" //共通プロパティ
-    var _parent:Folder? = nil //共通プロパティ ←「?」が必須（要注意）
+    var _name: String = "" //共通プロパティ
+    var _parent: Folder? = nil //共通プロパティ ←「?」が必須（要注意）
     func getName() -> String { //共通メソッド
         return _name
     }
-    var parent:Folder! { //共通getter/setter ←「!」が必須（要注意）
+    var parent: Folder! { //共通getter/setter ←「!」が必須（要注意）
         get { return _parent }
         set { _parent = newValue }
     }
@@ -704,19 +704,19 @@ class Component { //抽象クラス（同一視するための役）
     }
 }
 
-class Folder : Component {
-    private var _childList:[Component] = [] //空の配列を作成
-    init(name _name:String) { //コンストラクタ
+class Folder: Component {
+    private var _childList: [Component] = [] //空の配列を作成
+    init(name _name: String) { //コンストラクタ
         super.init() //必須（要注意）
         self._name = _name 
     }
-    func add(component arg:Component) -> Void { //Remove()は今回は省略
+    func add(component arg: Component) -> Void { //Remove()は今回は省略
         _childList.append(arg) //←Array.append(値)
         arg.parent = self
     }
     override func getList() -> Void { //オーバーライドして実際の処理を記述
         for tmp in _childList {
-            var _result:String //ローカル変数宣言
+            var _result: String //ローカル変数宣言
             _result = self.getName() + "/" + tmp.getName()
             if (tmp is Folder) {
                 _result += "(Folder)" 
@@ -728,8 +728,8 @@ class Folder : Component {
     }
 }
 
-class File : Component {
-    init(name _name:String) { //コンストラクタ
+class File: Component {
+    init(name _name: String) { //コンストラクタ
         super.init() //必須（要注意）
         self._name = _name 
     }
@@ -742,17 +742,17 @@ class File : Component {
 // 実行
 //=======
 //①フォルダの作成
-var _root:Folder = Folder(name:"root")
-var _authoring:Folder = Folder(name:"Authoring")
+var _root: Folder = Folder(name: "root")
+var _authoring: Folder = Folder(name: "Authoring")
 
 //②ファイルの作成
-var _unity3d:File = File(name:"Unity3D")
-var _unrealEngine:File = File(name:"Unreal Engine")
+var _unity3d: File = File(name: "Unity3D")
+var _unrealEngine: File = File(name: "Unreal Engine")
 
 //③関連付け
-_root.add(component:_authoring) 
-_authoring.add(component:_unity3d)
-_authoring.add(component:_unrealEngine)
+_root.add(component: _authoring) 
+_authoring.add(component: _unity3d)
+_authoring.add(component: _unrealEngine)
 
 //④検証
 print(_unrealEngine.getName()) //=> "Unreal Engine"
@@ -779,7 +779,7 @@ _unity3d.getList() //=> "Authoring/Unity3D(File)"
 //「中身」と「飾り枠」に同じshow()メソッドを持たせるためのスーパークラス
 //===================================================================
 class Display {
-    var _content:String = ""
+    var _content: String = ""
     func getContent() -> String {
         return _content
     }
@@ -791,9 +791,9 @@ class Display {
 //=======================
 // 中身（飾りを施す前の元）
 //=======================
-class Original : Display {
+class Original: Display {
     //コンストラクタ
-    init(text arg:String) {
+    init(text arg: String) {
         super.init() //必須（要注意）
         _content = arg //conent_は基本クラスからの継承
     }
@@ -802,8 +802,8 @@ class Original : Display {
 //=========
 // 飾り枠①
 //=========
-class Decorator1 : Display {
-    init(display _display:Display) { //コンストラクタ
+class Decorator1: Display {
+    init(display _display: Display) { //コンストラクタ
         super.init() //必須（要注意）
         _content = "-" + _display.getContent() + "-" //飾り①を付ける
     }
@@ -812,8 +812,8 @@ class Decorator1 : Display {
 //=========
 // 飾り枠②
 //=========
-class Decorator2 : Display {
-    init(display _display:Display) { //コンストラクタ
+class Decorator2: Display {
+    init(display _display: Display) { //コンストラクタ
         super.init() //必須（要注意）
         _content = "<" + _display.getContent() + ">" //飾り②を付ける
     }
@@ -822,20 +822,20 @@ class Decorator2 : Display {
 //=========
 // 実行
 //=========
-var _original:Display = Original(text:"TAKASHI")
+var _original: Display = Original(text: "TAKASHI")
 _original.show() //=> TAKASHI
 
-var _decorator1:Display = Decorator1(display:Original(text:"TAKASHI"))
+var _decorator1: Display = Decorator1(display: Original(text: "TAKASHI"))
 _decorator1.show() //=> -TAKASHI-
 
-var _decorator2:Display = Decorator2(display:Original(text:"TAKASHI"))
+var _decorator2: Display = Decorator2(display: Original(text: "TAKASHI"))
 _decorator2.show() //=> <TAKASHI>
 
-var _special:Display = Decorator2(display:
-                                Decorator1(display:
-                                    Decorator1(display:
-                                        Decorator1(display:
-                                            Original(text:"TAKASHI")
+var _special: Display = Decorator2(display: 
+                                Decorator1(display: 
+                                    Decorator1(display: 
+                                        Decorator1(display: 
+                                            Original(text: "TAKASHI")
                                         )
                                     )
                                 )
@@ -854,16 +854,16 @@ _special.show() //=> <---TAKASHI--->
 
 * 以下の例文では、「Decoratorパターン」を Facade パターンでシンプルにします。
 ```
-var _special:Display = Decorator2(display:
-                                Decorator1(display:
-                                    Decorator1(display:
-                                        Decorator1(display:
-                                            Original(text:"TAKASHI")))))
+var _special: Display = Decorator2(display: 
+                                Decorator1(display: 
+                                    Decorator1(display: 
+                                        Decorator1(display: 
+                                            Original(text: "TAKASHI")))))
 _special.show()
 ```
 ...としていたものを次の1行で実現可能になります。
 ```
-DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1)
+DecoratorFacade.exec(text: "TAKASHI", decrator1: 3, decrator2: 1)
 ```
 
 ### 例文
@@ -874,7 +874,7 @@ DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1)
 //「中身」と「飾り枠」に同じshow()メソッドを持たせるためのスーパークラス
 //===================================================================
 class Display {
-    var _content:String = ""
+    var _content: String = ""
     func getContent() -> String {
         return _content
     }
@@ -886,9 +886,9 @@ class Display {
 //=======================
 // 中身（飾りを施す前の元）
 //=======================
-class Original : Display {
+class Original: Display {
     //コンストラクタ
-    init(text arg:String) {
+    init(text arg: String) {
         super.init() //必須（要注意）
         _content = arg //conent_は基本クラスからの継承
     }
@@ -897,8 +897,8 @@ class Original : Display {
 //=========
 // 飾り枠①
 //=========
-class Decorator1 : Display {
-    init(display _display:Display) { //コンストラクタ
+class Decorator1: Display {
+    init(display _display: Display) { //コンストラクタ
         super.init() //必須（要注意）
         _content = "-" + _display.getContent() + "-" //飾り①を付ける
     }
@@ -907,8 +907,8 @@ class Decorator1 : Display {
 //=========
 // 飾り枠②
 //=========
-class Decorator2 : Display {
-    init(display _display:Display) { //コンストラクタ
+class Decorator2: Display {
+    init(display _display: Display) { //コンストラクタ
         super.init() //必須（要注意）
         _content = "<" + _display.getContent() + ">" //飾り②を付ける
     }
@@ -920,16 +920,16 @@ class Decorator2 : Display {
 //シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
 //==========================================================
 class DecoratorFacade {
-    static func exec(text arg1:String, decrator1 arg2:Int=0, decrator2 arg3:Int=0) -> Void {
-        var result_:Display //ローカル変数
-        result_ = Original(text:arg1)
+    static func exec(text arg1: String, decrator1 arg2: Int=0, decrator2 arg3: Int=0) -> Void {
+        var result_: Display //ローカル変数
+        result_ = Original(text: arg1)
         for i in 0 ..< arg2 {
             print(i) //無いとwarningが出るので...
-            result_ = Decorator1(display:result_)
+            result_ = Decorator1(display: result_)
         }
         for j in 0 ..< arg3 {
             print(j) //無いとwarningが出るので...
-            result_ = Decorator2(display:result_)
+            result_ = Decorator2(display: result_)
         }
         result_.show()
     }
@@ -938,10 +938,10 @@ class DecoratorFacade {
 //==========
 // 実行
 //==========
-DecoratorFacade.exec(text:"TAKASHI") //=> TAKASHI
-DecoratorFacade.exec(text:"TAKASHI", decrator1:1, decrator2:0) //=> -TAKASHI-
-DecoratorFacade.exec(text:"TAKASHI", decrator1:0, decrator2:1) //=> <TAKASHI>
-DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1) //=> <---TAKASHI--->
+DecoratorFacade.exec(text: "TAKASHI") //=> TAKASHI
+DecoratorFacade.exec(text: "TAKASHI", decrator1: 1, decrator2: 0) //=> -TAKASHI-
+DecoratorFacade.exec(text: "TAKASHI", decrator1: 0, decrator2: 1) //=> <TAKASHI>
+DecoratorFacade.exec(text: "TAKASHI", decrator1: 3, decrator2: 1) //=> <---TAKASHI--->
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -960,10 +960,10 @@ DecoratorFacade.exec(text:"TAKASHI", decrator1:3, decrator2:1) //=> <---TAKASHI-
 // インスタンスの管理人（シングルトンクラス）
 //========================================
 class Manager {
-    static var isSinglton:Bool = false
-    static let getInstance:Manager = Manager() //クラス定数←インスタンス生成
+    static var isSinglton: Bool = false
+    static let getInstance: Manager = Manager() //クラス定数←インスタンス生成
     //↓BigProcessインスタンスをダブらないように保存する辞書
-    var _dic:Dictionary<String, BigProcess> = Dictionary<String, BigProcess>()
+    var _dic: Dictionary<String, BigProcess> = Dictionary<String, BigProcess>()
     
     //コンストラクタ
     private init() {
@@ -977,7 +977,7 @@ class Manager {
     }
     
     //BigProcessインスタンスをダブらないように辞書に保存
-    func createBigProcess(type arg:String) -> BigProcess! { //「!」が必須（要注意）
+    func createBigProcess(type arg: String) -> BigProcess! { //「!」が必須（要注意）
         for tmp in _dic {
             if (tmp.key == arg) { //既存か否か調べる
                 print(arg + "は既存です")
@@ -985,7 +985,7 @@ class Manager {
             }
         }
         //↓ここでやっとインスタンス生成
-        _dic.updateValue(BigProcess(type:arg), forKey:arg) 
+        _dic.updateValue(BigProcess(type: arg), forKey: arg) 
         return _dic[arg]
     }
 }
@@ -994,8 +994,8 @@ class Manager {
 // フライ級の役（メモリの使用量が多いため無駄に生成したくないもの）
 //=============================================================
 class BigProcess {
-    private var _result:String = ""
-    init(type arg:String) {
+    private var _result: String = ""
+    init(type arg: String) {
         //本来は（引数に対応する）重〜い処理をここで行う
         _result = arg + "に対応する重〜い処理の結果"
     }
@@ -1008,15 +1008,15 @@ class BigProcess {
 // 実行
 //=======
 //インスタンスの管理者を作る（シングルトンクラス）
-var _manager:Manager = Manager.getInstance //唯一のインスタンスを呼出す
+var _manager: Manager = Manager.getInstance //唯一のインスタンスを呼出す
 print(_manager) //=> test.Manager
 
 //無駄に生成したくないオブジェクトを生成（既存の場合使いまわす）
-var _A:BigProcess = _manager.createBigProcess(type:"A")
-var _B:BigProcess = _manager.createBigProcess(type:"B")
+var _A: BigProcess = _manager.createBigProcess(type: "A")
+var _B: BigProcess = _manager.createBigProcess(type: "B")
 
 //既存のものを生成しようとすると...
-var _A2:BigProcess = _manager.createBigProcess(type:"A") //=> Aは既存です
+var _A2: BigProcess = _manager.createBigProcess(type: "A") //=> Aは既存です
 print(_A === _A2) //=> true ←中身は同じインスタンス
 
 print(_A.getData()) //=> Aに対応する重〜い処理の結果
@@ -1045,14 +1045,14 @@ protocol ILoader {
 //=================
 //①代理人（Proxy）役
 //=================
-class Loader : ILoader {
-    private var _path:String
-    init(path _path:String) {
+class Loader: ILoader {
+    private var _path: String
+    init(path _path: String) {
         self._path = _path
     }
     func load() -> Void {
-        var _content:Content //ローカル変数宣言
-        _content = Content(path:_path) //実際の本人が登場（代理人は実際の本人を知っている）
+        var _content: Content //ローカル変数宣言
+        _content = Content(path: _path) //実際の本人が登場（代理人は実際の本人を知っている）
         _content.load()
     }
 }
@@ -1060,9 +1060,9 @@ class Loader : ILoader {
 //============
 //②実際の本人
 //============
-class Content : ILoader {
-    private var _path:String
-    init(path _path:String) {
+class Content: ILoader {
+    private var _path: String
+    init(path _path: String) {
         self._path = _path
     }
     //↓重い処理をここで行う（ポイント）
@@ -1075,7 +1075,7 @@ class Content : ILoader {
 //=======
 //実行
 //=======
-var _loader:Loader = Loader(path:"http://...XXX.mp4") //代理人（Proxy）役
+var _loader: Loader = Loader(path: "http: //...XXX.mp4") //代理人（Proxy）役
 _loader.load() //=> 重い処理中 ←通常は必要になった時に実際にロード
 ```
 
@@ -1095,9 +1095,9 @@ _loader.load() //=> 重い処理中 ←通常は必要になった時に実際�
 //Bikeクラス
 //==========
 class Bike {
-    private var _name:String
-    private var _num:String
-    init(name _name:String, num _num:String) { //コンストラクタ
+    private var _name: String
+    private var _num: String
+    init(name _name: String, num _num: String) { //コンストラクタ
         self._name = _name
         self._num = _num
     }
@@ -1109,18 +1109,18 @@ class Bike {
 //BikeParkクラス
 //==============
 protocol IBikePark {
-    func add(bike arg:Bike) -> Void
-    func getBikeAt(num arg:Int) -> Bike
+    func add(bike arg: Bike) -> Void
+    func getBikeAt(num arg: Int) -> Bike
     func getLength() -> Int
     func createIterator() -> Iterator
 }
 
-class BikePark : IBikePark {
-    private var _list:[Bike] = [] //空の配列を作成
-    func add(bike arg:Bike) -> Void { _list.append(arg) } //←Array.append(値)
-    func getBikeAt(num arg:Int) -> Bike {return _list[arg] }
+class BikePark: IBikePark {
+    private var _list: [Bike] = [] //空の配列を作成
+    func add(bike arg: Bike) -> Void { _list.append(arg) } //←Array.append(値)
+    func getBikeAt(num arg: Int) -> Bike {return _list[arg] }
     func getLength() -> Int { return _list.count }
-    func createIterator() -> Iterator { return Iterator(bikePark:self) } //イテレータ生成
+    func createIterator() -> Iterator { return Iterator(bikePark: self) } //イテレータ生成
 }
 
 //==============================
@@ -1131,18 +1131,18 @@ protocol IIterator {
     func next() -> Bike
 }
 
-class Iterator : IIterator {
-    private var _bikePark:BikePark
-    private var _count:Int = 0
-    init(bikePark _bikePark:BikePark) { //コンストラクタ
+class Iterator: IIterator {
+    private var _bikePark: BikePark
+    private var _count: Int = 0
+    init(bikePark _bikePark: BikePark) { //コンストラクタ
         self._bikePark = _bikePark
     }
     func hasNext() -> Bool {
         return _bikePark.getLength() > _count 
     }
     func next() -> Bike { 
-        var _result:Bike
-        _result = _bikePark.getBikeAt(num:_count) //次のバイクを返す
+        var _result: Bike
+        _result = _bikePark.getBikeAt(num: _count) //次のバイクを返す
         _count += 1 //↑の処理後に加算すること
         return _result
     }
@@ -1151,15 +1151,15 @@ class Iterator : IIterator {
 //=======
 //実行
 //=======
-var _bikePark:BikePark = BikePark()
-_bikePark.add(bike:Bike(name:"SR400", num:"神戸 き 15-63"))
-_bikePark.add(bike:Bike(name:"ESTRELLA", num:"豊橋 お 12-13"))
-_bikePark.add(bike:Bike(name:"W650", num:"品川 さ 13-46"))
+var _bikePark: BikePark = BikePark()
+_bikePark.add(bike: Bike(name: "SR400", num: "神戸 き 15-63"))
+_bikePark.add(bike: Bike(name: "ESTRELLA", num: "豊橋 お 12-13"))
+_bikePark.add(bike: Bike(name: "W650", num: "品川 さ 13-46"))
 
-var _iterator:Iterator = _bikePark.createIterator() //イテレータ（管理人）生成
+var _iterator: Iterator = _bikePark.createIterator() //イテレータ（管理人）生成
 
 while _iterator.hasNext() {
-    var _nextBike:Bike
+    var _nextBike: Bike
     _nextBike = _iterator.next()
     print(_nextBike.getName() + "," + _nextBike.getNum())
     //=> SR400,神戸 き 15-63 => ESTRELLA,豊橋 お 12-13 => W650,品川 さ 13-46
@@ -1207,7 +1207,7 @@ class AbstractCard {
 //================================
 // 派生クラス①（抽象クラスを継承）
 //================================
-class CardHanako : AbstractCard {
+class CardHanako: AbstractCard {
     //フックメソッドの実際の定義
     override func isAdult() -> Bool {
         return false
@@ -1220,7 +1220,7 @@ class CardHanako : AbstractCard {
 //===============================
 // 派生クラス②（抽象クラスを継承）
 //===============================
-class CardIchiro : AbstractCard {
+class CardIchiro: AbstractCard {
     //フックメソッドをoverrideして具体的処理を記述
     override func isAdult() -> Bool {
         return true
@@ -1234,14 +1234,14 @@ class CardIchiro : AbstractCard {
 //=======
 // 実行
 //=======
-var _CardHanako:CardHanako = CardHanako()
+var _CardHanako: CardHanako = CardHanako()
 _CardHanako.templateMethod()
 /*
 HAPPY NEW YEAR!
 テニスがんばろうね
 */
 
-var _cardIchiro:CardIchiro = CardIchiro()
+var _cardIchiro: CardIchiro = CardIchiro()
 _cardIchiro.templateMethod()
 /*
 HAPPY NEW YEAR!
@@ -1268,10 +1268,10 @@ HAPPY NEW YEAR!
 protocol IStrategy {
     func execute() -> Void
 }
-class StrategyA : IStrategy {
+class StrategyA: IStrategy {
     func execute() -> Void { print("グー、グー、パー")	}
 }
-class StrategyB : IStrategy {
+class StrategyB: IStrategy {
     func execute() -> Void { print("パー、グー、チョキ") }
 }
 
@@ -1279,16 +1279,16 @@ class StrategyB : IStrategy {
 // Jankenクラス
 //============
 class Janken {
-    private var _strategy:IStrategy
-    init(strategy _strategy:IStrategy) { self._strategy = _strategy }
+    private var _strategy: IStrategy
+    init(strategy _strategy: IStrategy) { self._strategy = _strategy }
     func exec() -> Void { _strategy.execute() } //exec()だと紛らわしいので...
 }
 
 //=========
 // 実行
 //=========
-var _jankenA:Janken = Janken(strategy:StrategyA())
-var _jankenB:Janken = Janken(strategy:StrategyB())
+var _jankenA: Janken = Janken(strategy: StrategyA())
+var _jankenB: Janken = Janken(strategy: StrategyB())
 _jankenA.exec() //=> グー、グー、パー
 _jankenB.exec() //=> パー、グー、チョキ
 ```
@@ -1312,14 +1312,14 @@ protocol Iacceptor {
     func accept(visitor _visitor: IVisitor) -> Void 
 }
 
-class Hokkaido :  Iacceptor {
+class Hokkaido: Iacceptor {
     private var _otoshidama: Int = 5000*2 //お年玉
     func accept(visitor _visitor: IVisitor) -> Void { //accept＝受け入れる
         _visitor.visit(otoshidama: _otoshidama) //←誰が訪問してきても同じメソッドを実行!
     }
 }
 
-class Chiba :  Iacceptor {
+class Chiba: Iacceptor {
     private var _otoshidama: Int = 5000 //お年玉
     func accept(visitor _visitor: IVisitor) -> Void { //accept＝受け入れる
         _visitor.visit(otoshidama: _otoshidama) //←誰が訪問してきても同じメソッドを実行!
@@ -1334,13 +1334,13 @@ protocol IVisitor {
     func getMoney() -> Int
 }
 
-class Tohru :  IVisitor { //亨
+class Tohru: IVisitor { //亨
     private var money_: Int = 0 //貯金
     func visit(otoshidama _otoshidama: Int) -> Void { money_ += _otoshidama }
     func getMoney() -> Int { return money_ }
 }
 
-class Sachiko :  IVisitor { //幸子
+class Sachiko: IVisitor { //幸子
     private var money_: Int = 0 //貯金
     func visit(otoshidama _otoshidama: Int) -> Void { money_ += _otoshidama }
     func getMoney() -> Int { return money_ }
@@ -1405,7 +1405,7 @@ class AbstractPO {
 //===========
 //新宿郵便局
 //===========
-class ShinjukuPO :  AbstractPO {
+class ShinjukuPO: AbstractPO {
     override func send(address _address: String) -> Void { //擬似抽象メソッドの実際の処理
         if (subString(string: _address, start: 0, end: 2) == "新宿区") {
             print("本日中に届きます")
@@ -1418,7 +1418,7 @@ class ShinjukuPO :  AbstractPO {
 //===========
 //東京郵便局
 //===========
-class TokyoPO :  AbstractPO {
+class TokyoPO: AbstractPO {
     override func send(address _address: String) -> Void { //擬似抽象メソッドの実際の処理
         if (subString(string: _address, start: 0, end: 2) == "東京都") {
             print("明後日中に届きます")
@@ -1431,7 +1431,7 @@ class TokyoPO :  AbstractPO {
 //===========
 //日本郵便局
 //===========
-class JapanPO :  AbstractPO {
+class JapanPO: AbstractPO {
     override func send(address _address: String) -> Void { //擬似抽象メソッドの実際の処理
         print("一週間前後で届きます")
     }
@@ -1530,7 +1530,7 @@ class AbstractMember {
 }
 
 // メンバーA //
-class MemberA :  AbstractMember {
+class MemberA: AbstractMember {
     override func request(string _string: String) -> Void { //抽象メソッドをoverride
         _mediator?.requestMediator(member: self, string: _string) //「?」が必須
     }
@@ -1541,7 +1541,7 @@ class MemberA :  AbstractMember {
 }
 
 // メンバーB //
-class MemberB :  AbstractMember {
+class MemberB: AbstractMember {
     override func request(string _string: String) -> Void { //抽象メソッドをoverride
         _mediator?.requestMediator(member: self, string: _string) //「?」が必須
     }
@@ -1552,7 +1552,7 @@ class MemberB :  AbstractMember {
 }
 
 // メンバーC //
-class MemberC :  AbstractMember {
+class MemberC: AbstractMember {
     override func request(string _string: String) -> Void { //抽象メソッドをoverride
         _mediator?.requestMediator(member: self, string: _string) //「?」が必須
     }
@@ -1582,23 +1582,193 @@ Mediator.Member_A.request(string: "西へ行く") //メンバーAから報告
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+protocol ISubject {
+    func addObserver(observer _observer: IObserver) -> Void
+    //removeObserver()は複雑になるので今回は省略
+    func notify() -> Void
+}
+
+class Apple: ISubject {
+    private var _observerList: [IObserver] = [] //リスナーリスト
+    func addObserver(observer _observer: IObserver) -> Void { //リスナーの登録
+        _observerList.append(_observer) //Array.append(値)
+    }
+    //全リスナーへの通知
+    func notify() -> Void {
+        for _observer in _observerList {
+            _observer.update(apple: self)
+        }
+    }
+    func getVersion() -> String { return "10.3.1" }
+}
+
+protocol IObserver {
+    func update(apple _apple: Apple) -> Void
+}
+
+class IPhone: IObserver {
+    func update(apple _apple: Apple) -> Void {
+        print("iPhoneは" + _apple.getVersion() + "にアップデート可能")
+    }
+}
+
+class IPad: IObserver {
+    func update(apple _apple: Apple) -> Void {
+        print("iPadは" + _apple.getVersion() + "にアップデート可能")
+    }
+}
+
+class IPadPro: IObserver {
+    func update(apple _apple: Apple) -> Void {
+        print("iPadProは" + _apple.getVersion() + "にアップデート可能")
+    }
+}
+
+//=======
+// 実行
+//=======
+//観察される（Subject）役
+var _apple: ISubject = Apple()
+        
+//リスナー（Observer）役
+var _iPhone: IObserver = IPhone()
+var _iPad: IObserver = IPad()
+var _iPadPro: IObserver = IPadPro()
+
+//リスナー（Observer）の登録
+_apple.addObserver(observer: _iPhone)
+_apple.addObserver(observer: _iPad)
+_apple.addObserver(observer: _iPadPro)
+
+_apple.notify() //全リスナー（Observer）への通知
+//=> IPhoneは10.3.1にアップデート可能
+//=> IPadは10.3.1にアップデート可能
+//=> IPadProは10.3.1にアップデート可能
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月10日  
+更新日：2017年05月16日
 
 
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+//test.swift
+
+//========================
+//主人公役 + バックアップ係
+//========================
+class Gamer {
+    private var _point: Int = 0
+    private var _history: [SnapShot] = [] //履歴用リスト
+    private var _count: Int = 0 //undo、redo用
+    
+    init(point _point: Int=0) { //コンストラクタ
+        self._point = _point
+    }
+    
+    var point: Int { //gettter/setter
+        get { return _point }
+        set { _point = newValue }
+    }
+
+    //状態を保存	
+    func save() -> SnapShot {
+        var _snapShot: SnapShot //ローカル変数宣言
+        _snapShot = SnapShot(point: _point) //インスタンス生成
+        _history.append(_snapShot) //←Array.append(値)
+        _count = _history.count - 1
+        return _snapShot
+    }
+    
+    //履歴	
+    func history() -> Void {
+        for i in 0 ..< _history.count {
+            print(String(i) + ": " + String(_history[i].point))
+        }
+    }
+    
+    //undo（やり直し）
+    func undo() -> SnapShot {
+        if (_count > 0) {
+            _count -= 1
+            return _history[_count]
+        } else {
+            print("これ以上、undoできません")
+            _count = 0
+            return _history[0]
+        }
+    }
+    
+    //redo（再実行）
+    func redo() -> SnapShot {
+        if (_count < _history.count - 1) {
+            _count += 1
+            return _history[_count]
+        } else {
+            print("これ以上、redoできません")
+            _count = _history.count-1
+            return _history[_count]
+        }
+    }
+}
+
+//==========================================
+// Memento役（その瞬間の状態をオブジェクト化）
+//==========================================
+class SnapShot {
+    private var _point: Int //今回はシンプルに1つだけにしておきます
+    init(point _point: Int) {
+        self._point = _point
+    }
+    var point: Int { //gettter/setter
+        get { return _point }
+        set { _point = newValue }
+    }
+}
+
+//=============================================
+// 実行
+//=============================================
+var _gamer: Gamer = Gamer(point: 100) //ゲームスタート（最初のポイントは100）
+var _snapShot: SnapShot = _gamer.save() //最初の状態を保存
+
+_gamer.point = 2000 //いろいろゲームが進行して2000ポイントに...
+_snapShot = _gamer.save() //この時点での状態を保存
+
+_gamer.point = 8000 //更にゲームが進行して8000ポイントに...
+_snapShot = _gamer.save() //この時点での状態を保存
+
+_gamer.history() //履歴を調べる
+// 0: 100
+// 1: 2000
+// 2: 8000
+
+_snapShot = _gamer.undo() //undo（やり直し）
+print(_snapShot.point) //2000
+_snapShot = _gamer.undo()
+print(_snapShot.point) //100
+_snapShot = _gamer.undo()
+print(_snapShot.point) //これ以上、undoできません 100
+
+_snapShot = _gamer.redo() //redo（再実行）
+print(_snapShot.point) //2000
+_snapShot = _gamer.redo()
+print(_snapShot.point) //8000
+_snapShot = _gamer.redo()
+print(_snapShot.point) //これ以上、redoできません 8000
+```
 
 実行環境：macOS 10.12.4、Swift 3.1  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2016年08月10日  
+更新日：2017年05月16日
 
 
 <a name="State"></a>
