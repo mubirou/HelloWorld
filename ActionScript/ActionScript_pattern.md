@@ -6,6 +6,7 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -38,61 +39,60 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-### internal を使う方法
-    ```
-    //Main.as
-    package  {
-        import flash.display.Sprite;
+```
+//Main.as
 
-        public class Main extends Sprite {
-            public function Main() {
-                var _instance1:Singleton = Singleton.getInstance(); //=> ["インスタンスが生成されました"]
-                var _instance2:Singleton = Singleton.getInstance(); //新たなインスタンスは作られません
-                console.log(_instance1 === _instance2);//=> [true]（中身は全く同じインスタンス）
+package  {
+    import flash.display.Sprite;
+
+    public class Main extends Sprite {
+        public function Main() {
+            var _instance1: Singleton = Singleton.getInstance(); //=> ["インスタンスが生成されました"]
+            var _instance2: Singleton = Singleton.getInstance(); //新たなインスタンスは作られません
+            console.log(_instance1 === _instance2);//=> [true]（中身は全く同じインスタンス）
+            //new Singleton(); //エラー
+            //new Singleton(new Lock()); //エラー
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
+    }
+}
+```
+```
+//Singleton.as
+
+package  {
+    public class Singleton {
+        private static var _singleton: Singleton; 
+
+        //コンストラクタ関数
+        public function Singleton(arg: Lock) {}
+
+        public static function getInstance(): Singleton {
+            if (_singleton == null) {
+                _singleton = new Singleton(new Lock()); 
+                console.log("インスタンスが生成されました");
             }
+            return _singleton;
         }
     }
+}
 
-    class console { //ブラウザのコンソール出力用（trace()の代替）
-        import flash.external.ExternalInterface; //JavaScriptの実行用
-        public static function log(...args: Array): void   {
-            ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
-        }
+//packageブロックの下でクラス定義
+internal class Lock {} //internalは同じパッケージ内からしか呼び出せない
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
-    ```
-    ```
-    //Singleton.as
-
-    package  {
-        public class Singleton {
-            private static var _singleton:Singleton; 
-
-            //コンストラクタ関数
-            public function Singleton(arg:Lock) {}
-
-            public static function getInstance():Singleton {
-                if (_singleton == null) {
-                    _singleton = new Singleton(new Lock()); 
-                    console.log("インスタンスが生成されました");
-                }
-                return _singleton;
-            }
-        }
-    }
-
-    //packageブロックの下でクラス定義
-    internal class Lock {} //internalは同じパッケージ内からしか呼び出せない
-
-    class console { //ブラウザのコンソール出力用（trace()の代替）
-        import flash.external.ExternalInterface; //JavaScriptの実行用
-        public static function log(...args: Array): void   {
-            ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
-        }
-    }
-    ```
-
-### フラグを使う方法
-
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
