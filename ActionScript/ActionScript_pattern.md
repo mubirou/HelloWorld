@@ -210,11 +210,117 @@ package  {
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+
+    //============
+    // Main クラス
+    //============
+    public class Main extends Sprite {
+        public function Main() {
+            var _newYearCard: Director = new Director(new NewYearCardBuilder());
+            _newYearCard.construct(); //作成過程の実行
+            //=> ["明けましておめでとうございます"]
+            //=> ["干支のイラスト"]
+            //=> ["元旦"]
+
+            var _summerCard: Director = new Director(new SummerCardBuilder());
+            _summerCard.construct(); //作成過程の実行
+            //=> ["暑中お見舞い申し上げます"]
+            //=> ["スイカのイラスト"]
+            //=> ["盛夏"]
+        }
+    }
+}
+```
+```
+//Director.as
+
+//==========================================
+// Director役＝監督（作成手順を決め実行する）
+//==========================================
+package  {
+    public class Director {
+        private var _builder:IBuilder;
+
+        public function Director(_builder: IBuilder) { //コンストラクタ
+            this._builder = _builder;
+        }
+
+        //作成過程（ConcreteBuilder役特有のメソッドは使わないこと）
+        public function construct(): void {
+            _builder.makeHeader();
+            _builder.makeContent();
+            _builder.makeFooter();
+        }
+    }
+}
+```
+```
+//IBuilder.as
+
+//=================================
+// XXXBuilderクラスのインターフェース
+//=================================
+package  {
+    public interface IBuilder {
+        function makeHeader():void;
+        function makeContent():void;
+        function makeFooter():void;
+    }
+}
+```
+```
+//NewYearCardBuilder.as
+
+package  {
+    public class NewYearCardBuilder implements IBuilder {
+        public function NewYearCardBuilder() {} //コンストラクタ
+        public function makeHeader():void { console.log("明けましておめでとうございます"); }
+        public function makeContent():void { console.log("干支のイラスト"); }
+        public function makeFooter():void { console.log("元旦"); }
+    }
+}
+
+//========================================
+// ブラウザのコンソール出力用（trace()の代替）
+//========================================
+class console {
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
+    }
+}
+```
+```
+//SummerCardBuilder.as
+
+package  {
+    public class SummerCardBuilder implements IBuilder {
+        public function SummerCardBuilder() {} //コンストラクタ
+        public function makeHeader():void { console.log("暑中お見舞い申し上げます"); }
+        public function makeContent():void { console.log("スイカのイラスト"); }
+        public function makeFooter():void { console.log("盛夏"); }
+    }
+}
+
+//========================================
+// ブラウザのコンソール出力用（trace()の代替）
+//========================================
+class console {
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2017年05月XX日  
+作成日：2017年05月17日  
 
 
 <a name="FactoryMethod"></a>
