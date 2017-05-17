@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -116,11 +116,95 @@ class console {
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+
+    //============
+    // Main クラス
+    //============
+    public class Main extends Sprite {
+        public function Main() {
+            //==================
+            // インスタンスを生成
+            //==================
+            var _prototype1:Prototype = new Prototype();
+            _prototype1.firstName = "Takashi";
+            _prototype1.lastName = "Nishimura"
+            _prototype1.address = "X-XX-XX XXX, Shinjuku-ku";
+
+            //==============
+            // コピーを作成
+            //==============
+            var _prototype2:Prototype = _prototype1.clone();
+            _prototype2.firstName = "Hanako";
+
+            //======
+            // 検証
+            //======
+            console.log(_prototype1.firstName, _prototype1.lastName, _prototype1.address);
+            //=> ["Takashi", "Nishimura", "X-XX-XX XXX, Shinjuku-ku"]
+            console.log(_prototype2.firstName, _prototype2.lastName, _prototype2.address);
+            //=> ["Hanako", "Nishimura", "X-XX-XX XXX, Shinjuku-ku"]
+        }
+    }
+}
+
+//========================================
+// ブラウザのコンソール出力用（trace()の代替）
+//========================================
+class console {
+    import flash.external.ExternalInterface; //JavaScriptの実行用
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
+    }
+}
+```
+```
+//IPrototype.as
+
+package  {
+    public interface IPrototype {
+        function clone():*; //実装するクラス名が不明なので「*」とする
+    }
+}
+```
+```
+//Prototype.as
+
+package  {
+    public class Prototype implements IPrototype {
+        private var _firstName: String, _lastName: String, _address: String;
+
+        //コンストラクタ
+        public function Prototype() {}
+
+        //ゲッターの定義
+        public function get firstName(): String { return _firstName; }
+        public function get lastName(): String { return _lastName; }
+        public function get address(): String { return _address; }
+
+        //セッターの定義
+        public function set firstName(arg: String): void { _firstName = arg; }
+        public function set lastName(arg: String): void { _lastName = arg; }
+        public function set address(arg: String): void { _address = arg; }
+
+        public function clone():* {
+            var _prototype: Prototype = new Prototype();
+            _prototype.firstName = _firstName; //セッターを利用
+            _prototype.lastName = _lastName;
+            _prototype.address = _address;
+            return _prototype;
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2017年05月XX日  
+作成日：2017年05月17日  
 
 
 <a name="Builder"></a>
