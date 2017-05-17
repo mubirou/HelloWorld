@@ -1,6 +1,6 @@
 ### <b>この項目は書きかけの項目です</b>
 
-# <b>ActionScript デザインパターン</b>
+# <b>ActionScript 3.0 デザインパターン</b>
 
 ### <b>INDEX</b>
 
