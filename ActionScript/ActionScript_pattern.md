@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -326,11 +326,205 @@ class console {
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            // 年賀状（一郎用）
+            var _cardIchiro: CardIchiro = new CardIchiro();
+            _cardIchiro.templateMethod("newYear");
+            /*
+            明けましておめでとうございます。
+            （正月用イラスト）
+            〒XXX-XXXX 新宿区XXX町X-X-X
+            西村一郎
+            */
+
+            // 暑中見舞い（一郎用）
+            _cardIchiro = new CardIchiro();
+            _cardIchiro.templateMethod("summer");
+            /*
+            暑中お見舞い申し上げます。
+            （夏用イラスト）
+            〒XXX-XXXX 新宿区XXX町X-X-X
+            西村一郎
+            */
+
+            // 年賀状（花子用）
+            var _cardHanako:CardHanako = new CardHanako();
+            _cardHanako.templateMethod("newYear");
+            /*
+            明けましておめでとうございます。
+            （正月用イラスト）
+            〒XXX-XXXX 新宿区XXX町X-X-X
+            西村花子
+            */
+
+            // 暑中見舞い（花子用）
+            _cardHanako = new CardHanako();
+            _cardHanako.templateMethod("summer");
+            /*
+            暑中お見舞い申し上げます。
+            （夏用イラスト）
+            〒XXX-XXXX 新宿区XXX町X-X-X
+            西村花子
+            */
+        }
+    }
+}
+```
+```
+//Abstract.as
+
+package  {
+    public class Abstract {
+        public function Abstract() {} //コンストラクタ
+
+        //final でサブクラスでのオーバーライド禁止
+        public final function templateMethod(arg:String):void {
+            //サブクラスでオーバーライドして具体的処理を行う
+            var _factoryMethod:* = factoryMethod(arg); //ここで new しない
+            _factoryMethod.exec();
+            order1(); //共通の処理
+            order2(); //サブクラスでオーバーライドして具体的処理を行う
+        }
+
+        //サブクラスでオーバーライドして具体的処理を行う
+        protected function factoryMethod(arg:String):* {
+            console.log("ERROR 01:サブクラスでオーバーライドして定義して下さい");
+        }
+        private function order1():void { //共通の処理。
+            console.log("〒XXX-XXXX 新宿区XXX町X-X-X");
+        }
+        //サブクラスでオーバーライドして具体的処理を行う
+        protected function order2():void {
+            console.log("ERROR 02:サブクラスでオーバーライドして定義して下さい");
+        }
+    }
+}
+
+//ブラウザのコンソール出力用（trace()の代替）
+class console {
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//CardIchiro.as
+
+package  {
+    public class CardIchiro extends Abstract {
+        public function CardIchiro() { } //コンストラクタ。
+        //オーバーライドして実際にインスタンスを生成！
+        protected override function factoryMethod(arg:String):* {
+            if (arg == "newYear") {
+                return new NewYear_Message();
+            } else if (arg == "summer") {
+                return new Summer_Message();
+            }
+        }
+        //オーバーライドして実際に具体的処理を定義。
+        protected override function order2():void {
+            console.log("西村一郎\n");
+        }
+    }
+}
+
+//ブラウザのコンソール出力用（trace()の代替）
+class console {
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//CardHanako.as
+
+package  {
+    public class CardHanako extends Abstract {
+        //コンストラクタ
+        public function CardHanako() {}
+
+        //インスタンスを生成する工場（オーバーライドして実際にインスタンスを生成）
+        protected override function factoryMethod(arg:String):* {
+            if (arg == "newYear") {
+                return new NewYear_Message();
+            } else if (arg == "summer") {
+                return new Summer_Message();
+            }
+        }
+
+        //オーバーライドして実際に具体的処理を定義
+        protected override function order2():void {
+            console.log("西村花子\n");
+        }
+    }
+}
+
+//ブラウザのコンソール出力用（trace()の代替）
+class console {
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//NewYear_Message.as
+
+package  {
+    public class NewYear_Message {
+        //コンストラクタ
+        public function NewYear_Message() {}
+
+        public function exec():void {
+            console.log("明けましておめでとうございます");
+            console.log("（正月用イラスト）");
+        }
+    }	
+}
+
+//ブラウザのコンソール出力用（trace()の代替）
+class console {
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Summer_Message.as
+
+package  {
+    public class Summer_Message {
+        //コンストラクタ
+        public function Summer_Message() {}
+        
+        public function exec():void {
+            console.log("暑中お見舞い申し上げます");
+            console.log("（夏用イラスト）");
+        }
+    }
+}
+
+//ブラウザのコンソール出力用（trace()の代替）
+class console {
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2017年05月XX日  
+作成日：2017年05月18日  
 
 
 <a name="AbstractFactory"></a>
