@@ -9,10 +9,10 @@
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
@@ -525,11 +525,160 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            //=======
+            // 一郎
+            //=======
+            //一郎工場を作る
+            var _ichiro:* = AbstractFactory.createFactory("ICHIRO");
+
+            //②製品を生産
+            _ichiro.createNewYear();
+            /*
+            HAPPY NEW YEAR!
+            （正月用イラスト）
+            西村一郎
+            */
+
+            _ichiro.createSummer();
+            /*
+            暑中お見舞い申し上げます
+            （夏用イラスト）
+            西村一郎
+            */
+
+            //======
+            // 花子
+            //======
+            //花子工場を作る
+            var _hanako:* = AbstractFactory.createFactory("HANAKO");
+
+            //製品を生産
+            _hanako.createNewYear();
+            /*
+            あけましておめでとうございます
+            （正月用イラスト）
+            西村花子
+            */
+
+            _hanako.createSummer();
+            /*
+            しょちゅうおみまいもうしあげます
+            （夏用イラスト）
+            西村花子
+            */
+        }
+    }
+}
+```
+```
+//AbstractFactory.as
+
+package  {
+    public class AbstractFactory {
+        //コンストラクタ
+        public function AbstractFactory() {}
+
+        public static function createFactory(arg: String): * {
+            switch (arg) {
+                case "ICHIRO":
+                    return new ICHIRO(); //具体的な「一郎工場」を生成
+                case "HANAKO":
+                    return new HANAKO(); //具体的な「花子工場」を生成
+            }
+        }
+
+        //抽象的な機能（サブクラスでオーバーライドして実際の機能を実装する）
+        public function createNewYear(): void {
+            console.log("Error: サブクラスでオーバーライドして定義して下さい");
+        }
+
+        //抽象的な機能サブクラスでオーバーライドして、実際の機能を実装します
+        public function createSummer(): void {
+            console.log("Error: サブクラスでオーバーライドして定義して下さい");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//ICHIRO.as
+
+package  {
+    public class ICHIRO extends AbstractFactory {
+        //コンストラクタ
+        public function ICHIRO() {}
+
+        //オーバーライドして実際の処理を行う
+        public override function createNewYear(): void {
+            console.log("HAPPY NEW YEAR!");
+            console.log("（正月用イラスト）");
+            console.log("西村一郎");
+        }
+
+        //オーバーライドして実際の処理を行う
+        public override function createSummer():void {
+            console.log("暑中お見舞い申し上げます");
+            console.log("（夏用イラスト）");
+            console.log("西村一郎");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//HANAKO.as
+
+package  {
+    public class HANAKO extends AbstractFactory {
+        //コンストラクタ
+        public function HANAKO() {}
+
+        //オーバーライドして実際の処理を行う
+        public override function createNewYear():void {
+            console.log("あけましておめでとうございます");
+            console.log("（正月用イラスト）");
+            console.log("西村花子");
+        }
+
+        //オーバーライドして実際の処理を行う
+        public override function createSummer():void {
+            console.log("しょちゅうおみまいもうしあげます");
+            console.log("（夏用イラスト）");
+            console.log("西村花子");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2017年05月XX日  
+作成日：2017年05月18日  
 
 
 <a name="Adapter（継承）"></a>
