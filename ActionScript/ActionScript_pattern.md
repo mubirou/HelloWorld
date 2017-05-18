@@ -406,8 +406,7 @@ package  {
     }
 }
 
-//ブラウザのコンソール出力用（trace()の代替）
-class console {
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
     public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
@@ -435,8 +434,7 @@ package  {
     }
 }
 
-//ブラウザのコンソール出力用（trace()の代替）
-class console {
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
     public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
@@ -467,8 +465,7 @@ package  {
     }
 }
 
-//ブラウザのコンソール出力用（trace()の代替）
-class console {
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
     public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
@@ -490,8 +487,7 @@ package  {
     }	
 }
 
-//ブラウザのコンソール出力用（trace()の代替）
-class console {
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
     public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
@@ -513,8 +509,7 @@ package  {
     }
 }
 
-//ブラウザのコンソール出力用（trace()の代替）
-class console {
+class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
     public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
