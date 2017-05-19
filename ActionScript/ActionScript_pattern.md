@@ -12,8 +12,8 @@
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
@@ -689,7 +689,83 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            // new MoneyboxAdapter(最初の貯金, 為替レート)	
+            var _moneyboxAdapter: MoneyboxAdapter = new MoneyboxAdapter(100, 111.333779);
+            _moneyboxAdapter.addYen(1000);
+            console.log(_moneyboxAdapter.getMoney$()); //9.880199970576763（ドル）
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Moneybox.as
+
+package  {
+    public class Moneybox {
+        private var _moneyYen: uint; //この変数に貯金される
+
+        public function Moneybox(arg: uint) {
+            _moneyYen = arg;
+        }
+
+        public function add(arg: uint): void {
+            _moneyYen += arg;
+        }
+
+        public function get moneyYen(): uint {
+            return _moneyYen;
+        }
+    }
+}
+```
+```
+//IMoneyboxAdapter.as
+
+package  {
+    public interface IMoneyboxAdapter {
+        function addYen(arg: uint): void;
+        function getMoney$(): Number;
+    }
+}
+```
+```
+//MoneyboxAdapter.as
+
+package  {
+    //スーパークラスを継承
+    public class MoneyboxAdapter  extends Moneybox implements IMoneyboxAdapter {
+        private var _rate:Number;
+
+        // コンストラクタ（引数1＝最初の貯金、引数２＝為替レート）
+        public function MoneyboxAdapter(arg1:uint, arg2:Number): void {
+            super(arg1);
+            _rate = arg2;
+        }
+
+        public function addYen(arg: uint): void {
+            this.add(arg);
+        }
+
+        public function getMoney$(): Number {
+            return this.moneyYen / _rate;
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
