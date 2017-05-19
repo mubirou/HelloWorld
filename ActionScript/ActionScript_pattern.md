@@ -770,7 +770,7 @@ package  {
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月19日
 
 
 <a name="Adapter（委譲）"></a>
