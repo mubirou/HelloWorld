@@ -421,8 +421,8 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 
 package  {
     public class CardIchiro extends Abstract {
-        public function CardIchiro() { } //コンストラクタ。
-        //オーバーライドして実際にインスタンスを生成！
+        public function CardIchiro() { } //コンストラクタ
+        //オーバーライドして実際にインスタンスを生成
         protected override function factoryMethod(arg:String):* {
             if (arg == "newYear") {
                 return new NewYear_Message();
@@ -430,7 +430,7 @@ package  {
                 return new Summer_Message();
             }
         }
-        //オーバーライドして実際に具体的処理を定義。
+        //オーバーライドして実際に具体的処理を定義
         protected override function order2():void {
             console.log("西村一郎\n");
         }
