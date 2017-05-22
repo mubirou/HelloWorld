@@ -16,8 +16,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
@@ -1197,12 +1197,94 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite; 	
+    public class Main extends Sprite {
+        public function Main() {
+            var _original: Display = new Original("TAKASHI");
+            console.log(_original.show()); // TAKASHI
+            
+            var _decorator1: Display = new Decorator1(_original);
+            console.log(_decorator1.show()); // -TAKASHI-
+            
+            var _decorator2: Display = new Decorator2(_original);
+            console.log(_decorator2.show()); // <TAKASHI>
+        
+            var _special: Display = new Decorator2(
+                                        new Decorator1(
+                                            new Decorator1(
+                                                new Decorator1(
+                                                    new Original("TAKASHI")))));
+            console.log(_special.show()); // <---TAKASHI--->
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Display.as
+
+package  {
+    public class Display {
+        protected var _content: String; //同じクラス or サブクラスでアクセス可能
+
+        //コンストラクタ
+        public function Display() {}
+
+        //finalでサブクラスでのオーバーライドを禁止
+        public final function show(): String {
+            return _content;
+        }
+    }
+}
+```
+```
+//Original.as
+
+package  {
+    public class Original extends Display { //Displayクラスを継承
+        public function Original(arg: String) {
+            _content = arg;
+        }
+    }
+}
+```
+```
+//Decorator1.as
+
+package  {
+    public class Decorator1 extends Display { //Displayクラスを継承
+        public function Decorator1(arg:Display) { //コンストラクタ
+            _content = "-" + arg.show() + "-";
+        }
+    }
+}
+```
+```
+//Decorator2.as
+
+package  {
+    public class Decorator2 extends Display { //Displayクラスを継承
+        public function Decorator2(arg:Display) { //コンストラクタ
+            _content = "<" + arg.show() + ">";
+        }
+    }	
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Facade"></a>
