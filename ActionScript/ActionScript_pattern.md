@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -861,12 +861,155 @@ package  {
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.MovieClip;
+    public class Main extends MovieClip {
+        public function Main() {
+            //Androidタブレット
+            var _tablet1: Tablet = new Tablet(new Android());
+            console.log(_tablet1.version); //Android 7.1.2
+            _tablet1.bigScreen(); //大きな画面で見る
+            
+            //iPad
+            var _tablet2: Tablet = new Tablet(new iOS10());
+            console.log(_tablet2.version); //iOS 10.3.2
+            _tablet2.bigScreen(); //大きな画面で見る
+            
+            //Androidスマートフォン
+            var _smartPhone1: SmartPhone = new SmartPhone(new Android());
+            console.log(_smartPhone1.version); //Android 7.1.2
+            _smartPhone1.phone(); //電話をかける
+            
+            //iPhone
+            var _smartPhone2: SmartPhone = new SmartPhone(new iOS10());
+            console.log(_smartPhone2.version); //iOS 10.3.2
+            _smartPhone2.phone(); //電話をかける
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args:  Array):  void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//SuperMobile.as
+
+package  {
+    public class SuperMobile {
+        private var _os: IOS; //橋渡し役
+        
+        //コンストラクタ
+        public function SuperMobile(arg: IOS) {
+            _os = arg;
+        }
+        
+        public function get version(): String {
+            return _os.version;
+        }
+    }
+}
+```
+```
+//Tablet.as
+
+package  {
+    public class Tablet extends SuperMobile {
+        //コンストラクタ
+        public function Tablet(arg:IOS) {
+            super(arg);
+        }
+
+        //タブレット特有の機能
+        public function bigScreen():void {
+            console.log("大きな画面で見る");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args:  Array):  void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//SmartPhone.as
+
+package  {
+    public class SmartPhone extends SuperMobile {
+
+        //コンストラクタ
+        public function SmartPhone(arg: IOS) {
+            super(arg);
+        }
+
+        //スマートフォン特有の機能
+        public function phone(): void {
+            console.log("電話をかける");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args:  Array):  void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//IOS.as
+
+package  {
+    public interface IOS {
+        function get version(): String;
+    }
+}
+```
+```
+//Android.as
+
+package  {
+    public class Android implements IOS {
+
+        //コンストラクタ
+        public function Android() {}
+
+        public function get version(): String {
+            return "Android 7.1.2";
+        }
+    }
+}
+```
+```
+//iOS10.as
+
+//クラス名なので本来は大文字から開始すべきですが、インターフェースのだぶるため…
+package  {
+    public class iOS10 implements IOS { //iOS implements IOS は不可
+
+        //コンストラクタ
+        public function iOS10() {}
+
+        public function get version():String {
+            return "iOS 10.3.2";
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月22日
 
 
 <a name="Composite"></a>
