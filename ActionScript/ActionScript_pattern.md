@@ -15,8 +15,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
-    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -131,7 +131,7 @@ package  {
             //==================
             // インスタンスを生成
             //==================
-            var _prototype1:Prototype = new Prototype();
+            var _prototype1: Prototype = new Prototype();
             _prototype1.firstName = "Takashi";
             _prototype1.lastName = "Nishimura"
             _prototype1.address = "X-XX-XX XXX, Shinjuku-ku";
@@ -139,7 +139,7 @@ package  {
             //==============
             // コピーを作成
             //==============
-            var _prototype2:Prototype = _prototype1.clone();
+            var _prototype2: Prototype = _prototype1.clone();
             _prototype2.firstName = "Hanako";
 
             //======
@@ -168,7 +168,7 @@ class console {
 
 package  {
     public interface IPrototype {
-        function clone():*; //実装するクラス名が不明なので「*」とする
+        function clone(): *; //実装するクラス名が不明なので「*」とする
     }
 }
 ```
@@ -192,7 +192,7 @@ package  {
         public function set lastName(arg: String): void { _lastName = arg; }
         public function set address(arg: String): void { _address = arg; }
 
-        public function clone():* {
+        public function clone(): * {
             var _prototype: Prototype = new Prototype();
             _prototype.firstName = _firstName; //セッターを利用
             _prototype.lastName = _lastName;
@@ -246,7 +246,7 @@ package  {
 //==========================================
 package  {
     public class Director {
-        private var _builder:IBuilder;
+        private var _builder: IBuilder;
 
         public function Director(_builder: IBuilder) { //コンストラクタ
             this._builder = _builder;
@@ -269,9 +269,9 @@ package  {
 //=================================
 package  {
     public interface IBuilder {
-        function makeHeader():void;
-        function makeContent():void;
-        function makeFooter():void;
+        function makeHeader(): void;
+        function makeContent(): void;
+        function makeFooter(): void;
     }
 }
 ```
@@ -281,9 +281,9 @@ package  {
 package  {
     public class NewYearCardBuilder implements IBuilder {
         public function NewYearCardBuilder() {} //コンストラクタ
-        public function makeHeader():void { console.log("明けましておめでとうございます"); }
-        public function makeContent():void { console.log("干支のイラスト"); }
-        public function makeFooter():void { console.log("元旦"); }
+        public function makeHeader(): void { console.log("明けましておめでとうございます"); }
+        public function makeContent(): void { console.log("干支のイラスト"); }
+        public function makeFooter(): void { console.log("元旦"); }
     }
 }
 
@@ -303,9 +303,9 @@ class console {
 package  {
     public class SummerCardBuilder implements IBuilder {
         public function SummerCardBuilder() {} //コンストラクタ
-        public function makeHeader():void { console.log("暑中お見舞い申し上げます"); }
-        public function makeContent():void { console.log("スイカのイラスト"); }
-        public function makeFooter():void { console.log("盛夏"); }
+        public function makeHeader(): void { console.log("暑中お見舞い申し上げます"); }
+        public function makeContent(): void { console.log("スイカのイラスト"); }
+        public function makeFooter(): void { console.log("盛夏"); }
     }
 }
 
@@ -357,7 +357,7 @@ package  {
             */
 
             // 年賀状（花子用）
-            var _cardHanako:CardHanako = new CardHanako();
+            var _cardHanako: CardHanako = new CardHanako();
             _cardHanako.templateMethod("newYear");
             /*
             明けましておめでとうございます。
@@ -387,24 +387,24 @@ package  {
         public function Abstract() {} //コンストラクタ
 
         //final でサブクラスでのオーバーライド禁止
-        public final function templateMethod(arg:String):void {
+        public final function templateMethod(arg: String): void {
             //サブクラスでオーバーライドして具体的処理を行う
-            var _factoryMethod:* = factoryMethod(arg); //ここで new しない
+            var _factoryMethod: * = factoryMethod(arg); //ここで new しない
             _factoryMethod.exec();
             order1(); //共通の処理
             order2(); //サブクラスでオーバーライドして具体的処理を行う
         }
 
         //サブクラスでオーバーライドして具体的処理を行う
-        protected function factoryMethod(arg:String):* {
-            console.log("ERROR 01:サブクラスでオーバーライドして定義して下さい");
+        protected function factoryMethod(arg: String): * {
+            console.log("ERROR 01: サブクラスでオーバーライドして定義して下さい");
         }
-        private function order1():void { //共通の処理。
+        private function order1(): void { //共通の処理。
             console.log("〒XXX-XXXX 新宿区XXX町X-X-X");
         }
         //サブクラスでオーバーライドして具体的処理を行う
-        protected function order2():void {
-            console.log("ERROR 02:サブクラスでオーバーライドして定義して下さい");
+        protected function order2(): void {
+            console.log("ERROR 02: サブクラスでオーバーライドして定義して下さい");
         }
     }
 }
@@ -423,7 +423,7 @@ package  {
     public class CardIchiro extends Abstract {
         public function CardIchiro() { } //コンストラクタ
         //オーバーライドして実際にインスタンスを生成
-        protected override function factoryMethod(arg:String):* {
+        protected override function factoryMethod(arg: String): * {
             if (arg == "newYear") {
                 return new NewYear_Message();
             } else if (arg == "summer") {
@@ -431,7 +431,7 @@ package  {
             }
         }
         //オーバーライドして実際に具体的処理を定義
-        protected override function order2():void {
+        protected override function order2(): void {
             console.log("西村一郎\n");
         }
     }
@@ -453,7 +453,7 @@ package  {
         public function CardHanako() {}
 
         //インスタンスを生成する工場（オーバーライドして実際にインスタンスを生成）
-        protected override function factoryMethod(arg:String):* {
+        protected override function factoryMethod(arg: String): * {
             if (arg == "newYear") {
                 return new NewYear_Message();
             } else if (arg == "summer") {
@@ -462,7 +462,7 @@ package  {
         }
 
         //オーバーライドして実際に具体的処理を定義
-        protected override function order2():void {
+        protected override function order2(): void {
             console.log("西村花子\n");
         }
     }
@@ -483,7 +483,7 @@ package  {
         //コンストラクタ
         public function NewYear_Message() {}
 
-        public function exec():void {
+        public function exec(): void {
             console.log("明けましておめでとうございます");
             console.log("（正月用イラスト）");
         }
@@ -505,7 +505,7 @@ package  {
         //コンストラクタ
         public function Summer_Message() {}
         
-        public function exec():void {
+        public function exec(): void {
             console.log("暑中お見舞い申し上げます");
             console.log("（夏用イラスト）");
         }
@@ -540,7 +540,7 @@ package  {
             // 一郎
             //=======
             //一郎工場を作る
-            var _ichiro:* = AbstractFactory.createFactory("ICHIRO");
+            var _ichiro: * = AbstractFactory.createFactory("ICHIRO");
 
             //②製品を生産
             _ichiro.createNewYear();
@@ -561,7 +561,7 @@ package  {
             // 花子
             //======
             //花子工場を作る
-            var _hanako:* = AbstractFactory.createFactory("HANAKO");
+            var _hanako: * = AbstractFactory.createFactory("HANAKO");
 
             //製品を生産
             _hanako.createNewYear();
@@ -591,9 +591,9 @@ package  {
 
         public static function createFactory(arg: String): * {
             switch (arg) {
-                case "ICHIRO":
+                case "ICHIRO": 
                     return new ICHIRO(); //具体的な「一郎工場」を生成
-                case "HANAKO":
+                case "HANAKO": 
                     return new HANAKO(); //具体的な「花子工場」を生成
             }
         }
@@ -633,7 +633,7 @@ package  {
         }
 
         //オーバーライドして実際の処理を行う
-        public override function createSummer():void {
+        public override function createSummer(): void {
             console.log("暑中お見舞い申し上げます");
             console.log("（夏用イラスト）");
             console.log("西村一郎");
@@ -657,14 +657,14 @@ package  {
         public function HANAKO() {}
 
         //オーバーライドして実際の処理を行う
-        public override function createNewYear():void {
+        public override function createNewYear(): void {
             console.log("あけましておめでとうございます");
             console.log("（正月用イラスト）");
             console.log("西村花子");
         }
 
         //オーバーライドして実際の処理を行う
-        public override function createSummer():void {
+        public override function createSummer(): void {
             console.log("しょちゅうおみまいもうしあげます");
             console.log("（夏用イラスト）");
             console.log("西村花子");
@@ -748,10 +748,10 @@ package  {
 package  {
     //スーパークラスを継承
     public class MoneyboxAdapter extends Moneybox implements IMoneyboxAdapter {
-        private var _rate:Number;
+        private var _rate: Number;
 
         // コンストラクタ（引数1＝最初の貯金、引数２＝為替レート）
-        public function MoneyboxAdapter(arg1:uint, arg2:Number): void {
+        public function MoneyboxAdapter(arg1: uint, arg2: Number): void {
             super(arg1);
             _rate = arg2;
         }
@@ -838,7 +838,7 @@ package  {
         private var _rate: Number;
 
         // コンストラクタ（引数1＝最初の貯金、引数２＝為替レート）
-        public function MoneyboxAdapter(arg1:uint, arg2:Number): void {
+        public function MoneyboxAdapter(arg1: uint, arg2: Number): void {
             _moneybox = new Moneybox(arg1); //ここがポイント
             _rate = arg2;
         }
@@ -893,7 +893,7 @@ package  {
 
 class console { //ブラウザのコンソール出力用（console.log()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args:  Array):  void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -922,12 +922,12 @@ package  {
 package  {
     public class Tablet extends SuperMobile {
         //コンストラクタ
-        public function Tablet(arg:IOS) {
+        public function Tablet(arg: IOS) {
             super(arg);
         }
 
         //タブレット特有の機能
-        public function bigScreen():void {
+        public function bigScreen(): void {
             console.log("大きな画面で見る");
         }
     }
@@ -935,7 +935,7 @@ package  {
 
 class console { //ブラウザのコンソール出力用（console.log()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args:  Array):  void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -960,7 +960,7 @@ package  {
 
 class console { //ブラウザのコンソール出力用（console.log()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args:  Array):  void   {
+    public static function log(...args: Array): void   {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -999,7 +999,7 @@ package  {
         //コンストラクタ
         public function iOS10() {}
 
-        public function get version():String {
+        public function get version(): String {
             return "iOS 10.3.2";
         }
     }
@@ -1015,12 +1015,183 @@ package  {
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            //==================
+            // ディレクトリの作成
+            //==================
+            var _root: Sameness = new Directory("root");
+            var _adobe: Sameness = new Directory("Adobe");
+            var _macromedia: Sameness = new Directory("Macromedia");
+            var _flash: Sameness = new Directory("Flash");
+            //==================
+            // ファイルの作成
+            //==================
+            var _illustrator: Sameness = new File("Illustrator");
+            var _photoshop: Sameness = new File("Photoshop");
+            var _dreamweaver: Sameness = new File("Dreamweaver");
+            var _flashProfessional: Sameness = new File("Flash Professional");
+            var _flashBuilder: Sameness = new File("Flash Builder");
+            //==================
+            // 関連付け
+            //==================
+            _root.add(_adobe); //Directoryの追加
+            _root.add(_macromedia); //Directoryの追加
+            _adobe.add(_illustrator); //Fileの追加
+            _adobe.add(_photoshop); //Fileの追加
+            _macromedia.add(_flash); //Directoryの追加
+            _macromedia.add(_dreamweaver); //Fileの追加
+            _flash.add(_flashProfessional); //Fileの追加
+            _flash.add(_flashBuilder); //Fileの追加
+            
+            //==================
+            // 検証
+            //==================
+            //DirectoryやFileの「名前」を調べる
+            console.log(_flashProfessional.name); //=> ["Flash Professional"]
+            
+            //Directoryの中のDirectoryやFileを「削除」する
+            _macromedia.remove(_dreamweaver);
+            
+            //指定した階層のDirectory（ディレクトリ内のDirectory & File）とFileを調べる
+            _macromedia.list(); //=> ["Macromedia/Flash(Directory)"] 
+            _dreamweaver.list(); //=> ["Macromedia/Dreamweaver(File)"]
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Sameness.as
+
+//"同一視"するための役（スーパークラス＝Component）
+package  {
+    public class Sameness {
+        protected var _name: String; //サブクラスで使います
+        protected var _parent: Directory; //サブクラスで使います
+
+        //コンストラクタ
+        public function Sameness() {}
+
+        public function get name(): String {
+            return _name;
+        }
+
+        public function add(arg: *): void {
+            console.log("追加できません"); //Fileクラス対応
+        }
+
+        public function remove(arg: *): void {
+            console.log("削除できません");
+        }
+
+        public function list(): void { //Linuxのlsコマンド風
+            console.log("Error: サブクラスでオーバーライドして下さい");
+        }
+
+        public function set parent(directory: Directory): void {
+            _parent = directory;
+        }
+
+        public function get parent(): Directory {
+            return _parent;
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Directory.as
+
+//Composit（複合体）の役
+package  {
+    public class Directory extends Sameness {
+        private var _child: Array = new Array();
+
+        //コンストラクタ
+        public function Directory(name: String) {
+            _name = name;
+        }
+
+        override public function add(arg: *): void { //引数はDirectory or File
+            _child.push(arg);
+            arg.parent = this;
+        }
+
+        override public function remove(arg: *): void { //引数はDirectory or File
+            var _index: int = _child.indexOf(arg); //検索（なければ-1、あれば位置を返す）
+            if (_index != -1) {
+                _child.splice(_index,1);
+            }
+        }
+
+        override public function list(): void { //Linuxのコマンド風
+            for each (var _tmp: * in _child) {
+                var _result: String = this.name + "/" + _tmp.name;
+                if (_tmp is Directory) {
+                    _result = _result + "(Directory)";
+                } else {
+                    _result = _result + "(File)";
+                }
+                console.log(_result);
+            }
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//File.as
+
+package  {
+    public class File extends Sameness {
+
+        //コンストラクタ
+        public function File(name: String) {
+            _name = name;
+        }
+        
+        override public function list(): void { //Linuxのコマンド風
+            console.log(parent.name + "/" + this.name + "(File)");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月22日
 
 
 <a name="Decorator"></a>
