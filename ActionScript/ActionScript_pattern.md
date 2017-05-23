@@ -22,8 +22,8 @@
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1594,12 +1594,144 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            var _carPark:CarPark = new CarPark();
+            _carPark.add(new Car("NISSAN GT-R", "品川300 し 35-00"));
+            _carPark.add(new Car("BMW mini", "品川300 ぬ 32-32"));
+            _carPark.add(new Car("TOYOTA 2000GT", "練馬501 の 50-34"));
+            var _carParkIterator: IIterator = _carPark.createIterator(); //イテレータを生成
+            
+            while(_carParkIterator.hasNext()) {
+                var _nextCar: Car = _carParkIterator.next();
+                console.log(_nextCar.name, _nextCar.num);
+            }
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Car.as
+
+package  {
+    public class Car {
+        private var _name: String, _num: String;
+
+        //コンストラクタ
+        public function Car(_name: String, _num: String) {
+            this._name = _name;
+            this._num = _num;
+        }
+
+        public function get name(): String {
+            return _name;
+        }
+
+        public function get num(): String {
+            return _num;
+        }
+    }
+}
+```
+```
+//ICarPark.as
+
+package  {
+    public interface ICarPark {
+        function add(theElement: Object): void;
+        function getElementAt(index: uint): Object;
+        function getLength(): uint;
+        function createIterator(): IIterator;
+    }
+}
+```
+```
+//ICarPark.as
+
+package  {
+    public interface ICarPark {
+        function add(theElement: Object): void;
+        function getElementAt(index: uint): Object;
+        function getLength(): uint;
+        function createIterator(): IIterator;
+    }
+}
+```
+```
+//CarPark.as
+
+package  {
+    public class CarPark implements ICarPark {
+        private var _list: Array = [];
+
+        public function CarPark() {}
+
+        public function add(theElement: Object): void {
+            _list.push(theElement);
+        }
+
+        public function getElementAt(index: uint): Object {
+            return _list[index];
+        }
+
+        public function getLength(): uint {
+            return _list.length;
+        }
+
+        public function createIterator(): IIterator {
+            return new Iterator(this);
+        }
+    }
+}
+```
+```
+//IIterator.as
+
+package  {
+    public interface IIterator {
+        function hasNext(): Boolean;
+        function next(): Car;
+    }
+}
+```
+```
+//Iterator.as
+
+package  {
+    public class Iterator implements IIterator {
+        private var _object: Object, _count: uint = 0;
+        
+        public function Iterator(_object: Object) { 
+            this._object = _object;
+        }
+
+        public function hasNext(): Boolean {
+            return _object.getLength() > _count;
+        }
+
+        public function next(): Car {
+            return _object.getElementAt(_count++); //次の車を返します
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="TemplateMethod"></a>
