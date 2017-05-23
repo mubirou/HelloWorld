@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
@@ -1529,12 +1529,66 @@ package  {
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.MovieClip;
+    public class Main extends MovieClip {
+        public function Main() {
+            var _loader: Loader = new Loader("http://sample.mp4");
+            //通常は必要になった時、実際に画像（実際の本人）をロード
+            _loader.load(); //=> "重い処理を実行中"
+        }
+    }
+}
+```
+```
+//Loader.as（代理人＝Proxy役）
+
+package  {
+    public class Loader {
+        private var _url: String;
+        public function Loader(_url: String) {
+            this._url = _url;
+        }
+        public function load(): void {
+            //実際の本人登場（代理人は実際の本人を知っている）
+            var _content: Content = new Content(_url);
+            _content.load();
+        }
+    }
+}
+```
+```
+//Content.as（実際の本人＝Real Subject役）
+
+package  {
+    public class Content {
+        private var _url: String;
+
+        public function Content(_url: String) {
+            this._url = _url;
+        }
+        public function load():void { //重い処理をここで行う
+            // 今回のサンプルの中身はあまり重要ではない...
+            console.log("重い処理を実行中");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Iterator"></a>
