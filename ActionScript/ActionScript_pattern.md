@@ -2168,30 +2168,6 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 }
 ```
 ```
-//ShinjukuPO.as
-
-package  {
-    public class ShinjukuPO extends SuperPO {
-        public function ShinjukuPO() {} //コンストラクタ
-
-        override public function send(arg: String): void {
-            if (new RegExp("新宿").test(arg)) {
-                console.log("本日中に届きます");
-            } else {
-                _next.send(arg); //たらい回し先に振る
-            } 
-        }
-    }
-}
-
-class console { //ブラウザのコンソール出力用（console.log()の代替）
-    import flash.external.ExternalInterface;
-    public static function log(...args: Array): void {
-        ExternalInterface.call("function(args){ console.log(args);}", args);
-    }
-}
-```
-```
 //TokyoPO.as
 
 package  {
