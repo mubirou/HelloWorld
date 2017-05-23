@@ -17,8 +17,8 @@
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
+    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
@@ -1290,12 +1290,118 @@ package  {
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-XXXX
+```
+//Main.as（Decoratorパターンと異なる）
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            console.log(DecoratorFacade.exec("TAKASHI", 5, 2)); // <<-----TAKASHI----->>
+            console.log(DecoratorFacade.exec("TAKASHI")); // TAKASHI
+            console.log(DecoratorFacade.exec("TAKASHI", 0, 1)); // <TAKASHI>
+            console.log(DecoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//DecoratorFacade.as（Decoratorパターンと異なる）
+
+package  {
+    public class DecoratorFacade { //窓口（Facade）役
+        //Singletonパターン用
+        private static var _decoratorFacade:DecoratorFacade;
+
+        //コンストラクタ
+        public function DecoratorFacade(arg:Lock) {}
+
+        //arg1:オリジナルの文字
+        //arg2:Decorator1クラスを施す回数
+        //arg3:Decorator2クラスを施す回数
+        public static function exec(arg1: String, 
+                                    arg2: uint=0, 
+                                    arg3: uint=0):String {
+            //Singletonパターン用
+            if (_decoratorFacade == null) { 
+                _decoratorFacade = new DecoratorFacade(new Lock()); 
+            }
+            var _result:Display = new Original(arg1);
+            for (var _i:uint=0; _i<arg2; _i++) {
+                _result = new Decorator1(_result);
+            }
+            for (var _j:uint=0; _j<arg3; _j++) {
+                _result = new Decorator2(_result);
+            }
+            
+            return _result.show();
+        }
+    }
+}
+
+internal class Lock {} //Singletonパターン用
+```
+//Display.as（Decoratorパターンと全く同じ）
+
+package  {
+    public class Display {
+        protected var _content: String; //同じクラス or サブクラスでアクセス可能
+
+        //コンストラクタ
+        public function Display() {}
+
+        //finalでサブクラスでのオーバーライドを禁止
+        public final function show(): String {
+            return _content;
+        }
+    }
+}
+```
+```
+//Original.as（Decoratorパターンと全く同じ）
+
+package  {
+    public class Original extends Display { //Displayクラスを継承
+        public function Original(arg: String) {
+            _content = arg;
+        }
+    }
+}
+```
+```
+//Decorator1.as（Decoratorパターンと全く同じ）
+
+package  {
+    public class Decorator1 extends Display { //Displayクラスを継承
+        public function Decorator1(arg:Display) { //コンストラクタ
+            _content = "-" + arg.show() + "-";
+        }
+    }
+}
+```
+```
+//Decorator2.as（Decoratorパターンと全く同じ）
+
+package  {
+    public class Decorator2 extends Display { //Displayクラスを継承
+        public function Decorator2(arg:Display) { //コンストラクタ
+            _content = "<" + arg.show() + ">";
+        }
+    }	
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Flyweight"></a>
