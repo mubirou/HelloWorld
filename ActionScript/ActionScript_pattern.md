@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1725,12 +1725,145 @@ package  {
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+### 概要
+* abstract 修飾子が存在せず、抽象メソッドを確実に実装する方法がない
+* 次の３つの方法を使って擬似的に実装する
+    1. エラー処理（throw new Error...）の記述（ここでは console.log()）
+    1. 抽象クラスを継承したサブクラスで、抽象メソッドをオーバーライドして具体的処理を記述
+    1. サブクラスによってオーバーライドさせたなくないメソッドは final キーワードを使用
+
+### 例文
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            var _newYearCard_Ichiro: NewYearCard_Ichiro = new NewYearCard_Ichiro();
+            _newYearCard_Ichiro.templateMethod();
+            /*
+            HAPPY NEW YEAR!
+            野球がんばろうね！
+            */
+            
+            var _newYearCard_Hanako: NewYearCard_Hanako = new NewYearCard_Hanako();
+            _newYearCard_Hanako.templateMethod();
+            /*
+            HAPPY NEW YEAR!
+            本年も宜しくお願い致します。
+            今度みんなで集まろう！
+            */
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Abstract.as
+
+package  {
+    public class Abstract {
+        public function Abstract() {} //コンストラクタ
+
+        public final function templateMethod():void { //finalでサブクラスでのオーバーライド禁止
+            order1(); //共通の処理
+            if (isAdult()) { //フックメソッド
+                order2(); //条件により実行
+            }
+            order3(); //サブクラスでオーバーライドして具体的処理を行う
+        }
+
+        //共通の処理
+        private function order1():void {
+            console.log("HAPPY NEW YEAR!");
+        }
+
+        //フックメソッド実際はサブクラスでオーバーライドして定義（オプション）
+        protected function isAdult():Boolean { //protectedで同じクラスorサブクラスからのみアクセス可
+            return true; //今回は初期値を設定
+        }
+
+        private function order2():void { //条件により実行
+            console.log("本年も宜しくお願い致します");
+        }
+
+        //必ずサブクラスでオーバーライドして定義しなければなりません
+        protected function order3():void {
+            console.log("Error: サブクラスでオーバーライドして定義して下さい");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//NewYearCard_Ichiro.as
+
+package  {
+    public class NewYearCard_Ichiro extends Abstract { //スーパークラスを継承
+
+        //コンストラクタ
+        public function NewYearCard_Ichiro() {}
+
+        //フックメソッドの実際の定義（オプション）
+        protected override function isAdult(): Boolean {
+            return false;
+        }
+
+        //抽象クラス（Abstract）の抽象メソッドをオーバーライドして具体的に記述（必須）
+        protected override function order3(): void {
+            console.log("野球がんばろうね！");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//NewYearCard_Hanako.as
+
+package  {
+    public class NewYearCard_Hanako extends Abstract { //スーパークラスを継承
+
+        //コンストラクタ
+        public function NewYearCard_Hanako() {}
+
+        //抽象クラス（Abstract）の抽象メソッドをオーバーライドして具体的に記述（必須）
+        protected override function order3():void {
+            console.log("今度みんなで集まろう！");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Strategy"></a>
