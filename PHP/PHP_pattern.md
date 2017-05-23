@@ -41,7 +41,7 @@
 
 ### 概要
 * コンストラクタを private にすることが可能（Singleton クラス外から new Singleton() とするとエラーを発生させることが可能）
-* 静的変数を定義する際、private static $singleton = new Singleton(); とするとエラーが発生してしまう
+* 静的変数を定義する際 private static $singleton = new Singleton(); とするとエラーが発生してしまう
 
 ### 例文
 index.php
