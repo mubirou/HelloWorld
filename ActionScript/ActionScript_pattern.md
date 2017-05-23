@@ -29,8 +29,8 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
@@ -102,7 +102,7 @@ internal class Lock {} //internalは同じパッケージ内からしか呼び�
 //========================================
 class console {
     import flash.external.ExternalInterface; //JavaScriptの実行用
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args); //JavaScriptを実行
     }
 }
@@ -411,7 +411,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -439,7 +439,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -470,7 +470,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -492,7 +492,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -514,7 +514,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -612,7 +612,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -643,7 +643,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -674,7 +674,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -706,7 +706,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -793,7 +793,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -893,7 +893,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（console.log()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -935,7 +935,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（console.log()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -960,7 +960,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（console.log()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2262,7 +2262,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2286,7 +2286,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2310,7 +2310,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2332,7 +2332,7 @@ package {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2490,7 +2490,7 @@ package  {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2510,7 +2510,7 @@ package  {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2530,7 +2530,7 @@ package  {
 
 class console { //ブラウザのコンソール出力用（trace()の代替）
     import flash.external.ExternalInterface;
-    public static function log(...args: Array): void   {
+    public static function log(...args: Array): void {
         ExternalInterface.call("function(args){ console.log(args);}", args);
     }
 }
@@ -2545,12 +2545,155 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            //登場人物
+            var _gamer: Gamer = new Gamer(); //主人公
+            var _memory: Memory = new Memory(); //世話人（記録係）
+            
+            //サイコロを５回振る → 毎回、合計値を記録
+            for (var _i: uint=0; _i<5; _i++) { //５回繰返す
+                //さいころを振る
+                _gamer.addX(saikoro());
+                _gamer.addY(saikoro());
+                //この瞬間の状態をオブジェクトとして保存
+                _memory.save(_gamer.getMemento()); 
+            }
+            
+            // ❶アンドゥ
+            // 何度もアンドゥを繰り返し、最初まで到達した場合その後ずっと最初の状態が返ります
+            var _theMemento: Memento = _memory.undo();
+            console.log(_theMemento.x, _theMemento.y);
+            
+            // ❷リドゥ
+            // 何度もリドゥを繰り返し、最後まで到達した場合その後はずっと最後の状態が返ります
+            _theMemento = _memory.redo();
+            console.log(_theMemento.x, _theMemento.y);
+        }
+        
+        //サイコロ（1〜6の整数が返る）
+        public function saikoro(): uint {
+            return int(Math.random()*6)+1;
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Gamer.as
+
+package  {
+    public class Gamer {
+        private var _totalX: uint = 0;
+        private var _totalY: uint = 0;
+
+        public function Gamer() {} //コンストラクタ
+
+        public function addX(saikoro: uint): void {
+            _totalX += saikoro;
+        }
+
+        public function addY(saikoro: uint): void {
+            _totalY += saikoro;
+        }
+
+        public function getMemento(): Memento {
+            return new Memento(_totalX, _totalY);
+        }
+    }
+}
+```
+```
+//Memory.as
+
+package  {
+    public class Memory {
+        private var _history: Array = []; //状態の履歴を保存
+        private var _snapshot: Memento; //最後に記録したスナップショット
+        private var _count: int; //undo()、redo()用
+
+        public function Memory() { } //constructor
+
+        public function save(memento: Memento): void {
+            _snapshot = memento;
+            _history.push(_snapshot);
+            _count = _history.length - 1;
+        }
+
+        // ❶アンドゥ（やり直し）
+        public function undo(): Memento {
+            if (_count > 0) {
+                return _history[--_count];
+            } else {
+                trace("これ以上、アンドゥできません");
+                _count = 0;
+                return _history[_count];
+            }
+        }
+
+        // ❷リドゥ（再実行）
+        public function redo(): Memento {
+            if (_count < _history.length-1) {
+                return _history[++_count];
+            } else {
+                trace("これ以上、リドゥできません");
+                _count = _history.length - 1;
+                return _history[_count];
+            }
+        }
+
+        // ❸作業履歴を調べる
+        public function get history(): Array {
+            return _history;
+        }
+
+        // ❹スナップショットを調べる（最後に記録したもの）
+        public function get shapshot(): Memento {
+            return _snapshot;
+        }
+    }
+}
+```
+```
+//Memento.as
+
+package  {
+    public class Memento {
+        //状態を表すプロパティ（複数可能）
+        private var _totalX: uint;
+        private var _totalY: uint;
+
+        public function Memento(totalX: uint, totalY: uint) {
+            _totalX = totalX;
+            _totalY = totalY;
+        }
+
+        public function get x(): uint {
+            return _totalX;
+        }
+
+        public function get y(): uint {
+            return _totalY;
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="State"></a>
