@@ -6,6 +6,7 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -66,7 +67,7 @@ class Singleton {
 
     public static function getInstance() {
         // isset() で変数に値が設定されていれば、1（TRUE）
-        // self::○○ で同じクラス内のメソッドから静的変数にアクセス可
+        // self::XXX で同じクラス内のメソッドから静的変数にアクセス可
         if (!isset(self::$singleton)) { //ポイント
             self::$singleton = new Singleton();
         }
@@ -79,7 +80,7 @@ class Singleton {
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Prototype"></a>
