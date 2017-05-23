@@ -1573,9 +1573,9 @@ class Mediator {
     
     public Mediator() { //コンストラクタ
         //メンバーの登録
-        AddMember(MemberA); //→★
-        AddMember(MemberB); //→★
-        AddMember(MemberC); //→★
+        AddMember(MemberA); //★
+        AddMember(MemberB); //★
+        AddMember(MemberC); //★
     }
     
     //メンバーリストに登録
@@ -1589,12 +1589,12 @@ class Mediator {
         if (_member == MemberA) {
             if (_string == "西へ行く") {
                 //「メンバーA」から「西へ行く」と報告があった場合の処理
-                _member.Advice("（Aよ）了解、そのまま西へ行け"); //→Aへ指示
+                _member.Advice("（Aよ）了解、そのまま西へ行け"); //Aへ指示
                 foreach (AbstractMember theMember in _memberList) {
                     if (theMember == MemberB) {
-                        theMember.Advice("（Bよ）東へ行け"); //→Bへ指示
+                        theMember.Advice("（Bよ）東へ行け"); //Bへ指示
                     } else if (theMember == MemberC) {
-                        theMember.Advice("（Cよ）その場で待機しろ"); //→Cへ指示
+                        theMember.Advice("（Cよ）その場で待機しろ"); //Cへ指示
                     }
                 }
             }
@@ -2015,7 +2015,7 @@ class DrawCommand {
         this._command = _command;
     }
     public void Execute() { //←★Inkscape.Draw()から呼び出される
-        _canvas.Update(_command); //→⦿
+        _canvas.Update(_command); //⦿
     }
 }
 

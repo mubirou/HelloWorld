@@ -790,21 +790,21 @@ void SmartPhone::Phone() { //メンバ関数の定義（スマートフォン特
 int main() {
     //タブレット（Android）
     Tablet* _tablet1 = new Tablet(new Android); //インスタンスの生成
-    cout << _tablet1 -> Version() << endl; //→"Android 7.1.2"
-    _tablet1 -> BigScreen(); //→"おおきな画面で見る"
+    cout << _tablet1 -> Version() << endl; //"Android 7.1.2"
+    _tablet1 -> BigScreen(); //"おおきな画面で見る"
     
     //タブレット（iOS）
     Tablet* _tablet2 = new Tablet(new IOS); //インスタンスの生成
-    cout << _tablet2 -> Version() << endl; //→"Android 7.1.2"
+    cout << _tablet2 -> Version() << endl; //"Android 7.1.2"
     
     //スマホ（Android）
     SmartPhone* _smartPhone1 = new SmartPhone(new Android); //インスタンスの生成
-    cout << _smartPhone1 -> Version() << endl; //→"Android 7.1.2"
-    _smartPhone1 -> Phone(); //→"おおきな画面で見る"
+    cout << _smartPhone1 -> Version() << endl; //"Android 7.1.2"
+    _smartPhone1 -> Phone(); //"おおきな画面で見る"
     
     //スマホ（iOS）
     SmartPhone* _smartPhone2 = new SmartPhone(new IOS); //インスタンスの生成
-    cout << _smartPhone2 -> Version() << endl; //→"Android 7.1.2"
+    cout << _smartPhone2 -> Version() << endl; //"Android 7.1.2"
     return 0;
 }
 ```
@@ -2360,7 +2360,7 @@ DrawCommand::DrawCommand(Canvas* _canvas, string _command) {
 
 //メンバ関数の定義
 void DrawCommand::Execute() { //←Inkscape::Draw()から呼び出される★
-    _canvas -> Update(_command); //→◎
+    _canvas -> Update(_command); //◎
 }
 
 //===================

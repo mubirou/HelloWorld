@@ -1066,8 +1066,8 @@ using System;
 class Test {
     static void Main() { //自動的に最初に実行される
         MyClass _myClass = new MyClass();
-        _myClass.AddPoint(); //→1
-        _myClass.AddPoint(10); //→11
+        _myClass.AddPoint(); //1
+        _myClass.AddPoint(10); //11
     }
 }
 
@@ -1140,7 +1140,7 @@ using System;
 class Test { //メインクラス
     static void Main() { //自動的最初に実行される
         MyClass _myClass = new MyClass();
-        _myClass.Move(1); //→
+        _myClass.Move(1); //
         _myClass.change();
         _myClass.Move(3); //←←←
     }
@@ -1192,7 +1192,7 @@ using System;
 class Test { //メインクラス
     static void Main() { //自動的最初に実行される
         MyClass _myClass = new MyClass();
-        _myClass.Move(1); //→
+        _myClass.Move(1); //
         _myClass.change();
         _myClass.Move(3); //←←←
     }

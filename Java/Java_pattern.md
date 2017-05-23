@@ -1485,9 +1485,9 @@ class Mediator {
     //コンストラクタ
     public Mediator() {
         //メンバーの登録
-        addMember(MemberA); //→★
-        addMember(MemberB); //→★
-        addMember(MemberC); //→★
+        addMember(MemberA); //★
+        addMember(MemberB); //★
+        addMember(MemberC); //★
     }
     
     //メンバーリストに登録
@@ -1501,12 +1501,12 @@ class Mediator {
         if (_member == MemberA) {
             if (_string == "西へ行く") {
                 //「メンバーA」から「西へ行く」と報告があった場合の処理
-                _member.advice("（Aよ）了解、そのまま西へ行け"); //→Aへ指示
+                _member.advice("（Aよ）了解、そのまま西へ行け"); //Aへ指示
                 for (AbstractMember theMember : _memberList) {
                     if (theMember == MemberB) {
-                        theMember.advice("（Bよ）東へ行け"); //→Bへ指示
+                        theMember.advice("（Bよ）東へ行け"); //Bへ指示
                     } else if (theMember == MemberC) {
-                        theMember.advice("（Cよ）その場で待機しろ"); //→Cへ指示
+                        theMember.advice("（Cよ）その場で待機しろ"); //Cへ指示
                     }
                 }
             }
@@ -1814,7 +1814,7 @@ class Janken {
     }
     
     public void exec() {
-        _state.execute(); //→State○.execute()メソッドを呼出す
+        _state.execute(); //State○.execute()メソッドを呼出す
     }
 }
 
@@ -1891,7 +1891,7 @@ class DrawCommand {
         this._command = _command;
     }
     public void execute() { //←★Inkscape.draw()から呼び出される
-        _canvas.update(_command); //→⦿
+        _canvas.update(_command); //⦿
     }
 }
 

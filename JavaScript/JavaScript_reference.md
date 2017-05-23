@@ -208,7 +208,7 @@
     console.log(_rectangle.getWidth(), _rectangle.getHeight()); //1920, 1080
 
     //③メソッドの実行
-    console.log(_rectangle.getArea()); //→ 2073600
+    console.log(_rectangle.getArea()); // 2073600
 </script>
 ```
 
@@ -1239,7 +1239,7 @@ do {
                 return 0;
             }
         );
-        console.log(String(_array)); //→[15,30,130]
+        console.log(String(_array)); //[15,30,130]
     </script>
     ```
 

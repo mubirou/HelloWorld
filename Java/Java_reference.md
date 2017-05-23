@@ -2046,7 +2046,7 @@ public class Main { //public は省略可
     public static void main(String[] args) { //決め打ち(自動的に実行)
         String _string = "A,B,C,D"; //「,」区切りの文字列
         String[] _array = _string.split(","); //「,」区切りで分割して配列化
-        //→{"A","B","C","D"}
+        //{"A","B","C","D"}
     }
 }
 ```

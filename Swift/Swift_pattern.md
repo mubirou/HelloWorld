@@ -1493,13 +1493,13 @@ class Mediator {
         if (_member === Mediator.Member_A) { //「===」にすること
             if (_string == "西へ行く") {
                 //「メンバーA」から「西へ行く」と報告があった場合の処理
-                _member.advice(string: "（Aよ）了解、そのまま西へ行け") //→Aへ指示
+                _member.advice(string: "（Aよ）了解、そのまま西へ行け") //Aへ指示
                 //A以外への指示
                 for theMember in _memberList {
                     if (theMember === Mediator.Member_B) { //「===」にすること
-                        theMember.advice(string: "（Bよ）東へ行け") //→Bへ指示
+                        theMember.advice(string: "（Bよ）東へ行け") //Bへ指示
                     } else if (theMember === Mediator.Member_C) { //「===」にすること
-                        theMember.advice(string: "（Cよ）その場で待機しろ") //→Cへ指示
+                        theMember.advice(string: "（Cよ）その場で待機しろ") //Cへ指示
                     }
                 }
             }
@@ -1786,7 +1786,7 @@ class Janken {
     }
     
     func exec() -> Void {
-        _state?.execute() //→State○.execute()メソッドを呼出す（「?」が必須）
+        _state?.execute() //State○.execute()メソッドを呼出す（「?」が必須）
     }
 }
 

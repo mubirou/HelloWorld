@@ -137,7 +137,7 @@
         //①数値→boolean型
         $var = 1;
         settype($var, 'boolean');  //'bool'でも可
-        echo $var.'<br>'; //→ 1（TRUE）
+        echo $var.'<br>'; // 1（TRUE）
         echo gettype($var).'<br>'; //'boolean'
 
         //①浮動小数点数→integer型（小数点以下を切捨て整数化）
@@ -366,17 +366,17 @@ class SubClassB extends SuperClass { //スーパークラスを継承
 ****************************************************/
 //サブクラスＡのインスタンス
 $subClassA =  new SubClassA(); //サブクラスAからインスタンスを生成
-echo $subClassA->pSuperClass.'<br>'; //→ 'スーパークラスのプロパティ'
-echo $subClassA->pSubClassA.'<br>'; //→ 'サブクラスＡのプロパティ'
-echo $subClassA->mSuperClass().'<br>'; //→ 'スーパークラスのメソッド'
-echo $subClassA->mSubClassA().'<br>'; //→ 'サブクラスＡのメソッド'
+echo $subClassA->pSuperClass.'<br>'; // 'スーパークラスのプロパティ'
+echo $subClassA->pSubClassA.'<br>'; // 'サブクラスＡのプロパティ'
+echo $subClassA->mSuperClass().'<br>'; // 'スーパークラスのメソッド'
+echo $subClassA->mSubClassA().'<br>'; // 'サブクラスＡのメソッド'
 
 //サブクラスＢのインスタンス
 $subClassB =  new SubClassB(); //サブクラスBからインスタンスを生成
-echo $subClassB->pSuperClass.'<br>'; //→ 'スーパークラスのプロパティ'
-echo $subClassB->pSubClassB.'<br>'; //→ 'サブクラスＢのプロパティ'
-echo $subClassB->mSuperClass().'<br>'; //→ 'スーパークラスのメソッド'
-echo $subClassB->mSubClassB(); //→ 'サブクラスＢのメソッド'
+echo $subClassB->pSuperClass.'<br>'; // 'スーパークラスのプロパティ'
+echo $subClassB->pSubClassB.'<br>'; // 'サブクラスＢのプロパティ'
+echo $subClassB->mSuperClass().'<br>'; // 'スーパークラスのメソッド'
+echo $subClassB->mSubClassB(); // 'サブクラスＢのメソッド'
 
 ?>
 ```
@@ -2313,7 +2313,7 @@ class 派生クラス名 extends Abstract○○ {
     for ($i=0; $i<500000000; $i++) { //5億回繰り返し
         //速度測定したい処理。
     }
-    echo microtime(TRUE) - $start; //→ 3.6270740032196（秒）
+    echo microtime(TRUE) - $start; // 3.6270740032196（秒）
 ?>
 ```
 

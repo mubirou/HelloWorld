@@ -1421,7 +1421,7 @@ class AbstractMember { //（擬似）抽象クラス
 }
 
 class YesButton extends AbstractMember { //メンバー①（YesButtonクラス）
-    on() { this.__mediator.report(this, "on"); } //→相談役に報告
+    on() { this.__mediator.report(this, "on"); } //相談役に報告
     advice(_string) {
         if (_string == "off") {
             console.log("YesButtonをoffにします");
@@ -1430,7 +1430,7 @@ class YesButton extends AbstractMember { //メンバー①（YesButtonクラス�
 }
 
 class NoButton extends AbstractMember { //メンバー②（NoButtonクラス）
-    on() { this.__mediator.report(this, "on"); } //→相談役に報告
+    on() { this.__mediator.report(this, "on"); } //相談役に報告
     advice(_string) {
         if (_string == "off") {
             console.log("NoButtonをoffにします");
