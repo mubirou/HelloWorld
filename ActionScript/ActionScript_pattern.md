@@ -1313,7 +1313,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 }
 ```
 ```
-//DecoratorFacade.as（Decoratorパターンと異なる）
+//DecoratorFacade.as（Decoratorパターンに追加）
 
 package  {
     public class DecoratorFacade { //窓口（Facade）役
