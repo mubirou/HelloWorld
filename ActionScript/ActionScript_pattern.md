@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -2699,12 +2699,129 @@ package  {
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {	
+            var _student: String = "ICHIRO"; // or "HANAKO"
+            
+            //漢字検定（Context役）
+            var _kanji: Kanji = new Kanji();
+            
+            //級別問題集（State役）
+            var _question7: Question7 = new Question7(); //漢字検定7級用。
+            var _question10: Question10 = new Question10(); //漢字検定10級用。
+            
+            //生徒に合った級別問題集にする
+            if (_student == "ICHIRO") {
+                _kanji.state = _question7;
+            } else if (_student == "HANAKO") {
+                _kanji.state = _question10;
+            }
+            
+            //問題を出す
+            _kanji.testA(); //みぎ、おと、そら  or  笑顔、衣類、胃腸
+            _kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Kanji.as
+
+package {
+    public class Kanji {
+        private var _state: IState; //級別問題集を格納
+
+        public function Kanji() { } //コンストラクタ
+
+        public function set state(arg: IState): void {
+            _state = arg;
+        }
+
+        public function testA(): void {
+            _state.mondaiA();
+        }
+
+        public function testB(): void {
+            _state.mondaiB();
+        }
+    }
+}
+```
+```
+//IState.as
+
+package {
+    public interface IState {
+        function mondaiA(): void;
+        function mondaiB(): void;
+    }
+}
+```
+```
+//Question7.as
+
+package {
+    public class Question7 implements IState {
+        public function Question7() { } //コンストラクタ
+
+        public function mondaiA(): void {
+            console.log("笑顔、衣類、胃腸");
+        }
+
+        public function mondaiB(): void {
+            console.log("持参、勉強、案内");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Question10.as
+
+package {
+    public class Question10 implements IState {
+        public function Question10() { } //コンストラクタ
+
+        public function mondaiA():void {
+            console.log("みぎ、おと、そら");
+        }
+
+        public function mondaiB():void {
+            console.log("いぬ、あめ、みみ");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Command"></a>
