@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -42,7 +42,7 @@
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
 
     //============
@@ -72,7 +72,7 @@ class console {
 ```
 //Singleton.as
 
-package  {
+package {
     //=================
     // Singleton クラス
     //=================
@@ -120,7 +120,7 @@ class console {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
 
     //============
@@ -166,7 +166,7 @@ class console {
 ```
 //IPrototype.as
 
-package  {
+package {
     public interface IPrototype {
         function clone(): *; //実装するクラス名が不明なので「*」とする
     }
@@ -175,7 +175,7 @@ package  {
 ```
 //Prototype.as
 
-package  {
+package {
     public class Prototype implements IPrototype {
         private var _firstName: String, _lastName: String, _address: String;
 
@@ -215,7 +215,7 @@ package  {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
 
     //============
@@ -244,7 +244,7 @@ package  {
 //==========================================
 // Director役＝監督（作成手順を決め実行する）
 //==========================================
-package  {
+package {
     public class Director {
         private var _builder: IBuilder;
 
@@ -267,7 +267,7 @@ package  {
 //=================================
 // XXXBuilderクラスのインターフェース
 //=================================
-package  {
+package {
     public interface IBuilder {
         function makeHeader(): void;
         function makeContent(): void;
@@ -278,7 +278,7 @@ package  {
 ```
 //NewYearCardBuilder.as
 
-package  {
+package {
     public class NewYearCardBuilder implements IBuilder {
         public function NewYearCardBuilder() {} //コンストラクタ
         public function makeHeader(): void { console.log("明けましておめでとうございます"); }
@@ -300,7 +300,7 @@ class console {
 ```
 //SummerCardBuilder.as
 
-package  {
+package {
     public class SummerCardBuilder implements IBuilder {
         public function SummerCardBuilder() {} //コンストラクタ
         public function makeHeader(): void { console.log("暑中お見舞い申し上げます"); }
@@ -332,7 +332,7 @@ class console {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -382,7 +382,7 @@ package  {
 ```
 //Abstract.as
 
-package  {
+package {
     public class Abstract {
         public function Abstract() {} //コンストラクタ
 
@@ -419,7 +419,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //CardIchiro.as
 
-package  {
+package {
     public class CardIchiro extends Abstract {
         public function CardIchiro() { } //コンストラクタ
         //オーバーライドして実際にインスタンスを生成
@@ -447,7 +447,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //CardHanako.as
 
-package  {
+package {
     public class CardHanako extends Abstract {
         //コンストラクタ
         public function CardHanako() {}
@@ -478,7 +478,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //NewYear_Message.as
 
-package  {
+package {
     public class NewYear_Message {
         //コンストラクタ
         public function NewYear_Message() {}
@@ -500,7 +500,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //Summer_Message.as
 
-package  {
+package {
     public class Summer_Message {
         //コンストラクタ
         public function Summer_Message() {}
@@ -532,7 +532,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -584,7 +584,7 @@ package  {
 ```
 //AbstractFactory.as
 
-package  {
+package {
     public class AbstractFactory {
         //コンストラクタ
         public function AbstractFactory() {}
@@ -620,7 +620,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //ICHIRO.as
 
-package  {
+package {
     public class ICHIRO extends AbstractFactory {
         //コンストラクタ
         public function ICHIRO() {}
@@ -651,7 +651,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //HANAKO.as
 
-package  {
+package {
     public class HANAKO extends AbstractFactory {
         //コンストラクタ
         public function HANAKO() {}
@@ -692,7 +692,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -714,7 +714,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //Moneybox.as
 
-package  {
+package {
     public class Moneybox {
         private var _moneyYen: uint; //この変数に貯金される
 
@@ -735,7 +735,7 @@ package  {
 ```
 //IMoneyboxAdapter.as
 
-package  {
+package {
     public interface IMoneyboxAdapter {
         function addYen(arg: uint): void;
         function getMoney$(): Number;
@@ -745,7 +745,7 @@ package  {
 ```
 //MoneyboxAdapter.as
 
-package  {
+package {
     //スーパークラスを継承
     public class MoneyboxAdapter extends Moneybox implements IMoneyboxAdapter {
         private var _rate: Number;
@@ -779,7 +779,7 @@ package  {
 ```
 //Main.as（継承版と同じ）
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -801,7 +801,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 //Moneybox.as（継承版と同じ）
 
-package  {
+package {
     public class Moneybox {
         private var _moneyYen: uint; //この変数に貯金される
 
@@ -822,7 +822,7 @@ package  {
 ```
 //IMoneyboxAdapter.as（継承版と同じ）
 
-package  {
+package {
     public interface IMoneyboxAdapter {
         function addYen(arg: uint): void;
         function getMoney$(): Number;
@@ -832,7 +832,7 @@ package  {
 ```
 //MoneyboxAdapter.as（このクラスのみ継承版と異なる）
 
-package  {
+package {
     public class MoneyboxAdapter implements IMoneyboxAdapter {
         private var _moneybox: Moneybox;
         private var _rate: Number;
@@ -864,7 +864,7 @@ package  {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.MovieClip;
     public class Main extends MovieClip {
         public function Main() {
@@ -901,7 +901,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //SuperMobile.as
 
-package  {
+package {
     public class SuperMobile {
         private var _os: IOS; //橋渡し役
         
@@ -919,7 +919,7 @@ package  {
 ```
 //Tablet.as
 
-package  {
+package {
     public class Tablet extends SuperMobile {
         //コンストラクタ
         public function Tablet(arg: IOS) {
@@ -943,7 +943,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //SmartPhone.as
 
-package  {
+package {
     public class SmartPhone extends SuperMobile {
 
         //コンストラクタ
@@ -968,7 +968,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //IOS.as
 
-package  {
+package {
     public interface IOS {
         function get version(): String;
     }
@@ -977,7 +977,7 @@ package  {
 ```
 //Android.as
 
-package  {
+package {
     public class Android implements IOS {
 
         //コンストラクタ
@@ -993,7 +993,7 @@ package  {
 //iOS10.as
 
 //クラス名なので本来は大文字から開始すべきですが、インターフェースのだぶるため…
-package  {
+package {
     public class iOS10 implements IOS { //iOS implements IOS は不可
 
         //コンストラクタ
@@ -1018,7 +1018,7 @@ package  {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -1076,7 +1076,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 //Sameness.as
 
 //"同一視"するための役（スーパークラス＝Component）
-package  {
+package {
     public class Sameness {
         protected var _name: String; //サブクラスで使います
         protected var _parent: Directory; //サブクラスで使います
@@ -1121,7 +1121,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 //Directory.as
 
 //Composit（複合体）の役
-package  {
+package {
     public class Directory extends Sameness {
         private var _child: Array = new Array();
 
@@ -1166,7 +1166,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //File.as
 
-package  {
+package {
     public class File extends Sameness {
 
         //コンストラクタ
@@ -1200,7 +1200,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite; 	
     public class Main extends Sprite {
         public function Main() {
@@ -1233,7 +1233,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Display.as
 
-package  {
+package {
     public class Display {
         protected var _content: String; //同じクラス or サブクラスでアクセス可能
 
@@ -1250,7 +1250,7 @@ package  {
 ```
 //Original.as
 
-package  {
+package {
     public class Original extends Display { //Displayクラスを継承
         public function Original(arg: String) {
             _content = arg;
@@ -1261,7 +1261,7 @@ package  {
 ```
 //Decorator1.as
 
-package  {
+package {
     public class Decorator1 extends Display { //Displayクラスを継承
         public function Decorator1(arg:Display) { //コンストラクタ
             _content = "-" + arg.show() + "-";
@@ -1272,7 +1272,7 @@ package  {
 ```
 //Decorator2.as
 
-package  {
+package {
     public class Decorator2 extends Display { //Displayクラスを継承
         public function Decorator2(arg:Display) { //コンストラクタ
             _content = "<" + arg.show() + ">";
@@ -1293,7 +1293,7 @@ package  {
 ```
 //Main.as（Decoratorパターンと異なる）
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -1315,7 +1315,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //DecoratorFacade.as（Decoratorパターンに追加）
 
-package  {
+package {
     public class DecoratorFacade { //窓口（Facade）役
         //Singletonパターン用
         private static var _decoratorFacade:DecoratorFacade;
@@ -1351,7 +1351,7 @@ internal class Lock {} //Singletonパターン用
 ```
 //Display.as（Decoratorパターンと全く同じ）
 
-package  {
+package {
     public class Display {
         protected var _content: String; //同じクラス or サブクラスでアクセス可能
 
@@ -1368,7 +1368,7 @@ package  {
 ```
 //Original.as（Decoratorパターンと全く同じ）
 
-package  {
+package {
     public class Original extends Display { //Displayクラスを継承
         public function Original(arg: String) {
             _content = arg;
@@ -1379,7 +1379,7 @@ package  {
 ```
 //Decorator1.as（Decoratorパターンと全く同じ）
 
-package  {
+package {
     public class Decorator1 extends Display { //Displayクラスを継承
         public function Decorator1(arg:Display) { //コンストラクタ
             _content = "-" + arg.show() + "-";
@@ -1390,7 +1390,7 @@ package  {
 ```
 //Decorator2.as（Decoratorパターンと全く同じ）
 
-package  {
+package {
     public class Decorator2 extends Display { //Displayクラスを継承
         public function Decorator2(arg:Display) { //コンストラクタ
             _content = "<" + arg.show() + ">";
@@ -1411,7 +1411,7 @@ package  {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     import flash.utils.Timer;
     import flash.events.TimerEvent;
@@ -1450,7 +1450,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //FlyweightFactory.as
 
-package  {
+package {
     public class FlyweightFactory {
         //Singletonパターン用
         private static var _flyweightFactory:FlyweightFactory;
@@ -1495,7 +1495,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Flyweight.as
 
-package  {
+package {
     import flash.net.URLLoader;
     import flash.net.URLRequest;
     import flash.events.Event;
@@ -1532,7 +1532,7 @@ package  {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.MovieClip;
     public class Main extends MovieClip {
         public function Main() {
@@ -1546,7 +1546,7 @@ package  {
 ```
 //Loader.as（代理人＝Proxy役）
 
-package  {
+package {
     public class Loader {
         private var _url: String;
         public function Loader(_url: String) {
@@ -1563,7 +1563,7 @@ package  {
 ```
 //Content.as（実際の本人＝Real Subject役）
 
-package  {
+package {
     public class Content {
         private var _url: String;
 
@@ -1597,7 +1597,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -1625,7 +1625,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Car.as
 
-package  {
+package {
     public class Car {
         private var _name: String, _num: String;
 
@@ -1648,7 +1648,7 @@ package  {
 ```
 //ICarPark.as
 
-package  {
+package {
     public interface ICarPark {
         function add(theElement: Object): void;
         function getElementAt(index: uint): Object;
@@ -1660,7 +1660,7 @@ package  {
 ```
 //CarPark.as
 
-package  {
+package {
     public class CarPark implements ICarPark {
         private var _list: Array = [];
 
@@ -1687,7 +1687,7 @@ package  {
 ```
 //IIterator.as
 
-package  {
+package {
     public interface IIterator {
         function hasNext(): Boolean;
         function next(): Car;
@@ -1697,7 +1697,7 @@ package  {
 ```
 //Iterator.as
 
-package  {
+package {
     public class Iterator implements IIterator {
         private var _object: Object, _count: uint = 0;
         
@@ -1736,7 +1736,7 @@ package  {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -1768,7 +1768,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Abstract.as
 
-package  {
+package {
     public class Abstract {
         public function Abstract() {} //コンストラクタ
 
@@ -1811,7 +1811,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //NewYearCard_Ichiro.as
 
-package  {
+package {
     public class NewYearCard_Ichiro extends Abstract { //スーパークラスを継承
 
         //コンストラクタ
@@ -1839,7 +1839,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //NewYearCard_Hanako.as
 
-package  {
+package {
     public class NewYearCard_Hanako extends Abstract { //スーパークラスを継承
 
         //コンストラクタ
@@ -1872,7 +1872,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.MovieClip;
     public class Main extends MovieClip {
         public function Main() {
@@ -1895,7 +1895,7 @@ package  {
 ```
 //Janken.as
 
-package  {
+package {
     public class Janken {
         private var _strategy: IStrategy;
 
@@ -1912,7 +1912,7 @@ package  {
 ```
 //IStrategy.as
 
-package  {
+package {
     public interface IStrategy {
         function execute(): void;
     }
@@ -1921,7 +1921,7 @@ package  {
 ```
 //StrategyA.as
 
-package  {
+package {
     public class StrategyA implements IStrategy {
         //コンストラクタ
         public function StrategyA() {}
@@ -1942,7 +1942,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //StrategyB.as
 
-package  {
+package {
     public class StrategyB implements IStrategy {
         //コンストラクタ
         public function StrategyB() {}
@@ -1973,7 +1973,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.Sprite;
     public class Main extends Sprite {
         public function Main() {
@@ -2006,7 +2006,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //IAccepter.as
 
-package  {
+package {
     public interface IAccepter {
         function accept(arg:IVisitor): void;
     }
@@ -2015,7 +2015,7 @@ package  {
 ```
 //Hokkaido.as
 
-package  {
+package {
     public class Hokkaido implements IAccepter {
         private var _otoshidama: uint = 10000; //お年玉
 
@@ -2030,7 +2030,7 @@ package  {
 ```
 //Chiba.as
 
-package  {
+package {
     public class Chiba implements IAccepter {
         private var _otoshidama: uint = 5000; //お年玉
         
@@ -2045,7 +2045,7 @@ package  {
 ```
 //IVisitor.as
 
-package  {
+package {
     public interface IVisitor {
         function visit(arg: uint): void;
         function get point(): uint;
@@ -2055,7 +2055,7 @@ package  {
 ```
 //Ichiro.as
 
-package  {
+package {
     public class Ichiro implements IVisitor {
         private var _point:uint = 0; //貯金
 
@@ -2074,7 +2074,7 @@ package  {
 ```
 //Hanako.as
 
-package  {
+package {
     public class Hanako implements IVisitor {
         private var _point: uint = 0; //貯金
 
@@ -2103,7 +2103,7 @@ package  {
 ```
 //Main.as
 
-package  {
+package {
     import flash.display.MovieClip;
     public class Main extends MovieClip {
         public function Main() {
@@ -2126,7 +2126,7 @@ package  {
 ```
 //SuperPO.as
 
-package  {
+package {
     public class SuperPO {
         protected var _next:SuperPO; //たらい回し先（同じクラスorサブクラスからのみアクセス可）
 
@@ -2146,7 +2146,7 @@ package  {
 ```
 //ShinjukuPO.as
 
-package  {
+package {
     public class ShinjukuPO extends SuperPO {
         public function ShinjukuPO() {} //コンストラクタ
 
@@ -2170,7 +2170,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //TokyoPO.as
 
-package  {
+package {
     public class TokyoPO extends SuperPO {
         public function TokyoPO() {} //コンストラクタ
 
@@ -2194,7 +2194,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 //JapanPO.as
 
-package  {
+package {
     public class JapanPO extends SuperPO {
         public function JapanPO() {} //コンストラクタ
 
@@ -2221,12 +2221,170 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package {
+    import flash.display.MovieClip;
+
+    public class Main extends MovieClip {
+        public function Main() {
+            var _mediator: Mediator = new Mediator();
+
+            _mediator.yesButton.switchOn();
+            //=> "NoButtonをoffにします"
+            //=> "TextBoxを入力可能にします"
+
+            _mediator.noButton.switchOn();
+            //=> "YesButtonをoffにします"
+            //=> "TextBoxを入力不可にします"
+        }
+    }
+}
+```
+```
+//AbstractMember.as
+
+package {
+    public class AbstractMember { //（擬似）抽象クラス
+        protected var _mediator: Mediator;
+
+        public function setMediator(_mediator: Mediator): void { //共通の機能
+            this._mediator = _mediator;
+        }
+
+        //抽象メソッド
+        public function advice(_string: String ): void { 
+            console.log("サブクラスで実装して下さい");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//YesButton.as
+
+package {
+    public class YesButton extends AbstractMember { //メンバー①（YesButtonクラス）
+        public function switchOn(): void { //相談役に報告
+            _mediator.report(this, "on");
+        }
+
+        override public function advice(_string: String): void {
+            if (_string == "off") {
+                console.log("YesButtonをoffにします");
+            }
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//NoButton.as
+
+package {
+    public class NoButton extends AbstractMember { //メンバー②（NoButtonクラス）
+        public function switchOn(): void { //相談役に報告
+            _mediator.report(this, "on");
+        }
+
+        override public function advice(_string: String): void {
+            if (_string == "off") {
+                console.log("NoButtonをoffにします");
+            }
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//TextBox.as
+
+package {
+    public class TextBox extends AbstractMember { //メンバー③（TextBoxクラス）
+        override public function advice(_string: String): void {
+            if (_string == "enable") {
+                console.log("TextBoxを入力可能にします");
+            } else if (_string == "disabled") {
+                console.log("TextBoxを入力不可にします");
+            }
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Mediator.as（相談役＝専門性が高いため使い捨て）
+
+package {
+    public class Mediator {
+        private var _yesButton: YesButton, _noButton: NoButton, _textBox: TextBox;
+
+        //コンストラクタ
+        public function Mediator() {
+            _yesButton = new YesButton(); //YesButtonの生成
+            _noButton = new NoButton(); //NoButtonの生成
+            _textBox = new TextBox(); //TextButtonの生成
+
+            _yesButton.setMediator(this); //YesButtonに相談役が自分あることを教える
+            _noButton.setMediator(this); //NoButtonに相談役が自分あることを教える
+            _textBox.setMediator(this); //TextButtonに相談役が自分あることを教える
+        }
+
+        public function get yesButton(): YesButton { //外部からYesButtonにアクセス可能に
+            return _yesButton;
+        }
+
+        public function get noButton() : NoButton { //外部からNoButtonにアクセス可能に
+            return _noButton;
+        }
+
+        //メンバーからの報告を受けて指示を出す
+        public function report(_member: AbstractMember, _string: String): void {
+            if (_member == _yesButton) { //YesButtonからの報告の場合...
+                if (_string == "on") {
+                    _noButton.advice("off");
+                    _textBox.advice("enable");
+                }
+            }
+            if (_member == _noButton) { //NoButtonからの報告の場合...
+                if (_string == "on") {
+                    _yesButton.advice("off");
+                    _textBox.advice("disabled");
+                }
+            }
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
-作成日：2013年  
-更新日：2017年05月XX日
+作成日：2017年05月23日
 
 
 <a name="Observer"></a>

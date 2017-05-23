@@ -2916,7 +2916,7 @@ class Abstract○○ {
 
 //（擬似）抽象クラスの継承
 class 派生クラス名 extends Abstract○○ {
-    public override function 抽象メソッド名(引数①,引数②,...): 返り値の型 {
+    override public function 抽象メソッド名(引数①,引数②,...): 返り値の型 {
         //実際の処理はここに記述
     }
 }
@@ -2954,7 +2954,7 @@ class AbstractClass { //（擬似）抽象クラスの定義
 }
 
 class SubClass extends AbstractClass { //（擬似）抽象クラスの継承
-    public override function eachMethod(): void { //オーバーライドして実際の処理を記述
+    override public function eachMethod(): void { //オーバーライドして実際の処理を記述
         console.log("SubClass.eachMethod()"); //実際の処理
     }
 }
@@ -3059,7 +3059,7 @@ class SuperClass {
 //サブクラス
 class SubClass extends SuperClass { //スーパークラスを継承
     //↓スーパークラスにある同名のメソッドを再定義＝オーバーライド
-    public override function myMethod(): void { //overrideが必須
+    override public function myMethod(): void { //overrideが必須
         //super.myMethod(); //スーパークラス内の同名のメソッドを呼び出す場合
         console.log("SubClass.myMethod()");
     }
