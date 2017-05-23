@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -2100,12 +2100,146 @@ package  {
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.MovieClip;
+    public class Main extends MovieClip {
+        public function Main() {
+            //郵便局（Post Office）
+            var _shinjukuPO: SuperPO = new ShinjukuPO();
+            var _tokyoPO: SuperPO = new TokyoPO();
+            var _japanPO: SuperPO = new JapanPO();
+            
+            //責任のたらいまわしをセット
+            _shinjukuPO.setNext(_tokyoPO).setNext(_japanPO);
+            
+            //投函
+            _shinjukuPO.send("東京都新宿区XX町X-XX-XX"); //本日中に届きます
+            _shinjukuPO.send("東京都日野市XX町X-XX-XX"); //明日中に届きます
+            _shinjukuPO.send("千葉県銚子市XX町X-XX-XX"); //明後日以降に届きます
+        }
+    }
+}
+```
+```
+//SuperPO.as
+
+package  {
+    public class SuperPO {
+        protected var _next:SuperPO; //たらい回し先（同じクラスorサブクラスからのみアクセス可）
+
+        public function SuperPO() {} //コンストラクタ
+
+        public function setNext(arg:SuperPO):SuperPO {
+            _next = arg;
+            return _next;
+        }
+
+        public function send(arg:String):void { //抽象メソッド
+            throw new Error("ERROR:サブクラスでオーバーライドして定義して下さい。");
+        }
+    }
+}
+```
+```
+//ShinjukuPO.as
+
+package  {
+    public class ShinjukuPO extends SuperPO {
+        public function ShinjukuPO() {} //コンストラクタ
+
+        override public function send(arg: String): void {
+            if (new RegExp("新宿").test(arg)) {
+                console.log("本日中に届きます");
+            } else {
+                _next.send(arg); //たらい回し先に振る
+            } 
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//ShinjukuPO.as
+
+package  {
+    public class ShinjukuPO extends SuperPO {
+        public function ShinjukuPO() {} //コンストラクタ
+
+        override public function send(arg: String): void {
+            if (new RegExp("新宿").test(arg)) {
+                console.log("本日中に届きます");
+            } else {
+                _next.send(arg); //たらい回し先に振る
+            } 
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//TokyoPO.as
+
+package  {
+    public class TokyoPO extends SuperPO {
+        public function TokyoPO() {} //コンストラクタ
+
+        override public function send(arg:String): void {
+            if (new RegExp("東京都").test(arg)) {
+                console.log("明日中に届きます");
+            } else {
+                _next.send(arg); //たらい回し先に振る
+            } 
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//JapanPO.as
+
+package  {
+    public class JapanPO extends SuperPO {
+        public function JapanPO() {} //コンストラクタ
+
+        override public function send(arg: String): void {
+            console.log("明後日以降に届きます");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Mediator"></a>
