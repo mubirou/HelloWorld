@@ -1658,18 +1658,6 @@ package  {
 }
 ```
 ```
-//ICarPark.as
-
-package  {
-    public interface ICarPark {
-        function add(theElement: Object): void;
-        function getElementAt(index: uint): Object;
-        function getLength(): uint;
-        function createIterator(): IIterator;
-    }
-}
-```
-```
 //CarPark.as
 
 package  {
