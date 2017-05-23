@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -1408,12 +1408,122 @@ package  {
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    import flash.utils.Timer;
+    import flash.events.TimerEvent;
+
+    public class Main extends Sprite {
+        private var _a: Flyweight, _ka: Flyweight;
+
+        public function Main() {
+            var _flyweightFactory: FlyweightFactory = FlyweightFactory.getInstance();
+            _a = _flyweightFactory.getFlyweight("a");
+            _ka = _flyweightFactory.getFlyweight("ka");
+            _a = _flyweightFactory.getFlyweight("a"); // aは既存です
+            
+            //console.log(_a.text); //このタイミングでは、外部テキストデータがロードされていない
+            
+            //while文 + getTimer() では、処理を奪われてしまいダウンロードできず
+            var _timer: Timer = new Timer(500,1); //0.5秒後に値を取得
+            _timer.addEventListener(TimerEvent.TIMER, timer_timer);
+            _timer.start();
+        }
+        
+        private function timer_timer(e: TimerEvent): void {
+            console.log(_a.text); //あいうえお
+            console.log(_ka.text); //かきくけこ
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//FlyweightFactory.as
+
+package  {
+    public class FlyweightFactory {
+        //Singletonパターン用
+        private static var _flyweightFactory:FlyweightFactory;
+
+        //_poolに管理されるFlyweightオブジェクトは、ガベージコレクションされません
+        //明示的にdeleteする必要有り
+        private var _pool:Object = new Object();
+
+        //コンストラクタ
+        public function FlyweightFactory(arg:Lock) {}
+
+        //Singletonパターン用
+        public static function getInstance():FlyweightFactory { 
+            if (_flyweightFactory == null) {
+                _flyweightFactory = new FlyweightFactory(new Lock());
+            }
+            return _flyweightFactory;
+        }
+
+        //既存ならそのインスタンスを使い、無い場合は新規作成
+        public function getFlyweight(arg:String):Flyweight {
+            //プールにインスタンスが無ければ、Flyweightインスタンス生成しプール
+            if (_pool[arg] == undefined) {
+                _pool[arg] = new Flyweight(arg);
+            } else {
+                console.log(arg + "は既存です");
+            }
+            return _pool[arg];
+        }
+    }
+}
+
+internal class Lock { } //Singletonパターン用
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Flyweight.as
+
+package  {
+    import flash.net.URLLoader;
+    import flash.net.URLRequest;
+    import flash.events.Event;
+
+    public class Flyweight {
+        private var _text:String;
+
+        public function Flyweight(arg:String) {
+            var _urlLoader:URLLoader = new URLLoader();
+            _urlLoader.addEventListener(Event.COMPLETE, complete_urlLoader);
+            _urlLoader.load(new URLRequest(arg + ".txt")); //読み込む外部ファイルの指定
+        }
+
+        private function complete_urlLoader(e:Event):void {
+            _text = e.target.data;
+        }
+
+        public function get text():String {
+            return _text;
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Proxy"></a>
