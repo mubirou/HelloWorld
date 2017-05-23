@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -86,12 +86,64 @@ class Singleton {
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+index.php
+```
+<?php
+require('IPrototype.php');
+require('Prototype.php');
+//
+$prototype1 = new Prototype();
+$prototype1->firstName = "Takashi";
+$prototype1->lastName = "Nishimura";
+$prototype1->address = "X-X-X XXX-cho, Shinjuku-ku";
+//
+$prototype2 = clone $prototype1; //特殊メソッド
+$prototype2->firstName = "Hanako";
+//
+echo $prototype1->firstName."<br>"; //Takashi
+echo $prototype1->lastName."<br>"; //Nishimura
+echo $prototype1->address."<br><br>"; //X-X-X XXX-cho, Shinjuku-ku
+//
+echo $prototype2->firstName."<br>"; //Hanako
+echo $prototype2->lastName."<br>"; //Nishimura
+echo $prototype2->address."<br>"; //X-X-X XXX-cho, Shinjuku-ku
+?>
+```
+IPrototype.php
+```
+<?php
+interface IPrototype {
+    public function __clone(); //特殊メソッド
+}
+?>
+```
+Prototype.php
+```
+<?php
+class Prototype implements IPrototype {
+    private $firstName, $lastName, $address;
+
+    public function __construct() {} //コンストラクタ
+
+    public function __set($propName, $value) {
+        $this->$propName = $value;
+    }
+
+    public function __get($propName) {
+        return $this->$propName;	
+    }
+
+    public function __clone() { //特殊メソッド
+        return $this;
+    }
+}
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Builder"></a>
