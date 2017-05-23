@@ -24,8 +24,8 @@
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
@@ -1869,12 +1869,102 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.MovieClip;
+    public class Main extends MovieClip {
+        public function Main() {
+            var _partner: String = "HANAKO"; // or "ICHIRO"
+            var _janken: Janken;
+
+            //対戦相手によって作戦を変える
+            if (_partner == "HANAKO") {
+                _janken = new Janken(new StrategyA());
+            } else if (_partner == "ICHIRO") {
+                _janken = new Janken(new StrategyB());
+            }
+
+            //じゃんけんの実行
+            _janken.exec(); //グー、グー、パー
+        }
+    }
+}
+```
+```
+//Janken.as
+
+package  {
+    public class Janken {
+        private var _strategy: IStrategy;
+
+        public function Janken(arg: IStrategy) {
+            _strategy = arg;
+        }
+
+        public function exec(): void {
+            _strategy.execute();
+        }
+    }
+}
+```
+```
+//IStrategy.as
+
+package  {
+    public interface IStrategy {
+        function execute(): void;
+    }
+}
+```
+```
+//StrategyA.as
+
+package  {
+    public class StrategyA implements IStrategy {
+        //コンストラクタ
+        public function StrategyA() {}
+
+        public function execute(): void {
+            console.log("グー、グー、パー");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//StrategyB.as
+
+package  {
+    public class StrategyB implements IStrategy {
+        //コンストラクタ
+        public function StrategyB() {}
+
+        public function execute(): void {
+            console.log("パー、グー、チョキ");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Visitor"></a>
