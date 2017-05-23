@@ -91,19 +91,19 @@ index.php
 <?php
 require('IPrototype.php');
 require('Prototype.php');
-//
+
 $prototype1 = new Prototype();
 $prototype1->firstName = "Takashi";
 $prototype1->lastName = "Nishimura";
 $prototype1->address = "X-X-X XXX-cho, Shinjuku-ku";
-//
+
 $prototype2 = clone $prototype1; //特殊メソッド
 $prototype2->firstName = "Hanako";
-//
+
 echo $prototype1->firstName."<br>"; //Takashi
 echo $prototype1->lastName."<br>"; //Nishimura
 echo $prototype1->address."<br><br>"; //X-X-X XXX-cho, Shinjuku-ku
-//
+
 echo $prototype2->firstName."<br>"; //Hanako
 echo $prototype2->lastName."<br>"; //Nishimura
 echo $prototype2->address."<br>"; //X-X-X XXX-cho, Shinjuku-ku
