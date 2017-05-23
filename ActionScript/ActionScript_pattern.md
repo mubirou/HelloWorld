@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>ActionScript 3.0 デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -32,7 +30,6 @@
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
-    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -2854,13 +2851,6 @@ package  {
         }
     }
 }
-
-class console { //ブラウザのコンソール出力用（console.log()の代替）
-    import flash.external.ExternalInterface;
-    public static function log(...args: Array): void {
-        ExternalInterface.call("function(args){ console.log(args);}", args);
-    }
-}
 ```
 ```
 //Calc.as
@@ -3049,9 +3039,134 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            var _AS:String = "+10;*50;/2;-4;="; //≒ASファイル
+            var _SWF:SWF = new SWF(_AS); //≒SWFファイル
+            var _FlashPlayer:SuperFlashPlayer = new FlashPlayer(); //≒Flash Player
+            _FlashPlayer.exec(_SWF); //計算結果は246
+        }
+    }
+}
+```
+```
+//SWF.as
+
+package  {
+    public class SWF {
+        private var _codeArray: Array = []; //中間コード（配列）
+        private var _count: uint = 0;
+
+        public function SWF(code: String) {
+            _codeArray = code.split(";"); //中間コード（配列）に変換
+        }
+
+        public function getNextCode(): String {
+            if (! isEnd()) {
+                return _codeArray[_count ++];
+            } else {
+                return _codeArray[_codeArray.length - 1];
+            }
+        }
+
+        public function isEnd(): Boolean {
+            return _count >= _codeArray.length;
+        }
+    }
+}
+```
+```
+//SuperFlashPlayer.as
+
+package  {
+    public class SuperFlashPlayer {
+        public function SuperFlashPlayer() {} //コンストラクタ
+
+        public function exec(swf: SWF): void {
+            console.log("Error: サブクラスでoverrideして下さい");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//FlashPlayer.as
+
+package  {
+    public class FlashPlayer extends SuperFlashPlayer {
+        public function FlashPlayer() { } //コンストラクタ
+
+        override public function exec(swf: SWF): void {
+            var _result: Number = 0; //計算結果
+            while (! swf.isEnd()) {
+                var _nextCode: String = swf.getNextCode(); //次の命令
+                var _theOperator: String = _nextCode.substr(0,1); //演算子
+                var _theNum: Number = Number(_nextCode.substr(1));
+                if (_theOperator != "=") {
+                    switch (_theOperator) {
+                        case "+": _result += _theNum; break;
+                        case "-": _result -= _theNum; break;
+                        case "*": _result *= _theNum; break;
+                        case "/": _result /= _theNum; break;
+                        default: console.log("ERROR: 演算子が異なります");
+                    }
+                } else {
+                    var _END: SuperFlashPlayer = new FlashPlayer_END(_result);
+                    _END.exec(swf);
+                }
+            }
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//FlashPlayer_END.as（終端となる表現の役）
+
+package  {
+    public class FlashPlayer_END extends SuperFlashPlayer {
+        private var _result:Number;
+
+        public function FlashPlayer_END(result:Number) { //コンストラクタ
+            _result = result;
+        }
+
+        override public function exec(swf:SWF):void {
+            if (swf.getNextCode().substr(0).length == 1) { //"="一字なら…
+                console.log("計算結果は" + _result);
+            } else {
+                console.log("ERROR:最後が=で終了していません");
+            }
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
