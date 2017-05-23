@@ -31,8 +31,8 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
+    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -2827,12 +2827,223 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            //計算機（起動者の役）
+            var _calc: Calc = new Calc();
+            
+            //命令の実行
+            _calc.commandPlus(50); //50
+            _calc.commandPlus(50); //100
+            _calc.commandMinus(1); //99
+            
+            //アンドゥ
+            _calc.undo(); //100
+            _calc.undo(); //50
+            _calc.undo(); //これ以上アンドゥできません 0
+            
+            //リドゥ
+            _calc.redo(); //50
+            _calc.redo(); //100
+            _calc.redo(); //これ以上リドゥできません 99
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//Calc.as
+
+package  {
+    public class Calc {
+        private var _view: View; //結果を表示する役
+        private var _history: Array = [ ]; //命令の履歴を保存
+        private var _count: int; //undo()、redo()用
+
+        public function Calc() { //constructor
+            _view = new View(); //結果を表示する役（Receiver）
+        }
+
+        //=============
+        // 命令❶（可算）
+        //=============
+        public function commandPlus(arg: Number): void {
+            //命令する度にインスタンスを生成
+            var _commandPlus: CommandPlus = new CommandPlus(_view, arg);
+            _commandPlus.exec();
+            //履歴に記録
+            _history.push(_commandPlus);
+            _count = _history.length -1;
+        }
+
+        //=============
+        // 命令❷（減算）
+        //=============
+        public function commandMinus(arg: Number): void {
+            //命令する度にインスタンスを生成
+            var _commandMinus: CommandMinus = new CommandMinus(_view, arg);
+            _commandMinus.exec();
+            //履歴に記録
+            _history.push(_commandMinus);
+            _count = _history.length -1;
+        }
+
+        //=============
+        // ❸アンドゥ
+        //=============
+        public function undo(): void {
+            if (_count > 0) {
+                _view.update(_history[_count --].before); //アンドゥ結果を表示
+            } else {
+                console.log("これ以上アンドゥできません");
+                _count = 0;
+                _view.update(_history[_count].before); //アンドゥ結果を表示
+            }
+        }
+
+        //=============
+        // ❹リドゥ
+        //=============
+        public function redo(): void {
+            if (_count < _history.length-1) {
+                _view.update(_history[++ _count].before); //リドゥ結果を表示
+            } else {
+                console.log("これ以上リドゥできません");
+                _count = _history.length - 1;
+                _view.update(_history[_count].after); //リドゥ結果を表示
+            }
+        }
+
+        //=============
+        // ❺履歴を調べる
+        //=============
+        public function get history(): Array {
+            return _history;
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//ICommand.as
+
+package  {
+    public interface ICommand {
+        function exec():void; //命令を実際に実行する。
+    }
+}
+```
+```
+//CommandPlus.as
+
+package  {
+    public class CommandPlus implements ICommand {
+        private var _view: View; //結果を表示する役
+        private var _plusNum: Number; //可算する値
+        private var _before: Number; //可算する前の値
+        private var _after: Number; //可算後の値
+
+        public function CommandPlus(arg1: View, arg2: Number) { //constructor
+            _view = arg1;
+            _plusNum = arg2;
+        }
+
+        public function exec(): void { //命令（可算）を実際に実行する
+            _before = _view.value; //直前の値を記憶
+            _after = _before + _plusNum; //可算後の値を記憶
+            _view.update(_after);
+        }
+
+        public function get before(): Number {
+            return _before;
+        }
+
+        public function get after(): Number {
+            return _after;
+        }
+    }
+}
+```
+```
+//CommandMinus.as
+
+package  {
+    public class CommandMinus implements ICommand {
+        private var _view: View; //結果を表示する役
+        private var _minusNum: Number; //減算する値
+        private var _before: Number; //減算する前の値
+        private var _after: Number; //減算後の値
+
+        public function CommandMinus(arg1: View, arg2: Number) { //constructor
+            _view = arg1;
+            _minusNum = arg2;
+        }
+
+        public function exec(): void { //命令（減算）を実際に実行する
+            _before = _view.value; //直前の値を記憶
+            _after = _before - _minusNum; //減算後の値を記憶
+            _view.update(_after);
+        }
+
+        public function get before(): Number {
+            return _before;
+        }
+
+        public function get after(): Number {
+            return _after;
+        }
+    }
+}
+```
+```
+//View.as
+
+package  {
+    public class View {
+        private var _value:Number = 0; //計算結果
+
+        public function View() {} //コンストラクタ
+
+        public function update(arg: Number): void {
+            _value = arg;
+            console.log(_value); //undo、redoを含め、全ての結果はここで表示
+        }
+
+        public function get value():Number { //直前の値を記憶
+            return _value;
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Interpreter"></a>
