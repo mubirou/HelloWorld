@@ -1348,6 +1348,7 @@ package  {
 
 internal class Lock {} //Singletonパターン用
 ```
+```
 //Display.as（Decoratorパターンと全く同じ）
 
 package  {
