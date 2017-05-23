@@ -38,11 +38,47 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
+### 概要
+* コンストラクタを private にすることが可能（Singleton クラス外から new Singleton() とするとエラーを発生させることが可能）
+* 静的変数を定義する際、private static $singleton = new Singleton(); とするとエラーが発生してしまう
+
+### 例文
+index.php
+```
+<?php
+require('Singleton.php'); //今回は別ファイルにして読み込む
+
+// クラス::静的メソッド で静的メソッドにアクセス可能
+$instance1 = Singleton::getInstance(); //"インスタンスが生成されました"
+$instance2 = Singleton::getInstance(); //新たなインスタンスは作られない
+echo $instance1 === $instance2; //=> 1（TRUE）中身は全く同じインスタンス
+?>
+```
+Singleton.php
+```
+<?php
+class Singleton {
+    private static $singleton; // = new Singleton(); が出来ない
+
+    private function __construct() { //privateにすることが可能
+        echo "インスタンスが生成されました。";
+    }
+
+    public static function getInstance() {
+        // isset() で変数に値が設定されていれば、1（TRUE）
+        // self::○○ で同じクラス内のメソッドから静的変数にアクセス可
+        if (!isset(self::$singleton)) { //ポイント
+            self::$singleton = new Singleton();
+        }
+        return self::$singleton;
+    }
+}
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -53,7 +89,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -64,7 +100,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -75,7 +111,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -86,7 +122,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -97,7 +133,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -108,7 +144,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -119,7 +155,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -130,7 +166,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -141,7 +177,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -152,7 +188,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -163,7 +199,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -174,7 +210,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -185,7 +221,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -196,7 +232,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -207,7 +243,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -218,7 +254,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -229,7 +265,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -240,7 +276,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -251,7 +287,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -262,7 +298,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -273,7 +309,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -284,7 +320,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -295,5 +331,5 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
