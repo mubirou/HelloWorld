@@ -28,8 +28,8 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
@@ -2390,12 +2390,156 @@ package {
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            //観察される役（Subject）
+            var _apple: ISubject = new Apple();
+            
+            //リスナー（Observer）役
+            var _iPadPro: IObserver = new IPadPro();
+            var _iPad: IObserver = new IPad();
+            var _iPhone: IObserver = new IPhone();
+            
+            //リスナー（Observer）の登録
+            _apple.addObserver(_iPadPro);
+            _apple.addObserver(_iPad);
+            _apple.addObserver(_iPhone);
+            
+            //全リスナー（Observer）への通知
+            _apple.notify();
+            //=> ["iPadPro を 10.3.2 にアップデートします"]
+            //=> ["iPad を 10.3.2 にアップデートします"]
+            //=> ["iPhone を 10.3.2 にアップデートします"]
+        }
+    }
+}
+```
+```
+//ISubject.as
+
+package  {
+    public interface ISubject {
+        //Observerパターン（観察される側）に必須のメソッド
+        function addObserver(arg: IObserver): void; //リスナーの登録
+        function deleteObserver(arg: IObserver): void; //リスナーの削除
+        function notify(): void; //全リスナーへの通知
+    }
+}
+```
+```
+//Apple.as
+
+package  {
+    public class Apple implements ISubject {
+        private var _observerArray: Array = [];
+        private var _version: String = "10.3.2"; //iOS Version
+
+        //コンストラクタ
+        public function Apple() {}
+
+        public function addObserver(arg: IObserver): void { //リスナーの登録
+            _observerArray.push(arg);
+        }
+
+        public function deleteObserver(arg: IObserver): void { //リスナーの削除
+            var _theNum: uint = _observerArray.indexOf(arg,0);
+            if (_theNum != -1) {
+                _observerArray.splice(_theNum, 1);
+            }
+        }
+
+        public function notify(): void { //全リスナーへの通知
+            for each (var _theObserver: IObserver in _observerArray) {
+                _theObserver.update(this);
+            }
+        }
+
+        public function get version(): String {
+            return _version; //最新のAndroidのバージョンを返す
+        }
+    }
+}
+```
+```
+//IObserver.as
+
+package  {
+    public interface IObserver {
+        //Observerパターン（リスナー側）に必須のメソッド
+        function update(arg: *): void;
+    }
+}
+```
+```
+//IPadPro.as
+
+package  {
+    public class IPadPro implements IObserver {
+        public function IPadPro() {} //コンストラクタ
+
+        public function update(arg: *): void {
+            console.log("iPadPro を "  + arg.version +  " にアップデートします");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//IPad.as
+
+package  {
+    public class IPad implements IObserver {
+        public function IPad() {} //コンストラクタ
+
+        public function update(arg: *): void {
+            console.log("iPad を " + arg.version + " にアップデートします");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//IPhone.as
+
+package  {
+    public class IPhone implements IObserver {
+        public function IPhone() {} //コンストラクタ
+
+        public function update(arg: *): void {
+            console.log("iPhone を " + arg.version +  " にアップデートします");
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（trace()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void   {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="Memento"></a>
