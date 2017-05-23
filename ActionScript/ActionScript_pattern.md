@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1970,12 +1970,131 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+//Main.as
+
+package  {
+    import flash.display.Sprite;
+    public class Main extends Sprite {
+        public function Main() {
+            //訪問先（Acceptor）の追加
+            var _acceptorList: Array = [new Chiba(), new Hokkaido()];
+
+            //訪問する人（Visitor）
+            var _ichiro: IVisitor = new Ichiro();
+            var _hanako: IVisitor = new Hanako();
+
+            //訪問する
+            for each (var _theAcceptor: IAccepter in _acceptorList) {
+                _theAcceptor.accept(_ichiro);
+                _theAcceptor.accept(_hanako);
+            }
+
+            console.log(_ichiro.point); //15000
+            console.log(_hanako.point); //15000
+        }
+    }
+}
+
+class console { //ブラウザのコンソール出力用（console.log()の代替）
+    import flash.external.ExternalInterface;
+    public static function log(...args: Array): void {
+        ExternalInterface.call("function(args){ console.log(args);}", args);
+    }
+}
+```
+```
+//IAccepter.as
+
+package  {
+    public interface IAccepter {
+        function accept(arg:IVisitor): void;
+    }
+}
+```
+```
+//Hokkaido.as
+
+package  {
+    public class Hokkaido implements IAccepter {
+        private var _otoshidama: uint = 10000; //お年玉
+
+        public function Hokkaido() { } //コンストラクタ
+
+        public function accept(_arg:IVisitor):void {
+            _arg.visit(_otoshidama);
+        }
+    }
+}
+```
+```
+//Chiba.as
+
+package  {
+    public class Chiba implements IAccepter {
+        private var _otoshidama: uint = 5000; //お年玉
+        
+        public function Chiba() {} //コンストラクタ
+
+        public function accept(_arg:IVisitor): void {
+            _arg.visit(_otoshidama);
+        }
+    }
+}
+```
+```
+//IVisitor.as
+
+package  {
+    public interface IVisitor {
+        function visit(arg: uint): void;
+        function get point(): uint;
+    }
+}
+```
+```
+//Ichiro.as
+
+package  {
+    public class Ichiro implements IVisitor {
+        private var _point:uint = 0; //貯金
+
+        public function Ichiro() {} //コンストラクタ
+
+        public function visit(_arg:uint):void {
+            _point += _arg;
+        }
+
+        public function get point():uint {
+            return _point;
+        }
+    }
+}
+```
+```
+//Hanako.as
+
+package  {
+    public class Hanako implements IVisitor {
+        private var _point: uint = 0; //貯金
+
+        public function Hanako() {} //コンストラクタ
+
+        public function visit(arg: uint):void {
+            _point += arg;
+        }
+
+        public function get point():uint {
+            return _point;
+        }
+    }
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月23日
 
 
 <a name="ChainofResponsibility"></a>
