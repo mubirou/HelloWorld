@@ -2310,6 +2310,7 @@ $calc->redo(); //=> これ以上リドゥできません => 99
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
+* ここでは ActionScript、SWF、AVM（ActionScript Virtual Machine）を自作ミニ言語と見立てています。
 
 ```
 <?php
