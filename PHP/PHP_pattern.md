@@ -17,8 +17,8 @@
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
+    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
@@ -997,12 +997,93 @@ echo $special->show(); // (---TAKASHI---)
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-XXXX
+```
+<?php
+//========================================
+// Displayクラス（Decoratorパターンと同じ）
+//========================================
+class Display { //クラスではなくinterfaceにする方法もある
+    protected $content; //同じクラス or サブクラスでアクセス可能
+
+    //コンストラクタ
+    public function __construct() {} 
+    
+    public final function show() { //finalでサブクラスでのオーバーライドを禁止
+        return $this->content;
+    }
+}
+
+//========================================
+// Originalクラス（Decoratorパターンと同じ）
+//========================================
+class Original extends Display { //Displayクラスを継承
+    public function Original($arg) {
+        $this->content = $arg;
+    }
+}
+
+//==========================================
+// Decorator1クラス（Decoratorパターンと同じ）
+//==========================================
+class Decorator1 extends Display { //Displayクラスを継承
+    public function Decorator1($arg) { //コンストラクタ
+        $this->content = "-".$arg->show()."-";
+    }
+}
+
+//==========================================
+// Decorator2クラス（Decoratorパターンと同じ）
+//==========================================
+class Decorator2 extends Display { //Displayクラスを継承
+    public function Decorator2($arg) { //コンストラクタ
+        $this->content = "(".$arg->show().")"; // "<" ">" はタグと認識されてしまう
+    }
+}
+
+//=====================================================
+// DecoratorFacadeクラス（Decoratorパターンにこれを追加）
+//=====================================================
+class DecoratorFacade {
+    //Singletonパターン用
+    private static $singleton; 
+
+    //コンストラクタ関数
+    private function __construct() {}
+
+    //arg1:オリジナルの文字
+    //arg2:Decorator1クラスを施す回数
+    //arg3:Decorator2クラスを施す回数
+    public static function exec($arg1,	$arg2=0, $arg3=0) {
+        //Singletonパターン用。
+        if (!isset(self::$singleton)) {
+            self::$singleton = new DecoratorFacade();
+        }
+        $result = new Original($arg1);
+        for ($i=0; $i<$arg2; $i++) {
+            $result = new Decorator1($result);
+        }
+        for ($j=0; $j<$arg3; $j++) {
+            $result = new Decorator2($result);
+        }
+        return $result->show();
+    }
+}
+
+//=========
+// 実行
+//=========
+//「クラス::静的メソッド」で静的メソッドにアクセス
+echo DecoratorFacade::exec("TAKASHI", 5, 2)."<br>"; // ((-----TAKASHI-----))
+echo DecoratorFacade::exec("TAKASHI")."<br>"; // TAKASHI
+echo DecoratorFacade::exec("TAKASHI", 0, 1)."<br>"; // (TAKASHI)
+echo DecoratorFacade::exec("TAKASHI", 1, 0); // -TAKASHI-
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Flyweight"></a>
