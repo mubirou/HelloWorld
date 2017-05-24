@@ -1682,9 +1682,9 @@ $setagayaPO->send("大阪府大阪市XXX区X-X-X"); //明後日以降に届き�
 
 ```
 <?php
-/****************
+/*****************
  * 各メンバー関連
-****************/
+*****************/
 abstract class AbstractMember { //抽象クラス
     protected $mediator; //プライベート変数宣言
 
@@ -1748,9 +1748,9 @@ class TextBox extends AbstractMember {
     }
 }
 
-/**********************************
+/***********************************
  * 相談役（専門性が高いため使い捨て）
-**********************************/
+***********************************/
 class Mediator {
     private $yesButton, $noButton, $textBox; //プライベート変数宣言
     //コンストラクタ
@@ -1785,9 +1785,9 @@ class Mediator {
     }
 }
 
-/******
+/********
  * 実行
-******/
+********/
 $mediator = new Mediator();
 //echo gettype($mediator->yesButton);
 $mediator->yesButton->on();
