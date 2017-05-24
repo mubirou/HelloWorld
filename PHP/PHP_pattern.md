@@ -1498,7 +1498,7 @@ interface IAccepter {
 }
 
 //=================
-// 訪問先１＝宮嶋家
+// 訪問先１＝北海道
 //=================
 class Chiba implements IAccepter {
     private $otoshidama = 5000; //お年玉
