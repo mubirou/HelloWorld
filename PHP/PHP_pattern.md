@@ -29,8 +29,8 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
@@ -1916,12 +1916,141 @@ $apple->notify();
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+<?php
+//====================
+// Gamerクラス＝主人公
+//====================
+class Gamer {
+    private $totalX = 0;
+    private $totalY = 0;
+    public function __construct() {} //コンストラクタ
+    public function addX($saikoro) {
+        $this->totalX += $saikoro;
+    }
+    public function addY($saikoro) {
+        $this->totalY += $saikoro;
+    }
+    public function getMemento() {
+        return new Memento($this->totalX, $this->totalY);
+    }
+}
+
+//=====================================
+//Memoryクラス＝世話人（バックアップ係）
+//=====================================
+class Memory {
+    private $history = array(); //状態の履歴を保存
+    private $snapshot; //最後に記録したスナップショット
+    private $count; //undo()、redo()用
+    public function __construct() {} //コンストラクタ
+    public function save($memento) {
+        $this->snapshot = $memento;
+        array_push($this->history, $memento);
+        $this->count = count($this->history) - 1;
+    }
+    // アンドゥ（やり直し）
+    public function undo() {
+        if ($this->count > 0) {
+            return $this->history[-- $this->count];
+        } else {
+            echo "これ以上、アンドゥできません";
+            $this->count = 0;
+            return $this->history[$this->count];
+        }
+    }
+    // リドゥ（再実行）
+    public function redo() {
+        if ($this->count < count($this->history)-1) {
+            return $this->history[++ $this->count];
+        } else {
+            echo "これ以上、リドゥできません";
+            $this->count = count($this->history)-1;
+            return $this->history[$this->count];
+        }
+    }
+    // 作業履歴を調べる
+    public function getHistory() {
+        return $this->history;
+    }
+    // スナップショットを調べる（最後に記録したもの）
+    public function getShapshot() {
+        return $this->snapshot;
+    }
+}
+
+//===================================================================
+// Mementoクラス＝その瞬間の状態をオブジェクト（カプセル化）として保存
+//===================================================================
+class Memento {
+    //状態を表すプロパティ（複数可能）
+    private $totalX;
+    private $totalY;
+    public function Memento($totalX, $totalY) {
+        $this->totalX = $totalX;
+        $this->totalY = $totalY;
+    }
+    public function getX() {
+        return $this->totalX;
+    }
+    public function getY() {
+        return $this->totalY;
+    }
+}
+
+//=======
+// 実行
+//=======
+//登場人物
+$gamer = new Gamer(); //主人公
+$memory = new Memory(); //世話人（記録係）
+        
+//サイコロを５回振る => 毎回、合計値を記録
+for ($i=0; $i<5; $i++) { //５回繰返す
+    //さいころを振る
+    $gamer->addX(saikoro());
+    $gamer->addY(saikoro());
+    //この瞬間の状態をオブジェクトとして保存
+    $memory->save($gamer->getMemento()); 
+}
+
+// アンドゥ
+// 何度もアンドゥを繰り返し、最初まで到達した場合その後ずっと最初の状態が返ります
+$theMemento = $memory->undo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->undo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->undo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->undo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->undo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>"; //=> これ以上、アンドゥできません X,X
+
+// リドゥ
+// 何度もリドゥを繰り返し、最後まで到達した場合その後はずっと最後の状態が返ります
+$theMemento = $memory->redo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->redo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->redo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->redo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>";
+$theMemento = $memory->redo();
+echo $theMemento->getX().",".$theMemento->getY()."<br>"; //=> これ以上、リドゥできません XX,XX
+    
+//サイコロ（1〜6の整数が返る）
+function saikoro() {
+    return rand(1,6);
+}
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="State"></a>
