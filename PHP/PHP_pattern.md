@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -670,12 +670,103 @@ echo $moneyboxAdapter->getMoneyDollar(); //9.8373000009837（ドル）
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+<?php
+//==================
+// SuperMobileクラス
+//==================
+class SuperMobile {
+    private $os; //橋渡し役
+    public function __construct($arg) { //コンストラクタ
+        $this->os = $arg; //$this->$os ではない
+    }	
+    public function getVersion() {
+        return $this->os->getVersion(); //$this->$os-> ではない
+    }
+}
+
+//=============
+// Tabletクラス
+//=============
+class Tablet extends SuperMobile {
+    public function __construct($arg) { //コンストラクタ
+        parent::__construct($arg); //AS3やJavaのSuper()と同等
+    }
+    //タブレット特有の機能
+    public function bigScreen() {
+        return "大きな画面で見る";
+    }
+}
+
+//================
+// SmartPhoneクラス
+//================
+class SmartPhone extends SuperMobile {
+    public function __construct($arg) { //コンストラクタ
+        parent::__construct($arg); //AS3やJavaのSuper()と同等
+    }
+    //スマートフォン特有の機能
+    public function phone() {
+        return "電話をかける";
+    }
+}
+
+//=======================
+// 各OSのインターフェース
+//=======================
+interface IOS {
+    public function getVersion();
+}
+
+//==============
+// Androidクラス
+//==============
+class Android implements IOS {
+    public function __construct() { } //コンストラクタ
+    public function getVersion() {
+        return "Android 7.1.2";
+    }
+}
+
+//======================================
+// iOS6クラス（本来は大文字で開始ですが）
+//======================================
+class iOS6 implements IOS {
+    public function __construct() { } //コンストラクタ
+    public function getVersion() {
+        return "iOS 10.3.2";
+    }
+}
+
+//==========
+// 実行
+//==========
+//Androidタブレット
+$tablet1 = new Tablet(new Android());
+echo $tablet1->getVersion()."<br>"; //Android 7.1.2
+echo $tablet1->bigScreen()."<br>"; //大きな画面で見る
+        
+//iPad
+$tablet2 = new Tablet(new iOS6());
+echo $tablet2->getVersion()."<br>"; //iOS 10.3.2
+echo $tablet2->bigScreen()."<br>"; //大きな画面で見る
+        
+//Androidスマートフォン
+$smartPhone1 = new SmartPhone(new Android());
+echo $smartPhone1->getVersion()."<br>"; //Android 7.1.2
+echo $smartPhone1->phone()."<br>"; //電話をかける
+
+//iPhone
+$smartPhone2 = new SmartPhone(new iOS6());
+echo $smartPhone2->getVersion()."<br>"; //iOS 10.3.2
+echo $smartPhone2->phone()."<br>"; //電話をかける
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Composite"></a>
