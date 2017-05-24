@@ -22,8 +22,8 @@
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1217,12 +1217,104 @@ $imgLoader->load(); //通常は必要になった時に実際に画像（実際�
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+<?php
+//==========
+// Carクラス
+//==========
+class Car {
+    private $name,$num;
+    public function __construct($name, $num) { //コンストラクト
+        $this->name = $name;
+        $this->num = $num;
+    }
+    public function __get($name) { //getter
+        return $this->$name; //（注意）$this->nameではない
+    }
+}
+
+//===============================
+// CarParkクラスのインターフェース
+//===============================
+interface ICarPark {
+    public function add($theElement); //$を付け忘れないように…
+    public function getElementAt($index);
+    public function getLength();
+    public function createIterator();	
+}
+
+//==============
+// CarParkクラス
+//==============
+class CarPark implements ICarPark {
+    private $list = array();
+
+    //コンストラクタ関数
+    public function __construct() {}
+
+    public function add($theElement) {
+        array_push($this->list, $theElement);
+    }
+
+    public function getElementAt($index) {
+        return $this->list[$index];
+    }
+
+    public function getLength() {
+        return count($this->list);
+    }
+
+    public function createIterator() {
+        return new IteratorCarPark($this);
+    }
+}
+
+//=======================================
+// IteratorCarParkクラスのインターフェース
+//=======================================
+interface IIteratorCarPark {
+    public function hasNext();
+    public function next();
+}
+
+//=====================
+// IteratorCarParkクラス
+//=====================
+class IteratorCarPark implements IIteratorCarPark { //Class Iterator ではエラー
+    private $object, $count = 0;
+
+    public function __construct($object) {
+        $this->object = $object;
+    }
+
+    public function hasNext() {
+        return $this->object->getLength() > $this->count;
+    }
+    
+    public function next() {
+        return $this->object->getElementAt($this->count++); //次の車を返す
+    }
+}
+
+//=========
+// 実行
+//=========
+$carPark = new CarPark();
+$carPark->add(new Car("NISSAN GT-R", "品川300 す35-00"));
+$carPark->add(new Car("BMW mini", "品川300 し32-32"));
+$carPark->add(new Car("TOYOTA 2000GT", "練馬501 の31-79"));
+$iteratorCarPark = $carPark->createIterator(); //イテレータを生成
+while($iteratorCarPark->hasNext()) {
+    $nextCar = $iteratorCarPark->next();
+    echo $nextCar->name.", ".$nextCar->num."<br>";
+}
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="TemplateMethod"></a>
