@@ -24,8 +24,8 @@
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
@@ -1416,12 +1416,73 @@ HAPPY NEW YEAR!
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+```
+<?php
+//=============
+// Jankenクラス
+//=============
+class Janken {
+    private $strategy;
+
+    public function __construct($arg) { //コンストラクタ
+        $this->strategy = $arg; //$this->$strategyではない
+    }
+
+    public function exec() {
+        $this->strategy->execute();
+    }
+}
+
+//===================================
+// StrategyXXXクラスのインターフェース
+//===================================
+interface IStrategy {
+    public function execute();
+}
+
+//===============
+// StrategyAクラス
+//===============
+class StrategyA implements IStrategy {
+    public function __construct() {} //コンストラクタ
+
+    public function execute() {
+        echo "グー、グー、パー";
+    }
+}
+
+//===============
+// StrategyBクラス
+//===============
+class StrategyB implements IStrategy {
+    public function __construct() {} //コンストラクタ
+
+    public function execute() {
+        echo "パー、グー、チョキ";
+    }
+}
+
+//=========
+// 実行
+//=========
+$partner = "HANAKO"; // or "ICHIRO"
+
+//対戦相手によって作戦を変える
+if ($partner == "HANAKO") {
+    $janken = new Janken(new StrategyA());
+} else if ($partner == "ICHIRO") {
+    $janken = new Janken(new StrategyB());
+}
+
+//じゃんけんの実行
+$janken->exec(); //グー、グー、パー
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Visitor"></a>
