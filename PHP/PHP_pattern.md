@@ -9,10 +9,10 @@
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
@@ -439,12 +439,104 @@ $cardTomoko->templateMethod("summer");
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+```
+<?php
+//=====================
+// AbstractFactoryクラス
+//=====================
+abstract class AbstractFactory {
+    public function __counstruct() {} //コンストラクタ
+    public static function createFactory($arg) {
+        switch ($arg) {
+            case "ICHIRO":
+                return new ICHIRO(); //具体的な「一郎工場」を生成
+            case "HANAKO":
+                return new HANAKO(); //具体的な「花子工場」を生成
+        }
+    }
+    //抽象的な機能サブクラスでオーバーライドして、実際の機能を実装
+    public abstract function createNewYear();
+    public abstract function createSummer();
+}
+
+//=============
+// ICHIROクラス
+//=============
+class ICHIRO extends AbstractFactory {
+    public function __construct() {} //コンストラクタ
+    //実際の処理を行う
+    public function createNewYear() {
+        echo "HAPPY NEW YEAR!<br>";
+        echo "（正月用イラスト）<br>";
+        echo "西村一郎<br><br>";
+    }
+    //実際の処理を行う
+    public function createSummer() {
+        echo "暑中お見舞い申し上げます<br>";
+        echo "（夏用イラスト）<br>";
+        echo "西村一郎<br><br>";
+    }
+}
+
+//=============
+// HANAKOクラス
+//=============
+class HANAKO extends AbstractFactory {
+    public function __construct() {} //コンストラクタ
+    //実際の処理を行う
+    public function createNewYear() {
+        echo "あけましておめでとうございます<br>";
+        echo "（正月用イラスト）<br>";
+        echo "西村花子<br><br>";
+    }
+    //実際の処理を行う
+    public function createSummer() {
+        echo "しょちゅうおみまいもうしあげます<br>";
+        echo "（夏用イラスト）<br>";
+        echo "西村花子<br><br>";
+    }
+}
+
+//===========
+// 実行
+//===========
+$ICHIRO = AbstractFactory::createFactory("ICHIRO"); //一郎工場を作る（クラス::静的メソッド() を利用）
+$ICHIRO->createNewYear(); //製品を生産
+/*
+HAPPY NEW YEAR!
+（正月用イラスト）
+西村一郎
+*/
+$ICHIRO->createSummer();
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+西村一郎
+*/
+
+//=======
+// 花子
+//======
+$HANAKO = AbstractFactory::createFactory("HANAKO"); //花子工場を作る（クラス::静的メソッド() を利用）
+$HANAKO->createNewYear(); //製品を生産
+/*
+あけましておめでとうございます
+（正月用イラスト）
+西村花子
+*/
+$HANAKO->createSummer();
+/*
+しょちゅうおみまいもうしあげます
+（夏用イラスト）
+西村花子
+*/
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Adapter（継承）"></a>
