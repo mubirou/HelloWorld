@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -304,12 +304,133 @@ HAPPY NEW YEAR!
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+<?php
+//=====================
+// AbstractClass クラス
+//=====================
+abstract class AbstractClass { 
+    public function __construct() { } //コンストラクタ
+    public final function templateMethod($arg) { //finalでサブクラスでのオーバーライド禁止
+        //サブクラスでオーバーライドして具体的処理を行う
+        $factoryMethod = $this->factoryMethod($arg);
+        $factoryMethod->exec();
+        $this->order1(); //共通の処理
+        $this->order2(); //サブクラスでオーバーライドして具体的処理を行う
+    }
+    //必ずサブクラスで定義しなければなりません
+    protected abstract function factoryMethod($arg);
+    private function order1() { //共通の処理
+        echo "〒XXX-XXXX 新宿区XXX X-X-X<br>";
+    }
+    //必ずサブクラスで定義しなければなりません
+    protected abstract function order2();
+}
+
+//================
+// CardIchiroクラス
+//================
+class CardIchiro extends AbstractClass {
+    public function __construct() { } //コンストラクタ
+    //インスタンスを生成する工場（オーバーライドして実際にインスタンスを生成）
+    protected function factoryMethod($arg) {
+        if ($arg == "newYear") {
+            return new NewYear_Message();
+        } else if ($arg == "summer") {
+            return new Summer_Message();
+        }
+    }
+    protected function order2() {
+        echo "西村一郎<br><br>";
+    }
+}
+
+//=================
+// CardHanakoクラス
+//=================
+class CardHanako extends AbstractClass {
+    public function __construct() { } //コンストラクタ
+    //インスタンスを生成する工場（オーバーライドして実際にインスタンスを生成）
+    protected function factoryMethod($arg) {
+        if ($arg == "newYear") {
+            return new NewYear_Message();
+        } else if ($arg == "summer") {
+            return new Summer_Message();
+        }
+    }
+    protected function order2() {
+        echo "西村花子<br><br>";
+    }
+}
+
+//=====================
+// NewYear_Messageクラス
+//=====================
+class NewYear_Message {
+    public function __construct() { } //コンストラクタ
+    public function exec() {
+        echo "明けましておめでとうございます<br>";
+        echo "（正月用イラスト）<br>";
+    }
+}
+
+//====================
+// Summer_Messageクラス
+//====================
+class Summer_Message {
+    public function __construct() { } //コンストラクタ
+    public function exec() {
+        echo "暑中お見舞い申し上げます<br>";
+        echo "（夏用イラスト）<br>";
+    }
+}
+
+//===========
+// 実行
+//===========
+// 年賀状（一郎用）
+$cardIchiro = new CardIchiro();
+$cardIchiro->templateMethod("newYear");
+/*
+明けましておめでとうございます
+（正月用イラスト）
+〒XXX-XXXX 新宿区XXX X-X-X
+西村一郎
+*/
+// 暑中見舞い（一郎用）
+$cardIchiro = new CardIchiro();
+$cardIchiro->templateMethod("summer");
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+〒XXX-XXXX 新宿区XXX X-X-X
+西村一郎
+*/
+// 年賀状（花子用）
+$cardTomoko = new CardHanako();
+$cardTomoko->templateMethod("newYear");
+/*
+明けましておめでとうございます
+（正月用イラスト）
+〒XXX-XXXX 新宿区XXX X-X-X
+西村花子
+*/	
+// 暑中見舞い（花子用）
+$cardTomoko = new CardHanako();
+$cardTomoko->templateMethod("summer");
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+〒XXX-XXXX 新宿区XXX X-X-X
+西村花子
+*/
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="AbstractFactory"></a>
