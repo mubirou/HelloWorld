@@ -31,8 +31,8 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
+    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -2143,12 +2143,172 @@ $kanji->testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+<?php
+//===============================
+// Calcクラス＝起動者（Invoker役）
+//===============================
+class Calc {
+    private $view; //結果を表示する役
+    private $history = array(); //命令の履歴を保存
+    private $count; //undo()、redo()用
+    public function __construct() { //constructor
+        $this->view = new View(); //結果を表示する役（Receiver）
+    }
+    //=============
+    // 命令１（可算）
+    //=============
+    public function commandPlus($arg) {
+        //命令する度にインスタンスを生成
+        $commandPlus = new CommandPlus($this->view, $arg);
+        $commandPlus->exec();
+        //履歴に記録
+        array_push($this->history, $commandPlus);
+        $this->count = count($this->history) - 1;
+    }
+    //=============
+    // 命令２（減算）
+    //=============
+    public function commandMinus($arg) {
+        //命令する度にインスタンスを生成
+        $commandMinus = new CommandMinus($this->view, $arg);
+        $commandMinus->exec();
+        //履歴に記録
+        array_push($this->history, $commandMinus);
+        $this->count = count($this->history) - 1;
+    }
+    //=============
+    // ３アンドゥ
+    //=============
+    public function undo() {
+        if ($this->count > 0) {
+            $this->view->update($this->history[$this->count --]->getBefore());
+        } else {
+            echo "これ以上アンドゥできません<br>";
+            $this->count = 0;
+            $this->view->update($this->history[$this->count]->getBefore());
+        }
+    }
+    //=============
+    // ４リドゥ
+    //=============
+    public function redo() {
+        if ($this->count < count($this->history)-1) {
+            $this->view->update($this->history[++ $this->count]->getBefore());
+        } else {
+            echo "これ以上リドゥできません<br>";
+            $this->count = count($this->history) - 1;
+            $this->view->update($this->history[$this->count]->getAfter());
+        }
+    }
+    //=============
+    // ５履歴を調べる
+    //=============
+    public function getHistory() {
+        return $this->history;
+    }
+}
+
+//=============================
+// CommandXXXのインターフェース
+//=============================
+interface ICommand {
+    public function exec(); //命令を実際に実行する
+}
+
+//===================================
+// CommandPlusクラス＝命令１（足し算）
+//===================================
+class CommandPlus implements ICommand {
+    private $view; //結果を表示する役
+    private $plusNum; //可算する値
+    private $before; //可算する前の値
+    private $after; //可算後の値
+    public function __construct($arg1, $arg2) { //constructor
+        $this->view = $arg1;
+        $this->plusNum = $arg2;
+    }
+    public function exec() { //命令（可算）を実際に実行する
+        $this->before = $this->view->getValue(); //直前の値を記憶
+        $this->after = $this->before + $this->plusNum; //可算後の値を記憶
+        $this->view->update($this->after);
+    }
+    public function getBefore() {
+        return $this->before;
+    }
+    public function getAfter() {
+        return $this->after;
+    }
+}
+
+//===================================
+// CommandMinusクラス＝命令２（引き算）
+//===================================
+class CommandMinus implements ICommand {
+    private $view; //結果を表示する役
+    private $minusNum; //減算する値
+    private $before; //減算する前の値
+    private $after; //減算後の値
+    public function CommandMinus($arg1, $arg2) { //constructor
+        $this->view = $arg1;
+        $this->minusNum = $arg2;
+    }
+    public function exec() { //命令（減算）を実際に実行する
+        $this->before = $this->view->getValue(); //直前の値を記憶
+        $this->after = $this->before - $this->minusNum; //減算後の値を記憶
+        $this->view->update($this->after);
+    }
+    public function getBefore() {
+        return $this->before;
+    }
+    public function getAfter() {
+        return $this->after;
+    }
+}
+
+//================================================
+// Viewクラス＝受信者（Receiver役）結果を表示する役
+//================================================
+class View {
+    private $value = 0; //計算結果
+    public function __construct() { } //constructor
+    public function update($arg) {
+        $this->value = $arg;
+        echo $this->value."<br>"; //undo、redoを含め全ての結果はここで表示
+    }
+    public function getValue() { //直前の値を記憶
+        return $this->value;
+    }
+}
+
+//=======
+// 実行
+//=======
+//計算機（起動者の役）
+$calc = new Calc();
+
+//命令の実行
+$calc->commandPlus(50); //=> 50
+$calc->commandPlus(50); //=> 100
+$calc->commandMinus(1); //=> 99
+        
+//アンドゥ
+$calc->undo(); //=> 100
+$calc->undo(); //=> 50
+$calc->undo(); //=> これ以上アンドゥできません => 0
+        
+//リドゥ
+$calc->redo(); //=> 50
+$calc->redo(); //=> 100
+$calc->redo(); //=> これ以上リドゥできません => 99
+?>
+
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Interpreter"></a>
