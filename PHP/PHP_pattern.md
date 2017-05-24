@@ -7,8 +7,8 @@
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
-    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -149,12 +149,156 @@ class Prototype implements IPrototype {
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+<?php
+//=============
+//Directorクラス
+//=============
+class Director {
+    public function __construct($arg) {
+        $this->builder = $arg;
+    }
+    public function construct() {
+        $this->builder->makeHeader();
+        $this->builder->makeContent();
+        $this->builder->makeFooter();
+    }
+}
+
+//================================
+//BuilderXXXクラスのインターフェース
+//================================
+interface IBuilder {
+    public function makeHeader();
+    public function makeContent();
+    public function makeFooter();
+}
+
+//===============
+//Builder009クラス
+//===============
+class Builder009 implements IBuilder {
+    public function __construct() { }
+    public function makeHeader(){
+        $header = new Header051(); //ヘッダー用素材の呼び出し
+        $header->exec();
+    }
+    public function makeContent(){
+        $content = new Content194(); //ヘッダー用素材の呼び出し
+        $content->exec();
+    }
+    public function makeFooter(){
+        $footer = new Footer004(); //ヘッダー用素材の呼び出し
+        $footer->exec();
+    }
+}
+
+//===============
+//Builder108クラス
+//===============
+class Builder108 implements IBuilder {
+    public function __construct() { }
+    public function makeHeader(){
+        $header = new Header040(); //ヘッダー用素材の呼び出し
+        $header->exec();
+    }
+    public function makeContent(){
+        $content = new Content023(); //ヘッダー用素材の呼び出し
+        $content->exec();
+    }
+    public function makeFooter(){
+        $footer = new Footer011(); //ヘッダー用素材の呼び出し
+        $footer->exec();
+    }
+}
+
+//===============
+//Header040クラス
+//===============
+class Header040 {
+    public function __construct() { }
+
+    public function exec() {
+        echo "HAPPY NEW YEAR!<br>"; //ヘッダー用素材
+    }
+}
+
+//===============
+//Header051クラス
+//===============
+class Header051 {
+    public function __construct() { }
+
+    public function exec() {
+        echo "あけましておめでとうございます<br>"; //ヘッダー用素材
+    }
+}
+
+//===============
+//Content023クラス
+//===============
+class Content023 {
+    public function __construct() { }
+    public function exec() {
+        echo "（タイプ023のイラスト）<br>"; //コンテンツ用素材
+    }
+}
+
+//===============
+//Content194クラス
+//===============
+class Content194 {
+    public function __construct() { }
+    public function exec() {
+        echo "（タイプ194のイラスト）<br>"; //コンテンツ用素材
+    }
+}
+
+//===============
+//Footer004クラス
+//===============
+class Footer004 {
+    public function __construct() { }
+    public function exec() {
+        echo "にしむらはなこ<br>"; //フッター用素材
+    }
+}
+
+//===============
+//Footer011クラス
+//===============
+class Footer011 {
+    public function __construct() { }
+    public function exec() {
+        echo "西村一郎<br>"; //フッター用素材
+    }
+}
+
+//===========
+// 実行
+//===========
+$director = new Director(new Builder009());
+$director->construct();
+/*
+あけましておめでとうございます
+（タイプ194のイラスト）
+にしむらはなこ
+*/
+
+$director = new Director(new Builder108());
+$director->construct();
+/*
+HAPPY NEW YEAR!
+（タイプ023のイラスト）
+西村一郎
+*/
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="FactoryMethod"></a>
