@@ -13,8 +13,8 @@
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
@@ -606,12 +606,65 @@ echo $moneyboxAdapter->getMoneyDollar(); //9.8373000009837（ドル）
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-XXXX
+```
+<?php
+//================================================
+// Moneyboxクラス＝実際の「貯金箱」（継承版と同じ）
+//================================================
+class Moneybox {
+    private $moneyYen; //この変数に貯金されます
+    public function __construct($arg) { //コンストラクタ
+        $this->moneyYen = $arg;
+    }
+    public function add($arg) {
+        $this->moneyYen += $arg;
+    }
+    public function __get($name) {
+        return $this->$name;
+    }
+}
+
+//======================================================
+// MoneyboxAdapterクラスのインターフェース（継承版と同じ）
+//=======================================
+interface IMoneyboxAdapter {
+    public function addYen($arg);
+    public function getMoneyDollar();
+}
+
+//===========================================================
+//MoneyboxAdapterクラス＝円をドルに変換（ここが継承版と異なる）
+//===========================================================
+class MoneyboxAdapter implements IMoneyboxAdapter {
+    private $moneybox;
+    private $rate;
+    // 引数1＝最初の貯金、引数２＝為替レート
+    public function __construct($arg1, $arg2) { //コンストラクタ
+        $this->moneybox = new Moneybox($arg1); //ここがポイント
+        $this->rate = $arg2;
+    }
+    public function addYen($arg) {
+        $this->moneybox->add($arg);
+    }
+    public function getMoneyDollar() { //getMoney$はNG
+        return $this->moneybox->moneyYen / $this->rate;
+    }
+}
+
+//====================
+// 実行（継承版と同じ）
+//====================
+// new MoneyboxAdapter(最初の貯金, 為替レート)
+$moneyboxAdapter = new MoneyboxAdapter(100, 111.8193);
+$moneyboxAdapter->addYen(1000);
+echo $moneyboxAdapter->getMoneyDollar(); //9.8373000009837（ドル）
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Bridge"></a>
