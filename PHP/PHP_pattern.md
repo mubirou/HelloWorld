@@ -397,6 +397,7 @@ $cardIchiro->templateMethod("newYear");
 〒XXX-XXXX 新宿区XXX X-X-X
 西村一郎
 */
+
 // 暑中見舞い（一郎用）
 $cardIchiro = new CardIchiro();
 $cardIchiro->templateMethod("summer");
@@ -406,6 +407,7 @@ $cardIchiro->templateMethod("summer");
 〒XXX-XXXX 新宿区XXX X-X-X
 西村一郎
 */
+
 // 年賀状（花子用）
 $cardTomoko = new CardHanako();
 $cardTomoko->templateMethod("newYear");
@@ -414,7 +416,8 @@ $cardTomoko->templateMethod("newYear");
 （正月用イラスト）
 〒XXX-XXXX 新宿区XXX X-X-X
 西村花子
-*/	
+*/
+
 // 暑中見舞い（花子用）
 $cardTomoko = new CardHanako();
 $cardTomoko->templateMethod("summer");
