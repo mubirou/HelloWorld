@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1320,12 +1320,97 @@ while($iteratorCarPark->hasNext()) {
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+### 概要
+* abstractクラス、abstractメソッド、finalキーワードをサポート
+* overrideキーワードはない（通常の関数定義で上書き）
+
+### 例文
+```
+<?php
+//===============
+// Abstractクラス
+//===============
+abstract class AbstractClass { //Abstractという名前は不可
+    //コンストラクタ
+    public function __construct() {}
+
+    public final function templateMethod() { //finalでサブクラスでのオーバーライド禁止
+        $this->order1(); //共通の処理
+        if ($this->isAdult()) { //フックメソッド
+            $this->order2(); //条件により実行
+        }
+        $this->order3();
+    }
+
+    //共通の処理
+    private function order1() {
+        echo "HAPPY NEW YEAR!"."<br>";
+    }
+
+    //フックメソッド実際はサブクラスでオーバーライドして定義（オプション）
+    protected function isAdult() { //protectedで同じクラスorサブクラスからのみアクセス可
+        return true; //今回はabstractにせず初期値を設定
+    }
+
+    private function order2() { //条件により実行
+        echo "本年も宜しくお願い致します"."<br>";
+    }
+
+    //必ずサブクラスで定義しなければなりません
+    protected abstract function order3();
+}
+
+//============
+// サブクラス１
+//============
+class NewYearCard_Ichiro extends AbstractClass { //スーパークラスを継承
+    public function __construct() {} //コンストラクタ
+
+    //フックメソッドの実際の定義（オプション）
+    protected function isAdult() {
+        return false;
+    }
+
+    protected function order3() {
+        echo "テニスがんばろうね！"."<br>";
+    }
+}
+
+//============
+// サブクラス２
+//============
+class newYearCard_Hanako extends AbstractClass { //スーパークラスを継承
+    public function __construct() {} //コンストラクタ
+
+    protected function order3() {
+        echo "今度みんなで集まろう！"."<br>";
+    }
+}
+
+//=========
+// 実行
+//=========
+$newYearCard_Ichiro = new NewYearCard_Ichiro();
+$newYearCard_Ichiro->templateMethod();
+/*
+HAPPY NEW YEAR!
+テニスがんばろうね！
+*/
+
+$newYearCard_Hanako = new newYearCard_Hanako();
+$newYearCard_Hanako->templateMethod();
+/*
+HAPPY NEW YEAR!
+本年も宜しくお願い致します
+今度みんなで集まろう！
+*/
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Strategy"></a>
