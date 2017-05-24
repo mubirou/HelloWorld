@@ -28,8 +28,8 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
@@ -1809,12 +1809,108 @@ $mediator->noButton->on();
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+<?php
+//==============================
+// 観察される役のインターフェース
+//==============================
+interface ISubject {
+    //Observerパターン（観察される側）に必須のメソッド
+    public function addObserver($arg); //リスナーの登録
+    public function deleteObserver($arg); //リスナーの削除
+    public function notify(); //全リスナーへの通知
+}
+
+//========================================
+// Googleクラス＝観察される役（Subuject役）
+//========================================
+class Google implements ISubject {
+    private $observerArray = array();
+    private $version = "10.3.2"; //iOS Version
+    public function __construct() { } //constructor
+
+    public function addObserver($arg) { //リスナーの登録
+        array_push($this->observerArray, $arg);
+    }
+    public function deleteObserver($arg) { //リスナーの削除
+        $theNum = array_search($arg, $this->observerArray,TRUE);
+        if (_theNum !== FALSE) {
+            array_splice($this->observerArray,$theNum,1);
+        }
+    }
+    public function notify() { //全リスナーへの通知
+        foreach ($this->observerArray as $theObserver) {
+            $theObserver->update($this);
+        }
+    }
+    public function __get($propName) {
+        return $this->$propName; //実質、最新のiOSのバージョンを返す
+    }
+}
+
+//=============================
+// リスナー役のインターフェース
+//=============================
+interface IObserver {
+    //Observerパターン（リスナー側）に必須のメソッド
+    public function update($arg);
+}
+
+//============================================
+// IPadProクラス＝リスナー役１（Observer役）
+//============================================
+class IPadPro implements IObserver {
+    public function __construct() { } //constructor
+    public function update($arg) {
+        echo "iPad Pro を ".$arg->version." にアップデートします<br>";
+    }
+}
+
+//===========================================
+// IPadクラス＝リスナー役２（Observer役）
+//===========================================
+class IPad implements IObserver {
+    public function __construct() { } //constructor
+    public function update($arg) {
+        echo "iPad を ".$arg->version." にアップデートします<br>";
+    }
+}
+
+//===========================================
+// IPhoneクラス＝リスナー役３（Observer役）
+//===========================================
+    class IPhone implements IObserver {
+        public function __construct() { } //constructor
+        public function update($arg) {
+            echo "iPhone を ".$arg->version." にアップデートします<br>";
+        }
+    }
+
+//=======
+// 実行
+//=======
+//観察される役（Subject）
+$google = new Google();
+
+//リスナー（Observer）役
+$galaxyNote = new IPadPro();
+$galaxyTab = new IPad();
+$galaxyS = new IPhone();
+        
+//リスナー（Observer）の登録
+$google->addObserver($galaxyNote);
+$google->addObserver($galaxyTab);
+$google->addObserver($galaxyS);
+        
+//全リスナー（Observer）への通知
+$google->notify();
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Memento"></a>
