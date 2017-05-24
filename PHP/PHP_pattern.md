@@ -626,7 +626,7 @@ class Moneybox {
 
 //======================================================
 // MoneyboxAdapterクラスのインターフェース（継承版と同じ）
-//=======================================
+//======================================================
 interface IMoneyboxAdapter {
     public function addYen($arg);
     public function getMoneyDollar();
