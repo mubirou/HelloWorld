@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
@@ -1161,12 +1161,57 @@ echo $ka->getText(); //=> "かきくけこ"
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+<?php
+//======================================
+// ImgLoaderとImgクラスのインターフェース
+//======================================
+interface Iimg {
+    public function load();
+}
+
+//=================================
+// ImgLoaderクラス＝代理人（Proxy役）
+//=================================
+class ImgLoader implements Iimg {
+    private $url;
+    public function  __construct($url) {
+        $this->url = $url;
+    }
+    public function load() {
+        //実際の本人登場（代理人は実際の本人を知っている）
+        $img = new Img($this->url);
+        $img->load();
+    }
+}
+
+//======================
+// Imgクラス＝実際の本人
+//======================
+class Img implements Iimg {
+    private $url;
+    public function __construct($url) {
+        $this->url = $url;
+    }
+    public function load() { //重い処理をここで行う
+        //今回のサンプルの中身はあまり重要ではない…
+        header("Content-type: image/jpeg"); //決め打ち
+        readfile($this->url);
+    }
+}
+
+//=========
+// 実行
+//=========
+$imgLoader = new ImgLoader("sample.jpg"); //代理人（Proxy）役
+$imgLoader->load(); //通常は必要になった時に実際に画像（実際の本人）をロード
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Iterator"></a>
