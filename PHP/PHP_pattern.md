@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -1089,12 +1089,73 @@ echo DecoratorFacade::exec("TAKASHI", 1, 0); // -TAKASHI-
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-XXXX
+```
+<?php
+//=======================================================
+// FlyweightFactoryクラス＝インスタンスの管理人（Singleton）
+//=======================================================
+class FlyweightFactory {
+    private static $flyweightFactory; //Singletonパターン用
+
+    //_poolに管理されるFlyweightオブジェクトはガベージコレクションされません
+    // 明示的にdeleteする必要有り
+    private $pool = array();
+
+    private function  __construct() { } //コンストラクタ
+
+    //Singletonパターン用
+    public static function getInstance() { 
+        if ( ! isset(self::$flyweightFactory) ) { //ポイント
+            self::$flyweightFactory = new FlyweightFactory();
+        }
+        return self::$flyweightFactory;
+    }
+
+    //既存ならそのインスタンスを使い、無い場合は新規作成
+    public function getFlyweight($arg) {
+        //プールにインスタンスが無ければ Flyweight インスタンス生成しプール
+        if (! array_key_exists($arg, $this->pool)) { //ポイント
+            $this->pool[$arg] = new Flyweight($arg);
+        } else {
+            echo $arg."は既存です<br>";
+        }
+        return $this->pool[$arg];
+    }
+}
+
+//=============================================
+// Flyweightクラス＝無駄に生成したくないアイテム
+//=============================================
+class Flyweight {
+    private $text; //ロードしたテキストを格納
+    public function Flyweight($arg) {
+        $filename = $arg.".txt"; //読み込む外部ファイルの指定
+        $filePointer = fopen($filename, "r");
+        $this->text = fread($filePointer, filesize($filename));
+        fclose($filePointer);
+    }
+    public function getText() {
+        return $this->text;
+    }
+}
+
+//=========
+// 実行
+//=========
+$flyweightFactory = FlyweightFactory::getInstance(); //Singletonパターン
+$a = $flyweightFactory->getFlyweight("a");
+$ka = $flyweightFactory->getFlyweight("ka");
+$a = $flyweightFactory->getFlyweight("a"); // aは既存です
+
+echo $a->getText()."<br>"; //=> "あいうえお"
+echo $ka->getText(); //=> "かきくけこ"
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Proxy"></a>
