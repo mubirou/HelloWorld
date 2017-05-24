@@ -1822,9 +1822,9 @@ interface ISubject {
 }
 
 //========================================
-// Googleクラス＝観察される役（Subuject役）
+// Appleクラス＝観察される役（Subuject役）
 //========================================
-class Google implements ISubject {
+class Apple implements ISubject {
     private $observerArray = array();
     private $version = "10.3.2"; //iOS Version
     public function __construct() { } //constructor
@@ -1890,7 +1890,7 @@ class IPad implements IObserver {
 // 実行
 //=======
 //観察される役（Subject）
-$google = new Google();
+$apple = new Apple();
 
 //リスナー（Observer）役
 $galaxyNote = new IPadPro();
@@ -1898,12 +1898,12 @@ $galaxyTab = new IPad();
 $galaxyS = new IPhone();
         
 //リスナー（Observer）の登録
-$google->addObserver($galaxyNote);
-$google->addObserver($galaxyTab);
-$google->addObserver($galaxyS);
+$apple->addObserver($galaxyNote);
+$apple->addObserver($galaxyTab);
+$apple->addObserver($galaxyS);
         
 //全リスナー（Observer）への通知
-$google->notify();
+$apple->notify();
 ?>
 ```
 
