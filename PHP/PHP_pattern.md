@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1488,12 +1488,107 @@ $janken->exec(); //グー、グー、パー
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+<?php
+//======================================
+// 受け入れ者＝Acceptorのインターフェース
+//======================================
+interface IAccepter {
+    public function accept($arg);
+}
+
+//=================
+// 訪問先１＝宮嶋家
+//=================
+class Chiba implements IAccepter {
+    private $otoshidama = 5000; //お年玉
+
+    public function __construct() { } //コンストラクタ
+    
+    public function accept($arg) {
+        $arg->visit($this->otoshidama);
+    }
+}
+
+//=================
+// 訪問先２＝埼玉実
+//=================
+class Hokkaido implements IAccepter {
+    private $otoshidama = 10000; //お年玉
+    public function __construct() { } //コンストラクタ
+    public function accept($arg) {
+        $arg->visit($this->otoshidama);
+    }
+}
+
+//========================
+// 訪問者のインターフェース
+//========================
+interface IVisitor {
+    public function visit($arg);
+    public function getPoint();
+}
+
+//=========
+// 訪問者１
+//=========
+class Ichiro implements IVisitor {
+    private $point = 0; //貯金
+
+    public function __construct() {} //コンストラクタ
+
+    public function visit($arg) {
+        $this->point += $arg;
+    }
+
+    public function getPoint() {
+        return $this->point;
+    }
+}
+
+//=========
+// 訪問者２
+//=========
+class Hanako implements IVisitor {
+    private $point = 0; //貯金
+    
+    public function __construct() {} //コンストラクタ
+
+    public function visit($arg) {
+        $this->point += $arg;
+    }
+
+    public function getPoint() {
+        return $this->point;
+    }
+}
+
+
+//=========
+// 実行
+//=========
+//訪問先（Acceptor）の追加
+$acceptorList = array(new Chiba(), new Hokkaido());
+
+//訪問する人（Visitor）
+$ichiro = new Ichiro();
+$hanako = new Hanako();
+
+//訪問する
+foreach ($acceptorList as $theAcceptor) {
+    $theAcceptor->accept($ichiro);
+    $theAcceptor->accept($hanako);
+}
+
+echo $ichiro->getPoint()."<br>"; //15000
+echo $hanako->getPoint(); //15000
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="ChainofResponsibility"></a>
