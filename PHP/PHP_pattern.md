@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>PHP デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -32,7 +30,6 @@
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
-    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -2314,9 +2311,92 @@ $calc->redo(); //=> これ以上リドゥできません => 99
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-XXXX
+```
+<?php
+//========================================
+// SWFクラス＝Context役（中間コードに変換）
+//========================================
+class SWF {
+    private $codeArray = array(); //中間コード（配列）
+    private $count = 0;
+    public function __construct($code) {
+        $this->codeArray = explode(";", $code); //中間コード（配列）に変換
+    }
+    public function getNextCode() {
+        if (! $this->isEnd()) {
+            return $this->codeArray[$this->count ++];
+        } else {
+            return $this->codeArray[count($this->codeArray) - 1];
+        }
+    }
+    public function isEnd() {
+        return $this->count >= count($this->codeArray);
+    }
+}
+
+//======================================
+// SuperFlashPlayerクラス＝スーパークラス
+//======================================
+abstract class SuperFlashPlayer {
+    public function __construct() {} //コンストラクタ
+    abstract public function exec($swf);//必ずサブクラスで定義しなければならない
+}
+
+//========================================================
+// FlashPlayerクラス＝非終端となる表現の役（+-*/コマンド用）
+//========================================================
+class FlashPlayer extends SuperFlashPlayer {
+    public function __construct() {} //コンストラクタ
+    public function exec($swf) {
+        $result = 0; //計算結果
+        while (! $swf->isEnd()) {
+            $nextCode = $swf->getNextCode(); //次の命令
+            $theOperator = substr($nextCode,0,1); //演算子
+            $theNum = substr($nextCode,1);
+            if ($theOperator != "=") {
+                switch ($theOperator) {
+                    case "+": $result += $theNum; break;
+                    case "-": $result -= $theNum; break;
+                    case "*": $result *= $theNum; break;
+                    case "/": $result /= $theNum; break;
+                    default : echo "Error: 演算子が異なります";
+                }
+            } else {
+                $END = new FlashPlayer_END($result);
+                $END->exec($swf);
+            }
+        }
+    }
+}
+
+//======================================================
+// FlashPlayer_ENDクラス＝終端となる表現の役（コマンド用）
+//======================================================
+class FlashPlayer_END extends SuperFlashPlayer {
+    private $result;
+    public function __construct($result) { //コンストラクタ
+        $this->result = $result;
+    }
+    public function exec($swf) {
+        if (count(substr($swf->getNextCode(),0)) == 1) { //"="一字なら…
+            echo "計算結果は".$this->result;
+        } else {
+            echo "Error: 最後が=で終了していません";
+        }
+    }
+}
+
+//=======
+// 実行
+//=======
+$AS = "+10;*50;/2;-4;="; //≒ASファイル
+$SWF = new SWF($AS); //≒SWFファイル
+$FlashPlayer = new FlashPlayer(); //≒Flash Player
+$FlashPlayer->exec($SWF); //計算結果は246
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
