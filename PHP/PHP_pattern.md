@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -2056,12 +2056,88 @@ function saikoro() {
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+<?php
+//================================================
+// Kanjiクラス＝ Context役（複数の状態を管理する役）
+//================================================
+class Kanji {
+    private $state; //級別問題集を格納
+    public function __construct() {} //コンストラクタ
+    public function setState($arg) {
+        $this->state = $arg;
+    }
+    public function testA() {
+        $this->state->mondaiA();
+    }
+    public function testB() {
+        $this->state->mondaiB();
+    }
+}
+
+//===================================
+// QuestionXXXクラスのインターフェース
+//===================================
+interface IState {
+    public function mondaiA();
+    public function mondaiB();
+}
+
+//=================================================
+// Question7クラス＝ StateA役（漢字検定７級の問題集）
+//=================================================
+class Question7 implements IState {
+    public function __construct() {} //コンストラクタ
+    public function mondaiA() {
+        echo "笑顔、衣類、胃腸";
+    }
+    public function mondaiB() {
+        echo "持参、勉強、案内";
+    }
+}
+
+//==================================================
+// Question10クラス＝ StateB役（漢字検定10級の問題集）
+//==================================================
+class Question10 implements IState {
+    public function __construct() {} //コンストラクタ
+    public function mondaiA() {
+        echo "みぎ、おと、そら";
+    }
+    public function mondaiB() {
+        echo "いぬ、あめ、みみ";
+    }
+}
+
+//=======
+// 実行
+//=======
+$student = "ICHIRO"; // or "HANAKO"
+        
+//漢字検定（Context役）
+$kanji = new Kanji();
+        
+//級別問題集（State役）
+$question7 = new Question7(); //漢字検定7級用
+$question10 = new Question10(); //漢字検定10級用
+        
+//生徒に合った級別問題集にする
+if ($student == "ICHIRO") {
+    $kanji->setState($question7);
+} else if ($student == "HANAKO") {
+    $kanji->setState($question10);
+}
+        
+//問題を出す
+$kanji->testA(); //みぎ、おと、そら  or  笑顔、衣類、胃腸
+$kanji->testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Command"></a>
