@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1594,12 +1594,87 @@ echo $hanako->getPoint(); //15000
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+<?php
+//=====================================
+// SuperPOクラス＝郵便局のスーパークラス
+//=====================================
+abstract class SuperPO {
+    protected $next; //たらい回し先（protectedで同じクラスorサブクラスからのみアクセス可）
+
+    public function __construct() { } //コンストラクタ
+
+    public function setNext($arg) {
+        $this->next = $arg;
+        return $this->next;
+    }
+
+    abstract public function send($arg); //抽象メソッド
+}
+
+//============================
+// ShinjukuPOクラス＝新宿郵便局
+//============================
+class ShinjukuPO extends SuperPO {
+    public function __construct() {} //コンストラクタ
+
+    public function send($arg) { //具体的な処理
+        if (preg_match('/新宿/', $arg)) {
+            echo "本日中に届きます<br>";
+        } else {
+            $this->next->send($arg); //たらい回し先に振る
+        } 
+    }
+}
+
+//==========================
+// TokyoPOクラス＝東京郵便局
+//==========================
+class TokyoPO extends SuperPO {
+    public function __construct() {} //コンストラクタ
+
+    public function send($arg) { //具体的な処理
+        if (preg_match('/東京都/', $arg)) {
+            echo "明日中に届きます<br>";
+        } else {
+            $this->next->send($arg); //たらい回し先に振る
+        } 
+    }
+}
+
+//=========================
+// JapanPOクラス＝日本郵便局
+//=========================
+class JapanPO extends SuperPO {
+    public function __construct() {} //コンストラクタ
+
+    public function send($arg) { //具体的な処理
+        echo "明後日以降に届きます";
+    }
+}
+
+//=========
+// 実行
+//=========
+//郵便局（Post Office）
+$setagayaPO = new ShinjukuPO();
+$tokyoPO = new TokyoPO();
+$japanPO = new JapanPO();
+        
+//責任のたらいまわしをセット
+$setagayaPO->setNext($tokyoPO)->setNext($japanPO);
+        
+//投函
+$setagayaPO->send("東京都新宿区XXX町X-X-X"); //本日中に届きます
+$setagayaPO->send("東京都羽村市XXX町X-X-X"); //明日中に届きます
+$setagayaPO->send("大阪府大阪市XXX区X-X-X"); //明後日以降に届きます
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Mediator"></a>
