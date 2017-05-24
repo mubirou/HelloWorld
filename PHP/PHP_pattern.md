@@ -772,12 +772,152 @@ echo $smartPhone2->phone()."<br>"; //電話をかける
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-XXXX
+```
+<?php
+//================================================
+// Samenessクラス（"同一視"するための役＝Component）
+//================================================
+class Sameness {
+    protected $name; //サブクラスで使います
+    protected $parent; //サブクラスで使います
+
+    public function __construct() {} //コンストラクタ
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getChild() {
+        echo "入れ子はできません"; //Fileクラス対応
+    }
+
+    public function add($arg) {
+        echo "追加できません"; //Fileクラス対応
+    }
+
+    public function remove($arg) {
+        echo "削除できません";
+    }
+
+    public function ls() { //Linuxのlsコマンド風（listという名前は不可）
+        echo "Error :サブクラスでオーバーライドして下さい";
+    }
+
+    public function setParent($directory) {
+        $this->parent = $directory;
+    }
+
+    public function getParent() {
+        return $this->parent;
+    }
+}
+
+//============================================
+// DirectoryClassクラス＝Composit（複合体）の役
+//============================================
+class DirectoryClass extends Sameness { //Directoryという名は不可
+    private $child = array();
+
+    public function __construct($name) { //コンストラクタ
+        $this->name = $name;
+    }
+
+    //オーバーライド
+    public function add($arg) { //引数はDirectory or File
+        array_push($this->child, $arg);
+        $arg->setParent($this);
+    }
+
+    //オーバーライド
+    public function remove($arg) { //引数はDirectory or File
+        //検索（なければfalse、あれば位置を返す）
+        $index = array_search($arg, $this->child,TRUE); 
+        if ($index != FALSE) {
+            array_splice($this->child, $index, 1);
+        }
+    }
+
+    //オーバーライド
+    public function getChild() {
+        return $this->child;
+    }
+
+    //オーバーライド
+    public function ls() { //Linuxのコマンド風（listという名前は不可）
+        foreach ($this->child as $tmp) {
+            $result = $this->getName()."/".$tmp->getName();
+            
+            if ($tmp instanceof DirectoryClass) { //AS3の「is」相当
+                $result = $result."(Directory)";
+            } else {
+                $result = $result."(File)";
+            }
+            echo $result."<br>";
+        }
+    }
+}
+
+//============
+// Fileクラス
+//============
+class File extends Sameness {
+    public function __construct($name) { //コンストラクタ
+        $this->name = $name;
+    }
+
+    //オーバーライド
+    public function ls() { //Linuxのコマンド風（listという名前は不可）
+        echo $this->getParent()->getName()."/".$this->getName()."(File)";
+    }
+}
+
+//=========
+// 実行
+//=========
+// ディレクトリの作成
+$root = new DirectoryClass("root");
+$adobe = new DirectoryClass("Adobe");
+$macromedia = new DirectoryClass("Macromedia");
+$flash = new DirectoryClass("Flash");
+
+// ファイルの作成
+$illustrator = new File("Illustrator");
+$photoshop = new File("Photoshop");
+$dreamweaver = new File("Dreamweaver");
+$flashProfessional = new File("Flash Professional");
+$flashBuilder = new File("Flash Builder");
+
+// 関連付け
+$root->add($adobe); //Directoryの追加
+$root->add($macromedia); //Directoryの追加
+$adobe->add($illustrator); //Fileの追加
+$adobe->add($photoshop); //Fileの追加
+$macromedia->add($flash); ///Directoryの追加
+$macromedia->add($dreamweaver); //Fileの追加
+$flash->add($flashProfessional); //Fileの追加
+$flash->add($flashBuilder); //Fileの追加
+        
+// 検証
+//DirectoryやFileの「名前」を調べる
+echo $flashProfessional->getName()."<br>"; //=> Flash Professional
+        
+//Directoryの中のDirectoryとFileを調べる
+echo count($macromedia->getChild())."<br>"; //=>２
+        
+//Directoryの中のDirectoryやFileを「削除」する
+$macromedia->remove($dreamweaver);
+echo count($macromedia->getChild())."<br>"; //=> 1（1つに減っている）
+        
+//指定した階層のDirectory（ディレクトリ内のDirectory & File）とFileを調べる
+$macromedia->ls(); //→Macromedia/Flash(Directory)
+$dreamweaver->ls(); //→Macromedia/Dreamweaver(File)
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Decorator"></a>
