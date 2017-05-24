@@ -16,8 +16,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
@@ -923,12 +923,75 @@ $dreamweaver->ls(); //→Macromedia/Dreamweaver(File)
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-XXXX
+```
+<?php
+//==============
+// Displayクラス
+//==============
+class Display { //クラスではなくinterfaceにする方法もある
+    protected $content; //同じクラス or サブクラスでアクセス可能
+
+    //コンストラクタ
+    public function __construct() {} 
+    
+    public final function show() { //finalでサブクラスでのオーバーライドを禁止
+        return $this->content;
+    }
+}
+
+//==============
+// Originalクラス
+//==============
+class Original extends Display { //Displayクラスを継承
+    public function Original($arg) {
+        $this->content = $arg;
+    }
+}
+
+//=================
+// Decorator1クラス
+//=================
+class Decorator1 extends Display { //Displayクラスを継承
+    public function Decorator1($arg) { //コンストラクタ
+        $this->content = "-".$arg->show()."-";
+    }
+}
+
+//=================
+// Decorator2クラス
+//=================
+class Decorator2 extends Display { //Displayクラスを継承
+    public function Decorator2($arg) { //コンストラクタ
+        $this->content = "(".$arg->show().")"; // "<" ">" はタグと認識されてしまう
+    }
+}
+
+//=========
+// 実行
+//=========
+$original = new Original("TAKASHI");
+echo $original->show()."<br>"; // TAKASHI
+        
+$decorator1 = new Decorator1($original);
+echo $decorator1->show()."<br>"; // -TAKASHI-
+        
+$decorator2 = new Decorator2($original);
+echo $decorator2->show()."<br>"; // (TAKASHI)
+        
+$special = new Decorator2(
+                new Decorator1(
+                    new Decorator1(
+                        new Decorator1(
+                            new Original("TAKASHI")
+                        ))));
+echo $special->show(); // (---TAKASHI---)
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Facade"></a>
