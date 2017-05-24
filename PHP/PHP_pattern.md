@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -1680,12 +1680,130 @@ $setagayaPO->send("大阪府大阪市XXX区X-X-X"); //明後日以降に届き�
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+<?php
+/****************
+ * 各メンバー関連
+****************/
+abstract class AbstractMember { //抽象クラス
+    protected $mediator; //プライベート変数宣言
+
+    //コンストラクタ
+    public function __construct() {}
+
+    //共通の機能（finalでサブクラスでのオーバーライド禁止）
+    public final function setMediator($mediator) {
+        $this->mediator = $mediator;
+    }
+
+    //抽象メソッド（必ずサブクラスで定義しなければなりません）
+    protected abstract function advice($string);
+}
+
+
+//メンバー１（YesButtonクラス）
+class YesButton extends AbstractMember {
+    //コンストラクタ
+    public function __construct() {}
+
+    public function on() { //相談役に報告
+        $this->mediator->report($this, "on");
+    }
+
+    public function advice($string) { //オーバーライド
+        if ($string == "off") {
+            echo "YesButtonをoffにします<br>";
+        }
+    }
+}
+
+//メンバー２（NoButtonクラス）
+class NoButton extends AbstractMember {
+    //コンストラクタ
+    public function __construct() {}
+
+    public function on() { //相談役に報告
+        $this->mediator->report($this, "on");
+    }
+
+    public function advice($string) { //オーバーライド
+        if ($string == "off") {
+            echo "NoButtonをoffにします<br>";
+        }
+    }
+}
+
+
+//メンバー３（TextBoxクラス）
+class TextBox extends AbstractMember {
+    //コンストラクタ
+    public function __construct() {}
+
+    public function advice($string) { //オーバーライド
+        if ($string == "enable") {
+            echo "TextBoxを入力可能にします<br>";
+        } else if ($string == "disabled") {
+            echo "TextBoxを入力不可にします<br>";
+        }
+    }
+}
+
+/**********************************
+ * 相談役（専門性が高いため使い捨て）
+**********************************/
+class Mediator {
+    private $yesButton, $noButton, $textBox; //プライベート変数宣言
+    //コンストラクタ
+    public function __construct() {
+        $this->yesButton = new YesButton(); //YesButtonの生成
+        $this->noButton = new NoButton(); //NoButtonの生成
+        $this->textBox = new TextBox(); //TextButtonの生成
+
+        $this->yesButton->setMediator($this); //YesButtonに相談役が自分あることを教える
+        $this->noButton->setMediator($this); //NoButtonに相談役が自分あることを教える
+        $this->textBox->setMediator($this); //TextButtonに相談役が自分あることを教える
+    }
+
+    //アクセサ
+    public function __get($name) {
+        return $this->$name;
+    }
+
+    public function report($member, $string) { //メンバーからの報告を受けて指示を出す
+        if ($member == $this->yesButton) { //YesButtonからの報告の場合...
+            if ($string == "on") {
+                $this->noButton->advice("off");
+                $this->textBox->advice("enable");
+            }
+        }
+        if ($member == $this->noButton) { //NoButtonからの報告の場合...
+            if ($string == "on") {
+                $this->yesButton->advice("off");
+                $this->textBox->advice("disabled");
+            }
+        }
+    }
+}
+
+/******
+ * 実行
+******/
+$mediator = new Mediator();
+//echo gettype($mediator->yesButton);
+$mediator->yesButton->on();
+//=> "NoButtonをoffにします"
+//=> "TextBoxを入力可能にします"
+
+$mediator->noButton->on();
+//=> "YesButtonをoffにします"
+//=> "TextBoxを入力不可にします"
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、PHP 7.0.15  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月24日
 
 
 <a name="Observer"></a>
