@@ -12,9 +12,9 @@
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
@@ -495,25 +495,106 @@ _hanako.createSummer();
 
 
 <a name="Adapter（継承）"></a>
-# <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
+# <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-XXXX
+```
+<script>
+
+//===============================
+// Moneyboxクラス＝実際の「貯金箱」
+//===============================
+function Moneybox(arg) { //コンストラクタ
+    this._moneyYen = arg; //この変数に貯金されます
+}
+Moneybox.prototype.add = function(arg) {
+    this._moneyYen += arg;
+}
+Moneybox.prototype.getMoneyYen = function() {
+    return this._moneyYen;
+}
+
+//=====================================
+// MoneyboxAdapterクラス＝ 円をドルに変換
+//=====================================
+function MoneyboxAdapter (arg1, arg2) { //コンストラクタ
+    this.constructor(arg1); //Java、AS3 の super() 相当
+    this._rate = arg2;	
+}
+MoneyboxAdapter.prototype = new Moneybox(); //スーパークラスを継承
+MoneyboxAdapter.prototype.addYen = function(arg) {
+    this.add(arg);
+}
+MoneyboxAdapter.prototype.getMoney$ = function() {
+    return this.getMoneyYen() / this._rate;
+}
+
+//==========
+// 実行
+//==========
+var _moneyboxAdapter = new MoneyboxAdapter(100, 111.607143); //(最初の貯金, 為替レート)
+_moneyboxAdapter.addYen(1000);
+console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月25日
 
 
 <a name="Adapter（委譲）"></a>
-# <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
+# <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-XXXX
+### 概要
+サブクラスのコンストラクタから、スーパークラスのコンストラクタを呼び出す方法に、Java 等にある super() ステートメントが使えない（代わりに constructor() を利用）
+
+### 例文
+```
+<script>
+
+//===============================================
+// Moneyboxクラス＝実際の「貯金箱」（継承版と同じ）
+//===============================================
+function Moneybox(arg) { //コンストラクタ
+    this._moneyYen = arg; //この変数に貯金されます
+}
+Moneybox.prototype.add = function(arg) {
+    this._moneyYen += arg;
+}
+Moneybox.prototype.getMoneyYen = function() {
+    return this._moneyYen;
+}
+
+//===================================================
+// MoneyboxAdapterクラス（このクラスのみ継承版と異なる）
+//===================================================
+function MoneyboxAdapter (arg1, arg2) { //コンストラクタ
+    this._moneybox = new Moneybox(arg1); //ここがポイント
+    this._rate = arg2;
+}
+MoneyboxAdapter.prototype.addYen = function(arg) {
+    this._moneybox.add(arg);
+}
+MoneyboxAdapter.prototype.getMoney$ = function() {
+    return this._moneybox.getMoneyYen() / this._rate;
+}
+
+//===================
+// 実行（継承版と同じ）
+//===================
+var _moneyboxAdapter = new MoneyboxAdapter(100, 111.607143); //(最初の貯金, 為替レート)
+_moneyboxAdapter.addYen(1000);
+console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月25日
 
 
 <a name="Bridge"></a>
