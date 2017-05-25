@@ -6,6 +6,7 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -38,12 +39,41 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+function Singleton() { //前方宣言である必要はない
+    var _singleton; //ローカル変数なので外部からアクセスできません
+
+    //コンストラクタを書き換える
+    Singleton = function Singleton() {
+        return _singleton;
+    }
+
+    //prototypeプロパティを引き継ぐ
+    Singleton.prototype = this;
+
+    //インスタンスを保存
+    _singleton = new Singleton();
+    console.log("インスタンスが生成されました");
+
+    //コンストラクタのポインタを再設定
+    _singleton.constructor = Singleton;
+
+    return _singleton;
+}
+
+var _instance1 = new Singleton(); //=> "インスタンスが生成されました"
+var _instance2 = new Singleton(); //新たなインスタンスは作られません
+console.log(_instance1 === _instance2); //=> true（中身は全く同じインスタンス）
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+作成日：2013年  
+更新日：2017年05月25日
 
 
 <a name="Prototype"></a>
@@ -53,7 +83,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -64,7 +94,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -75,7 +105,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -86,7 +116,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -97,7 +127,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -108,7 +138,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -119,7 +149,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -130,7 +160,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -141,7 +171,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -152,7 +182,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -163,7 +193,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -174,7 +204,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -185,7 +215,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -196,7 +226,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -207,7 +237,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -218,7 +248,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -229,7 +259,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -240,7 +270,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -251,7 +281,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -262,7 +292,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -273,7 +303,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -284,7 +314,7 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
 
 
@@ -295,5 +325,5 @@ XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2016年XX月XX日  
+作成日：2013年  
 更新日：2017年05月XX日
