@@ -14,8 +14,8 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -602,12 +602,92 @@ console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+### 概要
+* インターフェース（interface、implements）をサポートしていない
+* 他の多くの言語のような Bridge パターン は実現できない
+
+### 例文
+```
+<script>
+
+//==================
+// SuperMobileクラス
+//==================
+function SuperMobile(arg) { //コンストラクタ
+    this._os = arg;
+}
+SuperMobile.prototype.getVersion = function() {
+    return this._os.getVersion();
+}
+
+//=============
+// Tabletクラス
+//=============
+function Tablet(arg) { //コンストラクタ
+    this.constructor(arg); //AS3やJavaのSuper()と同等
+}
+Tablet.prototype = new SuperMobile(); //スーパークラスを継承（引数はいらない）
+Tablet.prototype.bigScreen = function() { //タブレット特有の機能
+    return "大きな画面で見る";
+}
+
+//=================
+// SmartPhoneクラス
+//=================
+function SmartPhone(arg) { //コンストラクタ
+    this.constructor(arg); //AS3やJavaのSuper()と同等
+}
+SmartPhone.prototype = new SuperMobile(); //スーパークラスを継承（引数はいらない）
+SmartPhone.prototype.phone = function() { //スマートフォン特有の機能
+    return "電話をかける";
+}
+
+//==============
+// Androidクラス
+//==============
+function Android() {} //コンストラクタ
+Android.prototype.getVersion = function() {
+    return "Android 7.1.2";
+}
+
+//==========
+// iOSクラス
+//==========
+function iOS() {} //コンストラクタ
+iOS.prototype.getVersion = function() {
+    return "iOS 10.3.2";
+}
+
+//=========
+// 実行
+//=========
+//Androidタブレット
+var _tablet1 = new Tablet(new Android());
+console.log(_tablet1.getVersion()); //Android 7.1.2
+console.log(_tablet1.bigScreen()); //大きな画面で見る
+
+//iPad
+var _tablet2 = new Tablet(new iOS());
+console.log(_tablet2.getVersion()); //iOS 10.3.2
+console.log(_tablet2.bigScreen()); //大きな画面で見る
+        
+//Androidスマートフォン
+var _smartPhone1 = new SmartPhone(new Android());
+console.log(_smartPhone1.getVersion()); //Android 7.1.2
+console.log(_smartPhone1.phone()); //電話をかける
+
+//iPhone
+var _smartPhone2 = new SmartPhone(new iOS());
+console.log(_smartPhone2.getVersion()); //iOS 10.3.2
+console.log(_smartPhone2.phone()); //電話をかける
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月25日
 
 
 <a name="Composite"></a>
