@@ -497,6 +497,12 @@ _hanako.createSummer();
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
+### 概要
+* サブクラスのコンストラクタから、スーパークラスのコンストラクタを呼び出す方法に、Java、AS3 等にある super() ステートメントが使えない
+* super() の代わりに constructor() を利用する
+
+### 例文
+
 ```
 <script>
 
@@ -547,10 +553,6 @@ console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-### 概要
-サブクラスのコンストラクタから、スーパークラスのコンストラクタを呼び出す方法に、Java 等にある super() ステートメントが使えない（代わりに constructor() を利用）
-
-### 例文
 ```
 <script>
 
