@@ -604,7 +604,7 @@ console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
 
 ### 概要
 * インターフェース（interface、implements）をサポートしていない
-* 他の多くの言語のような Bridge パターン は実現できない
+* 他の多くの言語と同じような Bridge パターン は実現できない
 
 ### 例文
 ```
