@@ -141,12 +141,130 @@ console.log(_prototype2.get("_address")); //X-X-X XXX-cho, Shinjuku-ku
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//===============
+// Directorクラス
+//===============
+function Director(arg) { //コンストラクタ
+    this._builder = arg;
+}
+Director.prototype.construct = function() {
+    //同じ手順
+    this._builder.makeHeader();
+    this._builder.makeContent();
+    this._builder.makeFooter();
+}
+
+//=================
+// Builder009クラス
+//=================
+function Builder009() {} //コンストラクタ
+Builder009.prototype.makeHeader = function() {
+    var _header = new Header051(); //ヘッダー用素材の呼び出し
+    _header.exec();
+}
+Builder009.prototype.makeContent = function() {
+    var _content = new Content194(); //コンテンツ用素材の呼び出し
+    _content.exec();
+}
+Builder009.prototype.makeFooter = function() {
+    var _footer = new Footer004(); //フッター用素材の呼び出し
+    _footer.exec();
+}
+
+//=================
+// Builder108クラス
+//=================
+function Builder108() {} //コンストラクタ
+Builder108.prototype.makeHeader = function() {
+    var _header = new Header040();
+    _header.exec();
+}
+Builder108.prototype.makeContent = function() {
+    var _content = new Content023();
+    _content.exec();
+}
+Builder108.prototype.makeFooter = function() {
+    var _footer = new Footer011();
+    _footer.exec();
+}
+
+//================
+// Header040クラス
+//================
+function Header040() {} //コンストラクタ
+Header040.prototype.exec = function() {
+    console.log("HAPPY NEW YEAR!"); //ヘッダー用素材
+}
+
+//================
+// Header051クラス
+//================
+function Header051() {} //コンストラクタ
+Header051.prototype.exec = function() {
+    console.log("あけましておめでとうございます"); //ヘッダー用素材
+}
+
+//=================
+// Content023クラス
+//=================
+function Content023() {} //コンストラクタ
+Content023.prototype.exec = function() {
+    console.log("（タイプ023のイラスト）"); //コンテンツ用素材
+}
+
+//=================
+// Content194クラス
+//=================
+function Content194() {} //コンストラクタ
+Content194.prototype.exec = function() {
+    console.log("（タイプ194のイラスト）"); //コンテンツ用素材
+}
+
+//================
+// Footer004クラス
+//================
+function Footer004() {} //コンストラクタ
+Footer004.prototype.exec = function() {
+    console.log("にしむらはなこ"); //フッター用素材
+}
+
+//================
+// Footer011クラス
+//================
+function Footer011() {} //コンストラクタ
+Footer011.prototype.exec = function() {
+    console.log("西村一郎"); //フッター用素材
+}
+
+//=========
+// 実行
+//=========
+var _director = new Director(new Builder009());
+_director.construct();
+/*
+あけましておめでとうございます
+（タイプ194のイラスト）
+にしむらはなこ
+*/
+
+_director = new Director(new Builder108());
+_director.construct();
+/*
+HAPPY NEW YEAR!
+（タイプ023のイラスト）
+西村一郎
+*/
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月25日
 
 
 <a name="FactoryMethod"></a>
