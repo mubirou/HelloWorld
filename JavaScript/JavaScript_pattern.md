@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -270,12 +270,130 @@ HAPPY NEW YEAR!
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//===============
+// Abstractクラス
+//===============
+function Abstract() {} //コンストラクタ
+Abstract.prototype.templateMethod = function(arg) {
+    //サブクラスでオーバーライドして具体的処理を行う
+    var _factoryMethod = this.factoryMethod(arg); //ここでnewしない
+    _factoryMethod.exec();
+    this.order1(); //共通の処理
+    this.order2(); //サブクラスでオーバーライドして具体的処理を行う
+}
+Abstract.prototype.factoryMethod = function(arg) { //オーバーライド
+    console.log("Error: サブクラスでオーバーライドして定義して下さい");
+}
+Abstract.prototype.order1 = function() { //共通の処理
+    console.log("〒XXX-XXXX 新宿区XXX-X-X");
+}
+Abstract.prototype.order2 = function() { //オーバーライド
+    console.log("Error: サブクラスでオーバーライドして定義して下さい");
+}
+
+//=================
+// CardIchiroクラス
+//=================
+function CardIchiro() {} //コンストラクタ
+CardIchiro.prototype = new Abstract();
+CardIchiro.prototype.factoryMethod = function(arg) {
+    if (arg == "newYear") {
+        return new NewYear_Message();
+    } else if (arg == "summer") {
+        return new Summer_Message();
+    }	
+}
+CardIchiro.prototype.order2 = function() {
+    console.log("西村一郎");
+}
+
+//==================
+// CardHanakoクラス
+//==================
+function CardHanako() {} //コンストラクタ
+CardHanako.prototype = new Abstract();
+CardHanako.prototype.factoryMethod = function(arg) {
+    if (arg == "newYear") {
+        return new NewYear_Message();
+    } else if (arg == "summer") {
+        return new Summer_Message();
+    }
+}
+CardHanako.prototype.order2 = function() {
+    console.log("西村花子");
+}
+
+//======================
+// NewYear_Messageクラス
+//======================
+function NewYear_Message() {} //コンストラクタ
+NewYear_Message.prototype.exec = function() {
+    console.log("明けましておめでとうございます");
+    console.log("（正月用イラスト）");
+}
+
+//=====================
+// Summer_Messageクラス
+//=====================
+function Summer_Message() {} //コンストラクタ
+Summer_Message.prototype.exec = function() {
+    console.log("暑中お見舞い申し上げます");
+    console.log("（夏用イラスト）");
+}
+
+//=================
+// 実行
+//=================
+//年賀状（一郎用）
+var _cardIchiro = new CardIchiro();
+_cardIchiro.templateMethod("newYear");
+/*
+明けましておめでとうございます
+（正月用イラスト）
+〒XXX-XXXX 新宿区XXX-X-X
+西村一郎
+*/
+
+//暑中見舞い（一郎用）
+_cardIchiro = new CardIchiro();
+_cardIchiro.templateMethod("summer");
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+〒XXX-XXXX 新宿区XXX-X-X
+西村一郎
+*/
+
+//年賀状（花子用）
+var _cardHanako = new CardHanako();
+_cardHanako.templateMethod("newYear");
+/*
+明けましておめでとうございます
+（正月用イラスト）
+〒XXX-XXXX 新宿区XXX-X-X
+西村花子
+*/
+
+//暑中見舞い（花子用）
+_cardHanako = new CardHanako();
+_cardHanako.templateMethod("summer");
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+〒XXX-XXXX 新宿区XXX-X-X
+西村花子
+*/
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月25日
 
 
 <a name="AbstractFactory"></a>
