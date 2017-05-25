@@ -410,8 +410,7 @@ _cardHanako.templateMethod("summer");
 //===================================
 // AbstractFactoryクラス＝抽象的な工場
 //===================================
-function AbstractFactory() { //コンストラクタ
-}
+function AbstractFactory() {} //コンストラクタ
 //抽象的な機能サブクラスでオーバーライドして実際の機能を実装します
 AbstractFactory.prototype.createNewYear = function() {
     console.log("Error 01:サブクラスでオーバーライドして下さい");
@@ -424,8 +423,7 @@ AbstractFactory.prototype.createSummer = function() {
 //=================================
 // ICHIROクラス＝実際の工場（一郎工場）
 //=================================
-function ICHIRO() { //コンストラクタ
-}
+function ICHIRO() {} //コンストラクタ
 ICHIRO.prototype = new AbstractFactory();
 ICHIRO.prototype.createNewYear = function() { //オーバーライド
     console.log("HAPPY NEW YEAR!");
@@ -441,8 +439,7 @@ ICHIRO.prototype.createSummer = function() { //オーバーライド
 //===================================
 // SACHKOクラス＝実際の工場（花子工場）
 //===================================
-function HANAKO() { //コンストラクタ
-}
+function HANAKO() {} //コンストラクタ
 HANAKO.prototype = new AbstractFactory();
 HANAKO.prototype.createNewYear = function() { //オーバーライド
     console.log("あけましておめでとうございます");
