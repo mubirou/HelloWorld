@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -79,12 +79,63 @@ console.log(_instance1 === _instance2); //=> true（中身は全く同じイン�
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//================
+// Prototypeクラス
+//================
+function Prototype() { //コンストラクタ
+    this._firstName = undefined;
+    this._lastName = undefined;
+    this._address = undefined;
+}
+
+Prototype.prototype.set = function(propName, value) { //セッターの定義
+    this[propName] = value;
+}
+
+Prototype.prototype.get = function(propName) { //ゲッターの定義
+    return this[propName];
+}
+
+Prototype.prototype.clone = function() {
+    var _prototype = new Prototype();
+    _prototype.set("_firstName",this._firstName);
+    _prototype.set("_lastName",this._lastName);
+    _prototype.set("_address",this._address);
+    return _prototype;
+}
+
+//======
+// 実行
+//======
+//インスタンスを生成
+var _prototype1 = new Prototype();
+_prototype1.set("_firstName","Takashi");
+_prototype1.set("_lastName","Nishimura");
+_prototype1.set("_address","X-X-X XXX-cho, Shinjuku-ku");
+
+//コピーを生成
+var _prototype2 = _prototype1.clone();
+_prototype2.set("_firstName","Hanako");
+
+//検証
+console.log(_prototype1.get("_firstName")); //Takashi
+console.log(_prototype1.get("_lastName")); //Nishimura
+console.log(_prototype1.get("_address")); //X-X-X XXX-cho, Shinjuku-ku
+
+console.log(_prototype2.get("_firstName")); //Hanako
+console.log(_prototype2.get("_lastName")); //Nishimura
+console.log(_prototype2.get("_address")); //X-X-X XXX-cho, Shinjuku-ku
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月25日
 
 
 <a name="Builder"></a>
