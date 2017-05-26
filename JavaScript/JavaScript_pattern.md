@@ -67,7 +67,7 @@ console.log(_instance1 === _instance2); //=> true（中身は全く同じイン�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -129,7 +129,7 @@ console.log(_prototype2.get("_address")); //X-X-X XXX-cho, Shinjuku-ku
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -258,7 +258,7 @@ HAPPY NEW YEAR!
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -387,7 +387,7 @@ _cardHanako.templateMethod("summer");
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -485,7 +485,7 @@ _hanako.createSummer();
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -541,7 +541,7 @@ console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -590,7 +590,7 @@ console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -681,7 +681,7 @@ console.log(_smartPhone2.phone()); //電話をかける
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月25日
@@ -810,7 +810,7 @@ _dreamweaver.list(); //=> Macromedia/Dreamweaver(File)
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -878,7 +878,7 @@ console.log(_special.show()); // (---TAKASHI---)
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -962,7 +962,7 @@ console.log(_decoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1045,7 +1045,7 @@ function timeOut() {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1088,7 +1088,7 @@ _imgLoader.load(); //通常は必要になった時に実際に画像（実際�
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1159,7 +1159,7 @@ while(_carParkIterator.hasNext()) {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1249,7 +1249,7 @@ HAPPY NEW YEAR!
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1304,7 +1304,7 @@ _janken.exec(); //グー、グー、パー
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1384,7 +1384,7 @@ console.log(_hanako.getPoint()); //15000
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1464,7 +1464,7 @@ _shinjukuPO.send("静岡県XXX市XXX町X-X-X"); //明後日以降に届きます
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1577,7 +1577,7 @@ _mediator.getNoButton().on();
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1657,7 +1657,7 @@ _apple.notify(); //全リスナー（Observer）への通知
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1794,7 +1794,7 @@ function saikoro() {
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -1870,7 +1870,7 @@ _kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -2021,7 +2021,7 @@ _calc.redo(); //これ以上リドゥできません => 99
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
@@ -2114,7 +2114,7 @@ _FlashPlayer.exec(_SWF); //計算結果は246
 </script>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、Chromium 58  
 作成者：Takashi Nishimura  
 作成日：2013年  
 更新日：2017年05月26日
