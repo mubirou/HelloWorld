@@ -28,8 +28,8 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
@@ -1589,12 +1589,81 @@ _mediator.getNoButton().on();
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//=======================================
+// Appleクラス＝観察される役（Subuject役）
+//=======================================
+function Apple() { //コンストラクタ
+    this._observerArray = [];
+    this._version = "10.3.2"; //iOS version
+}
+Apple.prototype.addObserver = function(arg) { //リスナーの登録
+    this._observerArray.push(arg);
+}
+Apple.prototype.deleteObserver = function(arg) { //リスナーの削除
+    var _theNum = this._observerArray.indexOf(arg,0);
+    if (_theNum != -1) {
+        this._observerArray.splice(_theNum, 1);
+    }
+}
+Apple.prototype.notify = function() { //全リスナーへの通知
+    for (var _propName in this._observerArray) {
+        this._observerArray[_propName].update(this);
+    }
+}
+Apple.prototype.getVersion = function() {
+    return this._version; //最新のiOSのバージョンを返す
+}
+
+//===========================================
+// IPadProクラス＝リスナー役１（Observer役）
+//===========================================
+function IPadPro() { } //コンストラクタ
+IPadPro.prototype.update = function(arg) {
+    console.log("iPad Pro を " + arg.getVersion() + " にアップデートします");
+}
+
+//==========================================
+// IPadクラス＝リスナー役２（Observer役）
+//==========================================
+function IPad() { } //コンストラクタ
+IPad.prototype.update = function(arg) {
+    console.log("iPad を "  + arg.getVersion() +  " にアップデートします");
+}
+
+//==========================================
+// IPhoneクラス＝リスナー役３（Observer役）
+//==========================================
+function IPhone() { } //コンストラクタ
+IPhone.prototype.update = function(arg) {
+    console.log("iPhone を " + arg.getVersion() +  " にアップデートします");
+}
+
+//========
+// 実行
+//========
+var _apple = new Apple(); //観察される役（Subject）
+
+//リスナー（Observer）役
+var _iPadPro = new IPadPro();
+var _iPad = new IPad();
+var _iPhone = new IPhone();
+
+//リスナー（Observer）の登録
+_apple.addObserver(_iPadPro);
+_apple.addObserver(_iPad);
+_apple.addObserver(_iPhone);
+_apple.notify(); //全リスナー（Observer）への通知
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Memento"></a>
