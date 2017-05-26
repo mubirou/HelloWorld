@@ -5,8 +5,8 @@
 ### <b>INDEX</b>
 
 * オブジェクトの「生成」に関するパターン
-    ***
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -50,7 +50,34 @@ XXXX
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+### 概要
+TypeScript 2.X から、コンストラクタにアクセス修飾子 private (同じクラスからのみアクセス可）の設定が可能になった
+
+### 例文
+```
+//main.ts
+class Singleton { //シングルトンクラス
+    private static _singleton: Singleton; //唯一のインスタンスを格納
+
+    //コンストラクタ（private）
+    private constructor() {} //外部から new できない
+
+    //外部から唯一のインスタンスを呼出す
+    public static get instance(): Singleton {
+        if (!this._singleton) {
+            console.log("インスタンスを生成しました"); //DEBUG
+            this._singleton = new Singleton();
+        }
+
+        return this._singleton; //唯一のインスタンス（静的変数）を返す
+    }
+}
+
+//new Singleton(); //error（外からはnewによるインスタンス生成は不可）
+var _singleton1: Singleton = Singleton.instance; //唯一のインスタンスを呼出す
+var _singleton2: Singleton = Singleton.instance; //唯一のインスタンスを呼出す
+console.log(_singleton1 == _singleton2); //true（同じインスタンス）
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
@@ -66,7 +93,7 @@ XXXX
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="FactoryMethod"></a>
