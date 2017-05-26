@@ -747,7 +747,6 @@ Directory.prototype.getChild = function() {
     return this._child;
 }
 Directory.prototype.list = function() { //Linuxのコマンド風
-    //for each…はChrome等で動作しないため…
     for (var _propName in this._child) {
         var _result = this.getName() +"/"+ this._child[_propName].getName();
         if (this._child[_propName] instanceof Directory) { //AS3の「is」相当
