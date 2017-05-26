@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -974,12 +974,84 @@ console.log(_decoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//========================================================
+// FlyweightFactoryクラス＝インスタンスの管理人（Singleton）
+//========================================================
+function FlyweightFactory() { //constructor
+    //_poolに管理されるFlyweightオブジェクトは、ガベージコレクションされません
+    // 明示的にdeleteする必要有り
+    this._pool = new Object();
+
+    //Singletonパターン用
+    if (typeof FlyweightFactory._singleton == "object") {
+        return  FlyweightFactory._singleton;
+    }
+
+    //クラスの静的プロパティにインスタンスを保存
+    //このサンプルは簡易適なSingletonの為、外部からアクセス可能です
+    FlyweightFactory._singleton = this;
+}
+
+//既存ならそのインスタンスを使い、無い場合は新規作成
+FlyweightFactory.prototype.getFlyweight = function(arg) {
+    //プールにインスタンスが無ければ、Flyweightインスタンス生成しプール
+    if (this._pool[arg] == undefined) {
+        this._pool[arg] = new Flyweight(arg);
+    } else {
+        console.log(arg + "は既存です");
+    }
+    return this._pool[arg];
+}
+
+//============================================
+// Flyweightクラス＝無駄に生成したくないアイテム
+//============================================
+function Flyweight(arg) {
+    //console.log(this); //=> Flyweight {}（注目）
+    this._request = new XMLHttpRequest(); //XMLが付くクラス名だがXML以外にも対応
+    this._request._text = ""; //ロードしたテキストを格納（裏技）
+    this._request.onreadystatechange = this.callBack; //イベントハンドラ
+    this._request.open("GET", arg + ".txt"); //読み込む外部ファイルの指定
+    this._request.send(null);
+}
+Flyweight.prototype.callBack = function(evt) {
+    if (this.readyState == 4) { //リクエストが完了した場合
+        if (this.status == 200) { //成功した場合（ローカル実行時は不可）
+            //console.log(this); //=> XMLHttpRequest...（注意）
+            this._text = this.responseText;
+        }
+    }
+}
+Flyweight.prototype.getText = function() {
+    return this._request._text;
+}
+
+//=======
+// 実行
+//=======
+var _flyweightFactory = new FlyweightFactory();
+_a = _flyweightFactory.getFlyweight("a");
+_ka = _flyweightFactory.getFlyweight("ka");
+_a = _flyweightFactory.getFlyweight("a"); // aは既存です
+        
+//console.log(_a.getText()); //この時点では、外部テキストデータがロードされていない
+
+setTimeout("timeOut()", 500); //0.5秒後に値を取得
+function timeOut() {
+    console.log(_a.getText()); //あいうえお
+    console.log(_ka.getText()); //かきくけこ
+}
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Proxy"></a>
