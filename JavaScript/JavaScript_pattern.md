@@ -862,21 +862,21 @@ Decorator2.prototype = new Display(); //Displayクラスを継承
 //==========
 // 実行
 //==========
-    var _original = new Original("TAKASHI");
-    console.log(_original.show()); // TAKASHI
+var _original = new Original("TAKASHI");
+console.log(_original.show()); // TAKASHI
 
-    var _decorator1 = new Decorator1(_original);
-    console.log(_decorator1.show()); // -TAKASHI-
-            
-    var _decorator2 = new Decorator2(_original);
-    console.log(_decorator2.show()); // (TAKASHI)
-            
-    var _special = new Decorator2(
+var _decorator1 = new Decorator1(_original);
+console.log(_decorator1.show()); // -TAKASHI-
+        
+var _decorator2 = new Decorator2(_original);
+console.log(_decorator2.show()); // (TAKASHI)
+        
+var _special = new Decorator2(
+                    new Decorator1(
                         new Decorator1(
                             new Decorator1(
-                                new Decorator1(
-                                    new Original("TAKASHI")))));
-    console.log(_special.show()); // (---TAKASHI---)
+                                new Original("TAKASHI")))));
+console.log(_special.show()); // (---TAKASHI---)
 
 </script>
 ```
