@@ -22,8 +22,8 @@
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1100,12 +1100,72 @@ _imgLoader.load(); //通常は必要になった時に実際に画像（実際�
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//==========
+// Carクラス
+//==========
+function Car(name, num) { //コンストラクタ関数
+    this._name = name;
+    this._num = num;
+}
+Car.prototype.get = function(propName) {
+    return this[propName];
+}
+
+//==============
+// CarParkクラス
+//==============
+function CarPark() {} //コンストラクタ関数
+CarPark.prototype._list = [];
+CarPark.prototype.add = function(theElement) {
+    this._list.push(theElement);
+}
+CarPark.prototype.getElementAt = function(index) {
+    return this._list[index];
+}
+CarPark.prototype.getLength = function() {
+    return this._list.length;
+}
+CarPark.prototype.createIterator = function() {
+    return new Iterator(this);
+}
+
+//===============
+// Iteratorクラス
+//===============
+function Iterator(obj) { //コンストラクタ関数
+    this._obj = obj;
+}
+Iterator.prototype._count = 0;
+Iterator.prototype.hasNext = function() {
+    return this._obj.getLength() > this._count;
+}
+Iterator.prototype.next = function() {
+    return this._obj.getElementAt(this._count++); //次の車を返します
+}
+
+//=======
+// 実行
+//=======
+var _carPark = new CarPark(); 
+_carPark.add(new Car("NISSAN GT-R", "品川300 し35-00"));
+_carPark.add(new Car("BMW mini", "品川300 ぬ32-32"));
+_carPark.add(new Car("TOYOTA 2000GT", "練馬501 の20-00"));
+var _carParkIterator = _carPark.createIterator(); //イテレータを生成
+while(_carParkIterator.hasNext()) {
+    var _nextCar = _carParkIterator.next();
+    console.log(_nextCar.get("_name") + ", " + _nextCar.get("_num"));
+}
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="TemplateMethod"></a>
