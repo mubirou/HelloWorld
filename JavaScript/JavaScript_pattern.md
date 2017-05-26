@@ -801,14 +801,13 @@ console.log(_flashProfessional.getName()); //=> Flash Professional
 
 //Directoryの中のDirectoryとFileを調べる
 console.log(_macromedia.getChild()); //=> [Directory, File] => [Directory, File]
-        
+
 // Directoryの中のDirectoryとFileを調べる
 _macromedia.remove(_dreamweaver);
 console.log(_macromedia.getChild()); //=> [Directory]
-        
+
 //指定した階層のDirectory（ディレクトリ内のDirectory & File）とFileを調べる
-_macromedia.list();
-//=> Macromedia/Flash(Directory)
+_macromedia.list(); //=> Macromedia/Flash(Directory)
 _dreamweaver.list(); //=> Macromedia/Dreamweaver(File)
 
 </script>
