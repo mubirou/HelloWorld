@@ -39,17 +39,6 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-XXXX
-
-実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：Takashi Nishimura  
-作成日：2013年  
-更新日：2017年05月XX日
-
-
-<a name="Prototype"></a>
-# <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
-
 ### 概要
 TypeScript 2.X から、コンストラクタにアクセス修飾子 private (同じクラスからのみアクセス可）の設定が可能になった
 
@@ -78,6 +67,17 @@ var _singleton1: Singleton = Singleton.instance; //唯一のインスタンス�
 var _singleton2: Singleton = Singleton.instance; //唯一のインスタンスを呼出す
 console.log(_singleton1 == _singleton2); //true（同じインスタンス）
 ```
+
+実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
+作成者：Takashi Nishimura  
+作成日：2013年  
+更新日：2017年05月26日
+
+
+<a name="Prototype"></a>
+# <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
+
+XXXX
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
