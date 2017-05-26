@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
@@ -1057,12 +1057,44 @@ function timeOut() {
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//==================================
+// ImgLoaderクラス＝代理人（Proxy役）
+//==================================
+function ImgLoader(url) {
+    this._url = url;
+}
+ImgLoader.prototype.load = function() {
+    var _img = new Img(this._url); //実際の本人登場（代理人は実際の本人を知っている）
+    _img.load();
+}
+
+//=====================
+// Imgクラス＝実際の本人
+//=====================
+function Img(url) {
+    this._url = url;
+}
+Img.prototype.load = function() { //重い処理をここで行う
+    //今回のサンプルの中身はあまり重要ではない…
+    console.log(this._url); //=> "sample.jpg"
+}
+
+//=======
+// 実行
+//=======
+var _imgLoader = new ImgLoader("sample.jpg"); //代理人（Proxy）役
+_imgLoader.load(); //通常は必要になった時に実際に画像（実際の本人）をロード
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Iterator"></a>
