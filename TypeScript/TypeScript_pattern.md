@@ -93,7 +93,7 @@ XXXX
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月26日
+更新日：2017年05月XX日
 
 
 <a name="FactoryMethod"></a>
