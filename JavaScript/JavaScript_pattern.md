@@ -24,10 +24,10 @@
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1261,45 +1261,329 @@ HAPPY NEW YEAR!
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//===============================
+// Jankenクラス＝Context（文脈）役
+//===============================
+function Janken(arg) {
+    this._strategy = arg;
+}
+Janken.prototype.exec = function() {
+    this._strategy.execute();  //○.exec() だと紛らわしかと思ったので…
+}
+
+//==================================
+// StrategyAクラス＝具体的な「作戦Ａ」
+//==================================
+function StrategyA() { } //コンストラクタ
+StrategyA.prototype.execute = function() {
+    console.log("グー、グー、パー");
+}
+
+//==================================
+// StrategyBクラス＝具体的な「作戦Ｂ」
+//==================================
+function StrategyB() { } //コンストラクタ
+StrategyB.prototype.execute = function() {
+    console.log("パー、グー、チョキ");
+}
+
+//=======
+// 実行
+//=======
+var _partner = "HANAKO"; // or "ICHIRO"
+var _janken;
+        
+if (_partner == "HANAKO") { //対戦相手によって作戦を変える
+    _janken = new Janken(new StrategyA());
+} else if (_partner == "ICHIRO") {
+    _janken = new Janken(new StrategyB());
+}
+//じゃんけんの実行
+_janken.exec(); //グー、グー、パー
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//====================
+// 訪問先１＝千葉の親戚
+//====================
+function Chiba() { //コンストラクタ
+    this._otoshidama = 5000; //お年玉
+}
+Chiba.prototype.accept = function(theVisitor) {
+    theVisitor.visit(this._otoshidama);
+}
+
+//======================
+// 訪問先２＝北海道の親戚
+//======================
+function Hokkaido() { //コンストラクタ
+    this._otoshidama = 10000; //お年玉
+}
+Hokkaido.prototype.accept = function(theVisitor) {
+    theVisitor.visit(this._otoshidama);
+}
+
+//===============
+// 訪問者１＝一郎
+//===============
+function Ichiro() { //コンストラクタ
+    this._point = 0; //貯金
+}
+Ichiro.prototype.visit = function(theOtoshidama) {
+    this._point += theOtoshidama;
+}
+Ichiro.prototype.getPoint = function() {
+    return this._point;
+}
+
+//==============
+// 訪問者２＝花子
+//==============
+function Hanako() { //コンストラクタ
+    this._point = 0; //貯金
+}
+Hanako.prototype.visit = function(theOtoshidama) {
+    this._point += theOtoshidama;
+}
+Hanako.prototype.getPoint = function() {
+    return this._point;
+}
+
+//=======
+// 実行
+//=======
+//訪問先（Acceptor）の追加
+var _acceptorList = [new Chiba(), new Hokkaido()];
+
+//訪問する人（Visitor）
+var _ichiro = new Ichiro();
+var _hanako = new Hanako();
+
+//訪問する
+for (var _propName in _acceptorList) {
+    _acceptorList[_propName].accept(_ichiro);
+    _acceptorList[_propName].accept(_hanako);
+}
+
+console.log(_ichiro.getPoint()); //15000
+console.log(_hanako.getPoint()); //15000
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//====================================
+// SuperPOクラス＝郵便局のスーパークラス
+//====================================
+function SuperPO() { //コンストラクタ
+    var _next; //たらい回し先
+}
+SuperPO.prototype.setNext = function(arg){
+    this._next = arg;
+    return this._next;
+}
+SuperPO.prototype.send = function(arg) {
+    console.log("Error: サブクラスでオーバーライドして定義して下さい");
+}
+
+//==============================
+// ShinjukuPOクラス＝新宿郵便局
+//==============================
+function ShinjukuPO() { } //コンストラクタ
+ShinjukuPO.prototype = new SuperPO(); //スーパークラスを継承
+ShinjukuPO.prototype.send = function(arg){
+    if (new RegExp("新宿").test(arg)) {
+        console.log("本日中に届きます");
+    } else {
+        this._next.send(arg); //たらい回し先に振る
+    } 
+}
+
+//=========================
+// TokyoPOクラス＝東京郵便局
+//=========================
+function TokyoPO() { } //コンストラクタ
+TokyoPO.prototype = new SuperPO(); //スーパークラスを継承
+TokyoPO.prototype.send = function(arg){
+    if (new RegExp("東京都").test(arg)) {
+        console.log("明日中に届きます");
+    } else {
+        this._next.send(arg); //たらい回し先に振る
+    } 
+}
+
+//=========================
+// JapanPOクラス＝日本郵便局
+//=========================
+function JapanPO() { } //コンストラクタ
+JapanPO.prototype = new SuperPO(); //スーパークラスを継承
+JapanPO.prototype.send = function(arg){
+    console.log("明後日以降に届きます");
+}
+
+//=======
+// 実行
+//=======
+//郵便局（Post Office）
+var _shinjukuPO = new ShinjukuPO();
+var _tokyoPO = new TokyoPO();
+var _japanPO = new JapanPO();
+        
+//責任のたらいまわしをセット
+_shinjukuPO.setNext(_tokyoPO).setNext(_japanPO);
+        
+//投函
+_shinjukuPO.send("東京都新宿区XXX-X-X-X"); //本日中に届きます
+_shinjukuPO.send("東京都日野市XXX町X-X-X"); //明日中に届きます
+_shinjukuPO.send("静岡県XXX市XXX町X-X-X"); //明後日以降に届きます
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//========================
+//（擬似）抽象クラスの定義
+//========================
+function AbstractMember() {}; //コンストラクタ
+AbstractMember.prototype.setMediator = function(_mediator) { //共通のメソッド
+    this.__mediator = _mediator;
+}
+AbstractMember.prototype.advice = function(_string) { //抽象メソッド
+    console.log("サブクラスで実装して下さい");
+}
+
+//===========================
+//メンバー１（YesButtonクラス）
+//===========================
+function YesButton() {}; //コンストラクタ
+YesButton.prototype = new AbstractMember(); //抽象クラスを継承
+YesButton.prototype.on = function() { //メソッドの定義
+    this.__mediator.report(this, "on"); //相談役に報告
+}
+YesButton.prototype.advice = function(_string) { //メソッドの定義
+    if (_string == "off") {
+        console.log("YesButtonをoffにします");
+    }
+}
+
+//===========================
+//メンバー２（NoButtonクラス）
+//===========================
+function NoButton() {}; //コンストラクタ
+NoButton.prototype = new AbstractMember(); //抽象クラスを継承
+NoButton.prototype.on = function() { //メソッドの定義
+    this.__mediator.report(this, "on"); //相談役に報告
+}
+NoButton.prototype.advice = function(_string) { //メソッドの定義
+    if (_string == "off") {
+        console.log("NoButtonをoffにします");
+    }
+}
+
+//===========================
+//メンバー３（TextBoxクラス）
+//===========================
+function TextBox() {}; //コンストラクタ
+TextBox.prototype = new AbstractMember(); //抽象クラスを継承
+TextBox.prototype.advice = function(_string) { //メソッドの定義
+    if (_string == "enable") {
+        console.log("TextBoxを入力可能にします");
+    } else if (_string == "disabled") {
+        console.log("TextBoxを入力不可にします");
+    }
+}
+
+//==================================
+// 相談役（専門性が高いため使い捨て）
+//==================================
+function Mediator() { //コンストラクタ
+    this.__yesButton = new YesButton(); //YesButtonの生成
+    this.__noButton = new NoButton(); //NoButtonの生成
+    this.__textBox = new TextBox(); //TextButtonの生成
+
+    this.__yesButton.setMediator(this); //YesButtonに相談役が自分あることを教える
+    this.__noButton.setMediator(this); //NoButtonに相談役が自分あることを教える
+    this.__textBox.setMediator(this); //TextButtonに相談役が自分あることを教える
+}
+Mediator.prototype.getYesButton = function() { //アクセサ（getter）
+    return this.__yesButton;
+};
+Mediator.prototype.getNoButton = function() { //アクセサ（getter）
+    return this.__noButton;
+};
+Mediator.prototype.report = function(_member, _string) { //メンバーからの報告を受けて指示を出す
+    if (_member == this.__yesButton) { //YesButtonからの報告の場合...
+        if (_string == "on") {
+            this.__noButton.advice("off");
+            this.__textBox.advice("enable");
+        }
+    }
+    if (_member == this.__noButton) { //NoButtonからの報告の場合...
+        if (_string == "on") {
+            this.__yesButton.advice("off");
+            this.__textBox.advice("disabled");
+        }
+    }
+}
+
+//=======
+// 実行
+//=======
+var _mediator = new Mediator();
+
+_mediator.getYesButton().on();
+//=> "NoButtonをoffにします"
+//=> "TextBoxを入力可能にします"
+
+_mediator.getNoButton().on();
+//=> "YesButtonをoffにします"
+//=> "TextBoxを入力不可にします"
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Observer"></a>
