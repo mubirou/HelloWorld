@@ -31,8 +31,8 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
+    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -1882,12 +1882,152 @@ _kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//==============================
+// Calcクラス＝起動者（Invoker役）
+//==============================
+function Calc() { //コンストラクタ
+    this._view = new View(); //結果を表示する役（Receiver）
+    this._history = [ ]; //命令の履歴を保存
+    this._count = undefined; //undo()、redo()用
+}
+
+// 命令１（可算）
+Calc.prototype.commandPlus = function(arg) {
+    //命令する度にインスタンスを生成
+    var _commandPlus = new CommandPlus(this._view, arg);
+    _commandPlus.exec();			
+    //履歴に記録
+    this._history.push(_commandPlus);
+    this._count = this._history.length - 1;
+}
+
+// 命令２（減算）
+Calc.prototype.commandMinus = function(arg) {
+    //命令する度にインスタンスを生成
+    var _commandMinus = new CommandMinus(this._view, arg);
+    _commandMinus.exec();
+            
+    //履歴に記録
+    this._history.push(_commandMinus);
+    this._count = this._history.length - 1;
+}
+
+
+// アンドゥ
+Calc.prototype.undo = function() {
+    if (this._count > 0) {
+        this._view.update(this._history[this._count --].getBefore());
+    } else {
+        console.log("これ以上アンドゥできません");
+        this._count = 0;
+        this._view.update(this._history[this._count].getBefore());
+    }
+}
+
+
+// リドゥ
+Calc.prototype.redo = function() {
+    if (this._count < this._history.length-1) {
+        this._view.update(this._history[++ this._count].getBefore());
+    } else {
+        console.log("これ以上リドゥできません");
+        this._count = this._history.length - 1;
+        this._view.update(this._history[this._count].getAfter());
+    }
+}
+
+// 履歴を調べる
+Calc.prototype.getHistory = function() {
+    return this._history;
+}
+
+//=================================
+// CommandPlusクラス＝命令１（足し算）
+//=================================
+function CommandPlus(arg1, arg2) { //コンストラクタ
+    this._view = arg1; //結果を表示する役
+    this._plusNum = arg2; //可算する値
+    this._before = undefined; //可算する前の値
+    this._after = undefined; //可算後の値
+}
+CommandPlus.prototype.exec = function() { //命令（可算）を実際に実行する
+    this._before = this._view.getValue(); //直前の値を記憶
+    this._after = this._before + this._plusNum; //可算後の値を記憶
+    this._view.update(this._after);
+}	
+CommandPlus.prototype.getBefore = function() {
+    return this._before;
+}
+CommandPlus.prototype.getAfter = function() {
+    return this._after;
+}
+
+//===================================
+// CommandMinusクラス＝命令２（引き算）
+//===================================
+function CommandMinus(arg1, arg2) { //コンストラクタ
+    this._view = arg1; //結果を表示する役
+    this._minusNum = arg2; //減算する値
+    this._before = undefined; //減算する前の値
+    this._after = undefined; //減算後の値
+}
+CommandMinus.prototype.exec = function() { //命令（減算）を実際に実行する
+    this._before = this._view.getValue(); //直前の値を記憶
+    this._after = this._before - this._minusNum; //減算後の値を記憶
+    this._view.update(this._after);
+}	
+CommandMinus.prototype.getBefore = function() {
+    return this._before;
+}
+CommandMinus.prototype.getAfter = function() {
+    return this._after;
+}
+
+//===============================================
+// Viewクラス＝受信者（Receiver役）結果を表示する役
+//===============================================
+function View() { //コンストラクタ
+    this._value = 0; //計算結果
+}
+View.prototype.update = function(arg) {
+    this._value = arg;
+    console.log(this._value); //undo、redoを含め、全ての結果はここで表示
+}
+View.prototype.getValue = function() { //直前の値を記憶
+    return this._value;
+}
+
+//=======
+// 実行
+//=======
+//計算機（起動者の役）
+var _calc = new Calc();
+        
+//命令の実行
+_calc.commandPlus(50); //50
+_calc.commandPlus(50); //100
+_calc.commandMinus(1); //99
+
+//アンドゥ
+_calc.undo(); //100
+_calc.undo(); //50
+_calc.undo(); //これ以上アンドゥできません => 0
+        
+//リドゥ
+_calc.redo(); //50
+_calc.redo(); //100
+_calc.redo(); //これ以上リドゥできません => 99
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Interpreter"></a>
