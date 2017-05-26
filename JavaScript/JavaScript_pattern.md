@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1171,12 +1171,91 @@ while(_carParkIterator.hasNext()) {
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+### 概要
+* abstract クラスや abstract メソッド、override キーワードはない
+* エラー処理（throw new Error...）の記述は可能
+* 必要な機能が用意されていないため雰囲気だけ Template Method パターンに似せるにとどまります
+
+### 例文
+```
+<script>
+
+//===============
+// Abstractクラス
+//===============
+function Abstract() {} //コンストラクタ
+Abstract.prototype.templateMethod = function() {
+    this.order1(); //共通の処理
+    if (this.isAdult()) { //フックメソッド
+        this.order2(); //条件により実行
+    }
+    this.order3(); //サブクラスでオーバーライドして具体的処理を行う
+}
+Abstract.prototype.order1 = function() {
+    console.log("HAPPY NEW YEAR!");
+}
+//フックメソッド実際はサブクラスでオーバーライドして定義（オプション）
+Abstract.prototype.isAdult = function() {
+    return true;
+}
+Abstract.prototype.order2 = function() { //条件により実行
+    console.log("本年も宜しくお願い致します");
+}
+//必ずサブクラスでオーバーライドして定義しなければなりません
+Abstract.prototype.order3 = function() {
+    //throw new Error("ERROR…では、問題点を見つけにくいので…
+    alert("ERROR:Abstract.order3():サブクラスでオーバーライドして定義して下さい");
+}
+
+//=============
+// サブクラス１
+//=============
+function NewYearCard_Ichiro() {} //コンストラクタ
+NewYearCard_Ichiro.prototype = new Abstract(); //スーパークラスを継承
+//フックメソッドの実際の定義（オプション）
+NewYearCard_Ichiro.prototype.isAdult = function() {
+    return false;
+}
+//抽象クラス（Abstract）の抽象メソッドをオーバーライドして具体的に記述（必須）
+NewYearCard_Ichiro.prototype.order3 = function() {
+    console.log("テニスがんばろうね！");
+}
+
+//=============
+// サブクラス２
+//=============
+function NewYearCard_Hanako() {} //コンストラクタ
+NewYearCard_Hanako.prototype = new Abstract(); //スーパークラスを継承
+//抽象クラス（Abstract）の抽象メソッドをオーバーライドして具体的に記述（必須）
+NewYearCard_Hanako.prototype.order3 = function() {
+    console.log("今度みんなで集まろう！");
+}
+
+//========
+// 実行
+//========
+var _newYearCard_Ichiro = new NewYearCard_Ichiro();
+_newYearCard_Ichiro.templateMethod();
+/*
+HAPPY NEW YEAR!
+テニスがんばろうね！
+*/
+
+var _newYearCard_Hanako = new NewYearCard_Hanako();
+_newYearCard_Hanako.templateMethod();
+/*
+HAPPY NEW YEAR!
+本年も宜しくお願い致します
+今度みんなで集まろう！
+*/
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Strategy"></a>
