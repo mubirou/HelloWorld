@@ -15,8 +15,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
-    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -693,12 +693,132 @@ console.log(_smartPhone2.phone()); //電話をかける
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//================================================
+// Samenessクラス＝同一視（Component）するための役
+//================================================
+function Sameness() { //コンストラクタ
+    this._name = undefined; //サブクラスで使います（String型）
+    this._parent = undefined; //サブクラスで使います（Directory）
+} 
+Sameness.prototype.getName = function() {
+    return this._name;
+}
+Sameness.prototype.getChild = function() {
+    alert("ERROR:入れ子はできません"); //Fileクラス対応
+}
+Sameness.prototype.add = function(arg) {
+    alert("ERROR:追加できません"); //Fileクラス対応
+}
+Sameness.prototype.remove = function(arg) {
+    alert("削除できません");
+}
+Sameness.prototype.list = function() { //Linuxのlsコマンド風
+    alert("ERROR:サブクラスでオーバーライドして下さい");
+}
+Sameness.prototype.setParent = function(directory) {
+    this._parent = directory;
+}
+Sameness.prototype.getParent = function() {
+    return this._parent;
+}
+
+//=====================================
+// Directoryクラ＝複合体（Composit）の役
+//=====================================
+function Directory(name) { //コンストラクタ
+    this._child = new Array();
+    this._name = name;
+}
+Directory.prototype = new Sameness();
+Directory.prototype.add = function(arg) { //引数はDirectory or File
+    this._child.push(arg);
+    arg.setParent(this);
+}
+Directory.prototype.remove = function(arg) { //引数はDirectory or File
+    var _index = this._child.indexOf(arg);   //検索（なければ-1、あれば位置を返す）
+    if (_index != -1) {
+        this._child.splice(_index,1);
+    }
+}
+Directory.prototype.getChild = function() {
+    return this._child;
+}
+Directory.prototype.list = function() { //Linuxのコマンド風
+    //for each…はChrome等で動作しないため…
+    for (var _propName in this._child) {
+        var _result = this.getName() +"/"+ this._child[_propName].getName();
+        if (this._child[_propName] instanceof Directory) { //AS3の「is」相当
+            _result = _result + "(Directory)";
+        } else {
+            _result = _result + "(File)";
+        }
+        console.log(_result);
+    }
+}
+
+//============
+// Fileクラス
+//============
+function File(name) { //コンストラクタ
+    this._name = name;
+}
+File.prototype = new Sameness();
+File.prototype.list = function() { //Linuxのコマンド風
+    console.log(this.getParent().getName() +"/"+ this.getName() + "(File)");
+}
+
+//============
+// 実行
+//============
+// ディレクトリの作成
+var _root = new Directory("root");
+var _adobe = new Directory("Adobe");
+var _macromedia = new Directory("Macromedia");
+var _flash = new Directory("Flash");
+
+// ファイルの作成
+var _illustrator = new File("Illustrator");
+var _photoshop = new File("Photoshop");
+var _dreamweaver = new File("Dreamweaver");
+var _flashProfessional = new File("Flash Professional");
+var _flashBuilder = new File("Flash Builder");
+
+// 関連付け
+_root.add(_adobe); //Directoryの追加
+_root.add(_macromedia); //Directoryの追加
+_adobe.add(_illustrator); //Fileの追加
+_adobe.add(_photoshop); //Fileの追加
+_macromedia.add(_flash); //Directoryの追加
+_macromedia.add(_dreamweaver); //Fileの追加
+_flash.add(_flashProfessional); //Fileの追加
+_flash.add(_flashBuilder); //Fileの追加
+
+// 以下検証
+//DirectoryやFileの「名前」を調べる
+console.log(_flashProfessional.getName()); //=> Flash Professional
+
+//Directoryの中のDirectoryとFileを調べる
+console.log(_macromedia.getChild()); //=> [Directory, File] => [Directory, File]
+        
+// Directoryの中のDirectoryとFileを調べる
+_macromedia.remove(_dreamweaver);
+console.log(_macromedia.getChild()); //=> [Directory]
+        
+//指定した階層のDirectory（ディレクトリ内のDirectory & File）とFileを調べる
+_macromedia.list();
+//=> Macromedia/Flash(Directory)
+_dreamweaver.list(); //=> Macromedia/Dreamweaver(File)
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Decorator"></a>
