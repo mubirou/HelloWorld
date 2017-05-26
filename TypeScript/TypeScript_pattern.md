@@ -49,7 +49,7 @@ class Singleton { //シングルトンクラス
     private static _singleton: Singleton; //唯一のインスタンスを格納
 
     //コンストラクタ（private）
-    private constructor() {} //外部から new できない
+    private constructor() {} //外部からnewできない
 
     //外部から唯一のインスタンスを呼出す
     public static get instance(): Singleton {
