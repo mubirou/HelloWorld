@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -1806,12 +1806,77 @@ function saikoro() {
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//======================================================
+// Kanjiクラス＝Context役（漢字検定）複数の状態を管理する役
+//======================================================
+function Kanji() { //コンストラクタ
+    this._state; //級別問題集を格納
+}
+Kanji.prototype.setState = function(arg) {
+    this._state = arg;
+}
+Kanji.prototype.testA = function() {
+    this._state.mondaiA();
+}
+Kanji.prototype.testB = function() {
+    this._state.mondaiB();
+}
+
+//==============================================
+// Question7クラス＝StateA役（漢字検定７級の問題集）
+//==============================================
+function Question7() { } //コンストラクタ
+Question7.prototype.mondaiA = function(){
+    console.log("笑顔、衣類、胃腸");
+}
+Question7.prototype.mondaiB = function(){
+    console.log("持参、勉強、案内");
+}
+
+//==============================================
+// Question10クラス＝StateB役（漢字検定10級の問題集）
+//==============================================
+function Question10() { } //コンストラクタ
+Question10.prototype.mondaiA = function(){
+    console.log("みぎ、おと、そら");
+}
+Question10.prototype.mondaiB = function(){
+    console.log("いぬ、あめ、みみ");
+}
+
+//========
+// 実行
+//========
+var _student = "ICHIRO"; // or "HANAKO"
+        
+//漢字検定（Context役）
+var _kanji = new Kanji();
+        
+//級別問題集（State役）
+var _question7 = new Question7(); //漢字検定7級用
+var _question10 = new Question10(); //漢字検定10級用
+        
+//生徒に合った級別問題集にする
+if (_student == "ICHIRO") {
+    _kanji.setState(_question7);
+} else if (_student == "HANAKO") {
+    _kanji.setState(_question10);
+}
+        
+//問題を出す
+_kanji.testA(); //みぎ、おと、そら  or  笑顔、衣類、胃腸
+_kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="Command"></a>
