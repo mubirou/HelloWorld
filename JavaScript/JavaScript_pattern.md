@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>JavaScript デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -32,7 +30,6 @@
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
-    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -2032,10 +2029,92 @@ _calc.redo(); //これ以上リドゥできません => 99
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
+* 例文は ActionScript、SWF、AVM（ActionScript Virtual Machine）を自作ミニ言語と見立てています。
 
-XXXX
+```
+<script>
+
+//======================================
+// SWFクラス＝Context役（中間コードに変換）
+//======================================
+function SWF(code) {
+    this._codeArray = []; //中間コード（配列）
+    this._count = 0;
+    this._codeArray = code.split(";"); //中間コード（配列）に変換
+}
+SWF.prototype.getNextCode = function() {
+    if (! this.isEnd()) {
+        return this._codeArray[this._count ++];
+    } else {
+        return this._codeArray[this._codeArray.length - 1];
+    }
+}
+SWF.prototype.isEnd = function() {
+    return this._count >= this._codeArray.length;
+}
+
+//=====================================
+// SuperFlashPlayerクラス＝スーパークラス
+//=====================================
+function SuperFlashPlayer() { } //コンストラクタ
+SuperFlashPlayer.prototype.exec = function(swf) {
+    console.log("Error: サブクラスでoverrideして下さい");
+}
+
+//======================================================
+// FlashPlayerクラス＝非終端となる表現の役（+-*/コマンド用）
+//======================================================
+function FlashPlayer() { } //コンストラクタ
+FlashPlayer.prototype = new SuperFlashPlayer();
+//オーバーライドします
+FlashPlayer.prototype.exec = function(swf) {
+    var _result = 0; //計算結果
+    while (! swf.isEnd()) {
+        var _nextCode = swf.getNextCode(); //次の命令
+        var _theOperator = _nextCode.substr(0,1); //演算子
+        var _theNum = Number(_nextCode.substr(1));
+        if (_theOperator != "=") {
+            switch (_theOperator) {
+                case "+": _result += _theNum; break;
+                case "-": _result -= _theNum; break;
+                case "*": _result *= _theNum; break;
+                case "/": _result /= _theNum; break;
+                default : console.log("Error:演算子が異なります");
+            }
+        } else {
+            var _END = new FlashPlayer_END(_result);
+            _END.exec(swf);
+        }
+    }
+}
+
+//=====================================================
+// FlashPlayer_ENDクラス＝終端となる表現の役（コマンド用）
+//=====================================================
+function FlashPlayer_END(result) { //コンストラクタ
+    this._result = result;
+}
+FlashPlayer_END.prototype = new SuperFlashPlayer();	
+FlashPlayer_END.prototype.exec = function(swf) { //オーバーライドします
+    if (swf.getNextCode().substr(0).length == 1) { //"="一字なら…
+        console.log("計算結果は" + this._result);
+    } else {
+        console.log("Error: 最後が=で終了していません");
+    }
+}
+
+//========
+// 実行
+//========
+var _AS = "+10;*50;/2;-4;="; //≒ASファイル
+var _SWF = new SWF(_AS); //≒SWFファイル
+var _FlashPlayer = new FlashPlayer(); //≒Flash Player
+_FlashPlayer.exec(_SWF); //計算結果は246
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
