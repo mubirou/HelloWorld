@@ -859,24 +859,40 @@ function Decorator2(arg) {
 }
 Decorator2.prototype = new Display(); //Displayクラスを継承
 
-//==========
-// 実行
-//==========
-var _original = new Original("TAKASHI");
-console.log(_original.show()); // TAKASHI
+//===================================================
+// DecoratorFacadeクラス（Decoratorパターンにこれを追加）
+//===================================================
+function DecoratorFacade() {
+    //Singletonパターン用（オプション）
+    if (typeof DecoratorFacade._singleton == "object") { 
+        return  DecoratorFacade._singleton;
+    }
+    DecoratorFacade._singleton = this;
+}
+//arg1:オリジナルの文字
+//arg2:Decorator1クラスを施す回数
+//arg3:Decorator2クラスを施す回数
+DecoratorFacade.prototype.exec = function(arg1, arg2, arg3) {
+    if (arg2 == undefined) arg2 = 0;
+    if (arg3 == undefined) arg3 = 0;
+    var _result = new Original(arg1);
+    for (var _i=0; _i<arg2; _i++) {
+        _result = new Decorator1(_result);
+    }
+    for (var _j=0; _j<arg3; _j++) {
+        _result = new Decorator2(_result);
+    }
+    return _result.show();
+}
 
-var _decorator1 = new Decorator1(_original);
-console.log(_decorator1.show()); // -TAKASHI-
-        
-var _decorator2 = new Decorator2(_original);
-console.log(_decorator2.show()); // (TAKASHI)
-        
-var _special = new Decorator2(
-                    new Decorator1(
-                        new Decorator1(
-                            new Decorator1(
-                                new Original("TAKASHI")))));
-console.log(_special.show()); // (---TAKASHI---)
+//================================
+// 実行（Decoratorパターンと異なる）
+//================================
+var _decoratorFacade = new DecoratorFacade();
+console.log(_decoratorFacade.exec("TAKASHI", 5, 2)); // ((-----TAKASHI-----))
+console.log(_decoratorFacade.exec("TAKASHI")); // TAKASHI
+console.log(_decoratorFacade.exec("TAKASHI", 0, 1)); // (TAKASHI)
+console.log(_decoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
 
 </script>
 ```
