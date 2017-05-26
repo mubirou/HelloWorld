@@ -29,8 +29,8 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
@@ -1669,12 +1669,138 @@ _apple.notify(); //全リスナー（Observer）への通知
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+<script>
+
+//===================
+// Gamerクラス＝主人公
+//===================
+function Gamer() { //コンストラクタ
+    this._totalX = 0;
+    this._totalY = 0;
+}
+Gamer.prototype.addX = function(saikoro) {
+    this._totalX += saikoro;
+}
+Gamer.prototype.addY = function(saikoro) {
+    this._totalY += saikoro;
+}
+Gamer.prototype.getMemento = function() {
+    return new Memento(this._totalX, this._totalY);
+}
+
+//=====================================
+// Memoryクラス＝世話人（バックアップ係）
+//=====================================
+function Memory() { //コンストラクタ
+    this._history = []; //状態の履歴を保存
+    this._snapshot = undefined; //最後に記録したスナップショット
+    this._count = undefined; //undo()、redo()用
+}
+
+Memory.prototype.save = function(memento) {
+    this._snapshot = memento;
+    this._history.push(memento);
+    this._count = this._history.length - 1;
+}
+
+// アンドゥ（やり直し）
+Memory.prototype.undo = function() {
+    if (this._count > 0) {
+        return this._history[-- this._count];
+    } else {
+        console.log("これ以上、アンドゥできません");
+        this._count = 0;
+        return this._history[this._count];
+    }
+}
+
+// リドゥ（再実行）
+Memory.prototype.redo = function() {
+    if (this._count < this._history.length-1) {
+        return this._history[++ this._count];
+    } else {
+        console.log("これ以上、リドゥできません");
+        this._count = this._history.length - 1;
+        return this._history[this._count];
+    }
+}
+
+// 作業履歴を調べる
+Memory.prototype.getHistory = function() {
+    return this._history;
+}
+
+// スナップショットを調べる（最後に記録したもの）
+Memory.prototype.getShapshot = function() {
+    return this._snapshot;
+}
+
+//================================================================
+// Mementoクラス＝その瞬間の状態をオブジェクト（カプセル化）として保存
+//================================================================
+function Memento(totalX, totalY) {
+    this._totalX = totalX;
+    this._totalY = totalY;
+}
+
+Memento.prototype.getX = function() {
+    return this._totalX;
+}
+Memento.prototype.getY = function() {
+    return this._totalY;
+}
+
+//=======
+// 実行
+//=======
+//登場人物
+var _gamer = new Gamer(); //主人公
+var _memory = new Memory(); //世話人（記録係）
+        
+//サイコロを５回振る => 毎回合計値を記録
+for (var _i=0; _i<5; _i++) { //５回繰返す
+    //さいころを振る
+    _gamer.addX(saikoro());
+    _gamer.addY(saikoro());
+    //この瞬間の状態をオブジェクトとして保存
+    _memory.save(_gamer.getMemento()); 
+}
+        
+// アンドゥ
+var _theMemento = _memory.undo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+var _theMemento = _memory.undo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+var _theMemento = _memory.undo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+var _theMemento = _memory.undo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+var _theMemento = _memory.undo(); //=> これ以上、アンドゥできません
+        
+// リドゥ
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() +","+ _theMemento.getY());
+_theMemento = _memory.redo(); //=> これ以上、リドゥできません
+
+//サイコロ（1〜6の整数が返る）
+function saikoro() {
+    return Math.floor(Math.random()*6)+1;
+}
+
+</script>
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月26日
 
 
 <a name="State"></a>
