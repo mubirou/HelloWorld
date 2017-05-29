@@ -6,8 +6,8 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    ***
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -77,12 +77,72 @@ console.log(_singleton1 == _singleton2); //true（同じインスタンス）
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//===============================
+// Prototypeクラスのインターフェース
+//===============================
+interface IPrototype {
+    clone(): Prototype; //実装するクラス名に合わせます
+}
+
+//===============
+// Prototypeクラス
+//===============
+class Prototype implements IPrototype {
+    private _firstName: string;
+    private _lastName: string;
+    private _address: string;
+
+    constructor() {} //コンストラクタ
+
+    // セッターの定義（今回はsetアクセサメソッドを使わない方法を採用...）
+    public setFirstName(arg) { this._firstName = arg; }
+    public setLastName(arg) { this._lastName = arg; }
+    public setAddress(arg) { this._address = arg; }
+
+    // ゲッターの定義（今回はgetアクセサメソッドを使わない方法を採用...）
+    public getFirstName(): string { return this._firstName; }
+    public getLastName(): string { return this._lastName; }
+    public getAaddress(): string { return this._address; }
+
+    public clone(): Prototype {
+        var _prototype: Prototype = new Prototype();
+        _prototype.setFirstName(this._firstName); //セッターを利用
+        _prototype.setLastName(this._lastName); //セッターを利用
+        _prototype.setAddress(this._address); //セッターを利用
+        return _prototype;
+    }
+}
+
+//========
+// 実行
+//========
+// インスタンスを生成
+var _prototype1: Prototype = new Prototype();
+_prototype1.setFirstName("Takashi");
+_prototype1.setLastName("Nishimura");
+_prototype1.setAddress("X-XX-XX XXX, Shinjuku-ku");
+
+// コピーを作成
+var _prototype2: Prototype = _prototype1.clone();
+_prototype2.setFirstName("Hanako"); //検証用に一部プロパティの変更をしてみます
+
+// 検証
+console.log(_prototype1.getFirstName()); //=> "Takashi"
+console.log(_prototype1.getLastName()); //=> "Nishimura"
+console.log(_prototype1.getAaddress()); //=> "X-XX-XX XXX, Shinjuku-ku"
+
+console.log(_prototype2.getFirstName()); //=> "Hanako"
+console.log(_prototype2.getLastName()); //=> "Nishimura"
+console.log(_prototype2.getAaddress()); //=> "X-XX-XX XXX, Shinjuku-ku"
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="Builder"></a>
