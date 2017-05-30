@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -307,12 +307,156 @@ HAPPY NEW YEAR!
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//======================
+// Abstract（抽象）クラス
+//======================
+class Abstract {
+    constructor() {} //コンストラクタ
+
+    public templateMethod(arg: string): void {//本来はfinalでオーバーライド禁止にしたい
+        //サブクラスでオーバーライドして具体的処理を行う
+        var _factoryMethod = this.factoryMethod(arg); //ここでnewしない
+        _factoryMethod.exec();
+        this.order1(); //共通の処理
+        this.order2(); //サブクラスでオーバーライドして具体的処理を行う
+    }
+
+    //サブクラスでオーバーライドして具体的処理を行う
+    public factoryMethod(arg: string): any { //本来はprotectedを使いたい
+        console.log("Error 01: サブクラスでオーバーライドして定義して下さい");
+        throw new Error(); //処理を停止させる
+    }
+
+    private order1(): void { //共通の処理
+        console.log("〒XXX-XXXX 新宿区XXX町X-X-X");
+    }
+
+    //サブクラスでオーバーライドして具体的処理を行う
+    public order2(): void {
+        console.log("Error 02: サブクラスでオーバーライドして定義して下さい");
+        throw new Error(); //処理を停止させる
+    }
+}
+
+//================================
+// Cardクラス（抽象クラスを継承）
+//================================
+class Card extends Abstract {
+    constructor() { //コンストラクタ
+        super();
+    }
+
+    //インスタンスを生成する工場（オーバーライドして実際にインスタンスを生成）
+    public factoryMethod(arg: string): any {
+        if (arg == "newYear") {
+            return new NewYear_Message();
+        } else if (arg == "summer") {
+            return new Summer_Message();
+        }
+    }
+
+    public order2(): void { //オーバーライド
+        console.log("西村一郎");
+    }
+}
+
+//==================================
+// CardHanakoクラス（抽象クラスを継承）
+//==================================
+class CardHanako extends Abstract {
+    constructor() { //コンストラクタ
+        super();
+    }
+
+    //インスタンスを生成する工場
+    public factoryMethod(arg: string): any { //オーバーライド
+        if (arg == "newYear") {
+            return new NewYear_Message();
+        } else if (arg == "summer") {
+            return new Summer_Message();
+        }
+    }
+
+    public order2(): void { //オーバーライド
+        console.log("西村花子");
+    }
+}
+
+//=====================
+// NewYear_Messageクラス
+//=====================
+class NewYear_Message {
+    constructor() {} //コンストラクタ
+
+    public exec(): void {
+        console.log("明けましておめでとうございます");
+        console.log("（正月用イラスト）");
+    }
+}
+
+//====================
+// Summer_Messageクラス
+//====================
+class Summer_Message {
+    constructor() {} //コンストラクタ
+
+    public exec(): void {
+        console.log("暑中お見舞い申し上げます");
+        console.log("（夏用イラスト）");
+    }
+}
+
+//========
+// 実行
+//========
+// 年賀状（一郎用）
+var _cardIchiro: Card = new Card();
+_cardIchiro.templateMethod("newYear");
+/*
+明けましておめでとうございます
+（正月用イラスト）
+〒XXX-XXXX 新宿区XXX町X-X-X
+西村一郎
+*/
+
+// 暑中見舞い（一郎用）
+_cardIchiro = new Card();
+_cardIchiro.templateMethod("summer");
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+〒XXX-XXXX 新宿区XXX町X-X-X
+西村一郎
+*/
+
+// 年賀状（花子用）
+var _cardHanako: CardHanako = new CardHanako();
+_cardHanako.templateMethod("newYear");
+/*
+明けましておめでとうございます
+（正月用イラスト）
+〒XXX-XXXX 新宿区XXX町X-X-X
+西村花子
+*/
+
+// 暑中見舞い（花子用）
+_cardHanako = new CardHanako();
+_cardHanako.templateMethod("summer");
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+〒XXX-XXXX 新宿区XXX町X-X-X
+西村花子
+*/
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="AbstractFactory"></a>
