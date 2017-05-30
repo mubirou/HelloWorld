@@ -16,8 +16,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
@@ -950,12 +950,74 @@ _dreamweaver.list(); //=> Macromedia/Dreamweaver(File)
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//====================================
+// Displayクラス＝共通のインターフェース
+//====================================
+class Display {
+    public _content:string;
+    constructor() {} //コンストラクタ
+    public show():string {
+        return this._content;
+    }
+}
+
+//==============
+// Originalクラス
+//==============
+class Original extends Display {
+    constructor(arg:string) { //コンストラクタ
+        super(); //必須
+        this._content = arg;
+    }
+}
+
+//================
+// Decorator1クラス
+//================
+class Decorator1 extends Display {
+    constructor(arg:Display) { //コンストラクタ
+        super(); //必須！
+        this._content = "-" + arg.show() + "-";
+    }  
+}
+
+//================
+// Decorator2クラス
+//================
+class Decorator2 extends Display {
+    constructor(arg:Display) { //コンストラクタ
+        super(); //必須！
+        this._content = "(" + arg.show() + ")"; // "<" ">" はタグと認識されてしまう
+    }  
+}
+
+//========
+// 実行
+//========
+var _original:Display = new Original("TAKASHI");
+console.log(_original.show()); // TAKASHI
+
+var _decorator1:Display = new Decorator1(_original);
+console.log(_decorator1.show()); // -TAKASHI-
+
+var _decorator2:Display = new Decorator2(_original);
+console.log(_decorator2.show()); // (TAKASHI)
+
+var _special:Display = new Decorator2(
+                            new Decorator1(
+                                new Decorator1(
+                                    new Decorator1(
+                                        new Original("TAKASHI")))));
+console.log(_special.show()); // (---TAKASHI---)
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Facade"></a>
