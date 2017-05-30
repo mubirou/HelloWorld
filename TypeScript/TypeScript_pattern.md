@@ -695,12 +695,103 @@ console.log(_moneyboxAdapter.moneyDollar); //=> 9.91210003752721（ドル）
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//===================
+// SuperMobileクラス
+//===================
+class SuperMobile {
+    private _os: IOS; //橋渡し役
+    constructor(arg: IOS) { //コンストラクタ
+        this._os = arg;
+    } 
+    public getVersion(): string { //getアクセサメソッドも使えるはずですが…（要検証）
+        return this._os.getVersion();
+    }
+}
+
+//===================
+// Tabletクラス
+//===================
+class Tablet extends SuperMobile {
+    constructor(arg: IOS) { //コンストラクタ
+        super(arg);
+    }
+    //タブレット特有の機能
+    public bigScreen(): void {
+        console.log("大きな画面で見る");
+    }
+}
+
+//===================
+// SmartPhoneクラス
+//===================
+class SmartPhone extends SuperMobile {
+    constructor(arg: IOS) { //コンストラクタ
+        super(arg);
+    }
+    //スマートフォン特有の機能
+    public phone(): void {
+        console.log("電話をかける");
+    }
+}
+
+//======================
+// 各OSのインターフェース
+//======================
+interface IOS { //iOSではなく、OSのインターフェースの意味
+    getVersion(): string;
+}
+
+//===================
+// Androidクラス
+//===================
+class Android implements IOS {
+    constructor() {} //コンストラクタ
+    public getVersion(): string {
+        return "Android 7.1.2";
+    }
+}
+
+//===================
+// iOSクラス
+//===================
+class iOS implements IOS { //本来は大文字から開始すべきですが...
+    constructor() {} //コンストラクタ
+    public getVersion(): string {
+        return "iOS 10.3.2";
+    }
+}
+
+//========
+// 実行
+//========
+// Androidタブレット
+var _tablet1: Tablet = new Tablet(new Android());
+console.log(_tablet1.getVersion()); //Android 7.1.2（プロパティの取得）
+_tablet1.bigScreen(); //大きな画面で見る（メソッドの実行）
+
+// iPad
+var _tablet2: Tablet = new Tablet(new iOS());
+console.log(_tablet2.getVersion()); //iOS 10.3.2（プロパティの取得）
+_tablet2.bigScreen(); //大きな画面で見る（メソッドの実行）
+
+// Androidスマートフォン
+var _smartPhone1: SmartPhone = new SmartPhone(new Android());
+console.log(_smartPhone1.getVersion()); //Android 7.1.2（プロパティの取得）
+_smartPhone1.phone(); //電話をかける（メソッドの実行）
+
+// iPhone
+var _smartPhone2: SmartPhone = new SmartPhone(new iOS());
+console.log(_smartPhone2.getVersion()); //iOS 10.3.2（プロパティの取得）
+_smartPhone2.phone(); //電話をかける（メソッドの実行）
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="Composite"></a>
