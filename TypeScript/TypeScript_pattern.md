@@ -9,10 +9,10 @@
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
@@ -462,12 +462,114 @@ _cardHanako.templateMethod("summer");
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//===================================
+// AbstractFactoryクラス（抽象的な工場）
+//===================================
+class AbstractFactory {
+    constructor() {} //コンストラクタ
+    public static createFactory(arg: string): AbstractFactory {
+        switch (arg) {
+            case "ICHIRO":
+                return new ICHIRO(); //具体的な「一郎工場」を生成
+            case "HANAKO":
+                return new HANAKO(); //具体的な「花子工場」を生成
+        }
+    }
+    //抽象的な機能サブクラスでオーバーライドして、実際の機能を実装します
+    public createNewYear(): void {
+        console.log("Error 01: サブクラスでオーバーライドして定義して下さい");
+        throw new Error(); //処理を停止させる
+    }
+    //抽象的な機能サブクラスでオーバーライドして、実際の機能を実装します
+    public createSummer(): void {
+        console.log("Error 02: サブクラスでオーバーライドして定義して下さい");
+        throw new Error(); //処理を停止させる
+    }
+}
+
+//===================================
+// ICHIROクラス（実際の工場：一郎工場）
+//===================================
+class ICHIRO extends AbstractFactory {
+    constructor() { //コンストラクタ
+        super();
+    }
+
+    public createNewYear(): void {  //オーバーライド（overrideキーワードはない）
+        console.log("HAPPY NEW YEAR!");
+        console.log("（正月用イラスト）");
+        console.log("西村一郎");
+    }
+
+    public createSummer(): void {  //オーバーライド（overrideキーワードはない）
+        console.log("暑中お見舞い申し上げます");
+        console.log("（夏用イラスト）");
+        console.log("西村一郎");
+    }
+}
+
+//===================================
+// HANAKOクラス（実際の工場：花子工場）
+//===================================
+class HANAKO extends AbstractFactory {
+    constructor() { //コンストラクタ
+        super();
+    }
+
+    public createNewYear(): void { //オーバーライド（overrideキーワードはない）
+        console.log("あけましておめでとうございます");
+        console.log("（正月用イラスト）");
+        console.log("西村花子");
+    }
+
+    public createSummer(): void { //オーバーライド（overrideキーワードはない）
+        console.log("しょちゅうおみまいもうしあげます");
+        console.log("（夏用イラスト）");
+        console.log("西村花子");
+    }
+}
+
+//========
+// 実行
+//========
+//一郎
+var _ichiro: AbstractFactory = AbstractFactory.createFactory("ICHIRO");
+_ichiro.createNewYear();
+/*
+HAPPY NEW YEAR!
+（正月用イラスト）
+西村一郎
+*/
+_ichiro.createSummer();
+/*
+暑中お見舞い申し上げます
+（夏用イラスト）
+西村一郎
+*/
+
+//花子
+var _hanako: AbstractFactory = AbstractFactory.createFactory("HANAKO");
+_hanako.createNewYear();
+/*
+あけましておめでとうございます
+（正月用イラスト）
+西村花子
+*/
+_hanako.createSummer();
+/*
+しょちゅうおみまいもうしあげます
+（夏用イラスト）
+西村花子
+*/
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="Adapter（継承）"></a>
