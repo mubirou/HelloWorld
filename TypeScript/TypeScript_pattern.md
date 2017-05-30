@@ -1023,12 +1023,114 @@ console.log(_special.show()); // (---TAKASHI---)
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 
-XXXX
+### 概要
+
+Decorator パターンの場合...
+```
+var _special:Display = new Decorator2(
+                            new Decorator1(
+                                new Decorator1(
+                                    new Decorator1(
+                                        new Original("TAKASHI")))));
+console.log(_special.show()); // (---TAKASHI---)
+```
+...としていたものを次の１行で済ますことが可能になります。
+```
+console.log(DecoratorFacade.exec("TAKASHI", 3, 1);
+```
+
+### 例文
+```
+//main.ts
+
+//=======================================
+// Displayクラス（Decoratorパターンと同じ）
+//=======================================
+class Display {
+    public _content: string;
+    constructor() {} //コンストラクタ
+    public show(): string {
+        return this._content;
+    }
+}
+
+//========================================
+// Originalクラス（Decoratorパターンと同じ）
+//========================================
+class Original extends Display {
+    constructor(arg: string) { //コンストラクタ
+        super(); //必須
+        this._content = arg;
+    }
+}
+
+//==========================================
+// Decorator1クラス（Decoratorパターンと同じ）
+//==========================================
+class Decorator1 extends Display {
+    constructor(arg: Display) { //コンストラクタ
+        super(); //必須！
+        this._content = "-" + arg.show() + "-";
+    }  
+}
+
+//==========================================
+// Decorator2クラス（Decoratorパターンと同じ）
+//==========================================
+class Decorator2 extends Display {
+    constructor(arg: Display) { //コンストラクタ
+        super(); //必須！
+        this._content = "(" + arg.show() + ")"; // "<" ">" はタグと認識されてしまう
+    }  
+}
+
+//===============================================================
+// DecoratorFacadeクラス＝窓口（Facade）役 <= Decoratorパターンに追加 
+//===============================================================
+class DecoratorFacade {
+    private static _decoratorFacade:  DecoratorFacade; //唯一のインスタンスを格納
+
+    //コンストラクタ（private）
+    private constructor() {} //外部からnewできない
+
+    //外部から唯一のインスタンスを呼出す
+    public static get instance():  DecoratorFacade {
+        if (!this._decoratorFacade) {
+            this._decoratorFacade = new DecoratorFacade();
+        }
+
+        return this._decoratorFacade; //唯一のインスタンス（静的変数）を返す
+    }
+
+    //arg1: オリジナルの文字
+    //arg2: Decorator1クラスを施す回数
+    //arg3: Decorator2クラスを施す回数
+    public static exec(arg1: string, arg2: number=0, arg3: number=0): string {
+        var _decoratorFacade:  DecoratorFacade = DecoratorFacade.instance; //Singletonパターン用
+        var _result: Display = new Original(arg1);
+        for (var _i: number=0; _i<arg2; _i++) {
+            _result = new Decorator1(_result);
+        }
+        for (var _j: number=0; _j<arg3; _j++) {
+            _result = new Decorator2(_result);
+        }           
+        return _result.show();
+    }
+}
+
+//=================================
+// 実行（Decoratorパターンとは異なる）
+//=================================
+console.log(DecoratorFacade.exec("TAKASHI", 5, 2)); // ((-----TAKASHI-----))
+console.log(DecoratorFacade.exec("TAKASHI")); // TAKASHI
+console.log(DecoratorFacade.exec("TAKASHI", 0, 1)); // (TAKASHI)
+console.log(DecoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Flyweight"></a>
