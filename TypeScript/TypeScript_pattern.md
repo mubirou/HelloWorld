@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -1136,12 +1136,86 @@ console.log(DecoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//============================================
+// FlyweightFactoryクラス＝インスタンスの管理人
+//============================================
+class FlyweightFactory { //Singletonパターン
+    private static _flyweightFactory:  FlyweightFactory; //唯一のインスタンスを格納
+
+    //_poolに管理されるFlyweightオブジェクトはガベージコレクションされません
+    // 明示的にdeleteする必要有り
+    private _pool: Object = new Object();
+
+    //コンストラクタ（private）
+    private constructor() {} //外部からnewできない
+
+    //外部から唯一のインスタンスを呼出す
+    public static get instance():  FlyweightFactory {
+        if (!this._flyweightFactory) {
+            console.log("インスタンスを生成しました"); //DEBUG
+            this._flyweightFactory = new FlyweightFactory();
+        }
+
+        return this._flyweightFactory; //唯一のインスタンス（静的変数）を返す
+    }
+
+    //既存ならそのインスタンスを使い、無い場合は新規作成
+    public getFlyweight(arg: string): Flyweight {
+        //プールにインスタンスが無ければ、Flyweightインスタンス生成しプール
+        if (this._pool[arg] == undefined) {
+            this._pool[arg] = new Flyweight(arg);
+        } else {
+            console.log(arg + "は既存です");
+        }
+        return this._pool[arg];
+    }
+}
+
+//============================================
+// Flyweightクラス＝無駄に生成したくないアイテム
+//============================================
+class Flyweight {
+    private _text: string = ""; //ロードしたテキストを格納
+    constructor(arg: string) {
+        var _request: XMLHttpRequest =  new XMLHttpRequest();
+        _request.onreadystatechange = () => { //イベントハンドラ（アロー関数方式）
+            if (_request.readyState == 4) { //リクエストが完了した場合
+                if (_request.status == 200) { //成功した場合（ローカル実行時は不可）
+                    this._text = _request.responseText;
+                }
+            }
+        }
+        _request.open("GET", arg + ".txt"); //読み込む外部ファイルの指定
+        _request.send(null);
+    }
+    public getText(): string {
+        return this._text;
+    }
+}
+
+//======
+// 実行
+//======
+var _flyweightFactory: FlyweightFactory = FlyweightFactory.instance;
+var _a: Flyweight = _flyweightFactory.getFlyweight("a");
+var _ka: Flyweight = _flyweightFactory.getFlyweight("ka");
+//_a = _flyweightFactory.getFlyweight("a"); // aは既存です
+
+//console.log(this._a.getText()); //このタイミングでは外部テキストデータがロードされていない（注意）
+
+setTimeout(()=>{
+    console.log(_a.getText()); //=> あいうえお
+    console.log(_ka.getText()); //=> かきくけこ
+}, 500); //0.5秒後に値を取得
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Proxy"></a>
