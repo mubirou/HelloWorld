@@ -7,8 +7,8 @@
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
-    ***
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
+    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -148,12 +148,160 @@ console.log(_prototype2.address); //=> "X-XX-XX XXX, Shinjuku-ku"
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//================
+// Directorクラス
+//================
+class Director {
+    private _builder: IBuilder;
+    constructor(arg: IBuilder) { //コンストラクタ
+        this._builder = arg;
+    }
+    //同じ手順
+    public construct(): void { //≠コンストラクタ
+        this._builder.makeHeader();
+        this._builder.makeContent();
+        this._builder.makeFooter();
+    }
+}
+
+//=============================
+// Builder○○クラスのインターフェース
+//=============================
+interface IBuilder {
+    makeHeader(): void;
+    makeContent(): void;
+    makeFooter(): void;
+}
+
+//====================
+// BuilderXXXクラス群
+//====================
+//Builder009クラス
+class Builder009 implements IBuilder {
+    constructor() {} //コンストラクタ
+    public makeHeader(): void {
+        //ヘッダー用素材の呼び出し
+        var _header: Header051 = new Header051();
+        _header.exec();
+    }
+    public makeContent(): void {
+        //コンテンツ用素材の呼び出し
+        var _content: Content194 = new Content194();
+        _content.exec();
+    }
+    public makeFooter(): void {
+        //フッター用素材の呼び出し
+        var _footer: Footer004 = new Footer004();
+        _footer.exec();
+    }
+}
+
+//Builder108クラス
+class Builder108 implements IBuilder {
+    constructor() {} //コンストラクタ
+    public makeHeader(): void {
+        //ヘッダー用素材の呼び出し
+        var _header: Header040 = new Header040();
+        _header.exec();
+    }
+    public makeContent(): void {
+        //コンテンツ用素材の呼び出し
+        var _content: Content023 = new Content023();
+        _content.exec();
+    }
+    public makeFooter(): void {
+        //フッター用素材の呼び出し
+        var _footer: Footer011 = new Footer011();
+        _footer.exec();
+    }
+}
+
+//===================
+// HeaderXXXクラス群
+//===================
+//Header040クラス
+class Header040 {
+    constructor() {} //コンストラクタ
+    public exec(): void {
+        console.log("HAPPY NEW YEAR!"); //ヘッダー用素材
+    }
+}
+
+//Header051クラス
+class Header051 {
+    constructor() {} //コンストラクタ
+    public exec(): void {
+        console.log("あけましておめでとうございます"); //ヘッダー用素材
+    }
+}
+
+//====================
+// ContentXXXクラス群
+//====================
+//Content023クラス
+class Content023 {
+    constructor() {} //コンストラクタ
+    public exec(): void {
+        console.log("（タイプ023のイラスト）"); //コンテンツ用素材
+    }
+}
+
+//Content194クラス
+class Content194 {
+    constructor() {} //コンストラクタ
+    public exec(): void {
+        console.log("（タイプ194のイラスト）"); //コンテンツ用素材
+    }
+}
+
+//===================
+// FooterXXXクラス群
+//===================
+//Footer004クラス
+class Footer004 {
+    constructor() {} //コンストラクタ
+    public exec(): void {
+        console.log("にしむらはなこ"); //フッター用素材
+    }
+}
+
+//Footer011クラス
+class Footer011 {
+    constructor() {} //コンストラクタ
+    public exec(): void {
+        console.log("西村一郎"); //フッター用素材
+    }
+}
+
+//========
+// 実行
+//========
+//クライアントがタイプ「Builder009」の年賀状を「Director」に依頼
+var _director: Director = new Director(new Builder009());
+_director.construct(); //≠コンストラクタ
+/*
+あけましておめでとうございます
+（タイプ194のイラスト）
+にしむらはなこ
+*/
+
+//クライアントがタイプ「Builder108」の年賀状を「Director」に依頼
+_director = new Director(new Builder108());
+_director.construct(); //≠コンストラクタ
+/*
+HAPPY NEW YEAR!
+（タイプ023のイラスト）
+西村一郎
+*/
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="FactoryMethod"></a>
