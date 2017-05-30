@@ -15,8 +15,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
-    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -797,12 +797,154 @@ _smartPhone2.phone(); //電話をかける（メソッドの実行）
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//================================================
+// Samenessクラス＝"同一視"するための役（Component）
+//================================================
+class Sameness {
+    public _name: string; //サブクラスで使います
+    public _parent: Directory; //サブクラスで使います
+
+    constructor() {} //コンストラクタ
+
+    get name(): string {
+    //public name: string {
+        return this._name;
+    }
+    
+    public getChild(): any { //getアクセサメソッドも使えるはずですが...
+        console.log("Error: 入れ子はできません"); //FileNameクラス対応
+        throw new Error(); //処理停止
+    }
+
+    public add(arg: Sameness): void {
+        console.log("Error: 追加できません"); //FileNameクラス対応
+        throw new Error(); //処理停止
+    }
+
+    public remove(arg: Sameness): void {
+        console.log("Error: 削除できません");
+        throw new Error(); //処理停止
+    }
+
+    public list(): void { //Linuxのlsコマンド風
+        console.log("Error: サブクラスでオーバーライドして下さい");
+        throw new Error(); //処理停止
+    }
+
+    set parent(_newValue: Directory) {
+    //public setParent(directory: Directory): void {
+        this._parent = _newValue;
+    }
+    
+    get parent(): Directory {
+        return this._parent;
+    }
+}
+
+//=======================================
+// Directoryクラス＝Composit（複合体）の役
+//=======================================
+class Directory extends Sameness {
+    private _child: Sameness[] = new Array();
+
+    constructor(name: string) { //コンストラクタ
+        super(); //必須
+        this._name = name;
+    }
+
+    public add(arg: Sameness): void { //オーバーライド（引数はDirectory or FileName）
+        this._child.push(arg);
+        arg.parent = this;
+    }
+
+    public remove(arg: Sameness): void { //オーバーライド（引数はDirectory or FileName）
+        var _index: number = this._child.indexOf(arg); //検索（なければ-1、あれば位置を返す）
+        if (_index != -1) {
+            this._child.splice(_index,1);
+        }
+    }
+
+    public getChild(): any { //オーバーライド
+        return this._child;
+    }
+
+    public list(): void { //オーバーライド
+        var _theArray: Sameness[] = this._child;
+        for (var _propName in _theArray) {
+             var _result: string = this.name + "/" + _theArray[_propName].name;
+             if (_theArray[_propName] instanceof Directory) {
+                _result = _result + "(Directory)";
+             } else {
+                _result = _result + "(File)";
+             }
+             console.log(_result);
+        }
+    }
+}
+
+//=================
+// FileNameクラス
+//=================
+class FileName extends Sameness { //Fileだとエラーが出るみたいなので...
+    constructor(name: string) { //コンストラクタ
+        super(); //必須！
+        this._name = name;
+    }
+    //オーバーライド
+    public list(): void { //Linuxのコマンド風
+        console.log(this.parent.name + "/" + this.name + "(File)");
+    }
+}
+
+//========
+// 実行
+//========
+// ディレクトリの作成
+var _root: Sameness = new Directory("root");
+var _adobe: Sameness = new Directory("Adobe");
+var _macromedia: Sameness = new Directory("Macromedia");
+var _flash: Sameness = new Directory("Flash");
+
+// ファイルの作成
+var _illustrator: Sameness = new FileName("Illustrator");
+var _photoshop: Sameness = new FileName("Photoshop");
+var _dreamweaver: Sameness = new FileName("Dreamweaver");
+var _flashProfessional: Sameness = new FileName("Flash Professional");
+var _flashBuilder: Sameness = new FileName("Flash Builder");
+
+// 関連付け
+_root.add(_adobe); //Directoryの追加
+_root.add(_macromedia); //Directoryの追加
+_adobe.add(_illustrator); //FileNameの追加
+_adobe.add(_photoshop); //FileNameの追加
+_macromedia.add(_flash); //Directoryの追加
+_macromedia.add(_dreamweaver); //FileNameの追加
+_flash.add(_flashProfessional); //FileNameの追加
+_flash.add(_flashBuilder); //FileNameの追加
+
+// 検証
+//DirectoryやFileNameの「名前」を調べる
+console.log(_flashProfessional.name); //=> Flash Professional
+
+//Directoryの中のDirectoryとFileNameを調べる
+console.log(_macromedia.getChild()); //=> [Directory, FileName] => [Directory, FileName]
+
+//Directoryの中のDirectoryやFileNameを「削除」する
+_macromedia.remove(_dreamweaver);
+console.log(String(_macromedia.getChild())); //=> [object Object]
+
+//指定した階層のDirectory（ディレクトリ内のDirectory & FileName）とFileNameを調べる
+_macromedia.list(); //=> Macromedia/Flash(Directory)
+_dreamweaver.list(); //=> Macromedia/Dreamweaver(File)
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="Decorator"></a>
