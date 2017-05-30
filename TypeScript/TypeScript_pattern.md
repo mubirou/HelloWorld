@@ -151,9 +151,9 @@ console.log(_prototype2.address); //=> "X-XX-XX XXX, Shinjuku-ku"
 ```
 //main.ts
 
-//================
+//==============
 // Directorクラス
-//================
+//==============
 class Director {
     private _builder: IBuilder;
     constructor(arg: IBuilder) { //コンストラクタ
@@ -167,18 +167,18 @@ class Director {
     }
 }
 
-//=============================
-// Builder○○クラスのインターフェース
-//=============================
+//==================================
+// BuilderXXXクラスのインターフェース
+//==================================
 interface IBuilder {
     makeHeader(): void;
     makeContent(): void;
     makeFooter(): void;
 }
 
-//====================
+//==================
 // BuilderXXXクラス群
-//====================
+//==================
 //Builder009クラス
 class Builder009 implements IBuilder {
     constructor() {} //コンストラクタ
@@ -219,9 +219,9 @@ class Builder108 implements IBuilder {
     }
 }
 
-//===================
+//=================
 // HeaderXXXクラス群
-//===================
+//=================
 //Header040クラス
 class Header040 {
     constructor() {} //コンストラクタ
@@ -238,9 +238,9 @@ class Header051 {
     }
 }
 
-//====================
+//==================
 // ContentXXXクラス群
-//====================
+//==================
 //Content023クラス
 class Content023 {
     constructor() {} //コンストラクタ
@@ -257,9 +257,9 @@ class Content194 {
     }
 }
 
-//===================
+//=================
 // FooterXXXクラス群
-//===================
+//=================
 //Footer004クラス
 class Footer004 {
     constructor() {} //コンストラクタ
