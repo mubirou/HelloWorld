@@ -621,11 +621,9 @@ class MoneyboxAdapter extends Moneybox {
 //========
 // 実行
 //========
-// new MoneyboxAdapter(最初の貯金, 為替レート)
-var _moneyboxAdapter = new MoneyboxAdapter(100, 110.975474);
+var _moneyboxAdapter = new MoneyboxAdapter(100, 110.975474); //最初の貯金, 為替レート
 _moneyboxAdapter.addYen(1000);
-console.log(_moneyboxAdapter.moneyDollar);
-//9.91210003752721（ドル）
+console.log(_moneyboxAdapter.moneyDollar); //=> 9.91210003752721（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
@@ -683,11 +681,9 @@ class MoneyboxAdapter {
 //========
 // 実行
 //========
-// new MoneyboxAdapter(最初の貯金, 為替レート)
-var _moneyboxAdapter = new MoneyboxAdapter(100, 110.975474);
+var _moneyboxAdapter = new MoneyboxAdapter(100, 110.975474); //最初の貯金, 為替レート
 _moneyboxAdapter.addYen(1000);
-console.log(_moneyboxAdapter.moneyDollar);
-//9.91210003752721（ドル）
+console.log(_moneyboxAdapter.moneyDollar); //=> 9.91210003752721（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
