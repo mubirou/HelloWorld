@@ -19,10 +19,10 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
+    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
@@ -1221,12 +1221,54 @@ setTimeout(()=>{
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//================
+// 代理人（Proxy役）
+//================
+class Loader {
+    private _url: string;
+
+    constructor(_url) {
+        this._url = _url;
+    }
+
+    public load(): void {
+        //↓実際の本人登場（代理に実際の本人を知っている）
+        var _content = new Content(this._url);
+        _content.load();
+    }
+}
+
+//===========================
+// 実際の本人（Real Subject役）
+//===========================
+class Content {
+    private _url: string;
+
+    constructor(_url) {
+        this._url = _url;
+    }
+
+    //重い処理をここで行う（ポイント）
+    public load() {
+        // 今回のサンプルの中身はあまり重要ではない...
+        console.log("重い処理を実行中");
+    }
+}
+
+//================
+// 実行（Cliant役）
+//================
+var _loader: Loader = new Loader("http://sample.mp4");
+_loader.load(); //=> "重い処理を実行中"
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Iterator"></a>
