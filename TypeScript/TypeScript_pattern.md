@@ -13,8 +13,8 @@
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
-    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    ***
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
@@ -637,12 +637,63 @@ console.log(_moneyboxAdapter.moneyDollar);
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-XXXX
+```
+//main.ts
+
+//=============================================
+// Moneyboxクラス＝実際の「貯金箱」スーパークラス
+//=============================================
+class Moneybox {
+    public _yen: number; //この変数に貯金されます
+
+    constructor(arg: number) { //コンストラクタ
+        this._yen = arg;
+    }
+
+    public add(arg: number): void {
+        this._yen += arg;
+    }
+    
+    get moneyYen(): number {
+        return this._yen;
+    }
+}
+
+//=====================================
+// MoneyboxAdapterクラス＝円をドルに変換
+//=====================================
+class MoneyboxAdapter {
+    private _moneybox: Moneybox; //ポイント
+    private _rate: number;
+
+    constructor(_firstYen: number, _rate: number) { // コンストラクタ
+        this._moneybox = new Moneybox(_firstYen); //ここがポイント
+        this._rate = _rate;
+    }
+
+    public addYen(arg: number): void {
+        this._moneybox.add(arg);
+    }
+    
+    get moneyDollar(): number {
+        return this._moneybox._yen / this._rate;
+    }
+}
+
+//========
+// 実行
+//========
+// new MoneyboxAdapter(最初の貯金, 為替レート)
+var _moneyboxAdapter = new MoneyboxAdapter(100, 110.975474);
+_moneyboxAdapter.addYen(1000);
+console.log(_moneyboxAdapter.moneyDollar);
+//9.91210003752721（ドル）
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="Bridge"></a>
