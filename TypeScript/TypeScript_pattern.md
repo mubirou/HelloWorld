@@ -1363,7 +1363,7 @@ _carPark.add(new Car("TOYOTA 2000GT", "練馬501 に20-00"));
 var _carParkIterator: Iterator = _carPark.createIterator(); //イテレータを生成
 while(_carParkIterator.hasNext()) {
     var _nextCar: Car = _carParkIterator.next();
-    console.log(_nextCar.name + ", " + _nextCar.name);
+    console.log(_nextCar.name + ", " + _nextCar.num);
 }
 ```
 
