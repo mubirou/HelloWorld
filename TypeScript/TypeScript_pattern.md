@@ -575,12 +575,63 @@ _hanako.createSummer();
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-XXXX
+```
+//main.ts
+
+//=============================================
+// Moneyboxクラス＝実際の「貯金箱」スーパークラス
+//=============================================
+class Moneybox {
+    public _yen: number; //この変数に貯金されます
+
+    constructor(arg: number) { //コンストラクタ
+        this._yen = arg;
+    }
+
+    public add(arg: number): void {
+        this._yen += arg;
+    }
+    
+    get moneyYen(): number {
+        return this._yen;
+    }
+}
+
+//=====================================
+// MoneyboxAdapterクラス＝円をドルに変換
+//=====================================
+//スーパークラスを継承＆インターフェースの実装
+class MoneyboxAdapter extends Moneybox { 
+    private _rate: number;
+
+    constructor(_firstYen: number, _rate: number) { //コンストラクタ
+        super(_firstYen); //スーパークラスのコンストラクタを明示的に呼び出す
+        this._rate = _rate;
+    }
+
+    public addYen(arg: number): void {
+        this.add(arg); //スーパークラスから継承
+    }
+
+    get moneyDollar(): number {
+        return this._yen / this._rate; // _yenはスーパークラスから継承
+    }
+}
+
+//========
+// 実行
+//========
+// new MoneyboxAdapter(最初の貯金, 為替レート)
+var _moneyboxAdapter = new MoneyboxAdapter(100, 110.975474);
+_moneyboxAdapter.addYen(1000);
+console.log(_moneyboxAdapter.moneyDollar);
+//9.91210003752721（ドル）
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月30日
 
 
 <a name="Adapter（委譲）"></a>
