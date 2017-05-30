@@ -22,8 +22,8 @@
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    ***
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1274,12 +1274,103 @@ _loader.load(); //=> "重い処理を実行中"
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//=================
+// Carクラス
+//=================
+class Car {
+    private _name: string;
+    private _num: string;
+
+    constructor(name: string, num: string) { //コンストラクタ関数
+        this._name = name;
+        this._num = num;
+    }
+
+    get name(): string {
+        return this._name;
+    }
+
+    get num(): string {
+        return this._num;
+    }
+}
+
+//===========================
+// CarParkクラスのインターフェース
+//===========================
+interface ICarPark {
+    add(theElement: Car): void;
+    getElementAt(index: number): Car;
+    getLength(): number;
+    createIterator(): Iterator;
+}
+
+//============================
+// CarParkクラス
+//============================
+class CarPark implements ICarPark {
+    private _list: Car[] = [];
+    constructor() {}
+    public add(theElement: Car): void {
+        this._list.push(theElement);
+    }
+    public getElementAt(index: number): Car {
+        return this._list[index];
+    }
+    public getLength(): number {
+        return this._list.length;
+    }
+    public createIterator(): Iterator {
+        return new Iterator(this); //イテレータを生成
+    }
+}
+
+//===========================
+// Iteratorクラスのインターフェース
+//===========================
+interface IIterator {
+    hasNext(): boolean;
+    next(): Car;
+}
+
+//=================
+// Iteratorクラス
+//=================
+class Iterator implements IIterator {
+    private _obj: CarPark;
+    private _count: number = 0;
+    constructor(obj: CarPark) {
+        this._obj = obj;
+    }
+    public hasNext(): boolean {
+        return this._obj.getLength() > this._count;
+    }
+    public next(): Car {
+        return this._obj.getElementAt(this._count++); //次の車を返す
+    }
+}
+
+//======
+// 実行
+//======
+var _carPark = new CarPark();
+_carPark.add(new Car("NISSAN GT-R", "品川300 し35-00"));
+_carPark.add(new Car("BMW mini", "品川300 の32-32"));
+_carPark.add(new Car("TOYOTA 2000GT", "練馬501 に20-00"));
+var _carParkIterator: Iterator = _carPark.createIterator(); //イテレータを生成
+while(_carParkIterator.hasNext()) {
+    var _nextCar: Car = _carParkIterator.next();
+    console.log(_nextCar.name + ", " + _nextCar.name);
+}
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="TemplateMethod"></a>
