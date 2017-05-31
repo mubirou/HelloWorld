@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>TypeScript デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -32,7 +30,6 @@
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
-    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
 
@@ -2366,9 +2363,108 @@ _calc.redo(); //これ以上リドゥできません 99
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//====================================
+// SWFクラス＝Context役（中間コードに変換）
+//====================================
+class SWF {
+    private _codeArray: string[] = []; //中間コード（配列）
+    private _count: number = 0;
+
+    constructor(code: string) { //コンストラクタ
+        this._codeArray = code.split(";"); //中間コード（配列）に変換
+    }
+
+    public getNextCode(): string {
+        if (! this.isEnd()) {
+            return this._codeArray[this._count ++];
+        } else {
+            return this._codeArray[this._codeArray.length - 1];
+        }
+    }
+
+    public isEnd(): boolean {
+        return this._count >= this._codeArray.length;
+    }
+}
+
+//===================================
+// SuperFlashPlayerクラス＝スーパークラス
+//===================================
+class SuperFlashPlayer {
+    constructor() {} //コンストラクタ
+
+    public exec(swf: SWF): void {
+        console.log("Error: サブクラスでoverrideして下さい");
+        throw new Error(); //処理を停止させる
+    }
+}
+
+//==========================================
+// FlashPlayerクラス＝非終端となる表現の役（+ - * / コマンド用）
+//==========================================
+class FlashPlayer extends SuperFlashPlayer {
+    constructor() { //コンストラクタ
+        super();
+    }
+
+    public exec(swf: SWF): void { //オーバーライド
+        var _result: number = 0; //計算結果
+        while (! swf.isEnd()) {
+            var _nextCode: string = swf.getNextCode(); //次の命令
+            var _theOperator: string = _nextCode.substr(0,1); //演算子
+            var _theNum: number = Number(_nextCode.substr(1));
+            if (_theOperator != "=") {
+                switch (_theOperator) {
+                    case "+":  _result += _theNum; break;
+                    case "-":  _result -= _theNum; break;
+                    case "*":  _result *= _theNum; break;
+                    case "/":  _result /= _theNum; break;
+                    default: 
+                        console.log("Error: 演算子が異なります")
+                        throw new Error();
+                }
+            } else {
+                var _END: SuperFlashPlayer = new FlashPlayer_END(_result);
+                _END.exec(swf);
+            }
+        }
+    }
+}
+
+//=================================================
+// FlashPlayer_ENDクラス＝終端となる表現の役（=コマンド用）
+//=================================================
+class FlashPlayer_END extends SuperFlashPlayer {
+    private _result: number;
+
+    constructor(result: number) { //コンストラクタ
+        super(); //必須
+        this._result = result;
+    }
+
+    public exec(swf: SWF): void { //オーバーライド
+        if (swf.getNextCode().substr(0).length == 1) { //"="一字なら...
+            console.log("計算結果は" + this._result);
+        } else {
+            console.log("Error: 最後が=で終了していません");
+            throw new Error();
+        }
+    }
+}
+
+//======
+// 実行
+//======
+var _AS: string = "+10;*50;/2;-4;="; //≒ASファイル（自作ミニ言語よるコードの記述）
+var _SWF: SWF = new SWF(_AS); //≒SWFファイル
+var _FlashPlayer: SuperFlashPlayer = new FlashPlayer(); //≒Flash Player
+_FlashPlayer.exec(_SWF); //計算結果は246（自作ミニ言語による実行結果）
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
