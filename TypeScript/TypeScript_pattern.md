@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1638,12 +1638,96 @@ console.log(_hanako.getPoint()); //15000
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//==================================
+// SuperPOクラス（郵便局のスーパークラス）
+//==================================
+class SuperPO {
+    public _next: SuperPO; //たらい回し先
+
+    constructor() {} //コンストラクタ
+
+    public setNext(arg: SuperPO): SuperPO {
+        this._next = arg;
+        return this._next;
+    }
+
+    public send(arg: string): void { //抽象メソッド
+        alert("Error: サブクラスでオーバーライドして定義して下さい");
+        throw new Error(); //処理を停止させる
+    }
+}
+
+//================================
+// ShinjukuPOクラス＝新宿郵便局
+//================================
+class ShinjukuPO extends SuperPO {
+    constructor() { //コンストラクタ
+        super(); //this._nextにアクセスする為に必須
+    }
+    
+    public send(arg: string): void { //オーバーライド
+        if (new RegExp("新宿").test(arg)) {
+            console.log("本日中に届きます");
+        } else {
+            this._next.send(arg); //たらい回し先に振る
+        } 
+    }
+}
+
+//===========================
+// TokyoPOクラス＝東京郵便局
+//===========================
+class TokyoPO extends SuperPO {
+    constructor() { //コンストラクタ
+        super(); //this._nextにアクセスする為に必須
+    }
+    
+    public send(arg: string): void { //オーバーライド
+        if (new RegExp("東京都").test(arg)) {
+            console.log("明日中に届きます");
+        } else {
+            this._next.send(arg); //たらい回し先に振る
+        } 
+    }
+}
+
+//===========================
+// JapanPOクラス＝日本郵便局
+//===========================
+class JapanPO extends SuperPO {
+    constructor() { //コンストラクタ
+        super(); //必須
+    }
+
+    public send(arg: string): void { //オーバーライド
+        console.log("明後日以降に届きます");
+    }
+}
+
+//======
+// 実行
+//======
+//郵便局（Post Office）
+var _setagayaPO: SuperPO = new ShinjukuPO();
+var _tokyoPO: SuperPO = new TokyoPO();
+var _japanPO: SuperPO = new JapanPO();
+
+//責任のたらいまわしをセット
+_setagayaPO.setNext(_tokyoPO).setNext(_japanPO);
+
+//投函
+_setagayaPO.send("東京都新宿区XX町X-X-X"); //本日中に届きます
+_setagayaPO.send("東京都青梅市XX町X-X-X"); //明日中に届きます
+_setagayaPO.send("宮城県仙台市XX町X-X-X"); //明後日以降に届きます
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Mediator"></a>
