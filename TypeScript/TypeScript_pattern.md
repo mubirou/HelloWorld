@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1376,12 +1376,95 @@ while(_carParkIterator.hasNext()) {
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//======================
+// Abstract（抽象）クラス
+//======================
+class AbstractClass {
+    constructor() {} //本来はインスタンスの生成はできないようにしますが...
+
+    public templateMethod() { //本来はfinalでオーバライド禁止にしたい...
+        this.order1(); //共通の処理
+        if (this.isAdult()) { //フックメソッド
+            this.order2(); //条件により実行
+        }
+        this.order3(); //サブクラスでオーバーライドして具体的処理を行う
+    }
+
+    private order1(): void { //共通の処理
+        console.log("HAPPY NEW YEAR!");
+    }
+
+    //フックメソッド実際はサブクラスでオーバーライドして定義（オプション）
+    public isAdult(): boolean { //本来はprotecedを使えるといいですが...
+        return true; //今回は初期値を設定
+    }
+
+    private order2(): void { //条件により実行
+        console.log("本年も宜しくお願い致します");
+    }
+
+    //必ずサブクラスでオーバーライドして定義させる
+    public order3(): void { //本来はprotecedを使いたい...
+        console.log("Error: サブクラスでオーバーライドして定義して下さい");
+        throw new Error(); //処理を停止させる（要調査）
+    }
+}
+
+//=================================
+// サブクラス（１）：抽象クラスを継承
+//=================================
+class NewYearCard_Ichiro extends AbstractClass { //スーパークラス（抽象クラス）を継承
+    public NewYearCard_Ichiro() { } //コンストラクタ
+
+    //フックメソッドの実際の定義（オプション）
+    public isAdult(): boolean { //オーバーライドして記述
+        return false;
+    }
+
+    //オーバーライドして具体的処理を記述（必須）
+    public order3(): void { 
+        console.log("テニスがんばろうね！");
+    }
+}
+
+//=================================
+// サブクラス（２）：抽象クラスを継承
+//=================================
+class NewYearCard_Hanako extends AbstractClass { //スーパークラスを継承
+    public NewYearCard_Hanako() { } //コンストラクタ
+    
+    //オーバーライドして具体的処理を記述（必須）
+    public order3(): void { //本来はprotecedを使いたい...
+        console.log("今度みんなで集まろう！");
+    }
+}
+
+//======
+// 実行
+//======
+var _newYearCard_Toru: NewYearCard_Ichiro = new NewYearCard_Ichiro();
+_newYearCard_Toru.templateMethod();
+/*
+HAPPY NEW YEAR!
+テニスがんばろうね！
+*/
+
+var _newYearCard_Tomoko: NewYearCard_Hanako = new NewYearCard_Hanako();
+_newYearCard_Tomoko.templateMethod();
+/*
+HAPPY NEW YEAR!
+本年も宜しくお願い致します
+今度みんなで集まろう！
+*/
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Strategy"></a>
