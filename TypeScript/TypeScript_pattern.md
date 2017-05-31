@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1540,12 +1540,99 @@ _janken.exec(); //グー、グー、パー
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//===================================
+// 受け入れ者＝Acceptorのインターフェース
+//===================================
+interface IAccepter {
+    accept(arg: IVisitor): void;
+}
+
+//=====================
+// 訪問先１＝千葉県の親戚
+//=====================
+class Chiba implements IAccepter {
+    private _otoshidama: number = 5000; //お年玉
+    constructor() {} //コンストラクタ
+    public accept(arg: IVisitor): void {
+        arg.visit(this._otoshidama);
+    }
+}
+
+//=====================
+// 訪問先２＝北海道の親戚
+//=====================
+class Hokkaido implements IAccepter {
+    private _otoshidama: number = 10000; //お年玉
+    constructor() {} //コンストラクタ
+    public accept(arg: IVisitor): void {
+        arg.visit(this._otoshidama);
+    }
+}
+
+//=======================
+// 訪問者のインターフェース
+//=======================
+interface IVisitor {
+    visit(arg: number): void;
+    getPoint(): number;
+}
+
+//===============
+// 訪問者１（一郎）
+//===============
+class Ichiro implements IVisitor {
+    private _point: number = 0; //貯金
+    constructor() {} //コンストラクタ
+    public visit(arg: number): void {
+        this._point += arg;
+    }
+    public getPoint(): number {
+        return this._point;
+    }
+}
+
+//===============
+// 訪問者２（花子）
+//===============
+class Hanako implements IVisitor {
+    private _point: number = 0; //貯金
+    constructor() {} //コンストラクタ
+    public visit(arg: number): void {
+        this._point += arg;
+    }
+    public getPoint(): number {
+        return this._point;
+    }
+}
+
+//======
+// 実行
+//======
+//訪問先（Acceptor）の追加
+var _acceptorList: IAccepter[] = [new Chiba(), new Hokkaido()];
+
+//訪問する人（Visitor）
+var _ichiro: IVisitor = new Ichiro();
+var _hanako: IVisitor = new Hanako();
+
+//訪問する
+for (var _propName in _acceptorList) {
+    var _theAcceptor: IAccepter = _acceptorList[_propName];
+    _theAcceptor.accept(_ichiro);
+    _theAcceptor.accept(_hanako);
+}
+
+console.log(_ichiro.getPoint()); //15000
+console.log(_hanako.getPoint()); //15000
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="ChainofResponsibility"></a>
