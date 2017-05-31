@@ -28,8 +28,8 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
@@ -1844,12 +1844,114 @@ _mediator.NoButton.on();
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//=============================================
+// 観察される役のインターフェース（数作る場合に特に必要）
+//=============================================
+interface ISubject {
+    //Observerパターン（観察される側）に必須のメソッド
+    addObserver(arg: IObserver): void; //リスナーの登録
+    deleteObserver(arg: IObserver): void; //リスナーの削除
+    notify(): void; //全リスナーへの通知
+}
+
+//=======================================
+// Appleクラス（観察される役＝Subuject役）
+//=======================================
+class Apple implements ISubject {
+    private _observerArray: IObserver[] = [];
+    private _version: string = "10.3.2"; //iOS Version
+
+    constructor() {} //コンストラクタ
+
+    //リスナーの登録
+    public addObserver(arg: IObserver): void {
+        this._observerArray.push(arg);
+    }
+
+    //リスナーの削除
+    public deleteObserver(arg: IObserver): void {
+        var _theNum: number = this._observerArray.indexOf(arg,0);
+        if (_theNum != -1) {
+            this._observerArray.splice(_theNum, 1);
+        }
+    }
+
+    //全リスナーへの通知
+    public notify(): void {
+        for (var _i in this._observerArray) {
+            this._observerArray[_i].update(this);
+        }
+    }
+
+    get version(): string {
+        return this._version; //最新のiOSのバージョンを返す
+    }
+}
+
+//=======================
+// リスナー役のインターフェース
+//=======================
+interface IObserver {
+    update(arg: Apple): void; //Observerパターン（リスナー側）に必須のメソッド
+}
+
+//=========================================
+// IPadProクラス（リスナー役１＝Observer役）
+//=========================================
+class IPadPro implements IObserver {
+    constructor() {} //コンストラクタ
+    public update(arg: Apple): void {
+        console.log("iPadProを" + arg.version + "にアップデートします");
+    }
+}
+
+//=========================================
+// IPadクラス（リスナー役２＝Observer役）
+//=========================================
+class IPad implements IObserver {
+    constructor() {} //コンストラクタ
+    public update(arg: Apple): void {
+        console.log("iPadを" + arg.version + "にアップデートします");
+    }
+}
+
+//=========================================
+// IPhoneクラス（リスナー役３＝Observer役）
+//=========================================
+class IPhone implements IObserver {
+    constructor() {} //コンストラクタ
+    public update(arg: Apple): void {
+        console.log("iPhoneを" + arg.version + "にアップデートします");
+    }
+}
+
+//======
+// 実行
+//======
+//観察される役（Subject）
+var _apple: ISubject = new Apple();
+
+//リスナー（Observer）役
+var _iPadPro: IObserver = new IPadPro();
+var _iPad: IObserver = new IPad();
+var _iPhone: IObserver = new IPhone();
+
+//リスナー（Observer）の登録
+_apple.addObserver(_iPadPro);
+_apple.addObserver(_iPad);
+_apple.addObserver(_iPhone);
+
+//全リスナー（Observer）への通知
+_apple.notify();
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Memento"></a>
