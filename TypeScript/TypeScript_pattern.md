@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -1733,12 +1733,112 @@ _setagayaPO.send("宮城県仙台市XX町X-X-X"); //明後日以降に届きま�
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//==============
+// 各メンバー関連
+//==============
+abstract class AbstractMember { //抽象クラス
+    protected _mediator: Mediator;
+
+    public setMediator(_mediator: Mediator): void { //共通の機能
+        this._mediator = _mediator;
+    }
+
+    abstract advice(_string: string): void; //抽象メソッド
+}
+
+class YesButton extends AbstractMember { //メンバー１（YesButtonクラス）
+    public on(): void { //相談役に報告
+        this._mediator.report(this, "on");
+    }
+
+    public advice(_string: string): void {
+        if (_string == "off") {
+            console.log("YesButtonをoffにします");
+        }
+    }
+}
+
+class NoButton extends AbstractMember { //メンバー２（NoButtonクラス）
+    public on(): void { //相談役に報告
+        this._mediator.report(this, "on");
+    }
+
+    public advice(_string: string): void {
+        if (_string == "off") {
+            console.log("NoButtonをoffにします");
+        }
+    }
+}
+
+class TextBox extends AbstractMember { //メンバー３（TextBoxクラス）
+    public advice(_string: string): void {
+        if (_string == "enable") {
+            console.log("TextBoxを入力可能にします");
+        } else if (_string == "disabled") {
+            console.log("TextBoxを入力不可にします");
+        }
+    }
+}
+
+//=================================
+// 相談役（専門性が高いため使い捨て）
+//=================================
+class Mediator {
+    private _yesButton: YesButton;
+    private _noButton: NoButton;
+    private _textBox: TextBox;
+
+    constructor() {
+        this._yesButton = new YesButton(); //YesButtonの生成
+        this._noButton = new NoButton(); //NoButtonの生成
+        this._textBox = new TextBox(); //TextButtonの生成
+
+        this._yesButton.setMediator(this); //YesButtonに相談役が自分あることを教える
+        this._noButton.setMediator(this); //NoButtonに相談役が自分あることを教える
+        this._textBox.setMediator(this); //TextButtonに相談役が自分あることを教える
+    }
+
+    get yesButton(): YesButton { return this._yesButton; } //外部からYesButtonにアクセス可能に
+    get NoButton(): NoButton { return this._noButton; } //外部からNoButtonにアクセス可能に
+
+    //メンバーからの報告を受けて指示を出す
+    public report(_member: any, _string: string): void {
+        if (_member == this._yesButton) { //YesButtonからの報告の場合...
+            if (_string == "on") {
+                this._noButton.advice("off");
+                this._textBox.advice("enable");
+            }
+        }
+        if (_member == this._noButton) { //NoButtonからの報告の場合...
+            if (_string == "on") {
+                this._yesButton.advice("off");
+                this._textBox.advice("disabled");
+            }
+        }
+    }
+}
+
+//======
+// 実行
+//======
+var _mediator: Mediator = new Mediator();
+
+_mediator.yesButton.on();
+//=> "NoButtonをoffにします"
+//=> "TextBoxを入力可能にします"
+
+_mediator.NoButton.on();
+//=> "YesButtonをoffにします"
+//=> "TextBoxを入力不可にします"
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Observer"></a>
