@@ -1487,7 +1487,7 @@ class Janken {
 }
 
 //=================================
-// Strategy○クラスのインターフェース
+// StrategyXXクラスのインターフェース
 //=================================
 interface IStrategy {
     execute(): void;
