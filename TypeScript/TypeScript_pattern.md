@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
 
@@ -2095,12 +2095,96 @@ _theMemento = _memory.redo(); //=> これ以上、リドゥできません
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//========================================================
+// Kanjiクラス＝ Context役（漢字検定）複数の状態を管理する役
+//========================================================
+class Kanji {
+    private _state: IState; //級別問題集を格納
+
+    constructor() {} //コンストラクタ
+
+    public setState(arg: IState): void {
+        this._state = arg;
+    }
+
+    public testA(): void {
+        this._state.mondaiA();
+    }
+
+    public testB(): void {
+        this._state.mondaiB();
+    }
+}
+
+//==================================
+// QuestionXXXクラスのインターフェース
+//==================================
+interface IState {
+    mondaiA(): void;
+    mondaiB(): void;
+}
+
+//===============================================
+// Question7クラス＝ StateA役（漢字検定７級の問題集）
+//===============================================
+class Question7 implements IState {
+    constructor() {} //コンストラクタ
+
+    public mondaiA(): void {
+        console.log("笑顔、衣類、胃腸<br>");
+    }
+
+    public mondaiB(): void {
+        console.log("持参、勉強、案内<br>");
+    }  
+}
+
+//================================================
+// Question10クラス＝ StateB役（漢字検定10級の問題集）
+//================================================
+class Question10 implements IState {
+    constructor() {} //コンストラクタ
+
+    public mondaiA(): void {
+        console.log("みぎ、おと、そら");
+    }
+
+    public mondaiB(): void {
+        console.log("いぬ、あめ、みみ");    
+    }   
+}
+
+//======
+// 実行
+//======
+var _student: string = "ICHIRO"; // or "HANAKO"
+            
+//漢字検定（Context役）
+var _kanji: Kanji = new Kanji();
+
+//級別問題集（State役）
+var _question7: IState = new Question7(); //漢字検定7級用
+var _question10: IState = new Question10(); //漢字検定10級用
+
+//生徒に合った級別問題集にする
+if (_student == "ICHIRO") {
+    _kanji.setState(_question7); //setアクセサメソッドも使えるはずですが…
+} else if (_student == "HANAKO") {
+    _kanji.setState(_question10); //setアクセサメソッドも使えるはずですが…
+}
+
+//問題を出す
+_kanji.testA(); //みぎ、おと、そら  or  笑顔、衣類、胃腸
+_kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Command"></a>
