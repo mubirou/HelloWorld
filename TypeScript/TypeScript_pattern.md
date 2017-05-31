@@ -29,8 +29,8 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則を暮らすで表現する
@@ -1957,12 +1957,139 @@ _apple.notify();
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//===================
+// Gamerクラス＝主人公
+//===================
+class Gamer {
+    private _totalX: number = 0;
+    private _totalY: number = 0;
+
+    constructor() {} //コンストラクタ
+
+    public addX(saikoro: number): void {
+        this._totalX += saikoro;
+    }
+
+    public addY(saikoro: number): void {
+        this._totalY += saikoro;
+    }
+
+    public getMemento(): Memento {
+        return new Memento(this._totalX, this._totalY);
+    }
+}
+
+//=====================================
+// Memoryクラス＝世話人（バックアップ係）
+//=====================================
+class Memory {
+    private _history: Memento[] = []; //状態の履歴を保存
+    private _snapshot: Memento; //最後に記録したスナップショット
+    private _count: number; //undo()、redo()用
+
+    constructor() {} //コンストラクタ
+
+    public save(memento: Memento): void {
+        this._snapshot = memento;
+        this._history.push(this._snapshot);
+        this._count = this._history.length - 1;
+    }
+
+    // アンドゥ（やり直し）
+    public undo(): Memento {
+        if (this._count > 0) {
+            return this._history[--this._count];
+        } else {
+            console.log("これ以上、アンドゥできません");
+            this._count = 0;
+            return this._history[this._count];
+        }
+    }
+
+    // リドゥ（再実行）
+    public redo(): Memento {
+        if (this._count < this._history.length-1) {
+            return this._history[++this._count];
+        } else {
+            console.log("これ以上、リドゥできません");
+            this._count = this._history.length - 1;
+            return this._history[this._count];
+        }
+    }
+}
+
+//==================================================
+// Mementoクラス＝その瞬間の状態をオブジェクトとして保存
+//==================================================
+class Memento {
+    //状態を表すプロパティ（複数可能）
+    private _totalX: number;
+    private _totalY: number;
+    constructor(totalX: number, totalY: number) { //コンストラクタ
+        this._totalX = totalX;
+        this._totalY = totalY;
+    }
+    public getX(): number { //getアクセサメソッドも使えるはずですが…
+        return this._totalX;
+    }
+    public getY(): number {
+        return this._totalY;
+    }
+}
+
+//サイコロ（1〜6の整数が返る）
+function saikoro():  number {
+    return Math.floor(Math.random()*6)+1;
+}
+
+//======
+// 実行
+//======
+//登場人物
+var _gamer: Gamer = new Gamer(); //主人公
+var _memory: Memory = new Memory(); //世話人（記録係）
+
+//サイコロを５回振る => 毎回、合計値を記録
+for (var _i: number=0; _i<5; _i++) { //５回繰返す
+    //さいころを振る
+    _gamer.addX(this.saikoro());
+    _gamer.addY(this.saikoro());
+    //この瞬間の状態をオブジェクトとして保存
+    _memory.save(_gamer.getMemento()); 
+}
+
+// アンドゥ
+// 何度もアンドゥを繰り返し、最初まで到達した場合その後ずっと最初の状態が返ります
+var _theMemento: Memento = _memory.undo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+var _theMemento: Memento = _memory.undo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+var _theMemento: Memento = _memory.undo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+var _theMemento: Memento = _memory.undo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+var _theMemento: Memento = _memory.undo(); //=> これ以上、アンドゥできません
+
+// リドゥ
+// 何度もリドゥを繰り返し、最後まで到達した場合その後はずっと最後の状態が返ります
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+_theMemento = _memory.redo();
+console.log(_theMemento.getX() + "," + _theMemento.getY());
+_theMemento = _memory.redo(); //=> これ以上、リドゥできません
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="State"></a>
