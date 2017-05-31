@@ -24,8 +24,8 @@
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
-    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
+    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
@@ -1470,12 +1470,71 @@ HAPPY NEW YEAR!
 <a name="Strategy"></a>
 # <b><ruby>Strategy<rt>ストラテジー</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//=========================================
+// Jankenクラス（Context：コンテキスト＝文脈役）
+//=========================================
+class Janken {
+    private _strategy;
+    constructor(arg: IStrategy) { //コンストラクタ
+        this._strategy = arg;
+    }
+    public exec(): void {
+        this._strategy.execute();
+    }
+}
+
+//=================================
+// Strategy○クラスのインターフェース
+//=================================
+interface IStrategy {
+    execute(): void;
+}
+
+
+//==============================
+//StrategyAクラス（具体的な作戦Ａ）
+//==============================
+class StrategyA implements IStrategy {
+    constructor() {} //コンストラクタ
+    public execute(): void {
+        document.write("グー、グー、パー");
+    }
+}
+
+//==============================
+//StrategyBクラス（具体的な作戦Ｂ）
+//==============================
+class StrategyB implements IStrategy {
+    constructor() {} //コンストラクタ
+    public execute(): void {
+        document.write("パー、グー、チョキ");
+    }
+}
+
+//======
+// 実行
+//======
+var _partner: string = "HANAKO"; // or "ICHIRO"
+var _janken: Janken;
+
+//対戦相手によって作戦を変える
+if (_partner == "HANAKO") {
+    _janken = new Janken(new StrategyA());
+} else if (_partner == "ICHIRO") {
+    _janken = new Janken(new StrategyB());
+}
+
+//じゃんけんの実行
+_janken.exec(); //グー、グー、パー 
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Visitor"></a>
