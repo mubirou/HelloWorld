@@ -2190,12 +2190,177 @@ _kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-XXXX
+```
+//main.ts
+
+//=============================
+// Calcクラス＝起動者（Invoker役）
+//=============================
+class Calc {
+    private _view: View; //結果を表示する役
+    private _history: any[] = []; //命令の履歴を保存
+    private _count: number; //undo()、redo()用
+    constructor() { //コンストラクタ
+        this._view = new View(); //結果を表示する役（Receiver）
+    }
+
+    // 命令（可算）
+    public commandPlus(arg: number): void {
+        //命令する度にインスタンスを生成
+        var _commandPlus: CommandPlus = new CommandPlus(this._view, arg);
+        _commandPlus.exec();
+        //履歴に記録
+        this._history.push(_commandPlus);
+        this._count = this._history.length -1;
+    }
+
+    // 命令２（減算）
+    public commandMinus(arg: number): void {
+        //命令する度にインスタンスを生成
+        var _commandMinus: CommandMinus = new CommandMinus(this._view, arg);
+        _commandMinus.exec();
+        //履歴に記録
+        this._history.push(_commandMinus);
+        this._count = this._history.length -1;
+    }
+
+    // アンドゥ
+    public undo(): void {
+        if (this._count > 0) {
+            this._view.update(this._history[this._count --].getBefore()); //アンドゥ結果を表示
+        } else {
+            console.log("これ以上アンドゥできません");
+            this._count = 0;
+            this._view.update(this._history[this._count].getBefore()); //アンドゥ結果を表示
+        }
+    }
+
+    // リドゥ
+    public redo(): void {
+        if (this._count < this._history.length-1) {
+            this._view.update(this._history[++ this._count].getBefore()); //リドゥ結果を表示
+        } else {
+            console.log("これ以上リドゥできません");
+            this._count = this._history.length - 1;
+            this._view.update(this._history[this._count].getAfter()); //リドゥ結果を表示
+        }
+    }
+
+    // 履歴を調べる
+    public getHistory(): any[] {
+        return this._history;
+    }
+}
+
+//=================================================
+// ICommandクラス＝命令（Command○）のインターフェース
+//=================================================
+interface ICommand {
+     exec(): void; //命令を実際に実行する
+}
+
+//=================================
+// CommandPlusクラス＝命令１（足し算）
+//=================================
+class CommandPlus implements ICommand {
+    private _view: View; //結果を表示する役
+    private _plusNum: number; //可算する値
+    private _before: number; //可算する前の値
+    private _after: number; //可算後の値
+
+    constructor(arg1: View, arg2: number) { //コンストラクタ
+        this._view = arg1;
+        this._plusNum = arg2;
+    }
+
+    public exec(): void { //命令（可算）を実際に実行する
+        this._before = this._view.getValue(); //直前の値を記憶
+        this._after = this._before + this._plusNum; //可算後の値を記憶
+        this._view.update(this._after);
+    }
+
+    public getBefore(): number {
+        return this._before;
+    }
+
+    public getAfter(): number {
+        return this._after;
+    }
+}
+
+//=================================
+// CommandMinusクラス＝命令２（引き算）
+//=================================
+class CommandMinus implements ICommand {
+    private _view: View; //結果を表示する役
+    private _minusNum: number; //減算する値
+    private _before: number; //減算する前の値
+    private _after: number; //減算後の値
+
+    constructor(arg1: View, arg2: number) { //コンストラクタ
+        this._view = arg1;
+        this._minusNum = arg2;
+    }
+
+    public exec(): void { //命令（減算）を実際に実行する
+        this._before = this._view.getValue(); //直前の値を記憶
+        this._after　= this._before - this._minusNum; //減算後の値を記憶
+        this._view.update(this._after);
+    }
+
+    public getBefore(): number {
+        return this._before;
+    }
+
+    public getAfter(): number {
+        return this._after;
+    }
+}
+
+//================================================
+// Viewクラス＝受信者（Receiver役）結果を表示する役
+//================================================
+class View {
+    private _value: number = 0; //計算結果
+
+    constructor() {} //コンストラクタ
+
+    public update(arg: number) {
+        this._value = arg;
+        console.log(this._value); //undo、redoを含め、全ての結果はここで表示
+    }
+
+    public getValue(): number { //直前の値を記憶
+        return this._value;
+    }
+}
+
+//======
+// 実行
+//======
+//計算機（起動者の役）
+var _calc: Calc = new Calc();
+
+//命令の実行
+_calc.commandPlus(50); //50
+_calc.commandPlus(50); //100
+_calc.commandMinus(1); //99
+
+//アンドゥ
+_calc.undo(); //100
+_calc.undo(); //50
+_calc.undo(); //これ以上アンドゥできません 0
+
+//リドゥ
+_calc.redo(); //50
+_calc.redo(); //100
+_calc.redo(); //これ以上リドゥできません 99
+```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
 作成者：Takashi Nishimura  
 作成日：2013年  
-更新日：2017年05月XX日
+更新日：2017年05月31日
 
 
 <a name="Interpreter"></a>
