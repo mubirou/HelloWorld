@@ -2106,7 +2106,7 @@ class Kanji {
 
     constructor() {} //コンストラクタ
 
-    public setState(arg: IState): void {
+    set state(arg: IState) {
         this._state = arg;
     }
 
@@ -2134,11 +2134,11 @@ class Question7 implements IState {
     constructor() {} //コンストラクタ
 
     public mondaiA(): void {
-        console.log("笑顔、衣類、胃腸<br>");
+        console.log("笑顔、衣類、胃腸");
     }
 
     public mondaiB(): void {
-        console.log("持参、勉強、案内<br>");
+        console.log("持参、勉強、案内");
     }  
 }
 
@@ -2171,9 +2171,9 @@ var _question10: IState = new Question10(); //漢字検定10級用
 
 //生徒に合った級別問題集にする
 if (_student == "ICHIRO") {
-    _kanji.setState(_question7); //setアクセサメソッドも使えるはずですが…
+    _kanji.state = _question7; //setアクセサメソッドも使えるはずですが…
 } else if (_student == "HANAKO") {
-    _kanji.setState(_question10); //setアクセサメソッドも使えるはずですが…
+    _kanji.state = _question10; //setアクセサメソッドも使えるはずですが…
 }
 
 //問題を出す
