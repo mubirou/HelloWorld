@@ -3,7 +3,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_win.md)）
-* [データ型](#データ型)
+* [データ型]((http://bit.ly/2rGZoWk))
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [スーパークラスとサブクラス](#スーパークラスとサブクラス)
@@ -41,7 +41,7 @@
 
 
 <a name="データ型"></a>
-# [<b>データ型</b>](http://bit.ly/2rGZoWk)
+# <b>データ型</b>
 
 ### データ型の種類
 1. boolean（論理型）
