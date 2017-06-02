@@ -5,6 +5,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_win.md)）
+***
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -78,6 +79,8 @@
     * クラス（class）: class を使った参照型（データそのものではなくアドレスを保持）
     * dynamic 型 : 動的型（型が未確定）←TypeScript の any 相当
     * Object[] 型 : 配列の場合
+    * void : 型が無い、不定であることを表す
+    他にも「signed（サインド）」「unsigned（アンサインド）」もあり
 
 ### 検証
 ```
