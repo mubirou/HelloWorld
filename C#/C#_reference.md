@@ -134,7 +134,7 @@ class Test {
         Console.WriteLine(_ulong.GetType()); //System.UInt64
         
         //浮動小数点数型①
-        float _float = 3.1415926f; //最期に「f」
+        float _float = 3.1415926f; //最後に「f」
         Console.WriteLine(_float); //3.141593
         Console.WriteLine(_float.GetType()); //System.Single
         
@@ -144,7 +144,7 @@ class Test {
         Console.WriteLine(_double.GetType()); //System.Double
         
         //浮動小数点数型③
-        decimal _decimal = 3.14159265358979323846264338327m; //最期に「m」
+        decimal _decimal = 3.14159265358979323846264338327m; //最後に「m」
         Console.WriteLine(_decimal); //3.1415926535897932384626433833
         Console.WriteLine(_decimal.GetType()); //System.Decimal
         
