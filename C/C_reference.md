@@ -75,8 +75,8 @@ int main() {
     //======================================================
     // 整数型 : unsigned int型（-2,147,483,647〜2,147,483,647）
     //======================================================
-    unsigned int _uInt = -2147483647;
-    printf("%d\n", _uInt);
+    unsigned int _uInt = 2147483647;
+    printf("%d\n", _uInt); //=> 2147483647
 
     //============================
     //整数型 : int型（16進数の場合）
@@ -227,6 +227,7 @@ int main() {
 ```
 
 ### データ型のキャスト
+* 変換出来ない場合
 1. 数値→bool型へ変換
     ```
     //test.c
@@ -253,47 +254,31 @@ int main() {
     }
     ```
 
-***
-
-1. 数値→数値（整数の縮小変換）
+1. 数値→数値（整数の縮小変換＝変換失敗）
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    #include <typeinfo>  //typeid()に必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf関数に必要
     int main() {
-        int _tmp = 3350000; //intは-2,147,483,648〜2,147,483,647
+        int _tmp = 2147483647; //intは-2,147,483,648〜2,147,483,647
         short int _tmp2= (short int)_tmp;
-        cout << _tmp2 << "\n"; //776 ←元のデータが失われる
+        printf("%d\n", _tmp2); //-1 ←元のデータが失われる
+        return 0;
     }
     ```
 
 1. 数値→数値（浮動小数点数の縮小変換）
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    #include <typeinfo>  //typeid()に必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf関数に必要
     int main() {
         double _double = 3.14159265358979323846264338327950288;
         float _float = (float)_double;
-        cout << _float << "\n"; //3.14159 ←元のデータが失われる
+        printf("%f\n", _float); //=> 3.141593（元のデータが失われる）
+        return 0;
     }
     ```
 
-1. 数値↔数値（拡張変換）
-    ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    #include <typeinfo>  //typeid()に必要
-    using namespace std;
-    int main() {
-        short int _tmp = 32767; //short int型は-32,768〜32,767
-        int _tmp2 = (int)_tmp + 1; //short int型→int型へ変換
-        cout << _tmp2 << "\n"; //32768
-        cout << typeid(_tmp2).name() << "\n"; //i（int）
-    }
-    ```
+***
 
 1. string型→数値
     ```
