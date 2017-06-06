@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
@@ -290,31 +290,23 @@ int main() {
     }
     ```
 
-***
-
 1. 数値→文字列
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    #include <typeinfo> //typeid()に必要
-    #include <sstream> //ostringstreamに必要
-    using namespace std;
-
+    //test.c
+    #include <stdio.h> //printf関数に必要
+    #include <stdlib.h> //atoi関数に必要
     int main() {
-        int _tmp = 100;
-        ostringstream _stream;
-        _stream << _tmp;
-        string _tmp2 = _stream.str();
-        cout << _tmp2 << "\n"; //"100"
-        cout << typeid(_tmp2).name() << "\n"; //NSt7__cxx1112basic…
+        int _int = 100;
+        char _char[32];
+        sprintf(_char, "%d", _int); //数値（_int）を文字列（_char）に変換
+        printf("%s\n", _char); //=> 100（文字列）
         return 0;
     }
     ```
 
-
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月06日
 
 
 <a name="クラス"></a>
