@@ -136,23 +136,92 @@ int main() {
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
-### データ型の調べ方 : typeid()
+### サイズ（バイト）の調べ方 : sizeof()
+「sizeof 式」または「sizeof(式)」、「sizeof(型の名前)」によって式や型のサイズ（バイト）を調べることが可能です。
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <typeinfo>  //typeid()に必要
-using namespace std;
-class MyClass {}; //前方宣言が必要
+//test.c
+#include <stdio.h> //printf関数に必要
+#include <stdbool.h> //boolに必要（標準では未サポート）
 
 int main() {
-    cout << typeid(true).name() << "\n"; //b（bool）
-    cout << typeid(100).name() << "\n"; //i（int）
-    cout << typeid(2147483648).name() << "\n"; //l（long int）
-    cout << typeid(0.1).name() << "\n"; //d（double）
-    cout << typeid('1').name() << "\n"; //c（char）
-    cout << typeid("1").name() << "\n"; //A2_c ←string
-    MyClass _myClass;
-    cout << typeid(_myClass).name() << "\n"; //7MyClass
+    size_t _size; //sizeof()の返り値（sizes_t型）を格納する
+
+    //========================
+    //bool型（stdbool.hが必要）
+    //========================
+    bool _bool = true; //or false
+    _size = sizeof _bool;
+    printf("%d\n", (int)_size); //=> 1（バイト）
+
+    //====================================
+    // 整数型 : unsigned short型（0〜65,535）
+    //====================================
+    unsigned short int _uShortInt = 65535;
+    _size = sizeof _uShortInt;
+    printf("%d\n", (int)_size); //=> 2（バイト）
+
+
+    //======================================
+    // 整数型 : short int型（-32,768〜32,767）
+    //======================================
+    short int _shortInt = -32768;
+    _size = sizeof _shortInt;
+    printf("%d\n", (int)_size); //=> 2（バイト）
+
+    //======================================================
+    // 整数型 : unsigned int型（-2,147,483,647〜2,147,483,647）
+    //======================================================
+    unsigned int _uInt = -2147483647;
+    _size = sizeof _uInt;
+    printf("%d\n", (int)_size); //=> 4（バイト）
+
+    //============================
+    //整数型 : int型（16進数の場合）
+    //============================
+    int _int16 = 0xFFCC00; //16進数の場合
+    _size = sizeof _int16;
+    printf("%d\n", (int)_size); //=> 4（バイト）
+
+    //========================
+    //浮動小数点数型（4バイト）
+    //========================
+    float _float = 3.1415926f; //最後に「f」
+    _size = sizeof _float;
+    printf("%d\n", (int)_size); //=> 4（バイト）
+
+    //======================
+    //文字型（char型＝1文字）
+    //======================
+    char _char = 'a'; //シングルクォーテーション
+    _size = sizeof _char;
+    printf("%d\n", (int)_size); //=> 1（バイト）
+
+    //===========================
+    //文字型（string型＝2文字以上）
+    //===========================
+    char _string[] = "abc"; //ダブルクォーテーション
+    _size = sizeof _string;
+    printf("%d\n", (int)_size); //=> 4（バイト）
+
+    //=========
+    // 構造体型
+    //=========
+    struct name { //定義は先に記述する必要あり（関数の外で定義可）
+        char romaji[32];
+        char kanji[32];
+    };
+    struct name _taro = {"TARO", "太郎"};
+    struct name _hanako = {"HANAKO", "花子"};
+    _size = sizeof _taro;
+    printf("%d\n", (int)_size); //=> 64（バイト）
+
+    //=======
+    // 配列
+    //=======
+    char _array[3] = {'A','B','C'}; //4個の空の要素を持つ配列の場合
+    _size = sizeof _array;
+    printf("%d\n", (int)_size); //=> 3（バイト）
+
     return 0;
 }
 ```
