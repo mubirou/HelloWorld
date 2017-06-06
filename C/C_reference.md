@@ -137,7 +137,8 @@ int main() {
 # <b>データ型の操作</b>
 
 ### サイズ（バイト）の調べ方 : sizeof()
-* 「sizeof 式」または「sizeof(式)」、「sizeof(型の名前)」によって式や型のサイズ（バイト）を調べることが可能。
+* 「sizeof 式」または「sizeof(式)」、「sizeof(型の名前)」によって式や型のサイズ（バイト）を調べることが可能
+* sizeof() 演算子で返す値は size_t 型である
 ```
 //test.c
 #include <stdio.h> //printf関数に必要
