@@ -148,7 +148,7 @@ int main() {
     size_t _size; //sizeof()の返り値（sizes_t型）を格納する
 
     //========================
-    //bool型（stdbool.hが必要）
+    // bool型（stdbool.hが必要）
     //========================
     bool _bool = true; //or false
     _size = sizeof _bool;
@@ -168,37 +168,37 @@ int main() {
     _size = sizeof _shortInt;
     printf("%d\n", (int)_size); //=> 2（バイト）
 
-    //======================================================
+    //=======================================================
     // 整数型 : unsigned int型（-2,147,483,647〜2,147,483,647）
-    //======================================================
+    //=======================================================
     unsigned int _uInt = -2147483647;
     _size = sizeof _uInt;
     printf("%d\n", (int)_size); //=> 4（バイト）
 
-    //============================
-    //整数型 : int型（16進数の場合）
-    //============================
+    //==============================
+    // 整数型 : int型（16進数の場合）
+    //==============================
     int _int16 = 0xFFCC00; //16進数の場合
     _size = sizeof _int16;
     printf("%d\n", (int)_size); //=> 4（バイト）
 
     //========================
-    //浮動小数点数型（4バイト）
+    // 浮動小数点数型（4バイト）
     //========================
     float _float = 3.1415926f; //最後に「f」
     _size = sizeof _float;
     printf("%d\n", (int)_size); //=> 4（バイト）
 
-    //======================
-    //文字型（char型＝1文字）
-    //======================
+    //===============
+    // 文字型（1文字）
+    //===============
     char _char = 'a'; //シングルクォーテーション
     _size = sizeof _char;
     printf("%d\n", (int)_size); //=> 1（バイト）
 
-    //===========================
-    //文字型（string型＝2文字以上）
-    //===========================
+    //===================
+    // 文字型（2文字以上）
+    //===================
     char _string[] = "abc"; //ダブルクォーテーション
     _size = sizeof _string;
     printf("%d\n", (int)_size); //=> 4（バイト）
@@ -278,26 +278,21 @@ int main() {
     }
     ```
 
-***
-
-1. string型→数値
+1. 文字列→数値
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    #include <typeinfo> //typeid()に必要
-    #include <cstdlib> //atoiに必要
-    using namespace std;
-
+    //test.c
+    #include <stdio.h> //printf関数に必要
+    #include <stdlib.h> //atoi関数に必要
     int main() {
-        string _tmp = "001";
-        int _tmp2 = atoi(_tmp.c_str()); //string型→int型に変換
-        cout << _tmp2 << "\n"; //1
-        cout << typeid(_tmp2).name() << "\n"; //i（int）
+        int _int = atoi("001");
+        printf("%d\n", _int); //=> 1
         return 0;
     }
     ```
 
-1. 数値→string型
+***
+
+1. 数値→文字列
     ```
     //test.cpp
     #include <iostream> //coutに必要
