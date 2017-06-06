@@ -161,7 +161,6 @@ int main() {
     _size = sizeof _uShortInt;
     printf("%d\n", (int)_size); //=> 2（バイト）
 
-
     //======================================
     // 整数型 : short int型（-32,768〜32,767）
     //======================================
@@ -230,31 +229,31 @@ int main() {
 ### データ型のキャスト
 1. 数値→bool型へ変換
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    #include <typeinfo>  //typeid()に必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf関数に必要
+    #include <stdbool.h> //boolに必要（標準では未サポート）
     int main() {
-        bool _tmp = (bool)1;
-        cout << _tmp << "\n"; //1
-        cout << typeid(_tmp).name() << "\n"; //b（bool）
+        int _int = 999;
+        bool _bool = (bool)_int; //数値をbool型に変換
+        printf("%d\n", _bool); //=> 1（true）
         return 0;
     }
     ```
 
 1. bool型→数値へ変換
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    #include <typeinfo>  //typeid()に必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf関数に必要
+    #include <stdbool.h> //boolに必要（標準では未サポート）
     int main() {
-        int _tmp = (int)true;
-        cout << _tmp << "\n"; //1（falseの場合0）
-        cout << typeid(_tmp).name() << "\n"; //i（int）
+        bool _bool = true;
+        int _int = (int)_bool; //数値をbool型に変換
+        printf("%d\n", _int); //=> 1（falseの場合0）
         return 0;
     }
     ```
+
+***
 
 1. 数値→数値（整数の縮小変換）
     ```
