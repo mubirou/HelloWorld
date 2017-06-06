@@ -50,7 +50,7 @@
 
 ```
 //test.c
-#include <stdio.h> //printf関数に必要
+#include <stdio.h> //printf()関数に必要
 #include <stdbool.h> //boolに必要（標準では未サポート）
 
 int main() {
@@ -141,7 +141,7 @@ int main() {
 * sizeof() 演算子で返す値は size_t 型である
 ```
 //test.c
-#include <stdio.h> //printf関数に必要
+#include <stdio.h> //printf()関数に必要
 #include <stdbool.h> //boolに必要（標準では未サポート）
 
 int main() {
@@ -230,7 +230,7 @@ int main() {
 1. 数値→bool型へ変換
     ```
     //test.c
-    #include <stdio.h> //printf関数に必要
+    #include <stdio.h> //printf()関数に必要
     #include <stdbool.h> //boolに必要（標準では未サポート）
     int main() {
         int _int = 999;
@@ -243,7 +243,7 @@ int main() {
 1. bool型→数値へ変換
     ```
     //test.c
-    #include <stdio.h> //printf関数に必要
+    #include <stdio.h> //printf()関数に必要
     #include <stdbool.h> //boolに必要（標準では未サポート）
     int main() {
         bool _bool = true;
@@ -256,7 +256,7 @@ int main() {
 1. 数値→数値（整数の縮小変換＝変換失敗）
     ```
     //test.c
-    #include <stdio.h> //printf関数に必要
+    #include <stdio.h> //printf()関数に必要
     int main() {
         int _tmp = 2147483647; //intは-2,147,483,648〜2,147,483,647
         short int _tmp2= (short int)_tmp;
@@ -268,7 +268,7 @@ int main() {
 1. 数値→数値（浮動小数点数の縮小変換）
     ```
     //test.c
-    #include <stdio.h> //printf関数に必要
+    #include <stdio.h> //printf()関数に必要
     int main() {
         double _double = 3.14159265358979323846264338327950288;
         float _float = (float)_double;
@@ -280,7 +280,7 @@ int main() {
 1. 文字列→数値
     ```
     //test.c
-    #include <stdio.h> //printf関数に必要
+    #include <stdio.h> //printf()関数に必要
     #include <stdlib.h> //atoi関数に必要
     int main() {
         int _int = atoi("001");
@@ -292,7 +292,7 @@ int main() {
 1. 数値→文字列
     ```
     //test.c
-    #include <stdio.h> //printf関数に必要
+    #include <stdio.h> //printf()関数に必要
     #include <stdlib.h> //atoi関数に必要
     int main() {
         int _int = 100;
