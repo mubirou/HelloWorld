@@ -7,13 +7,9 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-***
 * [構造体](#構造体)
-* [基本クラスと派生クラス](#基本クラスと派生クラス)
-* [名前空間](#名前空間)
-* [継承と委譲](#継承と委譲)
+***
 * [変数とスコープ](#変数とスコープ)
-* [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -316,370 +312,45 @@ int main() {
 * 例えばある人の「名前」「年齢」「身長」「体重」など異なるデータ型をひとまとめにしたもの
 * C++ のクラスと異なり、扱えるメンバ（変数）はデータのみです（関数などは不可）
 * C++ のクラスと異なり、アクセス修飾子によるスコープの指定は不可
+* オブジェクト指向的な記述も可能だが相当煩雑
 
 ### 例文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()関数に必要
 
-//==============
-// 長方形クラス
-//==============
-class Rectangle { //長方形クラスの「宣言」
-    private: //省略可能
-        int _width; //メンバ変数（＝プロパティ）
-        int _height; //メンバ変数
-    
-    public:
-        Rectangle(); //引数なしのコンストラクタ
-        Rectangle(int _w, int _h); //引数ありのコンストラクタ
-        
-        //_widthのアクセス用メンバ関数（＝メソッド）
-        int Width(); //getter
-        void Width(int _w); //setter
-        
-        //_heightのアクセス用メンバ関数
-        int Height(); //getter
-        void Height(int _h); //setter
-        
-        //面積の計算用のメンバ関数
-        int GetArea();  
-};
-
-//コンストラクタ（引数なし）
-Rectangle::Rectangle() {
-    _width = 0;
-    _height = 0;
-}
-
-//コンストラクタ（引数あり）
-Rectangle::Rectangle(int _w, int _h) {
-    _width = _w;
-    _height = _h;
-}
-
-//_widthのアクセス用メンバ関数
-int Rectangle::Width() { //getter
-    return _width;
-}
-void Rectangle::Width(int _w) { //setter
-    _width = _w;
-}
-
-//_heightのアクセス用メンバ関数
-int Rectangle::Height() { //getter
-    return _height;
-}
-void Rectangle::Height(int _h) { //setter
-    _height = _h;
-}
-
-//面積の計算用のメンバ関数
-int Rectangle::GetArea() {
-    return _width * _height;
-} 
+//================
+// 長方形「構造体」
+//================
+struct Member {
+    char *name; //メンバ（変数）の宣言
+    int age; //メンバ（変数）の宣言
+}; //ここに構造体変数（初期値設定可能）を設定することも可能
 
 
-//============
-// メイン関数
-//============
-int main() { //注意：利用するクラスは前方宣言が必要
-    //①インスタンスの生成
-    Rectangle _rectangle(640,480); //引数なしも可
-    // Rectangle _rectangle; //注意：引数なしの場合()はいらない
-    
-    cout << _rectangle.Width() << "\n"; //640
-    cout << _rectangle.Height() << "\n"; //480
-    
-    //②メンバ変数の更新
-    _rectangle.Width(1920);
-    _rectangle.Height(1080);
-    
-    //③メンバ変数の取得
-    cout << _rectangle.Width() << "\n"; //1920
-    cout << _rectangle.Height() << "\n"; //1080
-    
-    //④メンバ関数の実行
-    cout << _rectangle.GetArea() << "\n"; //2073600
-    
+int main() {
+    //メンバー１
+    struct Member _member01; //構造体変数の宣言
+    _member01.name = "Takashi Nishimura"; //メンバ（変数）の設定
+    _member01.age = 49; //メンバ（変数）の設定
+
+    //メンバー２
+    struct Member _member02; //構造体変数の宣言
+    _member02.name = "Hanako Nishimura"; //メンバ（変数）の設定
+    _member02.age = 48; //メンバ（変数）の設定
+
+    printf("%s\n", _member01.name); //=> Takashi Nishimura
+    printf("%d\n", _member01.age); //=> 49
+    printf("%s\n", _member02.name); //=> Hanako Nishimura
+    printf("%d\n", _member02.age); //=> 48
+
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
-
-
-<a name="基本クラスと派生クラス"></a>
-# <b>基本クラスと派生クラス</b>
-
-### 概要
-1. 呼び名
-    * 基本クラス ≒ 基底クラス、スーパークラス、親クラス
-    * 派生クラス ≒ サブクラス、子クラス
-    * メンバ変数 ≒ プロパティ
-    * メンバ関数 ≒ メソッド
-
-1. 多重継承（複数の基本クラスを継承する）が可能
-    ```
-    //多重継承の構文
-    class 派生クラス : アクセス指定子 基本クラスA, アクセス指定子 基本クラスB,… {
-        ……
-    }
-    ```
-    * 複数の基本クラスで同じメンバ関数を持つ場合、以下の方法でそれぞれのメンバ関数にアクセス可能
-    ```
-    _subclass.SuperClassA::mSuperClass();
-    ```
-
-### 例文
-```
-//Test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-//=============================
-// 基本クラス（スーパークラス）
-//=============================
-class SuperClass { //基本クラスの「宣言」
-    private: //省略可能
-        string _vSuperClass; //メンバ変数（プロパティ）の「宣言」
-    public:
-        SuperClass(); //コンストラクタの「宣言」
-        string vSuperClass(); //メンバ変数（プロパティ）のgetter
-        string mSuperClass(); //メンバ関数（メソッド）の「宣言」
-};
-
-//コンストラクタの「定義」
-SuperClass::SuperClass() {
-    _vSuperClass = "基本クラスのメンバ変数";
-}
-
-//getterの「定義」
-string SuperClass::vSuperClass() {
-    return _vSuperClass; //getter
-}
-
-//メンバ関数（メソッド）の「定義」
-string SuperClass::mSuperClass() {
-    return "基本クラスのメンバ関数";
-}
-
-//============================
-// 派生クラスA（サブクラスA）
-//============================
-class SubClassA : public SuperClass { //派生クラスAの「宣言」
-    private: //省略可能
-        string _vSubClassA; //メンバ変数（プロパティ）の「宣言」
-    public:
-        SubClassA(); //コンストラクタの「宣言」
-        string vSubClassA(); //メンバ変数（プロパティ）のgetter
-        string mSubClassA(); //メンバ関数（メソッド）の「宣言」
-};
-
-//コンストラクタの「定義」
-SubClassA::SubClassA() {
-    _vSubClassA = "派生クラスAのメンバ変数";
-}
-
-//getterの「定義」
-string SubClassA::vSubClassA() {
-    return _vSubClassA; //getter
-}
-
-//メンバ関数（メソッド）の「定義」
-string SubClassA::mSubClassA() {
-    return "派生クラスAのメンバ関数";
-}
-
-//============================
-// 派生クラスB（サブクラスB）
-//============================
-class SubClassB : public SuperClass { //派生クラスBの「宣言」
-    private: //省略可能
-        string _vSubClassB; //メンバ変数（プロパティ）の「宣言」
-    public:
-        SubClassB(); //コンストラクタの「宣言」
-        string vSubClassB(); //メンバ変数（プロパティ）のgetter
-        string mSubClassB(); //メンバ関数（メソッド）の「宣言」
-};
-
-//コンストラクタの「定義」
-SubClassB::SubClassB() {
-    _vSubClassB = "派生クラスBのメンバ変数";
-}
-
-//getterの「定義」
-string SubClassB::vSubClassB() {
-    return _vSubClassB; //getter
-}
-
-//メンバ関数（メソッド）の「定義」
-string SubClassB::mSubClassB() {
-    return "派生クラスBのメンバ関数";
-}
-
-//============
-// メイン関数
-//============
-int main() {
-    //派生クラスA
-    SubClassA _subclassA; //インスタンスの生成
-    cout << _subclassA.vSuperClass() << "\n"; //基本クラスのメンバ変数
-    cout << _subclassA.mSuperClass() << "\n"; //基本クラスのメンバ関数
-    cout << _subclassA.vSubClassA() << "\n"; //派生クラスAのメンバ変数
-    cout << _subclassA.mSubClassA() << "\n"; //派生クラスAのメンバ関数
-    
-    //派生クラスB
-    SubClassB _subclassB; //インステンスの生成
-    cout << _subclassB.vSuperClass() << "\n"; //基本クラスのメンバ変数
-    cout << _subclassB.mSuperClass() << "\n"; //基本クラスのメンバ関数
-    cout << _subclassB.vSubClassB() << "\n"; //派生クラスBのメンバ変数
-    cout << _subclassB.mSubClassB() << "\n"; //派生クラスBのメンバ関数
-    
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2017年06月0X日
-
-
-<a name="名前空間"></a>
-# <b>名前空間</b>
-
-### 概要
-* 名前空間（namespace）とは、関数名や変数名の重複を防ぐための機能
-* 名前空間を使うと、関数や変数の有効範囲を限定できる
-* フォルダによる階層構造でファイルを管理するかのようにクラスを管理（但し論理的）
-
-### 書式
-```
-namespace 名前空間名 {
-    class ○○ {
-    }
-    ……
-}
-```
-
-### 例文
-```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
-
-namespace Shinano { //名前空間の定義（前方宣言が必要）
-    //名前空間の中↓は変更なし
-    class MyClass {
-        public:
-            void MyFunction(); //メンバ関数の宣言
-    };
-    void MyClass::MyFunction() {
-        cout << "ほげほげ" << endl;
-    }
-}
-
-int main() {
-using namespace Shinano;
-MyClass _myClass; //「Shinano::」が省略可能になる
-    _myClass.MyFunction(); //"ほげほげ"
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2017年06月0X日
-
-
-<a name="継承と委譲"></a>
-# <b>継承と委譲</b>
-
-### 概要
-* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は <b>class ClassB : public ClassA</b> といった使い方で、委譲の場合は <b>ClassA _classA</b> といった記述をしてオブジェクトを生成し、他のクラスの機能を利用する
-
-### 継承版
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-//===========================
-// ClassA : 委譲版と全く同じ
-//===========================
-class ClassA {
-    public:
-        void MyMethod();
-};
-
-void ClassA::MyMethod() {
-    cout << "ClassA.MyMethod()" << "\n";
-}
-
-//=================================
-// ClassB : ここだけ委譲版と異なる
-//=================================
-class ClassB : public ClassA {}; //ClassAを継承
-
-//===============================
-// メイン関数 : 委譲版と全く同じ
-//===============================
-int main() {
-    ClassB _classB;
-    _classB.MyMethod();
-    return 0;
-}
-```
-
-### 委譲版
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-//===========================
-// ClassA : 委譲版と全く同じ
-//===========================
-class ClassA {
-    public:
-        void MyMethod();
-};
-
-void ClassA::MyMethod() {
-    cout << "ClassA.MyMethod()" << "\n";
-}
-
-//=================================
-// ClassB : ここだけ委譲版と異なる
-//=================================
-class ClassB {
-    private:
-        ClassA _classA; //ClassAのインスタンスを生成＆管理（ポイント）
-    public:
-        void MyMethod(); //メンバ関数の「宣言」
-};
-
-void ClassB::MyMethod() { //メンバ関数の「定義」
-    _classA.MyMethod(); //ClassAのメンバ関数の実行（ポイント）
-}
-
-//===============================
-// メイン関数 : 委譲版と全く同じ
-//===============================
-int main() {
-    ClassB _classB;
-    _classB.MyMethod();
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月07日
 
 
 <a name="変数とスコープ"></a>
@@ -893,57 +564,6 @@ int main() {
         return 0;
     }
     ```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2017年06月0X日
-
-
-<a name="アクセサ"></a>
-# <b>アクセサ （getter / setter）</b>
-
-### 概要
-* OOP（オブジェクト指向プログラミング）の「他人の変数を勝手にいじってはいけない」というルールに則り、メンバ変数は通常 private 変数とし、外部からは関数を使ってアクセスする
-* C++ には、C# のような get、set アクセサといったものが用意されていない
-* GetXXX()、SetXXX(型,引数) といった記述もできるが、C++ の場合は「引数が異なる同名の関数を定義することが可能」なため以下のような記述をする
-
-### 例文
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-//========
-// クラス
-//========
-class Nishimura {
-    private: int _age; //private変数（外部から勝手にいじらせない為）
-    public:
-        Nishimura(int _age); //コンストラクタの「宣言」
-        int Age(); //メンバ関数（getter）の「宣言」
-        void Age(int _age); //メンバ関数（setter）の「宣言」
-};
-Nishimura::Nishimura(int _age) { //コンストラクタの「定義」
-    Nishimura::_age = _age;
-}
-int Nishimura::Age() { //メンバ関数（getter）の定義
-    return _age;
-}
-void Nishimura::Age(int _age) { //メンバ関数（setter）の定義
-    Nishimura::_age = _age;
-}
-
-//============
-// メイン関数
-//============
-int main() {
-    Nishimura _nishimura(49); //Nishimuraクラスのインスタンスの生成
-    cout << _nishimura.Age() << "\n"; //49 ←getterを使って値を取得
-    _nishimura.Age(50); //setterを使って値を変更
-    cout << _nishimura.Age() << "\n"; //50 ←getterを使って値を取得
-    return 0;
-}
-```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
