@@ -8,8 +8,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [構造体](#構造体)
-***
 * [変数とスコープ](#変数とスコープ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -356,218 +356,27 @@ int main() {
 <a name="変数とスコープ"></a>
 # <b>変数とスコープ</b>
 
-### 変数の種類
-1. [public 変数](#public変数) : 全クラスからアクセス可能（非推奨）
-1. [protected 変数](#protected変数) : 同じクラスおよび派生クラス内でのみアクセス可能
-1. [private 変数](#private変数) : 同じクラス内のみアクセス可能（省略すると private 扱い）
-1. [ローカル変数](#ローカル変数) : 関数、for 文、if 文内でのみアクセス可能
-* その他に「名前空間変数」「グローバル変数」もあり
-
-<a name="public変数"></a>
-### public 変数（非推奨）
-
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()関数に必要
 
-//=========
-// MyClass
-//=========
-class MyClass {
-    public:
-        MyClass(); //コンストラクタの「宣言」
-        string _string; //ここではメンバ変数の「宣言」だけ行う
-};
+//グローバル変数の定義（宣言のみでも可）
+char _char[] = "グローバル変数";
 
-MyClass::MyClass() { //コンストラクタの「定義」
-    _string = "public変数"; //ここでメンバ変数の「初期化」を行う
-}
-
-//============
-// メイン関数
-//============
 int main() {
-    MyClass _myClass; //MyClassクラスのインスタンスの生成
-    cout << _myClass._string << "\n"; //"public変数"
+    printf("%s\n", _char); //=> "グローバル変数"
+
+    //ローカル変数の定義（関数またはブロック内のみ有効）
+    char _char[] = "ローカル変数"; //グローバル変数より優先
+    printf("%s\n", _char); //=> "ローカル変数"
+
     return 0;
 }
 ```
-
-<a name="protected変数"></a>
-
-### protected 変数
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-//==========================
-// SuperClass（基本クラス）
-//==========================
-class SuperClass {
-    public:
-        SuperClass(); //コンストラクタの「宣言」
-    protected:
-        string _p; //メンバ変数の「宣言」
-};
-
-SuperClass::SuperClass() { //コンストラクタの「定義」
-    _p = "SuperClass変数"; //メンバ変数の「初期化」
-}
-
-//===============================================
-// SubClass（派生クラス）
-//===============================================
-class SubClass : public SuperClass {
-    public:
-        SubClass(); //コンストラクタの「宣言」
-};
-
-SubClass::SubClass() { //コンストラクタの「定義」
-   cout << _p << "\n"; //派生クラスからもアクセス可（ポイント）
-}
-
-//============
-// メイン関数
-//============
-int main() {
-    SubClass _subClass; //SubClassクラスのインスタンスの生成
-    //cout << _subClass._p << "\n"; //アクセス不可（ポイント）
-    return 0;
-}
-```
-
-<a name="private変数"></a>
-
-### private 変数
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-//=========
-// MyClass
-//=========
-class MyClass {
-    private:
-        string _p; //メンバ変数の「宣言」
-    public: //悪い例（通常はprivateにする）
-        MyClass(); //コンストラクタの「宣言」
-        string P(); //getter用メンバ関数の「宣言」
-        void P(string _str); //setter用メンバ関数の「宣言」
-};
-
-MyClass::MyClass() { //コンストラクタの「定義」
-    _p = "private変数"; //メンバ変数の「初期化」
-}
-
-string MyClass::P() { //getter用メンバ関数の「定義」
-    return _p;
-}
-
-void MyClass::P(string _str) { //setter用メンバ関数の「定義」
-    _p = _str;
-}
-
-//============
-// メイン関数
-//============
-int main() {
-    MyClass _myClass; //MyClassクラスのインスタンスの生成
-    //_myClass.P("○○"); //メンバ変数の値を変更したい場合はsetterを利用する
-    cout << _myClass.P() << "\n"; //"private変数" ←getterでアクセス
-    return 0;
-}
-```
-
-<a name="ローカル変数"></a>
-
-### ローカル変数
-
-1. 関数内で宣言する場合
-    ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    using namespace std;
-
-    //===============================================
-    // MyClass
-    //===============================================
-    class MyClass {
-        private:
-            string _p; //メンバ変数の「宣言」←これはprivate変数
-        public:
-            MyClass(); //コンストラクタの「宣言」
-            void MyMethod(); //メンバ関数の「宣言」
-    };
-
-    MyClass::MyClass() { //コンストラクタの「定義」
-        _p = "private変数"; //メンバ変数の「初期化」←これはprivate変数
-    }
-
-    void MyClass::MyMethod() { //getter用メンバ関数の「定義」
-        cout << _p << "\n"; //=> "private変数"
-        string _p = "ローカル変数"; //これがローカル変数
-        cout << _p << "\n"; //=> "ローカル変数"（ポイント）
-        cout << MyClass::_p << "\n"; //=> "private変数"（ポイント）
-    }
-
-    //===============================================
-    // メイン関数
-    //===============================================
-    int main() {
-        MyClass _myClass; //MyClassクラスのインスタンスの生成
-        _myClass.MyMethod();
-        return 0;
-    }
-    ```
-
-1. for 文、if 文内で宣言する場合
-    ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    using namespace std;
-
-    //===============================================
-    // MyClass
-    //===============================================
-    class MyClass {
-        private:
-            int i; //private変数
-        public:
-            MyClass(); //コンストラクタの「宣言」
-    };
-
-    MyClass::MyClass() { //コンストラクタの「定義」
-        i = 999; //private変数
-
-        for (int i=0; i<=5; i++) { //iはローカル変数
-            string _string = "test"; //ローカル変数（for文内のみ有効）
-            cout << i << "\n"; //0、1、2、…、5 ←ローカル変数にアクセス
-            cout << MyClass::i << "\n"; //999 ←private変数（i）にアクセス
-        }
-        //cout << _string << "\n"; //ERROR（for文外はアクセス不可）
-
-        if (true) {
-            string string2_ = "test2"; //ローカル変数（if文内のみ有効）
-        }
-        //cout << string2_ << "\n"; //ERROR（if文外はアクセス不可）
-
-    }
-
-    //===============================================
-    // メイン関数
-    //===============================================
-    int main() {
-        MyClass _myClass; //MyClassクラスのインスタンスの生成
-        return 0;
-    }
-    ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月09日
 
 
 <a name="演算子"></a>
