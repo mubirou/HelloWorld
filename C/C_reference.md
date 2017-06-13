@@ -295,7 +295,7 @@ int main() {
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月06日
 
@@ -344,7 +344,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月07日
 
@@ -375,7 +375,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月09日
 
@@ -418,7 +418,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月12日
 
@@ -458,7 +458,7 @@ int main() { //自動的に最初に実行される
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月13日
 
@@ -565,7 +565,7 @@ int main() {
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月13日
 
@@ -573,51 +573,26 @@ int main() {
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
 
-### 比較式が１つの場合
 * 構文
 ```
-データ型 変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
+(比較式) ? (true時の返り値) : (false時の返り値);
 ```
 
 * 例文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()関数に必要
 
 int main() {
-    int age_ = 49;
-    string _result = (age_ < 60) ? "現役" : "退職";
-    cout << _result << endl; //"現役"
+    int _age = 49;
+    printf("%s\n", (_age < 60) ? "現役" : "退職"); //=> 現役
+    return 0;
 }
 ```
 
-### 比較式が複数の場合
-* 構文
-```
-データ型 変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
-(比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
-(①②の全てがfalseの場合の返り値);
-```
-
-* 例文
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-int main() {
-    int age_ = 49;
-    string _result = (age_ < 20) ? "未成年" : //条件がfalseの場合↓
-    (age_ < 60) ? "現役" : //条件がfalseの場合↓
-    "退職"; //上記の条件が全てfalseの場合
-    cout << _result << endl; //"現役"が出力
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月13日
 
 
 <a name="switch文"></a>
@@ -663,7 +638,7 @@ _int の値が「1の場合①」「2の場合①②」「3の場合③④」「
 「それ以外の場合？」が出力される
 （各行で何も処理しないのことも可能）
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -770,7 +745,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -855,7 +830,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -951,7 +926,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1036,7 +1011,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1384,7 +1359,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1433,7 +1408,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1637,7 +1612,7 @@ int main() {
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1696,7 +1671,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1772,7 +1747,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1820,7 +1795,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1876,7 +1851,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -1921,7 +1896,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2015,7 +1990,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2119,7 +2094,7 @@ int main() { //メイン関数
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2187,7 +2162,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2366,7 +2341,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2452,7 +2427,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2499,7 +2474,7 @@ struct tm *_pNow = localtime(&_now);
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2589,7 +2564,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
 
@@ -2645,7 +2620,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成日：2017年06月1X日
 
 
@@ -2694,6 +2669,6 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C++14  
+実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月1X日
