@@ -15,8 +15,8 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-***
 * [while 文](#while文)
+***
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
@@ -760,17 +760,16 @@ while (ループ判定式) {
 
 * 例文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
 
 int main() {
-    int _i = 0;
+    int _i;
     while (_i < 10) {
-        cout << _i << endl; //0,1,2,3,4,5,6,7,8,9
+        printf("%d\n", _i); //=> 0,1,2,3,4,5,6,7,8,9
         _i++;
     }
-    cout << _i << endl; //10（変数はまだ有効）
+    printf("%d\n", _i); //=> 10（変数はまだ有効）
     return 0;
 }
 ```
@@ -785,14 +784,13 @@ do {
 
 * 例文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
 
 int main() {
     int _i = 0;
     do {
-        cout << _i << endl; //0 <=ループ判定式はfalseだが１回実行される
+        printf("%d\n", _i); //=>0（ループ判定式はfalseだが１回実行される）
         _i++;
     } while(_i < 0);
     return 0;
@@ -801,29 +799,27 @@ int main() {
 
 ### while 文と break 文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
 
 int main() {
     int _count = 0;
-    while (true) { //ループ判別式をtrueにすると無限ループ
+    while (1) { //ループ判別式を1にすると無限ループ
         _count++;
         if (_count > 100) {
-            break; //break文を使ってループを終了→★へ
+            break; //break文を使ってループを終了
         }
-        cout << _count << endl; //1,2,....,99,100（1〜100までを出力）
+        printf("%d\n", _count); //=> 1,2,....,99,100（1〜100までを出力）
     }
-    cout << "while文終了" << endl; //★
+    printf("%s\n", "while文終了");
     return 0;
 }
 ```
 
 ### while 文と continue 文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
 
 int main() {
     int _i = 1;
@@ -832,16 +828,17 @@ int main() {
             _i++;
             continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
         }
-        cout << _i << endl; //3,6,9,12,15,18（3の倍数を出力）
+        printf("%d\n", _i); //=> 3,6,9,12,15,18（3の倍数を出力）
         _i++;
     }
     return 0;
 }
+
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月14日
 
 
 <a name="配列"></a>
