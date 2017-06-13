@@ -11,8 +11,8 @@
 * [変数とスコープ](#変数とスコープ)
 * [演算子](#演算子)
 * [関数](#関数)
-***
 * [if 文](#if文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -252,7 +252,7 @@ int main() {
     int main() {
         int _tmp = 2147483647; //intは-2,147,483,648〜2,147,483,647
         short int _tmp2= (short int)_tmp;
-        printf("%d\n", _tmp2); //-1 ←元のデータが失われる
+        printf("%d\n", _tmp2); //-1 <=元のデータが失われる
         return 0;
     }
     ```
@@ -468,20 +468,21 @@ int main() { //自動的に最初に実行される
 
 ### 基本例文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()関数に必要
+
 int main() {
     int _age = 49;
     if (_age <= 20) {
-        cout << "20歳以下" << endl;
+        printf("%s\n", "20歳以下");
     } else if (_age <= 40) {
-        cout << "21〜40歳" << endl;
+        printf("%s\n", "21〜40歳");
     } else if (_age <= 60) {
-        cout << "41〜60歳" << endl; //これが出力される
+        printf("%s\n", "41〜60歳"); //これが出力される
     } else {
-        cout << "61歳以上" << endl;
+        printf("%s\n",  "61歳以上");
     }
+    return 0;
 }
 ```
 
@@ -489,7 +490,7 @@ int main() {
 1. 論理演算子（&&）を使う方法
     ```
     if (条件式① && 条件②) {
-        処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+        処理A <=条件式① かつ 条件式② の両方がtrueの場合に実行
     } else {
         処理B
     }
@@ -499,7 +500,7 @@ int main() {
     ```
     if (条件式①) {
         if (条件②) {
-            処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+            処理A <=条件式① かつ 条件式② の両方がtrueの場合に実行
         } else {
             処理B
         }
@@ -512,7 +513,7 @@ int main() {
 1. 論理演算子（||）を使う方法
     ```
     if (条件式① || 条件②) {
-        処理A ←条件式①または条件式②の両方がtrueの場合に実行
+        処理A <=条件式①または条件式②の両方がtrueの場合に実行
     } else {
         処理B
     }
@@ -521,9 +522,9 @@ int main() {
 1. ifのネストを使う方法
     ```
     if (条件式①) {
-        処理A ←条件式①がtrueの場合に実行
+        処理A <=条件式①がtrueの場合に実行
     } else if (条件②) {
-        処理A ←条件式②がtrueの場合に実行
+        処理A <=条件式②がtrueの場合に実行
     } else {
         処理B
     }
@@ -532,37 +533,41 @@ int main() {
 ### 排他的論理和（XOR）
 1. ^ 演算子を使う方法
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf()関数に必要
+
     int main() {
-        bool a_ = true, b_ = false;
-        if (a_ ^ b_) {
-            cout << "どちらか一方だけtrueです" << endl; //これが出力される
+        int _a = 1;
+        int _b = 0;
+        if ((_a==1) ^ (_b==1)) {
+            printf("%s\n","どちらか一方だけ1です"); //<= これが出力される
         } else {
-            cout << "両方共にtrue（false）です" << endl;
+            printf("%s\n","両方共に1（1以外）です");
         }
+        return 0;
     }
     ```
 
 2. ^ 演算子を使わない方法
     ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf()関数に必要
+
     int main() {
-        bool a_ = true, b_ = false;
-        if ((a_ || b_) && !(a_ && b_)) {
-            cout << "どちらか一方だけtrueです" << endl; //これが出力される
+        int _a = 1;
+        int _b = 0;
+        if ((_a || _b) && !(_a && _b)) {
+            printf("%s\n","どちらか一方だけ1です"); //<= これが出力される
         } else {
-            cout << "両方共にtrue（false）です" << endl;
+            printf("%s\n","両方共に1（1以外）です");
         }
+        return 0;
     }
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月13日
 
 
 <a name="三項演算子"></a>
@@ -886,7 +891,7 @@ int main() {
 * 構文
 ```
 do {
-    繰り返す処理 ←ループ判定式がfalseの場合でも最低１回は実行される
+    繰り返す処理 <=ループ判定式がfalseの場合でも最低１回は実行される
 } while(ループ判定式);
 ```
 
@@ -899,7 +904,7 @@ using namespace std;
 int main() {
     int _i = 0;
     do {
-        cout << _i << endl; //0 ←ループ判定式はfalseだが１回実行される
+        cout << _i << endl; //0 <=ループ判定式はfalseだが１回実行される
         _i++;
     } while(_i < 0);
     return 0;
@@ -1027,7 +1032,7 @@ using namespace std;
 int main() {
     string _array[] = {"A","B","C"};
     cout << sizeof(_array) << endl; //96
-    cout << sizeof(_array) / sizeof(_array[0]) << endl; //3 ←要素数
+    cout << sizeof(_array) / sizeof(_array[0]) << endl; //3 <=要素数
 }
 ```
 
@@ -1299,7 +1304,7 @@ int main() {
     vector1_.insert(vector1_.end(), vector2_.begin(), vector2_.end()); //結合
     //copy(vector2_.begin(), vector2_.end(), back_inserter(vector1_)); //これでも可
     for (auto tmp : vector1_) {
-        cout << tmp << endl; //"A","B","C","D","a","b","c","d" ←追加されている
+        cout << tmp << endl; //"A","B","C","D","a","b","c","d" <=追加されている
     }    
     for (auto tmp : vector2_) {
         cout << tmp << endl; //"a","b","c","d"
@@ -1327,7 +1332,7 @@ int main() {
     }
     cout << "----------------" << endl;
     for (auto tmp : vectorCopy_) {
-        cout << tmp << endl; //"a","b","c","d","E" ←こっちだけ追加されている
+        cout << tmp << endl; //"a","b","c","d","E" <=こっちだけ追加されている
     }
     return 0;
 }
@@ -1458,7 +1463,7 @@ int main() {
         _tNishimura = "Taro Nishimura";
         cout << _tNishimura << endl; //"Taro Nishimura"
         cout << tn << endl; //「別名」の値も"Taro Nishimura"に変更される
-        cout << &tn << endl; //0x7ffce8727890 ←「&別名」で「アドレス」が返ります
+        cout << &tn << endl; //0x7ffce8727890 <=「&別名」で「アドレス」が返ります
         return 0;
     }
     ```
@@ -1478,10 +1483,10 @@ int main() {
         string* _pName = &_name; //変数の「アドレス」を「ポインタ」に格納
         
         //検証
-        cout << _name << endl; //"TAKASHI" ←変数の値
-        cout << &_name << endl; //0x7ffc37c32e90 ←変数の「アドレス」
-        cout << _pName << endl; //0x7ffc37c32e90 ←「ポインタ」
-        cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得
+        cout << _name << endl; //"TAKASHI" <=変数の値
+        cout << &_name << endl; //0x7ffc37c32e90 <=変数の「アドレス」
+        cout << _pName << endl; //0x7ffc37c32e90 <=「ポインタ」
+        cout << *_pName << endl; //"TAKASHI" <=「ポインタ」から変数の値を取得
     }
     ```
 
@@ -1507,8 +1512,8 @@ int main() {
     // 関数
     //======
     void myFunction(string* _pName) { //渡された「アドレス」を「ポインタ」として引数に③'
-        cout << _pName << endl; //0x7fff9c1ec060 ←変数の「アドレス」を格納したポインタ④
-        cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得⑤
+        cout << _pName << endl; //0x7fff9c1ec060 <=変数の「アドレス」を格納したポインタ④
+        cout << *_pName << endl; //"TAKASHI" <=「ポインタ」から変数の値を取得⑤
         *_pName = "TARO"; //変数の値を変更⑥
     }
 
@@ -1517,9 +1522,9 @@ int main() {
     //============
     int main() {
         string _name = "TAKASHI"; //変数の定義①
-        cout << &_name << endl; //0x7fff9c1ec060 ←変数の「アドレス」②
+        cout << &_name << endl; //0x7fff9c1ec060 <=変数の「アドレス」②
         myFunction(&_name); //「アドレス」を渡して関数を呼出す③
-        cout << _name << endl; //"TARO" ←関数内で変数の値が変更されているため⑦
+        cout << _name << endl; //"TARO" <=関数内で変数の値が変更されているため⑦
         return 0;
     }
     ```
@@ -1550,7 +1555,7 @@ int main() {
     MyClass* _pMyClass = new MyClass; //クラスのインスタンスを「ポインタ」に格納
         //_pMyClass.MyFunction(); //エラー
         //「ポインタ」からメンバにアクセスする場合には「アロー演算子（->）」を利用
-        _pMyClass -> MyFunction(); //こんにちは ←ポインタからメンバ関数にアクセス
+        _pMyClass -> MyFunction(); //こんにちは <=ポインタからメンバ関数にアクセス
         return 0;
     }
     ```
@@ -1598,11 +1603,11 @@ int main() {
         cout << _array[2] << endl; //"C"
         
         //検証
-        cout << &_array << endl;    //0x7ffe74921f90 ←配列の先頭の要素の「アドレス」
-        cout << &_array[0] << endl; //0x7ffe74921f90 ←配列の先頭の要素の「アドレス」
-        cout << *_array << endl;    //"A" ←配列の先頭の要素の値
+        cout << &_array << endl;    //0x7ffe74921f90 <=配列の先頭の要素の「アドレス」
+        cout << &_array[0] << endl; //0x7ffe74921f90 <=配列の先頭の要素の「アドレス」
+        cout << *_array << endl;    //"A" <=配列の先頭の要素の値
         //cout << *_array[0] << endl; //エラー
-        cout << _array[0] << endl;  //"A" ←配列の先頭の要素の値
+        cout << _array[0] << endl;  //"A" <=配列の先頭の要素の値
         
         return 0;
     }
@@ -1618,9 +1623,9 @@ int main() {
         string _array[] = {"A","B","C"};
         
         //ポインタ演算
-        cout << *_array << endl; //"A" ←配列の「先頭」の要素の値
-        cout << *(_array + 1) << endl; //"B" ←配列の「先頭+1」の要素の値
-        cout << *(_array + 2) << endl; //"C" ←配列の「先頭+2」の要素の値
+        cout << *_array << endl; //"A" <=配列の「先頭」の要素の値
+        cout << *(_array + 1) << endl; //"B" <=配列の「先頭+1」の要素の値
+        cout << *(_array + 2) << endl; //"C" <=配列の「先頭+2」の要素の値
         
         //「ポインタ演算」を使って全要素を取り出す
         int _arrayLength = sizeof(_array) / sizeof(_array[0]);
@@ -1671,7 +1676,7 @@ Robot::Robot(int _x) {
 
 void Robot::Move() {
     int _x; //「ローカル変数」の「宣言」
-    _x = this->_x + 10; //←②「this->」が無いと「ローカル変数」と「メンバ変数」がぶつかる
+    _x = this->_x + 10; //<=②「this->」が無いと「ローカル変数」と「メンバ変数」がぶつかる
     if (_x >= 1920) _x = 0;
     this->_x = _x; //②「this->」が無いと「ローカル変数」と「メンバ変数」がぶつかる
     cout << this << endl; //0x7ffdbae24810（この関数を実行されたオブジェクトを指す）
@@ -1729,7 +1734,7 @@ int main() {
 using namespace std;
 int main() {
     string _string = "0123456789";
-    cout << _string[4] << endl; //"4" ←1文字だけ取得（string.length()-1まで指定可）
+    cout << _string[4] << endl; //"4" <=1文字だけ取得（string.length()-1まで指定可）
     cout << _string.substr(4) << endl; //"456789"
     cout << _string.substr(4,3) << endl; //"456"
 }
@@ -1953,12 +1958,12 @@ class 基本クラス名 {
 class 派生クラス名 : public 基本クラス名 { //基本クラスの継承
     public:
         派生クラス名(型 引数); //コンストラクタの宣言
-        型 関数名(型 引数); //メンバ関数の宣言 ←基本クラスの関数と同名
+        型 関数名(型 引数); //メンバ関数の宣言 <=基本クラスの関数と同名
 }
 派生クラス名::派生クラス名(型 引数) : 基本クラス名(引数) { //コンストラクタの定義
     //（残念ながら）ここの処理は基本クラスのコンストラクタの後で実行される
 }
-型 派生クラス名::関数名(型 引数) { //メンバ関数の定義 ←自動的にオーバーライド
+型 派生クラス名::関数名(型 引数) { //メンバ関数の定義 <=自動的にオーバーライド
     基本クラス::基本クラスの関数名(引数); //基本クラスの関数の呼出しは簡単！
 }
 ```
@@ -2177,7 +2182,7 @@ int main() {
     _robot.Fight();	
     _robot.Fight();
     _robot.Fight();	
-    _robot.Fight(); //"GAME OVER!" ←ここでenery_が0となりdieイベント発生
+    _robot.Fight(); //"GAME OVER!" <=ここでenery_が0となりdieイベント発生
     return 0;
 }
 ```
@@ -2197,11 +2202,11 @@ int main() {
 #include <math.h> //「数学関数」に必要
 using namespace std;
 int main() {
-    cout << sin(0) << endl; //0 ←0°
-    cout << sin(M_PI_2) << endl; //1（sin(M_PI/2)と同じ）←90°
-    cout << sin(M_PI) << endl; //1.22465e-16（≒0）←180°
-    cout << sin(M_PI*3/2) << endl; //-1 ←270°
-    cout << sin(M_PI*2) << endl; //-2.44929e-16（≒0）←360°
+    cout << sin(0) << endl; //0 <=0°
+    cout << sin(M_PI_2) << endl; //1（sin(M_PI/2)と同じ）<=90°
+    cout << sin(M_PI) << endl; //1.22465e-16（≒0）<=180°
+    cout << sin(M_PI*3/2) << endl; //-1 <=270°
+    cout << sin(M_PI*2) << endl; //-2.44929e-16（≒0）<=360°
     return 0;
 }
 ```
@@ -2213,11 +2218,11 @@ int main() {
 #include <math.h> //「数学関数」に必要
 using namespace std;
 int main() {
-    cout << cos(0) << endl; //1 ←0°
-    cout << cos(M_PI_2) << endl; //6.12323e-17（≒0）（cos(M_PI/2)と同じ）←90°
-    cout << cos(M_PI) << endl; //-1 ←180°
-    cout << cos(M_PI*3/2) << endl; //-1.83697e-16（≒0）←270°
-    cout << cos(M_PI*2) << endl; //1 ←360°
+    cout << cos(0) << endl; //1 <=0°
+    cout << cos(M_PI_2) << endl; //6.12323e-17（≒0）（cos(M_PI/2)と同じ）<=90°
+    cout << cos(M_PI) << endl; //-1 <=180°
+    cout << cos(M_PI*3/2) << endl; //-1.83697e-16（≒0）<=270°
+    cout << cos(M_PI*2) << endl; //1 <=360°
     return 0;
 }
 ```
@@ -2344,7 +2349,7 @@ int main() {
 #include <math.h> //「数学関数」に必要
 using namespace std;
 int main() {
-    cout << fmaxf(5.01, -10) << endl; //5.01 ←「2つ」の数値の比較
+    cout << fmaxf(5.01, -10) << endl; //5.01 <=「2つ」の数値の比較
     return 0;
 }
 ```
@@ -2356,7 +2361,7 @@ int main() {
 #include <math.h> //「数学関数」に必要
 using namespace std;
 int main() {
-    cout << fminf(5.01, -10) << endl; //-10 ←「2つ」の数値の比較
+    cout << fminf(5.01, -10) << endl; //-10 <=「2つ」の数値の比較
     return 0;
 }
 ```
@@ -2418,7 +2423,7 @@ int main() {
     for (int i = 0; i < 100000; i++) { //10万回繰返す
         random_device rnd_;
         mt19937 mt_(rnd_());
-        uniform_int_distribution<int> randomX(0, 9); //←0〜9（整数）の乱数を発生
+        uniform_int_distribution<int> randomX(0, 9); //<=0〜9（整数）の乱数を発生
         switch (randomX(mt_)) { //0〜9（整数）の乱数を発生
             case 0: n0++; break;
             case 1: n1++; break;
