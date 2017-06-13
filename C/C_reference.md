@@ -429,41 +429,13 @@ int main() {
 <a name="関数"></a>
 # <b>関数</b>
 
-### 基本構文
-```
-class クラス名 {
-    アクセス指定子:
-        //メンバ関数の「宣言」
-        [static] 戻り値のデータ型 メソッド名([データ型 引数, ...]); 
-}
-戻り値のデータ型 クラス名::メソッド名([データ型 引数, …]) { //メンバ関数の「定義」
-    [return 戻り値;]
-}
-```
-
-### アクセス指定子
-1. public : 全クラスからアクセス可能
-1. protected : 同じクラスおよび派生クラス内でのみアクセス可能
-1. private : 同じクラス内のみアクセス可能（省略するとprivate扱い）
-* 他にも internal （アセンブリ内でのみアクセス可能）などあり
-* static（静的メンバ関数）: クラスメソッドクラスのインスタンスを作らなくても <b>クラス名::静的メンバ関数()</b> でメソッドが使用可能（アクセス指定子は通常 public にする）
-
 ### 基本例文
 ```
-//test.cpp
-#include <iostream>
-using namespace std;
+//test.c
+#include <stdio.h> //printf()関数に必要
 
-//========
-// クラス
-//========
-class MyClass {
-    public:
-        int Tashizan(int _start, int _end); //メンバ関数の「宣言」
-};
-
-//○〜○までの値を足した合計を返す
-int MyClass::Tashizan(int _start, int _end) { //メンバ関数の「定義」
+//関数の定義（XX〜XXまでの値を足した合計を返す）
+int tashizan(int _start, int _end) { //前方宣言
     int _result = 0; //ローカル変数
     for (int i = _start; i <= _end; i++) {
         _result += i;
@@ -471,177 +443,27 @@ int MyClass::Tashizan(int _start, int _end) { //メンバ関数の「定義」
     return _result;
 }
 
-//============
-// メイン関数
-//============
 int main() {
-    MyClass _myClass;
-    cout << _myClass.Tashizan(1,10) << "\n"; //55
-    cout << _myClass.Tashizan(1,100) << "\n"; //5050
+    printf("%d\n", tashizan(1,10)); //=> 55
+    printf("%d\n", tashizan(1,100)); //=> 5050
     return 0;
 }
 ```
 
-### Main() 関数
+### main() 関数
 ```
-//test.cpp
-#include <iostream>
-using namespace std;
-int main() { //C++では原則としてmain()関数から処理が行われます
-    cout << "自動的に実行" << "\n";
+//test.c
+#include <stdio.h> //printf()関数に必要
+
+int main() { //自動的に最初に実行される
+    printf("%s\n", "自動的に実行");
     return 0;
-}
-```
-
-### コンストラクタ
-* 引数なしと引数ありの場合を同時に定義することが可能
-```
-//test.cpp
-#include <iostream>
-using namespace std;
-
-//========
-// クラス
-//========
-class MyClass {
-    public:
-        MyClass(); //引数なしのコンストラクタの「宣言」
-        MyClass(string str_); //引数ありのコンストラクタの「宣言」
-};
-
-MyClass::MyClass() { //引数なしのコンストラクタの「定義」
-    cout << "インスタンスが生成" << "\n";
-}
-
-MyClass::MyClass(string str_) { //引数ありのコンストラクタの「定義」
-    cout << "インスタンスが生成:" << str_ << "\n";
-}
-
-//============
-// メイン関数
-//============
-int main() {
-    MyClass myClass1_; //引数なしでインスタンスを生成 ←()は付けない（注意）
-    MyClass myClass2_("引数あり"); //引数ありでインスタンスを生成
-    return 0;
-}
-```
-
-### 静的メンバ関数（クラスメソッド）
-```
-//test.cpp
-#include <iostream>
-using namespace std;
-
-//========
-// クラス
-//========
-class Math {
-    public:
-       static int Pow(int arg1, int arg2); //静的メンバ関数の「宣言」
-};
-
-int Math::Pow(int arg1, int arg2) { //ここに"static"の記述はいらない
-    if (arg2 == 0) { return 1; } //0乗対策
-    int _result = arg1;
-    for (int i=1; i<arg2; i++) {
-        _result = _result * arg1;
-    }
-    return _result;
-}
-
-//============
-// メイン関数
-//============
-int main() {
-    cout << Math::Pow(2,0) << "\n"; //1（2の0乗）
-    cout << Math::Pow(2,1) << "\n"; //2（2の1乗）
-    cout << Math::Pow(2,8) << "\n"; //256（2の8乗）
-    return 0;
-}
-```
-
-### デフォルト値付き引数（引数は省略可能オプション引数）
-```
-//test.cpp
-#include <iostream>
-using namespace std;
-
-//========
-// クラス
-//========
-class MyClass {
-    private:
-        int po_int; 
-    public:
-        MyClass(); //コンストラクタの「宣言」
-        //↓デフォルト引数付のメンバ関数の「宣言」
-        void AddPoint(int arg); //ここにデフォルト値は記述しない
-};
-
-MyClass::MyClass() { //コンストラクタの「定義」
-    po_int = 0;
-}
-
-//デフォルト引数付のメンバ関数の「定義」
-//引数が複数ある場合、デフォルト値がある引数を右側に記述
-void MyClass::AddPoint(int arg = 1) { //デフォルト値が1の場合
-    po_int += arg;
-    cout << po_int << "\n";
-}
-
-//============
-// メイン関数
-//============
-int main() {
-    MyClass _myClass; //インスタンスを生成
-    _myClass.AddPoint(); //1（引数を省略してメンバ関数を実行）
-    _myClass.AddPoint(10); //11（引数付でメンバ関数を実行）
-    return 0;
-}
-```
-
-### 可変長引数
-```
-//test.cpp
-#include <iostream>
-using namespace std;
-
-//========
-// クラス
-//========
-class MyClass {
-    public: 
-        void Sum(int arg[], int _listLength);
-};
-
-void MyClass::Sum(int arg[], int _listLength) { 
-    int _result = 0; 
-    for (int i=0; i<_listLength; i++) {
-         _result += arg[i]; 
-    } 
-    cout << _result << "\n";
-}
-
-//============
-// メイン関数
-//============
-int main() { MyClass _myClass;
-    //1,1を足す
-    int tmp1[] = {1,1}; 
-    int _listLength = sizeof(tmp1) / sizeof(tmp1[0]); //配列の要素数を調べる
-    _myClass.Sum(tmp1, _listLength); //=> 2
-
-    //1,2,3...9,10を足す
-    int tmp2[] = {1,2,3,4,5,6,7,8,9,10};
-    _listLength = sizeof(tmp2) / sizeof(tmp2[0]); //配列の要素数を調べる
-    _myClass.Sum(tmp2, _listLength); //=> 55
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月13日
 
 
 <a name="匿名関数（ラムダ式）"></a>
@@ -683,7 +505,7 @@ int main() { // メイン関数
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="静的メンバ（static）"></a>
@@ -732,7 +554,7 @@ int main() { // メイン関数
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="if文"></a>
@@ -834,7 +656,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="三項演算子"></a>
@@ -884,7 +706,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="switch文"></a>
@@ -932,7 +754,7 @@ _int の値が「1の場合①」「2の場合①②」「3の場合③④」「
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="for文"></a>
@@ -1039,7 +861,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="foreach文"></a>
@@ -1124,7 +946,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 <a name="while文"></a>
 # <b>while 文</b>
@@ -1220,7 +1042,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="配列"></a>
@@ -1305,7 +1127,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="動的配列（vector）"></a>
@@ -1653,7 +1475,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="連想配列（map）"></a>
@@ -1702,7 +1524,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="ポインタ"></a>
@@ -1906,7 +1728,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="this"></a>
@@ -1965,7 +1787,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="文字列の操作"></a>
@@ -2041,7 +1863,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="正規表現"></a>
@@ -2089,7 +1911,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="インターフェース"></a>
@@ -2145,7 +1967,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="抽象クラス"></a>
@@ -2190,7 +2012,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="基本クラスのコンストラクタを呼ぶ"></a>
@@ -2284,7 +2106,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="オーバーライド"></a>
@@ -2388,7 +2210,7 @@ int main() { //メイン関数
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="カスタムイベント"></a>
@@ -2456,7 +2278,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="数学関数"></a>
@@ -2635,7 +2457,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="乱数"></a>
@@ -2721,7 +2543,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="日時情報"></a>
@@ -2768,7 +2590,7 @@ struct tm *_pNow = localtime(&_now);
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="タイマー"></a>
@@ -2858,7 +2680,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="処理速度計測"></a>
@@ -2913,7 +2735,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
 
 
 <a name="外部テキストの読み込み"></a>
@@ -2963,4 +2785,4 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
-作成日：2017年06月0X日
+作成日：2017年06月1X日
