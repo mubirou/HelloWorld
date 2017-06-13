@@ -16,7 +16,6 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 ***
-* [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
@@ -747,90 +746,6 @@ int main() {
 作成者：Takashi Nishimura  
 作成日：2017年06月13日
 
-
-<a name="foreach文"></a>
-# <b>foreach 文</b>
-* 他の多くの言語にある foreach キーワードと同等（構文は異なる）
-
-### 基本構文
-```
-for (auto 変数名 : 配列等) {
-    cout << 変数名 << endl;
-}
-```
-
-### 配列（1次元）の場合
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-int main() {
-    string _array[] = {"A","B","C"};
-    for (auto tmp : _array) {
-        cout << tmp << endl; //"A"→"B"→"C"
-    }
-    return 0;
-}
-```
-
-### 配列（2次元）の場合
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-int main() {
-    string _array[2][3] = {{"x0y0","x1y0","x2y0"},{"x0y1","x1y1","x2y1"}}; 
-    for (auto tmp : _array) {
-        cout << tmp << endl; //0x7ffed94ea9c0 → 0x7ffed94eaa20 等
-        cout << tmp[0] << endl; //"x0y0" → "x0y1"
-    }
-    return 0;
-}
-```
-
-### 動的配列（vectorクラス)の場合
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <vector> //vectorクラスに必要
-using namespace std;
-
-int main() {
-    vector<string> _vector; //string型を格納するvectorオブジェクトを生成
-    _vector.push_back("A"); //配列の最後に追加
-    _vector.push_back("B"); //配列の最後に追加
-    for (auto tmp : _vector) {
-        cout << tmp << endl; //"A"→"B"
-    }
-    return 0;
-}
-```
-
-### 連想配列の場合
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <map> //mapクラスに必要
-using namespace std;
-
-int main() {
-    map<string, string> _map; //キーの型（string）と値の型（int）のmapインスタンスの生成
-    _map["A"] = "あ";
-    _map["I"] = "い";
-    _map["U"] = "う";
-    for (auto tmp : _map) {
-        cout << tmp.first << ":" << tmp.second << endl;
-        //「A:あ」→「I:い」→「U:う」
-    }
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：Takashi Nishimura  
-作成日：2017年06月1X日
 
 <a name="while文"></a>
 # <b>while 文</b>
