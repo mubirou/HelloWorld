@@ -10,11 +10,8 @@
 * [構造体](#構造体)
 * [変数とスコープ](#変数とスコープ)
 * [演算子](#演算子)
-***
 * [関数](#関数)
-* [匿名メソッド](#匿名メソッド)
-* [ラムダ式](#ラムダ式)
-* [静的メンバ（static）](#静的メンバ（static）)
+***
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
@@ -464,97 +461,6 @@ int main() { //自動的に最初に実行される
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
 作成日：2017年06月13日
-
-
-<a name="匿名関数（ラムダ式）"></a>
-# <b>匿名関数（ラムダ式）</b>
-
-### 基本構文
-```
-function<戻り値の型(引数の型)> 変数名 = [](引数の型 引数) [-> 戻り値の型] {
-    ......
-}
-```
-
-### 例文
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <functional> //functionに必要
-using namespace std;
-
-class MyClass {
-    public:
-        MyClass(); //コンストラクタの「宣言」
-        function<int(int, int)> _kakezan; //匿名関数の「宣言」
-};
-
-MyClass::MyClass() { //コンストラクタの「定義」
-    //匿名関数の「定義」
-    _kakezan = [](int arg1, int arg2) -> int { //ラムダ式（-> intは省略可）
-        return arg1 * arg2; 
-    };
-}
-
-int main() { // メイン関数
-    MyClass _myClass;
-    cout << _myClass._kakezan(9,9) << endl; //81
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2017年06月1X日
-
-
-<a name="静的メンバ（static）"></a>
-# <b>静的メンバ（static）</b>
-
-### 構文（宣言部分）
-```
-class クラス名 {
-    public:
-        static データ型 静的メンバ変数名;
-        static 戻り値の型 静的メンバ関数名(引数);
-};
-```
-
-### 例文
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-
-class MyClass {
-    public:
-        static double pi; //静的メンバ変数の「宣言」
-        static int Pow(int arg1, int arg2); //静的メンバ関数の「宣言」
-};
-
-//静的メンバ変数の「定義」
-double MyClass::pi = 3.14159; 
-
-//静的メンバ関数の「定義」※MyClass内で定義することも可能
-int MyClass::Pow(int arg1, int arg2) {
-    if (arg2 == 0) { return 1; } //0乗対策
-    long _result = arg1;
-    for (int i=1; i<arg2; i++) {
-        _result = _result * arg1;
-    }
-    return _result;
-}
-
-int main() { // メイン関数
-    cout << MyClass::pi << endl; //3.14159
-    cout << MyClass::Pow(2,8) << endl; //256（2の8乗）
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2017年06月1X日
 
 
 <a name="if文"></a>
