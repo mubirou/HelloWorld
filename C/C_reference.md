@@ -11,8 +11,7 @@
 * [変数とスコープ](#変数とスコープ)
 * [演算子](#演算子)
 ***
-* [定数](#定数)
-* [メソッド](#メソッド)
+* [関数](#関数)
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
@@ -425,53 +424,6 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：Takashi Nishimura  
 作成日：2017年06月12日
-
-
-<a name="定数"></a>
-# <b>定数</b>
-
-### 注意
-* C++ ではクラス定数ではなく「メンバ定数」と呼ぶ
-* メンバ定数を宣言するには <b>static const 型 変数名</b> と記述する
-* C++ の場合、定数名は慣例的に小文字を使う
-
-### 通常の定数
-```
-//test.cs
-#include <iostream> //coutに必要
-using namespace std;
-int main() { // メイン関数
-    const string myname = "TAKASHI NISHIMURA";
-    cout << myname << "\n"; //"TAKASHI NISHIMURA"
-    //atoz = "にしむらたかし"; //変更しようとするとERROR
-    return 0;
-}
-```
-
-### メンバ定数
-```
-//test.cpp
-#include <iostream>
-using namespace std;
-
-class MyClass {
-    public:
-        static const string myname; //メンバ定数の「宣言」
-};
-
-//↓"static"の記述はいらない
-const string MyClass::myname = "TAKASHI NISHIMURA"; //メンバ定数の「定義」
-
-//main()関数の定義
-int main() {
-    cout << MyClass::myname << "\n"; //"TAKASHI NISHIMURA"
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：Takashi Nishimura  
-作成日：2017年06月0X日
 
 
 <a name="関数"></a>
