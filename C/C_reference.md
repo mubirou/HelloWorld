@@ -13,8 +13,8 @@
 * [関数](#関数)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-***
 * [switch 文](#switch文)
+***
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
@@ -600,17 +600,18 @@ int main() {
 
 ### 基本例文
 ```
-//test.cpp
-#include <stdio.h> //puts()に必要
+//test.c
+#include <stdio.h> //printf()関数に必要
+
 int main() {
-    char char_ = 'u';
-    switch (char_) { //intやchar型は可（stringやbool型は不可）
-        case 'a' : puts("あ"); break;
-        case 'i' : puts("い"); break;
-        case 'u' : puts("う"); break; //'u'の場合、これが出力
-        case 'e' : puts("え"); break;
-        case 'o' : puts("お"); break;
-        default : puts("あ行以外"); break; //省略可能
+    char _char = 'u';
+    switch (_char) {
+        case 'a' : printf("%s\n", "あ"); break;
+        case 'i' : printf("%s\n", "い"); break;
+        case 'u' : printf("%s\n", "う"); break; //<= これが出力
+        case 'e' : printf("%s\n", "え"); break;
+        case 'o' : printf("%s\n", "お"); break;
+        default : printf("%s\n", "あ行以外"); break; //省略可能
     }
     return 0;
 }
@@ -618,29 +619,26 @@ int main() {
 
 ### break 文を意図的に記述しない方法
 ```
-//test.cpp
-#include <stdio.h> //puts()に必要
+//test.c
+#include <stdio.h> //printf()関数に必要
+
 int main() {
     int _int = 3;
-    switch (_int) { //intやchar型は可（stringやbool型は不可）
-        case 1 : puts("①"); //何か処理した後breakを書かないのも可（C#では不可）
-        case 2 : puts("②"); break;
-        case 3 : puts("③");
-        case 4 : puts("④"); break;
-        case 5 : puts("⑤"); 
-        default : puts("？"); break; //省略可能
+    switch (_int) {
+        case 1 : printf("%s\n", "①");
+        case 2 : printf("%s\n", "②"); break;
+        case 3 : printf("%s\n", "③"); //<= 実行
+        case 4 : printf("%s\n", "④"); break; //<= 実行（ここで止まる）
+        case 5 : printf("%s\n", "⑤"); 
+        default : printf("%s\n", "？"); break;
     }
     return 0;
 }
 ```
 
-_int の値が「1の場合①」「2の場合①②」「3の場合③④」「4の場合④」「5の場合⑤？」
-「それ以外の場合？」が出力される
-（各行で何も処理しないのことも可能）
-
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月13日
 
 
 <a name="for文"></a>
