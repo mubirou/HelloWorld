@@ -16,19 +16,18 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [while 文](#while文)
-***
 * [配列](#配列)
-* [動的配列（List）](#動的配列（List）)
-* [連想配列（Dictionary）](#連想配列（Dictionary）)
+***
+* [ポインタ](#ポインタ)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
-* [抽象クラス（abstract）](#抽象クラス（abstract）)
-* [base キーワード](#baseキーワード)
+* [抽象クラス](#抽象クラス)
+* [基本クラスのコンストラクタを呼ぶ](#基本クラスのコンストラクタを呼ぶ)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
-* [数学関数（Math）](#数学関数（Math）)
+* [数学関数](#数学関数)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -833,7 +832,6 @@ int main() {
     }
     return 0;
 }
-
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
@@ -844,12 +842,7 @@ int main() {
 <a name="配列"></a>
 # <b>配列</b>
 
-* 構文（配列の宣言後は要素数の変更不可）
-```
-データ型 変数名[] = {要素①,要素②,...};
-```
-
-* 例文
+### 作成
 ```
 //test.c
 #include <stdio.h> //printf()に必要
@@ -863,35 +856,7 @@ int main() {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：Takashi Nishimura  
-作成日：2017年06月14日
-
-
-<a name="動的配列（vector）"></a>
-# <b>動的配列（vector）</b>
-
-### 作成
-* 構文
-```
-vector<データ型> 変数名(数); //指定数の空の要素を持つList作成
-vector<データ型> 変数名{要素①,要素②,...};
-vector<データ型> 変数名 = {要素①,要素②,...}; //これが分かりやすい
-```
-* 例文
-```
-//test.cpp
-#include <iostream> //cout に必要
-#include <vector> //vector クラスに必要
-using namespace std;
-int main() {
-    vector<string> _vector = {"A","B","C"};
-    for (auto tmp : _vector ) {
-        cout << tmp << endl; //"A"→"B"→"C"
-    }
-    return 0;
-}
-```
+###=========================================================
 
 ### 追加（最後）
 * 構文
@@ -1207,55 +1172,6 @@ int main() {
     for (auto tmp : _vector) {
         cout <<tmp<< endl; //"あ"→"い"→"う"→"え"→"お"
     }
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：Takashi Nishimura  
-作成日：2017年06月1X日
-
-
-<a name="連想配列（map）"></a>
-# <b>連想配列（map）</b>
-
-### 作成と操作の基本
-```
-//test.cpp
-#include <iostream> //cout に必要
-#include <map> //map クラスに必要
-using namespace std;
-int main() {
-    //①作成
-    map<string, string> _map;
-    //②追加
-    _map["A"] = "あ"; //③削除は_map.erase("A")
-    //_map.insert(make_pair("A", "あ")); //これでも可能
-    _map["I"] = "い";
-    _map["U"] = "う";
-    //④更新
-    _map["A"] = "ア";
-    //⑤取得
-    cout << _map["A"] << endl;
-    return 0;
-}
-```
-
-### キーの検索
-```
-//test.cpp
-#include <iostream> //cout に必要
-#include <map> //map クラスに必要
-using namespace std;
-int main() {
-    map<string, string> map_;
-    map_["A"] = "あ";
-    map_["I"] = "い";
-    map_["U"] = "う";
-    auto iterator_ = map_.find("U");
-    if (iterator_ != map_.end()) { cout << "存在します" << endl; //これが出力される
-    } else { cout << "存在しません" << endl;
-    } 
     return 0;
 }
 ```
