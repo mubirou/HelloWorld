@@ -844,7 +844,6 @@ int main() {
 <a name="配列"></a>
 # <b>配列</b>
 
-### １次元配列の作成
 * 構文（配列の宣言後は要素数の変更不可）
 ```
 データ型 変数名[] = {要素①,要素②,...};
@@ -852,78 +851,21 @@ int main() {
 
 * 例文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+
 int main() {
-    string _array[] = {"A","B","C"};
-    for (auto tmp : _array) {
-        cout << tmp << endl; //"A"→"B"→"C"
+    char _array[3] = {'A', 'B', 'C'};
+    for (int i=0; i<3; i++) {
+        printf("%c\n", _array[i]); //=>'A'=>'B'=>'C'
     }
     return 0;
 }
 ```
 
-### ２次元配列（四角配列）の作成
-* 構文
-```
-データ型 変数名[○行][○個] = {{1行目の配列},...,{○行目の配列}};
-```
-
-* 最初に宣言のみ行って後でデータを入れる方法
-```
-//test.cpp
-//最初に宣言のみ行ない後でデータを入れる方法
-#include <iostream> //coutに必要
-using namespace std;
-int main() {
-    //最初に宣言のみ（5行x4個で固定）
-    string coinlocker_[5][4];
-    coinlocker_[0][0] = "1083";
-    coinlocker_[0][1] = "7777";
-    coinlocker_[2][1] = "0135";
-    coinlocker_[4][3] = "1234";
-    //coinlocker_[6][0] = "9999"; //ERROR（6行目は不可）
-    //coinlocker_[4][5] = "9999"; //ERROR（5個目は不可）
-    cout << coinlocker_[0][0] << endl; //"1083"
-    cout << coinlocker_[0][1] << endl; //"7777"
-    cout << coinlocker_[2][1] << endl; //"0135"
-    cout << coinlocker_[4][3] << endl; //"1234"
-}
-```
-
-* 配列リテラルを使った方法
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-int main() {
-    //配列リテラルを使った方法
-    string coinlocker_[5][4] = { //5行x4個で固定
-        {"1083","7777","",""}, //0行目
-        {"","","",""},         //1行目
-        {"","0135","",""},     //2行目
-        {"","","",""},         //3行目
-        {"","","","1234"}      //4行目
-    };
-}
-```
-
-### 配列の要素の数を調べる
-```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
-int main() {
-    string _array[] = {"A","B","C"};
-    cout << sizeof(_array) << endl; //96
-    cout << sizeof(_array) / sizeof(_array[0]) << endl; //3 <=要素数
-}
-```
-
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月14日
 
 
 <a name="動的配列（vector）"></a>
