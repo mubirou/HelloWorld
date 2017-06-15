@@ -876,6 +876,7 @@ int main() {
 ```
 
 ### 要素の数
+```
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -890,6 +891,7 @@ int main() {
     }
     return 0;
 }
+```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
