@@ -1013,20 +1013,22 @@ int main() {
 }
 ```
 
-### ===============================================
-
 ### 一部分を取得
 ```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <string.h> //strncpy()に必要
+
 int main() {
-    string _string = "0123456789";
-    cout << _string[4] << endl; //"4" <=1文字だけ取得（string.length()-1まで指定可）
-    cout << _string.substr(4) << endl; //"456789"
-    cout << _string.substr(4,3) << endl; //"456"
+    char _string[] = "Takashi Nishimura"; //元の文字列
+    char _tmp[64]; //コピーを格納する変数
+    strncpy(_tmp, _string+0, 7); //0文字目から7文字を取得する場合
+    printf("%s\n", _tmp); //=> "Takashi"
+    return 0;
 }
 ```
+
+### ===============================================
 
 ### 一部分を削除
 ```
