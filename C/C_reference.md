@@ -979,17 +979,27 @@ int main() {
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### 文字列オブジェクトの作成
+### 文字列の作成
 ```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+
 int main() {
-    string _string = "あいうえお";
-    cout << _string << endl; //"あいうえお"
+    //1文字
+    char _char = 'A';
+    printf("%d\n", _char); //=> 65（ASCIIコード）
+    printf("%c\n", _char); //=> 'A'
+
+    //2文字以上
+    char *_string = "Takashi Nishimura"; //1文字目のアドレスに格納（重要）
+    printf("%d\n", *_string); //=> 84（1文字目のASCIIコード）
+    printf("%c\n", *_string); //=> 'T'（1文字目）
+    printf("%s\n", _string); //=> "TakashiNishimura"
     return 0;
 }
 ``` 
+
+### ===============================================
 
 ### 長さを調べる
 ```
