@@ -887,7 +887,7 @@ int main() {
 
     //要素の数（_arraySize）を利用して全要素を取り出す
     for (int i=0; i<_arraySize; i++) {
-        printf("%c\n", *(_array + i)); //'A'→'B'→'C'
+        printf("%c\n", *(_array + i)); //'A'=>'B'=>'C'
     }
     return 0;
 }
