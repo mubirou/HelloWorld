@@ -994,7 +994,7 @@ int main() {
     char *_string = "Takashi Nishimura"; //1文字目のアドレスに格納（重要）
     printf("%d\n", *_string); //=> 84（1文字目のASCIIコード）
     printf("%c\n", *_string); //=> 'T'（1文字目）
-    printf("%s\n", _string); //=> "TakashiNishimura"
+    printf("%s\n", _string); //=> "Takashi Nishimura"
     return 0;
 }
 ``` 
