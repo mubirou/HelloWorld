@@ -1030,19 +1030,6 @@ int main() {
 
 ### ===============================================
 
-### 一部分を削除
-```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
-int main() {
-    string _string = "0123456789";
-    //_string.erase(4); //この場合4文字目以降を削除（0123となる）
-    _string.erase(4,3); //4文字目（含む）から3文字を削除
-    cout << _string << endl; //0123789
-}
-```
-
 ### 検索＆置換
 ```
 //test.cpp
