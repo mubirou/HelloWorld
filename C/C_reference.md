@@ -17,9 +17,8 @@
 * [for 文](#for文)
 * [while 文](#while文)
 * [配列](#配列)
-***
 * [ポインタ](#ポインタ)
-* [this](#this)
+***
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
@@ -876,6 +875,22 @@ int main() {
 }
 ```
 
+### 要素の数
+//test.c
+#include <stdio.h> //printf()に必要
+
+int main() {
+    char _array[3] = {'A', 'B', 'C'};
+    int _arraySize = sizeof(_array) / sizeof(_array[0]); //要素の数を調べる
+    printf("%d\n", _arraySize); //=> 3
+
+    //要素の数（_arraySize）を利用して全要素を取り出す
+    for (int i=0; i<_arraySize; i++) {
+        printf("%c\n", *(_array + i)); //'A'→'B'→'C'
+    }
+    return 0;
+}
+
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月14日
@@ -884,150 +899,27 @@ int main() {
 <a name="ポインタ"></a>
 # <b>ポインタ</b>
 
-### ポインタのメリット
-* 大きなオブジェクトを簡単に扱える
-* データそのものをコピーすることなく、複数の場所から同じデータを参照することが出来る
-
-### 「参照」と「アドレス」
+### ポインタの基本
 * 概要
-    * <b>参照</b> は、C++ になって追加された機能で <b>変数につける別名</b> をいう
-    * <b>&別名</b> は、メモリ上の位置（<b>アドレス</b>）を表します
-    * <b>別名</b> の値にアクセスする場合は <b>&</b> は必要ない
-    * <b>別名</b> もしくは元となる変数の値を変更すると、もう一方の値も変更されます
-* 例文
-    ```
-    //test.cpp
-    #include <iostream> //cout に必要
-    using namespace std;
-
-    int main() {
-        string _tNishimura = "Takashi Nishimura"; //元となる変数
-        string &tn = _tNishimura; //「別名」（&別名）を付ける
-        _tNishimura = "Taro Nishimura";
-        cout << _tNishimura << endl; //"Taro Nishimura"
-        cout << tn << endl; //「別名」の値も"Taro Nishimura"に変更される
-        cout << &tn << endl; //0x7ffce8727890 <=「&別名」で「アドレス」が返ります
-        return 0;
-    }
-    ```
-
-### ポインタ
-* 概要
+    * ポインタのメリットは「大きなオブジェクトを簡単に扱える」ことである
+    * データそのものをコピーすることなく、複数の場所から同じデータを参照することが出来る
     * <b>ポインタ</b>とは、メモリ上の位置（<b>アドレス</b>）を格納する特殊な変数
     * <b>ポインタ</b>に、別の変数の<b>アドレス</b>を代入して置換することも可能
+
 * 例文
     ```
-    //test.cpp
-    #include <iostream> //cout に必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf()に必要
 
     int main() {
-        string _name = "TAKASHI"; //変数の定義
-        string* _pName = &_name; //変数の「アドレス」を「ポインタ」に格納
+        int hensu = 100; //元となる変数
+        int *pHensu; //ポインタの宣言（*変数名）
+        pHensu = &hensu; //ポインタにhensuのアドレス（&変数名）を代入
+
+        printf("%d\n", *pHensu); //=> 100（*ポインタでポインタから変数の値を取得）
+        printf("%p\n", &hensu); //=> 0x7ffc6eb8e21c（アドレスの場合"%p"）
+        printf("%p\n", pHensu); //=> 0x7ffc6eb8e21c（ポインタの場合"%p"）
         
-        //検証
-        cout << _name << endl; //"TAKASHI" <=変数の値
-        cout << &_name << endl; //0x7ffc37c32e90 <=変数の「アドレス」
-        cout << _pName << endl; //0x7ffc37c32e90 <=「ポインタ」
-        cout << *_pName << endl; //"TAKASHI" <=「ポインタ」から変数の値を取得
-    }
-    ```
-
-### 引数にポインタを使う
-* 通常、関数に引数を渡すときにはコピーが必要である。もし大量のデータをコピーしなければならない場合とても時間を要するが、ポインタを使うことでこれを回避できる。
-* 利用方法
-    ```
-    値の型 変数名 = 値; //通常の変数の定義①
-    cout << &変数名 << endl; //変数の「アドレス」が返る②
-    値の型* ポインタ変数名 = &変数名; //変数の「アドレス」を「ポインタ」変数に格納③③'
-    cout << ポインタ変数名 << endl; //「ポインタ」変数＝変数の「アドレス」が返る④
-    cout << *ポインタ変数名 << endl; //「ポインタ」変数の値＝変数の値 が返る⑤
-    *ポインタ変数名 = 新しい値; //「ポインタ」変数の値＝変数の値 を変更する⑥
-    cout << 変数名_ << endl; //「ポインタ」変数に代入した新しい値が返る⑦
-    ```
-* 例文
-    ```
-    //test.cpp
-    #include <iostream> //cout に必要
-    using namespace std;
-
-    //======
-    // 関数
-    //======
-    void myFunction(string* _pName) { //渡された「アドレス」を「ポインタ」として引数に③'
-        cout << _pName << endl; //0x7fff9c1ec060 <=変数の「アドレス」を格納したポインタ④
-        cout << *_pName << endl; //"TAKASHI" <=「ポインタ」から変数の値を取得⑤
-        *_pName = "TARO"; //変数の値を変更⑥
-    }
-
-    //============
-    // メイン関数
-    //============
-    int main() {
-        string _name = "TAKASHI"; //変数の定義①
-        cout << &_name << endl; //0x7fff9c1ec060 <=変数の「アドレス」②
-        myFunction(&_name); //「アドレス」を渡して関数を呼出す③
-        cout << _name << endl; //"TARO" <=関数内で変数の値が変更されているため⑦
-        return 0;
-    }
-    ```
-
-### ポインタからメンバへのアクセス
-* <b>ポインタ</b>からメンバにアクセスする場合には <b>アロー演算子（->）</b> を利用する
-* 例文
-    ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    using namespace std;
-
-    //========
-    // クラス
-    //========
-    class MyClass {
-        public:
-            void MyFunction();
-    };
-    void MyClass::MyFunction() {
-        cout << "こんにちは" << endl;
-    }
-
-    //============
-    // メイン関数
-    //============
-    int main() {
-    MyClass* _pMyClass = new MyClass; //クラスのインスタンスを「ポインタ」に格納
-        //_pMyClass.MyFunction(); //エラー
-        //「ポインタ」からメンバにアクセスする場合には「アロー演算子（->）」を利用
-        _pMyClass -> MyFunction(); //こんにちは <=ポインタからメンバ関数にアクセス
-        return 0;
-    }
-    ```
-
-### this ポインタ
-* <b>this</b> ポインタは、class 型や struct 型（構造体型）のメンバー関数内でのみアクセスできる特殊なポインタ
-* 例文
-    ```
-    //test.cpp
-    #include <iostream> //coutに必要
-    using namespace std;
-
-    //========
-    // クラス
-    //========
-    class MyClass {
-        public:	MyClass Clone();
-    };
-    MyClass MyClass::Clone() {
-        return *this; //thisポインタのオブジェクト自身の値（≒アドレス）を返す
-    }
-
-    //============
-    // メイン関数
-    //============
-    int main() {
-        MyClass _myClass;
-        MyClass _copy = _myClass.Clone();
-        cout << (&_myClass == &_copy) << endl; //0（アドレスが異なる＝参照ではなく複製）
         return 0;
     }
     ```
@@ -1035,45 +927,42 @@ int main() {
 ### 配列のポインタ
 * 基本例文
     ```
-    //test.cpp
-    #include <iostream> //cout に必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf()に必要
+
     int main() {
-        using namespace std;
-        string _array[] = {"A","B","C"};
-        cout << _array[0] << endl; //"A"
-        cout << _array[1] << endl; //"B"
-        cout << _array[2] << endl; //"C"
-        
-        //検証
-        cout << &_array << endl;    //0x7ffe74921f90 <=配列の先頭の要素の「アドレス」
-        cout << &_array[0] << endl; //0x7ffe74921f90 <=配列の先頭の要素の「アドレス」
-        cout << *_array << endl;    //"A" <=配列の先頭の要素の値
-        //cout << *_array[0] << endl; //エラー
-        cout << _array[0] << endl;  //"A" <=配列の先頭の要素の値
-        
+        char _array[3] = {'A', 'B', 'C'};
+        for (int i=0; i<3; i++) {
+            printf("%c\n", _array[i]); //=>'A'=>'B'=>'C'
+        }
+
+        printf("%p\n", &_array); //0x7ffdd52acb40 <=配列の先頭の要素の「アドレス」
+        printf("%p\n", &_array[0]); //0x7ffdd52acb40 <=配列の先頭の要素の「アドレス」
+        printf("%c\n", *_array); //'A' <=配列の先頭の要素の値
+        //printf("%c\n", *_array[0]); //error
+        printf("%c\n", _array[0]); //'A' <=配列の先頭の要素の値
+
         return 0;
     }
     ```
 
 * ポインタ演算
     ```
-    //test.cpp
-    #include <iostream> //cout に必要
-    using namespace std;
+    //test.c
+    #include <stdio.h> //printf()に必要
+
     int main() {
-        using namespace std;
-        string _array[] = {"A","B","C"};
-        
+        char _array[3] = {'A', 'B', 'C'};
+
         //ポインタ演算
-        cout << *_array << endl; //"A" <=配列の「先頭」の要素の値
-        cout << *(_array + 1) << endl; //"B" <=配列の「先頭+1」の要素の値
-        cout << *(_array + 2) << endl; //"C" <=配列の「先頭+2」の要素の値
-        
+        printf("%c\n", *_array); //'A' <=配列の「先頭」の要素の値
+        printf("%c\n", *(_array + 1)); //'B' <=配列の「先頭+1」の要素の値
+        printf("%c\n", *(_array + 2)); //'C' <=配列の「先頭+2」の要素の値
+
         //「ポインタ演算」を使って全要素を取り出す
         int _arrayLength = sizeof(_array) / sizeof(_array[0]);
         for (int i=0; i<_arrayLength; i++) {
-            cout << *(_array + i) << endl; //"A"→"B"→"C"
+            printf("%c\n", *(_array + i)); //'A'→'B'→'C'
         }
 
         return 0;
@@ -1082,66 +971,7 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
-
-
-<a name="this"></a>
-# <b>this</b>
-
-### 概要
-* this が必要な場合は...
-    * 「引数」と「メンバ変数」が同じ場合
-    * 「ローカル変数」と「メンバ変数」が同じ場合
-* this は、<b>this-></b> を記述したメソッドを所有するクラス（オブジェクト）を指す
-
-### 例文
-```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
-
-//========
-// クラス
-//========
-class Robot {
-    private:
-        int _x; //「メンバ変数」の「宣言」
-    public:
-        Robot(int _x); //コンストラクタの「宣言」
-        void Move(); //メンバ関数の「宣言」
-        int X(); //_xのアクセス用メンバ関数（getter）	
-};
-
-Robot::Robot(int _x) {
-    this->_x = _x; //①「this->」が無いと「引数」と「メンバ変数」がぶつかる
-    cout << this << endl; //0x7ffdbae24810（この関数を実行されたオブジェクトを指す）
-}
-
-void Robot::Move() {
-    int _x; //「ローカル変数」の「宣言」
-    _x = this->_x + 10; //<=②「this->」が無いと「ローカル変数」と「メンバ変数」がぶつかる
-    if (_x >= 1920) _x = 0;
-    this->_x = _x; //②「this->」が無いと「ローカル変数」と「メンバ変数」がぶつかる
-    cout << this << endl; //0x7ffdbae24810（この関数を実行されたオブジェクトを指す）
-}
-
-int Robot::X() { return _x; } //「this->」を付けてもよい（通常は省略）
-
-//============
-// メイン関数
-//============
-int main() {
-    Robot _robot(500); //インスタンスの生成
-    _robot.Move();
-    cout << _robot.X() << endl; //510
-    //cout << this << endl; //エラー（参照できず）
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月15日
 
 
 <a name="文字列の操作"></a>
