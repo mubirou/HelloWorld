@@ -997,20 +997,23 @@ int main() {
     printf("%s\n", _string); //=> "Takashi Nishimura"
     return 0;
 }
-``` 
-
-### ===============================================
+```
 
 ### 長さを調べる
 ```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <string.h> //strlen()に必要
+
 int main() {
-    string _string = "ABCDE";
-    cout << _string.size() << endl; //5（_string.length()でも同じ）
+    char *_string = "Takashi Nishimura"; //1文字目のアドレスに格納（重要）
+    int _len = strlen(_string);
+    printf("%d\n", _len); //=> 17
+    return 0;
 }
 ```
+
+### ===============================================
 
 ### 一部分を取得
 ```
