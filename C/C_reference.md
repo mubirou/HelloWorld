@@ -999,6 +999,22 @@ int main() {
 }
 ```
 
+### 連結
+```
+//test.c
+#include <stdio.h> //printf()に必要
+#include <string.h> //strcat()に必要
+
+int main() {
+    char _string1[] = "Takashi";
+    char _string2[] = "Nishimura";
+    char *_p; //ポインタの宣言
+    _p = strcat(_string1, _string2); //連結
+    printf("%s\n", _p); //=> "TakashiNishimura"
+    return 0;
+}
+```
+
 ### 長さを調べる
 ```
 //test.c
@@ -1028,30 +1044,24 @@ int main() {
 }
 ```
 
-### ===============================================
-
-### 検索＆置換
+### 検索
 ```
-//test.cpp
-#include <iostream> //cout に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <string.h> //strstr()に必要
+
 int main() {
-    string _string = "2017-04-27";
-    string _old = "2017";
-    string _new = "H29";
-    string::size_type _pos = _string.find(_old, 0); //見つかった位置を返す
-    while(_pos != string::npos){
-        _string.replace(_pos, _old.size(), _new);
-        _pos = _string.find(_old, _pos + _new.size()); //これが無いと無限ループ
-    }
-    cout << _string << endl;  // "H29-04-27"
+    char _string[] = "ABCDEFGABCDEFG"; //元の文字列
+    char *_p; //ポインタの宣言
+    _p = strstr(_string, "CD"); //検索したい文字列
+    printf("%s\n", _p); //=> "CDEFGABCDEFG"（見つかった場所以降を出力）
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月16日
 
 
 <a name="正規表現"></a>
