@@ -4,6 +4,10 @@
         "cstring": "cpp",
         "iostream": "cpp",
         "cmath": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iosfwd": "cpp",
+        "cstdlib": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp"
     }
 }

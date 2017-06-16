@@ -1,5 +1,3 @@
-### <b>この項目は編集中の項目です</b>
-
 個人的には利用しないと思いますがいちおう触れておきます
 # <b>C言語 基礎文法</b>
 
@@ -24,7 +22,6 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [処理速度計測](#処理速度計測)
-***
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
@@ -1300,38 +1297,29 @@ int main() {
 
 ### 例文
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <fstream> //ファイルの入出力に必要
-#include <string>
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <string.h> //strcat()に必要
 
 int main() {
-    //①ファイルをオープン
-    ifstream _stream("sample.txt");
-    
-    //ファイルのオープンに成功したか否か調べる（オプション）
-    if (_stream.fail()) {
-        cout << "ファイルのオープンに失敗" << endl;
-            return -1;		
-    } else {
-        cout << "ファイルのオープンに成功" << endl;
-    }
-    
-    //②ファイルの読み込み
-    string _string;
-    while (getline(_stream, _string)) { //1行ずつ読み込む場合…
-        cout << _string << endl;
-    }
-    //"あいうえお"→"かきくけこ"が出力
+    FILE *_p; //ファイルのポインタの宣言
+    char _string[256];
 
-    //③ファイルをクローズ（オプション）
-    _stream.close();
-    
+    //①ファイルをオープン
+    _p = fopen("sample.txt", "r");
+
+    //②ファイルの読み込み
+    while (fgets(_string, 256, _p) != NULL) {
+        printf("%s", _string); //=> "あいうえお...
+    }
+
+    //③ファイルをクローズ
+    fclose(_p);
+
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月16日
