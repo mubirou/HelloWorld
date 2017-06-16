@@ -21,8 +21,8 @@
 * [ポインタ](#ポインタ)
 * [文字列の操作](#文字列の操作)
 * [数学関数](#数学関数)
-***
 * [乱数](#乱数)
+***
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
@@ -1197,16 +1197,15 @@ int main() {
 <a name="乱数"></a>
 # <b>乱数</b>
 
-### C 言語版
-* 生成される範囲が0〜32767と狭い
 ```
-//test.cpp
-#include <iostream> //coutに必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
     int n0=0, n1=0, n2=0, n3=0, n4=0, n5=0, n6=0, n7=0, n8=0, n9=0;
     for (int i = 0; i < 100000000; i++) { //1億回繰返す
-        switch (rand() % 10) { //0〜9（整数）の乱数を発生
+        switch (rand() % 10) { //0〜9（整数）の乱数を発生（warningが発生）
             case 0: n0++; break;
             case 1: n1++; break;
             case 2: n2++; break;
@@ -1217,67 +1216,25 @@ int main() {
             case 7: n7++; break;
             case 8: n8++; break;
             case 9: n9++; break;
-            default: cout << "ERROR: main():for:switch" << endl; break;
         }
     }
-    cout << n0 << endl; //10000356≒10.00％
-    cout << n1 << endl; // 9994690≒ 9.99％
-    cout << n2 << endl; // 9997965≒10.00％
-    cout << n3 << endl; // 9999060≒10.00％
-    cout << n4 << endl; //10000500≒10.00％
-    cout << n5 << endl; //10001148≒10.00％
-    cout << n6 << endl; //10000574≒10.00％
-    cout << n7 << endl; //10001730≒10.00％
-    cout << n8 << endl; // 9998347≒10.00％
-    cout << n9 << endl; //10005630≒10.00％
-    return 0;
-}
-```
-
-### C++ 版
-* C++11以降で利用可能（記述が冗長、処理時間非常にかかる）
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <random> //乱数発生に必要
-using namespace std;
-int main() {
-    int n0=0, n1=0, n2=0, n3=0, n4=0, n5=0, n6=0, n7=0, n8=0, n9=0;
-    for (int i = 0; i < 100000; i++) { //10万回繰返す
-        random_device rnd_;
-        mt19937 mt_(rnd_());
-        uniform_int_distribution<int> randomX(0, 9); //<=0〜9（整数）の乱数を発生
-        switch (randomX(mt_)) { //0〜9（整数）の乱数を発生
-            case 0: n0++; break;
-            case 1: n1++; break;
-            case 2: n2++; break;
-            case 3: n3++; break;
-            case 4: n4++; break;
-            case 5: n5++; break;
-            case 6: n6++; break;
-            case 7: n7++; break;
-            case 8: n8++; break;
-            case 9: n9++; break;
-            default: cout << "ERROR: main():for:switch" << endl; break;
-        }
-    }
-    cout << n0 << endl; //10092≒10.1％
-    cout << n1 << endl; // 9882≒ 9.9％
-    cout << n2 << endl; // 9917≒ 9.9％
-    cout << n3 << endl; //10006≒10.0％
-    cout << n4 << endl; // 9855≒ 9.9％
-    cout << n5 << endl; // 9959≒10.0％
-    cout << n6 << endl; //10148≒10.1％
-    cout << n7 << endl; //10096≒10.1％
-    cout << n8 << endl; // 9826≒ 9.8％
-    cout << n9 << endl; //10219≒10.2％
+    printf("%d\n", n0); //9999188
+    printf("%d\n", n1); //10000364
+    printf("%d\n", n2); //9996614
+    printf("%d\n", n3); //10003534
+    printf("%d\n", n4); //10000558
+    printf("%d\n", n5); //9992621
+    printf("%d\n", n6); //10002100
+    printf("%d\n", n7); //9999641
+    printf("%d\n", n8); //9998927
+    printf("%d\n", n9); //10006453
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月16日
 
 
 <a name="日時情報"></a>
