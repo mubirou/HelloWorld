@@ -20,8 +20,8 @@
 * [配列](#配列)
 * [ポインタ](#ポインタ)
 * [文字列の操作](#文字列の操作)
-***
 * [数学関数](#数学関数)
+***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -1111,115 +1111,87 @@ int main() {
 }
 ```
 
-### ===================================================================
-
 ### floor() : 切り捨て
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
-    cout << floor(1.001) << endl; //1
-    cout << floor(1.999) << endl; //1
+    printf("%f\n", floor(1.001)); //1.000000
+    printf("%f\n", floor(1.999)); //1.000000
     return 0;
 }
 ```
 
 ### ceil() : 切り上げ
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
-int main() {
-    cout << ceil(1.001) << endl; //2
-    cout << ceil(1.999) << endl; //2
-    return 0;
-}
-```
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
 
-### rint() : 四捨五入
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
 int main() {
-    cout << rint(1.499) << endl; //1
-    cout << rint(1.500) << endl; //2
-    return 0;
-}
-```
-
-### fabs() : 絶対値
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
-int main() {
-    cout << fabs(100) << endl; //100
-    cout << fabs(-100) << endl; //100
+    printf("%f\n", ceil(1.001)); //2.000000
+    printf("%f\n", ceil(1.999)); //2.000000
     return 0;
 }
 ```
 
 ### pow() : 累乗（○の□乗）
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
-    cout << pow(2, 0) << endl; //1（2の0乗）
-    cout << pow(2, 8) << endl; //256（2の8乗）
+    printf("%f\n", pow(2, 0)); //1.000000（2の0乗）
+    printf("%f\n", pow(2, 8)); //256.000000（2の8乗）
     return 0;
 }
 ```
 
 ### sqrt() : 平方根（√○）
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
-    cout << sqrt(2) << endl; //1.41421（一夜一夜にひとみごろ）
-    cout << sqrt(3) << endl; //1.73205（人並みに奢れや）
-    cout << sqrt(4) << endl; //2
-    cout << sqrt(5) << endl; //2.23607（富士山麓オウム鳴く）
+    printf("%f\n", sqrt(2)); //1.414214（一夜一夜にひとみごろ）
+    printf("%f\n", sqrt(3)); //1.732051（人並みに奢れや）
+    printf("%f\n", sqrt(4)); //2.000000
+    printf("%f\n", sqrt(5)); //2.236068（富士山麓オウム鳴く）
     return 0;
 }
 ```
 
 ### fmaxf() : 比較（最大値）
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
-    cout << fmaxf(5.01, -10) << endl; //5.01 <=「2つ」の数値の比較
+    printf("%f\n", fmaxf(5.01, -10)); //5.010000 <=「2つ」の数値の比較
     return 0;
 }
 ```
 
 ### fminf() : 比較（最小値）
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
-    cout << fminf(5.01, -10) << endl; //-10 <=「2つ」の数値の比較
+    printf("%f\n", fminf(5.01, -10)); //-10.000000 <=「2つ」の数値の比較
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月16日
 
 
 <a name="乱数"></a>
