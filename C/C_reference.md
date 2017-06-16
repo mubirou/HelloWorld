@@ -23,9 +23,8 @@
 * [数学関数](#数学関数)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-***
-* [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
+***
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
@@ -1265,149 +1264,27 @@ int main() {
 作成日：2017年06月16日
 
 
-<a name="タイマー"></a>
-# <b>タイマー</b>
-
-### 概要
-* C++ の標準機能では、他の多くの言語で可能なスマートな機能は無い
-* 各 OS 限定では様々な方法は存在する
-
-### 基本編
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <unistd.h> //usleepに必要
-using namespace std;
-
-int main() {
-    int _cout = 0;
-    for (;;) { //無限ループ
-        if (_cout++ < 30) { //30回繰り返す場合…
-            //sleep(1); //1秒間隔の場合
-            //usleep(1000000); //1秒（1,000,000マイクロ秒）間隔の場合
-            usleep(33670); //≒29.7fpsの場合
-            cout << "繰り返したい処理をここに記述" << endl;
-        } else {
-            break; //繰り返しを終了
-        }
-    }
-    return 0;
-}
-```
-
-### 応用編
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <unistd.h> //usleepに必要
-#include <functional> //functionに必要
-using namespace std;
-
-//================================
-// カスタムクラス（Canvasクラス）
-//================================
-class Canvas {
-    private:
-        int _cout = 0; //タイマー用カウンター
-        function<void()> enterframeHandler; //enterframe用のリスナー関数を格納
-    
-    public:
-        void AddEventListener(string _event, function<void()> _function);
-};
-
-void Canvas::AddEventListener(string _event, function<void()> _function) {
-    if (_event == "enterframe") {
-        enterframeHandler = _function; //enterframe用リスナー関数を設定（記憶）
-        //タイマー関連
-        for (;;) { //無限ループ
-            if (_cout++ < 9e9) { //9000000000回（約9.6年）繰り返す場合
-                //sleep(1); //1秒間隔の場合
-                //usleep(1000000); //1秒（1,000,000マイクロ秒）間隔の場合
-                usleep(33670); //≒29.7fpsの場合
-                enterframeHandler(); //enterframeイベント発生（リスナー関数を呼出す）
-            } else {
-                break; //繰り返しを終了
-                //↑実際にはremoveEventListener()を用意して他で終了することも可能
-            }
-        }
-    } else {
-        cout << "ERROR: Canvas::AddEventListener()" << endl;
-    }
-}
-
-//================
-// メイン関数ほか
-//================
-void enterframe_Canvas() { //リスナー関数
-    cout << "繰り返し実行したいことをここに記述" << endl;
-}
-
-int main() {
-    Canvas Canvas_;
-    Canvas_.AddEventListener("enterframe", enterframe_Canvas);
-    //↑この記述で直ちにenterframe_Canvas()が29.7fpsで繰り返し実行されます。
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：Takashi Nishimura  
-作成日：2017年06月1X日
-
-
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### clock を使う方法
-* C 言語標準の関数（単位はミリ秒）
 ```
-//test.cpp
-#include <iostream> //coutに必要
+//test.c
+#include <stdio.h> //printf()に必要
 #include <time.h> //clock系に必要
-using namespace std;
 
 int main() {
     clock_t _start = clock(); //計測スタート
-
     for (int i=0; i<1000000000; ++i) { //10億回繰り返す場合
         //速度計測したい処理
     }
-
     clock_t _end = clock(); //計測終了
-
-    cout << (double)(_end - _start) / CLOCKS_PER_SEC << "秒\n"; //2.36981秒
-
-    return 0;
-}
-```
-
-### chrono を使う方法
-* C++11 で追加された機能
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <chrono> //chronoに必要
-using namespace std;
-
-int main() {
-    auto _start = chrono::system_clock::now(); //計測スタート
-
-    for (int i=0; i<1000000000; ++i) { //10億回繰り返す場合
-        //速度計測したい処理
-    }
-    
-    auto _end = chrono::system_clock::now(); //計測終了
-
-    cout << 
-    chrono::duration_cast<chrono::milliseconds>(_end - _start).count()
-    << "ミリ秒\n"; //2338ミリ秒
-
+    printf("%f\n", (double)(_end - _start) / CLOCKS_PER_SEC); //2.528470（秒）
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成日：2017年06月1X日
+作成日：2017年06月16日
 
 
 <a name="外部テキストの読み込み"></a>
