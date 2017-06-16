@@ -22,8 +22,8 @@
 * [文字列の操作](#文字列の操作)
 * [数学関数](#数学関数)
 * [乱数](#乱数)
-***
 * [日時情報](#日時情報)
+***
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -1241,47 +1241,28 @@ int main() {
 # <b>日時情報</b>
 
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <sstream> //ostringstreamに必要。
-using namespace std;
-
-string changeHoge(int arg) { //ひと桁の場合はふた桁表示にする関数
-    ostringstream _stream;
-    _stream << arg;
-    if (arg < 10) { //0〜9の場合…
-        return "0" + _stream.str();
-    } else { //10以上の場合…
-        return _stream.str();
-    }
-}
+//test.c
+#include <stdio.h> //printf()に必要
+#include <time.h> //time()に必要
 
 int main() {
-time_t _now = time(NULL);
-struct tm *_pNow = localtime(&_now);
-    
-    cout << _pNow -> tm_year + 1900 << endl; //2017（年）
-    cout << _pNow -> tm_mon + 1 << endl; //4（月）
-    cout << _pNow -> tm_mday << endl; //28（日）
-    cout << _pNow -> tm_yday << endl; //117（年内通算日, 元日が0）
-    cout << _pNow -> tm_wday << endl; //5（曜日, 0日曜〜6土曜）	
-    cout << _pNow -> tm_hour << endl; //9（時間, 0〜23）
-    cout << _pNow -> tm_min << endl; //12（分）
-    cout << _pNow -> tm_sec << endl; //4（秒）
-    
-    //"hh:mm:ss"で現在の時間を表示する方法
-    string _h = changeHoge(_pNow -> tm_hour);
-    string _m = changeHoge(_pNow -> tm_min);
-    string _s = changeHoge(_pNow -> tm_sec);
-    cout << _h + ":" + _m + ":" + _s << endl; //"09:12:04"
-    
+    time_t _now = time(NULL);
+    struct tm *_pNow = localtime(&_now);
+    printf("%d\n", _pNow -> tm_year + 1900); //2017（年）
+    printf("%d\n", _pNow -> tm_mon + 1); //6（月）
+    printf("%d\n", _pNow -> tm_mday); //16（日）
+    printf("%d\n", _pNow -> tm_yday); //166（年内通算日, 元日が0）
+    printf("%d\n", _pNow -> tm_wday); //5（曜日, 0日曜〜6土曜）	
+    printf("%d\n", _pNow -> tm_hour); //10（時間, 0〜23）
+    printf("%d\n", _pNow -> tm_min); //23（分）
+    printf("%d\n", _pNow -> tm_sec); //11（秒）
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
-作成日：2017年06月1X日
+作成日：2017年06月16日
 
 
 <a name="タイマー"></a>
