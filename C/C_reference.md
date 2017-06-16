@@ -21,7 +21,6 @@
 * [ポインタ](#ポインタ)
 * [文字列の操作](#文字列の操作)
 ***
-* [正規表現](#正規表現)
 * [数学関数](#数学関数)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
@@ -1058,54 +1057,6 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：Takashi Nishimura  
 作成日：2017年06月16日
-
-
-<a name="正規表現"></a>
-# <b>正規表現</b>
-
-* C++ には以下のサンプル以外にも多くの正規表現の機能が用意されています
-
-### 文字列を検索する
-```
-//test.cpp
-#include <iostream> //cout に必要
-#include <regex> //regex に必要
-using namespace std;
-
-int main() {
-    string _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-    regex regex_("吉田"); //完全一致
-    //regex regex_("西*"); //部分一致
-    if (regex_search(_string, regex_)) {
-        cout << "吉田は含まれています" << endl;	
-    } else {
-        cout << "吉田は含まれていません" << endl;
-    }
-    return 0;
-}
-```
-
-### 文字列を検索＆置換する
-```
-//test.cpp
-#include <iostream> //cout に必要
-#include <regex> //regex に必要
-using namespace std;
-
-int main() {
-    string _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文";
-    regex regex_("吉田"); //完全一致
-    if (regex_search(_string, regex_)) { //検索して見つかったら…
-        cout << regex_replace(_string, regex_, "よしだ") << endl;
-        //=> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
-    }
-    return 0;
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：Takashi Nishimura  
-作成日：2017年06月1X日
 
 
 <a name="数学関数"></a>
