@@ -1064,70 +1064,54 @@ int main() {
 
 ### sin() : サイン（正弦）
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
-    cout << sin(0) << endl; //0 <=0°
-    cout << sin(M_PI_2) << endl; //1（sin(M_PI/2)と同じ）<=90°
-    cout << sin(M_PI) << endl; //1.22465e-16（≒0）<=180°
-    cout << sin(M_PI*3/2) << endl; //-1 <=270°
-    cout << sin(M_PI*2) << endl; //-2.44929e-16（≒0）<=360°
+    printf("%f\n", sin(0)); //0.000000 <=0°
+    printf("%f\n", sin(M_PI_2)); //1.000000 <=90°
+    printf("%f\n", sin(M_PI)); //0.000000 <=180°
+    printf("%f\n", sin(M_PI*3/2)); //-1.000000 <=270°
+    printf("%f\n", sin(M_PI*2)); //-0.000000 <=360°
     return 0;
 }
 ```
 
 ### cos() : コサイン（余弦）
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
-int main() {
-    cout << cos(0) << endl; //1 <=0°
-    cout << cos(M_PI_2) << endl; //6.12323e-17（≒0）（cos(M_PI/2)と同じ）<=90°
-    cout << cos(M_PI) << endl; //-1 <=180°
-    cout << cos(M_PI*3/2) << endl; //-1.83697e-16（≒0）<=270°
-    cout << cos(M_PI*2) << endl; //1 <=360°
-    return 0;
-}
-```
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
 
-### atan2() : アークタンジェント2
-```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
 int main() {
-    // 2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
-    // Πラジアン（3.141592…）は180°
-    // 以下では、三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
-    double _disX = sqrt(3); //√3のこと
-    int _disY = 1;
-    cout << atan2(_disY, _disX) << endl; //0.523599（単位：ラジアン）
-    cout << 180 * atan2(_disY, _disX) / M_PI << endl; //30（単位：度）
+    printf("%f\n", cos(0)); //1.000000 <=0°
+    printf("%f\n", cos(M_PI_2)); //0.000000 <=90°
+    printf("%f\n", cos(M_PI)); //-1.000000 <=180°
+    printf("%f\n", cos(M_PI*3/2)); //-0.000000 <=270°
+    printf("%f\n", cos(M_PI*2)); //1.000000 <=360°
     return 0;
 }
 ```
 
 ### M_PI : 円周率
 ```
-//test.cpp
-#include <iostream> //coutに必要
-#include <math.h> //「数学関数」に必要
-using namespace std;
+//test.c
+#include <stdio.h> //printf()に必要
+#include <math.h> //数学関数に必要
+
 int main() {
-    cout << M_PI << endl; //3.14159（π）
-    cout << M_PI_2 << endl; //1.5708（π/2）
-    cout << M_PI_4 << endl; //0.785398（π/4）
-    cout << M_1_PI << endl; //0.31831（1/π）
-    cout << M_2_PI << endl; //0.63662（2/π）
-    cout << M_SQRT2 << endl; //1.41421（sqrt(2)）
+    printf("%f\n", M_PI); //3.141593（π）
+    printf("%f\n", M_PI_2); //1.570796（π/2）
+    printf("%f\n", M_PI_4); //0.785398（π/4）
+    printf("%f\n", M_1_PI); //0.318310（1/π）
+    printf("%f\n", M_2_PI); //0.636620（2/π）
+    printf("%f\n", M_SQRT2); //1.414214（sqrt(2)）
     return 0;
 }
 ```
+
+### ===================================================================
 
 ### floor() : 切り捨て
 ```
