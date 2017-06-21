@@ -5,8 +5,8 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)）
-***
 * [データ型](#データ型)
+***
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
@@ -48,175 +48,69 @@
 <a name="データ型"></a>
 # <b>データ型</b>
 
-### データ型の種類
-* 論理型
-    * bool型 : true または false
-
-* 整数型
-    * byte 型 : 0〜255（8 bit）
-    * sbyte 型 : -128〜127（8 bit）
-    * short 型 : -32768〜32767（16 bit）←約±3万
-    * ushort 型 :  0〜65535（16 bit）←約6万
-    * int 型 : -2147483648〜2147483647（32 bit）←約±20億／16進数（0xFFCC00等）も可
-    * uint 型 :  0〜4294967295（32 bit）←約40億（初期値）
-    * long 型 : -9223372036854775808〜9223372036854775807（64 bit）←約±900京
-    * ulong 型 : 0〜18446744073709551615（64 bit）←約1800京
-
-* 浮動小数点数型
-    * float 型 : 小数点第6位までの値（第7位を四捨五入）←最後に f を付ける
-    * double 型 : 小数点第14位までの値（第15位を四捨五入）←デフォルト
-    * decimal 型 : 小数点第28位までの値（第29位を四捨五入）←最後に m を付ける
-
-* 文字型
-    * char 型 : 1文字（シングルクォーテーションで囲む）
-    * string 型 : 2文字以上（ダブルクォーテーションで囲む）
-
-* その他のデータ型
-    * null 許容型 : 変数の値が未定義（宣言には ? を追記）
-    * 列挙型（enum） : 内部的には0、1、2...（int 型）で処理
-    * 構造体（struct）: 継承が出来ないクラスに似たもの
-    * 匿名型クラス（new {}）: class を使わないクラス（プロパティは読取専用）
-    * クラス（class）: class を使った参照型（データそのものではなくアドレスを保持）
-    * dynamic 型 : 動的型（型が未確定）←TypeScript の any 相当
-    * Object[] 型 : 配列の場合
-
-### 検証
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
+'test.vb
+Imports System '省略可能
 
-class Test {
-    static void Main() {
-        //bool型
-        bool _bool = true;
-        Console.WriteLine(_bool); //True
-        Console.WriteLine(_bool.GetType()); //System.Boolean
-        
-        //整数型①（0〜255）
-        byte _byte = 255;
-        Console.WriteLine(_byte); //255
-        Console.WriteLine(_byte.GetType()); //System.Byte
-        
-        //整数型②（-128〜127）
-        sbyte _sbyte = -128;
-        Console.WriteLine(_sbyte); //-128
-        Console.WriteLine(_sbyte.GetType()); //System.SByte
-        
-        //整数型③（-32768〜32767）
-        short _short = -32768;
-        Console.WriteLine(_short); //-32768
-        Console.WriteLine(_short.GetType()); //System.Int16
-        
-        //整数型④（0〜65535）
-        ushort _ushort = 65535;
-        Console.WriteLine(_ushort); //65535
-        Console.WriteLine(_ushort.GetType()); //System.UInt16
-        
-        //整数型⑤（-2147483648〜2147483647）
-        int _int = -2147483648;
-        Console.WriteLine(_int); //-2147483648
-        Console.WriteLine(_int.GetType()); //System.Int32
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        'Boolean型
+        Dim _boolean As Boolean = True 'またはFalse
+        Console.WriteLine(_boolean) '=> True
+        Console.WriteLine(TypeName(_boolean)) '=> Boolean
 
-        int _int16 = 0xFFCC00; //16進数の場合
-        Console.WriteLine(_int16); //16763904
-        Console.WriteLine(_int16.GetType()); //System.Int32
-        
-        //整数型⑥（0〜4294967295）
-        uint _uint = 4294967295;
-        Console.WriteLine(_uint); //4294967295
-        Console.WriteLine(_uint.GetType()); //System.UInt32
-        
-        //整数型⑦（-9223372036854775808〜9223372036854775807）
-        long _long = -9223372036854775808;
-        Console.WriteLine(_long); //-9223372036854775808
-        Console.WriteLine(_long.GetType()); //System.Int64
-        
-        //整数型⑧（0〜18446744073709551615）
-        ulong _ulong = 18446744073709551615;
-        Console.WriteLine(_ulong); //18446744073709551615
-        Console.WriteLine(_ulong.GetType()); //System.UInt64
-        
-        //浮動小数点数型①
-        float _float = 3.1415926f; //最後に「f」
-        Console.WriteLine(_float); //3.141593
-        Console.WriteLine(_float.GetType()); //System.Single
-        
-        //浮動小数点数型②
-        double _double = 3.141592653589793d; //「d」をつけなくても同じ
-        Console.WriteLine(_double); //3.14159265358979
-        Console.WriteLine(_double.GetType()); //System.Double
-        
-        //浮動小数点数型③
-        decimal _decimal = 3.14159265358979323846264338327m; //最後に「m」
-        Console.WriteLine(_decimal); //3.1415926535897932384626433833
-        Console.WriteLine(_decimal.GetType()); //System.Decimal
-        
-        //文字型①（char型＝1文字）
-        char _char = 'a'; //シングルクォーテーション
-        Console.WriteLine(_char); //a
-        Console.WriteLine(_char.GetType()); //System.Char
-        
-        //文字型②（string型）
-        string _string = "999"; //ダブルクォーテーション
-        Console.WriteLine(_string); //999
-        Console.WriteLine(_string.GetType()); //System.string
+        '整数型①（0〜255）
+        Dim _byte As Byte = 255
+        Console.WriteLine(_byte)
+        Console.WriteLine(TypeName(_byte))
 
-        //null許容型
-        int? _null = null; //string型は不可
-        Console.WriteLine(_null); //（null）
-        Console.WriteLine(_null == null); //True
+        '整数型②（-127〜127）
+        Dim _sbyte As SByte = 127
+        Console.WriteLine(_sbyte) '=> 127
+        Console.WriteLine(TypeName(_sbyte)) '=> SByte
 
-        //列挙型（enum）
-        Console.WriteLine(Signal.BLUE); //BLUE
-        Console.WriteLine(Signal.BLUE.GetType()); //Signal
-        Console.WriteLine((int)Signal.BLUE); //0 ←キャストによる型変換が必要
+        '整数型③（-32768〜32767）
+        Dim _short As Short = 32767
+        Console.WriteLine(_short) '=> 32768
+        Console.WriteLine(TypeName(_short)) '=> Short
 
-        //構造体（クラスに似ているが継承は不可）
-        MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
-        Console.WriteLine(_struct); //MyStruct
-        Console.WriteLine(_struct.GetType()); //MyStruct
-        
-        //匿名型クラス（宣言には、必ずvarキーワードを使います）
-        var _anon = new { Name="Takashi Nishimrua", Age=49 }; //読み取り専用（注意）
-        Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 49 }
-        Console.WriteLine(_anon.Name); //"Takashi Nishimura ←取得方法
-        Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
+        '整数型④（0〜65535）
+        Dim _ushort AS Ushort = 65535
+        Console.WriteLine(_ushort) '=> 65535
+        Console.WriteLine(TypeName(_ushort)) '=> Ushort
 
-        //クラス
-        MyClass _myClass = new MyClass("Takashi Nishimura", 48);
-        Console.WriteLine(_myClass); //MyClass
-        Console.WriteLine(_myClass.GetType()); //MyClass
+        '整数型⑤（-2147483648〜2147483647）
+        Dim _int As Integer = -2147483648
+        Console.WriteLine(_int) '=> -2147483648
+        Console.WriteLine(TypeName(_int)) '=> Integer
 
-        //配列
-        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
-        Console.WriteLine(_array); //System.Object[]
-    }
-}
+        '整数型⑥（-9223372036854775808〜9223372036854775807）
+        Dim _long As Long = 9223372036854775807
+        Console.WriteLine(_long) '=> 9223372036854775807
+        Console.WriteLine(TypeName(_long)) '=> Long
 
-enum Signal { BLUE,YELLOW,RED }; //列挙（enum）の定義
+        '浮動小数点数型①（単精度）
+        Dim _single As Single = 3.141592653589793
+        Console.WriteLine(_single) '=> 3.141593
+        Console.WriteLine(TypeName(_single)) '=> Single
 
-struct MyStruct { //構造体の定義
-    public string name;
-    public byte age;
-    public MyStruct(string p1, byte p2) {
-        name = p1;
-        age = p2;
-    }
-}
+        '浮動小数点数型②（倍精度）
+        Dim _double As Double = 3.141592653589793
+        Console.WriteLine(_double) '=> 3.14159265358979
+        Console.WriteLine(TypeName(_double)) '=> Double
 
-class MyClass { //クラスの定義
-    public string name;
-    public byte age;
-    public MyClass(string p1, byte p2) {
-        name = p1;
-        age = p2;
-    }
-}
+        '文字列型（〜約20億個の文字）
+        Dim _string As String = "あいうえお"
+        Console.WriteLine(_string) '=> あいうえお
+        Console.WriteLine(TypeName(_string)) '=> String
+
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月21日
 
 
 <a name="データ型の操作"></a>
