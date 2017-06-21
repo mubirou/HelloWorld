@@ -214,10 +214,9 @@ class MyClass { //クラスの定義
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月14日  
-更新日：2017年04月16日
+作成日：2017年06月XX日
 
 
 <a name="データ型の操作"></a>
@@ -383,10 +382,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月07日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="クラス"></a>
@@ -435,10 +433,9 @@ class Rectangle { //長方形クラス
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月02日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="基本クラスと派生クラス"></a>
@@ -506,10 +503,9 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月05日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="名前空間"></a>
@@ -554,10 +550,9 @@ namespace MyLibrary {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月23日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="継承と委譲"></a>
@@ -607,10 +602,9 @@ class ClassB { //この内容だけが継承と異なる
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月26日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="変数とスコープ"></a>
@@ -773,10 +767,9 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月20日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="アクセサ"></a>
@@ -828,10 +821,9 @@ class Nishimura {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="演算子"></a>
@@ -876,10 +868,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月06日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="定数"></a>
@@ -930,10 +921,9 @@ class MyMath {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月06日  
-更新日：2017年04月17日
+作成日：2017年06月XX日
 
 
 <a name="メソッド"></a>
@@ -1128,10 +1118,9 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2016年11月25日  
-更新日：2017年04月18日
+作成日：2017年06月XX日
 
 
 <a name="匿名メソッド"></a>
@@ -1179,10 +1168,9 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2017年06月XX日
 
 
 <a name="ラムダ式"></a>
@@ -1230,10 +1218,9 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2017年06月XX日
 
 
 <a name="静的メンバ（static）"></a>
@@ -1267,10 +1254,9 @@ class Math { //独自クラス
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月21日  
-更新日：2017年04月18日
+作成日：2017年06月XX日
 
 
 <a name="if文"></a>
@@ -1373,10 +1359,9 @@ class Test { //メインクラス
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2017年06月XX日
 
 
 <a name="三項演算子"></a>
@@ -1424,10 +1409,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2017年06月XX日
 
 
 <a name="switch文"></a>
@@ -1516,10 +1500,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月18日
+作成日：2017年06月XX日
 
 
 <a name="for文"></a>
@@ -1623,10 +1606,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="foreach文"></a>
@@ -1738,10 +1720,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2016年01月21日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="while文"></a>
@@ -1832,10 +1813,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="配列"></a>
@@ -1973,10 +1953,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2016年01月21日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="動的配列（List）"></a>
@@ -2387,10 +2366,9 @@ class Test {
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月14日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="連想配列（Dictionary）"></a>
@@ -2454,10 +2432,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月11日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="this"></a>
@@ -2507,10 +2484,9 @@ class Robot {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月15日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="文字列の操作"></a>
@@ -2651,10 +2627,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月17日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="正規表現"></a>
@@ -2712,10 +2687,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月19日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="インターフェース"></a>
@@ -2767,10 +2741,9 @@ class Moneybox : IMoneybox {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月21日  
-更新日：2017年04月19日
+作成日：2017年06月XX日
 
 
 <a name="抽象クラス（abstract）"></a>
@@ -2816,10 +2789,9 @@ class SubClass : AbstractClass { //抽象クラスを継承
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="baseキーワード"></a>
@@ -2862,10 +2834,9 @@ class SubClass : SuperClass { //派生クラス
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="オーバーライド"></a>
@@ -2958,10 +2929,9 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="カスタムイベント"></a>
@@ -3034,10 +3004,9 @@ class MyGame {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月25日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="数学関数（Math）"></a>
@@ -3210,10 +3179,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月26日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="乱数"></a>
@@ -3255,10 +3223,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月26日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="日時情報"></a>
@@ -3306,10 +3273,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月27日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="タイマー"></a>
@@ -3372,10 +3338,9 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月27日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="処理速度計測"></a>
@@ -3420,10 +3385,9 @@ class Program     {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月28日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
 
 
 <a name="外部テキストの読み込み"></a>
@@ -3470,7 +3434,6 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2015年11月30日  
-更新日：2017年04月21日
+作成日：2017年06月XX日
