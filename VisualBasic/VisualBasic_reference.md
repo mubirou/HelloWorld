@@ -50,8 +50,6 @@
 
 ```
 'test.vb
-Imports System '省略可能
-
 Module test '名前（test）は任意
     Sub Main() '名前（Main）は決め打ち
         'Boolean型
