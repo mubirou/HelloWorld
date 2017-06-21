@@ -103,7 +103,6 @@ Module test '名前（test）は任意
         Dim _string As String = "あいうえお"
         Console.WriteLine(_string) '=> あいうえお
         Console.WriteLine(TypeName(_string)) '=> String
-
     End Sub
 End Module
 ```
