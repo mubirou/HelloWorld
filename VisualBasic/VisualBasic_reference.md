@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)）
 * [データ型](#データ型)
-***
 * [データ型の操作](#データ型の操作)
+***
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
@@ -114,168 +114,123 @@ End Module
 # <b>データ型の操作</b>
 
 ### データ型の調べ方
-1. is 演算子
-    * クラスか否かを調べる（○ is int といった使い方も可能）
+1. TypeOf...IS 演算子
+    * インスタンスが特定の型か、あるいはその派生クラスか否か調べる
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            //クラスの場合
-            var _tmp = new SubClass();
-            Console.WriteLine(_tmp is SubClass); //True
-            Console.WriteLine(_tmp is SuperClass); //True
+    'test.vb
+    Module test '名前（test）は任意
+        Sub Main() '名前（Main）は決め打ち
+            Dim _subclass AS New SubClass
+            Console.WriteLine(TypeOf _subclass IS SubClass) '=> True
+            Console.WriteLine(TypeOf _subclass IS SuperClass) '=> True
 
-            //匿名型クラスの場合
-            var _tmp2 = new {};
-            Console.WriteLine(_tmp2 is object); //True;
-        }
-    }
+            Console.WriteLine(TypeOf "ABC" IS String) '=> True
+        End Sub
 
-    class SuperClass {} //基本クラスの定義
-    class SubClass : SuperClass {} //派生クラスの定義
-    ```
+        '継承元クラス
+        Public Class SuperClass
+        End Class
 
-1. as 演算子
-    * キャスト成功時に変換後の値が返され、失敗するとエラー
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            var _myClass = new MyClass();
-            Console.WriteLine(_myClass as MyClass); //=> MyClass
-            //Console.WriteLine(_myClass as HogeClass); //=> エラー
-        }
-    }
-
-    class MyClass {}
-    class HogeClass {};
+        '派生クラス
+        Public Class SubClass
+            Inherits SuperClass
+        End Class
+    End Module
     ```
 
-1. GetType() メソッド
-    * Object.GetType() メソッド（オブジェクトの型を返す）
+1. Is 演算子
+    * 同一のオブジェクトを参照しているか否か調べる
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            Console.WriteLine(true.GetType()); //=> System.Boolean
-            Console.WriteLine(100.GetType()); //=> System.Int32
-            Console.WriteLine(10000000000.GetType()); //=> System.UInt64
-            Console.WriteLine(0.1.GetType()); //=> System.Double
-            Console.WriteLine('1'.GetType()); //=> System.Char
-            Console.WriteLine("1".GetType()); //=> System.String
-            Console.WriteLine(new {}.GetType()); //=> <>__AnonType0
-            Console.WriteLine(new MyClass().GetType()); //=> MyClass
-        }
-    }
+    'test.vb
+    Module test '名前（test）は任意
+        Sub Main() '名前（Main）は決め打ち
+            Dim _someClass1 AS New SomeClass
+            Dim _someClass2 AS New SomeClass
+            Console.WriteLine(_someClass1 Is _someClass2) '=> Falase
 
-    class MyClass {}
+            Dim _someClass3 AS SomeClass = _someClass2
+            Console.WriteLine(_someClass3 IS _someClass2) '=> True
+        End Sub
+
+        Public Class SomeClass
+        End Class
+    End Module
+    ```
+
+1. TypeName() 関数
+    * データ型情報を含む文字列型（String）の値を返す
+    ```
+    'test.vb
+    Module test '名前（test）は任意
+        Sub Main() '名前（Main）は決め打ち
+            Console.WriteLine(TypeName(True)) '=> Boolean
+            Console.WriteLine(TypeName(100)) '=> Integer
+            Console.WriteLine(TypeName(10000000000)) '=> Long
+            Console.WriteLine(TypeName(0.1)) '=> Double
+            Console.WriteLine(TypeName("1")) '=> String
+            Console.WriteLine(TypeName(New SomeClass)) '=> someclass
+        End Sub
+
+        Public Class SomeClass 'MyClassだとerror
+        End Class
+    End Module
     ```
 
 ### データ型のキャスト
-1. 数値↔ bool 型（不可）
+1. 数値⇆ boolean 型へ変換
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            //bool _tmp = (bool)1; //error（数値→bool型への変換は不可）
-            //int _tmp = (int)true; //error（bool型→数値への変換は不可）
-        }
-    }
+    'test.vb
+    Module test '名前（test）は任意
+        Sub Main() '名前（Main）は決め打ち
+            '数値→Boolean型
+            Dim _boolean As Boolean = CBool(1)
+            Console.WriteLine(_boolean) '=> True
+            Console.WriteLine(TypeName(_boolean)) '=> Boolean
+
+            'Boolean型→数値
+            Dim _integer AS Integer = CInt(False)
+            Console.WriteLine(_integer) '=> 0（注意：Trueだと-1）
+            Console.WriteLine(TypeName(_integer)) '=> Integer
+        End Sub
+    End Module
     ```
 
-1. 数値→ bool 型へ変換（力技）
+1. 数値→数値（縮小変換は避ける）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _tmp = 0;
-            bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
-            Console.WriteLine(_tmp2); //False
-        }
-    }
-    ```
-
-1. bool型→数値へ変換
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            bool _tmp = true;
-            int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
-            Console.WriteLine(_tmp2); //1
-        }
-    }
+    'test.vb
+    Module test '名前（test）は任意
+        Sub Main() '名前（Main）は決め打ち
+            Dim _short As Short = 32767
+            Dim _integer AS Integer = CInt(_short)
+            Console.WriteLine(_integer) '=> 32767
+            Console.WriteLine(TypeName(_integer)) '=> Integer
+        End Sub
+    End Module
     ```
 
-1. 数値↔数値（縮小変換）
+1. 数値↔ String 型
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            //整数の場合
-            long _tmp1 = 2147483648; //intは-2147483648〜2147483647
-            int _tmp2 = (int)_tmp1; //long型→int型へ変換
-            Console.WriteLine(_tmp2); //-2147483648 ←元のデータが失われる
+    'test.vb
+    Module test '名前（test）は任意
+        Sub Main() '名前（Main）は決め打ち
+            'String型→数値
+            Dim _string1 As String = "001"
+            Dim _integer1 AS Integer = CInt(_string1)
+            Console.WriteLine(_integer1) '=> 1
+            Console.WriteLine(TypeName(_integer1)) '=> Integer
 
-            //浮動小数点数の場合
-            decimal _decimal = 3.14159265358979323846264338327m;
-            double _tmp3 = (double)_decimal;
-            Console.WriteLine(_tmp3); //3.14159265358979 ←データの一部が失われる
-        }
-    }
+            '数値→String型
+            Dim _integer2 AS Integer = 100
+            Dim _string2 AS String = CStr(_integer2)
+            Console.WriteLine(_string2) '=> 100
+            Console.WriteLine(TypeName(_string2)) '=> String
+        End Sub
+    End Module
     ```
-
-1. 数値↔数値（拡張変換）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _tmp = 2147483647; //intは-2147483648〜2147483647
-            long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
-            Console.WriteLine(_tmp2); //2147483648
-        }
-    }
-    ```
-
-1. 数値↔ string 型
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string _tmp = "001";
-            int _tmp2 = Int32.Parse(_tmp); //"001"（string型）→1（int型）に変換
-            Console.WriteLine(_tmp2); //1
-            Console.WriteLine(_tmp2.GetType()); //System.Int32
-        }
-    }
-    ```
-
-1. 数値→ string 型
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _tmp = 100;
-        string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
-        Console.WriteLine(_tmp2); //"100"
-        Console.WriteLine(_tmp2.GetType()); //System.String
-    }
-}
-```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月22日
 
 
 <a name="クラス"></a>
