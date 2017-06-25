@@ -237,51 +237,64 @@ End Module
 # <b>クラス</b>
 
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
-class Test { //Mainは不可
-    static void Main() { //自動的に最初に実行される
-        //①インタンスの生成
-        Rectangle _rectangle = new Rectangle();
-        
-        //②プロパティの更新
-        _rectangle.width = 1920;
-        _rectangle.height = 1080;
-        //③プロパティの取得
-        Console.WriteLine(_rectangle.width); //1920
-        Console.WriteLine(_rectangle.height); //1080
-        
-        //④メソッドの実行
-        Console.WriteLine(_rectangle.getArea()); //2073600
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        '①インタンスの生成
+        Dim _rectangle AS New Rectangle
 
-class Rectangle { //長方形クラス
-    //プロパティの定義･初期値の設定
-    private int _width = 0; //privateは省略可
-    private int _height = 0; //privateは省略可
+        '②プロパティの更新
+        _rectangle.width = 1920
+        _rectangle.height = 1080
 
-    //コンストラクタは省略可（初期値はここで設定してもよい）
-    public Rectangle() {}
-    
-    //メソッド群の定義
-    public int width {
-        get { return this._width; } //thisは省略可
-        set { this._width = value; } //valueは決め打ち
-    }
-    public int height {
-        get { return this._height; } //thisは省略可
-        set { this._height = value; } //valueは決め打ち
-    }
-    public int getArea() { //面積を計算して値を返す
-        return this._width * this._height; //thisは省略可
-    }
-}
+        '③プロパティの取得
+        Console.WriteLine(_rectangle.width) '=> 1920
+        Console.WriteLine(_rectangle.height) '=> 1080
+
+        '④メソッドの実行
+        Console.WriteLine(_rectangle.GetArea()) '=> 2073600
+    End Sub
+
+    '長方形クラス
+    Public Class Rectangle
+        'プロパティの定義・初期値の設定
+        private _width As Integer = 0
+        private _height As Integer = 0
+
+        'コンストラクタは省略可（初期値はここで設定してもよい）
+        Public Sub New()
+        End Sub
+
+        'アクセサの定義
+        Public Property width() As Integer
+            Get
+                width = _width
+            End Get
+            Set(ByVal _newValue As Integer)
+                _width = _newValue
+            End Set
+        End Property
+
+        Public Property height() As Integer
+            Get
+                height = _height
+            End Get
+            Set(ByVal _newValue As Integer)
+                _height = _newValue
+            End Set
+        End Property
+
+        'メソッドの定義
+        Public Function GetArea() As Integer
+            return _width * _height
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月25日
 
 
 <a name="基本クラスと派生クラス"></a>
