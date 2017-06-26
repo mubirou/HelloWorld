@@ -489,7 +489,7 @@ class SubClassA : SuperClass { //基本クラスを継承（多重継承は不�
     }
 }
 
-//派生クラスＡ
+//派生クラスＢ
 class SubClassB : SuperClass { //基本クラスを継承（多重継承は不可）
     //①プロパティの定義
     string _pSubClassB = "派生クラスＢのプロパティ"; //privateは省略
