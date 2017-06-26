@@ -452,47 +452,73 @@ End Namespace
 
 ### 継承版
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _ClassB AS New ClassB()
+        _ClassB.MyMethod()
+    End Sub
 
-class Test {
-    static void Main() {
-        ClassB _classB = new ClassB();
-        _classB.MyMethod();
-    }
-}
+    ''''''''''''''''''''''''''''
+    '基本クラス（スーパークラス）
+    ''''''''''''''''''''''''''''
+    Public Class ClassA
+        'メソッド
+        Public Function MyMethod()
+            Console.WriteLine("ClassA.MyMethod()")
+        End Function
+    End Class
 
-class ClassA {
-    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
-}
-class ClassB : ClassA {} //ClassAを継承
+    ''''''''''''''''''''''''''''
+    '派生クラス（サブクラス）
+    ''''''''''''''''''''''''''''
+    Public Class ClassB
+        Inherits ClassA 'ClassAを継承
+    End Class
+End Module
 ```
 
 ### 委譲版
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _ClassB AS New ClassB()
+        _ClassB.MyMethod()
+    End Sub
 
-class Test {
-    static void Main() {
-        ClassB _classB = new ClassB();
-        _classB.MyMethod();
-    }
-}
+    ''''''''''''''''''''''''''''
+    '基本クラス（スーパークラス）
+    ''''''''''''''''''''''''''''
+    Public Class ClassA
+        'メソッド
+        Public Function MyMethod()
+            Console.WriteLine("ClassA.MyMethod()")
+        End Function
+    End Class
 
-class ClassA {
-    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
-}
-class ClassB { //この内容だけが継承と異なる
-    private ClassA _classA;
-    public ClassB() { _classA = new ClassA(); } //コンストラクタでオブジェクト生成
-    public void MyMethod() { _classA.MyMethod(); }
-}
+    ''''''''''''''''''''''''''''
+    '派生クラス（サブクラス）
+    ''''''''''''''''''''''''''''
+    Public Class ClassB 'この内容だけが継承と異なる
+        private _ClassA As ClassA
+
+        'コンストラクタは省略可（初期値はここで設定してもよい）
+        Public Sub New()
+            _ClassA = new ClassA() 'コンストラクタでオブジェクト生成
+        End Sub
+
+        'メソッド
+        Public Function MyMethod()
+            _ClassA.MyMethod()
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月26日
 
 
 <a name="変数とスコープ"></a>
