@@ -419,7 +419,7 @@ End Namespace
 ### 例文
 ```
 'test.vb
-'Imports SomeClass = MyLibrary.SomeClass '省略も可能
+'Imports SomeClass = MyLibrary.SomeClass '...として名前空間名を省略することも可能
 
 Module test '名前（test）は任意
     Sub Main() '名前（Main）は決め打ち
