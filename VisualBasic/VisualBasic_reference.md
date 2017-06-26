@@ -8,8 +8,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-***
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
+***
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -301,70 +301,106 @@ End Module
 # <b>基本クラスと派生クラス</b>
 
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
-
-class Test { //メインクラス（Main()メソッドを含む）←Mainは不可
-    static void Main() { //自動的に最初に実行される
-        //派生クラスＡのインスタンス
-        SubClassA _subclassA = new SubClassA();
-        Console.WriteLine(_subclassA.pSuperClass); //"基本クラスのプロパティ"
-        Console.WriteLine(_subclassA.pSubClassA); //"派生クラスＡのプロパティ"
-        Console.WriteLine(_subclassA.mSuperClass()); //"基本クラスのメソッド"
-        Console.WriteLine(_subclassA.mSubClassA()); //"派生クラスＡのメソッド"
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        '派生クラスＡのインスタンス
+        Dim _SubclassA AS New SubClassA
+        Console.WriteLine(_SubclassA.PSuperClass) '=> 基本クラスのプロパティ
+        Console.WriteLine(_SubclassA.PSubClassA) '=> 派生クラスＡのプロパティ
+        Console.WriteLine(_SubclassA.MSuperClass()) '=> 基本クラスのメソッド
+        Console.WriteLine(_SubclassA.MSubClassA()) '=> 派生クラスＡのメソッド
         
-        //派生クラスＢのインスタンス
-        SubClassB _subclassB = new SubClassB();
-        Console.WriteLine(_subclassB.pSuperClass); //"基本クラスのプロパティ"
-        Console.WriteLine(_subclassB.pSubClassB); //"派生クラスＢのプロパティ"
-        Console.WriteLine(_subclassB.mSuperClass()); //"基本クラスのメソッド"
-        Console.WriteLine(_subclassB.mSubClassB()); //"派生クラスＢのメソッド"
-    }
-}
+        '派生クラスＢのインスタンス
+        Dim _SubclassB AS New SubClassB
+        Console.WriteLine(_SubclassB.PSuperClass) '=> 基本クラスのプロパティ
+        Console.WriteLine(_SubclassB.PSubClassB) '=> 派生クラスＢのプロパティ
+        Console.WriteLine(_SubclassB.MSuperClass()) '=> 基本クラスのメソッド
+        Console.WriteLine(_SubclassB.MSubClassB()) '=> 派生クラスＢのメソッド
+    End Sub
 
-//基本クラス（スーパークラス）
-class SuperClass {
-    //①プロパティの定義
-    string _pSuperClass = "基本クラスのプロパティ"; //privateは省略
-    //②メソッド群の定義
-    public string pSuperClass {
-        get { return _pSuperClass; } //thisは省略
-    }
-    public string mSuperClass() {
-        return "基本クラスのメソッド";
-    }
-}
+    '''''''''''''''''''''''''''''''
+    '継承元クラス（スーパークラス）
+    '''''''''''''''''''''''''''''''
+    Public Class SuperClass
+        'プロパティの定義・初期値の設定
+        private _PSuperClass As String = "基本クラスのプロパティ"
 
-//派生クラスＡ
-class SubClassA : SuperClass { //基本クラスを継承（多重継承は不可）
-    //①プロパティの定義
-    string _pSubClassA = "派生クラスＡのプロパティ"; //privateは省略
-    //②メソッド群の定義
-    public string pSubClassA {
-        get { return _pSubClassA; } //thisは省略
-    }
-    public string mSubClassA() {
-        return "派生クラスＡのメソッド";
-    }
-}
+        'コンストラクタは省略可（初期値はここで設定してもよい）
+        Public Sub New()
+        End Sub
 
-//派生クラスＡ
-class SubClassB : SuperClass { //基本クラスを継承（多重継承は不可）
-    //①プロパティの定義
-    string _pSubClassB = "派生クラスＢのプロパティ"; //privateは省略
-    //②メソッド群の定義
-    public string pSubClassB {
-        get { return _pSubClassB; } //thisは省略
-    }
-    public string mSubClassB() {
-        return "派生クラスＢのメソッド";
-    }
-}
+        'アクセサの定義
+        Public Property PSuperClass() As String
+            Get
+                PSuperClass = _PSuperClass
+            End Get
+            Set(ByVal _newValue As String)
+                _PSuperClass = _newValue
+            End Set
+        End Property
+
+        'メソッドの定義
+        Public Function MSuperClass() As String
+            return "基本クラスのメソッド"
+        End Function
+    End Class
+
+    '''''''''''''''''''''''''''''''
+    '派生クラスＡ（サブクラス）
+    '''''''''''''''''''''''''''''''
+    Public Class SubClassA
+        Inherits SuperClass 'スーパークラスを継承
+
+        'プロパティの定義・初期値の設定
+        private _PSubClassA As String = "派生クラスＡのプロパティ"
+
+        'アクセサの定義
+        Public Property PSubClassA() As String
+            Get
+                PSubClassA = _PSubClassA
+            End Get
+            Set(ByVal _newValue As String)
+                _PSubClassA = _newValue
+            End Set
+        End Property
+
+        'メソッドの定義
+        Public Function MSubClassA() As String
+            return "派生クラスＡのメソッド"
+        End Function
+    End Class
+
+    '''''''''''''''''''''''''''''''
+    '派生クラスＢ（サブクラス）
+    '''''''''''''''''''''''''''''''
+    Public Class SubClassB
+        Inherits SuperClass 'スーパークラスを継承
+
+        'プロパティの定義・初期値の設定
+        private _PSubClassB As String = "派生クラスＢのプロパティ"
+
+        'アクセサの定義
+        Public Property PSubClassB() As String
+            Get
+                PSubClassB = _PSubClassB
+            End Get
+            Set(ByVal _newValue As String)
+                _PSubClassB = _newValue
+            End Set
+        End Property
+
+        'メソッドの定義
+        Public Function MSubClassB() As String
+            return "派生クラスＢのメソッド"
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月26日
 
 
 <a name="名前空間"></a>
