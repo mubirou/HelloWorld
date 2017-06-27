@@ -12,8 +12,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-***
 * [アクセサ （Get / Set）](#アクセサ)
+***
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -659,55 +659,37 @@ End Module
 <a name="アクセサ"></a>
 # <b>アクセサ （getter / setter）</b>
 
-### 読み書き可能なプロパティ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Nishimura _nishimura = new Nishimura();
-        Console.WriteLine(_nishimura.Age); //49
-        _nishimura.Age = 50; //値を変更可能
-        Console.WriteLine(_nishimura.Age); //50
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Nishimura AS New Nishimura
+        'Console.WriteLine(_Nishimura._Age) 'error（アクセス不可）
+        Console.WriteLine(_Nishimura.Age) '=> 49
+        _Nishimura.Age = 50 '値を変更可能
+        Console.WriteLine(_Nishimura.Age) '=> 50
 
-class Nishimura {
-    int _age = 49; //privateは省略
-    public int Age {
-        get { return _age; } //thisは省略
-        set { _age = value; } //thisは省略 ←valueは予め定義された変数（決め打ち）
-    }
-}
-```
+    End Sub
 
-### 読み取り専用のプロパティ
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Nishimura _nishimura = new Nishimura();
-        Console.WriteLine(_nishimura.Age); //49
-        //_nishimura.Age = 50; //error（値の変更は不可）
-        _nishimura.NextYear();
-        Console.WriteLine(_nishimura.Age); //50
-    }
-}
+    Public Class Nishimura
+        Private _Age As Integer = 49
 
-class Nishimura {
-    int _age = 49; //privateは省略
-    public int Age {
-        get { return _age; } //thisは省略
-        private set {} //外部からアクセス不可（読み取り専用にする）
-    }
-    public void NextYear() { _age += 1; } //クラスの内部からに限り変更可能
-}
+        'アクセサの定義
+        Public Property Age() As Integer
+            Get
+                Age = _Age
+            End Get
+            Set(ByVal _newValue As Integer)
+                _Age = _newValue
+            End Set
+        End Property
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月27日
 
 
 <a name="演算子"></a>
