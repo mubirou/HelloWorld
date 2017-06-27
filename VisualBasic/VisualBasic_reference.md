@@ -730,7 +730,7 @@ Module test '名前（test）は任意
 End Module
 ```
 
-### 静的定数（メンバ定数）
+### 静的定数（クラス定数）
 ```
 'test.vb
 Module test '名前（test）は任意
@@ -739,7 +739,6 @@ Module test '名前（test）は任意
         'MyMath.PI = 3.14 '変更不可
     End Sub
 
-    '派生クラス
     Public Class MyMath
         Const PI As Single = 3.141593
     End Class
