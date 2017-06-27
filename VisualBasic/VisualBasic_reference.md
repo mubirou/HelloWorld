@@ -11,9 +11,9 @@
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
-***
 * [変数とスコープ](#変数とスコープ)
-* [アクセサ （getter / setter）](#アクセサ)
+***
+* [アクセサ （Get / Set）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
@@ -627,20 +627,22 @@ Module test '名前（test）は任意
     End Sub
 
     Public Class SomeClass
-        Private _I As Integer = 999
+        Private _I As Integer = 999 'Private変数
+
         'メソッドの定義
         Public Function MyMethod()
             Dim _I As Integer 'ローカル変数宣言
-            For _I = 0 TO 5
-                Console.WriteLine("A: " & _I) '=> 0、1、2、....、5
-                Console.WriteLine("B: " & Me._I) '=> 999
-            Next
-            Console.WriteLine(_I) '=> 6
 
-            'Me/MyClass/MyBaseどれでもアクセス可能（ここでは通常はMe）
-            Console.WriteLine(Me._I) '=> Private変数
-            Console.WriteLine(MyClass._I) '=> Private変数
-            Console.WriteLine(MyBase._I) '=> Private変数
+            For _I = 0 TO 5
+                Console.WriteLine(_I) '=> 0、1、2、....、5
+
+                'Me/MyClass/MyBaseどれでもアクセス可能（ここでは通常はMe）
+                Console.WriteLine(Me._I) '=> 999（Private変数）
+                Console.WriteLine(MyClass._I) '=> 999（Private変数）
+                Console.WriteLine(MyBase._I) '=> 999（Private変数）
+            Next
+            
+            Console.WriteLine(_I) '=> 6（注意）
         End Function
     End Class
 End Module
