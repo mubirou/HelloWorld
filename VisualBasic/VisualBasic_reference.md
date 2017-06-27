@@ -705,7 +705,8 @@ Module test '名前（test）は任意
         Console.WriteLine(1 + 2 * 3 - 4 / 2) '=> 5 (複雑な計算)
         Console.WriteLine(63 Mod 60) '=> 3 (余剰)
         Console.WriteLine(8 / 3) '=> 2.66666666666667(除算)
-        'インクリメントやデクリメントは存在しません
+        'インクリメント（++）やデクリメント（--）は存在しません
+        'ただし「+=」「-=」はあり
     End Sub
 End Module
 ```
