@@ -696,47 +696,23 @@ End Module
 # <b>演算子</b>
 
 ```
-//test.cs
-using System;
-
-class Test {
-    static void Main() {
-        Console.WriteLine(3 + 2); //5 (可算) 
-        Console.WriteLine(5 - 8); //-3 (減算)
-        Console.WriteLine(3 * 4); //12 (乗算)
-        Console.WriteLine(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-        Console.WriteLine(63 % 60); //3 (余剰)
-        
-        // 除算（注意が必要です）
-        Console.WriteLine(8 / 3); //2(除算) ←整数同士の場合、余りは切り捨てられる
-        Console.WriteLine(8 / 3.0); //2.66666666666667（小数点第14位までの値＝double型）
-
-        float _float = (float)8.0 / 3;
-        Console.WriteLine(_float); //2.666667（小数点第6位までの値）
-
-        decimal _decimal = (decimal)8.0 / 3;
-        Console.WriteLine(_decimal); //2.6666666666666666666666666667（第28位まで）
-
-        // 後ろに付けるインクリメント（デクリメント）
-        // _hoge++（_hoge--）が返す値は、加算（減算）する前の_hogeの値です
-        int _hoge = 0;
-        int _piyo = _hoge++; //デクリメントの場合_hoge--
-        Console.WriteLine(_hoge); //1（デクリメントの場合-1）
-        Console.WriteLine(_piyo); //0（デクリメントの場合0）
-
-        // 前に付けるインクリメント（デクリメント）
-        // ++_hoge（--_hoge）が返す値は、加算（減算）後の_hogeの値です
-        _hoge = _piyo = 0;
-        _piyo = ++_hoge; //デクリメントの場合--_hoge
-        Console.WriteLine(_hoge); //1（デクリメントの場合-1）
-        Console.WriteLine(_piyo); //1（デクリメントの場合-1） ←注目
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Console.WriteLine(3 + 2) '=> 5 (可算) 
+        Console.WriteLine(5 - 8) '=> -3 (減算)
+        Console.WriteLine(3 * 4) '=> 12 (乗算)
+        Console.WriteLine(1 + 2 * 3 - 4 / 2) '=> 5 (複雑な計算)
+        Console.WriteLine(63 Mod 60) '=> 3 (余剰)
+        Console.WriteLine(8 / 3) '=> 2.66666666666667(除算)
+        'インクリメントやデクリメントは存在しません
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月27日
 
 
 <a name="定数"></a>
