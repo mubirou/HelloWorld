@@ -657,7 +657,7 @@ End Module
 
 
 <a name="アクセサ"></a>
-# <b>アクセサ （getter / setter）</b>
+# <b>アクセサ （Get / Set）</b>
 
 ```
 'test.vb
@@ -723,7 +723,7 @@ End Module
 'test.vb
 Module test '名前（test）は任意
     Sub Main() '名前（Main）は決め打ち
-        Const PI As Single = 3.141593
+        Const PI As Single = 3.141593 '定数の定義
         Console.WriteLine(PI)
         'PI = 3.14 'error（変更不可）
     End Sub
@@ -740,7 +740,7 @@ Module test '名前（test）は任意
     End Sub
 
     Public Class MyMath
-        Const PI As Single = 3.141593
+        Public Const PI As Single = 3.141593 '定数の定義
     End Class
 End Module
 ```
@@ -768,14 +768,11 @@ End Sub
 End Function
 ```
 
-===================================================編集中
 ### アクセス修飾子
 1. Public : 全クラスからアクセス可能
 1. Protected : 同じクラスおよび派生クラス内でのみアクセス可能
-1. Private : 同じクラス内のみアクセス可能（省略すると private 扱い）
-1. internal : アセンブリ内でのみアクセス可能
-* static : 静的メソッド＝クラスメソッド
-===================================================編集中
+1. Private : 同じクラス内のみアクセス可能
+* Shared : 静的メソッド＝クラスメソッド  
 
 ### 基本例文
 ```
@@ -817,66 +814,73 @@ End Module
 ```
 
 ### コンストラクタ
-* 書式】
 ```
-class クラス名 {
-    public クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
-        ......
-    }
-    ......
-```
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Point As New Point(100,150) 'ここでコンストラクタを呼び出す
+        Console.WriteLine(_Point.X) '=> 100
+        Console.WriteLine(_Point.Y) '=> 150
+    End Sub
 
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
-        Console.WriteLine(_point.X); //100
-        Console.WriteLine(_point.Y); //150
-     }
-}
+    Public Class Point
+        Private _X As Integer, _Y As Integer
+        
+        'コンストラクタ
+        Public Sub New(ByVal _X As Integer, ByVal _Y As Integer)
+            Me._X = _X
+            Me._Y = _Y
+        End Sub
 
-class Point {
-    private int _x, _y;
-    public Point(int _x=0, int _y=0) { //コンストラクタ
-        this._x = _x;
-        this._y = _y;
-    }
-    public int X {
-        get { return _x; }
-        set { _x = value; }
-    }
-    public int Y {
-        get { return _y; }
-        set { _y = value; }
-    }
-}
+        'アクセサの定義
+        Public Property X() As Integer
+            Get
+                X = _X
+            End Get
+            Set(ByVal _newValue As Integer)
+                _X = _newValue
+            End Set
+        End Property
+
+        Public Property Y() As Integer
+            Get
+                Y = _Y
+            End Get
+            Set(ByVal _newValue As Integer)
+                _Y = _newValue
+            End Set
+        End Property
+    End Class
+End Module
 ```
 
 ### 静的メソッド（クラスメソッド）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        Console.WriteLine(Math.Pow(2,0)); //1（2の0乗）
-        Console.WriteLine(Math.Pow(2,1)); //2（2の1乗）
-        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗）
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Console.WriteLine(Math.Pow(2,0)) '=> 1（2の0乗）
+        Console.WriteLine(Math.Pow(2,1)) '=> 2（2の1乗）
+        Console.WriteLine(Math.Pow(2,8)) '=> 256（2の8乗）
+    End Sub
 
-class Math {
-    public static long Pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
-        long _result = arg1;
-        for (int i=1; i<arg2; i++) {
-            _result = _result * arg1;
-        }
-        return _result;
-    }
-}
+    Public Class Math
+        '静的メソッド（クラスメソッド）
+        Shared Function Pow(ByVal _Arg1 As Integer, ByVal _Arg2 As Integer) As Integer
+            ' 0乗対策
+            IF _Arg2 = 0 Then '「==」ではない（注意）
+                return 1
+            End IF
+
+            Dim _Result As Integer = _Arg1 'ローカル変数
+            Dim _I As Integer 'カウンタ変数（ローカル変数）
+            For _I = 1 To _Arg2
+                _Result *= _Arg1
+            Next
+            return _Result / _Arg1
+        End Function
+    End Class
+End Module
 ```
 
 ### デフォルト値付き引数
