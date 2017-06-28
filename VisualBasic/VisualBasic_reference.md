@@ -464,9 +464,9 @@ Module test '名前（test）は任意
     ''''''''''''''''''''''''''''
     Public Class ClassA
         'メソッド
-        Public Function MyMethod()
+        Public Sub MyMethod()
             Console.WriteLine("ClassA.MyMethod()")
-        End Function
+        End Sub
     End Class
 
     ''''''''''''''''''''''''''''
@@ -492,9 +492,9 @@ Module test '名前（test）は任意
     ''''''''''''''''''''''''''''
     Public Class ClassA
         'メソッド
-        Public Function MyMethod()
+        Public Sub MyMethod()
             Console.WriteLine("ClassA.MyMethod()")
-        End Function
+        End Sub
     End Class
 
     ''''''''''''''''''''''''''''
@@ -509,9 +509,9 @@ Module test '名前（test）は任意
         End Sub
 
         'メソッド
-        Public Function MyMethod()
+        Public Sub MyMethod()
             _ClassA.MyMethod()
-        End Function
+        End Sub
     End Class
 End Module
 ```
@@ -633,7 +633,7 @@ Module test '名前（test）は任意
         Private _I As Integer = 999 'Private変数
 
         'メソッドの定義
-        Public Function MyMethod()
+        Public Sub MyMethod()
             Dim _I As Integer 'ローカル変数宣言
 
             For _I = 0 TO 5
@@ -646,7 +646,7 @@ Module test '名前（test）は任意
             Next
             
             Console.WriteLine(_I) '=> 6（注意）
-        End Function
+        End Sub
     End Class
 End Module
 ```
@@ -753,42 +753,52 @@ End Module
 <a name="メソッド"></a>
 # <b>メソッド</b>
 
-### 基本構文
+### Sub プロシージャ（戻り値がない）の基本構文
 ```
-アクセス修飾子 [static] 戻り値のデータ型 メソッド名([データ型 引数, ...]) {
-    [return 戻り値;]
-}
+アクセス修飾子 Sub メソッド名(ByVal 引数① As 引数①の型[, ...])
+    ......
+End Sub
 ```
 
+### Function プロシージャ（戻り値がある）の基本構文
+```
+アクセス修飾子 Function メソッド名(ByVal 引数① As 引数①の型[, ...]) As 戻り値の型
+    ......
+    return 戻り値
+End Function
+```
+
+===================================================編集中
 ### アクセス修飾子
-1. public : 全クラスからアクセス可能
-1. protected : 同じクラスおよび派生クラス内でのみアクセス可能
-1. private : 同じクラス内のみアクセス可能（省略すると private 扱い）
+1. Public : 全クラスからアクセス可能
+1. Protected : 同じクラスおよび派生クラス内でのみアクセス可能
+1. Private : 同じクラス内のみアクセス可能（省略すると private 扱い）
 1. internal : アセンブリ内でのみアクセス可能
 * static : 静的メソッド＝クラスメソッド
+===================================================編集中
 
 ### 基本例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        Console.WriteLine(_myClass.Tashizan(1,10)); //55
-        Console.WriteLine(_myClass.Tashizan(1,100)); //5050
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _SomeClass AS New SomeClass
+        Console.WriteLine(_SomeClass.Tashizan(1,10)) '=> 55
+        Console.WriteLine(_SomeClass.Tashizan(1,100)) '=> 5050
+    End Sub
 
-class MyClass {
-    //○〜○までの値を足した合計を返す
-    public int Tashizan(int _start, int _end) {
-        int _result = 0; //ローカル変数
-        for (int _i = _start; _i <= _end; _i++) {
-            _result += _i;
-        }
-        return _result;
-    }
-}
+    Public Class SomeClass
+        '○〜○までの値を足した合計を返す
+        Public Function Tashizan(ByVal _Start As Integer, ByVal _End As Integer) As Integer
+            Dim _Result As Integer 'ローカル変数宣言
+            Dim _I As Integer 'カウンタ変数（ローカル変数）
+            For _I = _Start To _End
+                _Result += _I
+            Next
+            return _Result
+        End Function
+    End Class
+End Module
 ```
 
 ### Main()メソッド
