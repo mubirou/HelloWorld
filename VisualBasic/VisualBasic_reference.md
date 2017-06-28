@@ -15,8 +15,8 @@
 * [アクセサ （Get / Set）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-***
 * [メソッド](#メソッド)
+***
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
@@ -883,76 +883,32 @@ Module test '名前（test）は任意
 End Module
 ```
 
-### デフォルト値付き引数
-* オプション引数（引数は省略可）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.AddPoint(); //1
-        _myClass.AddPoint(10); //11
-    }
-}
-
-class MyClass {
-    private int _point = 0;
-    public void AddPoint(int arg = 1) { //初期値を1とした場合
-        _point += arg;
-        Console.WriteLine(_point);
-    }
-}
-```
-
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Sum(1,1); //2（1+1）
-        _myClass.Sum(1,2,3,4,5); //15（1+2+3+4+5）
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _SomeClass As New SomeClass()
+        Console.WriteLine(_SomeClass.Sum(1,1)) '=> 2（1+1）
+        Console.WriteLine(_SomeClass.Sum(1,2,3,4,5)) '=> 15（1+2+3+4+5）
+    End Sub
 
-class MyClass {
-    public void Sum(params int[] args) {
-        int _result = 0; //ローカル変数
-        foreach (int tmp in args) {
-            _result += tmp;
-        }
-        Console.WriteLine(_result);
-    }
-}
-```
-
-### 名前付き引数
-* 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Rect(endX:100, endY:100); //面積:10000m2
-        _myClass.Rect(10,10,100,100); //面積:8100m2
-    }
-}
-
-class MyClass {
-    public void Rect(int startX=0, int startY=0, int endX=0, int endY=0) {
-        int _result = (endX - startX) * (endY - startY);
-        Console.WriteLine("面積:" + _result + "m2");
-    }
-}
+    Public Class SomeClass
+        Public Function Sum(ByVal ParamArray _Args() As Integer) As Integer
+            Dim _Result As Integer = 0
+            For Each _Int As Integer In _Args 
+                _Result = _Result + _Int 
+            Next
+            return _Result
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月28日
 
 
 <a name="匿名メソッド"></a>
