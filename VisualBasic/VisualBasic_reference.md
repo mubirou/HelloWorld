@@ -17,7 +17,6 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 ***
-* [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
@@ -909,56 +908,6 @@ End Module
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
 作成日：2017年06月28日
-
-
-<a name="匿名メソッド"></a>
-# <b>匿名メソッド</b>
-
-```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Move(1); //
-        _myClass.change();
-        _myClass.Move(3); //←←←
-    }
-}
-class MyClass {
-    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
-    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
-    private bool _right = true;
-    public MyClass() { //コンストラクタ
-        //匿名メソッドの定義
-        Move = delegate(int arg) {
-            string _tmp = "";
-            for (int i=0; i<arg; i++) _tmp += "→";
-            Console.WriteLine(_tmp);
-        };
-    }
-    public void change() {
-        _right = ! _right;
-        if (_right) {
-            Move = delegate(int arg) {
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "→";
-                Console.WriteLine(_tmp);
-            }; //...匿名メソッドの再定義（メソッドの内容を変更）
-        } else {
-            Move = delegate(int arg) { //匿名メソッドの再定義（メソッドの内容を変更）
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "←";
-                Console.WriteLine(_tmp);
-            };
-        }
-    }
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
-作成者：Takashi Nishimura  
-作成日：2017年06月XX日
 
 
 <a name="ラムダ式"></a>
