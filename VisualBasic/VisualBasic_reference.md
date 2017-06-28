@@ -802,24 +802,18 @@ End Module
 ```
 
 ### Main()メソッド
-* 特徴
-    * 記述できるクラスは１つだけ（複数存在するとエラー）
-    * 自動的に最初に実行
-    * static キーワードが必須（オブジェクトの生成をしなくても Main() を呼び出す必要がある為）
-    * 値を返したり、引数を渡すことも可能
-
-* 例文
 ```
-//test.cs
-using System;
-class Test { //メインクラス（Mainは不可）
-    static void Main() { //自動的に最初に実行される
-        Method(); //"Test.Method()"
-    }
-    static void Method() { //staticなメソッドならMain()から呼び出せる
-        Console.WriteLine("Test.Method()");
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        MyMethod()
+    End Sub
+
+    'メソッドの定義
+    Public Sub MyMethod()
+        Console.WriteLine("MyMethod()")
+    End Sub
+End Module
 ```
 
 ### コンストラクタ
