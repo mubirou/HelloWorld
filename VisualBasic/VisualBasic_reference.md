@@ -17,8 +17,8 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [デリゲート](#デリゲート)
+* [クラス定数･クラスメソッド](#クラス定数･クラスメソッド)
 ***
-* [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
@@ -44,7 +44,7 @@
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
-<a name="データ型"></a>
+<a name="データ型"></a>4
 # <b>データ型</b>
 
 ```
@@ -977,40 +977,52 @@ End Module
 作成日：2017年06月29日
 
 
-<a name="静的メンバ（static）"></a>
-# <b>静的メンバ（static）</b>
-* 静的メンバはクラスをインスタンス化せずにアクセスが可能
+<a name="クラス定数･クラスメソッド"></a>
+# <b>クラス定数･クラスメソッド</b>
+* クラスをインスタンス化せずにアクセスが可能
 
 ```
-//test.cs
-using System;
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        'クラス定数の参照
+        Console.WriteLine(MyMath.PI) '=> 3.14159265358979
 
-class Test {
-    static void Main() { //インスタンス化せずにOSから自動的に呼ぶ出すため
-        Console.WriteLine(Math.PI); //3.14159265358979 ←静的変数の呼び出し
-        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
-    }
-}
+        'クラスメソッドの実行
+        Console.WriteLine(MyMath.Pow(2,0)) '=> 1（2の0乗）
+        Console.WriteLine(MyMath.Pow(2,1)) '=> 2（2の1乗）
+        Console.WriteLine(MyMath.Pow(2,8)) '=> 256（2の8乗）
+    End Sub
 
-class Math { //独自クラス
-    //静的変数
-    public static double PI = 3.14159265358979;
+    Public Class MyMath
+        '''''''''''''''''
+        'クラス定数の定義
+        '''''''''''''''''
+        Public Const PI As Double = 3.14159265358979
 
-    //静的メソッド
-    public static long Pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
-        long _result = arg1;
-        for (int i=1; i<arg2; i++) {
-            _result = _result * arg1;
-        }
-        return _result;
-    }
-}
+        ''''''''''''''''''''''''''''''''''''
+        'クラスメソッド（静的メソッド）の定義
+        ''''''''''''''''''''''''''''''''''''
+        Shared Function Pow(ByVal _Arg1 As Integer, ByVal _Arg2 As Integer) As Integer
+            ' 0乗対策
+            IF _Arg2 = 0 Then '「==」ではない（注意）
+                return 1
+            End IF
+
+            Dim _Result As Integer = _Arg1 'ローカル変数
+            Dim _I As Integer 'カウンタ変数（ローカル変数）
+            For _I = 1 To _Arg2
+                _Result *= _Arg1
+            Next
+            return _Result / _Arg1
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月30日
 
 
 <a name="if文"></a>
