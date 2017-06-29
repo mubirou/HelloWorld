@@ -17,7 +17,7 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 ***
-* [ラムダ式](#ラムダ式)
+* [デリゲート](#デリゲート)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -910,54 +910,70 @@ End Module
 作成日：2017年06月28日
 
 
-<a name="ラムダ式"></a>
-# <b>ラムダ式</b>
-* [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
+<a name="デリゲート"></a>
+# <b>デリゲート</b>
 
+### 概要
+* デリゲート（delegate）とは「委譲」「代表者」「代理人」といった意味
+* メソッドを呼び出す手法のひとつ
+* 変数（デリゲート）にメソッドを格納することが可能になる（入替え可能）
+
+### 例文
 ```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
-        MyClass _myClass = new MyClass();
-        _myClass.Move(1); //
-        _myClass.change();
-        _myClass.Move(3); //←←←
-    }
-}
-class MyClass {
-    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
-    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
-    private bool _right = true;
-    public MyClass() { //コンストラクタ
-        Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
-            string _tmp = "";
-            for (int i=0; i<arg; i++) _tmp += "→";
-            Console.WriteLine(_tmp);
-        }; //メソッドの内容を変更
-    }
-    public void change() {
-        _right = ! _right;
-        if (_right) {
-            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "→";
-                Console.WriteLine(_tmp);
-            }; //メソッドの内容を変更
-        } else {
-            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
-                string _tmp = "";
-                for (int i=0; i<arg; i++) _tmp += "←";
-                Console.WriteLine(_tmp);
-            }; //メソッドの内容を変更
-        }
-    }
-}
+'test.vb
+Imports System
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _SomeClass As New SomeClass()
+        Console.WriteLine(_SomeClass.MyFunction("こんにちは!")) '=> Ａさん、こんにちは!
+
+        _SomeClass.Change("B") 'メソッドＢに入れ替える
+        Console.WriteLine(_SomeClass.MyFunction("Hello!")) '=> Mr.B, Hello!
+
+        _SomeClass.Change("A") '（再び）メソッドＡに入れ替える
+        Console.WriteLine(_SomeClass.MyFunction("今晩は!")) '=> Ａさん、今晩は!
+    End Sub
+
+    Public Class SomeClass
+        'デリゲート定義および、メソッドを格納するデリゲート用の変数の定義
+        Public Delegate Function MyDelegate(ByVal _String As String) As String 
+        Public MyFunction As MyDelegate 'メソッドを格納する変数（MyFunction）
+
+        'コンストラクタ
+        Public Sub New()
+            MyFunction = New MyDelegate(AddressOf TypeA) 'デリゲートにメソッドを格納
+        End Sub
+
+        '外部からメソッドを入れ替えるためのメソッド（
+        public Sub Change(ByVal _String As String)
+            IF _String = "A" Then '==ではない（注意）
+                MyFunction = New MyDelegate(AddressOf TypeA) 'メソッド（TypeA）に入替え
+            ElseIF _String = "B" Then
+                MyFunction = New MyDelegate(AddressOf TypeB) 'メソッド（TypeB）に入替え
+            End If
+        End Sub
+
+        ''''''''''''''''''
+        'タイプＡのメソッド
+        ''''''''''''''''''
+        Private Function TypeA(ByVal _String As String) As String
+            return "Ａさん、" & _String
+        End Function
+
+        ''''''''''''''''''
+        'タイプＢのメソッド
+        ''''''''''''''''''
+        Private Function TypeB(ByVal _String As String) As String
+            return "Mr.Ｂ, " & _String
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月29日
 
 
 <a name="静的メンバ（static）"></a>
