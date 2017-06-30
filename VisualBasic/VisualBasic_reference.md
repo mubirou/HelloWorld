@@ -21,7 +21,7 @@
 * [If 文](#If文)
 * [三項演算子](#三項演算子)
 ***
-* [switch 文](#switch文)
+* [Select Case 文](#SelectCase文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
@@ -1159,8 +1159,8 @@ End Module
 作成日：2017年07月01日
 
 
-<a name="switch文"></a>
-# <b>switch 文</b>
+<a name="SelectCase文"></a>
+# <b>Select Case 文</b>
 
 ### 基本サンプル
 ```
