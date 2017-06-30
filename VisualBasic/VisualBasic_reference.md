@@ -18,8 +18,8 @@
 * [メソッド](#メソッド)
 * [デリゲート](#デリゲート)
 * [クラス定数･クラスメソッド](#クラス定数･クラスメソッド)
-***
 * [If 文](#If文)
+***
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -1027,107 +1027,110 @@ End Module
 
 <a name="If文"></a>
 # <b>If 文</b>
+* 他の多くの言語で使われる「==」は「=」と記述します（要注意）
+* 他の多くの言語で使われる「!」は「Not」と記述します
 
 ### 基本例文
 ```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
-        int _age = 49;
-        if (_age <= 20) {
-            Console.WriteLine("20歳以下");
-        } else if (_age <= 40) {
-            Console.WriteLine("21〜40歳");
-        } else if (_age <= 60) {
-            Console.WriteLine("41〜60歳"); //これが出力される
-        } else {
-            Console.WriteLine("61歳以上");
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Age As Integer = 49
+        If _Age <= 20 Then
+            Console.WriteLine("20歳以下")
+        ElseIf _Age <=40 Then
+            Console.WriteLine("21〜40歳")
+        ElseIf _Age <=60 Then
+            Console.WriteLine("41〜60歳") 'これが出力される
+        Else
+            Console.WriteLine("61歳以上")
+        End If
+    End Sub
+End Module
 ```
 
 ### 論理積（AND）
-1. 論理演算子（&&）を使う方法
+1. 論理演算子（And）を使う方法
     ```
-    if (条件式① && 条件②) {
-        処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
-    } else {
+    If 条件式① And 条件② Then
+        処理A ←条件式① かつ 条件式② の両方がTrueの場合に実行
+    Else
         処理B
-    }
+    End If
     ```
 
-1. ifのネストを使う方法
+1. If のネストを使う方法
     ```
-    if (条件式①) {
-        if (条件②) {
-            処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
-        } else {
+    If 条件式① Then
+        If 条件② Then
+            処理A ←条件式① かつ 条件式② の両方がTrueの場合に実行
+        Else
             処理B
-        }
-    } else {
+        End If
+    Else
         処理B
-    }
+    End If
     ```
 
 ### 論理和（OR）
-1. 論理演算子（||）を使う方法
+1. 論理演算子（Or）を使う方法
     ```
-    if (条件式① || 条件②) {
-        処理A ←条件式①または条件式②の両方がtrueの場合に実行
-    } else {
+    If 条件式① Or 条件② Then
+        処理A ←条件式①または条件式②の両方がTrueの場合に実行
+    Else
         処理B
-    }
+    End If
     ```
 
-2. ifのネストを使う方法
+2. If のネストを使う方法
     ```
-    if (条件式①) {
+    If 条件式① Then
         処理A ←条件式①がtrueの場合に実行
-    } else if (条件②) {
+    ElseIf 条件② Then
         処理A ←条件式②がtrueの場合に実行
-    } else {
+    Else
         処理B
-    }
+    End If
     ```
 
 ### 排他的論理和（XOR）
-1. ^ 演算子を使う方法
+1. Xor 演算子を使う方法
     ```
-    //test.cs
-    using System;
-    class Test { //メインクラス
-        static void Main() { //自動的最初に実行され
-            bool _a = true, _b = false;
-            if (_a ^ _b) {
-                Console.WriteLine("どちらか一方だけtrueです");
-            } else {
-                Console.WriteLine("両方共にtrueかfalseです");
-            }
-        }
-    }
+    ' test.vb
+    Module test '名前（test）は任意
+        Sub Main() '自動的に最初に実行される
+            Dim _A As Boolean = True
+            Dim _B As Boolean = False
+            
+            If _A Xor _B Then
+                Console.WriteLine("どちらか一方だけTrueです")
+            Else
+                Console.WriteLine("両方共にTrueかFalseです")
+            End If
+        End Sub
+    End Module
     ```
 
-1. ^ 演算子を使わない方法
+1. Xor 演算子を使わない方法
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            bool _a = true, _b = false;
-            if ((_a || _b) && !(_a && _b)) {
-                Console.WriteLine("どちらか一方だけtrueです");
-            } else {
-                Console.WriteLine("両方共にtrueかfalseです");
-            }
-        }
-    }
+    ' test.vb
+    Module test '名前（test）は任意
+        Sub Main() '自動的に最初に実行される
+            Dim _A As Boolean = True
+            Dim _B As Boolean = False
+            
+            If (_A Or _B) And Not (_A And _B) Then
+                Console.WriteLine("どちらか一方だけTrueです")
+            Else
+                Console.WriteLine("両方共にTrueかFalseです")
+            End If
+        End Sub
+    End Module
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年06月30日
 
 
 <a name="三項演算子"></a>
