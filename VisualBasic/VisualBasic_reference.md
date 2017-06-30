@@ -1137,23 +1137,19 @@ End Module
 # <b>三項演算子</b>
 
 ### 比較式が１つの場合
-* 構文
 ```
-データ型 変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Age As Integer = 49
+        Dim _Result As String
+        _Result = If(_Age < 60, "現役", "退職") '三項演算子
+        Console.WriteLine(_Result) '=> 現役
+    End Sub
+End Module
 ```
 
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _age = 49;
-        string _result = (_age < 60) ? "現役" : "退職";
-        Console.WriteLine(_result); //"現役"
-    }
-}
-```
+===========================================
 
 ### 比較式が複数の場合
 * 構文
