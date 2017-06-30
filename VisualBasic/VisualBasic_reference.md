@@ -1136,7 +1136,12 @@ End Module
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
 
-### 比較式が１つの場合
+### 構文
+```
+If(比較式, Trueの場合の返り値, Flaseの場合の返り値)
+```
+
+### 例文
 ```
 ' test.vb
 Module test '名前（test）は任意
@@ -1149,34 +1154,9 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===========================================
-
-### 比較式が複数の場合
-* 構文
-```
-データ型 変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
-変数名 = (比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
-変数名 = (①②の全てがfalseの場合の返り値);
-```
-
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _age = 49;
-        string _result = (_age < 20) ? "未成年" :
-        _result = (_age < 60) ? "現役" :
-        _result = "退職";
-        Console.WriteLine(_result); //"現役"
-    }
-}
-```
-
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年06月XX日
+作成日：2017年07月01日
 
 
 <a name="switch文"></a>
