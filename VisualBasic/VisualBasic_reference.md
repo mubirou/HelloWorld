@@ -22,7 +22,7 @@
 * [三項演算子](#三項演算子)
 * [Select Case 文](#SelectCase文)
 ***
-* [for 文](#for文)
+* [For 文](#For文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
@@ -1206,8 +1206,8 @@ End Module
 作成日：2017年07月02日
 
 
-<a name="for文"></a>
-# <b>for 文</b>
+<a name="For文"></a>
+# <b>For 文</b>
 
 ### 基本構文
 ```
@@ -1217,7 +1217,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 ```
 
 ### ループカウンタ（ループ制御変数）の宣言位置
-1. for 文の中で宣言
+1. For 文の中で宣言
     ```
     //test.cs
     using System;
@@ -1226,12 +1226,12 @@ for (①初期化; ②ループ判定式; ③更新処理) {
             for (int i=0; i<10; i++) { //ここでint型を宣言すると...
                 Console.WriteLine(i); //0,1,2,3,4,5,6,7,8,9
             }
-            //Console.WriteLine(i); //error（for文の外では使用不可）
+            //Console.WriteLine(i); //error（For文の外では使用不可）
         }
     }
     ```
 
-1. for 文の外でループ制御変数を宣言する
+1. For 文の外でループ制御変数を宣言する
     ```
     //test.cs
     using System;
@@ -1241,7 +1241,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
             for (_i=0; _i<10; _i++) {
                 Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
             }
-            Console.WriteLine(_i); //10（for文の外でも有効）
+            Console.WriteLine(_i); //10（For文の外でも有効）
         }
     }
     ```
@@ -1259,7 +1259,7 @@ class Test {
 }
 ```
 
-### for 文のネスト
+### For 文のネスト
 ```
 //test.cs
 using System;
@@ -1286,12 +1286,12 @@ class Test {
             if (_count > 100) break; //ループを終了
             Console.WriteLine(_count); //1,2,....,99,100
         }
-        Console.WriteLine("for文終了"); //★
+        Console.WriteLine("For文終了"); //★
     }
 }
 ```
 
-### for 文と continue 文
+### For 文と continue 文
 ```
 //test.cs
 using System;
@@ -1299,7 +1299,7 @@ class Test {
     static void Main() {
         for (int i=1; i<=20; i++) { //iは1,2,...19,20
             if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                continue; //for文の残処理をスキップしてfor文の次の反復を開始する
+                continue; //For文の残処理をスキップしてFor文の次の反復を開始する
             }
             Console.WriteLine(i); //3,6,9,12,15,18（3の倍数）
         }
@@ -2050,7 +2050,7 @@ class Test {
     }
     ```
 
-1. for 文を使う方法
+1. For 文を使う方法
     ```
     //test.cs
     using System;
@@ -2887,7 +2887,7 @@ class Test {
 
 <a name="乱数"></a>
 # <b>乱数</b>
-* システム時間を元に発生させているためfor文で同時に異なる乱数を発生できない
+* システム時間を元に発生させているためFor文で同時に異なる乱数を発生できない
 
 ### 書式
 ```
