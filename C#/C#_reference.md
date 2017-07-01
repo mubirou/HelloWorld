@@ -1447,7 +1447,7 @@ class Test {
             case "TARO" :
                 Console.WriteLine("長男");
                 break;
-            case "JISO" :
+            case "JIRO" :
                 Console.WriteLine("次男");
                 break;
             default:
@@ -1458,7 +1458,7 @@ class Test {
 }
 ```
 
-### 注意その１ : 判別式にbool型が使えない
+### 注意その１ : 判別式に bool 型が使えない
 * 判別式に指定可能なもの
     * byte 型、short 型、int 型 などの整数型（浮動小数点型は指定不可）
     * char 型、string 型といった文字型

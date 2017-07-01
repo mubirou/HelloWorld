@@ -20,8 +20,8 @@
 * [クラス定数･クラスメソッド](#クラス定数･クラスメソッド)
 * [If 文](#If文)
 * [三項演算子](#三項演算子)
-***
 * [Select Case 文](#SelectCase文)
+***
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
@@ -1161,93 +1161,49 @@ End Module
 
 <a name="SelectCase文"></a>
 # <b>Select Case 文</b>
+* 他の多くの言語と異なりフォロースルーがありません（break 文なし）
 
 ### 基本サンプル
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _name = "TAKASHI";
-        switch (_name) { //判別式には「整数型」「文字型」しか使えない!
-            case "TAKASHI" :
-                Console.WriteLine("父");
-                break;
-            case "HANAKO" : 
-                Console.WriteLine("母");
-                break;
-            case "TARO" :
-                Console.WriteLine("長男");
-                break;
-            case "JISO" :
-                Console.WriteLine("次男");
-                break;
-            default:
-                Console.WriteLine("家族以外");
-                break; //defaultのbreakは省略不可（注意）
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Name As String = "TARO"
+        Select Case _Name
+            Case "TAKASHI"
+                Console.WriteLine("父")
+            Case "HANAKO"
+                Console.WriteLine("母")
+            Case "TARO"
+                Console.WriteLine("長男") 'これが出力
+            Case "JIRO"
+                Console.WriteLine("次男")
+            Case Else
+                Console.WriteLine("家族以外")
+        End Select
+    End Sub
+End Module
 ```
 
-### 注意その１ : 判別式にbool型が使えない
-* 判別式に指定可能なもの
-    * byte 型、short 型、int 型 などの整数型（浮動小数点型は指定不可）
-    * char 型、string 型といった文字型
-
-* 悪い例（エラー発生）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _age = 49;
-            switch (true) { //bool型はエラー（注意）
-                case _age < 20 :
-                    Console.WriteLine("未成年");
-                    break;
-                default:
-                    Console.WriteLine("成人");
-                    break;
-            }
-        }
-    }
-    ```
-
-### 注意その２ : フォールスルーの禁止規則
-* C#では、下記のように case で何か処理をしておきながら break 文を書かないで次の case の処理に入っていくことは不可（フォールスルーの禁止規則）
+### 判別式に Boolean 型を使う
 ```
-case "○○" : 何か処理; //何か処理をしておきながらbreakを書かないとエラー
-case "□□" : 何か処理; break;
-```
-
-* 良い例
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _name = "JIRO";
-        switch (_name) {
-            case "TAKASHI" : //breakが無いと次のcaseも処理
-            case "HANAKO" : 
-                Console.WriteLine("親");
-                break;
-            case "TARO" : //breakが無いと次のcaseも処理
-            case "JIRO" :
-                Console.WriteLine("子");
-                break;
-            default:
-                Console.WriteLine("家族以外");
-                break; //defaultのbreakは省略不可
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Age As Integer = 49
+        Select Case True
+            Case _Age < 20
+                Console.WriteLine("未成年")
+            Case Else
+                Console.WriteLine("成人") 'これが出力
+        End Select
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月02日
 
 
 <a name="for文"></a>
