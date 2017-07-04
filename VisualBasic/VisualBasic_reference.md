@@ -27,7 +27,7 @@
 * [配列](#配列)
 ***
 * [動的配列（ArrayList）](#動的配列（ArrayList）)
-* [連想配列（Dictionary）](#連想配列（Dictionary）)
+* [連想配列（Hashtable）](#連想配列（Hashtable）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -1970,8 +1970,8 @@ class Test {
 作成日：2017年07月XX日
 
 
-<a name="連想配列（Dictionary）"></a>
-# <b>連想配列（Dictionary）</b>
+<a name="連想配列（Hashtable）"></a>
+# <b>連想配列（Hashtable）</b>
 
 ### 概要
 * ディクショナリ、ハッシュとも呼ばれる「キー」と「値」の組み合わせを格納するデータ構造
