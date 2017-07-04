@@ -23,8 +23,8 @@
 * [Select Case 文](#SelectCase文)
 * [For 文](#For文)
 * [For Each 文](#ForEach文)
-***
 * [While 文](#While文)
+***
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
@@ -1393,72 +1393,58 @@ Module test '名前（test）は任意
 End Module
 ```
 
-=====================================================
-
-### do...While 文
-* 構文
+### Do...Loop 文
 ```
-do {
-    繰り返す処理 ←ループ判定式がfalseの場合でも最低１回は実行される
-} while(ループ判定式);
-```
-
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _i = 0;
-        do {
-            Console.WriteLine(_i); //0 ←ループ判定式はfalseだが１回実行される
-            _i++;
-        } while(_i < 0);
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _I As Integer = 0
+        Do
+            Console.WriteLine(_I) '=> 0（ループ判定式はFalseだが１回実行される）
+            _I += 1
+        Loop While _I < 0
+    End Sub
+End Module
 ```
 
-### While 文と break 文
+### While 文と Exit While 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _count = 0;
-        while (true) { //ループ判別式をtrueにすると無限ループに
-            _count++;
-            if (_count > 100) {
-                break; //break文を使ってループを終了→★
-            }
-            Console.WriteLine(_count); //1,2,....,99,100（1〜100までを出力）
-        }
-        Console.WriteLine("While文終了"); //★
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Count As Integer = 0
+        While True 'ループ判別式をTrueにすると無限ループに
+            _Count += 1
+            If _Count > 100 Then
+                Exit While 'ループを終了
+            End If
+            Console.WriteLine(_Count) '=> 1,2,....,99,100（1〜100までを出力）
+        End While
+    End Sub
+End Module
 ```
 
-### While 文と continue 文
+### While 文と Continue While 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _i = 1;
-        while (_i <= 20) {
-            if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                _i++;
-                continue; //While文の残処理をスキップしてWhile文の次の反復を開始する
-            }
-            Console.WriteLine(_i); //3,6,9,12,15,18（3の倍数を出力）
-            _i++;
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _I As Integer = 1
+        While _I <= 20
+            If (_I Mod 3) <> 0 Then '3で割って余りが0ではない（＝3の倍数ではない）場合
+                _I += 1
+                Continue While 'While文の残処理をスキップしてWhile文の次の反復を開始する
+            end If
+            Console.WriteLine(_I) '=> 3,6,9,12,15,18（3の倍数を出力）
+            _I += 1
+        End While
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月04日
 
 
 <a name="配列"></a>
