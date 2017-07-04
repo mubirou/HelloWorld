@@ -21,8 +21,8 @@
 * [If 文](#If文)
 * [三項演算子](#三項演算子)
 * [Select Case 文](#SelectCase文)
-***
 * [For 文](#For文)
+***
 * [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
