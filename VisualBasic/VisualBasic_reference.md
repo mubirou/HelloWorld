@@ -24,8 +24,8 @@
 * [For 文](#For文)
 * [For Each 文](#ForEach文)
 * [While 文](#While文)
-***
 * [配列](#配列)
+***
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
@@ -1335,9 +1335,9 @@ End Module
 ' test.vb
 Module test '名前（test）は任意
     Sub Main() '自動的に最初に実行される
-        'ジャグ配列
+        '作成
         Dim _Num As Integer = 3
-        Dim _Array As String()() = New String(3)() {}
+        Dim _Array As String()() = New String(_Num)() {}
         _Array(0) = New String() {"A","あ"}
         _Array(1) = New String() {"I","い"}
         _Array(2) = New String() {"U","う"}
@@ -1449,142 +1449,112 @@ End Module
 
 <a name="配列"></a>
 # <b>配列</b>
-* C# では配列宣言後の要素数変更は不可
+* Visual Basic .NET では配列宣言後の要素数変更は不可
 
-### １次元配列の作成
-* 構文（他にも var キーワードを使ってデータ型を省略した定義も可能）
+### １次元配列
 ```
-データ型[] 変数名 = new データ型[要素数];
-データ型[] 変数名 = new データ型[]{要素①,要素②,...};
-データ型[] 変数名 = {要素①,要素②,...}; //簡単
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        '作成
+        Dim _Array() As String = {"A","B","C","D"}
+        
+        'データの取得と変更
+        Console.WriteLine(_Array(0)) '=> "A"
+        _Array(0) = "あ" '変更
+        Console.WriteLine(_Array(0)) '=> "あ"
+    
+        '全てのデータの取得
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '=> "あ"=>"B"=>"C"=>"D"
+        Next
+    End Sub
+End Module
 ```
 
-* 例文
+### ２次元配列
 ```
-dynamic[] _array1 = new dynamic[4]; //4つの空の要素（動的型）を持つ配列を作成
-string[] _array2 = new string[]{"A","B","C","D"};
-string[] _array3 = {"A","B","C","D"}; //簡単
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        '作成
+        Dim _Array(,) As String = {{"x0y0","x1y0","x2y0"},{"x0y1","x1y1","x2y1"}}
+
+        'データの取得と変更
+        Console.WriteLine(_Array(0,2)) '=> "x2y0"
+        _Array(0,2) = "x02y00" '変更
+        Console.WriteLine(_Array(0,2)) '=> "x02y00"
+
+        '全てのデータの取得
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '=>"x0y0"=>"x1y0"=>"x02y00"=>"x0y1"=>"x1y1"=>"x2y1"
+        Next
+    End Sub
+End Module
 ```
-
-### ２次元配列（四角配列）の作成
-* 構文
-```
-データ型[,] 変数名 = new データ型[行数,列数]; //縦x横の空の要素を持つ２次元配列
-データ型[,] 変数名 = {{1行目の配列},{2行目の配列},...};
-```
-
-1. new 演算子を使う方法（≒５行x４列のコインロッカー）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string[,] _coinlocker = new string[5,4];
-            _coinlocker[0,0] = "1083"; //0,0の値
-            _coinlocker[0,1] = "7777"; //0,1の値
-            _coinlocker[2,1] = "0135"; //2,1の値
-            _coinlocker[4,3] = "1234"; //4,3の値
-        }
-    }
-    ```
-
-1. 配列リテラルを使う方法（≒５行x４列のコインロッカー）
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string[,] _coinlocker = 
-            {{"1083","7777","",""}, //0行目
-            {"","","",""},         //1行目
-            {"","0135","",""},     //2行目
-            {"","","",""},         //3行目
-            {"","","","1234"}};    //4行目
-
-            //確認
-            Console.WriteLine(_coinlocker[0,0]); //"1083"
-            Console.WriteLine(_coinlocker[0,1]); //"7777"
-            Console.WriteLine(_coinlocker[2,1]); //"0135"
-            Console.WriteLine(_coinlocker[4,3]); //"1234"
-        }
-    }
-    ```
 
 ### 配列の配列（ジャグ配列）の作成
 * 構文（それぞれの配列の長さは異なるものにできる）
 ```
-①データ型[][] 変数名 = new データ型[要素数][];
-②データ型[][] 変数名 = new データ型[][]{new データ型[]{配列①},...};
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        '作成
+        Dim _Num As Integer = 3
+        Dim _Array As String()() = New String(_Num)() {}
+        _Array(0) = New String() {"A","あ"}
+        _Array(1) = New String() {"I","い"}
+        _Array(2) = New String() {"U","う"}
+
+        'データの取得と変更
+        Console.WriteLine(_Array(0)(1)) '=> "あ"
+        _Array(0)(1) = "ア"
+        Console.WriteLine(_Array(0)(1)) '=> "ア"
+
+        '全てのデータの取得
+        For _Line As Integer = 0 To (_Num-1)
+            For Each _Value As String In _Array(_Line)
+                Console.WriteLine(_Value) '"A"=>"ア"、"I"=>"い"、"U"=>"う"
+            Next
+        Next
+    End Sub
+End Module
 ```
-
-1. ジャグ配列の宣言→後で値を割り当てる方法
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            dynamic[][] _array = new dynamic[4][];
-            _array[0] = new dynamic[]{"A","あ","ア"}; //配列リテラルは不可
-            _array[1] = new dynamic[]{"I","い","イ"};
-            _array[2] = new dynamic[]{"U","う","ウ"};
-            _array[3] = new dynamic[]{"E","え","エ"};
-        }
-    }
-    ```
-
-1. ジャグ配列の宣言と同時に値を割り当てる方法
-    ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            dynamic[][] _array = new dynamic[][]{
-            new dynamic[]{"A","あ","ア"},
-            new dynamic[]{"I","い","イ"},
-            new dynamic[]{"U","う","ウ"},
-            new dynamic[]{"E","え","エ"}
-            };
-            foreach (dynamic[] theArray in _array) { //確認 (コマンドライン版の例）
-                foreach (object theValue in theArray) {
-                    Console.WriteLine(theValue);
-                }
-            }
-        }
-    }
-    ```
 
 ### 配列の Length プロパティ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string[] _array = {"A","B","C","D"};
-        for (int i=0; i<_array.Length; i++) { //配列の要素の数
-            Console.WriteLine(_array[i]);
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        '作成
+        Dim _Array() As String = {"A","B","C","D"}
+
+        Console.WriteLine(_Array.Length) '=> 4
+
+        For I As Integer = 0 To (_Array.Length-1)
+            Console.WriteLine(_Array(I)) '"A"=>"B"=>"C"=>"D"
+        Next
+    End Sub
+End Module
 ```
 
 ### 文字列→配列
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "A,B,C,D"; //「,」区切りの文字列
-        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
-        foreach (string value in _array) {
-            Console.WriteLine(value); //"A"→"B"→"C"→"D"
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _String As String = "A,B,C,D" '「,」区切りの文字列
+        Dim _Array As String() = _String.Split(","c) '「,」区切りで分割して配列
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"A"=>"B"=>"C"=>"D"
+        Next
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月04日
 
 
 <a name="動的配列（List）"></a>
