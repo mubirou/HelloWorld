@@ -1379,28 +1379,21 @@ End Module
 # <b>While 文</b>
 
 ### While 文
-* 構文
 ```
-while (ループ判定式) {
-    繰り返す処理
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _I As Integer = 0
+        While _I < 10
+            Console.WriteLine(_I) '=> 0,1,2,3,4,5,6,7,8,9
+            _I += 1
+        End While
+        Console.WriteLine(_I) '=> 10（変数はまだ有効）
+    End Sub
+End Module
 ```
 
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _i = 0;
-        while (_i < 10) { //ループ判定式にはbool型しか使えない
-            Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
-            _i++;
-        }
-        Console.WriteLine(_i); //10（変数はまだ有効）
-    }
-}
-```
+=====================================================
 
 ### do...While 文
 * 構文
