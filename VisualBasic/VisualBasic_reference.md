@@ -1562,7 +1562,7 @@ End Module
 
 ### 概要
 * 配列と異なり ArrayList は要素の数を変更したり追加･削除などが可能
-* 他にも SortedList、Stack、Queue コレクションもあり
+* 動的配列には他に SortedList、Stack、Queue コレクションもあり
 
 ### 作成
 * 構文
