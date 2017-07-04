@@ -22,8 +22,8 @@
 * [三項演算子](#三項演算子)
 * [Select Case 文](#SelectCase文)
 * [For 文](#For文)
-***
 * [For Each 文](#ForEach文)
+***
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
@@ -1306,106 +1306,73 @@ End Module
 
 ### 配列（1次元）の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string[] _array = {"A","B","C","D"}; 
-        foreach (string value in _array) {
-            Console.WriteLine(value); //"A"→"B"→"C"→"D"
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array() As String = {"A","B","C","D"}
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '=> "A"=>"B"=>"C"=>"D"
+        Next
+    End Sub
+End Module
 ```
 
 ### 配列（2次元）の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string[,] _array = {
-            {"x0y0","x1y0","x2y0"}, //0行目
-            {"x0y1","x1y1","x2y1"}  //1行目
-        }; 
-        foreach (string value in _array) {
-            Console.WriteLine(value); //"x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array(,) As String = {{"x0y0","x1y0","x2y0"},{"x0y1","x1y1","x2y1"}}
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '=>"x0y0"=>"x1y0"=>"x2y0"=>"x0y1"=>"x1y1"=>"x2y1"
+        Next
+    End Sub
+End Module
 ```
 
 ### 配列（ジャグ配列）の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        dynamic[][] _array = new dynamic[2][];
-            _array[0] = new dynamic[]{"A","あ"};
-            _array[1] = new dynamic[]{"I","い"};
-        foreach (object[] theArray in _array) {
-            foreach (object value in theArray) {
-                Console.WriteLine(value); //"A"→"あ"、"I"→"い"
-            }
-            Console.WriteLine(); //オプション（改行）
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        'ジャグ配列
+        Dim _Num As Integer = 3
+        Dim _Array As String()() = New String(3)() {}
+        _Array(0) = New String() {"A","あ"}
+        _Array(1) = New String() {"I","い"}
+        _Array(2) = New String() {"U","う"}
+
+        For _Line As Integer = 0 To (_Num-1)
+            For Each _Value As String In _Array(_Line)
+                Console.WriteLine(_Value) '"A"=>"あ"、"I"=>"い"、"U"=>"う"
+            Next
+        Next
+    End Sub
+End Module
 ```
 
-### 動的配列（ArrayList）の場合
+### 連想配列（Hashtable）の場合
 ```
-//test.cs
-using System;
-using System.Collections; //ArrayListに必要
-class Test {
-    static void Main() {
-        ArrayList _array = new ArrayList();
-        _array.Add("TAKASHI");
-        _array.Add(49);
-        foreach (object value in _array) {
-            Console.WriteLine(value); //"TAKASHI"→49
-        }
-    }
-}
-```
+' test.vb
+Imports System.Collections 'Hashtableに必要
 
-### 動的配列（List）の場合
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B" };
-        foreach (string value in _list) {
-            Console.WriteLine(value); //"A"→"B"
-        }
-    }
-}
-```
-
-### 連想配列の場合
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Dictionaryに必要
-class Test {
-    static void Main() {
-        Dictionary<string, string> _dic = new Dictionary<string, string>() {
-            {"A", "あ"},    {"I", "い"}
-        };
-        foreach (KeyValuePair<string, string> tmp in _dic) {
-            Console.WriteLine(tmp.Key + ":" + tmp.Value); //A:あ → I:い
-        }
-    }
-}
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Hash As New Hashtable()
+        _Hash.Add("A", "あ")
+        _Hash.Add("I", "い")
+        
+        For Each _Key As String In _Hash.Keys
+            Console.WriteLine(_Key, _Hash(_Key)) '"A"=>"I"
+            Console.WriteLine(_Hash(_Key)) '"あ"=>"い"
+        Next
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月04日
 
 
 <a name="while文"></a>
