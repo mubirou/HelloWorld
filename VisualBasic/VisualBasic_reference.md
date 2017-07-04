@@ -26,7 +26,7 @@
 * [While 文](#While文)
 * [配列](#配列)
 ***
-* [動的配列（List）](#動的配列（List）)
+* [動的配列（ArrayList）](#動的配列（ArrayList）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
@@ -1557,8 +1557,8 @@ End Module
 作成日：2017年07月04日
 
 
-<a name="動的配列（List）"></a>
-# <b>動的配列（List）</b>
+<a name="動的配列（ArrayList）"></a>
+# <b>動的配列（ArrayList）</b>
 
 ### 概要
 * 配列と異なり List は要素の数を変更したり追加･削除などが可能
