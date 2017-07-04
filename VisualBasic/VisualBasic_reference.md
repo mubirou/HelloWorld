@@ -24,7 +24,7 @@
 * [For 文](#For文)
 * [For Each 文](#ForEach文)
 ***
-* [while 文](#while文)
+* [While 文](#While文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
@@ -1375,10 +1375,10 @@ End Module
 作成日：2017年07月04日
 
 
-<a name="while文"></a>
-# <b>while 文</b>
+<a name="While文"></a>
+# <b>While 文</b>
 
-### while 文
+### While 文
 * 構文
 ```
 while (ループ判定式) {
@@ -1402,7 +1402,7 @@ class Test {
 }
 ```
 
-### do...while 文
+### do...While 文
 * 構文
 ```
 do {
@@ -1425,7 +1425,7 @@ class Test {
 }
 ```
 
-### while 文と break 文
+### While 文と break 文
 ```
 //test.cs
 using System;
@@ -1439,12 +1439,12 @@ class Test {
             }
             Console.WriteLine(_count); //1,2,....,99,100（1〜100までを出力）
         }
-        Console.WriteLine("while文終了"); //★
+        Console.WriteLine("While文終了"); //★
     }
 }
 ```
 
-### while 文と continue 文
+### While 文と continue 文
 ```
 //test.cs
 using System;
@@ -1454,7 +1454,7 @@ class Test {
         while (_i <= 20) {
             if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
                 _i++;
-                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+                continue; //While文の残処理をスキップしてWhile文の次の反復を開始する
             }
             Console.WriteLine(_i); //3,6,9,12,15,18（3の倍数を出力）
             _i++;
