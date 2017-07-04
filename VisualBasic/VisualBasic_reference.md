@@ -1449,7 +1449,7 @@ End Module
 
 <a name="配列"></a>
 # <b>配列</b>
-* Visual Basic .NET では配列宣言後の要素数変更は不可
+* Visual Basic .NET では配列宣言後の要素数の変更は不可
 
 ### １次元配列
 ```
