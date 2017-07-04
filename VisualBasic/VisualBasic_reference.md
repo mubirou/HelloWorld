@@ -1209,107 +1209,96 @@ End Module
 <a name="For文"></a>
 # <b>For 文</b>
 
-### 基本構文
-```
-for (①初期化; ②ループ判定式; ③更新処理) {
-    繰り返す処理
-}
-```
-
 ### ループカウンタ（ループ制御変数）の宣言位置
 1. For 文の中で宣言
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            for (int i=0; i<10; i++) { //ここでint型を宣言すると...
-                Console.WriteLine(i); //0,1,2,3,4,5,6,7,8,9
-            }
-            //Console.WriteLine(i); //error（For文の外では使用不可）
-        }
-    }
+    ' test.vb
+    Module test '名前（test）は任意
+        Sub Main() '自動的に最初に実行される
+            For I As Integer = 0 To 9 'ここでInteger型を宣言すると...
+                Console.WriteLine(I) '=> 0,1,2,3,4,5,6,7,8,9
+            Next
+            Console.WriteLine(I) 'error（For文の外では使用不可）
+        End Sub
+    End Module
     ```
 
 1. For 文の外でループ制御変数を宣言する
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _i; //ここでint型を宣言すると...
-            for (_i=0; _i<10; _i++) {
-                Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
-            }
-            Console.WriteLine(_i); //10（For文の外でも有効）
-        }
-    }
+    ' test.vb
+    Module test '名前（test）は任意
+        Sub Main() '自動的に最初に実行される
+            Dim I As Integer 'ここでInteger型を宣言すると...
+            For I = 0 To 9
+                Console.WriteLine(I) '=> 0,1,2,3,4,5,6,7,8,9
+            Next
+            Console.WriteLine(I) '=> 10（For文の外でも有効）
+        End Sub
+    End Module
     ```
 
 ### ループカウンタを○つずつアップする
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        for (int i=0; i<50; i+=5) { //5つずつアップする場合...
-            Console.WriteLine(i); //0,5,10,15,20,25,30,35,40,45
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        For I As Integer = 0 To 50 Step 5 '5つずつアップする場合...
+            Console.WriteLine(I) '=> 0,5,10,15,20,25,30,35,40,45,50
+        Next
+    End Sub
+End Module
 ```
 
 ### For 文のネスト
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        for (int i=1; i<=5; i++) {
-            for (int j=1; j<=5; j++) {
-                Console.WriteLine("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
-            }
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        For I As Integer = 1 To 5
+            For J As Integer = 1 To 5
+                Console.WriteLine("x" & I & "y" & J) '=> x1y1,x1y2,....,x5y4,x5y5
+            Next
+        Next
+    End Sub
+End Module
 ```
 
-### 無限ループと break 文
+### 無限ループと Exit For 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _count = 0;
-        for (;;) { //①初期化 ②ループ判定式 ③更新処理...の全てを省略すると無限ループ
-            _count++;
-            if (_count > 100) break; //ループを終了
-            Console.WriteLine(_count); //1,2,....,99,100
-        }
-        Console.WriteLine("For文終了"); //★
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Count As Integer = 0
+        For I As Integer = 0 To 1 '無限ループにするために（力技）
+            I -= 1 '無限ループにするために（力技）
+            _Count += 1
+            If _Count > 100 Then
+                Exit For 'ループを終了
+            End If
+            Console.WriteLine(_Count) '=> 1,2,....,99,100
+        Next
+    End Sub
+End Module
 ```
 
-### For 文と continue 文
+### For 文と Continue For 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        for (int i=1; i<=20; i++) { //iは1,2,...19,20
-            if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                continue; //For文の残処理をスキップしてFor文の次の反復を開始する
-            }
-            Console.WriteLine(i); //3,6,9,12,15,18（3の倍数）
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        For I As Integer = 1 To 20
+            If (I Mod 3) <> 0 Then 
+                Continue For 'For文の残処理をスキップしてFor文の次の反復を開始する
+            End If
+            Console.WriteLine(I) '=> 3,6,9,12,15,18（3の倍数）
+        Next
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月04日
 
 
 <a name="foreach文"></a>
