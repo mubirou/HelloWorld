@@ -1561,8 +1561,8 @@ End Module
 # <b>動的配列（ArrayList）</b>
 
 ### 概要
-* 配列と異なり List は要素の数を変更したり追加･削除などが可能
-* 動的配列（ArrayList）の.NET framework 2.0 対応版
+* 配列と異なり ArrayList は要素の数を変更したり追加･削除などが可能
+* 他にも SortedList、Stack、Queue コレクションもあり
 
 ### 作成
 * 構文
