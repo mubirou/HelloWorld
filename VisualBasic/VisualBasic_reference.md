@@ -23,7 +23,7 @@
 * [Select Case 文](#SelectCase文)
 * [For 文](#For文)
 ***
-* [foreach 文](#foreach文)
+* [For Each 文](#ForEach文)
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
@@ -1301,15 +1301,8 @@ End Module
 作成日：2017年07月04日
 
 
-<a name="foreach文"></a>
-# <b>foreach 文</b>
-
-### 基本構文
-```
-foreach (データ型 変数名 in 配列等) {
-    Console.WriteLine(変数名);
-}
-```
+<a name="ForEach文"></a>
+# <b>For Each 文</b>
 
 ### 配列（1次元）の場合
 ```
@@ -2022,7 +2015,7 @@ class Test {
 
 
 ### 全要素を取り出す
-1. foreach 文を使う方法
+1. For Each 文を使う方法
     ```
     //test.cs
     using System;
