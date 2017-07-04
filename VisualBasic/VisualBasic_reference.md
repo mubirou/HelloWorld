@@ -1642,8 +1642,6 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
 ### 更新（Nothing）
 ```
 ' test.vb
@@ -1662,6 +1660,22 @@ Module test '名前（test）は任意
     End Sub
 End Module
 ```
+
+### 削除（全て）
+```
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Clear() '全てのデータを削除
+        Console.WriteLine(_Array.Count) '=> 0
+    End Sub
+End Module
+```
+
+===============================================================
 
 ### 削除（指定のオブジェクト）
 * 構文
