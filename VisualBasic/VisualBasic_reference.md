@@ -1582,7 +1582,7 @@ End Module
 * 配列と異なり ArrayList は要素の数を変更したり追加･削除などが可能
 * 動的配列には他に SortedList、Stack、Queue コレクションもあり
 
-### 作成
+### 作成と追加（最後）
 ```
 ' test.vb
 Imports System.Collections 'ArrayListに必要
@@ -1604,52 +1604,26 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
-### 追加（最後）
-* 構文
-```
-List.Add(値); //値はobject型（文字型、数値型等）で混在不可（dynamic型は除く）
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //空 → "A" → "A","B"
-        List<string> _list = new List<string>();
-        _list.Add("A");
-        _list.Add("B");
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"A"→"B"
-        }
-    }
-}
-```
-
 ### 追加（指定位置）
-* 構文
 ```
-List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capacity-1）まで指定可能
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Insert(0,"C") '先頭（0）〜最後（ArrayList.Count）まで指定可能
+        Console.WriteLine(_Array.Count)
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"C"=>"A"=>"B"
+        Next
+    End Sub
+End Module
 ```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B" → "C","A","B"
-        List<string> _list = new List<string>() { "A", "B" };
-        _list.Insert(0,"C"); //先頭に追加する場合は0
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"C"→"A"→"B"
-        }
-    }
-}
-```
+
+===============================================================
 
 ### 更新（任意の値）
 * 構文
