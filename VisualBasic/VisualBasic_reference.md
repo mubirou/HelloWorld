@@ -1351,6 +1351,24 @@ Module test '名前（test）は任意
 End Module
 ```
 
+### 動的配列（ArrayList）の場合
+```
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("TAKASHI")
+        _Array.Add("HAKANO")
+
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"TAKASHI"=>"HANAKO"
+        Next
+    End Sub
+End Module
+```
+
 ### 連想配列（Hashtable）の場合
 ```
 ' test.vb
@@ -1565,25 +1583,25 @@ End Module
 * 動的配列には他に SortedList、Stack、Queue コレクションもあり
 
 ### 作成
-* 構文
 ```
-List<データ型> 変数名 = new List<データ型>(); //空のListを作成
-List<データ型> 変数名 = new List<データ型>(数); //指定数の空の要素を持つList作成
-List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,... };
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B" };
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"A"→"B"
-        }
-    }
-}
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        'ArrayListの宣言
+        Dim _Array As New ArrayList()
+
+        'データの追加
+        _Array.Add("TAKASHI")
+        _Array.Add("HAKANO")
+
+        '全データの取得
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"TAKASHI"=>"HANAKO"
+        Next
+    End Sub
+End Module
 ```
 
 ### 追加（最後）
