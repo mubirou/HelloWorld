@@ -1623,50 +1623,44 @@ Module test '名前（test）は任意
 End Module
 ```
 
+### 更新（任意の値）
+```
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array(0) = "X" '要素番号0の値を変更
+        Console.WriteLine(_Array.Count)
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"X"=>"B"
+        Next
+    End Sub
+End Module
+```
+
 ===============================================================
 
-### 更新（任意の値）
-* 構文
+### 更新（Nothing）
 ```
-List[インデックス番号] = 値;
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B" → "C","B"
-        List<string> _list = new List<string>() { "A", "B" };
-        _list[0] = "C"; //0番目を変更する場合
-        foreach (object value in _list) {
-            Console.WriteLine(value); //"C"→"B"
-        }
-    }
-}
-```
+' test.vb
+Imports System.Collections 'ArrayListに必要
 
-###更新（null型）
-* 構文
-```
-List[インデックス番号] = null;
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C" → "A","B",null
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list[2] = null;
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"B"→（null）
-        }
-    }
-}
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array(2) = Nothing 'C#の「null」相当
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) ' "A"=>"B"=>（Nothing）
+        Next
+    End Sub
+End Module
 ```
 
 ### 削除（指定のオブジェクト）
