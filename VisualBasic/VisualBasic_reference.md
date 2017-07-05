@@ -26,8 +26,8 @@
 * [While 文](#While文)
 * [配列](#配列)
 * [動的配列（ArrayList）](#動的配列（ArrayList）)
-***
 * [連想配列（Hashtable）](#連想配列（Hashtable）)
+***
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -2003,29 +2003,30 @@ Module test '名前（test）は任意
 End Module
 ```
 
-=================================================================
-
 ### キー、値の検索
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
-class Test {
-    static void Main() {
-        //①作成（空のDictionaryを作成する場合、{}は不要）
-        Dictionary<string, string> _dic = new Dictionary<string, string>() {
-            {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
-        };
+' test.vb
+Imports System.Collections 'Hashtableに必要
 
-        Console.WriteLine(_dic.ContainsKey("B")); //任意のキーがあるか否か（True／False）
-        Console.WriteLine(_dic.ContainsValue("え")); //任意の値があるか否か（True／False）
-    }
-}
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        '作成
+        Dim _Hash As New Hashtable()
+        _Hash.Add("A", "あ")
+        _Hash.Add("I", "い")
+        _Hash.Add("U", "う")
+        _Hash.Add("E", "え")
+        _Hash.Add("O", "お")
+
+        Console.WriteLine(_Hash.ContainsKey("B")) '任意のキーがあるか否か（True／False）
+        Console.WriteLine(_Hash.ContainsValue("お")) '任意の値があるか否か（True／False）
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月05日
 
 
 <a name="this"></a>
