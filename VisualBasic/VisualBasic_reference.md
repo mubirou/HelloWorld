@@ -2117,42 +2117,29 @@ Module test '名前（test）は任意
 End Module
 ```
 
-=============================================
-
 ### 一部分を削除
-* 構文
 ```
-String.Remove(開始位置, 削除する文字数);
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "にしむらたかし";
-        Console.WriteLine(_string.Remove(0, 4)); //"たかし"
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _String As String = "にしむらたかし"
+        Console.WriteLine(_String.Remove(0, 4)) '=> "たかし"
+    End Sub
+End Module
 ```
 
 ### 置換
-* 構文
 ```
-String.Replace("置換前の文字列", "置換後の文字列");
-String.Replace('置換前の文字', '置換後の文字');
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _String As String = "2017年07月05日"
+        Console.WriteLine(_String.Replace("2017年", "平成29年")) '=> "平成29年07月05日"
+    End Sub
+End Module
 ```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "2017年04月19日";
-        Console.WriteLine(_string.Replace("2017年", "平成29年")); //"平成29年04月19日"
-    }
-}
-```
+
+=============================================
 
 ### 検索
 * 構文
