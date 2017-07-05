@@ -30,8 +30,8 @@
 * [Me](#Me)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-***
 * [インターフェース](#インターフェース)
+***
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
@@ -2224,55 +2224,45 @@ End Module
 <a name="インターフェース"></a>
 # <b>インターフェース</b>
 
-### 概要
-* クラスにどのような機能（メソッド）を持たせるか、ということだけを定める
-* 抽象クラスと似ているが、抽象クラスとは異なり、実際の処理は一切記述できない
-* 実際の処理はインターフェースを継承したクラスで定義（実装しないとエラー）
-* 多重実装（複数のインターフェースを同時に指定）や多重継承も可能
-
-### 構文
 ```
-//インターフェースの宣言
-interface Iインターフェース名 { //慣例的にインターフェース名の先頭にIを付けます
-    戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]); //暗黙的にpublic扱い
-    ......
-}
-//インターフェースの実装
-class クラス名 : Iインターフェース名 { ......
-```
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Moneybox AS New Moneybox()
+        _Moneybox.Add(5000)
+        Console.WriteLine(_Moneybox.Total) '=> 5000
+    End Sub
 
-### 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Moneybox _moneybox = new Moneybox();
-        _moneybox.Add(5000);
-        Console.WriteLine(_moneybox.Total); //5000
-    }
-}
+    'インターフェースの宣言
+    Public Interface IMoneybox
+        Sub Add(ByVal _Money As Integer) '"Public"は記述しない
+        Property Total() As Integer '"Public"は記述しない
+    End Interface
 
-//インターフェースの宣言
-interface IMoneybox {
-    void Add(int _money); //通常のメソッド（暗黙的にpublicになる）
-    int Total { get; set; } //get/setアクセサ（暗黙的にpublicになる）
-}
+    Public Class Moneybox
+        Implements IMoneybox 'インターフェースの実装
 
-//インターフェースの実装（継承との併用は,を使う）
-class Moneybox : IMoneybox {
-    private int _total = 0;
-    public void Add(int _money) { _total += _money; } 
-    public int Total {
-        get { return _total; }
-        set { _total = value; }
-    }
-}
+        private _Total As Integer = 0
+
+        Public Sub Add(ByVal _Money As Integer) Implements IMoneybox.Add 'インターフェースの実装
+            _Total += _Money
+        End Sub
+
+        Public Property Total() As Integer Implements IMoneybox.Total 'インターフェースの実装
+            Get
+                Total = _Total
+            End Get
+            Set(ByVal _newValue As Integer)
+                _Total = _newValue
+            End Set
+        End Property
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月05日
 
 
 <a name="抽象クラス（abstract）"></a>
