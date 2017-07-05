@@ -1806,66 +1806,75 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
 ### 並べ替え（反転）
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        _list.Reverse();
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "D"→"C"→"B"→"A"
-        }
-    }
-}
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array.Add("D")
+        _Array.Reverse()
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"D"→"C"→"B"→"A"
+        Next
+    End Sub
+End Module
 ```
 
 ### 並べ替え（ソート）
-* 構文
 ```
-List.Sort(); //引数で範囲や比較方法を指定することも可能
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"C", "02", "A", "01", "03", "B" → "01", "02", "03", "A", "B", "C"
-        List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
-        _list.Sort();
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "01"→"02"→"03"→"A"→"B"→"C"
-        }
-    }
-}
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("C")
+        _Array.Add("02")
+        _Array.Add("A")
+        _Array.Add("01")
+        _Array.Add("03")
+        _Array.Add("B")
+        _Array.Sort() '並べ替える
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"01"→"02"→"03"→"A"→"B"→"C"
+        Next
+    End Sub
+End Module
 ```
 
 ### 結合
-* 構文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list1 = new List<string>() { "A", "B", "C" };
-        List<string> _list2 = new List<string>() { "D", "E", "F" };
+' test.vb
+Imports System.Collections 'ArrayListに必要
 
-        //_list1の末尾に_list2を結合
-        _list1.AddRange(_list2);
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array1 As New ArrayList()
+        _Array1.Add("A")
+        _Array1.Add("B")
+        _Array1.Add("C")
 
-        foreach (object value in _list1) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"→"E"→"F"
-        }
-    }
-}
+        Dim _Array2 As New ArrayList()
+        _Array2.Add("D")
+        _Array2.Add("E")
+        _Array2.Add("F")
+
+        _Array1.AddRange(_Array2) '_Array1の末尾に_Array2を結合
+        
+        For Each _Value As String In _Array1
+            Console.WriteLine(_Value) '"A"→"B"→"C"→"D"→"E"→"F"
+        Next
+    End Sub
+End Module
 ```
+
+===============================================================
 
 ### 複製
 ```
