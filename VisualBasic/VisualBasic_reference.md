@@ -2029,56 +2029,64 @@ End Module
 作成日：2017年07月05日
 
 
-<a name="this"></a>
-# <b>this</b>
+<a name="Me"></a>
+# <b>Me</b>
 
-### thisが必要な場合
+### Me が必要な場合
 1. 「引数」と「インスタンス変数」が同じ場合
 1. 「ローカル変数」と「インスタンス変数」が同じ場合
-* this は、this を記述したメソッドを所有するクラス（オブジェクト）を指す
+* Me は、Me を記述したメソッドを所有するクラス（オブジェクト）を指す
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Robot AS New Robot(500)
+        _Robot.Move()
+        Console.WriteLine(_Robot.X) '=> 510
+        'Console.WriteLine(Me) '=> ERROR
+    End Sub
 
-//メインクラス
-class Test {
-    static void Main() {
-        Robot _robot = new Robot(500);
-        _robot.Move();
-        Console.WriteLine(_robot.X); //510
-        //Console.WriteLine(this); //error（staticメソッド内では参照できず）
-    }
-}
+    'カスタムクラス
+    Public Class Robot
+        Private _X As Integer 'インスタンス変数
 
-//カスタムクラス
-class Robot {
-    private int _x; //インスタンス変数（thisは不要）
-    
-    public Robot(int _x) { //引数
-        this._x = _x; //①thisが無いとWarning（引数を参照してしまう）
-        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
-    }
+        'コンストラクタは省略可（初期値はここで設定してもよい）
+        Public Sub New(ByVal _X As Integer)
+            Me._X = _X 'インスタンス変数へのアクセスには「Me」が必須
+            Console.WriteLine(Me._X)
+            Console.WriteLine(_X)
+            Console.WriteLine(Me) '=> test+Robot（このメソッドが実行されたオブジェクト）
+        End Sub
 
-    public void Move() {
-        int _x; //ローカル変数
-        _x = this._x + 10; //②thisが無いとerror（ローカル変数を参照してしまう）
-        if (_x >= 1920) _x = 0;
-        this._x = _x; //②thisが無いとWarning（ローカル変数を参照してしまう）
-        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
-    }
+        'メソッドの定義
+        Public Sub Move()
+            Dim _X As Integer 'ローカル変数
+            _X = Me._X + 10 'インスタンス変数へのアクセスには「Me」が必須
+            If _X > 1920 Then
+                _X = 0
+            End If
+            Me._X = _X
+            Console.WriteLine(Me) '=> test+Robot（このメソッドが実行されたオブジェクト）
+        End Sub
 
-    public int X {
-        get { return _x; } //thisを付けてもよい（通常は省略）
-        private set {}
-    }
-}
+        'アクセサの定義
+        Public Property X() As Integer
+            Get
+                X = Me._X 'Meは省略可能
+            End Get
+            Set(ByVal _newValue As Integer)
+                Me._X = _newValue 'Meは省略可能
+            End Set
+        End Property
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月05日
 
 
 <a name="文字列の操作"></a>
