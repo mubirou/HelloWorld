@@ -1974,41 +1974,36 @@ End Module
 * ディクショナリ、ハッシュとも呼ばれる「キー」と「値」の組み合わせを格納するデータ構造
 * 匿名型クラスは、同様のデータ構造を持てるが読取り専用
 
-### 作成方法
+### 基本例文
 ```
-Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>();
-Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>() {
-    {"キー①", 値①},
-    {"キー②", 値②}, 
-    ......…
-};
+' test.vb
+Imports System.Collections 'Hashtableに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        '①作成
+        Dim _Hash As New Hashtable()
+
+        '②追加
+        _Hash.Add("A", "あ")
+        _Hash.Add("I", "い")
+
+        '③更新
+        _Hash("A") = "ア"
+        
+        '④取得
+        Console.WriteLine(_Hash("A")) '=> "ア"
+
+        '全ての値の取得
+        For Each _Key As String In _Hash.Keys
+            Console.WriteLine(_Key, _Hash(_Key)) '"A"=>"I"
+            Console.WriteLine(_Hash(_Key)) '"ア"=>"い"
+        Next
+    End Sub
+End Module
 ```
 
-* 例文
-    ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
-    class Test {
-        static void Main() {
-            //①作成（空のDictionaryを作成する場合、{}は不要）
-            Dictionary<string, string> _dic = new Dictionary<string, string>() {
-                {"A", "あ"},
-                {"I", "い"}
-            };
-
-            //②追加
-            _dic.Add("U", "う");
-            _dic.Add("E", "え");
-
-            //③更新
-            _dic["A"] = "ア"; //上書き変更
-
-            //④取得
-            Console.WriteLine(_dic["A"]); //"ア"
-        }
-    }
-    ```
+=================================================================
 
 ### キー、値の検索
 ```
