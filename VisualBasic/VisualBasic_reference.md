@@ -1874,23 +1874,29 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
 ### 複製
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        List<string> _listCopy = new List<string>(_list); //簡易型コピー方法
-        _list[0] = "X";
-        Console.WriteLine(_list[0]); //"X"
-        Console.WriteLine(_listCopy[0]); //"A（参照コピーではない）
-    }
-}
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+
+        Dim _ArrayCopy As New ArrayList(_Array) '簡易型コピー方法
+
+        _Array(0) = "X" 'データの一部を変更してみる
+
+        Console.WriteLine(_Array(0)) '=> "X"
+        Console.WriteLine(_ArrayCopy(0)) '=> "A"（変更なし＝参照コピーではない）
+    End Sub
+End Module
 ```
+
+===============================================================
 
 ### 文字列→ List
 ```
