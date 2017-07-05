@@ -28,8 +28,8 @@
 * [動的配列（ArrayList）](#動的配列（ArrayList）)
 * [連想配列（Hashtable）](#連想配列（Hashtable）)
 * [Me](#Me)
-***
 * [文字列の操作](#文字列の操作)
+***
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
@@ -2139,56 +2139,41 @@ Module test '名前（test）は任意
 End Module
 ```
 
-=============================================
-
 ### 検索
-* 構文
 ```
-String.IndexOf("検索したい文字列", 開始位置);
-String.IndexOf('検索したい文字', 開始位置);
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "ABCDEFG-ABCDEFG";
-        string _word = "CD";
-        int _i = 0;
-        while (_string.IndexOf(_word, _i) != -1) { //見つからない場合「-1」
-            int _num = _string.IndexOf(_word, _i);
-            Console.WriteLine(_num); //2、10 ←"CD"が見つかった位置を出力
-            Console.WriteLine(_string.Substring(_num, _word.Length)); //"CD"、"CD"
-            _i = _num + 1;
-        }
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _String As String = "ABCDEFG-ABCDEFG"
+        Dim _Word As String = "CD"
+        Dim _I As Integer = 0
+        While _String.IndexOf(_Word, _I) <> -1 '見つからない場合「-1」
+            Dim _Num As Integer = _String.IndexOf(_Word, _I)
+            Console.WriteLine(_Num) '=> 2、10 ←"CD"が見つかった位置を出力
+            Console.WriteLine(_String.Substring(_Num, _Word.Length)) '=> "CD"、"CD"
+            _I = _Num + 1
+        End While
+    End Sub
+End Module
 ```
 
 ### 文字列→配列
-* 構文
 ```
-String.Split('区切り文字');
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "A,B,C,D"; //「,」区切りの文字列
-        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
-        foreach (object value in _array) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"
-        }
-    }
-}
+' test.vb
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _String As String = "A,B,C,D" '「,」区切りの文字列
+        Dim _Array As String() = _String.Split(","c) '「,」区切りで分割して配列
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"A"=>"B"=>"C"=>"D"
+        Next
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月05日
 
 
 <a name="正規表現"></a>
