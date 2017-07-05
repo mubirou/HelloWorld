@@ -1714,98 +1714,82 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
 ### 削除（○番目から□個）
-* 構文
 ```
-List.RemoveRange(開始, 削除する個数); //開始＝削除開始したいインデックス番号
-List.RemoveRange(開始, List.Capacity-開始); //○番目から最後まで削除
-List.Clear(); //全て削除
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C","D" → "A","B"
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        _list.RemoveRange(2, 2); //2番目から2個削除
-        //]_list.RemoveRange(1, _list.Capacity-1); //1番目〜最後を削除する場合
-        //_list.Clear(); //全て削除する場合
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"B"
-        }
-    }
-}
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array.Add("D")
+        _Array.RemoveRange(2, 2) '2番目から2個削除する場合
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"A"=>"B"
+        Next
+    End Sub
+End Module
 ```
 
 ### 抽出（○番目から□個）
-* 構文
 ```
-List.GetRange(開始, 抜き出す個数); //開始＝抜出しを開始したいインデックス番号
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C","D" → "C","D"を返す
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
-        //List<string> _result = _list.GetRange(1, _list.Capacity-1);//1番目〜最後を抽出
-        foreach (object value in _result) {
-            Console.WriteLine(value); // "C"→"D"
-        }
-    }
-}
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array.Add("D")
+        Dim _Result As New ArrayList = _Array.GetRange(2, 2) '2番目から2個抽出する場合
+        For Each _Value As String In _Result
+            Console.WriteLine(_Value) '"C"=>"D"
+        Next
+    End Sub
+End Module
 ```
 
 ### 検索(前から）
-* 構文
 ```
-List.IndexOf(object [,検索開始するインデックス番号]);
-//最初に見つかったインデックス番号を返す（無い場合-1）
-//第2引数を省略すると最初（0）から検索
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        Console.WriteLine(_list.IndexOf("C",0)); //2
-        //最初から検索する場合（第2引数が0の場合は省略可能）
-    }
-}
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array.Add("D")
+        Console.WriteLine(_Array.IndexOf("C",0)) '=> 2（見つからない場合-1）
+        '最初から検索する場合（第2引数が0の場合は省略可能）
+    End Sub
+End Module
 ```
 
 ### 検索（後ろから）
-* 構文
 ```
-List.LastIndexOf(object [,検索開始するインデックス番号]);
-//最後に見つかったインデックス番号を返す（無い場合-1）
-//第2引数を省略すると最後（List.Capacity-1）から検索
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array.Add("D")
+        Console.WriteLine(_Array.LastIndexOf("C")) '=> 2（見つからない場合-1）
+    End Sub
+End Module
 ```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        Console.WriteLine(_list.LastIndexOf("C")); //2
-        //最初から検索する場合（第2引数が0の場合は省略可能）
-    }
-}
-```
+
+===============================================================
 
 ### 要素の数
 * 構文
