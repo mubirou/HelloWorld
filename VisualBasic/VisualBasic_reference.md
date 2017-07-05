@@ -2271,47 +2271,35 @@ End Module
 
 ### 概要
 * 派生クラスに"実装しなければならないメソッド"を抽象クラスで定義する
-* 実際の処理は、抽象クラスを継承した派生クラスで、抽象メソッドを override して記述
-
-### 構文
-```
-abstract class Abstract○○ { //抽象クラスの定義
-    public abstract 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
-}
-class SubClass : Abstract○○ { //抽象クラスの継承
-    public override 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
-        //実際の処理
-    }
-    ……
-```
+* 実際の処理は、抽象クラスを継承した派生クラスで、抽象メソッドを Overrides して記述
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass();
-        _subClass.Common(); //"AbstractClass.Common()"
-        _subClass.Method(); //"SubClass.Method()"
-    }
-}
-abstract class AbstractClass { //「抽象クラス」の定義
-    public void Common() { //共通のメソッド
-        Console.WriteLine("AbstractClass.Common()");
-    }
-    public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
-}
-class SubClass : AbstractClass { //抽象クラスを継承
-    public override void Method() { //オーバーライドして実際の処理を記述
-        Console.WriteLine("SubClass.Method()"); //実際の処理
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _SomeClass AS New SomeClass()
+        _SomeClass.MyMethod()
+    End Sub
+
+    '抽象クラスの定義
+    Public MustInherit Class AbstractClass
+        Public MustOverride Sub MyMethod() '抽象メソッド（MustOverrride"s"ではない）
+    End Class
+
+    Public Class SomeClass
+        Inherits AbstractClass '抽象クラスの「継承」
+
+        Public Overrides Sub MyMethod() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("SomeClass.MyMethod()") '実際の処理
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月06日
 
 
 <a name="baseキーワード"></a>
