@@ -1789,28 +1789,24 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
 ### 要素の数
-* 構文
 ```
-List.Count; //実際に格納されている要素の数
-List.Capacity; //格納可能な要素の数
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        Console.WriteLine(_Array.Count) '3 <=実際に格納されている要素の数
+        Console.WriteLine(_Array.Capacity) '4 <=格納可能な要素の数
+    End Sub
+End Module
 ```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //List<string> _list = new List<string>() { "A", "B", "C"};
-        List<string> _list = new List<string>(3); //空のArrayListを作成
-        Console.WriteLine(_list.Count); //0 ←実際に格納されている要素の数
-        Console.WriteLine(_list.Capacity); //3 ←格納可能な要素の数
-    }
-}
-```
+
+===============================================================
 
 ### 並べ替え（反転）
 ```
