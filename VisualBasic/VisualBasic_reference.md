@@ -25,8 +25,8 @@
 * [For Each 文](#ForEach文)
 * [While 文](#While文)
 * [配列](#配列)
-***
 * [動的配列（ArrayList）](#動的配列（ArrayList）)
+***
 * [連想配列（Hashtable）](#連想配列（Hashtable）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
@@ -1923,46 +1923,48 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
 ### 全要素を取り出す
 1. For Each 文を使う方法
     ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Listに必要
-    class Test {
-        static void Main() {
-            List<string> _list = new List<string>() { "A", "B", "C" };
+    ' test.vb
+    Imports System.Collections 'ArrayListに必要
 
-            //全要素を取り出す
-            foreach (object value in _list) {
-                Console.WriteLine(value); // "A"→"B"→"C"
-            }
-        }
-    }
+    Module test '名前（test）は任意
+        Sub Main() '自動的に最初に実行される
+            Dim _Array As New ArrayList()
+            _Array.Add("A")
+            _Array.Add("B")
+            _Array.Add("C")
+
+            For Each _Value As String In _Array
+                Console.WriteLine(_Value) '"A"→"B"→"C"
+            Next
+        End Sub
+    End Module
     ```
 
 1. For 文を使う方法
     ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Listに必要
-    class Test {
-        static void Main() {
-            List<string> _list = new List<string>() { "A", "B", "C" };
+    ' test.vb
+    Imports System.Collections 'ArrayListに必要
 
-            //全要素を取り出す
-            for (int i=0; i < _list.Count; i++) {
-                Console.WriteLine(_list[i]); // "A"→"B"→"C"
-            }
-        }
-    }
+    Module test '名前（test）は任意
+        Sub Main() '自動的に最初に実行される
+            Dim _Array As New ArrayList()
+            _Array.Add("A")
+            _Array.Add("B")
+            _Array.Add("C")
+
+            For I As Integer = 0 To (_Array.Count-1)
+                Console.WriteLine(_Array(I)) '"A"→"B"→"C"
+            Next
+        End Sub
+    End Module
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月05日
 
 
 <a name="連想配列（Hashtable）"></a>
