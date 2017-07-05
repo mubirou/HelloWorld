@@ -1675,52 +1675,46 @@ Module test '名前（test）は任意
 End Module
 ```
 
+### 削除（指定のデータ）
+```
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array.Remove("B") '指定データを削除（最初の１個のみ）
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"A"=>"C"
+        Next
+    End Sub
+End Module
+```
+
+### 削除（指定の要素番号）
+```
+' test.vb
+Imports System.Collections 'ArrayListに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _Array As New ArrayList()
+        _Array.Add("A")
+        _Array.Add("B")
+        _Array.Add("C")
+        _Array.RemoveAt(0) '先頭を削除する場合は0
+        '_Array.RemoveAt(_Array.Count-1) '最後を削除する場合
+        For Each _Value As String In _Array
+            Console.WriteLine(_Value) '"B"=>"C"
+        Next
+    End Sub
+End Module
+```
+
 ===============================================================
-
-### 削除（指定のオブジェクト）
-* 構文
-```
-List.Remove(object); //最初に見つかった指定のオブジェクトを削除
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C" → "A","C"
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list.Remove("B");
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"C"
-        }
-    }
-}
-```
-
-### 削除（指定のインデックス）
-* 構文
-```
-List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacity-1）まで指定可能
-```
-* 例文
-```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //"A","B","C" → "B","C"
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list.RemoveAt(0); //先頭を削除する場合
-        //_list.RemoveAt(_list.Capacity-1); //最後を削除する場合
-        foreach (object value in _list) {
-            Console.WriteLine(value); // "B"→"C"
-        }
-    }
-}
-```
 
 ### 削除（○番目から□個）
 * 構文
