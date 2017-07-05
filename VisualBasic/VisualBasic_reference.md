@@ -29,8 +29,8 @@
 * [連想配列（Hashtable）](#連想配列（Hashtable）)
 * [Me](#Me)
 * [文字列の操作](#文字列の操作)
-***
 * [正規表現](#正規表現)
+***
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
@@ -2216,24 +2216,9 @@ Module test '名前（test）は任意
 End Module
 ```
 
-### 郵便番号（7桁）
-```
-//test.cs
-using System;
-using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
-        string _string = "123-4567"; //任意の郵便番号
-        Regex _regex = new Regex("\\d{3}-\\d{4}");
-        Match _match = _regex.Match(_string);
-        Console.WriteLine(_match.Success); //True ←郵便番号として条件に合致
-    }
-}
-```
-
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月05日
 
 
 <a name="インターフェース"></a>
