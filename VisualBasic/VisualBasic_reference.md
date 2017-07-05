@@ -1754,7 +1754,7 @@ Module test '名前（test）は任意
 End Module
 ```
 
-### 検索(前から）
+### 検索（前から）
 ```
 ' test.vb
 Imports System.Collections 'ArrayListに必要
