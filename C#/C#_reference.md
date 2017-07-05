@@ -2701,7 +2701,7 @@ using System;
 using System.Text.RegularExpressions; //Regexに必要
 class Test {
     static void Main() {
-        string _string = "156-0057"; //任意の郵便番号
+        string _string = "123-4567"; //任意の郵便番号
         Regex _regex = new Regex("\\d{3}-\\d{4}");
         Match _match = _regex.Match(_string);
         Console.WriteLine(_match.Success); //True ←郵便番号として条件に合致

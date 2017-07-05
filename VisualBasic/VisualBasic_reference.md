@@ -2179,41 +2179,41 @@ End Module
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-* C# には以下のサンプル以外にも多くの正規表現の機能が用意されています
+* Visual Basic .NET には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
 ### マッチした数
 ```
-//test.cs
-using System;
-using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
-        string _string = "cabacbbacbcba";
-        //"a"がいくつ含まれるか
-        MatchCollection _mc = Regex.Matches(_string, "a");
-        Console.WriteLine(_mc.Count); //4
-    }
-}
+' test.vb
+Imports System.Text.RegularExpressions 'Regex.Matchesに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _String As String = "cabacbbacbcba"
+        '"a"がいくつ含まれるか
+        Dim _Match As MatchCollection = Regex.Matches(_String, "a")
+        Console.WriteLine(_Match.Count) '=> 4
+    End Sub
+End Module
 ```
 
 ### パスワード
 ```
-//test.cs
-using System;
-using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
-        string _string = @"U7eLoERa"; //任意のパスワード（@を付ける）
-        /* 条件
-        8文字以上（全て半角）
-        1文字以上の「数字」を含む
-        1文字以上の大文字および小文字の「英字」を含む
-        */
-        Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");//②
-        Match _match = _regex.Match(_string);
-        Console.WriteLine(_match.Success); //True ←パスワードとして条件に合致
-    }
-}
+' test.vb
+Imports System.Text.RegularExpressions 'Regex.Matchesに必要
+
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        Dim _String As String = "U7eLoERa"
+        
+        '条件
+        '① 8文字以上（全て半角）
+        '② 1文字以上の「数字」を含む
+        '③ 1文字以上の大文字および小文字の「英字」を含む
+        Dim _Regex As Regex = New Regex("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$")
+        Dim _Math As Match = _Regex.Match(_String)
+        Console.WriteLine(_Math.Success) '=> True（パスワードとして条件に合致）
+    End Sub
+End Module
 ```
 
 ### 郵便番号（7桁）
@@ -2223,7 +2223,7 @@ using System;
 using System.Text.RegularExpressions; //Regexに必要
 class Test {
     static void Main() {
-        string _string = "156-0057"; //任意の郵便番号
+        string _string = "123-4567"; //任意の郵便番号
         Regex _regex = new Regex("\\d{3}-\\d{4}");
         Match _match = _regex.Match(_string);
         Console.WriteLine(_match.Success); //True ←郵便番号として条件に合致
