@@ -2093,60 +2093,31 @@ End Module
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### string オブジェクトの作成
-* 構文
-```
-string 変数名 = "○○"; //文字列リテラルを使う方法
-string 変数名 = new string(new char[]{'○','○',...}); //new演算子とchar型配列を使う方法
-```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        //①文字列リテラルを使う
-        string _string1 = "ABCDE";
-        Console.WriteLine(_string1); //"ABCDE"
-
-        //②new演算子とchar型配列を使う
-        string _string2 = new string(new char[]{'A','B','C','D','E'});
-        Console.WriteLine(_string2); //"ABCDE" 
-    }
-}
-```
-
 ### 長さを調べる
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "ABCDE";
-        Console.WriteLine(_string.Length); //5
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _String As String = "ABCDE"
+        Console.WriteLine(_String.Length) '=> 5
+    End Sub
+End Module
 ```
 
 ### 一部分を取得
-* 構文
 ```
-String[番号] ←0（最初）〜String.Length-1（最後）
-String.Substring(開始 [,文字数])
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _String As String = "0123456789"
+        Console.WriteLine(_String.Substring(4)) '=> "456789"
+        Console.WriteLine(_String.Substring(4,1)) '=> "4"
+        Console.WriteLine(_String.Substring(4,3)) '=> "456"
+    End Sub
+End Module
 ```
-* 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "0123456789";
-        Console.WriteLine(_string[4]); //"4"
-        Console.WriteLine(_string.Substring(4)); //"456789"
-        Console.WriteLine(_string.Substring(4,3)); //"456"
-    }
-}
-```
+
+=============================================
 
 ### 一部分を削除
 * 構文
