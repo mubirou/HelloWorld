@@ -1896,30 +1896,34 @@ Module test '名前（test）は任意
 End Module
 ```
 
-===============================================================
-
 ### 文字列→ ArrayList
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        string _string = "A,B,C,D"; //①元となる文字列
-        string[] _array = _string.Split(','); //②文字列→配列に変換（「配列」参照）
-        List<string> _list = new List<string>(); //③空のListを作成
-        foreach (string _tmp in _array) { //データ型に注意
-            _list.Add(_tmp); //④配列の要素を1つずつListに追加
-        }
+' test.vb
+Imports System.Collections 'ArrayListに必要
 
-        //確認
-        foreach (object value in _array) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"
-        }
-    }
-}
+Module test '名前（test）は任意
+    Sub Main() '自動的に最初に実行される
+        '元となる文字列（「,」区切り）
+        Dim _String As String = "A,B,C,D"
+
+        '文字列→配列化
+        Dim _Array As String() = _String.Split(","c) '「,」区切りで分割して配列化
+
+        '配列→ArrayList化
+        Dim _ArrayList As New ArrayList() '空のArrayListを作成
+        For Each _Value As String In _Array
+            _ArrayList.Add(_Value)
+        Next
+
+        '確認
+        For Each _Value As String In _ArrayList
+            Console.WriteLine(_Value) '"A"=>"B"=>"C"=>"D"
+        Next
+    End Sub
+End Module
 ```
 
+===============================================================
 
 ### 全要素を取り出す
 1. For Each 文を使う方法
