@@ -947,7 +947,7 @@ Module test '名前（test）は任意
         End Sub
 
         '外部からメソッドを入れ替えるためのメソッド（
-        public Sub Change(ByVal _String As String)
+        Public Sub Change(ByVal _String As String)
             IF _String = "A" Then '==ではない（注意）
                 MyFunction = New MyDelegate(AddressOf TypeA) 'メソッド（TypeA）に入替え
             ElseIF _String = "B" Then
