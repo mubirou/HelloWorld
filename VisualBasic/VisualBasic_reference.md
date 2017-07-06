@@ -2404,8 +2404,8 @@ Module test '名前（test）は任意
 
     '抽象クラスの定義
     Public MustInherit Class AbstractClass
-        '構文: ○○ MustOverride ○○ メソッド名(...
-        Public MustOverride Sub MyMethod() '抽象メソッド（MustOverrride"s"ではない）
+        '構文: ○○ MustOverride ○○ メソッド名(... ←MustOverrride"s"ではない
+        Public MustOverride Sub MyMethod() '抽象メソッド
     End Class
 
     Public Class SomeClass
