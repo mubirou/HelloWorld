@@ -35,8 +35,8 @@
 * [MyBase キーワード](#MyBaseキーワード)
 * [オーバーライド](#オーバーライド)
 * [イベント](#イベント)
-***
 * [数学関数（Math）](#数学関数（Math）)
+***
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -2471,174 +2471,161 @@ End Module
 
 ### Math.Sin() : サイン（正弦）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Sin(0)); //0 ←0°
-        Console.WriteLine(Math.Sin(Math.PI/2)); //1 ←90°
-        Console.WriteLine(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
-        Console.WriteLine(Math.Sin(Math.PI*3/2)); //-1 ←270°
-        Console.WriteLine(Math.Sin(Math.PI*2)); //-2.44921270764475E-16（≒0）←360°
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Sin(0)) '=> 0 ←0°
+        Console.WriteLine(Math.Sin(Math.PI/2)) '=> 1 ←90°
+        Console.WriteLine(Math.Sin(Math.PI)) '=> 1.22460635382238E-16（≒0）←180°
+        Console.WriteLine(Math.Sin(Math.PI*3/2)) '=> -1 ←270°
+        Console.WriteLine(Math.Sin(Math.PI*2)) '=> -2.44921270764475E-16（≒0）←360°
+    End Sub
+End Module
 ```
 
 ### Math.Cos() : コサイン（余弦）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Cos(0)); //1 ←0°
-        Console.WriteLine(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
-        Console.WriteLine(Math.Cos(Math.PI)); //-1 ←180°
-        Console.WriteLine(Math.Cos(Math.PI*3/2)); //-1.83690953073357E-16（≒0）←270°
-        Console.WriteLine(Math.Cos(Math.PI*2)); //1 ←360°
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Cos(0)) '=> 1 ←0°
+        Console.WriteLine(Math.Cos(Math.PI/2)) '=> 6.12303176911189E-17（≒0）←90°
+        Console.WriteLine(Math.Cos(Math.PI)) '=> -1 ←180°
+        Console.WriteLine(Math.Cos(Math.PI*3/2)) '=> -1.83690953073357E-16（≒0）←270°
+        Console.WriteLine(Math.Cos(Math.PI*2)) '=> 1 ←360°
+    End Sub
+End Module
 ```
 
 ### Math.Atan2() : アークタンジェント2
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        //2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
-        //Πラジアン（3.141592…）は180°
-        //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
-        double _disX = Math.Sqrt(3); //√3のこと
-        int _disY = 1;
-        Console.WriteLine(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
-        Console.WriteLine(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        '2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
+        'Πラジアン（3.141592…）は180°
+        '三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
+        Dim _DisX As Double = Math.Sqrt(3) '=> √3のこと
+        Dim _DisY As Integer = 1
+        Console.WriteLine(Math.Atan2(_DisY, _DisX)) '=> 0.523598775598299（ラジアン）
+        Console.WriteLine(180*Math.Atan2(_DisY, _DisX)/Math.PI) '=> 30（度）
+    End Sub
+End Module
 ```
 
 ### Math.PI : 円周率
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.PI) '=> 3.14159265358979（Math.PIラジアン=180°）
+    End Sub
+End Module
 ```
 
 ### Math.Floor() : 切り捨て
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Floor(1.001)); //1
-        Console.WriteLine(Math.Floor(1.999)); //1
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Floor(1.001)) '=> 1
+        Console.WriteLine(Math.Floor(1.999)) '=> 1
+    End Sub
+End Module
 ```
 
 ### Math.Ceiling() : 切り上げ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Ceiling(1.001)); //2
-        Console.WriteLine(Math.Ceiling(1.999)); //2
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Ceiling(1.001)) '=> 2
+        Console.WriteLine(Math.Ceiling(1.999)) '=> 2
+    End Sub
+End Module
 ```
 
 ### Math.Round() : 四捨五入
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Round(1.499)); //1
-        Console.WriteLine(Math.Round(1.500)); //2
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Round(1.499)) '=> 1
+        Console.WriteLine(Math.Round(1.500)) '=> 2
+    End Sub
+End Module
 ```
 
 ### Math.Abs() : 絶対値
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Abs(100)); //100
-        Console.WriteLine(Math.Abs(-100)); //100
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Abs(100)) '=> 100
+        Console.WriteLine(Math.Abs(-100)) '=> 100
+    End Sub
+End Module
 ```
 
 ### Math.Pow() : 累乗（○の□乗）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Pow(2, 0)); //1（2の0乗）
-        Console.WriteLine(Math.Pow(2, 8)); //256（2の8乗）
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Pow(2, 0)) '=> 1（2の0乗）
+        Console.WriteLine(Math.Pow(2, 8)) '=> 256（2の8乗）
+    End Sub
+End Module
 ```
 
 ### Math.Sqrt() : 平方根（√○）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
-        Console.WriteLine(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
-        Console.WriteLine(Math.Sqrt(4)); //2
-        Console.WriteLine(Math.Sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Sqrt(2)) '=> 1.4142135623731（一夜一夜にひとみごろ）
+        Console.WriteLine(Math.Sqrt(3)) '=> 1.73205080756888（人並みに奢れや）
+        Console.WriteLine(Math.Sqrt(4)) '=> 2
+        Console.WriteLine(Math.Sqrt(5)) '=> 2.23606797749979（富士山麓オウム鳴く）
+    End Sub
+End Module
 ```
 
 ### Math.Max() : 比較（最大値）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Max(5.01, -10)) '=> 5.01 ←「2つ」の数値の比較
+    End Sub
+End Module
 ```
 
 ### Math.Min() : 比較（最小値）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Min(5.01, -10)) '=> -10 ←「2つ」の数値の比較
+    End Sub
+End Module
 ```
 
 ### Math.Sign() : 符号（正か負の値か）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Console.WriteLine(Math.Sign(-0.1)); //-1（負の値）
-        Console.WriteLine(Math.Sign(0)); //0（0）
-        Console.WriteLine(Math.Sign(0.1)); //1（正の値）
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Console.WriteLine(Math.Sign(-0.1)) '=> -1（負の値）
+        Console.WriteLine(Math.Sign(0)) '=> 0（0）
+        Console.WriteLine(Math.Sign(0.1)) '=> 1（正の値）
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月07日
 
 
 <a name="乱数"></a>
@@ -2649,9 +2636,9 @@ class Test {
 ```
 Random ○ = new Random([seed値]);
 //↑引数（シード値）を省略するとEnvironment.TickCount（システム時間）を利用
-○.NextDouble(); //0〜1.0までの浮動小数点数の乱数
-○.Next(); //整数値の乱数（百万〜数十億等）
-○.Next(整数値); //0〜整数値の値の乱数（整数）
+○.NextDouble() '=> 0〜1.0までの浮動小数点数の乱数
+○.Next() '=> 整数値の乱数（百万〜数十億等）
+○.Next(整数値) '=> 0〜整数値の値の乱数（整数）
 ```
 
 ### 例文
@@ -2663,19 +2650,19 @@ class Test {
         Random _random = new Random();
         
         //0〜1.0までの乱数
-        Console.WriteLine(_random.NextDouble()); //0.0432652673350072
-        Console.WriteLine(_random.NextDouble()); //0.78664848541429
-        Console.WriteLine(_random.NextDouble()); //0.545385330900118
+        Console.WriteLine(_random.NextDouble()) '=> 0.0432652673350072
+        Console.WriteLine(_random.NextDouble()) '=> 0.78664848541429
+        Console.WriteLine(_random.NextDouble()) '=> 0.545385330900118
         
         //整数値の乱数
-        Console.WriteLine(_random.Next()); //369339869
-        Console.WriteLine(_random.Next()); //1966699381
-        Console.WriteLine(_random.Next()); //6900123
+        Console.WriteLine(_random.Next()) '=> 369339869
+        Console.WriteLine(_random.Next()) '=> 1966699381
+        Console.WriteLine(_random.Next()) '=> 6900123
         
         //任意の値までの整数値の乱数
-        Console.WriteLine(_random.Next(10)); //0
-        Console.WriteLine(_random.Next(10)); //3
-        Console.WriteLine(_random.Next(10)); //9
+        Console.WriteLine(_random.Next(10)) '=> 0
+        Console.WriteLine(_random.Next(10)) '=> 3
+        Console.WriteLine(_random.Next(10)) '=> 9
     }
 }
 ```
@@ -2690,17 +2677,17 @@ class Test {
 
 ### 書式
 ```
-DateTime ○ = DateTime.Now; //DateTimeは構造体
-○.Year; //年（2017等）
-○.Month; //月（1〜12）
-○.Day; //日（1〜31）
-○.DayOfYear; //元日から日数（1〜366）
-○.DayOfWeek; //曜日（Sanday〜Saturday）
-○.Hour; //時間（0〜23）
-○.Minute; //分（0〜59）
-○.Second; //秒（0〜59）
-○.Millisecond; //ミリ秒（0〜999）
-○.Ticks; //0001年1月1日00:00:00からの経過時間（ナノ秒）：但し精度は10ミリ秒
+DateTime ○ = DateTime.Now '=> DateTimeは構造体
+○.Year '=> 年（2017等）
+○.Month '=> 月（1〜12）
+○.Day '=> 日（1〜31）
+○.DayOfYear '=> 元日から日数（1〜366）
+○.DayOfWeek '=> 曜日（Sanday〜Saturday）
+○.Hour '=> 時間（0〜23）
+○.Minute '=> 分（0〜59）
+○.Second '=> 秒（0〜59）
+○.Millisecond '=> ミリ秒（0〜999）
+○.Ticks '=> 0001年1月1日00:00:00からの経過時間（ナノ秒）：但し精度は10ミリ秒
 ```
 
 ### 例文
@@ -2710,22 +2697,22 @@ using System;
 class Test {
     static void Main() {
         DateTime _now = DateTime.Now;
-        Console.WriteLine(_now); //4/21/2017 10:16:04 AM
-        Console.WriteLine(_now.Year); //2017
-        Console.WriteLine(_now.Month); //4
-        Console.WriteLine(_now.Day); //21
-        Console.WriteLine(_now.DayOfYear); //111（元日からの日数）
-        Console.WriteLine(_now.DayOfWeek); //Friday
-        Console.WriteLine(_now.Hour); //10
-        Console.WriteLine(_now.Minute); //16
-        Console.WriteLine(_now.Second); //4
-        Console.WriteLine(_now.Millisecond); //337
-        Console.WriteLine(_now.Ticks); //636283665643372990（100ナノ秒単位）
+        Console.WriteLine(_now) '=> 4/21/2017 10:16:04 AM
+        Console.WriteLine(_now.Year) '=> 2017
+        Console.WriteLine(_now.Month) '=> 4
+        Console.WriteLine(_now.Day) '=> 21
+        Console.WriteLine(_now.DayOfYear) '=> 111（元日からの日数）
+        Console.WriteLine(_now.DayOfWeek) '=> Friday
+        Console.WriteLine(_now.Hour) '=> 10
+        Console.WriteLine(_now.Minute) '=> 16
+        Console.WriteLine(_now.Second) '=> 4
+        Console.WriteLine(_now.Millisecond) '=> 337
+        Console.WriteLine(_now.Ticks) '=> 636283665643372990（100ナノ秒単位）
         //"hh:mm:ss"で現在の時間を表示する方法
         string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
         string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
         string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
-        Console.WriteLine(_h + ":" + _m + ":" + _s); //"10:16:04"
+        Console.WriteLine(_h + ":" + _m + ":" + _s) '=> "10:16:04"
     }
 }
 ```
@@ -2746,20 +2733,20 @@ class Test {
 Windows Formでの使用は非推奨
 */
 using System;
-using System.Threading; //System.Threading.Timerに必要
+using System.Threading '=> System.Threading.Timerに必要
 
 class Test {
-    private static Timer _timer; //privateは省略可
+    private static Timer _timer '=> privateは省略可
         
     static void Main() {
-        _timer = new Timer(new TimerCallback(Loop)); //タイマーの生成
-        _timer.Change(0, 1000); //0ミリ秒後から、1000ミリ秒間隔で開始!
-        Console.ReadLine(); //ここでは必須（要注意）
+        _timer = new Timer(new TimerCallback(Loop)) '=> タイマーの生成
+        _timer.Change(0, 1000) '=> 0ミリ秒後から、1000ミリ秒間隔で開始!
+        Console.ReadLine() '=> ここでは必須（要注意）
     }
 
     static void Loop(object arg) { //1000ミリ秒毎に実行される
-        Console.WriteLine(arg); //System.Threading.Timer
-        //_timer.Change(Timeout.Infinite, Timeout.Infinite); //停止 ←力技
+        Console.WriteLine(arg) '=> System.Threading.Timer
+        //_timer.Change(Timeout.Infinite, Timeout.Infinite) '=> 停止 ←力技
     }
 }
 ```
@@ -2774,23 +2761,23 @@ class Test {
 Windows Formでの使用もＯＫ
 */
 using System;
-using System.Timers; //System.Timers.Timerに必要
+using System.Timers '=> System.Timers.Timerに必要
 
 class Test {
-    private static Timer _timer; //privateは省略可
+    private static Timer _timer '=> privateは省略可
 
     static void Main() {
-        _timer = new Timer(); //タイマーの生成
-        _timer.Interval = 1000; //1000ミリ秒間隔
-        _timer.Elapsed += new ElapsedEventHandler(Loop); //イベントハンドラの追加
-        _timer.Start(); //開始!
-        Console.ReadLine(); //ここでは必須（要注意）
+        _timer = new Timer() '=> タイマーの生成
+        _timer.Interval = 1000 '=> 1000ミリ秒間隔
+        _timer.Elapsed += new ElapsedEventHandler(Loop) '=> イベントハンドラの追加
+        _timer.Start() '=> 開始!
+        Console.ReadLine() '=> ここでは必須（要注意）
     }
     
     static void Loop(object arg1, EventArgs arg2) { //1000ミリ秒毎に実行される
-        Console.WriteLine(arg1); //System.Timers.Timer（タイマー本体）
-        Console.WriteLine(arg2); //System.Timers.ElapsedEventArgs（各種情報）
-        //_timer.Stop(); //停止 ←この場合１回で停止
+        Console.WriteLine(arg1) '=> System.Timers.Timer（タイマー本体）
+        Console.WriteLine(arg2) '=> System.Timers.ElapsedEventArgs（各種情報）
+        //_timer.Stop() '=> 停止 ←この場合１回で停止
     }
 }
 ```
@@ -2807,14 +2794,14 @@ class Test {
 ```
 //test.cs
 //日時情報を得るためのDatetime構造体を利用して計測する方法
-using System; //DateTimeに必要
+using System '=> DateTimeに必要
 class Test {
     static void Main() {
-        long _start = DateTime.Now.Ticks; //100ナノ秒単位（精度は10ミリ秒）
+        long _start = DateTime.Now.Ticks '=> 100ナノ秒単位（精度は10ミリ秒）
         for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
             //速度計測したい処理
         }
-        Console.WriteLine(DateTime.Now.Ticks - _start); //33060210（≒3.3秒）
+        Console.WriteLine(DateTime.Now.Ticks - _start) '=> 33060210（≒3.3秒）
     }
 }
 ```
@@ -2827,17 +2814,17 @@ class Test {
 Stopwatchクラスのインスタンスを生成しStart/Stopメソッドを実行するだけで可能
 */
 using System; 
-using System.Diagnostics; //Stopwatchに必要
+using System.Diagnostics '=> Stopwatchに必要
 class Program     { 
     static void Main() { 
-        Stopwatch _stopWatch = new Stopwatch(); //インスタンスの生成
-        _stopWatch.Start(); //計測開始
+        Stopwatch _stopWatch = new Stopwatch() '=> インスタンスの生成
+        _stopWatch.Start() '=> 計測開始
         for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
             //速度計測したい処理
         }
-        _stopWatch.Stop(); //計測終了
-        Console.WriteLine(_stopWatch.ElapsedMilliseconds); //3230（ミリ秒）
-        Console.WriteLine(_stopWatch.Elapsed); //00:00:03.2302265（秒）
+        _stopWatch.Stop() '=> 計測終了
+        Console.WriteLine(_stopWatch.ElapsedMilliseconds) '=> 3230（ミリ秒）
+        Console.WriteLine(_stopWatch.Elapsed) '=> 00:00:03.2302265（秒）
     }
 }
 ```
@@ -2862,15 +2849,15 @@ class Program     {
 ```
 //test.cs
 using System;
-using System.IO; //StreamReaderに必要
+using System.IO '=> StreamReaderに必要
 class Test { 
     static void Main() {
         string _path = "sample.txt";
         //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
-        StreamReader _stream = new StreamReader(_path); //.txt以外も可能
-        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-        Console.WriteLine(_string); //結果を出力
+        StreamReader _stream = new StreamReader(_path) '=> .txt以外も可能
+        string _string = _stream.ReadToEnd() '=> 全ての内容を読み込む
+        _stream.Close() '=> 閉じる
+        Console.WriteLine(_string) '=> 結果を出力
     }
 }
 ```
@@ -2879,14 +2866,14 @@ class Test {
 ```
 //test.cs
 using System;
-using System.IO; //StreamReaderに必要
+using System.IO '=> StreamReaderに必要
 class Test { 
     static void Main() {
         string _path = "sample.txt";
-        StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
-        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-        Console.WriteLine(_string); //結果を出力
+        StreamReader _stream = File.OpenText(_path) '=> .txt以外も可能（UFT-8限定）
+        string _string = _stream.ReadToEnd() '=> 全ての内容を読み込む
+        _stream.Close() '=> 閉じる
+        Console.WriteLine(_string) '=> 結果を出力
     }
 }
 ```
