@@ -33,7 +33,7 @@
 * [インターフェース](#インターフェース)
 * [抽象クラス（MustInherit）](#抽象クラス（MustInherit）)
 ***
-* [base キーワード](#baseキーワード)
+* [MyBase キーワード](#MyBaseキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -2302,49 +2302,62 @@ End Module
 作成日：2017年07月06日
 
 
-<a name="baseキーワード"></a>
-# <b>base キーワード</b>
+<a name="MyBaseキーワード"></a>
+# <b>MyBase キーワード</b>
+* 他の多くの言語の「super」や C# の「base」と同等の機能
 
-### 概要
-基本クラスに定義されたコンストラクタ（private 以外）は、派生クラスのコンストラクタが実行される直前に必ず実行される。その際、基本クラスのコンストラクタへ、派生クラスのコンストラクタから引数を渡すことがbaseを使うことで可能になる（≒ super）。base.メソッド() で基本クラスのメソッドを呼び出す事が可能（「[オーバーライド](#オーバーライド)」参照）。
+```
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Subclass AS New SubClass("from Main")
+        '=> SubClass コンストラクタ: from Main
+        '=> SuperClass コンストラクタ: from SubClass
 
-### 書式
-```
-class 基本クラス名 { 
-    public 基本クラス名(型 引数) { //基本クラスのコンストラクタ
-        //引数を使った処理etc.
-    }
-}
-class 派生クラス名 : 基本クラス名 { //派生クラス（基本クラスを継承）
-    public 派生クラス名() : base(引数) { //派生クラスのコンストラクタ
-    }
-}
-```
+        _Subclass.MethodSub("from Main")
+        '=> SubClass メソッド: from Main
+        '=> SuperClass メソッド: from SubClass
+    End Sub
 
-### 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass("A");
-    }
-}
-class SuperClass { //基本クラス
-    public SuperClass(string p1, string p2) { //基本クラスのコンストラクタ
-        Console.WriteLine("SuperClass:" + p1 + ":" + p2); //①番目（p1は"A"、p2は"B"）
-    }
-}
-class SubClass : SuperClass { //派生クラス
-    public SubClass(string p) : base(p, "B") { //派生クラスのコンストラクタ
-        Console.WriteLine("SubClass:" + p); //②番目（pは"A"）
-    } 
-}
+    '''''''''''''''''''''''''''
+    '基本クラス（スーパークラス）
+    '''''''''''''''''''''''''''
+    Public Class SuperClass
+        'コンストラクタ
+        Public Sub New(ByVal _Arg As String)
+            Console.WriteLine("SuperClass コンストラクタ: " & _Arg)
+        End Sub
+
+        'メソッド
+        Public Sub MethodSuper(ByVal _Arg As String)
+            Console.WriteLine("SuperClass メソッド: " & _Arg)
+        End Sub
+    End Class
+
+    ''''''''''''''''''''''''
+    '派生クラス（サブクラス）
+    ''''''''''''''''''''''''
+    Public Class SubClass
+        Inherits SuperClass 'スーパークラスを継承
+
+        'コンストラクタ
+        Public Sub New(ByVal _Arg As String)
+            Console.WriteLine("SubClass コンストラクタ: " & _Arg)
+            MyBase.New("from SubClass") '基本クラスのコンストラクタの呼出し
+        End Sub
+
+        'メソッド
+        Public Sub MethodSub(ByVal _Arg As String)
+            Console.WriteLine("SubClass メソッド: " & _Arg)
+            MyBase.MethodSuper("from SubClass") '基本クラスのメソッドの呼出しも可能
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月06日
 
 
 <a name="オーバーライド"></a>
@@ -2353,7 +2366,7 @@ class SubClass : SuperClass { //派生クラス
 ### 概要
 * 基本クラス（または抽象クラス）で定義したメソッドを、派生クラスで再定義することをオーバーライドと呼ぶ
 * オーバーライドできるメソッドは、基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
-* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[base キーワード](#baseキーワード)」参照）。
+* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[MyBase キーワード](#MyBaseキーワード)」参照）。
 
 ### 「仮想メソッド」のオーバーライド
 * 書式
