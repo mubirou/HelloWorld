@@ -33,8 +33,8 @@
 * [インターフェース](#インターフェース)
 * [抽象クラス（MustInherit）](#抽象クラス（MustInherit）)
 * [MyBase キーワード](#MyBaseキーワード)
-***
 * [オーバーライド](#オーバーライド)
+***
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
@@ -2363,96 +2363,65 @@ End Module
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
 
-### 概要
-* 基本クラス（または抽象クラス）で定義したメソッドを、派生クラスで再定義することをオーバーライドと呼ぶ
-* オーバーライドできるメソッドは、基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
-* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[MyBase キーワード](#MyBaseキーワード)」参照）。
+### メソッドのオーバーライド
 
-### 「仮想メソッド」のオーバーライド
-* 書式
 ```
-class 基本クラス名 {
-    アクセス修飾子 virtual 戻り値の型 メソッド名([型 引数]) {
-        ……
-    }
-    ……
-}
-class 派生クラス名 : 基本クラス { //派生クラス（基本クラスを継承）
-    アクセス修飾子 override 戻り値の型 メソッド名([型 引数]) { 
-        base.メソッド名(引数); //基本クラスのメソッドを呼び出す（オプション）
-        …… 
-    }
-    ……
-}
-```
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _SomeClass AS New SubClass()
+        _SomeClass.MyMethod() '=> "SubClass.MyMethod()"
+    End Sub
 
-* 例文
-```
-//test.cs
-using System;
+    '基本クラス
+    Public Class SuperClass
+        '構文: ○○ Overridable ○○ メソッド名(...
+        Public Overridable Sub MyMethod()
+            Console.WriteLine("SuperClass.MyMethod()")
+        End Sub
+    End Class
 
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass();
-        _subClass.Method();
-    }
-}
+    '派生クラス
+    Public Class SubClass
+        Inherits SuperClass '基本クラスの「継承」
 
-class SuperClass { //基本クラス
-    public virtual void Method() { //オーバーライドを許可
-        Console.WriteLine("SuperClass.Method");
-    }
-}
-
-class SubClass : SuperClass { //派生クラス（基本クラスを継承）
-    public override void Method() { //基本クラスのメソッドのオーバーライド
-        Console.WriteLine("SubClass.Method");
-        base.Method(); //"SuperClass.Method"←基本クラスのメソッド実行（オプション）
-    } 
-}
+        '構文: ○○ Overrides ○○ メソッド名(...
+        Public Overrides Sub MyMethod() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("SubClass.MyMethod()") '実際の処理
+        End Sub
+    End Class
+End Module
 ```
 
-### 「抽象メソッド」のオーバーライド
-* 書式
+### 抽象メソッドのオーバーライド
 ```
-abstract class 抽象クラス名 { //抽象クラスの定義
-    アクセス修飾子 abstract 型 抽象メソッド名([型 引数]); //抽象メソッド宣言
-    ……
-}
-class 派生クラス : 抽象クラス名 { //抽象クラスを継承
-    アクセス修飾子 override 型 抽象メソッド名([型 引数]) { //オーバーライド
-        //実際の処理
-    }
-    ……
-}
-```
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _SomeClass AS New SomeClass()
+        _SomeClass.MyMethod()
+    End Sub
 
-* 例文
-```
-//test.cs
-using System;
+    '抽象クラスの定義
+    Public MustInherit Class AbstractClass
+        '構文: ○○ MustOverride ○○ メソッド名(...
+        Public MustOverride Sub MyMethod() '抽象メソッド（MustOverrride"s"ではない）
+    End Class
 
-class Test {
-    static void Main() {
-        SubClass _subClass = new SubClass();
-        _subClass.Method();
-    }
-}
+    Public Class SomeClass
+        Inherits AbstractClass '抽象クラスの「継承」
 
-abstract class AbstractClass { //抽象クラス
-    public abstract void Method(); //抽象メソッドの宣言
-}
-
-class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
-    public override void Method() { //オーバーライドして実際の処理を記述
-        Console.WriteLine("AbstractClass.Method");
-    } 
-}
+        '構文: ○○ Overrides ○○ メソッド名(...
+        Public Overrides Sub MyMethod() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("SomeClass.MyMethod()") '実際の処理
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月06日
 
 
 <a name="カスタムイベント"></a>
