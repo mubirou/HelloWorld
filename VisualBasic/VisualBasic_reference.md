@@ -2432,7 +2432,7 @@ End Module
 Module test '名前（test）は任意
     Sub Main()
         Dim _Robot As Robot = New Robot()
-        AddHandler _Robot.GameOverEvent, AddressOf OnGameOver 'イベントリスナーの定義
+        AddHandler _Robot.DIE, AddressOf OnGameOver 'イベントリスナーの定義
         _Robot.Fight()
         _Robot.Fight()
         _Robot.Fight()
@@ -2447,14 +2447,14 @@ Module test '名前（test）は任意
 
     'イベントを設定するクラス
     Public Class Robot
-        Public Event GameOverEvent As EventHandler 'イベントの宣言
+        Public Event DIE As EventHandler 'イベントの宣言
 
         Private _Energy As Integer = 80
 
         Public Sub Fight()
             _Energy -= 20
             If _Energy <= 0 Then
-                RaiseEvent GameOverEvent(Me) 'イベントの発生（リスナー関数の呼出し）
+                RaiseEvent DIE(Me) 'イベントの発生（リスナー関数の呼出し）
             End If
         End Sub
     End Class
