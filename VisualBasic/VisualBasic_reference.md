@@ -34,8 +34,8 @@
 * [抽象クラス（MustInherit）](#抽象クラス（MustInherit）)
 * [MyBase キーワード](#MyBaseキーワード)
 * [オーバーライド](#オーバーライド)
-***
 * [イベント](#イベント)
+***
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
@@ -2427,76 +2427,43 @@ End Module
 <a name="イベント"></a>
 # <b>イベント</b>
 
-### 概要
-イベントとは、あるアクションが発生したことを自動的に通知する仕組み。カスタムクラス内で何か処理をし終えた際、別のオブジェクトにそのことを知らせる場合に、このイベント機能を使用。イベントを設定したカスタムクラスからは、情報（イベント）を発信するだけ。情報を受けたいオブジェクトは、リスナーメソッドを準備して待ち受ける...。このことにより、カスタムクラスを汚さずに済む、というメリットが生まれる。C# に用意された event は、特殊なデリゲート（delegate）と言えるものです。デリゲートとの違いは、event 宣言した変数（イベント名）には、イベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等。
-
-### 書式
-* イベントの設定
 ```
-class クラス名 {
-    public delegate void デリゲート名([型 引数]); //デリゲート宣言
-    public event デリゲート名 イベント名; //これにイベントハンドラを登録
-    public 戻り値の型 メソッド名([型 引数]) { //イベントを発生させたいメソッド
-        ……
-        イベント名([引数]); //ここでイベントハンドラを呼出す!
-    }
-    ……
-}
-```
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Dim _Robot As Robot = New Robot()
+        AddHandler _Robot.GameOverEvent, AddressOf OnGameOver 'イベントリスナーの定義
+        _Robot.Fight()
+        _Robot.Fight()
+        _Robot.Fight()
+        _Robot.Fight() '=> "GAME OVER"
+    End Sub
 
-* イベントハンドラの登録
-```
-クラス名 ○ = new クラス名();
-○.イベント名 += イベントハンドラ名; //イベントハンドラを削除する場合「-=」
-……
-static 戻り値の型 イベントハンドラ名([型 引数]) {
-    //イベントが発生した際に処理すること
-}
-```
+    'リスナー関数
+    Sub OnGameOver(_Object As Object, _e As EventArgs)
+        'Console.WriteLine(_Object) '=> test+Robot（Robotクラスのインスタンス）
+        Console.WriteLine("GAME OVER")
+    End Sub
 
-### 例文
-```
-//test.cs
-using System;
+    'イベントを設定するクラス
+    Public Class Robot
+        Public Event GameOverEvent As EventHandler 'イベントの宣言
 
-class Test {
-    static void Main() {
-        MyGame _myGame = new MyGame();
-        _myGame.GameOverEvent += GameOverHandler_myGame; //複数登録可能（+=、-=のみ）
-        //_myGame.GameOverEvent -= GameOverHandler_myGame; //イベントハンドラの削除
-        for (int i=0; i<10; i++) { //10回繰返す場合…
-            Console.WriteLine("得点:" + _myGame.Point);
-            _myGame.AddPoint();
-        }
-    }
+        Private _Energy As Integer = 80
 
-    static void GameOverHandler_myGame(object arg) { //イベントハンドラ
-        Console.WriteLine("ゲームオーバー! " + arg); //"ゲームオーバー! MyGame"
-    }
-}
-
-//イベントを設定するクラス
-class MyGame {
-    private int _point = 0;
-    public delegate void MyEventHandler(object arg); //デリゲート宣言
-    public event MyEventHandler GameOverEvent; //これにイベントハンドラを登録
-    public void AddPoint() { //イベントを発生させたいメソッド
-        if (++_point >= 10) {
-            if (GameOverEvent != null) {
-                GameOverEvent(this); //イベントハンドラの呼出し
-            }
-        }
-    }
-    public int Point {
-        get { return _point; }
-        private set {} //読取専用
-    }
-}
+        Public Sub Fight()
+            _Energy -= 20
+            If _Energy <= 0 Then
+                RaiseEvent GameOverEvent(Me) 'イベントの発生（リスナー関数の呼出し）
+            End If
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月06日
 
 
 <a name="数学関数（Math）"></a>
