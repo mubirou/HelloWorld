@@ -58,8 +58,8 @@ Module test '名前（test）は任意
 
         '整数型①（0〜255）
         Dim _byte As Byte = 255
-        Console.WriteLine(_byte)
-        Console.WriteLine(TypeName(_byte))
+        Console.WriteLine(_byte) '=> 255
+        Console.WriteLine(TypeName(_byte)) '=> Byte
 
         '整数型②（-127〜127）
         Dim _sbyte As SByte = 127
