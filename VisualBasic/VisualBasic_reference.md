@@ -4,7 +4,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)）
+* Hello,world! （[Linux](https:'github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md) / [macOS](https:'github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md) / [Windows](https:'github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -36,8 +36,8 @@
 * [オーバーライド](#オーバーライド)
 * [イベント](#イベント)
 * [数学関数（Math）](#数学関数（Math）)
-***
 * [乱数](#乱数)
+***
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
@@ -446,7 +446,7 @@ End Namespace
 # <b>継承と委譲</b>
 
 ### 概要
-* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
+* GoF デザインパターンの [Adapter パターン](http:'bit.ly/2naab8x)等で利用される
 * 継承の場合は <b>Inherits クラス名</b> を使い、委譲の場合は <b>New クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
@@ -2630,46 +2630,34 @@ End Module
 
 <a name="乱数"></a>
 # <b>乱数</b>
-* システム時間を元に発生させているためFor文で同時に異なる乱数を発生できない
 
-### 書式
 ```
-Random ○ = new Random([seed値]);
-//↑引数（シード値）を省略するとEnvironment.TickCount（システム時間）を利用
-○.NextDouble() '=> 0〜1.0までの浮動小数点数の乱数
-○.Next() '=> 整数値の乱数（百万〜数十億等）
-○.Next(整数値) '=> 0〜整数値の値の乱数（整数）
-```
-
-### 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Random _random = new Random();
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Dim _Random As New Random()
         
-        //0〜1.0までの乱数
-        Console.WriteLine(_random.NextDouble()) '=> 0.0432652673350072
-        Console.WriteLine(_random.NextDouble()) '=> 0.78664848541429
-        Console.WriteLine(_random.NextDouble()) '=> 0.545385330900118
+        '0〜1.0までの乱数
+        Console.WriteLine(_Random.NextDouble()) '=> 0.675613469758822
+        Console.WriteLine(_Random.NextDouble()) '=> 0.0294376947122802
+        Console.WriteLine(_Random.NextDouble()) '=> 0.747139839803399
         
-        //整数値の乱数
-        Console.WriteLine(_random.Next()) '=> 369339869
-        Console.WriteLine(_random.Next()) '=> 1966699381
-        Console.WriteLine(_random.Next()) '=> 6900123
+        '整数値の乱数（百万〜数十億等）
+        Console.WriteLine(_Random.Next()) '=> 465278074
+        Console.WriteLine(_Random.Next()) '=> 945104086
+        Console.WriteLine(_Random.Next()) '=> 425571283
         
-        //任意の値までの整数値の乱数
-        Console.WriteLine(_random.Next(10)) '=> 0
-        Console.WriteLine(_random.Next(10)) '=> 3
-        Console.WriteLine(_random.Next(10)) '=> 9
-    }
-}
+        '任意の値までの整数値の乱数（整数）
+        Console.WriteLine(_Random.Next(10)) '=> 9
+        Console.WriteLine(_Random.Next(10)) '=> 2
+        Console.WriteLine(_Random.Next(10)) '=> 5
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月07日
 
 
 <a name="日時情報"></a>
@@ -2692,11 +2680,11 @@ DateTime ○ = DateTime.Now '=> DateTimeは構造体
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.cs
+using System
 class Test {
     static void Main() {
-        DateTime _now = DateTime.Now;
+        DateTime _now = DateTime.Now
         Console.WriteLine(_now) '=> 4/21/2017 10:16:04 AM
         Console.WriteLine(_now.Year) '=> 2017
         Console.WriteLine(_now.Month) '=> 4
@@ -2708,10 +2696,10 @@ class Test {
         Console.WriteLine(_now.Second) '=> 4
         Console.WriteLine(_now.Millisecond) '=> 337
         Console.WriteLine(_now.Ticks) '=> 636283665643372990（100ナノ秒単位）
-        //"hh:mm:ss"で現在の時間を表示する方法
-        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
-        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
-        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
+        '"hh:mm:ss"で現在の時間を表示する方法
+        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString()
+        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString()
+        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString()
         Console.WriteLine(_h + ":" + _m + ":" + _s) '=> "10:16:04"
     }
 }
@@ -2727,12 +2715,12 @@ class Test {
 
 ### スレッドタイマー（System.Threading.Timer）を使う方法
 ```
-//test.cs
+'test.cs
 /*
 システムタイマー（後述）と比較すると軽量
 Windows Formでの使用は非推奨
 */
-using System;
+using System
 using System.Threading '=> System.Threading.Timerに必要
 
 class Test {
@@ -2744,23 +2732,23 @@ class Test {
         Console.ReadLine() '=> ここでは必須（要注意）
     }
 
-    static void Loop(object arg) { //1000ミリ秒毎に実行される
+    static void Loop(object arg) { '1000ミリ秒毎に実行される
         Console.WriteLine(arg) '=> System.Threading.Timer
-        //_timer.Change(Timeout.Infinite, Timeout.Infinite) '=> 停止 ←力技
+        '_timer.Change(Timeout.Infinite, Timeout.Infinite) '=> 停止 ←力技
     }
 }
 ```
 
 ### システムタイマー（System.Timers.Timer）を使う方法
 ```
-//test.cs
+'test.cs
 /* 
 サーバベース・タイマーとも呼ばれる
 スレッドタイマー（前述）と比較すると重いが精度が高い
 スレッドの経過時間とは独立した時間監視をする
 Windows Formでの使用もＯＫ
 */
-using System;
+using System
 using System.Timers '=> System.Timers.Timerに必要
 
 class Test {
@@ -2774,10 +2762,10 @@ class Test {
         Console.ReadLine() '=> ここでは必須（要注意）
     }
     
-    static void Loop(object arg1, EventArgs arg2) { //1000ミリ秒毎に実行される
+    static void Loop(object arg1, EventArgs arg2) { '1000ミリ秒毎に実行される
         Console.WriteLine(arg1) '=> System.Timers.Timer（タイマー本体）
         Console.WriteLine(arg2) '=> System.Timers.ElapsedEventArgs（各種情報）
-        //_timer.Stop() '=> 停止 ←この場合１回で停止
+        '_timer.Stop() '=> 停止 ←この場合１回で停止
     }
 }
 ```
@@ -2792,14 +2780,14 @@ class Test {
 
 ### DateTime構造体を使う方法
 ```
-//test.cs
-//日時情報を得るためのDatetime構造体を利用して計測する方法
+'test.cs
+'日時情報を得るためのDatetime構造体を利用して計測する方法
 using System '=> DateTimeに必要
 class Test {
     static void Main() {
         long _start = DateTime.Now.Ticks '=> 100ナノ秒単位（精度は10ミリ秒）
-        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
-            //速度計測したい処理
+        for (long i=0 i<10000000000 i++) { '100億回繰り返す場合…
+            '速度計測したい処理
         }
         Console.WriteLine(DateTime.Now.Ticks - _start) '=> 33060210（≒3.3秒）
     }
@@ -2808,19 +2796,19 @@ class Test {
 
 ### Stopwatchクラスを使う方法
 ```
-//test.cs
+'test.cs
 /*
 .NET Framework 2.0から追加された機能
 Stopwatchクラスのインスタンスを生成しStart/Stopメソッドを実行するだけで可能
 */
-using System; 
+using System 
 using System.Diagnostics '=> Stopwatchに必要
 class Program     { 
     static void Main() { 
         Stopwatch _stopWatch = new Stopwatch() '=> インスタンスの生成
         _stopWatch.Start() '=> 計測開始
-        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
-            //速度計測したい処理
+        for (long i=0 i<10000000000 i++) { '100億回繰り返す場合…
+            '速度計測したい処理
         }
         _stopWatch.Stop() '=> 計測終了
         Console.WriteLine(_stopWatch.ElapsedMilliseconds) '=> 3230（ミリ秒）
@@ -2836,7 +2824,7 @@ class Program     {
 
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
-* [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はない
+* [Web サーバ](http:'bit.ly/2mbzR4D)を稼働する必要はない
 
 ### テキストファイルの用意（sample.txt/UTF-8として保存）
 ```
@@ -2847,13 +2835,13 @@ class Program     {
 
 ### 例文（StreamReader クラスを使う方法）
 ```
-//test.cs
-using System;
+'test.cs
+using System
 using System.IO '=> StreamReaderに必要
 class Test { 
     static void Main() {
-        string _path = "sample.txt";
-        //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
+        string _path = "sample.txt"
+        '↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
         StreamReader _stream = new StreamReader(_path) '=> .txt以外も可能
         string _string = _stream.ReadToEnd() '=> 全ての内容を読み込む
         _stream.Close() '=> 閉じる
@@ -2864,12 +2852,12 @@ class Test {
 
 ###  例文（File.OpenTextメソッドを使う方法）
 ```
-//test.cs
-using System;
+'test.cs
+using System
 using System.IO '=> StreamReaderに必要
 class Test { 
     static void Main() {
-        string _path = "sample.txt";
+        string _path = "sample.txt"
         StreamReader _stream = File.OpenText(_path) '=> .txt以外も可能（UFT-8限定）
         string _string = _stream.ReadToEnd() '=> 全ての内容を読み込む
         _stream.Close() '=> 閉じる
