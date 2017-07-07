@@ -2714,7 +2714,7 @@ End Module
 
 ```
 'test.vb
-Imports System.Timers
+Imports System.Timers 'Timerに必要
 
 Module test '名前（test）は任意
   Sub Main()
