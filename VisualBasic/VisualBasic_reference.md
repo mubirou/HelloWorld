@@ -282,7 +282,7 @@ Module test '名前（test）は任意
 
         'メソッドの定義
         Public Function GetArea() As Integer
-            return _width * _height
+            Return _width * _height
         End Function
     End Class
 End Module
@@ -338,7 +338,7 @@ Module test '名前（test）は任意
 
         'メソッドの定義
         Public Function MSuperClass() As String
-            return "基本クラスのメソッド"
+            Return "基本クラスのメソッド"
         End Function
     End Class
 
@@ -363,7 +363,7 @@ Module test '名前（test）は任意
 
         'メソッドの定義
         Public Function MSubClassA() As String
-            return "派生クラスＡのメソッド"
+            Return "派生クラスＡのメソッド"
         End Function
     End Class
 
@@ -388,7 +388,7 @@ Module test '名前（test）は任意
 
         'メソッドの定義
         Public Function MSubClassB() As String
-            return "派生クラスＢのメソッド"
+            Return "派生クラスＢのメソッド"
         End Function
     End Class
 End Module
@@ -760,7 +760,7 @@ End Sub
 ```
 アクセス修飾子 Function メソッド名(ByVal 引数① As 引数①の型[, ...]) As 戻り値の型
     ......
-    return 戻り値
+    Return 戻り値
 End Function
 ```
 
@@ -788,7 +788,7 @@ Module test '名前（test）は任意
             For _I = _Start To _End
                 _Result += _I
             Next
-            return _Result
+            Return _Result
         End Function
     End Class
 End Module
@@ -865,7 +865,7 @@ Module test '名前（test）は任意
         Shared Function Pow(ByVal _Arg1 As Integer, ByVal _Arg2 As Integer) As Integer
             ' 0乗対策
             IF _Arg2 = 0 Then '「==」ではない（注意）
-                return 1
+                Return 1
             End IF
 
             Dim _Result As Integer = _Arg1 'ローカル変数
@@ -873,7 +873,7 @@ Module test '名前（test）は任意
             For _I = 1 To _Arg2
                 _Result *= _Arg1
             Next
-            return _Result / _Arg1
+            Return _Result / _Arg1
         End Function
     End Class
 End Module
@@ -896,7 +896,7 @@ Module test '名前（test）は任意
             For Each _Int As Integer In _Args 
                 _Result = _Result + _Int 
             Next
-            return _Result
+            Return _Result
         End Function
     End Class
 End Module
@@ -956,14 +956,14 @@ Module test '名前（test）は任意
         'タイプＡのメソッド
         ''''''''''''''''''
         Private Function TypeA(ByVal _String As String) As String
-            return "Ａさん、" & _String
+            Return "Ａさん、" & _String
         End Function
 
         ''''''''''''''''''
         'タイプＢのメソッド
         ''''''''''''''''''
         Private Function TypeB(ByVal _String As String) As String
-            return "Mr.Ｂ, " & _String
+            Return "Mr.Ｂ, " & _String
         End Function
     End Class
 End Module
@@ -1003,7 +1003,7 @@ Module test '名前（test）は任意
         Shared Function Pow(ByVal _Arg1 As Integer, ByVal _Arg2 As Integer) As Integer
             ' 0乗対策
             IF _Arg2 = 0 Then '「==」ではない（注意）
-                return 1
+                Return 1
             End IF
 
             Dim _Result As Integer = _Arg1 'ローカル変数
@@ -1011,7 +1011,7 @@ Module test '名前（test）は任意
             For _I = 1 To _Arg2
                 _Result *= _Arg1
             Next
-            return _Result / _Arg1
+            Return _Result / _Arg1
         End Function
     End Class
 End Module
