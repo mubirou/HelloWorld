@@ -6,6 +6,7 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    *** 
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
@@ -41,39 +42,45 @@
 ### 概要
 * たった１つのインスタンス。一人っ子。
 * クラスのインスタンスが絶対に１個しか存在しないことを保証し、そこに外部からアクセスする唯一の方法を提供するデザインパターン。
-* 注意深くプログラミングして、new クラス名() を１回しか実行しないようにすれば良いわけですが、絶対にミスしないと保証することはできませんから…。
-
-### ポイント
-1. コンストラクタを private にする。つまり、Singleton クラスの外から new Singleton() とするとエラーが発生するようにする。
-1. Singleton クラスの静的変数（クラス変数）を定義する際、同時に new Singleton() で唯一のインスタンスを生成して格納する。
-1. 唯一のインスタンスにアクセスする場合、Singleton.getInstance() を使う。このメソッドは、インスタンスを生成するのではなく、既に存在する唯一のインスタンスを呼出します。
+* 注意深くプログラミングして、New クラス名() を１回しか実行しないようにすれば良いわけですが、絶対にミスしないと保証することはできませんから…。
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test { 
-    static void Main() {
-        //new Singleton(); //error ←外からはnewによるインスタンス生成は不可
-        Singleton _singleton1 = Singleton.GetInstance(); //唯一のインスタンスを呼出す
-        Singleton _singleton2 = Singleton.GetInstance(); //唯一のインスタンスを呼出す
-        Console.WriteLine(_singleton1 == _singleton2); //True ←同じインスタンス
-    }
-}
-class Singleton { //シングルトンクラス
-    private static Singleton _singleton = new Singleton(); //唯一のインスタンスを格納
-    private Singleton() { //外部からnew Singleton()できないようにする
-        Console.WriteLine("インスタンスを生成しました"); //DEBUG
-    }
-    public static Singleton GetInstance() { //外部から唯一のインスタンスを呼出す
-        return _singleton; //唯一のインスタンス（静的変数）を返す
-    }
-}
+'test.vb
+Imports System.IO 'StreamReaderに必要
+
+Module test '名前（test）は任意
+    Sub Main()
+        Dim _Singleton1 As Singleton = Singleton.GetInstance() '唯一のインスタンスを呼出す
+        Dim _Singleton2 As Singleton = Singleton.GetInstance() '唯一のインスタンスを呼出す
+        Console.WriteLine(_Singleton1.Equals(_Singleton2)) '=> True（同じインスタンス）
+    End Sub
+
+    ''''''''''''''''''
+    'シングルトンクラス
+    ''''''''''''''''''
+    Public Class Singleton
+        Private Shared _Singleton As New Singleton() '唯一のインスタンスを格納
+
+        'コンストラクタ
+        Private Sub New() '外部からNew Singleton()できないようにする
+            Console.WriteLine("インスタンスを生成しました") 'DEBUG
+        End Sub
+
+        '外部から唯一のインスタンスを呼出す
+        Public Shared Function GetInstance() As Singleton
+            Return _Singleton '唯一のインスタンス（静的変数）を返す
+        End Function
+    End Class
+
+    Public Class Singleton2
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月07日
 
 
 <a name="Prototype"></a>
