@@ -37,8 +37,8 @@
 * [イベント](#イベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
-***
 * [日時情報](#日時情報)
+***
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -2665,7 +2665,7 @@ End Module
 
 ### 書式
 ```
-DateTime ○ = DateTime.Now '=> DateTimeは構造体
+Dim ○ As DateTime = DateTime.Now
 ○.Year '=> 年（2017等）
 ○.Month '=> 月（1〜12）
 ○.Day '=> 日（1〜31）
@@ -2680,34 +2680,33 @@ DateTime ○ = DateTime.Now '=> DateTimeは構造体
 
 ### 例文
 ```
-'test.cs
-using System
-class Test {
-    static void Main() {
-        DateTime _now = DateTime.Now
-        Console.WriteLine(_now) '=> 4/21/2017 10:16:04 AM
-        Console.WriteLine(_now.Year) '=> 2017
-        Console.WriteLine(_now.Month) '=> 4
-        Console.WriteLine(_now.Day) '=> 21
-        Console.WriteLine(_now.DayOfYear) '=> 111（元日からの日数）
-        Console.WriteLine(_now.DayOfWeek) '=> Friday
-        Console.WriteLine(_now.Hour) '=> 10
-        Console.WriteLine(_now.Minute) '=> 16
-        Console.WriteLine(_now.Second) '=> 4
-        Console.WriteLine(_now.Millisecond) '=> 337
-        Console.WriteLine(_now.Ticks) '=> 636283665643372990（100ナノ秒単位）
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Dim _Now As DateTime = DateTime.Now
+        Console.WriteLine(_Now) '=> 7/7/2017 9:15:36 AM
+        Console.WriteLine(_Now.Year) '=> 2017
+        Console.WriteLine(_Now.Month) '=> 7
+        Console.WriteLine(_Now.Day) '=> 7
+        Console.WriteLine(_Now.DayOfYear) '=> 188（元日からの日数）
+        Console.WriteLine(_Now.DayOfWeek) '=> 5（日曜日は0）
+        Console.WriteLine(_Now.Hour) '=> 9
+        Console.WriteLine(_Now.Minute) '=> 15
+        Console.WriteLine(_Now.Second) '=> 36
+        Console.WriteLine(_Now.Millisecond) '=> 607
+        Console.WriteLine(_Now.Ticks) '=> 636350157366073770（100ナノ秒単位）
         '"hh:mm:ss"で現在の時間を表示する方法
-        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString()
-        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString()
-        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString()
-        Console.WriteLine(_h + ":" + _m + ":" + _s) '=> "10:16:04"
-    }
-}
+        Dim _H As String = If(_Now.Hour < 10, "0" & _Now.Hour, CStr(_Now.Hour))
+        Dim _M As String = If(_Now.Minute < 10,"0" & _Now.Minute, CStr(_Now.Minute))
+        Dim _S As String = If(_Now.Second < 10, "0" & _Now.Second, CStr(_Now.Second))
+        Console.WriteLine(_H & ":" & _M & ":" & _S) '=> "09:15:36"
+    End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月07日
 
 
 <a name="タイマー"></a>
