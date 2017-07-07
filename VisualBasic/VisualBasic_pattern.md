@@ -60,7 +60,7 @@ Module test '名前（test）は任意
     'シングルトンクラス
     ''''''''''''''''''
     Public Class Singleton
-        Private Shared _Singleton As New Singleton() '唯一のインスタンスを格納
+        Private Shared _Singleton As New Singleton() '唯一のインスタンスを格納（静的変数）
 
         'コンストラクタ
         Private Sub New() '外部からNew Singleton()できないようにする
