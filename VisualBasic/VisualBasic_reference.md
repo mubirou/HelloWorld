@@ -39,8 +39,8 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-***
 * [処理速度計測](#処理速度計測)
+***
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
@@ -2740,48 +2740,28 @@ End Module
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### DateTime構造体を使う方法
 ```
-'test.cs
-'日時情報を得るためのDatetime構造体を利用して計測する方法
-using System '=> DateTimeに必要
-class Test {
-    static void Main() {
-        long _start = DateTime.Now.Ticks '=> 100ナノ秒単位（精度は10ミリ秒）
-        for (long i=0 i<10000000000 i++) { '100億回繰り返す場合…
-            '速度計測したい処理
-        }
-        Console.WriteLine(DateTime.Now.Ticks - _start) '=> 33060210（≒3.3秒）
-    }
-}
-```
+'test.vb
+Imports System.Diagnostics 'Stopwatchに必要（.NET Framework 2.0から追加）
 
-### Stopwatchクラスを使う方法
-```
-'test.cs
-/*
-.NET Framework 2.0から追加された機能
-Stopwatchクラスのインスタンスを生成しStart/Stopメソッドを実行するだけで可能
-*/
-using System 
-using System.Diagnostics '=> Stopwatchに必要
-class Program     { 
-    static void Main() { 
-        Stopwatch _stopWatch = new Stopwatch() '=> インスタンスの生成
-        _stopWatch.Start() '=> 計測開始
-        for (long i=0 i<10000000000 i++) { '100億回繰り返す場合…
-            '速度計測したい処理
-        }
-        _stopWatch.Stop() '=> 計測終了
-        Console.WriteLine(_stopWatch.ElapsedMilliseconds) '=> 3230（ミリ秒）
-        Console.WriteLine(_stopWatch.Elapsed) '=> 00:00:03.2302265（秒）
-    }
-}
+Module test '名前（test）は任意
+  Sub Main()
+    Dim _Stopwatch As Stopwatch = New Stopwatch() 'インスタンスの生成
+    _Stopwatch.Start() '計測開始
+    For I As Integer = 1 To 1000000000 '10億回繰り返す場合...
+        '速度計測したい処理
+    Next
+    _Stopwatch.Stop()
+    Console.WriteLine(_stopWatch.ElapsedMilliseconds) '=> 1701（ミリ秒）
+    Console.WriteLine(_stopWatch.Elapsed) '=> 00:00:01.7017666（秒）
+  End Sub
+End Module
+
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月07日
 
 
 <a name="外部テキストの読み込み"></a>
