@@ -38,8 +38,8 @@
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-***
 * [タイマー](#タイマー)
+***
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
@@ -2712,66 +2712,29 @@ End Module
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### スレッドタイマー（System.Threading.Timer）を使う方法
 ```
-'test.cs
-/*
-システムタイマー（後述）と比較すると軽量
-Windows Formでの使用は非推奨
-*/
-using System
-using System.Threading '=> System.Threading.Timerに必要
+'test.vb
+Imports System.Timers
 
-class Test {
-    private static Timer _timer '=> privateは省略可
-        
-    static void Main() {
-        _timer = new Timer(new TimerCallback(Loop)) '=> タイマーの生成
-        _timer.Change(0, 1000) '=> 0ミリ秒後から、1000ミリ秒間隔で開始!
-        Console.ReadLine() '=> ここでは必須（要注意）
-    }
+Module test '名前（test）は任意
+  Sub Main()
+    Dim _Timer As Timer = New Timer(1000) 'タイマーの生成（1000ミリ秒毎）
+    AddHandler _Timer.Elapsed, AddressOf MyFunction 'イベントハンドラの定義
+    _Timer.Start() '開始
+    Console.ReadLine() 'ここでは必須（要注意）
+  End Sub
 
-    static void Loop(object arg) { '1000ミリ秒毎に実行される
-        Console.WriteLine(arg) '=> System.Threading.Timer
-        '_timer.Change(Timeout.Infinite, Timeout.Infinite) '=> 停止 ←力技
-    }
-}
-```
-
-### システムタイマー（System.Timers.Timer）を使う方法
-```
-'test.cs
-/* 
-サーバベース・タイマーとも呼ばれる
-スレッドタイマー（前述）と比較すると重いが精度が高い
-スレッドの経過時間とは独立した時間監視をする
-Windows Formでの使用もＯＫ
-*/
-using System
-using System.Timers '=> System.Timers.Timerに必要
-
-class Test {
-    private static Timer _timer '=> privateは省略可
-
-    static void Main() {
-        _timer = new Timer() '=> タイマーの生成
-        _timer.Interval = 1000 '=> 1000ミリ秒間隔
-        _timer.Elapsed += new ElapsedEventHandler(Loop) '=> イベントハンドラの追加
-        _timer.Start() '=> 開始!
-        Console.ReadLine() '=> ここでは必須（要注意）
-    }
-    
-    static void Loop(object arg1, EventArgs arg2) { '1000ミリ秒毎に実行される
-        Console.WriteLine(arg1) '=> System.Timers.Timer（タイマー本体）
-        Console.WriteLine(arg2) '=> System.Timers.ElapsedEventArgs（各種情報）
-        '_timer.Stop() '=> 停止 ←この場合１回で停止
-    }
-}
+  Public Sub MyFunction(_TimerObject As Object, _E As ElapsedEventArgs) '1000ミリ秒毎に実行
+    Console.WriteLine(_TimerObject) '=> System.Timers.Timer（タイマー本体）
+    Console.WriteLine(_E) '=> System.Timers.ElapsedEventArgs（各種情報）
+    '_TimerObject.Stop() '停止 ←この場合１回で停止
+  End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月07日
 
 
 <a name="処理速度計測"></a>
