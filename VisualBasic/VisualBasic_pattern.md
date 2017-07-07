@@ -72,9 +72,6 @@ Module test '名前（test）は任意
             Return _Singleton '唯一のインスタンス（静的変数）を返す
         End Function
     End Class
-
-    Public Class Singleton2
-    End Class
 End Module
 ```
 
