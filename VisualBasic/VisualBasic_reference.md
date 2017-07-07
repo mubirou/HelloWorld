@@ -1,5 +1,3 @@
-### <b>この項目は書きかけの項目です</b>
-
 # <b>Visual Basic .NET 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -40,7 +38,6 @@
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
-***
 * [外部テキストの読み込み](#外部テキストの読み込み)
 
 
@@ -2766,7 +2763,6 @@ End Module
 
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
-* [Web サーバ](http:'bit.ly/2mbzR4D)を稼働する必要はない
 
 ### テキストファイルの用意（sample.txt/UTF-8として保存）
 ```
@@ -2775,39 +2771,22 @@ End Module
 さしすせそ
 ```
 
-### 例文（StreamReader クラスを使う方法）
+### 例文
 ```
-'test.cs
-using System
-using System.IO '=> StreamReaderに必要
-class Test { 
-    static void Main() {
-        string _path = "sample.txt"
-        '↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
-        StreamReader _stream = new StreamReader(_path) '=> .txt以外も可能
-        string _string = _stream.ReadToEnd() '=> 全ての内容を読み込む
-        _stream.Close() '=> 閉じる
-        Console.WriteLine(_string) '=> 結果を出力
-    }
-}
-```
+'test.vb
+Imports System.IO 'StreamReaderに必要
 
-###  例文（File.OpenTextメソッドを使う方法）
-```
-'test.cs
-using System
-using System.IO '=> StreamReaderに必要
-class Test { 
-    static void Main() {
-        string _path = "sample.txt"
-        StreamReader _stream = File.OpenText(_path) '=> .txt以外も可能（UFT-8限定）
-        string _string = _stream.ReadToEnd() '=> 全ての内容を読み込む
-        _stream.Close() '=> 閉じる
-        Console.WriteLine(_string) '=> 結果を出力
-    }
-}
+Module test '名前（test）は任意
+  Sub Main()
+    Dim _Path As String = "sample.txt"
+    Dim _Stream As StreamReader = File.OpenText(_Path) '.txt以外も可能（UFT-8限定）
+    Dim _String As String = _Stream.ReadToEnd() '全ての内容を読み込む
+    _Stream.Close() '閉じる
+    Console.WriteLine(_String) '結果を出力
+  End Sub
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.0.1  
 作成者：Takashi Nishimura  
-作成日：2017年07月XX日
+作成日：2017年07月07日
