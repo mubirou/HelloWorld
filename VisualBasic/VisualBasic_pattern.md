@@ -73,8 +73,7 @@ class Singleton { //シングルトンクラス
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月01日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Prototype"></a>
@@ -156,8 +155,7 @@ class Prototype : IPrototype {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月02日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Builder"></a>
@@ -285,8 +283,7 @@ class Footer011 {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月02日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="FactoryMethod"></a>
@@ -413,8 +410,7 @@ class Message4 : IMessage {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月02日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="AbstractFactory"></a>
@@ -499,8 +495,7 @@ class HARUKO : AbstractFactory { //抽象クラスを継承
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月03日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Adapter（継承）"></a>
@@ -553,8 +548,7 @@ class Exchange : Moneybox, IExchange {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月04日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Adapter（委譲）"></a>
@@ -606,8 +600,7 @@ class Exchange : IExchange {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月04日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Bridge"></a>
@@ -696,8 +689,7 @@ class IOS : AbstractOS {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月05日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Composite"></a>
@@ -794,8 +786,7 @@ class File : Component {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月08日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Decorator"></a>
@@ -873,8 +864,7 @@ class Decorator2 : Display {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月10日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Facade"></a>
@@ -959,8 +949,7 @@ class Decorator2 : Display {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月10日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Flyweight"></a>
@@ -1046,8 +1035,7 @@ class Reader {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月15日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Proxy"></a>
@@ -1124,8 +1112,7 @@ class Content : ILoader {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月12日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Iterator"></a>
@@ -1216,8 +1203,7 @@ class Iterator : IIterator {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月15日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="TemplateMethod"></a>
@@ -1304,8 +1290,7 @@ class CardHanako : AbstractCard {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月15日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Strategy"></a>
@@ -1359,8 +1344,7 @@ class Janken {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月15日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Visitor"></a>
@@ -1444,8 +1428,7 @@ class Haruko : IVisitor { //春子
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月16日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="ChainofResponsibility"></a>
@@ -1532,8 +1515,7 @@ class JapanPO : AbstractPO {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月16日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Mediator"></a>
@@ -1656,8 +1638,7 @@ class MemberC : AbstractMember {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月16日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Observer"></a>
@@ -1740,8 +1721,7 @@ class iPadPro : IObserver { //本来は大文字で始まるべきですが…
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月17日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Memento"></a>
@@ -1863,8 +1843,7 @@ class SnapShot {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月17日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="State"></a>
@@ -1947,8 +1926,7 @@ class StateB : IState {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月17日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Command"></a>
@@ -2037,8 +2015,7 @@ class Canvas {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月18日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
 
 
 <a name="Interpreter"></a>
@@ -2120,5 +2097,4 @@ class AVM {
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-作成日：2015年12月19日  
-更新日：2017年05月02日
+更新日：2017年07月XX日
