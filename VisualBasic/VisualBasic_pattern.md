@@ -85,81 +85,69 @@ End Module
 
 ### 概要
 * コピーしてインスタンスを作る。原型。
-* new クラス名() でインスタンスを生成するのではなく、インスタンスを複製（≠参照）して新しいインスタンスを作ります。
-* Java には clone() が、PHPには __clone() があります。C# も Bitmap クラス等には Clone() メソッドが用意されていますが、汎用のメソッドは用意されていません。
+* New クラス名() でインスタンスを生成するのではなく、インスタンスを複製（≠参照）して新しいインスタンスを作ります。
 
 ### ポイント
 1. 複製には、インスタンス.Clone() を使う。
-1. Clone() メソッド内では、new を使ってインスタンスを生成。そのインスタンスに複製元のプロパティをそのままコピーする。
+1. Clone() メソッド内では、New を使ってインスタンスを生成。そのインスタンスに複製元のプロパティをそのままコピーする。
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        //インスタンスを生成
-        Prototype _prototype1 = new Prototype("Nishimura");
-        _prototype1.FirstName = "Takashi";
-        _prototype1.Age = 49;
-        
-        //コピーを作成
-        Prototype _prototype2 = _prototype1.Clone(); //複製する（newを使わない）
-        _prototype2.FirstName = "Hanako";
-        _prototype2.Age = 45;
-        
-        //検証（コピー元）
-        Console.WriteLine(_prototype1.FirstName); //"Takshi"
-        Console.WriteLine(_prototype1.LastName); //"Nishimura"
-        Console.WriteLine(_prototype1.Age); //49
-        
-        //検証（複製したもの）
-        Console.WriteLine(_prototype2.FirstName); //"Hanako" ←「参照」ではない
-        Console.WriteLine(_prototype2.LastName); //"Nishimura"
-        Console.WriteLine(_prototype2.Age); //45
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _MemberA AS New Prototype("鈴木一郎", "新宿区XX町X-X-X")
+        Dim _MemberB = _MemberA.Clone() 'インスタンスをコピー（複製）
+        _MemberB.Name = "鈴木花子" 'プロパティを変更
+        Console.WriteLine(_MemberA.Name) '=> "鈴木一郎"
+        Console.WriteLine(_MemberA.Address) '=> "新宿区XX町X-X-X"
+        Console.WriteLine(_MemberB.Name) '=> "鈴木花子"
+        Console.WriteLine(_MemberA.Address) '=> "新宿区XX町X-X-X"
+    End Sub
 
-//インターフェースの宣言
-interface IPrototype {
-    Prototype Clone(); //暗黙的にpublicになる
-    string FirstName { get; set; } //get/setアクセサ（暗黙的にpublicになる）
-    string LastName { get; set; }
-    int Age { get; set; }
-}
+    '派生クラス
+    Public Class Prototype
+        Private _Name As String
+        Private _Address As String
 
-//インターフェースの実装
-class Prototype : IPrototype {
-    private string _firstName, _lastName;
-    private int _age;
-    //コンストラクタ
-    public Prototype(string _lastName) {
-        this._lastName = _lastName;
-    }
-    public Prototype Clone() {
-        Prototype _copy = new Prototype(_lastName); //自分自身を生成
-        _copy.FirstName = _firstName; //プロパティを複製
-        _copy.Age = _age; //プロパティを複製
-        return _copy; //全てのプロパティを複製したインスタンスを返す
-    }
-    public string FirstName {
-        get { return _firstName; }
-        set { _firstName = value; }
-    }
-    public string LastName {
-        get { return _lastName; }
-        set { _lastName = value; }
-    }
-    public int Age {
-        get { return _age; }
-        set { _age = value; }
-    }
-}
+        'コンストラクタ
+        Public Sub New(ByVal _Name As String, ByVal _Address As String)
+            Me._Name = _Name
+            Me._Address = _Address
+        End Sub
+
+        'アクセサの定義
+        Public Property Name() As String
+            Get
+                Name = _Name
+            End Get
+            Set(ByVal _newValue As String)
+                _Name = _newValue
+            End Set
+        End Property
+
+        Public Property Address() As String
+            Get
+                Address = _Address
+            End Get
+            Set(ByVal _newValue As String)
+                _Address = _newValue
+            End Set
+        End Property
+
+        'メソッドの定義
+        Public Function Clone() As Prototype
+            '自分自身（同じクラス）のインスタンスを生成
+            Dim _Prototype As New Prototype(Me._Name, Me._Address)
+            Return _Prototype
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月09日
 
 
 <a name="Builder"></a>
