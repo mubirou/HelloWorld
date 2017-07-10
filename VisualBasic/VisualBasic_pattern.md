@@ -234,7 +234,6 @@ Module test '名前（test）は任意
     ' Director役＝監督（作成手順を決め実行する）
     ''''''''''''''''''''''''''''''''''''''''''
     Public Class Director
-        'プロパティの定義・初期値の設定
         private _Builder As AbstractBuilder
 
         'コンストラクタ
