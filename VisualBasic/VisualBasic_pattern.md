@@ -158,124 +158,102 @@ End Module
 * 複雑な構造を持ったものを一気に完成させるのではなく、段階を踏んで組み上げていきます。
 * "手順"と"材料"を分けておき、"同じ手順"で異なるオブジェクトを生成させます。
 * ポリモーフィズム（多態性）と委譲を活用したパターンです。
-* 例文の IBuilder を"インターフェース"ではなく"抽象クラス"として記述する場合もあります。
+* 例文の AbstractBuilder を"抽象クラス"ではなく"インターフェース"として記述する場合もあります。
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Imports System.IO 'StreamReaderに必要
 
-/*************
- * メインクラス
-*************/
-class Test {
-    static void Main() {
-        Director _director1 = new Director(new Builder009());
-        _director1.Construct(); //共通の手順を実行
-        /*
-        あけましておめでとうございます
-        タイプ194用のイラスト
-        元旦
-        */
-        
-        Director _director2 = new Director(new Builder108());
-        _director2.Construct(); //共通の手順を実行
-        /*
-        HAPPY NEW YEAR
-        タイプ023用のイラスト
-        2018.1.1
-        */
-    }
-}
+Module test '名前（test）は任意
+    Sub Main()
+        '暑中御見舞
+        Dim _SummerCard As New Director(NEw SummerCardBuilder())
+        _SummerCard.Construct() '作成過程の実行
+        '=> 暑中お見舞い申し上げます
+        '=> スイカのイラスト
+        '=> 盛夏
 
-/*******************************
- * Directorクラス（年賀印刷業者）
-*******************************/
-class Director {
-    private IBuilder _builder; //Builder○○クラスのインスタンスを格納（委譲）
-    public Director(IBuilder _builder) {
-        this._builder = _builder; //_builerはBuilder○○クラスのインスタンス
-    }
-    public void Construct() { //共通の手順（≠コンストラクタ。紛らわしいですが…）
-        _builder.makeHeader();  //手順①
-        _builder.makeContent(); //手順②
-        _builder.makeFooter();  //手順③
-    }
-}
+        '年賀状
+        Dim _NewYearCard As New Director(New NewYearCardBuilder())
+        _NewYearCard.Construct() '作成過程の実行
+        '=> 明けましておめでとうございます
+        '=> 干支のイラスト
+        '=> 元旦
+    End Sub
 
-/*************************************************
- * BuilderXXXクラスのインターフェース（オプション）
-*************************************************/
-interface IBuilder {
-    void makeHeader(); //暗黙的にpublicになる
-    void makeContent();
-    void makeFooter();
-}
+    '''''''''''''''''''''''
+    'Builder役（抽象クラス）
+    '''''''''''''''''''''''
+    Public MustInherit Class AbstractBuilder
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Sub MakeHeader()
+        Public MustOverride Sub MakeContent()
+        Public MustOverride Sub MakeFooter()
+    End Class
 
-/****************************************
- * Builder○○クラス群（年賀状のタイプ群）
-****************************************/
-class Builder009 : IBuilder { //タイプ009の年賀状
-    public void makeHeader() {
-        new Header051().exec(); //ヘッダー用素材の呼出しと実行
-    }
-    public void makeContent() {
-        new Content194().exec(); //コンテンツ用素材の呼出しと実行
-    }
-    public void makeFooter() {
-        new Footer004().exec(); //フッター用素材の呼出しと実行
-    }
-}
+    '''''''''''''''''''''''''''''
+    ' ConcreateBuilder役＝制作者Ａ
+    '''''''''''''''''''''''''''''
+    Public Class SummerCardBuilder
+        Inherits AbstractBuilder '抽象クラスの「継承」
 
-class Builder108 : IBuilder { //タイプ108の年賀状
-    public void makeHeader() {
-        new Header040().exec(); //ヘッダー用素材の呼出しと実行
-    }
-    public void makeContent() {
-        new Content023().exec(); //コンテンツ用素材の呼出しと実行
-    }
-    public void makeFooter() {
-        new Footer011().exec(); //フッター用素材の呼出しと実行
-    }
-}
+        Public Overrides Sub MakeHeader() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("暑中お見舞い申し上げます")
+        End Sub
 
-/***************************************
- * Header○○クラス群（ヘッダー用材料群）
-***************************************/
-class Header040 {
-    public void exec() { Console.WriteLine("HAPPY NEW YEAR"); }
-}
+        Public Overrides Sub MakeContent() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("スイカのイラスト")
+        End Sub
 
-class Header051 {
-    public void exec() { Console.WriteLine("あけましておめでとうございます"); }
-}
+        Public Overrides Sub MakeFooter() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("盛夏")
+        End Sub
+    End Class
 
-/******************************************
- * Content○○クラス群（コンテンツ用材料群）
-******************************************/
-class Content023 {
-    public void exec() { Console.WriteLine("タイプ023用のイラスト"); }
-}
+    '''''''''''''''''''''''''''''
+    ' ConcreateBuilder役＝制作者Ｂ
+    '''''''''''''''''''''''''''''
+    Public Class NewYearCardBuilder
+        Inherits AbstractBuilder '抽象クラスの「継承」
 
-class Content194 {
-    public void exec() { Console.WriteLine("タイプ194用のイラスト"); }
-}
+        Public Overrides Sub MakeHeader() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("明けましておめでとうございます")
+        End Sub
 
-/***************************************
- * Footer○○クラス群（フッター用材料群）
-***************************************/
-class Footer004 {
-    public void exec() { Console.WriteLine("元旦"); }
-}
+        Public Overrides Sub MakeContent() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("干支のイラスト")
+        End Sub
 
-class Footer011 {
-    public void exec() { Console.WriteLine("2018.1.1"); }
-}
+        Public Overrides Sub MakeFooter() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("元旦")
+        End Sub
+    End Class
+
+    ''''''''''''''''''''''''''''''''''''''''''
+    ' Director役＝監督（作成手順を決め実行する）
+    ''''''''''''''''''''''''''''''''''''''''''
+    Public Class Director
+        'プロパティの定義・初期値の設定
+        private _Builder As AbstractBuilder
+
+        'コンストラクタ
+        Public Sub New(ByVal _Builder As AbstractBuilder)
+            Me._Builder = _Builder
+        End Sub
+
+        Public Sub Construct() '作成過程
+            Me._Builder.MakeHeader()
+            Me._Builder.MakeContent()
+            Me._Builder.MakeFooter()
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月10日
 
 
 <a name="FactoryMethod"></a>
