@@ -8,8 +8,8 @@
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス 
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
-    ***
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
+    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
 * プログラムの「構造」に関するパターン
@@ -266,120 +266,188 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        CardICHIRO _cardICHIRO = new CardICHIRO();
-        _cardICHIRO.templateMethod("先生");
-        /*
-        謹賀新年
-        〒XXX-XXXX
-        西村一郎
-        */
-        _cardICHIRO.templateMethod("同級生");
-        /*
-        HAPPY NEW YEAR
-        〒XXX-XXXX
-        西村一郎
-        */
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        '''''''''''''''
+        ' Ichiroショップ
+        '''''''''''''''
+        Dim _CardShopIchiro AS New CardShopIchiro()
+        Dim _IchiroSummerCard As AbstractCard = _CardShopIchiro.Order("暑中見舞い")
+        _IchiroSummerCard.Print()
+        '=> HAPPY SUMMER HOLIDAYS!
+        '=> サーフィンのイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-        CardHARUKO _cardHARUKO = new CardHARUKO();
-        _cardHARUKO.templateMethod("先生");
-        /*
-        明けましておめでとうございます
-        〒XXX-XXXX
-        西村春子
-        */
-        _cardHARUKO.templateMethod("同級生");
-        /*
-        あけましておめでとう
-        〒XXX-XXXX
-        西村春子
-        */
-    }
-}
+        Dim _IchiroNewYearCard As AbstractCard = _CardShopIchiro.Order("年賀状")
+        _IchiroNewYearCard.Print()
+        '=> HAPPY NEW YEAR!
+        '=> 干支のイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-/************
- * 抽象クラス
-************/
-abstract class AbstractCard {
-    public void templateMethod(string _arg) { //このメソッドはoverrideしない
-        //↓ここでnewと記述しない（条件分岐は派生クラスで行う＝ここを汚さない)
-        IMessage _message = factoryMethod(_arg); //派生クラスのメソッドを呼び出す
-        _message.Exec(); //処理①
-        order1(); //処理②
-        order2(); //処理③
-    }
-    protected abstract IMessage factoryMethod(string _arg); //派生クラスでoverride
-    public void order1() { //共通の処理
-        Console.WriteLine("〒XXX-XXXX");
-    }
-    protected abstract void order2(); //派生クラスでoverride
-}
+        Dim _IchiroMourningCard As AbstractCard = _CardShopIchiro.Order("喪中はがき")
+        _IchiroMourningCard.Print()
+        '=> 喪中のため年頭のご挨拶をご遠慮申し上げます
+        '=> 白黒のイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-/*********************************
- * 派生クラス群（抽象クラスを継承）
-*********************************/
-class CardICHIRO : AbstractCard { //抽象クラスを継承
-    protected override IMessage factoryMethod(string _arg) { //具体的処理を記述
-        if (_arg == "先生") {
-            return new Message1(); //ここでnewを記述
-        } else if (_arg == "同級生") {
-            return new Message2(); //ここでnewを記述 
-        } else {
-            Console.WriteLine("error:CardICHIRO.factoryMethod()");
-            return null; //returnが必要（注意）
-        }
-    }
-    protected override void order2() { //具体的処理を記述
-        Console.WriteLine("西村一郎");
-    }
-}
+        ''''''''''''''''
+        ' Hanakoショップ
+        ''''''''''''''''
+        Dim _CardShopHanako AS New CardShopHanako()
+        Dim _HanakoSummerCard As AbstractCard = _CardShopHanako.Order("暑中見舞い")
+        _HanakoSummerCard.Print()
+        '=> 暑中お見舞い申し上げます
+        '=> スイカのイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-class CardHARUKO : AbstractCard { //抽象クラスを継承
-    protected override IMessage factoryMethod(string _arg) { //具体的処理を記述
-        if (_arg == "先生") {
-            return new Message3(); //ここでnew クラス名()を記述
-        } else if (_arg == "同級生") {
-            return new Message4(); //ここでnew クラス名()を記述
-        } else {
-            Console.WriteLine("error:CardSCAHIKO.factoryMethod()");
-            return null; //returnが必要（注意）
-        }
-    }
-    protected override void order2() { //具体的処理を記述
-        Console.WriteLine("西村春子");
-    }
-}
+        Dim _HanakoNewYearCard As AbstractCard = _CardShopHanako.Order("年賀状")
+        _HanakoNewYearCard.Print()
+        '=> 明けましておめでとうございます
+        '=> お餅のイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
+    End Sub
 
-/********************
- * 生成したいクラス群
-********************/
-interface IMessage { //インターフェース宣言 ←オプション
-    void Exec(); //共通のメソッド
-}
+    '抽象クラスの定義
+    Public MustInherit Class AbstracShop
+        Public Function Order(ByVal _Type As String) As AbstractCard
+            '↓「変化する部分」をカプセル化（汎用化にも寄与）
+            Dim _Card As AbstractCard = FactoryMethod(_Type) 'ここで New しない
+            '↓変化しない部分（一連の処理／具体的な処理内容は各カードのクラスまかせ）
+            _Card.MakeHeader()
+            _Card.MakeContent()
+            _Card.MakeFooter()
+            Return _Card
+        End Function
 
-class Message1 : IMessage {
-    public void Exec() { Console.WriteLine("謹賀新年"); }
-}
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Function FactoryMethod(ByVal _Type As String) As AbstractCard
+    End Class
 
-class Message2 : IMessage {
-    public void Exec() { Console.WriteLine("HAPPY NEW YEAR"); }
-}
+    '''''''''''''''''''''''''''''
+    ' 抽象クラスを継承するクラスＡ
+    '''''''''''''''''''''''''''''
+    Public Class CardShopIchiro
+        Inherits AbstracShop '抽象クラスの「継承」
 
-class Message3 : IMessage {
-    public void Exec() { Console.WriteLine("明けましておめでとうございます"); }
-}
+        'オーバーライドして実際の処理を記述
+        Public Overrides Function FactoryMethod(ByVal _Type As String) As AbstractCard
+            Dim _Result As AbstractCard
+            If _Type = "暑中見舞い" Then
+                _Result = New IchiroSummerCard() 'ここでインスタンス化
+            ElseIf _Type = "年賀状" Then
+                _Result = New IchiroNewYearCard() 'ここでインスタンス化
+            ElseIf _Type = "喪中はがき" Then
+                _Result = New IchiroMourningCard() 'ここでインスタンス化
+            End If
+            Return _Result
+        End Function
+    End Class
 
-class Message4 : IMessage {
-    public void Exec() { Console.WriteLine("あけましておめでとう"); }
-}
+    '''''''''''''''''''''''''''''
+    ' 抽象クラスを継承するクラスＢ
+    '''''''''''''''''''''''''''''
+    Public Class CardShopHanako
+        Inherits AbstracShop '抽象クラスの「継承」
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Function FactoryMethod(ByVal _Type As String) As AbstractCard
+            Dim _Result As AbstractCard
+            If _Type = "暑中見舞い" Then
+                _Result = New HanakoSummerCard() 'ここでインスタンス化
+            ElseIf _Type = "年賀状" Then
+                _Result = New HanakoNewYearCard() 'ここでインスタンス化
+            End If
+            Return _Result
+        End Function
+    End Class
+
+    '''''''''''''''''''
+    '生成したいクラス群
+    '''''''''''''''''''
+    '抽象クラスの定義
+    Public MustInherit Class AbstractCard
+        Private _Footer As String
+        Protected _Header As String
+        Protected _Content As String
+
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Sub MakeHeader()
+        Public MustOverride Sub MakeContent()
+
+        'メソッドの定義（共通）
+        Public Sub MakeFooter()
+            _Footer = "〒XXX-XXXX 新宿区XX町X-X-X"
+        End Sub
+        
+        Public Sub Print()
+            Console.WriteLine(_Header)
+            Console.WriteLine(_Content)
+            Console.WriteLine(_Footer)
+        End Sub
+    End Class
+
+    ''''''''''''''''
+    ' IchiroXXXXCard
+    ''''''''''''''''
+    Public Class IchiroSummerCard
+        Inherits AbstractCard '抽象クラスの「継承」
+        Public Overrides Sub MakeHeader() 'オーバーライドして実際の処理を記述
+            _Header = "HAPPY SUMMER HOLIDAYS!"
+        End Sub
+        Public Overrides Sub MakeContent() 'オーバーライドして実際の処理を記述
+            _Content = "サーフィンのイラスト"
+        End Sub
+    End Class
+
+    Public Class IchiroNewYearCard
+        Inherits AbstractCard '抽象クラスの「継承」
+        Public Overrides Sub MakeHeader() 'オーバーライドして実際の処理を記述
+            _Header = "HAPPY NEW YEAR!"
+        End Sub
+        Public Overrides Sub MakeContent() 'オーバーライドして実際の処理を記述
+            _Content = "干支のイラスト"
+        End Sub
+    End Class
+
+    Public Class IchiroMourningCard
+        Inherits AbstractCard '抽象クラスの「継承」
+        Public Overrides Sub MakeHeader() 'オーバーライドして実際の処理を記述
+            _Header = "喪中のため年頭のご挨拶をご遠慮申し上げます"
+        End Sub
+        Public Overrides Sub MakeContent() 'オーバーライドして実際の処理を記述
+            _Content = "白黒のイラスト"
+        End Sub
+    End Class
+
+    ''''''''''''''''
+    ' HanakoXXXXCard
+    ''''''''''''''''
+    Public Class HanakoSummerCard
+        Inherits AbstractCard '抽象クラスの「継承」
+        Public Overrides Sub MakeHeader() 'オーバーライドして実際の処理を記述
+            _Header = "暑中お見舞い申し上げます"
+        End Sub
+        Public Overrides Sub MakeContent() 'オーバーライドして実際の処理を記述
+            _Content = "スイカのイラスト"
+        End Sub
+    End Class
+
+    Public Class HanakoNewYearCard
+        Inherits AbstractCard '抽象クラスの「継承」
+        Public Overrides Sub MakeHeader() 'オーバーライドして実際の処理を記述
+            _Header = "明けましておめでとうございます"
+        End Sub
+        Public Overrides Sub MakeContent() 'オーバーライドして実際の処理を記述
+            _Content = "お餅のイラスト"
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月14日
 
 
 <a name="AbstractFactory"></a>
