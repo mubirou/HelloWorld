@@ -308,7 +308,9 @@ Module test '名前（test）は任意
         '=> 〒XXX-XXXX 新宿区XX町X-X-X
     End Sub
 
+    ''''''''''''''''
     '抽象クラスの定義
+    ''''''''''''''''
     Public MustInherit Class AbstracShop
         Public Function Order(ByVal _Type As String) As AbstractCard
             '↓「変化する部分」をカプセル化（汎用化にも寄与）
