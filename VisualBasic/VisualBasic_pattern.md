@@ -10,10 +10,10 @@
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
-    ***
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
+    ***
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
@@ -597,47 +597,62 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Exchange As Exchange = new Exchange(10000, 112.157918) '最初の貯金, レート
+        _Exchange.AddYen(8000)
+        Console.WriteLine(_Exchange.GetDollar()) '=> 160.488（ドル）
+    End Sub
 
-//メインクラス
-class Test {
-    static void Main() {
-        Exchange _exchange = new Exchange(10000, 111.844);
-        _exchange.AddYen(8000);
-        Console.WriteLine(_exchange.GetDollar()); //160.938449983906（ドル）
-    }
-}
+    ''''''''''''''''''''''''''''
+    '基本クラス（スーパークラス）
+    ''''''''''''''''''''''''''''
+    Public Class Moneybox
+        Private _Yen As Integer
 
-//基本クラス（親クラス）の定義
-class Moneybox {
-    private int _yen; //privateは省略可
-    public Moneybox(int _yen) { this._yen = _yen; } //コンストラクタ（★）
-    public void Add(int _yen) { this._yen += _yen; }
-    public int GetYen() { return _yen; }
-}
+        'コンストラクタ
+        Public Sub New(ByVal _FirstYen As Integer)
+            _Yen = _FirstYen
+        End Sub
 
-//インターフェースの宣言
-interface IExchange {
-    void AddYen(int _yen); //暗黙的にpublic
-    double GetDollar(); //暗黙的にpublic
-}
+        'メソッド
+        Public Sub AddYen(ByVal _Yen As Integer)
+            Me._Yen += _Yen
+        End Sub
+        Public Function GetYen() As Integer
+            Return _Yen
+        End Function
+    End Class
 
-//継承、インターフェースの実装
-class Exchange : Moneybox, IExchange {
-    private double _rate; //privateは省略可
-    //↓baseキーワードで基本クラスのコンストラクタ（★）を実行
-    public Exchange(int _firstYen, double _rate) : base(_firstYen) {
-        this._rate = _rate;
-    }
-    public void AddYen(int _yen) { Add(_yen); } //Add()は基本クラスから継承
-    public double GetDollar() { return GetYen() / _rate; } //GetYen()は基本〜から継承
-}
+    ''''''''''''''''''''''''''''
+    '派生クラス（サブクラス）
+    ''''''''''''''''''''''''''''
+    Public Class Exchange
+        Inherits Moneybox 'Moneyboxを継承
+
+        Private _Rate As Single
+
+        'コンストラクタ
+        Public Sub New(ByVal _FirstYen As Integer, ByVal _Rate As Single)
+            MyBase.New(_FirstYen) '基本クラスのコンストラクタの呼出し
+            Me._Rate = _Rate
+        End Sub
+
+        'メソッド
+        Public Sub AddYen(ByVal _Yen As Integer)
+            MyBase.AddYen(_Yen)
+        End Sub
+        Public Function GetDollar() As Single
+            Return Me.GetYen() / _Rate
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月18日
 
 
 <a name="Adapter（委譲）"></a>
