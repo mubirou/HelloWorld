@@ -487,7 +487,7 @@ Module test '名前（test）は任意
         '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
         ''''''''''''''''
-        ' Ichiroショップ
+        ' Hanakoショップ
         ''''''''''''''''
         Dim _Hanako As AbstracShop = AbstracShop.GetShop("CardShopHanako") '静的メソッドを使用
         _Hanako.CreateSummerCard()
