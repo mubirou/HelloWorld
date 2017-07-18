@@ -531,9 +531,9 @@ Module test '名前（test）は任意
         End Sub
     End Class
 
-    ''''''''''''''
-    ' サブクラスＡ
-    ''''''''''''''
+    '''''''''''''''''''''''''''''
+    ' 抽象クラスを継承したクラスＡ
+    '''''''''''''''''''''''''''''
     Public Class CardShopIchiro
         Inherits AbstracShop '抽象クラスの「継承」
 
@@ -557,9 +557,9 @@ Module test '名前（test）は任意
     End Class
 
 
-    ''''''''''''''
-    ' サブクラスＢ
-    ''''''''''''''
+    '''''''''''''''''''''''''''''
+    ' 抽象クラスを継承したクラスＢ
+    '''''''''''''''''''''''''''''
     Public Class CardShopHanako
         Inherits AbstracShop '抽象クラスの「継承」
 
