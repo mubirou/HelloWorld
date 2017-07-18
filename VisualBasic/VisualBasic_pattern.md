@@ -9,8 +9,8 @@
     * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
-    ***
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
+    ***
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
@@ -463,78 +463,150 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        AbstractFactory _factoryICHIRO = AbstractFactory.createFactory("ICHIRO");
-        _factoryICHIRO.CreateNewYear();
-        /*
-        HAPPY NEW YEAR
-        ICHIRO NISHIMURA
-        */
-        _factoryICHIRO.CreateSummer();
-        /*
-        暑中お見舞い申し上げます
-        西村一郎
-        */
-        
-        AbstractFactory _factoryHARUKO = AbstractFactory.createFactory("HARUKO");
-        _factoryHARUKO.CreateNewYear();
-        /*
-        明けましておめでとうございます
-        西村春子
-        */
-        _factoryHARUKO.CreateSummer();
-        /*
-        暑中おみまいもうしあげます
-        西村春子
-        */
-    }
-}
+' '''''''''''''''
+' ' Ichiroショップ
+' '''''''''''''''
+' Dim _CardShopIchiro AS New CardShopIchiro()
+' Dim _IchiroSummerCard As AbstractCard = _CardShopIchiro.Order("暑中見舞い")
+' _IchiroSummerCard.Print()
+' '=> HAPPY SUMMER HOLIDAYS!
+' '=> サーフィンのイラスト
+' '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-//抽象クラス（抽象的な工場）
-abstract class AbstractFactory {
-    public static AbstractFactory createFactory(string _name) { //共通の静的メソッド
-        if (_name == "ICHIRO") {
-            return new ICHIRO(); //具体的な「一郎工場」を生成
-        } else if (_name == "HARUKO") {
-            return new HARUKO(); //具体的な「春子工場」を生成
-        } else {
-            return null; //必須（注意）
-        }
-    }
-    public abstract void CreateNewYear(); //抽象メソッド宣言（派生クラスでoverride）
-    public abstract void CreateSummer();  //抽象メソッド宣言（派生クラスでoverride）
-}
+' Dim _IchiroNewYearCard As AbstractCard = _CardShopIchiro.Order("年賀状")
+' _IchiroNewYearCard.Print()
+' '=> HAPPY NEW YEAR!
+' '=> 干支のイラスト
+' '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-//派生クラス群（実際の工場群）
-class ICHIRO : AbstractFactory { //抽象クラスを継承
-    public override void CreateNewYear() { //overrideして具体的処理を記述
-        Console.WriteLine("HAPPY NEW YEAR");
-        Console.WriteLine("ICHIRO NISHIMURA");
-    }
-    public override void CreateSummer() { //overrideして具体的処理を記述
-        Console.WriteLine("暑中お見舞い申し上げます");
-        Console.WriteLine("西村一郎");
-    }
-}
+' Dim _IchiroMourningCard As AbstractCard = _CardShopIchiro.Order("喪中はがき")
+' _IchiroMourningCard.Print()
+' '=> 喪中のため年頭のご挨拶をご遠慮申し上げます
+' '=> 白黒のイラスト
+' '=> 〒XXX-XXXX 新宿区XX町X-X-X
 
-class HARUKO : AbstractFactory { //抽象クラスを継承
-    public override void CreateNewYear() { //overrideして具体的処理を記述
-        Console.WriteLine("明けましておめでとうございます");
-        Console.WriteLine("西村春子");
-    }
-    public override void CreateSummer() { //overrideして具体的処理を記述
-        Console.WriteLine("暑中おみまいもうしあげます");
-        Console.WriteLine("西村春子");
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        ''''''''''''''''
+        ' Ichiroショップ
+        ''''''''''''''''
+        Dim _Ichiro As AbstracShop = AbstracShop.GetShop("CardShopIchiro") '静的メソッドを使用
+
+        _Ichiro.CreateSummerCard()
+        '=> HAPPY SUMMER HOLIDAYS!
+        '=> サーフィンのイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
+
+        _Ichiro.CreateNewYearCard()
+        '=> HAPPY NEW YEAR!
+        '=> 干支のイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
+
+        _Ichiro.CreateMourningCard()
+        '=> 喪中のため年頭のご挨拶をご遠慮申し上げます
+        '=> 白黒のイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
+
+        ''''''''''''''''
+        ' Ichiroショップ
+        ''''''''''''''''
+        Dim _Hanako As AbstracShop = AbstracShop.GetShop("CardShopHanako") '静的メソッドを使用
+        _Hanako.CreateSummerCard()
+        '=> 暑中お見舞い申し上げます
+        '=> スイカのイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
+
+        _Hanako.CreateNewYearCard()
+        '=> 明けましておめでとうございます
+        '=> 干支のイラスト
+        '=> 〒XXX-XXXX 新宿区XX町X-X-X
+
+        _Hanako.CreateMourningCard()
+        '=> Error: 喪中はがきにはまだ対応しておりません
+    End Sub
+
+    ' カードショップ
+    '''''''''''''''''''''''''''
+    ' 抽象クラス（抽象的な工場）
+    '''''''''''''''''''''''''''
+    Public MustInherit Class AbstracShop 
+        '''''''''''''
+        '静的メソッド
+        '''''''''''''
+        Shared Function GetShop(ByVal _ClassName As String) As AbstracShop
+            IF _ClassName = "CardShopIchiro" Then '「==」ではない（注意）
+                Return New CardShopIchiro() 'ここでインスタンス化
+            ElseIf _ClassName = "CardShopHanako" Then
+                Return New CardShopHanako() 'ここでインスタンス化
+            End IF
+        End Function
+
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Sub CreateSummerCard()
+        Public MustOverride Sub createNewYearCard()
+        Public MustOverride Sub createMourningCard()
+
+        '共通の機能（オプション）
+        Public Sub MakeFooter()
+            Console.WriteLine("〒XXX-XXXX 新宿区XX町X-X-X")
+        End Sub
+    End Class
+
+    ''''''''''''''
+    ' サブクラスＡ
+    ''''''''''''''
+    Public Class CardShopIchiro
+        Inherits AbstracShop '抽象クラスの「継承」
+
+        Public Overrides Sub CreateSummerCard() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("HAPPY SUMMER HOLIDAYS!")
+            Console.WriteLine("サーフィンのイラスト")
+            Me.MakeFooter()
+        End Sub
+
+        Public Overrides Sub createNewYearCard() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("HAPPY NEW YEAR!")
+            Console.WriteLine("干支のイラスト")
+            Me.MakeFooter()
+        End Sub
+
+        Public Overrides Sub createMourningCard() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("喪中のため年頭のご挨拶をご遠慮申し上げます")
+            Console.WriteLine("白黒のイラスト")
+            Me.MakeFooter()
+        End Sub
+    End Class
+
+
+    ''''''''''''''
+    ' サブクラスＢ
+    ''''''''''''''
+    Public Class CardShopHanako
+        Inherits AbstracShop '抽象クラスの「継承」
+
+        Public Overrides Sub CreateSummerCard() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("暑中お見舞い申し上げます")
+            Console.WriteLine("スイカのイラスト")
+            Me.MakeFooter()
+        End Sub
+
+        Public Overrides Sub createNewYearCard() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("明けましておめでとうございます")
+            Console.WriteLine("干支のイラスト")
+            Me.MakeFooter()
+        End Sub
+
+        Public Overrides Sub createMourningCard() 'オーバーライドして実際の処理を記述
+            Console.WriteLine("Error: 喪中はがきにはまだ対応しておりません")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月18日
 
 
 <a name="Adapter（継承）"></a>
