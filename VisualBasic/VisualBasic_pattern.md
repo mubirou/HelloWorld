@@ -463,28 +463,6 @@ End Module
 
 ### 例文
 ```
-' '''''''''''''''
-' ' Ichiroショップ
-' '''''''''''''''
-' Dim _CardShopIchiro AS New CardShopIchiro()
-' Dim _IchiroSummerCard As AbstractCard = _CardShopIchiro.Order("暑中見舞い")
-' _IchiroSummerCard.Print()
-' '=> HAPPY SUMMER HOLIDAYS!
-' '=> サーフィンのイラスト
-' '=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-' Dim _IchiroNewYearCard As AbstractCard = _CardShopIchiro.Order("年賀状")
-' _IchiroNewYearCard.Print()
-' '=> HAPPY NEW YEAR!
-' '=> 干支のイラスト
-' '=> 〒XXX-XXXX 新宿区XX町X-X-X
-
-' Dim _IchiroMourningCard As AbstractCard = _CardShopIchiro.Order("喪中はがき")
-' _IchiroMourningCard.Print()
-' '=> 喪中のため年頭のご挨拶をご遠慮申し上げます
-' '=> 白黒のイラスト
-' '=> 〒XXX-XXXX 新宿区XX町X-X-X
-
 'test.vb
 Module test '名前（test）は任意
     Sub Main() '名前（Main）は決め打ち
