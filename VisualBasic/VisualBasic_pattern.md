@@ -64,7 +64,7 @@ Module test '名前（test）は任意
 
         'コンストラクタ
         Private Sub New() '外部からNew Singleton()できないようにする
-            Console.WriteLine("インスタンスを生成しました") 'DEBUG
+            Console.WriteLine("インスタンスを生成しました")
         End Sub
 
         '外部から唯一のインスタンスを呼出す
