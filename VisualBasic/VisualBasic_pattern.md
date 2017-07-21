@@ -728,83 +728,137 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _TabletA As New Tablet(New Android())
+        Console.WriteLine(_TabletA.Version) '=> "Android 7.1.2 Nougat"
+        _TabletA.BigScreen() '=> "大きな画面で見る"
 
-//メインクラス
-class Test {
-    static void Main() {
-        Tablet _tablet1 = new Tablet(new Android());
-        Console.WriteLine(_tablet1.Version); //Android 7.1.2
-        _tablet1.BigScreen(); //大きな画面で見る
-        
-        Tablet _tablet2 = new Tablet(new IOS());
-        Console.WriteLine(_tablet2.Version); //iOS 10.3.1
-        
-        SmartPhone _smartPhone1 = new SmartPhone(new Android());
-        Console.WriteLine(_smartPhone1.Version); //Android 7.1.2
-        _smartPhone1.Phone(); //電話をかける
-        
-        SmartPhone _smartPhone2 = new SmartPhone(new IOS());
-        Console.WriteLine(_smartPhone2.Version); //iOS 10.3.1
-    }
-}
+        Dim _TabletB As New Tablet(New IOS())
+        Console.WriteLine(_TabletB.Version) '=> "iOS 10.3.2"
+        _TabletB.BigScreen() '=> "大きな画面で見る"
 
-//基本クラス＝「機能」のクラスの最上位
-class SuperMobile {
-    private AbstractOS _os; //「機能」クラスと「実装」クラスの「橋」（委譲）
-    public SuperMobile(AbstractOS _os) { //コンストラクタ
-        this._os = _os;
-    }
-    public string Version {
-        get { return _os.rawVersion; } //「橋」を使って「実装」クラスにアクセス
-        private set {} //外部からアクセス不可（読み取り専用）
-    }
-}
+        Dim _SmartPhoneA As New SmartPhone(New Android())
+        Console.WriteLine(_SmartPhoneA.Version) '=> "Android 7.1.2 Nougat"
+        _SmartPhoneA.Phone() '=> "電話をかける"
 
-//「機能」のクラスに機能を追加したクラス
-class Tablet : SuperMobile {
-    public Tablet(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
-    public void BigScreen() { //タブレット特有の機能
-        Console.WriteLine("大きな画面で見る");
-    }
-}
+        Dim _SmartPhoneB As New SmartPhone(New IOS())
+        Console.WriteLine(_SmartPhoneB.Version) '=> "iOS 10.3.2"
+        _SmartPhoneB.Phone() '=> "電話をかける"
+    End Sub
 
-//「機能」のクラスに機能を追加したクラス
-class SmartPhone : SuperMobile {
-    public SmartPhone(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
-    public void Phone() { //スマートフォン特有の機能
-        Console.WriteLine("電話をかける");
-    }
-}
+    ''''''''''''''''''''''''''''''''
+    '基本クラス（「機能クラス」関連）
+    ''''''''''''''''''''''''''''''''
+    Public Class SuperMobile 'スーパークラス
+        Private _Os As AbstractOS
 
-//抽象クラス＝「実装」のクラスの最上位
-abstract class AbstractOS {
-    public abstract string rawVersion { get; set; } //抽象メソッドの宣言
-}
+        'コンストラクタ
+        Public Sub New(ByVal _Os As AbstractOS)
+            '「機能クラス」と「実装クラス」の「橋」（委譲）
+            Me._Os = _Os
+        End Sub
 
-//「実装」の具体的な実装者
-class Android : AbstractOS {
-    private string _version = "Android 7.1.2";
-    public override string rawVersion { //オーバーライドして実際の処理を記述
-        get { return _version; }
-        set {}
-    }
-}
+        'アクセサの定義
+        Public Property Version() As String
+            Get
+                '「橋」を使って「実装クラス」にアクセス
+                Return _Os.Version
+            End Get
+            Set(ByVal _newValue As String)
+                Console.WriteLine("Error: Versionは読み取り専用です")
+            End Set
+        End Property
+    End Class
 
-//「実装」の具体的な実装者
-class IOS : AbstractOS {
-    private string _version = "iOS 10.3.1";
-    public override string rawVersion { //オーバーライドして実際の処理を記述
-        get { return _version; }
-        set {}
-    }
-}
+    Public Class Tablet 'サブクラス（タブレットクラス）
+        Inherits SuperMobile
+
+        'コンストラクタ
+        Public Sub New(ByVal _Os As AbstractOS)
+            MyBase.New(_Os) '基本クラスのコンストラクタの呼出し
+        End Sub
+
+        'メソッド（タブレット特有の機能）
+        Public Sub BigScreen()
+            Console.WriteLine("大きな画面で見る")
+        End Sub
+    End Class
+
+    Public Class SmartPhone 'サブクラス（スマートフォンクラス）
+        Inherits SuperMobile
+
+        'コンストラクタ
+        Public Sub New(ByVal _Os As AbstractOS)
+            MyBase.New(_Os) '基本クラスのコンストラクタの呼出し
+        End Sub
+
+        'メソッド（スマートフォン特有の機能）
+        Public Sub Phone()
+            Console.WriteLine("電話をかける")
+        End Sub
+    End Class
+
+    '''''''''''''''''''
+    '「実装クラス」関連
+    '''''''''''''''''''
+    '抽象クラス
+    Public MustInherit Class AbstractOS
+        'Public MustOverride Sub MyMethod() '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Property Version() As String '抽象メソッド（MustOverrride"s"ではない）
+    End Class
+
+    'Androidクラス
+    Public Class Android
+        Inherits AbstractOS '抽象クラスの「継承」
+
+        Private _Version As String
+
+        'コンストラクタ
+        Public Sub New()
+            _Version = "Android 7.1.2 Nougat"
+        End Sub
+
+        'アクセサの定義（抽象メソッドの具体的な実装）
+        Public Overrides Property Version() As String 'オーバーライド
+            Get
+                Return _Version
+            End Get
+            Set(ByVal _newValue As String)
+                Console.WriteLine("Error: Versionは読み取り専用です")
+            End Set
+        End Property
+    End Class
+
+    'IOSクラス
+    Public Class IOS
+        Inherits AbstractOS '抽象クラスの「継承」
+
+        Private _Version As String
+
+        'コンストラクタ
+        Public Sub New()
+            _Version = "iOS 10.3.2"
+        End Sub
+
+        'アクセサの定義（抽象メソッドの具体的な実装）
+        Public Overrides Property Version() As String 'オーバーライド
+            Get
+                '「橋」を使って「実装クラス」にアクセス
+                Return _Version
+            End Get
+            Set(ByVal _newValue As String)
+                Console.WriteLine("Error: Apple社外は操作不可!")
+            End Set
+        End Property
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月21日
 
 
 <a name="Composite"></a>
