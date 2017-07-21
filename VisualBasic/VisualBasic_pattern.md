@@ -16,8 +16,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
@@ -995,76 +995,93 @@ End Module
 ### 概要
 * 飾り枠と中身の同一視。装飾者。
 * 継承によって中身（Original）と飾り枠（DecoratorXXX）に同じ Show() メソッドを持たせることで、包まれるもの（Originalクラス）を変更することなく、機能の追加（装飾）をすることを可能にします。
-* 例文では SuperDecorator を省略し、ICommon + SuperDecorator を合わせて Display クラスにしています。
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Original As New Original("NISHIMURA")
+        _Original.Show() '=> NISHIMURA
 
-//メインクラス
-class Test {
-    static void Main() {
-        Display _original = new Original("TAKASHI");
-        _original.Show(); //TAKASHI
-        
-        Display _decorator1 = new Decorator1(new Original("TAKASHI"));
-        _decorator1.Show(); //-TAKASHI-
-        
-        Display _decorator2 = new Decorator2(new Original("TAKASHI"));
-        _decorator2.Show(); //<TAKASHI>
-        
-        Display _special = new Decorator2(
-                                    new Decorator1(
-                                        new Decorator1(
-                                            new Decorator1(
-                                                new Original("TAKASHI")
-                                            )
-                                        )
+        Dim _DecoratorA As New DecoratorA(New Original("NISHIMURA"))
+        _DecoratorA.Show() '=> -NISHIMURA-
+
+        Dim _DecoratorB As New DecoratorB(New Original("NISHIMURA"))
+        _DecoratorB.Show() '=> <NISHIMURA>
+
+        Dim _Special As New DecoratorB(
+                            New DecoratorA(
+                                New DecoratorA(
+                                    New DecoratorA(
+                                        New Original("NISHIMURA")
                                     )
-                                );
-        _special.Show(); //<---TAKASHI--->
-    }
-}
+                                )
+                            )
+                        )
+        _Special.Show() '=> <---NISHIMURA--->
+    End Sub
 
-//「中身」と「飾り枠」に同じShow()メソッドを持たせるための基本クラス
-class Display {
-    protected string _content;
-    public string getContent() {
-        return _content;
-    }
-    public void Show() {
-        Console.WriteLine(_content);
-    }
-}
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''
+    ' スーパークラス
+    '「中身」と「飾り枠」に同じ Show() メソッドを持たせる
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''
+    Public Class Display
+        Protected _Content As String
 
-//中身（飾りを施す前の元）
-class Original : Display {
-    //コンストラクタ
-    public Original(string arg) {
-        _content = arg; //_conentは基本クラスからの継承
-    }
-}
+        'アクセサの定義
+        Public Property Content() As String
+            Get
+                Content = _Content
+            End Get
+            Set(ByVal _newValue As Integer)
+                _Content = _newValue
+            End Set
+        End Property
 
-//飾り枠①
-class Decorator1 : Display {
-    //コンストラクタ
-    public Decorator1(Display _display) {
-        _content = "-" + _display.getContent() + "-"; //飾り①を付ける
-    }
-}
+        Public Sub Show()
+            Console.WriteLine(_Content)
+        End Sub
+    End Class
 
-//飾り枠②
-class Decorator2 : Display {
-    public Decorator2(Display _display) { //コンストラクタ
-        _content = "<" + _display.getContent() + ">"; //飾り②を付ける
-    }
-}
+    '''''''''''''''''''''''''
+    ' 中身（飾りを施す前の元）
+    '''''''''''''''''''''''''
+    Public Class Original
+        Inherits Display '抽象クラスの「継承」
+
+        Public Sub New(ByVal _String As String) 'コンストラクタ
+            _Content = _String
+        End Sub
+    End Class
+
+    ''''''''''
+    ' 飾り枠Ａ
+    ''''''''''
+    Public Class DecoratorA
+        Inherits Display '抽象クラスの「継承」
+
+        Public Sub New(ByVal _Display As Display) 'コンストラクタ
+            _Content = "-" & _Display.Content & "-"
+        End Sub
+    End Class
+
+    ''''''''''
+    ' 飾り枠Ｂ
+    ''''''''''
+    Public Class DecoratorB
+        Inherits Display '抽象クラスの「継承」
+
+        Public Sub New(ByVal _Display As Display) 'コンストラクタ
+            _Content = "<" & _Display.Content & ">"
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月21日
 
 
 <a name="Facade"></a>
