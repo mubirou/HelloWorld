@@ -1091,7 +1091,7 @@ End Module
 * シンプルな窓口。見かけ。
 * ファサード＝「建物の正面」の意味。
 * たくさんのクラスやメソッドを、このパターン（窓口）を使うことでシンプルにして迷いを生じさせないようにします。
-* 以下の例文では、「Decoratorパターン」をFacadeパターンでシンプルにします。
+* 以下の例文では、「Decoratorパターン」を Facade パターンでシンプルにします。
     ```
     Display _special = new Decorator2(
                                 new Decorator1(
