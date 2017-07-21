@@ -17,8 +17,8 @@
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    ***
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
+    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
@@ -1093,80 +1093,102 @@ End Module
 * たくさんのクラスやメソッドを、このパターン（窓口）を使うことでシンプルにして迷いを生じさせないようにします。
 * 以下の例文では、「Decoratorパターン」を Facade パターンでシンプルにします。
     ```
-    Display _special = new Decorator2(
-                                new Decorator1(
-                                    new Decorator1(
-                                        new Decorator1(
-                                            new Original("TAKASHI")))));
-    _special.Show();
+    Dim _Special As New DecoratorB(
+                        New DecoratorA(
+                            New DecoratorA(
+                                New DecoratorA(
+                                    New Original("NISHIMURA")
+                                )
+                            )
+                        )
+                    )
     ```
     …としていたものを次の1行で実現可能になります。
     ```
-    DecoratorFacade.exec("TAKASHI", 3, 1);
+    DecoratorFacade.Exec("TAKASHI", 3, 1)
     ```
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        //メイン内がシンプルになります
-        DecoratorFacade.Exec("TAKASHI"); //TAKASHI
-        DecoratorFacade.Exec("TAKASHI", 1, 0); //-TAKASHI-
-        DecoratorFacade.Exec("TAKASHI", 0, 1); //<TAKASHI>
-        DecoratorFacade.Exec("TAKASHI", 3, 1); //<---TAKASHI--->
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        DecoratorFacade.Exec("NISHIMURA", 0, 0) '=> NISHIMURA
+        DecoratorFacade.Exec("NISHIMURA", 1, 0) '=> -NISHIMURA-
+        DecoratorFacade.Exec("NISHIMURA", 0, 1) '=> <NISHIMURA>
+        DecoratorFacade.Exec("NISHIMURA", 3, 1) '=> <---NISHIMURA--->
+    End Sub
 
-//シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
-class DecoratorFacade { //Singletonパターン的に…
-    private DecoratorFacade() {} //privateにして外部からnewできないようにする
-    public static void Exec(string arg1, int arg2=0, int arg3=0) {
-        Display _result = new Original(arg1);
-        for (int i=0; i<arg2; i++) {
-            _result = new Decorator1(_result);
-        }
-        for (int j=0; j<arg3; j++) {
-            _result = new Decorator2(_result);
-        }
-        _result.Show();
-    }
-}
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    ' シンプルな窓口 ←Decoratorパターンにこのクラスを追加するだけ
+    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    Public Class DecoratorFacade 'Singletonパターンにする場合も...
+        Shared Sub Exec( 'クラスメソッド（静的メソッド）の定義
+            ByVal _String As String,
+            ByVal _DecratorA_Num As Integer,
+            ByVal _DecratorB_Num As Integer)
 
-//以下の4つのクラスはDecoratorパターンの例文と全く同じ
-class Display {
-    protected string _content;
-    public string getContent() {
-        return _content;
-    }
-    public void Show() {
-        Console.WriteLine(_content);
-    }
-}
+            Dim _Result As Display = New Original(_String)
 
-class Original : Display {
-    public Original(string arg) {
-        _content = arg;
-    }
-}
+            For I As Integer = 0 To _DecratorA_Num - 1
+                _Result = new DecoratorA(_Result)
+            Next
 
-class Decorator1 : Display {
-    public Decorator1(Display _display) {
-        _content = "-" + _display.getContent() + "-";
-    }
-}
+            For I As Integer = 0 To _DecratorB_Num - 1
+                _Result = new DecoratorB(_Result)
+            Next
 
-class Decorator2 : Display {
-    public Decorator2(Display _display) {
-        _content = "<" + _display.getContent() + ">";
-    }
-}
+            _Result.Show()
+        End Sub
+    End Class
+
+    '以下の4つのクラスはDecoratorパターンの例文と全く同じ
+    Public Class Display
+        Protected _Content As String
+
+        Public Property Content() As String
+            Get
+                Content = _Content
+            End Get
+            Set(ByVal _newValue As Integer)
+                _Content = _newValue
+            End Set
+        End Property
+
+        Public Sub Show()
+            Console.WriteLine(_Content)
+        End Sub
+    End Class
+
+    Public Class Original
+        Inherits Display
+
+        Public Sub New(ByVal _String As String)
+            _Content = _String
+        End Sub
+    End Class
+
+    Public Class DecoratorA
+        Inherits Display
+
+        Public Sub New(ByVal _Display As Display)
+            _Content = "-" & _Display.Content & "-"
+        End Sub
+    End Class
+
+    Public Class DecoratorB
+        Inherits Display
+
+        Public Sub New(ByVal _Display As Display)
+            _Content = "<" & _Display.Content & ">"
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月21日
 
 
 <a name="Flyweight"></a>
