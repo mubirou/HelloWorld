@@ -18,8 +18,8 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    ***
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -1199,82 +1199,79 @@ End Module
 * フライ級（軽量級）。
 * インスタンスをできるかぎり共有させて無駄に new しない…ということがポイント。
 * 外部ファイルを読み込むなど「メモリの使用量」が多い場合などに有効です。
-* 以下の例文では、外部テキストとして2つのファイルを使用します。
-    * A.txt（"あいうえお"＝あ行）
-    * KA.txt（"かきくけこ"＝か行）
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Dictionaryに必要
-using System.IO; //StreamReaderに必要
+'test.vb
+Imports System.Collections 'Hashtableに必要
 
-/********
- * メイン
-********/
-class Test {
-    static void Main() {
-        //インスタンスの管理者を作る（シングルトンクラス）
-        Manager _manager = Manager.GetInstance();
-        
-        //無駄に生成したくないオブジェクトを生成（既存の場合使いまわす）
-        Reader _A = _manager.CreateReader("A");
-        Reader _KA = _manager.CreateReader("KA");
-        
-        //既存のものを生成しようとすると…
-        Reader _A2 = _manager.CreateReader("A"); //Aは既存です
-        Console.WriteLine(_A == _A2); //True ←中身は同じインスタンス
-        
-        Console.WriteLine(_A.GetText()); //あいうえお
-        Console.WriteLine(_KA.GetText()); //かきくけこ
-    }
-}
+Module test '名前（test）は任意
+    Sub Main()
+        '①インスタンスの管理者（Singletonクラス）
+        Dim _Manager As Manager = Manager.GetInstance()
 
-/******************************************
- * インスタンスの管理人（シングルトンクラス）
-******************************************/
-class Manager {
-    private static Manager _manager = new Manager(); //シングルトン用
-    private Dictionary<string, Reader> _dic = new Dictionary<string, Reader>();
-    
-    private Manager() {} //外部からnew Singleton()できないようにする
-    
-    public static Manager GetInstance() { //外部から唯一のインスタンスを呼出す
-        return _manager; //唯一のインスタンス（静的変数）を返す
-    }
-    
-    public Reader CreateReader(string arg) {
-        bool _result = _dic.ContainsKey(arg); //既存か否か調べる
-        if (!_result) { //_dic[arg]が存在しない場合…
-            _dic.Add(arg, new Reader(arg)); //ここでやっと new Reader()
-        } else { //_dic[arg]が既存の場合…（確認用）
-            Console.WriteLine(arg + "は既存です");
-        }
-        return _dic[arg];
-    }
-}
+        '②無駄にしたくないオブジェクトを生成
+        Dim _A As BigProcess = _Manager.CreateBigProcess("TypeA") 
+        Dim _B As BigProcess = _Manager.CreateBigProcess("TypeB")
+        Dim _A2 As BigProcess = _Manager.CreateBigProcess("TypeA") '=> "TypeAは既存です"
+        
+        Console.WriteLine(_A Is _A2) '=> True
+        Console.WriteLine(_A.GetData()) '=> "TypeAに対する重〜い処理の結果"
+        Console.WriteLine(_B.GetData()) '=> "TypeBに対する重〜い処理の結果"
+    End Sub
 
-/***************************************************************
- * フライ級の役（メモリの使用量が多いため無駄に生成したくないもの）
-***************************************************************/
-class Reader {
-    private string _text; //外部から読み込んだテキストを格納
-    public Reader(string arg) {
-        string _path = arg + ".txt";
-        StreamReader _stream = File.OpenText(_path);
-        _text = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-    }
-    public string GetText() {
-        return _text;
-    }
-}
+    ''''''''''''''''''''''''''''''''''''''''
+    ' インスタンスの管理人（Singletonクラス）
+    ''''''''''''''''''''''''''''''''''''''''
+    Public Class Manager
+        Private Shared _Manager As New Manager() '唯一のインスタンスを格納（静的変数）
+        Private _Pool As New Hashtable()
+
+        'コンストラクタ
+        Private Sub New() '外部からNew Manager()できないようにする
+            Console.WriteLine("インスタンスを生成しました")
+            
+            Dim _Pool As New Hashtable() '①連想配列の作成
+        End Sub
+
+        '外部から唯一のインスタンスを呼出す
+        Public Shared Function GetInstance() As Manager
+            Return _Manager '唯一のインスタンス（静的変数）を返す
+        End Function
+
+
+        'BigProcessインスタンスをダブらないように連想配列に保存
+        Public Function CreateBigProcess(ByVal _Type As String) As BigProcess
+            If Not _Pool.ContainsKey(_Type) Then '既存か否か調べる
+                _Pool(_Type) = New BigProcess(_Type)
+            Else
+                Console.WriteLine(_Type & "は既存です")
+            End If
+            Return _Pool(_Type)
+        End Function
+    End Class
+
+    ''''''''''''''
+    ' Flayweight役
+    ''''''''''''''
+    Public Class BigProcess
+        Private _Type As String
+
+        'コンストラクタ
+        Public Sub New(Byval _Type As String)
+            Me._Type = _Type
+        End Sub
+        
+        Public Function GetData() As String
+            Return _Type & "に対する重〜い処理の結果" '重い処理を実行
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月21日
 
 
 <a name="Proxy"></a>
