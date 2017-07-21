@@ -15,8 +15,8 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
-    ***
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
+    ***
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -805,7 +805,6 @@ Module test '名前（test）は任意
     '''''''''''''''''''
     '抽象クラス
     Public MustInherit Class AbstractOS
-        'Public MustOverride Sub MyMethod() '抽象メソッド（MustOverrride"s"ではない）
         Public MustOverride Property Version() As String '抽象メソッド（MustOverrride"s"ではない）
     End Class
 
@@ -872,90 +871,122 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
+'test.vb
+Imports System.Collections 'ArrayListに必要
 
-/**************
- * メインクラス
-**************/
-class Test {
-    static void Main() {
-        //①フォルダの作成
-        Folder _root = new Folder("root");
-        Folder _authoring = new Folder("Authoring");
-        //②ファイルの作成
-        File _unity3d = new File("Unity3D");
-        File _unrealEngine = new File("Unreal Engine");
-        //③関連付け
-        _root.Add(_authoring); 
-        _authoring.Add(_unity3d);
-        _authoring.Add(_unrealEngine);
-        //④検証
-        Console.WriteLine(_unrealEngine.GetName()); //"Unreal Engine"
-        _root.GetList(); //"root/Authoring(Folder)"
-        _authoring.GetList();
-        //"Authoring/Unity3D(File)"
-        //"Authoring/Unreal Engine(File)"
-        _unity3d.GetList(); //"Authoring/Unity3D(File)"
-    }
-}
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+        ' root に Authoring フォルダを作成し、その中に
+        ' Unity3D と Unreal Engine ファイルを格納してみる
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+        ' ①フォルダの作成
+        Dim _Root As New Folder("root")
+        Dim _Authoring As New Folder("Authoring")
 
-/*********************************
- * 抽象クラス（同一視するための役）
-*********************************/
-abstract class Component {
-    protected string _name; //共通プロパティ
-    protected Folder _parent; //共通プロパティ
-    public string GetName() { return _name; } //共通メソッド
-    public Folder Parent { //共通get/set
-        get { return _parent; }
-        set { _parent = value; }
-    }
-    public abstract void GetList(); //抽象メソッドの宣言（処理は派生クラスに記述）
-}
+        ' ②ファイルの作成
+        Dim _Unity3D As New File("Unity3D")
+        Dim _UnrealEngine As New File("Unreal Engine")
 
-/*********************************
- * Folderクラス（抽象クラスを実装）
-*********************************/
-class Folder : Component { //Directoryは不可
-    private List<Component> _childList = new List<Component>(); //空のListを作成
-    public Folder(string _name) { //コンストラクタ
-        this._name = _name; 
-    }
-    public void Add(Component arg) { //Remove()は今回は省略
-        _childList.Add(arg);
-        arg.Parent = this;
-    }
-    public override void GetList() { //オーバーライドして実際の処理を記述
-        foreach (Component tmp in _childList) {
-            string _result = this.GetName() + "/" + tmp.GetName();
-            if (tmp is Folder) {
-                _result += "(Folder)"; 
-            } else if (tmp is File) {
-                _result += "(File)";
-            }
-            Console.WriteLine(_result);
-        }
-    }
-}
+        ' ③関連付け
+        _Root.add(_Authoring)
+        _Authoring.add(_Unity3D)
+        _Authoring.add(_UnrealEngine)
 
-/*******************************
- * Fileクラス（抽象クラスを実装）
-*******************************/
-class File : Component {
-    public File(string _name) { //コンストラクタ
-        this._name = _name;
-    }
-    public override void GetList() { //オーバーライドして実際の処理を記述
-        Console.WriteLine(this.Parent.GetName() + "/" + this.GetName() + "(File)");
-    }
-}
+        ' ④検証
+        Console.WriteLine(_UnrealEngine.Name) '=> "Unreal Engine"
+        _Root.GetList() '=> "root/Authoring(Folder)"
+        _Authoring.GetList() 
+        '=> "Authoring/Unity3D(File)"
+        '=> "Authoring/Unreal Engine(File)"
+        _Unity3D.GetList() '=> "Authoring/Unity3D(File)"
+    End Sub
+
+    '''''''''''''
+    ' Component役
+    '''''''''''''
+    Public MustInherit Class Component '抽象クラス
+        Protected _Name As String
+        Protected _Parent As Component
+
+        'アクセサの定義
+        Public Property Name() As String
+            Get
+                Name = _Name
+            End Get
+            Set(ByVal _newValue As String)
+                _Name = _newValue
+            End Set
+        End Property
+
+        Public Property Parent() As Component
+            Get
+                Parent = _Parent
+            End Get
+            Set(ByVal _newValue As Component)
+                _Parent = _newValue
+            End Set
+        End Property
+        
+        '抽象メソッド
+        Public MustOverride Sub GetList()
+    End Class
+
+    '''''''''''''''''''''''
+    ' Composite（複合体）役
+    '''''''''''''''''''''''
+    Public Class Folder
+        Inherits Component '抽象クラスの「継承」
+
+        Private _Name As String
+        Private _ChildList As New ArrayList() 'ArrayListの宣言
+
+        Public Sub New(ByVal _Name As String) 'コンストラクタ
+            MyBase._Name = _Name
+        End Sub
+
+        Public Sub Add(ByVal _Arg As Component)
+            _ChildList.Add(_Arg)
+            _Arg.Parent = Me
+        End Sub
+
+        Public Overrides Sub GetList() '抽象メソッドをオーバーライド
+            Dim _TheList As New ArrayList = _ChildList
+
+            For I As Integer = 0 To (_TheList.Count-1)
+                Dim _Result As String = MyBase._Name & "/" & _TheList(I).Name
+                If (TypeOf _TheList(I) IS Folder) Then
+                    _Result = _Result & "(Folder)"
+                Else
+                    _Result = _Result & "(File)"
+                End If
+                Console.WriteLine(_Result)
+            Next
+        End Sub
+    End Class
+
+    ''''''''''''''
+    ' Leaf（葉）役
+    ''''''''''''''
+    Public Class File
+        Inherits Component '抽象クラスの「継承」
+
+        Private _Name As String
+
+        Public Sub New(ByVal _Name As String) 'コンストラクタ
+            MyBase._Name = _Name
+        End Sub
+
+        Public Overrides Sub GetList() '抽象メソッドをオーバーライド
+            Console.WriteLine(Parent.Name + "/" + Name + "(File)")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月21日
 
 
 <a name="Decorator"></a>
