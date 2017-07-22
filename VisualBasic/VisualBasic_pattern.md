@@ -19,8 +19,8 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    ***
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
+    ***
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
@@ -1288,67 +1288,55 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.IO; //StreamReaderに必要
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        ' 実行（Cliant役）
+        Dim _Loader As New Loader("http:'sample.mp4")
+        _Loader.Load() '=> "重い処理を実行中"
+    End Sub
 
-// メインクラス
-class Test {
-    static void Main() {
-        string _path = "sample.txt";
-        
-        //代理人（Proxy）役
-        Loader _loader = new Loader(_path);
-        
-        //通常は、必要になった時に実際にロード
-        _loader.Load();
-    }
-}
+    '''''''''''''''''''''
+    ' ①代理人（Proxy役）
+    '''''''''''''''''''''
+    Public Class Loader
+        Private _Url As String
 
-//==========================================
-// ① Loader と ② Content のインターフェース
-//==========================================
-interface ILoader {
-    void Load(); //暗黙的にpublicになる
-}
+        'コンストラクタ
+        Public Sub New(ByVal _Url As String)
+            Me._Url = _Url
+        End Sub
 
-//====================
-// ①代理人（Proxy）役
-//====================
-class Loader : ILoader {
-    private string _path; //privateは省略可
-    public Loader(string _path) {
-        this._path = _path;
-    }
-    public void Load() {
-        //実際の本人が登場（代理人は実際の本人を知っている）
-        Content _content = new Content(_path);
-        _content.Load();
-    }
-}
+        Public Sub Load()
+            '↓実際の本人登場（代理に実際の本人を知っている）
+            Dim _Content As New Content(_Url)
+            _Content.Load()
+        End Sub
+    End Class
 
-//=============
-// ②実際の本人
-//=============
-class Content : ILoader {
-    private string _path; //privateは省略可
-    public Content(string _path) {
-        this._path = _path;
-    }
-    //重い処理をここで行う←ポイント
-    public void Load() {
-        //今回のサンプルの中身は重要ではない
-        StreamReader _stream = File.OpenText(_path);
-        string _text = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-        Console.WriteLine(_text);
-    }
-}
+    ''''''''''''''''''''''''''''''''
+    ' ②実際の本人（Real Subject役）
+    ''''''''''''''''''''''''''''''''
+    Public Class Content
+        Private _Url As String
+
+        'コンストラクタ
+        Public Sub New(ByVal _Url As String)
+            Me._Url = _Url
+        End Sub
+
+        '↓重い処理をここで行う（ポイント）
+        Public Sub Load()
+            ' 今回のサンプルの中身はあまり重要ではない...
+            Console.WriteLine("重い処理を実行中")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月22日
 
 
 <a name="Iterator"></a>
