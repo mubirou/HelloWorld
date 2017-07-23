@@ -23,8 +23,8 @@
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
-    ***
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
+    ***
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
@@ -1467,81 +1467,84 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _SummerCard As New SummerCard()
+        _SummerCard.TemplateMethod()
+        '=> HAPPY SUMMER HOLIDAYS!
+        '=> 夏のイラスト
+        '=> 〒XXX-XXXX 千代田区XXX町X-X-X
 
-//メイン
-class Test {
-    static void Main() {
-        CardHaruko _cardHaruko = new CardHaruko();
-        _cardHaruko.TemplateMethod();
-        /*
-        HAPPY NEW YEAR
-        テニスがんばろうね
-        */
-        
-        CardHanako _cardHanako = new CardHanako();
-        _cardHanako.TemplateMethod();
-        /*
-        HAPPY NEW YEAR
-        本年も宜しくお願い致します
-        今年みんなで集まろう
-        */
-    }
-}
+        Dim _NewYearCard As New NewYearCard()
+        _NewYearCard.TemplateMethod()
+        '=> HAPPY NEW YEAR!
+        '=> 干支のイラスト
+        '=> 2017年 元旦
+        '=> 〒XXX-XXXX 千代田区XXX町X-X-X
+    End Sub
 
-//===================================
-//抽象クラス
-//===================================
-abstract class AbstractCard {
-    public void TemplateMethod() { //一連の連続した処理の枠組みを定義
-        Order1(); //共通の処理
-        if (IsAdult()) { //フックメソッド（派生クラスでoverride）
-            Order2(); //条件により実行
-        }
-        Order3(); //派生クラスでoverride
-    }
-    private void Order1() { //共通の処理（privateは省略可）
-        Console.WriteLine("HAPPY NEW YEAR");
-    }
-    protected abstract bool IsAdult(); //抽象メソッドの宣言
-    private void Order2() { //条件により実行（privateは省略可）
-        Console.WriteLine("本年も宜しくお願い致します");
-    }
-    protected abstract void Order3(); //抽象メソッドの宣言
-}
+    '抽象クラスの定義
+    Public MustInherit Class AbstractCard
+        '一連の連続した処理の枠組みを定義
+        Public Sub TemplateMethod()
+            MakeHeader()
+            MakeContent()
+            If IsMakeDate() Then 'フックメソッド（状況により実行）
+                MakeDate()
+            End If
+            MakeFooter()
+        End Sub
 
-//===================================
-//派生クラス①（抽象クラスを継承）
-//===================================
-class CardHaruko : AbstractCard {
-    //フックメソッドの実際の定義
-    protected override bool IsAdult() {
-        return false;
-    }
-    protected override void Order3() {
-        Console.WriteLine("テニスがんばろうね");
-    }
-}
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Sub MakeHeader()
+        Public MustOverride Sub MakeContent()
+        Public MustOverride Function IsMakeDate() As Boolean
 
-//===================================
-//派生クラス②（抽象クラスを継承）
-//===================================
-class CardHanako : AbstractCard {
-    //フックメソッドをoverrideして具体的処理を記述
-    protected override  bool IsAdult() {
-        return true;
-    }
-    //抽象メソッドをoverrideして具体的処理を記述
-    protected override void Order3() {
-        Console.WriteLine("今年みんなで集まろう");
-    }
-}
+        '共通の処理
+        Private Sub MakeDate()
+            Console.WriteLine("2017年 元旦")
+        End Sub
+        Private Sub MakeFooter()
+            Console.WriteLine("〒XXX-XXXX 千代田区XXX町X-X-X")
+        End Sub
+    End Class
+
+    Public Class SummerCard
+        Inherits AbstractCard '抽象クラスの「継承」
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub MakeHeader()
+            Console.WriteLine("HAPPY SUMMER HOLIDAYS!")
+        End Sub
+        Public Overrides Sub MakeContent()
+            Console.WriteLine("夏のイラスト")
+        End Sub
+        Public Overrides Function IsMakeDate() As Boolean
+            Return False
+        End Function
+    End Class
+
+    Public Class NewYearCard
+        Inherits AbstractCard '抽象クラスの「継承」
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub MakeHeader()
+            Console.WriteLine("HAPPY NEW YEAR!")
+        End Sub
+        Public Overrides Sub MakeContent()
+            Console.WriteLine("干支のイラスト")
+        End Sub
+        Public Overrides Function IsMakeDate() As Boolean
+            Return True
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月23日
 
 
 <a name="Strategy"></a>
