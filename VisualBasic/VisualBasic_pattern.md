@@ -1554,11 +1554,11 @@ End Module
 * アルゴリズムをごっそり切り替える。戦略。Strategy ＝作戦。アルゴリズム（手順）。
 * State パターン（後述）に似ていますが、State パターンの場合は…
     ```
-    new Context()
+    New Context()
     ```
-    Strategyパターンの場合…
+    Strategy パターンの場合…
     ```
-    new Context(new Strategy())
+    New Context(New Strategy())
     ```
     …となります。
 
