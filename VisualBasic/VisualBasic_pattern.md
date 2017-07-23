@@ -1351,78 +1351,105 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
+'test.vb
+Imports System.Collections 'ArrayListに必要
 
-/**********
- * メイン
-**********/
-class Test {
-    static void Main() {
-        BikePark _bikePark = new BikePark();
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _BikePark As New BikePark()
+        _BikePark.Add(New Bike("CB1100F", "神戸 X XX-XX"))
+        _BikePark.Add(New Bike("W800", "宇都宮 X XX-XX"))
+        _BikePark.Add(New Bike("SR400", "杉並区 X XX-XX"))
 
-        _bikePark.Add(new Bike("CB1100F", "神戸 X XX-XX"));
-        _bikePark.Add(new Bike("W800", "宇都宮 X XX-XX"));
-        _bikePark.Add(new Bike("SR400", "杉並区 X XX-XX"));
-        
-        Iterator _iterator = _bikePark.CreateIterator(); //イテレータ（管理人）生成
-        
-        while(_iterator.HasNext()) {
-            Bike _nextBike = _iterator.Next();
-            Console.WriteLine(_nextBike.GetName() + "," + _nextBike.GetNum());
-        }
-    }
-}
+        Dim _Iterator As Iterator = _BikePark.CreateIterator() 'イテレータ（管理人）生成
+        While _Iterator.HasNext()
+            Dim _NextBike As Bike = _Iterator.NextBike()
+            Console.WriteLine(_NextBike.Name & ", " & _NextBike.Num)
+        End While
+        '=> "CB1100F", "神戸 X XX-XX"
+        '=> "W800", "宇都宮 X XX-XX"
+        '=> "SR400", "杉並区 X XX-XX"
+    End Sub
 
-/*************
- * Bikeクラス
-*************/
-class Bike {
-    string _name, _num; //privateは省略
-    public Bike(string _name, string _num) { //コンストラクタ
-        this._name = _name;
-        this._num = _num;
-    }
-    public string GetName() {	return _name; }
-    public string GetNum() { return _num; }
-}
+    ''''''''''''
+    ' Bikeクラス
+    ''''''''''''
+    Public Class Bike
+        Private _Name As String
+        Private _Num As String
 
-/*****************
- * BikeParkクラス
-*****************/
-interface IBikePark {
-    void Add(Bike arg); //暗黙的にpublicになる
-    Bike GetBikeAt(int arg);
-    int GetLength();
-    Iterator CreateIterator();
-}
+        'コンストラクタ
+        Public Sub New(ByVal _Name As String, ByVal _Num As String)
+            Me._Name = _Name
+            Me._Num = _Num
+        End Sub
 
-class BikePark : IBikePark {
-    List<Bike> _list = new List<Bike>(); //空のListを作成 
-    public void Add(Bike arg) { _list.Add(arg); }
-    public Bike GetBikeAt(int arg) {	return _list[arg]; }
-    public int GetLength() { return _list.Count; }
-    public Iterator CreateIterator() { return new Iterator(this); } //イテレータ生成
-}
+        'プライベート変数のアクセサ
+        Public Property Name() As String
+            Get
+                Name = _Name
+            End Get
+            Set(ByVal _newValue As String)
+                _Name = _newValue
+            End Set
+        End Property
+        Public Property Num() As String
+            Get
+                Num = _Num
+            End Get
+            Set(ByVal _newValue As String)
+                _Num = _newValue
+            End Set
+        End Property
+    End Class
 
-/***********************************
- * Iteratorクラス（≒駐輪場の管理人）
-***********************************/
-interface IIterator {
-    bool HasNext(); //暗黙的にpublicになる
-    Bike Next();
-}
+    ''''''''''''''''
+    ' BikeParkクラス
+    ''''''''''''''''
+    Public Class BikePark
+        Private _Array As New ArrayList() '空の配列（ArrayList）の作成
 
-class Iterator : IIterator {
-    BikePark _bikePark;
-    int _count = 0;
-    public Iterator(BikePark arg) { //コンストラクタ
-        this._bikePark = arg;
-    }
-    public bool HasNext() { return _bikePark.GetLength() > _count; }
-    public Bike Next() { return _bikePark.GetBikeAt(_count++); } //次のバイクを返す
-}
+        ' 以下の4つのメソッドは必須（今回は Interface は省略）
+        Public Sub Add(ByVal _Bike As Bike)
+            _Array.Add(_Bike)
+        End Sub
+
+        Public Function GetElementAt(ByVal _Num As Integer) As Bike
+            Return _Array(_Num)
+        End Function
+
+        Public Function GetLength() As Integer
+            Return _Array.Count
+        End Function
+
+        Public Function CreateIterator() As Iterator
+            Return New Iterator(Me) 'ここでイテレータ（管理人）の生成
+        End Function
+    End Class
+
+    '''''''''''''''''''''''''''''''''''
+    ' Iteratorクラス（≒駐輪場の管理人）
+    '''''''''''''''''''''''''''''''''''
+    Public Class Iterator
+        Private _BikePark As BikePark
+        Private _Count As Integer = -1
+
+        ' コンストラクタ
+        Public Sub New(ByVal _BikePark As BikePark)
+            Me._BikePark = _BikePark
+        End Sub
+
+        ' 以下の2つのメソッドは必須（今回は Interface は省略）
+        Public Function HasNext() As Boolean
+            Return _BikePark.GetLength() > _Count + 1
+        End Function
+
+        Public Function NextBike() As Bike 'Next()は不可
+            _Count += 1
+            Return _BikePark.GetElementAt(_Count) '次のバイクを返す
+        End Function
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
