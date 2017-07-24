@@ -31,8 +31,8 @@
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
-    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
+    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則をクラスで表現する
 
 
@@ -2280,12 +2280,61 @@ End Module
 
 ### 例文
 ```
+'test.vb
+Imports System.Collections 'ArrayListに必要
 
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Inkscape As New Inkscape() 'グラフィックソフト
+        _Inkscape.Draw("線を引く") '命令の実行
+        _Inkscape.Draw("縁取る") '命令の実行
+        _Inkscape.Draw("影をつける") '命令の実行
+    End Sub
+
+    Public Class Inkscape 'グラフィックソフト（今回はバッチ処理は省略）
+        Private _Canvas As New Canvas()
+        Private _History As New ArrayList() '履歴（命令クラスを保持）
+
+        Public Sub Draw(ByVal _Command As String)
+            '↓命令を実行する度にインスタンスを生成
+            Dim _DrawCommand As New DrawCommand(_Canvas, _Command)
+            _DrawCommand.Execute()
+            _History.Add(_DrawCommand)
+        End Sub
+    End Class
+
+    Public Class DrawCommand '命令クラス
+        Private _Canvas As Canvas
+        Private _Command As String
+
+        'コンストラクタ
+        Public Sub New(ByVal _Canvas As Canvas, ByVal _Command As String)
+            Me._Canvas = _Canvas
+            Me._Command = _Command
+        End Sub
+
+        Public Sub Execute()
+            _Canvas.Update(_Command)
+        End Sub
+    End Class
+
+    Public Class Canvas '結果を表示する役（Receiver＝受信者の役）
+        Private _History As New ArrayList() '履歴（実際の処理を保持）
+
+        Public Sub Update(ByVal _Command As String)
+            _History.Add(_Command)
+            For Each _TheCommand As String In _History
+                Console.WriteLine(_TheCommand)
+            Next
+            Console.WriteLine("---描画---")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
 
 
 <a name="Interpreter"></a>
