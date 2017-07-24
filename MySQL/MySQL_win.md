@@ -1,8 +1,11 @@
-# SQL（ Windows ）
+# MySQL（ Windows ）
 
-## SQLについて
+## MySQL について
 
-* [RDBMS](http://bit.ly/2lunAUm) でデータの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)
+* 1995年に登場したオープンソースの [RDBMS](http://bit.ly/2lunAUm) 。
+* 商標権･著作権は MySQL AB（〜2008年）→ サン･マイクロシステムズ（2010年にオラクルが買収）に移行している。
+* 派生のデータベースに [MariaDB](https://ja.wikipedia.org/wiki/MariaDB) がある（Google の検索システムに採用）。
+*  データの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)として SQL を利用。
 
 ## 開発環境の構築
 
