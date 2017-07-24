@@ -28,8 +28,8 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
@@ -1946,76 +1946,111 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
+'test.vb
+Imports System.Collections 'ArrayListに必要
 
-class Test {
-    static void Main() {
-        ISubject _apple = new Apple(); //観察される（Subject）役
-        
-        //リスナー（Observer）役
-        IObserver _iPhone = new iPhone();
-        IObserver _iPad = new iPad();
-        IObserver _iPadPro = new iPadPro();
-        
-        //リスナー（Observer）の登録
-        _apple.AddObserver(_iPhone);
-        _apple.AddObserver(_iPad);
-        _apple.AddObserver(_iPadPro);
-        
-        _apple.Notify(); //全リスナー（Observer）への通知
-    }
-}
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Apple As New Apple() 'Subject（観察される側）の生成
 
-interface ISubject {
-    void AddObserver(IObserver _observer); //暗黙的にpublic扱い
-    void RemoveObserver(IObserver _observer);
-    void Notify();
-}
+        'Observer（観察者）の生成
+        Dim _iPhone As New iPhone()
+        Dim _iPad As New iPad()
+        Dim _iPadPro As New iPadPro()
 
-class Apple : ISubject {
-    List<IObserver> _observerList = new List<IObserver>(); //リスナーリスト
-    public void AddObserver(IObserver _observer) { //リスナーの登録
-        _observerList.Add(_observer);
-    }
-    public void RemoveObserver(IObserver _observer) { //リスナーの削除
-        _observerList.Remove(_observer);
-    }
-    public void Notify() { //全リスナーへの通知
-        foreach (IObserver _observer in _observerList) {
-            _observer.Update(this);
-        }
-    }
-    public string GetVersion() { return "10.3.1"; }
-}
+        '観察される側に、観察者（リスナー）の登録
+        _Apple.AddObserver(_iPhone)
+        _Apple.AddObserver(_iPad)
+        _Apple.AddObserver(_iPadPro)
 
-interface IObserver {
-    void Update(Apple _apple); //暗黙的にpublic扱い
-}
+        _Apple.Notify() '全リスナー（Observer）への通知
+        '=> iPhoneは10.3.2にアップデート可能です
+        '=> iPadは10.3.2にアップデート可能です
+        '=> iPadProは10.3.2にアップデート可能です
+    End Sub
 
-class iPhone : IObserver { //本来は大文字で始まるべきですが…
-    public void Update(Apple _apple) {
-        Console.WriteLine("iPhoneは" + _apple.GetVersion() + "にアップデート可能");
-    }
-}
+    '''''''''''''''''''''''''''''
+    ' Subject（観察される側）関連
+    '''''''''''''''''''''''''''''
+    '↓Subject役＝抽象クラス
+    Public MustInherit Class AbstractSubject
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Sub AddObserver(ByVal _Observer As IObserver)
+        Public MustOverride Sub Notify()
+        ' 今回は RemoveObserver() は省略
+    End Class
 
-class iPad : IObserver { //本来は大文字で始まるべきですが…
-    public void Update(Apple _apple) {
-        Console.WriteLine("iPadは" + _apple.GetVersion() + "にアップデート可能");
-    }
-}
+    ' ConcreteSubject役
+    Public Class Apple
+        Inherits AbstractSubject '抽象クラスの「継承」
 
-class iPadPro : IObserver { //本来は大文字で始まるべきですが…
-    public void Update(Apple _apple) {
-        Console.WriteLine("iPadProは" + _apple.GetVersion() + "にアップデート可能");
-    }
-}
+        Private _ObserverList As New ArrayList() 'リスナーのリスト
+        Private _Version As String = "10.3.2"
+
+        'コンストラクタ（省略可)
+        Public Sub New()
+        End Sub
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub AddObserver(ByVal _Observer As IObserver)
+            'データの追加
+            _ObserverList.Add(_Observer) 'リスナーの登録
+        End Sub
+
+        Public Overrides Sub Notify()
+            For Each _TheObserver As IObserver In _ObserverList
+                _TheObserver.Update(Me)
+            Next
+        End Sub
+
+        'アクセサの定義
+        Public Property Version() As String
+            Get
+                Version = _Version
+            End Get
+            Set(ByVal _newValue As String)
+                Console.WriteLine("変更不可")
+            End Set
+        End Property
+    End Class
+
+    ''''''''''''''''''''''''''''''''''
+    ' Observer（観察者＝リスナー）関連
+    ''''''''''''''''''''''''''''''''''
+    'インターフェースの宣言
+    Public Interface IObserver
+        Sub Update(ByVal _Apple As Apple) '"Public"は記述しない
+    End Interface
+
+    '↓ConcreteObserver役①（iPhoneクラス）
+    Public Class iPhone
+        Implements IObserver 'インターフェースの継承
+        Public Sub Update(ByVal _Apple As Apple) Implements IObserver.Update 'インターフェースの実装
+            Console.WriteLine("iPhoneは" & _Apple.Version & "にアップデート可能です")
+        End Sub
+    End Class
+
+    '↓ConcreteObserver役②（iPadクラス）
+    Public Class iPad
+        Implements IObserver 'インターフェースの継承
+        Public Sub Update(ByVal _Apple As Apple) Implements IObserver.Update 'インターフェースの実装
+            Console.WriteLine("iPadは" & _Apple.Version & "にアップデート可能です")
+        End Sub
+    End Class
+
+    '↓ConcreteObserver役③（iPadProクラス）
+    Public Class iPadPro
+        Implements IObserver 'インターフェースの継承
+        Public Sub Update(ByVal _Apple As Apple) Implements IObserver.Update 'インターフェースの実装
+            Console.WriteLine("iPadProは" & _Apple.Version & "にアップデート可能です")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
 
 
 <a name="Memento"></a>
