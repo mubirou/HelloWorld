@@ -25,8 +25,8 @@
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
-    ***
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
+    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
@@ -1630,77 +1630,84 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main()
+        Dim _佐藤家 As New 佐藤家() '訪問先①
+        Dim _高橋家 As New 高橋家() '訪問先②
+        Dim _庭師 As New 庭師() '訪問者❶
+        Dim _エアコン設置業者 As New エアコン設置業者() '訪問者❷
 
-// メインクラス
-class Test {
-    static void Main() {
-        //訪問先
-        Hokkaido _saitama = new Hokkaido(); //北海道祖父母
-        Chiba _chiba = new Chiba(); //千葉県親戚
+        _佐藤家.Accept(_庭師)
+        '=> test+佐藤家（佐藤家のインスタンス）
+        '=> "生垣切り→枝落し→雑草除去...等"
+
+        _佐藤家.Accept(_エアコン設置業者) 
+        '=> test+佐藤家（佐藤家のインスタンス）
+        '=> "生垣切り→枝落し→雑草除去...等"
+
+        _高橋家.Accept(_庭師)
+        '=> test+高橋家（高橋家のインスタンス）
+        '=> "生垣切り→枝落し→雑草除去...等"
         
-        //訪問者
-        Ichiro _ichiro = new Ichiro(); //一郎
-        Haruko _haruko = new Haruko(); //春子
-        
-        //訪問する（訪問側から見ると「受け入れる」）
-        _saitama.Accept(_ichiro);
-        _saitama.Accept(_haruko);
-        _chiba.Accept(_ichiro);
-        _chiba.Accept(_haruko);
-        
-        //結果…
-        Console.WriteLine(_ichiro.GetMoney()); //15000
-        Console.WriteLine(_haruko.GetMoney()); //15000
-    }
-}
+        _高橋家.Accept(_エアコン設置業者)
+        '=> test+高橋家（高橋家のインスタンス）
+        '=> "生垣切り→枝落し→雑草除去...等"
+    End Sub
 
-//=========
-// 訪問先
-//=========
-interface IAcceptor {
-    void Accept(IVisitor _visitor); //暗黙的にpublicになる
-}
+    ''''''''''''''''''''''''''''
+    ' 訪問先（受入者＝Acceptor）
+    ''''''''''''''''''''''''''''
+    Public Interface I受入者 'インターフェース
+        Sub Accept(ByVal _I訪問者 As I訪問者) '"Public"は記述しない
+    End Interface
 
-class Hokkaido : IAcceptor {
-    private int _otoshidama = 5000*2; //お年玉
-    public void Accept(IVisitor _visitor) { //Accept＝受け入れる
-        _visitor.Visit(_otoshidama); //誰が訪問してきても同じメソッドを実行
-    }
-}
+    Public Class 佐藤家
+        Implements I受入者 'インターフェースの実装
 
-class Chiba : IAcceptor {
-    private int _otoshidama = 5000; //お年玉
-    public void Accept(IVisitor _visitor) { //Accept＝受け入れる
-        _visitor.Visit(_otoshidama); //誰が訪問してきても同じメソッドを実行
-    }
-}
+        Public Sub Accept(ByVal _I訪問者 As I訪問者) Implements I受入者.Accept '実装
+            _I訪問者.Work(Me) '誰であっても「では、よろしく」とお任せする
+        End Sub
+    End Class
 
-//========
-// 訪問者
-//========
-interface IVisitor {
-    void Visit(int _otoshidama);  //暗黙的にpublicになる
-    int GetMoney(); //暗黙的にpublicになる
-}
+    Public Class 高橋家
+        Implements I受入者 'インターフェースの実装
 
-class Ichiro : IVisitor { //一郎
-    private int _money = 0; //貯金
-    public void Visit(int _otoshidama) { _money += _otoshidama; }
-    public int GetMoney() { return _money; }
-}
+        Public Sub Accept(ByVal _I訪問者 As I訪問者) Implements I受入者.Accept '実装
+            _I訪問者.Work(Me) '誰であっても「では、よろしく」とお任せする
+        End Sub
+    End Class
 
-class Haruko : IVisitor { //春子
-    private int _money = 0; //貯金
-    public void Visit(int _otoshidama) { _money += _otoshidama; }
-    public int GetMoney() { return _money; }
-}
+    '''''''''''''''''''''''
+    ' 訪問者（Visitor）の役
+    '''''''''''''''''''''''
+    Public Interface I訪問者 'インターフェース
+        Sub Work(ByVal _I受入者 As I受入者) '"Public"は記述しない
+    End Interface
+
+    Public Class 庭師
+        Implements I訪問者 'インターフェースの実装
+
+        Public Sub Workd(ByVal _I受入者 As I受入者) Implements I訪問者.Work '実装
+            Console.WriteLine(_I受入者)
+            Console.WriteLine("生垣切り→枝落し→雑草除去...等")
+        End Sub
+    End Class
+
+    Public Class エアコン設置業者
+        Implements I訪問者 'インターフェースの実装
+
+        Public Sub Workd(ByVal _I受入者 As I受入者) Implements I訪問者.Work '実装
+            Console.WriteLine(_I受入者)
+            Console.WriteLine("室内機取付→ホース接続→室外機取付...等")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
 
 
 <a name="ChainofResponsibility"></a>
