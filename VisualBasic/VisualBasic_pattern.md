@@ -27,8 +27,8 @@
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
-    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
+    ***
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
@@ -1802,117 +1802,137 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        //相談役
-        new Mediator(); //今回のサンプルではこのインスタンスは使用しない
-        
-        //検証（今回は静的変数を使いました）
-        Mediator.MemberA.Request("西へ行く"); //メンバーAから報告
-        /*
-        MemberA: （Aよ）了解、そのまま西へ行け
-        MemberB: （Bよ）東へ行け
-        MemberC: （Cよ）その場で待機しろ
-        */
-    }
-}
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Mediator As New Mediator()
 
-//====================================
-// 相談役（専門性が高いため使い捨て）
-//====================================
-class Mediator {
-    List<AbstractMember> _memberList = new List<AbstractMember>(); //メンバーリスト
-    public static AbstractMember MemberA = new MemberA(); //静的変数
-    public static AbstractMember MemberB = new MemberB(); //静的変数
-    public static AbstractMember MemberC = new MemberC(); //静的変数
-    
-    public Mediator() { //コンストラクタ
-        //メンバーの登録
-        AddMember(MemberA); //★
-        AddMember(MemberB); //★
-        AddMember(MemberC); //★
-    }
-    
-    //メンバーリストに登録
-    private void AddMember(AbstractMember _member) { //←★
-        _memberList.Add(_member);
-        _member.SetMediator(this); //メンバーに相談役は自分であることを教える
-    }
-    
-    //メンバーからの報告を受け指示を出す（特に専門性が高いメソッド）←⦿
-    public void Request(AbstractMember _member, string _string) {
-        if (_member == MemberA) {
-            if (_string == "西へ行く") {
-                //「メンバーA」から「西へ行く」と報告があった場合の処理
-                _member.Advice("（Aよ）了解、そのまま西へ行け"); //Aへ指示
-                foreach (AbstractMember theMember in _memberList) {
-                    if (theMember == MemberB) {
-                        theMember.Advice("（Bよ）東へ行け"); //Bへ指示
-                    } else if (theMember == MemberC) {
-                        theMember.Advice("（Cよ）その場で待機しろ"); //Cへ指示
-                    }
-                }
-            }
-        }
-        //以降、各メンバーからの報告内容に対する処理を記述
-    }
-}
+        _Mediator.YesButton.SwitchON()
+        '=> "NoButtonをOFFにします"
+        '=> "TextBoxを入力可能にします"
 
-//====================
-// 登録するメンバー達
-//====================
-//抽象クラス
-abstract class AbstractMember {
-    //共通の機能
-    protected Mediator _mediator;
-    public void SetMediator(Mediator _mediator) {
-        this._mediator = _mediator;
-    }	
-    //抽象メソッドの宣言（派生クラスでoverride）
-    public abstract void Request(string _string);
-    public abstract void Advice(string _string);
-}
+        _Mediator.NoButton.SwitchON()
+        '=> "YesButtonをOFFにします"
+        '=> "TextBoxを入力不可にします"
+    End Sub
 
-//メンバーA
-class MemberA : AbstractMember {
-    public override void Request(string _string) { //抽象メソッドをoverride
-        //ここにメンバーA独自の処理など
-        _mediator.Request(this, _string); //相談役に報告→⦿
-    }
-    public override void Advice(string _string) { //相談役からの指示を受ける
-        Console.WriteLine("MemberA: " + _string);
-    }
-}
+    ''''''''''''''''
+    ' 各メンバー関連
+    ''''''''''''''''
+    ' 抽象クラス
+    Public MustInherit Class AbstractMember
+        Protected _Mediator As Mediator
 
-//メンバーB
-class MemberB : AbstractMember {
-    public override void Request(string _string) { //抽象メソッドをoverride
-        //ここにメンバーB独自の処理など
-        _mediator.Request(this, _string); //相談役に報告→⦿
-    }
-    public override void Advice(string _string) { //相談役からの指示を受ける
-        Console.WriteLine("MemberA: " + _string);
-    }
-}
+        '共通のメソッド
+        Public Sub SetMediator(ByVal _Mediator As Mediator)
+            Me._Mediator = _Mediator
+        End Sub
 
-//メンバーC
-class MemberC : AbstractMember {
-    public override void Request(string _string) { //抽象メソッドをoverride
-        //ここにメンバーC独自の処理など
-        _mediator.Request(this, _string); //相談役に報告→⦿
-    }
-    public override void Advice(string _string) { //相談役からの指示を受ける
-        Console.WriteLine("MemberA: " + _string);
-    }
-}
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Sub Advice(ByVal _String As String)
+    End Class
+
+    ' メンバー①（YesButtonクラス）
+    Public Class YesButton
+        Inherits AbstractMember '抽象クラスの「継承」
+
+        Public Sub SwitchON() 'On()は不可
+            _Mediator.Report(Me, "on") '相談役に報告
+        End Sub
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub Advice(ByVal _String As String)
+            If _String = "off" Then
+                Console.WriteLine("YesButtonをOFFにします")
+            End If
+        End Sub
+    End Class
+
+    ' メンバー②（NoButtonクラス）
+    Public Class NoButton
+        Inherits AbstractMember '抽象クラスの「継承」
+
+        Public Sub SwitchON()
+            _Mediator.Report(Me, "on") '相談役に報告
+        End Sub
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub Advice(ByVal _String As String)
+            If _String = "off" Then
+                Console.WriteLine("NoButtonをOFFにします")
+            End If
+        End Sub
+    End Class
+
+    'メンバー③（TextBoxクラス）
+    Public Class TextBox
+        Inherits AbstractMember '抽象クラスの「継承」
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub Advice(ByVal _String As String)
+            if _String = "enable" Then
+                Console.WriteLine("TextBoxを入力可能にします")
+            Else If _String = "disabled" Then
+                Console.WriteLine("TextBoxを入力不可にします")
+            End If
+        End Sub
+    End Class
+
+    ''''''''''''''''''''''''''''''''''''
+    ' 相談役（専門性が高いため使い捨て）
+    ''''''''''''''''''''''''''''''''''''
+    Public Class Mediator
+        Private _YesButton As New YesButton() 'YesButtonの生成
+        Private _NoButton As New NoButton() 'NoButtonの生成
+        Private _TextBox As New TextBox() 'TextButtonの生成
+
+        Public Sub New() ' コンストラクタ
+            _YesButton.SetMediator(Me) 'YesButtonに相談役が自分あることを教える
+            _NoButton.SetMediator(Me) 'NoButtonに相談役が自分あることを教える
+            _TextBox.SetMediator(Me) 'TextButtonに相談役が自分あることを教える
+        End Sub
+
+        'アクセサの定義
+        Public Property YesButton() As YesButton '外部からYesButtonにアクセス可能に
+            Get
+                YesButton = _YesButton
+            End Get
+            Set(ByVal _newValue As YesButton)
+                Console.WriteLine("変更不可です")
+            End Set
+        End Property
+
+        Public Property NoButton() As NoButton '外部からNoButtonにアクセス可能に
+            Get
+                NoButton = _NoButton
+            End Get
+            Set(ByVal _newValue As NoButton)
+                Console.WriteLine("変更不可です")
+            End Set
+        End Property
+
+        'メンバーからの報告を受けて指示を出す
+        Public Sub Report(ByVal _Member As AbstractMember, ByVal _String As String)
+            If _Member IS _YesButton Then 'YesButtonからの報告の場合...
+                If _String = "on" Then
+                    _NoButton.Advice("off")
+                    _TextBox.Advice("enable")
+                End If
+            End If
+            If _Member IS _NoButton Then 'NoButtonからの報告の場合...
+                If _String = "on" Then
+                    _YesButton.Advice("off")
+                    _TextBox.Advice("disabled")
+                End If
+            End If
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
 
 
 <a name="Observer"></a>
