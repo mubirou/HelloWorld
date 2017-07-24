@@ -26,8 +26,8 @@
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
-    ***
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
+    ***
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
@@ -1721,80 +1721,75 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _ShinjukuPO As New ShinjukuPO() '新宿郵便局の設置
+        Dim _TokyoPO As New TokyoPO() '東京郵便局の設置
+        Dim _JapanPO As New JapanPO() '日本郵便局の設置
+        _ShinjukuPO.SetNext(_TokyoPO).SetNext(_JapanPO) '責任の「たらい回し先」のセット
+        _ShinjukuPO.Send("新宿区XX町X-X-X") '=> "本日中に届きます"
+        _ShinjukuPO.Send("東京都青梅市XXX町X-X-X") '=> "明後日中に届きます"
+        _ShinjukuPO.Send("北海道XXX市XXX町X-X-X") '=> "一週間前後で届きます"
+    End Sub
 
-// メインクラス
-class Test {
-    static void Main() {
-        //郵便局の設置
-        AbstractPO _shinjukuPO = new ShinjukuPO();
-        AbstractPO _tokyoPO = new TokyoPO();
-        AbstractPO _japanPO = new JapanPO();
-        
-        //責任のたらいまわしのセット
-        _shinjukuPO.SetNext(_tokyoPO).SetNext(_japanPO);
-        
-        //投函（全て新宿郵便局に投函する）
-        _shinjukuPO.Send("新宿区XX町X-X-X"); //本日中に届きます
-        _shinjukuPO.Send("東京都青梅市XXX町X-X-X"); //明後日中に届きます
-        _shinjukuPO.Send("北海道XXX市XXX町X-X-X"); //一週間前後で届きます
-    }
-}
+    '各郵便局の抽象クラス
+    Public MustInherit Class AbstractPO
+        Protected _NextPO As AbstractPO
 
-//=====================
-// 各郵便局の抽象クラス
-//=====================
-abstract class AbstractPO {
-    //共通の機能
-    protected AbstractPO _nextPO; //たらいまわし先
-    public AbstractPO SetNext(AbstractPO _po) {
-        _nextPO = _po;
-        return _nextPO;
-    }
-    //抽象メソッド（子クラスでoverride）	
-    public abstract void Send(string _address);
-}
+        '共通のメソッド（責任の「たらい回し先」のセット）
+        Public Function SetNext(ByVal _NextPO As AbstractPO) As AbstractPO
+            Me._NextPO = _NextPO
+            return _NextPO
+        End Function
 
-//=====================
-// 新宿郵便局
-//=====================
-class ShinjukuPO : AbstractPO {
-    public override void Send(string _address) { //抽象メソッドの実際の処理
-        if (_address.IndexOf("新宿",0) != -1) {
-            Console.WriteLine("本日中に届きます");
-        } else {
-            _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
-        }
-    }
-}
+        '抽象メソッド（MustOverrride"s"ではない）
+        Public MustOverride Sub Send(ByVal _Address As String)
+    End Class
 
-//=====================
-// 東京郵便局
-//=====================
-class TokyoPO : AbstractPO {
-    public override void Send(string _address) { //抽象メソッドの実際の処理
-        if (_address.IndexOf("東京",0) != -1) {
-            Console.WriteLine("明後日中に届きます");
-        } else {
-            _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
-        }
-    }	
-}
+    ' 新宿郵便局
+    Public Class ShinjukuPO
+        Inherits AbstractPO '抽象クラスの「継承」
 
-//==========================
-//日本郵便局
-//==========================
-class JapanPO : AbstractPO {
-    public override void Send(string _address) { //抽象メソッドの実際の処理
-        Console.WriteLine("一週間前後で届きます");
-    }
-}
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub Send(ByVal _Address As String)
+            If Not (_Address.IndexOf("新宿", 0) = -1) Then
+                Console.WriteLine("本日中に届きます")
+            Else
+                _NextPO.Send(_Address) '「たらいまわし先」に送る
+            End If
+        End Sub
+    End Class
+
+    ' 東京郵便局
+    Public Class TokyoPO
+        Inherits AbstractPO '抽象クラスの「継承」
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub Send(ByVal _Address As String)
+            If Not (_Address.IndexOf("東京", 0) = -1) Then
+                Console.WriteLine("明後日中に届きます")
+            Else
+                _NextPO.Send(_Address) '「たらいまわし先」に送る
+            End If
+        End Sub
+    End Class
+
+    ' 日本郵便局
+    Public Class JapanPO
+        Inherits AbstractPO '抽象クラスの「継承」
+
+        'オーバーライドして実際の処理を記述
+        Public Overrides Sub Send(ByVal _Address As String)
+            Console.WriteLine("一週間前後で届きます")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
 
 
 <a name="Mediator"></a>
