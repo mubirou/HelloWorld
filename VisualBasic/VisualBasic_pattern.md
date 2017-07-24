@@ -1,5 +1,3 @@
-### <b>この項目は編集中の項目です</b>
-
 # <b>Visual Basic .NET デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -32,7 +30,6 @@
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
-    ***
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則をクラスで表現する
 
 
@@ -2348,9 +2345,78 @@ End Module
 
 ### 例文
 ```
+'test.vb
+Imports System.Collections 'ArrayListに必要
 
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        '①自作ミニ言語によるソースコード（文字列）を記述
+        Dim _Code As String = "+10;*50;/2;-4;="
+
+        '②中間言語コンパイラを使って、ソースコードを中間コードに変換（構文解析＝配列化）
+        Dim _Swf As New SWF(_Code) '≒SWFファイルに変換
+
+        '③インタプリタ（通訳プログラム）を使って、中間コードをもとに実行
+        Dim _Avm As New AVM() 'インタプリタ（≒ActionScript Virtual Machine）の生成
+        _Avm.Execute(_Swf) '≒SWFファイルをAVM上で実行 => 246
+    End Sub
+
+    Public Class SWF
+        Private _Count As Integer = 0 'GetNextCode()で使用
+        Private _CodeArray As String() '配列の初期化（≠動的配列）
+
+        'コンストラクタ
+        Public Sub New(ByVal _Code As String)
+            _CodeArray = _Code.Split(";"c) '「'」区切りで配列化（≒中間コード）
+        End Sub
+
+        Public Function GetNextCode() As String
+            _Count += 1
+            Return _CodeArray(_Count - 1) '次の命令を調べる
+        End Function
+
+        Public Function IsEnd() As Boolean
+            Return _Count >= _CodeArray.Length '次の命令があるか否か
+        End Function
+    End Class
+
+    Public Class AVM '≒ ActionScript Virtual Machine
+        Public Sub Execute(ByVal _Swf As SWF) '実行
+            Dim _Result As Integer = 0
+
+            While Not _Swf.IsEnd() '次の命令があれば...
+                Dim _NextCode As String = _Swf.GetNextCode()' '次の命令を調べる
+
+                '↓ここからはサンプルの独自処理
+                Dim _Operator As String = _NextCode.Substring(0,1) '「+*/-=」の何れか
+
+                If Not (_Operator = "=") Then '「=」以外の場合...
+
+                    Dim _Num As Integer = CInt(_NextCode.Substring(1))
+
+                    Select Case _Operator
+                        Case "+"
+                            _Result += _Num
+                        Case "-"
+                            _Result -= _Num
+                        Case "*"
+                            _Result *= _Num
+                        Case "/"
+                            _Result /= _Num
+                        Case Else
+                            Console.WriteLine(_Operator & "はサポートしていません")
+                    End Select
+
+                Else '「=」の場合...
+                    ' 本来はここで「終端となる表現」のクラスを生成し処理しますが...
+                    Console.WriteLine(_Result)
+                End If
+            End While
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
