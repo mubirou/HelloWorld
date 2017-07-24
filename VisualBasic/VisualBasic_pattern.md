@@ -30,8 +30,8 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
+    ***
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則をクラスで表現する
 
@@ -2200,22 +2200,74 @@ End Module
 * if 文などの条件分岐が散在し、保護が複雑になるのを避けることが可能。
 * Strategy パターンに似ていて Strategy パターンの場合は…
     ```
-    new Context(new Strategy())
+    New Context(New Strategy())
     ```
     State パターンの場合は…
     ```
-    new Context()
+    New Context()
     ```
     …となります。
 
 ### 例文
 ```
+'test.vb
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        Dim _Janken As New Janken() 'Context（状態を管理）役の生成
 
+        Dim _StateA As New StateA() 'State（状態）役 ①の生成
+        Dim _StateB As New StateB() 'State（状態）役 ②の生成
+
+        _Janken.SetState(_StateA) '状態の設定
+        _Janken.Exec() '=> "グー、グー、パー"
+        _Janken.SetState(_StateB) '状態の設定（変更）
+        _Janken.Exec() '=> "パー、グー、チョキ"
+    End Sub
+
+    '''''''''''''''''''''''''
+    ' Context（状態を管理）役
+    '''''''''''''''''''''''''
+    Public Class Janken
+        Private _State As IState
+
+        Public Sub SetState(ByVal _State As IState)
+            Me._State = _State
+        End Sub
+
+        Public Sub Exec()
+            _State.Execte()
+        End Sub
+    End Class
+
+    '''''''''''''''''
+    ' State（状態）役
+    '''''''''''''''''
+    'インターフェースの宣言
+    Public Interface IState
+        Sub Execte() '"Public"は記述しない
+    End Interface
+
+    'State（状態）役 ①
+    Public Class StateA
+        Implements IState 'インターフェースの継承
+        Public Sub Execte() Implements IState.Execte 'インターフェースの実装
+            Console.WriteLine("グー、グー、パー")
+        End Sub
+    End Class
+
+    'State（状態）役 ②
+    Public Class StateB
+        Implements IState 'インターフェースの継承
+        Public Sub Execte() Implements IState.Execte 'インターフェースの実装
+            Console.WriteLine("パー、グー、チョキ")
+        End Sub
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
 
 
 <a name="Command"></a>
