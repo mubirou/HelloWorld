@@ -29,8 +29,8 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    ***
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    ***
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則をクラスで表現する
@@ -2065,114 +2065,129 @@ End Module
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
-        Gamer _gamer = new Gamer(100); //ゲームスタート（最初のポイントは100）
-        SnapShot _snapShot = _gamer.Save(); //最初の状態を保存
-        
-        _gamer.Point = 2000; //いろいろゲームが進行して2000ポイントに…
-        _snapShot = _gamer.Save(); //この時点での状態を保存
-        
-        _gamer.Point = 8000; //更にゲームが進行して8000ポイントに…
-        _snapShot = _gamer.Save(); //この時点での状態を保存
-        
-        _gamer.History(); //履歴を調べる
-        //	0:100
-        // 1:2000
-        // 2:8000
-        
-        _snapShot = _gamer.Undo(); //Undo（やり直し）
-        Console.WriteLine(_snapShot.Point); //2000
-        _snapShot = _gamer.Undo();
-        Console.WriteLine(_snapShot.Point); //100
-        _snapShot = _gamer.Undo();
-        Console.WriteLine(_snapShot.Point); //これ以上、Undoできません 100
-        
-        _snapShot = _gamer.Redo(); //Redo（再実行）
-        Console.WriteLine(_snapShot.Point); //2000
-        _snapShot = _gamer.Redo();
-        Console.WriteLine(_snapShot.Point); //8000
-        _snapShot = _gamer.Redo();
-        Console.WriteLine(_snapShot.Point); //これ以上、Redoできません 8000
-    }
-}
+'test.vb
+Imports System.Collections 'ArrayListに必要
 
-//============================
-//主人公役 + バックアップ係
-//============================
-class Gamer {
-    int _point;
-    List<SnapShot> _history = new List<SnapShot>(); //履歴用リスト
-    int _count; //Undo、Redo用
-    
-    public Gamer(int _point=0) { //コンストラクタ
-        this._point = _point;
-    }
-    
-    public int Point {
-        get { return _point; }
-        set { _point = value; }
-    }
+Module test '名前（test）は任意
+    Sub Main() '名前（Main）は決め打ち
+        'ゲームスタート（最初のポイントは100）←①
+        Dim _Game As New Game(100)
 
-    //状態を保存	
-    public SnapShot Save() {
-        SnapShot _snapShot = new SnapShot(_point);
-        _history.Add(_snapShot);
-        _count = _history.Count - 1;
-        return _snapShot;
-    }
-    
-    //履歴	
-    public void History() {
-        for (int i=0; i < _history.Count; i++) {
-            Console.WriteLine(i + ":" + _history[i].Point);
-        }
-    }
-    
-    //Undo（やり直し）
-    public SnapShot Undo() {
-        if (_count > 0) {
-            return _history[--_count];
-        } else {
-            Console.WriteLine("これ以上、Undoできません");
-            _count = 0;
-            return _history[0];
-        }
-    }
-    
-    //Redo（再実行）
-    public SnapShot Redo() {
-        if (_count < _history.Count - 1) {
-            return _history[++_count];
-        } else {
-            Console.WriteLine("これ以上、Redoできません");
-            _count = _history.Count-1;
-            return _history[_count];
-        }
-    }
-}
+        Dim _SnapShot As SnapShot = _Game.Save() '最初の状態を保存
+        _Game.Point = 2000 'ゲームが進行して2000ポイントに... ←②
+        _SnapShot = _Game.Save() 'この時点での状態を保存
+        _Game.Point = 8000 '更にゲームが進行して8000ポイントに... ←③
+        _SnapShot = _Game.Save() 'この時点での状態を保存
 
-//=============================================
-// Memento役（その瞬間の状態をオブジェクト化）
-//=============================================
-class SnapShot {
-    private int _point; //今回はシンプルに1つだけにしておきます
-    public SnapShot(int _point) {
-        this._point = _point;
-    }
-    public int Point {
-        get { return _point; }
-        set { _point = value; }
-    }
-}
+        '履歴を調べる
+        _Game.History()
+        '=> 0:100 ←①
+        '=> 1:2000 ←②
+        '=> 2:8000 ←③
+
+        'Undo（やり直し）
+        _SnapShot = _Game.Undo()
+        Console.WriteLine(_SnapShot.Point) '=> 2000
+        _SnapShot = _Game.Undo()
+        Console.WriteLine(_SnapShot.Point) '=> 100
+        _SnapShot = _Game.Undo() '=> "これ以上、Undoできません"
+        Console.WriteLine(_SnapShot.Point) '=> 100
+
+        'Redo（再実行）
+        _SnapShot = _Game.Redo()
+        Console.WriteLine(_SnapShot.Point) '=> 2000
+        _SnapShot = _Game.Redo()
+        Console.WriteLine(_SnapShot.Point) '=> 8000
+        _SnapShot = _Game.Redo() '=> "これ以上、Redoできません"
+        Console.WriteLine(_SnapShot.Point) '=> 8000
+    End Sub
+
+    '''''''''''''''''''''''''
+    ' 主人公 + バックアップ係
+    '''''''''''''''''''''''''
+    Public Class Game
+        Private _History As New ArrayList() '履歴用リスト
+        Private _Point As Integer
+        Private _Count As Integer = Nothing 'Undo、Redo用
+
+        'コンストラクタ
+        Public Sub New(ByVal _Point As Integer)
+            Me._Point = _Point
+        End Sub
+
+        Public Function Save() As SnapShot '状態を保存
+            Dim _SnapShot As New SnapShot(_Point)
+            _History.Add(_SnapShot)
+            _Count = _History.Count - 1
+            Return _SnapShot
+        End Function
+
+        Public Sub History() '履歴
+            For I As Integer = 0 To (_History.Count-1)
+                Console.WriteLine(I & ": " & _History(I).Point) '"A"→"B"→"C"
+            Next
+        End Sub
+
+        Public Function Undo() As SnapShot 'Undo（やり直し）
+            If _Count > 0 Then
+                _Count -= 1
+                Return _History(_Count)
+            Else
+                Console.WriteLine("これ以上、Undoできません")
+                _Count = 0
+                Return _History(0)
+            End If
+        End Function
+
+        Public Function Redo() 'Redo（再実行）
+            If _Count < (_History.Count - 1) Then
+                _Count += 1
+                Return _History(_Count)
+            Else
+                Console.WriteLine("これ以上、Redoできません")
+                _Count = _History.Count - 1
+                Return _History(_Count)
+            End If
+        End Function
+
+        'アクセサの定義
+        Public Property Point() As Integer
+            Get
+                Point = _Point
+            End Get
+            Set(ByVal _newValue As Integer)
+                _Point = _newValue
+            End Set
+        End Property
+    End Class
+
+    '''''''''''''''''''''''''''''''''''''''''''''
+    ' Memento役（その瞬間の状態をオブジェクト化）
+    '''''''''''''''''''''''''''''''''''''''''''''
+    Public Class SnapShot
+        Private _Point As Integer
+
+        'コンストラクタ
+        Public Sub New(ByVal _Point As Integer)
+            Me._Point = _Point
+        End Sub
+
+        'アクセサの定義
+        Public Property Point() As Integer
+            Get
+                Point = _Point
+            End Get
+            Set(ByVal _newValue As Integer)
+                _Point = _newValue
+            End Set
+        End Property
+    End Class
+End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
 作成者：Takashi Nishimura  
-更新日：2017年07月XX日
+更新日：2017年07月24日
 
 
 <a name="State"></a>
@@ -2195,62 +2210,7 @@ class SnapShot {
 
 ### 例文
 ```
-//test.cs
-using System;
 
-//メイン
-class Test {
-    static void Main() {
-        //Context役
-        Janken _janken = new Janken();
-        
-        //State（状態）役
-        IState _stateA = new StateA();
-        IState _stateB = new StateB();
-        
-        //状態の設定＆実行
-        _janken.SetState(_stateA);
-        _janken.Exec(); //グー、グー、パー
-        
-        //状態の変更＆実行
-        _janken.SetState(_stateB);
-        _janken.Exec(); //パー、グー、チョキ
-    }
-}
-
-//Context（状態を管理）役
-class Janken {
-    private IState _state; //状態（State○）を格納
-    
-    public void SetState(IState _state) {
-        this._state = _state;
-    }
-    
-    public void Exec() {
-        _state.Execute(); //…→State○.Execute()メソッドを呼出す
-    }
-}
-
-//=====================
-// State（状態）役
-//=====================
-interface IState {
-    void Execute(); //暗黙的にpublic扱い
-}
-
-//状態A
-class StateA : IState {
-    public void Execute() { //Janken.Exec()から呼び出される
-        Console.WriteLine("グー、グー、パー");	
-    }
-}
-
-//状態B
-class StateB : IState {
-    public void Execute() { //Janken.Exec()から呼び出される
-        Console.WriteLine("パー、グー、チョキ");
-    }
-}
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
@@ -2268,78 +2228,7 @@ class StateB : IState {
 
 ### 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
 
-// メインクラス
-class Test {
-    static void Main() {
-        Inkscape _inkscape = new Inkscape(); //グラフィックソフト
-        
-        //命令の実行
-        _inkscape.Draw("線を引く");
-        _inkscape.Draw("縁取る");
-        _inkscape.Draw("影を付ける");
-        
-        //バッチ処理（オプション）
-        _inkscape.Batch(1,3); //実行履歴の1個目〜3個を再度実行する
-        //	……
-        // 線を引く
-        // 縁取る
-        // 影を付ける
-        // 線を引く
-        // 縁取る
-        // 影を付ける
-    }
-}
-
-// グラフィックソフト
-class Inkscape {
-    Canvas _canvas = new Canvas(); //Receiver（結果を表示する）役
-    List<DrawCommand> _history = new List<DrawCommand>(); //履歴（命令クラス）を保存
-    //命令の実行
-    public void Draw(string _command) {
-        //↓命令を実行する度にインスタンス生成
-        DrawCommand _drawCommand = new DrawCommand(_canvas, _command); 
-        _drawCommand.Execute(); //実行（＝キャンバスの再描画）→★
-        _history.Add(_drawCommand); //命令クラスを履歴に保存
-    }
-    
-    public void Batch(int _start, int _end) { //バッチ処理（オプション）
-        //_startと_endが配列の範囲外の場合のエラー処理は今回は省略
-        List<DrawCommand> _batch = _history.GetRange(_start-1, _end);
-        foreach (DrawCommand _drawCommand in _batch) {
-            _drawCommand.Execute();
-        }
-    }
-}
-
-// 命令クラス
-class DrawCommand {	
-    private Canvas _canvas;
-    private string _command;
-    public DrawCommand(Canvas _canvas, string _command) { //コンストラクタ
-        this._canvas = _canvas;
-        this._command = _command;
-    }
-    public void Execute() { //←★Inkscape.Draw()から呼び出される
-        _canvas.Update(_command); //⦿
-    }
-}
-
-// 結果を表示する役＝Receiver（受信者）の役
-class Canvas {
-    List<string> _history = new List<string>(); //履歴（実際の処理）を保存
-    //キャンバスの再描画
-    public void Update(string _command) { //←⦿DrawCommand.Execute()から呼び出される
-        _history.Add(_command);
-        foreach (string _string in _history) {
-            Console.WriteLine(_string);
-        }
-        Console.WriteLine("-----");
-    }
-}
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
@@ -2358,70 +2247,7 @@ class Canvas {
 
 ### 例文
 ```
-//test.cs
-using System;
 
-//メイン
-class Test {
-    static void Main() {
-        string _code = "+10;*50;/2;-4;="; //自作言語による記述（≒ActionScript）
-        SWF _swf = new SWF(_code); //≒SWFファイルに変換
-        AVM _avm = new AVM(); //≒ActionScript Virtual Machine
-        _avm.Execute(_swf); //≒SWFファイルをAVM上で実行（計算結果は246）
-    }
-}
-
-//================================
-//≒SWFファイルを生成するクラス
-//================================
-class SWF {
-    private string[] _codeArray; //命令を配列化（中間コード）
-    private int _count = 0; //GetNextCode()で使用
-    
-    //コンストラクタ
-    public SWF(string _code) {
-        _codeArray = _code.Split(';'); //「;」区切りで分割し配列化（中間コードに変換）
-    }
-    public string GetNextCode() { //次の命令を返す
-        return _codeArray[_count++];
-    }
-    
-    public bool IsEnd() { //次の命令があるかどうか…
-        return _count >= _codeArray.Length;
-    }
-}
-
-//================================
-//≒ActionScript Virtual Machine
-//================================
-class AVM {
-    public void Execute(SWF _swf) {
-        int _result = 0; //計算結果
-
-        while (!_swf.IsEnd()) { //次の命令があれば…
-
-            string _nextCode = _swf.GetNextCode(); //次の命令を調べる
-
-            //ここからはサンプルの独自処理
-            string _operator = _nextCode.Substring(0,1); //「+*/-=」の何れか
-            if (_operator != "=") {
-                int _int = Int32.Parse(_nextCode.Substring(1));
-                switch (_operator) {
-                    case "+" : _result += _int; break;
-                    case "-" : _result -= _int; break;
-                    case "*" : _result *= _int; break;
-                    case "/" : _result /= _int; break;
-                    default :
-                        Console.WriteLine("error:演算子が異なります");
-                        break;
-                }
-            } else { //「=」の場合…
-                //本来はここで「終端となる表現」のクラスを生成して処理をしますが省略
-                Console.WriteLine(_result);
-            }
-        }
-    }
-}
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
