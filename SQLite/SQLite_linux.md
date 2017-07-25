@@ -25,7 +25,7 @@
 
 1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール（省略可）  
     $ sudo apt install sqlite3  
-    $ sqlite3 -version
+    $ sqlite3 -version  
     3.11.0 2016-02-15 17:29:24 ...
 
 1. バージョン確認（以下の xxx.php を Web サーバ上で実行）
@@ -38,57 +38,20 @@
     ?>
     ```
 
-## データベースとテーブルの作成
+1. パーミッションの変更（xxx.sqlite3 を置くディレクトリ）
+    $ cd /var/www  
+    $ ls -l  
+    drwxr-xr-x 43 none root 4096 Jul 25 13:59 html  
 
-* データベースの作成
-```
-$ mysql -u root -p ←Linuxのパスワードでログイン
 
-mysql> CREATE DATABASE test_db;
 
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-| test_db            |
-+--------------------+
-```
-
-* データベースの削除（参考）
-```
-mysql> DROP DATABASE test_db;
-```
-
-* テーブルの作成
-```
-mysql> USE test_db;
-
-mysql> CREATE TABLE hello_tb(country TEXT, words TEXT);
-
-mysql> SHOW FIELDS FROM hello_tb;
-+---------+------+------+-----+---------+-------+
-| Field   | Type | Null | Key | Default | Extra |
-+---------+------+------+-----+---------+-------+
-| country | text | YES  |     | NULL    |       |
-| words   | text | YES  |     | NULL    |       |
-+---------+------+------+-----+---------+-------+
-```
-
-* テーブルの削除（参考）
-```
-mysql> DROP TABLE hello_tb;
-```
 
 ## コードの記述
 
 1. Visual Studio Code を起動
     1. [ファイル] → [新規ファイル] を選択
     1. [ファイル] → [保存] を選択
-    1. Web サーバのルートディレクトリ（ /ver/www/html/ ）に index<b>.php</b> という名で保存  
+    1. Web サーバのルートディレクトリ（ /ver/www/html/ ）に test<b>.php</b> という名で保存 
 
 1. コードの記述
 ```
