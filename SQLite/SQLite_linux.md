@@ -28,7 +28,7 @@
     $ sqlite3 -version  
     3.11.0 2016-02-15 17:29:24 ...
 
-1. バージョン確認（以下の xxx.php を Web サーバ上で実行して確認する場合）
+1. バージョン確認（以下の xxx.php を Web サーバ上で実行）
     ```
     <?php
         $con = new PDO('sqlite::memory:', null, null);
