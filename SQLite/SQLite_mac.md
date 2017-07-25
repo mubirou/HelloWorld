@@ -37,15 +37,15 @@
         * PHP 7.1.1
         * SQLite 3.15.1
     1. バージョン確認（以下の xxx.php を Web サーバ上で実行）  
-        ※ドキュメントルートは MacintoshHD > アプリケーション > MAMP > htdocs  
-        ```
-        <?php
-            $con = new PDO('sqlite::memory:', null, null);
-            $statement = $con->prepare('SELECT sqlite_version()');
-            $statement->execute();
-            echo $statement->fetchColumn(); //=> 3.15.1
-        ?>
-        ```
+    ※ドキュメントルートは MacintoshHD > アプリケーション > MAMP > htdocs  
+    ```
+    <?php
+        $con = new PDO('sqlite::memory:', null, null);
+        $statement = $con->prepare('SELECT sqlite_version()');
+        $statement->execute();
+        echo $statement->fetchColumn(); //=> 3.15.1
+    ?>
+    ```
 
 1. ポートの変更
     1. MAMP を起動
@@ -56,8 +56,7 @@
 1. Web サーバのルートディレクトリの確認  
     1. MAMP を起動
     1. [Preferences...] → [Web Server] を選択  
-    初期値は Document Root: MacintoshHD > アプリケーション > MAMP > htdocs  
-    （ /Applications/MAMP/htdocs/ と同意）
+    ※ドキュメントルートは MacintoshHD > アプリケーション > MAMP > htdocs
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から PHP Debug と [vscode-database](http://bit.ly/2mh8nYF) を検索＆インストール
