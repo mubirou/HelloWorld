@@ -36,7 +36,7 @@
         * Apache 2.2.31
         * PHP 7.1.1
         * SQLite 3.15.1
-    1. バージョン確認（以下の xxx.php を Web サーバ上で実行）
+    1. バージョン確認（以下の xxx.php を Web サーバ上で実行）  
         ※初期値は Document Root: MacintoshHD > アプリケーション > MAMP > htdocs  
         （ /Applications/MAMP/htdocs/ と同意）
         ```
