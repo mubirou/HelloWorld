@@ -1,5 +1,3 @@
-### この項目は編集中です
-
 # SQLite（ Linux ）
 
 ## <ruby>SQLite<rt>エスキューライト</rt></ruby> について
@@ -28,7 +26,7 @@
 1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール（省略可）  
     $ sudo apt install sqlite3  
     $ sqlite3 -version  
-    3.11.0 2016-02-15 17:29:24 ...
+    3.11.0 ...
 
 1. バージョン確認（以下の xxx.php を Web サーバ上で実行）
     ```
