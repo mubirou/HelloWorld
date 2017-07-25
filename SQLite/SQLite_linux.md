@@ -34,7 +34,7 @@
         $con = new PDO('sqlite::memory:', null, null);
         $statement = $con->prepare('SELECT sqlite_version()');
         $statement->execute();
-        echo $statement->fetchColumn();
+        echo $statement->fetchColumn(); //=> 3.11.0
     ?>
     ```
 
