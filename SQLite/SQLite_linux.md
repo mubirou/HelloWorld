@@ -41,10 +41,10 @@
 1. パーミッションの変更（xxx.sqlite3 を置くディレクトリ）
     $ cd /var/www  
     $ ls -l  
-    drwxr-xr-x 43 none root 4096 Jul 25 13:59 html  
-
-
-
+    drwxr-xr-x 43 none root 4096 Jul 25 13:59 html ←755（所有者以外は書込不可）  
+    $ chmod -R 777 /var/www/html  
+    $ ls -l  
+    drwxrwxrwx 43 none root 4096  7月 25 13:59 html ←777（所有者以外も書込可能）  
 
 ## コードの記述
 
@@ -53,24 +53,26 @@
     1. [ファイル] → [保存] を選択
     1. Web サーバのルートディレクトリ（ /ver/www/html/ ）に test<b>.php</b> という名で保存 
 
-1. コードの記述
+1. コードの記述（test.php）
 ```
 <?php
-    //MySQLに接続
-    $dbname = "mysql:host=localhost;dbname=test_db";
-    $username = "root";
-    $password = "*****"; //Linuxのパスワード
-    $con = new PDO($dbname, $username, $password);
-    
-    //データの挿入
+    // データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3"); //慣例的に xxx.sqlite3 とする
+
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hello_tb(country TEXT, words TEXT)";
+    $statement = $con->prepare($sql); //prepare() メソッド
+    $statement->execute();
+
+    //データの挿入（今回のサンプルでは実行する度に追加される）
     $sql = "INSERT INTO hello_tb VALUES('english', 'Hello,world!')";
-    $statement = $con -> prepare($sql);
-    $statement -> execute();
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
     //データの抽出
     $sql = "SELECT * FROM hello_tb WHERE country='english'";
-    $statement = $con -> prepare($sql);
-    $statement -> execute();
+    $statement = $con->prepare($sql);
+    $statement->execute();
     foreach ($statement as $theRecord) {
         echo $theRecord["words"]."<br>";
     }
@@ -81,10 +83,10 @@
 
 1. Web ブラウザ（Firefox）を起動
 
-1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/index.php を開く
+1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/test.php を開く
 
 1. Hello,world! と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年03月02日
+作成日: 2017年07月25日
