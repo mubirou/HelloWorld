@@ -1,6 +1,8 @@
-# MySQL / MariaDB（ Linux ）
+### この項目は編集中です
 
-## MySQL / MariaDB について
+# SQLite（ Linux ）
+
+## SQLite について
 
 * MySQL は1995年に登場したオープンソースの [RDBMS](http://bit.ly/2lunAUm) 。商標権･著作権は MySQL AB（〜2008年）→ サン･マイクロシステムズ（2010年にオラクルが買収）に移行している。
 * 派生のデータベースに [MariaDB](https://ja.wikipedia.org/wiki/MariaDB) がある（Google の検索システムに採用）。
