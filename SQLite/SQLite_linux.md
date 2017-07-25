@@ -15,19 +15,28 @@
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.2 LTS|2017年02月|
 |Web サーバ|[Apache](https://ja.wikipedia.org/wiki/Apache_HTTP_Server) 2.4.18|2016年07月|
-|データベース|[MySQL](https://ja.wikipedia.org/wiki/MySQL) 5.7.17|2016年12月|
-|実行エンジン|[PHP](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor) 7.0.15|2017年01月|
-|エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|PHP Debug 1.10.0|ー|
-|ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
+|データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.11.0|2016年02月|
+|実行エンジン|[PHP](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor) 7.0.18|2017年04月|
+|エディタ|Visual Studio Code 1.14.2|2017年06月|
+|拡張機能|PHP Debug 1.11.1|2017年07月|
+|ブラウザ|Mozilla Firefox 54.0|2017年06月|
 
 1. [PHP の開発環境の構築](https://github.com/TakashiNishimura/HelloWorld/blob/master/PHP/PHP_linux.md) をする
 
-1. [MySQL](https://ja.wikipedia.org/wiki/MySQL) のインストール  
-    $ sudo apt-get update  
-    $ sudo apt-get install mysql-server  
-    $ mysql --version  
-    mysql  Ver 14.14 Distrib 5.7.17, for Linux (x86_64) using  EditLine wrapper
+1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール（省略可）  
+    $ sudo apt install sqlite3  
+    $ sqlite3 -version
+    3.11.0 2016-02-15 17:29:24 ...
+
+1. バージョン確認（PHP を利用）
+    ```
+    <?php
+        $con = new PDO('sqlite::memory:', null, null);
+        $statement = $con->prepare('SELECT sqlite_version()');
+        $statement->execute();
+        echo $statement->fetchColumn();
+    ?>
+    ```
 
 ## データベースとテーブルの作成
 
