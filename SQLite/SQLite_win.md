@@ -4,10 +4,10 @@
 
 ## SQLite について
 
-* MySQL は1995年に登場したオープンソースの [RDBMS](http://bit.ly/2lunAUm) 。商標権･著作権は MySQL AB（〜2008年）→ サン･マイクロシステムズ（2010年にオラクルが買収）に移行している。
-* 派生のデータベースに [MariaDB](https://ja.wikipedia.org/wiki/MariaDB) がある（Google の検索システムに採用）。
-* MySQL 5.6（2013年2月リリース）で大規模なリファクタリングが行われて以降は、MariaDB と MySQL との間で新機能の取り扱い方などで相違がある。
-*  データの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)として SQL を利用。
+* 2000年に登場したオープンソースの軽量コンパクトな [RDBMS](http://bit.ly/2lunAUm)。
+* 大規模なシステムには不向きだが、中小規模のデータを扱う限りでは、高速に処理（同時書き込みが不可）。
+* ファイル単位で処理されるためバックアップが容易。
+*  データの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)として[SQL](https://ja.wikipedia.org/wiki/SQL) を利用。
 
 ## 開発環境の構築
 
