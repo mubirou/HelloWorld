@@ -16,7 +16,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.6|2017年07月|
-|ソフトウェア|[MAMP](https://www.mamp.info/en/) 4.1.1|ー|
+|ソフトウェア|[MAMP](https://www.mamp.info/en/) 4.1.1|2017年02月|
 |Web サーバ|Apache 2.2.31|2015年07月|
 |データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.15.1|2016年11月|
 |実行エンジン|PHP 7.1.1|2017年01月|
