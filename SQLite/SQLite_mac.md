@@ -37,7 +37,7 @@
         * PHP 7.1.1
         * SQLite 3.15.1
     1. バージョン確認（以下の xxx.php を Web サーバ上で実行）  
-        ドキュメントルートは MacintoshHD > アプリケーション > MAMP > htdocs  
+        ※ドキュメントルートは MacintoshHD > アプリケーション > MAMP > htdocs  
         ```
         <?php
             $con = new PDO('sqlite::memory:', null, null);
