@@ -38,13 +38,13 @@
     ?>
     ```
 
-1. パーミッションの変更（xxx.sqlite3 を置くディレクトリ）
+1. パーミッションの変更（xxx.sqlite3 を置くディレクトリ）  
     $ cd /var/www  
     $ ls -l  
     drwxr-xr-x 43 none root 4096 Jul 25 13:59 html ←755（所有者以外は書込不可）  
     $ chmod -R 777 /var/www/html  
     $ ls -l  
-    drwxrwxrwx 43 none root 4096  7月 25 13:59 html ←777（所有者以外も書込可能）  
+    drwxrwxrwx 43 none root 4096  7月 25 13:59 html ←777（所有者以外も書込可能）
 
 ## コードの記述
 
