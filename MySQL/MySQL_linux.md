@@ -5,6 +5,7 @@
 * 1995年に登場したオープンソースの [RDBMS](http://bit.ly/2lunAUm) 。
 * 商標権･著作権は MySQL AB（〜2008年）→ サン･マイクロシステムズ（2010年にオラクルが買収）に移行している。
 * 派生のデータベースに [MariaDB](https://ja.wikipedia.org/wiki/MariaDB) がある（Google の検索システムに採用）。
+* MySQL 5.6（2013年2月リリース）で大規模なリファクタリングが行われて以降は、MariaDB と MySQL との間で新機能の取り扱い方などで相違がある。
 *  データの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)として SQL を利用。
 
 ## 開発環境の構築
