@@ -7,7 +7,9 @@
 * 2000年に登場したオープンソースの軽量コンパクトな [RDBMS](http://bit.ly/2lunAUm)。
 * 大規模なシステムには不向きだが、中小規模のデータを扱う限りでは高速に処理（同時書き込みが不可）。
 * ファイル単位で処理されるためバックアップが容易。
-*  データの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)として [SQL](https://ja.wikipedia.org/wiki/SQL) を利用。
+* データベースユーザーの概念が無いため、パスワードの設定は不可。
+* [<b>.htacess</b>](http://www.weblio.jp/content/Htaccess) を使って .sqlite3 ファイルに対しアクセス制限を設定しないと、xxx.sqlite3 ファイルを直接ダウンロード出来てしまう。
+* データの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)として [SQL](https://ja.wikipedia.org/wiki/SQL) を利用。
 
 ## 開発環境の構築
 
