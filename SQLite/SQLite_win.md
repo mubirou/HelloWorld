@@ -18,7 +18,7 @@
 |OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
 |ソフトウェア|[XAMPP](https://ja.wikipedia.org/wiki/XAMPP) 7.1.1|2017年2月|
 |Web サーバ|Apache 2.4.25|2016年12月|
-|データベース|[MariaDB](https://ja.wikipedia.org/wiki/MariaDB) 10.1.21|2017年1月|
+|データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.15.1|2016年11月|
 |実行エンジン|PHP 7.1.1|2017年01月|
 |エディタ|Visual Studio Code 1.10.2|2017年03月|
 |拡張機能|PHP Debug 1.10.0|ー|
@@ -29,13 +29,22 @@
     1. https://www.apachefriends.org/download.html にアクセス
     1. [XAMPP for Windows 5.6.30, 7.0.15 & 7.1.1] の [7.1.1 / PHP 7.1.1] の [Download（32bit）] をクリック、ダウンロード
     1. ダウンロードした .exe ファイルをダブルクリック、インストール
-    1. XAMPP Control Panel が起動したら以下の Service の [Start] ボタンをクリック
-        * Apache
-        * MySQL
+    1. XAMPP Control Panel が起動したら Service（<b>Apache</b>） の [Start] ボタンをクリック
 
-1. Web サーバのルートディレクトリ（ C:\xampp\htdocs ）に以下の内容の test.php ファイルを置き、Webブラウザで localhost/test.php を開いて各種情報を確認（<b>本番環境ではセキュリティ上削除しておく</b>）
+1. Web サーバのドキュメントルート（ C:\xampp\htdocs ）に以下の内容の test.php ファイルを置き、Webブラウザで localhost/test.php を開いて各種情報を確認（<b>本番環境ではセキュリティ上削除しておく</b>）
     ```
     <?php phpinfo(); ?>
+    ```
+
+1. バージョン確認（以下の xxx.php を Web サーバ上で実行）  
+    ※ドキュメントルートは（ C:\xampp\htdocs ）
+    ```
+    <?php
+        $con = new PDO('sqlite::memory:', null, null);
+        $statement = $con->prepare('SELECT sqlite_version()');
+        $statement->execute();
+        echo $statement->fetchColumn(); //=> 3.15.1
+    ?>
     ```
 
 1. エディタで C:\xampp\php\php.ini を開いて、エラー表示が有効か確認する（<b>本番環境では Off にする</b>）
@@ -43,111 +52,44 @@
     477行目 display_errors=On  
     ```
 
-1. [環境変数](http://bit.ly/2lCIAgK)の設定  
-    1. タスクバーのスタートボタンを右クリック → [コントロールパネル] → [システムとセキュリティ] → [システム] → [システムの詳細設定] → [環境変数] を開く
-    1. [システム環境変数] で変数 "Path" を探して選択 → [編集] ボタンをクリック
-    1. 変数値の最後に ;C:\xampp\mysql\bin を追加（mysql.exeが存在）
-    1. Windows を再起動
-    1. コマンドプロンプトでバージョン確認  
-        \>mysql --version  
-        mysql  Ver 15.1 Distrib 10.1.21-MariaDB, for Win32 (AMD64)
-
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から PHP Debug と [vscode-database](http://bit.ly/2mh8nYF) を検索＆インストール
-    
-
-## データベースとテーブルの作成
-
-* データベースの起動（Windowsを起動する度に実行）
-   1. [Windows スタートメニュー] → [すべてのアプリ] → [XAMPP] → [XAMPP Control Panel] を起動
-   2. 以下の Service の [Start] ボタンをクリック
-        * Apache
-        * MySQL
 
 
-* データベースの作成
-    ```
-    >mysql -u  root
+1. コードの記述（test.php）
+```
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3"); //慣例的に xxx.sqlite3 とする
 
-    MariaDB [(ユーザー名)]> CREATE DATABASE test_db;
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hello_tb(country TEXT, words TEXT)";
+    $statement = $con->prepare($sql); //prepare() メソッド
+    $statement->execute();
 
-    MariaDB [(ユーザー名)]> show databases;
-    +--------------------+
-    | Database           |
-    +--------------------+
-    | information_schema |
-    | mysql              |
-    | performance_schema |
-    | phpmyadmin         |
-    | test               |
-    | test_db            |
-    +--------------------+
-    ```
+    //データの挿入（今回のサンプルでは実行する度に追加される）
+    $sql = "INSERT INTO hello_tb VALUES('english', 'Hello,world!')";
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
-* データベースの削除（参考）
-    ```
-    MariaDB [(ユーザー名)]> DROP DATABASE test_db;
-    ```
-
-* テーブルの作成
-    ```
-    MariaDB [(ユーザー名)]> USE test_db;
-
-    MariaDB [(ユーザー名)]> CREATE TABLE hello_tb(country TEXT, words TEXT);
-
-    MariaDB [(ユーザー名)]> SHOW FIELDS FROM hello_tb;
-    +---------+------+------+-----+---------+-------+
-    | Field   | Type | Null | Key | Default | Extra |
-    +---------+------+------+-----+---------+-------+
-    | country | text | YES  |     | NULL    |       |
-    | words   | text | YES  |     | NULL    |       |
-    +---------+------+------+-----+---------+-------+
-    ```
-
-* テーブルの削除（参考）
-    ```
-    MariaDB [(ユーザー名)]> DROP TABLE hello_tb;
-    ```
-
-## コードの記述
-
-1. Visual Studio Code を起動
-    1. [ファイル] → [新規ファイル] を選択
-    1. [ファイル] → [保存] を選択
-    1. Web サーバのルートディレクトリ（ C:\xampp\htdocs ）に index<b>.php</b> という名で保存  
-
-1. コードの記述
-    ```
-    <?php
-        //mariaDBに接続
-        $dbname = "mysql:host=localhost;dbname=test_db";
-        $username = "root";
-        $password = "";
-        $con = new PDO($dbname, $username, $password);
-        
-        //データの挿入
-        $sql = "INSERT INTO hello_tb VALUES('english', 'Hello,world!')";
-        $statement = $con -> prepare($sql);
-        $statement -> execute();
-
-        //データの抽出
-        $sql = "SELECT * FROM hello_tb WHERE country='english'";
-        $statement = $con -> prepare($sql);
-        $statement -> execute();
-        foreach ($statement as $theRecord) {
-            echo $theRecord["words"]."<br>";
-        }
-    ?>
-    ```
+    //データの抽出
+    $sql = "SELECT * FROM hello_tb WHERE country='english'";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+    foreach ($statement as $theRecord) {
+        echo $theRecord["words"]."<br>";
+    }
+?>
+```
 
 ## 実行
 
 1. Web ブラウザ（Google Chrome）を起動
 
-1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/index.php を開く
+1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/test.php を開く
 
 1. Hello,world! と表示されたら成功！
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2017年03月16日
+作成日: 2017年07月26日
