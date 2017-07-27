@@ -79,7 +79,8 @@ CREATE TABLE テーブル名 (カラム名 型 [列フラグ オプション], �
 
 * テーブルの確認
     ```
-    sqlite> .schema book_tb <= テーブル定義の確認
+    $ sqlite3 /var/www/html/test.sqlite3 <= データベースの作成（開く）
+    sqlite> .schema book_tb <= テーブルスキーマ（構造）の確認
     CREATE TABLE book_tb (
         isbn VARCHAR(13),
         title VARCHAR(100),
@@ -122,6 +123,47 @@ CREATE TABLE テーブル名 (カラム名 型 [列フラグ オプション], �
     $result = $statement->fetch(PDO::FETCH_ASSOC);
     print_r($result);
     //=> Array ( [isbn] => 0 [title] => test [author] => test [price] => 0 [amazon] => 0.0 )
+?>
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年07月27日
+
+
+<a name="テーブルの削除"></a>
+# <b>テーブルの削除</b>
+
+### 構文
+```
+DROP TABLE テーブル名
+```
+
+### コマンドラインの場合
+```
+$ sqlite3 /var/www/html/test.sqlite3 <= データベースを開く
+sqlite> .tables <= 既存のテーブルの確認
+book_tb
+sqlite> DROP TABLE book_tb; <= テーブルの削除
+sqlite> .tables <= 再確認
+sqlite>   <= 何も表示されない
+```
+
+### PHP の場合
+```
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS book_tb (isbn VARCHAR(13), title VARCHAR(100))";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    // テーブルの削除
+    $sql = "DROP TABLE IF EXISTS book_tb"; //"IF EXISTS"はテーブルが存在すれば...の意
+    $statement = $con->prepare($sql);
+    $statement->execute();
 ?>
 ```
 
