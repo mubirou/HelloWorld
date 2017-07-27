@@ -6,6 +6,7 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_win.md)）
 * [データベースの作成](#データベースの作成)
+* [データベースの削除](#データベースの削除)
 * [テーブルの作成](#テーブルの作成)
 ***
 * [XXX](#XXX)
@@ -29,6 +30,21 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
     $con = new PDO("sqlite:test.sqlite3");
     var_dump($con) //=> object(PDO)#1 (0) { }
 ?>
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年07月27日
+
+
+<a name="データベースの削除"></a>
+# <b>データベースの削除</b>
+
+特別なコマンドはありません（手動で「ゴミ箱へ移動する」方法でも可能）
+```
+$ ls -l /var/www/html/test.sqlite3 <= 確認
+-rw-r--r-- ... /var/www/html/test.sqlite3
+$ rm -f /var/www/html/test.sqlite3 <= 実際に削除
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
