@@ -6,6 +6,7 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_win.md)）
 * [データベースの作成](#データベースの作成)
+***
 * [XXX](#XXX)
 
 
@@ -20,15 +21,18 @@ sqlite> .databases <= ここで実際に.sqlite3 ファイルが生成される
 sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合「;」を入力）
 ```
 
-### XXX
+### PHP の場合
 ```
-XXX
-XXX
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3"); //慣例的に xxx.sqlite3 とする
+    var_dump($con) //=> object(PDO)#1 (0) { }
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
+作成日：2017年07月27日
 
 
 <a name="XXX"></a>
