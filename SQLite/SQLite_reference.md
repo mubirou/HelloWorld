@@ -7,6 +7,7 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_win.md)）
 * [データベースの作成](#データベースの作成)
 ***
+* [テーブルの作成](#テーブルの作成)
 * [XXX](#XXX)
 
 
@@ -33,6 +34,24 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年07月27日
+
+
+<a name="テーブルの作成"></a>
+# <b>テーブルの作成</b>
+
+### XXXX
+1. XXX
+1. XXX
+
+### XXX
+```
+XXX
+XXX
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年0X月XX日
 
 
 <a name="XXX"></a>
