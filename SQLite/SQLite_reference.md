@@ -5,12 +5,12 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_win.md)）
-* [XXX](#XXX)
+* [データベースの作成](#データベースの作成)
 * [XXX](#XXX)
 
 
-<a name="XXX"></a>
-# <b>XXX</b>
+<a name="データベースの作成"></a>
+# <b>データベースの作成</b>
 
 ### XXXX
 1. XXX
