@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_win.md)）
 * [データベースの作成](#データベースの作成)
-***
 * [テーブルの作成](#テーブルの作成)
+***
 * [XXX](#XXX)
 
 
