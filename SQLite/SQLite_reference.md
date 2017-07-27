@@ -46,30 +46,31 @@ CREATE TABLE テーブル名 (カラム名 型 [列フラグ オプション], �
 
 ### コマンドラインの場合
 
-作成
-```
-$ sqlite3 /var/www/html/test.sqlite3 <= データベースの作成（開く）
-sqlite> CREATE TABLE book_tb (
-    isbn VARCHAR(13),
-    title VARCHAR(100),
-    author VARCHAR(100),
-    date VARCHAR(10),
-    price INTEGER,
-    amazon REAL
-);
-```
-確認
-```
-sqlite> .schema book_tb <= テーブル定義の確認
-CREATE TABLE book_tb (
-    isbn VARCHAR(13),
-    title VARCHAR(100),
-    author VARCHAR(100),
-    date VARCHAR(10),
-    price INTEGER,
-    amazon REAL
-);
-```
+* テーブルの作成
+    ```
+    $ sqlite3 /var/www/html/test.sqlite3 <= データベースの作成（開く）
+    sqlite> CREATE TABLE book_tb (
+        isbn VARCHAR(13),
+        title VARCHAR(100),
+        author VARCHAR(100),
+        date VARCHAR(10),
+        price INTEGER,
+        amazon REAL
+    );
+    ```
+
+* テーブルの確認
+    ```
+    sqlite> .schema book_tb <= テーブル定義の確認
+    CREATE TABLE book_tb (
+        isbn VARCHAR(13),
+        title VARCHAR(100),
+        author VARCHAR(100),
+        date VARCHAR(10),
+        price INTEGER,
+        amazon REAL
+    );
+    ```
 
 ### PHP の場合
 ```
