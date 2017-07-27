@@ -30,7 +30,7 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年07月27日
 
@@ -48,6 +48,6 @@ XXX
 XXX
 ```
 
-実行環境：Ubuntu 16.04 LTS、Chromium 56  
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年0X月XX日
