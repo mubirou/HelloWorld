@@ -74,13 +74,38 @@ CREATE TABLE テーブル名 (カラム名 型 [列フラグ オプション], �
 
 ### PHP の場合
 ```
-XXX
-XXX
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS book_tb (
+        isbn VARCHAR(13),
+        title VARCHAR(100),
+        author VARCHAR(100),
+        price INTEGER,
+        amazon REAL
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    // 以下は検証（ダミーデータを挿入）
+    $sql = "INSERT INTO book_tb VALUES (0, 'test', 'test', 0, 0)";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    $statement = $con->prepare("SELECT * FROM book_tb"); //全データを選択
+    $statement->execute();
+
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    print_r($result);
+    //=> Array ( [isbn] => 0 [title] => test [author] => test [price] => 0 [amazon] => 0.0 )
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
+作成日：2017年07月27日
 
 
 <a name="XXX"></a>
