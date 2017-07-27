@@ -14,10 +14,10 @@
 
 ### コマンドラインの場合
 ```
-$ cd /var/www/html ←作成したいディレクトリに移動
-$ sqlite3 test.sqlite3 ←既存の場合はファイルを開く
-sqlite> .databases ←ここで実際に.sqlite3 ファイルが生成される
-sqlite> .exit ←終了（間違えた場合「;」を入力）
+$ cd /var/www/html <= 作成したいディレクトリに移動
+$ sqlite3 test.sqlite3 <= 既存の場合はファイルを開く
+sqlite> .databases <= ここで実際に.sqlite3 ファイルが生成される
+sqlite> .exit <= 終了（間違えた場合「;」を入力）
 ```
 
 ### XXX
