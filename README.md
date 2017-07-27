@@ -36,5 +36,5 @@
 |TypeScript|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_pattern.md)|
 |Visual Basic .NET|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_pattern.md)|
 
-「－」は非プログラミング言語のため  
-「×」は非オブジェクト指向言語のため
+####「－」は非プログラミング言語のため  
+####「×」は非オブジェクト指向言語のため
