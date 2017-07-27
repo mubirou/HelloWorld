@@ -16,7 +16,7 @@
 ### コマンドラインの場合
 ```
 $ cd /var/www/html <= 作成したいディレクトリに移動
-$ sqlite3 test.sqlite3 <= 既存の場合はファイルを開く
+$ sqlite3 test.sqlite3 <= 既存の場合はファイルを開く（慣例的に xxx.sqlite3 とする）
 sqlite> .databases <= ここで実際に.sqlite3 ファイルが生成される
 sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合「;」を入力）
 ```
@@ -25,7 +25,7 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
 ```
 <?php
     // データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3"); //慣例的に xxx.sqlite3 とする
+    $con = new PDO("sqlite:test.sqlite3");
     var_dump($con) //=> object(PDO)#1 (0) { }
 ?>
 ```
