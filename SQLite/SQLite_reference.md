@@ -39,11 +39,34 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
 <a name="テーブルの作成"></a>
 # <b>テーブルの作成</b>
 
-### XXXX
-1. XXX
-1. XXX
+### 構文
+```
+CREATE TABLE テーブル名 (カラム名 型 [列フラグ オプション], カラム名 型  [列フラグ オプション], ...)
+```
 
-### XXX
+### コマンドラインの場合
+```
+$ sqlite3 /var/www/html/test.sqlite3 <= データベースの作成（開く）
+sqlite> CREATE TABLE book_tb (
+    isbn VARCHAR(13),
+    title VARCHAR(100),
+    author VARCHAR(100),
+    date VARCHAR(10),
+    price INTEGER,
+    amazon REAL
+);
+sqlite> .schema book_tb <= テーブル定義の確認
+CREATE TABLE book_tb (
+    isbn VARCHAR(13),
+    title VARCHAR(100),
+    author VARCHAR(100),
+    date VARCHAR(10),
+    price INTEGER,
+    amazon REAL
+);
+```
+
+### PHP の場合
 ```
 XXX
 XXX
