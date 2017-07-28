@@ -9,8 +9,8 @@
 * [データベースの削除](#データベースの削除)
 * [テーブルの作成](#テーブルの作成)
 * [テーブルの削除](#テーブルの削除)
-***
 * [データ型](#データ型)
+***
 * [XXX](#XXX)
 
 
@@ -170,6 +170,71 @@ sqlite>   <= 何も表示されない
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年07月27日
+
+
+<a name="データ型"></a>
+# <b>データ型</b>
+
+### データ型の種類
+1. <b>INTEGER</b> 型: 整数（-9223372036854775808 〜 9223372036854775807）
+1. <b>REAL</b> 型: 浮動小数点数（小数点第14位）
+1. NUMERIC 型: 数値は INTEGER / REAL に振り分けられる
+1. <b>TEXT</b> 型: 文字列
+1. VARCHAR 型: 最大文字数を指定する文字列（TEXT 型扱い）
+1. BLOB 型: 入力データをそのまま格納
+1. <b>NULL</b> 型: 値が何もない状態
+
+### 検証
+```
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS book_tb (
+        column1 INTEGER,
+        column2 REAL,
+        column3 NUMERIC,
+        column4 TEXT,
+        column5 VARCHAR(2)
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    // DEBUG用（既存の場合は削除）
+    $sql = "DELETE FROM book_tb WHERE column1 = 1";
+    $statement = $con->prepare($sql); //全データを選択
+    $statement->execute();
+
+    // データの挿入
+    $sql = "INSERT INTO book_tb VALUES (
+        1,
+        3.14159265358979323846264338327,
+        9223372036854775807,
+        'あいうえお',
+        '01'
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    // データの取得
+    $sql = "SELECT * FROM book_tb WHERE column1 = 1";
+    $statement = $con->prepare($sql); 
+    $statement->execute();
+
+    while($theRecord = $statement->fetch()) {
+        echo $theRecord["column1"]."<br>"; //=> 1
+        echo $theRecord["column2"]."<br>"; //=> 3.14159265358979
+        echo $theRecord["column3"]."<br>"; //=> 9223372036854775807（900京余）
+        echo $theRecord["column4"]."<br>"; //=> あいうえお
+        echo $theRecord["column5"]."<br>"; //=> 1.0（要注意）
+    }
+?>
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年07月28日
 
 
 <a name="XXX"></a>
