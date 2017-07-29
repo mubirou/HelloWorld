@@ -42,7 +42,7 @@
     $ cd /var/www  
     $ ls -l  
     drwxr-xr-x ... ←755（所有者以外は書込不可）  
-    $ chmod -R 777 /var/www/html  
+    $ sudo chmod -R 777 /var/www/html  
     $ ls -l  
     drwxrwxrwx ... ←777（所有者以外も書込可能）
 
