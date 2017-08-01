@@ -12,6 +12,7 @@
 * [テーブルの削除](#テーブルの削除)
 * [データの追加](#データの追加)
 * [データの削除](#データの削除)
+* [データの更新](#データの更新)
 ***
 * [XXX](#XXX)
 
@@ -338,6 +339,24 @@ sqlite>   <= 何も表示されない
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年08月01日
+
+
+<a name="データの更新"></a>
+# <b>データの更新</b>
+
+### XXXX
+1. XXX
+1. XXX
+
+### XXX
+```
+XXX
+XXX
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年0X月XX日
 
 
 <a name="XXX"></a>
