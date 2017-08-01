@@ -307,12 +307,12 @@ sqlite>   <= 何も表示されない
     $statement = $con->prepare($sql);
     $statement->execute();
 
-    //データの挿入
+    //データの挿入①
     $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
     $statement = $con->prepare($sql);
     $statement->execute();
 
-    //データの挿入
+    //データの挿入②
     $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
     $statement = $con->prepare($sql);
     $statement->execute();
