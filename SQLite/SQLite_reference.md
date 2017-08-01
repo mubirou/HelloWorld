@@ -15,8 +15,8 @@
 * [データの更新](#データの更新)
 * SELECT 文
     * [全ての列を抽出](#全ての列を抽出)
-    ***
     * [特定の列を抽出](#特定の列を抽出)
+    ***
     * [重複した列を除いて...](#全ての列を抽出)
     * [XXXXXXXXX](#XXXXXXXXX)
     * [XXXXXXXXX](#XXXXXXXXX)
@@ -485,7 +485,52 @@ SELECT * FROM テーブル名
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
+作成日：2017年08月02日
+
+
+<a name="特定の列を抽出"></a>
+# <b>特定の列を抽出</b>
+
+### 書式
+```
+SELECT 列名①,列名②,... FROM テーブル名
+```
+
+### 例文
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (firstname TEXT, lastname TEXT, sex TEXT)";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'NISHIMURA', 'man')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'NISHIMURA', 'woman')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'NISHIMURA', 'man')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('YOSHIKO', 'NISHIMURA', 'woman')")->execute();
+
+    $sql = "SELECT firstname,lastname FROM hoge_tb"; //特定の列を抽出
+    $statement = $con->query($sql);
+
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['firstname'].'|'.$tmp['lastname'];
+        echo "<br>";
+    }
+    //=> TAKASHI|NISHIMURA
+    //=> HANAKO|NISHIMURA
+    //=> ICHIRO|NISHIMURA
+    //=> YOSHIKO|NISHIMURA
+?>
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年08月02日
 
 
 <a name="XXX"></a>
