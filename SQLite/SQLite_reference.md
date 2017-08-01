@@ -12,8 +12,8 @@
 * [テーブルの削除](#テーブルの削除)
 * [データの追加](#データの追加)
 * [データの削除](#データの削除)
-***
 * [データの更新](#データの更新)
+***
 * [XXX](#XXX)
 
 
@@ -318,9 +318,9 @@ sqlite>   <= 何も表示されない
     $statement = $con->prepare($sql);
     $statement->execute();
 
-    //============
-    //データの削除
-    //============
+    //=============
+    // データの削除
+    //=============
     $sql = "DELETE FROM hoge_tb WHERE id = 1"; //「==」ではない
     $statement = $con->prepare($sql);
     $statement->execute();
@@ -344,19 +344,89 @@ sqlite>   <= 何も表示されない
 <a name="データの更新"></a>
 # <b>データの更新</b>
 
-### XXXX
-1. XXX
-1. XXX
-
-### XXX
+### 全データの更新
 ```
-XXX
-XXX
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //============================================
+    // 全データの更新（あまり使わないでしょう...）
+    //============================================
+    $sql = "UPDATE hoge_tb SET id = NULL, name = NULL"; //「==」ではない
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //全データを取得
+    $sql = "SELECT * FROM hoge_tb";
+    $statement = $con->query($sql);
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'];
+        echo "<br>";
+    }
+    //=> |
+    //=> |
+?>
+```
+
+### 条件に合致したデータのみ更新
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //=============================
+    // 条件に合致したデータのみ更新
+    //=============================
+    $sql = "UPDATE hoge_tb SET name = 'たかし' WHERE name = 'TAKASHI'"; //「==」ではない
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //全データを取得
+    $sql = "SELECT * FROM hoge_tb";
+    $statement = $con->query($sql);
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'];
+        echo "<br>";
+    }
+    //=> 1|たかし
+    //=> 2|HANAKO
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
+作成日：2017年08月01日
 
 
 <a name="XXX"></a>
