@@ -11,8 +11,8 @@
 * [テーブルの作成](#テーブルの作成)
 * [テーブルの削除](#テーブルの削除)
 * [データの追加](#データの追加)
-***
 * [データの削除](#データの削除)
+***
 * [XXX](#XXX)
 
 
@@ -291,25 +291,53 @@ sqlite>   <= 何も表示されない
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年07月31
+作成日：2017年07月31日
 
 
 <a name="データの削除"></a>
 # <b>データの削除</b>
 
-### XXXX
-1. XXX
-1. XXX
-
-### XXX
 ```
-XXX
-XXX
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //============
+    //データの削除
+    //============
+    $sql = "DELETE FROM hoge_tb WHERE id = 1"; //「==」ではない
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //全データを取得
+    $sql = "SELECT * FROM hoge_tb";
+    $statement = $con->query($sql);
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'];
+        echo "<br>";
+    }
+    //=> 2|HANAKO
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
+作成日：2017年08月01日
 
 
 <a name="XXX"></a>
