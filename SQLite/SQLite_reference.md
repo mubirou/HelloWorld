@@ -636,7 +636,8 @@ SELECT 列名①,列名②,... FROM テーブル名
     * AND
 
 <a name="="></a>
-1. WHERE 列名 <b>=</b> 値  
+
+* WHERE 列名 <b>=</b> 値
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 = 値
@@ -680,7 +681,8 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 <a name="<>"></a>
-2. WHERE 列名 <b><></b> 値  
+
+* WHERE 列名 <b><></b> 値
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 <> 値
@@ -722,7 +724,8 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 <a name=">="></a>
-3. WHERE 列名 <b>>=</b> 値  
+
+* WHERE 列名 <b>>=</b> 値
     他にも <b><=</b>（以下）、<b><</b>（小なり）、<b><</b>（大なり）もあり。
     * 書式
     ```
@@ -764,7 +767,8 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 <a name="BETWEEN"></a>
-4. WHERE 列名 <b>BETWEEN</b> ○ <b>AND</b> ○  
+
+* WHERE 列名 <b>BETWEEN</b> ○ <b>AND</b> ○
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
