@@ -807,6 +807,49 @@ SELECT 列名①,列名②,... FROM テーブル名
     ?>
     ```
 
+<a name="IN"></a>
+
+* WHERE 列名 <b>IN</b>()
+    * 書式
+    ```
+    SELECT * FROM テーブル名 WHERE 列名 IN(値①, 値②,...)
+    ```
+
+    * 例文
+    ```
+    <?php
+        //データベースの作成（既存の場合はファイルを開く）
+        $con = new PDO("sqlite:test.sqlite3");
+
+        //テーブルの作成（xxx_tb が無い場合のみ作成）
+        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+            name TEXT,
+            bloodtype TEXT
+        )";
+        $statement = $con->prepare($sql);
+        $statement->execute();
+
+        //データの挿入
+        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B')")->execute();
+
+        //条件に合致したデータを抽出
+        $sql = "SELECT * FROM hoge_tb WHERE bloodtype IN('A','B')";
+        $statement = $con->query($sql);
+
+        //該当の全データを取得
+        foreach ($statement as $tmp) {
+            echo $tmp['name'].'|'.$tmp['bloodtype'];
+            echo "<br>";
+        }
+        //=> TAKASHI|A
+        //=> ICHIRO|B
+        //=> HANAKO|B
+    ?>
+    ```
+
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年0X月XX日
