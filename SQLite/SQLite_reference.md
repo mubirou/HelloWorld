@@ -863,7 +863,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('値%') ←値○○ [で始まらないもの]
     SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('%値') ←○○値 [で終わらないもの]
     SELECT * FROM テーブル名 WHERE 列名 LIKE ('%値%') ←○○値○○
-    SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で何か1文字分）
+    SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で何か1文字）
     ```
 
     * 例文
