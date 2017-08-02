@@ -636,8 +636,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     * AND
 
 <a name="="></a>
-
-* WHERE 列名 <b>=</b> 値
+1. WHERE 列名 <b>=</b> 値
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 = 値
@@ -681,8 +680,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 <a name="<>"></a>
-
-* WHERE 列名 <b><></b> 値
+2. WHERE 列名 <b><></b> 値
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 <> 値
@@ -724,51 +722,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 <a name=">="></a>
-
-* WHERE 列名 <b>>=</b> 値  
-    他にも <b><=</b>（以下）、<b><</b>（小なり）、<b><</b>（大なり）もあり。
-    * 書式
-    ```
-    SELECT * FROM テーブル名 WHERE 列名 >= 値
-    ```
-
-    * 例文
-    ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
-
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            name TEXT,
-            age INTEGER
-        )";
-        $statement = $con->prepare($sql);
-        $statement->execute();
-
-        //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
-
-        //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE age >= 20";
-        $statement = $con->query($sql);
-
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['name'].'|'.$tmp['age'];
-            echo "<br>";
-        }
-        //=> TAKASHI|50
-        //=> HANAKO|44
-    ?>
-    ```
-
-<a name=">="></a>
-
-* WHERE 列名 <b>>=</b> 値  
+3. WHERE 列名 <b>>=</b> 値  
     他にも <b><=</b>（以下）、<b><</b>（小なり）、<b><</b>（大なり）もあり。
     * 書式
     ```
@@ -810,8 +764,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 <a name="BETWEEN"></a>
-
-* WHERE 列名 <b>BETWEEN</b> ○ <b>AND</b> ○ 
+4. WHERE 列名 <b>BETWEEN</b> ○ <b>AND</b> ○ 
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
