@@ -596,7 +596,8 @@ SELECT 列名①,列名②,... FROM テーブル名
         $con->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '西村', '男')")->execute();
         $con->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '鈴木', '男')")->execute();
 
-        $sql = "SELECT DISTINCT firstname,lastname FROM hoge_tb"; //特定の列の値が同じデータを「重複」と判定
+        //特定の列の値が同じデータを「重複」と判定
+        $sql = "SELECT DISTINCT firstname,lastname FROM hoge_tb";
         $statement = $con->query($sql);
 
         //該当の全データを取得
