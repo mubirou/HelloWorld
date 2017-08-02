@@ -632,6 +632,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     * [IN](#IN) ...のいずれか
     * [LIKE](#LIKE) あいまい条件
     ***
+    * ORDER BY
     * LIMIT
     * AND
 
