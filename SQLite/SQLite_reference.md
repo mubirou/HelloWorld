@@ -629,7 +629,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     * [<>](#<>) 等しくない
     * [\>=](#>=) 以上など
     * [BETWEEN ○ AND ○](#BETWEEN) ...の間
-    * IN
+    * [IN](#IN) ...のいずれか
     * LIKE
     * NOT
     * LIMIT
