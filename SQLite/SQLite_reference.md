@@ -18,7 +18,7 @@
     * [特定の列を抽出](#特定の列を抽出)
     * [重複したデータを除いて抽出](#重複したデータを除いて抽出)
     ***
-    * [XXXXXXXXX](#XXXXXXXXX)
+    * [条件に合致したデータを抽出](#条件に合致したデータを抽出)
     * [XXXXXXXXX](#XXXXXXXXX)
     * [XXXXXXXXX](#XXXXXXXXX)
     * [XXXXXXXXX](#XXXXXXXXX)
@@ -621,18 +621,62 @@ SELECT 列名①,列名②,... FROM テーブル名
 作成日：2017年08月02日
 
 
-<a name="XXX"></a>
-# <b>XXX</b>
+<a name="条件に合致したデータを抽出"></a>
+# <b>条件に合致したデータを抽出</b>
 
-### XXXX
-1. XXX
-1. XXX
+### WHERE 句に利用可能な演算子
+* =
+* <>
+* >=
+* BETWEEN X AND X
+* IN
+* LIKE
+* NOT
+* LIMIT
+* AND
 
-### XXX
-```
-XXX
-XXX
-```
+1. WHERE 列名 = 値
+    * 書式
+    ```
+    SELECT * FROM テーブル名 WHERE 列名 = 値
+    ```
+
+    * 例文
+    ```
+    <?php
+        //データベースの作成（既存の場合はファイルを開く）
+        $con = new PDO("sqlite:test.sqlite3");
+
+        //テーブルの作成（xxx_tb が無い場合のみ作成）
+        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+            id INTEGER,
+            firstname TEXT,
+            lastname TEXT,
+            sex TEXT
+        )";
+        $statement = $con->prepare($sql);
+        $statement->execute();
+
+        //データの挿入
+        $con->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
+
+        //条件に合致したデータを抽出
+        $sql = "SELECT * FROM hoge_tb WHERE lastname = '西村'";
+        $statement = $con->query($sql);
+
+        //該当の全データを取得
+        foreach ($statement as $tmp) {
+            echo $tmp['id'].'|'.$tmp['firstname'].'|'.$tmp['lastname'].'|'.$tmp['sex'];
+            echo "<br>";
+        }
+        //=> 1|正美|西村|男
+        //=> 2|正美|西村|女
+        //=> 4|正美|西村|男
+    ?>
+    ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
