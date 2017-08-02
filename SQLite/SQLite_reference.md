@@ -586,7 +586,12 @@ SELECT 列名①,列名②,... FROM テーブル名
         $con = new PDO("sqlite:test.sqlite3");
 
         //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, firstname TEXT, lastname TEXT, sex TEXT)";
+        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+            id INTEGER,
+            firstname TEXT,
+            lastname TEXT,
+            sex TEXT
+        )";
         $statement = $con->prepare($sql);
         $statement->execute();
 
