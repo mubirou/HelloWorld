@@ -809,10 +809,10 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="IN"></a>
 
-* WHERE 列名 <b>IN</b>()
+* WHERE 列名 <b>IN</b> ()
     * 書式
     ```
-    SELECT * FROM テーブル名 WHERE 列名 IN(値①, 値②,...)
+    SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
     ```
 
     * 例文
@@ -836,7 +836,7 @@ SELECT 列名①,列名②,... FROM テーブル名
         $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B')")->execute();
 
         //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE bloodtype IN('A','B')";
+        $sql = "SELECT * FROM hoge_tb WHERE bloodtype IN ('A','B')";
         $statement = $con->query($sql);
 
         //該当の全データを取得
