@@ -860,8 +860,8 @@ SELECT 列名①,列名②,... FROM テーブル名
 * WHERE 列名 <b>LIKE</b> ()  
     * 書式
     ```
-    SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('値%') ←値○○（で始まらないもの）
-    SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('%値') ←○○値（で終わらないもの）
+    SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('値%') ←値○○ [で始まらないもの]
+    SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('%値') ←○○値 [で終わらないもの]
     SELECT * FROM テーブル名 WHERE 列名 LIKE ('%値%') ←○○値○○
     ```
 
