@@ -680,7 +680,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 <a name="<>"></a>
-1. WHERE 列名 = 値
+1. WHERE 列名 <> 値
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 <> 値
@@ -720,6 +720,42 @@ SELECT 列名①,列名②,... FROM テーブル名
         //=> 3|正美|鈴木|男
     ?>
     ```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年0X月XX日
+
+
+<a name="XXX"></a>
+# <b>XXX</b>
+
+### XXXX
+1. XXX
+1. XXX
+
+### XXX
+```
+XXX
+XXX
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年0X月XX日
+
+
+<a name="XXX"></a>
+# <b>XXX</b>
+
+### XXXX
+1. XXX
+1. XXX
+
+### XXX
+```
+XXX
+XXX
+```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
