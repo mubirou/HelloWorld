@@ -833,7 +833,7 @@ SELECT 列名①,列名②,... FROM テーブル名
         $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
 
         //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE age >= 20";
+        $sql = "SELECT * FROM hoge_tb WHERE age BETWEEN 12 AND 18";
         $statement = $con->query($sql);
 
         //該当の全データを取得
@@ -841,8 +841,7 @@ SELECT 列名①,列名②,... FROM テーブル名
             echo $tmp['name'].'|'.$tmp['age'];
             echo "<br>";
         }
-        //=> TAKASHI|50
-        //=> HANAKO|44
+        //=> ICHIRO|15
     ?>
     ```
 
