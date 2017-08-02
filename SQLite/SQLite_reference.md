@@ -627,7 +627,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 * WHERE 句に利用可能な演算子
     * =
     * <>
-    * >=
+    * \>=
     * BETWEEN X AND X
     * IN
     * LIKE
