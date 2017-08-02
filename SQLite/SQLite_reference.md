@@ -624,16 +624,16 @@ SELECT 列名①,列名②,... FROM テーブル名
 <a name="条件に合致したデータを抽出"></a>
 # <b>条件に合致したデータを抽出</b>
 
-### WHERE 句に利用可能な演算子
-* =
-* <>
-* >=
-* BETWEEN X AND X
-* IN
-* LIKE
-* NOT
-* LIMIT
-* AND
+* WHERE 句に利用可能な演算子
+    * =
+    * <>
+    * >=
+    * BETWEEN X AND X
+    * IN
+    * LIKE
+    * NOT
+    * LIMIT
+    * AND
 
 1. WHERE 列名 = 値
     * 書式
