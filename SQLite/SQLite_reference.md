@@ -805,6 +805,47 @@ SELECT 列名①,列名②,... FROM テーブル名
     ?>
     ```
 
+<a name="BETWEEN"></a>
+1. WHERE 列名 <b>BETWEEN</b> x [NOT] <b>AND</b> x  
+    * 書式
+    ```
+    SELECT * FROM テーブル名 WHERE 列名 BETWEEN 最低値 AND 最高値
+    ```
+
+    * 例文
+    ```
+    <?php
+        //データベースの作成（既存の場合はファイルを開く）
+        $con = new PDO("sqlite:test.sqlite3");
+
+        //テーブルの作成（xxx_tb が無い場合のみ作成）
+        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+            name TEXT,
+            age INTEGER
+        )";
+        $statement = $con->prepare($sql);
+        $statement->execute();
+
+        //データの挿入
+        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
+
+        //条件に合致したデータを抽出
+        $sql = "SELECT * FROM hoge_tb WHERE age >= 20";
+        $statement = $con->query($sql);
+
+        //該当の全データを取得
+        foreach ($statement as $tmp) {
+            echo $tmp['name'].'|'.$tmp['age'];
+            echo "<br>";
+        }
+        //=> TAKASHI|50
+        //=> HANAKO|44
+    ?>
+    ```
+
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年0X月XX日
