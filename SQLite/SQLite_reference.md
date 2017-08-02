@@ -811,7 +811,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="BETWEEN"></a>
 
-1. WHERE 列名 <b>BETWEEN</b> ○ <b>AND</b> ○ 
+* WHERE 列名 <b>BETWEEN</b> ○ <b>AND</b> ○ 
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
