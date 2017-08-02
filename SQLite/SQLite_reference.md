@@ -727,6 +727,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
     SELECT * FROM テーブル名 WHERE 列名 >= 値
     ```
+    他にも <b><=</b>（以下）、<b><</b>（小なり）、<b><</b>（大なり）もあり。
 
     * 例文
     ```
@@ -736,30 +737,29 @@ SELECT 列名①,列名②,... FROM テーブル名
 
         //テーブルの作成（xxx_tb が無い場合のみ作成）
         $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            id INTEGER,
-            firstname TEXT,
-            lastname TEXT,
-            sex TEXT
+            name TEXT,
+            age INTEGER
         )";
         $statement = $con->prepare($sql);
         $statement->execute();
 
         //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
 
         //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE lastname <> '西村'";
+        $sql = "SELECT * FROM hoge_tb WHERE age >= 20";
         $statement = $con->query($sql);
 
         //該当の全データを取得
         foreach ($statement as $tmp) {
-            echo $tmp['id'].'|'.$tmp['firstname'].'|'.$tmp['lastname'].'|'.$tmp['sex'];
+            echo $tmp['name'].'|'.$tmp['age'];
             echo "<br>";
         }
-        //=> 3|正美|鈴木|男
+        //=> TAKASHI|50
+        //=> HANAKO|44
     ?>
     ```
 
