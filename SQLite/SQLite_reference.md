@@ -628,7 +628,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     * [=](#=) 等しい
     * [<>](#<>) 等しくない
     * [\>=](#>=) 以上など
-    * [BETWEEN x [NOT] AND x](#BETWEEN) ...の間である（ない）
+    * [BETWEEN x AND x](#BETWEEN) ...の間である（ない）
     * IN
     * LIKE
     * NOT
@@ -809,7 +809,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 1. WHERE 列名 <b>BETWEEN</b> x [NOT] <b>AND</b> x  
     * 書式
     ```
-    SELECT * FROM テーブル名 WHERE 列名 BETWEEN 最低値 AND 最高値
+    SELECT * FROM テーブル名 WHERE 列名 BETWEEN 最低値 [NOT] AND 最高値
     ```
 
     * 例文
