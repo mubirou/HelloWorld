@@ -628,7 +628,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     * [=](#=) 等しい
     * [<>](#<>) 等しくない
     * [\>=](#>=) 以上など
-    * [BETWEEN x [NOT] AND x](#BETWEEN) x 〜 x の間である（ない）
+    * [BETWEEN x [NOT] AND x](#BETWEEN) ...の間である（ない）
     * IN
     * LIKE
     * NOT
