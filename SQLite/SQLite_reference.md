@@ -626,7 +626,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 * WHERE 句に利用可能な演算子
     * [=](#=) 等しい
-    * <>
+    * [<>](#<>) 等しくない
     * \>=
     * BETWEEN X AND X
     * IN
@@ -676,6 +676,48 @@ SELECT 列名①,列名②,... FROM テーブル名
         //=> 1|正美|西村|男
         //=> 2|正美|西村|女
         //=> 4|正美|西村|男
+    ?>
+    ```
+
+<a name="<>"></a>
+1. WHERE 列名 = 値
+    * 書式
+    ```
+    SELECT * FROM テーブル名 WHERE 列名 <> 値
+    ```
+
+    * 例文
+    ```
+    <?php
+        //データベースの作成（既存の場合はファイルを開く）
+        $con = new PDO("sqlite:test.sqlite3");
+
+        //テーブルの作成（xxx_tb が無い場合のみ作成）
+        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+            id INTEGER,
+            firstname TEXT,
+            lastname TEXT,
+            sex TEXT
+        )";
+        $statement = $con->prepare($sql);
+        $statement->execute();
+
+        //データの挿入
+        $con->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
+
+        //条件に合致したデータを抽出
+        $sql = "SELECT * FROM hoge_tb WHERE lastname <> '西村'";
+        $statement = $con->query($sql);
+
+        //該当の全データを取得
+        foreach ($statement as $tmp) {
+            echo $tmp['id'].'|'.$tmp['firstname'].'|'.$tmp['lastname'].'|'.$tmp['sex'];
+            echo "<br>";
+        }
+        //=> 3|正美|鈴木|男
     ?>
     ```
 
