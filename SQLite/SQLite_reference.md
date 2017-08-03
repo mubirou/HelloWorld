@@ -8,6 +8,7 @@
 * [データベースの作成](#データベースの作成)
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)
+* [主キー](#主キー)（PRIMARY KEY）
 * [テーブルの作成](#テーブルの作成)（CREATE TABLE 文）
 * [テーブルの削除](#テーブルの削除)（DROP TABLE 文）
 * [データの追加](#データの追加)（INSERT 文）
@@ -137,6 +138,70 @@ SQLite の場合、テーブル作成時にデータ型を指定してもあま�
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年07月28日
+
+
+<a name="主キー"></a>
+# <b>主キー</b>（PRIMARY KEY）
+
+### 概要
+* データ（レコード）を特定するために仕様するカラム（列）に設定。
+* 絶対に重複のない値を持つカラムに対して設定。
+* 重複がないので、そのカラムの値を指定することでテーブル内の特定のデータを取得できる。
+* 1つのテーブルに1つだけ設定可能。
+* 同じ主キーのデータを2回追加しようとすると無視（false）される。
+
+### 書式
+```
+CREATE TABLE IF NOT EXISTS テーブル名 (
+        列名① データ型 PRIMARY KEY,
+        ...,
+)
+```
+
+### 例文
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id TEXT PRIMARY KEY,
+        name TEXT,
+        age INTEGER
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの追加
+    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017001', 'TARO SUZUKI', 30)");
+    var_dump($statement->execute()); //bool(true)
+
+    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017002', 'HANAKO SATO', 24)");
+    var_dump($statement->execute()); //bool(true)
+
+    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017003', 'TARO SUZUKI', 32)");
+    var_dump($statement->execute()); //bool(true) ←同姓同名でもＯＫ
+
+    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017002', 'ICHIRO KATO', 19)");
+    var_dump($statement->execute()); //bool(false) ←同じidなので追加されない
+
+    //全データを取得
+    $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
+    $statement = $con->query($sql);
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> 2017001|TARO SUZUKI|30
+    //=> 2017002|HANAKO SATO|24
+    //=> 2017003|TARO SUZUKI|32
+?>
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年08月03日
 
 
 <a name="テーブルの作成"></a>
