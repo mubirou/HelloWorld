@@ -770,215 +770,215 @@ SELECT * FROM テーブル名 WHERE 列名 >= 値
 <a name="BETWEEN"></a>
 
 ### BETWEEN ○ AND ○ ...の間
-    * 書式
-    ```
-    SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
-    ```
+* 書式
+```
+SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
+```
 
-    * 例文
-    ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+* 例文
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
 
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            name TEXT,
-            age INTEGER
-        )";
-        $statement = $con->prepare($sql);
-        $statement->execute();
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        name TEXT,
+        age INTEGER
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
-        //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
 
-        //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE age BETWEEN 12 AND 18";
-        $statement = $con->query($sql);
+    //条件に合致したデータを抽出
+    $sql = "SELECT * FROM hoge_tb WHERE age BETWEEN 12 AND 18";
+    $statement = $con->query($sql);
 
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['name'].'|'.$tmp['age'];
-            echo "<br>";
-        }
-        //=> ICHIRO|15
-    ?>
-    ```
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['name'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> ICHIRO|15
+?>
+```
 
 <a name="IN"></a>
 
 ### IN ...のいずれか
-    * 書式
-    ```
-    SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
-    ```
+* 書式
+```
+SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
+```
 
-    * 例文
-    ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+* 例文
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
 
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            name TEXT,
-            bloodtype TEXT
-        )";
-        $statement = $con->prepare($sql);
-        $statement->execute();
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        name TEXT,
+        bloodtype TEXT
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
-        //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B')")->execute();
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B')")->execute();
 
-        //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE bloodtype IN ('A','B')";
-        $statement = $con->query($sql);
+    //条件に合致したデータを抽出
+    $sql = "SELECT * FROM hoge_tb WHERE bloodtype IN ('A','B')";
+    $statement = $con->query($sql);
 
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['name'].'|'.$tmp['bloodtype'];
-            echo "<br>";
-        }
-        //=> TAKASHI|A
-        //=> ICHIRO|B
-        //=> HANAKO|B
-    ?>
-    ```
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['name'].'|'.$tmp['bloodtype'];
+        echo "<br>";
+    }
+    //=> TAKASHI|A
+    //=> ICHIRO|B
+    //=> HANAKO|B
+?>
+```
 
 <a name="LIKE"></a>
 
 ### LIKE あいまい条件
-    * 書式
-    ```
-    SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('値%') ←値○○ [で始まらないもの]
-    SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('%値') ←○○値 [で終わらないもの]
-    SELECT * FROM テーブル名 WHERE 列名 LIKE ('%値%') ←○○値○○
-    SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で何か1文字）
-    ```
+* 書式
+```
+SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('値%') ←値○○ [で始まらないもの]
+SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('%値') ←○○値 [で終わらないもの]
+SELECT * FROM テーブル名 WHERE 列名 LIKE ('%値%') ←○○値○○
+SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で何か1文字）
+```
 
-    * 例文
-    ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+* 例文
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
 
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            id INTEGER,
-            name TEXT
-        )";
-        $statement = $con->prepare($sql);
-        $statement->execute();
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id INTEGER,
+        name TEXT
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
-        //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES (1, '西村一郎')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (2, '西村次郎')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (2, '鈴木一郎')")->execute();
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES (1, '西村一郎')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (2, '西村次郎')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (2, '鈴木一郎')")->execute();
 
-        //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE name LIKE '西村%'";
-        $statement = $con->query($sql);
+    //条件に合致したデータを抽出
+    $sql = "SELECT * FROM hoge_tb WHERE name LIKE '西村%'";
+    $statement = $con->query($sql);
 
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['id'].'|'.$tmp['name'];
-            echo "<br>";
-        }
-        //=> 1|西村一郎
-        //=> 2|西村次郎
-    ?>
-    ```
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'];
+        echo "<br>";
+    }
+    //=> 1|西村一郎
+    //=> 2|西村次郎
+?>
+```
 
 <a name="AND"></a>
 
 ### AND 論理積（...かつ...）
-    * 書式
-    ```
-    SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ条件②
-    ```
+* 書式
+```
+SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ条件②
+```
 
-    * 例文
-    ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+* 例文
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
 
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            name TEXT,
-            bloodtype TEXT,
-            age INTEGER
-        )";
-        $statement = $con->prepare($sql);
-        $statement->execute();
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        name TEXT,
+        bloodtype TEXT,
+        age INTEGER
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
-        //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
 
-        //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'B' AND age >= 20";
-        $statement = $con->query($sql);
+    //条件に合致したデータを抽出
+    $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'B' AND age >= 20";
+    $statement = $con->query($sql);
 
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
-            echo "<br>";
-        }
-        //=> age
-    ?>
-    ```
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> age
+?>
+```
 
 <a name="OR"></a>
 
 ### OR 論理和（...または...）
-    * 書式
-    ```
-    SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または条件②
-    ```
+* 書式
+```
+SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または条件②
+```
 
-    * 例文
-    ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+* 例文
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
 
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            name TEXT,
-            bloodtype TEXT,
-            age INTEGER
-        )";
-        $statement = $con->prepare($sql);
-        $statement->execute();
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        name TEXT,
+        bloodtype TEXT,
+        age INTEGER
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
-        //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
 
-        //条件に合致したデータを抽出
-        $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'A' OR age < 20";
-        $statement = $con->query($sql);
+    //条件に合致したデータを抽出
+    $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'A' OR age < 20";
+    $statement = $con->query($sql);
 
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
-            echo "<br>";
-        }
-        //=> TAKASHI|A|50
-        //=> HANAKO|B|15
-    ?>
-    ```
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> TAKASHI|A|50
+    //=> HANAKO|B|15
+?>
+```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
