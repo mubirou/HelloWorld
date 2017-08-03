@@ -18,14 +18,14 @@
     * [特定の列を抽出](#特定の列を抽出)
     * [重複したデータを除いて抽出](#重複したデータを除いて抽出)
     * [条件に合致したデータを抽出](#条件に合致したデータを抽出)
-        * [=](#=) 等しい
-        * [<>](#<>) 等しくない
-        * [\>=](#>=) 以上など
-        * [BETWEEN ○ AND ○](#BETWEEN) ...の間
-        * [IN](#IN) ...のいずれか
-        * [LIKE](#LIKE) あいまい条件
-        * [AND](#AND) 論理積
-        * [OR](#OR) 論理和
+        * [=](#=)（等しい）
+        * [<>](#<>)（等しくない）
+        * [\>=](#>=)（以上など）
+        * [BETWEEN ○ AND ○](#BETWEEN)（...の間）
+        * [IN](#IN)（...のいずれか）
+        * [LIKE](#LIKE)（あいまい条件）
+        * [AND](#AND)（論理積）
+        * [OR](#OR)（論理和）
     * [ソート](#ソート)
 ***
 
@@ -680,7 +680,7 @@ SELECT * FROM テーブル名 WHERE 列名 = 値
 
 <a name="<>"></a>
 
-### <> 等しくない
+### <>（等しくない）
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 列名 <> 値
@@ -723,7 +723,7 @@ SELECT * FROM テーブル名 WHERE 列名 <> 値
 
 <a name=">="></a>
 
-### >= 以上など
+### >=（以上など）
 * 書式（他にも <b><=</b>（以下）、<b><</b>（小なり）、<b><</b>（大なり）もあり）
 ```
 SELECT * FROM テーブル名 WHERE 列名 >= 値
@@ -765,7 +765,7 @@ SELECT * FROM テーブル名 WHERE 列名 >= 値
 
 <a name="BETWEEN"></a>
 
-### BETWEEN ○ AND ○ ...の間
+### BETWEEN ○ AND ○（...の間）
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
@@ -806,7 +806,7 @@ SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
 
 <a name="IN"></a>
 
-### IN ...のいずれか
+### IN（...のいずれか）
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
@@ -849,7 +849,7 @@ SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
 
 <a name="LIKE"></a>
 
-### LIKE あいまい条件
+### LIKE（あいまい条件）
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('値%') ←値○○ [で始まらないもの]
@@ -893,7 +893,7 @@ SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で�
 
 <a name="AND"></a>
 
-### AND 論理積
+### AND（論理積）
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ条件②
@@ -935,7 +935,7 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
 
 <a name="OR"></a>
 
-### OR 論理和
+### OR（論理和）
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または条件②
