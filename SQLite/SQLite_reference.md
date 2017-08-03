@@ -27,7 +27,7 @@
         * [AND](#AND)（論理積）
         * [OR](#OR)（論理和）
     * [ソートして抽出](#ソートして抽出)
-* [SQLite→CSV](#SQLite→CSV)
+* [SQLite → CSV](#SQLite→CSV)
 ***
 
 <a name="データベースの作成"></a>
@@ -1025,6 +1025,55 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
         //=> 1|JIRO|20
         //=> 3|TAKASHI|50
     ?>
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年08月03日
+
+
+<a name="SQLite→CSV"></a>
+# <b>SQLite → CSV</b>
+
+```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id INTEGER,
+        name TEXT,
+        age INTEGER
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
+
+
+    //全データを取得
+    $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
+    $statement = $con->query($sql);
+
+    $array = array(); //空の配列を作成
+    
+    foreach ($statement as $tmp) {
+        $theString = $tmp['id'].','.$tmp['name'].','.$tmp['age'];
+        $theArray = explode(",", $theString); //カンマ区切りで配列化
+        array_push($array, $theArray); //配列に配列を追加
+    }
+
+    $csv = fopen("hoge.csv", "w"); //ファイルを生成（既存の場合は開く）
+    foreach ($array as $data) {
+        fputcsv($csv, $data);
+    }
+    fclose($csv);
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
