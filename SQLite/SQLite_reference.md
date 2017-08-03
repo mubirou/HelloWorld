@@ -27,7 +27,7 @@
         * [AND](#AND)（論理積）
         * [OR](#OR)（論理和）
     * [ソートして抽出](#ソートして抽出)
-* [SQLite→CSV](#SQLite→CSV)gi
+* [SQLite→CSV](#SQLite→CSV)
 * [CSV→SQLite](#CSV→SQLite)
 ***
 
