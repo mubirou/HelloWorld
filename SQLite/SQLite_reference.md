@@ -631,10 +631,8 @@ SELECT 列名①,列名②,... FROM テーブル名
     * [BETWEEN ○ AND ○](#BETWEEN) ...の間
     * [IN](#IN) ...のいずれか
     * [LIKE](#LIKE) あいまい条件
-    ***
-    * ORDER BY
-    * LIMIT
-    * AND
+    * [AND](#AND) 論理積（...かつ...）
+    * [OR](#OR) 論理和（...または...）
 
 <a name="="></a>
 
@@ -851,11 +849,6 @@ SELECT 列名①,列名②,... FROM テーブル名
     ?>
     ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
-
-
 <a name="LIKE"></a>
 
 * WHERE 列名 <b>LIKE</b> ()  
@@ -900,9 +893,95 @@ SELECT 列名①,列名②,... FROM テーブル名
     ?>
     ```
 
+<a name="AND"></a>
+
+* WHERE 条件① <b>AND</b> 条件②  
+    * 書式
+    ```
+    SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ条件②
+    ```
+
+    * 例文
+    ```
+    <?php
+        //データベースの作成（既存の場合はファイルを開く）
+        $con = new PDO("sqlite:test.sqlite3");
+
+        //テーブルの作成（xxx_tb が無い場合のみ作成）
+        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+            name TEXT,
+            bloodtype TEXT,
+            age INTEGER
+        )";
+        $statement = $con->prepare($sql);
+        $statement->execute();
+
+        //データの挿入
+        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
+
+        //条件に合致したデータを抽出
+        $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'B' AND age >= 20";
+        $statement = $con->query($sql);
+
+        //該当の全データを取得
+        foreach ($statement as $tmp) {
+            echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
+            echo "<br>";
+        }
+        //=> age
+    ?>
+    ```
+
+<a name="OR"></a>
+
+* WHERE 条件① <b>OR</b> 条件②  
+    * 書式
+    ```
+    SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または条件②
+    ```
+
+    * 例文
+    ```
+    <?php
+        //データベースの作成（既存の場合はファイルを開く）
+        $con = new PDO("sqlite:test.sqlite3");
+
+        //テーブルの作成（xxx_tb が無い場合のみ作成）
+        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+            name TEXT,
+            bloodtype TEXT,
+            age INTEGER
+        )";
+        $statement = $con->prepare($sql);
+        $statement->execute();
+
+        //データの挿入
+        $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
+        $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
+
+        //条件に合致したデータを抽出
+        $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'A' OR age < 20";
+        $statement = $con->query($sql);
+
+        //該当の全データを取得
+        foreach ($statement as $tmp) {
+            echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
+            echo "<br>";
+        }
+        //=> TAKASHI|A|50
+        //=> HANAKO|B|15
+    ?>
+    ```
+
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
+作成日：2017年08月03日
+
 
 <a name="XXX"></a>
 # <b>XXX</b>
