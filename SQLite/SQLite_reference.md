@@ -27,8 +27,7 @@
         * [AND](#AND)（論理積）
         * [OR](#OR)（論理和）
     * [ソートして抽出](#ソートして抽出)
-* [SQLite→CSV](#SQLite→CSV)
-***
+* [SQLite→CSV](#SQLite→CSV)gi
 * [CSV→SQLite](#CSV→SQLite)
 ***
 
@@ -1105,8 +1104,48 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 |4|HANAKO|15|
 
 ```
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id INTEGER,
+        name TEXT,
+        age INTEGER
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
+
+    //外部CSVファイルの読込み＆データの追加
+    $csv = fopen("hoge.csv", "r");
+    while ($data = fgetcsv($csv)) { //1行ずつ取得
+        $id = $data[0];
+        $name = $data[1];
+        $age = $data[2];
+
+        $sql = "INSERT INTO hoge_tb VALUES (
+            '$id',
+            '$name', 
+            '$age'
+        )";
+        $con->prepare($sql)->execute();
+    }
+
+    //全データを取得
+    $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
+    $statement = $con->query($sql);
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> 1|JIRO|20
+    //=> 2|ICHIRO|25
+    //=> 3|TAKASHI|50
+    //=> 4|HANAKO|15
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月0X日
+作成日：2017年08月03日
