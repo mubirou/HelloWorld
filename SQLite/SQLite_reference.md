@@ -24,8 +24,8 @@
         * [BETWEEN ○ AND ○](#BETWEEN) ...の間
         * [IN](#IN) ...のいずれか
         * [LIKE](#LIKE) あいまい条件
-        * [AND](#AND) 論理積（...かつ...）
-        * [OR](#OR) 論理和（...または...）
+        * [AND](#AND) 論理積
+        * [OR](#OR) 論理和
     * [ソート](#ソート)
 ***
 
@@ -893,7 +893,7 @@ SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で�
 
 <a name="AND"></a>
 
-### AND 論理積（...かつ...）
+### AND 論理積
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ条件②
@@ -935,7 +935,7 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
 
 <a name="OR"></a>
 
-### OR 論理和（...または...）
+### OR 論理和
 * 書式
 ```
 SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または条件②
