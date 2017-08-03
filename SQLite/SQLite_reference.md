@@ -1086,11 +1086,10 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 
 
 
-|言語|Linux|macOS|Windows|基礎文法|デザパタ|
-|:--|:--:|:--:|:--:|:--:|:--:|
-|ActionScript 3.0|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/ActionScript/ActionScript_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_win.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_reference.md)|[●](https://github.com/TakashiNishimura/HelloWorld/blob/master/ActionScript/ActionScript_pattern.md)|
-|アセンブリ言語|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_linux.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_mac.md)|[●](https://github.com/TakashiNishimura/HelloWorld/tree/master/Assembly/Assembly_win.md)||－|
-|C#|[●]
+|A|B|C|
+|:--:|:--:|:--:|
+|1|JIRO|20|
+|1|JIRO|20|
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
