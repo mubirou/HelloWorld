@@ -981,22 +981,21 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
 作成日：2017年08月03日
 
 
-<a name="XXX"></a>
-# <b>XXX</b>
+<a name="ソート"></a>
+# <b>ソート</b>
 
-### XXXX
-1. XXX
-1. XXX
-
-### XXX
+### 書式
 ```
-XXX
-XXX
+SELECT * FROM テーブル名
+```
+
+### 例文
+```
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年0X月XX日
+作成日：2017年08月0X日
 
 
 <a name="XXX"></a>
