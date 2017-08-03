@@ -636,7 +636,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="="></a>
 
-* WHERE 列名 <b>=</b> 値
+* = 等しい  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 = 値
@@ -681,7 +681,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="<>"></a>
 
-* WHERE 列名 <b><></b> 値
+* <> 等しくない  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 <> 値
@@ -724,7 +724,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name=">="></a>
 
-* WHERE 列名 <b>>=</b> 値  
+* >= 以上など  
     他にも <b><=</b>（以下）、<b><</b>（小なり）、<b><</b>（大なり）もあり。
     * 書式
     ```
@@ -767,7 +767,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="BETWEEN"></a>
 
-* WHERE 列名 <b>BETWEEN</b> ○ <b>AND</b> ○
+* BETWEEN ○ AND ○ ...の間  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
@@ -808,7 +808,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="IN"></a>
 
-* WHERE 列名 <b>IN</b> ()
+* IN ...のいずれか  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
@@ -851,7 +851,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="LIKE"></a>
 
-* WHERE 列名 <b>LIKE</b> ()  
+* LIKE あいまい条件  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 [NOT] LIKE ('値%') ←値○○ [で始まらないもの]
@@ -895,7 +895,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="AND"></a>
 
-* WHERE 条件① <b>AND</b> 条件②  
+* AND 論理積（...かつ...）  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ条件②
@@ -937,7 +937,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="OR"></a>
 
-* WHERE 条件① <b>OR</b> 条件②  
+* OR 論理和（...または...）  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または条件②
