@@ -636,7 +636,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 <a name="="></a>
 
-* = 等しい  
+### = 等しい  
     * 書式
     ```
     SELECT * FROM テーブル名 WHERE 列名 = 値
