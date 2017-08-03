@@ -4,7 +4,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/SQLite_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_win.md)）
 * [データベースの作成](#データベースの作成)
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)
