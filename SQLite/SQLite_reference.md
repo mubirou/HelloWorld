@@ -1079,10 +1079,10 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 表計算ソフトで生成された CSV ファイルを開くと次のようになる。  
 |A|B|C|
 |:--:|:--:|:--:|
-|1|JIRO|20
-|2|ICHIRO|25
-|3|TAKASHI|50
-|4|HANAKO|15
+|1|JIRO|20|
+|2|ICHIRO|25|
+|3|TAKASHI|50|
+|4|HANAKO|15|
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
