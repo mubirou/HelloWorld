@@ -28,6 +28,7 @@
         * [OR](#OR)（論理和）
     * [ソートして抽出](#ソートして抽出)
 * [SQLite → CSV](#SQLite→CSV)
+* [CSV → SQLite](#CSV→SQLite)
 ***
 
 <a name="データベースの作成"></a>
@@ -1088,3 +1089,23 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
 作成日：2017年08月03日
+
+
+<a name="CSV→SQLite"></a>
+# <b>CSV → SQLite</b>
+
+表計算ソフトの次のようなデータを CSV ファイルとして保存。  
+
+|A|B|C|
+|:--:|:--:|:--:|
+|1|JIRO|20|
+|2|ICHIRO|25|
+|3|TAKASHI|50|
+|4|HANAKO|15|
+
+```
+```
+
+実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+作成者：Takashi Nishimura  
+作成日：2017年08月0X日
