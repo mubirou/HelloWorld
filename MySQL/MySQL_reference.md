@@ -590,13 +590,17 @@ SELECT * FROM テーブル名
 ### 例文
 ```
 <?php
-    //データベースの作成（既存の場合はファイルを開く）
-    $pdo = new PDO("sqlite:test.sqlite3");
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'xxxxxx';
+    $pdo = new PDO($dsn, $user, $password);
 
-    //テーブルの作成（xxx_tb が無い場合のみ作成）
-    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INT, name TEXT)";
     $statement = $pdo->prepare($sql);
     $statement->execute();
+
 
     //データの挿入①
     $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
@@ -622,7 +626,7 @@ SELECT * FROM テーブル名
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="特定の列を抽出"></a>
