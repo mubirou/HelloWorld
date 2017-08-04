@@ -1027,12 +1027,15 @@ SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で�
 * 例文
 ```
 <?php
-    //データベースの作成（既存の場合はファイルを開く）
-    $pdo = new PDO("sqlite:test.sqlite3");
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'xxxxxx';
+    $pdo = new PDO($dsn, $user, $password);
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-        id INTEGER,
+        id INT,
         name TEXT
     )";
     $statement = $pdo->prepare($sql);
