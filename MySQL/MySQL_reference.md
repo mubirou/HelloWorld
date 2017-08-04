@@ -108,25 +108,67 @@ mysql> show databases;
 <a name="データ型"></a>
 # <b>データ型</b>
 
-### 概要
-XXXX
-
-### データ型の種類
-1. <b>INTEGER</b> 型: 整数（-9223372036854775808 〜 9223372036854775807）
-1. <b>REAL</b> 型: 浮動小数点数（小数点第14位）
-1. NUMERIC 型: 数値は INTEGER / REAL に振り分けられる
+### 主なデータ型の種類
+1. <b>INT</b> 型: 整数（-9223372036854775808 〜 9223372036854775807）
+1. <b>FLOAT</b> 型: 浮動小数点数（小数点第5位）
 1. <b>TEXT</b> 型: 文字列
-1. VARCHAR 型: 最大文字数を指定する文字列（TEXT 型扱い）
-1. BLOB 型: 入力データをそのまま格納
+1. <b>VARCHAR</b> 型: 最大文字数を指定する文字列
+1. <b>DATE</b> 型: 日付データ型
+1. <b>TIME</b> 型: 時刻データ型
 1. <b>NULL</b> 型: 値が何もない状態
 
 ### 検証
 ```
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'kyouikuiinkai1989';
+    $pdo = new PDO($dsn, $user, $password);
+
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        column1 INT,
+        column2 FLOAT,
+        column3 TEXT,
+        column4 VARCHAR(2),
+        column5 DATE,
+        column6 TIME
+    )";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+
+    // データの挿入
+    $sql = "INSERT INTO hoge_tb VALUES (
+        1,
+        3.14159265358979323846264338327,
+        'あいうえお',
+        '01',
+        '2017-08-04',
+        '11:45:40'
+    )";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+
+    // データの取得
+    $sql = "SELECT * FROM hoge_tb WHERE column1 =1";
+    $statement = $pdo->prepare($sql); 
+    $statement->execute();
+
+    while($theRecord = $statement->fetch()) {
+        echo $theRecord["column1"]."<br>"; //=> 1
+        echo $theRecord["column2"]."<br>"; //=> 3.14159
+        echo $theRecord["column3"]."<br>"; //=> あいうえお
+        echo $theRecord["column4"]."<br>"; //=> 01
+        echo $theRecord["column5"]."<br>"; //=> 2017-08-04
+        echo $theRecord["column6"]."<br>"; //=> 11:45:40
+    }
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="主キー"></a>
@@ -161,7 +203,7 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 
 ### 構文
 ```
-CREATE TABLE テーブル名 (列名① 型 [列フラグ], 列名② 型 [列フラグ], ...)
+CREATE TABLE [IF NOT EXISTS] テーブル名 (列名① 型 [列フラグ], 列名② 型 [列フラグ], ...)
 ```
 
 ### コマンドラインの場合
