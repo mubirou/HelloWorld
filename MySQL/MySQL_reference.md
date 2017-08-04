@@ -103,6 +103,7 @@ mysql> show databases;
 作成者：Takashi Nishimura  
 作成日：2017年08月04日
 
+***
 
 <a name="データ型"></a>
 # <b>データ型</b>
