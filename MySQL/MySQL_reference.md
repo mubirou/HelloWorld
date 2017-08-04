@@ -36,6 +36,12 @@
 <a name="データベースの作成"></a>
 # <b>データベースの作成</b>
 
+### 書式
+```
+mysql> CREATE DATABASE データベース名;
+```
+
+### 実行例
 ```
 $ mysql -u root -p <= Linuxのパスワードでログイン
 mysql> CREATE DATABASE test_db; <= 既存の場合はERROR
@@ -62,11 +68,18 @@ Bye
 <a name="データベースの削除"></a>
 # <b>データベースの削除</b>
 
-特別なコマンドはありません（手動で「ゴミ箱へ移動する」方法でも可能）
 ```
-$ ls -l /var/www/html/test.sqlite3 <= 確認
--rw-r--r-- ... /var/www/html/test.sqlite3
-$ rm -f /var/www/html/test.sqlite3 <= 実際に削除
+$ mysql -u root -p <= Linuxのパスワードでログイン
+mysql> show databases; <= 既存のデータベースの確認
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test_db            | <= 削除したいデータベース
++--------------------+
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
