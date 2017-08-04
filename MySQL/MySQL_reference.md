@@ -1071,14 +1071,17 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
 * 例文
 ```
 <?php
-    //データベースの作成（既存の場合はファイルを開く）
-    $pdo = new PDO("sqlite:test.sqlite3");
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'kyouikuiinkai1989';
+    $pdo = new PDO($dsn, $user, $password);
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
         name TEXT,
         bloodtype TEXT,
-        age INTEGER
+        age INT
     )";
     $statement = $pdo->prepare($sql);
     $statement->execute();
@@ -1098,7 +1101,7 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
         echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
         echo "<br>";
     }
-    //=> age
+    //=> ICHIRO|B|25
 ?>
 ```
 

@@ -994,7 +994,7 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
         echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
         echo "<br>";
     }
-    //=> age
+    //=> ICHIRO|B|25
 ?>
 ```
 
