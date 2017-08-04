@@ -123,7 +123,7 @@ mysql> show databases;
     // データベースの作成（既存の場合はファイルを開く）
     $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
     $user = 'root';
-    $password = 'kyouikuiinkai1989';
+    $password = 'xxxxx';
     $pdo = new PDO($dsn, $user, $password);
 
     // テーブルの作成（xxx_tb が無い場合のみ作成）
