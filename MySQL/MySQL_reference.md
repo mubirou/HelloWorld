@@ -27,8 +27,8 @@
         * [LIKE](#LIKE)（あいまい条件）
         * [AND](#AND)（論理積）
         * [OR](#OR)（論理和）
-    ***
     * [ソートして抽出](#ソートして抽出)
+***
 * [SQLite→CSV](#SQLite→CSV)
 * [CSV→SQLite](#CSV→SQLite)
 ***
@@ -1166,44 +1166,47 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 
 ### 例文
 ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $pdo = new PDO("sqlite:test.sqlite3");
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'xxxxxx';
+    $pdo = new PDO($dsn, $user, $password);
 
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            id INTEGER,
-            name TEXT,
-            age INTEGER
-        )";
-        $statement = $pdo->prepare($sql);
-        $statement->execute();
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id INT,
+        name TEXT,
+        age INT
+    )";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
 
-        //データの挿入
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
+    //データの挿入
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
 
-        //ASC（昇順＝小さい順）または DESC（降順＝大きい順）
-        $sql = "SELECT * FROM hoge_tb ORDER BY name ASC";
-        $statement = $pdo->query($sql);
+    //ASC（昇順＝小さい順）または DESC（降順＝大きい順）
+    $sql = "SELECT * FROM hoge_tb ORDER BY name ASC";
+    $statement = $pdo->query($sql);
 
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
-            echo "<br>";
-        }
-        //=> 4|HANAKO|15
-        //=> 2|ICHIRO|25
-        //=> 1|JIRO|20
-        //=> 3|TAKASHI|50
-    ?>
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> 4|HANAKO|15
+    //=> 2|ICHIRO|25
+    //=> 1|JIRO|20
+    //=> 3|TAKASHI|50
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="SQLite→CSV"></a>
