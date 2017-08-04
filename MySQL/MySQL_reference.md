@@ -8,9 +8,9 @@
 * [データベースの作成](#データベースの作成)
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)
-***
 * [主キー](#主キー)（PRIMARY KEY）
 * [テーブルの作成](#テーブルの作成)（CREATE TABLE 文）
+***
 * [テーブルの削除](#テーブルの削除)（DROP TABLE 文）
 * [データの追加](#データの追加)（INSERT 文）
 * [データの削除](#データの削除)（DELETE 文）
@@ -43,7 +43,7 @@ mysql> CREATE DATABASE データベース名;
 
 ### 実行例
 ```
-$ mysql -u root -p <= Linuxのパスワードでログイン
+$ mysql -u root -p
 mysql> CREATE DATABASE test_db; <= 既存の場合はERROR
 Query OK, 1 row affected (0.00 sec)
 mysql> show databases; <= 既存のデータベースの確認
@@ -74,7 +74,7 @@ mysql> DROP DATABASE データベース名;
 ```
 
 ```
-$ mysql -u root -p <= Linuxのパスワードでログイン
+$ mysql -u root -p
 mysql> show databases; <= 既存のデータベースの確認
 +--------------------+
 | Database           |
@@ -123,7 +123,7 @@ mysql> show databases;
     // データベースの作成（既存の場合はファイルを開く）
     $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
     $user = 'root';
-    $password = 'xxxxx';
+    $password = 'xxxxxx';
     $pdo = new PDO($dsn, $user, $password);
 
     // テーブルの作成（xxx_tb が無い場合のみ作成）
@@ -191,11 +191,52 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 
 ### 例文
 ```
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'xxxxxx';
+    $pdo = new PDO($dsn, $user, $password);
+
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id TEXT NOT NULL,
+        name TEXT,
+        age INT,
+        PRIMARY KEY (id(7))
+    )";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+
+    //データの追加
+    $statement = $pdo->prepare("INSERT INTO hoge_tb VALUES ('2017001', 'TARO SUZUKI', 30)");
+    var_dump($statement->execute()); //bool(true)
+
+    $statement = $pdo->prepare("INSERT INTO hoge_tb VALUES ('2017002', 'HANAKO SATO', 24)");
+    var_dump($statement->execute()); //bool(true)
+
+    $statement = $pdo->prepare("INSERT INTO hoge_tb VALUES ('2017003', 'TARO SUZUKI', 32)");
+    var_dump($statement->execute()); //bool(true) ←同姓同名でもＯＫ
+
+    $statement = $pdo->prepare("INSERT INTO hoge_tb VALUES ('2017002', 'ICHIRO KATO', 19)");
+    var_dump($statement->execute()); //bool(false) ←同じidなので追加されない
+
+    //全データを取得
+    $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
+    $statement = $pdo->query($sql);
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> 2017001|TARO SUZUKI|30
+    //=> 2017002|HANAKO SATO|24
+    //=> 2017003|TARO SUZUKI|32
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="テーブルの作成"></a>
@@ -211,7 +252,7 @@ CREATE TABLE [IF NOT EXISTS] テーブル名 (列名① 型 [列フラグ], 列�
 * テーブルの作成
     ```
     $ mysql -u root -p
-    mysql> USE test_db; <= 既存のデータベースを開く
+    mysql> USE test_db <= 既存のデータベースを開く
     Database changed
     mysql> CREATE TABLE book_tb (
         -> isbn VARCHAR(13),
