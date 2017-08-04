@@ -109,7 +109,7 @@ mysql> show databases;
 # <b>データ型</b>
 
 ### 概要
-MySQL の場合、テーブル作成時にデータ型を指定してもあまり意味がなく、どんな値を挿入してもエラーが発生せずに格納できてしまいます（作成時に型指定を省略することも可能）。
+XXXX
 
 ### データ型の種類
 1. <b>INTEGER</b> 型: 整数（-9223372036854775808 〜 9223372036854775807）
@@ -122,50 +122,6 @@ MySQL の場合、テーブル作成時にデータ型を指定してもあま�
 
 ### 検証
 ```
-<?php
-    // データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
-
-    // テーブルの作成（xxx_tb が無い場合のみ作成）
-    $sql = "CREATE TABLE IF NOT EXISTS book_tb (
-        column1 INTEGER,
-        column2 REAL,
-        column3 NUMERIC,
-        column4 TEXT,
-        column5 VARCHAR(2)
-    )";
-    $statement = $con->prepare($sql);
-    $statement->execute();
-
-    // DEBUG用（既存の場合は削除）
-    $sql = "DELETE FROM book_tb WHERE column1 = 1";
-    $statement = $con->prepare($sql); //全データを選択
-    $statement->execute();
-
-    // データの挿入
-    $sql = "INSERT INTO book_tb VALUES (
-        1,
-        3.14159265358979323846264338327,
-        9223372036854775807,
-        'あいうえお',
-        '01'
-    )";
-    $statement = $con->prepare($sql);
-    $statement->execute();
-
-    // データの取得
-    $sql = "SELECT * FROM book_tb WHERE column1 = 1";
-    $statement = $con->prepare($sql); 
-    $statement->execute();
-
-    while($theRecord = $statement->fetch()) {
-        echo $theRecord["column1"]."<br>"; //=> 1
-        echo $theRecord["column2"]."<br>"; //=> 3.14159265358979
-        echo $theRecord["column3"]."<br>"; //=> 9223372036854775807（900京余）
-        echo $theRecord["column4"]."<br>"; //=> あいうえお
-        echo $theRecord["column5"]."<br>"; //=> 1.0（要注意）
-    }
-?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
@@ -193,43 +149,6 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 
 ### 例文
 ```
-<?php
-    //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
-
-    //テーブルの作成（xxx_tb が無い場合のみ作成）
-    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-        id TEXT PRIMARY KEY,
-        name TEXT,
-        age INTEGER
-    )";
-    $statement = $con->prepare($sql);
-    $statement->execute();
-
-    //データの追加
-    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017001', 'TARO SUZUKI', 30)");
-    var_dump($statement->execute()); //bool(true)
-
-    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017002', 'HANAKO SATO', 24)");
-    var_dump($statement->execute()); //bool(true)
-
-    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017003', 'TARO SUZUKI', 32)");
-    var_dump($statement->execute()); //bool(true) ←同姓同名でもＯＫ
-
-    $statement = $con->prepare("INSERT INTO hoge_tb VALUES ('2017002', 'ICHIRO KATO', 19)");
-    var_dump($statement->execute()); //bool(false) ←同じidなので追加されない
-
-    //全データを取得
-    $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
-    $statement = $con->query($sql);
-    foreach ($statement as $tmp) {
-        echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
-        echo "<br>";
-    }
-    //=> 2017001|TARO SUZUKI|30
-    //=> 2017002|HANAKO SATO|24
-    //=> 2017003|TARO SUZUKI|32
-?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
@@ -242,71 +161,44 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 
 ### 構文
 ```
-CREATE TABLE テーブル名 (カラム名 型 [列フラグ オプション], カラム名 型  [列フラグ オプション], ...)
+CREATE TABLE テーブル名 (列名① 型 [列フラグ], 列名② 型 [列フラグ], ...)
 ```
 
 ### コマンドラインの場合
 
 * テーブルの作成
     ```
-    $ sqlite3 /var/www/html/test.sqlite3 <= データベースの作成（開く）
-    sqlite> CREATE TABLE book_tb (
-        isbn VARCHAR(13),
-        title VARCHAR(100),
-        author VARCHAR(100),
-        date VARCHAR(10),
-        price INTEGER,
-        amazon REAL
-    );
+    $ mysql -u root -p
+    mysql> USE test_db; <= 既存のデータベースを開く
+    Database changed
+    mysql> CREATE TABLE book_tb (
+        -> isbn VARCHAR(13),
+        -> title VARCHAR(100),
+        -> author VARCHAR(100),
+        -> date DATE,
+        -> price INT,
+        -> amazon FLOAT
+        -> );
+    Query OK, 0 rows affected (0.28 sec)
     ```
 
 * テーブルの確認
     ```
-    $ sqlite3 /var/www/html/test.sqlite3 <= データベースの作成（開く）
-    sqlite> .schema book_tb <= テーブルスキーマ（構造）の確認
-    CREATE TABLE book_tb (
-        isbn VARCHAR(13),
-        title VARCHAR(100),
-        author VARCHAR(100),
-        date VARCHAR(10),
-        price INTEGER,
-        amazon REAL
-    );
+    mysql> SHOW FIELDS FROM book_tb;
+    +--------+--------------+------+-----+---------+-------+
+    | Field  | Type         | Null | Key | Default | Extra |
+    +--------+--------------+------+-----+---------+-------+
+    | isbn   | varchar(13)  | YES  |     | NULL    |       |
+    | title  | varchar(100) | YES  |     | NULL    |       |
+    | author | varchar(100) | YES  |     | NULL    |       |
+    | date   | date         | YES  |     | NULL    |       |
+    | price  | int(11)      | YES  |     | NULL    |       |
+    | amazon | float        | YES  |     | NULL    |       |
+    +--------+--------------+------+-----+---------+-------+
     ```
 
 ### PHP の場合
 ```
-<?php
-    // データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
-
-    //============================================
-    // テーブルの作成（xxx_tb が無い場合のみ作成）
-    //============================================
-    $sql = "CREATE TABLE IF NOT EXISTS book_tb (
-        isbn VARCHAR(13),
-        title VARCHAR(100),
-        author VARCHAR(100),
-        price INTEGER,
-        amazon REAL
-    )";
-    $statement = $con->prepare($sql);
-    $statement->execute();
-
-    //=================================
-    // 以下は検証（ダミーデータを挿入）
-    //=================================
-    $sql = "INSERT INTO book_tb VALUES (NULL, NULL, NULL, NULL, NULL)";
-    $statement = $con->prepare($sql);
-    $statement->execute();
-
-    $statement = $con->prepare("SELECT * FROM book_tb"); //全データを選択
-    $statement->execute();
-
-    $result = $statement->fetch(PDO::FETCH_ASSOC);
-    print_r($result);
-    //=> Array ( [isbn] => [title] => [author] => [price] => [amazon] => )
-?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
