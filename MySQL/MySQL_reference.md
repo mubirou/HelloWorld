@@ -5,6 +5,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_win.md)）
+***
 * [データベースの作成](#データベースの作成)
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)
@@ -52,9 +53,9 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年07月27日
+作成日：2017年08月XX日
 
 
 <a name="データベースの削除"></a>
@@ -67,9 +68,9 @@ $ ls -l /var/www/html/test.sqlite3 <= 確認
 $ rm -f /var/www/html/test.sqlite3 <= 実際に削除
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年07月27日
+作成日：2017年08月XX日
 
 
 <a name="データ型"></a>
@@ -135,9 +136,9 @@ MySQL の場合、テーブル作成時にデータ型を指定してもあま�
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年07月28日
+作成日：2017年08月XX日
 
 
 <a name="主キー"></a>
@@ -199,9 +200,9 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月03日
+作成日：2017年08月XX日
 
 
 <a name="テーブルの作成"></a>
@@ -276,9 +277,9 @@ CREATE TABLE テーブル名 (カラム名 型 [列フラグ オプション], �
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年07月27日
+作成日：2017年08月XX日
 
 
 <a name="テーブルの削除"></a>
@@ -317,9 +318,9 @@ sqlite>   <= 何も表示されない
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年07月27日
+作成日：2017年08月XX日
 
 
 <a name="データの追加"></a>
@@ -369,9 +370,9 @@ sqlite>   <= 何も表示されない
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年07月31日
+作成日：2017年08月XX日
 
 
 <a name="データの削除"></a>
@@ -415,9 +416,9 @@ sqlite>   <= 何も表示されない
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月01日
+作成日：2017年08月XX日
 
 
 <a name="データの更新"></a>
@@ -503,9 +504,9 @@ sqlite>   <= 何も表示されない
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月01日
+作成日：2017年08月XX日
 
 
 <a name="全ての列を抽出"></a>
@@ -549,9 +550,9 @@ SELECT * FROM テーブル名
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月02日
+作成日：2017年08月XX日
 
 
 <a name="特定の列を抽出"></a>
@@ -594,9 +595,9 @@ SELECT 列名①,列名②,... FROM テーブル名
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月02日
+作成日：2017年08月XX日
 
 
 <a name="重複したデータを除いて抽出"></a>
@@ -682,9 +683,9 @@ SELECT 列名①,列名②,... FROM テーブル名
     ?>
     ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月02日
+作成日：2017年08月XX日
 
 
 <a name="条件に合致したデータを抽出"></a>
@@ -1043,9 +1044,9 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月03日
+作成日：2017年08月XX日
 
 
 <a name="ソートして抽出"></a>
@@ -1093,9 +1094,9 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
     ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月03日
+作成日：2017年08月XX日
 
 
 <a name="SQLite→CSV"></a>
@@ -1151,9 +1152,9 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 |3|TAKASHI|50|
 |4|HANAKO|15|
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月03日
+作成日：2017年08月XX日
 
 
 <a name="CSV→SQLite"></a>
@@ -1211,6 +1212,6 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月03日
+作成日：2017年08月XX日
