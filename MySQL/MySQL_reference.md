@@ -12,8 +12,8 @@
 * [テーブルの作成](#テーブルの作成)（CREATE TABLE 文）
 * [テーブルの削除](#テーブルの削除)（DROP TABLE 文）
 * [データの追加](#データの追加)（INSERT 文）
-***
 * [データの削除](#データの削除)（DELETE 文）
+***
 * [データの更新](#データの更新)（UPDATE 文）
 * データの抽出（SELECT 文）
     * [全ての列を抽出](#全ての列を抽出)
@@ -441,34 +441,37 @@ Empty set (0.00 sec) <= 削除されている
 
 ```
 <?php
-    //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'kyouikuiinkai1989';
+    $pdo = new PDO($dsn, $user, $password);
 
-    //テーブルの作成（xxx_tb が無い場合のみ作成）
-    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
-    $statement = $con->prepare($sql);
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INT, name TEXT)";
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入①
     $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入②
     $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //=============
     // データの削除
     //=============
     $sql = "DELETE FROM hoge_tb WHERE id = 1"; //「==」ではない
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //全データを取得
     $sql = "SELECT * FROM hoge_tb";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
     foreach ($statement as $tmp) {
         echo $tmp['id'].'|'.$tmp['name'];
         echo "<br>";
@@ -479,7 +482,7 @@ Empty set (0.00 sec) <= 削除されている
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="データの更新"></a>
@@ -489,33 +492,33 @@ Empty set (0.00 sec) <= 削除されている
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
     $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
     $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //============================================
     // 全データの更新（あまり使わないでしょう...）
     //============================================
     $sql = "UPDATE hoge_tb SET id = NULL, name = NULL"; //「==」ではない
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //全データを取得
     $sql = "SELECT * FROM hoge_tb";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
     foreach ($statement as $tmp) {
         echo $tmp['id'].'|'.$tmp['name'];
         echo "<br>";
@@ -529,33 +532,33 @@ Empty set (0.00 sec) <= 削除されている
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入①
     $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入②
     $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //=============================
     // 条件に合致したデータのみ更新
     //=============================
     $sql = "UPDATE hoge_tb SET name = 'たかし' WHERE name = 'TAKASHI'"; //「==」ではない
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //全データを取得
     $sql = "SELECT * FROM hoge_tb";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
     foreach ($statement as $tmp) {
         echo $tmp['id'].'|'.$tmp['name'];
         echo "<br>";
@@ -582,26 +585,26 @@ SELECT * FROM テーブル名
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (id INTEGER, name TEXT)";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入①
     $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入②
     $sql = "INSERT INTO hoge_tb VALUES (2, 'HANAKO')";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //全データを取得
     $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
     foreach ($statement as $tmp) {
         echo $tmp['id'].'|'.$tmp['name'];
         echo "<br>";
@@ -628,21 +631,21 @@ SELECT 列名①,列名②,... FROM テーブル名
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (firstname TEXT, lastname TEXT, sex TEXT)";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'NISHIMURA', 'man')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'NISHIMURA', 'woman')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'NISHIMURA', 'man')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('YOSHIKO', 'NISHIMURA', 'woman')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'NISHIMURA', 'man')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'NISHIMURA', 'woman')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'NISHIMURA', 'man')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('YOSHIKO', 'NISHIMURA', 'woman')")->execute();
 
     $sql = "SELECT firstname,lastname FROM hoge_tb"; //特定の列を抽出
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -674,21 +677,21 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
     <?php
         //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+        $pdo = new PDO("sqlite:test.sqlite3");
 
         //テーブルの作成（xxx_tb が無い場合のみ作成）
         $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (firstname TEXT, lastname TEXT, sex TEXT)";
-        $statement = $con->prepare($sql);
+        $statement = $pdo->prepare($sql);
         $statement->execute();
 
         //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '男')")->execute(); //同じデータ
-        $con->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '女')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '男')")->execute(); //同じデータ
-        $con->prepare("INSERT INTO hoge_tb VALUES ('正美', '鈴木', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '男')")->execute(); //同じデータ
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '女')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '男')")->execute(); //同じデータ
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '鈴木', '男')")->execute();
 
         $sql = "SELECT DISTINCT * FROM hoge_tb"; //全ての列の値が同じ場合のみ「重複」と判定
-        $statement = $con->query($sql);
+        $statement = $pdo->query($sql);
 
         //該当の全データを取得
         foreach ($statement as $tmp) {
@@ -711,7 +714,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
     <?php
         //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+        $pdo = new PDO("sqlite:test.sqlite3");
 
         //テーブルの作成（xxx_tb が無い場合のみ作成）
         $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -720,18 +723,18 @@ SELECT 列名①,列名②,... FROM テーブル名
             lastname TEXT,
             sex TEXT
         )";
-        $statement = $con->prepare($sql);
+        $statement = $pdo->prepare($sql);
         $statement->execute();
 
         //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '西村', '男')")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '鈴木', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '西村', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '鈴木', '男')")->execute();
 
         //特定の列の値が同じデータを「重複」と判定
         $sql = "SELECT DISTINCT firstname,lastname FROM hoge_tb";
-        $statement = $con->query($sql);
+        $statement = $pdo->query($sql);
 
         //該当の全データを取得
         foreach ($statement as $tmp) {
@@ -774,7 +777,7 @@ SELECT * FROM テーブル名 WHERE 列名 = 値
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -783,18 +786,18 @@ SELECT * FROM テーブル名 WHERE 列名 = 値
         lastname TEXT,
         sex TEXT
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE lastname = '西村'";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -819,7 +822,7 @@ SELECT * FROM テーブル名 WHERE 列名 <> 値
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -828,18 +831,18 @@ SELECT * FROM テーブル名 WHERE 列名 <> 値
         lastname TEXT,
         sex TEXT
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE lastname <> '西村'";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -862,25 +865,25 @@ SELECT * FROM テーブル名 WHERE 列名 >= 値
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
         name TEXT,
         age INTEGER
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE age >= 20";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -904,25 +907,25 @@ SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
         name TEXT,
         age INTEGER
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE age BETWEEN 12 AND 18";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -945,25 +948,25 @@ SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
         name TEXT,
         bloodtype TEXT
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B')")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE bloodtype IN ('A','B')";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -991,24 +994,24 @@ SELECT * FROM テーブル名 WHERE 列名 LIKE ('値_値') ←値○値（_で�
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
         id INTEGER,
         name TEXT
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES (1, '西村一郎')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (2, '西村次郎')")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (2, '鈴木一郎')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '西村一郎')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '西村次郎')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '鈴木一郎')")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE name LIKE '西村%'";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -1032,7 +1035,7 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -1040,18 +1043,18 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
         bloodtype TEXT,
         age INTEGER
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'B' AND age >= 20";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -1074,7 +1077,7 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -1082,18 +1085,18 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
         bloodtype TEXT,
         age INTEGER
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE bloodtype = 'A' OR age < 20";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     //該当の全データを取得
     foreach ($statement as $tmp) {
@@ -1122,7 +1125,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ```
     <?php
         //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+        $pdo = new PDO("sqlite:test.sqlite3");
 
         //テーブルの作成（xxx_tb が無い場合のみ作成）
         $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -1130,18 +1133,18 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
             name TEXT,
             age INTEGER
         )";
-        $statement = $con->prepare($sql);
+        $statement = $pdo->prepare($sql);
         $statement->execute();
 
         //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
 
         //ASC（昇順＝小さい順）または DESC（降順＝大きい順）
         $sql = "SELECT * FROM hoge_tb ORDER BY name ASC";
-        $statement = $con->query($sql);
+        $statement = $pdo->query($sql);
 
         //該当の全データを取得
         foreach ($statement as $tmp) {
@@ -1166,7 +1169,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -1174,19 +1177,19 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
         name TEXT,
         age INTEGER
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
 
 
     //全データを取得
     $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
 
     $array = array(); //空の配列を作成
     
@@ -1233,7 +1236,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ```
 <?php
     //データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $pdo = new PDO("sqlite:test.sqlite3");
 
     //テーブルの作成（xxx_tb が無い場合のみ作成）
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
@@ -1241,7 +1244,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
         name TEXT,
         age INTEGER
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //外部CSVファイルの読込み＆データの追加
@@ -1256,12 +1259,12 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
             '$name', 
             '$age'
         )";
-        $con->prepare($sql)->execute();
+        $pdo->prepare($sql)->execute();
     }
 
     //全データを取得
     $sql = "SELECT * FROM hoge_tb"; //全ての列を抽出
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
     foreach ($statement as $tmp) {
         echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
         echo "<br>";
