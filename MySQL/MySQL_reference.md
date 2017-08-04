@@ -17,8 +17,8 @@
 * データの抽出（SELECT 文）
     * [全ての列を抽出](#全ての列を抽出)
     * [特定の列を抽出](#特定の列を抽出)
-    ***
     * [重複したデータを除いて抽出](#重複したデータを除いて抽出)
+    ***
     * [条件に合致したデータを抽出](#条件に合致したデータを抽出)
         * [=](#=)（等しい）
         * [<>](#<>)（等しくない）
@@ -689,8 +689,11 @@ SELECT 列名①,列名②,... FROM テーブル名
     * 例文
     ```
     <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $pdo = new PDO("sqlite:test.sqlite3");
+        // データベースの作成（既存の場合はファイルを開く）
+        $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+        $user = 'root';
+        $password = 'xxxxxx';
+        $pdo = new PDO($dsn, $user, $password);
 
         //テーブルの作成（xxx_tb が無い場合のみ作成）
         $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (firstname TEXT, lastname TEXT, sex TEXT)";
@@ -726,12 +729,15 @@ SELECT 列名①,列名②,... FROM テーブル名
     * 例文
     ```
     <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $pdo = new PDO("sqlite:test.sqlite3");
+        // データベースの作成（既存の場合はファイルを開く）
+        $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+        $user = 'root';
+        $password = 'xxxxxx';
+        $pdo = new PDO($dsn, $user, $password);
 
         //テーブルの作成（xxx_tb が無い場合のみ作成）
         $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            id INTEGER,
+            id INT,
             firstname TEXT,
             lastname TEXT,
             sex TEXT
@@ -762,7 +768,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="条件に合致したデータを抽出"></a>
