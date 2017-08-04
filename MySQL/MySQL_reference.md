@@ -11,8 +11,8 @@
 * [主キー](#主キー)（PRIMARY KEY）
 * [テーブルの作成](#テーブルの作成)（CREATE TABLE 文）
 * [テーブルの削除](#テーブルの削除)（DROP TABLE 文）
-***
 * [データの追加](#データの追加)（INSERT 文）
+***
 * [データの削除](#データの削除)（DELETE 文）
 * [データの更新](#データの更新)（UPDATE 文）
 * データの抽出（SELECT 文）
@@ -364,7 +364,7 @@ Empty set (0.00 sec) <= 削除されている
     $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
         id TEXT,
         name TEXT,
-        age INT,
+        age INT
     )";
     $statement = $pdo->prepare($sql);
     $statement->execute();
@@ -387,7 +387,10 @@ Empty set (0.00 sec) <= 削除されている
 ```
 <?php
     // データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'xxxxxx';
+    $pdo = new PDO($dsn, $user, $password);
 
     //============================================
     // テーブルの作成（xxx_tb が無い場合のみ作成）
@@ -396,10 +399,10 @@ Empty set (0.00 sec) <= 削除されている
         isbn VARCHAR(13),
         title VARCHAR(100),
         author VARCHAR(100),
-        price INTEGER,
-        amazon REAL
+        price INT,
+        amazon FLOAT
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //=============
@@ -412,25 +415,25 @@ Empty set (0.00 sec) <= 削除されている
         540,
         3.0
     )";
-    $statement = $con->prepare($sql);
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     //===============
     // 全データを取得
     //===============
     $sql = "SELECT * FROM book_tb";
-    $statement = $con->query($sql);
+    $statement = $pdo->query($sql);
     foreach ($statement as $tmp) {
         echo $tmp['isbn'].'|'.$tmp['title'].'|'.$tmp['author'].'|'.$tmp['price'].'|'.$tmp['amazon'];
         echo "<br>";
     }
-    //=> 9784061475564|勝海舟|保永貞夫|540|3.0
+    //=> 9784061475564|勝海舟|保永貞夫|540|3
 ?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="データの削除"></a>
