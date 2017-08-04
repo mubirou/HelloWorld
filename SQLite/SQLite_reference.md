@@ -1056,39 +1056,39 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 
 ### 例文
 ```
-    <?php
-        //データベースの作成（既存の場合はファイルを開く）
-        $con = new PDO("sqlite:test.sqlite3");
+<?php
+    //データベースの作成（既存の場合はファイルを開く）
+    $con = new PDO("sqlite:test.sqlite3");
 
-        //テーブルの作成（xxx_tb が無い場合のみ作成）
-        $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
-            id INTEGER,
-            name TEXT,
-            age INTEGER
-        )";
-        $statement = $con->prepare($sql);
-        $statement->execute();
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id INTEGER,
+        name TEXT,
+        age INTEGER
+    )";
+    $statement = $con->prepare($sql);
+    $statement->execute();
 
-        //データの挿入
-        $con->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
-        $con->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
+    //データの挿入
+    $con->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
 
-        //ASC（昇順＝小さい順）または DESC（降順＝大きい順）
-        $sql = "SELECT * FROM hoge_tb ORDER BY name ASC";
-        $statement = $con->query($sql);
+    //ASC（昇順＝小さい順）または DESC（降順＝大きい順）
+    $sql = "SELECT * FROM hoge_tb ORDER BY name ASC";
+    $statement = $con->query($sql);
 
-        //該当の全データを取得
-        foreach ($statement as $tmp) {
-            echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
-            echo "<br>";
-        }
-        //=> 4|HANAKO|15
-        //=> 2|ICHIRO|25
-        //=> 1|JIRO|20
-        //=> 3|TAKASHI|50
-    ?>
+    //該当の全データを取得
+    foreach ($statement as $tmp) {
+        echo $tmp['id'].'|'.$tmp['name'].'|'.$tmp['age'];
+        echo "<br>";
+    }
+    //=> 4|HANAKO|15
+    //=> 2|ICHIRO|25
+    //=> 1|JIRO|20
+    //=> 3|TAKASHI|50
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
