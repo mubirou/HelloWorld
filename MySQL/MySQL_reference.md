@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_win.md)）
 * [データベースの作成](#データベースの作成)
-***
 * [データベースの削除](#データベースの削除)
+***
 * [データ型](#データ型)
 * [主キー](#主キー)（PRIMARY KEY）
 * [テーブルの作成](#テーブルの作成)（CREATE TABLE 文）
@@ -68,6 +68,11 @@ Bye
 <a name="データベースの削除"></a>
 # <b>データベースの削除</b>
 
+### 書式
+```
+mysql> DROP DATABASE データベース名;
+```
+
 ```
 $ mysql -u root -p <= Linuxのパスワードでログイン
 mysql> show databases; <= 既存のデータベースの確認
@@ -80,11 +85,23 @@ mysql> show databases; <= 既存のデータベースの確認
 | sys                |
 | test_db            | <= 削除したいデータベース
 +--------------------+
+mysql> DROP DATABASE test_db;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+ <= 削除されている
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="データ型"></a>
