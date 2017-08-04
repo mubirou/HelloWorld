@@ -183,7 +183,7 @@ mysql> show databases;
 
 ### 書式
 ```
-CREATE TABLE IF NOT EXISTS テーブル名 (
+CREATE TABLE [IF NOT EXISTS] テーブル名 (
         列名 データ型 NOT NULL,
         ...,
         PRIMARY KEY (列名(バイト数))
