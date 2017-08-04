@@ -5,8 +5,8 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/MySQL/MySQL_win.md)）
-***
 * [データベースの作成](#データベースの作成)
+***
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)
 * [主キー](#主キー)（PRIMARY KEY）
@@ -36,26 +36,27 @@
 <a name="データベースの作成"></a>
 # <b>データベースの作成</b>
 
-### コマンドラインの場合
 ```
-$ cd /var/www/html <= 作成したいディレクトリに移動
-$ sqlite3 test.sqlite3 <= 既存の場合はファイルを開く（慣例的に xxx.sqlite3 とする）
-sqlite> .databases <= ここで実際に.sqlite3 ファイルが生成される
-sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合「;」を入力）
-```
-
-### PHP の場合
-```
-<?php
-    // データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
-    var_dump($con) //=> object(PDO)#1 (0) { }
-?>
+$ mysql -u root -p <= Linuxのパスワードでログイン
+mysql> CREATE DATABASE test_db; <= 既存の場合はERROR
+Query OK, 1 row affected (0.00 sec)
+mysql> show databases; <= 既存のデータベースの確認
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test_db            | <= 上記で作成したデータベース
++--------------------+
+mysql> exit <= 終了（間違えてコマンドを打ってしまった場合「;」を入力）
+Bye
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="データベースの削除"></a>
