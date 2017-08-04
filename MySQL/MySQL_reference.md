@@ -199,11 +199,46 @@ CREATE TABLE テーブル名 (列名① 型 [列フラグ], 列名② 型 [列�
 
 ### PHP の場合
 ```
+<?php
+    // データベースの作成（既存の場合はファイルを開く）
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'xxxxxx';
+    $pdo = new PDO($dsn, $user, $password);
+
+    //============================================
+    // テーブルの作成（xxx_tb が無い場合のみ作成）
+    //============================================
+    $sql = "CREATE TABLE book_tb (
+        isbn VARCHAR(13),
+        title VARCHAR(100),
+        author VARCHAR(100),
+        date DATE,
+        price INT,
+        amazon FLOAT
+    )";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+
+    //=================================
+    // 以下は検証（ダミーデータを挿入）
+    //=================================
+    $sql = "INSERT INTO book_tb VALUES (NULL, NULL, NULL, NULL, NULL, NULL)";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+
+    $statement = $pdo->prepare("SELECT * FROM book_tb"); //全データを選択
+    $statement->execute();
+
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    print_r($result);
+    //=> Array ( [isbn] => [title] => [author] => [date] => [price] => [amazon] => )
+?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="テーブルの削除"></a>
