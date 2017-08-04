@@ -10,8 +10,8 @@
 * [データ型](#データ型)
 * [主キー](#主キー)（PRIMARY KEY）
 * [テーブルの作成](#テーブルの作成)（CREATE TABLE 文）
-***
 * [テーブルの削除](#テーブルの削除)（DROP TABLE 文）
+***
 * [データの追加](#データの追加)（INSERT 文）
 * [データの削除](#データの削除)（DELETE 文）
 * [データの更新](#データの更新)（UPDATE 文）
@@ -334,36 +334,51 @@ DROP TABLE テーブル名
 ```
 
 ### コマンドラインの場合
+
 ```
-$ sqlite3 /var/www/html/test.sqlite3 <= データベースを開く
-sqlite> .tables <= 既存のテーブルの確認
-book_tb
-sqlite> DROP TABLE book_tb; <= テーブルの削除
-sqlite> .tables <= 再確認
-sqlite>   <= 何も表示されない
+$ mysql -u root -p
+mysql> USE test_db <= 既存のデータベースを開く
+Database changed
+mysql> show tables; <= 既存のテーブルの確認
++-------------------+
+| Tables_in_test_db |
++-------------------+
+| book_tb           |
++-------------------+
+
+mysql> DROP TABLE book_tb; <= テーブルの削除
+mysql> show tables;
+Empty set (0.00 sec) <= 削除されている
 ```
 
 ### PHP の場合
 ```
 <?php
     // データベースの作成（既存の場合はファイルを開く）
-    $con = new PDO("sqlite:test.sqlite3");
+    $dsn = 'mysql:dbname=test_db;host=127.0.0.1';
+    $user = 'root';
+    $password = 'xxxxxx';
+    $pdo = new PDO($dsn, $user, $password);
 
-    // テーブルの作成（xxx_tb が無い場合のみ作成）
-    $sql = "CREATE TABLE IF NOT EXISTS book_tb (isbn VARCHAR(13), title VARCHAR(100))";
-    $statement = $con->prepare($sql);
+    //テーブルの作成（xxx_tb が無い場合のみ作成）
+    $sql = "CREATE TABLE IF NOT EXISTS hoge_tb (
+        id TEXT,
+        name TEXT,
+        age INT,
+    )";
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 
     // テーブルの削除
-    $sql = "DROP TABLE IF EXISTS book_tb"; //"IF EXISTS"はテーブルが存在すれば...の意
-    $statement = $con->prepare($sql);
+    $sql = "DROP TABLE IF EXISTS hoge_tb"; //"IF EXISTS"はテーブルが存在すれば...の意
+    $statement = $pdo->prepare($sql);
     $statement->execute();
 ?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月04日
 
 
 <a name="データの追加"></a>
