@@ -40,7 +40,7 @@ mysql> CREATE DATABASE データベース名;
 
 ### 実行例
 ```
-$ mysql -u root -p
+$ mysql -u root -p <= MySQL用のパスワード
 mysql> CREATE DATABASE test_db; <= 既存の場合はERROR
 Query OK, 1 row affected (0.00 sec)
 mysql> show databases; <= 既存のデータベースの確認
