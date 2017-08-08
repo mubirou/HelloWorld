@@ -91,12 +91,20 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
   <head>
     <meta charset="UTF-8">
     <title>xxx</title>
+    <style>
+      #example {
+        color: #800000;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
-    Hello,world!
+    <a href="https://www.instagram.com/takashinishimura_books/" id="example">Takashi Nishimura</a>
   </body>
 </html>
 ```
+id 名に使用可能な文字は、半角アルファベット・半角数字・ハイフン・アンダースコア・コロン・ピリオドのみです。
+1つの .html ファイル内で複数回使う場合は「class」を使います。
 
 3. class 名
 ```
@@ -105,12 +113,20 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
   <head>
     <meta charset="UTF-8">
     <title>xxx</title>
+    <style>
+      .example {
+        color: #800000;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
-    Hello,world!
+    <a href="https://www.instagram.com/takashinishimura_books/" class="example">Takashi Nishimura</a>
   </body>
 </html>
 ```
+class 名には日本語を含め自由に使えますが、通常は id の場合と同等の命名をします。
+1つの .html ファイル内で1回しか使わない場合は「id」を使います。
 
 ### XXXX
 ```
