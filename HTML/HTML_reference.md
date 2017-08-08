@@ -128,7 +128,20 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 
 （応用1）まとめて設定
 ```
-XXXX
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+    <style>
+      a, .class001 { color: #800000; }
+    </style>
+  </head>
+  <body>
+    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a>
+    <p class="class001">Takashi Nishimura Touring</a>
+  </body>
+</html>
 ```
 
 （応用2）絞込み設定
