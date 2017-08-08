@@ -35,17 +35,22 @@ HTML5 文書に必須の文書型宣言。必ず HTML5 文書の先頭行に記�
 ```
 <html lang="ja">
 ```
-言語指定付の \<html> タグ。各言語の指定は lang="ja"（日本）、lang="en"（英語）、lang="fr"（フランス）、lang="de"（ドイツ）、lang="zh"（中国）、lang="ko"（韓国）など。
+HTML 文書であることを宣言するタグ（言語指定付き）。各言語の指定は lang="ja"（日本）、lang="en"（英語）、lang="fr"（フランス）、lang="de"（ドイツ）、lang="zh"（中国）、lang="ko"（韓国）など。
 
 ```
 <meta charset="UTF-8">
 ```
-「文字エンコーディング」を指定するためのもので、\<head> タグの最初に指定する。
+「文字エンコーディング」を指定するためのもので、ヘッダ情報である \<head> タグの最初に指定する。
 
 ```
 <title>...</title>
 ```
 Web ブラウザに表示されるタイトル。検索エンジンが HTML ページの内容を認識する上で重要となる。
+
+```
+<body>...</body>
+```
+実際に Web ブラウザに表示される文書の本体。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 59  
 作成者：Takashi Nishimura  
