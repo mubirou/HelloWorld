@@ -35,7 +35,7 @@ HTML5 文書に必須の文書型宣言。必ず HTML5 文書の先頭行に記�
 ```
 <html lang="ja">
 ```
-言語指定付の <html> タグ。
+言語指定付の `<html>` タグ。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 59  
 作成者：Takashi Nishimura  
