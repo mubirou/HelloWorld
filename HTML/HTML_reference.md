@@ -146,7 +146,25 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 
 （応用2）絞込み設定
 ```
-XXXX
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+    <style>
+      p .class001 {
+        color: #800000;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <span class="class001">Takashi Nishimura Books</span><br>
+      <span class="class002">Takashi Nishimura Touring</span>
+    </p>
+  </body>
+</html>
 ```
 
 ### XXXX
