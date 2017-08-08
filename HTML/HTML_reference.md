@@ -5,12 +5,12 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_win.md)）
-* [HTML ページの基礎](#HTMLページの基礎)
+* [HTML の基礎](#HTMLの基礎)
 * [XXX](#XXX)
 ***
 
-<a name="HTMLページの基礎"></a>
-# <b>HTML ページの基礎</b>
+<a name="HTMLの基礎"></a>
+# <b>HTML の基礎</b>
 
 ### HTML5 の最小構成
 ```
@@ -35,7 +35,7 @@ HTML5 文書に必須の文書型宣言。必ず HTML5 文書の先頭行に記�
 ```
 <html lang="ja">
 ```
-HTML 文書であることを宣言するタグ（言語指定付き）。各言語の指定は lang="ja"（日本）、lang="en"（英語）、lang="fr"（フランス）、lang="de"（ドイツ）、lang="zh"（中国）、lang="ko"（韓国）など。
+HTML 文書であることを宣言するタグ（言語指定付き）。各言語の指定は "ja"（日本）、"en"（英語）、"fr"（フランス）、"de"（ドイツ）、"zh"（中国）、"ko"（韓国）など。
 
 ```
 <meta charset="UTF-8">
