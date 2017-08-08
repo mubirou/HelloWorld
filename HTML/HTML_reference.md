@@ -5,17 +5,31 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_win.md)）
-* [XXX](#XXX)
+* [HTML ページの基礎](#HTMLページの基礎)
 * [XXX](#XXX)
 ***
 
-<a name="XXX"></a>
-# <b>XXX</b>
+<a name="HTMLページの基礎"></a>
+# <b>HTML ページの基礎</b>
 
-### XXX
+### HTML5 の最小構成
 ```
-XXXx
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+  </head>
+  <body>
+    Hello, world!
+  </body>
+</html>
 ```
+
+```
+<!DOCTYPE html>
+```
+必ず HTML5 文書の先頭行に記述する。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 59  
 作成者：Takashi Nishimura  
