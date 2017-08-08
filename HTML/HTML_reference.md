@@ -71,14 +71,20 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
   <head>
     <meta charset="UTF-8">
     <title>xxx</title>
+    <style>
+      a {
+        color: #800000;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
-    Hello,world!
+    <a href="http://google.com">Goole</a>
   </body>
 </html>
 ```
 
-1. id 名
+2. id 名
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -92,7 +98,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 </html>
 ```
 
-1. class 名
+3. class 名
 ```
 <!DOCTYPE html>
 <html lang="ja">
