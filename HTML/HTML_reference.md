@@ -79,7 +79,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="http://google.com">Goole</a>
+    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura</a>
   </body>
 </html>
 ```
