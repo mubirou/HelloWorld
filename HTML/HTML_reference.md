@@ -65,25 +65,25 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 ### 3種類のセレクタ
 
 1. タグ名
-  ```
-  <!DOCTYPE html>
-  <html lang="ja">
-    <head>
-      <meta charset="UTF-8">
-      <title>xxx</title>
-      <style>
-        a {
-          color: #800000;
-          text-decoration: none;
-        }
-      </style>
-    </head>
-    <body>
-      <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a><br>
-      <a href="https://www.instagram.com/takashinishimura_touring/">Takashi Nishimura Touring</a>
-    </body>
-  </html>
-  ```
+```
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+    <style>
+      a {
+        color: #800000;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a><br>
+    <a href="https://www.instagram.com/takashinishimura_touring/">Takashi Nishimura Touring</a>
+  </body>
+</html>
+```
 
 2. id 名
 ```
@@ -104,8 +104,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
   </body>
 </html>
 ```
-id 名に使用可能な文字は、半角アルファベット・半角数字・ハイフン・アンダースコア・コロン・ピリオドのみです。
-1つの .html ファイル内で複数回使う場合は「class」を使います。
+  * id 名に使用可能な文字は、半角アルファベット・半角数字・ハイフン・アンダースコア・コロン・ピリオドのみです。
+  * 1つの .html ファイル内で複数回使う場合は「class」を使います。
 
 3. class 名
 ```
