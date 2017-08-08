@@ -49,7 +49,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 
 実行環境：Ubuntu 16.04 LTS、Chromium 59  
 作成者：Takashi Nishimura  
-作成日：2017年08月XX日
+作成日：2017年08月08日
 
 
 <a name="XXX"></a>
