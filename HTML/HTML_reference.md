@@ -79,7 +79,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura</a>
+    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a><br>
+    <a href="https://www.instagram.com/takashinishimura_touring/">Takashi Nishimura Touring</a>
   </body>
 </html>
 ```
@@ -92,14 +93,14 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     <meta charset="UTF-8">
     <title>xxx</title>
     <style>
-      #example {
+      #id001 {
         color: #800000;
         text-decoration: none;
       }
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/" id="example">Takashi Nishimura</a>
+    <a href="https://www.instagram.com/takashinishimura_books/" id="id001">Takashi Nishimura</a>
   </body>
 </html>
 ```
@@ -114,14 +115,15 @@ id 名に使用可能な文字は、半角アルファベット・半角数字�
     <meta charset="UTF-8">
     <title>xxx</title>
     <style>
-      .example {
+      .class001 {
         color: #800000;
         text-decoration: none;
       }
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/" class="example">Takashi Nishimura</a>
+    <a href="https://www.instagram.com/takashinishimura_books/" class="class001">Takashi Nishimura Books</a><br>
+    <a href="https://www.instagram.com/takashinishimura_touring/" class="class001">Takashi Nishimura Touring</a>
   </body>
 </html>
 ```
