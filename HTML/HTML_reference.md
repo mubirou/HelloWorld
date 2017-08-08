@@ -65,25 +65,25 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 ### 3種類のセレクタ
 
 1. タグ名
-```
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title>xxx</title>
-    <style>
-      a {
-        color: #800000;
-        text-decoration: none;
-      }
-    </style>
-  </head>
-  <body>
-    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a><br>
-    <a href="https://www.instagram.com/takashinishimura_touring/">Takashi Nishimura Touring</a>
-  </body>
-</html>
-```
+  ```
+  <!DOCTYPE html>
+  <html lang="ja">
+    <head>
+      <meta charset="UTF-8">
+      <title>xxx</title>
+      <style>
+        a {
+          color: #800000;
+          text-decoration: none;
+        }
+      </style>
+    </head>
+    <body>
+      <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a><br>
+      <a href="https://www.instagram.com/takashinishimura_touring/">Takashi Nishimura Touring</a>
+    </body>
+  </html>
+  ```
 
 2. id 名
 ```
