@@ -62,7 +62,37 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 <a name="CSSの基礎"></a>
 # <b>CSS の基礎</b>
 
-### XXXXX
+### 3種類のセレクタ
+
+1. タグ名
+```
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+  </head>
+  <body>
+    Hello,world!
+  </body>
+</html>
+```
+
+1. id 名
+```
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+  </head>
+  <body>
+    Hello,world!
+  </body>
+</html>
+```
+
+1. class 名
 ```
 <!DOCTYPE html>
 <html lang="ja">
