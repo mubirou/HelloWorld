@@ -171,22 +171,60 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 
 1. インライン
 ```
-XXX
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+  </head>
+  <body>
+    <span style="color:#800000;">Hello,world!</span>
+  </body>
+</html>
 ```
 
 2. \<head> タグ内
 ```
-XXX
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+    <style>
+      a { color: #800000; }
+    </style>
+  </head>
+  <body>
+    <a href="https://github.com/takashinishimura">Takashi Nishimura</a>
+  </body>
+</html>
 ```
 
 3. 外部 CSS ファイル
 ```
-XXX
+/* sample.css */
+a {
+    color: #800000;
+    text-decoration: none;
+}
+```
+```
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>xxx</title>
+    <link rel="stylesheet" href="sample.css" type="text/css">
+  </head>
+  <body>
+    <a href="https://github.com/takashinishimura">Takashi Nishimura</a>
+  </body>
+</html>
 ```
 
 実行環境：Windows 7、Google Chrome 60  
 作成者：Takashi Nishimura  
-作成日：2017年08月0X日
+作成日：2017年08月10日
 
 
 <a name="XXX"></a>
