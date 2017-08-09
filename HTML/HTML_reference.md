@@ -85,7 +85,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 </html>
 ```
 
-2. id 名（1回しか使わない場合）
+2. id 名（1回しか使わない場合に使用）
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -105,7 +105,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 </html>
 ```
 
-3. class 名（複数回使う場合）
+3. class 名（複数回使う場合に使用）
 ```
 <!DOCTYPE html>
 <html lang="ja">
