@@ -1191,14 +1191,14 @@ class IVisitor(object): #擬似インターフェース
     def getMoney(self): #派生クラスでオーバーライド
         raise NotImplementedError() #オーバーライドしないと実行時にError
 
-class Tohru(IVisitor):
+class Ichiro(IVisitor):
     __money = None #プライベート変数（貯金）の宣言
     def __init__(self): self.__money = 0 #コンストラクタ
     def visit(self, _otoshidama): #オーバーライド
         self.__money += _otoshidama
     def getMoney(self): return self.__money
 
-class Sachiko(IVisitor):
+class Hanako(IVisitor):
     __money = None #プライベート変数（貯金）の宣言
     def __init__(self): self.__money = 0 #コンストラクタ
     def visit(self, _otoshidama): #オーバーライド
@@ -1213,8 +1213,8 @@ _hokkaido = Hokkaido()
 _chiba = Chiba()
 
 #訪問者
-_ichiro = Tohru()
-_hanako = Sachiko()
+_ichiro = Ichiro()
+_hanako = Hanako()
 
 #訪問する（訪問先側から見ると「受け入れる」）
 _hokkaido.accept(_ichiro)

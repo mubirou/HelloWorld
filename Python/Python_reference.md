@@ -173,11 +173,11 @@ print(type(True)) #<class 'bool'>
 print(type(100)) #<class 'int'>
 print(type(0.1)) #<class 'float'>
 print(type('1')) #<class 'str'>
-print(type(["TAKASHI", "TOHRU", "SACHIKO"])) #<class 'list'>
-print(type(("TAKASHI", "TOHRU", "SACHIKO"))) #<class 'tuple'>
-print(type(set(["TAKASHI", "TOHRU", "SACHIKO"]))) #<class 'set'>
-print(type(frozenset(["TAKASHI", "TOHRU", "SACHIKO"]))) #<class 'frozenset'>
-print(type({"TAKASHI":48, "TOHRU":13})) #<class 'dict'>
+print(type(["TAKASHI", "TARO", "HANAKO"])) #<class 'list'>
+print(type(("TAKASHI", "TARO", "HANAKO"))) #<class 'tuple'>
+print(type(set(["TAKASHI", "TARO", "HANAKO"]))) #<class 'set'>
+print(type(frozenset(["TAKASHI", "TARO", "HANAKO"]))) #<class 'frozenset'>
+print(type({"TAKASHI":48, "TARO":13})) #<class 'dict'>
 print(type(1+1j)) #<class 'complex'>
 
 class MyClass: #前方宣言が必要

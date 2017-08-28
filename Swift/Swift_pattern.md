@@ -1331,13 +1331,13 @@ protocol IVisitor {
     func getMoney() -> Int
 }
 
-class Tohru: IVisitor { //亨
+class Ichiro: IVisitor { //一郎
     private var money_: Int = 0 //貯金
     func visit(otoshidama _otoshidama: Int) -> Void { money_ += _otoshidama }
     func getMoney() -> Int { return money_ }
 }
 
-class Sachiko: IVisitor { //幸子
+class Hanako: IVisitor { //花子
     private var money_: Int = 0 //貯金
     func visit(otoshidama _otoshidama: Int) -> Void { money_ += _otoshidama }
     func getMoney() -> Int { return money_ }
@@ -1351,8 +1351,8 @@ var _hokkaido: Hokkaido = Hokkaido() //埼玉実家
 var _chiba: Chiba = Chiba() //宮島家
 
 //訪問者
-var _ichiro: Tohru = Tohru() //亨
-var _hanako: Sachiko = Sachiko() //幸子
+var _ichiro: Ichiro = Ichiro() //一郎
+var _hanako: Hanako = Hanako() //花子
 
 //訪問する（訪問側から見ると「受け入れる」）
 _hokkaido.accept(visitor: _ichiro)

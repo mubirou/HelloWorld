@@ -1347,10 +1347,10 @@ import java.util.*; //LinkedListに必要
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
         LinkedList<String> _list = new LinkedList<String>();
-        _list.add("TOHRU");
-        _list.add("SACHIKO");
+        _list.add("TARO");
+        _list.add("HANAKO");
         for (String _value : _list) {
-            System.out.println(_value); //=> "TOHRU" => "SACHIKO"
+            System.out.println(_value); //=> "TARO" => "HANAKO"
         }
     }
 }

@@ -1375,7 +1375,7 @@ echo $nishimura->age.'<br>'; //49
 <?php
     $array = array('TARO', 'HANAKO', 'ICHIRO', 'JIRO');
     foreach ($array as $data) {
-        echo $data."<br>"; //'TAKASHI'→'TOMOKO'→'TORU'→'SACHIKO'
+        echo $data."<br>"; //'TAKASHI'→'TOMOKO'→'TORU'→'HANAKO'
     }
 ?>
 ```
