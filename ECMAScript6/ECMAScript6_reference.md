@@ -2378,25 +2378,11 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 <a name="数学関数（Math）"></a>
 # <b>数学関数（Math）</b>
 
-### Math.sin() : サイン（正弦）
+### Math.abs() : 絶対値
 ```
 <script>
-    console.log(Math.sin(0)); //0（0°）
-    console.log(Math.sin(Math.PI / 2)); //1（90°）
-    console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
-    console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
-    console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
-</script>
-```
-
-### Math.cos() : コサイン（余弦）
-```
-<script>
-    console.log(Math.cos(0)); //1（0°）
-    console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
-    console.log(Math.cos(Math.PI)); //-1（180°）
-    console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
-    console.log(Math.cos(Math.PI * 2)); //1 ←360°
+    console.log(Math.abs(100)); //100
+    console.log(Math.abs(-100)); //100
 </script>
 ```
 
@@ -2411,10 +2397,22 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-### Math.PI : 円周率
+### Math.ceil() : 切り上げ
 ```
 <script>
-    console.log(Math.PI); //3.141592653589793
+    console.log(Math.ceil(1.001)); //2
+    console.log(Math.ceil(1.999)); //2
+</script>
+```
+
+### Math.cos() : コサイン（余弦）
+```
+<script>
+    console.log(Math.cos(0)); //1（0°）
+    console.log(Math.cos(Math.PI / 2)); //6.123233995736766e-17（≒0）（90°）
+    console.log(Math.cos(Math.PI)); //-1（180°）
+    console.log(Math.cos(Math.PI * 3 / 2)); //-1.8369701987210297e-16（≒0）（270°）
+    console.log(Math.cos(Math.PI * 2)); //1 ←360°
 </script>
 ```
 
@@ -2426,45 +2424,11 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
-### Math.ceil() : 切り上げ
+### Math.hypot() : 二乗和の平方根（三平方の定理･ピタゴラスの定理）
 ```
 <script>
-    console.log(Math.ceil(1.001)); //2
-    console.log(Math.ceil(1.999)); //2
-</script>
-```
-
-### Math.round() : 四捨五入
-```
-<script>
-    console.log(Math.round(1.499)); //1
-    console.log(Math.round(1.500)); //2
-</script>
-```
-
-### Math.abs() : 絶対値
-```
-<script>
-    console.log(Math.abs(100)); //100
-    console.log(Math.abs(-100)); //100
-</script>
-```
-
-### Math.pow() : 累乗（○の□乗）
-```
-<script>
-    console.log(Math.pow(2, 0)); //1（2の0乗）
-    console.log(Math.pow(2, 8)); //256（2の8乗）
-</script>
-```
-
-### Math.sqrt() : 平方根（√○）
-```
-<script>
-    console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
-    console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
-    console.log(Math.sqrt(4)); //2
-    console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+    console.log(Math.hypot(3,4)); //5（3:4:5の直角三角形）
+    console.log(Math.sqrt(3*3 + 4*4)); //5 <=こちらの方が10倍前後高速
 </script>
 ```
 
@@ -2482,12 +2446,56 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 </script>
 ```
 
+### Math.PI : 円周率
+```
+<script>
+    console.log(Math.PI); //3.141592653589793
+</script>
+```
+
+### Math.pow() : 累乗（○の□乗）
+```
+<script>
+    console.log(Math.pow(2, 0)); //1（2の0乗）
+    console.log(Math.pow(2, 8)); //256（2の8乗）
+</script>
+```
+
+### Math.round() : 四捨五入
+```
+<script>
+    console.log(Math.round(1.499)); //1
+    console.log(Math.round(1.500)); //2
+</script>
+```
+
 ### Math.sign() : 符号（正か負の値か）
 ```
 <script>
     console.log(Math.sign(-0.1)); //-1（負の値）
     console.log(Math.sign(0)); //0（0）
     console.log(Math.sign(0.1)); //1（正の値）
+</script>
+```
+
+### Math.sin() : サイン（正弦）
+```
+<script>
+    console.log(Math.sin(0)); //0（0°）
+    console.log(Math.sin(Math.PI / 2)); //1（90°）
+    console.log(Math.sin(Math.PI)); //1.2246467991473532e-16（≒0）（180°）
+    console.log(Math.sin(Math.PI * 3 / 2)); //-1（270°）
+    console.log(Math.sin(Math.PI * 2)); //-2.4492935982947064e-16（≒0）（360°）
+</script>
+```
+
+### Math.sqrt() : 平方根（√○）
+```
+<script>
+    console.log(Math.sqrt(2)); //1.4142135623730951（一夜一夜にひとみごろ）
+    console.log(Math.sqrt(3)); //1.7320508075688772（人並みに奢れや）
+    console.log(Math.sqrt(4)); //2
+    console.log(Math.sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
 </script>
 ```
 
