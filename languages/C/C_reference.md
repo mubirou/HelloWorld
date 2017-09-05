@@ -3,7 +3,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C/C_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C/C_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C/C_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C/C_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [構造体](#構造体)

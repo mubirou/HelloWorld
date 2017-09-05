@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/SQLite/SQLite_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/SQLite/SQLite_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/SQLite/SQLite_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/SQLite/SQLite_win.md)）
 * [データベースの作成](#データベースの作成)
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)

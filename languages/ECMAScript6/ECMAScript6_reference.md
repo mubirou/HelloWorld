@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/ECMAScript6/ECMAScript6_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)

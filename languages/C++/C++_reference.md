@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/C%2B%2B/C%2B%2B_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%2B%2B/C%2B%2B_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%2B%2B/C%2B%2B_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%2B%2B/C%2B%2B_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)

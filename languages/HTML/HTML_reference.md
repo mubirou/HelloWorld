@@ -4,7 +4,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/HTML/HTML_win.md)）
+* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/HTML/HTML_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/HTML/HTML_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/HTML/HTML_win.md)）
 * [HTML の基礎](#HTMLの基礎)
 * [CSS の基礎](#CSSの基礎)
 * [XXX](#XXX)
