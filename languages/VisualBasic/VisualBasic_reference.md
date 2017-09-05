@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https:'github.com/TakashiNishimura/HelloWorld/blob/master/VisualBasic/VisualBasic_linux.md) / [macOS](https:'github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_mac.md) / [Windows](https:'github.com/TakashiNishimura/HelloWorld/blob/master/TypeScript/TypeScript_win.md)）
+* Hello,world! （[Linux](https:'github.com/TakashiNishimura/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_linux.md) / [macOS](https:'github.com/TakashiNishimura/HelloWorld/blob/master/languages/TypeScript/TypeScript_mac.md) / [Windows](https:'github.com/TakashiNishimura/HelloWorld/blob/master/languages/TypeScript/TypeScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
