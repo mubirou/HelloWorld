@@ -53,6 +53,7 @@
 1. string（文字列）
 1. object（全てのオブジェクトのベース）
 1. undefined（未初期化変数）
+1. function（関数）
 1. symbol（シンボル）
 
 ### 例文
