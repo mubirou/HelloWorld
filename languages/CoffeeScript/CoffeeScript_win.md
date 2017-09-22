@@ -81,7 +81,7 @@ _main = new Main()
 
 ```
 <!DOCTYPE html>
-<html>
+<html lang="ja">
     <head>
         <meta charset="UTF-8">
         <script src="main.js"></script>
