@@ -114,7 +114,10 @@ $ /Applications/flex_sdk/bin/mxmlc Main.as
 
 ```
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
     <object width="550" height="400">
         <param name="movie" value="Main.swf">

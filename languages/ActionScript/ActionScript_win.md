@@ -109,7 +109,10 @@ C:\Program Files (x86)\flex_sdk\bin><b>mxmlc</b> \Users\none\Desktop\ActionScrip
 
 ```
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
     <object width="550" height="400">
         <param name="movie" value="Main.swf">
