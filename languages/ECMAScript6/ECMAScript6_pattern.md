@@ -1752,6 +1752,7 @@ _janken.exec(); //=> "パー、グー、チョキ"
 
 </script>
 ```
+参照：[Strategyパターン](#Strategy)
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
