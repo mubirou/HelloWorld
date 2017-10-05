@@ -1270,6 +1270,9 @@ _jankenB.exec(); //=> "パー、グー、チョキ"
 </script>
 ```
 
+### See Also（参照）
+[Stateパターン](#State)
+
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：Takashi Nishimura  
 作成日：2016年10月17日  
