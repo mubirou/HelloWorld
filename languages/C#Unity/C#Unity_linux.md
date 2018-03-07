@@ -40,8 +40,8 @@
     1. Unityを起動
     1. [New]をクリック
     1. 以下の通り設定（任意）して [Create project] をクリック
-        * Project name: Project001 ←フォルダが生成される
-        * Location: /home/nishimura/デスクトップ  
+        * Project name: Project001 →フォルダが生成される
+        * Location: /home/nishimura/デスクトップ
 
 1. Scene（世界）の保存  
     1. [File]-[Save Scene] を選択し、名前を "Scene001"（任意）とする
