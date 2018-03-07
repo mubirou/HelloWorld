@@ -76,7 +76,7 @@
 1. 次のように書き換えて保存
 ```
 using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic; //今回は不要
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -86,10 +86,10 @@ public class Main : MonoBehaviour {
 		Debug.Log("Hello,world!"); //追加
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// Update is called once per frame（今回は不要）
+	// void Update () {
 		
-	}
+	// }
 }
 ```
 1. Unityに戻ります
