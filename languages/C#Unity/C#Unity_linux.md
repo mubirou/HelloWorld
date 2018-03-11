@@ -12,10 +12,10 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 16.04.4 LTS|2018年03月|
-|Unity Editor| [2017.2.0f3](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2017年10月|
-|エディタ|Visual Studio Code 1.20.1|2018年01月|
+|Unity Editor| [2017.2.1f1](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2018年02月|
+|エディタ|Visual Studio Code 1.21.0|2018年03月|
 |拡張機能|C#（Microsoft） 1.14.0|ー|
-|拡張機能|Debugger for Unity 1.3.0|ー|
+|拡張機能|Debugger for Unity 1.3.0|2018年02月|
 
 1. Unityアカウントの作成
     1. [unity3d.com](https://unity3d.com/jp)にアクセス
@@ -24,9 +24,9 @@
 
 1. Unity Editor for Linuxのインストール
     1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
-    1. 「Build Build #20171013」の「Official Installer:2017.2.0f3:」のリンクをクリック
+    1. 「Build #20180209」の「Official Installer:2017.2.1f1:」のリンクをクリック
     1. 「Linux Editor Installer (.deb package)」をクリック → ダウンロード開始
-    1. ダウンロードされた「unity-editor_amd64-2017.2.0f3.deb」をダブルクリック
+    1. ダウンロードされた「unity-editor_amd64-2017.2.1f1.deb」をダブルクリック
     1. 指示に従って [インストール]
     1. Unityを起動、上記で設定した「Unity ID」（Email、Password）を入力、指示に従う
 
@@ -50,7 +50,7 @@
 
 1. GameObject（空）の作成  
     1. [GameObject]-[Create Empty] を選択
-    1. [Window]-[Hierarchy]（階層）に「GameObject」が追加された事を確認
+    1. [Window]-[Hierarchy]（階層）の「Scene001」内に「GameObject」が追加された事を確認
 
 1. C#ファイルの生成
     1. [Assets]-[Create]-[C# Script] を選択
@@ -59,7 +59,8 @@
 
 1. C#ファイルの修正
     1. Visual Studio Codeで「Main.cs」を開く
-    1. クラス名を「NewBehaviourScript」から「Main」に変更し、保存
+    1. クラス名を「NewBehaviourScript」から「Main」に変更されているか確認  
+    （変更されていなければ修正）
     ```
     5行目 public class Main : MonoBehaviour {
     ```
@@ -105,4 +106,5 @@ public class Main : MonoBehaviour {
 
 ***
 作成者: Takashi Nishimura  
-作成日: 2018年03月07日
+作成日: 2018年03月07日  
+更新日：2018年03月11日
