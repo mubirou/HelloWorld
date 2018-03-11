@@ -81,144 +81,145 @@
     * Object[] 型 : 配列の場合
 
 ### 検証
+予め、GameObjectと以下のMain.csファイルを紐付けしておきます
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
+using System.Collections;
+using UnityEngine;
 
-class Test {
-    static void Main() {
-        //bool型
-        bool _bool = true;
-        Console.WriteLine(_bool); //True
-        Console.WriteLine(_bool.GetType()); //System.Boolean
-        
-        //整数型①（0〜255）
-        byte _byte = 255;
-        Console.WriteLine(_byte); //255
-        Console.WriteLine(_byte.GetType()); //System.Byte
-        
-        //整数型②（-128〜127）
-        sbyte _sbyte = -128;
-        Console.WriteLine(_sbyte); //-128
-        Console.WriteLine(_sbyte.GetType()); //System.SByte
-        
-        //整数型③（-32768〜32767）
-        short _short = -32768;
-        Console.WriteLine(_short); //-32768
-        Console.WriteLine(_short.GetType()); //System.Int16
-        
-        //整数型④（0〜65535）
-        ushort _ushort = 65535;
-        Console.WriteLine(_ushort); //65535
-        Console.WriteLine(_ushort.GetType()); //System.UInt16
-        
-        //整数型⑤（-2147483648〜2147483647）
-        int _int = -2147483648;
-        Console.WriteLine(_int); //-2147483648
-        Console.WriteLine(_int.GetType()); //System.Int32
+public class Main : MonoBehaviour {
+	void Start () {
+		//bool型
+		bool _bool = true;
+		Debug.Log(_bool); //True
+		Debug.Log(_bool.GetType()); //System.Boolean
+		
+		//整数型①（0〜255）
+		byte _byte = 255;
+		Debug.Log(_byte); //255
+		Debug.Log(_byte.GetType()); //System.Byte
+		
+		//整数型②（-128〜127）
+		sbyte _sbyte = -128;
+		Debug.Log(_sbyte); //-128
+		Debug.Log(_sbyte.GetType()); //System.SByte
+		
+		//整数型③（-32768〜32767）
+		short _short = -32768;
+		Debug.Log(_short); //-32768
+		Debug.Log(_short.GetType()); //System.Int16
+		
+		//整数型④（0〜65535）
+		ushort _ushort = 65535;
+		Debug.Log(_ushort); //65535
+		Debug.Log(_ushort.GetType()); //System.UInt16
+		
+		//整数型⑤（-2147483648〜2147483647）
+		int _int = -2147483648;
+		Debug.Log(_int); //-2147483648
+		Debug.Log(_int.GetType()); //System.Int32
 
-        int _int16 = 0xFFCC00; //16進数の場合
-        Console.WriteLine(_int16); //16763904
-        Console.WriteLine(_int16.GetType()); //System.Int32
-        
-        //整数型⑥（0〜4294967295）
-        uint _uint = 4294967295;
-        Console.WriteLine(_uint); //4294967295
-        Console.WriteLine(_uint.GetType()); //System.UInt32
-        
-        //整数型⑦（-9223372036854775808〜9223372036854775807）
-        long _long = -9223372036854775808;
-        Console.WriteLine(_long); //-9223372036854775808
-        Console.WriteLine(_long.GetType()); //System.Int64
-        
-        //整数型⑧（0〜18446744073709551615）
-        ulong _ulong = 18446744073709551615;
-        Console.WriteLine(_ulong); //18446744073709551615
-        Console.WriteLine(_ulong.GetType()); //System.UInt64
-        
-        //浮動小数点数型①
-        float _float = 3.1415926f; //最後に「f」
-        Console.WriteLine(_float); //3.141593
-        Console.WriteLine(_float.GetType()); //System.Single
-        
-        //浮動小数点数型②
-        double _double = 3.141592653589793d; //「d」をつけなくても同じ
-        Console.WriteLine(_double); //3.14159265358979
-        Console.WriteLine(_double.GetType()); //System.Double
-        
-        //浮動小数点数型③
-        decimal _decimal = 3.14159265358979323846264338327m; //最後に「m」
-        Console.WriteLine(_decimal); //3.1415926535897932384626433833
-        Console.WriteLine(_decimal.GetType()); //System.Decimal
-        
-        //文字型①（char型＝1文字）
-        char _char = 'a'; //シングルクォーテーション
-        Console.WriteLine(_char); //a
-        Console.WriteLine(_char.GetType()); //System.Char
-        
-        //文字型②（string型）
-        string _string = "999"; //ダブルクォーテーション
-        Console.WriteLine(_string); //999
-        Console.WriteLine(_string.GetType()); //System.string
+		int _int16 = 0xFFCC00; //16進数の場合
+		Debug.Log(_int16); //16763904
+		Debug.Log(_int16.GetType()); //System.Int32
+		
+		//整数型⑥（0〜4294967295）
+		uint _uint = 4294967295;
+		Debug.Log(_uint); //4294967295
+		Debug.Log(_uint.GetType()); //System.UInt32
+		
+		//整数型⑦（-9223372036854775808〜9223372036854775807）
+		long _long = -9223372036854775808;
+		Debug.Log(_long); //-9223372036854775808
+		Debug.Log(_long.GetType()); //System.Int64
+		
+		//整数型⑧（0〜18446744073709551615）
+		ulong _ulong = 18446744073709551615;
+		Debug.Log(_ulong); //18446744073709551615
+		Debug.Log(_ulong.GetType()); //System.UInt64
+		
+		//浮動小数点数型①
+		float _float = 3.1415926f; //最後に「f」
+		Debug.Log(_float); //3.141593
+		Debug.Log(_float.GetType()); //System.Single
+		
+		//浮動小数点数型②
+		double _double = 3.141592653589793d; //「d」をつけなくても同じ
+		Debug.Log(_double); //3.14159265358979
+		Debug.Log(_double.GetType()); //System.Double
+		
+		//浮動小数点数型③
+		decimal _decimal = 3.14159265358979323846264338327m; //最後に「m」
+		Debug.Log(_decimal); //3.1415926535897932384626433833
+		Debug.Log(_decimal.GetType()); //System.Decimal
+		
+		//文字型①（char型＝1文字）
+		char _char = 'a'; //シングルクォーテーション
+		Debug.Log(_char); //a
+		Debug.Log(_char.GetType()); //System.Char
+		
+		//文字型②（string型）
+		string _string = "999"; //ダブルクォーテーション
+		Debug.Log(_string); //999
+		Debug.Log(_string.GetType()); //System.String
 
-        //null許容型
-        int? _null = null; //string型は不可
-        Console.WriteLine(_null); //（null）
-        Console.WriteLine(_null == null); //True
+		//null許容型
+		int? _null = null; //string型は不可
+		Debug.Log(_null); //Null ←ちゃんと表示される
+		Debug.Log(_null == null); //True
 
-        //列挙型（enum）
-        Console.WriteLine(Signal.BLUE); //BLUE
-        Console.WriteLine(Signal.BLUE.GetType()); //Signal
-        Console.WriteLine((int)Signal.BLUE); //0 ←キャストによる型変換が必要
+		//列挙型（enum）
+		Debug.Log(Signal.BLUE); //BLUE
+		Debug.Log(Signal.BLUE.GetType()); //Signal
+		Debug.Log((int)Signal.BLUE); //0 ←キャストによる型変換が必要
 
-        //構造体（クラスに似ているが継承は不可）
-        MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
-        Console.WriteLine(_struct); //MyStruct
-        Console.WriteLine(_struct.GetType()); //MyStruct
-        
-        //匿名型クラス（宣言には、必ずvarキーワードを使います）
-        var _anon = new { Name="Takashi Nishimrua", Age=49 }; //読み取り専用（注意）
-        Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 49 }
-        Console.WriteLine(_anon.Name); //"Takashi Nishimura ←取得方法
-        Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
+		//構造体（クラスに似ているが継承は不可）
+		MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
+		Debug.Log(_struct); //MyStruct
+		Debug.Log(_struct.GetType()); //MyStruct
+		
+		//匿名型クラス（宣言には、必ずvarキーワードを使います）
+		var _anon = new { Name="Takashi Nishimura", Age=50 }; //読み取り専用（注意）
+		Debug.Log(_anon); //{ Name = Takashi Nishimrua, Age = 50 }
+		Debug.Log(_anon.Name); //"Takashi Nishimura ←取得方法
+		Debug.Log(_anon.GetType());//<<>__AnonType0`2[System.String,System.Int32]
 
-        //クラス
-        MyClass _myClass = new MyClass("Takashi Nishimura", 48);
-        Console.WriteLine(_myClass); //MyClass
-        Console.WriteLine(_myClass.GetType()); //MyClass
+		//クラス
+		MyClass _myClass = new MyClass("Takashi Nishimura", 50);
+		Debug.Log(_myClass); //MyClass
+		Debug.Log(_myClass.GetType()); //MyClass
 
-        //配列
-        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
-        Console.WriteLine(_array); //System.Object[]
-    }
+		//配列
+		int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
+		Debug.Log(_array); //System.Int32[] ←SySystem.Object[]ではない
+	}
 }
 
 enum Signal { BLUE,YELLOW,RED }; //列挙（enum）の定義
 
 struct MyStruct { //構造体の定義
-    public string name;
-    public byte age;
-    public MyStruct(string p1, byte p2) {
-        name = p1;
-        age = p2;
-    }
+	public string name;
+	public byte age;
+	public MyStruct(string p1, byte p2) {
+		name = p1;
+		age = p2;
+	}
 }
 
 class MyClass { //クラスの定義
-    public string name;
-    public byte age;
-    public MyClass(string p1, byte p2) {
-        name = p1;
-        age = p2;
-    }
+	public string name;
+	public byte age;
+	public MyClass(string p1, byte p2) {
+		name = p1;
+		age = p2;
+	}
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月14日  
-更新日：2017年04月16日
+作成日：2018年03月11日
 
+============================================================
 
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>

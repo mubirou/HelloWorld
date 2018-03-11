@@ -175,8 +175,8 @@ class Test {
         Console.WriteLine(_struct.GetType()); //MyStruct
         
         //匿名型クラス（宣言には、必ずvarキーワードを使います）
-        var _anon = new { Name="Takashi Nishimrua", Age=49 }; //読み取り専用（注意）
-        Console.WriteLine(_anon); //{ Name = Takashi Nishimrua, Age = 49 }
+        var _anon = new { Name="Takashi Nishimura", Age=49 }; //読み取り専用（注意）
+        Console.WriteLine(_anon); //{ Name = Takashi Nishimura, Age = 49 }
         Console.WriteLine(_anon.Name); //"Takashi Nishimura ←取得方法
         Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
 
