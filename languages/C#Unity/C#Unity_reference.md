@@ -6,8 +6,8 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_win.md)）
 * [データ型](#データ型)
-* [データ型の操作](#データ型の操作)
-  ============================================================
+* [データ型の操作](#データ型の操作)  
+============================================================
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
