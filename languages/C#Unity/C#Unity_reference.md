@@ -257,12 +257,12 @@ class MyClass { //クラスの定義
         void Start () {
             var _myClass = new MyClass();
             Debug.Log(_myClass as MyClass); //=> MyClass
-            //Debug.Log(_myClass as HogeClass); //=> error
+            Debug.Log(_myClass as HogeClass); //=> error CS0039
         }
     }
 
     class MyClass {}
-    class HogeClass {};
+    class HogeClass {}
     ```
 
 1. GetType() メソッド
@@ -287,65 +287,70 @@ class MyClass { //クラスの定義
     class MyClass {}
     ```
 
-============================================================
-
 ### データ型のキャスト
 1. 数値↔ bool 型（不可）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            //bool _tmp = (bool)1; //error（数値→bool型への変換は不可）
-            //int _tmp = (int)true; //error（bool型→数値への変換は不可）
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
+            //bool _tmp = (bool)1; //error CS0030（数値→bool型への変換は不可）
+            //int _tmp = (int)true; //error CS0030（bool型→数値への変換は不可）
         }
     }
     ```
 
 1. 数値→ bool 型へ変換（力技）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             int _tmp = 0;
             bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
-            Console.WriteLine(_tmp2); //False
+            Debug.Log(_tmp2); //False
         }
     }
     ```
 
 1. bool型→数値へ変換
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+    using System; //Convertに必要
+
+    public class Main : MonoBehaviour {
+        void Start () {
             bool _tmp = true;
             int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
-            Console.WriteLine(_tmp2); //1
+            Debug.Log(_tmp2); //1
         }
     }
     ```
 
 1. 数値↔数値（縮小変換）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             //整数の場合
             long _tmp1 = 2147483648; //intは-2147483648〜2147483647
             int _tmp2 = (int)_tmp1; //long型→int型へ変換
-            Console.WriteLine(_tmp2); //-2147483648 ←元のデータが失われる
+            Debug.Log(_tmp2); //-2147483648 ←元のデータが失われる
 
             //浮動小数点数の場合
             decimal _decimal = 3.14159265358979323846264338327m;
             double _tmp3 = (double)_decimal;
-            Console.WriteLine(_tmp3); //3.14159265358979 ←データの一部が失われる
+            Debug.Log(_tmp3); //3.14159265358979 ←データの一部が失われる
         }
     }
     ```
+
+============================================================
 
 1. 数値↔数値（拡張変換）
     ```

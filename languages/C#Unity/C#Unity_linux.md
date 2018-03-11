@@ -76,7 +76,7 @@
 1. Visual Studio Codeを起動し、上記の「Main.cs」を開く
 1. 次のように書き換えて保存
 ```
-using System.Collections;
+//using System.Collections; //今回は不要
 //using System.Collections.Generic; //今回は不要
 using UnityEngine;
 
