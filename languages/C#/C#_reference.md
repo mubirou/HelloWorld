@@ -236,7 +236,7 @@ class MyClass { //クラスの定義
 
             //匿名型クラスの場合
             var _tmp2 = new {};
-            Console.WriteLine(_tmp2 is object); //True;
+            Console.WriteLine(_tmp2 is object); //True
         }
     }
 

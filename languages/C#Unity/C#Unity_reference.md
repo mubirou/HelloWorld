@@ -220,7 +220,6 @@ class MyClass { //クラスの定義
 作成者：Takashi Nishimura  
 作成日：2018年03月11日
 
-============================================================
 
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
@@ -229,24 +228,28 @@ class MyClass { //クラスの定義
 1. is 演算子
     * クラスか否かを調べる（○ is int といった使い方も可能）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using System.Collections;
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             //クラスの場合
             var _tmp = new SubClass();
-            Console.WriteLine(_tmp is SubClass); //True
-            Console.WriteLine(_tmp is SuperClass); //True
+            Debug.Log(_tmp is SubClass); //True
+            Debug.Log(_tmp is SuperClass); //True
 
             //匿名型クラスの場合
             var _tmp2 = new {};
-            Console.WriteLine(_tmp2 is object); //True;
+            Debug.Log(_tmp2 is object); //True
         }
     }
 
     class SuperClass {} //基本クラスの定義
     class SubClass : SuperClass {} //派生クラスの定義
     ```
+
+============================================================
 
 1. as 演算子
     * キャスト成功時に変換後の値が返され、失敗するとエラー
