@@ -6,9 +6,9 @@
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_win.md)）
 * [データ型](#データ型)
-* [データ型の操作](#データ型の操作)  
+* [データ型の操作](#データ型の操作)
+* [クラス](#クラス)  
 ============================================================
-* [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -399,16 +399,16 @@ class MyClass { //クラスの定義
 作成者：Takashi Nishimura  
 作成日：2018年03月11日
 
-============================================================
 
 <a name="クラス"></a>
 # <b>クラス</b>
 
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
-class Test { //Mainは不可
-    static void Main() { //自動的に最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+	void Start () {
         //①インタンスの生成
         Rectangle _rectangle = new Rectangle();
         
@@ -416,12 +416,12 @@ class Test { //Mainは不可
         _rectangle.width = 1920;
         _rectangle.height = 1080;
         //③プロパティの取得
-        Console.WriteLine(_rectangle.width); //1920
-        Console.WriteLine(_rectangle.height); //1080
+        Debug.Log(_rectangle.width); //1920
+        Debug.Log(_rectangle.height); //1080
         
         //④メソッドの実行
-        Console.WriteLine(_rectangle.getArea()); //2073600
-    }
+        Debug.Log(_rectangle.getArea()); //2073600
+	}
 }
 
 class Rectangle { //長方形クラス
@@ -447,11 +447,11 @@ class Rectangle { //長方形クラス
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月02日  
-更新日：2017年04月17日
+作成日：2018年03月11日
 
+============================================================
 
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
