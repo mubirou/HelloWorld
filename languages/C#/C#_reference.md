@@ -258,7 +258,7 @@ class MyClass { //クラスの定義
     }
 
     class MyClass {}
-    class HogeClass {};
+    class HogeClass {}
     ```
 
 1. GetType() メソッド

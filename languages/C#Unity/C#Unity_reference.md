@@ -84,7 +84,6 @@
 ### 検証
 予め、GameObjectと以下のMain.csファイルを紐付けしておきます
 ```
-using System.Collections;
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -229,7 +228,6 @@ class MyClass { //クラスの定義
     * クラスか否かを調べる（○ is int といった使い方も可能）
     ```
     //Main.cs
-    using System.Collections;
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -249,18 +247,17 @@ class MyClass { //クラスの定義
     class SubClass : SuperClass {} //派生クラスの定義
     ```
 
-============================================================
-
 1. as 演算子
     * キャスト成功時に変換後の値が返され、失敗するとエラー
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             var _myClass = new MyClass();
-            Console.WriteLine(_myClass as MyClass); //=> MyClass
-            //Console.WriteLine(_myClass as HogeClass); //=> エラー
+            Debug.Log(_myClass as MyClass); //=> MyClass
+            //Debug.Log(_myClass as HogeClass); //=> error
         }
     }
 
@@ -271,23 +268,26 @@ class MyClass { //クラスの定義
 1. GetType() メソッド
     * Object.GetType() メソッド（オブジェクトの型を返す）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            Console.WriteLine(true.GetType()); //=> System.Boolean
-            Console.WriteLine(100.GetType()); //=> System.Int32
-            Console.WriteLine(10000000000.GetType()); //=> System.UInt64
-            Console.WriteLine(0.1.GetType()); //=> System.Double
-            Console.WriteLine('1'.GetType()); //=> System.Char
-            Console.WriteLine("1".GetType()); //=> System.String
-            Console.WriteLine(new {}.GetType()); //=> <>__AnonType0
-            Console.WriteLine(new MyClass().GetType()); //=> MyClass
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
+            Debug.Log(true.GetType()); //=> System.Boolean
+            Debug.Log(100.GetType()); //=> System.Int32
+            Debug.Log(10000000000.GetType()); //=> System.UInt64
+            Debug.Log(0.1.GetType()); //=> System.Double
+            Debug.Log('1'.GetType()); //=> System.Char
+            Debug.Log("1".GetType()); //=> System.String
+            Debug.Log(new {}.GetType()); //=> <>__AnonType0
+            Debug.Log(new MyClass().GetType()); //=> MyClass
         }
     }
 
     class MyClass {}
     ```
+
+============================================================
 
 ### データ型のキャスト
 1. 数値↔ bool 型（不可）
