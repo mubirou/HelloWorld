@@ -350,54 +350,56 @@ class MyClass { //クラスの定義
     }
     ```
 
-============================================================
-
 1. 数値↔数値（拡張変換）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             int _tmp = 2147483647; //intは-2147483648〜2147483647
             long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
-            Console.WriteLine(_tmp2); //2147483648
+            Debug.Log(_tmp2); //2147483648
         }
     }
     ```
 
 1. 数値↔ string 型
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+    using System; //Int32.Parse()に必要
+
+    public class Main : MonoBehaviour {
+        void Start () {
             string _tmp = "001";
             int _tmp2 = Int32.Parse(_tmp); //"001"（string型）→1（int型）に変換
-            Console.WriteLine(_tmp2); //1
-            Console.WriteLine(_tmp2.GetType()); //System.Int32
+            Debug.Log(_tmp2); //1
+            Debug.Log(_tmp2.GetType()); //System.Int32
         }
     }
     ```
 
 1. 数値→ string 型
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _tmp = 100;
-        string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
-        Console.WriteLine(_tmp2); //"100"
-        Console.WriteLine(_tmp2.GetType()); //System.String
+    ```
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
+            int _tmp = 100;
+            string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
+            Debug.Log(_tmp2); //"100"
+            Debug.Log(_tmp2.GetType()); //System.String
+        }
     }
-}
-```
+    ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月07日  
-更新日：2017年04月17日
+作成日：2018年03月11日
 
+============================================================
 
 <a name="クラス"></a>
 # <b>クラス</b>
