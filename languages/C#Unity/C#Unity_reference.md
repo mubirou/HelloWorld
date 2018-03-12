@@ -9,9 +9,9 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
-* [名前空間](#名前空間)  
+* [名前空間](#名前空間)
+* [継承と委譲](#継承と委譲)  
 ============================================================
-* [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
@@ -567,7 +567,6 @@ namespace MyLibrary {
 作成者：Takashi Nishimura  
 作成日：2018年03月12日
 
-============================================================
 
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
@@ -578,49 +577,58 @@ namespace MyLibrary {
 
 ### 継承版
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+	void Start () {
         ClassB _classB = new ClassB();
         _classB.MyMethod();
     }
 }
 
 class ClassA {
-    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
+    public void MyMethod() {
+		Debug.Log("ClassA.MyMethod()");
+	}
 }
 class ClassB : ClassA {} //ClassAを継承
 ```
 
 ### 委譲版
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+	void Start () {
         ClassB _classB = new ClassB();
         _classB.MyMethod();
     }
 }
 
 class ClassA {
-    public void MyMethod() { Console.WriteLine("ClassA.MyMethod()"); }
+    public void MyMethod() {
+		Debug.Log("ClassA.MyMethod()");
+	}
 }
+
 class ClassB { //この内容だけが継承と異なる
     private ClassA _classA;
-    public ClassB() { _classA = new ClassA(); } //コンストラクタでオブジェクト生成
-    public void MyMethod() { _classA.MyMethod(); }
+    public ClassB() {
+		_classA = new ClassA(); //コンストラクタでオブジェクト生成
+	}
+    public void MyMethod() {
+		_classA.MyMethod();
+	}
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月26日  
-更新日：2017年04月17日
+作成日：2018年03月12日
 
+============================================================
 
 <a name="変数とスコープ"></a>
 # <b>変数とスコープ</b>
@@ -653,7 +661,7 @@ using System;
 class Test {
     static void Main() {
         MyClass _myClass = new MyClass();
-        Console.WriteLine(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
+        Debug.Log(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
      }
 }
 class MyClass {
@@ -681,8 +689,8 @@ using System;
 class Test {
     static void Main() {
         SubClass _subClass = new SubClass();
-        Console.WriteLine(_subClass); //SubClass
-        //Console.WriteLine(_subClass._pSuperClass); //error（アクセス不可）
+        Debug.Log(_subClass); //SubClass
+        //Debug.Log(_subClass._pSuperClass); //error（アクセス不可）
      }
 }
 
@@ -692,7 +700,7 @@ class SuperClass { //基本クラス
 
 class SubClass : SuperClass { //派生クラス
     public SubClass() {
-        Console.WriteLine(_pSuperClass); //アクセス可能
+        Debug.Log(_pSuperClass); //アクセス可能
     }
 }
 ```
@@ -718,7 +726,7 @@ using System;
 class Test {
     static void Main() {
         MyClass _myClass = new MyClass();
-        Console.WriteLine(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
+        Debug.Log(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
      }
 }
 
@@ -750,12 +758,12 @@ class MyClass {
     class MyClass {
         private string _string = "private変数";
         public MyClass() { //コンストラクタ
-            Console.WriteLine(_string); //private変数（ここはthisは無くても良い）
+            Debug.Log(_string); //private変数（ここはthisは無くても良い）
         }
         public void MyMethod() {
             string _string = "ローカル変数"; //ローカル変数宣言
-            Console.WriteLine(_string); //ローカル変数
-            Console.WriteLine(this._string); //private変数（ここではthisが必須）
+            Debug.Log(_string); //ローカル変数
+            Debug.Log(this._string); //private変数（ここではthisが必須）
         }
     }
     ```
@@ -773,11 +781,11 @@ class MyClass {
     private int _i = 999; //private変数
     public MyClass() { //コンストラクタ
         for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-            Console.WriteLine("A: " + _i); //0、1、2、...、5
-            Console.WriteLine("B: " + this._i); //999（private変数）
+            Debug.Log("A: " + _i); //0、1、2、...、5
+            Debug.Log("B: " + this._i); //999（private変数）
         }
-        //Console.WriteLine("C: " + _i); //error（ロカール変数はアクセス不可）
-        Console.WriteLine("C: " + this._i); //999（private変数はthisが必須）
+        //Debug.Log("C: " + _i); //error（ロカール変数はアクセス不可）
+        Debug.Log("C: " + this._i); //999（private変数はthisが必須）
     }
 }
 ```
@@ -798,9 +806,9 @@ using System;
 class Test {
     static void Main() {
         Nishimura _nishimura = new Nishimura();
-        Console.WriteLine(_nishimura.Age); //49
+        Debug.Log(_nishimura.Age); //49
         _nishimura.Age = 50; //値を変更可能
-        Console.WriteLine(_nishimura.Age); //50
+        Debug.Log(_nishimura.Age); //50
     }
 }
 
@@ -820,10 +828,10 @@ using System;
 class Test {
     static void Main() {
         Nishimura _nishimura = new Nishimura();
-        Console.WriteLine(_nishimura.Age); //49
+        Debug.Log(_nishimura.Age); //49
         //_nishimura.Age = 50; //error（値の変更は不可）
         _nishimura.NextYear();
-        Console.WriteLine(_nishimura.Age); //50
+        Debug.Log(_nishimura.Age); //50
     }
 }
 
@@ -852,35 +860,35 @@ using System;
 
 class Test {
     static void Main() {
-        Console.WriteLine(3 + 2); //5 (可算) 
-        Console.WriteLine(5 - 8); //-3 (減算)
-        Console.WriteLine(3 * 4); //12 (乗算)
-        Console.WriteLine(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-        Console.WriteLine(63 % 60); //3 (余剰)
+        Debug.Log(3 + 2); //5 (可算) 
+        Debug.Log(5 - 8); //-3 (減算)
+        Debug.Log(3 * 4); //12 (乗算)
+        Debug.Log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
+        Debug.Log(63 % 60); //3 (余剰)
         
         // 除算（注意が必要です）
-        Console.WriteLine(8 / 3); //2(除算) ←整数同士の場合、余りは切り捨てられる
-        Console.WriteLine(8 / 3.0); //2.66666666666667（小数点第14位までの値＝double型）
+        Debug.Log(8 / 3); //2(除算) ←整数同士の場合、余りは切り捨てられる
+        Debug.Log(8 / 3.0); //2.66666666666667（小数点第14位までの値＝double型）
 
         float _float = (float)8.0 / 3;
-        Console.WriteLine(_float); //2.666667（小数点第6位までの値）
+        Debug.Log(_float); //2.666667（小数点第6位までの値）
 
         decimal _decimal = (decimal)8.0 / 3;
-        Console.WriteLine(_decimal); //2.6666666666666666666666666667（第28位まで）
+        Debug.Log(_decimal); //2.6666666666666666666666666667（第28位まで）
 
         // 後ろに付けるインクリメント（デクリメント）
         // _hoge++（_hoge--）が返す値は、加算（減算）する前の_hogeの値です
         int _hoge = 0;
         int _piyo = _hoge++; //デクリメントの場合_hoge--
-        Console.WriteLine(_hoge); //1（デクリメントの場合-1）
-        Console.WriteLine(_piyo); //0（デクリメントの場合0）
+        Debug.Log(_hoge); //1（デクリメントの場合-1）
+        Debug.Log(_piyo); //0（デクリメントの場合0）
 
         // 前に付けるインクリメント（デクリメント）
         // ++_hoge（--_hoge）が返す値は、加算（減算）後の_hogeの値です
         _hoge = _piyo = 0;
         _piyo = ++_hoge; //デクリメントの場合--_hoge
-        Console.WriteLine(_hoge); //1（デクリメントの場合-1）
-        Console.WriteLine(_piyo); //1（デクリメントの場合-1） ←注目
+        Debug.Log(_hoge); //1（デクリメントの場合-1）
+        Debug.Log(_piyo); //1（デクリメントの場合-1） ←注目
     }
 }
 ```
@@ -901,7 +909,7 @@ using System;
 class Test {
     static void Main() { //自動的に最初に実行される
         const float PI = 3.14159f; //staticは記述しない（注意）
-        Console.WriteLine(PI); //=> 3.14159
+        Debug.Log(PI); //=> 3.14159
         //PI = 3.14; //error（変更不可）
     }
 }
@@ -927,7 +935,7 @@ using System;
 //メインクラス
 class Test {
     static void Main() { //自動的に最初に実行される
-        Console.WriteLine(MyMath.PI); //=> 3.14159
+        Debug.Log(MyMath.PI); //=> 3.14159
         //MyMath.PI = 3.14; //error（変更不可）
     }
 }
@@ -969,8 +977,8 @@ using System;
 class Test {
     static void Main() { //自動的に最初に実行される
         MyClass _myClass = new MyClass();
-        Console.WriteLine(_myClass.Tashizan(1,10)); //55
-        Console.WriteLine(_myClass.Tashizan(1,100)); //5050
+        Debug.Log(_myClass.Tashizan(1,10)); //55
+        Debug.Log(_myClass.Tashizan(1,100)); //5050
     }
 }
 
@@ -1002,7 +1010,7 @@ class Test { //メインクラス（Mainは不可）
         Method(); //"Test.Method()"
     }
     static void Method() { //staticなメソッドならMain()から呼び出せる
-        Console.WriteLine("Test.Method()");
+        Debug.Log("Test.Method()");
     }
 }
 ```
@@ -1024,8 +1032,8 @@ using System;
 class Test {
     static void Main() {
         Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
-        Console.WriteLine(_point.X); //100
-        Console.WriteLine(_point.Y); //150
+        Debug.Log(_point.X); //100
+        Debug.Log(_point.Y); //150
      }
 }
 
@@ -1052,9 +1060,9 @@ class Point {
 using System;
 class Test {
     static void Main() { //自動的に最初に実行される
-        Console.WriteLine(Math.Pow(2,0)); //1（2の0乗）
-        Console.WriteLine(Math.Pow(2,1)); //2（2の1乗）
-        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗）
+        Debug.Log(Math.Pow(2,0)); //1（2の0乗）
+        Debug.Log(Math.Pow(2,1)); //2（2の1乗）
+        Debug.Log(Math.Pow(2,8)); //256（2の8乗）
     }
 }
 
@@ -1087,7 +1095,7 @@ class MyClass {
     private int _point = 0;
     public void AddPoint(int arg = 1) { //初期値を1とした場合
         _point += arg;
-        Console.WriteLine(_point);
+        Debug.Log(_point);
     }
 }
 ```
@@ -1111,7 +1119,7 @@ class MyClass {
         foreach (int tmp in args) {
             _result += tmp;
         }
-        Console.WriteLine(_result);
+        Debug.Log(_result);
     }
 }
 ```
@@ -1132,7 +1140,7 @@ class Test {
 class MyClass {
     public void Rect(int startX=0, int startY=0, int endX=0, int endY=0) {
         int _result = (endX - startX) * (endY - startY);
-        Console.WriteLine("面積:" + _result + "m2");
+        Debug.Log("面積:" + _result + "m2");
     }
 }
 ```
@@ -1166,7 +1174,7 @@ class MyClass {
         Move = delegate(int arg) {
             string _tmp = "";
             for (int i=0; i<arg; i++) _tmp += "→";
-            Console.WriteLine(_tmp);
+            Debug.Log(_tmp);
         };
     }
     public void change() {
@@ -1175,13 +1183,13 @@ class MyClass {
             Move = delegate(int arg) {
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "→";
-                Console.WriteLine(_tmp);
+                Debug.Log(_tmp);
             }; //...匿名メソッドの再定義（メソッドの内容を変更）
         } else {
             Move = delegate(int arg) { //匿名メソッドの再定義（メソッドの内容を変更）
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "←";
-                Console.WriteLine(_tmp);
+                Debug.Log(_tmp);
             };
         }
     }
@@ -1217,7 +1225,7 @@ class MyClass {
         Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
             string _tmp = "";
             for (int i=0; i<arg; i++) _tmp += "→";
-            Console.WriteLine(_tmp);
+            Debug.Log(_tmp);
         }; //メソッドの内容を変更
     }
     public void change() {
@@ -1226,13 +1234,13 @@ class MyClass {
             Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "→";
-                Console.WriteLine(_tmp);
+                Debug.Log(_tmp);
             }; //メソッドの内容を変更
         } else {
             Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "←";
-                Console.WriteLine(_tmp);
+                Debug.Log(_tmp);
             }; //メソッドの内容を変更
         }
     }
@@ -1255,8 +1263,8 @@ using System;
 
 class Test {
     static void Main() { //インスタンス化せずにOSから自動的に呼ぶ出すため
-        Console.WriteLine(Math.PI); //3.14159265358979 ←静的変数の呼び出し
-        Console.WriteLine(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
+        Debug.Log(Math.PI); //3.14159265358979 ←静的変数の呼び出し
+        Debug.Log(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
     }
 }
 
@@ -1293,13 +1301,13 @@ class Test { //メインクラス
     static void Main() { //自動的最初に実行される
         int _age = 49;
         if (_age <= 20) {
-            Console.WriteLine("20歳以下");
+            Debug.Log("20歳以下");
         } else if (_age <= 40) {
-            Console.WriteLine("21〜40歳");
+            Debug.Log("21〜40歳");
         } else if (_age <= 60) {
-            Console.WriteLine("41〜60歳"); //これが出力される
+            Debug.Log("41〜60歳"); //これが出力される
         } else {
-            Console.WriteLine("61歳以上");
+            Debug.Log("61歳以上");
         }
     }
 }
@@ -1358,9 +1366,9 @@ class Test { //メインクラス
         static void Main() { //自動的最初に実行され
             bool _a = true, _b = false;
             if (_a ^ _b) {
-                Console.WriteLine("どちらか一方だけtrueです");
+                Debug.Log("どちらか一方だけtrueです");
             } else {
-                Console.WriteLine("両方共にtrueかfalseです");
+                Debug.Log("両方共にtrueかfalseです");
             }
         }
     }
@@ -1374,9 +1382,9 @@ class Test { //メインクラス
         static void Main() {
             bool _a = true, _b = false;
             if ((_a || _b) && !(_a && _b)) {
-                Console.WriteLine("どちらか一方だけtrueです");
+                Debug.Log("どちらか一方だけtrueです");
             } else {
-                Console.WriteLine("両方共にtrueかfalseです");
+                Debug.Log("両方共にtrueかfalseです");
             }
         }
     }
@@ -1405,7 +1413,7 @@ class Test {
     static void Main() {
         int _age = 49;
         string _result = (_age < 60) ? "現役" : "退職";
-        Console.WriteLine(_result); //"現役"
+        Debug.Log(_result); //"現役"
     }
 }
 ```
@@ -1428,7 +1436,7 @@ class Test {
         string _result = (_age < 20) ? "未成年" :
         _result = (_age < 60) ? "現役" :
         _result = "退職";
-        Console.WriteLine(_result); //"現役"
+        Debug.Log(_result); //"現役"
     }
 }
 ```
@@ -1451,19 +1459,19 @@ class Test {
         string _name = "TAKASHI";
         switch (_name) { //判別式には「整数型」「文字型」しか使えない!
             case "TAKASHI" :
-                Console.WriteLine("父");
+                Debug.Log("父");
                 break;
             case "HANAKO" : 
-                Console.WriteLine("母");
+                Debug.Log("母");
                 break;
             case "TARO" :
-                Console.WriteLine("長男");
+                Debug.Log("長男");
                 break;
             case "JIRO" :
-                Console.WriteLine("次男");
+                Debug.Log("次男");
                 break;
             default:
-                Console.WriteLine("家族以外");
+                Debug.Log("家族以外");
                 break; //defaultのbreakは省略不可（注意）
         }
     }
@@ -1484,10 +1492,10 @@ class Test {
             int _age = 49;
             switch (true) { //bool型はエラー（注意）
                 case _age < 20 :
-                    Console.WriteLine("未成年");
+                    Debug.Log("未成年");
                     break;
                 default:
-                    Console.WriteLine("成人");
+                    Debug.Log("成人");
                     break;
             }
         }
@@ -1511,14 +1519,14 @@ class Test {
         switch (_name) {
             case "TAKASHI" : //breakが無いと次のcaseも処理
             case "HANAKO" : 
-                Console.WriteLine("親");
+                Debug.Log("親");
                 break;
             case "TARO" : //breakが無いと次のcaseも処理
             case "JIRO" :
-                Console.WriteLine("子");
+                Debug.Log("子");
                 break;
             default:
-                Console.WriteLine("家族以外");
+                Debug.Log("家族以外");
                 break; //defaultのbreakは省略不可
         }
     }
@@ -1549,9 +1557,9 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     class Test {
         static void Main() {
             for (int i=0; i<10; i++) { //ここでint型を宣言すると...
-                Console.WriteLine(i); //0,1,2,3,4,5,6,7,8,9
+                Debug.Log(i); //0,1,2,3,4,5,6,7,8,9
             }
-            //Console.WriteLine(i); //error（for文の外では使用不可）
+            //Debug.Log(i); //error（for文の外では使用不可）
         }
     }
     ```
@@ -1564,9 +1572,9 @@ for (①初期化; ②ループ判定式; ③更新処理) {
         static void Main() {
             int _i; //ここでint型を宣言すると...
             for (_i=0; _i<10; _i++) {
-                Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
+                Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
             }
-            Console.WriteLine(_i); //10（for文の外でも有効）
+            Debug.Log(_i); //10（for文の外でも有効）
         }
     }
     ```
@@ -1578,7 +1586,7 @@ using System;
 class Test {
     static void Main() {
         for (int i=0; i<50; i+=5) { //5つずつアップする場合...
-            Console.WriteLine(i); //0,5,10,15,20,25,30,35,40,45
+            Debug.Log(i); //0,5,10,15,20,25,30,35,40,45
         }
     }
 }
@@ -1592,7 +1600,7 @@ class Test {
     static void Main() {
         for (int i=1; i<=5; i++) {
             for (int j=1; j<=5; j++) {
-                Console.WriteLine("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+                Debug.Log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
             }
         }
     }
@@ -1609,9 +1617,9 @@ class Test {
         for (;;) { //①初期化 ②ループ判定式 ③更新処理...の全てを省略すると無限ループ
             _count++;
             if (_count > 100) break; //ループを終了
-            Console.WriteLine(_count); //1,2,....,99,100
+            Debug.Log(_count); //1,2,....,99,100
         }
-        Console.WriteLine("for文終了"); //★
+        Debug.Log("for文終了"); //★
     }
 }
 ```
@@ -1626,7 +1634,7 @@ class Test {
             if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
                 continue; //for文の残処理をスキップしてfor文の次の反復を開始する
             }
-            Console.WriteLine(i); //3,6,9,12,15,18（3の倍数）
+            Debug.Log(i); //3,6,9,12,15,18（3の倍数）
         }
     }
 }
@@ -1644,7 +1652,7 @@ class Test {
 ### 基本構文
 ```
 foreach (データ型 変数名 in 配列等) {
-    Console.WriteLine(変数名);
+    Debug.Log(変数名);
 }
 ```
 
@@ -1656,7 +1664,7 @@ class Test {
     static void Main() {
         string[] _array = {"A","B","C","D"}; 
         foreach (string value in _array) {
-            Console.WriteLine(value); //"A"→"B"→"C"→"D"
+            Debug.Log(value); //"A"→"B"→"C"→"D"
         }
     }
 }
@@ -1673,7 +1681,7 @@ class Test {
             {"x0y1","x1y1","x2y1"}  //1行目
         }; 
         foreach (string value in _array) {
-            Console.WriteLine(value); //"x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
+            Debug.Log(value); //"x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
         }
     }
 }
@@ -1690,9 +1698,9 @@ class Test {
             _array[1] = new dynamic[]{"I","い"};
         foreach (object[] theArray in _array) {
             foreach (object value in theArray) {
-                Console.WriteLine(value); //"A"→"あ"、"I"→"い"
+                Debug.Log(value); //"A"→"あ"、"I"→"い"
             }
-            Console.WriteLine(); //オプション（改行）
+            Debug.Log(); //オプション（改行）
         }
     }
 }
@@ -1709,7 +1717,7 @@ class Test {
         _array.Add("TAKASHI");
         _array.Add(49);
         foreach (object value in _array) {
-            Console.WriteLine(value); //"TAKASHI"→49
+            Debug.Log(value); //"TAKASHI"→49
         }
     }
 }
@@ -1724,7 +1732,7 @@ class Test {
     static void Main() {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (string value in _list) {
-            Console.WriteLine(value); //"A"→"B"
+            Debug.Log(value); //"A"→"B"
         }
     }
 }
@@ -1741,7 +1749,7 @@ class Test {
             {"A", "あ"},    {"I", "い"}
         };
         foreach (KeyValuePair<string, string> tmp in _dic) {
-            Console.WriteLine(tmp.Key + ":" + tmp.Value); //A:あ → I:い
+            Debug.Log(tmp.Key + ":" + tmp.Value); //A:あ → I:い
         }
     }
 }
@@ -1772,10 +1780,10 @@ class Test {
     static void Main() {
         int _i = 0;
         while (_i < 10) { //ループ判定式にはbool型しか使えない
-            Console.WriteLine(_i); //0,1,2,3,4,5,6,7,8,9
+            Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
             _i++;
         }
-        Console.WriteLine(_i); //10（変数はまだ有効）
+        Debug.Log(_i); //10（変数はまだ有効）
     }
 }
 ```
@@ -1796,7 +1804,7 @@ class Test {
     static void Main() {
         int _i = 0;
         do {
-            Console.WriteLine(_i); //0 ←ループ判定式はfalseだが１回実行される
+            Debug.Log(_i); //0 ←ループ判定式はfalseだが１回実行される
             _i++;
         } while(_i < 0);
     }
@@ -1815,9 +1823,9 @@ class Test {
             if (_count > 100) {
                 break; //break文を使ってループを終了→★
             }
-            Console.WriteLine(_count); //1,2,....,99,100（1〜100までを出力）
+            Debug.Log(_count); //1,2,....,99,100（1〜100までを出力）
         }
-        Console.WriteLine("while文終了"); //★
+        Debug.Log("while文終了"); //★
     }
 }
 ```
@@ -1834,7 +1842,7 @@ class Test {
                 _i++;
                 continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
             }
-            Console.WriteLine(_i); //3,6,9,12,15,18（3の倍数を出力）
+            Debug.Log(_i); //3,6,9,12,15,18（3の倍数を出力）
             _i++;
         }
     }
@@ -1902,10 +1910,10 @@ string[] _array3 = {"A","B","C","D"}; //簡単
             {"","","","1234"}};    //4行目
 
             //確認
-            Console.WriteLine(_coinlocker[0,0]); //"1083"
-            Console.WriteLine(_coinlocker[0,1]); //"7777"
-            Console.WriteLine(_coinlocker[2,1]); //"0135"
-            Console.WriteLine(_coinlocker[4,3]); //"1234"
+            Debug.Log(_coinlocker[0,0]); //"1083"
+            Debug.Log(_coinlocker[0,1]); //"7777"
+            Debug.Log(_coinlocker[2,1]); //"0135"
+            Debug.Log(_coinlocker[4,3]); //"1234"
         }
     }
     ```
@@ -1946,7 +1954,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
             };
             foreach (dynamic[] theArray in _array) { //確認 (コマンドライン版の例）
                 foreach (object theValue in theArray) {
-                    Console.WriteLine(theValue);
+                    Debug.Log(theValue);
                 }
             }
         }
@@ -1961,7 +1969,7 @@ class Test {
     static void Main() {
         string[] _array = {"A","B","C","D"};
         for (int i=0; i<_array.Length; i++) { //配列の要素の数
-            Console.WriteLine(_array[i]);
+            Debug.Log(_array[i]);
         }
     }
 }
@@ -1976,7 +1984,7 @@ class Test {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (string value in _array) {
-            Console.WriteLine(value); //"A"→"B"→"C"→"D"
+            Debug.Log(value); //"A"→"B"→"C"→"D"
         }
     }
 }
@@ -2011,7 +2019,7 @@ class Test {
     static void Main() {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (object value in _list) {
-            Console.WriteLine(value); //"A"→"B"
+            Debug.Log(value); //"A"→"B"
         }
     }
 }
@@ -2034,7 +2042,7 @@ class Test {
         _list.Add("A");
         _list.Add("B");
         foreach (object value in _list) {
-            Console.WriteLine(value); //"A"→"B"
+            Debug.Log(value); //"A"→"B"
         }
     }
 }
@@ -2056,7 +2064,7 @@ class Test {
         List<string> _list = new List<string>() { "A", "B" };
         _list.Insert(0,"C"); //先頭に追加する場合は0
         foreach (object value in _list) {
-            Console.WriteLine(value); //"C"→"A"→"B"
+            Debug.Log(value); //"C"→"A"→"B"
         }
     }
 }
@@ -2078,7 +2086,7 @@ class Test {
         List<string> _list = new List<string>() { "A", "B" };
         _list[0] = "C"; //0番目を変更する場合
         foreach (object value in _list) {
-            Console.WriteLine(value); //"C"→"B"
+            Debug.Log(value); //"C"→"B"
         }
     }
 }
@@ -2100,7 +2108,7 @@ class Test {
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list[2] = null;
         foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"B"→（null）
+            Debug.Log(value); // "A"→"B"→（null）
         }
     }
 }
@@ -2122,7 +2130,7 @@ class Test {
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list.Remove("B");
         foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"C"
+            Debug.Log(value); // "A"→"C"
         }
     }
 }
@@ -2145,7 +2153,7 @@ class Test {
         _list.RemoveAt(0); //先頭を削除する場合
         //_list.RemoveAt(_list.Capacity-1); //最後を削除する場合
         foreach (object value in _list) {
-            Console.WriteLine(value); // "B"→"C"
+            Debug.Log(value); // "B"→"C"
         }
     }
 }
@@ -2171,7 +2179,7 @@ class Test {
         //]_list.RemoveRange(1, _list.Capacity-1); //1番目〜最後を削除する場合
         //_list.Clear(); //全て削除する場合
         foreach (object value in _list) {
-            Console.WriteLine(value); // "A"→"B"
+            Debug.Log(value); // "A"→"B"
         }
     }
 }
@@ -2194,7 +2202,7 @@ class Test {
         List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
         //List<string> _result = _list.GetRange(1, _list.Capacity-1);//1番目〜最後を抽出
         foreach (object value in _result) {
-            Console.WriteLine(value); // "C"→"D"
+            Debug.Log(value); // "C"→"D"
         }
     }
 }
@@ -2215,7 +2223,7 @@ using System.Collections.Generic; //Listに必要
 class Test {
     static void Main() {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        Console.WriteLine(_list.IndexOf("C",0)); //2
+        Debug.Log(_list.IndexOf("C",0)); //2
         //最初から検索する場合（第2引数が0の場合は省略可能）
     }
 }
@@ -2236,7 +2244,7 @@ using System.Collections.Generic; //Listに必要
 class Test {
     static void Main() {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
-        Console.WriteLine(_list.LastIndexOf("C")); //2
+        Debug.Log(_list.LastIndexOf("C")); //2
         //最初から検索する場合（第2引数が0の場合は省略可能）
     }
 }
@@ -2257,8 +2265,8 @@ class Test {
     static void Main() {
         //List<string> _list = new List<string>() { "A", "B", "C"};
         List<string> _list = new List<string>(3); //空のArrayListを作成
-        Console.WriteLine(_list.Count); //0 ←実際に格納されている要素の数
-        Console.WriteLine(_list.Capacity); //3 ←格納可能な要素の数
+        Debug.Log(_list.Count); //0 ←実際に格納されている要素の数
+        Debug.Log(_list.Capacity); //3 ←格納可能な要素の数
     }
 }
 ```
@@ -2273,7 +2281,7 @@ class Test {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         _list.Reverse();
         foreach (object value in _list) {
-            Console.WriteLine(value); // "D"→"C"→"B"→"A"
+            Debug.Log(value); // "D"→"C"→"B"→"A"
         }
     }
 }
@@ -2295,7 +2303,7 @@ class Test {
         List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
         _list.Sort();
         foreach (object value in _list) {
-            Console.WriteLine(value); // "01"→"02"→"03"→"A"→"B"→"C"
+            Debug.Log(value); // "01"→"02"→"03"→"A"→"B"→"C"
         }
     }
 }
@@ -2316,7 +2324,7 @@ class Test {
         _list1.AddRange(_list2);
 
         foreach (object value in _list1) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"→"E"→"F"
+            Debug.Log(value); // "A"→"B"→"C"→"D"→"E"→"F"
         }
     }
 }
@@ -2332,8 +2340,8 @@ class Test {
         List<string> _list = new List<string>() { "A", "B", "C" };
         List<string> _listCopy = new List<string>(_list); //簡易型コピー方法
         _list[0] = "X";
-        Console.WriteLine(_list[0]); //"X"
-        Console.WriteLine(_listCopy[0]); //"A（参照コピーではない）
+        Debug.Log(_list[0]); //"X"
+        Debug.Log(_listCopy[0]); //"A（参照コピーではない）
     }
 }
 ```
@@ -2354,7 +2362,7 @@ class Test {
 
         //確認
         foreach (object value in _array) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"
+            Debug.Log(value); // "A"→"B"→"C"→"D"
         }
     }
 }
@@ -2373,7 +2381,7 @@ class Test {
 
             //全要素を取り出す
             foreach (object value in _list) {
-                Console.WriteLine(value); // "A"→"B"→"C"
+                Debug.Log(value); // "A"→"B"→"C"
             }
         }
     }
@@ -2390,7 +2398,7 @@ class Test {
 
             //全要素を取り出す
             for (int i=0; i < _list.Count; i++) {
-                Console.WriteLine(_list[i]); // "A"→"B"→"C"
+                Debug.Log(_list[i]); // "A"→"B"→"C"
             }
         }
     }
@@ -2440,7 +2448,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
             _dic["A"] = "ア"; //上書き変更
 
             //④取得
-            Console.WriteLine(_dic["A"]); //"ア"
+            Debug.Log(_dic["A"]); //"ア"
         }
     }
     ```
@@ -2457,8 +2465,8 @@ class Test {
             {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
         };
 
-        Console.WriteLine(_dic.ContainsKey("B")); //任意のキーがあるか否か（True／False）
-        Console.WriteLine(_dic.ContainsValue("え")); //任意の値があるか否か（True／False）
+        Debug.Log(_dic.ContainsKey("B")); //任意のキーがあるか否か（True／False）
+        Debug.Log(_dic.ContainsValue("え")); //任意の値があるか否か（True／False）
     }
 }
 ```
@@ -2487,8 +2495,8 @@ class Test {
     static void Main() {
         Robot _robot = new Robot(500);
         _robot.Move();
-        Console.WriteLine(_robot.X); //510
-        //Console.WriteLine(this); //error（staticメソッド内では参照できず）
+        Debug.Log(_robot.X); //510
+        //Debug.Log(this); //error（staticメソッド内では参照できず）
     }
 }
 
@@ -2498,7 +2506,7 @@ class Robot {
     
     public Robot(int _x) { //引数
         this._x = _x; //①thisが無いとWarning（引数を参照してしまう）
-        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
+        Debug.Log(this); //Robot（このメソッドが実行されたオブジェクト）
     }
 
     public void Move() {
@@ -2506,7 +2514,7 @@ class Robot {
         _x = this._x + 10; //②thisが無いとerror（ローカル変数を参照してしまう）
         if (_x >= 1920) _x = 0;
         this._x = _x; //②thisが無いとWarning（ローカル変数を参照してしまう）
-        Console.WriteLine(this); //Robot（このメソッドが実行されたオブジェクト）
+        Debug.Log(this); //Robot（このメソッドが実行されたオブジェクト）
     }
 
     public int X {
@@ -2539,11 +2547,11 @@ class Test {
     static void Main() {
         //①文字列リテラルを使う
         string _string1 = "ABCDE";
-        Console.WriteLine(_string1); //"ABCDE"
+        Debug.Log(_string1); //"ABCDE"
 
         //②new演算子とchar型配列を使う
         string _string2 = new string(new char[]{'A','B','C','D','E'});
-        Console.WriteLine(_string2); //"ABCDE" 
+        Debug.Log(_string2); //"ABCDE" 
     }
 }
 ```
@@ -2555,7 +2563,7 @@ using System;
 class Test {
     static void Main() {
         string _string = "ABCDE";
-        Console.WriteLine(_string.Length); //5
+        Debug.Log(_string.Length); //5
     }
 }
 ```
@@ -2573,9 +2581,9 @@ using System;
 class Test {
     static void Main() {
         string _string = "0123456789";
-        Console.WriteLine(_string[4]); //"4"
-        Console.WriteLine(_string.Substring(4)); //"456789"
-        Console.WriteLine(_string.Substring(4,3)); //"456"
+        Debug.Log(_string[4]); //"4"
+        Debug.Log(_string.Substring(4)); //"456789"
+        Debug.Log(_string.Substring(4,3)); //"456"
     }
 }
 ```
@@ -2592,7 +2600,7 @@ using System;
 class Test {
     static void Main() {
         string _string = "にしむらたかし";
-        Console.WriteLine(_string.Remove(0, 4)); //"たかし"
+        Debug.Log(_string.Remove(0, 4)); //"たかし"
     }
 }
 ```
@@ -2610,7 +2618,7 @@ using System;
 class Test {
     static void Main() {
         string _string = "2017年04月19日";
-        Console.WriteLine(_string.Replace("2017年", "平成29年")); //"平成29年04月19日"
+        Debug.Log(_string.Replace("2017年", "平成29年")); //"平成29年04月19日"
     }
 }
 ```
@@ -2632,8 +2640,8 @@ class Test {
         int _i = 0;
         while (_string.IndexOf(_word, _i) != -1) { //見つからない場合「-1」
             int _num = _string.IndexOf(_word, _i);
-            Console.WriteLine(_num); //2、10 ←"CD"が見つかった位置を出力
-            Console.WriteLine(_string.Substring(_num, _word.Length)); //"CD"、"CD"
+            Debug.Log(_num); //2、10 ←"CD"が見つかった位置を出力
+            Debug.Log(_string.Substring(_num, _word.Length)); //"CD"、"CD"
             _i = _num + 1;
         }
     }
@@ -2654,7 +2662,7 @@ class Test {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (object value in _array) {
-            Console.WriteLine(value); // "A"→"B"→"C"→"D"
+            Debug.Log(value); // "A"→"B"→"C"→"D"
         }
     }
 }
@@ -2681,7 +2689,7 @@ class Test {
         string _string = "cabacbbacbcba";
         //"a"がいくつ含まれるか
         MatchCollection _mc = Regex.Matches(_string, "a");
-        Console.WriteLine(_mc.Count); //4
+        Debug.Log(_mc.Count); //4
     }
 }
 ```
@@ -2701,7 +2709,7 @@ class Test {
         */
         Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");//②
         Match _match = _regex.Match(_string);
-        Console.WriteLine(_match.Success); //True ←パスワードとして条件に合致
+        Debug.Log(_match.Success); //True ←パスワードとして条件に合致
     }
 }
 ```
@@ -2716,7 +2724,7 @@ class Test {
         string _string = "123-4567"; //任意の郵便番号
         Regex _regex = new Regex("\\d{3}-\\d{4}");
         Match _match = _regex.Match(_string);
-        Console.WriteLine(_match.Success); //True ←郵便番号として条件に合致
+        Debug.Log(_match.Success); //True ←郵便番号として条件に合致
     }
 }
 ```
@@ -2755,7 +2763,7 @@ class Test {
     static void Main() {
         Moneybox _moneybox = new Moneybox();
         _moneybox.Add(5000);
-        Console.WriteLine(_moneybox.Total); //5000
+        Debug.Log(_moneybox.Total); //5000
     }
 }
 
@@ -2814,13 +2822,13 @@ class Test {
 }
 abstract class AbstractClass { //「抽象クラス」の定義
     public void Common() { //共通のメソッド
-        Console.WriteLine("AbstractClass.Common()");
+        Debug.Log("AbstractClass.Common()");
     }
     public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
 }
 class SubClass : AbstractClass { //抽象クラスを継承
     public override void Method() { //オーバーライドして実際の処理を記述
-        Console.WriteLine("SubClass.Method()"); //実際の処理
+        Debug.Log("SubClass.Method()"); //実際の処理
     }
 }
 ```
@@ -2861,12 +2869,12 @@ class Test {
 }
 class SuperClass { //基本クラス
     public SuperClass(string p1, string p2) { //基本クラスのコンストラクタ
-        Console.WriteLine("SuperClass:" + p1 + ":" + p2); //①番目（p1は"A"、p2は"B"）
+        Debug.Log("SuperClass:" + p1 + ":" + p2); //①番目（p1は"A"、p2は"B"）
     }
 }
 class SubClass : SuperClass { //派生クラス
     public SubClass(string p) : base(p, "B") { //派生クラスのコンストラクタ
-        Console.WriteLine("SubClass:" + p); //②番目（pは"A"）
+        Debug.Log("SubClass:" + p); //②番目（pは"A"）
     } 
 }
 ```
@@ -2917,13 +2925,13 @@ class Test {
 
 class SuperClass { //基本クラス
     public virtual void Method() { //オーバーライドを許可
-        Console.WriteLine("SuperClass.Method");
+        Debug.Log("SuperClass.Method");
     }
 }
 
 class SubClass : SuperClass { //派生クラス（基本クラスを継承）
     public override void Method() { //基本クラスのメソッドのオーバーライド
-        Console.WriteLine("SubClass.Method");
+        Debug.Log("SubClass.Method");
         base.Method(); //"SuperClass.Method"←基本クラスのメソッド実行（オプション）
     } 
 }
@@ -2962,7 +2970,7 @@ abstract class AbstractClass { //抽象クラス
 
 class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
     public override void Method() { //オーバーライドして実際の処理を記述
-        Console.WriteLine("AbstractClass.Method");
+        Debug.Log("AbstractClass.Method");
     } 
 }
 ```
@@ -3014,13 +3022,13 @@ class Test {
         _myGame.GameOverEvent += GameOverHandler_myGame; //複数登録可能（+=、-=のみ）
         //_myGame.GameOverEvent -= GameOverHandler_myGame; //イベントハンドラの削除
         for (int i=0; i<10; i++) { //10回繰返す場合…
-            Console.WriteLine("得点:" + _myGame.Point);
+            Debug.Log("得点:" + _myGame.Point);
             _myGame.AddPoint();
         }
     }
 
     static void GameOverHandler_myGame(object arg) { //イベントハンドラ
-        Console.WriteLine("ゲームオーバー! " + arg); //"ゲームオーバー! MyGame"
+        Debug.Log("ゲームオーバー! " + arg); //"ゲームオーバー! MyGame"
     }
 }
 
@@ -3058,11 +3066,11 @@ class MyGame {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Sin(0)); //0 ←0°
-        Console.WriteLine(Math.Sin(Math.PI/2)); //1 ←90°
-        Console.WriteLine(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
-        Console.WriteLine(Math.Sin(Math.PI*3/2)); //-1 ←270°
-        Console.WriteLine(Math.Sin(Math.PI*2)); //-2.44921270764475E-16（≒0）←360°
+        Debug.Log(Math.Sin(0)); //0 ←0°
+        Debug.Log(Math.Sin(Math.PI/2)); //1 ←90°
+        Debug.Log(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
+        Debug.Log(Math.Sin(Math.PI*3/2)); //-1 ←270°
+        Debug.Log(Math.Sin(Math.PI*2)); //-2.44921270764475E-16（≒0）←360°
     }
 }
 ```
@@ -3073,11 +3081,11 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Cos(0)); //1 ←0°
-        Console.WriteLine(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
-        Console.WriteLine(Math.Cos(Math.PI)); //-1 ←180°
-        Console.WriteLine(Math.Cos(Math.PI*3/2)); //-1.83690953073357E-16（≒0）←270°
-        Console.WriteLine(Math.Cos(Math.PI*2)); //1 ←360°
+        Debug.Log(Math.Cos(0)); //1 ←0°
+        Debug.Log(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
+        Debug.Log(Math.Cos(Math.PI)); //-1 ←180°
+        Debug.Log(Math.Cos(Math.PI*3/2)); //-1.83690953073357E-16（≒0）←270°
+        Debug.Log(Math.Cos(Math.PI*2)); //1 ←360°
     }
 }
 ```
@@ -3093,8 +3101,8 @@ class Test {
         //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
         double _disX = Math.Sqrt(3); //√3のこと
         int _disY = 1;
-        Console.WriteLine(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
-        Console.WriteLine(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
+        Debug.Log(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
+        Debug.Log(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
     }
 }
 ```
@@ -3105,7 +3113,7 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
+        Debug.Log(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
     }
 }
 ```
@@ -3116,8 +3124,8 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Floor(1.001)); //1
-        Console.WriteLine(Math.Floor(1.999)); //1
+        Debug.Log(Math.Floor(1.001)); //1
+        Debug.Log(Math.Floor(1.999)); //1
     }
 }
 ```
@@ -3128,8 +3136,8 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Ceiling(1.001)); //2
-        Console.WriteLine(Math.Ceiling(1.999)); //2
+        Debug.Log(Math.Ceiling(1.001)); //2
+        Debug.Log(Math.Ceiling(1.999)); //2
     }
 }
 ```
@@ -3140,8 +3148,8 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Round(1.499)); //1
-        Console.WriteLine(Math.Round(1.500)); //2
+        Debug.Log(Math.Round(1.499)); //1
+        Debug.Log(Math.Round(1.500)); //2
     }
 }
 ```
@@ -3152,8 +3160,8 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Abs(100)); //100
-        Console.WriteLine(Math.Abs(-100)); //100
+        Debug.Log(Math.Abs(100)); //100
+        Debug.Log(Math.Abs(-100)); //100
     }
 }
 ```
@@ -3164,8 +3172,8 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Pow(2, 0)); //1（2の0乗）
-        Console.WriteLine(Math.Pow(2, 8)); //256（2の8乗）
+        Debug.Log(Math.Pow(2, 0)); //1（2の0乗）
+        Debug.Log(Math.Pow(2, 8)); //256（2の8乗）
     }
 }
 ```
@@ -3176,10 +3184,10 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
-        Console.WriteLine(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
-        Console.WriteLine(Math.Sqrt(4)); //2
-        Console.WriteLine(Math.Sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+        Debug.Log(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
+        Debug.Log(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
+        Debug.Log(Math.Sqrt(4)); //2
+        Debug.Log(Math.Sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
     }
 }
 ```
@@ -3190,7 +3198,7 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
+        Debug.Log(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
     }
 }
 ```
@@ -3201,7 +3209,7 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
+        Debug.Log(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
     }
 }
 ```
@@ -3212,9 +3220,9 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        Console.WriteLine(Math.Sign(-0.1)); //-1（負の値）
-        Console.WriteLine(Math.Sign(0)); //0（0）
-        Console.WriteLine(Math.Sign(0.1)); //1（正の値）
+        Debug.Log(Math.Sign(-0.1)); //-1（負の値）
+        Debug.Log(Math.Sign(0)); //0（0）
+        Debug.Log(Math.Sign(0.1)); //1（正の値）
     }
 }
 ```
@@ -3247,19 +3255,19 @@ class Test {
         Random _random = new Random();
         
         //0〜1.0までの乱数
-        Console.WriteLine(_random.NextDouble()); //0.0432652673350072
-        Console.WriteLine(_random.NextDouble()); //0.78664848541429
-        Console.WriteLine(_random.NextDouble()); //0.545385330900118
+        Debug.Log(_random.NextDouble()); //0.0432652673350072
+        Debug.Log(_random.NextDouble()); //0.78664848541429
+        Debug.Log(_random.NextDouble()); //0.545385330900118
         
         //整数値の乱数
-        Console.WriteLine(_random.Next()); //369339869
-        Console.WriteLine(_random.Next()); //1966699381
-        Console.WriteLine(_random.Next()); //6900123
+        Debug.Log(_random.Next()); //369339869
+        Debug.Log(_random.Next()); //1966699381
+        Debug.Log(_random.Next()); //6900123
         
         //任意の値までの整数値の乱数
-        Console.WriteLine(_random.Next(10)); //0
-        Console.WriteLine(_random.Next(10)); //3
-        Console.WriteLine(_random.Next(10)); //9
+        Debug.Log(_random.Next(10)); //0
+        Debug.Log(_random.Next(10)); //3
+        Debug.Log(_random.Next(10)); //9
     }
 }
 ```
@@ -3295,22 +3303,22 @@ using System;
 class Test {
     static void Main() {
         DateTime _now = DateTime.Now;
-        Console.WriteLine(_now); //4/21/2017 10:16:04 AM
-        Console.WriteLine(_now.Year); //2017
-        Console.WriteLine(_now.Month); //4
-        Console.WriteLine(_now.Day); //21
-        Console.WriteLine(_now.DayOfYear); //111（元日からの日数）
-        Console.WriteLine(_now.DayOfWeek); //Friday
-        Console.WriteLine(_now.Hour); //10
-        Console.WriteLine(_now.Minute); //16
-        Console.WriteLine(_now.Second); //4
-        Console.WriteLine(_now.Millisecond); //337
-        Console.WriteLine(_now.Ticks); //636283665643372990（100ナノ秒単位）
+        Debug.Log(_now); //4/21/2017 10:16:04 AM
+        Debug.Log(_now.Year); //2017
+        Debug.Log(_now.Month); //4
+        Debug.Log(_now.Day); //21
+        Debug.Log(_now.DayOfYear); //111（元日からの日数）
+        Debug.Log(_now.DayOfWeek); //Friday
+        Debug.Log(_now.Hour); //10
+        Debug.Log(_now.Minute); //16
+        Debug.Log(_now.Second); //4
+        Debug.Log(_now.Millisecond); //337
+        Debug.Log(_now.Ticks); //636283665643372990（100ナノ秒単位）
         //"hh:mm:ss"で現在の時間を表示する方法
         string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
         string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
         string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
-        Console.WriteLine(_h + ":" + _m + ":" + _s); //"10:16:04"
+        Debug.Log(_h + ":" + _m + ":" + _s); //"10:16:04"
     }
 }
 ```
@@ -3344,7 +3352,7 @@ class Test {
     }
 
     static void Loop(object arg) { //1000ミリ秒毎に実行される
-        Console.WriteLine(arg); //System.Threading.Timer
+        Debug.Log(arg); //System.Threading.Timer
         //_timer.Change(Timeout.Infinite, Timeout.Infinite); //停止 ←力技
     }
 }
@@ -3374,8 +3382,8 @@ class Test {
     }
     
     static void Loop(object arg1, EventArgs arg2) { //1000ミリ秒毎に実行される
-        Console.WriteLine(arg1); //System.Timers.Timer（タイマー本体）
-        Console.WriteLine(arg2); //System.Timers.ElapsedEventArgs（各種情報）
+        Debug.Log(arg1); //System.Timers.Timer（タイマー本体）
+        Debug.Log(arg2); //System.Timers.ElapsedEventArgs（各種情報）
         //_timer.Stop(); //停止 ←この場合１回で停止
     }
 }
@@ -3401,7 +3409,7 @@ class Test {
         for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
             //速度計測したい処理
         }
-        Console.WriteLine(DateTime.Now.Ticks - _start); //33060210（≒3.3秒）
+        Debug.Log(DateTime.Now.Ticks - _start); //33060210（≒3.3秒）
     }
 }
 ```
@@ -3423,8 +3431,8 @@ class Program     {
             //速度計測したい処理
         }
         _stopWatch.Stop(); //計測終了
-        Console.WriteLine(_stopWatch.ElapsedMilliseconds); //3230（ミリ秒）
-        Console.WriteLine(_stopWatch.Elapsed); //00:00:03.2302265（秒）
+        Debug.Log(_stopWatch.ElapsedMilliseconds); //3230（ミリ秒）
+        Debug.Log(_stopWatch.Elapsed); //00:00:03.2302265（秒）
     }
 }
 ```
@@ -3458,7 +3466,7 @@ class Test {
         StreamReader _stream = new StreamReader(_path); //.txt以外も可能
         string _string = _stream.ReadToEnd(); //全ての内容を読み込む
         _stream.Close(); //閉じる
-        Console.WriteLine(_string); //結果を出力
+        Debug.Log(_string); //結果を出力
     }
 }
 ```
@@ -3474,7 +3482,7 @@ class Test {
         StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
         string _string = _stream.ReadToEnd(); //全ての内容を読み込む
         _stream.Close(); //閉じる
-        Console.WriteLine(_string); //結果を出力
+        Debug.Log(_string); //結果を出力
     }
 }
 ```
