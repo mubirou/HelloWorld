@@ -628,7 +628,6 @@ class ClassB { //この内容だけが継承と異なる
 作成者：Takashi Nishimura  
 作成日：2018年03月12日
 
-============================================================
 
 <a name="変数とスコープ"></a>
 # <b>変数とスコープ</b>
@@ -656,10 +655,11 @@ public データ型 変数名; //public変数宣言（初期化も可）
 
 * 悪い例
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+	void Start () {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
      }
@@ -684,13 +684,14 @@ class 基本クラス { //スーパークラス定義
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+	void Start () {
         SubClass _subClass = new SubClass();
         Debug.Log(_subClass); //SubClass
-        //Debug.Log(_subClass._pSuperClass); //error（アクセス不可）
+        //Debug.Log(_subClass._pSuperClass); //error CS0122（アクセス不可）
      }
 }
 
@@ -700,7 +701,7 @@ class SuperClass { //基本クラス
 
 class SubClass : SuperClass { //派生クラス
     public SubClass() {
-        Debug.Log(_pSuperClass); //アクセス可能
+        Debug.Log(_pSuperClass); //"SuperClass変数"（アクセス可能）
     }
 }
 ```
@@ -721,10 +722,11 @@ private データ型 変数名; //private変数宣言（初期化も可）←pri
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+	void Start () {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
      }
@@ -746,10 +748,11 @@ class MyClass {
 
 1. メソッド内で宣言する場合
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             MyClass _myClass = new MyClass();
             _myClass.MyMethod();
         }
@@ -762,33 +765,35 @@ class MyClass {
         }
         public void MyMethod() {
             string _string = "ローカル変数"; //ローカル変数宣言
-            Debug.Log(_string); //ローカル変数
-            Debug.Log(this._string); //private変数（ここではthisが必須）
+            Debug.Log(_string); //"ローカル変数"
+            Debug.Log(this._string); //"private変数"（ここではthisが必須）
         }
     }
     ```
 
+============================================================
+
 1. for 文内で宣言する場合（foreach 文も同様）
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        new MyClass();
-     }
-}
-class MyClass {
-    private int _i = 999; //private変数
-    public MyClass() { //コンストラクタ
-        for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-            Debug.Log("A: " + _i); //0、1、2、...、5
-            Debug.Log("B: " + this._i); //999（private変数）
+    ```
+    //test.cs
+    using System;
+    class Test {
+        static void Main() {
+            new MyClass();
         }
-        //Debug.Log("C: " + _i); //error（ロカール変数はアクセス不可）
-        Debug.Log("C: " + this._i); //999（private変数はthisが必須）
     }
-}
-```
+    class MyClass {
+        private int _i = 999; //private変数
+        public MyClass() { //コンストラクタ
+            for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
+                Debug.Log("A: " + _i); //0、1、2、...、5
+                Debug.Log("B: " + this._i); //999（private変数）
+            }
+            //Debug.Log("C: " + _i); //error（ロカール変数はアクセス不可）
+            Debug.Log("C: " + this._i); //999（private変数はthisが必須）
+        }
+    }
+    ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：Takashi Nishimura  
