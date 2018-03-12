@@ -532,7 +532,7 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 ### 書式
 ```
 namespace 名前空間名 {
-    class ○○ {
+    class XXX {
     }
     ......
 }
