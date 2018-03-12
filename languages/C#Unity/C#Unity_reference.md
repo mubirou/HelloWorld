@@ -7,9 +7,9 @@
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-* [クラス](#クラス)  
+* [クラス](#クラス)
+* [基本クラスと派生クラス](#基本クラスと派生クラス)  
 ============================================================
-* [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -451,30 +451,29 @@ class Rectangle { //長方形クラス
 作成者：Takashi Nishimura  
 作成日：2018年03月12日
 
-============================================================
 
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
+//Main.cs
+using UnityEngine;
 
-class Test { //メインクラス（Main()メソッドを含む）←Mainは不可
-    static void Main() { //自動的に最初に実行される
+public class Main : MonoBehaviour {
+	void Start () {
         //派生クラスＡのインスタンス
         SubClassA _subclassA = new SubClassA();
-        Console.WriteLine(_subclassA.pSuperClass); //"基本クラスのプロパティ"
-        Console.WriteLine(_subclassA.pSubClassA); //"派生クラスＡのプロパティ"
-        Console.WriteLine(_subclassA.mSuperClass()); //"基本クラスのメソッド"
-        Console.WriteLine(_subclassA.mSubClassA()); //"派生クラスＡのメソッド"
+        Debug.Log(_subclassA.pSuperClass); //"基本クラスのプロパティ"
+        Debug.Log(_subclassA.pSubClassA); //"派生クラスＡのプロパティ"
+        Debug.Log(_subclassA.mSuperClass()); //"基本クラスのメソッド"
+        Debug.Log(_subclassA.mSubClassA()); //"派生クラスＡのメソッド"
         
         //派生クラスＢのインスタンス
         SubClassB _subclassB = new SubClassB();
-        Console.WriteLine(_subclassB.pSuperClass); //"基本クラスのプロパティ"
-        Console.WriteLine(_subclassB.pSubClassB); //"派生クラスＢのプロパティ"
-        Console.WriteLine(_subclassB.mSuperClass()); //"基本クラスのメソッド"
-        Console.WriteLine(_subclassB.mSubClassB()); //"派生クラスＢのメソッド"
+        Debug.Log(_subclassB.pSuperClass); //"基本クラスのプロパティ"
+        Debug.Log(_subclassB.pSubClassB); //"派生クラスＢのプロパティ"
+        Debug.Log(_subclassB.mSuperClass()); //"基本クラスのメソッド"
+        Debug.Log(_subclassB.mSubClassB()); //"派生クラスＢのメソッド"
     }
 }
 
@@ -518,11 +517,11 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月05日  
-更新日：2017年04月17日
+作成日：2018年03月12日
 
+============================================================
 
 <a name="名前空間"></a>
 # <b>名前空間</b>
