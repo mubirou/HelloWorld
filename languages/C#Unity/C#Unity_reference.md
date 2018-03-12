@@ -8,8 +8,7 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-* [基本クラスと派生クラス](#基本クラスと派生クラス)  
-============================================================
+* [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -521,14 +520,12 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 作成者：Takashi Nishimura  
 作成日：2018年03月12日
 
-============================================================
 
 <a name="名前空間"></a>
 # <b>名前空間</b>
 
 ### 概要
 * フォルダによる階層構造でファイルを管理するかのようにクラスを管理（但し論理的）
-* .NET Framework にある System 名前空間はその下に Text、IO、Drawing などあり
 * デフォルトでは無名の名前空間（global名前空間）が使用される
 * 1つの名前空間の中に、クラス/構造体/デリゲート/列挙/インターフェース等を宣言できる他、別の名前空間を宣言することも可能
 
@@ -543,13 +540,13 @@ namespace 名前空間名 {
 
 ### 例文
 ```
-//test.cs
-using System; //Console.WriteLine()に必要
+//Main.cs
+using UnityEngine;
 
-class Test { //メインクラス（Main()メソッドを含む）←Mainは不可
-    static void Main() { //自動的に最初に実行される
+public class Main : MonoBehaviour {
+	void Start () {
         MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
-        Console.WriteLine(_myClass); //MyLibrary.MyClass
+        Debug.Log(_myClass); //MyLibrary.MyClass
     }
 }
 
@@ -565,11 +562,11 @@ namespace MyLibrary {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月23日  
-更新日：2017年04月17日
+作成日：2018年03月12日
 
+============================================================
 
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
