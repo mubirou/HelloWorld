@@ -87,131 +87,131 @@
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
-		//bool型
-		bool _bool = true;
-		Debug.Log(_bool); //True
-		Debug.Log(_bool.GetType()); //System.Boolean
-		
-		//整数型①（0〜255）
-		byte _byte = 255;
-		Debug.Log(_byte); //255
-		Debug.Log(_byte.GetType()); //System.Byte
-		
-		//整数型②（-128〜127）
-		sbyte _sbyte = -128;
-		Debug.Log(_sbyte); //-128
-		Debug.Log(_sbyte.GetType()); //System.SByte
-		
-		//整数型③（-32768〜32767）
-		short _short = -32768;
-		Debug.Log(_short); //-32768
-		Debug.Log(_short.GetType()); //System.Int16
-		
-		//整数型④（0〜65535）
-		ushort _ushort = 65535;
-		Debug.Log(_ushort); //65535
-		Debug.Log(_ushort.GetType()); //System.UInt16
-		
-		//整数型⑤（-2147483648〜2147483647）
-		int _int = -2147483648;
-		Debug.Log(_int); //-2147483648
-		Debug.Log(_int.GetType()); //System.Int32
+    void Start () {
+        //bool型
+        bool _bool = true;
+        Debug.Log(_bool); //True
+        Debug.Log(_bool.GetType()); //System.Boolean
+        
+        //整数型①（0〜255）
+        byte _byte = 255;
+        Debug.Log(_byte); //255
+        Debug.Log(_byte.GetType()); //System.Byte
+        
+        //整数型②（-128〜127）
+        sbyte _sbyte = -128;
+        Debug.Log(_sbyte); //-128
+        Debug.Log(_sbyte.GetType()); //System.SByte
+        
+        //整数型③（-32768〜32767）
+        short _short = -32768;
+        Debug.Log(_short); //-32768
+        Debug.Log(_short.GetType()); //System.Int16
+        
+        //整数型④（0〜65535）
+        ushort _ushort = 65535;
+        Debug.Log(_ushort); //65535
+        Debug.Log(_ushort.GetType()); //System.UInt16
+        
+        //整数型⑤（-2147483648〜2147483647）
+        int _int = -2147483648;
+        Debug.Log(_int); //-2147483648
+        Debug.Log(_int.GetType()); //System.Int32
 
-		int _int16 = 0xFFCC00; //16進数の場合
-		Debug.Log(_int16); //16763904
-		Debug.Log(_int16.GetType()); //System.Int32
-		
-		//整数型⑥（0〜4294967295）
-		uint _uint = 4294967295;
-		Debug.Log(_uint); //4294967295
-		Debug.Log(_uint.GetType()); //System.UInt32
-		
-		//整数型⑦（-9223372036854775808〜9223372036854775807）
-		long _long = -9223372036854775808;
-		Debug.Log(_long); //-9223372036854775808
-		Debug.Log(_long.GetType()); //System.Int64
-		
-		//整数型⑧（0〜18446744073709551615）
-		ulong _ulong = 18446744073709551615;
-		Debug.Log(_ulong); //18446744073709551615
-		Debug.Log(_ulong.GetType()); //System.UInt64
-		
-		//浮動小数点数型①
-		float _float = 3.1415926f; //最後に「f」
-		Debug.Log(_float); //3.141593
-		Debug.Log(_float.GetType()); //System.Single
-		
-		//浮動小数点数型②
-		double _double = 3.141592653589793d; //「d」をつけなくても同じ
-		Debug.Log(_double); //3.14159265358979
-		Debug.Log(_double.GetType()); //System.Double
-		
-		//浮動小数点数型③
-		decimal _decimal = 3.14159265358979323846264338327m; //最後に「m」
-		Debug.Log(_decimal); //3.1415926535897932384626433833
-		Debug.Log(_decimal.GetType()); //System.Decimal
-		
-		//文字型①（char型＝1文字）
-		char _char = 'a'; //シングルクォーテーション
-		Debug.Log(_char); //a
-		Debug.Log(_char.GetType()); //System.Char
-		
-		//文字型②（string型）
-		string _string = "999"; //ダブルクォーテーション
-		Debug.Log(_string); //999
-		Debug.Log(_string.GetType()); //System.String
+        int _int16 = 0xFFCC00; //16進数の場合
+        Debug.Log(_int16); //16763904
+        Debug.Log(_int16.GetType()); //System.Int32
+        
+        //整数型⑥（0〜4294967295）
+        uint _uint = 4294967295;
+        Debug.Log(_uint); //4294967295
+        Debug.Log(_uint.GetType()); //System.UInt32
+        
+        //整数型⑦（-9223372036854775808〜9223372036854775807）
+        long _long = -9223372036854775808;
+        Debug.Log(_long); //-9223372036854775808
+        Debug.Log(_long.GetType()); //System.Int64
+        
+        //整数型⑧（0〜18446744073709551615）
+        ulong _ulong = 18446744073709551615;
+        Debug.Log(_ulong); //18446744073709551615
+        Debug.Log(_ulong.GetType()); //System.UInt64
+        
+        //浮動小数点数型①
+        float _float = 3.1415926f; //最後に「f」
+        Debug.Log(_float); //3.141593
+        Debug.Log(_float.GetType()); //System.Single
+        
+        //浮動小数点数型②
+        double _double = 3.141592653589793d; //「d」をつけなくても同じ
+        Debug.Log(_double); //3.14159265358979
+        Debug.Log(_double.GetType()); //System.Double
+        
+        //浮動小数点数型③
+        decimal _decimal = 3.14159265358979323846264338327m; //最後に「m」
+        Debug.Log(_decimal); //3.1415926535897932384626433833
+        Debug.Log(_decimal.GetType()); //System.Decimal
+        
+        //文字型①（char型＝1文字）
+        char _char = 'a'; //シングルクォーテーション
+        Debug.Log(_char); //a
+        Debug.Log(_char.GetType()); //System.Char
+        
+        //文字型②（string型）
+        string _string = "999"; //ダブルクォーテーション
+        Debug.Log(_string); //999
+        Debug.Log(_string.GetType()); //System.String
 
-		//null許容型
-		int? _null = null; //string型は不可
-		Debug.Log(_null); //Null ←ちゃんと表示される
-		Debug.Log(_null == null); //True
+        //null許容型
+        int? _null = null; //string型は不可
+        Debug.Log(_null); //Null ←ちゃんと表示される
+        Debug.Log(_null == null); //True
 
-		//列挙型（enum）
-		Debug.Log(Signal.BLUE); //BLUE
-		Debug.Log(Signal.BLUE.GetType()); //Signal
-		Debug.Log((int)Signal.BLUE); //0 ←キャストによる型変換が必要
+        //列挙型（enum）
+        Debug.Log(Signal.BLUE); //BLUE
+        Debug.Log(Signal.BLUE.GetType()); //Signal
+        Debug.Log((int)Signal.BLUE); //0 ←キャストによる型変換が必要
 
-		//構造体（クラスに似ているが継承は不可）
-		MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
-		Debug.Log(_struct); //MyStruct
-		Debug.Log(_struct.GetType()); //MyStruct
-		
-		//匿名型クラス（宣言には、必ずvarキーワードを使います）
-		var _anon = new { Name="Takashi Nishimura", Age=50 }; //読み取り専用（注意）
-		Debug.Log(_anon); //{ Name = Takashi Nishimrua, Age = 50 }
-		Debug.Log(_anon.Name); //"Takashi Nishimura ←取得方法
-		Debug.Log(_anon.GetType());//<<>__AnonType0`2[System.String,System.Int32]
+        //構造体（クラスに似ているが継承は不可）
+        MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
+        Debug.Log(_struct); //MyStruct
+        Debug.Log(_struct.GetType()); //MyStruct
+        
+        //匿名型クラス（宣言には、必ずvarキーワードを使います）
+        var _anon = new { Name="Takashi Nishimura", Age=50 }; //読み取り専用（注意）
+        Debug.Log(_anon); //{ Name = Takashi Nishimrua, Age = 50 }
+        Debug.Log(_anon.Name); //"Takashi Nishimura ←取得方法
+        Debug.Log(_anon.GetType());//<<>__AnonType0`2[System.String,System.Int32]
 
-		//クラス
-		MyClass _myClass = new MyClass("Takashi Nishimura", 50);
-		Debug.Log(_myClass); //MyClass
-		Debug.Log(_myClass.GetType()); //MyClass
+        //クラス
+        MyClass _myClass = new MyClass("Takashi Nishimura", 50);
+        Debug.Log(_myClass); //MyClass
+        Debug.Log(_myClass.GetType()); //MyClass
 
-		//配列
-		int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
-		Debug.Log(_array); //System.Int32[] ←SySystem.Object[]ではない
-	}
+        //配列
+        int[] _array = new int[4]; //4個の空の要素を持つ配列の場合
+        Debug.Log(_array); //System.Int32[] ←SySystem.Object[]ではない
+    }
 }
 
 enum Signal { BLUE,YELLOW,RED }; //列挙（enum）の定義
 
 struct MyStruct { //構造体の定義
-	public string name;
-	public byte age;
-	public MyStruct(string p1, byte p2) {
-		name = p1;
-		age = p2;
-	}
+    public string name;
+    public byte age;
+    public MyStruct(string p1, byte p2) {
+        name = p1;
+        age = p2;
+    }
 }
 
 class MyClass { //クラスの定義
-	public string name;
-	public byte age;
-	public MyClass(string p1, byte p2) {
-		name = p1;
-		age = p2;
-	}
+    public string name;
+    public byte age;
+    public MyClass(string p1, byte p2) {
+        name = p1;
+        age = p2;
+    }
 }
 ```
 
@@ -408,7 +408,7 @@ class MyClass { //クラスの定義
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         //①インタンスの生成
         Rectangle _rectangle = new Rectangle();
         
@@ -421,7 +421,7 @@ public class Main : MonoBehaviour {
         
         //④メソッドの実行
         Debug.Log(_rectangle.getArea()); //2073600
-	}
+    }
 }
 
 class Rectangle { //長方形クラス
@@ -460,7 +460,7 @@ class Rectangle { //長方形クラス
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         //派生クラスＡのインスタンス
         SubClassA _subclassA = new SubClassA();
         Debug.Log(_subclassA.pSuperClass); //"基本クラスのプロパティ"
@@ -545,7 +545,7 @@ namespace 名前空間名 {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
         Debug.Log(_myClass); //MyLibrary.MyClass
     }
@@ -581,7 +581,7 @@ namespace MyLibrary {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         ClassB _classB = new ClassB();
         _classB.MyMethod();
     }
@@ -589,8 +589,8 @@ public class Main : MonoBehaviour {
 
 class ClassA {
     public void MyMethod() {
-		Debug.Log("ClassA.MyMethod()");
-	}
+        Debug.Log("ClassA.MyMethod()");
+    }
 }
 class ClassB : ClassA {} //ClassAを継承
 ```
@@ -601,7 +601,7 @@ class ClassB : ClassA {} //ClassAを継承
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         ClassB _classB = new ClassB();
         _classB.MyMethod();
     }
@@ -609,18 +609,18 @@ public class Main : MonoBehaviour {
 
 class ClassA {
     public void MyMethod() {
-		Debug.Log("ClassA.MyMethod()");
-	}
+        Debug.Log("ClassA.MyMethod()");
+    }
 }
 
 class ClassB { //この内容だけが継承と異なる
     private ClassA _classA;
     public ClassB() {
-		_classA = new ClassA(); //コンストラクタでオブジェクト生成
-	}
+        _classA = new ClassA(); //コンストラクタでオブジェクト生成
+    }
     public void MyMethod() {
-		_classA.MyMethod();
-	}
+        _classA.MyMethod();
+    }
 }
 ```
 
