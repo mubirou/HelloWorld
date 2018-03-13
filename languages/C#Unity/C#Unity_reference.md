@@ -17,9 +17,9 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名メソッド](#匿名メソッド)
-* [ラムダ式](#ラムダ式)  
+* [ラムダ式](#ラムダ式)
+* [静的メンバ（static）](#静的メンバ（static）)  
 ============================================================
-* [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
@@ -1235,10 +1235,12 @@ public class Main : MonoBehaviour {
         _myClass.Move(3); //←←←
     }
 }
+
 class MyClass {
     public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
     public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
     private bool _right = true;
+
     public MyClass() { //コンストラクタ
         Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
             string _tmp = "";
@@ -1246,6 +1248,7 @@ class MyClass {
             Debug.Log(_tmp);
         }; //メソッドの内容を変更
     }
+
     public void change() {
         _right = ! _right;
         if (_right) {
@@ -1269,18 +1272,17 @@ class MyClass {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="静的メンバ（static）"></a>
 # <b>静的メンバ（static）</b>
 * 静的メンバはクラスをインスタンス化せずにアクセスが可能
 
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-class Test {
-    static void Main() { //インスタンス化せずにOSから自動的に呼ぶ出すため
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.PI); //3.14159265358979 ←静的変数の呼び出し
         Debug.Log(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
     }
@@ -1302,11 +1304,11 @@ class Math { //独自クラス
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月21日  
-更新日：2017年04月18日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="if文"></a>
 # <b>if 文</b>
