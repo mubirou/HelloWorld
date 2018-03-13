@@ -21,9 +21,9 @@
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-* [switch 文](#switch文)  
+* [switch 文](#switch文)
+* [for 文](#for文)  
 ============================================================
-* [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
@@ -1508,24 +1508,24 @@ public class Main : MonoBehaviour {
     * char 型、string 型といった文字型
 
 * 悪い例（エラー発生）
-    ```
-    //Main.cs
-    using UnityEngine;
+```
+//Main.cs
+using UnityEngine;
 
-    public class Main : MonoBehaviour {
-        void Start() {
-            int _age = 50;
-            switch (true) { //bool型はエラー（注意）
-                case _age < 20 :
-                    Debug.Log("未成年");
-                    break;
-                default:
-                    Debug.Log("成人");
-                    break;
-            }
+public class Main : MonoBehaviour {
+    void Start() {
+        int _age = 50;
+        switch (true) { //bool型はエラー（注意）
+            case _age < 20 :
+                Debug.Log("未成年");
+                break;
+            default:
+                Debug.Log("成人");
+                break;
         }
     }
-    ```
+}
+```
 
 ### 注意その２ : フォールスルーの禁止規則
 * C#では、下記のように case で何か処理をしておきながら break 文を書かないで次の case の処理に入っていくことは不可（フォールスルーの禁止規則）
@@ -1578,24 +1578,26 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 ### ループカウンタ（ループ制御変数）の宣言位置
 1. for 文の中で宣言
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             for (int i=0; i<10; i++) { //ここでint型を宣言すると...
                 Debug.Log(i); //0,1,2,3,4,5,6,7,8,9
             }
-            //Debug.Log(i); //error（for文の外では使用不可）
+            //Debug.Log(i); //error CS0103（for文の外では使用不可）
         }
     }
     ```
 
 1. for 文の外でループ制御変数を宣言する
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             int _i; //ここでint型を宣言すると...
             for (_i=0; _i<10; _i++) {
                 Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
@@ -1607,10 +1609,11 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 
 ### ループカウンタを○つずつアップする
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         for (int i=0; i<50; i+=5) { //5つずつアップする場合...
             Debug.Log(i); //0,5,10,15,20,25,30,35,40,45
         }
@@ -1620,10 +1623,11 @@ class Test {
 
 ### for 文のネスト
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         for (int i=1; i<=5; i++) {
             for (int j=1; j<=5; j++) {
                 Debug.Log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
@@ -1635,27 +1639,29 @@ class Test {
 
 ### 無限ループと break 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         int _count = 0;
         for (;;) { //①初期化 ②ループ判定式 ③更新処理...の全てを省略すると無限ループ
             _count++;
             if (_count > 100) break; //ループを終了
             Debug.Log(_count); //1,2,....,99,100
         }
-        Debug.Log("for文終了"); //★
+        Debug.Log("for文終了");
     }
 }
 ```
 
 ### for 文と continue 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         for (int i=1; i<=20; i++) { //iは1,2,...19,20
             if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
                 continue; //for文の残処理をスキップしてfor文の次の反復を開始する
@@ -1666,11 +1672,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="foreach文"></a>
 # <b>foreach 文</b>
