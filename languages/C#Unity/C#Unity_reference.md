@@ -659,7 +659,7 @@ public データ型 変数名; //public変数宣言（初期化も可）
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
      }
@@ -688,7 +688,7 @@ class 基本クラス { //スーパークラス定義
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         SubClass _subClass = new SubClass();
         Debug.Log(_subClass); //SubClass
         //Debug.Log(_subClass._pSuperClass); //error CS0122（アクセス不可）
@@ -726,7 +726,7 @@ private データ型 変数名; //private変数宣言（初期化も可）←pri
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-	void Start () {
+    void Start () {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
      }
@@ -798,26 +798,26 @@ class MyClass {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="アクセサ"></a>
 # <b>アクセサ （getter / setter）</b>
 
 ### 読み書き可能なプロパティ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         Nishimura _nishimura = new Nishimura();
-        Debug.Log(_nishimura.Age); //49
-        _nishimura.Age = 50; //値を変更可能
         Debug.Log(_nishimura.Age); //50
+        _nishimura.Age = 51; //値を変更可能
+        Debug.Log(_nishimura.Age); //51
     }
 }
 
 class Nishimura {
-    int _age = 49; //privateは省略
+    int _age = 50; //privateは省略
     public int Age {
         get { return _age; } //thisは省略
         set { _age = value; } //thisは省略 ←valueは予め定義された変数（決め打ち）
@@ -827,20 +827,21 @@ class Nishimura {
 
 ### 読み取り専用のプロパティ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         Nishimura _nishimura = new Nishimura();
-        Debug.Log(_nishimura.Age); //49
-        //_nishimura.Age = 50; //error（値の変更は不可）
-        _nishimura.NextYear();
         Debug.Log(_nishimura.Age); //50
+        //_nishimura.Age = 50; //error CS0272（値の変更は不可）
+        _nishimura.NextYear();
+        Debug.Log(_nishimura.Age); //51
     }
 }
 
 class Nishimura {
-    int _age = 49; //privateは省略
+    int _age = 50; //privateは省略
     public int Age {
         get { return _age; } //thisは省略
         private set {} //外部からアクセス不可（読み取り専用にする）
@@ -849,11 +850,11 @@ class Nishimura {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月17日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="演算子"></a>
 # <b>演算子</b>
