@@ -23,9 +23,9 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-* [foreach 文](#foreach文)  
+* [foreach 文](#foreach文)
+* [while 文](#while文)  
 ============================================================
-* [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
@@ -1721,7 +1721,7 @@ public class Main : MonoBehaviour {
 ```
 
 ### 配列（ジャグ配列）の場合
-* [Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「Scriptiong Runtime Version」の値を「Experimental(.NET 4.6 Equivalent)」に設定しないと、dynamic を利用時に error が発生する
+* [Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「.NET」のバージョンが低いと dynamic が利用できません
 ```
 //Main.cs
 using UnityEngine;
@@ -1797,7 +1797,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="while文"></a>
 # <b>while 文</b>
@@ -1812,10 +1811,11 @@ while (ループ判定式) {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         int _i = 0;
         while (_i < 10) { //ループ判定式にはbool型しか使えない
             Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
@@ -1836,10 +1836,11 @@ do {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         int _i = 0;
         do {
             Debug.Log(_i); //0 ←ループ判定式はfalseだが１回実行される
@@ -1851,10 +1852,11 @@ class Test {
 
 ### while 文と break 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         int _count = 0;
         while (true) { //ループ判別式をtrueにすると無限ループに
             _count++;
@@ -1870,10 +1872,11 @@ class Test {
 
 ### while 文と continue 文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         int _i = 1;
         while (_i <= 20) {
             if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
@@ -1887,11 +1890,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="配列"></a>
 # <b>配列</b>
