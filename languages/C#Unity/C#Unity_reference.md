@@ -39,9 +39,9 @@
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-* [タイマー](#タイマー)  
+* [タイマー](#タイマー)
+* [処理速度計測](#処理速度計測)  
 ============================================================
-* [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
 
@@ -3481,55 +3481,32 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
-
-### DateTime構造体を使う方法
+* DateTime 構造体を利用します
+* 他に Stopwatch クラスを利用する方法もありますが、その場合 UnityEngine と System.Diagnostics がバッティングする為に Debug.Log() が使えません
 ```
-//test.cs
-//日時情報を得るためのDatetime構造体を利用して計測する方法
+//Main.cs
+using UnityEngine;
 using System; //DateTimeに必要
-class Test {
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         long _start = DateTime.Now.Ticks; //100ナノ秒単位（精度は10ミリ秒）
-        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
+        for (long i=0; i<1000000000; i++) { //10億回繰り返す場合…
             //速度計測したい処理
         }
-        Debug.Log(DateTime.Now.Ticks - _start); //33060210（≒3.3秒）
+        Debug.Log(DateTime.Now.Ticks - _start); //19560350（≒2秒）
     }
 }
 ```
 
-### Stopwatchクラスを使う方法
-```
-//test.cs
-/*
-.NET Framework 2.0から追加された機能
-Stopwatchクラスのインスタンスを生成しStart/Stopメソッドを実行するだけで可能
-*/
-using System; 
-using System.Diagnostics; //Stopwatchに必要
-class Program     { 
-    static void Main() { 
-        Stopwatch _stopWatch = new Stopwatch(); //インスタンスの生成
-        _stopWatch.Start(); //計測開始
-        for (long i=0; i<10000000000; i++) { //100億回繰り返す場合…
-            //速度計測したい処理
-        }
-        _stopWatch.Stop(); //計測終了
-        Debug.Log(_stopWatch.ElapsedMilliseconds); //3230（ミリ秒）
-        Debug.Log(_stopWatch.Elapsed); //00:00:03.2302265（秒）
-    }
-}
-```
-
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月28日  
-更新日：2017年04月21日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
