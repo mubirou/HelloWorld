@@ -50,20 +50,22 @@
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test { 
-    static void Main() {
-        //new Singleton(); //error ←外からはnewによるインスタンス生成は不可
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        //new Singleton(); //error CS0122 ←外からはnewによるインスタンス生成は不可
         Singleton _singleton1 = Singleton.GetInstance(); //唯一のインスタンスを呼出す
         Singleton _singleton2 = Singleton.GetInstance(); //唯一のインスタンスを呼出す
-        Console.WriteLine(_singleton1 == _singleton2); //True ←同じインスタンス
+        Debug.Log(_singleton1 == _singleton2); //True ←同じインスタンス
     }
 }
+
 class Singleton { //シングルトンクラス
     private static Singleton _singleton = new Singleton(); //唯一のインスタンスを格納
     private Singleton() { //外部からnew Singleton()できないようにする
-        Console.WriteLine("インスタンスを生成しました"); //DEBUG
+        Debug.Log("インスタンスを生成しました"); //DEBUG
     }
     public static Singleton GetInstance() { //外部から唯一のインスタンスを呼出す
         return _singleton; //唯一のインスタンス（静的変数）を返す
@@ -71,11 +73,11 @@ class Singleton { //シングルトンクラス
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月01日  
-更新日：2017年05月02日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
@@ -106,14 +108,14 @@ class Test {
         _prototype2.Age = 45;
         
         //検証（コピー元）
-        Console.WriteLine(_prototype1.FirstName); //"Takshi"
-        Console.WriteLine(_prototype1.LastName); //"Nishimura"
-        Console.WriteLine(_prototype1.Age); //49
+        Debug.Log(_prototype1.FirstName); //"Takshi"
+        Debug.Log(_prototype1.LastName); //"Nishimura"
+        Debug.Log(_prototype1.Age); //49
         
         //検証（複製したもの）
-        Console.WriteLine(_prototype2.FirstName); //"Hanako" ←「参照」ではない
-        Console.WriteLine(_prototype2.LastName); //"Nishimura"
-        Console.WriteLine(_prototype2.Age); //45
+        Debug.Log(_prototype2.FirstName); //"Hanako" ←「参照」ではない
+        Debug.Log(_prototype2.LastName); //"Nishimura"
+        Debug.Log(_prototype2.Age); //45
     }
 }
 
@@ -253,33 +255,33 @@ class Builder108 : IBuilder { //タイプ108の年賀状
  * Header○○クラス群（ヘッダー用材料群）
 ***************************************/
 class Header040 {
-    public void exec() { Console.WriteLine("HAPPY NEW YEAR"); }
+    public void exec() { Debug.Log("HAPPY NEW YEAR"); }
 }
 
 class Header051 {
-    public void exec() { Console.WriteLine("あけましておめでとうございます"); }
+    public void exec() { Debug.Log("あけましておめでとうございます"); }
 }
 
 /******************************************
  * Content○○クラス群（コンテンツ用材料群）
 ******************************************/
 class Content023 {
-    public void exec() { Console.WriteLine("タイプ023用のイラスト"); }
+    public void exec() { Debug.Log("タイプ023用のイラスト"); }
 }
 
 class Content194 {
-    public void exec() { Console.WriteLine("タイプ194用のイラスト"); }
+    public void exec() { Debug.Log("タイプ194用のイラスト"); }
 }
 
 /***************************************
  * Footer○○クラス群（フッター用材料群）
 ***************************************/
 class Footer004 {
-    public void exec() { Console.WriteLine("元旦"); }
+    public void exec() { Debug.Log("元旦"); }
 }
 
 class Footer011 {
-    public void exec() { Console.WriteLine("2018.1.1"); }
+    public void exec() { Debug.Log("2018.1.1"); }
 }
 ```
 
@@ -347,7 +349,7 @@ abstract class AbstractCard {
     }
     protected abstract IMessage factoryMethod(string _arg); //派生クラスでoverride
     public void order1() { //共通の処理
-        Console.WriteLine("〒XXX-XXXX");
+        Debug.Log("〒XXX-XXXX");
     }
     protected abstract void order2(); //派生クラスでoverride
 }
@@ -362,12 +364,12 @@ class CardICHIRO : AbstractCard { //抽象クラスを継承
         } else if (_arg == "同級生") {
             return new Message2(); //ここでnewを記述 
         } else {
-            Console.WriteLine("error:CardICHIRO.factoryMethod()");
+            Debug.Log("error:CardICHIRO.factoryMethod()");
             return null; //returnが必要（注意）
         }
     }
     protected override void order2() { //具体的処理を記述
-        Console.WriteLine("西村一郎");
+        Debug.Log("西村一郎");
     }
 }
 
@@ -378,12 +380,12 @@ class CardHARUKO : AbstractCard { //抽象クラスを継承
         } else if (_arg == "同級生") {
             return new Message4(); //ここでnew クラス名()を記述
         } else {
-            Console.WriteLine("error:CardSCAHIKO.factoryMethod()");
+            Debug.Log("error:CardSCAHIKO.factoryMethod()");
             return null; //returnが必要（注意）
         }
     }
     protected override void order2() { //具体的処理を記述
-        Console.WriteLine("西村春子");
+        Debug.Log("西村春子");
     }
 }
 
@@ -395,19 +397,19 @@ interface IMessage { //インターフェース宣言 ←オプション
 }
 
 class Message1 : IMessage {
-    public void Exec() { Console.WriteLine("謹賀新年"); }
+    public void Exec() { Debug.Log("謹賀新年"); }
 }
 
 class Message2 : IMessage {
-    public void Exec() { Console.WriteLine("HAPPY NEW YEAR"); }
+    public void Exec() { Debug.Log("HAPPY NEW YEAR"); }
 }
 
 class Message3 : IMessage {
-    public void Exec() { Console.WriteLine("明けましておめでとうございます"); }
+    public void Exec() { Debug.Log("明けましておめでとうございます"); }
 }
 
 class Message4 : IMessage {
-    public void Exec() { Console.WriteLine("あけましておめでとう"); }
+    public void Exec() { Debug.Log("あけましておめでとう"); }
 }
 ```
 
@@ -476,23 +478,23 @@ abstract class AbstractFactory {
 //派生クラス群（実際の工場群）
 class ICHIRO : AbstractFactory { //抽象クラスを継承
     public override void CreateNewYear() { //overrideして具体的処理を記述
-        Console.WriteLine("HAPPY NEW YEAR");
-        Console.WriteLine("ICHIRO NISHIMURA");
+        Debug.Log("HAPPY NEW YEAR");
+        Debug.Log("ICHIRO NISHIMURA");
     }
     public override void CreateSummer() { //overrideして具体的処理を記述
-        Console.WriteLine("暑中お見舞い申し上げます");
-        Console.WriteLine("西村一郎");
+        Debug.Log("暑中お見舞い申し上げます");
+        Debug.Log("西村一郎");
     }
 }
 
 class HARUKO : AbstractFactory { //抽象クラスを継承
     public override void CreateNewYear() { //overrideして具体的処理を記述
-        Console.WriteLine("明けましておめでとうございます");
-        Console.WriteLine("西村春子");
+        Debug.Log("明けましておめでとうございます");
+        Debug.Log("西村春子");
     }
     public override void CreateSummer() { //overrideして具体的処理を記述
-        Console.WriteLine("暑中おみまいもうしあげます");
-        Console.WriteLine("西村春子");
+        Debug.Log("暑中おみまいもうしあげます");
+        Debug.Log("西村春子");
     }
 }
 ```
@@ -521,7 +523,7 @@ class Test {
     static void Main() {
         Exchange _exchange = new Exchange(10000, 111.844);
         _exchange.AddYen(8000);
-        Console.WriteLine(_exchange.GetDollar()); //160.938449983906（ドル）
+        Debug.Log(_exchange.GetDollar()); //160.938449983906（ドル）
     }
 }
 
@@ -569,7 +571,7 @@ class Test {
     static void Main() {
         Exchange _exchange = new Exchange(10000, 111.844);
         _exchange.AddYen(8000);
-        Console.WriteLine(_exchange.GetDollar()); //160.938449983906（ドル）
+        Debug.Log(_exchange.GetDollar()); //160.938449983906（ドル）
     }
 }
 
@@ -627,18 +629,18 @@ using System;
 class Test {
     static void Main() {
         Tablet _tablet1 = new Tablet(new Android());
-        Console.WriteLine(_tablet1.Version); //Android 7.1.2
+        Debug.Log(_tablet1.Version); //Android 7.1.2
         _tablet1.BigScreen(); //大きな画面で見る
         
         Tablet _tablet2 = new Tablet(new IOS());
-        Console.WriteLine(_tablet2.Version); //iOS 10.3.1
+        Debug.Log(_tablet2.Version); //iOS 10.3.1
         
         SmartPhone _smartPhone1 = new SmartPhone(new Android());
-        Console.WriteLine(_smartPhone1.Version); //Android 7.1.2
+        Debug.Log(_smartPhone1.Version); //Android 7.1.2
         _smartPhone1.Phone(); //電話をかける
         
         SmartPhone _smartPhone2 = new SmartPhone(new IOS());
-        Console.WriteLine(_smartPhone2.Version); //iOS 10.3.1
+        Debug.Log(_smartPhone2.Version); //iOS 10.3.1
     }
 }
 
@@ -658,7 +660,7 @@ class SuperMobile {
 class Tablet : SuperMobile {
     public Tablet(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
     public void BigScreen() { //タブレット特有の機能
-        Console.WriteLine("大きな画面で見る");
+        Debug.Log("大きな画面で見る");
     }
 }
 
@@ -666,7 +668,7 @@ class Tablet : SuperMobile {
 class SmartPhone : SuperMobile {
     public SmartPhone(AbstractOS _os) : base(_os) {} //親クラスのコンストラクタ呼出し
     public void Phone() { //スマートフォン特有の機能
-        Console.WriteLine("電話をかける");
+        Debug.Log("電話をかける");
     }
 }
 
@@ -731,7 +733,7 @@ class Test {
         _authoring.Add(_unity3d);
         _authoring.Add(_unrealEngine);
         //④検証
-        Console.WriteLine(_unrealEngine.GetName()); //"Unreal Engine"
+        Debug.Log(_unrealEngine.GetName()); //"Unreal Engine"
         _root.GetList(); //"root/Authoring(Folder)"
         _authoring.GetList();
         //"Authoring/Unity3D(File)"
@@ -774,7 +776,7 @@ class Folder : Component { //Directoryは不可
             } else if (tmp is File) {
                 _result += "(File)";
             }
-            Console.WriteLine(_result);
+            Debug.Log(_result);
         }
     }
 }
@@ -787,7 +789,7 @@ class File : Component {
         this._name = _name;
     }
     public override void GetList() { //オーバーライドして実際の処理を記述
-        Console.WriteLine(this.Parent.GetName() + "/" + this.GetName() + "(File)");
+        Debug.Log(this.Parent.GetName() + "/" + this.GetName() + "(File)");
     }
 }
 ```
@@ -843,7 +845,7 @@ class Display {
         return _content;
     }
     public void Show() {
-        Console.WriteLine(_content);
+        Debug.Log(_content);
     }
 }
 
@@ -934,7 +936,7 @@ class Display {
         return _content;
     }
     public void Show() {
-        Console.WriteLine(_content);
+        Debug.Log(_content);
     }
 }
 
@@ -996,10 +998,10 @@ class Test {
         
         //既存のものを生成しようとすると…
         Reader _A2 = _manager.CreateReader("A"); //Aは既存です
-        Console.WriteLine(_A == _A2); //True ←中身は同じインスタンス
+        Debug.Log(_A == _A2); //True ←中身は同じインスタンス
         
-        Console.WriteLine(_A.GetText()); //あいうえお
-        Console.WriteLine(_KA.GetText()); //かきくけこ
+        Debug.Log(_A.GetText()); //あいうえお
+        Debug.Log(_KA.GetText()); //かきくけこ
     }
 }
 
@@ -1021,7 +1023,7 @@ class Manager {
         if (!_result) { //_dic[arg]が存在しない場合…
             _dic.Add(arg, new Reader(arg)); //ここでやっと new Reader()
         } else { //_dic[arg]が既存の場合…（確認用）
-            Console.WriteLine(arg + "は既存です");
+            Debug.Log(arg + "は既存です");
         }
         return _dic[arg];
     }
@@ -1117,7 +1119,7 @@ class Content : ILoader {
         StreamReader _stream = File.OpenText(_path);
         string _text = _stream.ReadToEnd(); //全ての内容を読み込む
         _stream.Close(); //閉じる
-        Console.WriteLine(_text);
+        Debug.Log(_text);
     }
 }
 ```
@@ -1159,7 +1161,7 @@ class Test {
         
         while(_iterator.HasNext()) {
             Bike _nextBike = _iterator.Next();
-            Console.WriteLine(_nextBike.GetName() + "," + _nextBike.GetNum());
+            Debug.Log(_nextBike.GetName() + "," + _nextBike.GetNum());
         }
     }
 }
@@ -1265,11 +1267,11 @@ abstract class AbstractCard {
         Order3(); //派生クラスでoverride
     }
     private void Order1() { //共通の処理（privateは省略可）
-        Console.WriteLine("HAPPY NEW YEAR");
+        Debug.Log("HAPPY NEW YEAR");
     }
     protected abstract bool IsAdult(); //抽象メソッドの宣言
     private void Order2() { //条件により実行（privateは省略可）
-        Console.WriteLine("本年も宜しくお願い致します");
+        Debug.Log("本年も宜しくお願い致します");
     }
     protected abstract void Order3(); //抽象メソッドの宣言
 }
@@ -1283,7 +1285,7 @@ class CardHaruko : AbstractCard {
         return false;
     }
     protected override void Order3() {
-        Console.WriteLine("テニスがんばろうね");
+        Debug.Log("テニスがんばろうね");
     }
 }
 
@@ -1297,7 +1299,7 @@ class CardHanako : AbstractCard {
     }
     //抽象メソッドをoverrideして具体的処理を記述
     protected override void Order3() {
-        Console.WriteLine("今年みんなで集まろう");
+        Debug.Log("今年みんなで集まろう");
     }
 }
 ```
@@ -1343,10 +1345,10 @@ interface IStrategy {
     void Execute(); //暗黙的にpublicになる
 }
 class StrategyA : IStrategy {
-    public void Execute() { Console.WriteLine("グー、グー、パー");	}
+    public void Execute() { Debug.Log("グー、グー、パー");	}
 }
 class StrategyB : IStrategy {
-    public void Execute() { Console.WriteLine("パー、グー、チョキ"); 	}
+    public void Execute() { Debug.Log("パー、グー、チョキ"); 	}
 }
 
 // Janken クラス
@@ -1395,8 +1397,8 @@ class Test {
         _chiba.Accept(_haruko);
         
         //結果…
-        Console.WriteLine(_ichiro.GetMoney()); //15000
-        Console.WriteLine(_haruko.GetMoney()); //15000
+        Debug.Log(_ichiro.GetMoney()); //15000
+        Debug.Log(_haruko.GetMoney()); //15000
     }
 }
 
@@ -1500,7 +1502,7 @@ abstract class AbstractPO {
 class ShinjukuPO : AbstractPO {
     public override void Send(string _address) { //抽象メソッドの実際の処理
         if (_address.IndexOf("新宿",0) != -1) {
-            Console.WriteLine("本日中に届きます");
+            Debug.Log("本日中に届きます");
         } else {
             _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
         }
@@ -1513,7 +1515,7 @@ class ShinjukuPO : AbstractPO {
 class TokyoPO : AbstractPO {
     public override void Send(string _address) { //抽象メソッドの実際の処理
         if (_address.IndexOf("東京",0) != -1) {
-            Console.WriteLine("明後日中に届きます");
+            Debug.Log("明後日中に届きます");
         } else {
             _nextPO.Send(_address); //たらいまわし先に振る ←ポイント
         }
@@ -1525,7 +1527,7 @@ class TokyoPO : AbstractPO {
 //==========================
 class JapanPO : AbstractPO {
     public override void Send(string _address) { //抽象メソッドの実際の処理
-        Console.WriteLine("一週間前後で届きます");
+        Debug.Log("一週間前後で届きます");
     }
 }
 ```
@@ -1627,7 +1629,7 @@ class MemberA : AbstractMember {
         _mediator.Request(this, _string); //相談役に報告→⦿
     }
     public override void Advice(string _string) { //相談役からの指示を受ける
-        Console.WriteLine("MemberA: " + _string);
+        Debug.Log("MemberA: " + _string);
     }
 }
 
@@ -1638,7 +1640,7 @@ class MemberB : AbstractMember {
         _mediator.Request(this, _string); //相談役に報告→⦿
     }
     public override void Advice(string _string) { //相談役からの指示を受ける
-        Console.WriteLine("MemberA: " + _string);
+        Debug.Log("MemberA: " + _string);
     }
 }
 
@@ -1649,7 +1651,7 @@ class MemberC : AbstractMember {
         _mediator.Request(this, _string); //相談役に報告→⦿
     }
     public override void Advice(string _string) { //相談役からの指示を受ける
-        Console.WriteLine("MemberA: " + _string);
+        Debug.Log("MemberA: " + _string);
     }
 }
 ```
@@ -1721,19 +1723,19 @@ interface IObserver {
 
 class iPhone : IObserver { //本来は大文字で始まるべきですが…
     public void Update(Apple _apple) {
-        Console.WriteLine("iPhoneは" + _apple.GetVersion() + "にアップデート可能");
+        Debug.Log("iPhoneは" + _apple.GetVersion() + "にアップデート可能");
     }
 }
 
 class iPad : IObserver { //本来は大文字で始まるべきですが…
     public void Update(Apple _apple) {
-        Console.WriteLine("iPadは" + _apple.GetVersion() + "にアップデート可能");
+        Debug.Log("iPadは" + _apple.GetVersion() + "にアップデート可能");
     }
 }
 
 class iPadPro : IObserver { //本来は大文字で始まるべきですが…
     public void Update(Apple _apple) {
-        Console.WriteLine("iPadProは" + _apple.GetVersion() + "にアップデート可能");
+        Debug.Log("iPadProは" + _apple.GetVersion() + "にアップデート可能");
     }
 }
 ```
@@ -1776,18 +1778,18 @@ class Test {
         // 2:8000
         
         _snapShot = _gamer.Undo(); //Undo（やり直し）
-        Console.WriteLine(_snapShot.Point); //2000
+        Debug.Log(_snapShot.Point); //2000
         _snapShot = _gamer.Undo();
-        Console.WriteLine(_snapShot.Point); //100
+        Debug.Log(_snapShot.Point); //100
         _snapShot = _gamer.Undo();
-        Console.WriteLine(_snapShot.Point); //これ以上、Undoできません 100
+        Debug.Log(_snapShot.Point); //これ以上、Undoできません 100
         
         _snapShot = _gamer.Redo(); //Redo（再実行）
-        Console.WriteLine(_snapShot.Point); //2000
+        Debug.Log(_snapShot.Point); //2000
         _snapShot = _gamer.Redo();
-        Console.WriteLine(_snapShot.Point); //8000
+        Debug.Log(_snapShot.Point); //8000
         _snapShot = _gamer.Redo();
-        Console.WriteLine(_snapShot.Point); //これ以上、Redoできません 8000
+        Debug.Log(_snapShot.Point); //これ以上、Redoできません 8000
     }
 }
 
@@ -1819,7 +1821,7 @@ class Gamer {
     //履歴	
     public void History() {
         for (int i=0; i < _history.Count; i++) {
-            Console.WriteLine(i + ":" + _history[i].Point);
+            Debug.Log(i + ":" + _history[i].Point);
         }
     }
     
@@ -1828,7 +1830,7 @@ class Gamer {
         if (_count > 0) {
             return _history[--_count];
         } else {
-            Console.WriteLine("これ以上、Undoできません");
+            Debug.Log("これ以上、Undoできません");
             _count = 0;
             return _history[0];
         }
@@ -1839,7 +1841,7 @@ class Gamer {
         if (_count < _history.Count - 1) {
             return _history[++_count];
         } else {
-            Console.WriteLine("これ以上、Redoできません");
+            Debug.Log("これ以上、Redoできません");
             _count = _history.Count-1;
             return _history[_count];
         }
@@ -1933,14 +1935,14 @@ interface IState {
 //状態A
 class StateA : IState {
     public void Execute() { //Janken.Exec()から呼び出される
-        Console.WriteLine("グー、グー、パー");	
+        Debug.Log("グー、グー、パー");	
     }
 }
 
 //状態B
 class StateB : IState {
     public void Execute() { //Janken.Exec()から呼び出される
-        Console.WriteLine("パー、グー、チョキ");
+        Debug.Log("パー、グー、チョキ");
     }
 }
 ```
@@ -2028,9 +2030,9 @@ class Canvas {
     public void Update(string _command) { //←⦿DrawCommand.Execute()から呼び出される
         _history.Add(_command);
         foreach (string _string in _history) {
-            Console.WriteLine(_string);
+            Debug.Log(_string);
         }
-        Console.WriteLine("-----");
+        Debug.Log("-----");
     }
 }
 ```
@@ -2106,12 +2108,12 @@ class AVM {
                     case "*" : _result *= _int; break;
                     case "/" : _result /= _int; break;
                     default :
-                        Console.WriteLine("error:演算子が異なります");
+                        Debug.Log("error:演算子が異なります");
                         break;
                 }
             } else { //「=」の場合…
                 //本来はここで「終端となる表現」のクラスを生成して処理をしますが省略
-                Console.WriteLine(_result);
+                Debug.Log(_result);
             }
         }
     }
