@@ -5,9 +5,9 @@
 ### <b>INDEX</b>
 
 * オブジェクトの「生成」に関するパターン
-    * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス  
+    * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
+    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る  
     ========================================================
-    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
     * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
@@ -78,7 +78,6 @@ class Singleton { //シングルトンクラス
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-========================================================
 
 <a name="Prototype"></a>
 # <b><ruby>Prototype<rt>プロトタイプ</rt></ruby></b>
@@ -94,14 +93,15 @@ class Singleton { //シングルトンクラス
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //インスタンスを生成
         Prototype _prototype1 = new Prototype("Nishimura");
         _prototype1.FirstName = "Takashi";
-        _prototype1.Age = 49;
+        _prototype1.Age = 50;
         
         //コピーを作成
         Prototype _prototype2 = _prototype1.Clone(); //複製する（newを使わない）
@@ -111,7 +111,7 @@ class Test {
         //検証（コピー元）
         Debug.Log(_prototype1.FirstName); //"Takshi"
         Debug.Log(_prototype1.LastName); //"Nishimura"
-        Debug.Log(_prototype1.Age); //49
+        Debug.Log(_prototype1.Age); //50
         
         //検証（複製したもの）
         Debug.Log(_prototype2.FirstName); //"Hanako" ←「参照」ではない
@@ -157,11 +157,11 @@ class Prototype : IPrototype {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月02日  
-更新日：2017年05月02日
+作成日：2018年03月13日
 
+========================================================
 
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
