@@ -27,9 +27,9 @@
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
-* [連想配列（Dictionary）](#連想配列（Dictionary）)  
+* [連想配列（Dictionary）](#連想配列（Dictionary）)
+* [this](#this)  
 ============================================================
-* [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
@@ -2553,16 +2553,16 @@ public class Main : MonoBehaviour {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
 
-//メインクラス
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         Robot _robot = new Robot(500);
         _robot.Move();
         Debug.Log(_robot.X); //510
-        //Debug.Log(this); //error（staticメソッド内では参照できず）
+        Debug.Log(this); //GameObject（このC#に紐付いたGameObject名）
     }
 }
 
@@ -2579,7 +2579,7 @@ class Robot {
         int _x; //ローカル変数
         _x = this._x + 10; //②thisが無いとerror（ローカル変数を参照してしまう）
         if (_x >= 1920) _x = 0;
-        this._x = _x; //②thisが無いとWarning（ローカル変数を参照してしまう）
+        this._x = _x; //②thisが無いとローカル変数を参照してしまう
         Debug.Log(this); //Robot（このメソッドが実行されたオブジェクト）
     }
 
@@ -2590,11 +2590,11 @@ class Robot {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月15日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
