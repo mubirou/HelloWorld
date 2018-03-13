@@ -1039,7 +1039,7 @@ class クラス名 {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () { //通常こちらを使用
+    void Start () {
         Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
         Debug.Log(_point.X); //100
         Debug.Log(_point.Y); //150
@@ -1069,7 +1069,7 @@ class Point {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () { //通常こちらを使用
+    void Start () {
         Debug.Log(Math.Pow(2,0)); //1（2の0乗）
         Debug.Log(Math.Pow(2,1)); //2（2の1乗）
         Debug.Log(Math.Pow(2,8)); //256（2の8乗）
@@ -1095,7 +1095,7 @@ class Math {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () { //通常こちらを使用
+    void Start () {
         MyClass _myClass = new MyClass();
         _myClass.AddPoint(); //1
         _myClass.AddPoint(10); //11
@@ -1118,7 +1118,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () { //通常こちらを使用
+    void Start () {
         MyClass _myClass = new MyClass();
         _myClass.Sum(1,1); //2（1+1）
         _myClass.Sum(1,2,3,4,5); //15（1+2+3+4+5）
@@ -1143,7 +1143,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () { //通常こちらを使用
+    void Start () {
         MyClass _myClass = new MyClass();
         _myClass.Rect(endX:100, endY:100); //面積:10000m2
         _myClass.Rect(10,10,100,100); //面積:8100m2
