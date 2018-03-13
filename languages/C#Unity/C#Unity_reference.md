@@ -29,9 +29,9 @@
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
-* [文字列の操作](#文字列の操作)  
+* [文字列の操作](#文字列の操作)
+* [正規表現](#正規表現)  
 ============================================================
-* [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
@@ -2743,7 +2743,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="正規表現"></a>
 # <b>正規表現</b>
@@ -2752,11 +2751,12 @@ public class Main : MonoBehaviour {
 
 ### マッチした数
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "cabacbbacbcba";
         //"a"がいくつ含まれるか
         MatchCollection _mc = Regex.Matches(_string, "a");
@@ -2767,11 +2767,12 @@ class Test {
 
 ### パスワード
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = @"U7eLoERa"; //任意のパスワード（@を付ける）
         /* 条件
         8文字以上（全て半角）
@@ -2787,11 +2788,12 @@ class Test {
 
 ### 郵便番号（7桁）
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
-class Test {
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "123-4567"; //任意の郵便番号
         Regex _regex = new Regex("\\d{3}-\\d{4}");
         Match _match = _regex.Match(_string);
@@ -2800,11 +2802,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月19日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="インターフェース"></a>
 # <b>インターフェース</b>
