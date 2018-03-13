@@ -10,9 +10,9 @@
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
-* [継承と委譲](#継承と委譲)  
+* [継承と委譲](#継承と委譲)
+* [変数とスコープ](#変数とスコープ)  
 ============================================================
-* [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
@@ -771,14 +771,13 @@ class MyClass {
     }
     ```
 
-============================================================
-
 1. for 文内で宣言する場合（foreach 文も同様）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             new MyClass();
         }
     }
@@ -786,20 +785,20 @@ class MyClass {
         private int _i = 999; //private変数
         public MyClass() { //コンストラクタ
             for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-                Debug.Log("A: " + _i); //0、1、2、...、5
-                Debug.Log("B: " + this._i); //999（private変数）
+                Debug.Log(_i); //0、1、2、...、5
+                Debug.Log(this._i); //999（private変数）
             }
-            //Debug.Log("C: " + _i); //error（ロカール変数はアクセス不可）
-            Debug.Log("C: " + this._i); //999（private変数はthisが必須）
+            Debug.Log(_i); //999（ロカール変数のアクセスは不可）
+            Debug.Log(this._i); //999（thisが無くても同じ）
         }
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月20日  
-更新日：2017年04月17日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="アクセサ"></a>
 # <b>アクセサ （getter / setter）</b>
