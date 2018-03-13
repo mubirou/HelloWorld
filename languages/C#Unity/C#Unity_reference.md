@@ -24,9 +24,9 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
-* [while 文](#while文)  
+* [while 文](#while文)
+* [配列](#配列)  
 ============================================================
-* [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
@@ -1894,7 +1894,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="配列"></a>
 # <b>配列</b>
@@ -1924,10 +1923,11 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. new 演算子を使う方法（≒５行x４列のコインロッカー）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             string[,] _coinlocker = new string[5,4];
             _coinlocker[0,0] = "1083"; //0,0の値
             _coinlocker[0,1] = "7777"; //0,1の値
@@ -1939,17 +1939,18 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. 配列リテラルを使う方法（≒５行x４列のコインロッカー）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            string[,] _coinlocker = 
-            {{"1083","7777","",""}, //0行目
-            {"","","",""},         //1行目
-            {"","0135","",""},     //2行目
-            {"","","",""},         //3行目
-            {"","","","1234"}};    //4行目
+    //Main.cs
+    using UnityEngine;
 
+    public class Main : MonoBehaviour {
+        void Start () {
+            string[,] _coinlocker = {
+                {"1083","7777","",""}, //0行目
+                {"","","",""}, //1行目
+                {"","0135","",""}, //2行目
+                {"","","",""}, //3行目
+                {"","","","1234"} //4行目
+            };
             //確認
             Debug.Log(_coinlocker[0,0]); //"1083"
             Debug.Log(_coinlocker[0,1]); //"7777"
@@ -1961,6 +1962,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 ### 配列の配列（ジャグ配列）の作成
 * 構文（それぞれの配列の長さは異なるものにできる）
+* データ型に dynamic を利用する場合、[Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「.NET」のバージョンを確認して下さい（低いと利用できません）
 ```
 ①データ型[][] 変数名 = new データ型[要素数][];
 ②データ型[][] 変数名 = new データ型[][]{new データ型[]{配列①},...};
@@ -1968,10 +1970,11 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. ジャグ配列の宣言→後で値を割り当てる方法
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             dynamic[][] _array = new dynamic[4][];
             _array[0] = new dynamic[]{"A","あ","ア"}; //配列リテラルは不可
             _array[1] = new dynamic[]{"I","い","イ"};
@@ -1983,10 +1986,11 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. ジャグ配列の宣言と同時に値を割り当てる方法
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             dynamic[][] _array = new dynamic[][]{
             new dynamic[]{"A","あ","ア"},
             new dynamic[]{"I","い","イ"},
@@ -2004,10 +2008,11 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 ### 配列の Length プロパティ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string[] _array = {"A","B","C","D"};
         for (int i=0; i<_array.Length; i++) { //配列の要素の数
             Debug.Log(_array[i]);
@@ -2018,10 +2023,11 @@ class Test {
 
 ### 文字列→配列
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (string value in _array) {
@@ -2031,11 +2037,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2016年01月21日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="動的配列（List）"></a>
 # <b>動的配列（List）</b>
