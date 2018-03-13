@@ -35,9 +35,9 @@
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
-* [カスタムイベント](#カスタムイベント)  
+* [カスタムイベント](#カスタムイベント)
+* [数学関数（Math）](#数学関数（Math）)  
 ============================================================
-* [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
@@ -3131,17 +3131,18 @@ class MyGame {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="数学関数（Math）"></a>
 # <b>数学関数（Math）</b>
 
 ### Math.Sin() : サイン（正弦）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Sin(0)); //0 ←0°
         Debug.Log(Math.Sin(Math.PI/2)); //1 ←90°
         Debug.Log(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
@@ -3153,10 +3154,12 @@ class Test {
 
 ### Math.Cos() : コサイン（余弦）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Cos(0)); //1 ←0°
         Debug.Log(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
         Debug.Log(Math.Cos(Math.PI)); //-1 ←180°
@@ -3168,10 +3171,12 @@ class Test {
 
 ### Math.Atan2() : アークタンジェント2
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         //2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
         //Πラジアン（3.141592…）は180°
         //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
@@ -3185,10 +3190,12 @@ class Test {
 
 ### Math.PI : 円周率
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
     }
 }
@@ -3196,10 +3203,12 @@ class Test {
 
 ### Math.Floor() : 切り捨て
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Floor(1.001)); //1
         Debug.Log(Math.Floor(1.999)); //1
     }
@@ -3208,10 +3217,12 @@ class Test {
 
 ### Math.Ceiling() : 切り上げ
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Ceiling(1.001)); //2
         Debug.Log(Math.Ceiling(1.999)); //2
     }
@@ -3220,10 +3231,12 @@ class Test {
 
 ### Math.Round() : 四捨五入
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Round(1.499)); //1
         Debug.Log(Math.Round(1.500)); //2
     }
@@ -3232,10 +3245,12 @@ class Test {
 
 ### Math.Abs() : 絶対値
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Abs(100)); //100
         Debug.Log(Math.Abs(-100)); //100
     }
@@ -3244,10 +3259,12 @@ class Test {
 
 ### Math.Pow() : 累乗（○の□乗）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Pow(2, 0)); //1（2の0乗）
         Debug.Log(Math.Pow(2, 8)); //256（2の8乗）
     }
@@ -3256,10 +3273,12 @@ class Test {
 
 ### Math.Sqrt() : 平方根（√○）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
         Debug.Log(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
         Debug.Log(Math.Sqrt(4)); //2
@@ -3270,10 +3289,12 @@ class Test {
 
 ### Math.Max() : 比較（最大値）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
     }
 }
@@ -3281,10 +3302,12 @@ class Test {
 
 ### Math.Min() : 比較（最小値）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
     }
 }
@@ -3292,10 +3315,12 @@ class Test {
 
 ### Math.Sign() : 符号（正か負の値か）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(Math.Sign(-0.1)); //-1（負の値）
         Debug.Log(Math.Sign(0)); //0（0）
         Debug.Log(Math.Sign(0.1)); //1（正の値）
@@ -3303,11 +3328,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月26日  
-更新日：2017年04月21日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="乱数"></a>
 # <b>乱数</b>
