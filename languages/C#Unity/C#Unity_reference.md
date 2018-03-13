@@ -1721,7 +1721,7 @@ public class Main : MonoBehaviour {
 ```
 
 ### 配列（ジャグ配列）の場合
-* [Edit]-[Project Settings]-[Player] を選択し「Other Settings」の「Configuration」の「Scriptiong Runtime Version」の値を「Experimental(.NET 4.6 Equivalent)」に設定しないと、dynamic を利用しようとすると error が発生する
+* [Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「Scriptiong Runtime Version」の値を「Experimental(.NET 4.6 Equivalent)」に設定しないと、dynamic を利用時に error が発生する
 ```
 //Main.cs
 using UnityEngine;
