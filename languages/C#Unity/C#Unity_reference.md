@@ -13,9 +13,9 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
-* [演算子](#演算子)  
+* [演算子](#演算子)
+* [定数](#定数)  
 ============================================================
-* [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
@@ -901,20 +901,20 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="定数"></a>
 # <b>定数</b>
 
 ### 通常の定数
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         const float PI = 3.14159f; //staticは記述しない（注意）
         Debug.Log(PI); //=> 3.14159
-        //PI = 3.14; //error（変更不可）
+        //PI = 3.14; //error CS0131（変更不可）
     }
 }
 ```
@@ -926,21 +926,22 @@ class クラス名 {
     public const float 定数名 = 値; //staticは記述しない
     ...
 }
+```
 
-#アクセス方法
+* アクセス方法
+```
 クラス名.定数名
 ```
 
 * 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-//メインクラス
-class Test {
-    static void Main() { //自動的に最初に実行される
+public class Main : MonoBehaviour {
+    void Start () {
         Debug.Log(MyMath.PI); //=> 3.14159
-        //MyMath.PI = 3.14; //error（変更不可）
+        //MyMath.PI = 3.14; //error CS0131（変更不可）
     }
 }
 
@@ -951,11 +952,11 @@ class MyMath {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月06日  
-更新日：2017年04月17日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="メソッド"></a>
 # <b>メソッド</b>
