@@ -34,9 +34,9 @@
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
-* [オーバーライド](#オーバーライド)  
+* [オーバーライド](#オーバーライド)
+* [カスタムイベント](#カスタムイベント)  
 ============================================================
-* [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
@@ -3056,7 +3056,6 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
@@ -3090,11 +3089,11 @@ static 戻り値の型 イベントハンドラ名([型 引数]) {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         MyGame _myGame = new MyGame();
         _myGame.GameOverEvent += GameOverHandler_myGame; //複数登録可能（+=、-=のみ）
         //_myGame.GameOverEvent -= GameOverHandler_myGame; //イベントハンドラの削除
@@ -3128,11 +3127,11 @@ class MyGame {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月25日  
-更新日：2017年04月21日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="数学関数（Math）"></a>
 # <b>数学関数（Math）</b>
