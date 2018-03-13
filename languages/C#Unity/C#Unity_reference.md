@@ -18,9 +18,9 @@
 * [メソッド](#メソッド)
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
-* [静的メンバ（static）](#静的メンバ（static）)  
+* [静的メンバ（static）](#静的メンバ（static）)
+* [if 文](#if文)  
 ============================================================
-* [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
@@ -1308,18 +1308,18 @@ class Math { //独自クラス
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="if文"></a>
 # <b>if 文</b>
 
 ### 基本例文
 ```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
-        int _age = 49;
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        int _age = 50;
         if (_age <= 20) {
             Debug.Log("20歳以下");
         } else if (_age <= 40) {
@@ -1380,10 +1380,11 @@ class Test { //メインクラス
 ### 排他的論理和（XOR）
 1. ^ 演算子を使う方法
     ```
-    //test.cs
-    using System;
-    class Test { //メインクラス
-        static void Main() { //自動的最初に実行され
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             bool _a = true, _b = false;
             if (_a ^ _b) {
                 Debug.Log("どちらか一方だけtrueです");
@@ -1396,10 +1397,11 @@ class Test { //メインクラス
 
 1. ^ 演算子を使わない方法
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             bool _a = true, _b = false;
             if ((_a || _b) && !(_a && _b)) {
                 Debug.Log("どちらか一方だけtrueです");
@@ -1410,11 +1412,11 @@ class Test { //メインクラス
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
