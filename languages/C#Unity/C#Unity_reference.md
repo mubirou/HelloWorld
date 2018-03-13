@@ -14,9 +14,9 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ （getter / setter）](#アクセサ)
 * [演算子](#演算子)
-* [定数](#定数)  
+* [定数](#定数)
+* [メソッド](#メソッド)  
 ============================================================
-* [メソッド](#メソッド)
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
@@ -956,7 +956,6 @@ class MyMath {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="メソッド"></a>
 # <b>メソッド</b>
@@ -977,10 +976,11 @@ class MyMath {
 
 ### 基本例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass.Tashizan(1,10)); //55
         Debug.Log(_myClass.Tashizan(1,100)); //5050
@@ -999,23 +999,26 @@ class MyClass {
 }
 ```
 
-### Main()メソッド
+### Awake()、Start()メソッド
 * 特徴
-    * 記述できるクラスは１つだけ（複数存在するとエラー）
-    * 自動的に最初に実行
-    * static キーワードが必須（オブジェクトの生成をしなくても Main() を呼び出す必要がある為）
-    * 値を返したり、引数を渡すことも可能
+    * .NET Framework 版の Main() メソッドと同等
+    * Awake() に続き Start() が自動的に実行される
+    * その他、デフォルトで記述される Update() の他、OnCollisionEnter() 等もある
 
 * 例文
 ```
-//test.cs
-using System;
-class Test { //メインクラス（Mainは不可）
-    static void Main() { //自動的に最初に実行される
-        Method(); //"Test.Method()"
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Awake() {
+        MyMethod("Awake");
     }
-    static void Method() { //staticなメソッドならMain()から呼び出せる
-        Debug.Log("Test.Method()");
+    void Start () { //通常こちらを使用
+        MyMethod("Start");
+    }
+    void MyMethod(string arg) { //staticである必要はない
+        Debug.Log(arg);
     }
 }
 ```
@@ -1032,10 +1035,11 @@ class クラス名 {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () { //通常こちらを使用
         Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
         Debug.Log(_point.X); //100
         Debug.Log(_point.Y); //150
@@ -1061,10 +1065,11 @@ class Point {
 
 ### 静的メソッド（クラスメソッド）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () { //通常こちらを使用
         Debug.Log(Math.Pow(2,0)); //1（2の0乗）
         Debug.Log(Math.Pow(2,1)); //2（2の1乗）
         Debug.Log(Math.Pow(2,8)); //256（2の8乗）
@@ -1086,10 +1091,11 @@ class Math {
 ### デフォルト値付き引数
 * オプション引数（引数は省略可）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () { //通常こちらを使用
         MyClass _myClass = new MyClass();
         _myClass.AddPoint(); //1
         _myClass.AddPoint(10); //11
@@ -1108,10 +1114,11 @@ class MyClass {
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () { //通常こちらを使用
         MyClass _myClass = new MyClass();
         _myClass.Sum(1,1); //2（1+1）
         _myClass.Sum(1,2,3,4,5); //15（1+2+3+4+5）
@@ -1132,10 +1139,11 @@ class MyClass {
 ### 名前付き引数
 * 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() { //自動的に最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () { //通常こちらを使用
         MyClass _myClass = new MyClass();
         _myClass.Rect(endX:100, endY:100); //面積:10000m2
         _myClass.Rect(10,10,100,100); //面積:8100m2
@@ -1150,11 +1158,11 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2016年11月25日  
-更新日：2017年04月18日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="匿名メソッド"></a>
 # <b>匿名メソッド</b>
