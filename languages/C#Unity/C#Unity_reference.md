@@ -87,7 +87,7 @@
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //bool型
         bool _bool = true;
         Debug.Log(_bool); //True
@@ -231,7 +231,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             //クラスの場合
             var _tmp = new SubClass();
             Debug.Log(_tmp is SubClass); //True
@@ -254,7 +254,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             var _myClass = new MyClass();
             Debug.Log(_myClass as MyClass); //=> MyClass
             Debug.Log(_myClass as HogeClass); //=> error CS0039
@@ -272,7 +272,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             Debug.Log(true.GetType()); //=> System.Boolean
             Debug.Log(100.GetType()); //=> System.Int32
             Debug.Log(10000000000.GetType()); //=> System.UInt64
@@ -294,7 +294,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             //bool _tmp = (bool)1; //error CS0030（数値→bool型への変換は不可）
             //int _tmp = (int)true; //error CS0030（bool型→数値への変換は不可）
         }
@@ -307,7 +307,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             int _tmp = 0;
             bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
             Debug.Log(_tmp2); //False
@@ -322,7 +322,7 @@ class MyClass { //クラスの定義
     using System; //Convertに必要
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             bool _tmp = true;
             int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
             Debug.Log(_tmp2); //1
@@ -336,7 +336,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             //整数の場合
             long _tmp1 = 2147483648; //intは-2147483648〜2147483647
             int _tmp2 = (int)_tmp1; //long型→int型へ変換
@@ -356,7 +356,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             int _tmp = 2147483647; //intは-2147483648〜2147483647
             long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
             Debug.Log(_tmp2); //2147483648
@@ -371,7 +371,7 @@ class MyClass { //クラスの定義
     using System; //Int32.Parse()に必要
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             string _tmp = "001";
             int _tmp2 = Int32.Parse(_tmp); //"001"（string型）→1（int型）に変換
             Debug.Log(_tmp2); //1
@@ -386,7 +386,7 @@ class MyClass { //クラスの定義
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             int _tmp = 100;
             string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
             Debug.Log(_tmp2); //"100"
@@ -408,7 +408,7 @@ class MyClass { //クラスの定義
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //①インタンスの生成
         Rectangle _rectangle = new Rectangle();
         
@@ -460,7 +460,7 @@ class Rectangle { //長方形クラス
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //派生クラスＡのインスタンス
         SubClassA _subclassA = new SubClassA();
         Debug.Log(_subclassA.pSuperClass); //"基本クラスのプロパティ"
@@ -545,7 +545,7 @@ namespace 名前空間名 {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
         Debug.Log(_myClass); //MyLibrary.MyClass
     }
@@ -581,7 +581,7 @@ namespace MyLibrary {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         ClassB _classB = new ClassB();
         _classB.MyMethod();
     }
@@ -601,7 +601,7 @@ class ClassB : ClassA {} //ClassAを継承
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         ClassB _classB = new ClassB();
         _classB.MyMethod();
     }
@@ -659,7 +659,7 @@ public データ型 変数名; //public変数宣言（初期化も可）
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
      }
@@ -688,7 +688,7 @@ class 基本クラス { //スーパークラス定義
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         SubClass _subClass = new SubClass();
         Debug.Log(_subClass); //SubClass
         //Debug.Log(_subClass._pSuperClass); //error CS0122（アクセス不可）
@@ -726,7 +726,7 @@ private データ型 変数名; //private変数宣言（初期化も可）←pri
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
      }
@@ -752,7 +752,7 @@ class MyClass {
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             MyClass _myClass = new MyClass();
             _myClass.MyMethod();
         }
@@ -777,7 +777,7 @@ class MyClass {
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             new MyClass();
         }
     }
@@ -808,7 +808,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Nishimura _nishimura = new Nishimura();
         Debug.Log(_nishimura.Age); //50
         _nishimura.Age = 51; //値を変更可能
@@ -831,7 +831,7 @@ class Nishimura {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Nishimura _nishimura = new Nishimura();
         Debug.Log(_nishimura.Age); //50
         //_nishimura.Age = 50; //error CS0272（値の変更は不可）
@@ -863,7 +863,7 @@ class Nishimura {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Debug.Log(3 + 2); //5 (可算) 
         Debug.Log(5 - 8); //-3 (減算)
         Debug.Log(3 * 4); //12 (乗算)
@@ -911,7 +911,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         const float PI = 3.14159f; //staticは記述しない（注意）
         Debug.Log(PI); //=> 3.14159
         //PI = 3.14; //error CS0131（変更不可）
@@ -939,7 +939,7 @@ class クラス名 {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Debug.Log(MyMath.PI); //=> 3.14159
         //MyMath.PI = 3.14; //error CS0131（変更不可）
     }
@@ -980,7 +980,7 @@ class MyMath {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         Debug.Log(_myClass.Tashizan(1,10)); //55
         Debug.Log(_myClass.Tashizan(1,100)); //5050
@@ -1014,7 +1014,7 @@ public class Main : MonoBehaviour {
     void Awake() {
         MyMethod("Awake");
     }
-    void Start () { //通常こちらを使用
+    void Start() { //通常こちらを使用
         MyMethod("Start");
     }
     void MyMethod(string arg) { //staticである必要はない
@@ -1039,7 +1039,7 @@ class クラス名 {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
         Debug.Log(_point.X); //100
         Debug.Log(_point.Y); //150
@@ -1069,7 +1069,7 @@ class Point {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Debug.Log(Math.Pow(2,0)); //1（2の0乗）
         Debug.Log(Math.Pow(2,1)); //2（2の1乗）
         Debug.Log(Math.Pow(2,8)); //256（2の8乗）
@@ -1095,7 +1095,7 @@ class Math {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         _myClass.AddPoint(); //1
         _myClass.AddPoint(10); //11
@@ -1118,7 +1118,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         _myClass.Sum(1,1); //2（1+1）
         _myClass.Sum(1,2,3,4,5); //15（1+2+3+4+5）
@@ -1143,7 +1143,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         _myClass.Rect(endX:100, endY:100); //面積:10000m2
         _myClass.Rect(10,10,100,100); //面積:8100m2
@@ -1171,7 +1171,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         _myClass.Move(1); //→
         _myClass.change();
@@ -1228,7 +1228,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         MyClass _myClass = new MyClass();
         _myClass.Move(1); //→
         _myClass.change();
@@ -1282,7 +1282,7 @@ class MyClass {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Debug.Log(Math.PI); //3.14159265358979 ←静的変数の呼び出し
         Debug.Log(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
     }
@@ -1318,7 +1318,7 @@ class Math { //独自クラス
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _age = 50;
         if (_age <= 20) {
             Debug.Log("20歳以下");
@@ -1384,7 +1384,7 @@ public class Main : MonoBehaviour {
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             bool _a = true, _b = false;
             if (_a ^ _b) {
                 Debug.Log("どちらか一方だけtrueです");
@@ -1401,7 +1401,7 @@ public class Main : MonoBehaviour {
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             bool _a = true, _b = false;
             if ((_a || _b) && !(_a && _b)) {
                 Debug.Log("どちらか一方だけtrueです");
@@ -1433,7 +1433,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _age = 50;
         string _result = (_age < 60) ? "現役" : "退職";
         Debug.Log(_result); //"現役"
@@ -1455,7 +1455,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _age = 50;
         string _result = (_age < 20) ? "未成年" :
         _result = (_age < 60) ? "現役" :
@@ -1479,7 +1479,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _name = "TAKASHI";
         switch (_name) { //判別式には「整数型」「文字型」しか使えない!
             case "TAKASHI" :
@@ -1513,7 +1513,7 @@ public class Main : MonoBehaviour {
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             int _age = 50;
             switch (true) { //bool型はエラー（注意）
                 case _age < 20 :
@@ -1540,7 +1540,7 @@ case "□□" : 何か処理; break;
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _name = "JIRO";
         switch (_name) {
             case "TAKASHI" : //breakが無いと次のcaseも処理
