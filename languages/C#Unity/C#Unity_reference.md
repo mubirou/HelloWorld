@@ -20,9 +20,9 @@
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
-* [三項演算子](#三項演算子)  
+* [三項演算子](#三項演算子)
+* [switch 文](#switch文)  
 ============================================================
-* [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
@@ -1469,17 +1469,17 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="switch文"></a>
 # <b>switch 文</b>
 
 ### 基本サンプル
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _name = "TAKASHI";
         switch (_name) { //判別式には「整数型」「文字型」しか使えない!
             case "TAKASHI" :
@@ -1509,11 +1509,12 @@ class Test {
 
 * 悪い例（エラー発生）
     ```
-    //test.cs
-    using System;
-    class Test {
-        static void Main() {
-            int _age = 49;
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start () {
+            int _age = 50;
             switch (true) { //bool型はエラー（注意）
                 case _age < 20 :
                     Debug.Log("未成年");
@@ -1535,10 +1536,11 @@ case "□□" : 何か処理; break;
 
 * 良い例
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _name = "JIRO";
         switch (_name) {
             case "TAKASHI" : //breakが無いと次のcaseも処理
@@ -1557,11 +1559,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月10日  
-更新日：2017年04月18日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="for文"></a>
 # <b>for 文</b>
