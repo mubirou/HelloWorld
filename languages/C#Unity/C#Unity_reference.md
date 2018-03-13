@@ -33,9 +33,9 @@
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
-* [base キーワード](#baseキーワード)  
+* [base キーワード](#baseキーワード)
+* [オーバーライド](#オーバーライド)  
 ============================================================
-* [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
@@ -2961,7 +2961,6 @@ class SubClass : SuperClass { //派生クラス
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
@@ -2991,11 +2990,11 @@ class 派生クラス名 : 基本クラス { //派生クラス（基本クラス
 
 * 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         SubClass _subClass = new SubClass();
         _subClass.Method();
     }
@@ -3032,11 +3031,11 @@ class 派生クラス : 抽象クラス名 { //抽象クラスを継承
 
 * 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         SubClass _subClass = new SubClass();
         _subClass.Method();
     }
@@ -3053,11 +3052,11 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
