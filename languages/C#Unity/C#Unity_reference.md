@@ -19,9 +19,9 @@
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
-* [if 文](#if文)  
+* [if 文](#if文)
+* [三項演算子](#三項演算子)  
 ============================================================
-* [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
@@ -1429,11 +1429,12 @@ public class Main : MonoBehaviour {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _age = 49;
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        int _age = 50;
         string _result = (_age < 60) ? "現役" : "退職";
         Debug.Log(_result); //"現役"
     }
@@ -1450,11 +1451,12 @@ class Test {
 
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        int _age = 49;
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        int _age = 50;
         string _result = (_age < 20) ? "未成年" :
         _result = (_age < 60) ? "現役" :
         _result = "退職";
@@ -1463,11 +1465,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="switch文"></a>
 # <b>switch 文</b>
