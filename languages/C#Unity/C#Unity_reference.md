@@ -37,9 +37,9 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
-* [乱数](#乱数)  
+* [乱数](#乱数)
+* [日時情報](#日時情報)  
 ============================================================
-* [日時情報](#日時情報)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
@@ -3396,7 +3396,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="日時情報"></a>
 # <b>日時情報</b>
@@ -3418,36 +3417,39 @@ DateTime ○ = DateTime.Now; //DateTimeは構造体
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System; //DateTimeに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
         DateTime _now = DateTime.Now;
-        Debug.Log(_now); //4/21/2017 10:16:04 AM
-        Debug.Log(_now.Year); //2017
-        Debug.Log(_now.Month); //4
-        Debug.Log(_now.Day); //21
-        Debug.Log(_now.DayOfYear); //111（元日からの日数）
-        Debug.Log(_now.DayOfWeek); //Friday
-        Debug.Log(_now.Hour); //10
-        Debug.Log(_now.Minute); //16
-        Debug.Log(_now.Second); //4
-        Debug.Log(_now.Millisecond); //337
-        Debug.Log(_now.Ticks); //636283665643372990（100ナノ秒単位）
+        Debug.Log(_now); //2018/03/13 18:00:08
+        Debug.Log(_now.Year); //2018
+        Debug.Log(_now.Month); //3
+        Debug.Log(_now.Day); //13
+        Debug.Log(_now.DayOfYear); //72（元日からの日数）
+        Debug.Log(_now.DayOfWeek); //Tuesday
+        Debug.Log(_now.Hour); //18
+        Debug.Log(_now.Minute); //0
+        Debug.Log(_now.Second); //8
+        Debug.Log(_now.Millisecond); //853
+        Debug.Log(_now.Ticks); //636565608088534190（100ナノ秒単位）
+        
         //"hh:mm:ss"で現在の時間を表示する方法
         string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
         string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
         string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
-        Debug.Log(_h + ":" + _m + ":" + _s); //"10:16:04"
+        Debug.Log(_h + ":" + _m + ":" + _s); //"18:00:08"
     }
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月27日  
-更新日：2017年04月21日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="タイマー"></a>
 # <b>タイマー</b>
