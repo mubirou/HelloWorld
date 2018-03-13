@@ -13,9 +13,9 @@
 
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
-    * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン  
+    * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
+    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける  
     ========================================================
-    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
@@ -603,7 +603,6 @@ class Exchange : IExchange {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
@@ -615,25 +614,24 @@ class Exchange : IExchange {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-//メインクラス
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         Tablet _tablet1 = new Tablet(new Android());
-        Debug.Log(_tablet1.Version); //Android 7.1.2
+        Debug.Log(_tablet1.Version); //Android 8.1
         _tablet1.BigScreen(); //大きな画面で見る
         
         Tablet _tablet2 = new Tablet(new IOS());
-        Debug.Log(_tablet2.Version); //iOS 10.3.1
+        Debug.Log(_tablet2.Version); //iOS 11.2.6
         
         SmartPhone _smartPhone1 = new SmartPhone(new Android());
-        Debug.Log(_smartPhone1.Version); //Android 7.1.2
+        Debug.Log(_smartPhone1.Version); //Android 8.1
         _smartPhone1.Phone(); //電話をかける
         
         SmartPhone _smartPhone2 = new SmartPhone(new IOS());
-        Debug.Log(_smartPhone2.Version); //iOS 10.3.1
+        Debug.Log(_smartPhone2.Version); //iOS 11.2.6
     }
 }
 
@@ -672,7 +670,7 @@ abstract class AbstractOS {
 
 //「実装」の具体的な実装者
 class Android : AbstractOS {
-    private string _version = "Android 7.1.2";
+    private string _version = "Android 8.1";
     public override string rawVersion { //オーバーライドして実際の処理を記述
         get { return _version; }
         set {}
@@ -681,7 +679,7 @@ class Android : AbstractOS {
 
 //「実装」の具体的な実装者
 class IOS : AbstractOS {
-    private string _version = "iOS 10.3.1";
+    private string _version = "iOS 11.2.6";
     public override string rawVersion { //オーバーライドして実際の処理を記述
         get { return _version; }
         set {}
@@ -689,11 +687,11 @@ class IOS : AbstractOS {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月05日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
