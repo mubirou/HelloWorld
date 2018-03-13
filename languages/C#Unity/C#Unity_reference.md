@@ -3506,7 +3506,7 @@ public class Main : MonoBehaviour {
 
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
-* [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はない
+* [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はありません
 
 ### テキストファイルの用意
 * sample.txt / UTF-8 として Project フォルダ内に保存
