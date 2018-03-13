@@ -192,7 +192,7 @@ public class Main : MonoBehaviour {
         /*
         HAPPY NEW YEAR
         タイプ023用のイラスト
-        2018.1.1
+        2019.1.1
         */
     }
 }
