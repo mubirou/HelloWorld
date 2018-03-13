@@ -22,9 +22,9 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
-* [for 文](#for文)  
+* [for 文](#for文)
+* [foreach 文](#foreach文)  
 ============================================================
-* [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
@@ -1676,7 +1676,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="foreach文"></a>
 # <b>foreach 文</b>
@@ -1690,10 +1689,11 @@ foreach (データ型 変数名 in 配列等) {
 
 ### 配列（1次元）の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string[] _array = {"A","B","C","D"}; 
         foreach (string value in _array) {
             Debug.Log(value); //"A"→"B"→"C"→"D"
@@ -1704,10 +1704,11 @@ class Test {
 
 ### 配列（2次元）の場合
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string[,] _array = {
             {"x0y0","x1y0","x2y0"}, //0行目
             {"x0y1","x1y1","x2y1"}  //1行目
@@ -1720,19 +1721,21 @@ class Test {
 ```
 
 ### 配列（ジャグ配列）の場合
+* [Edit]-[Project Settings]-[Player] を選択し「Other Settings」の「Configuration」の「Scriptiong Runtime Version」の値を「Experimental(.NET 4.6 Equivalent)」に設定しないと、dynamic を利用しようとすると error が発生する
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         dynamic[][] _array = new dynamic[2][];
-            _array[0] = new dynamic[]{"A","あ"};
-            _array[1] = new dynamic[]{"I","い"};
+        _array[0] = new dynamic[]{"A","あ"};
+        _array[1] = new dynamic[]{"I","い"};
         foreach (object[] theArray in _array) {
             foreach (object value in theArray) {
                 Debug.Log(value); //"A"→"あ"、"I"→"い"
             }
-            Debug.Log(); //オプション（改行）
+            Debug.Log(""); //オプション（改行）
         }
     }
 }
@@ -1740,14 +1743,15 @@ class Test {
 
 ### 動的配列（ArrayList）の場合
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Collections; //ArrayListに必要
-class Test {
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         ArrayList _array = new ArrayList();
         _array.Add("TAKASHI");
-        _array.Add(49);
+        _array.Add(50);
         foreach (object value in _array) {
             Debug.Log(value); //"TAKASHI"→49
         }
@@ -1757,11 +1761,12 @@ class Test {
 
 ### 動的配列（List）の場合
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
+
+public class Main : MonoBehaviour {
+    void Start () {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (string value in _list) {
             Debug.Log(value); //"A"→"B"
@@ -1772,13 +1777,14 @@ class Test {
 
 ### 連想配列の場合
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Dictionaryに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
+
+public class Main : MonoBehaviour {
+    void Start () {
         Dictionary<string, string> _dic = new Dictionary<string, string>() {
-            {"A", "あ"},    {"I", "い"}
+            {"A", "あ"},{"I", "い"}
         };
         foreach (KeyValuePair<string, string> tmp in _dic) {
             Debug.Log(tmp.Key + ":" + tmp.Value); //A:あ → I:い
@@ -1787,11 +1793,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2016年01月21日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="while文"></a>
 # <b>while 文</b>
