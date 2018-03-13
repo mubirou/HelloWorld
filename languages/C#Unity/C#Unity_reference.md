@@ -30,9 +30,9 @@
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
-* [正規表現](#正規表現)  
+* [正規表現](#正規表現)
+* [インターフェース](#インターフェース)  
 ============================================================
-* [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
@@ -2806,7 +2806,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="インターフェース"></a>
 # <b>インターフェース</b>
@@ -2830,10 +2829,11 @@ class クラス名 : Iインターフェース名 { ......
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         Moneybox _moneybox = new Moneybox();
         _moneybox.Add(5000);
         Debug.Log(_moneybox.Total); //5000
@@ -2857,11 +2857,11 @@ class Moneybox : IMoneybox {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月21日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="抽象クラス（abstract）"></a>
 # <b>抽象クラス（abstract）</b>
