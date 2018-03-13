@@ -1,7 +1,5 @@
 # <b>C# with Unity 基礎文法</b>
 
-この項目は、書きかけの項目です。
-
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_win.md)）
@@ -40,8 +38,7 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-* [処理速度計測](#処理速度計測)  
-============================================================
+* [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
 
@@ -3506,13 +3503,13 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
 * [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はない
 
-### テキストファイルの用意（sample.txt/UTF-8として保存）
+### テキストファイルの用意
+* sample.txt / UTF-8 として Project フォルダ内に保存
 ```
 あいうえお
 かきくけこ
@@ -3521,11 +3518,12 @@ public class Main : MonoBehaviour {
 
 ### 例文（StreamReader クラスを使う方法）
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.IO; //StreamReaderに必要
-class Test { 
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _path = "sample.txt";
         //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
         StreamReader _stream = new StreamReader(_path); //.txt以外も可能
@@ -3538,11 +3536,12 @@ class Test {
 
 ###  例文（File.OpenTextメソッドを使う方法）
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.IO; //StreamReaderに必要
-class Test { 
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _path = "sample.txt";
         StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
         string _string = _stream.ReadToEnd(); //全ての内容を読み込む
@@ -3552,7 +3551,6 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月30日  
-更新日：2017年04月21日
+作成日：2018年03月13日
