@@ -25,9 +25,9 @@
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
-* [配列](#配列)  
+* [配列](#配列)
+* [動的配列（List）](#動的配列（List）)  
 ============================================================
-* [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
@@ -2041,7 +2041,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="動的配列（List）"></a>
 # <b>動的配列（List）</b>
@@ -2059,11 +2058,12 @@ List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,..
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (object value in _list) {
             Debug.Log(value); //"A"→"B"
@@ -2079,11 +2079,12 @@ List.Add(値); //値はobject型（文字型、数値型等）で混在不可（
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //空 → "A" → "A","B"
         List<string> _list = new List<string>();
         _list.Add("A");
@@ -2102,11 +2103,12 @@ List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capac
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"A","B" → "C","A","B"
         List<string> _list = new List<string>() { "A", "B" };
         _list.Insert(0,"C"); //先頭に追加する場合は0
@@ -2124,11 +2126,12 @@ List[インデックス番号] = 値;
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"A","B" → "C","B"
         List<string> _list = new List<string>() { "A", "B" };
         _list[0] = "C"; //0番目を変更する場合
@@ -2146,16 +2149,17 @@ List[インデックス番号] = null;
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"A","B","C" → "A","B",null
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list[2] = null;
         foreach (object value in _list) {
-            Debug.Log(value); // "A"→"B"→（null）
+            Debug.Log(value); // "A"→"B"→Null
         }
     }
 }
@@ -2168,11 +2172,12 @@ List.Remove(object); //最初に見つかった指定のオブジェクトを削
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"A","B","C" → "A","C"
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list.Remove("B");
@@ -2190,11 +2195,12 @@ List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacit
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"A","B","C" → "B","C"
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list.RemoveAt(0); //先頭を削除する場合
@@ -2215,11 +2221,12 @@ List.Clear(); //全て削除
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"A","B","C","D" → "A","B"
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         _list.RemoveRange(2, 2); //2番目から2個削除
@@ -2239,11 +2246,12 @@ List.GetRange(開始, 抜き出す個数); //開始＝抜出しを開始した�
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"A","B","C","D" → "C","D"を返す
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
@@ -2264,11 +2272,12 @@ List.IndexOf(object [,検索開始するインデックス番号]);
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         Debug.Log(_list.IndexOf("C",0)); //2
         //最初から検索する場合（第2引数が0の場合は省略可能）
@@ -2285,11 +2294,12 @@ List.LastIndexOf(object [,検索開始するインデックス番号]);
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         Debug.Log(_list.LastIndexOf("C")); //2
         //最初から検索する場合（第2引数が0の場合は省略可能）
@@ -2305,11 +2315,12 @@ List.Capacity; //格納可能な要素の数
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //List<string> _list = new List<string>() { "A", "B", "C"};
         List<string> _list = new List<string>(3); //空のArrayListを作成
         Debug.Log(_list.Count); //0 ←実際に格納されている要素の数
@@ -2320,11 +2331,12 @@ class Test {
 
 ### 並べ替え（反転）
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         _list.Reverse();
         foreach (object value in _list) {
@@ -2341,11 +2353,12 @@ List.Sort(); //引数で範囲や比較方法を指定することも可能
 ```
 * 例文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //"C", "02", "A", "01", "03", "B" → "01", "02", "03", "A", "B", "C"
         List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
         _list.Sort();
@@ -2359,11 +2372,12 @@ class Test {
 ### 結合
 * 構文
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         List<string> _list1 = new List<string>() { "A", "B", "C" };
         List<string> _list2 = new List<string>() { "D", "E", "F" };
 
@@ -2379,11 +2393,12 @@ class Test {
 
 ### 複製
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         List<string> _list = new List<string>() { "A", "B", "C" };
         List<string> _listCopy = new List<string>(_list); //簡易型コピー方法
         _list[0] = "X";
@@ -2395,11 +2410,12 @@ class Test {
 
 ### 文字列→ List
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "A,B,C,D"; //①元となる文字列
         string[] _array = _string.Split(','); //②文字列→配列に変換（「配列」参照）
         List<string> _list = new List<string>(); //③空のListを作成
@@ -2419,11 +2435,12 @@ class Test {
 ### 全要素を取り出す
 1. foreach 文を使う方法
     ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Listに必要
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+    using System.Collections.Generic;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             List<string> _list = new List<string>() { "A", "B", "C" };
 
             //全要素を取り出す
@@ -2436,11 +2453,12 @@ class Test {
 
 1. for 文を使う方法
     ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Listに必要
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+    using System.Collections.Generic;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             List<string> _list = new List<string>() { "A", "B", "C" };
 
             //全要素を取り出す
@@ -2451,11 +2469,11 @@ class Test {
     }
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月14日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="連想配列（Dictionary）"></a>
 # <b>連想配列（Dictionary）</b>
