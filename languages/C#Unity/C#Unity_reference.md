@@ -3509,7 +3509,7 @@ public class Main : MonoBehaviour {
 * [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はありません
 
 ### テキストファイルの用意
-* sample.txt / UTF-8 として Project フォルダ内に保存
+* sample.txt / UTF-8 として [Project フォルダ](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C%23Unity/C%23Unity_linux.md)内に保存
 ```
 あいうえお
 かきくけこ
