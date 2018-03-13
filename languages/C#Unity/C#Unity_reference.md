@@ -3332,52 +3332,71 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="乱数"></a>
 # <b>乱数</b>
-* システム時間を元に発生させているため for 文で同時に異なる乱数を発生できない
+* Unity の独自仕様（一般的な C# の Random クラスとは異なります）
 
-### 書式
+### 0〜1.0 未満
 ```
-Random ○ = new Random([seed値]);
-//↑引数（シード値）を省略するとEnvironment.TickCount（システム時間）を利用
-○.NextDouble(); //0〜1.0までの浮動小数点数の乱数
-○.Next(); //整数値の乱数（百万〜数十億等）
-○.Next(整数値); //0〜整数値の値の乱数（整数）
-```
+//Main.cs
+using UnityEngine;
 
-### 例文
-```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        Random _random = new Random();
-        
-        //0〜1.0までの乱数
-        Debug.Log(_random.NextDouble()); //0.0432652673350072
-        Debug.Log(_random.NextDouble()); //0.78664848541429
-        Debug.Log(_random.NextDouble()); //0.545385330900118
-        
-        //整数値の乱数
-        Debug.Log(_random.Next()); //369339869
-        Debug.Log(_random.Next()); //1966699381
-        Debug.Log(_random.Next()); //6900123
-        
-        //任意の値までの整数値の乱数
-        Debug.Log(_random.Next(10)); //0
-        Debug.Log(_random.Next(10)); //3
-        Debug.Log(_random.Next(10)); //9
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Random.value); //0〜0.999…（1.0未満）
     }
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：Takashi Nishimura  
-作成日：2015年11月26日  
-更新日：2017年04月21日
+### 最小値〜最大値（float 型）
+```
+//Main.cs
+using UnityEngine;
 
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Random.Range(-0.3f, 0.8f)); //-0.3〜0.8以下
+    }
+}
+```
+
+### 最小値〜最大値（int型）
+```
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        int _u5=0,_u4=0,_u3=0,_u2=0,_u1=0,_o0=0,_o1=0,_o2=0,_o3=0,_o4=0,_o5=0;
+
+        for (int i=0; i < 1000000; i++) {
+            switch (Random.Range(-5, 5)) {
+                case -5: _u5++; break;
+                case -4: _u4++; break;
+                case -3: _u3++; break;
+                case -2: _u2++; break;
+                case -1: _u1++; break;
+                case  0: _o0++; break;
+                case  1: _o1++; break;
+                case  2: _o2++; break;
+                case  3: _o3++; break;
+                case  4: _o4++; break;
+                case  5: _o5++; break;
+            }
+        }
+
+        Debug.Log(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
+        //99736,100201,100107,99676,100238,100700,99774,100459,99486,99623,0
+    }
+}
+```
+
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
+作成者：Takashi Nishimura  
+作成日：2018年03月13日
+
+============================================================
 
 <a name="日時情報"></a>
 # <b>日時情報</b>
