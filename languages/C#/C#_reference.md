@@ -1195,7 +1195,7 @@ using System;
 class Test { //メインクラス
     static void Main() { //自動的最初に実行される
         MyClass _myClass = new MyClass();
-        _myClass.Move(1); //
+        _myClass.Move(1); //→
         _myClass.change();
         _myClass.Move(3); //←←←
     }

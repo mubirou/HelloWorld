@@ -1218,19 +1218,19 @@ class MyClass {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="ラムダ式"></a>
 # <b>ラムダ式</b>
 * [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
 
 ```
-//test.cs
-using System;
-class Test { //メインクラス
-    static void Main() { //自動的最初に実行される
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         MyClass _myClass = new MyClass();
-        _myClass.Move(1); //
+        _myClass.Move(1); //→
         _myClass.change();
         _myClass.Move(3); //←←←
     }
@@ -1265,11 +1265,11 @@ class MyClass {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月09日  
-更新日：2017年04月18日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="静的メンバ（static）"></a>
 # <b>静的メンバ（static）</b>
