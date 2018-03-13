@@ -28,9 +28,9 @@
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
-* [this](#this)  
+* [this](#this)
+* [文字列の操作](#文字列の操作)  
 ============================================================
-* [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
@@ -2555,7 +2555,6 @@ public class Main : MonoBehaviour {
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2594,7 +2593,6 @@ class Robot {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
@@ -2607,10 +2605,11 @@ string 変数名 = new string(new char[]{'○','○',...}); //new演算子とcha
 ```
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //①文字列リテラルを使う
         string _string1 = "ABCDE";
         Debug.Log(_string1); //"ABCDE"
@@ -2624,10 +2623,11 @@ class Test {
 
 ### 長さを調べる
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "ABCDE";
         Debug.Log(_string.Length); //5
     }
@@ -2642,10 +2642,11 @@ String.Substring(開始 [,文字数])
 ```
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "0123456789";
         Debug.Log(_string[4]); //"4"
         Debug.Log(_string.Substring(4)); //"456789"
@@ -2661,10 +2662,11 @@ String.Remove(開始位置, 削除する文字数);
 ```
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "にしむらたかし";
         Debug.Log(_string.Remove(0, 4)); //"たかし"
     }
@@ -2679,12 +2681,13 @@ String.Replace('置換前の文字', '置換後の文字');
 ```
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "2017年04月19日";
-        Debug.Log(_string.Replace("2017年", "平成29年")); //"平成29年04月19日"
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+       	string _string = "2018年03月13日";
+        Debug.Log(_string.Replace("2018年", "平成30年")); //"平成30年03月13日"
     }
 }
 ```
@@ -2697,11 +2700,12 @@ String.IndexOf('検索したい文字', 開始位置);
 ```
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
-        string _string = "ABCDEFG-ABCDEFG";
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+       	string _string = "ABCDEFG-ABCDEFG";
         string _word = "CD";
         int _i = 0;
         while (_string.IndexOf(_word, _i) != -1) { //見つからない場合「-1」
@@ -2721,10 +2725,11 @@ String.Split('区切り文字');
 ```
 * 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (object value in _array) {
@@ -2734,11 +2739,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月17日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="正規表現"></a>
 # <b>正規表現</b>
