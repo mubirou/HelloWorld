@@ -14,9 +14,9 @@
 * プログラムの「構造」に関するパターン
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（継承）](#Adapter（継承）) : 一皮かぶせて再利用
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
-    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける  
+    * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
+    * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視  
     ========================================================
-    * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
@@ -691,7 +691,6 @@ class IOS : AbstractOS {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
@@ -704,15 +703,12 @@ class IOS : AbstractOS {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
-/**************
- * メインクラス
-**************/
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         //①フォルダの作成
         Folder _root = new Folder("root");
         Folder _authoring = new Folder("Authoring");
@@ -785,11 +781,11 @@ class File : Component {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月08日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
