@@ -31,9 +31,9 @@
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-* [インターフェース](#インターフェース)  
+* [インターフェース](#インターフェース)
+* [抽象クラス（abstract）](#抽象クラス（abstract）)  
 ============================================================
-* [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
@@ -1582,7 +1582,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             for (int i=0; i<10; i++) { //ここでint型を宣言すると...
                 Debug.Log(i); //0,1,2,3,4,5,6,7,8,9
             }
@@ -1597,7 +1597,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             int _i; //ここでint型を宣言すると...
             for (_i=0; _i<10; _i++) {
                 Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
@@ -1613,7 +1613,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         for (int i=0; i<50; i+=5) { //5つずつアップする場合...
             Debug.Log(i); //0,5,10,15,20,25,30,35,40,45
         }
@@ -1627,7 +1627,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         for (int i=1; i<=5; i++) {
             for (int j=1; j<=5; j++) {
                 Debug.Log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
@@ -1643,7 +1643,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _count = 0;
         for (;;) { //①初期化 ②ループ判定式 ③更新処理...の全てを省略すると無限ループ
             _count++;
@@ -1661,7 +1661,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         for (int i=1; i<=20; i++) { //iは1,2,...19,20
             if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
                 continue; //for文の残処理をスキップしてfor文の次の反復を開始する
@@ -1693,7 +1693,7 @@ foreach (データ型 変数名 in 配列等) {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string[] _array = {"A","B","C","D"}; 
         foreach (string value in _array) {
             Debug.Log(value); //"A"→"B"→"C"→"D"
@@ -1708,7 +1708,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string[,] _array = {
             {"x0y0","x1y0","x2y0"}, //0行目
             {"x0y1","x1y1","x2y1"}  //1行目
@@ -1727,7 +1727,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         dynamic[][] _array = new dynamic[2][];
         _array[0] = new dynamic[]{"A","あ"};
         _array[1] = new dynamic[]{"I","い"};
@@ -1748,7 +1748,7 @@ using UnityEngine;
 using System.Collections; //ArrayListに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         ArrayList _array = new ArrayList();
         _array.Add("TAKASHI");
         _array.Add(50);
@@ -1766,7 +1766,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (string value in _list) {
             Debug.Log(value); //"A"→"B"
@@ -1782,7 +1782,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Dictionary<string, string> _dic = new Dictionary<string, string>() {
             {"A", "あ"},{"I", "い"}
         };
@@ -1815,7 +1815,7 @@ while (ループ判定式) {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _i = 0;
         while (_i < 10) { //ループ判定式にはbool型しか使えない
             Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
@@ -1840,7 +1840,7 @@ do {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _i = 0;
         do {
             Debug.Log(_i); //0 ←ループ判定式はfalseだが１回実行される
@@ -1856,7 +1856,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _count = 0;
         while (true) { //ループ判別式をtrueにすると無限ループに
             _count++;
@@ -1876,7 +1876,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         int _i = 1;
         while (_i <= 20) {
             if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
@@ -1927,7 +1927,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             string[,] _coinlocker = new string[5,4];
             _coinlocker[0,0] = "1083"; //0,0の値
             _coinlocker[0,1] = "7777"; //0,1の値
@@ -1943,7 +1943,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             string[,] _coinlocker = {
                 {"1083","7777","",""}, //0行目
                 {"","","",""}, //1行目
@@ -1974,7 +1974,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             dynamic[][] _array = new dynamic[4][];
             _array[0] = new dynamic[]{"A","あ","ア"}; //配列リテラルは不可
             _array[1] = new dynamic[]{"I","い","イ"};
@@ -1990,7 +1990,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
     using UnityEngine;
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             dynamic[][] _array = new dynamic[][]{
             new dynamic[]{"A","あ","ア"},
             new dynamic[]{"I","い","イ"},
@@ -2012,7 +2012,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string[] _array = {"A","B","C","D"};
         for (int i=0; i<_array.Length; i++) { //配列の要素の数
             Debug.Log(_array[i]);
@@ -2027,7 +2027,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (string value in _array) {
@@ -2063,7 +2063,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (object value in _list) {
             Debug.Log(value); //"A"→"B"
@@ -2084,7 +2084,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //空 → "A" → "A","B"
         List<string> _list = new List<string>();
         _list.Add("A");
@@ -2108,7 +2108,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"A","B" → "C","A","B"
         List<string> _list = new List<string>() { "A", "B" };
         _list.Insert(0,"C"); //先頭に追加する場合は0
@@ -2131,7 +2131,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"A","B" → "C","B"
         List<string> _list = new List<string>() { "A", "B" };
         _list[0] = "C"; //0番目を変更する場合
@@ -2154,7 +2154,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"A","B","C" → "A","B",null
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list[2] = null;
@@ -2177,7 +2177,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"A","B","C" → "A","C"
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list.Remove("B");
@@ -2200,7 +2200,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"A","B","C" → "B","C"
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list.RemoveAt(0); //先頭を削除する場合
@@ -2226,7 +2226,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"A","B","C","D" → "A","B"
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         _list.RemoveRange(2, 2); //2番目から2個削除
@@ -2251,7 +2251,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"A","B","C","D" → "C","D"を返す
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
@@ -2277,7 +2277,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         Debug.Log(_list.IndexOf("C",0)); //2
         //最初から検索する場合（第2引数が0の場合は省略可能）
@@ -2299,7 +2299,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         Debug.Log(_list.LastIndexOf("C")); //2
         //最初から検索する場合（第2引数が0の場合は省略可能）
@@ -2320,7 +2320,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //List<string> _list = new List<string>() { "A", "B", "C"};
         List<string> _list = new List<string>(3); //空のArrayListを作成
         Debug.Log(_list.Count); //0 ←実際に格納されている要素の数
@@ -2336,7 +2336,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         List<string> _list = new List<string>() { "A", "B", "C", "D"};
         _list.Reverse();
         foreach (object value in _list) {
@@ -2358,7 +2358,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //"C", "02", "A", "01", "03", "B" → "01", "02", "03", "A", "B", "C"
         List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
         _list.Sort();
@@ -2377,7 +2377,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         List<string> _list1 = new List<string>() { "A", "B", "C" };
         List<string> _list2 = new List<string>() { "D", "E", "F" };
 
@@ -2398,7 +2398,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         List<string> _list = new List<string>() { "A", "B", "C" };
         List<string> _listCopy = new List<string>(_list); //簡易型コピー方法
         _list[0] = "X";
@@ -2415,7 +2415,7 @@ using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "A,B,C,D"; //①元となる文字列
         string[] _array = _string.Split(','); //②文字列→配列に変換（「配列」参照）
         List<string> _list = new List<string>(); //③空のListを作成
@@ -2440,7 +2440,7 @@ public class Main : MonoBehaviour {
     using System.Collections.Generic; //Listに必要
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             List<string> _list = new List<string>() { "A", "B", "C" };
 
             //全要素を取り出す
@@ -2458,7 +2458,7 @@ public class Main : MonoBehaviour {
     using System.Collections.Generic; //Listに必要
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             List<string> _list = new List<string>() { "A", "B", "C" };
 
             //全要素を取り出す
@@ -2498,7 +2498,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
     using System.Collections.Generic; //Dictionaryに必要
 
     public class Main : MonoBehaviour {
-        void Start () {
+        void Start() {
             //①作成（空のDictionaryを作成する場合、{}は不要）
             Dictionary<string, string> _dic = new Dictionary<string, string>() {
                 {"A", "あ"},
@@ -2525,7 +2525,7 @@ using UnityEngine;
 using System.Collections.Generic; //Dictionaryに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //①作成（空のDictionaryを作成する場合、{}は不要）
         Dictionary<string, string> _dic = new Dictionary<string, string>() {
             {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
@@ -2557,7 +2557,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Robot _robot = new Robot(500);
         _robot.Move();
         Debug.Log(_robot.X); //510
@@ -2609,7 +2609,7 @@ string 変数名 = new string(new char[]{'○','○',...}); //new演算子とcha
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         //①文字列リテラルを使う
         string _string1 = "ABCDE";
         Debug.Log(_string1); //"ABCDE"
@@ -2627,7 +2627,7 @@ public class Main : MonoBehaviour {
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "ABCDE";
         Debug.Log(_string.Length); //5
     }
@@ -2646,7 +2646,7 @@ String.Substring(開始 [,文字数])
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "0123456789";
         Debug.Log(_string[4]); //"4"
         Debug.Log(_string.Substring(4)); //"456789"
@@ -2666,7 +2666,7 @@ String.Remove(開始位置, 削除する文字数);
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "にしむらたかし";
         Debug.Log(_string.Remove(0, 4)); //"たかし"
     }
@@ -2685,7 +2685,7 @@ String.Replace('置換前の文字', '置換後の文字');
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
        	string _string = "2018年03月13日";
         Debug.Log(_string.Replace("2018年", "平成30年")); //"平成30年03月13日"
     }
@@ -2704,7 +2704,7 @@ String.IndexOf('検索したい文字', 開始位置);
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
        	string _string = "ABCDEFG-ABCDEFG";
         string _word = "CD";
         int _i = 0;
@@ -2729,7 +2729,7 @@ String.Split('区切り文字');
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (object value in _array) {
@@ -2756,7 +2756,7 @@ using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "cabacbbacbcba";
         //"a"がいくつ含まれるか
         MatchCollection _mc = Regex.Matches(_string, "a");
@@ -2772,7 +2772,7 @@ using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = @"U7eLoERa"; //任意のパスワード（@を付ける）
         /* 条件
         8文字以上（全て半角）
@@ -2793,7 +2793,7 @@ using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         string _string = "123-4567"; //任意の郵便番号
         Regex _regex = new Regex("\\d{3}-\\d{4}");
         Match _match = _regex.Match(_string);
@@ -2833,7 +2833,7 @@ class クラス名 : Iインターフェース名 { ......
 using UnityEngine;
 
 public class Main : MonoBehaviour {
-    void Start () {
+    void Start() {
         Moneybox _moneybox = new Moneybox();
         _moneybox.Add(5000);
         Debug.Log(_moneybox.Total); //5000
@@ -2861,7 +2861,6 @@ class Moneybox : IMoneybox {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="抽象クラス（abstract）"></a>
 # <b>抽象クラス（abstract）</b>
@@ -2884,10 +2883,11 @@ class SubClass : Abstract○○ { //抽象クラスの継承
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         SubClass _subClass = new SubClass();
         _subClass.Common(); //"AbstractClass.Common()"
         _subClass.Method(); //"SubClass.Method()"
@@ -2906,11 +2906,11 @@ class SubClass : AbstractClass { //抽象クラスを継承
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="baseキーワード"></a>
 # <b>base キーワード</b>
