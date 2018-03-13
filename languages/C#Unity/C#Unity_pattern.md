@@ -6,9 +6,9 @@
 
 * オブジェクトの「生成」に関するパターン
     * [<ruby>Singleton<rt>シングルトン</rt></ruby>](#Singleton) : たった１つのインスタンス
-    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る  
+    * [<ruby>Prototype<rt>プロトタイプ</rt></ruby>](#Prototype) : コピーしてインスタンスを作る
+    * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる  
     ========================================================
-    * [<ruby>Builder<rt>ビルダー</rt></ruby>](#Builder) : 複雑なインスタンスを組み立てる
     * [<ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby>](#FactoryMethod) : インスタンスの作成をサブクラスにまかせる
     * [<ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby>](#AbstractFactory) : 関連する部品を組み合わせて製品を作る
 
@@ -161,7 +161,6 @@ class Prototype : IPrototype {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-========================================================
 
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
@@ -175,14 +174,11 @@ class Prototype : IPrototype {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 
-/*************
- * メインクラス
-*************/
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         Director _director1 = new Director(new Builder009());
         _director1.Construct(); //共通の手順を実行
         /*
@@ -282,15 +278,15 @@ class Footer004 {
 }
 
 class Footer011 {
-    public void exec() { Debug.Log("2018.1.1"); }
+    public void exec() { Debug.Log("2019.1.1"); }
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月02日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
