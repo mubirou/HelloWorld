@@ -2060,7 +2060,7 @@ List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,..
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2081,7 +2081,7 @@ List.Add(値); //値はobject型（文字型、数値型等）で混在不可（
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2105,7 +2105,7 @@ List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capac
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2128,7 +2128,7 @@ List[インデックス番号] = 値;
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2151,7 +2151,7 @@ List[インデックス番号] = null;
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2174,7 +2174,7 @@ List.Remove(object); //最初に見つかった指定のオブジェクトを削
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2197,7 +2197,7 @@ List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacit
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2223,7 +2223,7 @@ List.Clear(); //全て削除
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2248,7 +2248,7 @@ List.GetRange(開始, 抜き出す個数); //開始＝抜出しを開始した�
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2274,7 +2274,7 @@ List.IndexOf(object [,検索開始するインデックス番号]);
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2296,7 +2296,7 @@ List.LastIndexOf(object [,検索開始するインデックス番号]);
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2317,7 +2317,7 @@ List.Capacity; //格納可能な要素の数
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2333,7 +2333,7 @@ public class Main : MonoBehaviour {
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2355,7 +2355,7 @@ List.Sort(); //引数で範囲や比較方法を指定することも可能
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2374,7 +2374,7 @@ public class Main : MonoBehaviour {
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2395,7 +2395,7 @@ public class Main : MonoBehaviour {
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2412,7 +2412,7 @@ public class Main : MonoBehaviour {
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -2437,7 +2437,7 @@ public class Main : MonoBehaviour {
     ```
     //Main.cs
     using UnityEngine;
-    using System.Collections.Generic;
+    using System.Collections.Generic; //Listに必要
 
     public class Main : MonoBehaviour {
         void Start () {
@@ -2455,7 +2455,7 @@ public class Main : MonoBehaviour {
     ```
     //Main.cs
     using UnityEngine;
-    using System.Collections.Generic;
+    using System.Collections.Generic; //Listに必要
 
     public class Main : MonoBehaviour {
         void Start () {
@@ -2495,7 +2495,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
     ```
     //Main.cs
     using UnityEngine;
-    using System.Collections.Generic;
+    using System.Collections.Generic; //Dictionaryに必要
 
     public class Main : MonoBehaviour {
         void Start () {
@@ -2522,7 +2522,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections.Generic; //Dictionaryに必要
 
 public class Main : MonoBehaviour {
     void Start () {
