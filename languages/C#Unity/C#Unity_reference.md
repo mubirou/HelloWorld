@@ -26,9 +26,9 @@
 * [foreach 文](#foreach文)
 * [while 文](#while文)
 * [配列](#配列)
-* [動的配列（List）](#動的配列（List）)  
+* [動的配列（List）](#動的配列（List）)
+* [連想配列（Dictionary）](#連想配列（Dictionary）)  
 ============================================================
-* [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
@@ -2473,7 +2473,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="連想配列（Dictionary）"></a>
 # <b>連想配列（Dictionary）</b>
@@ -2494,11 +2493,12 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 
 * 例文
     ```
-    //test.cs
-    using System;
-    using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
-    class Test {
-        static void Main() {
+    //Main.cs
+    using UnityEngine;
+    using System.Collections.Generic;
+
+    public class Main : MonoBehaviour {
+        void Start () {
             //①作成（空のDictionaryを作成する場合、{}は不要）
             Dictionary<string, string> _dic = new Dictionary<string, string>() {
                 {"A", "あ"},
@@ -2520,11 +2520,12 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 
 ### キー、値の検索
 ```
-//test.cs
-using System;
-using System.Collections.Generic; //Dictionaryに必要（Unity版でも必要）
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //①作成（空のDictionaryを作成する場合、{}は不要）
         Dictionary<string, string> _dic = new Dictionary<string, string>() {
             {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
@@ -2536,11 +2537,11 @@ class Test {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月11日  
-更新日：2017年04月19日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="this"></a>
 # <b>this</b>
