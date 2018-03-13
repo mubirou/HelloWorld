@@ -32,9 +32,9 @@
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
-* [抽象クラス（abstract）](#抽象クラス（abstract）)  
+* [抽象クラス（abstract）](#抽象クラス（abstract）)
+* [base キーワード](#baseキーワード)  
 ============================================================
-* [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
@@ -2874,6 +2874,7 @@ class Moneybox : IMoneybox {
 abstract class Abstract○○ { //抽象クラスの定義
     public abstract 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
 }
+
 class SubClass : Abstract○○ { //抽象クラスの継承
     public override 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
         //実際の処理
@@ -2893,12 +2894,14 @@ public class Main : MonoBehaviour {
         _subClass.Method(); //"SubClass.Method()"
     }
 }
+
 abstract class AbstractClass { //「抽象クラス」の定義
     public void Common() { //共通のメソッド
         Debug.Log("AbstractClass.Common()");
     }
     public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
 }
+
 class SubClass : AbstractClass { //抽象クラスを継承
     public override void Method() { //オーバーライドして実際の処理を記述
         Debug.Log("SubClass.Method()"); //実際の処理
@@ -2910,7 +2913,6 @@ class SubClass : AbstractClass { //抽象クラスを継承
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="baseキーワード"></a>
 # <b>base キーワード</b>
@@ -2933,18 +2935,21 @@ class 派生クラス名 : 基本クラス名 { //派生クラス（基本クラ
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         SubClass _subClass = new SubClass("A");
     }
 }
+
 class SuperClass { //基本クラス
     public SuperClass(string p1, string p2) { //基本クラスのコンストラクタ
         Debug.Log("SuperClass:" + p1 + ":" + p2); //①番目（p1は"A"、p2は"B"）
     }
 }
+
 class SubClass : SuperClass { //派生クラス
     public SubClass(string p) : base(p, "B") { //派生クラスのコンストラクタ
         Debug.Log("SubClass:" + p); //②番目（pは"A"）
@@ -2952,11 +2957,11 @@ class SubClass : SuperClass { //派生クラス
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年11月24日  
-更新日：2017年04月21日
+作成日：2018年03月13日
 
+============================================================
 
 <a name="オーバーライド"></a>
 # <b>オーバーライド</b>
