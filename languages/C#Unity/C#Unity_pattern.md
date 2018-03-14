@@ -29,9 +29,9 @@
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
-    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する  
+    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
+    * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現  
     ========================================================
-    * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則をクラスで表現する
 
@@ -1833,8 +1833,6 @@ class SnapShot {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
-
 
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
@@ -1856,12 +1854,12 @@ class SnapShot {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
 
-//メイン
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         //Context役
         Janken _janken = new Janken();
         
@@ -1914,11 +1912,11 @@ class StateB : IState {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月17日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
