@@ -17,9 +17,9 @@
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
-    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口  
+    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
+    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす  
     ========================================================
-    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
@@ -948,7 +948,6 @@ class Decorator2 : Display {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
@@ -958,22 +957,19 @@ class Decorator2 : Display {
 * フライ級（軽量級）。
 * インスタンスをできるかぎり共有させて無駄に new しない…ということがポイント。
 * 外部ファイルを読み込むなど「メモリの使用量」が多い場合などに有効です。
-* 以下の例文では、外部テキストとして2つのファイルを使用します。
+* 以下の例文では、外部テキストとして2つのファイル（Project フォルダ内に保存）を使用します。
     * A.txt（"あいうえお"＝あ行）
     * KA.txt（"かきくけこ"＝か行）
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Collections.Generic; //Dictionaryに必要
 using System.IO; //StreamReaderに必要
 
-/********
- * メイン
-********/
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         //インスタンスの管理者を作る（シングルトンクラス）
         Manager _manager = Manager.GetInstance();
         
@@ -1031,11 +1027,11 @@ class Reader {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月15日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
