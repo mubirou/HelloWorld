@@ -1413,7 +1413,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
@@ -1560,7 +1559,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="for文"></a>
 # <b>for 文</b>
@@ -2538,7 +2536,6 @@ public class Main : MonoBehaviour {
 作成者：Takashi Nishimura  
 作成日：2018年03月13日
 
-============================================================
 
 <a name="this"></a>
 # <b>this</b>
