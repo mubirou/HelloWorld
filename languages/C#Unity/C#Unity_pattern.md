@@ -16,9 +16,9 @@
     * [<ruby>Adapter<rt>アダプター</rt></ruby>（委譲）](#Adapter（委譲）) : クラスによる Adapter パターン
     * [<ruby>Bridge<rt>ブリッジ</rt></ruby>](#Bridge) : 機能の階層と実装の階層を分ける
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
-    * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視  
+    * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
+    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口  
     ========================================================
-    * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
     * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
@@ -862,7 +862,6 @@ class Decorator2 : Display {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
@@ -887,10 +886,11 @@ class Decorator2 : Display {
 
 ### 例文
 ```
-//test.cs
-using System;
-class Test {
-    static void Main() {
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
         //メイン内がシンプルになります
         DecoratorFacade.Exec("TAKASHI"); //TAKASHI
         DecoratorFacade.Exec("TAKASHI", 1, 0); //-TAKASHI-
@@ -944,11 +944,11 @@ class Decorator2 : Display {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月10日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
