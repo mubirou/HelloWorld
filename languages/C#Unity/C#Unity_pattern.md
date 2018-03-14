@@ -28,9 +28,9 @@
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
     * [<ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby>](#ChainofResponsibility) : 責任のたらいまわし
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
-    * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する  
+    * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
+    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する  
     ========================================================
-    * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
     * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則をクラスで表現する
@@ -1710,7 +1710,6 @@ class iPadPro : IObserver { //本来は大文字で始まるべきですが…
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
@@ -1724,11 +1723,12 @@ class iPadPro : IObserver { //本来は大文字で始まるべきですが…
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Collections.Generic; //Listに必要
-class Test {
-    static void Main() {
+
+public class Main : MonoBehaviour {
+    void Start () {
         Gamer _gamer = new Gamer(100); //ゲームスタート（最初のポイントは100）
         SnapShot _snapShot = _gamer.Save(); //最初の状態を保存
         
@@ -1829,10 +1829,11 @@ class SnapShot {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月17日  
-更新日：2017年05月02日
+作成日：2018年03月14日
+
+========================================================
 
 
 <a name="State"></a>
