@@ -2002,7 +2002,6 @@ class Canvas {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
@@ -2015,12 +2014,12 @@ class Canvas {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
+using System; //Int32.Parse()に必要
 
-//メイン
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         string _code = "+10;*50;/2;-4;="; //自作言語による記述（≒ActionScript）
         SWF _swf = new SWF(_code); //≒SWFファイルに変換
         AVM _avm = new AVM(); //≒ActionScript Virtual Machine
@@ -2081,7 +2080,6 @@ class AVM {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月19日  
-更新日：2017年05月02日
+作成日：2018年03月14日
