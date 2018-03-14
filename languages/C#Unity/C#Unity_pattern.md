@@ -18,9 +18,9 @@
     * [<ruby>Composite<rt>コンポジット</rt></ruby>](#Composite) : 容器と中身の同一視
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
-    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす  
+    * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
+    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る  
     ========================================================
-    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
     * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
@@ -1031,7 +1031,6 @@ class Reader {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
@@ -1047,14 +1046,13 @@ class Reader {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.IO; //StreamReaderに必要
 
-// メインクラス
-class Test {
-    static void Main() {
-        string _path = "sample.txt";
+public class Main : MonoBehaviour {
+    void Start () {
+        string _path = "sample.txt"; //事前にProjectフォルダに置いておく
         
         //代理人（Proxy）役
         Loader _loader = new Loader(_path);
@@ -1105,10 +1103,11 @@ class Content : ILoader {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月12日  
-更新日：2017年05月02日
+作成日：2018年03月14日
+
+========================================================
 
 
 <a name="Iterator"></a>
