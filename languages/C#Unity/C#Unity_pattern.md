@@ -30,8 +30,7 @@
     * [<ruby>Mediator<rt>メディエイター</rt></ruby>](#Mediator) : 相手は相談役１人だけ
     * [<ruby>Observer<rt>オブザーバ</rt></ruby>](#Observer) : 状態の変化を通知する
     * [<ruby>Memento<rt>メメント</rt></ruby>](#Memento) : 状態を保存する
-    * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現  
-    ========================================================
+    * [<ruby>State<rt>ステート</rt></ruby>](#State) : 状態をクラスとして表現
     * [<ruby>Command<rt>コマンド</rt></ruby>](#Command) : 命令をクラスにする
     * [<ruby>Interpreter<rt>インタプリタ</rt></ruby>](#Interpreter) : 文法規則をクラスで表現する
 
@@ -1856,7 +1855,6 @@ class SnapShot {
 ```
 //Main.cs
 using UnityEngine;
-using System.Collections.Generic; //Listに必要
 
 public class Main : MonoBehaviour {
     void Start () {
@@ -1916,7 +1914,6 @@ class StateB : IState {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
 
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
@@ -1928,13 +1925,12 @@ class StateB : IState {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
-// メインクラス
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         Inkscape _inkscape = new Inkscape(); //グラフィックソフト
         
         //命令の実行
@@ -1944,7 +1940,7 @@ class Test {
         
         //バッチ処理（オプション）
         _inkscape.Batch(1,3); //実行履歴の1個目〜3個を再度実行する
-        //	……
+        // ……
         // 線を引く
         // 縁取る
         // 影を付ける
@@ -2002,11 +1998,11 @@ class Canvas {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月18日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
