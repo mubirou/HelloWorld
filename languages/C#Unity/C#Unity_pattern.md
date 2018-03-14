@@ -19,11 +19,11 @@
     * [<ruby>Decorator<rt>デコレータ</rt></ruby>](#Decorator) : 飾り枠と中身の同一視
     * [<ruby>Facade<rt>ファサード</rt></ruby>](#Facade) : シンプルな窓口
     * [<ruby>Flyweight<rt>フライウエイト</rt></ruby>](#Flyweight) : 同じものを共有して無駄をなくす
-    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る  
-    ========================================================
+    * [<ruby>Proxy<rt>プロキシー</rt></ruby>](#Proxy) : 必要になってから作る
 
 * オブジェクトの「振る舞い」に関するパターン
-    * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる
+    * [<ruby>Iterator<rt>イテレータ</rt></ruby>](#Iterator) : １つ１つ数え上げる  
+    ========================================================
     * [<ruby>Template Method<rt>テンプレート メソッド</rt></ruby>](#TemplateMethod) : 具体的な処理をサブクラスにまかせる
     * [<ruby>Strategy<rt>ストラテジー</rt></ruby>](#Strategy) : アルゴリズムをごっそり切り替える
     * [<ruby>Visitor<rt>ビジター</rt></ruby>](#Visitor) : 構造を渡り歩きながら仕事をする
@@ -1107,8 +1107,6 @@ class Content : ILoader {
 作成者：Takashi Nishimura  
 作成日：2018年03月14日
 
-========================================================
-
 
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
@@ -1122,15 +1120,12 @@ class Content : ILoader {
 
 ### 例文
 ```
-//test.cs
-using System;
+//Main.cs
+using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
-/**********
- * メイン
-**********/
-class Test {
-    static void Main() {
+public class Main : MonoBehaviour {
+    void Start () {
         BikePark _bikePark = new BikePark();
 
         _bikePark.Add(new Bike("CB1100F", "神戸 X XX-XX"));
@@ -1196,11 +1191,11 @@ class Iterator : IIterator {
 }
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
+実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2015年12月15日  
-更新日：2017年05月02日
+作成日：2018年03月14日
 
+========================================================
 
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
