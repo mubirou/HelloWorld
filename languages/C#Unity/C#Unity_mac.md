@@ -1,4 +1,6 @@
-# C# with Unity（ Linux ）
+# C# with Unity（ macOS ）
+
+この項目は、書きかけの項目です。
 
 ## C# with Unityについて
 

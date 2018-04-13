@@ -3439,9 +3439,76 @@ public class Main : MonoBehaviour {
 }
 ```
 
+### 万年カレンダー
+```
+//Main.cs
+using UnityEngine;
+using System; //DateTimeに必要
+
+public class Main : MonoBehaviour {
+	void Start() {
+		Calender(2016,2); //2016年2月の場合
+	}
+	
+	void Calender(int _year, int _month) {
+		DateTime _dateTime = new DateTime(_year, _month, 1); //○年○月1日
+
+		int _fistWeek = (int)_dateTime.DayOfWeek; //その日が何曜日か（0は日曜日）
+
+		int _lastDay = DateTime.DaysInMonth(_year, _month); //月の最終日は何日か
+
+		//各週を配列化〜各配列に値（日にち）を代入
+		int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
+		int[] _4week = new int[7], _5week = new int[7];
+
+		int _count = 1; //代入する日にち
+
+		//第1週
+		for (int i=_fistWeek; i<_1week.Length; i++) {
+			_1week[i] = _count++;
+		}
+
+		//第2週
+		for (int i=0; i<_2week.Length; i++) {
+			_2week[i] = _count++;
+		}
+
+		//第3週
+		for (int i=0; i<_3week.Length; i++) {
+			_3week[i] = _count++;
+		}
+
+		//第4週
+		for (int i=0; i<_4week.Length; i++) {
+			_4week[i] = _count++;
+		}
+
+		//第5週
+		for (int i=0; i<_5week.Length; i++) {
+			if (_count <= _lastDay) {
+				_5week[i] = _count++;
+			}
+		}
+
+		//結果＝カレンダー表示（うるう年に対応）
+		Debug.Log("第1週");
+		for (int i=0; i<=6; i++) { Debug.Log(_1week[i]);} // 0, 1, 2, 3, 4, 5, 6
+		Debug.Log("第2週");
+		for (int i=0; i<=6; i++) { Debug.Log(_2week[i]); } // 7, 8, 9,10,11,12,13
+		Debug.Log("第3週");
+		for (int i=0; i<=6; i++) { Debug.Log(_3week[i]); } //14,15,16,17,18,19,20
+		Debug.Log("第4週");
+		for (int i=0; i<=6; i++) { Debug.Log(_4week[i]); } //21,22,23,24,25,26,27
+		Debug.Log("第5週");
+		for (int i=0; i<=6; i++) { Debug.Log(_5week[i]); } //28,29, 0, 0, 0, 0, 0
+	}
+}
+```
+
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：Takashi Nishimura  
-作成日：2018年03月13日
+作成日：2018年03月13日  
+更新日：2018年04月13日
 
 
 <a name="タイマー"></a>
