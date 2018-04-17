@@ -55,7 +55,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 実際に Web ブラウザに表示される文書の本体。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 59  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2017年08月08日
 
 
@@ -79,8 +79,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/">夢寐郎 Books</a><br>
-    <a href="https://www.instagram.com/takashinishimura_touring/">夢寐郎 Touring</a>
+    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a><br>
+    <a href="https://www.instagram.com/takashinishimura_touring/">Takashi Nishimura Touring</a>
   </body>
 </html>
 ```
@@ -100,7 +100,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/" id="id001">夢寐郎</a>
+    <a href="https://www.instagram.com/takashinishimura_books/" id="id001">Takashi Nishimura</a>
   </body>
 </html>
 ```
@@ -120,8 +120,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/" class="class001">夢寐郎 Books</a><br>
-    <a href="https://www.instagram.com/takashinishimura_touring/" class="class001">夢寐郎 Touring</a>
+    <a href="https://www.instagram.com/takashinishimura_books/" class="class001">Takashi Nishimura Books</a><br>
+    <a href="https://www.instagram.com/takashinishimura_touring/" class="class001">Takashi Nishimura Touring</a>
   </body>
 </html>
 ```
@@ -138,8 +138,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/">夢寐郎 Books</a>
-    <p class="class001">夢寐郎 Touring</a>
+    <a href="https://www.instagram.com/takashinishimura_books/">Takashi Nishimura Books</a>
+    <p class="class001">Takashi Nishimura Touring</a>
   </body>
 </html>
 ```
@@ -160,8 +160,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
   </head>
   <body>
     <p>
-      <span class="class001">夢寐郎 Books</span><br>
-      <span class="class002">夢寐郎 Touring</span>
+      <span class="class001">Takashi Nishimura Books</span><br>
+      <span class="class002">Takashi Nishimura Touring</span>
     </p>
   </body>
 </html>
@@ -195,7 +195,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://github.com/takashinishimura">夢寐郎</a>
+    <a href="https://github.com/takashinishimura">Takashi Nishimura</a>
   </body>
 </html>
 ```
@@ -217,13 +217,13 @@ a {
     <link rel="stylesheet" href="sample.css" type="text/css">
   </head>
   <body>
-    <a href="https://github.com/takashinishimura">夢寐郎</a>
+    <a href="https://github.com/takashinishimura">Takashi Nishimura</a>
   </body>
 </html>
 ```
 
 実行環境：Windows 7、Google Chrome 60  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2017年08月10日
 
 
@@ -236,5 +236,5 @@ XXXx
 ```
 
 実行環境：Windows 7、Google Chrome 60  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2017年08月XX日

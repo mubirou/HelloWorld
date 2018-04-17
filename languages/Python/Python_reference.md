@@ -158,7 +158,7 @@ print(type(None)) #<class 'NoneType'>
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月20日  
 更新日：2017年04月10日
 
@@ -243,7 +243,7 @@ print(type(_tmp)) #<class 'str'>
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月20日  
 更新日：2017年04月10日
 
@@ -333,7 +333,7 @@ print(_rectangle.getArea()) #2073600
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月20日  
 更新日：2017年04月10日
 
@@ -413,7 +413,7 @@ print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月21日  
 更新日：2017年04月10日
 
@@ -451,7 +451,7 @@ print(_tokyo.name) #'nishimura'
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月28日  
 更新日：2017年04月10日
 
@@ -498,7 +498,7 @@ _classB.myMethod() #'ClassA.myMethod
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月21日  
 更新日：2017年04月10日
 
@@ -644,7 +644,7 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月21日  
 更新日：2017年04月10日
 
@@ -694,7 +694,7 @@ print(_nishimura.age) #48
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月22日  
 更新日：2017年04月11日
 
@@ -742,7 +742,7 @@ print(~3) #-4（ビット反転）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月22日  
 更新日：2017年04月11日
 
@@ -759,9 +759,9 @@ print(~3) #-4（ビット反転）
 ```
 #test.py
 #擬似「定数」←実際はグローバル変数
-MY_NAME = "mubirou"
+MY_NAME = "Takashi Nishimura"
 
-print(MY_NAME) #"mubirou"
+print(MY_NAME) #"Takashi Nishimura"
 
 MY_NAME = "TARO NISHIMURA" #変更できてしまう（本当は定数ではない）
 print(MY_NAME) #"TARO NISHIMURA"
@@ -773,25 +773,25 @@ print(MY_NAME) #"TARO NISHIMURA"
 #カスタムクラス（MyClass）
 class MyClass(object):
     #擬似「クラス定数」←実際はパブリック変数
-    MY_NAME = "mubirou"
+    MY_NAME = "Takashi Nishimura"
 
 #=====================================================
 # 「インスタンス変数」と「クラス定数」の違いを検証
 #=====================================================
 _myClass = MyClass() #インスタンスの生成
-print(_myClass.MY_NAME) #"mubirou" ←インスタンス変数へのアクセス
+print(_myClass.MY_NAME) #"Takashi Nishimura" ←インスタンス変数へのアクセス
 _myClass.MY_NAME = "HANAKO NISHIMURA" #インスタンス変数を変更（他人をいじる…）
 #↑オブジェクト指向のルールとしてgetter/setterでアクセスすべきですが…
 print(_myClass.MY_NAME) #"HANAKO NISHIMURA"
 
-print(MyClass.MY_NAME) #"mubirou" ←クラス変数とインスタンス変数は別扱い
+print(MyClass.MY_NAME) #"Takashi Nishimura" ←クラス変数とインスタンス変数は別扱い
 
 MyClass.MY_NAME = "TARO NISHIMURA" #変更できてしまう（実際は定数ではない）
 print(MyClass.MY_NAME) #"TARO NISHIMURA"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月23日  
 更新日：2017年04月11日
 
@@ -978,7 +978,7 @@ _myClass.rect(endX=100, endY=100) #面積:10000m2 ←デフォルト値付との
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月23日  
 更新日：2017年04月11日
 
@@ -1035,7 +1035,7 @@ print(hello()) #"您好"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月23日  
 更新日：2017年04月11日
 
@@ -1081,7 +1081,7 @@ print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
 
@@ -1183,7 +1183,7 @@ else:
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
 
@@ -1205,7 +1205,7 @@ print(_result)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
 
@@ -1259,7 +1259,7 @@ for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
 
@@ -1318,7 +1318,7 @@ for i, tmp in enumerate(_dict):
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
 
@@ -1370,7 +1370,7 @@ while (i_ <= 20) :
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
 
@@ -1443,7 +1443,7 @@ for 変数 in タプル: print(変数) ←要素だけを取得する場合
 * [for...in 文](#for...in文)参照
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月24日  
 更新日：2017年04月11日
 
@@ -1708,7 +1708,7 @@ print(['A','B','C'] is ['A','B','C']) #False ←オブジェクトが異なる�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月27日  
 更新日：2017年04月11日
 
@@ -1787,7 +1787,7 @@ print(len(_dict)) #3
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月27日  
 更新日：2017年04月11日
 
@@ -1819,7 +1819,7 @@ _myClass.myMethod()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月27日  
 更新日：2017年04月11日
 
@@ -1938,7 +1938,7 @@ print(list_) #['A', 'B', 'C']
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月28日  
 更新日：2017年04月11日
 
@@ -1991,7 +1991,7 @@ print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Python 2.3 
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月28日  
 更新日：2017年04月11日
 
@@ -2039,7 +2039,7 @@ _subClass.abstractFunction() #"派生クラスでオーバーライドした抽�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月28日  
 更新日：2017年04月11日
 
@@ -2089,7 +2089,7 @@ _subClass.hoge("派生クラスからの呼び出し")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月28日  
 更新日：2017年04月11日
 
@@ -2137,7 +2137,7 @@ _subClass.myFunction()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月28日  
 更新日：2017年04月11日
 
@@ -2184,7 +2184,7 @@ _robot.fight() #"GAME OVER"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月28日  
 更新日：2017年04月11日
 
@@ -2299,7 +2299,7 @@ print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月29日  
 更新日：2017年04月11日
 
@@ -2351,7 +2351,7 @@ print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #"X"...など
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月29日  
 更新日：2017年04月11日
 
@@ -2399,7 +2399,7 @@ print(h_ + ":" + m_ + ":" + s_) #14:23:07
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月29日  
 更新日：2017年04月11日
 
@@ -2445,7 +2445,7 @@ _loop.start()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月29日  
 更新日：2017年04月11日
 
@@ -2483,7 +2483,7 @@ print(str(_result) + 'sec.') #3.835374116897583sec.
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月29日  
 更新日：2017年04月11日
 
@@ -2533,6 +2533,6 @@ print(result_)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年06月29日  
 更新日：2017年04月11日

@@ -168,7 +168,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月12日  
 更新日：2017年04月24日
 
@@ -304,7 +304,7 @@ int main() {
 
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月12日  
 更新日：2017年04月25日
 
@@ -402,7 +402,7 @@ int main() { //注意：利用するクラスは前方宣言が必要
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月12日  
 更新日：2017年04月26日
 
@@ -539,7 +539,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月13日  
 更新日：2017年04月26日
 
@@ -587,7 +587,7 @@ MyClass _myClass; //「Shinano::」が省略可能になる
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月25日  
 更新日：2017年04月26日
 
@@ -675,7 +675,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月13日  
 更新日：2017年04月26日
 
@@ -893,7 +893,7 @@ int main() {
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月13日  
 更新日：2017年04月26日
 
@@ -945,7 +945,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月16日  
 更新日：2017年04月26日
 
@@ -993,7 +993,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月16日  
 更新日：2017年04月26日
 
@@ -1012,8 +1012,8 @@ int main() {
 #include <iostream> //coutに必要
 using namespace std;
 int main() { // メイン関数
-    const string myname = "mubirou";
-    cout << myname << "\n"; //"mubirou"
+    const string myname = "Takashi Nishimura";
+    cout << myname << "\n"; //"Takashi Nishimura"
     //atoz = "にしむらたかし"; //変更しようとするとERROR
     return 0;
 }
@@ -1031,17 +1031,17 @@ class MyClass {
 };
 
 //↓"static"の記述はいらない
-const string MyClass::myname = "mubirou"; //メンバ定数の「定義」
+const string MyClass::myname = "Takashi Nishimura"; //メンバ定数の「定義」
 
 //main()関数の定義
 int main() {
-    cout << MyClass::myname << "\n"; //"mubirou"
+    cout << MyClass::myname << "\n"; //"Takashi Nishimura"
     return 0;
 }
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月16日  
 更新日：2017年04月26日
 
@@ -1260,7 +1260,7 @@ int main() { MyClass _myClass;
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月17日  
 更新日：2017年04月26日
 
@@ -1303,7 +1303,7 @@ int main() { // メイン関数
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月18日  
 更新日：2017年04月27日
 
@@ -1353,7 +1353,7 @@ int main() { // メイン関数
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月18日  
 更新日：2017年04月27日
 
@@ -1456,7 +1456,7 @@ int main() {
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月18日  
 更新日：2017年04月27日
 
@@ -1507,7 +1507,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月18日  
 更新日：2017年04月27日
 
@@ -1556,7 +1556,7 @@ _int の値が「1の場合①」「2の場合①②」「3の場合③④」「
 （各行で何も処理しないのことも可能）
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月19日  
 更新日：2017年04月27日
 
@@ -1664,7 +1664,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月19日  
 更新日：2017年04月27日
 
@@ -1750,7 +1750,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月19日  
 更新日：2017年04月27日
 
@@ -1848,7 +1848,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月19日  
 更新日：2017年04月27日
 
@@ -1934,7 +1934,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月20日  
 更新日：2017年04月27日
 
@@ -2283,7 +2283,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2015年05月23日  
 更新日：2017年04月27日
 
@@ -2333,7 +2333,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月23日  
 更新日：2017年04月27日
 
@@ -2358,7 +2358,7 @@ int main() {
     using namespace std;
 
     int main() {
-        string _tNishimura = "mubirou"; //元となる変数
+        string _tNishimura = "Takashi Nishimura"; //元となる変数
         string &tn = _tNishimura; //「別名」（&別名）を付ける
         _tNishimura = "Taro Nishimura";
         cout << _tNishimura << endl; //"Taro Nishimura"
@@ -2538,7 +2538,7 @@ int main() {
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月24日  
 更新日：2017年04月27日
 
@@ -2598,7 +2598,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月24日  
 更新日：2017年04月27日
 
@@ -2675,7 +2675,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月24日  
 更新日：2017年04月27日
 
@@ -2724,7 +2724,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月24日  
 更新日：2017年04月27日
 
@@ -2781,7 +2781,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月25日  
 更新日：2017年04月27日
 
@@ -2827,7 +2827,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月25日  
 更新日：2017年04月27日
 
@@ -2922,7 +2922,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月26日  
 更新日：2017年04月27日
 
@@ -3027,7 +3027,7 @@ int main() { //メイン関数
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月26日  
 更新日：2017年04月27日
 
@@ -3096,7 +3096,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月26日  
 更新日：2017年04月27日
 
@@ -3276,7 +3276,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月26日  
 更新日：2017年04月28日
 
@@ -3363,7 +3363,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月27日  
 更新日：2017年04月28日
 
@@ -3411,7 +3411,7 @@ struct tm *_pNow = localtime(&_now);
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月27日  
 更新日：2017年04月28日
 
@@ -3502,7 +3502,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月27日  
 更新日：2017年04月28日
 
@@ -3609,6 +3609,6 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C++14  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年05月30日  
 更新日：2017年04月28日

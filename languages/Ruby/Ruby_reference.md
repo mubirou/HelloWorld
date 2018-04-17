@@ -105,7 +105,7 @@ puts(nil.class.name) #NilClass（オブジェクトが存在しない事を意�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月04日  
 更新日：2017年04月06日
 
@@ -214,7 +214,7 @@ puts(_tmp.class.name) #String
 * Rubyには特別な機能が用意されていない
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日
 
@@ -305,7 +305,7 @@ puts(_rectangle.getArea()) #2073600（()は省略可）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日  
 
@@ -395,7 +395,7 @@ _subClassB.mSubClassB() #"サブクラスのメソッド"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日
 
@@ -454,7 +454,7 @@ _subclass.BBB() #"SubClass.BBB"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月06日
 
@@ -505,7 +505,7 @@ _classB.myMethod() #"ClassA.myMethod"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日
 
@@ -705,7 +705,7 @@ puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日
 
@@ -760,7 +760,7 @@ puts(_nishimura.age) #49
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日
 
@@ -813,7 +813,7 @@ puts(~3) #-4（ビット反転）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日
 
@@ -828,8 +828,8 @@ puts(~3) #-4（ビット反転）
 ### 通常の定数
 ```
 #test.rb
-MY_NAME = "mubirou" #先頭はアルファベットの大文字にしなければならない
-puts(MY_NAME) #"mubirou"
+MY_NAME = "Takashi Nishimura" #先頭はアルファベットの大文字にしなければならない
+puts(MY_NAME) #"Takashi Nishimura"
 MY_NAME = "TARO NISHIMURA" #警告（worning）は出るが変更は出来てしまう
 puts(MY_NAME) #"TARO NISHIMURA"
 ```
@@ -841,16 +841,16 @@ puts(MY_NAME) #"TARO NISHIMURA"
 # カスタムクラス
 #=======================================
 class MyClass
-  MY_NAME = "mubirou" #先頭はアルファベットの大文字
+  MY_NAME = "Takashi Nishimura" #先頭はアルファベットの大文字
   def initialize(init=0)
-    puts(MY_NAME) #"mubirou" #クラス内でのアクセス方法
+    puts(MY_NAME) #"Takashi Nishimura" #クラス内でのアクセス方法
   end
 end
 
 #=======================================
 # 実行（クラス名::クラス定数でアクセス）
 #=======================================
-puts(MyClass::MY_NAME) #"mubirou"（外からのアクセス方法）
+puts(MyClass::MY_NAME) #"Takashi Nishimura"（外からのアクセス方法）
 MyClass::MY_NAME = "TARO NISHIMURA" #警告（worning）は出るが変更は出来てしまう
 puts(MyClass::MY_NAME) #"TARO NISHIMURA"
 
@@ -860,7 +860,7 @@ _myClass = MyClass.new()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月05日  
 更新日：2017年04月06日
 
@@ -1045,7 +1045,7 @@ _myClass.rect(endX:100, endY:100) #面積:10000m2（デフォルト値付との�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月06日  
 更新日：2017年04月06日
 
@@ -1102,7 +1102,7 @@ _piyo() #エラー
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月06日  
 更新日：2017年04月07日
 
@@ -1155,7 +1155,7 @@ puts(MyClass.PI) #3.14
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月06日  
 更新日：2017年04月07日  
 
@@ -1270,7 +1270,7 @@ end
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1318,7 +1318,7 @@ puts(test(89)) #"退職"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1373,7 +1373,7 @@ end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1434,7 +1434,7 @@ end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1495,7 +1495,7 @@ end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1556,7 +1556,7 @@ end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1810,7 +1810,7 @@ end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1860,7 +1860,7 @@ puts({"A"=>"あ", "I"=>"い", "U"=>"う"}.size) #3
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -1894,7 +1894,7 @@ MyMethod() #main
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月07日  
 更新日：2017年04月07日
 
@@ -2012,7 +2012,7 @@ p _array #["A", "B", "C", "D", "E", "F"]
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月08日
 
@@ -2061,7 +2061,7 @@ p _string #"よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Ruby 2.3 
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月10日
 
@@ -2111,7 +2111,7 @@ _subClass.abstractMethod() #"派生クラスでオーバーライドした抽象
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月10日
 
@@ -2164,7 +2164,7 @@ _subClass.hoge("派生クラスからの呼び出し")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月10日
 
@@ -2213,7 +2213,7 @@ _subClass.myMethod()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月10日
 
@@ -2261,7 +2261,7 @@ _robot.fight() #"GAME OVER"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月08日  
 更新日：2017年04月10日
 
@@ -2373,7 +2373,7 @@ puts([5.01, -10, 8, 2.9].min) #-10 ←配列（Array）要素の比較
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月09日  
 更新日：2017年04月10日
 
@@ -2419,7 +2419,7 @@ puts(_i0,_i1,_i2,_i3,_i4,_i5,_i6,_i7,_i8,_i9)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月09日  
 更新日：2017年04月10日
 
@@ -2465,7 +2465,7 @@ puts(_h + ":" + _m + ":" + _s) #"11:09:36"など
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月09日  
 更新日：2017年04月10日
 
@@ -2516,7 +2516,7 @@ _loop.start()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月09日  
 更新日：2017年04月10日
 
@@ -2563,7 +2563,7 @@ end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月09日  
 更新日：2017年04月10日
 
@@ -2619,6 +2619,6 @@ puts(_reslt)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：夢寐郎  
+作成者：Takashi Nishimura  
 作成日：2016年07月09日  
 更新日：2017年04月10日
