@@ -105,6 +105,6 @@ public class Main : MonoBehaviour {
 「!」マークをクリックすると、より詳細な情報が表示される
 
 ***
-作成者: Takashi Nishimura  
+作成者: 夢寐郎  
 作成日: 2018年03月07日  
 更新日：2018年03月11日

@@ -63,5 +63,5 @@ $ ./test
 Hello,world! ←と表示されたら成功！
 
 ***
-作成者: Takashi Nishimura  
+作成者: 夢寐郎  
 作成日: 2017年02月23日

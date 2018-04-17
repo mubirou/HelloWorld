@@ -122,7 +122,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日  
 
 
@@ -247,7 +247,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日  
 
 
@@ -319,7 +319,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日  
 
 
@@ -425,7 +425,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日  
 
 
@@ -472,7 +472,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日  
 
 
@@ -570,7 +570,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日
 
 
@@ -628,7 +628,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日
 
 
@@ -717,7 +717,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日
 
 
@@ -852,7 +852,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日
 
 <a name="定数"></a>
@@ -866,8 +866,8 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
             //実行
-            const MY_NAME: String = "Takashi Nishimura"; //定数の定義
-            console.log(MY_NAME); //["Takashi Nishimura"]
+            const MY_NAME: String = "mubirou"; //定数の定義
+            console.log(MY_NAME); //["mubirou"]
             //MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
         }
     }
@@ -910,7 +910,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月29日  
 
 
@@ -1141,7 +1141,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1209,7 +1209,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1259,7 +1259,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1376,7 +1376,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1446,7 +1446,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1566,7 +1566,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1705,7 +1705,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1787,10 +1787,10 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
 
-            var _object: Object = { name: "Takashi Nishimura", age: 49 };
+            var _object: Object = { name: "mubirou", age: 49 };
             for (var _propName: String in _object) {
                 console.log(_propName); //["age"]→["name"]
-                console.log(_object[_propName]); //[49]→["Takashi Nishimura"]
+                console.log(_object[_propName]); //[49]→["mubirou"]
             }
 
         }
@@ -1806,7 +1806,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -1874,9 +1874,9 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
 
-            var _object: Object = { name: "Takashi Nishimura", age: 49 };
+            var _object: Object = { name: "mubirou", age: 49 };
             for each (var _data: * in _object) {
-                console.log(_data); //[49]→["Takashi Nishimura"]
+                console.log(_data); //[49]→["mubirou"]
             }
 
         }
@@ -1892,7 +1892,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -2029,7 +2029,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -2580,7 +2580,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -2595,15 +2595,15 @@ package {
         public function Main() { //コンストラクタ
 
             var _obj: Object = {
-                name: "Takashi Nishimura",
+                name: "mubirou",
                 age: 49,
                 helloFunction: function(): String {
                     return "Hello! How are you?";
                 }
             }
 
-            console.log(_obj.name); //["Takashi Nishimura"]
-            console.log(_obj["name"]); //["Takashi Nishimura"]（配列アクセスも可能）
+            console.log(_obj.name); //["mubirou"]
+            console.log(_obj["name"]); //["mubirou"]（配列アクセスも可能）
             console.log(_obj.age); //[49]
             console.log(_obj.helloFunction()); //["Hello! How are you?"]
 
@@ -2620,7 +2620,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -2667,7 +2667,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -2811,7 +2811,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -2894,7 +2894,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
     1. String.split()
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -2968,7 +2968,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3022,7 +3022,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3074,7 +3074,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3141,7 +3141,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3248,7 +3248,7 @@ console.log(Math.min(5.01, -10)); //[-10]（2つの数値の比較）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 <a name="乱数"></a>
@@ -3330,7 +3330,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3386,7 +3386,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3424,7 +3424,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3485,7 +3485,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
 
 
@@ -3531,5 +3531,5 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：Takashi Nishimura  
+作成者：夢寐郎  
 作成日：2017年03月30日  
