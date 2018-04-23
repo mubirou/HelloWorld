@@ -129,8 +129,8 @@ package {
             // インスタンスを生成
             //==================
             var _prototype1: Prototype = new Prototype();
-            _prototype1.firstName = "Takashi";
-            _prototype1.lastName = "Nishimura"
+            _prototype1.firstName = "Chikashi";
+            _prototype1.lastName = "Yoshimura"
             _prototype1.address = "X-XX-XX XXX, Shinjuku-ku";
 
             //==============
@@ -143,9 +143,9 @@ package {
             // 検証
             //======
             console.log(_prototype1.firstName, _prototype1.lastName, _prototype1.address);
-            //=> ["Takashi", "Nishimura", "X-XX-XX XXX, Shinjuku-ku"]
+            //=> ["Chikashi", "Yoshimura", "X-XX-XX XXX, Shinjuku-ku"]
             console.log(_prototype2.firstName, _prototype2.lastName, _prototype2.address);
-            //=> ["Hanako", "Nishimura", "X-XX-XX XXX, Shinjuku-ku"]
+            //=> ["Hanako", "Yoshimura", "X-XX-XX XXX, Shinjuku-ku"]
         }
     }
 }

@@ -94,8 +94,8 @@ using System;
 class Test {
     static void Main() {
         //インスタンスを生成
-        Prototype _prototype1 = new Prototype("Nishimura");
-        _prototype1.FirstName = "Takashi";
+        Prototype _prototype1 = new Prototype("Yoshimura");
+        _prototype1.FirstName = "Chikashi";
         _prototype1.Age = 49;
         
         //コピーを作成
@@ -105,12 +105,12 @@ class Test {
         
         //検証（コピー元）
         Console.WriteLine(_prototype1.FirstName); //"Takshi"
-        Console.WriteLine(_prototype1.LastName); //"Nishimura"
+        Console.WriteLine(_prototype1.LastName); //"Yoshimura"
         Console.WriteLine(_prototype1.Age); //49
         
         //検証（複製したもの）
         Console.WriteLine(_prototype2.FirstName); //"Hanako" ←「参照」ではない
-        Console.WriteLine(_prototype2.LastName); //"Nishimura"
+        Console.WriteLine(_prototype2.LastName); //"Yoshimura"
         Console.WriteLine(_prototype2.Age); //45
     }
 }

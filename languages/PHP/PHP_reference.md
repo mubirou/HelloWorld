@@ -61,7 +61,7 @@
     echo gettype(100).'<br>'; //'integer'
     echo gettype(100.0).'<br>'; //'double'
     echo gettype('100').'<br>'; //'string'
-    echo gettype(array('nishimura',49)).'<br>'; //'array'
+    echo gettype(array('yoshimura',49)).'<br>'; //'array'
     echo gettype(new MyClass()).'<br>'; //'object'
     echo gettype(new PDO('sqlite::memory:', null, null)).'<br>'; //'object'
     echo gettype(NULL); //'NULL'
@@ -86,7 +86,7 @@
         echo gettype(100).'<br>'; //'integer'
         echo gettype(100.0).'<br>'; //'double'
         echo gettype('100').'<br>'; //'string'
-        echo gettype(array('nishimura',49)).'<br>'; //'array'
+        echo gettype(array('yoshimura',49)).'<br>'; //'array'
         echo gettype(new MyClass()).'<br>'; //'object'
         echo gettype(new PDO('sqlite::memory:', null, null)).'<br>'; //'object'
         echo gettype(NULL); //'NULL'
@@ -122,7 +122,7 @@
         var_dump(100); //int(100) 
         var_dump(100.0); //float(100) 
         var_dump('100'); //string(3) '100'
-        var_dump(array('nishimura',49)); //array(2) { [0]=> string(9) 'nishimura' [1]=> int(49) }
+        var_dump(array('yoshimura',49)); //array(2) { [0]=> string(9) 'yoshimura' [1]=> int(49) }
         var_dump(new MyClass()); //object(MyClass)#1 (0) { }
         var_dump(new PDO('sqlite::memory:',null,null)); //object(PDO)#1 (0) { }
         var_dump(NULL); //NULL
@@ -166,9 +166,9 @@
         echo gettype($var).'<br>'; //'string'
 
         //array型へ変換
-        $var = 'nishimura';
+        $var = 'yoshimura';
         settype($var, 'array');
-        echo $var[0].'<br>'; //'nishimura'
+        echo $var[0].'<br>'; //'yoshimura'
         echo gettype($var).'<br>'; //'array'
     ?>
     ```
@@ -201,9 +201,9 @@
         echo gettype($var).'<br>'; //'string'
 
         //array型へ変換
-        $var = 'nishimura'; 
+        $var = 'yoshimura'; 
         $var = (array)$var;
-        echo $var[0].'<br>'; //'nishimura'
+        echo $var[0].'<br>'; //'yoshimura'
         echo gettype($var).'<br>'; //'array'
     ?>
     ```
@@ -636,7 +636,7 @@ echo $myClass->propA.'<br>'; //'ABC'
 ```
 <?php
 
-class Nishimura {
+class Yoshimura {
     //private プロパティの宣言
     private $age;
     
@@ -656,10 +656,10 @@ class Nishimura {
     }
 }
 
-$nishimura = new Nishimura(49);
-echo $nishimura->age.'<br>'; //49
-$nishimura->age = 50; //変更が可能
-echo $nishimura->age.'<br>'; //50
+$yoshimura = new Yoshimura(49);
+echo $yoshimura->age.'<br>'; //49
+$yoshimura->age = 50; //変更が可能
+echo $yoshimura->age.'<br>'; //50
 
 ?>
 ```
@@ -668,7 +668,7 @@ echo $nishimura->age.'<br>'; //50
 ```
 <?php
 
-class Nishimura {
+class Yoshimura {
     //private プロパティの宣言
     private $age;
     
@@ -688,9 +688,9 @@ class Nishimura {
     }
 }
 
-$nishimura = new Nishimura(49);
-echo $nishimura->age.'<br>'; //49
-//$nishimura->age = 50; //'Fatal error: Uncaught Exception: 値の変更はできません'
+$yoshimura = new Yoshimura(49);
+echo $yoshimura->age.'<br>'; //49
+//$yoshimura->age = 50; //'Fatal error: Uncaught Exception: 値の変更はできません'
 
 ?>
 ```

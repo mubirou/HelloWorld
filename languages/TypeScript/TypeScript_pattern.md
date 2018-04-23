@@ -118,8 +118,8 @@ class Prototype implements IPrototype {
 //========
 // インスタンスを生成
 var _prototype1: Prototype = new Prototype();
-_prototype1.firstName = "Takashi";
-_prototype1.lastName = "Nishimura";
+_prototype1.firstName = "Chikashi";
+_prototype1.lastName = "Yoshimura";
 _prototype1.address = "X-XX-XX XXX, Shinjuku-ku";
 
 // コピーを作成
@@ -127,12 +127,12 @@ var _prototype2: Prototype = _prototype1.clone();
 _prototype2.firstName = "Hanako"; //検証用に一部プロパティの変更をしてみます
 
 // 検証
-console.log(_prototype1.firstName); //=> "Takashi"
-console.log(_prototype1.lastName); //=> "Nishimura"
+console.log(_prototype1.firstName); //=> "Chikashi"
+console.log(_prototype1.lastName); //=> "Yoshimura"
 console.log(_prototype1.address); //=> "X-XX-XX XXX, Shinjuku-ku"
 
 console.log(_prototype2.firstName); //=> "Hanako"
-console.log(_prototype2.lastName); //=> "Nishimura"
+console.log(_prototype2.lastName); //=> "Yoshimura"
 console.log(_prototype2.address); //=> "X-XX-XX XXX, Shinjuku-ku"
 ```
 

@@ -915,28 +915,28 @@ using namespace std;
 //========
 // クラス
 //========
-class Nishimura {
+class Yoshimura {
     private: int _age; //private変数（外部から勝手にいじらせない為）
     public:
-        Nishimura(int _age); //コンストラクタの「宣言」
+        Yoshimura(int _age); //コンストラクタの「宣言」
         int Age(); //メンバ関数（getter）の「宣言」
         void Age(int _age); //メンバ関数（setter）の「宣言」
 };
-Nishimura::Nishimura(int _age) { //コンストラクタの「定義」
-    Nishimura::_age = _age;
+Yoshimura::Yoshimura(int _age) { //コンストラクタの「定義」
+    Yoshimura::_age = _age;
 }
-int Nishimura::Age() { //メンバ関数（getter）の定義
+int Yoshimura::Age() { //メンバ関数（getter）の定義
     return _age;
 }
-void Nishimura::Age(int _age) { //メンバ関数（setter）の定義
-    Nishimura::_age = _age;
+void Yoshimura::Age(int _age) { //メンバ関数（setter）の定義
+    Yoshimura::_age = _age;
 }
 
 //============
 // メイン関数
 //============
 int main() {
-    Nishimura _nishimura(49); //Nishimuraクラスのインスタンスの生成
+    Yoshimura _nishimura(49); //Nishimuraクラスのインスタンスの生成
     cout << _nishimura.Age() << "\n"; //49 ←getterを使って値を取得
     _nishimura.Age(50); //setterを使って値を変更
     cout << _nishimura.Age() << "\n"; //50 ←getterを使って値を取得
@@ -2360,9 +2360,9 @@ int main() {
     int main() {
         string _tNishimura = "MUBIROU"; //元となる変数
         string &tn = _tNishimura; //「別名」（&別名）を付ける
-        _tNishimura = "Taro Nishimura";
-        cout << _tNishimura << endl; //"Taro Nishimura"
-        cout << tn << endl; //「別名」の値も"Taro Nishimura"に変更される
+        _tNishimura = "Taro Yoshimura";
+        cout << _tNishimura << endl; //"Taro Yoshimura"
+        cout << tn << endl; //「別名」の値も"Taro Yoshimura"に変更される
         cout << &tn << endl; //0x7ffce8727890 ←「&別名」で「アドレス」が返ります
         return 0;
     }

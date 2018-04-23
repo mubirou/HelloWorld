@@ -123,7 +123,7 @@ internal class Prototype: IPrototype { //プロトコルの実装←internalは�
 }
 
 //インスタンスを生成
-var _prototype1: Prototype = Prototype(lastName: "Nishimura")
+var _prototype1: Prototype = Prototype(lastName: "Yoshimura")
 _prototype1.firstName = "Ichiro"
 _prototype1.age = 30
 
@@ -134,12 +134,12 @@ _prototype2.age = 25
 
 //検証（コピー元）
 print(_prototype1.firstName) //=> "Ichiro"
-print(_prototype1.lastName) //=> "Nishimura"
+print(_prototype1.lastName) //=> "Yoshimura"
 print(_prototype1.age) //=> 30
 
 //検証（複製したもの）
 print(_prototype2.firstName) //=> "Hanako" ←「参照」ではない
-print(_prototype2.lastName) //=> "Nishimura"
+print(_prototype2.lastName) //=> "Yoshimura"
 print(_prototype2.age) //=> 25
 ```
 

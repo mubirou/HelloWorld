@@ -524,7 +524,7 @@ print(MyMath.PI) //=> 3.14
 ### 読み書き可能なプロパティ
 ```
 //test.swift
-internal class Nishimura { //internalは省略可
+internal class Yoshimura { //internalは省略可
     private var _age: Int = 49 //private宣言
     //アクセサ
     internal var age: Int {
@@ -537,7 +537,7 @@ internal class Nishimura { //internalは省略可
     }
 }
 
-var _nishimura: Nishimura = Nishimura()
+var _nishimura: Yoshimura = Yoshimura()
 print(_nishimura.age) //=> 49 ←getter
 //print(_nishimura._age) //error（直接のアクセス不可）
 _nishimura.age = 50 //変更可能 ←setter
@@ -547,7 +547,7 @@ print(_nishimura.age) //=> 50 ←getter
 #### 読み取り専用のメンバ変数
 ```
 //test.swift
-internal class Nishimura { //internalは省略可
+internal class Yoshimura { //internalは省略可
     private var _age: Int = 49 //private宣言
     //アクセサ
     internal var age: Int {
@@ -557,7 +557,7 @@ internal class Nishimura { //internalは省略可
     }
 }
 
-var _nishimura: Nishimura = Nishimura()
+var _nishimura: Yoshimura = Yoshimura()
 print(_nishimura.age) //=> 49 ←getter
 //print(_nishimura._age) //error（直接のアクセス不可）
 //_nishimura.age = 50 //=> error ←変更できません

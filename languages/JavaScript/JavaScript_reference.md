@@ -457,18 +457,18 @@ JavaScript は private 変数を定義することができません。そこで
 ```
 <script>
     //Nishimuraクラス
-    function Nishimura(_age) { //コンストラクタ
+    function Yoshimura(_age) { //コンストラクタ
         this.__age = _age;
     }
-    Nishimura.prototype.getAge = function() { //アクセサ（getter）
+    Yoshimura.prototype.getAge = function() { //アクセサ（getter）
         return this.__age;
     };
-    Nishimura.prototype.setAge = function(_newValue) { //アクセサ（setter）
+    Yoshimura.prototype.setAge = function(_newValue) { //アクセサ（setter）
         this.__age = _newValue;
     };
 
     //実行
-    var _nishimura = new Nishimura(49);
+    var _nishimura = new Yoshimura(49);
     console.log(_nishimura.getAge()); //49
     _nishimura.setAge(50); //変更が可能
     console.log(_nishimura.getAge()); //50
@@ -479,18 +479,18 @@ JavaScript は private 変数を定義することができません。そこで
 ```
 <script>
     //Nishimuraクラス
-    function Nishimura(_age) { //コンストラクタ
+    function Yoshimura(_age) { //コンストラクタ
         this.__age = _age;
     }
-    Nishimura.prototype.getAge = function() { //アクセサ（getter）
+    Yoshimura.prototype.getAge = function() { //アクセサ（getter）
         return this.__age;
     };
-    Nishimura.prototype.setAge = function(_newValue) { //アクセサ（setter）
+    Yoshimura.prototype.setAge = function(_newValue) { //アクセサ（setter）
         throw new Error("値の変更はできません");
     };
 
     //実行
-    var _nishimura = new Nishimura(49);
+    var _nishimura = new Yoshimura(49);
     console.log(_nishimura.getAge()); //49
     _nishimura.setAge(50); //Error: 値の変更はできません
 </script>

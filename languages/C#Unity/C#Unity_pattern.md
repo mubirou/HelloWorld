@@ -97,8 +97,8 @@ using UnityEngine;
 public class Main : MonoBehaviour {
     void Start () {
         //インスタンスを生成
-        Prototype _prototype1 = new Prototype("Nishimura");
-        _prototype1.FirstName = "Takashi";
+        Prototype _prototype1 = new Prototype("Yoshimura");
+        _prototype1.FirstName = "Chikashi";
         _prototype1.Age = 50;
         
         //コピーを作成
@@ -108,12 +108,12 @@ public class Main : MonoBehaviour {
         
         //検証（コピー元）
         Debug.Log(_prototype1.FirstName); //"Takshi"
-        Debug.Log(_prototype1.LastName); //"Nishimura"
+        Debug.Log(_prototype1.LastName); //"Yoshimura"
         Debug.Log(_prototype1.Age); //50
         
         //検証（複製したもの）
         Debug.Log(_prototype2.FirstName); //"Hanako" ←「参照」ではない
-        Debug.Log(_prototype2.LastName); //"Nishimura"
+        Debug.Log(_prototype2.LastName); //"Yoshimura"
         Debug.Log(_prototype2.Age); //45
     }
 }

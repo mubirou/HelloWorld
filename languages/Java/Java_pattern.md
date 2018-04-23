@@ -72,7 +72,7 @@ class Singleton {
 
 public class Main {
     public static void main(String[] args) {
-        Prototype _prototype = new Prototype("Nishimura");
+        Prototype _prototype = new Prototype("Yoshimura");
         _prototype.setFirstName("Ichiro");
         _prototype.setAge(5);
 
@@ -82,12 +82,12 @@ public class Main {
 
         //検証（コピー元）
         System.out.println(_prototype.getFirstName()); //=> "Ichiro"
-        System.out.println(_prototype.getLastName()); //=> "Nishimura"
+        System.out.println(_prototype.getLastName()); //=> "Yoshimura"
         System.out.println(_prototype.getAge()); //=> 5
 
         //検証（複製したもの）
         System.out.println(_prototype2.getFirstName()); //=> "Hanako"
-        System.out.println(_prototype2.getLastName()); //=> "Nishimura"
+        System.out.println(_prototype2.getLastName()); //=> "Yoshimura"
         System.out.println(_prototype2.getAge()); //=> 1
     }
 }

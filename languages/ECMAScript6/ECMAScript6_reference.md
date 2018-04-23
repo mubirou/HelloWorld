@@ -690,7 +690,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ### 読書き可能なプロパティ
 ```
 <script>
-    class Nishimura {
+    class Yoshimura {
         //コンストラクタ
         constructor(_age) {
             this.__age = _age;
@@ -704,7 +704,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
         }
     }
 
-    var _nishimura = new Nishimura(49);
+    var _nishimura = new Yoshimura(49);
     console.log(_nishimura.age); //49
     _nishimura.age = 50; //変更が可能
     console.log(_nishimura.age); //50
@@ -714,7 +714,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ### 読取り専用のプロパティ
 ```
 <script>
-    class Nishimura {
+    class Yoshimura {
         //コンストラクタ
         constructor(_age) {
             this.__age = _age;
@@ -728,7 +728,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
         }
     }
 
-    var _nishimura = new Nishimura(49);
+    var _nishimura = new Yoshimura(49);
     console.log(_nishimura.age); //49
     _nishimura.age = 50; //Error: 値の変更はできません
 </script>

@@ -109,8 +109,8 @@ Prototype.prototype.clone = function() {
 //======
 //インスタンスを生成
 var _prototype1 = new Prototype();
-_prototype1.set("_firstName","Takashi");
-_prototype1.set("_lastName","Nishimura");
+_prototype1.set("_firstName","Chikashi");
+_prototype1.set("_lastName","Yoshimura");
 _prototype1.set("_address","X-X-X XXX-cho, Shinjuku-ku");
 
 //コピーを生成
@@ -118,12 +118,12 @@ var _prototype2 = _prototype1.clone();
 _prototype2.set("_firstName","Hanako");
 
 //検証
-console.log(_prototype1.get("_firstName")); //Takashi
-console.log(_prototype1.get("_lastName")); //Nishimura
+console.log(_prototype1.get("_firstName")); //Chikashi
+console.log(_prototype1.get("_lastName")); //Yoshimura
 console.log(_prototype1.get("_address")); //X-X-X XXX-cho, Shinjuku-ku
 
 console.log(_prototype2.get("_firstName")); //Hanako
-console.log(_prototype2.get("_lastName")); //Nishimura
+console.log(_prototype2.get("_lastName")); //Yoshimura
 console.log(_prototype2.get("_address")); //X-X-X XXX-cho, Shinjuku-ku
 
 </script>

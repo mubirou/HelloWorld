@@ -148,7 +148,7 @@ void Prototype::Address(string _address) { this->_address = _address; }
 ************/
 int main() {
     //インスタンス①を生成
-    Prototype _prototype1("Takashi", "Nishimura", "X-X-X XX-cho, Shinjuku-ku");
+    Prototype _prototype1("Chikashi", "Yoshimura", "X-X-X XX-cho, Shinjuku-ku");
 
     //インスタンス①のコピーを作成
     Prototype _prototype2 = _prototype1.Clone(); 
@@ -158,7 +158,7 @@ int main() {
     
     //検証
     cout << _prototype1.FirstName() << " : " << _prototype2.FirstName() << endl; 
-    //"Takashi : Hanako" ←値が異なるので「参照」ではなく「複製」であることが判明
+    //"Chikashi : Hanako" ←値が異なるので「参照」ではなく「複製」であることが判明
 }
 ```
 

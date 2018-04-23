@@ -529,7 +529,7 @@ new MyClass();
 ### 読書き可能なプロパティ
 ```
 //xxx.ts
-class Nishimura {
+class Yoshimura {
     private _age: number = 0;
 
     constructor(_age: number) {
@@ -545,7 +545,7 @@ class Nishimura {
     }
 }
 
-var _nishimura: Nishimura = new Nishimura(49);
+var _nishimura: Yoshimura = new Yoshimura(49);
 console.log(_nishimura.age); //49
 _nishimura.age = 50; //変更が可能
 console.log(_nishimura.age); //50
@@ -554,7 +554,7 @@ console.log(_nishimura.age); //50
 ### 読取り専用のプロパティ
 ```
 //xxx.ts
-class Nishimura {
+class Yoshimura {
     private _age: number = 0;
 
     constructor(_age: number) {
@@ -570,7 +570,7 @@ class Nishimura {
     }
 }
 
-var _nishimura: Nishimura = new Nishimura(49);
+var _nishimura: Yoshimura = new Yoshimura(49);
 console.log(_nishimura.age); //49
 _nishimura.age = 50; //Error: 値の変更はできません
 ```

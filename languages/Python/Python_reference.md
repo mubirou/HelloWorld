@@ -446,8 +446,8 @@ sys.path.append('japan') #japanディレクトリ（相対パス）を検索範�
 import tokyo #モジュール（tokyo.py）をインポート
 #「import tokyo as nw」等と別名を使って利用することも可能
 
-_tokyo = tokyo.Member('nishimura') #別ディレクトリ、別ファイル内のクラスが利用可
-print(_tokyo.name) #'nishimura'
+_tokyo = tokyo.Member('yoshimura') #別ディレクトリ、別ファイル内のクラスが利用可
+print(_tokyo.name) #'yoshimura'
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
@@ -655,7 +655,7 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
 ### 読み書き可能なプロパティ
 ```
 #test.py
-class Nishimura(object):
+class Yoshimura(object):
     #プライベート変数の宣言（selfは不要）←省略可
     __age = None
     #コンストラクタ
@@ -669,7 +669,7 @@ class Nishimura(object):
         self.__age = value
     age = property(__getAge, __setAge)
 
-_nishimura = Nishimura()
+_nishimura = Yoshimura()
 print(_nishimura.age) #49
 _nishimura.age = 18 #変更できてしまう
 print(_nishimura.age) #18
@@ -677,7 +677,7 @@ print(_nishimura.age) #18
 
 ### 読み取り専用のプロパティ
 ```
-class Nishimura(object):
+class Yoshimura(object):
     #プライベート変数の宣言（selfは不要）←個人的慣例として冒頭で宣言（省略可）
     __age = None
     #コンストラクタ
@@ -688,7 +688,7 @@ class Nishimura(object):
         return self.__age
     age = property(__getAge) #setterを省略すれば良い
 
-_nishimura = Nishimura()
+_nishimura = Yoshimura()
 print(_nishimura.age) #48
 #_nishimura.age = 18 #エラー（変更不可）
 ```

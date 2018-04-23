@@ -661,7 +661,7 @@ End Module
 'test.vb
 Module test '名前（test）は任意
     Sub Main() '名前（Main）は決め打ち
-        Dim _Nishimura AS New Nishimura
+        Dim _Nishimura AS New Yoshimura
         'Console.WriteLine(_Nishimura._Age) 'error（アクセス不可）
         Console.WriteLine(_Nishimura.Age) '=> 49
         _Nishimura.Age = 50 '値を変更可能
@@ -669,7 +669,7 @@ Module test '名前（test）は任意
 
     End Sub
 
-    Public Class Nishimura
+    Public Class Yoshimura
         Private _Age As Integer = 49
 
         'アクセサの定義

@@ -589,14 +589,14 @@ class MyClass {
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        Nishimura _nishimura = new Nishimura();
+        Yoshimura _nishimura = new Yoshimura();
         System.out.println(_nishimura.getAge()); //=> 49
         _nishimura.setAge(50); //値が変更できる
         System.out.println(_nishimura.getAge()); //=> 50
     }
 }
 
-class Nishimura {
+class Yoshimura {
     private int _age = 49; //private宣言
     public int getAge() { return _age; } //_ageのgetter（thisは省略）
     public void setAge(int _age) { this._age = _age; } //_ageのsetter
@@ -608,13 +608,13 @@ class Nishimura {
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        Nishimura _nishimura = new Nishimura();
+        Yoshimura _nishimura = new Yoshimura();
         System.out.println(_nishimura.getAge()); //49
         //_nishimura._age = 50; //エラー（値が変更できない）
     }
 }
 
-class Nishimura {
+class Yoshimura {
     private int _age = 49; //private宣言
     public int getAge() { return _age; } //getterのみ用意（thisは省略）
 }

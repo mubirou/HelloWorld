@@ -321,12 +321,12 @@ int main() {
 
     //メンバー２
     struct Member _member02; //構造体変数の宣言
-    _member02.name = "Hanako Nishimura"; //メンバ（変数）の設定
+    _member02.name = "Hanako Yoshimura"; //メンバ（変数）の設定
     _member02.age = 48; //メンバ（変数）の設定
 
     printf("%s\n", _member01.name); //=> MUBIROU
     printf("%d\n", _member01.age); //=> 49
-    printf("%s\n", _member02.name); //=> Hanako Nishimura
+    printf("%s\n", _member02.name); //=> Hanako Yoshimura
     printf("%d\n", _member02.age); //=> 48
 
     return 0;
@@ -998,8 +998,8 @@ int main() {
 #include <string.h> //strcat()に必要
 
 int main() {
-    char _string1[] = "Takashi";
-    char _string2[] = "Nishimura";
+    char _string1[] = "Chikashi";
+    char _string2[] = "Yoshimura";
     char *_p; //ポインタの宣言
     _p = strcat(_string1, _string2); //連結
     printf("%s\n", _p); //=> "mubirou"
@@ -1031,7 +1031,7 @@ int main() {
     char _string[] = "MUBIROU"; //元の文字列
     char _tmp[64]; //コピーを格納する変数
     strncpy(_tmp, _string+0, 7); //0文字目から7文字を取得する場合
-    printf("%s\n", _tmp); //=> "Takashi"
+    printf("%s\n", _tmp); //=> "Chikashi"
     return 0;
 }
 ```

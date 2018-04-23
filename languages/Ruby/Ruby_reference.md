@@ -723,7 +723,7 @@ puts(MyClass.hensu) #"クラス変数"（アクセス可能）
 ### 読み書き可能なプロパティ
 ```
 #test.rb
-class Nishimura
+class Yoshimura
     @age #省略可
     def initialize() #コンストラクタ
         @age = 49
@@ -736,7 +736,7 @@ class Nishimura
     end
 end
 
-_nishimura = Nishimura.new() #()は省略可
+_nishimura = Yoshimura.new() #()は省略可
 puts(_nishimura.age) #49
 #puts(_nishimura.@age) #エラー（インスタンス変数へ直接のアクセスは不可）
 _nishimura.age = 50 #変更可能
@@ -746,7 +746,7 @@ puts(_nishimura.age) #50
 ### 読み取り専用のプロパティ
 ```
 #test.rb
-class Nishimura
+class Yoshimura
     def initialize() #コンストラクタ
         @age = 49
     end
@@ -754,7 +754,7 @@ class Nishimura
         @age
     end
 end
-_nishimura = Nishimura.new() #()は省略可
+_nishimura = Yoshimura.new() #()は省略可
 puts(_nishimura.age) #49
 #_nishimura.age = 49 #エラー（変更不可）
 ```

@@ -231,8 +231,8 @@ package {
             console.log(_string2, typeof _string2); //["100", "string"]
 
             //⑤配列→string型
-            var _string3: String = String(["Nishimura", 49]);
-            console.log(_string3, typeof _string3); //["Nishimura,49", "string"]
+            var _string3: String = String(["Yoshimura", 49]);
+            console.log(_string3, typeof _string3); //["Yoshimura,49", "string"]
 
         }
     }
@@ -643,7 +643,7 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
             //実行
-            var _nishimura: Nishimura = new Nishimura(49);
+            var _nishimura: Yoshimura = new Yoshimura(49);
             console.log(_nishimura.age); //[49]
             _nishimura.age = 50; //変更が可能
             console.log(_nishimura.age); //[50]
@@ -652,10 +652,10 @@ package {
 }
 
 
-class Nishimura {
+class Yoshimura {
     private var _age: int = 0;
 
-    public function Nishimura(_age: int) {
+    public function Yoshimura(_age: int) {
         this._age = _age; //この場合thisは必須
     }
 
@@ -684,7 +684,7 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
             //実行
-            var _nishimura: Nishimura = new Nishimura(49);
+            var _nishimura: Yoshimura = new Yoshimura(49);
             console.log(_nishimura.age); //[49]
             _nishimura.age = 50; //["Error: 値の変更はできません"]
         }
@@ -692,10 +692,10 @@ package {
 }
 
 
-class Nishimura {
+class Yoshimura {
     private var _age: int = 0;
 
-    public function Nishimura(_age: int) {
+    public function Yoshimura(_age: int) {
         this._age = _age; //この場合thisは必須
     }
 
@@ -868,7 +868,7 @@ package {
             //実行
             const MY_NAME: String = "MUBIROU"; //定数の定義
             console.log(MY_NAME); //["MUBIROU"]
-            //MY_NAME = "Ichiro Nishimura"; //Error（変更不可）
+            //MY_NAME = "Ichiro Yoshimura"; //Error（変更不可）
         }
     }
 }
