@@ -4,7 +4,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/HTML/HTML_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/HTML/HTML_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/HTML/HTML_win.md)）
+* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/HTML/HTML_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/HTML/HTML_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/HTML/HTML_win.md)）
 * [HTML の基礎](#HTMLの基礎)
 * [CSS の基礎](#CSSの基礎)
 * [XXX](#XXX)
@@ -79,8 +79,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/">MUBIROU Books</a><br>
-    <a href="https://www.instagram.com/takashinishimura_touring/">MUBIROU Touring</a>
+    <a href="https://www.instagram.com/mubirou_books/">MUBIROU Books</a><br>
+    <a href="https://www.instagram.com/mubirou_touring/">MUBIROU Touring</a>
   </body>
 </html>
 ```
@@ -100,7 +100,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/" id="id001">MUBIROU</a>
+    <a href="https://www.instagram.com/mubirou_books/" id="id001">MUBIROU</a>
   </body>
 </html>
 ```
@@ -120,8 +120,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/" class="class001">MUBIROU Books</a><br>
-    <a href="https://www.instagram.com/takashinishimura_touring/" class="class001">MUBIROU Touring</a>
+    <a href="https://www.instagram.com/mubirou_books/" class="class001">MUBIROU Books</a><br>
+    <a href="https://www.instagram.com/mubirou_touring/" class="class001">MUBIROU Touring</a>
   </body>
 </html>
 ```
@@ -138,7 +138,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/takashinishimura_books/">MUBIROU Books</a>
+    <a href="https://www.instagram.com/mubirou_books/">MUBIROU Books</a>
     <p class="class001">MUBIROU Touring</a>
   </body>
 </html>
@@ -195,7 +195,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://github.com/takashinishimura">MUBIROU</a>
+    <a href="https://github.com/mubirou">MUBIROU</a>
   </body>
 </html>
 ```
@@ -217,7 +217,7 @@ a {
     <link rel="stylesheet" href="sample.css" type="text/css">
   </head>
   <body>
-    <a href="https://github.com/takashinishimura">MUBIROU</a>
+    <a href="https://github.com/mubirou">MUBIROU</a>
   </body>
 </html>
 ```

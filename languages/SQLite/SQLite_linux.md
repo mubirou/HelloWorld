@@ -21,7 +21,7 @@
 |拡張機能|PHP Debug 1.11.1|2017年07月|
 |ブラウザ|Mozilla Firefox 54.0|2017年06月|
 
-1. [PHP の開発環境の構築](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/PHP/PHP_linux.md) をする
+1. [PHP の開発環境の構築](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/PHP_linux.md) をする
 
 1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール（省略可）  
     $ sudo apt install sqlite3  

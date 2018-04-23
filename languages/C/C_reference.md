@@ -3,7 +3,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C/C_linux.md) / [macOS](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C/C_mac.md) / [Windows](https://github.com/TakashiNishimura/HelloWorld/blob/master/languages/C/C_win.md)）
+* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/C/C_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/C/C_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C/C_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [構造体](#構造体)
@@ -1002,7 +1002,7 @@ int main() {
     char _string2[] = "Nishimura";
     char *_p; //ポインタの宣言
     _p = strcat(_string1, _string2); //連結
-    printf("%s\n", _p); //=> "TakashiNishimura"
+    printf("%s\n", _p); //=> "mubirou"
     return 0;
 }
 ```
