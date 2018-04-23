@@ -59,7 +59,7 @@ class Singleton {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月20日  
 更新日：2017年05月13日
 
@@ -72,7 +72,7 @@ class Singleton {
 
 public class Main {
     public static void main(String[] args) {
-        Prototype _prototype = new Prototype("Yoshimura");
+        Prototype _prototype = new Prototype("Nishimura");
         _prototype.setFirstName("Ichiro");
         _prototype.setAge(5);
 
@@ -82,12 +82,12 @@ public class Main {
 
         //検証（コピー元）
         System.out.println(_prototype.getFirstName()); //=> "Ichiro"
-        System.out.println(_prototype.getLastName()); //=> "Yoshimura"
+        System.out.println(_prototype.getLastName()); //=> "Nishimura"
         System.out.println(_prototype.getAge()); //=> 5
 
         //検証（複製したもの）
         System.out.println(_prototype2.getFirstName()); //=> "Hanako"
-        System.out.println(_prototype2.getLastName()); //=> "Yoshimura"
+        System.out.println(_prototype2.getLastName()); //=> "Nishimura"
         System.out.println(_prototype2.getAge()); //=> 1
     }
 }
@@ -143,7 +143,7 @@ class Prototype implements IPrototype {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月20日  
 更新日：2017年05月13日
 
@@ -218,7 +218,7 @@ class BuilderB implements IBuilder {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月20日  
 更新日：2017年05月13日
 
@@ -345,7 +345,7 @@ class Message4 implements IMessage {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月20日  
 更新日：2017年05月13日
 
@@ -427,7 +427,7 @@ class HANAKO extends AbstractFactory { //抽象クラスを継承
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月20日  
 更新日：2017年05月13日
 
@@ -482,7 +482,7 @@ class Exchange extends Moneybox implements IExchange {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -540,7 +540,7 @@ class Exchange implements IExchange {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -621,7 +621,7 @@ class IOS extends AbstractOS { //「実装」の具体的な実装者
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -711,7 +711,7 @@ class File extends Component {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -788,7 +788,7 @@ class Decorator2 extends Display {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -883,7 +883,7 @@ class Decorator2 extends Display {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -973,7 +973,7 @@ class Reader { //フライ級の役（メモリの使用量が多いため無駄
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1057,7 +1057,7 @@ class Content implements ILoader {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1148,7 +1148,7 @@ class Iterator implements IIterator {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1234,7 +1234,7 @@ class CardHanako extends AbstractCard {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1281,7 +1281,7 @@ class Janken {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1360,7 +1360,7 @@ class Hanako implements IVisitor { //花子
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1442,7 +1442,7 @@ class JapanPO extends AbstractPO {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1570,7 +1570,7 @@ class MemberC extends AbstractMember {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月21日  
 更新日：2017年05月13日
 
@@ -1647,7 +1647,7 @@ class iPadPro implements IObserver { //本来は大文字で始まるべきで�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月22日  
 更新日：2017年05月13日
 
@@ -1770,7 +1770,7 @@ class SnapShot {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月22日  
 更新日：2017年05月13日
 
@@ -1841,7 +1841,7 @@ class StateB implements IState {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月22日  
 更新日：2017年05月13日
 
@@ -1910,7 +1910,7 @@ class Canvas {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月22日  
 更新日：2017年05月13日
 
@@ -1993,6 +1993,6 @@ class AVM {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Java Standard Edition 8 Update 121  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月22日  
 更新日：2017年05月13日

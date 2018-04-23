@@ -53,7 +53,7 @@ p _singletonClass1.eql?(_singletonClass2) #=> true ←中身は全く同じイ�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月11日
 
@@ -117,7 +117,7 @@ puts(_prototype2.firstName, _prototype2.lastName) #=> "HANAKO" → "NISHIMURA"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月11日
 
@@ -205,7 +205,7 @@ _directorB.construct()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月11日
 
@@ -339,7 +339,7 @@ _cardSACHIKO.templateMethod("同級生")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月11日
 
@@ -420,7 +420,7 @@ _factoryHANAKO.createSummer()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月11日
 
@@ -472,7 +472,7 @@ puts _exchange.getDollar() #157.60799950258914（ドル）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月11日
 
@@ -522,7 +522,7 @@ puts _exchange.getDollar() #157.60799950258914（ドル）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月11日
 
@@ -614,7 +614,7 @@ _smartPhone2.phone() #電話をかける
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月11日  
 更新日：2017年05月12日
 
@@ -711,7 +711,7 @@ _unity3D.getList() #=> Authoring/Unity3D(FileName)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月12日
 
@@ -787,7 +787,7 @@ _special.show() #=> <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -873,7 +873,7 @@ DecoratorFacade.set("CHIKASHI", 3, 1) #=> <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -932,7 +932,7 @@ _readerKA.getText() #"かきくけこ"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -987,7 +987,7 @@ loader_.load() #実際は必要になった時にロードしますが...
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1080,7 +1080,7 @@ end
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1140,7 +1140,7 @@ _cardIchiro.templateMethod()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1198,7 +1198,7 @@ janken_.exec() #パー、グー、チョキ
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1273,7 +1273,7 @@ puts(_hanako.getMoney()) #15000
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1354,7 +1354,7 @@ _shinjukuPO.send("千葉県市川市XX町X-X-X") #一週間前後で届きます
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1490,7 +1490,7 @@ Mediator.MEMBER_A.request("西へ行く") #静的変数（クラス変数）に�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1568,7 +1568,7 @@ _apple.notify()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月12日  
 更新日：2017年05月13日
 
@@ -1685,7 +1685,7 @@ puts(_snapShot.point) #=> これ以上、Redoできません => 8000
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月13日  
 更新日：2017年05月13日
 
@@ -1756,7 +1756,7 @@ _janken.exec() #パー、グー、チョキ
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月13日  
 更新日：2017年05月13日
 
@@ -1836,7 +1836,7 @@ inkscape_.draw("影を付ける")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月13日  
 更新日：2017年05月13日
 
@@ -1917,6 +1917,6 @@ _avm.execute(_swf) #≒SWFファイルをAVM上で実行
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月13日  
 更新日：2017年05月13日

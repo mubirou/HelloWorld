@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/PHP_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/PHP_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/PHP_win.md)）
+* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/PHP/PHP_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/PHP/PHP_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/PHP/PHP_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -61,7 +61,7 @@
     echo gettype(100).'<br>'; //'integer'
     echo gettype(100.0).'<br>'; //'double'
     echo gettype('100').'<br>'; //'string'
-    echo gettype(array('yoshimura',49)).'<br>'; //'array'
+    echo gettype(array('nishimura',49)).'<br>'; //'array'
     echo gettype(new MyClass()).'<br>'; //'object'
     echo gettype(new PDO('sqlite::memory:', null, null)).'<br>'; //'object'
     echo gettype(NULL); //'NULL'
@@ -70,7 +70,7 @@
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月31日
 
 
@@ -86,7 +86,7 @@
         echo gettype(100).'<br>'; //'integer'
         echo gettype(100.0).'<br>'; //'double'
         echo gettype('100').'<br>'; //'string'
-        echo gettype(array('yoshimura',49)).'<br>'; //'array'
+        echo gettype(array('nishimura',49)).'<br>'; //'array'
         echo gettype(new MyClass()).'<br>'; //'object'
         echo gettype(new PDO('sqlite::memory:', null, null)).'<br>'; //'object'
         echo gettype(NULL); //'NULL'
@@ -122,7 +122,7 @@
         var_dump(100); //int(100) 
         var_dump(100.0); //float(100) 
         var_dump('100'); //string(3) '100'
-        var_dump(array('yoshimura',49)); //array(2) { [0]=> string(9) 'yoshimura' [1]=> int(49) }
+        var_dump(array('nishimura',49)); //array(2) { [0]=> string(9) 'nishimura' [1]=> int(49) }
         var_dump(new MyClass()); //object(MyClass)#1 (0) { }
         var_dump(new PDO('sqlite::memory:',null,null)); //object(PDO)#1 (0) { }
         var_dump(NULL); //NULL
@@ -166,9 +166,9 @@
         echo gettype($var).'<br>'; //'string'
 
         //array型へ変換
-        $var = 'yoshimura';
+        $var = 'nishimura';
         settype($var, 'array');
-        echo $var[0].'<br>'; //'yoshimura'
+        echo $var[0].'<br>'; //'nishimura'
         echo gettype($var).'<br>'; //'array'
     ?>
     ```
@@ -201,9 +201,9 @@
         echo gettype($var).'<br>'; //'string'
 
         //array型へ変換
-        $var = 'yoshimura'; 
+        $var = 'nishimura'; 
         $var = (array)$var;
-        echo $var[0].'<br>'; //'yoshimura'
+        echo $var[0].'<br>'; //'nishimura'
         echo gettype($var).'<br>'; //'array'
     ?>
     ```
@@ -232,7 +232,7 @@
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月31日
 
 
@@ -288,7 +288,7 @@ echo $rectangle->getArea(); //2073600
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月31日  
 
 
@@ -383,7 +383,7 @@ echo $subClassB->mSubClassB(); // 'サブクラスＢのメソッド'
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月01日
 
 
@@ -414,7 +414,7 @@ echo $subClassB->mSubClassB(); // 'サブクラスＢのメソッド'
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月01日
 
 
@@ -476,7 +476,7 @@ echo $classB->myMethod(); //'ClassA.myMethod'
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月01日
 
 
@@ -625,7 +625,7 @@ echo $myClass->propA.'<br>'; //'ABC'
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月01日
 
 
@@ -636,7 +636,7 @@ echo $myClass->propA.'<br>'; //'ABC'
 ```
 <?php
 
-class Yoshimura {
+class Nishimura {
     //private プロパティの宣言
     private $age;
     
@@ -656,10 +656,10 @@ class Yoshimura {
     }
 }
 
-$yoshimura = new Yoshimura(49);
-echo $yoshimura->age.'<br>'; //49
-$yoshimura->age = 50; //変更が可能
-echo $yoshimura->age.'<br>'; //50
+$nishimura = new Nishimura(49);
+echo $nishimura->age.'<br>'; //49
+$nishimura->age = 50; //変更が可能
+echo $nishimura->age.'<br>'; //50
 
 ?>
 ```
@@ -668,7 +668,7 @@ echo $yoshimura->age.'<br>'; //50
 ```
 <?php
 
-class Yoshimura {
+class Nishimura {
     //private プロパティの宣言
     private $age;
     
@@ -688,15 +688,15 @@ class Yoshimura {
     }
 }
 
-$yoshimura = new Yoshimura(49);
-echo $yoshimura->age.'<br>'; //49
-//$yoshimura->age = 50; //'Fatal error: Uncaught Exception: 値の変更はできません'
+$nishimura = new Nishimura(49);
+echo $nishimura->age.'<br>'; //49
+//$nishimura->age = 50; //'Fatal error: Uncaught Exception: 値の変更はできません'
 
 ?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月02日
 
 
@@ -771,7 +771,7 @@ echo $yoshimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月03日
 
 
@@ -787,8 +787,8 @@ echo $yoshimura->age.'<br>'; //49
 ### 通常の定数
 ```
 <?php
-    const MY_NAME = 'MUBIROU';
-    echo MY_NAME; //'MUBIROU'
+    const MY_NAME = 'vvestvillage';
+    echo MY_NAME; //'vvestvillage'
     //MY_NAME = 'ICHIRO YOSHIMURA'; //error（変更不可）
 ?>
 ```
@@ -811,7 +811,7 @@ echo $yoshimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月03日  
 
 
@@ -961,7 +961,7 @@ echo $yoshimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月03日
 
 
@@ -1030,15 +1030,15 @@ echo $yoshimura->age.'<br>'; //49
     call_user_func($myClass->hello, 'TARO'); //'TARO,Hello!'
 
     $myClass->change('japanese');
-    call_user_func($myClass->hello, 'ちかし'); //'ちかし、こんにちは!'
+    call_user_func($myClass->hello, 'たかし'); //'たかし、こんにちは!'
 
     $myClass->change('chinese');
-    call_user_func($myClass->hello, 'ちかし'); //'ちかし,你好!'
+    call_user_func($myClass->hello, 'たかし'); //'たかし,你好!'
 ?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月03日  
 
 
@@ -1084,7 +1084,7 @@ echo $yoshimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月03日  
 
 
@@ -1184,7 +1184,7 @@ echo $yoshimura->age.'<br>'; //49
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月03日  
 
 
@@ -1224,7 +1224,7 @@ echo $yoshimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月03日  
 
 
@@ -1299,7 +1299,7 @@ echo $yoshimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1363,7 +1363,7 @@ echo $yoshimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1398,15 +1398,15 @@ echo $yoshimura->age.'<br>'; //49
 ### 連想配列の場合
 ```
 <?php
-    $array = array('name'=>'MUBIROU', 'age'=>49);
+    $array = array('name'=>'vvestvillage', 'age'=>49);
     foreach ($array as $data) {
-        echo $data.'<br>'; //'MUBIROU'→49
+        echo $data.'<br>'; //'vvestvillage'→49
     }
 ?>
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1483,7 +1483,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1727,7 +1727,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1740,7 +1740,7 @@ do {
     $array = array(); //配列（array）と同じ方法（省略可能）
 
     //②プロパティの追加（更新も同じ方法）
-    $array['name'] = 'MUBIROU';
+    $array['name'] = 'vvestvillage';
     $array['age'] = 49;
 
     //③関数の追加
@@ -1749,7 +1749,7 @@ do {
     };
 
     //④プロパティの参照
-    echo $array['name'].'<br>'; //'MUBIROU'
+    echo $array['name'].'<br>'; //'vvestvillage'
 
     //⑤関数の実行
     $array['hello'](); //'Hello! How are you?'
@@ -1757,7 +1757,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1801,7 +1801,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1856,7 +1856,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1890,7 +1890,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -1958,7 +1958,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -2002,7 +2002,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -2043,7 +2043,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月04日
 
 
@@ -2102,7 +2102,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月05日
 
 
@@ -2214,7 +2214,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月05日  
 
 
@@ -2241,7 +2241,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月05日  
 
 
@@ -2270,7 +2270,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月05日  
 
 
@@ -2301,7 +2301,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月05日  
 
 
@@ -2319,7 +2319,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 57  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月06日
 
 
@@ -2356,5 +2356,5 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 57  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年04月06日

@@ -43,7 +43,7 @@
     1. [New]をクリック
     1. 以下の通り設定（任意）して [Create project] をクリック
         * Project name: Project001 →フォルダが生成される
-        * Location: /home/yoshimura/デスクトップ
+        * Location: /home/nishimura/デスクトップ
 
 1. Scene（世界）の保存  
     1. [File]-[Save Scene] を選択し、名前を "Scene001"（任意）とする
@@ -107,6 +107,6 @@ public class Main : MonoBehaviour {
 「!」マークをクリックすると、より詳細な情報が表示される
 
 ***
-作成者: MUBIROU  
+作成者: vvestvillage  
 作成日: 2018年03月07日  
 更新日：2018年03月11日

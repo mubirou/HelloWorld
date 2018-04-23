@@ -87,5 +87,5 @@ phpinfo();
 /Applications/MAMP/logs/php_error.log に逐次記録される  
 
 ***
-作成者: MUBIROU  
+作成者: vvestvillage  
 作成日: 2017年03月07日

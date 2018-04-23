@@ -60,5 +60,5 @@ main() {
   Hello,world! ←と表示されたら成功！（何も生成されない）
   
 ***
-作成者: MUBIROU  
+作成者: vvestvillage  
 作成日: 2017年03月15日

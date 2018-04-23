@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/ActionScript/ActionScript_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/ActionScript/ActionScript_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/ActionScript/ActionScript_win.md)）
+* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/ActionScript/ActionScript_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/ActionScript/ActionScript_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/ActionScript/ActionScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -122,7 +122,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日  
 
 
@@ -231,8 +231,8 @@ package {
             console.log(_string2, typeof _string2); //["100", "string"]
 
             //⑤配列→string型
-            var _string3: String = String(["Yoshimura", 49]);
-            console.log(_string3, typeof _string3); //["Yoshimura,49", "string"]
+            var _string3: String = String(["Nishimura", 49]);
+            console.log(_string3, typeof _string3); //["Nishimura,49", "string"]
 
         }
     }
@@ -247,7 +247,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日  
 
 
@@ -319,7 +319,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日  
 
 
@@ -425,7 +425,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日  
 
 
@@ -472,7 +472,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日  
 
 
@@ -570,7 +570,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日
 
 
@@ -628,7 +628,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日
 
 
@@ -643,19 +643,19 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
             //実行
-            var _yoshimura: Yoshimura = new Yoshimura(49);
-            console.log(_yoshimura.age); //[49]
-            _yoshimura.age = 50; //変更が可能
-            console.log(_yoshimura.age); //[50]
+            var _nishimura: Nishimura = new Nishimura(49);
+            console.log(_nishimura.age); //[49]
+            _nishimura.age = 50; //変更が可能
+            console.log(_nishimura.age); //[50]
         }
     }
 }
 
 
-class Yoshimura {
+class Nishimura {
     private var _age: int = 0;
 
-    public function Yoshimura(_age: int) {
+    public function Nishimura(_age: int) {
         this._age = _age; //この場合thisは必須
     }
 
@@ -684,18 +684,18 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
             //実行
-            var _yoshimura: Yoshimura = new Yoshimura(49);
-            console.log(_yoshimura.age); //[49]
-            _yoshimura.age = 50; //["Error: 値の変更はできません"]
+            var _nishimura: Nishimura = new Nishimura(49);
+            console.log(_nishimura.age); //[49]
+            _nishimura.age = 50; //["Error: 値の変更はできません"]
         }
     }
 }
 
 
-class Yoshimura {
+class Nishimura {
     private var _age: int = 0;
 
-    public function Yoshimura(_age: int) {
+    public function Nishimura(_age: int) {
         this._age = _age; //この場合thisは必須
     }
 
@@ -717,7 +717,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日
 
 
@@ -852,7 +852,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日
 
 <a name="定数"></a>
@@ -866,9 +866,9 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
             //実行
-            const MY_NAME: String = "MUBIROU"; //定数の定義
-            console.log(MY_NAME); //["MUBIROU"]
-            //MY_NAME = "Ichiro Yoshimura"; //Error（変更不可）
+            const MY_NAME: String = "vvestvillage"; //定数の定義
+            console.log(MY_NAME); //["vvestvillage"]
+            //MY_NAME = "Ichiro Nishimura"; //Error（変更不可）
         }
     }
 }
@@ -910,7 +910,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月29日  
 
 
@@ -1141,7 +1141,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1157,9 +1157,9 @@ package {
             var _hello: Hello = new Hello();
             _hello.hello("TARO"); //["TARO,Hello!"]
             _hello.change("japanese");
-            _hello.hello("ちかし"); //["ちかし、こんにちは!"]
+            _hello.hello("たかし"); //["たかし、こんにちは!"]
             _hello.change("chinese");
-            _hello.hello("ちかし"); //["ちかし,你好!"]
+            _hello.hello("たかし"); //["たかし,你好!"]
         }
     }
 }
@@ -1209,7 +1209,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1259,7 +1259,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1376,7 +1376,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1446,7 +1446,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1566,7 +1566,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1705,7 +1705,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1787,10 +1787,10 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
 
-            var _object: Object = { name: "MUBIROU", age: 49 };
+            var _object: Object = { name: "vvestvillage", age: 49 };
             for (var _propName: String in _object) {
                 console.log(_propName); //["age"]→["name"]
-                console.log(_object[_propName]); //[49]→["MUBIROU"]
+                console.log(_object[_propName]); //[49]→["vvestvillage"]
             }
 
         }
@@ -1806,7 +1806,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -1874,9 +1874,9 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
 
-            var _object: Object = { name: "MUBIROU", age: 49 };
+            var _object: Object = { name: "vvestvillage", age: 49 };
             for each (var _data: * in _object) {
-                console.log(_data); //[49]→["MUBIROU"]
+                console.log(_data); //[49]→["vvestvillage"]
             }
 
         }
@@ -1892,7 +1892,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -2029,7 +2029,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -2580,7 +2580,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -2595,15 +2595,15 @@ package {
         public function Main() { //コンストラクタ
 
             var _obj: Object = {
-                name: "MUBIROU",
+                name: "vvestvillage",
                 age: 49,
                 helloFunction: function(): String {
                     return "Hello! How are you?";
                 }
             }
 
-            console.log(_obj.name); //["MUBIROU"]
-            console.log(_obj["name"]); //["MUBIROU"]（配列アクセスも可能）
+            console.log(_obj.name); //["vvestvillage"]
+            console.log(_obj["name"]); //["vvestvillage"]（配列アクセスも可能）
             console.log(_obj.age); //[49]
             console.log(_obj.helloFunction()); //["Hello! How are you?"]
 
@@ -2620,7 +2620,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -2667,7 +2667,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -2811,7 +2811,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -2894,7 +2894,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
     1. String.split()
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -2968,7 +2968,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3022,7 +3022,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3074,7 +3074,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3141,7 +3141,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3248,7 +3248,7 @@ console.log(Math.min(5.01, -10)); //[-10]（2つの数値の比較）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 <a name="乱数"></a>
@@ -3330,7 +3330,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3386,7 +3386,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3424,7 +3424,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3485,7 +3485,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  
 
 
@@ -3531,5 +3531,5 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Flex SDK 4.16、Flash Player 25、Ubuntu 16.04 LTS、Chromium 56  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年03月30日  

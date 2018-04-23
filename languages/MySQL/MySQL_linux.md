@@ -19,7 +19,7 @@
 |拡張機能|PHP Debug 1.10.0|ー|
 |ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
 
-1. [PHP の開発環境の構築](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/README.md) をする
+1. [PHP の開発環境の構築](https://github.com/vvestvillage/HelloWorld/blob/master/languages/PHP/README.md) をする
 
 1. [MySQL](https://ja.wikipedia.org/wiki/MySQL) のインストール  
     $ sudo apt-get update  
@@ -112,5 +112,5 @@ mysql> DROP TABLE hello_tb;
 1. Hello,world! と表示されたら成功！
 
 ***
-作成者: MUBIROU  
+作成者: vvestvillage  
 作成日: 2017年03月02日

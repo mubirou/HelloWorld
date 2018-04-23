@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/SQLite/SQLite_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/SQLite/SQLite_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/SQLite/SQLite_win.md)）
+* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/SQLite/SQLite_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/SQLite/SQLite_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/SQLite/SQLite_win.md)）
 * [データベースの作成](#データベースの作成)
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)
@@ -51,7 +51,7 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年07月27日
 
 
@@ -66,7 +66,7 @@ $ rm -f /var/www/html/test.sqlite3 <= 実際に削除
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年07月27日
 
 
@@ -134,7 +134,7 @@ SQLite の場合、テーブル作成時にデータ型を指定してもあま�
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年07月28日
 
 
@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月03日
 
 
@@ -275,7 +275,7 @@ CREATE TABLE [IF NOT EXISTS] テーブル名 (カラム名 型 [列フラグ オ
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年07月27日
 
 
@@ -316,7 +316,7 @@ sqlite>   <= 何も表示されない
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年07月27日
 
 
@@ -368,7 +368,7 @@ sqlite>   <= 何も表示されない
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年07月31日
 
 
@@ -414,7 +414,7 @@ sqlite>   <= 何も表示されない
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月01日
 
 
@@ -485,7 +485,7 @@ sqlite>   <= 何も表示されない
     //=============================
     // 条件に合致したデータのみ更新
     //=============================
-    $sql = "UPDATE hoge_tb SET name = 'ちかし' WHERE name = 'CHIKASHI'"; //「==」ではない
+    $sql = "UPDATE hoge_tb SET name = 'たかし' WHERE name = 'CHIKASHI'"; //「==」ではない
     $statement = $con->prepare($sql);
     $statement->execute();
 
@@ -496,13 +496,13 @@ sqlite>   <= 何も表示されない
         echo $tmp['id'].'|'.$tmp['name'];
         echo "<br>";
     }
-    //=> 1|ちかし
+    //=> 1|たかし
     //=> 2|HANAKO
 ?>
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月01日
 
 
@@ -548,7 +548,7 @@ SELECT * FROM テーブル名
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月02日
 
 
@@ -593,7 +593,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月02日
 
 
@@ -681,7 +681,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月02日
 
 
@@ -1042,7 +1042,7 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月03日
 
 
@@ -1092,7 +1092,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月03日
 
 
@@ -1150,7 +1150,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 |4|HANAKO|15|
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月03日
 
 
@@ -1210,5 +1210,5 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ```
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2017年08月03日

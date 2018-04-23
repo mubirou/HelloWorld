@@ -68,5 +68,5 @@ $ ./a.out
 Hello,world! ←と表示されたら成功！
 
 ***
-作成者: MUBIROU  
+作成者: vvestvillage  
 作成日: 2017年02月27日

@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/Swift/Swift_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/Swift/Swift_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/Swift/Swift_win.md)）
+* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/Swift/Swift_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/Swift/Swift_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/Swift/Swift_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -98,7 +98,7 @@ print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionar
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月13日  
 更新日：2017年04月13日
 
@@ -161,7 +161,7 @@ print(_dic, type(of: _dic)) //=> ["u": "う", "a": "あ", "i": "い"]  Dictionar
     ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月26日  
 更新日：2017年04月13日
 
@@ -209,7 +209,7 @@ print(_rectangle.getArea()) //=> 2073600
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月26日  
 更新日：2017年04月13日
 
@@ -258,7 +258,7 @@ print(_subclassB.methodB()); //=> "サブクラスＢのメソッド"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月26日  
 更新日：2017年04月13日
 
@@ -304,7 +304,7 @@ print(_myClass2) //=> test.MyLibrary.MyClass2
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月29日  
 更新日：2017年04月13日
 
@@ -355,7 +355,7 @@ _classB.myMethod(); //=> "ClassA.myMethod()"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月26日  
 更新日：2017年04月13日
 
@@ -513,7 +513,7 @@ print(MyMath.PI) //=> 3.14
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月27日  
 更新日：2017年04月13日
 
@@ -524,7 +524,7 @@ print(MyMath.PI) //=> 3.14
 ### 読み書き可能なプロパティ
 ```
 //test.swift
-internal class Yoshimura { //internalは省略可
+internal class Nishimura { //internalは省略可
     private var _age: Int = 49 //private宣言
     //アクセサ
     internal var age: Int {
@@ -537,17 +537,17 @@ internal class Yoshimura { //internalは省略可
     }
 }
 
-var _yoshimura: Yoshimura = Yoshimura()
-print(_yoshimura.age) //=> 49 ←getter
-//print(_yoshimura._age) //error（直接のアクセス不可）
-_yoshimura.age = 50 //変更可能 ←setter
-print(_yoshimura.age) //=> 50 ←getter
+var _nishimura: Nishimura = Nishimura()
+print(_nishimura.age) //=> 49 ←getter
+//print(_nishimura._age) //error（直接のアクセス不可）
+_nishimura.age = 50 //変更可能 ←setter
+print(_nishimura.age) //=> 50 ←getter
 ```
 
 #### 読み取り専用のメンバ変数
 ```
 //test.swift
-internal class Yoshimura { //internalは省略可
+internal class Nishimura { //internalは省略可
     private var _age: Int = 49 //private宣言
     //アクセサ
     internal var age: Int {
@@ -557,14 +557,14 @@ internal class Yoshimura { //internalは省略可
     }
 }
 
-var _yoshimura: Yoshimura = Yoshimura()
-print(_yoshimura.age) //=> 49 ←getter
-//print(_yoshimura._age) //error（直接のアクセス不可）
-//_yoshimura.age = 50 //=> error ←変更できません
+var _nishimura: Nishimura = Nishimura()
+print(_nishimura.age) //=> 49 ←getter
+//print(_nishimura._age) //error（直接のアクセス不可）
+//_nishimura.age = 50 //=> error ←変更できません
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月27日  
 更新日：2017年04月14日
 
@@ -615,7 +615,7 @@ print(~3); //=> -4（ビット反転）
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月27日  
 更新日：2017年04月14日
 
@@ -666,7 +666,7 @@ print(MyMath.PI) //=> 3.14159265358979 ←インスタンスの生成が不要
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月27日  
 更新日：2017年04月14日
 
@@ -798,7 +798,7 @@ _myClass.myMethod(name:"CHIKASHI") //=> "CHIKASHI"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月27日  
 更新日：2017年04月14日
 
@@ -847,7 +847,7 @@ print(_hello("CHIKASHI")) //=> "CHIKASHI,你好" ←_hello(_name:"CHIKASHI")で�
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月27日  
 更新日：2017年04月14日
 
@@ -894,7 +894,7 @@ print(MyMath.pow(arg1:2, arg2:8)) //=> 256（2の8乗）
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月27日  
 更新日：2017年04月14日
 
@@ -974,7 +974,7 @@ if ((_a || _b) && !(_a && _b)) {
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1002,7 +1002,7 @@ print(_result) //=> "現役"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1057,7 +1057,7 @@ switch (_name) {
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1108,7 +1108,7 @@ print("for文終了")
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1159,7 +1159,7 @@ for value in _dic {
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1217,7 +1217,7 @@ while _i <= 20 {
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1418,7 +1418,7 @@ print(_array2) //=> ["X","B","C"]
     ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1454,7 +1454,7 @@ print(_dic) //=> ["U": "う", "A": "あ", "I": "ゐ"]
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1500,7 +1500,7 @@ print(_robot.x) //=> 510
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月28日  
 更新日：2017年04月14日
 
@@ -1601,7 +1601,7 @@ print(_array, type(of: _array)) //=> ["A", "B", "C", "D"] Array<String>
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月29日  
 更新日：2017年04月14日
 
@@ -1655,7 +1655,7 @@ public class Main { //public は省略可
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -1697,7 +1697,7 @@ print(_tmoneybox.total) //=> 5000
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月29日  
 更新日：2017年04月14日
 
@@ -1738,7 +1738,7 @@ _subClass.abstractMethod() //=> "SubClass.method()"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月29日  
 更新日：2017年04月14日
 
@@ -1786,7 +1786,7 @@ subClass_.methodSub(argB:"サブクラスからの呼び出し")
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月29日  
 更新日：2017年04月14日
 
@@ -1830,7 +1830,7 @@ subClass_.myMethod()
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年07月29日  
 更新日：2017年04月14日
 
@@ -1885,7 +1885,7 @@ _robot.fight() //=> "GAME OVER"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年08月01日  
 更新日：2017年04月14日
 
@@ -2002,6 +2002,6 @@ print(min(5.01, -10)) //=> -10.0 ←「2つ」の数値の比較
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年08月01日  
 更新日：2017年04月14日

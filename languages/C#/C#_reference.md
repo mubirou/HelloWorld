@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_win.md)）
+* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/C%23/C%23_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/C%23/C%23_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/C%23/C%23_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -170,18 +170,18 @@ class Test {
         Console.WriteLine((int)Signal.BLUE); //0 ←キャストによる型変換が必要
 
         //構造体（クラスに似ているが継承は不可）
-        MyStruct _struct = new MyStruct("MUBIROU", 49);
+        MyStruct _struct = new MyStruct("vvestvillage", 49);
         Console.WriteLine(_struct); //MyStruct
         Console.WriteLine(_struct.GetType()); //MyStruct
         
         //匿名型クラス（宣言には、必ずvarキーワードを使います）
-        var _anon = new { Name="MUBIROU", Age=49 }; //読み取り専用（注意）
-        Console.WriteLine(_anon); //{ Name = MUBIROU, Age = 49 }
-        Console.WriteLine(_anon.Name); //"MUBIROU ←取得方法
+        var _anon = new { Name="vvestvillage", Age=49 }; //読み取り専用（注意）
+        Console.WriteLine(_anon); //{ Name = vvestvillage, Age = 49 }
+        Console.WriteLine(_anon.Name); //"vvestvillage ←取得方法
         Console.WriteLine(_anon.GetType());//<>__AnonType0`2[...
 
         //クラス
-        MyClass _myClass = new MyClass("MUBIROU", 48);
+        MyClass _myClass = new MyClass("vvestvillage", 48);
         Console.WriteLine(_myClass); //MyClass
         Console.WriteLine(_myClass.GetType()); //MyClass
 
@@ -213,7 +213,7 @@ class MyClass { //クラスの定義
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月14日  
 更新日：2017年04月16日
 
@@ -382,7 +382,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月07日  
 更新日：2017年04月17日
 
@@ -434,7 +434,7 @@ class Rectangle { //長方形クラス
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月02日  
 更新日：2017年04月17日
 
@@ -505,7 +505,7 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月05日  
 更新日：2017年04月17日
 
@@ -553,7 +553,7 @@ namespace MyLibrary {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月23日  
 更新日：2017年04月17日
 
@@ -606,7 +606,7 @@ class ClassB { //この内容だけが継承と異なる
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月26日  
 更新日：2017年04月17日
 
@@ -772,7 +772,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月20日  
 更新日：2017年04月17日
 
@@ -786,14 +786,14 @@ class MyClass {
 using System;
 class Test {
     static void Main() {
-        Yoshimura _yoshimura = new Yoshimura();
-        Console.WriteLine(_yoshimura.Age); //49
-        _yoshimura.Age = 50; //値を変更可能
-        Console.WriteLine(_yoshimura.Age); //50
+        Nishimura _nishimura = new Nishimura();
+        Console.WriteLine(_nishimura.Age); //49
+        _nishimura.Age = 50; //値を変更可能
+        Console.WriteLine(_nishimura.Age); //50
     }
 }
 
-class Yoshimura {
+class Nishimura {
     int _age = 49; //privateは省略
     public int Age {
         get { return _age; } //thisは省略
@@ -808,15 +808,15 @@ class Yoshimura {
 using System;
 class Test {
     static void Main() {
-        Yoshimura _yoshimura = new Yoshimura();
-        Console.WriteLine(_yoshimura.Age); //49
-        //_yoshimura.Age = 50; //error（値の変更は不可）
-        _yoshimura.NextYear();
-        Console.WriteLine(_yoshimura.Age); //50
+        Nishimura _nishimura = new Nishimura();
+        Console.WriteLine(_nishimura.Age); //49
+        //_nishimura.Age = 50; //error（値の変更は不可）
+        _nishimura.NextYear();
+        Console.WriteLine(_nishimura.Age); //50
     }
 }
 
-class Yoshimura {
+class Nishimura {
     int _age = 49; //privateは省略
     public int Age {
         get { return _age; } //thisは省略
@@ -827,7 +827,7 @@ class Yoshimura {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月09日  
 更新日：2017年04月17日
 
@@ -875,7 +875,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月06日  
 更新日：2017年04月17日
 
@@ -931,7 +931,7 @@ class MyMath {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月06日  
 更新日：2017年04月17日
 
@@ -1129,7 +1129,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年11月25日  
 更新日：2017年04月18日
 
@@ -1180,7 +1180,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月09日  
 更新日：2017年04月18日
 
@@ -1231,7 +1231,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月09日  
 更新日：2017年04月18日
 
@@ -1268,7 +1268,7 @@ class Math { //独自クラス
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月21日  
 更新日：2017年04月18日
 
@@ -1374,7 +1374,7 @@ class Test { //メインクラス
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月09日  
 更新日：2017年04月18日
 
@@ -1425,7 +1425,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月09日  
 更新日：2017年04月18日
 
@@ -1517,7 +1517,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月10日  
 更新日：2017年04月18日
 
@@ -1624,7 +1624,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月10日  
 更新日：2017年04月19日
 
@@ -1739,7 +1739,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年01月21日  
 更新日：2017年04月19日
 
@@ -1833,7 +1833,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月10日  
 更新日：2017年04月19日
 
@@ -1974,7 +1974,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2016年01月21日  
 更新日：2017年04月19日
 
@@ -2388,7 +2388,7 @@ class Test {
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月14日  
 更新日：2017年04月19日
 
@@ -2455,7 +2455,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年12月11日  
 更新日：2017年04月19日
 
@@ -2508,7 +2508,7 @@ class Robot {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月15日  
 更新日：2017年04月19日
 
@@ -2582,8 +2582,8 @@ String.Remove(開始位置, 削除する文字数);
 using System;
 class Test {
     static void Main() {
-        string _string = "よしむらちかし";
-        Console.WriteLine(_string.Remove(0, 4)); //"ちかし"
+        string _string = "にしむらたかし";
+        Console.WriteLine(_string.Remove(0, 4)); //"たかし"
     }
 }
 ```
@@ -2652,7 +2652,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月17日  
 更新日：2017年04月19日
 
@@ -2713,7 +2713,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月19日  
 更新日：2017年04月19日
 
@@ -2768,7 +2768,7 @@ class Moneybox : IMoneybox {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月21日  
 更新日：2017年04月19日
 
@@ -2817,7 +2817,7 @@ class SubClass : AbstractClass { //抽象クラスを継承
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月24日  
 更新日：2017年04月21日
 
@@ -2863,7 +2863,7 @@ class SubClass : SuperClass { //派生クラス
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月24日  
 更新日：2017年04月21日
 
@@ -2959,7 +2959,7 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月24日  
 更新日：2017年04月21日
 
@@ -3035,7 +3035,7 @@ class MyGame {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月25日  
 更新日：2017年04月21日
 
@@ -3211,7 +3211,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月26日  
 更新日：2017年04月21日
 
@@ -3256,7 +3256,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月26日  
 更新日：2017年04月21日
 
@@ -3307,7 +3307,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月27日  
 更新日：2017年04月21日
 
@@ -3373,7 +3373,7 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月27日  
 更新日：2017年04月21日
 
@@ -3421,7 +3421,7 @@ class Program     {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月28日  
 更新日：2017年04月21日
 
@@ -3471,6 +3471,6 @@ class Test {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
-作成者：MUBIROU  
+作成者：vvestvillage  
 作成日：2015年11月30日  
 更新日：2017年04月21日
