@@ -829,7 +829,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 <script>
     const MY_NAME = "MUBIROU";
     console.log(MY_NAME); //"MUBIROU"
-    MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
+    MY_NAME = "ICHIRO YOSHIMURA"; //Error（変更不可）
 </script>
 ```
 

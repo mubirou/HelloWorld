@@ -660,7 +660,7 @@ console.log(~3); //-4（ビット反転）
 //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
 const MY_NAME: string = "MUBIROU";
 console.log(MY_NAME); //"MUBIROU"
-//MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
+//MY_NAME = "ICHIRO YOSHIMURA"; //Error（変更不可）
 ```
 
 ### クラス定数（静的定数）

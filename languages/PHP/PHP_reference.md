@@ -789,7 +789,7 @@ echo $yoshimura->age.'<br>'; //49
 <?php
     const MY_NAME = 'MUBIROU';
     echo MY_NAME; //'MUBIROU'
-    //MY_NAME = 'ICHIRO NISHIMURa'; //error（変更不可）
+    //MY_NAME = 'ICHIRO YOSHIMURA'; //error（変更不可）
 ?>
 ```
 

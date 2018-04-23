@@ -584,7 +584,7 @@ JavaScript は private 変数を定義することができません。そこで
     //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
     const MY_NAME = "MUBIROU";
     console.log(MY_NAME); //"MUBIROU"
-    MY_NAME = "ICHIRO NISHIMURa"; //Error（変更不可）
+    MY_NAME = "ICHIRO YOSHIMURA"; //Error（変更不可）
 </script>
 ```
 
