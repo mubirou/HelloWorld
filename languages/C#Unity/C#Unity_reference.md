@@ -806,10 +806,10 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     void Start() {
-        Yoshimura _nishimura = new Yoshimura();
-        Debug.Log(_nishimura.Age); //50
-        _nishimura.Age = 51; //値を変更可能
-        Debug.Log(_nishimura.Age); //51
+        Yoshimura _yoshimura = new Yoshimura();
+        Debug.Log(_yoshimura.Age); //50
+        _yoshimura.Age = 51; //値を変更可能
+        Debug.Log(_yoshimura.Age); //51
     }
 }
 
@@ -829,11 +829,11 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     void Start() {
-        Yoshimura _nishimura = new Yoshimura();
-        Debug.Log(_nishimura.Age); //50
-        //_nishimura.Age = 50; //error CS0272（値の変更は不可）
-        _nishimura.NextYear();
-        Debug.Log(_nishimura.Age); //51
+        Yoshimura _yoshimura = new Yoshimura();
+        Debug.Log(_yoshimura.Age); //50
+        //_yoshimura.Age = 50; //error CS0272（値の変更は不可）
+        _yoshimura.NextYear();
+        Debug.Log(_yoshimura.Age); //51
     }
 }
 

@@ -589,10 +589,10 @@ class MyClass {
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        Yoshimura _nishimura = new Yoshimura();
-        System.out.println(_nishimura.getAge()); //=> 49
-        _nishimura.setAge(50); //値が変更できる
-        System.out.println(_nishimura.getAge()); //=> 50
+        Yoshimura _yoshimura = new Yoshimura();
+        System.out.println(_yoshimura.getAge()); //=> 49
+        _yoshimura.setAge(50); //値が変更できる
+        System.out.println(_yoshimura.getAge()); //=> 50
     }
 }
 
@@ -608,9 +608,9 @@ class Yoshimura {
 //Main.java
 public class Main { //publicは省略可
     public static void main(String[] args) { //決め打ち（自動的に実行）
-        Yoshimura _nishimura = new Yoshimura();
-        System.out.println(_nishimura.getAge()); //49
-        //_nishimura._age = 50; //エラー（値が変更できない）
+        Yoshimura _yoshimura = new Yoshimura();
+        System.out.println(_yoshimura.getAge()); //49
+        //_yoshimura._age = 50; //エラー（値が変更できない）
     }
 }
 

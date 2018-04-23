@@ -669,10 +669,10 @@ class Yoshimura(object):
         self.__age = value
     age = property(__getAge, __setAge)
 
-_nishimura = Yoshimura()
-print(_nishimura.age) #49
-_nishimura.age = 18 #変更できてしまう
-print(_nishimura.age) #18
+_yoshimura = Yoshimura()
+print(_yoshimura.age) #49
+_yoshimura.age = 18 #変更できてしまう
+print(_yoshimura.age) #18
 ```
 
 ### 読み取り専用のプロパティ
@@ -688,9 +688,9 @@ class Yoshimura(object):
         return self.__age
     age = property(__getAge) #setterを省略すれば良い
 
-_nishimura = Yoshimura()
-print(_nishimura.age) #48
-#_nishimura.age = 18 #エラー（変更不可）
+_yoshimura = Yoshimura()
+print(_yoshimura.age) #48
+#_yoshimura.age = 18 #エラー（変更不可）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  

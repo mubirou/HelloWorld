@@ -936,10 +936,10 @@ void Yoshimura::Age(int _age) { //メンバ関数（setter）の定義
 // メイン関数
 //============
 int main() {
-    Yoshimura _nishimura(49); //Nishimuraクラスのインスタンスの生成
-    cout << _nishimura.Age() << "\n"; //49 ←getterを使って値を取得
-    _nishimura.Age(50); //setterを使って値を変更
-    cout << _nishimura.Age() << "\n"; //50 ←getterを使って値を取得
+    Yoshimura _yoshimura(49); //Nishimuraクラスのインスタンスの生成
+    cout << _yoshimura.Age() << "\n"; //49 ←getterを使って値を取得
+    _yoshimura.Age(50); //setterを使って値を変更
+    cout << _yoshimura.Age() << "\n"; //50 ←getterを使って値を取得
     return 0;
 }
 ```

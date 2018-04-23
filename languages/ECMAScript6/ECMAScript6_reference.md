@@ -704,10 +704,10 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
         }
     }
 
-    var _nishimura = new Yoshimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //変更が可能
-    console.log(_nishimura.age); //50
+    var _yoshimura = new Yoshimura(49);
+    console.log(_yoshimura.age); //49
+    _yoshimura.age = 50; //変更が可能
+    console.log(_yoshimura.age); //50
 </script>
 ```
 
@@ -728,9 +728,9 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
         }
     }
 
-    var _nishimura = new Yoshimura(49);
-    console.log(_nishimura.age); //49
-    _nishimura.age = 50; //Error: 値の変更はできません
+    var _yoshimura = new Yoshimura(49);
+    console.log(_yoshimura.age); //49
+    _yoshimura.age = 50; //Error: 値の変更はできません
 </script>
 ```
 

@@ -736,11 +736,11 @@ class Yoshimura
     end
 end
 
-_nishimura = Yoshimura.new() #()は省略可
-puts(_nishimura.age) #49
-#puts(_nishimura.@age) #エラー（インスタンス変数へ直接のアクセスは不可）
-_nishimura.age = 50 #変更可能
-puts(_nishimura.age) #50
+_yoshimura = Yoshimura.new() #()は省略可
+puts(_yoshimura.age) #49
+#puts(_yoshimura.@age) #エラー（インスタンス変数へ直接のアクセスは不可）
+_yoshimura.age = 50 #変更可能
+puts(_yoshimura.age) #50
 ```
 
 ### 読み取り専用のプロパティ
@@ -754,9 +754,9 @@ class Yoshimura
         @age
     end
 end
-_nishimura = Yoshimura.new() #()は省略可
-puts(_nishimura.age) #49
-#_nishimura.age = 49 #エラー（変更不可）
+_yoshimura = Yoshimura.new() #()は省略可
+puts(_yoshimura.age) #49
+#_yoshimura.age = 49 #エラー（変更不可）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  

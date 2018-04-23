@@ -786,10 +786,10 @@ class MyClass {
 using System;
 class Test {
     static void Main() {
-        Yoshimura _nishimura = new Yoshimura();
-        Console.WriteLine(_nishimura.Age); //49
-        _nishimura.Age = 50; //値を変更可能
-        Console.WriteLine(_nishimura.Age); //50
+        Yoshimura _yoshimura = new Yoshimura();
+        Console.WriteLine(_yoshimura.Age); //49
+        _yoshimura.Age = 50; //値を変更可能
+        Console.WriteLine(_yoshimura.Age); //50
     }
 }
 
@@ -808,11 +808,11 @@ class Yoshimura {
 using System;
 class Test {
     static void Main() {
-        Yoshimura _nishimura = new Yoshimura();
-        Console.WriteLine(_nishimura.Age); //49
-        //_nishimura.Age = 50; //error（値の変更は不可）
-        _nishimura.NextYear();
-        Console.WriteLine(_nishimura.Age); //50
+        Yoshimura _yoshimura = new Yoshimura();
+        Console.WriteLine(_yoshimura.Age); //49
+        //_yoshimura.Age = 50; //error（値の変更は不可）
+        _yoshimura.NextYear();
+        Console.WriteLine(_yoshimura.Age); //50
     }
 }
 

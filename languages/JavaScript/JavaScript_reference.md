@@ -468,10 +468,10 @@ JavaScript は private 変数を定義することができません。そこで
     };
 
     //実行
-    var _nishimura = new Yoshimura(49);
-    console.log(_nishimura.getAge()); //49
-    _nishimura.setAge(50); //変更が可能
-    console.log(_nishimura.getAge()); //50
+    var _yoshimura = new Yoshimura(49);
+    console.log(_yoshimura.getAge()); //49
+    _yoshimura.setAge(50); //変更が可能
+    console.log(_yoshimura.getAge()); //50
 </script>
 ```
 
@@ -490,9 +490,9 @@ JavaScript は private 変数を定義することができません。そこで
     };
 
     //実行
-    var _nishimura = new Yoshimura(49);
-    console.log(_nishimura.getAge()); //49
-    _nishimura.setAge(50); //Error: 値の変更はできません
+    var _yoshimura = new Yoshimura(49);
+    console.log(_yoshimura.getAge()); //49
+    _yoshimura.setAge(50); //Error: 値の変更はできません
 </script>
 ```
 

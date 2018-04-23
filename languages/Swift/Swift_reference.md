@@ -537,11 +537,11 @@ internal class Yoshimura { //internalは省略可
     }
 }
 
-var _nishimura: Yoshimura = Yoshimura()
-print(_nishimura.age) //=> 49 ←getter
-//print(_nishimura._age) //error（直接のアクセス不可）
-_nishimura.age = 50 //変更可能 ←setter
-print(_nishimura.age) //=> 50 ←getter
+var _yoshimura: Yoshimura = Yoshimura()
+print(_yoshimura.age) //=> 49 ←getter
+//print(_yoshimura._age) //error（直接のアクセス不可）
+_yoshimura.age = 50 //変更可能 ←setter
+print(_yoshimura.age) //=> 50 ←getter
 ```
 
 #### 読み取り専用のメンバ変数
@@ -557,10 +557,10 @@ internal class Yoshimura { //internalは省略可
     }
 }
 
-var _nishimura: Yoshimura = Yoshimura()
-print(_nishimura.age) //=> 49 ←getter
-//print(_nishimura._age) //error（直接のアクセス不可）
-//_nishimura.age = 50 //=> error ←変更できません
+var _yoshimura: Yoshimura = Yoshimura()
+print(_yoshimura.age) //=> 49 ←getter
+//print(_yoshimura._age) //error（直接のアクセス不可）
+//_yoshimura.age = 50 //=> error ←変更できません
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
