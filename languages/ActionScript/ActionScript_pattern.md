@@ -106,7 +106,7 @@ class console {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月16日
 
@@ -201,7 +201,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月17日
 
@@ -318,7 +318,7 @@ class console {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月17日
 
@@ -518,7 +518,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月18日
 
@@ -678,7 +678,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月18日
 
@@ -765,7 +765,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月19日
 
@@ -850,7 +850,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月21日
 
@@ -1004,7 +1004,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月22日
 
@@ -1186,7 +1186,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月22日
 
@@ -1279,7 +1279,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -1397,7 +1397,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -1518,7 +1518,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -1583,7 +1583,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -1714,7 +1714,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -1858,7 +1858,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -1959,7 +1959,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -2089,7 +2089,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -2210,7 +2210,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -2380,7 +2380,7 @@ package {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2017年05月23日
 
 
@@ -2534,7 +2534,7 @@ class console { //ブラウザのコンソール出力用（trace()の代替）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -2688,7 +2688,7 @@ package  {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -2816,7 +2816,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -3031,7 +3031,7 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日
 
@@ -3167,6 +3167,6 @@ class console { //ブラウザのコンソール出力用（console.log()の代�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Apache Flex SDK 4.16、Chromium 58、Flash Player 25  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2013年  
 更新日：2017年05月23日

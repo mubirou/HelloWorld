@@ -65,5 +65,5 @@ $ dart test.dart
 Hello,world! ←と表示されたら成功！（何も生成されない）
 
 ***
-作成者: Takashi Nishimura  
+作成者: MUBIROU  
 作成日: 2017年03月06日

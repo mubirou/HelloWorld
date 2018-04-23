@@ -148,7 +148,7 @@ class MyClass {} //⑪クラスの定義
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月13日  
 更新日：2017年04月12日
 
@@ -273,7 +273,7 @@ class MyClass {} //⑪クラスの定義
     ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月14日  
 更新日：2017年04月12日
 
@@ -322,7 +322,7 @@ class Rectangle { //長方形クラス
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月14日  
 更新日：2017年04月12日
 
@@ -370,7 +370,7 @@ class SubClassB extends SuperClass {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月14日  
 更新日：2017年04月12日
 
@@ -420,7 +420,7 @@ public class Main { //public は省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -476,7 +476,7 @@ class ClassB { //この内容だけが継承と異なる
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月14日  
 更新日：2017年04月12日
 
@@ -573,7 +573,7 @@ class MyClass {
     ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月14日  
 更新日：2017年04月12日
 
@@ -621,7 +621,7 @@ class Nishimura {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月14日  
 更新日：2017年04月12日
 
@@ -676,7 +676,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -727,7 +727,7 @@ class MyMath {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -865,7 +865,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -915,7 +915,7 @@ interface IHello {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -978,7 +978,7 @@ class MyMath {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -1082,7 +1082,7 @@ public class Main { //publicは省略可
     ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -1133,7 +1133,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -1192,7 +1192,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -1293,7 +1293,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -1391,7 +1391,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -1483,7 +1483,7 @@ public class Main { //publicは省略可
 * continue 文はその時点のループ内の処理のみ中断し、ループから脱出せずにループを継続する
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月15日  
 更新日：2017年04月12日
 
@@ -1559,7 +1559,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月16日  
 更新日：2017年04月12日
 
@@ -1743,7 +1743,7 @@ public class Main { //public は省略可
     ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月16日  
 更新日：2017年04月12日
 
@@ -1814,7 +1814,7 @@ for (String _value : _set) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月16日  
 更新日：2017年04月12日
 
@@ -1868,7 +1868,7 @@ System.out.println(_map.containsValue(い")); //true（ 任意の値があるか
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月17日  
 更新日：2017年04月12日
 
@@ -1915,7 +1915,7 @@ class Robot {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月17日  
 更新日：2017年04月12日
 
@@ -1987,9 +1987,9 @@ StringBuilder.delete(開始位置, 終了位置); //1文字前まで削除
 //Main.java
 public class Main { //public は省略可
     public static void main(String[] args) { //決め打ち(自動的に実行)
-        String _string = "にしむらたかし";
+        String _string = "よしむらちかし";
         StringBuilder _string2 = new StringBuilder(_string);
-        System.out.println(_string2.delete(0, 4)); //=> たかし
+        System.out.println(_string2.delete(0, 4)); //=> ちかし
     }
 }
 ```
@@ -2053,7 +2053,7 @@ public class Main { //public は省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2107,7 +2107,7 @@ public class Main { //public は省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2154,7 +2154,7 @@ class Moneybox implements IMoneybox { //インターフェースの実装
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2204,7 +2204,7 @@ class SubClass extends AbstractClass { //抽象クラスを継承
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2252,7 +2252,7 @@ class SubClass extends SuperClass {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2300,7 +2300,7 @@ class SubClass extends SuperClass {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2349,7 +2349,7 @@ interface Ixxx_robot { //無名関数用インターフェース（Java独特）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2461,7 +2461,7 @@ System.out.println(Math.min(5.01, -10)); //=> -10.0 ←「2つ」の数値の比
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2532,7 +2532,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月19日  
 更新日：2017年04月12日
 
@@ -2579,7 +2579,7 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月20日  
 更新日：2017年04月12日
 
@@ -2610,7 +2610,7 @@ class LoopExec extends TimerTask {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月20日  
 更新日：2017年04月12日
 
@@ -2710,6 +2710,6 @@ public class Main { //publicは省略可
 ```
 
 実行環境：Ubuntu 16.04 LTS、Java SE 8 Update 121  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2016年07月20日  
 更新日：2017年04月12日

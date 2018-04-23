@@ -170,18 +170,18 @@ public class Main : MonoBehaviour {
         Debug.Log((int)Signal.BLUE); //0 ←キャストによる型変換が必要
 
         //構造体（クラスに似ているが継承は不可）
-        MyStruct _struct = new MyStruct("Takashi Nishimura", 49);
+        MyStruct _struct = new MyStruct("MUBIROU", 49);
         Debug.Log(_struct); //MyStruct
         Debug.Log(_struct.GetType()); //MyStruct
         
         //匿名型クラス（宣言には、必ずvarキーワードを使います）
-        var _anon = new { Name="Takashi Nishimura", Age=50 }; //読み取り専用（注意）
-        Debug.Log(_anon); //{ Name = Takashi Nishimura, Age = 50 }
-        Debug.Log(_anon.Name); //"Takashi Nishimura ←取得方法
+        var _anon = new { Name="MUBIROU", Age=50 }; //読み取り専用（注意）
+        Debug.Log(_anon); //{ Name = MUBIROU, Age = 50 }
+        Debug.Log(_anon.Name); //"MUBIROU ←取得方法
         Debug.Log(_anon.GetType());//<<>__AnonType0`2[System.String,System.Int32]
 
         //クラス
-        MyClass _myClass = new MyClass("Takashi Nishimura", 50);
+        MyClass _myClass = new MyClass("MUBIROU", 50);
         Debug.Log(_myClass); //MyClass
         Debug.Log(_myClass.GetType()); //MyClass
 
@@ -213,7 +213,7 @@ class MyClass { //クラスの定義
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月11日
 
 
@@ -393,7 +393,7 @@ class MyClass { //クラスの定義
     ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月11日
 
 
@@ -445,7 +445,7 @@ class Rectangle { //長方形クラス
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月12日
 
 
@@ -515,7 +515,7 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月12日
 
 
@@ -561,7 +561,7 @@ namespace MyLibrary {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月12日
 
 
@@ -622,7 +622,7 @@ class ClassB { //この内容だけが継承と異なる
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月12日
 
 
@@ -792,7 +792,7 @@ class MyClass {
     ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -848,7 +848,7 @@ class Nishimura {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -895,7 +895,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -950,7 +950,7 @@ class MyMath {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1156,7 +1156,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1212,7 +1212,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1266,7 +1266,7 @@ class MyClass {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1302,7 +1302,7 @@ class Math { //独自クラス
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1410,7 +1410,7 @@ public class Main : MonoBehaviour {
     ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1462,7 +1462,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1556,7 +1556,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1668,7 +1668,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1789,7 +1789,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -1886,7 +1886,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2033,7 +2033,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2465,7 +2465,7 @@ public class Main : MonoBehaviour {
     ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2533,7 +2533,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2584,7 +2584,7 @@ class Robot {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2661,8 +2661,8 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     void Start() {
-        string _string = "にしむらたかし";
-        Debug.Log(_string.Remove(0, 4)); //"たかし"
+        string _string = "よしむらちかし";
+        Debug.Log(_string.Remove(0, 4)); //"ちかし"
     }
 }
 ```
@@ -2734,7 +2734,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2797,7 +2797,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2852,7 +2852,7 @@ class Moneybox : IMoneybox {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2904,7 +2904,7 @@ class SubClass : AbstractClass { //抽象クラスを継承
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -2952,7 +2952,7 @@ class SubClass : SuperClass { //派生クラス
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -3047,7 +3047,7 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -3122,7 +3122,7 @@ class MyGame {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -3323,7 +3323,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -3387,7 +3387,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -3506,7 +3506,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日  
 更新日：2018年04月13日
 
@@ -3539,7 +3539,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -3564,7 +3564,7 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日
 
 
@@ -3616,5 +3616,5 @@ public class Main : MonoBehaviour {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：Takashi Nishimura  
+作成者：MUBIROU  
 作成日：2018年03月13日

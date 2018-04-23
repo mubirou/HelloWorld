@@ -56,5 +56,5 @@ func main() { //main関数（最初に実行される）
 Hello,world! ←と表示されたら成功！（ファイルは生成されない）
 
 ***
-作成者: Takashi Nishimura  
+作成者: MUBIROU  
 作成日: 2017年03月16日
