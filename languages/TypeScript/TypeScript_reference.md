@@ -1464,7 +1464,7 @@ console.log(_array); //["TARO", "ICHIRO", "JIRO"]
 ### 更新（任意の値）
 ```
 //xxx.ts
-var _array: string[] = ["TAKASHI", "ICHIRO", "JIRO"];
+var _array: string[] = ["CHIKASHI", "ICHIRO", "JIRO"];
 _array[0] = "TARO"; //0番目を変更する場合
 console.log(_array); //["TARO", "ICHIRO", "JIRO"]
 ```

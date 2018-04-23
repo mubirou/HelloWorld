@@ -819,25 +819,25 @@ class Decorator2: Display {
 //=========
 // 実行
 //=========
-var _original: Display = Original(text: "TAKASHI")
-_original.show() //=> TAKASHI
+var _original: Display = Original(text: "CHIKASHI")
+_original.show() //=> CHIKASHI
 
-var _decorator1: Display = Decorator1(display: Original(text: "TAKASHI"))
-_decorator1.show() //=> -TAKASHI-
+var _decorator1: Display = Decorator1(display: Original(text: "CHIKASHI"))
+_decorator1.show() //=> -CHIKASHI-
 
-var _decorator2: Display = Decorator2(display: Original(text: "TAKASHI"))
-_decorator2.show() //=> <TAKASHI>
+var _decorator2: Display = Decorator2(display: Original(text: "CHIKASHI"))
+_decorator2.show() //=> <CHIKASHI>
 
 var _special: Display = Decorator2(display: 
                                 Decorator1(display: 
                                     Decorator1(display: 
                                         Decorator1(display: 
-                                            Original(text: "TAKASHI")
+                                            Original(text: "CHIKASHI")
                                         )
                                     )
                                 )
                             )
-_special.show() //=> <---TAKASHI--->
+_special.show() //=> <---CHIKASHI--->
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -855,12 +855,12 @@ var _special: Display = Decorator2(display:
                                 Decorator1(display: 
                                     Decorator1(display: 
                                         Decorator1(display: 
-                                            Original(text: "TAKASHI")))))
+                                            Original(text: "CHIKASHI")))))
 _special.show()
 ```
 ...としていたものを次の1行で実現可能になります。
 ```
-DecoratorFacade.exec(text: "TAKASHI", decrator1: 3, decrator2: 1)
+DecoratorFacade.exec(text: "CHIKASHI", decrator1: 3, decrator2: 1)
 ```
 
 ### 例文
@@ -935,10 +935,10 @@ class DecoratorFacade {
 //==========
 // 実行
 //==========
-DecoratorFacade.exec(text: "TAKASHI") //=> TAKASHI
-DecoratorFacade.exec(text: "TAKASHI", decrator1: 1, decrator2: 0) //=> -TAKASHI-
-DecoratorFacade.exec(text: "TAKASHI", decrator1: 0, decrator2: 1) //=> <TAKASHI>
-DecoratorFacade.exec(text: "TAKASHI", decrator1: 3, decrator2: 1) //=> <---TAKASHI--->
+DecoratorFacade.exec(text: "CHIKASHI") //=> CHIKASHI
+DecoratorFacade.exec(text: "CHIKASHI", decrator1: 1, decrator2: 0) //=> -CHIKASHI-
+DecoratorFacade.exec(text: "CHIKASHI", decrator1: 0, decrator2: 1) //=> <CHIKASHI>
+DecoratorFacade.exec(text: "CHIKASHI", decrator1: 3, decrator2: 1) //=> <---CHIKASHI--->
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  

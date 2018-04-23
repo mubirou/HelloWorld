@@ -1439,9 +1439,9 @@ class Test {
 using System;
 class Test {
     static void Main() {
-        string _name = "TAKASHI";
+        string _name = "CHIKASHI";
         switch (_name) { //判別式には「整数型」「文字型」しか使えない!
-            case "TAKASHI" :
+            case "CHIKASHI" :
                 Console.WriteLine("父");
                 break;
             case "HANAKO" : 
@@ -1500,7 +1500,7 @@ class Test {
     static void Main() {
         string _name = "JIRO";
         switch (_name) {
-            case "TAKASHI" : //breakが無いと次のcaseも処理
+            case "CHIKASHI" : //breakが無いと次のcaseも処理
             case "HANAKO" : 
                 Console.WriteLine("親");
                 break;
@@ -1697,10 +1697,10 @@ using System.Collections; //ArrayListに必要
 class Test {
     static void Main() {
         ArrayList _array = new ArrayList();
-        _array.Add("TAKASHI");
+        _array.Add("CHIKASHI");
         _array.Add(49);
         foreach (object value in _array) {
-            Console.WriteLine(value); //"TAKASHI"→49
+            Console.WriteLine(value); //"CHIKASHI"→49
         }
     }
 }

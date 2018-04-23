@@ -794,7 +794,7 @@ internal class MyClass { //internalは省略可
 }
 
 var _myClass:MyClass = MyClass()
-_myClass.myMethod(name:"TAKASHI") //=> "TAKASHI"
+_myClass.myMethod(name:"CHIKASHI") //=> "CHIKASHI"
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -835,15 +835,15 @@ var _chineseHello = { (_name: String) -> String in
 }
 
 //無名関数①の実行
-print(_hello("TAKASHI")) //=> "TAKASHI,Hello" ←_hello(_name:"TAKASHI")ではない
+print(_hello("CHIKASHI")) //=> "CHIKASHI,Hello" ←_hello(_name:"CHIKASHI")ではない
 
 //無名関数②に入替えて実行
 _hello = _japaneseHello
-print(_hello("TAKASHI")) //=> "TAKASHI、こんにちは" ←_hello(_name:"TAKASHI")ではない
+print(_hello("CHIKASHI")) //=> "CHIKASHI、こんにちは" ←_hello(_name:"CHIKASHI")ではない
 
 //無名関数③に入替えて実行
 _hello = _chineseHello
-print(_hello("TAKASHI")) //=> "TAKASHI,你好" ←_hello(_name:"TAKASHI")ではない
+print(_hello("CHIKASHI")) //=> "CHIKASHI,你好" ←_hello(_name:"CHIKASHI")ではない
 ```
 
 実行環境：macOS 10.12.4、Swift 3.1  
@@ -1034,9 +1034,9 @@ switch (true) {
 ### 判別式が Bool 型ではない場合
 ```
 //test.swift
-var _name: String = "TAKASHI"
+var _name: String = "CHIKASHI"
 switch (_name) {
-    case "TAKASHI": print("父") //これが出力
+    case "CHIKASHI": print("父") //これが出力
     case "HANAKO": print("母")
     case "TARO": print("長男")
     case "JIRO": print("次男")
@@ -1048,7 +1048,7 @@ switch (_name) {
 ```
 var _name: String = "TARO"
 switch (_name) {
-    case "TAKASHI": fallthrough //ここで終了せず次のcaseの処理へ
+    case "CHIKASHI": fallthrough //ここで終了せず次のcaseの処理へ
     case "HANAKO": print("親")
     case "TARO": fallthrough //ここで終了せず次のcaseの処理へ
     case "JIRO": print("子") //これが出力

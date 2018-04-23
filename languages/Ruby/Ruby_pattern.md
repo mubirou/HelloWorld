@@ -765,25 +765,25 @@ end
 #==========
 # 実行
 #==========
-_original = Original.new("TAKASHI")
-_original.show() #=> TAKASHI
+_original = Original.new("CHIKASHI")
+_original.show() #=> CHIKASHI
 
-_decorator1 = Decorator1.new(Original.new("TAKASHI"))
-_decorator1.show() #=> -TAKASHI-
+_decorator1 = Decorator1.new(Original.new("CHIKASHI"))
+_decorator1.show() #=> -CHIKASHI-
 
-_decorator2 = Decorator2.new(Original.new("TAKASHI"))
-_decorator2.show() #=> <TAKASHI>
+_decorator2 = Decorator2.new(Original.new("CHIKASHI"))
+_decorator2.show() #=> <CHIKASHI>
 
 _special = Decorator2.new(
             Decorator1.new(
                 Decorator1.new(
                     Decorator1.new(
-                        Original.new("TAKASHI")
+                        Original.new("CHIKASHI")
                     )
                 )
             )
 )
-_special.show() #=> <---TAKASHI--->
+_special.show() #=> <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
@@ -801,12 +801,12 @@ _special = Decorator2.new(
                 Decorator1.new(
                     Decorator1.new(
                         Decorator1.new(
-                            Original.new("TAKASHI")))))
+                            Original.new("CHIKASHI")))))
 _special.show()
 ```
 ...としていたものを次の1行で実現可能になります。
 ```
-DecoratorFacade.set("TAKASHI", 3, 1)
+DecoratorFacade.set("CHIKASHI", 3, 1)
 ```
 
 ### 例文
@@ -866,10 +866,10 @@ end
 #========
 # 実行
 #========
-DecoratorFacade.set("TAKASHI") #=> TAKASHI
-DecoratorFacade.set("TAKASHI", 1, 0) #=> -TAKASHI-
-DecoratorFacade.set("TAKASHI", 0, 1) #=> <TAKASHI>
-DecoratorFacade.set("TAKASHI", 3, 1) #=> <---TAKASHI--->
+DecoratorFacade.set("CHIKASHI") #=> CHIKASHI
+DecoratorFacade.set("CHIKASHI", 1, 0) #=> -CHIKASHI-
+DecoratorFacade.set("CHIKASHI", 0, 1) #=> <CHIKASHI>
+DecoratorFacade.set("CHIKASHI", 3, 1) #=> <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  

@@ -1102,7 +1102,7 @@ End Module
     ```
     …としていたものを次の1行で実現可能になります。
     ```
-    DecoratorFacade.Exec("TAKASHI", 3, 1)
+    DecoratorFacade.Exec("CHIKASHI", 3, 1)
     ```
 
 ### 例文

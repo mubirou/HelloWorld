@@ -2135,7 +2135,7 @@ package {
     public class Main extends Sprite {
         public function Main() { //コンストラクタ
 
-            var _array: Array = ["TAKASHI", "ICHIRO", "JIRO"];
+            var _array: Array = ["CHIKASHI", "ICHIRO", "JIRO"];
             _array[0] = "TARO"; //0番目を変更する場合
             for each (var _data: String in _array) {
                 console.log(_data); //["TARO"]→["ICHIRO"]→["JIRO"]

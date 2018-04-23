@@ -386,7 +386,7 @@ sqlite>   <= 何も表示されない
     $statement->execute();
 
     //データの挿入①
-    $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
+    $sql = "INSERT INTO hoge_tb VALUES (1, 'CHIKASHI')";
     $statement = $con->prepare($sql);
     $statement->execute();
 
@@ -433,7 +433,7 @@ sqlite>   <= 何も表示されない
     $statement->execute();
 
     //データの挿入
-    $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
+    $sql = "INSERT INTO hoge_tb VALUES (1, 'CHIKASHI')";
     $statement = $con->prepare($sql);
     $statement->execute();
 
@@ -473,7 +473,7 @@ sqlite>   <= 何も表示されない
     $statement->execute();
 
     //データの挿入①
-    $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
+    $sql = "INSERT INTO hoge_tb VALUES (1, 'CHIKASHI')";
     $statement = $con->prepare($sql);
     $statement->execute();
 
@@ -485,7 +485,7 @@ sqlite>   <= 何も表示されない
     //=============================
     // 条件に合致したデータのみ更新
     //=============================
-    $sql = "UPDATE hoge_tb SET name = 'ちかし' WHERE name = 'TAKASHI'"; //「==」ではない
+    $sql = "UPDATE hoge_tb SET name = 'ちかし' WHERE name = 'CHIKASHI'"; //「==」ではない
     $statement = $con->prepare($sql);
     $statement->execute();
 
@@ -526,7 +526,7 @@ SELECT * FROM テーブル名
     $statement->execute();
 
     //データの挿入①
-    $sql = "INSERT INTO hoge_tb VALUES (1, 'TAKASHI')";
+    $sql = "INSERT INTO hoge_tb VALUES (1, 'CHIKASHI')";
     $statement = $con->prepare($sql);
     $statement->execute();
 
@@ -542,7 +542,7 @@ SELECT * FROM テーブル名
         echo $tmp['id'].'|'.$tmp['name'];
         echo "<br>";
     }
-    //=> 1|TAKASHI
+    //=> 1|CHIKASHI
     //=> 2|HANAKO
 ?>
 ```
@@ -572,7 +572,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'NISHIMURA', 'man')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('CHIKASHI', 'NISHIMURA', 'man')")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'NISHIMURA', 'woman')")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'NISHIMURA', 'man')")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('YOSHIKO', 'NISHIMURA', 'woman')")->execute();
@@ -585,7 +585,7 @@ SELECT 列名①,列名②,... FROM テーブル名
         echo $tmp['firstname'].'|'.$tmp['lastname'];
         echo "<br>";
     }
-    //=> TAKASHI|NISHIMURA
+    //=> CHIKASHI|NISHIMURA
     //=> HANAKO|NISHIMURA
     //=> ICHIRO|NISHIMURA
     //=> YOSHIKO|NISHIMURA
@@ -809,7 +809,7 @@ SELECT * FROM テーブル名 WHERE 列名 >= 値
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('CHIKASHI', 50)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
@@ -823,7 +823,7 @@ SELECT * FROM テーブル名 WHERE 列名 >= 値
         echo $tmp['name'].'|'.$tmp['age'];
         echo "<br>";
     }
-    //=> TAKASHI|50
+    //=> CHIKASHI|50
     //=> HANAKO|44
 ?>
 ```
@@ -851,7 +851,7 @@ SELECT * FROM テーブル名 WHERE 列名 [NOT] BETWEEN ○ AND ○
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('CHIKASHI', 50)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 44)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 15)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 10)")->execute();
@@ -892,7 +892,7 @@ SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A')")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('CHIKASHI', 'A')")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B')")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB')")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B')")->execute();
@@ -906,7 +906,7 @@ SELECT * FROM テーブル名 WHERE 列名 IN (値①, 値②,...)
         echo $tmp['name'].'|'.$tmp['bloodtype'];
         echo "<br>";
     }
-    //=> TAKASHI|A
+    //=> CHIKASHI|A
     //=> ICHIRO|B
     //=> HANAKO|B
 ?>
@@ -980,7 +980,7 @@ SELECT * FROM テーブル名 WHERE 条件① AND 条件② ←条件①かつ�
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('CHIKASHI', 'A', 50)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
@@ -1022,7 +1022,7 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
     $statement->execute();
 
     //データの挿入
-    $con->prepare("INSERT INTO hoge_tb VALUES ('TAKASHI', 'A', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES ('CHIKASHI', 'A', 50)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('ICHIRO', 'B', 25)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('JIRO', 'AB', 20)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES ('HANAKO', 'B', 15)")->execute();
@@ -1036,7 +1036,7 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
         echo $tmp['name'].'|'.$tmp['bloodtype'].'|'.$tmp['age'];
         echo "<br>";
     }
-    //=> TAKASHI|A|50
+    //=> CHIKASHI|A|50
     //=> HANAKO|B|15
 ?>
 ```
@@ -1072,7 +1072,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
     //データの挿入
     $con->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (3, 'CHIKASHI', 50)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
 
     //ASC（昇順＝小さい順）または DESC（降順＝大きい順）
@@ -1087,7 +1087,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
     //=> 4|HANAKO|15
     //=> 2|ICHIRO|25
     //=> 1|JIRO|20
-    //=> 3|TAKASHI|50
+    //=> 3|CHIKASHI|50
 ?>
 ```
 
@@ -1116,7 +1116,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
     //データの挿入
     $con->prepare("INSERT INTO hoge_tb VALUES (1, 'JIRO', 20)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES (2, 'ICHIRO', 25)")->execute();
-    $con->prepare("INSERT INTO hoge_tb VALUES (3, 'TAKASHI', 50)")->execute();
+    $con->prepare("INSERT INTO hoge_tb VALUES (3, 'CHIKASHI', 50)")->execute();
     $con->prepare("INSERT INTO hoge_tb VALUES (4, 'HANAKO', 15)")->execute();
 
 
@@ -1146,7 +1146,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 |:--:|:--:|:--:|
 |1|JIRO|20|
 |2|ICHIRO|25|
-|3|TAKASHI|50|
+|3|CHIKASHI|50|
 |4|HANAKO|15|
 
 実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
@@ -1163,7 +1163,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 |:--:|:--:|:--:|
 |1|JIRO|20|
 |2|ICHIRO|25|
-|3|TAKASHI|50|
+|3|CHIKASHI|50|
 |4|HANAKO|15|
 
 ```
@@ -1204,7 +1204,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
     }
     //=> 1|JIRO|20
     //=> 2|ICHIRO|25
-    //=> 3|TAKASHI|50
+    //=> 3|CHIKASHI|50
     //=> 4|HANAKO|15
 ?>
 ```

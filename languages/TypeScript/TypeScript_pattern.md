@@ -994,21 +994,21 @@ class Decorator2 extends Display {
 //========
 // 実行
 //========
-var _original:Display = new Original("TAKASHI");
-console.log(_original.show()); // TAKASHI
+var _original:Display = new Original("CHIKASHI");
+console.log(_original.show()); // CHIKASHI
 
 var _decorator1:Display = new Decorator1(_original);
-console.log(_decorator1.show()); // -TAKASHI-
+console.log(_decorator1.show()); // -CHIKASHI-
 
 var _decorator2:Display = new Decorator2(_original);
-console.log(_decorator2.show()); // (TAKASHI)
+console.log(_decorator2.show()); // (CHIKASHI)
 
 var _special:Display = new Decorator2(
                             new Decorator1(
                                 new Decorator1(
                                     new Decorator1(
-                                        new Original("TAKASHI")))));
-console.log(_special.show()); // (---TAKASHI---)
+                                        new Original("CHIKASHI")))));
+console.log(_special.show()); // (---CHIKASHI---)
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
@@ -1028,12 +1028,12 @@ var _special:Display = new Decorator2(
                             new Decorator1(
                                 new Decorator1(
                                     new Decorator1(
-                                        new Original("TAKASHI")))));
-console.log(_special.show()); // (---TAKASHI---)
+                                        new Original("CHIKASHI")))));
+console.log(_special.show()); // (---CHIKASHI---)
 ```
 ...としていたものを次の１行で済ますことが可能になります。
 ```
-console.log(DecoratorFacade.exec("TAKASHI", 3, 1);
+console.log(DecoratorFacade.exec("CHIKASHI", 3, 1);
 ```
 
 ### 例文
@@ -1118,10 +1118,10 @@ class DecoratorFacade {
 //=================================
 // 実行（Decoratorパターンとは異なる）
 //=================================
-console.log(DecoratorFacade.exec("TAKASHI", 5, 2)); // ((-----TAKASHI-----))
-console.log(DecoratorFacade.exec("TAKASHI")); // TAKASHI
-console.log(DecoratorFacade.exec("TAKASHI", 0, 1)); // (TAKASHI)
-console.log(DecoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
+console.log(DecoratorFacade.exec("CHIKASHI", 5, 2)); // ((-----CHIKASHI-----))
+console.log(DecoratorFacade.exec("CHIKASHI")); // CHIKASHI
+console.log(DecoratorFacade.exec("CHIKASHI", 0, 1)); // (CHIKASHI)
+console.log(DecoratorFacade.exec("CHIKASHI", 1, 0)); // -CHIKASHI-
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  

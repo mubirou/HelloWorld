@@ -1000,28 +1000,28 @@ Decorator2::Decorator2(Display* _display) { //コンストラクタの「定義�
 *************/
 int main() {
     //検証（その１）
-    Display* _original = new Original("TAKASHI");
-    _original -> Show(); //"TAKASHI"
+    Display* _original = new Original("CHIKASHI");
+    _original -> Show(); //"CHIKASHI"
 
     //検証（その２）
-    Display* _decorator1 = new Decorator1(new Original("TAKASHI"));
-    _decorator1 -> Show(); //"-TAKASHI-"
+    Display* _decorator1 = new Decorator1(new Original("CHIKASHI"));
+    _decorator1 -> Show(); //"-CHIKASHI-"
 
     //検証（その３）
-    Display* _decorator2 = new Decorator2(new Original("TAKASHI"));
-    _decorator2 -> Show(); //"<TAKASHI>"
+    Display* _decorator2 = new Decorator2(new Original("CHIKASHI"));
+    _decorator2 -> Show(); //"<CHIKASHI>"
 
     //検証（その４）
     Display* _special = new Decorator2(
                                 new Decorator1(
                                     new Decorator1(
                                         new Decorator1(
-                                            new Original("TAKASHI")
+                                            new Original("CHIKASHI")
                                         )
                                     )
                                 )
                             );
-    _special -> Show(); //<---TAKASHI--->
+    _special -> Show(); //<---CHIKASHI--->
 
     return 0;
 }
@@ -1046,12 +1046,12 @@ int main() {
                                 new Decorator1(
                                     new Decorator1(
                                         new Decorator1(
-                                            new Original("TAKASHI")))));
+                                            new Original("CHIKASHI")))));
     _special -> Show();
     ```
     …としていたものを次の1行で実現可能になります。
     ```
-    DecoratorFacade::Exec("TAKASHI", 3, 1)
+    DecoratorFacade::Exec("CHIKASHI", 3, 1)
     ```
 
 ### 例文
@@ -1131,10 +1131,10 @@ void DecoratorFacade::Exec(string arg1, int arg2=0, int arg3=0) {
 * メイン関数
 *************/
 int main() {
-    DecoratorFacade::Exec("TAKASHI"); //"TAKASHI"
-    DecoratorFacade::Exec("TAKASHI", 1, 0); //"-TAKASHI-"
-    DecoratorFacade::Exec("TAKASHI", 0, 1); //"<TAKASHI>"
-    DecoratorFacade::Exec("TAKASHI", 3, 1); //<---TAKASHI--->
+    DecoratorFacade::Exec("CHIKASHI"); //"CHIKASHI"
+    DecoratorFacade::Exec("CHIKASHI", 1, 0); //"-CHIKASHI-"
+    DecoratorFacade::Exec("CHIKASHI", 0, 1); //"<CHIKASHI>"
+    DecoratorFacade::Exec("CHIKASHI", 3, 1); //<---CHIKASHI--->
     return 0;
 }
 ```

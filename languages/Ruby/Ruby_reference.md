@@ -121,8 +121,8 @@ puts(true.class.name) #TrueClass（falseの場合はFalseClass型）
 puts(100.class.name) #Fixnum（4611686018427387904以上の場合はBignum型）
 puts(0.1.class.name) #Float
 puts("1".class.name) #String
-puts(["TAKASHI", "HANAKO", "TARO"].class.name) #Array
-puts({"TAKASHI"=>49}.class.name) #Hash
+puts(["CHIKASHI", "HANAKO", "TARO"].class.name) #Array
+puts({"CHIKASHI"=>49}.class.name) #Hash
 
 class MyClass #前方宣言が必要
     def initialize() #コンストラクタ
@@ -1342,9 +1342,9 @@ end
 ### 判別式が boolean 値ではない場合
 ```
 #test.rb
-_name = "TAKASHI"
+_name = "CHIKASHI"
 case _name
-when "TAKASHI"
+when "CHIKASHI"
     puts("父")
 when "HANAKO"
     puts("母")
@@ -1395,7 +1395,7 @@ for tmp in ["A","B","C"] do #配列（Array）の場合
     puts(tmp) #"A"→"B"→"C"
 end
 ```
-* ハッシュ型 {"TAKASHI"=>49, "TARO"=>14} 等の場合、"TAKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
+* ハッシュ型 {"CHIKASHI"=>49, "TARO"=>14} 等の場合、"CHIKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
 
 ### for 文のネスト
 * ループ制御変数には i, j, k が使われる
@@ -1456,7 +1456,7 @@ end
     puts(tmp) #"A"→"B"→"C"
 end
 ```
-* ハッシュ型 {"TAKASHI"=>49, "TARO"=>14} 等の場合、"TAKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
+* ハッシュ型 {"CHIKASHI"=>49, "TARO"=>14} 等の場合、"CHIKASHI"→49→"TARO"→14 という具合に、キー→オブジェクト→キー→オブジェクトの順で出力される
 
 ### each メソッドのネスト
 * ループ制御変数には i, j, k が使われる
@@ -1609,7 +1609,7 @@ p _array #["TARO", "ICHIRO", "JIRO"]
 ### 更新（任意の値）
 ```
 #test.rb
-_array = ["TAKASHI", "ICHIRO", "JIRO"]
+_array = ["CHIKASHI", "ICHIRO", "JIRO"]
 _array[0] = "TARO" #0番目を変更する場合
 p _array #["TARO", "ICHIRO", "JIRO"]
 ```
@@ -1617,7 +1617,7 @@ p _array #["TARO", "ICHIRO", "JIRO"]
 ### 更新（nil 値）
 ```
 #test.rb
-_array = ["TAKASHI", "ICHIRO", "JIRO"]
+_array = ["CHIKASHI", "ICHIRO", "JIRO"]
 _array[0] = nil
 p _array #[nil, "ICHIRO", "JIRO"]
 ```

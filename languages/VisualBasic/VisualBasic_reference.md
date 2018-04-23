@@ -1169,7 +1169,7 @@ Module test '名前（test）は任意
     Sub Main() '自動的に最初に実行される
         Dim _Name As String = "TARO"
         Select Case _Name
-            Case "TAKASHI"
+            Case "CHIKASHI"
                 Console.WriteLine("父")
             Case "HANAKO"
                 Console.WriteLine("母")
@@ -1358,11 +1358,11 @@ Imports System.Collections 'ArrayListに必要
 Module test '名前（test）は任意
     Sub Main() '自動的に最初に実行される
         Dim _Array As New ArrayList()
-        _Array.Add("TAKASHI")
+        _Array.Add("CHIKASHI")
         _Array.Add("HAKANO")
 
         For Each _Value As String In _Array
-            Console.WriteLine(_Value) '"TAKASHI"=>"HANAKO"
+            Console.WriteLine(_Value) '"CHIKASHI"=>"HANAKO"
         Next
     End Sub
 End Module
@@ -1592,12 +1592,12 @@ Module test '名前（test）は任意
         Dim _Array As New ArrayList()
 
         'データの追加
-        _Array.Add("TAKASHI")
+        _Array.Add("CHIKASHI")
         _Array.Add("HAKANO")
 
         '全データの取得
         For Each _Value As String In _Array
-            Console.WriteLine(_Value) '"TAKASHI"=>"HANAKO"
+            Console.WriteLine(_Value) '"CHIKASHI"=>"HANAKO"
         Next
     End Sub
 End Module

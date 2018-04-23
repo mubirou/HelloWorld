@@ -859,21 +859,21 @@ Decorator2.prototype = new Display(); //Displayクラスを継承
 //==========
 // 実行
 //==========
-var _original = new Original("TAKASHI");
-console.log(_original.show()); // TAKASHI
+var _original = new Original("CHIKASHI");
+console.log(_original.show()); // CHIKASHI
 
 var _decorator1 = new Decorator1(_original);
-console.log(_decorator1.show()); // -TAKASHI-
+console.log(_decorator1.show()); // -CHIKASHI-
         
 var _decorator2 = new Decorator2(_original);
-console.log(_decorator2.show()); // (TAKASHI)
+console.log(_decorator2.show()); // (CHIKASHI)
         
 var _special = new Decorator2(
                     new Decorator1(
                         new Decorator1(
                             new Decorator1(
-                                new Original("TAKASHI")))));
-console.log(_special.show()); // (---TAKASHI---)
+                                new Original("CHIKASHI")))));
+console.log(_special.show()); // (---CHIKASHI---)
 
 </script>
 ```
@@ -954,10 +954,10 @@ DecoratorFacade.prototype.exec = function(arg1, arg2, arg3) {
 // 実行（Decoratorパターンと異なる）
 //================================
 var _decoratorFacade = new DecoratorFacade();
-console.log(_decoratorFacade.exec("TAKASHI", 5, 2)); // ((-----TAKASHI-----))
-console.log(_decoratorFacade.exec("TAKASHI")); // TAKASHI
-console.log(_decoratorFacade.exec("TAKASHI", 0, 1)); // (TAKASHI)
-console.log(_decoratorFacade.exec("TAKASHI", 1, 0)); // -TAKASHI-
+console.log(_decoratorFacade.exec("CHIKASHI", 5, 2)); // ((-----CHIKASHI-----))
+console.log(_decoratorFacade.exec("CHIKASHI")); // CHIKASHI
+console.log(_decoratorFacade.exec("CHIKASHI", 0, 1)); // (CHIKASHI)
+console.log(_decoratorFacade.exec("CHIKASHI", 1, 0)); // -CHIKASHI-
 
 </script>
 ```

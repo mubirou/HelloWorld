@@ -1476,9 +1476,9 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     void Start() {
-        string _name = "TAKASHI";
+        string _name = "CHIKASHI";
         switch (_name) { //判別式には「整数型」「文字型」しか使えない!
-            case "TAKASHI" :
+            case "CHIKASHI" :
                 Debug.Log("父");
                 break;
             case "HANAKO" : 
@@ -1539,7 +1539,7 @@ public class Main : MonoBehaviour {
     void Start() {
         string _name = "JIRO";
         switch (_name) {
-            case "TAKASHI" : //breakが無いと次のcaseも処理
+            case "CHIKASHI" : //breakが無いと次のcaseも処理
             case "HANAKO" : 
                 Debug.Log("親");
                 break;
@@ -1745,10 +1745,10 @@ using System.Collections; //ArrayListに必要
 public class Main : MonoBehaviour {
     void Start() {
         ArrayList _array = new ArrayList();
-        _array.Add("TAKASHI");
+        _array.Add("CHIKASHI");
         _array.Add(50);
         foreach (object value in _array) {
-            Debug.Log(value); //"TAKASHI"→49
+            Debug.Log(value); //"CHIKASHI"→49
         }
     }
 }

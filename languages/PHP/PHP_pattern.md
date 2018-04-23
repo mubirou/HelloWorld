@@ -966,22 +966,22 @@ class Decorator2 extends Display { //Displayクラスを継承
 //=========
 // 実行
 //=========
-$original = new Original("TAKASHI");
-echo $original->show()."<br>"; // TAKASHI
+$original = new Original("CHIKASHI");
+echo $original->show()."<br>"; // CHIKASHI
         
 $decorator1 = new Decorator1($original);
-echo $decorator1->show()."<br>"; // -TAKASHI-
+echo $decorator1->show()."<br>"; // -CHIKASHI-
         
 $decorator2 = new Decorator2($original);
-echo $decorator2->show()."<br>"; // (TAKASHI)
+echo $decorator2->show()."<br>"; // (CHIKASHI)
         
 $special = new Decorator2(
                 new Decorator1(
                     new Decorator1(
                         new Decorator1(
-                            new Original("TAKASHI")
+                            new Original("CHIKASHI")
                         ))));
-echo $special->show(); // (---TAKASHI---)
+echo $special->show(); // (---CHIKASHI---)
 ?>
 ```
 
@@ -1070,10 +1070,10 @@ class DecoratorFacade {
 // 実行
 //=========
 //「クラス::静的メソッド」で静的メソッドにアクセス
-echo DecoratorFacade::exec("TAKASHI", 5, 2)."<br>"; // ((-----TAKASHI-----))
-echo DecoratorFacade::exec("TAKASHI")."<br>"; // TAKASHI
-echo DecoratorFacade::exec("TAKASHI", 0, 1)."<br>"; // (TAKASHI)
-echo DecoratorFacade::exec("TAKASHI", 1, 0); // -TAKASHI-
+echo DecoratorFacade::exec("CHIKASHI", 5, 2)."<br>"; // ((-----CHIKASHI-----))
+echo DecoratorFacade::exec("CHIKASHI")."<br>"; // CHIKASHI
+echo DecoratorFacade::exec("CHIKASHI", 0, 1)."<br>"; // (CHIKASHI)
+echo DecoratorFacade::exec("CHIKASHI", 1, 0); // -CHIKASHI-
 ?>
 ```
 

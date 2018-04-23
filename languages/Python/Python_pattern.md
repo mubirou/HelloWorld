@@ -717,25 +717,25 @@ class Decorator2(Display):
 #=======
 # 実行
 #=======
-_original = Original("TAKASHI")
-_original.show() # TAKASHI
+_original = Original("CHIKASHI")
+_original.show() # CHIKASHI
 
-_decorator1 = Decorator1(Original("TAKASHI"))
-_decorator1.show() # -TAKASHI-
+_decorator1 = Decorator1(Original("CHIKASHI"))
+_decorator1.show() # -CHIKASHI-
 
-_decorator2 = Decorator2(Original("TAKASHI"))
-_decorator2.show() # <TAKASHI>
+_decorator2 = Decorator2(Original("CHIKASHI"))
+_decorator2.show() # <CHIKASHI>
 
 _special = Decorator2(
             Decorator1(
                 Decorator1(
                     Decorator1(
-                        Original("TAKASHI")
+                        Original("CHIKASHI")
                     )
                 )
             )
 )
-_special.show() # <---TAKASHI--->
+_special.show() # <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
@@ -752,12 +752,12 @@ _special = Decorator2(
             Decorator1(
                 Decorator1(
                     Decorator1(
-                        Original("TAKASHI")))));
+                        Original("CHIKASHI")))));
 _special.show();
 ```
 ...としていたものを次の1行で実現可能になります。
 ```
-DecoratorFacade.Set("TAKASHI", 3, 1);
+DecoratorFacade.Set("CHIKASHI", 3, 1);
 ```
 
 ```
@@ -813,10 +813,10 @@ class DecoratorFacade(object): #Singletonパターン的に
 #=======
 # 実行
 #=======
-DecoratorFacade.Set("TAKASHI") # TAKASHI
-DecoratorFacade.Set("TAKASHI", 1, 0) # -TAKASHI-
-DecoratorFacade.Set("TAKASHI", 0, 1) # <TAKASHI>
-DecoratorFacade.Set("TAKASHI", 3, 1) # <---TAKASHI--->
+DecoratorFacade.Set("CHIKASHI") # CHIKASHI
+DecoratorFacade.Set("CHIKASHI", 1, 0) # -CHIKASHI-
+DecoratorFacade.Set("CHIKASHI", 0, 1) # <CHIKASHI>
+DecoratorFacade.Set("CHIKASHI", 3, 1) # <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  

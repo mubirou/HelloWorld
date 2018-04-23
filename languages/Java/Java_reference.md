@@ -895,7 +895,7 @@ public class Main { //publicは省略可
         }; //「;」が必須
 
         //無名関数①の実行
-        System.out.println(hello_.exec("TAKASHI")); //=> "TAKASHI,Hello"
+        System.out.println(hello_.exec("CHIKASHI")); //=> "CHIKASHI,Hello"
 
         //無名関数②に入替えてから実行
         hello_ = japaneseHello_;

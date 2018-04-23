@@ -724,25 +724,25 @@ class File extends Component {
 
 public class Main {
     public static void main(String[] args) {
-        Display _original = new Original("TAKASHI");
-        _original.show(); //=> TAKASHI
+        Display _original = new Original("CHIKASHI");
+        _original.show(); //=> CHIKASHI
         
-        Display _decorator1 = new Decorator1(new Original("TAKASHI"));
-        _decorator1.show(); //=> -TAKASHI-
+        Display _decorator1 = new Decorator1(new Original("CHIKASHI"));
+        _decorator1.show(); //=> -CHIKASHI-
         
-        Display decorator2_ = new Decorator2(new Original("TAKASHI"));
-        decorator2_.show(); //=> <TAKASHI>
+        Display decorator2_ = new Decorator2(new Original("CHIKASHI"));
+        decorator2_.show(); //=> <CHIKASHI>
         
         Display _special = new Decorator2(
                                     new Decorator1(
                                         new Decorator1(
                                             new Decorator1(
-                                                new Original("TAKASHI")
+                                                new Original("CHIKASHI")
                                             )
                                         )
                                     )
                                 );
-        _special.show(); //=> <---TAKASHI--->
+        _special.show(); //=> <---CHIKASHI--->
     }
 }
 
@@ -802,12 +802,12 @@ Display _special = new Decorator2(
                             new Decorator1(
                                 new Decorator1(
                                     new Decorator1(
-                                        new Original("TAKASHI")))));
+                                        new Original("CHIKASHI")))));
 _special.show();
 ```
 ...としていたものを次の1行で実現可能になります。
 ```
-DecoratorFacade.exec("TAKASHI", 3, 1);
+DecoratorFacade.exec("CHIKASHI", 3, 1);
 ```
 
 ```
@@ -816,10 +816,10 @@ DecoratorFacade.exec("TAKASHI", 3, 1);
 public class Main {
     public static void main(String[] args) {
         //メイン内がシンプルになります
-        DecoratorFacade.exec("TAKASHI", 0, 0); //=> TAKASHI
-        DecoratorFacade.exec("TAKASHI", 1, 0); //=> -TAKASHI-
-        DecoratorFacade.exec("TAKASHI", 0, 1); //=> <TAKASHI>
-        DecoratorFacade.exec("TAKASHI", 3, 1); //=> <---TAKASHI--->
+        DecoratorFacade.exec("CHIKASHI", 0, 0); //=> CHIKASHI
+        DecoratorFacade.exec("CHIKASHI", 1, 0); //=> -CHIKASHI-
+        DecoratorFacade.exec("CHIKASHI", 0, 1); //=> <CHIKASHI>
+        DecoratorFacade.exec("CHIKASHI", 3, 1); //=> <---CHIKASHI--->
     }
 }
 

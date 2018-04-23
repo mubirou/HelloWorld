@@ -1040,7 +1040,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     }
 
     var _hello = new Hello();
-    _hello.hello("TAKASHI"); //"TAKASHI,Hello!"
+    _hello.hello("CHIKASHI"); //"CHIKASHI,Hello!"
     _hello.change("japanese");
     _hello.hello("ちかし"); //"ちかし、こんにちは!"
     _hello.change("chinese");
@@ -1697,7 +1697,7 @@ do {
 ### 更新（任意の値）
 ```
 <script>
-    var _array = ["TAKASHI", "ICHIRO", "JIRO"];
+    var _array = ["CHIKASHI", "ICHIRO", "JIRO"];
     _array[0] = "TARO"; //0番目を変更する場合
     console.log(_array); //["TARO", "ICHIRO", "JIRO"]
 </script>

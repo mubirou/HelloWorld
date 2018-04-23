@@ -1375,7 +1375,7 @@ echo $yoshimura->age.'<br>'; //49
 <?php
     $array = array('TARO', 'HANAKO', 'ICHIRO', 'JIRO');
     foreach ($array as $data) {
-        echo $data."<br>"; //'TAKASHI'→'TOMOKO'→'TORU'→'HANAKO'
+        echo $data."<br>"; //'CHIKASHI'→'TOMOKO'→'TORU'→'HANAKO'
     }
 ?>
 ```
@@ -1538,10 +1538,10 @@ do {
 ### 更新（任意の値）
 ```
 <?php
-    $array = array('TAKASHI', 'ICHIRO', 'JIRO');
+    $array = array('CHIKASHI', 'ICHIRO', 'JIRO');
     $array[1] = 'TORU';
     foreach ($array as $data) {
-        echo $data.'<br>'; //'TAKASHI'→'TORU'→'JIRO'
+        echo $data.'<br>'; //'CHIKASHI'→'TORU'→'JIRO'
     }
 ?>
 ```

@@ -2379,14 +2379,14 @@ int main() {
     using namespace std;
 
     int main() {
-        string _name = "TAKASHI"; //変数の定義
+        string _name = "CHIKASHI"; //変数の定義
         string* _pName = &_name; //変数の「アドレス」を「ポインタ」に格納
         
         //検証
-        cout << _name << endl; //"TAKASHI" ←変数の値
+        cout << _name << endl; //"CHIKASHI" ←変数の値
         cout << &_name << endl; //0x7ffc37c32e90 ←変数の「アドレス」
         cout << _pName << endl; //0x7ffc37c32e90 ←「ポインタ」
-        cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得
+        cout << *_pName << endl; //"CHIKASHI" ←「ポインタ」から変数の値を取得
     }
     ```
 
@@ -2413,7 +2413,7 @@ int main() {
     //======
     void myFunction(string* _pName) { //渡された「アドレス」を「ポインタ」として引数に③'
         cout << _pName << endl; //0x7fff9c1ec060 ←変数の「アドレス」を格納したポインタ④
-        cout << *_pName << endl; //"TAKASHI" ←「ポインタ」から変数の値を取得⑤
+        cout << *_pName << endl; //"CHIKASHI" ←「ポインタ」から変数の値を取得⑤
         *_pName = "TARO"; //変数の値を変更⑥
     }
 
@@ -2421,7 +2421,7 @@ int main() {
     // メイン関数
     //============
     int main() {
-        string _name = "TAKASHI"; //変数の定義①
+        string _name = "CHIKASHI"; //変数の定義①
         cout << &_name << endl; //0x7fff9c1ec060 ←変数の「アドレス」②
         myFunction(&_name); //「アドレス」を渡して関数を呼出す③
         cout << _name << endl; //"TARO" ←関数内で変数の値が変更されているため⑦

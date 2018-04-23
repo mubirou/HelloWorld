@@ -799,25 +799,25 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     void Start () {
-        Display _original = new Original("TAKASHI");
-        _original.Show(); //TAKASHI
+        Display _original = new Original("CHIKASHI");
+        _original.Show(); //CHIKASHI
         
-        Display _decorator1 = new Decorator1(new Original("TAKASHI"));
-        _decorator1.Show(); //-TAKASHI-
+        Display _decorator1 = new Decorator1(new Original("CHIKASHI"));
+        _decorator1.Show(); //-CHIKASHI-
         
-        Display _decorator2 = new Decorator2(new Original("TAKASHI"));
-        _decorator2.Show(); //<TAKASHI>
+        Display _decorator2 = new Decorator2(new Original("CHIKASHI"));
+        _decorator2.Show(); //<CHIKASHI>
         
         Display _special = new Decorator2(
                                     new Decorator1(
                                         new Decorator1(
                                             new Decorator1(
-                                                new Original("TAKASHI")
+                                                new Original("CHIKASHI")
                                             )
                                         )
                                     )
                                 );
-        _special.Show(); //<---TAKASHI--->
+        _special.Show(); //<---CHIKASHI--->
     }
 }
 
@@ -874,12 +874,12 @@ class Decorator2 : Display {
                                 new Decorator1(
                                     new Decorator1(
                                         new Decorator1(
-                                            new Original("TAKASHI")))));
+                                            new Original("CHIKASHI")))));
     _special.Show();
     ```
     …としていたものを次の1行で実現可能になります。
     ```
-    DecoratorFacade.exec("TAKASHI", 3, 1);
+    DecoratorFacade.exec("CHIKASHI", 3, 1);
     ```
 
 ### 例文
@@ -890,10 +890,10 @@ using UnityEngine;
 public class Main : MonoBehaviour {
     void Start () {
         //メイン内がシンプルになります
-        DecoratorFacade.Exec("TAKASHI"); //TAKASHI
-        DecoratorFacade.Exec("TAKASHI", 1, 0); //-TAKASHI-
-        DecoratorFacade.Exec("TAKASHI", 0, 1); //<TAKASHI>
-        DecoratorFacade.Exec("TAKASHI", 3, 1); //<---TAKASHI--->
+        DecoratorFacade.Exec("CHIKASHI"); //CHIKASHI
+        DecoratorFacade.Exec("CHIKASHI", 1, 0); //-CHIKASHI-
+        DecoratorFacade.Exec("CHIKASHI", 0, 1); //<CHIKASHI>
+        DecoratorFacade.Exec("CHIKASHI", 3, 1); //<---CHIKASHI--->
     }
 }
 
