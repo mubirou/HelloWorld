@@ -698,10 +698,10 @@ SELECT 列名①,列名②,... FROM テーブル名
         $statement->execute();
 
         //データの挿入
-        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '男')")->execute(); //同じデータ
-        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '女')")->execute();
-        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '西村', '男')")->execute(); //同じデータ
-        $pdo->prepare("INSERT INTO hoge_tb VALUES ('正美', '鈴木', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('良子', '西村', '男')")->execute(); //同じデータ
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('良子', '西村', '女')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('良子', '西村', '男')")->execute(); //同じデータ
+        $pdo->prepare("INSERT INTO hoge_tb VALUES ('良子', '鈴木', '男')")->execute();
 
         $sql = "SELECT DISTINCT * FROM hoge_tb"; //全ての列の値が同じ場合のみ「重複」と判定
         $statement = $pdo->query($sql);
@@ -711,9 +711,9 @@ SELECT 列名①,列名②,... FROM テーブル名
             echo $tmp['lastname'].'|'.$tmp['firstname'].'|'.$tmp['sex'];
             echo "<br>";
         }
-        //=> 西村|正美|男
-        //=> 西村|正美|女
-        //=> 鈴木|正美|男
+        //=> 西村|良子|男
+        //=> 西村|良子|女
+        //=> 鈴木|良子|男
     ?>
     ```
 
@@ -743,10 +743,10 @@ SELECT 列名①,列名②,... FROM テーブル名
         $statement->execute();
 
         //データの挿入
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '西村', '男')")->execute();
-        $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '鈴木', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '良子', '西村', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '良子', '西村', '女')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '良子', '西村', '男')")->execute();
+        $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '良子', '鈴木', '男')")->execute();
 
         //特定の列の値が同じデータを「重複」と判定
         $sql = "SELECT DISTINCT firstname,lastname FROM hoge_tb";
@@ -758,8 +758,8 @@ SELECT 列名①,列名②,... FROM テーブル名
             echo $tmp['lastname'].'|'.$tmp['firstname'];
             echo "<br>";
         }
-        //=> 西村|正美
-        //=> 鈴木|正美
+        //=> 西村|良子
+        //=> 鈴木|良子
     ?>
     ```
 
@@ -809,10 +809,10 @@ SELECT * FROM テーブル名 WHERE 列名 = 値
     $statement->execute();
 
     //データの挿入
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '良子', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '良子', '西村', '女')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '良子', '鈴木', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '良子', '西村', '男')")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE lastname = '西村'";
@@ -823,9 +823,9 @@ SELECT * FROM テーブル名 WHERE 列名 = 値
         echo $tmp['id'].'|'.$tmp['firstname'].'|'.$tmp['lastname'].'|'.$tmp['sex'];
         echo "<br>";
     }
-    //=> 1|正美|西村|男
-    //=> 2|正美|西村|女
-    //=> 4|正美|西村|男
+    //=> 1|良子|西村|男
+    //=> 2|良子|西村|女
+    //=> 4|良子|西村|男
 ?>
 ```
 
@@ -857,10 +857,10 @@ SELECT * FROM テーブル名 WHERE 列名 <> 値
     $statement->execute();
 
     //データの挿入
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '正美', '西村', '男')")->execute();
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '正美', '西村', '女')")->execute();
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '正美', '鈴木', '男')")->execute();
-    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '正美', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (1, '良子', '西村', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (2, '良子', '西村', '女')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (3, '良子', '鈴木', '男')")->execute();
+    $pdo->prepare("INSERT INTO hoge_tb VALUES (4, '良子', '西村', '男')")->execute();
 
     //条件に合致したデータを抽出
     $sql = "SELECT * FROM hoge_tb WHERE lastname <> '西村'";
@@ -871,7 +871,7 @@ SELECT * FROM テーブル名 WHERE 列名 <> 値
         echo $tmp['id'].'|'.$tmp['firstname'].'|'.$tmp['lastname'].'|'.$tmp['sex'];
         echo "<br>";
     }
-    //=> 3|正美|鈴木|男
+    //=> 3|良子|鈴木|男
 ?>
 ```
 
