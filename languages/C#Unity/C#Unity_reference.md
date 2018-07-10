@@ -3514,6 +3514,7 @@ public class Main : MonoBehaviour {
 <a name="タイマー"></a>
 # <b>タイマー</b>
 * システムタイマー（System.Timers.Timer）を利用
+* MonoBehaviour.[Invoke()](https://github.com/vvestvillage/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) もあり
 ```
 //Main.cs
 using UnityEngine;
@@ -3541,6 +3542,7 @@ public class Main : MonoBehaviour {
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：vvestvillage  
 作成日：2018年03月13日
+更新日：2018年07月10日
 
 
 <a name="処理速度計測"></a>
