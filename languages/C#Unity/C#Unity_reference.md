@@ -3514,7 +3514,7 @@ public class Main : MonoBehaviour {
 <a name="タイマー"></a>
 # <b>タイマー</b>
 * システムタイマー（System.Timers.Timer）を利用
-* MonoBehaviour.[Invoke()](https://github.com/vvestvillage/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) や繰返し実行可能な [MonoBehaviour.InvokeRepeating()](https://docs.unity3d.com/ja/current/ScriptReference/MonoBehaviour.InvokeRepeating.html) を使う方法もあり
+* MonoBehaviour.[Invoke()](https://github.com/vvestvillage/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) や繰返し実行可能な MonoBehaviour.[InvokeRepeating()](https://docs.unity3d.com/ja/current/ScriptReference/MonoBehaviour.InvokeRepeating.html) を使う方法もあり
 ```
 //Main.cs
 using UnityEngine;
