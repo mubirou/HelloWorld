@@ -66,7 +66,7 @@ console.log(_singleton1 == _singleton2); //true（同じインスタンス）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -137,7 +137,7 @@ console.log(_prototype2.address); //=> "X-XX-XX XXX, Shinjuku-ku"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -296,7 +296,7 @@ HAPPY NEW YEAR!
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -451,7 +451,7 @@ _cardHanako.templateMethod("summer");
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -564,7 +564,7 @@ _hanako.createSummer();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -624,7 +624,7 @@ console.log(_moneyboxAdapter.moneyDollar); //=> 9.91210003752721（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -684,7 +684,7 @@ console.log(_moneyboxAdapter.moneyDollar); //=> 9.91210003752721（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -786,7 +786,7 @@ _smartPhone2.phone(); //電話をかける（メソッドの実行）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -939,7 +939,7 @@ _dreamweaver.list(); //=> Macromedia/Dreamweaver(File)
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月30日
 
@@ -1012,7 +1012,7 @@ console.log(_special.show()); // (---CHIKASHI---)
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1125,7 +1125,7 @@ console.log(DecoratorFacade.exec("CHIKASHI", 1, 0)); // -CHIKASHI-
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1210,7 +1210,7 @@ setTimeout(()=>{
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1263,7 +1263,7 @@ _loader.load(); //=> "重い処理を実行中"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1365,7 +1365,7 @@ while(_carParkIterator.hasNext()) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1459,7 +1459,7 @@ HAPPY NEW YEAR!
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1529,7 +1529,7 @@ _janken.exec(); //グー、グー、パー
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1627,7 +1627,7 @@ console.log(_hanako.getPoint()); //15000
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1722,7 +1722,7 @@ _setagayaPO.send("宮城県仙台市XX町X-X-X"); //明後日以降に届きま�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1833,7 +1833,7 @@ _mediator.NoButton.on();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -1946,7 +1946,7 @@ _apple.notify();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -2084,7 +2084,7 @@ _theMemento = _memory.redo(); //=> これ以上、リドゥできません
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -2179,7 +2179,7 @@ _kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -2355,7 +2355,7 @@ _calc.redo(); //これ以上リドゥできません 99
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日
 
@@ -2465,6 +2465,6 @@ _FlashPlayer.exec(_SWF); //計算結果は246（自作ミニ言語による実�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、TypeScript 2.3.3  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2013年  
 更新日：2017年05月31日

@@ -124,7 +124,7 @@ console.log(typeof _symbol); //"symbol"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月14日  
 更新日：2017年03月17日
 
@@ -225,7 +225,7 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月14日  
 更新日：2017年03月17日  
 
@@ -282,7 +282,7 @@ console.log(_rectangle.getArea()); //2073600
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月14日  
 更新日：2017年03月17日
 
@@ -379,7 +379,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月14日  
 更新日：2017年03月17日  
 
@@ -457,7 +457,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年02月01日  
 更新日：2017年03月17日
 
@@ -513,7 +513,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月15日  
 更新日：2017年03月19日
 
@@ -676,7 +676,7 @@ new MyClass(); //"コンフリクトを起こさない!"
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月15日  
 更新日：2017年03月21日
 
@@ -735,7 +735,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月16日  
 更新日：2017年03月21日
 
@@ -811,7 +811,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月16日  
 更新日：2017年03月21日
 
@@ -858,7 +858,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月16日  
 更新日：2017年03月21日  
 
@@ -1000,7 +1000,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月20日  
 更新日：2017年03月21日  
 
@@ -1049,7 +1049,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1097,7 +1097,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1145,7 +1145,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1246,7 +1246,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1299,7 +1299,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1375,7 +1375,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月26日  
 更新日：2017年03月21日
 
@@ -1452,7 +1452,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月26日  
 更新日：2017年03月21日
 
@@ -1508,7 +1508,7 @@ for (変数名 in 配列等) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月26日  
 更新日：2017年03月21日
 
@@ -1566,7 +1566,7 @@ for (変数名 in 配列等) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年12月16日  
 更新日：2017年03月21日
 
@@ -1644,7 +1644,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月26日  
 更新日：2017年03月21日  
 
@@ -1846,7 +1846,7 @@ do {
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月27日  
 更新日：2017年03月21日
 
@@ -1887,7 +1887,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年12月16日  
 更新日：2017年03月22日
 
@@ -1929,7 +1929,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -1976,7 +1976,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年12月16日  
 更新日：2017年03月22日
 
@@ -2066,7 +2066,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -2133,7 +2133,7 @@ var 変数 = "xxx"; //string型
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -2185,7 +2185,7 @@ var 変数 = "xxx"; //string型
     1. String.split()
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -2238,7 +2238,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2281,7 +2281,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2321,7 +2321,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2372,7 +2372,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2502,7 +2502,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月29日  
 更新日：2017年09月05日
 
@@ -2554,7 +2554,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月30日  
 更新日：2017年03月22日
 
@@ -2597,7 +2597,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月30日  
 更新日：2017年03月22日
 
@@ -2700,7 +2700,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月30日  
 更新日：2017年03月22日
 
@@ -2776,6 +2776,6 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2016年09月30日  
 更新日：2017年03月22日

@@ -70,7 +70,7 @@
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年03月31日
 
 
@@ -232,7 +232,7 @@
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年03月31日
 
 
@@ -288,7 +288,7 @@ echo $rectangle->getArea(); //2073600
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年03月31日  
 
 
@@ -383,7 +383,7 @@ echo $subClassB->mSubClassB(); // 'サブクラスＢのメソッド'
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月01日
 
 
@@ -414,7 +414,7 @@ echo $subClassB->mSubClassB(); // 'サブクラスＢのメソッド'
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月01日
 
 
@@ -476,7 +476,7 @@ echo $classB->myMethod(); //'ClassA.myMethod'
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月01日
 
 
@@ -625,7 +625,7 @@ echo $myClass->propA.'<br>'; //'ABC'
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月01日
 
 
@@ -696,7 +696,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月02日
 
 
@@ -771,7 +771,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月03日
 
 
@@ -811,7 +811,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月03日  
 
 
@@ -961,7 +961,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月03日
 
 
@@ -1038,7 +1038,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月03日  
 
 
@@ -1084,7 +1084,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月03日  
 
 
@@ -1184,7 +1184,7 @@ echo $nishimura->age.'<br>'; //49
     ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月03日  
 
 
@@ -1224,7 +1224,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月03日  
 
 
@@ -1299,7 +1299,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1363,7 +1363,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1406,7 +1406,7 @@ echo $nishimura->age.'<br>'; //49
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1483,7 +1483,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1727,7 +1727,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1757,7 +1757,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1801,7 +1801,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1856,7 +1856,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1890,7 +1890,7 @@ do {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -1958,7 +1958,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -2002,7 +2002,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -2043,7 +2043,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月04日
 
 
@@ -2102,7 +2102,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月05日
 
 
@@ -2214,7 +2214,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月05日  
 
 
@@ -2241,7 +2241,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月05日  
 
 
@@ -2270,7 +2270,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月05日  
 
 
@@ -2301,7 +2301,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 56  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月05日  
 
 
@@ -2319,7 +2319,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 57  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月06日
 
 
@@ -2356,5 +2356,5 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：PHP 7.0、Ubuntu 16.04 LTS、Chromium 57  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年04月06日

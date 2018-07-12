@@ -55,7 +55,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 実際に Web ブラウザに表示される文書の本体。
 
 実行環境：Ubuntu 16.04 LTS、Chromium 59  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年08月08日
 
 
@@ -223,7 +223,7 @@ a {
 ```
 
 実行環境：Windows 7、Google Chrome 60  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年08月10日
 
 
@@ -236,5 +236,5 @@ XXXx
 ```
 
 実行環境：Windows 7、Google Chrome 60  
-作成者：mubirou  
+作成者：夢寐郎  
 作成日：2017年08月XX日
