@@ -73,7 +73,7 @@ class Singleton { //シングルトンクラス
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月13日
 
 
@@ -156,7 +156,7 @@ class Prototype : IPrototype {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月13日
 
 
@@ -281,7 +281,7 @@ class Footer011 {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -409,7 +409,7 @@ class Message4 : IMessage {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -495,7 +495,7 @@ class HARUKO : AbstractFactory { //抽象クラスを継承
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -547,7 +547,7 @@ class Exchange : Moneybox, IExchange {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -598,7 +598,7 @@ class Exchange : IExchange {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -686,7 +686,7 @@ class IOS : AbstractOS {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -780,7 +780,7 @@ class File : Component {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -857,7 +857,7 @@ class Decorator2 : Display {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -943,7 +943,7 @@ class Decorator2 : Display {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1026,7 +1026,7 @@ class Reader {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1102,7 +1102,7 @@ class Content : ILoader {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1190,7 +1190,7 @@ class Iterator : IIterator {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1276,7 +1276,7 @@ class CardHanako : AbstractCard {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1329,7 +1329,7 @@ class Janken {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1412,7 +1412,7 @@ class Haruko : IVisitor { //春子
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1498,7 +1498,7 @@ class JapanPO : AbstractPO {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1622,7 +1622,7 @@ class MemberC : AbstractMember {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1705,7 +1705,7 @@ class iPadPro : IObserver { //本来は大文字で始まるべきですが…
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1828,7 +1828,7 @@ class SnapShot {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1910,7 +1910,7 @@ class StateB : IState {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -1998,7 +1998,7 @@ class Canvas {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日
 
 
@@ -2080,5 +2080,5 @@ class AVM {
 ```
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2018年03月14日

@@ -75,7 +75,7 @@ class Singleton {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -138,7 +138,7 @@ class Prototype implements IPrototype {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -293,7 +293,7 @@ HAPPY NEW YEAR!
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -428,7 +428,7 @@ $cardTomoko->templateMethod("summer");
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -531,7 +531,7 @@ $HANAKO->createSummer();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -595,7 +595,7 @@ echo $moneyboxAdapter->getMoneyDollar(); //9.8373000009837（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -659,7 +659,7 @@ echo $moneyboxAdapter->getMoneyDollar(); //9.8373000009837（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -761,7 +761,7 @@ echo $smartPhone2->phone()."<br>"; //電話をかける
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -912,7 +912,7 @@ $dreamweaver->ls(); //→Macromedia/Dreamweaver(File)
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -986,7 +986,7 @@ echo $special->show(); // (---CHIKASHI---)
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1078,7 +1078,7 @@ echo DecoratorFacade::exec("CHIKASHI", 1, 0); // -CHIKASHI-
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1150,7 +1150,7 @@ echo $ka->getText(); //=> "かきくけこ"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1206,7 +1206,7 @@ $imgLoader->load(); //通常は必要になった時に実際に画像（実際�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1309,7 +1309,7 @@ while($iteratorCarPark->hasNext()) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1405,7 +1405,7 @@ HAPPY NEW YEAR!
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1477,7 +1477,7 @@ $janken->exec(); //グー、グー、パー
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1583,7 +1583,7 @@ echo $hanako->getPoint(); //15000
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1669,7 +1669,7 @@ $setagayaPO->send("大阪府大阪市XXX区X-X-X"); //明後日以降に届き�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1798,7 +1798,7 @@ $mediator->noButton->on();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -1905,7 +1905,7 @@ $apple->notify();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -2045,7 +2045,7 @@ function saikoro() {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -2132,7 +2132,7 @@ $kanji->testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -2303,7 +2303,7 @@ $calc->redo(); //=> これ以上リドゥできません => 99
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日
 
@@ -2398,6 +2398,6 @@ $FlashPlayer->exec($SWF); //計算結果は246
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58、PHP 7.0.15  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月24日

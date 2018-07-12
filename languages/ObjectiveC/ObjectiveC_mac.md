@@ -2,7 +2,7 @@
 
 ## Objective-Cについて
 
-* [C言語](https://github.com/vvestvillage/HelloWorld/blob/master/languages/C/C_mac.md)の上位互換言語
+* [C言語](https://github.com/mubirou/HelloWorld/blob/master/languages/C/C_mac.md)の上位互換言語
 * [macOS](https://ja.wikipedia.org/wiki/MacOS) に標準付属の公式開発言語
 * [iOS](http://bit.ly/2lw7f2p) アプリ開発に利用されてきたが徐々に [Swift](http://www.apple.com/jp/swift/) に移行されている
 
@@ -65,5 +65,5 @@ $ ./a.out
 Hello,world! ←と表示されたら成功！
 
 ***
-作成者: vvestvillage  
+作成者: mubirou  
 作成日: 2017年03月07日

@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/TypeScript/TypeScript_win.md)）
+* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/TypeScript/TypeScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -103,7 +103,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月21日
 
 
@@ -226,7 +226,7 @@ End Module
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月22日
 
 
@@ -290,7 +290,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月25日
 
 
@@ -396,7 +396,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月26日
 
 
@@ -436,7 +436,7 @@ End Namespace
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月26日
 
 
@@ -514,7 +514,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月26日
 
 
@@ -650,7 +650,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月27日
 
 
@@ -686,7 +686,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月27日
 
 
@@ -709,7 +709,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月27日
 
 
@@ -744,7 +744,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月27日
 
 
@@ -905,7 +905,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月28日
 
 
@@ -972,7 +972,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月29日
 
 
@@ -1020,7 +1020,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月30日
 
 
@@ -1128,7 +1128,7 @@ End Module
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月30日
 
 
@@ -1154,7 +1154,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月01日
 
 
@@ -1201,7 +1201,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月02日
 
 
@@ -1296,7 +1296,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月04日
 
 
@@ -1388,7 +1388,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月04日
 
 
@@ -1460,7 +1460,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月04日
 
 
@@ -1570,7 +1570,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月04日
 
 
@@ -1962,7 +1962,7 @@ End Module
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月05日
 
 
@@ -2024,7 +2024,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月05日
 
 
@@ -2085,7 +2085,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月05日
 
 
@@ -2171,7 +2171,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月05日
 
 
@@ -2216,7 +2216,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月05日
 
 
@@ -2261,7 +2261,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月05日
 
 
@@ -2297,7 +2297,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月06日
 
 
@@ -2355,7 +2355,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月06日
 
 
@@ -2419,7 +2419,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月06日
 
 
@@ -2461,7 +2461,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月06日
 
 
@@ -2623,7 +2623,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月07日
 
 
@@ -2655,7 +2655,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月07日
 
 
@@ -2704,7 +2704,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月07日
 
 
@@ -2732,7 +2732,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月07日
 
 
@@ -2759,7 +2759,7 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月07日
 
 
@@ -2790,5 +2790,5 @@ End Module
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono 4.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年07月07日

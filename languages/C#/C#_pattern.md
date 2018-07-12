@@ -70,7 +70,7 @@ class Singleton { //シングルトンクラス
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月01日  
 更新日：2017年05月02日
 
@@ -153,7 +153,7 @@ class Prototype : IPrototype {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月02日  
 更新日：2017年05月02日
 
@@ -282,7 +282,7 @@ class Footer011 {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月02日  
 更新日：2017年05月02日
 
@@ -410,7 +410,7 @@ class Message4 : IMessage {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月02日  
 更新日：2017年05月02日
 
@@ -496,7 +496,7 @@ class HARUKO : AbstractFactory { //抽象クラスを継承
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月03日  
 更新日：2017年05月02日
 
@@ -550,7 +550,7 @@ class Exchange : Moneybox, IExchange {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月04日  
 更新日：2017年05月02日
 
@@ -603,7 +603,7 @@ class Exchange : IExchange {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月04日  
 更新日：2017年05月02日
 
@@ -693,7 +693,7 @@ class IOS : AbstractOS {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月05日  
 更新日：2017年05月02日
 
@@ -791,7 +791,7 @@ class File : Component {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月08日  
 更新日：2017年05月02日
 
@@ -870,7 +870,7 @@ class Decorator2 : Display {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月10日  
 更新日：2017年05月02日
 
@@ -956,7 +956,7 @@ class Decorator2 : Display {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月10日  
 更新日：2017年05月02日
 
@@ -1043,7 +1043,7 @@ class Reader {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月15日  
 更新日：2017年05月02日
 
@@ -1121,7 +1121,7 @@ class Content : ILoader {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月12日  
 更新日：2017年05月02日
 
@@ -1213,7 +1213,7 @@ class Iterator : IIterator {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月15日  
 更新日：2017年05月02日
 
@@ -1301,7 +1301,7 @@ class CardHanako : AbstractCard {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月15日  
 更新日：2017年05月02日
 
@@ -1356,7 +1356,7 @@ class Janken {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月15日  
 更新日：2017年05月02日
 
@@ -1441,7 +1441,7 @@ class Haruko : IVisitor { //春子
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月16日  
 更新日：2017年05月02日
 
@@ -1529,7 +1529,7 @@ class JapanPO : AbstractPO {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月16日  
 更新日：2017年05月02日
 
@@ -1653,7 +1653,7 @@ class MemberC : AbstractMember {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月16日  
 更新日：2017年05月02日
 
@@ -1737,7 +1737,7 @@ class iPadPro : IObserver { //本来は大文字で始まるべきですが…
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月17日  
 更新日：2017年05月02日
 
@@ -1860,7 +1860,7 @@ class SnapShot {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月17日  
 更新日：2017年05月02日
 
@@ -1944,7 +1944,7 @@ class StateB : IState {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月17日  
 更新日：2017年05月02日
 
@@ -2034,7 +2034,7 @@ class Canvas {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月18日  
 更新日：2017年05月02日
 
@@ -2117,6 +2117,6 @@ class AVM {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Mono C# compiler  4.2.1.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2015年12月19日  
 更新日：2017年05月02日

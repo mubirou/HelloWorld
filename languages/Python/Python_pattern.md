@@ -71,7 +71,7 @@ print(_singleton1 == _singleton2) #True ←中身は全く同じインスタン�
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年06月30日  
 更新日：2017年05月08日
 
@@ -123,7 +123,7 @@ print(_prototype2.firstName, _prototype2.lastName) #HANAKO NISHIMURA
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年06月30日  
 更新日：2017年05月09日
 
@@ -199,7 +199,7 @@ HAPPY NEW YEAR!
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年06月30日  
 更新日：2017年05月10日
 
@@ -326,7 +326,7 @@ _cardHANAKO.templateMethod("同級生")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年06月30日  
 更新日：2017年05月10日
 
@@ -409,7 +409,7 @@ _factoryHANAKO.createSummer()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年06月30日  
 更新日：2017年05月10日
 
@@ -453,7 +453,7 @@ print(exchange_.getDollar()) #158.25600058618022（ドル）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年06月30日  
 更新日：2017年05月10日
 
@@ -501,7 +501,7 @@ print(exchange_.getDollar()) #158.25600058618022（ドル）
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年06月30日  
 更新日：2017年05月10日
 
@@ -579,7 +579,7 @@ _smartPhone2.phone() #電話をかける
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月01日  
 更新日：2017年05月11日
 
@@ -663,7 +663,7 @@ _unity3D.getList() #Authoring/Unity3D(File)
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月01日  
 更新日：2017年05月11日
 
@@ -739,7 +739,7 @@ _special.show() # <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月01日  
 更新日：2017年05月11日
 
@@ -820,7 +820,7 @@ DecoratorFacade.Set("CHIKASHI", 3, 1) # <---CHIKASHI--->
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月01日  
 更新日：2017年05月11日
 
@@ -900,7 +900,7 @@ _readerKA.getText() #"かきくけこ"
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月01日  
 更新日：2017年05月11日
 
@@ -945,7 +945,7 @@ _loader.load() #実際は必要になった時にロードしますが...
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月02日  
 更新日：2017年05月11日
 
@@ -1041,7 +1041,7 @@ while _iterator.hasNext():
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月02日  
 更新日：2017年05月11日
 
@@ -1097,7 +1097,7 @@ _cardTaro.templateMethod()
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月03日  
 更新日：2017年05月11日
 
@@ -1151,7 +1151,7 @@ _janken.exec() #パー、グー、チョキ
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月03日  
 更新日：2017年05月11日
 
@@ -1228,7 +1228,7 @@ print(_hanako.getMoney()) #15000
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月03日  
 更新日：2017年05月11日
 
@@ -1307,7 +1307,7 @@ _shinjukuPO.send("千葉県我孫子市XX町X-X-X") #一週間前後で届きま
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月03日  
 更新日：2017年05月11日
 
@@ -1430,7 +1430,7 @@ Mediator.MEMBER_A.request("西へ行く")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月03日  
 更新日：2017年05月11日
 
@@ -1507,7 +1507,7 @@ iPadは10.3.1にアップデート可能
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月03日  
 更新日：2017年05月11日
 
@@ -1623,7 +1623,7 @@ print(_snapShot.point) #これ以上、Redoできません → 8000
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年XX月XX日  
 更新日：2017年05月XX日
 
@@ -1691,7 +1691,7 @@ _janken.exec() #パー、グー、チョキ
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月03日  
 更新日：2017年05月11日
 
@@ -1771,7 +1771,7 @@ _inkscape.draw("影を付ける")
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月04日  
 更新日：2017年05月11日
 
@@ -1843,6 +1843,6 @@ _avm.execute(_swf) #≒SWFファイルをAVM上で実行
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年07月04日  
 更新日：2017年05月11日

@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/TypeScript/TypeScript_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/TypeScript/TypeScript_win.md)）
+* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/TypeScript/TypeScript_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/TypeScript/TypeScript_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/TypeScript/TypeScript_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -114,7 +114,7 @@ console.log(typeof _function2); //"function"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月25日  
 
 
@@ -203,7 +203,7 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月25日  
 
 
@@ -259,7 +259,7 @@ console.log(_rectangle.getArea()); //2073600
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日  
 
 
@@ -352,7 +352,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日  
 
 
@@ -404,7 +404,7 @@ console.log(_myClass.myProperty); //"hoge"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日  
 
 
@@ -476,7 +476,7 @@ _classB.myMethod();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日
 
 
@@ -519,7 +519,7 @@ new MyClass();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日
 
 
@@ -576,7 +576,7 @@ _nishimura.age = 50; //Error: 値の変更はできません
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日
 
 
@@ -647,7 +647,7 @@ console.log(~3); //-4（ビット反転）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日
 
 <a name="定数"></a>
@@ -658,8 +658,8 @@ console.log(~3); //-4（ビット反転）
 ```
 //xxx.ts
 //定数名は慣例的に大文字英字（ENTER_FRAMEなど）
-const MY_NAME: string = "vvestvillage";
-console.log(MY_NAME); //"vvestvillage"
+const MY_NAME: string = "mubirou";
+console.log(MY_NAME); //"mubirou"
 //MY_NAME = "ICHIRO YOSHIMURA"; //Error（変更不可）
 ```
 
@@ -686,7 +686,7 @@ console.log(MyMath.PI); //3.141592653589793
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月26日  
 
 
@@ -837,7 +837,7 @@ console.log(myCanvas(1280, 720));
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -891,7 +891,7 @@ _hello.hello("たかし"); //"たかし, 你好!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -944,7 +944,7 @@ _hello.hello("たかし"); //"たかし, 你好!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -983,7 +983,7 @@ console.log(MyMath.pow(2, 8)); //256
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1080,7 +1080,7 @@ if (_age <= 20) {
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1118,7 +1118,7 @@ console.log(_result); //"現役"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1190,7 +1190,7 @@ switch (_name) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1261,7 +1261,7 @@ for (let i: number = 1; i <= 20; i++) { //iは1,2,...19,20
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1305,15 +1305,15 @@ for (let _index in _array) {
 ### 連想配列（Object＝オブジェクトリテラル）の場合
 ```
 //xxx.ts
-var _object: Object = { name: "vvestvillage", age: 49 };
+var _object: Object = { name: "mubirou", age: 49 };
 for (let _propName in _object) {
     console.log(_propName); //"name"→"age"
-    console.log(_object[_propName]); //"vvestvillage" → 49
+    console.log(_object[_propName]); //"mubirou" → 49
 }
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1342,7 +1342,7 @@ for (let _theArray of _array) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1415,7 +1415,7 @@ while (_i <= 20) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1597,7 +1597,7 @@ _array.forEach(function (arg) {
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1607,21 +1607,21 @@ _array.forEach(function (arg) {
 ```
 //xxx.ts
 var _obj: { name: string; age: number; helloFunction: Function } = {
-    name: "vvestvillage",
+    name: "mubirou",
     age: 49,
     helloFunction: () => { //アロー関数
         return "Hello! How are you?";
     }
 }
 
-console.log(_obj.name); //"vvestvillage"
-console.log(_obj["name"]); //"vvestvillage"（配列アクセスも可能）
+console.log(_obj.name); //"mubirou"
+console.log(_obj["name"]); //"mubirou"（配列アクセスも可能）
 console.log(_obj.age); //47
 console.log(_obj.helloFunction()); //"Hello! How are you?"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1655,7 +1655,7 @@ console.log(_myClass.hoge); //"プライベート変数"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1716,7 +1716,7 @@ console.log(_array); //["A", "B", "C", "D", "E", "F"]
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1766,7 +1766,7 @@ console.log(_matchList.length); //3（マッチした数）
     1. String.split()
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1808,7 +1808,7 @@ _subClass.eachMethod(); //"SubClass.eachMethod()"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1848,7 +1848,7 @@ _subClass.methodSub();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1887,7 +1887,7 @@ _subClass.methodSub();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -1939,7 +1939,7 @@ _robot.fight(); //"GAME OVER"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -2039,7 +2039,7 @@ console.log(Math.min(5.01, -10)); //-10（2つの数値の比較）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 <a name="乱数"></a>
@@ -2090,7 +2090,7 @@ console.log(_u5, _u4, _u3, _u2, _u1, _o0, _o1, _o2, _o3, _o4, _o5);
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -2131,7 +2131,7 @@ console.log(_h + ":" + _m + ":" + _s); //"16:14:44"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -2164,7 +2164,7 @@ var _timerID: number = setTimeout(callbackFunction, 1000); //1秒後に1回実�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -2196,7 +2196,7 @@ console.log(_end - _start); //2778（ミリ秒）
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  
 
 
@@ -2234,5 +2234,5 @@ _request.send(null);
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56、TypeScript 2.2.1  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年03月27日  

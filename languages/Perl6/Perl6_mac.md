@@ -3,7 +3,7 @@
 ## Perl 6 について
 
 * 開発期間15年（2000年スタート）を経て、2015年12月に公式安定版リリース
-* [Perl 5](https://github.com/vvestvillage/HelloWorld/blob/master/languages/Perl/README.md) とは互換性は無く、別言語として扱われている
+* [Perl 5](https://github.com/mubirou/HelloWorld/blob/master/languages/Perl/README.md) とは互換性は無く、別言語として扱われている
 * 拡張子は従来通り .pl （モジュールは .pm ）も利用可能だが、 [Perl 6](https://ja.wikipedia.org/wiki/Perl_6) であることを明示するために .pl6 （モジュールは .pm6 ）の利用が推奨されている 
 )
 
@@ -63,5 +63,5 @@ $ perl6 test.pl6
 Hello,world! ←と表示されたら成功！（ファイルは生成されない）
 
 ***
-作成者: vvestvillage  
+作成者: mubirou  
 作成日: 2017年03月07日

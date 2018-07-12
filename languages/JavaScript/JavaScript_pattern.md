@@ -68,7 +68,7 @@ console.log(_instance1 === _instance2); //=> true（中身は全く同じイン�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -130,7 +130,7 @@ console.log(_prototype2.get("_address")); //X-X-X XXX-cho, Shinjuku-ku
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -259,7 +259,7 @@ HAPPY NEW YEAR!
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -388,7 +388,7 @@ _cardHanako.templateMethod("summer");
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -486,7 +486,7 @@ _hanako.createSummer();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -542,7 +542,7 @@ console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -591,7 +591,7 @@ console.log(_moneyboxAdapter.getMoney$()); //9.85599998738432（ドル）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -682,7 +682,7 @@ console.log(_smartPhone2.phone()); //電話をかける
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月25日
 
@@ -811,7 +811,7 @@ _dreamweaver.list(); //=> Macromedia/Dreamweaver(File)
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -879,7 +879,7 @@ console.log(_special.show()); // (---CHIKASHI---)
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -963,7 +963,7 @@ console.log(_decoratorFacade.exec("CHIKASHI", 1, 0)); // -CHIKASHI-
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1046,7 +1046,7 @@ function timeOut() {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1089,7 +1089,7 @@ _imgLoader.load(); //通常は必要になった時に実際に画像（実際�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1160,7 +1160,7 @@ while(_carParkIterator.hasNext()) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1250,7 +1250,7 @@ HAPPY NEW YEAR!
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1305,7 +1305,7 @@ _janken.exec(); //グー、グー、パー
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1385,7 +1385,7 @@ console.log(_hanako.getPoint()); //15000
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1465,7 +1465,7 @@ _shinjukuPO.send("静岡県XXX市XXX町X-X-X"); //明後日以降に届きます
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1578,7 +1578,7 @@ _mediator.getNoButton().on();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1658,7 +1658,7 @@ _apple.notify(); //全リスナー（Observer）への通知
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1795,7 +1795,7 @@ function saikoro() {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -1871,7 +1871,7 @@ _kanji.testB(); //いぬ、あめ、みみ  or  持参、勉強、案内
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -2022,7 +2022,7 @@ _calc.redo(); //これ以上リドゥできません => 99
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日
 
@@ -2115,6 +2115,6 @@ _FlashPlayer.exec(_SWF); //計算結果は246
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 58  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2013年  
 更新日：2017年05月26日

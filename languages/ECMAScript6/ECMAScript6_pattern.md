@@ -78,7 +78,7 @@ console.log(Singleton.getSingleton()); //=> "改竄できますよ"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月05日  
 更新日：2017年04月28日
 
@@ -137,7 +137,7 @@ console.log(_memberB.name, _memberB.address); //=> "鈴木花子 新宿区XX町X
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月05日  
 更新日：2017年04月28日
 
@@ -208,7 +208,7 @@ _newYearCard.construct(); //作成過程の実行
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月05日  
 更新日：2017年04月28日
 
@@ -364,7 +364,7 @@ _card.print();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月07日  
 更新日：2017年04月28日
 
@@ -480,7 +480,7 @@ _hanako.createNewYearCard();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月11日  
 更新日：2017年04月28日
 
@@ -533,7 +533,7 @@ _hanako.createNewYearCard();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月11日  
 更新日：2017年04月29日
 
@@ -586,7 +586,7 @@ _hanako.createNewYearCard();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月11日  
 更新日：2017年05月01日
 
@@ -680,7 +680,7 @@ _smartPhoneB.phone(); //=> "電話をかける"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月12日  
 更新日：2017年05月01日
 
@@ -772,7 +772,7 @@ _unity3D.getList(); //=> "Authoring/Unity3D(File)"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月13日  
 更新日：2017年05月01日
 
@@ -865,7 +865,7 @@ _special.show(); //=> <---NISHIMURA--->
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月13日  
 更新日：2017年05月01日
 
@@ -960,7 +960,7 @@ DecoratorFacade.exec("NISHIMURA", 3, 1); //=> <---NISHIMURA--->
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月13日  
 更新日：2017年05月01日
 
@@ -1025,7 +1025,7 @@ console.log(_b.getData()); //=> "TypeBに対する重〜い処理の結果"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月14日  
 更新日：2017年05月01日
 
@@ -1076,7 +1076,7 @@ _loader.load(); //=> "重い処理を実行中"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月14日  
 更新日：2017年05月01日
 
@@ -1169,7 +1169,7 @@ while (_iterator.hasNext()) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月14日  
 更新日：2017年05月01日
 
@@ -1221,7 +1221,7 @@ _newYearCard.templateMethod();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月14日  
 更新日：2017年05月01日
 
@@ -1272,7 +1272,7 @@ _jankenB.exec(); //=> "パー、グー、チョキ"
 参照：[Stateパターン](#State)
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月17日  
 更新日：2017年05月01日
 
@@ -1330,7 +1330,7 @@ _高橋家.accept(_エアコン設置業者); //=> 高橋家のインスタン�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月17日  
 更新日：2017年05月01日
 
@@ -1400,7 +1400,7 @@ _shinjukuPO.send("北海道XXX市XXX町X-X-X"); //=> "一週間前後で届き�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月17日  
 更新日：2017年05月01日
 
@@ -1499,7 +1499,7 @@ _mediator.NoButton.on();
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月17日  
 更新日：2017年05月01日
 
@@ -1594,7 +1594,7 @@ _apple.notify(); //全リスナー（Observer）への通知
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月18日  
 更新日：2017年05月01日
 
@@ -1695,7 +1695,7 @@ console.log(_snapShot.point); //=> 8000
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月18日  
 更新日：2017年05月01日
 
@@ -1755,7 +1755,7 @@ _janken.exec(); //=> "パー、グー、チョキ"
 参照：[Strategyパターン](#Strategy)
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月18日  
 更新日：2017年05月01日
 
@@ -1807,7 +1807,7 @@ _inkscape.draw("影をつける"); //命令の実行
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月18日  
 更新日：2017年05月01日
 
@@ -1865,6 +1865,6 @@ _avm.execute(_swf); //≒SWFファイルをAVM上で実行 => 246
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年10月18日  
 更新日：2017年05月01日

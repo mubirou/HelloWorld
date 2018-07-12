@@ -3,7 +3,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/C/C_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/C/C_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/C/C_win.md)）
+* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/C/C_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/C/C_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C/C_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [構造体](#構造体)
@@ -110,7 +110,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月06日  
 
 
@@ -285,7 +285,7 @@ int main() {
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月06日
 
 
@@ -316,7 +316,7 @@ struct Member {
 int main() {
     //メンバー１
     struct Member _member01; //構造体変数の宣言
-    _member01.name = "vvestvillage"; //メンバ（変数）の設定
+    _member01.name = "mubirou"; //メンバ（変数）の設定
     _member01.age = 49; //メンバ（変数）の設定
 
     //メンバー２
@@ -324,7 +324,7 @@ int main() {
     _member02.name = "Hanako Nishimura"; //メンバ（変数）の設定
     _member02.age = 48; //メンバ（変数）の設定
 
-    printf("%s\n", _member01.name); //=> vvestvillage
+    printf("%s\n", _member01.name); //=> mubirou
     printf("%d\n", _member01.age); //=> 49
     printf("%s\n", _member02.name); //=> Hanako Nishimura
     printf("%d\n", _member02.age); //=> 48
@@ -334,7 +334,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月07日
 
 
@@ -365,7 +365,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月09日
 
 
@@ -408,7 +408,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月12日
 
 
@@ -448,7 +448,7 @@ int main() { //自動的に最初に実行される
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月13日
 
 
@@ -555,7 +555,7 @@ int main() {
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月13日
 
 
@@ -580,7 +580,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月13日
 
 
@@ -626,7 +626,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月13日
 
 
@@ -733,7 +733,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月13日
 
 
@@ -826,7 +826,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月14日
 
 
@@ -886,7 +886,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月14日
 
 
@@ -964,7 +964,7 @@ int main() {
     ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月15日
 
 
@@ -983,10 +983,10 @@ int main() {
     printf("%c\n", _char); //=> 'A'
 
     //2文字以上
-    char *_string = "vvestvillage"; //1文字目のアドレスに格納（重要）
+    char *_string = "mubirou"; //1文字目のアドレスに格納（重要）
     printf("%d\n", *_string); //=> 84（1文字目のASCIIコード）
     printf("%c\n", *_string); //=> 'T'（1文字目）
-    printf("%s\n", _string); //=> "vvestvillage"
+    printf("%s\n", _string); //=> "mubirou"
     return 0;
 }
 ```
@@ -1002,7 +1002,7 @@ int main() {
     char _string2[] = "Nishimura";
     char *_p; //ポインタの宣言
     _p = strcat(_string1, _string2); //連結
-    printf("%s\n", _p); //=> "vvestvillage"
+    printf("%s\n", _p); //=> "mubirou"
     return 0;
 }
 ```
@@ -1014,7 +1014,7 @@ int main() {
 #include <string.h> //strlen()に必要
 
 int main() {
-    char *_string = "vvestvillage"; //1文字目のアドレスに格納（重要）
+    char *_string = "mubirou"; //1文字目のアドレスに格納（重要）
     int _len = strlen(_string);
     printf("%d\n", _len); //=> 17
     return 0;
@@ -1028,7 +1028,7 @@ int main() {
 #include <string.h> //strncpy()に必要
 
 int main() {
-    char _string[] = "vvestvillage"; //元の文字列
+    char _string[] = "mubirou"; //元の文字列
     char _tmp[64]; //コピーを格納する変数
     strncpy(_tmp, _string+0, 7); //0文字目から7文字を取得する場合
     printf("%s\n", _tmp); //=> "Takashi"
@@ -1052,7 +1052,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月16日
 
 
@@ -1187,7 +1187,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月16日
 
 
@@ -1230,7 +1230,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月16日
 
 
@@ -1258,7 +1258,7 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月16日
 
 
@@ -1322,5 +1322,5 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年06月16日

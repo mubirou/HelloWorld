@@ -68,5 +68,5 @@
 1. Hello,world! と表示されたら成功！
 
 ***
-作成者: vvestvillage  
+作成者: mubirou  
 作成日: 2017年03月16日

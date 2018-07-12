@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/MySQL/MySQL_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/MySQL/MySQL_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/MySQL/MySQL_win.md)）
+* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/MySQL/MySQL_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/MySQL/MySQL_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/MySQL/MySQL_win.md)）
 * [データベースの作成](#データベースの作成)
 * [データベースの削除](#データベースの削除)
 * [データ型](#データ型)
@@ -58,7 +58,7 @@ Bye
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -97,7 +97,7 @@ mysql> show databases;
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 ***
@@ -164,7 +164,7 @@ mysql> show databases;
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -233,7 +233,7 @@ CREATE TABLE [IF NOT EXISTS] テーブル名 (
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -318,7 +318,7 @@ CREATE TABLE [IF NOT EXISTS] テーブル名 (列名① 型 [列フラグ], 列�
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -374,7 +374,7 @@ Empty set (0.00 sec) <= 削除されている
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -429,7 +429,7 @@ Empty set (0.00 sec) <= 削除されている
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -478,7 +478,7 @@ Empty set (0.00 sec) <= 削除されている
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -572,7 +572,7 @@ Empty set (0.00 sec) <= 削除されている
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -622,7 +622,7 @@ SELECT * FROM テーブル名
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -670,7 +670,7 @@ SELECT 列名①,列名②,... FROM テーブル名
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -764,7 +764,7 @@ SELECT 列名①,列名②,... FROM テーブル名
     ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -1149,7 +1149,7 @@ SELECT * FROM テーブル名 WHERE 条件① OR 条件② ←条件①または
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -1202,7 +1202,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -1264,7 +1264,7 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 |4|HANAKO|15|
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日
 
 
@@ -1327,5 +1327,5 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 ```
 
 実行環境：Ubuntu 16.04 LTS、MySQL 5.7、PHP 7.0、Chromium 59  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年08月04日

@@ -2,7 +2,7 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/vvestvillage/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/vvestvillage/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/vvestvillage/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_win.md)）
+* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -124,7 +124,7 @@ console.log(typeof _symbol); //"symbol"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月14日  
 更新日：2017年03月17日
 
@@ -225,7 +225,7 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月14日  
 更新日：2017年03月17日  
 
@@ -282,7 +282,7 @@ console.log(_rectangle.getArea()); //2073600
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月14日  
 更新日：2017年03月17日
 
@@ -379,7 +379,7 @@ console.log(_subclassB.mSubClassB()); //"サブクラスＢのメソッド"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月14日  
 更新日：2017年03月17日  
 
@@ -457,7 +457,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2017年02月01日  
 更新日：2017年03月17日
 
@@ -513,7 +513,7 @@ new MyClass(); //"コンフリクトを起こさない!"
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月15日  
 更新日：2017年03月19日
 
@@ -676,7 +676,7 @@ new MyClass(); //"コンフリクトを起こさない!"
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月15日  
 更新日：2017年03月21日
 
@@ -735,7 +735,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月16日  
 更新日：2017年03月21日
 
@@ -811,7 +811,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月16日  
 更新日：2017年03月21日
 
@@ -827,8 +827,8 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ### 通常の定数
 ```
 <script>
-    const MY_NAME = "vvestvillage";
-    console.log(MY_NAME); //"vvestvillage"
+    const MY_NAME = "mubirou";
+    console.log(MY_NAME); //"mubirou"
     MY_NAME = "ICHIRO YOSHIMURA"; //Error（変更不可）
 </script>
 ```
@@ -858,7 +858,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月16日  
 更新日：2017年03月21日  
 
@@ -1000,7 +1000,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月20日  
 更新日：2017年03月21日  
 
@@ -1049,7 +1049,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1097,7 +1097,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1145,7 +1145,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1246,7 +1246,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
     ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1299,7 +1299,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月21日  
 更新日：2017年03月21日
 
@@ -1375,7 +1375,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月26日  
 更新日：2017年03月21日
 
@@ -1452,7 +1452,7 @@ ECMAScript 6 は、TypeScript と違い private 変数を定義することが�
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月26日  
 更新日：2017年03月21日
 
@@ -1499,16 +1499,16 @@ for (変数名 in 配列等) {
 ### 連想配列（Object＝オブジェクトリテラル）の場合
 ```
 <script>
-    var _object = { name: "vvestvillage", age: 49 };
+    var _object = { name: "mubirou", age: 49 };
     for (let _propName in _object) {
         console.log(_propName); //name→age
-        console.log(_object[_propName]); //"vvestvillage" → 49
+        console.log(_object[_propName]); //"mubirou" → 49
     }
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月26日  
 更新日：2017年03月21日
 
@@ -1566,7 +1566,7 @@ for (変数名 in 配列等) {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年12月16日  
 更新日：2017年03月21日
 
@@ -1644,7 +1644,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月26日  
 更新日：2017年03月21日  
 
@@ -1846,7 +1846,7 @@ do {
 * for文、for...in文を使う方法もあり（参照「[for...in 文](#for...in文)」）
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月27日  
 更新日：2017年03月21日
 
@@ -1887,7 +1887,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年12月16日  
 更新日：2017年03月22日
 
@@ -1902,7 +1902,7 @@ do {
     //他にも {プロパティ名①:値, プロパティ名②:値} という方法もある
 
     //②プロパティの追加（更新も同じ方法）
-    _object.name = "vvestvillage";
+    _object.name = "mubirou";
     _object.age = 49;
 
     //③関数の追加
@@ -1911,7 +1911,7 @@ do {
     }
 
     //④プロパティの参照
-    console.log(_object.name); //"vvestvillage"
+    console.log(_object.name); //"mubirou"
     console.log(_object["name"]); //配列演算子[]を使うことも可能
     console.log(_object.age); //49
 
@@ -1922,14 +1922,14 @@ do {
     for (let _propName in _object) {
         console.log(_propName + " : " + _object[_propName]);
     }
-    //name : vvestvillage
+    //name : mubirou
     //age : 49
     //hello : function() {...
 </script>
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -1976,7 +1976,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年12月16日  
 更新日：2017年03月22日
 
@@ -2066,7 +2066,7 @@ do {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -2133,7 +2133,7 @@ var 変数 = "xxx"; //string型
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -2185,7 +2185,7 @@ var 変数 = "xxx"; //string型
     1. String.split()
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月28日  
 更新日：2017年03月22日
 
@@ -2238,7 +2238,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2281,7 +2281,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2321,7 +2321,7 @@ class 派生クラス名 extends Abstract○○ {
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2372,7 +2372,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月29日  
 更新日：2017年03月22日
 
@@ -2502,7 +2502,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月29日  
 更新日：2017年09月05日
 
@@ -2554,7 +2554,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月30日  
 更新日：2017年03月22日
 
@@ -2597,7 +2597,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月30日  
 更新日：2017年03月22日
 
@@ -2700,7 +2700,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 ```
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月30日  
 更新日：2017年03月22日
 
@@ -2776,6 +2776,6 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     * JSON形式の場合 : JSON.parse(XMLHttpRequest.responseText)
 
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
-作成者：vvestvillage  
+作成者：mubirou  
 作成日：2016年09月30日  
 更新日：2017年03月22日
