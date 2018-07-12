@@ -62,5 +62,5 @@ $ python3 test.py
 Hello,world! ←と表示されたら成功！
 
 ***
-作成者: mubirou  
+作成者: 夢寐郎  
 作成日: 2017年03月01日
