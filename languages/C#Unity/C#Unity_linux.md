@@ -24,14 +24,6 @@
 
 1. Unity Editor for Linuxのインストール
     1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
-    1. 「Build #20180209」の「Official Installer:2017.2.1f1:」のリンクをクリック
-    1. 「Linux Editor Installer (.deb package)」をクリック → ダウンロード開始
-    1. ダウンロードされた「unity-editor_amd64-2017.2.1f1.deb」をダブルクリック
-    1. 指示に従って [インストール]
-    1. Unityを起動、上記で設定した「Unity ID」（Email、Password）を入力、指示に従う
-
-1. Unity Editor for Linuxのインストール
-    1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
     1. 「Build #20180911」の「Official Installer:2018.2.7f1:」のリンクをクリック
     1. 「Linux Download Assistant」をクリック → ダウンロード開始
     1. 端末を起動し次の通り処理
