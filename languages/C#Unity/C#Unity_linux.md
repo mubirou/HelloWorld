@@ -34,7 +34,7 @@
     $ sudo chmod -R 777 UnitySetup-2018.2.7f1 ← 実行権限を与える
     $ ./UnitySetup-2018.2.7f1 ← Installer起動
     ```
-    1. 途中「Choose Components」で次の項目にチェック  
+    1. インストールの途中「Choose Components」で次の項目にチェック  
         ✔ Unity 2018.2.7f1  
         ✔ Documentation  
         ✔ Android Build Support  
