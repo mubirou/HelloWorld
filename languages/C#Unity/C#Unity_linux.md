@@ -11,11 +11,11 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|Ubuntu 16.04.4 LTS|2018年03月|
-|Unity Editor| [2017.2.1f1](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2018年02月|
-|エディタ|Visual Studio Code 1.21.0|2018年03月|
+|OS|Ubuntu Unity 18.04.1 LTS|2018年07月|
+|Unity Editor| [2018.2.7f1](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2018年09月|
+|エディタ|Visual Studio Code 1.30.1|2018年11月|
 |拡張機能|C#（Microsoft） 1.14.0|ー|
-|拡張機能|Debugger for Unity 1.3.0|2018年02月|
+|拡張機能|Debugger for Unity 2.6.6|2018年10月|
 
 1. Unityアカウントの作成
     1. [unity3d.com](https://unity3d.com/jp)にアクセス
