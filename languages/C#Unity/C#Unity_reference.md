@@ -3338,7 +3338,7 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     void Start () {
-        Debug.Log(Random.value); //0〜0.999…（1.0未満）
+        Debug.Log(UnityEngine.Random.value); //0〜0.999…（1.0未満）
     }
 }
 ```
@@ -3350,7 +3350,7 @@ using UnityEngine;
 
 public class Main : MonoBehaviour {
     void Start () {
-        Debug.Log(Random.Range(-0.3f, 0.8f)); //-0.3〜0.8以下
+        Debug.Log(UnityEngine.Random.Range(-0.3f, 0.8f)); //-0.3〜0.8以下
     }
 }
 ```
@@ -3365,7 +3365,7 @@ public class Main : MonoBehaviour {
         int _u5=0,_u4=0,_u3=0,_u2=0,_u1=0,_o0=0,_o1=0,_o2=0,_o3=0,_o4=0,_o5=0;
 
         for (int i=0; i < 1000000; i++) {
-            switch (Random.Range(-5, 5)) {
+            switch (UnityEngine.Random.Range(-5, 5)) {
                 case -5: _u5++; break;
                 case -4: _u4++; break;
                 case -3: _u3++; break;
@@ -3388,7 +3388,8 @@ public class Main : MonoBehaviour {
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：夢寐郎  
-作成日：2018年03月13日
+作成日：2018年03月13日  
+更新日：2019年02月19日
 
 
 <a name="日時情報"></a>
