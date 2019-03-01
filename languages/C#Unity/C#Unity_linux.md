@@ -11,11 +11,11 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|Ubuntu Unity 18.04.1 LTS|2018年07月|
-|Unity Editor| [2018.2.7f1](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2018年09月|
-|エディタ|Visual Studio Code 1.30.1|2018年11月|
-|拡張機能|C#（Microsoft） 1.14.0|ー|
-|拡張機能|Debugger for Unity 2.6.6|2018年10月|
+|OS|Ubuntu 18.04.2 LTS|2019年02月|
+|Unity Editor| [2018.3.0f2](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2018年12月|
+|エディタ|Visual Studio Code 1.31.1|2019年01月|
+|拡張機能|C#（Microsoft） 1.17.1|―|
+|拡張機能|Debugger for Unity 2.7.2|―||
 
 1. Unityアカウントの作成
     1. [unity3d.com](https://unity3d.com/jp)にアクセス
@@ -24,22 +24,23 @@
 
 1. Unity Editor for Linuxのインストール
     1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
-    1. 「Build #20180911」の「Official Installer:2018.2.7f1:」のリンクをクリック
-    1. 「Linux Download Assistant」をクリック → ダウンロード開始
+    1. 最新である「Unity 2018.3 is now available!」の「Official Installer:
+2018.3.0f2:」のリンク（https://beta.unity2d.com/...）をクリック→ ダウンロード開始
+    1. 「Linux Download Assistant」をクリック ←今回のバージョンでは不要
     1. 端末を起動し次の通り処理
     ```
     $ cd /home/（ユーザー名）/デスクトップ ← 上記のダウンロード先にアクセス
-    $ ls -l UnitySetup-2018.2.7f1 ← 権限を調べる（任意）
-    -rw-rw-r-- 1 none none 274056 10月 29 14:11 UnitySetup-2018.2.7f1
-    $ sudo chmod -R 777 UnitySetup-2018.2.7f1 ← 実行権限を与える
-    $ ./UnitySetup-2018.2.7f1 ← Installer起動
+    $ ls -l UnitySetup-2018.3.0f2 ← 権限を調べる（任意）
+    -rw-rw-r-- 1 none none 274032  3月  1 09:31 UnitySetup-2018.3.0f2
+    $ sudo chmod -R 777 UnitySetup-2018.3.0f2 ← 実行権限を与える
+    $ ./UnitySetup-2018.3.0f2 ← Installer起動
     ```
-    1. インストールの途中「Choose Components」で次の項目にチェック  
-        ✔ Unity 2018.2.7f1  
-        ✔ Documentation  
+    1. インストールの途中「I accept the therms of the License Agreement」に✔
+    1. インストールの途中「Choose Components」で次の項目等にチェック  
+        ✔ Unity 2018.3.0f2  
         ✔ Android Build Support  
         ✔ WebGL Build Support  
-    1. ホーム/Unity-2018.2.7f1/Editor/Unityをクリックして起動
+    1. ホーム/Unity-2018.3.0f2/Editor/Unityをクリックして起動
 
 1. Visual Studio Codeに拡張機能の追加
     [表示] → [拡張機能] から「C#（Microsoft）」と「Debugger for Unity」を検索＆インストール
@@ -118,4 +119,4 @@ public class Main : MonoBehaviour {
 ***
 作成者: 夢寐郎  
 作成日: 2018年03月07日  
-更新日: 2018年10月29日 Unity 2018.2に対応
+更新日: 2019年03月01日 Unity 2018.3に対応
