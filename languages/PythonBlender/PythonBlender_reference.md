@@ -4,7 +4,6 @@
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -61,109 +60,131 @@
 ### ①論理型（bool）
 * TrueまたはFalse
 ```
-#test.py
-_bool = True #true/falseは不可
-print(_bool) #True
-print(type(_bool)) #<class 'bool'>
+>>> _bool = True #true/falseは不可
+>>> print(_bool)
+True
+
+>>> print(type(_bool))
+<class 'bool'>
 ```
 
 ### ②整数型（int）
 * 非常に大きな値も扱えます
 ```
-#test.py
-_int = 10000000000000000000 #1000京以上も扱える
-print(_int) #10000000000000000000
-print(type(_int)) #<class 'int'>
+>>> _int = 10000000000000000000 #1000京以上も扱える
+>>> print(_int)
+10000000000000000000
+
+>>> print(type(_int))
+<class 'int'>
 ```
 
 ### ③浮動小数点数（float）
 * 小数点第15桁まで
 ```
-#test.py
-_float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
-print(_float) #3.141592653589793（小数点第15桁まで）
-print(type(_float)) #<class 'float'>
+>>> _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
+>>> print(_float)
+3.141592653589793
+
+>>> print(type(_float))
+<class 'float'>
 ```
 
 ### ④文字列（str）
 * シングル/ダブルクォーテーション可
 ```
-#test.py
-_string = 'あいうえお' #"○"でも可（Python 2.Xではダブルバイトはエラー）
-print(_string) #あいうえお
-print(type(_string)) #<class 'str'>
+>>> _string = 'あいうえお' #"○"でも可
+>>> print(_string)
+あいうえお
+
+>>> print(type(_string))
+<class 'str'>
 ```
 
 ### ⑤リスト（list）
 * 配列（変更可）
 ```
-#test.py
-_list = ['A', 'I', 'U']
-print(_list) #['A', 'I', 'U']
-print(type(_list))  #<class 'list'>
+>>> _list = ['A', 'I', 'U']
+>>> print(_list)
+['A', 'I', 'U']
+
+>>> print(type(_list))
+<class 'list'>
 ```
 
 ### ⑥変更不可のリスト（tupleタプル）
 * 配列（変更不可）
 ```
-#test.py
-_lockList = ('A', 'I', 'U')
-print(_lockList) #('A', 'I', 'U')
-print(type(_lockList)) #<class 'tuple'>
+>>> _lockList = ('A', 'I', 'U')
+>>> print(_lockList)
+('A', 'I', 'U')
+
+>>> print(type(_lockList))
+<class 'tuple'>
 ```
 
 ### ⑦重複不許可な集合型（set）
 ```
-#test.py
-_set = set(['0002', '0001', '0003'])
-print(_set) #{'0003', '0001', '0002'} ←順序が変更される
-print(type(_set)) #<class 'set'>
+>>> _set = set(['0002', '0001', '0003'])
+>>> print(_set)
+{'0001', '0002', '0003'} ←順序が変更される
+
+>>> print(type(_set))
+<class 'set'>
 ```
 
 ### ⑧変更不可の集合型（frozenset）
 ```
-#test.py
-_frozenset = frozenset(['A', 'C', 'B'])
-print(_frozenset) #frozenset({'C', 'A', 'B'}) ←順序が変更される
-print(type(_frozenset)) #<class 'frozenset'>
+>>> _frozenset = frozenset(['A', 'C', 'B'])
+>>> print(_frozenset)
+frozenset({'B', 'A', 'C'}) ←順序が変更される（普通のPythonと順序が異なる）
+
+>>> print(type(_frozenset))
+<class 'frozenset'>
 ```
 
 ### ⑨クラス
 ```
-#test.py
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ
-        pass
-_myClass = MyClass()
-print(_myClass) #<__main__.MyClass object at 0x7fcbae161cc0>
-print(type(_myClass)) #<class '__main__.MyClass'>
+>>> class MyClass: #前方宣言が必要
+...     def __init__(self): #コンストラクタ
+...         pass
+...         
+>>> _myClass = MyClass()
+>>> print(_myClass)
+<__main__.MyClass object at 0x7f9697222940>
+
+>>> print(type(_myClass))
+<class '__main__.MyClass'>
 ```
 
 ### ⑩辞書型（dict） : 連想配列
 ```
-#test.py
-_dict = {'A':'あ', 'I':'い'}
-print(_dict) #{'A': 'あ', 'I': 'い'}
-print(type(_dict)) #<class 'dict'>
+>>> _dict = {'A':'あ', 'I':'い'}
+>>> print(_dict)
+{'A': 'あ', 'I': 'い'}
+
+>>> print(type(_dict))
+<class 'dict'>
 ```
 
 ### ⑪複素数オブジェクト型（complex）
 ```
-#test.py
-print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
+>>> print(type(1+1j))
+<class 'complex'> ←内部では２つの別個の型扱い
 ```
 
 ### ⑫None型（None）......何もないことを示す定数
 ```
-#test.py
-print(type(None)) #<class 'NoneType'>
+>>> print(type(None))
+<class 'NoneType'>
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
+実行環境：Ubuntu 18.04.2 LTS、Blender 2.80 Beta  
 作成者：夢寐郎  
-作成日：2016年06月20日  
-更新日：2017年04月10日
+作成日：2019年04月25日  
 
+# ここまで終了
+---------------------------------------
 
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
