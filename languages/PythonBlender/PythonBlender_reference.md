@@ -64,7 +64,6 @@
 >>> _bool = True #true/falseは不可
 >>> print(_bool)
 True
-
 >>> print(type(_bool))
 <class 'bool'>
 ```
@@ -75,7 +74,6 @@ True
 >>> _int = 10000000000000000000 #1000京以上も扱える
 >>> print(_int)
 10000000000000000000
-
 >>> print(type(_int))
 <class 'int'>
 ```
@@ -86,7 +84,6 @@ True
 >>> _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 >>> print(_float)
 3.141592653589793
-
 >>> print(type(_float))
 <class 'float'>
 ```
@@ -97,7 +94,6 @@ True
 >>> _string = 'あいうえお' #"○"でも可
 >>> print(_string)
 あいうえお
-
 >>> print(type(_string))
 <class 'str'>
 ```
@@ -108,7 +104,6 @@ True
 >>> _list = ['A', 'I', 'U']
 >>> print(_list)
 ['A', 'I', 'U']
-
 >>> print(type(_list))
 <class 'list'>
 ```
@@ -119,7 +114,6 @@ True
 >>> _lockList = ('A', 'I', 'U')
 >>> print(_lockList)
 ('A', 'I', 'U')
-
 >>> print(type(_lockList))
 <class 'tuple'>
 ```
@@ -129,7 +123,6 @@ True
 >>> _set = set(['0002', '0001', '0003'])
 >>> print(_set)
 {'0001', '0002', '0003'} ←順序が変更される
-
 >>> print(type(_set))
 <class 'set'>
 ```
@@ -139,7 +132,6 @@ True
 >>> _frozenset = frozenset(['A', 'C', 'B'])
 >>> print(_frozenset)
 frozenset({'B', 'A', 'C'}) ←順序が変更される（普通のPythonと順序が異なる）
-
 >>> print(type(_frozenset))
 <class 'frozenset'>
 ```
@@ -153,7 +145,6 @@ frozenset({'B', 'A', 'C'}) ←順序が変更される（普通のPythonと順�
 >>> _myClass = MyClass()
 >>> print(_myClass)
 <__main__.MyClass object at 0x7f9697222940>
-
 >>> print(type(_myClass))
 <class '__main__.MyClass'>
 ```
@@ -163,7 +154,6 @@ frozenset({'B', 'A', 'C'}) ←順序が変更される（普通のPythonと順�
 >>> _dict = {'A':'あ', 'I':'い'}
 >>> print(_dict)
 {'A': 'あ', 'I': 'い'}
-
 >>> print(type(_dict))
 <class 'dict'>
 ```
@@ -192,34 +182,44 @@ frozenset({'B', 'A', 'C'}) ←順序が変更される（普通のPythonと順�
 ```
 >>> print(type(True))
 <class 'bool'>
-
+```
+```
 >>> print(type(100))
 <class 'int'>
-
+```
+```
 >>> print(type(0.1))
 <class 'float'>
-
+```
+```
 >>> print(type('1'))
 <class 'str'>
-
+```
+```
 >>> print(type(["CHIKASHI", "TARO", "HANAKO"]))
 <class 'list'>
-
+```
+```
 >>> print(type(("CHIKASHI", "TARO", "HANAKO")))
 <class 'tuple'>
-
+```
+```
 >>> print(type(set(["CHIKASHI", "TARO", "HANAKO"])))
 <class 'set'>
-
+```
+```
 >>> print(type(frozenset(["CHIKASHI", "TARO", "HANAKO"])))
 <class 'frozenset'>
-
+```
+```
 >>> print(type({"CHIKASHI":51, "TARO":16}))
 <class 'dict'>
-
+```
+```
 >>> print(type(1+1j))
 <class 'complex'>
-
+```
+```
 >>> class MyClass: #前方宣言が必要
 ...     def __init__(self): #コンストラクタ
 ...         pass #何もしない
@@ -258,8 +258,6 @@ False ←厳密一致
 True
 ```
 
-==================== ここまで終了（2019年4月25日現在）====================
-
 ### データ型のキャスト（数値 ↔ bool 型）
 ```
 >>> #数値→bool型
@@ -268,7 +266,8 @@ True
 True
 >>> print(type(_tmp))
 <class 'bool'>
-
+```
+```
 >>> #bool型→数値
 >>> _tmp = int(True)
 >>> print(_tmp)
@@ -276,6 +275,7 @@ True
 >>> print(type(_tmp))
 <class 'int'>
 ```
+==================== ここまで終了（2019年4月25日現在）====================
 
 ### データ型のキャスト（数値 ↔ string 型）
 ```
