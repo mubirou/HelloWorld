@@ -1,4 +1,4 @@
-# <b>Python 基礎文法</b>
+# <b>Python with Blender 基礎文法</b>
 
 ## （注意）この項目は書きかけの項目です
 
