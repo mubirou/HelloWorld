@@ -184,71 +184,97 @@ frozenset({'B', 'A', 'C'}) ←順序が変更される（普通のPythonと順�
 作成者：夢寐郎  
 作成日：2019年04月25日  
 
-==================== ここまで終了（2019年4月25日現在）====================
 
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
 ### type() 関数 : データ型を返す
 ```
-#test.py
-print(type(True)) #<class 'bool'>
-print(type(100)) #<class 'int'>
-print(type(0.1)) #<class 'float'>
-print(type('1')) #<class 'str'>
-print(type(["CHIKASHI", "TARO", "HANAKO"])) #<class 'list'>
-print(type(("CHIKASHI", "TARO", "HANAKO"))) #<class 'tuple'>
-print(type(set(["CHIKASHI", "TARO", "HANAKO"]))) #<class 'set'>
-print(type(frozenset(["CHIKASHI", "TARO", "HANAKO"]))) #<class 'frozenset'>
-print(type({"CHIKASHI":48, "TARO":13})) #<class 'dict'>
-print(type(1+1j)) #<class 'complex'>
+>>> print(type(True))
+<class 'bool'>
 
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ
-        pass #何もしない
-_myClass = MyClass()
-print(type(_myClass)) #<class '__main__.MyClass'>
+>>> print(type(100))
+<class 'int'>
+
+>>> print(type(0.1))
+<class 'float'>
+
+>>> print(type('1'))
+<class 'str'>
+
+>>> print(type(["CHIKASHI", "TARO", "HANAKO"]))
+<class 'list'>
+
+>>> print(type(("CHIKASHI", "TARO", "HANAKO")))
+<class 'tuple'>
+
+>>> print(type(set(["CHIKASHI", "TARO", "HANAKO"])))
+<class 'set'>
+
+>>> print(type(frozenset(["CHIKASHI", "TARO", "HANAKO"])))
+<class 'frozenset'>
+
+>>> print(type({"CHIKASHI":51, "TARO":16}))
+<class 'dict'>
+
+>>> print(type(1+1j))
+<class 'complex'>
+
+>>> class MyClass: #前方宣言が必要
+...     def __init__(self): #コンストラクタ
+...         pass #何もしない
+...         
+>>> _myClass = MyClass()
+>>> print(type(_myClass))
+<class '__main__.MyClass'>
 ```
 
 ### is 演算子 : 厳密一致
 ```
-#test.py
-# 数値のブール値の比較
-print(1 is True) #False（厳密一致）
-
-# クラスとインスタンスの比較
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ
-        pass #何もしない
-
-_myClass = MyClass()
-print(_myClass is MyClass) #False（厳密一致）
+>>> # 数値のブール値の比較
+>>> print(1 is True)
+False ←厳密一致
+```
+```
+>>> # クラスとインスタンスの比較
+>>> class MyClass: #前方宣言が必要
+...     def __init__(self): #コンストラクタ
+...         pass #何もしない
+...         
+>>> _myClass = MyClass()
+>>> print(_myClass is MyClass)
+False ←厳密一致
 ```
 
 ### isinstance() 関数 : インスタンスの判定
 * オブジェクトが指定したクラスのインスタンスか判定
 ```
-#test.py
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ（オプション）
-        pass #何もしない
-
-_myClass = MyClass()
-print(isinstance(_myClass, MyClass)) #True ←isinstance(オブジェクト, クラス名)
+>>> class MyClass: #前方宣言が必要
+...     def __init__(self): #コンストラクタ（オプション）
+...         pass #何もしない
+...         
+>>> _myClass = MyClass()
+>>> print(isinstance(_myClass, MyClass)) #isinstance(オブジェクト, クラス名)
+True
 ```
+
+==================== ここまで終了（2019年4月25日現在）====================
 
 ### データ型のキャスト（数値 ↔ bool 型）
 ```
-#test.py
-#数値→bool型
-_tmp = bool(1)
-print(_tmp) #True
-print(type(_tmp)) #<class 'bool'>
+>>> #数値→bool型
+>>> _tmp = bool(1)
+>>> print(_tmp)
+True
+>>> print(type(_tmp))
+<class 'bool'>
 
-#bool型→数値
-_tmp = int(True) #True→1に変換（Falseは0に変換）
-print(_tmp) #1
-print(type(_tmp)) #<class 'int'>
+>>> #bool型→数値
+>>> _tmp = int(True)
+>>> print(_tmp)
+1 ←Falseの場合0に変換
+>>> print(type(_tmp))
+<class 'int'>
 ```
 
 ### データ型のキャスト（数値 ↔ string 型）
