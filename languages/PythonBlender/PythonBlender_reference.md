@@ -1,5 +1,7 @@
 # <b>Python 基礎文法</b>
 
+##（注意）この項目は書きかけの項目です
+
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_win.md)）
