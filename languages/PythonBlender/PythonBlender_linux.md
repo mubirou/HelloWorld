@@ -1,9 +1,5 @@
 # Python with Blender（ Linux ）
 
-## Python with Blenderについて
-
-* Python を使って Blender のあらゆる（100%?）制御が行えます
-
 ## 開発環境の構築
 
 |カテゴリ|ソフトウェア|リリース|
