@@ -20,7 +20,7 @@
 
 ## Blenderの"テキストエディター"を使う方法
 
-1. [端末] から Blender を起動
+1. [端末] から Blender を起動 ←注意!!
     ```
     $ /home/(ユーザ名)/blender-2.80○○/blender
     ```
