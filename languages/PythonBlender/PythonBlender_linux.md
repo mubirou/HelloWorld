@@ -8,7 +8,7 @@
 |ソフトウェア|Blender 2.80 Beta|2018年11月|
 * Blender のインストール方法は[こちら](https://github.com/mubirou/Blender/tree/master/introduction#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
 
-## "Pythonコンソール"を使う方法
+## Blenderの"Pythonコンソール"を使う方法
 
 1. Blender を起動
 1. 何れかのウィンドウを [Pythonコンソール] に変更
@@ -18,7 +18,7 @@
     Hello,world!
     ```
 
-## "テキストエディター"を使う方法
+## Blenderの"テキストエディター"を使う方法
 
 1. [端末] から Blender を起動
     ```
