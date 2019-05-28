@@ -7,8 +7,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス01)  
-==================== ここまで終了（2019年5月27日現在）====================
-* [基本クラスと派生クラス](#基本クラスと派生クラス)
+* [基本クラスと派生クラス](#基本クラスと派生クラス)  
+==================== ここまで終了（2019年5月28日現在）====================
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
@@ -389,10 +389,11 @@ print(_rectangle.getArea()) #2073600
 作成者：夢寐郎  
 作成日：2019年05月27日  
 
-==================== ここまで終了（2019年5月27日現在）====================
 
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
+
+Blenderに内蔵の[テキストエディター](https://github.com/mubirou/HelloWorld/blob/master/languages/PythonBlender/PythonBlender_linux.md)を使います
 
 ```
 #test.py
@@ -456,9 +457,9 @@ class SubClassB(SuperClass): #基本クラス（SuperClass）を継承
 #======
 # 派生クラスＡ
 subClassA_ = SubClassA() #インスタンスの生成
-print(subClassA_) #<__main__.SubClassA object at 0x7f3b6d678e80>
-print(isinstance(subClassA_, SubClassA)) #True（SubClassのインスタンス）
-print(isinstance(subClassA_, SuperClass)) #True（SuperClassのインスタンスでもある）
+print(subClassA_) #<__main__.SubClassA object at 0x7f9fa8f1fd68>
+print(isinstance(subClassA_, SubClassA)) #True ←SubClassのインスタンス
+print(isinstance(subClassA_, SuperClass)) #True ←SuperClassのインスタンスでもある
 print(subClassA_.pSuperClass) #基本クラスのプロパティ
 print(subClassA_.pSubClassA) #派生クラスＡのプロパティ
 print(subClassA_.mSuperClass()) #基本クラスのメソッド
@@ -467,9 +468,9 @@ print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
-作成日：2016年06月21日  
-更新日：2017年04月10日
+作成日：2019年05月28日  
 
+==================== ここまで終了（2019年5月28日現在）====================
 
 <a name="名前空間"></a>
 # <b>名前空間</b>
