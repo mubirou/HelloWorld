@@ -466,7 +466,7 @@ print(subClassA_.mSuperClass()) #基本クラスのメソッド
 print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
+実行環境：Ubuntu 18.04.2 LTS、Blender 2.80 Beta  
 作成者：夢寐郎  
 作成日：2019年05月28日  
 
