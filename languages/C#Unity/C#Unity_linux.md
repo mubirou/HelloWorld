@@ -12,7 +12,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 18.04.2 LTS|2019年02月|
-|Unity Editor| [2018.3.0f2](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2018年12月|
+|Unity Editor| [2019.1.0f2](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2019年04月|
 |エディタ|Visual Studio Code 1.31.1|2019年01月|
 |拡張機能|C#（Microsoft） 1.17.1|―|
 |拡張機能|Debugger for Unity 2.7.2|―||
