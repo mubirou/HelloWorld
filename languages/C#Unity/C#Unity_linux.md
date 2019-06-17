@@ -24,23 +24,25 @@
 
 1. Unity Editor for Linuxのインストール
     1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
-    1. 最新である「Unity 2018.3 is now available!」の「Official Installer:
-2018.3.0f2:」のリンク（https://beta.unity2d.com/...）をクリック→ ダウンロード開始
-    1. 「Linux Download Assistant」をクリック ←今回のバージョンでは不要
-    1. 端末を起動し次の通り処理
+    1. 最新である「Unity 2019.1 is now available!」の「Standalone Linux Installer:
+2019.1.0f2:」のリンク（https://beta.unity3d.com/...）をクリック→ ダウンロード開始
+    1. Linux「端末」を起動し次の通り処理
     ```
     $ cd /home/（ユーザー名）/デスクトップ ← 上記のダウンロード先にアクセス
-    $ ls -l UnitySetup-2018.3.0f2 ← 権限を調べる（任意）
-    -rw-rw-r-- 1 none none 274032  3月  1 09:31 UnitySetup-2018.3.0f2
-    $ sudo chmod -R 777 UnitySetup-2018.3.0f2 ← 実行権限を与える
-    $ ./UnitySetup-2018.3.0f2 ← Installer起動
+    $ ls -l UnitySetup-2019.1.0f2 ← 権限を調べる（任意）
+    -rw-rw-r-- 1 none none 274535  6月 17 13:31 UnitySetup-2019.1.0f2
+    $ sudo chmod -R 777 UnitySetup-2019.1.0f2 ← 実行権限を与える
+    $ ./UnitySetup-2019.1.0f2 ← Installer起動
     ```
     1. インストールの途中「I accept the therms of the License Agreement」に✔
     1. インストールの途中「Choose Components」で次の項目等にチェック  
-        ✔ Unity 2018.3.0f2  
+        ✔ Unity 2019.1.0f2  
         ✔ Android Build Support  
         ✔ WebGL Build Support  
-    1. ホーム/Unity-2018.3.0f2/Editor/Unityをクリックして起動
+    1. Linux「端末」上で次のコマンドを実行して起動  
+    ```
+    $ /home/none/Unity-2019.1.0f2/Editor/Unity
+    ```
 
 1. Visual Studio Codeに拡張機能の追加
     [表示] → [拡張機能] から「C#（Microsoft）」と「Debugger for Unity」を検索＆インストール
@@ -53,7 +55,7 @@
     1. [New]をクリック
     1. 以下の通り設定（任意）して [Create project] をクリック
         * Project name: Project001 →フォルダが生成される
-        * Location: /home/nishimura/デスクトップ
+        * Location: /home/（ユーザ名）/デスクトップ
 
 1. Scene（世界）の保存  
     1. [File]-[Save Scene] を選択し、名前を "Scene001"（任意）とする
@@ -119,4 +121,4 @@ public class Main : MonoBehaviour {
 ***
 作成者: 夢寐郎  
 作成日: 2018年03月07日  
-更新日: 2019年03月01日 Unity 2018.3に対応
+更新日: 2019年06月17日 Unity 2019.1.0f2 に対応
