@@ -12,21 +12,21 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 18.04.2 LTS|2019年02月|
-|Unity Editor| [2019.1.0f2](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2) Personal|2019年04月|
-|エディタ|Visual Studio Code 1.31.1|2019年01月|
+|Unity Editor| Unity 2019.2.0f1 Personal|2019年07月|
+|Unity Hub|Unity Hub 2.0.4|2019年07月|
+|エディタ|Visual Studio Code 1.36.1|2019年07月|
 |拡張機能|C#（Microsoft） 1.17.1|―|
-|拡張機能|Debugger for Unity 2.7.2|―||
+|拡張機能|Debugger for Unity 2.7.2|―|
 
 1. Unityアカウントの作成
     1. [unity3d.com](https://unity3d.com/jp)にアクセス
     1. 右上のアイコンをクリック → [Unity IDを作成する] をクリック
     1. Email、Password、Username、Full Nameを入力、指示に従います
 
-1. Unity Editor for Linuxのインストール
+1. インストール方法（旧）
     1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
-    1. 最新である「Unity 2019.1 is now available!」の「Standalone Linux Installer:
-2019.1.0f2:」のリンク（https://beta.unity3d.com/...）をクリック→ ダウンロード開始
-    1. Linux「端末」を起動し次の通り処理
+    1. 最新である「Unity 2019.1 is now available!」の「Standalone Linux Installer:2019.1.0f2:」のリンク（https://beta.unity3d.com/...）をクリック→ ダウンロード開始
+    1. Linux「端末」を起動し次の通り処理  
     ```
     $ cd /home/（ユーザー名）/デスクトップ ← 上記のダウンロード先にアクセス
     $ ls -l UnitySetup-2019.1.0f2 ← 権限を調べる（任意）
@@ -43,6 +43,27 @@
     ```
     $ /home/none/Unity-2019.1.0f2/Editor/Unity
     ```
+
+1. インストール方法（新）
+    1. [Unity Forums](https://forum.unity.com/threads/unity-hub-v2-0-0-release.677485/) から [Hub 2.0.0 for Linux] を選択し「UnityHubSetup.AppImage」ファイルをダウンロード
+    1. Linux の端末で次の通りに処理  
+        ```
+        $ cd デスクトップ ←ダウンロードした場所を指定
+        $ chmod 755 UnityHubSetup.AppImage ←権限の変更
+        $ ./UnityHubSetup.AppImage
+        ```
+    1. 途中「Agree」「Yes」を選択後、インストール画面で「**Unity バージョンがありません**」と表示されたら、[リストに追加] を選び、使用している Unity Editor の実行ファイルを選び（ユーザ名/Unity-2019.1.0f2/Editor/Unity など）[Select Editor] をクリック→[インストール]
+    1. 「Unity バージョンを加える」画面で最新正式リリースを選択し [次へ]
+    1. 「Unity 2019.2.0f1 にモジュールを追加」と表示されたら、次の項目を✔して [実行]  
+        * Android Build Support
+        * WebGL Build Support
+        * Documentation
+        * 日本語
+    1. /home/Unity/Hub/Editor/2019.2.0f1/ がインストールされる  
+    1. Unity を起動する場合…
+        ```
+        $ ./UnityHubSetup.AppImage
+        ```
 
 1. Visual Studio Codeに拡張機能の追加
     [表示] → [拡張機能] から「C#（Microsoft）」と「Debugger for Unity」を検索＆インストール
@@ -121,4 +142,4 @@ public class Main : MonoBehaviour {
 ***
 作成者: 夢寐郎  
 作成日: 2018年03月07日  
-更新日: 2019年06月17日 Unity 2019.1.0f2 に対応
+更新日: 2019年08月02日 Unity 2019.2.0f1 に対応
