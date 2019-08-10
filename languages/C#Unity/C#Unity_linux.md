@@ -29,7 +29,7 @@
         ```
         $ cd デスクトップ ←ダウンロードした場所を指定
         $ chmod 755 UnityHubSetup.AppImage ←権限の変更
-        $ ./UnityHubSetup.AppImage
+        $ ./UnityHubSetup.AppImage ←デスクトップ上のアイコンをWクリックでもよい
         ```
     1. 途中「Agree」「Yes」を選択後、インストール画面で「**Unity バージョンがありません**」と表示されたら、[リストに追加] を選び、使用している Unity Editor の実行ファイルを選び（ユーザ名/Unity-2019.1.0f2/Editor/Unity など）[Select Editor] をクリック→[インストール]
     1. 「Unity バージョンを加える」画面で最新正式リリースを選択し [次へ]
