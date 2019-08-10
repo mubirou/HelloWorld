@@ -43,6 +43,13 @@
         ```
         $ ./UnityHubSetup.AppImage
         ```
+    …だが既存のプロジェクタを開けないため（現バージョン）次の処理を行う  
+    * UnityHubSetup.AppImage をゴミ箱に入れる
+    * OS を再起動
+    * 端末で次を実行  
+        ```
+        $ Unity/Hub/Editor/2019.3.0a11/Editor/Unity
+        ```
 
 1. インストール方法（旧）
     1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
