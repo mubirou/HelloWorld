@@ -12,7 +12,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 18.04.2 LTS|2019年02月|
-|Unity Editor| Unity 2019.2.0f1 Personal|2019年07月|
+|Unity Editor| Unity 2019.3.0a11|2019年08月|
 |Unity Hub|Unity Hub 2.0.4|2019年07月|
 |エディタ|Visual Studio Code 1.36.1|2019年07月|
 |拡張機能|C#（Microsoft） 1.17.1|―|
@@ -22,27 +22,6 @@
     1. [unity3d.com](https://unity3d.com/jp)にアクセス
     1. 右上のアイコンをクリック → [Unity IDを作成する] をクリック
     1. Email、Password、Username、Full Nameを入力、指示に従います
-
-1. インストール方法（旧）
-    1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
-    1. 最新である「Unity 2019.1 is now available!」の「Standalone Linux Installer:2019.1.0f2:」のリンク（https://beta.unity3d.com/...）をクリック→ ダウンロード開始
-    1. Linux「端末」を起動し次の通り処理  
-    ```
-    $ cd /home/（ユーザー名）/デスクトップ ← 上記のダウンロード先にアクセス
-    $ ls -l UnitySetup-2019.1.0f2 ← 権限を調べる（任意）
-    -rw-rw-r-- 1 none none 274535  6月 17 13:31 UnitySetup-2019.1.0f2
-    $ sudo chmod -R 777 UnitySetup-2019.1.0f2 ← 実行権限を与える
-    $ ./UnitySetup-2019.1.0f2 ← Installer起動
-    ```
-    1. インストールの途中「I accept the therms of the License Agreement」に✔
-    1. インストールの途中「Choose Components」で次の項目等にチェック  
-        ✔ Unity 2019.1.0f2  
-        ✔ Android Build Support  
-        ✔ WebGL Build Support  
-    1. Linux「端末」上で次のコマンドを実行して起動  
-    ```
-    $ /home/none/Unity-2019.1.0f2/Editor/Unity
-    ```
 
 1. インストール方法（新）
     1. [Unity Forums](https://forum.unity.com/threads/unity-hub-v2-0-0-release.677485/) から [Hub 2.0.0 for Linux] を選択し「UnityHubSetup.AppImage」ファイルをダウンロード
@@ -64,6 +43,27 @@
         ```
         $ ./UnityHubSetup.AppImage
         ```
+
+1. インストール方法（旧）
+    1. [Unity Forums](https://forum.unity.com/threads/unity-on-linux-release-notes-and-known-issues.350256/page-2)にアクセス
+    1. 最新である「Unity 2019.1 is now available!」の「Standalone Linux Installer:2019.1.0f2:」のリンク（https://beta.unity3d.com/...）をクリック→ ダウンロード開始
+    1. Linux「端末」を起動し次の通り処理  
+    ```
+    $ cd /home/（ユーザー名）/デスクトップ ← 上記のダウンロード先にアクセス
+    $ ls -l UnitySetup-2019.1.0f2 ← 権限を調べる（任意）
+    -rw-rw-r-- 1 none none 274535  6月 17 13:31 UnitySetup-2019.1.0f2
+    $ sudo chmod -R 777 UnitySetup-2019.1.0f2 ← 実行権限を与える
+    $ ./UnitySetup-2019.1.0f2 ← Installer起動
+    ```
+    1. インストールの途中「I accept the therms of the License Agreement」に✔
+    1. インストールの途中「Choose Components」で次の項目等にチェック  
+        ✔ Unity 2019.1.0f2  
+        ✔ Android Build Support  
+        ✔ WebGL Build Support  
+    1. Linux「端末」上で次のコマンドを実行して起動  
+    ```
+    $ /home/none/Unity-2019.1.0f2/Editor/Unity
+    ```
 
 1. Visual Studio Codeに拡張機能の追加
     [表示] → [拡張機能] から「C#（Microsoft）」と「Debugger for Unity」を検索＆インストール
