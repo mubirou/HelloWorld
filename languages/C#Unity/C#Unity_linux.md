@@ -44,9 +44,9 @@
         $ ./UnityHubSetup.AppImage
         ```
     …だが既存のプロジェクタを開けないため（現バージョン）次の処理を行う  
-    * UnityHubSetup.AppImage をゴミ箱に入れる
-    * OS を再起動
-    * 端末で次を実行  
+    1. UnityHubSetup.AppImage をゴミ箱に入れる
+    1. OS を再起動
+    1. 端末で次の通り実行  
         ```
         $ Unity/Hub/Editor/2019.3.0a11/Editor/Unity
         ```
