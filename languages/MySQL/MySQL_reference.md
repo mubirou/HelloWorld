@@ -26,8 +26,8 @@
         * [AND](#AND)（論理積）
         * [OR](#OR)（論理和）
     * [ソートして抽出](#ソートして抽出)
-* [SQLite→CSV](#SQLite→CSV)
-* [CSV→SQLite](#CSV→SQLite)
+* [MySQL→CSV](#MySQL→CSV)
+* [CSV→MySQL](#CSV→MySQL)
 ***
 
 <a name="データベースの作成"></a>
@@ -1206,8 +1206,8 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 作成日：2017年08月04日
 
 
-<a name="SQLite→CSV"></a>
-# <b>SQLite→CSV</b>
+<a name="MySQL→CSV"></a>
+# <b>MySQL→CSV</b>
 
 ```
 <?php
@@ -1268,8 +1268,8 @@ SELECT * FROM テーブル名 ORDER BY 列名 ASC（またはDESC）
 作成日：2017年08月04日
 
 
-<a name="CSV→SQLite"></a>
-# <b>CSV→SQLite</b>
+<a name="CSV→MySQL"></a>
+# <b>CSV→MySQL</b>
 
 表計算ソフトの次のようなデータを CSV ファイルとして保存。  
 
