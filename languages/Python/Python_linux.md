@@ -24,12 +24,12 @@
     $ <b>python3 --version</b>  
     Python 3.8.2
 
-    $ ls -l \`which python\` ←デフォルトの Python を調べる  
+    $ <b>ls -l \`which python\`</b> ←デフォルトの Python を調べる  
     lrwxrwxrwx 1 root root 7  4月 15 19:45 /usr/bin/python -> python2 -> python2.7
 
 1. PyLing（コードの質のチェック用）のインストール  
-    $ sudo apt-get update  
-    $ sudo apt-get install pylint  
+    $ <b>sudo apt-get update</b>  
+    $ <b>sudo apt-get install pylint</b>  
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能]（Ctrl+Shift+X）から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) を検索＆インストール
@@ -44,7 +44,7 @@
 1. コードの記述
 ```
 #test.py
-class MyClass(object): #(object)は省略可能
+class MyClass(object): #(Object)は省略可能
     print("Hello,world!")
 
 _myClass = MyClass() #インスタンスの生成
@@ -52,10 +52,10 @@ _myClass = MyClass() #インスタンスの生成
 
 ## 実行
 
-1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [ターミナル] を選択（端末でも可）
 
 1. test.py ファイルのあるディレクトリに移動  
-$ cd /home/（ユーザー名）/デスクトップ/Python
+$ cd /home/（ユーザー名）/デスクトップ ←デスクトップ上に作成した場合
 
 1. 実行  
 $ python3 test.py  
@@ -63,4 +63,5 @@ Hello,world! ←と表示されたら成功！
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年03月01日
+作成日: 2017年03月01日  
+更新日：2020年07月07日 Ubuntu 20.04 LTS 対応
