@@ -27,14 +27,14 @@
     Mono C# compiler version 6.8.0.105
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から C#（Microsoft）を検索＆インストール
+    [表示] → [拡張機能]（Ctrl+Shift+X）から C#（Microsoft）を検索＆インストール
 
 ## コードの記述
 
 1. Visual Studio Code を起動
     1. [ファイル] → [新規ファイル] を選択
     1. [ファイル] → [保存] を選択
-    1. 任意の場所（今回はデスクトップ上に C# フォルダを作成）に test<b>.cs</b> という名で保存
+    1. 任意の場所（今回はデスクトップ上に作成）に test<b>.cs</b> という名で保存
 
 1. コードの記述
 ```
@@ -50,10 +50,10 @@ class HelloWorld { //Mainは不可
 
 ## コンパイル〜実行
 
-1. Visual Studio Code で [表示] → [総合ターミナル] を選択（端末でも可）
+1. Visual Studio Code で [表示] → [ターミナル] を選択（端末でも可）
 
 1. test.cs ファイルのあるディレクトリに移動  
-$ cd /home/（ユーザー名）/デスクトップ/C#
+$ cd /home/（ユーザー名）/デスクトップ
 
 1. コンパイル（.cs → .exe）  
 $ mcs test.cs
@@ -67,3 +67,4 @@ Hello,world! ←と表示されたら成功！
 ***
 作成者: 夢寐郎  
 作成日: 2017年02月24日
+更新日：2020年07月07日 Ubuntu 20.04 LTS 対応
