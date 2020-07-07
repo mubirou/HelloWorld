@@ -3,7 +3,7 @@
 ## Pythonについて
 
 * 1991年に登場した汎用プログラミング言語（コンパイル不要）
-* [Python](https://ja.wikipedia.org/wiki/Python) 3 系（3.6.0）と 2 系（2.7.13）、同時に開発中
+* [Python](https://ja.wikipedia.org/wiki/Python) 3 系（最新版 3.8.3）と 2 系（最終版 2.7.18）がある
 * 標準を含めライブラリが充実
 * 記述には {} や ; が不要
 * [Blender](https://ja.wikipedia.org/wiki/Blender) で採用（Blender 2.5 以降は Python 3系）
@@ -12,27 +12,27 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|Ubuntu 16.04.2 LTS|2017年02月|
-|実行エンジン|Python 3.5.2|2016年06月|
-|エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) 0.5.8|2017年02月|
+|OS|Ubuntu 20.04 LTS|2020年04月|
+|実行エンジン|Python 3.8.2|2020年02月|
+|エディタ|Visual Studio Code 1.46.1|2020年06月|
+|拡張機能|[Python](https://github.com/DonJayamanne/pythonVSCode) v2020.6.91350|ー|
 
 1. 端末でバージョン確認  
-    $ python --version  
-    Python 2.7.12
+    $ <b>python --version</b>  
+    Python 2.7.18rc1
 
-    $ python3 --version  
-    Python 3.5.2
+    $ <b>python3 --version</b>  
+    Python 3.8.2
 
     $ ls -l \`which python\` ←デフォルトの Python を調べる  
-    lrwxrwxrwx 1 root root 9 Sep 16  2016 /usr/bin/python -> python2.7
+    lrwxrwxrwx 1 root root 7  4月 15 19:45 /usr/bin/python -> python2 -> python2.7
 
 1. PyLing（コードの質のチェック用）のインストール  
     $ sudo apt-get update  
     $ sudo apt-get install pylint  
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) を検索＆インストール
+    [表示] → [拡張機能]（Ctrl+Shift+X）から [Python（Don Jayamanne）](https://github.com/DonJayamanne/pythonVSCode) を検索＆インストール
 
 ## コードの記述
 
