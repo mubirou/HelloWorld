@@ -15,7 +15,7 @@
 |OS|Ubuntu 20.04 LTS|2020年04月|
 |実行エンジン|Python 3.8.2|2020年02月|
 |エディタ|Visual Studio Code 1.46.1|2020年06月|
-|拡張機能|Python(ms-python.python) v2020.6.91350|ー|
+|拡張機能|Python v2020.6.91350|ー|
 
 1. 端末でバージョン確認  
     $ <b>python --version</b>  
