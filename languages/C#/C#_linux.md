@@ -36,17 +36,17 @@
     1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に作成）に test<b>.cs</b> という名で保存
 
-1. コードの記述
-```
-//test.cs
-using System; //Console.WriteLine() に必要
+1. コードの記述  
+    ```
+    //test.cs
+    using System; //Console.WriteLine() に必要
 
-class HelloWorld { //Mainは不可
-    static void Main() { //自動的に最初に実行される
-        Console.WriteLine("Hello,world!");
+    class HelloWorld { //Mainは不可
+        static void Main() { //自動的に最初に実行される
+            Console.WriteLine("Hello,world!");
+        }
     }
-}
-```
+    ```
 
 ## コンパイル〜実行
 
@@ -56,12 +56,12 @@ class HelloWorld { //Mainは不可
 $ cd /home/（ユーザー名）/デスクトップ
 
 1. コンパイル（.cs → .exe）  
-$ mcs test.cs
+$ <b>mcs</b> test<b>.cs</b>
 
 1. test.cs ファイルと同階層に test.exe ファイルが生成されたのを確認
 
 1. 実行  
-$ ./test.exe  
+$ </b>./</b>test<b>.exe</b>  
 Hello,world! ←と表示されたら成功！
 
 ***
