@@ -18,17 +18,17 @@
 |拡張機能|Python v2020.6.91350|ー|
 
 1. 端末でバージョン確認  
-    $ <b>python --version</b>  
+    $ python --version  
     Python 2.7.18rc1
 
     $ <b>python3 --version</b>  
     Python 3.8.2
 
-    $ <b>ls -l \`which python\`</b> ←デフォルトの Python を調べる  
+    $ ls -l \`which python\` ←デフォルトの Python を調べる  
     lrwxrwxrwx 1 root root 7  4月 15 19:45 /usr/bin/python -> python2 -> python2.7
 
 1. PyLing（コードの質のチェック用）のインストール  
-    $ <b>sudo apt-get update</b>  
+    $ sudo apt-get update  
     $ <b>sudo apt-get install pylint</b>  
 
 1. Visual Studio Codeに拡張機能の追加  
@@ -58,7 +58,7 @@ _myClass = MyClass() #インスタンスの生成
 $ cd /home/（ユーザー名）/デスクトップ ←デスクトップ上に作成した場合
 
 1. 実行  
-$ python3 test.py  
+$ <b>python3 test.py</b>  
 Hello,world! ←と表示されたら成功！
 
 ***
