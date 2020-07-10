@@ -16,7 +16,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|Ubuntu 20.04 LTS|2020年04月|
-|コンパイラ| mcs 6.8.0.105（[Mono](http://bit.ly/2l5Mzx1) C# compiler）|ー|
+|コンパイラ| mcs 6.8.0.105（[Mono](http://bit.ly/2l5Mzx1) C# 7.2 compiler）|ー|
 |エディタ|Visual Studio Code 1.46.1|2020年06月|
 |拡張機能|C#（Microsoft） 1.22.1|ー|
 
@@ -25,6 +25,9 @@
     $ <b>sudo apt-get install mono-mcs</b>  
     $ <b>mcs --version</b> ←バージョン確認  
     Mono C# compiler version 6.8.0.105
+
+    $ sudo apt-get update  
+    $ 
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能]（Ctrl+Shift+X）から C#（Microsoft）を検索＆インストール
