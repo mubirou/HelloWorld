@@ -36,7 +36,7 @@
     1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に作成）に test<b>.cs</b> という名で保存
 
-1. コードの記述  
+1. コードの記述  sudo
     ```
     //test.cs
     using System; //Console.WriteLine() に必要
@@ -61,7 +61,7 @@ $ <b>mcs</b> test<b>.cs</b>
 1. test.cs ファイルと同階層に test.exe ファイルが生成されたのを確認
 
 1. 実行  
-$ </b>./</b>test<b>.exe</b>  
+$ ./test<b>.exe</b>  
 Hello,world! ←と表示されたら成功！
 
 ***
