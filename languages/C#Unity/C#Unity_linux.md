@@ -143,7 +143,7 @@ public class Main : MonoBehaviour {
 ## 実行
 
 1. Unityの [Edit]-[Play] を選択（三角の再生ボタンでも可能）
-1. [Window]-[Copnsole] 上に"Hello,world!"と表示されたら成功！  
+1. [Window]-[General]-[Copnsole] 上に"Hello,world!"と表示されたら成功！  
 「!」マークをクリックすると、より詳細な情報が表示される
 
 ***
