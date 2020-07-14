@@ -1000,7 +1000,6 @@ class MyClass {
 * 特徴
     * .NET Framework 版の Main() メソッドと同等
     * Awake() に続き Start() が自動的に実行される
-    * その他、デフォルトで記述される Update() の他、FixedUpdate() や LastUpdate()、OnCollisionEnter() 等もある  
 
 * 例文
 ```
@@ -1016,6 +1015,28 @@ public class Main : MonoBehaviour {
     }
     void MyMethod(string arg) { //staticである必要はない
         Debug.Log(arg);
+    }
+}
+```
+
+### Update()、FixedUpdate()メソッド
+* 特徴
+    * <b>Update()</b> は再生中に画面がアップデートされる度に実行（毎フレーム呼び出される）
+    * <b>FixedUpdate()</b> は一定時間毎に実行（[Edit]-[Project Settings]-[Time]-[Fixed timestep] で変更可能／初期値0.02）
+    * <b>LastUpdate()</b> は
+    * 他にも LastUpdate()（諸計算を終了後毎フレーム呼び出される／要調査）や OnCollisionEnter() 等もある  
+
+* 例文
+```
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Update() {
+        Debug.Log("Update"); //毎フレーム呼び出される
+    }
+    void FixedUpdate() {
+        Debug.Log("FiexedUpdate"); //0.02秒毎（初期値）に呼び出される
     }
 }
 ```
