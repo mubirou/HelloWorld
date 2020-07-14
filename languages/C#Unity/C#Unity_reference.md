@@ -1023,7 +1023,6 @@ public class Main : MonoBehaviour {
 * 特徴
     * <b>Update()</b> は再生中に画面がアップデートされる度に実行（毎フレーム呼び出される）
     * <b>FixedUpdate()</b> は一定時間毎に実行（[Edit]-[Project Settings]-[Time]-[Fixed timestep] で変更可能／初期値0.02）
-    * <b>LastUpdate()</b> は
     * 他にも LastUpdate()（諸計算を終了後毎フレーム呼び出される／要調査）や OnCollisionEnter() 等もある  
 
 * 例文
