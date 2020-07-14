@@ -1000,7 +1000,7 @@ class MyClass {
 * 特徴
     * .NET Framework 版の Main() メソッドと同等
     * Awake() に続き Start() が自動的に実行される
-    * その他、デフォルトで記述される Update() の他、OnCollisionEnter() 等もある
+    * その他、デフォルトで記述される Update() の他、FixedUpdate() や LastUpdate()、OnCollisionEnter() 等もある  
 
 * 例文
 ```
