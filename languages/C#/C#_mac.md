@@ -14,7 +14,7 @@
 |:--:|:--:|:--:|
 |OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS) 10.15.6|2020年07月|
 |統合開発環境|[Xcode](https://developer.apple.com/download/) 12 beta 3|2020年07月|
-|コンパイラ|[Mono](http://www.mono-project.com/) Framework 6.10.0|2020年05月|
+|コンパイラ|[Mono](http://www.mono-project.com/) Framework 6.10.0（C# 8.0）|2020年05月|
 |エディタ|Visual Studio Code 1.47.2|2020年07月|
 |拡張機能|C#（Microsoft） 1.22.1|ー|
 
