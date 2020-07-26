@@ -58,7 +58,7 @@ _myClass = MyClass() #インスタンスの生成
 $ cd /home/（ユーザー名）/デスクトップ
 
 1. 実行  
-$ <b>python3 test.py</b>  
+$ <b>python3</b> test<b>.py</b>  
 Hello,world! ←と表示されたら成功！
 
 ***
