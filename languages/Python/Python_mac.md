@@ -25,7 +25,7 @@
     Homebrew 2.4.8
 
 1. Python 3 のインストール  
-    $ brew install python3  
+    $ <b>brew install python3</b>  
     $ python3 --version  
     Python 3.7.3
 
