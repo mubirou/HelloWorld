@@ -2,7 +2,7 @@
 
 ## C#について
 
-* 2000年にアルファ版が登場、2002年に Ver.1.0 がリリース（現在 Ver.6.0）
+* 2000年にアルファ版が登場、2002年に Ver.1.0 がリリース（現在 Ver.8.0）
 * C/C++ から構文・キーワード・演算子を譲り受けつつ、文法は Java に大きな影響を受けている
 * [.NET Framework](https://ja.wikipedia.org/wiki/.NET_Framework) 、[Mono](http://bit.ly/2l5Mzx1) 等のライブラリを使うことで最大限の力を発揮する
 * [Ecma インターナショナル](http://bit.ly/2lLMUZZ)、[ISO](http://bit.ly/1VLZ5lB) により標準化され、[JIS](http://bit.ly/2lQk5vD) で標準プログラミング言語として制定されている
@@ -12,27 +12,27 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
-|統合開発環境|[Xcode](https://developer.apple.com/download/) 8.2.1|2016年12月|
-|コンパイラ|[Mono](http://www.mono-project.com/) Framework 4.8.0|2017年02月|
-|エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|C#（Microsoft） 1.7.0|ー|
+|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS) 10.15.6|2020年07月|
+|統合開発環境|[Xcode](https://developer.apple.com/download/) 12 beta 3|2020年07月|
+|コンパイラ|[Mono](http://www.mono-project.com/) Framework 6.10.0|2020年05月|
+|エディタ|Visual Studio Code 1.47.2|2020年07月|
+|拡張機能|C#（Microsoft） 1.22.1|ー|
 
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
-    1. [Apple ID](https://appleid.apple.com/#!&page=signin) を用意し [Xcode](https://developer.apple.com/download/) にアクセス
-    1. Xcode 8.2.1 を [Download] を選択、指示に従ってダウンロード
-    1. Xcode を開き、指示に従いインストール
+    1. Apple ID を用意し [Xcode](https://developer.apple.com/download/) にアクセス
+    1. Xcode 12 beta 3 を [Download] を選択、指示に従ってダウンロード
+    1. ダウンロードした .xip ファイルをダブルクリック、指示に従ってインストール
 
 1. [Mono](http://www.mono-project.com/) のインストール
     1. http://www.mono-project.com/download/ にアクセス
-    1. [Download Mono] を選択
+    1. [Download Mono 6.10.0(Visual Studio channel)] を選択
     1. ダウンロードした .pkg ファイルをダブルクリック、指示に従ってインストール
     1. ターミナルでバージョン確認  
     $ mono --version  
     Mono JIT compiler version 4.8.0 (mono-4.8.0-branch/e4a3cf3 Fri Feb 17 15:57:45 EST 2017)
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から C#（Microsoft） を検索＆インストール
+    [表示] → [拡張機能] から [C#（Microsoft）] を検索＆インストール
 
 ## コードの記述
 
@@ -71,4 +71,5 @@ Hello,world! ←と表示されたら成功！
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年03月05日
+作成日: 2017年03月05日  
+更新日: 2020年07月26日
