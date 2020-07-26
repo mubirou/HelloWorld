@@ -53,7 +53,7 @@ _myClass = MyClass() #インスタンスの生成
 1. Visual Studio Code で [表示] → [ターミナル] を選択
 
 1. test.py ファイルのあるディレクトリに移動  
-$ cd Desktop
+$ cd /Users/（ユーザー名）/Desktop
 
 1. 実行  
 $ <b>python3</b> test<b>.py</b>  

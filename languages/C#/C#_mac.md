@@ -22,6 +22,7 @@
     1. Apple ID を用意し [Xcode](https://developer.apple.com/download/) にアクセス
     1. Xcode 12 beta 3 を [Download] を選択、指示に従ってダウンロード
     1. ダウンロードした .xip ファイルをダブルクリック、指示に従ってインストール
+    1. 生成された <b>Xcode</b>-beta<b>.app</b> をアプリケーションフォルダに移動
 
 1. [Mono](http://www.mono-project.com/) のインストール
     1. http://www.mono-project.com/download/ にアクセス
@@ -29,7 +30,7 @@
     1. ダウンロードした .pkg ファイルをダブルクリック、指示に従ってインストール
     1. ターミナルでバージョン確認  
     $ mono --version  
-    Mono JIT compiler version 4.8.0 (mono-4.8.0-branch/e4a3cf3 Fri Feb 17 15:57:45 EST 2017)
+    Mono JIT compiler version 6.10.0.104 (2019-12/5d03a6fe116 Wed Apr 29 20:51:09 EDT 2020)
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から [C#（Microsoft）] を検索＆インストール
@@ -37,7 +38,7 @@
 ## コードの記述
 
 1. Visual Studio Code を起動
-    1. [ファイル] → [新規ファイル] を選択
+    1. [ファイル] → [新規ファイル] → [テキスト エディター] を選択
     1. [ファイル] → [保存] を選択
     1. 任意の場所（今回はデスクトップ上に C# フォルダを作成）に test<b>.cs</b> という名で保存
 
@@ -55,10 +56,10 @@ class HelloWorld { //Mainは不可
 
 ## コンパイル〜実行
 
-1. Visual Studio Code で [表示] → [総合ターミナル] → [端末] を選択（ターミナルでも可）
+1. Visual Studio Code で [表示] → [ターミナル] を選択
 
 1. test.cs ファイルのあるディレクトリに移動  
-$ cd /Users/（ユーザー名）/Desktop/C#
+$ cd /Users/（ユーザー名）/Desktop
 
 1. コンパイル（.cs → .exe）  
 $ mcs test.cs
