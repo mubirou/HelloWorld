@@ -20,7 +20,7 @@
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
 
 1. 指示に従ってターミナルでインストール  
-    $ <b>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</b>
+    $ <b>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</b>  
     $ brew --version ←バージョン確認  
     Homebrew 2.4.8
 
