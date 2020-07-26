@@ -20,14 +20,14 @@
 
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
     1. Apple ID を用意し [Xcode](https://developer.apple.com/download/) にアクセス
-    1. Xcode 12 beta 3 を [Download] を選択、指示に従ってダウンロード
-    1. ダウンロードした .xip ファイルをダブルクリック、指示に従ってインストール
+    1. <b>Xcode</b> 12 beta 3 を [Download] を選択、指示に従ってダウンロード
+    1. ダウンロードした <b>Xcode</b>_12_beta_3.xip をダブルクリック、指示に従ってインストール
     1. 生成された <b>Xcode</b>-beta<b>.app</b> をアプリケーションフォルダに移動
 
 1. [Mono](http://www.mono-project.com/) のインストール
     1. http://www.mono-project.com/download/ にアクセス
     1. [Download Mono 6.10.0(Visual Studio channel)] を選択
-    1. ダウンロードした .pkg ファイルをダブルクリック、指示に従ってインストール
+    1. ダウンロードした <b>.pkg</b> ファイルをダブルクリック、指示に従ってインストール
     1. ターミナルでバージョン確認  
     $ mono --version  
     Mono JIT compiler version 6.10.0.104 (2019-12/5d03a6fe116 Wed Apr 29 20:51:09 EDT 2020)
@@ -62,12 +62,12 @@ class HelloWorld { //Mainは不可
 $ cd /Users/（ユーザー名）/Desktop
 
 1. コンパイル（.cs → .exe）  
-$ mcs test.cs
+$ <b>mcs</b> test<b>.cs</b>
 
 1. test.cs ファイルと同階層に test.exe ファイルが生成されたのを確認
 
 1. 実行  
-$ mono test.exe  
+$ <b>mono</b> test<b>.exe</b>  
 Hello,world! ←と表示されたら成功！
 
 ***
