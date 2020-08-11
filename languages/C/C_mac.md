@@ -57,7 +57,7 @@ int main(void) {
 $ cd /Users/（ユーザー名）/Desktop
 
 1. コンパイル（.c → a.out）  
-$ <b>gcc</b> test<b>.c</b>
+$ <b>gcc test.c</b>
 
 1. test.c ファイルと同階層に a.out ファイルが生成されたのを確認
 
