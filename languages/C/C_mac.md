@@ -11,7 +11,7 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|[macOS Catalina](https://ja.wikipedia.org/wiki/MacOS_Catalina) 10.15.6|2020年07月|
-|統合開発環境|[Xcode](https://developer.apple.com/download/) 12 beta 4|2020年08月|
+|統合開発環境|[Xcode](https://developer.apple.com/download/) 12.0 beta 4|2020年08月|
 |エディタ|Visual Studio Code 1.47.3|2020年07月|
 |拡張機能|C/C++（Microsoft） 0.29.0|ー|
 
@@ -21,12 +21,12 @@
     1. ダウンロードした Xcode_12_beta_4.xip をダブルクリックしインストール
 
 1. ターミナルでコンパイラの動作確認  
-    $ gcc --version
-    Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/ include/c++/4.2.1
-    Apple clang version 12.0.0 (clang-1200.0.26.2)
-    Target: x86_64-apple-darwin19.6.0
-    Thread model: posix
-    InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+    $ <b>gcc --version</b>  
+    Configured with: --prefix=/Library/Developer/CommandLineTools/usr   --with-gxx-include-dir=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/   include/c++/4.2.1  
+    Apple clang version 12.0.0 (clang-1200.0.26.2)  
+    Target: x86_64-apple-darwin19.6.0  
+    Thread model: posix  
+    InstalledDir: /Library/Developer/CommandLineTools/usr/bin  
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から C/C++（Microsoft） を検索＆インストール
