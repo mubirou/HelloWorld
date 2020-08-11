@@ -10,23 +10,23 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|[macOS Sierra](https://ja.wikipedia.org/wiki/MacOS_Sierra) 10.12.3|2017年01月|
-|統合開発環境|[Xcode](https://developer.apple.com/download/) 8.2.1|2016年12月|
-|エディタ|Visual Studio Code 1.10.1|2017年03月|
-|拡張機能|C/C++（Microsoft） 0.10.2|2017年03月|
+|OS|[macOS Catalina](https://ja.wikipedia.org/wiki/MacOS_Catalina) 10.15.6|2020年07月|
+|統合開発環境|[Xcode](https://developer.apple.com/download/) 12 beta 4|2020年08月|
+|エディタ|Visual Studio Code 1.47.3|2020年07月|
+|拡張機能|C/C++（Microsoft） 0.29.0|ー|
 
 1. [Xcode](https://ja.wikipedia.org/wiki/Xcode) のインストール  
     1. [Apple ID](https://appleid.apple.com/#!&page=signin) を用意し [Xcode](https://developer.apple.com/download/) にアクセス
-    1. Xcode 8.2.1 を [Download] を選択、指示に従ってダウンロード
-    1. Xcode を開き、指示に従いインストール
+    1. Xcode 12 beta 4 を [Download] を選択、指示に従ってダウンロード
+    1. ダウンロードした Xcode_12_beta_4.xip をダブルクリックしインストール
 
 1. ターミナルでコンパイラの動作確認  
-    $ gcc --version  
-    Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr  
-    --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Develope  
-    r/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1  
-    Apple LLVM version 8.0.0 (clang-800.0.42.1)  
-    Target: x86_64-apple-darwin16.4.0  
+    $ gcc --version
+    Configured with: --prefix=/Library/Developer/CommandLineTools/usr --with-gxx-include-dir=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/ include/c++/4.2.1
+    Apple clang version 12.0.0 (clang-1200.0.26.2)
+    Target: x86_64-apple-darwin19.6.0
+    Thread model: posix
+    InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から C/C++（Microsoft） を検索＆インストール
@@ -67,4 +67,5 @@ Hello,world! ←と表示されたら成功！
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年03月05日
+作成日: 2017年03月05日  
+更新日: 2020年08月12日
