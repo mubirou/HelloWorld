@@ -2462,6 +2462,13 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
     console.log(Math.pow(2, 8)); //256（2の8乗）
 </script>
 ```
+* 指数演算子「**」を使う方法もある（ほぼ同速）
+```
+<script>
+    console.log(2**0); //1（2の0乗）
+    console.log(2**8); //256（2の8乗）
+</script>
+```
 
 ### Math.round() : 四捨五入
 ```
