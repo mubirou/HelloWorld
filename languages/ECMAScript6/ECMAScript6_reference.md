@@ -2511,7 +2511,7 @@ JavaScript に実装されている ○.dispatchEvent() や ○.addEventListener
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：夢寐郎  
 作成日：2016年09月29日  
-更新日：2017年09月05日
+更新日：2020年08月29日 指数演算子を追加
 
 <a name="乱数"></a>
 # <b>乱数</b>
