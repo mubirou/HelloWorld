@@ -13,9 +13,9 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|[macOS](https://ja.wikipedia.org/wiki/MacOS) 10.15.6|2020年07月|
-|実行エンジン|[Python](https://ja.wikipedia.org/wiki/Python) 3.7.3|2019年03月|
-|エディタ|Visual Studio Code 1.47.2|2020年07月|
-|拡張機能|Python（Microsoft） 2020.7.96456|ー|
+|実行エンジン|[Python](https://ja.wikipedia.org/wiki/Python) 3.8.5|2020年07月|
+|エディタ|Visual Studio Code 1.48.2|2020年07月|
+|拡張機能|Python（Microsoft） 2020.8.105045|ー|
 
 1. [Homebrew](https://brew.sh/index_ja.html) にアクセス
 
@@ -27,7 +27,7 @@
 1. Python 3 のインストール  
     $ <b>brew install python3</b>  
     $ python3 --version  
-    Python 3.7.3
+    Python 3.8.5
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から [Python（Microsoft）] を検索＆インストール
@@ -62,4 +62,4 @@ Hello,world! ←と表示されたら成功！
 ***
 作成者: 夢寐郎  
 作成日: 2017年03月07日  
-更新日: 2020年07月26日
+更新日: 2020年08月29日
