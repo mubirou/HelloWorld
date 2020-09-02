@@ -263,12 +263,12 @@ def convert10to2(_num):
     
     while (_num != 0):
         _result.append(_num % 2)
-        _num = _num //2 #切り捨て除算（≒math.floor()）
+        _num = _num //2 #切り捨て除算
 
     _result.reverse()
     return _result
 
-print(convert10to2(26)) #[1, 1, 0, 1, 0]
+print(convert10to2(6)) #[1, 1, 0] ←10進数の6を2進数に変換
 ```
 
 ### 基数変換（◯進数→16進数）
