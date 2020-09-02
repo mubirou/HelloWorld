@@ -380,11 +380,27 @@ class Test {
     }
 }
 ```
+1. 基数変換（◯進数→2進数）
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //10進数→2進数
+        string _tmp = Convert.ToString(6, 2); //10進数の6を2進数に変換
+        Console.WriteLine(_tmp); //"110"（string型）
+
+        //16進数→2進数（力技）
+        _tmp = Convert.ToString(Convert.ToInt32("1d", 16), 2); //16進数の1dを2進数に変換
+        Console.WriteLine(_tmp); //"11101"（string型）
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：夢寐郎  
 作成日：2015年11月07日  
-更新日：2017年04月17日
+更新日：2020年09月02日 基数変換を追加
 
 
 <a name="クラス"></a>
