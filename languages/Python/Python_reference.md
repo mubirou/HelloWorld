@@ -255,6 +255,21 @@ _tmp = bin(0x1d) #16進数の1dを2進数に変換
 print(_tmp) #0b11101...「0b」は値が2進数であることを表している
 print(type(_tmp)) #<class 'str'>
 ```
+* 参考：10進数→2進数（配列表示）
+```
+#test.py
+def convert10to2(_num):
+    _result = []
+    
+    while (_num != 0):
+        _result.append(_num % 2)
+        _num = _num //2 #切り捨て除算
+
+    _result.reverse()
+    return _result
+
+print(convert10to2(26)) #[1, 1, 0, 1, 0]
+```
 
 ### 基数変換（◯進数→16進数）
 ```
