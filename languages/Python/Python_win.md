@@ -6,6 +6,7 @@
 * [Python](https://ja.wikipedia.org/wiki/Python) 3 系（3.6.0）と 2 系（2.7.13）、同時に開発中
 * 標準を含めライブラリが充実
 * 記述には {} や ; が不要
+* インデントが重要な意味を持ち、同じ数の空白でインデントされた文がブロックとみなされる
 * [Blender](https://ja.wikipedia.org/wiki/Blender) で採用（Blender 2.5 以降は Python 3系）
 
 ## 開発環境の構築
