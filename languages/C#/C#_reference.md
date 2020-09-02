@@ -398,6 +398,22 @@ class Test {
     }
 }
 ```
+1. ◯進数→16進数
+```
+//test.cs
+using System;
+class Test {
+    static void Main() {
+        //10進数→16進数
+        string _tmp = Convert.ToString(29, 16); //10進数の29を16進数に変換
+        Console.WriteLine(_tmp); //"1d"
+
+        //2進数→16進数（2進数の11101を16進数に変換＝力技）
+        _tmp = Convert.ToString(Convert.ToInt32("11101", 2), 16);
+        Console.WriteLine(_tmp); //"1d"
+    }
+}
+```
 
 実行環境：Ubuntu 16.04.2 LTS、C# 4.2.1  
 作成者：夢寐郎  
