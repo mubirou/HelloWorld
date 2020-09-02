@@ -242,13 +242,32 @@ print(_tmp) #100
 print(type(_tmp)) #<class 'str'>
 ```
 
-### 位取り記数法（10進数→2進数）
+### 位取り記数法（◯進数→2進数）
 ```
 #test.py
 #10進数→2進数
-_tmp = bin(10)
-print(_tmp) #0b1010
-print(type(_tmp)) <class 'str'>
+_tmp = bin(6) #10進数の6を2進数に変換
+print(_tmp) #0b110...「0b」は値が2進数であることを表している
+print(type(_tmp)) #<class 'str'>
+
+#16進数→2進数
+_tmp = bin(0x1d) #16進数の6を2進数に変換
+print(_tmp) #0b11101...「0b」は値が2進数であることを表している
+print(type(_tmp)) #<class 'str'>
+```
+
+### 位取り記数法（◯進数→16進数）
+```
+#test.py
+#10進数→16進数
+_tmp = hex(29) #10進数の29を16進数に変換
+print(_tmp) #0x1d...「0x」は値が16進数であることを表している
+print(type(_tmp)) #<class 'str'>
+
+#2進数→16進数
+_tmp = hex(0b11101) #2進数の11101を16進数に変換
+print(_tmp) #0x1d...「0x」は値が16進数であることを表している
+print(type(_tmp)) #<class 'str'>
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
