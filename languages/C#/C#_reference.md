@@ -399,7 +399,7 @@ class Test {
 }
 ```
 
-1. ◯進数→16進数
+2. ◯進数→16進数
 ```
 //test.cs
 using System;
