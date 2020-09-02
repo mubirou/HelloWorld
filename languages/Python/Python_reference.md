@@ -318,6 +318,31 @@ print(int("0b11101", 2)) #29
 #16進数→10進数
 print(int("1d", 16)) #29
 ```
+* 参考: X進数→10進数（通常は int() 関数を使えば済む処理）
+```
+#test.py
+def convertXto10(_stringNum, _base): #文字列の数字, #進数
+    _n = len(_stringNum) - 1 #指数
+    _result = 0
+
+    for _i, _tmp in enumerate(_stringNum): #"10100"の場合 1→0→1→0→0
+
+        #a〜f対策
+        if (_tmp == "a") or (_tmp == "A"): _tmp = 10
+        elif (_tmp == "b") or (_tmp == "B"): _tmp = 11
+        elif (_tmp == "c") or (_tmp == "C"): _tmp = 12
+        elif (_tmp == "d") or (_tmp == "D"): _tmp = 13
+        elif (_tmp == "e") or (_tmp == "E"): _tmp = 14
+        elif (_tmp == "f") or (_tmp == "F"): _tmp = 15
+    
+        _result += (_base ** _n) * int(_tmp)
+        _n -= 1
+    
+    return _result
+
+print(convertXto10("10100", 2)) #20 ←2進数の"10100"を10進数に変換
+print(convertXto10("1d", 16)) #29 ←16進数の"1d"を10進数に変換
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
