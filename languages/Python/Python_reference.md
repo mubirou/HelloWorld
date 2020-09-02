@@ -234,7 +234,7 @@ print(type(_tmp)) #<class 'int'>
 #string型→数値
 _tmp = int("001")
 print(_tmp) #1
-print(type(_tmp)); #<class 'int'>
+print(type(_tmp)) #<class 'int'>
 
 #数値→string型
 _tmp = str(100)
@@ -242,10 +242,19 @@ print(_tmp) #100
 print(type(_tmp)) #<class 'str'>
 ```
 
+### 位取り記数法（10進数→2進数）
+```
+#test.py
+#10進数→2進数
+_tmp = bin(10)
+print(_tmp) #0b1010
+print(type(_tmp)) <class 'str'>
+```
+
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月20日  
-更新日：2017年04月10日
+更新日：2020年09月02日 位取り記数法を追加
 
 
 <a name="クラス"></a>
