@@ -284,6 +284,30 @@ _tmp = hex(0b11101) #2進数の11101を16進数に変換
 print(_tmp) #0x1d...「0x」は値が16進数であることを表している
 print(type(_tmp)) #<class 'str'>
 ```
+* 参考: 10進数→16進数（list型で表示）
+```
+#test.py
+def convert10to16(_num):
+    _result = []
+    
+    while (_num != 0):
+        _result.append(_num % 16)
+        _num = _num // 16 #切り捨て除算
+
+    #10〜15対策
+    for _i, _tmp in enumerate(_result):
+        if (_tmp == 10) : _result[_i] = "a"
+        elif (_tmp == 11) : _result[_i] = "b"
+        elif (_tmp == 12) : _result[_i] = "c"
+        elif (_tmp == 13) : _result[_i] = "d"
+        elif (_tmp == 14) : _result[_i] = "e"
+        elif (_tmp == 15) : _result[_i] = "f"
+
+    _result.reverse()
+    return _result
+
+print(convert10to16(29)) #[1, 'd'] ←10進数の29を16進数に変換
+```
 
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
