@@ -255,7 +255,7 @@ _tmp = bin(0x1d) #16進数の1dを2進数に変換
 print(_tmp) #0b11101...「0b」は値が2進数であることを表している
 print(type(_tmp)) #<class 'str'>
 ```
-* 参考：10進数→2進数（配列表示）
+* 参考：10進数→2進数（list型で表示）
 ```
 #test.py
 def convert10to2(_num):
@@ -263,7 +263,7 @@ def convert10to2(_num):
     
     while (_num != 0):
         _result.append(_num % 2)
-        _num = _num //2 #切り捨て除算
+        _num = _num //2 #切り捨て除算（≒math.floor()）
 
     _result.reverse()
     return _result
