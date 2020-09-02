@@ -295,7 +295,7 @@ class MyClass { //クラスの定義
     }
     ```
 
-2. 数値→ bool 型へ変換（力技）
+1. 数値→ bool 型へ変換（力技）
     ```
     //test.cs
     using System;
@@ -308,7 +308,7 @@ class MyClass { //クラスの定義
     }
     ```
 
-3. bool型→数値へ変換
+1. bool型→数値へ変換
     ```
     //test.cs
     using System;
@@ -321,7 +321,7 @@ class MyClass { //クラスの定義
     }
     ```
 
-4. 数値↔数値（縮小変換）
+1. 数値↔数値（縮小変換）
     ```
     //test.cs
     using System;
@@ -340,7 +340,7 @@ class MyClass { //クラスの定義
     }
     ```
 
-5. 数値↔数値（拡張変換）
+1. 数値↔数値（拡張変換）
     ```
     //test.cs
     using System;
@@ -353,7 +353,7 @@ class MyClass { //クラスの定義
     }
     ```
 
-6. 数値↔ string 型
+1. 数値↔ string 型
     ```
     //test.cs
     using System;
@@ -367,7 +367,7 @@ class MyClass { //クラスの定義
     }
     ```
 
-7. 数値→ string 型
+1. 数値→ string 型
 ```
 //test.cs
 using System;
@@ -381,7 +381,8 @@ class Test {
 }
 ```
 
-8. 基数変換（◯進数→2進数）
+### 基数変換
+1. ◯進数→2進数
 ```
 //test.cs
 using System;
