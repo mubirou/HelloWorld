@@ -224,10 +224,41 @@ console.log(_string2, typeof _string2); //"TARO,49", "string"
 </script>
 ```
 
+### 基数変換
+1. ◯進数→2進数
+```
+<script>
+
+//10進数→2進数
+var _tmp = (6).toString(2); //10進数の6を2進数に変換
+console.log(_tmp, typeof _tmp); //110 string
+
+//16進数→2進数（力技）
+_tmp = parseInt("1d", 16).toString(2);
+console.log(_tmp, typeof _tmp); //11101 string
+
+</script>
+```
+
+2. ◯進数→16進数
+```
+<script>
+
+//10進数→16進数
+var _tmp = (29).toString(16); //10進数の29を16進数に変換
+console.log(_tmp, typeof _tmp); //1d string
+
+//2進数→16進数（2進数の11101を16進数に変換＝力技）
+_tmp = parseInt("11101", 2).toString(16);
+console.log(_tmp, typeof _tmp); //1d string
+
+</script>
+```
+
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：夢寐郎  
 作成日：2016年09月14日  
-更新日：2017年03月17日  
+更新日：2020年09月02日 基数変換を追加  
 
 
 <a name="クラス"></a>
