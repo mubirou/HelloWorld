@@ -263,7 +263,7 @@ def convert10to2(_num):
     
     while (_num != 0):
         _result.append(_num % 2)
-        _num = _num //2 #切り捨て除算
+        _num = _num //2 #切り捨て除算≒math.floor()
 
     _result.reverse()
     return _result
