@@ -50,5 +50,6 @@ function blackbox(end) {
 console.log(blackbox(100));
 </script>
 ```
+等差数列の和の公式を使うより30倍ほど低速。
 
 © 2020 夢寐郎
