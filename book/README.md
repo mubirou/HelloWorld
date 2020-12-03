@@ -53,7 +53,7 @@ console.log(blackbox(100)); //=> 5050
 </script>
 ```
 
-### 1+2+3+4+5+6+7+8+9+10+...+1000=?
+### 1+2+3+4+5+6+7+8+9+10+...+920918=?
 ```
 <script>
 function blackbox(end) {
@@ -63,7 +63,7 @@ function blackbox(end) {
     }
     return x;
 }
-console.log(blackbox(1000)); //=> 500500
+console.log(blackbox(920918)); //=> 424045441821
 </script>
 ```
 
@@ -72,7 +72,7 @@ console.log(blackbox(1000)); //=> 500500
 function blackbox(end) {
     return 1/2*end*(end+1); //等差数列の和の公式より
 }
-console.log(blackbox(1000)); //=> 500500
+console.log(blackbox(920918)); //=> 424045441821
 </script>
 ```
 
