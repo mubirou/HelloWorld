@@ -50,6 +50,8 @@ function blackbox(end) {
     return x;
 }
 console.log(blackbox(100));
+console.log(blackbox(1000));
+console.log(blackbox(10000));
 </script>
 ```
 
