@@ -112,5 +112,27 @@
 </script>
 ```
 
+```
+<script>
+    x = "100";
+    y = "トータル" + x + "点です";
+    console.log(y); //=> トータル100点です
+</script>
+```
+
+### データ型を調べる
+```
+<script>
+    console.log(typeof 1); //=> number
+    console.log(typeof "1"); //=> string
+</script>
+```
+
+```
+<script>
+    console.log(1 == "1"); //=> true
+    console.log(1 === "1");  //=> false
+</script>
+```
 
 © 2020 夢寐郎
