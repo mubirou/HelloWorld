@@ -79,11 +79,27 @@
 
 # にてひなるもの。
 
-## 1 + 1 = 11?
+## 1 + 1 = 11 ?
 ```
 <script>
     console.log(1); //=> 1
     console.log("1"); //=> 1
+</script>
+```
+
+```
+<script>
+    x = 1;
+    y = x + 1;
+    console.log(y); //=> 2
+</script>
+```
+
+```
+<script>
+    x = "1";
+    y = x + 1;
+    console.log(y); //=> 11
 </script>
 ```
 
