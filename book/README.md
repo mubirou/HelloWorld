@@ -90,9 +90,9 @@
 ```
 <script>
     function blackbox(name) {
-        console.log(name + "さんこんにちは");
+        console.log(name + "さんこんにちは!");
     }
-    blackbox("ICHIRO");
+    blackbox("ICHIRO"); //=> ICHIROさんこんにちは!
 </script>
 ```
 
