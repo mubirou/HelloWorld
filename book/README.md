@@ -87,6 +87,15 @@
 </script>
 ```
 
+```
+<script>
+    function blackbox(name) {
+        console.log(name + "さんこんにちは");
+    }
+    blackbox("ICHIRO");
+</script>
+```
+
 
 # ◆にてひなるもの。
 
