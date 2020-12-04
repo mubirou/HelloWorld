@@ -77,6 +77,17 @@
 ```
 
 
+# ブラックボックスの作り方。
+```
+<script>
+    function blackbox() {
+        console.log("Hello,world!");
+    }
+    blackbox();
+</script>
+```
+
+
 # にてひなるもの。
 
 ## 1 + 1 = 11 ?
@@ -134,9 +145,6 @@
     console.log(1 === "1");  //=> false
 </script>
 ```
-
-# ブラックボックスの作り方。
-
 
 
 # みんなオブジェクト。
