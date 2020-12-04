@@ -128,6 +128,45 @@
 ```
 
 
+<a name="もしも…。"></a>
+
+# ◆もしも…。
+```
+<script>
+    function blackbox(num) {
+        if (num < 60) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    console.log(blackbox(58)); //=> true
+    console.log(blackbox(60)); //=> false
+</script>
+```
+
+```
+<script>
+    function blackbox(num) {
+        if (num < 60) {
+            return "60未満";
+        } else if (num < 65) {
+            return "60以上65未満"
+        } else {
+            return "65以上";
+        }
+    }
+    console.log(blackbox(58)); //=> "60未満"
+    console.log(blackbox(60)); //=> "60以上65未満"
+    console.log(blackbox(66)); //=> "65以上"
+</script>
+```
+
+```
+
+```
+
+
 <a name="にてひなるもの。"></a>
 
 # ◆にてひなるもの。
