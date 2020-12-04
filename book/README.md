@@ -96,6 +96,26 @@
 </script>
 ```
 
+```
+<script>
+    function blackbox() {
+        return Math.floor(Math.random() * 10);
+    }
+    x = blackbox();
+    console.log(x); //=> 0～9までの乱数
+</script>
+```
+
+```
+<script>
+    function blackbox(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    x = blackbox(1, 100);
+    console.log(x); //=> 1～100までの乱数
+</script>
+```
+
 
 # ◆にてひなるもの。
 
