@@ -77,13 +77,13 @@
 ```
 
 
-# ◆ブラックボックスの作り方。
+# ●ブラックボックスの作り方。
 ```
 <script>
     function blackbox() {
         console.log("Hello,world!");
     }
-    blackbox();
+    blackbox(); //=> Hello,world!
 </script>
 ```
 
