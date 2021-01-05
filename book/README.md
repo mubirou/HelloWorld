@@ -267,65 +267,63 @@
 ### 見えない預金通帳オブジェクト。
 ```
 <script>
-    class Member {
-        constructor(_name, _birthday, _money=0) { //"TARO YAMADA", "1958/05/05", 10000
-            this._name = _name;
-            this._birthday = _birthday;
-            this._money = _money;
-        }
 
-        get name() {
-            return this._name;
-            return this._name;
-        }
-
-        get birthday() {
-            return this._birthday;
-        }
-
-        get age() {
-            var _year = this._birthday.substr(0,4); //"1967"
-            var _month = this._birthday.substr(5,2); //"08"
-            var _date = this._birthday.substr(8,2); //"06"
-            var _birthDate = new Date(_year, _month-1, _date);
-
-            var _y2 = _birthDate.getFullYear().toString().padStart(4, '0');
-            var _m2 = (_birthDate.getMonth() + 1).toString().padStart(2, '0');
-            var _d2 = _birthDate.getDate().toString().padStart(2, '0');
-
-            var _today = new Date();
-            var _y1 = _today.getFullYear().toString().padStart(4, '0');
-            var _m1 = (_today.getMonth() + 1).toString().padStart(2, '0');
-            var _d1 = _today.getDate().toString().padStart(2, '0');
-
-            var _age = Math.floor((Number(_y1 + _m1 + _d1) - Number(_y2 + _m2 + _d2)) / 10000);
-            return _age;
-        }
-        
-        get money() {
-            return this._money;
-        }
-
-        addMoney(_money) {
-            this._money += _money;
-        }
-
-        useMoney(_money) {
-            this._money -= _money;
-        }
+class Member {
+    constructor(_name, _birthday, _money=0) { //"TARO YAMADA", "1958/05/05", 10000
+        this._name = _name;
+        this._birthday = _birthday;
+        this._money = _money;
     }
 
-    _0001 = new Member("TARO YAMADA", "1958/05/05", 10000);
-    console.log(_0001.name);
-    console.log(_0001.birthday);
-    console.log(_0001.age);
-    console.log(_0001.money);
+    get name() {
+        return this._name;
+        return this._name;
+    }
 
-    _0001.addMoney(18000);
-    console.log(_0001.money);
+    get birthday() {
+        return this._birthday;
+    }
 
-    _0001.useMoney(2856);
-    console.log(_0001.money);
+    get age() {
+        var _year = this._birthday.substr(0,4); //"1958"
+        var _month = this._birthday.substr(5,2); //"05"
+        var _date = this._birthday.substr(8,2); //"05"
+        var _birthDate = new Date(_year, _month-1, _date);
+        var _y2 = _birthDate.getFullYear().toString().padStart(4, '0');
+        var _m2 = (_birthDate.getMonth() + 1).toString().padStart(2, '0');
+        var _d2 = _birthDate.getDate().toString().padStart(2, '0');
+        var _today = new Date();
+        var _y1 = _today.getFullYear().toString().padStart(4, '0');
+        var _m1 = (_today.getMonth() + 1).toString().padStart(2, '0');
+        var _d1 = _today.getDate().toString().padStart(2, '0');
+        var _age = Math.floor((Number(_y1 + _m1 + _d1) - Number(_y2 + _m2 + _d2)) / 10000);
+        return _age;
+    }
+    
+    get money() {
+        return this._money;
+    }
+
+    addMoney(_money) {
+        this._money += _money;
+    }
+
+    useMoney(_money) {
+        this._money -= _money;
+    }
+}
+
+_0001 = new Member("TARO YAMADA", "1958/05/05", 10000);
+console.log(_0001.name);
+console.log(_0001.birthday);
+console.log(_0001.age);
+console.log(_0001.money);
+
+_0001.addMoney(18000);
+console.log(_0001.money);
+
+_0001.useMoney(2856);
+console.log(_0001.money);
 
 </script>
 ```
