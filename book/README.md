@@ -277,7 +277,6 @@ class Member {
 
     get name() {
         return this._name;
-        return this._name;
     }
 
     get birthday() {
