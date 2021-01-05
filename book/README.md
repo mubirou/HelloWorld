@@ -267,7 +267,7 @@
 ### 見えない預金通帳オブジェクト。
 ```
     class Member {
-        constructor(_name, _birthday, _money=0) { //"TAKASHI NISHIMURA", "1967/08/06", 10000
+        constructor(_name, _birthday, _money=0) { //"TARO YAMADA", "1958/05/05", 10000
             this._name = _name;
             this._birthday = _birthday;
             this._money = _money;
@@ -314,7 +314,7 @@
         }
     }
 
-    _0001 = new Member("TAKASHI NISHIMURA", "1967/08/06", 10000);
+    _0001 = new Member("TARO YAMADA", "1958/05/05", 10000);
     console.log(_0001.name);
     console.log(_0001.birthday);
     console.log(_0001.age);
