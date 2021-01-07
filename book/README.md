@@ -381,7 +381,7 @@ console.log(_0001.money);
                 var _difference = this.__list[_indexNum] - this.__average;
                 _sigma += Math.pow(_difference,2);
             }
-            this.__standardDeviation = Math.sqrt(_sigma / this.__list.length);
+            this.__standardDeviation = Math.sqrt(_sigma / this.__list.length); //()内が分散
             return this.__standardDeviation;
         }
 
@@ -392,7 +392,7 @@ console.log(_0001.money);
 
     _deviation = new DeviationValue(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100);
     console.log(_deviation.scores); //全員の点数
-    console.log(_deviation.average); //期待値（平均）
+    console.log(_deviation.average); //期待値（平均値）
     console.log(_deviation.standardDeviation()); //標準偏差
     console.log(_deviation.exec(100)); //100（100点の偏差値）
     console.log(_deviation.exec(0)); //48（48点の偏差値）
