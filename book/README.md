@@ -391,11 +391,11 @@ console.log(_0001.money);
     }
 
     _deviation = new DeviationValue(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100);
-    console.log(_deviation.scores);
-    console.log(_deviation.average);
-    console.log(_deviation.standardDeviation());
-    console.log(_deviation.exec(100)); //100
-    console.log(_deviation.exec(0)); //48
+    console.log(_deviation.scores); //全員の点数
+    console.log(_deviation.average); //期待値（平均）
+    console.log(_deviation.standardDeviation()); //標準偏差
+    console.log(_deviation.exec(100)); //100（100点の偏差値）
+    console.log(_deviation.exec(0)); //48（48点の偏差値）
 </script>
 ```
 
