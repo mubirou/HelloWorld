@@ -344,4 +344,59 @@ console.log(_0001.money);
 </script>
 ```
 
+### 「偏差値」オブジェクト。
+
+26人が0点で自分だけ100点の場合…
+100点の偏差値は100。
+0点の偏差値は48。
+
+```
+<script>
+    class DeviationValue {
+        constructor(..._scores) {
+            this.__list = [];
+            this.__total = 0;
+            this.__average;
+            this.__standardDeviation;
+        
+            for (let tmp in _scores) {
+                this.__list.push(_scores[tmp]);
+                this.__total += _scores[tmp];
+            }
+
+            this.__average = this.__total / this.__list.length;
+        }
+
+        get scores() {
+            return this.__list.toString();
+        }
+
+        get average() {
+            return this.__average;
+        }
+
+        standardDeviation() {
+            var _sigma = 0;
+            for (let _indexNum in this.__list) {
+                var _difference = this.__list[_indexNum] - this.__average;
+                _sigma += Math.pow(_difference,2);
+            }
+            this.__standardDeviation = Math.sqrt(_sigma / this.__list.length);
+            return this.__standardDeviation;
+        }
+
+        exec(_score) {
+            return (_score - this.__average)*10/this.__standardDeviation + 50;
+        }
+    }
+
+    _deviation = new DeviationValue(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100);
+    console.log(_deviation.scores);
+    console.log(_deviation.average);
+    console.log(_deviation.standardDeviation());
+    console.log(_deviation.exec(100)); //100
+    console.log(_deviation.exec(0)); //48
+</script>
+```
+
 © 2020-2021 夢寐郎
