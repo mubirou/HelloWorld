@@ -346,22 +346,24 @@ console.log(_0001.money);
 
 ### 「偏差値」オブジェクト。
 
-25人が0点で1人だけ100点の場合…
-100点の偏差値は100。
-0点でも偏差値は48。
+5人の点数が60,70,80,95,95点の場合、それぞれの偏差値は約35.5、約42.7、50、約60.9になります。
 
 ```
 <script>
     class DeviationValue {
         constructor(..._scores) {
-            this.__list = [];
+            if (_scores[0] instanceof Array) {
+                this.__list = _scores[0]; //new DeviationValue([60,70,80,95,95]) 
+            } else {
+                this.__list = _scores; //new DeviationValue(60,70,80,95,95)
+            }
+
             this.__total = 0;
             this.__average;
             this.__standardDeviation;
         
-            for (let tmp in _scores) {
-                this.__list.push(_scores[tmp]);
-                this.__total += _scores[tmp];
+            for (let tmp in this.__list) {
+                this.__total += this.__list[tmp];
             }
 
             this.__average = this.__total / this.__list.length;
@@ -390,12 +392,15 @@ console.log(_0001.money);
         }
     }
 
-    _deviation = new DeviationValue(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100);
+    _deviation = new DeviationValue(60,70,80,95,95);
+    //_deviation = new DeviationValue([60,70,80,95,95]);
     console.log(_deviation.scores); //全員の点数
     console.log(_deviation.average); //期待値（平均値）
     console.log(_deviation.standardDeviation()); //標準偏差
-    console.log(_deviation.exec(100)); //100（100点の偏差値）
-    console.log(_deviation.exec(0)); //48（48点の偏差値）
+    console.log(_deviation.exec(60)); //偏差値
+    console.log(_deviation.exec(70)); //偏差値
+    console.log(_deviation.exec(80)); //偏差値
+    console.log(_deviation.exec(95)); //偏差値
 </script>
 ```
 
