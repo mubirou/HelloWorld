@@ -7,6 +7,8 @@
 |[みんなオブジェクト。](#みんなオブジェクト。)|属性、機能|
 |[「預金口座」オブジェクト](#「預金口座」オブジェクト)|預金口座を管理するオブジェクト|
 |[「偏差値」オブジェクト](#「偏差値」オブジェクト)|偏差値を調べることができるオブジェクト|
+|[「カレンダー」オブジェクト](#「カレンダー」オブジェクト)|指定年月のカレンダー表示や日付計算が可能|
+
 
 
 <a name="たしざんをしよう。"></a>
@@ -414,5 +416,82 @@ console.log(_0001.money);
     console.log(_deviation.exec(0)); //0点の偏差値
 </script>
 ```
+
+<a name="「カレンダー」オブジェクト"></a>
+
+# ◆「カレンダー」オブジェクト
+
+XXXXXX
+
+```
+<script>
+    class Calendar {
+        constructor() {
+
+        }
+
+        //閏年調査
+        isUruu(_year) {
+            if (_year % 400 == 0) {
+                return true;
+            } else if ((_year % 4 == 0) && (_year % 100 != 0)) {
+                return true;
+            }
+            return false;
+        }
+
+        //各月の日数リスト（閏年対応）
+        __monthDate(_year) {
+            this.__monthDateList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (this.isUruu(_year)) {
+                this.__monthDateList[1]++;
+            }
+            return this.__monthDateList;
+        }
+
+        //カレンダー表示
+        showMonth(_yearAndMonth) {
+            var _year = Number(_yearAndMonth.substr(0, 4)); //"2021"→2021
+            var _month = Number(_yearAndMonth.substr(5, 2)); //"01"→1            
+            var _thisMonthDate = this.__monthDate(_year)[_month - 1]; //指定月の日数
+
+            console.log(_yearAndMonth); //指定年月の表示
+            console.log("SU MO TU WE TH FR SA"); //曜日の表示
+
+            var _dates = "";
+
+            //1日目の曜日分ずらす
+            var _dateObj = new Date(_year, _month - 1, 1);
+            var _startDay = _dateObj.getDay(); //指定月の1日の曜日
+            for (let _i = 1; _i <= _startDay; _i++) {
+                _dates = "   " + _dates;
+            }
+
+            //日にちの文字列（改行付）を作成
+            for (let _j = 1; _j <= _thisMonthDate; _j++) {
+                var _space = "";
+
+                if (((_j + _startDay) % 7) == 0) {
+                    _space = "\n";
+                } else {
+                    _space = " ";
+                }
+
+                if (_j < 10) {
+                    _j = " " + _j;
+                }
+
+                _dates += (_j + _space);
+            }
+
+            console.log(_dates);
+        }
+    }
+
+    _calendar = new Calendar(); //カレンダーオブジェクトの生成
+    _calendar.showMonth("2021/08"); //指定年月のカレンダー表示
+</script>
+```
+
 
 © 2020-2021 夢寐郎
