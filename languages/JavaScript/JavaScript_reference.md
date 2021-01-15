@@ -1805,7 +1805,7 @@ var xxx = new Date();
 xxx.getFullYear(); //年（2015等）
 xxx.getMonth(); //月（0〜11）
 xxx.getDate(); //日（1〜31）
-xxx.getDay(); //曜日（0=日曜〜5=金曜）
+xxx.getDay(); //曜日（0=日曜〜6=土曜）
 xxx.getHours(); //時（0〜23）
 xxx.getMinutes(); //分（0〜59）
 xxx.getSeconds(); //秒（0〜59）

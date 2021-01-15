@@ -2606,7 +2606,7 @@ var xxx = new Date();
 xxx.getFullYear(); //年（2015等）
 xxx.getMonth(); //月（0〜11）
 xxx.getDate(); //日（1〜31）
-xxx.getDay(); //曜日（0=日曜〜5=金曜）
+xxx.getDay(); //曜日（0=日曜〜6=土曜）
 xxx.getHours(); //時（0〜23）
 xxx.getMinutes(); //分（0〜59）
 xxx.getSeconds(); //秒（0〜59）
@@ -2637,7 +2637,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：夢寐郎  
 作成日：2016年09月30日  
-更新日：2017年03月22日
+更新日：2021年01月15日
 
 
 <a name="タイマー"></a>
