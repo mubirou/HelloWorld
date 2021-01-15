@@ -450,7 +450,7 @@ XXXXXX
         }
 
         //カレンダー表示
-        showMonth(_yearAndMonth) {
+        showMonth(_yearAndMonth = new Date().getFullYear() + "/" + (new Date().getMonth() + 1)) {
             var _year = Number(_yearAndMonth.substr(0, 4)); //"2021"→2021
             var _month = Number(_yearAndMonth.substr(5, 2)); //"01"→1            
             var _thisMonthDate = this.__monthDate(_year)[_month - 1]; //指定月の日数
@@ -486,10 +486,28 @@ XXXXXX
 
             console.log(_dates);
         }
+
+        //指定日と指定日間の日数を返す
+        showDifferenceDate(_startYear, _startMonth, _startDay, _endYear, _endMonth, _endDay) {
+            var _start = new Date(_startYear, _startMonth - 1, _startDay).getTime(); //1970年からの開始日までの時間（ミリ秒）
+            var _end = new Date(_endYear, _endMonth - 1, _endDay).getTime();
+            var _differenceMillisecond = _end - _start;
+
+            var _differenceDays = _differenceMillisecond / (1000 * 60 * 60 * 24);
+            _differenceDays = Math.ceil(_differenceDays);
+
+            if (_differenceDays >= 0) {
+                return _differenceDays;
+            } else {
+                return _differenceDays *= -1;
+            }
+        }
     }
 
     _calendar = new Calendar(); //カレンダーオブジェクトの生成
-    _calendar.showMonth("2021/08"); //指定年月のカレンダー表示
+    _calendar.showMonth("2021/9"); //指定年月のカレンダー表示
+    _calendar.showMonth(); //指定年月のカレンダー表示
+    console.log(_calendar.showDifferenceDate(2021,1,16,2021,2,25));
 </script>
 ```
 
