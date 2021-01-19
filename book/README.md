@@ -354,6 +354,12 @@ console.log(_0001.money);
 0点の偏差値は約37.8。
 100点の偏差値は約62.2。
 
+new DeviationValue(): コンストラクタ
+DeviationValue.scores: 全員の点数
+DeviationValue.average): 期待値（平均値）
+DeviationValue.standardDeviation(): 標準偏差
+DeviationValue.exec(): 指定点数の偏差値
+
 ```
 <script>
     class DeviationValue {
@@ -421,7 +427,9 @@ console.log(_0001.money);
 
 # ◆「カレンダー」クラス
 
-XXXXXX
+new Calendar(): コンストラクタ
+Calenar.showMonth(): 指定日のカレンダー表示
+Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
 ```
 <script>
