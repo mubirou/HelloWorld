@@ -8,6 +8,7 @@
 |[「預金口座」クラス](#「預金口座」クラス)|預金口座を管理するクラス|
 |[「偏差値」クラス](#「偏差値」クラス)|偏差値を調べることができるクラス|
 |[「カレンダー」クラス](#「カレンダー」クラス)|指定年月のカレンダー表示や日付計算が可能|
+|[ウィルス接近アプリ](#ウィルス接近アプリ)|オブジェクト間の連携サンプル|
 
 
 
@@ -546,6 +547,91 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
     console.log(_calendar.showDifferenceDate("2021/2/25")); //=> 37
     console.log(_calendar.showDifferenceDate("2021/02/25")); //=> 37
     console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
+</script>
+```
+
+
+<a name="ウィルス接近アプリ"></a>
+
+# ◆ウィルス接近アプリ
+
+XXXXXX（作成中）
+
+```
+<script>
+    //=================
+    //Cocoyaクラス
+    //=================
+    class Cocoya {
+        constructor() {
+            this.__members = new Array();
+        }
+
+        addMember(_member) {
+            this.__members.push(_member);
+        }
+
+        showMembers() {
+            this.__members.forEach(function(arg) {
+                console.log(arg.name, arg.northPos, arg.eastPos, arg.isVirus);
+            });
+        }
+
+        check() {
+            //全員の位置情報と感染状況をチェックし〇km以内の場合に警報する
+        }
+    }
+
+
+    //=================
+    // Memberクラス
+    //=================
+    class Member {
+        constructor(_name) {
+            this.__name = _name;
+            this.__northPos; //北緯
+            this.__eastPos; //東経
+            this.__isVirus = false; //ウィルス感染状況
+        }
+
+        setPosition(_northPos, _eastPos) {
+            this.__northPos = _northPos;
+            this.__eastPos = _eastPos;
+        }
+
+        set isVirus(arg) {
+            this.__isVirus = arg;
+        }
+
+        get name() { return this.__name }
+        get northPos() { return this.__northPos }
+        get eastPos() { return this.__eastPos }
+        get isVirus() { return this.__isVirus }
+    }
+
+
+    //メンバー
+    _member1 = new Member("SATO");
+    _member2 = new Member("SUZUKI");
+    _member3 = new Member("TAKAHASHI");
+
+    //登録
+    _cocoya = new Cocoya();
+    _cocoya.addMember(_member1);
+    _cocoya.addMember(_member2);
+    _cocoya.addMember(_member3);
+
+    //感染報告
+    _member2.isVirus = true;
+
+    //位置のセット（１）
+    _member1.setPosition(35.69187349707578, 139.6837348417253);
+    _member2.setPosition(35.69385641520475, 139.67786208681395);
+    _member3.setPosition(35.688015056747105, 139.6595595993712);
+
+    //メンバー情報の一覧
+    _cocoya.showMembers();
+
 </script>
 ```
 
