@@ -487,8 +487,36 @@ XXXXXX
             console.log(_dates);
         }
 
-        //指定日と指定日間の日数を返す
-        showDifferenceDate(_startYear, _startMonth, _startDay, _endYear, _endMonth, _endDay) {
+        //指定日と指定日間の日数を返す（明日と今日が指定日の場合1が返る）
+        showDifferenceDate(_end, _start = new Date().getFullYear() + "/" + (new Date().getMonth() + 1) + "/" +  (new Date().getDate())) {
+            //END
+            var _endYear = Number(_end.substr(0, 4));
+            var _endMonth = parseFloat(_end.substr(5, 2));
+
+            var _count = 0;
+            for (let i=0; i<_end.length; i++) {
+                if (_end.substr(i,1) == "/") {
+                    _count ++;
+                    if (_count == 2) {
+                        var _endDay = Number(_end.substr(i+1,2));
+                    }
+                }
+            }
+            
+            //START
+            var _startYear = Number(_start.substr(0, 4));
+            var _startMonth = parseFloat(_start.substr(5, 2));
+
+            _count = 0;
+            for (let i=0; i<_start.length; i++) {
+                if (_start.substr(i,1) == "/") {
+                    _count ++;
+                    if (_count == 2) {
+                        var _startDay = Number(_start.substr(i+1,2));
+                    }
+                }
+            }
+
             var _start = new Date(_startYear, _startMonth - 1, _startDay).getTime(); //1970年からの開始日までの時間（ミリ秒）
             var _end = new Date(_endYear, _endMonth - 1, _endDay).getTime();
             var _differenceMillisecond = _end - _start;
@@ -507,7 +535,9 @@ XXXXXX
     _calendar = new Calendar(); //カレンダーオブジェクトの生成
     _calendar.showMonth("2021/9"); //指定年月のカレンダー表示
     _calendar.showMonth(); //指定年月のカレンダー表示
-    console.log(_calendar.showDifferenceDate(2021,1,16,2021,2,25));
+    console.log(_calendar.showDifferenceDate("2021/2/25")); //=> 37
+    console.log(_calendar.showDifferenceDate("2021/02/25")); //=> 37
+    console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
 </script>
 ```
 
