@@ -356,7 +356,7 @@ console.log(_0001.money);
 
 new DeviationValue(): コンストラクタ  
 DeviationValue.scores: 全員の点数  
-DeviationValue.average): 期待値（平均値）  
+DeviationValue.average: 期待値（平均値）  
 DeviationValue.standardDeviation(): 標準偏差  
 DeviationValue.exec(): 指定点数の偏差値  
 
