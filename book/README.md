@@ -8,7 +8,7 @@
 |[「預金口座」クラス](#「預金口座」クラス)|預金口座を管理するクラス|
 |[「偏差値」クラス](#「偏差値」クラス)|偏差値を調べることができるクラス|
 |[「カレンダー」クラス](#「カレンダー」クラス)|指定年月のカレンダー表示や日付計算が可能|
-|[ウィルス接近アプリ](#ウィルス接近アプリ)|オブジェクト間の連携サンプル|
+|[鬼ごっこアプリ](#鬼ごっこアプリ)|オブジェクト間の連携サンプル|
 
 
 
@@ -551,9 +551,9 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 ```
 
 
-<a name="ウィルス接近アプリ"></a>
+<a name="鬼ごっこアプリ"></a>
 
-# ◆ウィルス接近アプリ
+# ◆鬼ごっこアプリ
 
 XXXXXX（作成中）
 
@@ -573,7 +573,7 @@ XXXXXX（作成中）
 
         showMembers() {
             this.__members.forEach(function(arg) {
-                console.log(arg.name, arg.northPos, arg.eastPos, arg.isVirus);
+                console.log(arg.name, arg.northPos, arg.eastPos, arg.isDemon);
             });
         }
 
@@ -619,7 +619,7 @@ XXXXXX（作成中）
             this.__name = _name;
             this.__northPos; //北緯
             this.__eastPos; //東経
-            this.__isVirus = false; //ウィルス感染状況
+            this.__isDemon = false; //ウィルス感染状況
         }
 
         setPosition(_northPos, _eastPos) { //北緯（緯度）, 東経（経度）
@@ -627,14 +627,14 @@ XXXXXX（作成中）
             this.__eastPos = _eastPos;
         }
 
-        set isVirus(arg) {
-            this.__isVirus = arg;
+        set isDemon(arg) {
+            this.__isDemon = arg;
         }
 
         get name() { return this.__name }
         get northPos() { return this.__northPos } //北緯（緯度）
         get eastPos() { return this.__eastPos } //東経（経度）
-        get isVirus() { return this.__isVirus }
+        get isDemon() { return this.__isDemon }
     }
 
 
@@ -649,8 +649,8 @@ XXXXXX（作成中）
     _cocoya.addMember(_member2);
     _cocoya.addMember(_member3);
 
-    //感染報告
-    _member2.isVirus = true;
+    //鬼
+    _member2.isDemon = true;
 
     //位置のセット
     _member1.setPosition(35.69249397906168, 139.70106485400788);　//ALTA前
