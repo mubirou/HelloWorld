@@ -603,8 +603,8 @@ XXXXXX（作成中）
                     var _distance = _r * Math.acos(Math.cos(_nPosA) * Math.cos(_nPosB) * Math.cos(_ePosB - _ePosA) + Math.sin(_nPosA) * Math.sin(_nPosB));
                     
                     //DEBUG（オプション）
-                    _distance = Math.round(_distance * 100) * 10; /// 100;
-                    console.log(this.__members[i].name + "⇔" + this.__members[j].name + ": " + _distance + "m");
+                    _distance = Math.round(_distance * 100) /100; // * 10; /// 100;
+                    console.log(this.__members[i].name + "⇔" + this.__members[j].name + ": " + _distance + "km");
                 }
             }
         }
@@ -653,13 +653,13 @@ XXXXXX（作成中）
     _member2.isDemon = true;
 
     //位置のセット
-    _member1.setPosition(35.69249397906168, 139.70106485400788);　//ALTA前
+    //_member1.setPosition(35.69249397906168, 139.70106485400788);　//ALTA前
     //_member1.setPosition(35.68472052734823, 139.70113392865585);　//鉄緑会本部前
-    //_member1.setPosition(35.70082425083744, 139.7706831191022);　//九州じゃんがら秋葉本店    
+    _member1.setPosition(35.70082425083744, 139.7706831191022);　//九州じゃんがら秋葉本店    
     
-    _member2.setPosition(35.69190209347951, 139.70275307933625);　//紀伊国屋書店本店前
+    //_member2.setPosition(35.69190209347951, 139.70275307933625);　//紀伊国屋書店本店前
     //_member2.setPosition(35.6810697406674, 139.7112894578003);　//千駄ヶ谷駅改札
-    //_member2.setPosition(35.690088547140604, 139.72191559301672);　//我楽多屋
+    _member2.setPosition(35.690088547140604, 139.72191559301672);　//我楽多屋
 
     _member3.setPosition(35.69293465316442, 139.70194307270413); //沖縄そば･やんばる
     //_member3.setPosition(35.7067699939533, 139.66641660292396); //フジヤカメラ本店
