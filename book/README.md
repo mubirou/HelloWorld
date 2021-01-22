@@ -579,6 +579,34 @@ XXXXXX（作成中）
 
         check() {
             //全員の位置情報と感染状況をチェックし〇km以内の場合に警報する
+            var _r = 6371; //地球の半径（km）
+
+            //1対1の全組み合わせのチェック
+            for (let i=0; i<this.__members.length; i++) {
+ 
+                for (let j=i+1; j<this.__members.length; j++) {
+                    //Aの北緯（緯度）と東経（経度）
+                    var _nPosA = this.__members[i].northPos;
+                    var _ePosA = this.__members[i].eastPos;
+                    
+                    //Bの北緯と東経
+                    var _nPosB = this.__members[j].northPos;
+                    var _ePosB = this.__members[j].eastPos;
+
+                    //弧度法（ラジアン）へ変換
+                    _nPosA *= Math.PI / 180;
+                    _ePosA *= Math.PI / 180;
+                    _nPosB *= Math.PI / 180;
+                    _ePosB *= Math.PI / 180;
+
+                    //AとBとの距離（km）
+                    var _distance = _r * Math.acos(Math.cos(_nPosA) * Math.cos(_nPosB) * Math.cos(_ePosB - _ePosA) + Math.sin(_nPosA) * Math.sin(_nPosB));
+                    
+                    //DEBUG（オプション）
+                    _distance = Math.round(_distance * 100) * 10; /// 100;
+                    console.log(this.__members[i].name + "⇔" + this.__members[j].name + ": " + _distance + "m");
+                }
+            }
         }
     }
 
@@ -594,7 +622,7 @@ XXXXXX（作成中）
             this.__isVirus = false; //ウィルス感染状況
         }
 
-        setPosition(_northPos, _eastPos) {
+        setPosition(_northPos, _eastPos) { //北緯（緯度）, 東経（経度）
             this.__northPos = _northPos;
             this.__eastPos = _eastPos;
         }
@@ -604,16 +632,16 @@ XXXXXX（作成中）
         }
 
         get name() { return this.__name }
-        get northPos() { return this.__northPos }
-        get eastPos() { return this.__eastPos }
+        get northPos() { return this.__northPos } //北緯（緯度）
+        get eastPos() { return this.__eastPos } //東経（経度）
         get isVirus() { return this.__isVirus }
     }
 
 
     //メンバー
-    _member1 = new Member("SATO");
-    _member2 = new Member("SUZUKI");
-    _member3 = new Member("TAKAHASHI");
+    _member1 = new Member("A");
+    _member2 = new Member("B");
+    _member3 = new Member("C");
 
     //登録
     _cocoya = new Cocoya();
@@ -624,13 +652,23 @@ XXXXXX（作成中）
     //感染報告
     _member2.isVirus = true;
 
-    //位置のセット（１）
-    _member1.setPosition(35.69187349707578, 139.6837348417253);
-    _member2.setPosition(35.69385641520475, 139.67786208681395);
-    _member3.setPosition(35.688015056747105, 139.6595595993712);
+    //位置のセット
+    _member1.setPosition(35.69249397906168, 139.70106485400788);　//ALTA前
+    //_member1.setPosition(35.68472052734823, 139.70113392865585);　//鉄緑会本部前
+    //_member1.setPosition(35.70082425083744, 139.7706831191022);　//九州じゃんがら秋葉本店    
+    
+    _member2.setPosition(35.69190209347951, 139.70275307933625);　//紀伊国屋書店本店前
+    //_member2.setPosition(35.6810697406674, 139.7112894578003);　//千駄ヶ谷駅改札
+    //_member2.setPosition(35.690088547140604, 139.72191559301672);　//我楽多屋
+
+    _member3.setPosition(35.69293465316442, 139.70194307270413); //沖縄そば･やんばる
+    //_member3.setPosition(35.7067699939533, 139.66641660292396); //フジヤカメラ本店
+    //_member3.setPosition(35.69270736096414, 139.6997132857424); //但馬屋珈琲本店
+
 
     //メンバー情報の一覧
     _cocoya.showMembers();
+    _cocoya.check();
 
 </script>
 ```
