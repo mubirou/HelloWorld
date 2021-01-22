@@ -572,7 +572,7 @@ XXXXXX（作成中）
         }
 
         showMembers() {
-            this.__members.forEach(function(arg) {
+            this.__members.forEach(function (arg) {
                 console.log(arg.name, arg.northPos, arg.eastPos, arg.isDemon);
             });
         }
@@ -582,16 +582,19 @@ XXXXXX（作成中）
             var _r = 6371; //地球の半径（km）
 
             //1対1の全組み合わせのチェック
-            for (let i=0; i<this.__members.length; i++) {
- 
-                for (let j=i+1; j<this.__members.length; j++) {
+            for (let i = 0; i < this.__members.length; i++) {
+
+                for (let j = i + 1; j < this.__members.length; j++) {
                     //Aの北緯（緯度）と東経（経度）
                     var _nPosA = this.__members[i].northPos;
                     var _ePosA = this.__members[i].eastPos;
-                    
+
                     //Bの北緯と東経
                     var _nPosB = this.__members[j].northPos;
                     var _ePosB = this.__members[j].eastPos;
+
+                    //TEST中
+                    var _direction = this.__geoDirection(_nPosA, _ePosA, _nPosB, _ePosB);
 
                     //弧度法（ラジアン）へ変換
                     _nPosA *= Math.PI / 180;
@@ -601,12 +604,24 @@ XXXXXX（作成中）
 
                     //AとBとの距離（km）
                     var _distance = _r * Math.acos(Math.cos(_nPosA) * Math.cos(_nPosB) * Math.cos(_ePosB - _ePosA) + Math.sin(_nPosA) * Math.sin(_nPosB));
-                    
+
                     //DEBUG（オプション）
-                    _distance = Math.round(_distance * 100) /100; // * 10; /// 100;
-                    console.log(this.__members[i].name + "⇔" + this.__members[j].name + ": " + _distance + "km");
+                    _distance = Math.round(_distance * 100) / 100; // * 10; /// 100;
+                    console.log(this.__members[i].name + "⇒" + this.__members[j].name + ": " + _distance + "km" + " / " + _direction + "°");
                 }
             }
+        }
+
+        //2点間の角度（北0° 東90° 南180° 西270°）を返す
+        __geoDirection(_nPosA, _ePosA, _nPosB, _ePosB) { //Aの北緯, Aの東経, Bの北緯, Bの東経
+            var Y = Math.cos(_ePosB * Math.PI / 180) * Math.sin(_nPosB * Math.PI / 180 - _nPosA * Math.PI / 180);
+            var X = Math.cos(_ePosA * Math.PI / 180) * Math.sin(_ePosB * Math.PI / 180) - Math.sin(_ePosA * Math.PI / 180) * Math.cos(_ePosB * Math.PI / 180) * Math.cos(_nPosB * Math.PI / 180 - _nPosA * Math.PI / 180);
+            var dirE0 = 180 * Math.atan2(Y, X) / Math.PI;
+            if (dirE0 < 0) {
+                dirE0 = dirE0 + 360;
+            }
+            var dirN0 = (dirE0 + 90) % 360;
+            return Math.round(dirN0);
         }
     }
 
@@ -653,23 +668,22 @@ XXXXXX（作成中）
     _member2.isDemon = true;
 
     //位置のセット
-    //_member1.setPosition(35.69249397906168, 139.70106485400788);　//ALTA前
+    _member1.setPosition(35.69249397906168, 139.70106485400788);　//ALTA前
     //_member1.setPosition(35.68472052734823, 139.70113392865585);　//鉄緑会本部前
-    _member1.setPosition(35.70082425083744, 139.7706831191022);　//九州じゃんがら秋葉本店    
-    
-    //_member2.setPosition(35.69190209347951, 139.70275307933625);　//紀伊国屋書店本店前
+    //_member1.setPosition(35.70082425083744, 139.7706831191022);　//九州じゃんがら秋葉本店    
+
+    _member2.setPosition(35.69190209347951, 139.70275307933625);　//紀伊国屋書店本店前
     //_member2.setPosition(35.6810697406674, 139.7112894578003);　//千駄ヶ谷駅改札
-    _member2.setPosition(35.690088547140604, 139.72191559301672);　//我楽多屋
+    //_member2.setPosition(35.690088547140604, 139.72191559301672);　//我楽多屋
 
     _member3.setPosition(35.69293465316442, 139.70194307270413); //沖縄そば･やんばる
     //_member3.setPosition(35.7067699939533, 139.66641660292396); //フジヤカメラ本店
     //_member3.setPosition(35.69270736096414, 139.6997132857424); //但馬屋珈琲本店
 
 
-    //メンバー情報の一覧
-    _cocoya.showMembers();
-    _cocoya.check();
-
+    
+    _cocoya.showMembers(); //メンバー情報の一覧
+    _cocoya.check(); //各メンバー間の距離と方向を調べる
 </script>
 ```
 
