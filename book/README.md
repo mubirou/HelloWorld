@@ -754,16 +754,14 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
         __search3() {
             var _request = new XMLHttpRequest();
-            /*
-            var _url = "https://iss.ndl.go.jp/api/sru?operation=searchRetrieve&maximumRecords=10&query=isbn" + this.__isbn;
+            var _url = "https://iss.ndl.go.jp/api/sru?operation=searchRetrieve&query=isbn=" + this.__isbn;
             _request.open("GET", _url);
-            _request.send(null);
+            //_request.send(null);
             _request.onload = () => {
                 var _json = JSON.parse(_request.responseText);
 
                 console.log(_json);
             }
-            */
         }
 
         get author() { return this.__author } //著者名
