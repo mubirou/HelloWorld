@@ -2800,6 +2800,13 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
         console.log(this.responseText); //⑤読み込んだテキストの表示
     }
 
+    /*
+    ②は次のコードでも可能
+    _request.onload = () => {
+        console.log(_request.responseText);
+    }
+    */
+
     //③ヘッダの設定
     _request.open("GET", "sample.txt");
 
