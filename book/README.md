@@ -555,16 +555,16 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
 # ◆鬼ごっこアプリ
 
-Cocoyaクラス  
-new Cocoya(): コンストラクタ  
-Cocoya.addMember(): メンバーの登録  
-Cocoya.showMembers(): 登録メンバーの情報の表示  
-cocoya.check(): 各メンバー間の距離と方向を調べる
+* Cocoyaクラス  
+    * new Cocoya(): コンストラクタ  
+    * Cocoya.addMember(): メンバーの登録  
+    * Cocoya.showMembers(): 登録メンバーの情報の表示  
+    * cocoya.check(): 各メンバー間の距離と方向を調べる
 
-Memberクラス  
-new Member(): コンストラクタ  
-Member.isDemon: 鬼か否か  
-Member.setPosition(): 緯度･経度の設定  
+* Memberクラス  
+    * new Member(): コンストラクタ  
+    * Member.isDemon: 鬼か否か  
+    * Member.setPosition(): 緯度･経度の設定  
 ```
 <script>
     //=================
