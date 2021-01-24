@@ -9,6 +9,7 @@
 |[偏差値。](#偏差値。)|偏差値を調べることができるクラス|
 |[カレンダー。](#カレンダー。)|指定年月のカレンダー表示や日付計算が可能|
 |[鬼ごっこ。](#鬼ごっこ。)|オブジェクト間の連携サンプル|
+|[読書メモ。](#読書メモ。)|継承|
 
 
 
@@ -692,6 +693,80 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
     _cocoya.showMembers(); //メンバー情報の一覧
     _cocoya.check(); //各メンバー間の距離と方向を調べる
+</script>
+```
+
+
+<a name="読書メモ。"></a>
+
+# ◆読書メモ。
+
+👇現在作成中のコードです…
+
+```
+<script>
+    //=================
+    //Cocoyaクラス
+    //=================
+    class Book {
+        constructor(_ISBN) {
+            this.__isbn = _ISBN; //ISBN
+            this.__authors; //著者名
+            this.__pageCount; //頁数
+            this.__publishedDate; //発行日
+            this.__title; //書籍名
+
+            this.__search();
+        }
+
+        __search() {
+            var _request = new XMLHttpRequest();
+            var _url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + this.__isbn; //Google Books APIs
+            _request.open("GET", _url);
+            _request.send(null);
+            _request.onload = () => {
+                var _json = JSON.parse(_request.responseText);
+                this.__authors = _json.items[0].volumeInfo.authors[0]; //著者名
+                this.__pageCount = _json.items[0].volumeInfo.pageCount; //頁数
+                this.__publishedDate = _json.items[0].volumeInfo.publishedDate; //発行日
+                this.__title = _json.items[0].volumeInfo.title; //書籍名
+                console.log(_json);
+            }
+        }
+
+        get author() { return this.__authors } //著者名
+        get pageCount() { return this.__pageCount } //頁数
+        get publishedDate() { return this.__publishedDate } //発行日
+        get title() { return this.__title } //書籍名
+    }
+
+
+    //=================
+    // MyBookクラス
+    //=================
+    class MyBook extends Book {
+        constructor(_ISBN) {
+        }
+
+        
+    }
+
+
+    //var _book1 = new Book(9784480433008);
+    var _book1 = new MyBook(9784480433008);
+    //var _book1 = new Book(9784415026824);
+    //var _myBook_1 = new Mybook(9784415026824);
+
+    //検索時間を稼ぐ
+    callbackFunction = () => {
+        console.log(_book1.author); //→ 著者名
+        console.log(_book1.pageCount); //→頁数
+        console.log(_book1.publishedDate); //→ 発行日
+        console.log(_book1.title); //→ 書籍名
+        clearTimeout(_timerID);
+    }
+    _timerID = setTimeout(callbackFunction, 2000); //2秒後実行
+
 </script>
 ```
 
