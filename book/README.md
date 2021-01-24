@@ -714,29 +714,62 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
             this.__authors; //著者名
             this.__pageCount; //頁数
             this.__publishedDate; //発行日
+            this.__publisher; //出版社
             this.__title; //書籍名
 
-            this.__search();
+            this.__search1(); //Google Books APIs
+            this.__search2(); //OpenDB
+            this.__search3(); //
         }
 
-        __search() {
+        __search1() { //Google Books APIs
             var _request = new XMLHttpRequest();
-            var _url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + this.__isbn; //Google Books APIs
+            var _url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + this.__isbn;
             _request.open("GET", _url);
             _request.send(null);
             _request.onload = () => {
                 var _json = JSON.parse(_request.responseText);
-                this.__authors = _json.items[0].volumeInfo.authors[0]; //著者名
+                this.__author = _json.items[0].volumeInfo.authors[0]; //著者名
                 this.__pageCount = _json.items[0].volumeInfo.pageCount; //頁数
                 this.__publishedDate = _json.items[0].volumeInfo.publishedDate; //発行日
                 this.__title = _json.items[0].volumeInfo.title; //書籍名
-                console.log(_json);
+                //console.log(_json);
             }
         }
 
-        get author() { return this.__authors } //著者名
+        __search2() { //OpenDB
+            var _request = new XMLHttpRequest();
+            var _url = "https://api.openbd.jp/v1/get?isbn=" + this.__isbn;
+            _request.open("GET", _url);
+            _request.send(null);
+            _request.onload = () => {
+                var _json = JSON.parse(_request.responseText);
+                //this.__authors = _json[0].summary.author; //著者名
+                //this.__publishedDate = _json[0].summary.pubdate; //発行日
+                this.__publisher = _json[0].summary.publisher; //出版社
+                //this.__title = _json[0].summary.title; //書籍名
+                //console.log(_json);
+            }
+        }
+
+        __search3() {
+            var _request = new XMLHttpRequest();
+            /*
+            var _url = "https://iss.ndl.go.jp/api/sru?operation=searchRetrieve&maximumRecords=10&query=isbn" + this.__isbn;
+            _request.open("GET", _url);
+            _request.send(null);
+            _request.onload = () => {
+                var _json = JSON.parse(_request.responseText);
+
+                console.log(_json);
+            }
+            */
+        }
+
+        get author() { return this.__author } //著者名
         get pageCount() { return this.__pageCount } //頁数
         get publishedDate() { return this.__publishedDate } //発行日
+        get publiser() { return this.__publisher } //出版社
         get title() { return this.__title } //書籍名
     }
 
@@ -748,24 +781,25 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         constructor(_ISBN) {
         }
 
-        
+
     }
 
-
-    //var _book1 = new Book(9784480433008);
-    var _book1 = new MyBook(9784480433008);
+    //=================
+    // 実行
+    //=================
+    var _book1 = new Book(9784480433008);
     //var _book1 = new Book(9784415026824);
-    //var _myBook_1 = new Mybook(9784415026824);
 
     //検索時間を稼ぐ
     callbackFunction = () => {
         console.log(_book1.author); //→ 著者名
         console.log(_book1.pageCount); //→頁数
         console.log(_book1.publishedDate); //→ 発行日
+        console.log(_book1.publiser); //→ 出版社（OpenDBより）
         console.log(_book1.title); //→ 書籍名
         clearTimeout(_timerID);
     }
-    _timerID = setTimeout(callbackFunction, 2000); //2秒後実行
+    _timerID = setTimeout(callbackFunction, 3000); //2秒後実行
 
 </script>
 ```
