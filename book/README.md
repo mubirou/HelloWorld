@@ -719,7 +719,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
             this.__search1(); //Google Books APIs
             this.__search2(); //OpenDB
-            this.__search3(); //
+            this.__search3(); //国立国会図書館
         }
 
         __search1() { //Google Books APIs
