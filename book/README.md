@@ -785,8 +785,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
     //=================
     // 実行
     //=================
-    //var _book1 = new Book(9784480433008);
-    var _book1 = new MyBook(9784480433008);
+    var _book1 = new Book(9784480433008);
     //var _book1 = new Book(9784415026824);
 
     //検索時間を稼ぐ
