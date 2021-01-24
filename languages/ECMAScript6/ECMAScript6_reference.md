@@ -2801,7 +2801,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     }
 
     /*
-    ②は次のコードでも可能
+    ②はアロー関数を使うことも可能（thisの値が異なる）
     _request.onload = () => {
         console.log(_request.responseText);
     }
