@@ -719,7 +719,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
             this.__search1(); //Google Books APIs
             this.__search2(); //OpenDB
-            this.__search3(); //国立国会図書館
+            //他にも国立国会図書館のデータを利用する方法もあり（サーバ上で動かす必要あり）
         }
 
         __search1() { //Google Books APIs
@@ -733,7 +733,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
                 this.__pageCount = _json.items[0].volumeInfo.pageCount; //頁数
                 this.__publishedDate = _json.items[0].volumeInfo.publishedDate; //発行日
                 this.__title = _json.items[0].volumeInfo.title; //書籍名
-                //console.log(_json);
+                this.__description = _json.items[0].volumeInfo.description; //説明
             }
         }
 
@@ -748,19 +748,6 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
                 //this.__publishedDate = _json[0].summary.pubdate; //発行日
                 this.__publisher = _json[0].summary.publisher; //出版社
                 //this.__title = _json[0].summary.title; //書籍名
-                //console.log(_json);
-            }
-        }
-
-        __search3() {
-            var _request = new XMLHttpRequest();
-            var _url = "https://iss.ndl.go.jp/api/sru?operation=searchRetrieve&query=isbn=" + this.__isbn;
-            _request.open("GET", _url);
-            //_request.send(null);
-            _request.onload = () => {
-                var _json = JSON.parse(_request.responseText);
-
-                console.log(_json);
             }
         }
 
@@ -769,6 +756,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         get publishedDate() { return this.__publishedDate } //発行日
         get publiser() { return this.__publisher } //出版社
         get title() { return this.__title } //書籍名
+        get description() { return this.__description } //説明
     }
 
 
@@ -777,27 +765,42 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
     //=================
     class MyBook extends Book {
         constructor(_ISBN) {
+            super(_ISBN); //スーパークラスのコンストラクタを呼び出す
+            this.__review; //レビュー
+            this.__star; //星（評価）
         }
 
+        set review(newValue) { this.__review = newValue }
+        get review() { return this.__review }
 
+        set star(newValue) { this.__star = newValue }
+        get star() { return this.__star }
     }
 
     //=================
     // 実行
     //=================
-    var _book1 = new Book(9784480433008);
-    //var _book1 = new Book(9784415026824);
+    //var _book1 = new Book(9784480433008);
+    var _book1 = new MyBook(9784480433008);
 
-    //検索時間を稼ぐ
+    //検索時間を稼ぐ（通常はボタンを押すなどで処理）
     callbackFunction = () => {
         console.log(_book1.author); //→ 著者名
         console.log(_book1.pageCount); //→頁数
         console.log(_book1.publishedDate); //→ 発行日
-        console.log(_book1.publiser); //→ 出版社（OpenDBより）
+        console.log(_book1.publiser); //→ 出版社（これのみOpenDBより）
         console.log(_book1.title); //→ 書籍名
+        console.log(_book1.description);
+        
+        _book1.star = "★★★★★";
+        _book1.review = "著者は東大医学部卒、東大名誉教授、解剖学が専門。とても面白い。";
+
+        console.log(_book1.star);
+        console.log(_book1.review);
+
         clearTimeout(_timerID);
     }
-    _timerID = setTimeout(callbackFunction, 3000); //2秒後実行
+    _timerID = setTimeout(callbackFunction, 2000); //2秒後実行
 
 </script>
 ```
