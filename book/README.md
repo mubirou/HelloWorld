@@ -701,7 +701,20 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
 # ◆読書メモ。
 
-👇現在作成中のコードです…
+* Bookクラス（スーパークラス）
+    * new Book(): コンストラクタ
+    * Book.author: 著者名
+    * Book.pageCount: 頁数
+    * Book.publishedDate: 発行日
+    * Book.publiser: 出版社
+    * Book.title: 書籍名
+    * Book.description: 説明
+
+* MyBookクラス（サブクラス）
+    * new MyBook(): コンストラクタ
+    * MyBook.star: 星（評価）
+    * MyBook.review: レビュー
+    * readingDate: 読了日
 
 ```
 <script>
@@ -768,6 +781,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
             super(_ISBN); //スーパークラスのコンストラクタを呼び出す
             this.__review; //レビュー
             this.__star; //星（評価）
+            this.__readingDate; //読了日
         }
 
         set review(newValue) { this.__review = newValue }
@@ -775,6 +789,9 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
         set star(newValue) { this.__star = newValue }
         get star() { return this.__star }
+
+        set readingDate(newValue) { this.__readingDate = newValue }
+        get readingDate() { return this.__readingDate }
     }
 
     //=================
@@ -791,12 +808,14 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         console.log(_book1.publiser); //→ 出版社（これのみOpenDBより）
         console.log(_book1.title); //→ 書籍名
         console.log(_book1.description);
-        
+
         _book1.star = "★★★★★";
         _book1.review = "著者は東大医学部卒、東大名誉教授、解剖学が専門。とても面白い。";
+        _book1.readingDate = "2019/07/08";
 
         console.log(_book1.star);
         console.log(_book1.review);
+        console.log(_book1.readingDate);
 
         clearTimeout(_timerID);
     }
