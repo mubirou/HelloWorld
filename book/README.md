@@ -10,7 +10,7 @@
 |[カレンダー。](#カレンダー。)|指定年月のカレンダー表示や日付計算が可能|
 |[鬼ごっこ。](#鬼ごっこ。)|オブジェクト間の連携サンプル|
 |[読書メモ。](#読書メモ。)|継承|
-
+|[組み込みタイマー。](#組み込みタイマー。)|オブジェクトの中のオブジェクト|
 
 
 <a name="たしざんをしよう。"></a>
@@ -820,6 +820,77 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         clearTimeout(_timerID);
     }
     _timerID = setTimeout(callbackFunction, 2000); //2秒後実行
+
+</script>
+```
+
+
+<a name="組み込みタイマー。"></a>
+
+# ◆組み込みタイマー。
+
+👇現在作成中のサンプルコードです。
+```
+<script>
+    //=================
+    // Timerクラス
+    //=================
+    class Timer {
+        constructor(_sec = 1) {
+            this.__interval = _sec * 1000; //秒をミリ秒に変換
+            this.__timerMethod; //callbackFunctionで実行されるメソッド
+        }
+
+        set interval(newValue) { this.__interval = newValue }
+        get interval() { return this.__interval }
+
+        set timerMethod(newValue) { this.__timerMethod = newValue }
+
+        start() {
+            this.__timerID = setInterval(this.__callbackFunction, this.__interval);
+        }
+
+        stop() {
+            clearInterval(this.__timerID);
+        }
+
+        __callbackFunction = () => {
+            //console.log("Timer.__callbackFunction");
+            this.__timerMethod();
+        }
+    }
+
+
+    //=================
+    // Somethingクラス
+    //=================
+    class Something {
+        constructor() {
+            this.__timer = new Timer();
+        }
+
+        hoge() {
+            console.log("something.hoge");
+        }
+
+        //Timer関連
+        set interval(newValue) { return this.__timer.interval = newValue }
+        get interval() { return this.__timer.interval }
+        timerStart() { this.__timer.start() }
+        timerStop() { this.__timer.stop() }
+        set timerMethod(newValue) { this.__timer.timerMethod = newValue }
+    }
+
+    //=================
+    // 実行
+    //=================
+    var _object1 = new Something();
+    //console.log(_object1.interval);
+    //_object1.interval = 500;
+    //console.log(_object1.interval);
+    _object1.timerStart();
+    //_object1.timerStop();
+    _object1.timerMethod = _object1.hoge;
 
 </script>
 ```
