@@ -714,7 +714,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
     * new MyBook(): コンストラクタ
     * MyBook.star: 星（評価）
     * MyBook.review: レビュー
-    * readingDate: 読了日
+    * MyBook.readingDate: 読了日
 
 ```
 <script>
@@ -807,15 +807,15 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         console.log(_book1.publishedDate); //→ 発行日
         console.log(_book1.publiser); //→ 出版社（これのみOpenDBより）
         console.log(_book1.title); //→ 書籍名
-        console.log(_book1.description);
+        console.log(_book1.description); //→説明
 
         _book1.star = "★★★★★";
         _book1.review = "著者は東大医学部卒、東大名誉教授、解剖学が専門。とても面白い。";
         _book1.readingDate = "2019/07/08";
 
-        console.log(_book1.star);
-        console.log(_book1.review);
-        console.log(_book1.readingDate);
+        console.log(_book1.star); //→星（評価）
+        console.log(_book1.review); //→レビュー
+        console.log(_book1.readingDate); //→読了日
 
         clearTimeout(_timerID);
     }
