@@ -441,7 +441,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         }
 
         //閏年調査
-        isUruu(_year) {
+        __isUruu(_year) {
             if (_year % 400 == 0) {
                 return true;
             } else if ((_year % 4 == 0) && (_year % 100 != 0)) {
@@ -453,7 +453,7 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         //各月の日数リスト（閏年対応）
         __monthDate(_year) {
             this.__monthDateList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-            if (this.isUruu(_year)) {
+            if (this.__isUruu(_year)) {
                 this.__monthDateList[1]++;
             }
             return this.__monthDateList;
