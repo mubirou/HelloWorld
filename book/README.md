@@ -928,12 +928,12 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
     // 実行
     //=================
     var _object1 = new Something();
+    _object1.timerMethod = _object1.hoge;
     //console.log(_object1.interval);
     //_object1.interval = 500;
     //console.log(_object1.interval);
     _object1.timerStart();
     //_object1.timerStop();
-    _object1.timerMethod = _object1.hoge;
 
 </script>
 ```
