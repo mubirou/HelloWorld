@@ -829,15 +829,42 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
 
 # ◆組み込みタイマー。
 
-👇現在作成中のサンプルコードです。
+* Timerクラス
+    * new Timer(): コンストラクタ
+    * Timer.interval: 実行する間隔（秒）
+    * Timer.timerMethod: 実行するメソッド名
+    * Timer.start(): タイマーの開始
+    * Timer.stop(): タイマーの終了
+
+* Somethingクラス
+    * コンストラクタ内に以下を記述
+        ```
+        this.__timer = new Timer(); //1秒毎に実行したい場合
+        //this.__timer = new Timer(2, false); //2秒後に1度だけ実行したい場合
+        ```
+    * クラス内に以下をコピー
+        ```
+        set interval(newValue) { return this.__timer.interval = newValue }
+        get interval() { return this.__timer.interval }
+        timerStart() { this.__timer.start() }
+        timerStop() { this.__timer.stop() }
+        set timerMethod(newValue) { this.__timer.timerMethod = newValue }
+        ```
+    * Something.hoge(): 繰り返し（もしくは1度）実行したいメソッド
+    * Something.interval: 実行する間隔（ミリ秒）
+    * Something.timerStart(): タイマーの開始
+    * Something.timerStop(): タイマーの終了
+    * Something.timerMethod: 実行するメソッド名
+
 ```
 <script>
     //=================
     // Timerクラス
     //=================
     class Timer {
-        constructor(_sec = 1) {
+        constructor(_sec = 1, _loop = true) {
             this.__interval = _sec * 1000; //秒をミリ秒に変換
+            this.__loop = _loop; //繰り返し実行するか否か
             this.__timerMethod; //callbackFunctionで実行されるメソッド
         }
 
@@ -847,16 +874,30 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         set timerMethod(newValue) { this.__timerMethod = newValue }
 
         start() {
-            this.__timerID = setInterval(this.__callbackFunction, this.__interval);
+            if (this.__loop) {
+                this.__timerID = setInterval(this.__callbackFunction, this.__interval);
+            } else {
+                this.__timerID = setTimeout(this.__callbackFunction, this.__interval);
+            }
         }
 
         stop() {
-            clearInterval(this.__timerID);
+            if (this.__loop) {
+                clearInterval(this.__timerID);
+            } else {
+                clearTimeout(this.__timerID);
+            }
         }
 
         __callbackFunction = () => {
             //console.log("Timer.__callbackFunction");
-            this.__timerMethod();
+            if (this.__loop) {
+                this.__timerMethod();
+            } else {
+                this.__timerMethod();
+                clearTimeout(this.__timerID);
+            }
+            
         }
     }
 
@@ -866,14 +907,16 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
     //=================
     class Something {
         constructor() {
-            this.__timer = new Timer();
+            //タイマーの組み込み
+            this.__timer = new Timer(); //1秒毎に実行したい場合
+            //this.__timer = new Timer(2, false); //2秒後に1度だけ実行したい場合
         }
 
         hoge() {
             console.log("something.hoge");
         }
 
-        //Timer関連
+        //以下をタイマーを組み込みたいクラスにコピー
         set interval(newValue) { return this.__timer.interval = newValue }
         get interval() { return this.__timer.interval }
         timerStart() { this.__timer.start() }
