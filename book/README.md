@@ -851,10 +851,10 @@ Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す
         set timerMethod(newValue) { this.__timer.timerMethod = newValue }
         ```
     * Something.hoge(): 繰り返し（もしくは1度）実行したいメソッド
+    * Something.timerMethod: 実行するメソッド名
     * Something.interval: 実行する間隔（ミリ秒）
     * Something.timerStart(): タイマーの開始
     * Something.timerStop(): タイマーの終了
-    * Something.timerMethod: 実行するメソッド名
 
 ```
 <script>
