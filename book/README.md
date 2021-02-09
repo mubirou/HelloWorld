@@ -20,7 +20,7 @@
 * 代入演算子（=）
 * window.alert()メソッド
 * console.log()メソッド
-* ;（セミコロン）←不要説もありますが
+* ;（セミコロン）←（必須、不要、どちらでも可の言語あり）
 
 ## 1+2+3+4+5+6+7+8+9+10 = ?
 （1から10までの自然数の和）
@@ -45,6 +45,14 @@
 ```
 
 ## 1+2+3+4+5+6+7+8+9+10+...+100 = ?
+* 算術演算子（/,*）
+* 括弧
+* 代入演算子（+=）
+* 関数（function）と引数
+* 変数宣言（let,var）
+* return文
+* for文
+
 （1から100までの自然数の和）  
 （初項1、交差1、項数100の等差数列の和）  
 （処理速度：足し算 > 等差数列の和 >>>（数十倍）>>> for文）  
@@ -65,8 +73,8 @@
 ```
 <script>
     function blackbox(end) {
-        var x = 0;
-        for (var i = 1; i <= end; i++) {
+        let x = 0;
+        for (let i = 1; i <= end; i++) {
             x += i;
         }
         return x;
@@ -79,8 +87,8 @@
 ```
 <script>
     function blackbox(end) {
-        var x = 0;
-        for (var i = 1; i <= end; i++) {
+        let x = 0;
+        for (let i = 1; i <= end; i++) {
             x += i;
         }
         return x;
