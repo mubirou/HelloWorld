@@ -123,6 +123,9 @@ print(blackbox(100)) #=> 5050
 ```
 
 ## 1+2+3+4+5+6+7+8+9+10+...+920918 = ?
+
+◆JavaScript編
+
 ```
 <script>
     function blackbox(end) {
@@ -143,6 +146,26 @@ print(blackbox(100)) #=> 5050
     }
     console.log(blackbox(920918)); //=> 424045441821
 </script>
+```
+
+◆Python編
+
+```
+def blackbox(end):
+    x = 0
+    for i in range(1, end+1):
+        x += i
+    return x
+
+print(blackbox(920918)) #=> 424045441821
+```
+
+```
+def blackbox(end):
+    return 1/2*end*(end+1)
+
+print(blackbox(920918)) #=> 424045441821.0
+
 ```
 
 <a name="ブラックボックスの作り方。"></a>
