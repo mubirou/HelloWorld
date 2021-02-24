@@ -32,18 +32,15 @@
 
 ```
 alert(1+2+3+4+5+6+7+8+9+10); //=> 55
-
 ```
 
 ```
 console.log(1+2+3+4+5+6+7+8+9+10); //=> 55
-
 ```
 
 ```
 x = 1+2+3+4+5+6+7+8+9+10;
 console.log(x); //=> 55
-
 ```
 
 ◆Python編
@@ -91,7 +88,6 @@ function blackbox(end) {
     return x;
 }
 console.log(blackbox(100)); //=> 5050
-
 ```
 
 ◆Python編
