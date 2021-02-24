@@ -155,6 +155,9 @@ print(blackbox(920918)) #=> 424045441821.0
 <a name="ブラックボックスの作り方。"></a>
 
 # ◆ブラックボックスの作り方。
+
+◆JavaScript編
+
 ```
 function blackbox() {
     console.log("Hello,world!");
@@ -189,6 +192,9 @@ console.log(x); //=> 1～100までの乱数
 <a name="もしも…"></a>
 
 # ◆もしも…
+
+◆JavaScript編
+
 ```
 function blackbox(num) {
     if (num < 60) {
@@ -221,6 +227,9 @@ console.log(blackbox(66)); //=> "65以上"
 <a name="繰り返し…"></a>
 
 # 繰り返し…
+
+◆JavaScript編
+
 ```
 for (let i = 0; i <= 10; i++) {
     console.log(i); //0,1,2,...,9,10
@@ -234,6 +243,9 @@ for (let i = 0; i <= 10; i++) {
 # ◆にてひなるもの。
 
 ## 1 + 1 = 11 ?
+
+◆JavaScript編
+
 ```
 console.log(1); //=> 1
 console.log("1"); //=> 1
@@ -252,6 +264,9 @@ console.log(y); //=> 11
 ```
 
 ### 数値 + 文字列 = 文字列
+
+◆JavaScript編
+
 ```
 x = "100";
 y = x + "点です";
@@ -265,6 +280,9 @@ console.log(y); //=> トータル100点です
 ```
 
 ### データ型を調べる
+
+◆JavaScript編
+
 ```
 console.log(typeof 1); //=> number
 console.log(typeof "1"); //=> string
@@ -324,6 +342,8 @@ console.log(1 === "1");  //=> false
 1. 口座残高を確認します。
 
 上記の機能や属性を持った「見えないオブジェクト」を作成します。
+
+◆JavaScript編
 
 ```
 class Member {
@@ -393,6 +413,8 @@ console.log(_0001.money);
 3人の点数が0点、50点、100点の場合…
 0点の偏差値は約37.8。
 100点の偏差値は約62.2。  
+
+◆JavaScript編
 
 new DeviationValue(): コンストラクタ  
 DeviationValue.scores: 全員の点数  
@@ -464,6 +486,8 @@ console.log(_deviation.exec(0)); //0点の偏差値
 <a name="カレンダー"></a>
 
 # ◆カレンダー
+
+◆JavaScript編
 
 new Calendar(): コンストラクタ  
 Calenar.showMonth(): 指定日のカレンダー表示  
@@ -589,6 +613,8 @@ console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
 <a name="鬼ごっこ"></a>
 
 # ◆鬼ごっこ
+
+◆JavaScript編
 
 * Cocoyaクラス  
     * new Cocoya(): コンストラクタ  
@@ -734,6 +760,8 @@ _cocoya.check(); //各メンバー間の距離と方向を調べる
 
 # ◆読書記録
 
+◆JavaScript編
+
 * Bookクラス（スーパークラス）
     * new Book(): コンストラクタ
     * Book.author: 著者名
@@ -858,6 +886,8 @@ _timerID = setTimeout(callbackFunction, 2000); //2秒後実行
 <a name="組み込みタイマー"></a>
 
 # ◆組み込みタイマー
+
+◆JavaScript編
 
 * Timerクラス
     * new Timer(): コンストラクタ
