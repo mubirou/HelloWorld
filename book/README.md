@@ -402,6 +402,18 @@ console.log(1 == "1"); //=> true
 console.log(1 === "1");  //=> false
 ```
 
+◆Python編
+
+```
+print(type(1)) #=> <class 'int'>
+print(type("1")) #=> <class 'str'>
+```
+
+```
+print(1 == "1") #=> False（等号）
+print(1 is "1") #=> False（厳密一致）
+```
+
 
 <a name="みんなオブジェクト。"></a>
 
