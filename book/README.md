@@ -338,6 +338,19 @@ console.log(y); //=> 11
 ◆Python編
 
 ```
+print(1) #=> 1
+print("1") #=> 1
+```
+
+```
+x = 1
+y = x + 1
+print(y) #=> 2
+```
+
+```
+x = "1"
+y = x + 1 #TypeError: can only concatenate str (not "int") to str
 ```
 
 
