@@ -363,13 +363,13 @@ y = x + 1 #TypeError: can only concatenate str (not "int") to str
 ◆JavaScript編
 
 ```
-x = "100";
+x = 100;
 y = x + "点です";
 console.log(y); //=> 100点です
 ```
 
 ```
-x = "100";
+x = 100;
 y = "トータル" + x + "点です";
 console.log(y); //=> トータル100点です
 ```
