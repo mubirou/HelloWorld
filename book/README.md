@@ -206,6 +206,17 @@ def blackbox(name):
 blackbox("ICHIRO") #=> ICHIROさんこんにちは!
 ```
 
+```
+import math
+import random
+
+def blackbox():
+    return math.floor(random.random() * 10)
+
+x = blackbox()
+print(x) #=> 0～9までの乱数
+```
+
 <a name="もしも…"></a>
 
 # ◆もしも…
