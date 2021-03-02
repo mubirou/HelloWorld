@@ -217,6 +217,17 @@ x = blackbox()
 print(x) #=> 0～9までの乱数
 ```
 
+```
+import math
+import random
+
+def blackbox(min, max):
+    return math.floor(random.random() * (max - min + 1)) + min
+
+x = blackbox(1, 100)
+print(x) #=> 1～100までの乱数
+```
+
 <a name="もしも…"></a>
 
 # ◆もしも…
