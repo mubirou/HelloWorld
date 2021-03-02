@@ -256,9 +256,9 @@ function blackbox(num) {
         return "65以上";
     }
 }
-console.log(blackbox(58)); //=> "60未満"
-console.log(blackbox(60)); //=> "60以上65未満"
-console.log(blackbox(66)); //=> "65以上"
+console.log(blackbox(58)); //=> 60未満
+console.log(blackbox(60)); //=> 60以上65未満
+console.log(blackbox(66)); //=> 65以上
 ```
 
 ◆Python編
@@ -272,6 +272,20 @@ def blackbox(num):
 
 print(blackbox(58)) #=> True
 print(blackbox(60)) #=> False
+```
+
+```
+def blackbox(num):
+    if (num < 60) : #()は省略可
+        return "60未満"
+    elif (num < 65) : #「else if」でも「elseif」でもない（要注意）
+        return "60以上65未満"
+    else:
+        return "65以上"
+
+print(blackbox(58)) #=> 60未満
+print(blackbox(60)) #=> 60以上65未満
+print(blackbox(66)) #=> 65以上
 ```
 
 
