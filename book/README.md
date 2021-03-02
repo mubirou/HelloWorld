@@ -200,6 +200,10 @@ blackbox() #=> Hello,world!
 ```
 
 ```
+def blackbox(name):
+    print(name + "さんこんにちは!")
+
+blackbox("ICHIRO") #=> ICHIROさんこんにちは!
 ```
 
 <a name="もしも…"></a>
