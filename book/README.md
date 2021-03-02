@@ -261,6 +261,18 @@ console.log(blackbox(60)); //=> "60以上65未満"
 console.log(blackbox(66)); //=> "65以上"
 ```
 
+◆Python編
+
+```
+def blackbox(num):
+    if (num < 60) : #()は省略可
+        return True
+    else:
+        return False
+
+print(blackbox(58)) #=> True
+print(blackbox(60)) #=> False
+```
 
 
 <a name="繰り返し…"></a>
