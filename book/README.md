@@ -190,6 +190,17 @@ x = blackbox(1, 100);
 console.log(x); //=> 1～100までの乱数
 ```
 
+◆Python編
+
+```
+def blackbox():
+    print("Hello,world!")
+
+blackbox() #=> Hello,world!
+```
+
+```
+```
 
 <a name="もしも…"></a>
 
