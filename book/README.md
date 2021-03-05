@@ -803,6 +803,8 @@ console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
 
 # ◆鬼ごっこ
 
+スマホ等の位置情報をもとにメンバーとの距離と方向を調べる。
+
 ◆JavaScript編
 
 * Cocoyaクラス  
