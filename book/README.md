@@ -530,7 +530,6 @@ console.log(_0001.money); //=> 25144
 
 ```
 import datetime
-import math
 
 class Member:
     def __init__(self, _name, _birthday, _money=0):
@@ -665,11 +664,11 @@ _deviation = new DeviationValue(_tmpList);
 */
 _deviation = new DeviationValue(0,50,100);
 
-console.log(_deviation.scores); //全員の点数
-console.log(_deviation.average); //期待値（平均値）
-console.log(_deviation.standardDeviation()); //標準偏差
-console.log(_deviation.exec(100)); //100点の偏差値
-console.log(_deviation.exec(0)); //0点の偏差値
+console.log(_deviation.scores); //=> 55 0,50,100（全員の点数）
+console.log(_deviation.average); //=> 50（期待値＝平均値）
+console.log(_deviation.standardDeviation()); //=> 40.824829046386306（標準偏差）
+console.log(_deviation.exec(100)); //=> 62.24744871391589（100点の偏差値）
+console.log(_deviation.exec(0)); //=> 37.75255128608411（0点の偏差値）
 ```
 
 <a name="カレンダー"></a>
