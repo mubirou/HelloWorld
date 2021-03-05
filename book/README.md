@@ -514,16 +514,16 @@ class Member {
 }
 
 _0001 = new Member("TARO YAMADA", "1958/05/05", 10000);
-console.log(_0001.name);
-console.log(_0001.birthday);
-console.log(_0001.age);
-console.log(_0001.money);
+console.log(_0001.name); //=> TARO YAMADA
+console.log(_0001.birthday); //=> 1958/05/05
+console.log(_0001.age); //=> 62
+console.log(_0001.money); //=> 10000
 
 _0001.addMoney(18000);
-console.log(_0001.money);
+console.log(_0001.money); //=> 28000
 
 _0001.useMoney(2856);
-console.log(_0001.money);
+console.log(_0001.money); //=> 25144
 ```
 
 ◆Python編
