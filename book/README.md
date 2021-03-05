@@ -17,7 +17,7 @@
 
 作成者：夢寐郎  
 作成日：2020年12月04日  
-更新日：2021年03月02日
+更新日：2021年03月05日
 
 
 <a name="たしざんをしよう"></a>
@@ -524,6 +524,73 @@ console.log(_0001.money);
 
 _0001.useMoney(2856);
 console.log(_0001.money);
+```
+
+◆Python編
+
+```
+import datetime
+import math
+
+class Member:
+    def __init__(self, _name, _birthday, _money=0):
+        self.__name = _name
+        self.__birthday = _birthday
+        self.__money = _money
+    
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def birthday(self):
+        return self.__birthday
+
+    @property
+    def age(self):
+        _y1 = int(self.__birthday[0:4]) #"1958"→1958
+        _m1 = int(self.__birthday[5:7]) #"05"→5
+        _d1 = int(self.__birthday[8:10]) #05"→5
+
+        _today = datetime.date.today()
+        _y2 = _today.year
+        _m2 = _today.month
+        _d2 = _today.day
+
+        _age = _y2 - _y1
+
+        if (_m2 < _m1):
+            _age -= 1
+        elif (_m2 == _m1):
+            if (_d2 < _d1):
+                _age -= 1
+
+        return _age
+
+    @property
+    def money(self):
+        return self.__money
+
+    def addMoney(self, _money):
+        self.__money += _money
+        return self.__money
+    
+    def useMoney(self, _money):
+        self.__money -= _money
+        return self.__money
+
+
+_0001 = Member("TARO YAMADA", "1958/05/05", 10000)
+print(_0001.name) #=> TARO YAMADA
+print(_0001.birthday) #=> 1958/05/05
+print(_0001.age) #=> 62
+print(_0001.money) #=> 10000
+
+_0001.addMoney(18000)
+print(_0001.money) #=> 28000
+
+_0001.useMoney(2856)
+print(_0001.money) #=> 25144
 ```
 
 
