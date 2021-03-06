@@ -671,6 +671,52 @@ console.log(_deviation.exec(100)); //=> 62.24744871391589（100点の偏差値�
 console.log(_deviation.exec(0)); //=> 37.75255128608411（0点の偏差値）
 ```
 
+◆Python版
+
+```
+import math
+
+class DeviationValue:
+    def __init__(self, *_scores):
+        self.__list = _scores
+        self.__total = 0
+        self.__average = None
+        self.__standardDeviation = None
+
+        for _tmp in self.__list:
+            self.__total += _tmp
+        
+        self.__average = self.__total / len(self.__list)
+
+    @property
+    def scores(self):
+        return self.__list
+
+    @property
+    def average(self):
+        return self.__average
+
+    def standardDeviation(self):
+        _sigma = 0
+        for _tmp in self.__list:
+            _difference = _tmp - self.__average
+            _sigma += math.pow(_difference, 2)
+        self.__standardDeviation = math.sqrt(_sigma / len(self.__list)) #()内が分散
+        return self.__standardDeviation
+    
+    def exec(self, _score):
+        return (_score - self.__average)*10/self.__standardDeviation + 50
+
+_deviation = DeviationValue(0,50,100)
+
+print(_deviation.scores) #=> (0, 50, 100)（全員の点数）
+print(_deviation.average) #=> 50.0（期待値＝平均値）
+print(_deviation.standardDeviation()) #=> 40.824829046386306（標準偏差）
+print(_deviation.exec(100)) #=> 62.24744871391589（100点の偏差値）
+print(_deviation.exec(0)) #=> 37.75255128608411（0点の偏差値）
+```
+
+
 <a name="カレンダー"></a>
 
 # ◆カレンダー
