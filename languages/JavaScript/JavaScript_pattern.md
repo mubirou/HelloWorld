@@ -1,5 +1,7 @@
 # <b>JavaScript デザインパターン</b>
 
+これより新しいバージョン [ECMAScript 6](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md) があります
+
 ### <b>INDEX</b>
 
 * オブジェクトの「生成」に関するパターン
