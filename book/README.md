@@ -239,6 +239,12 @@ print(x) #=> 1～100までの乱数
 ◆JavaScript編
 
 ```
+if (new Date().getHours() >= 23) {
+    console.log("早く寝ましょう");
+}
+```
+
+```
 function blackbox(num) {
     if (num < 60) {
         return true;
