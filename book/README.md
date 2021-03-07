@@ -47,6 +47,7 @@ console.log(1+2+3+4+5+6+7+8+9+10); //=> 55
 x = 1+2+3+4+5+6+7+8+9+10;
 console.log(x); //=> 55
 ```
+詳細は [演算子](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90) を参照。
 
 ◆Python編
 
@@ -326,7 +327,6 @@ while (count < 10) { //間違えて「=」にすると無限ループ
     count++;
 }
 ```
-詳細は [演算子](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90) を参照。
 
 ◆Python編
 
