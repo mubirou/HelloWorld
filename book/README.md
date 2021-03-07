@@ -315,8 +315,18 @@ print(blackbox(66)) #=> 65以上
 
 ```
 for (let i = 0; i <= 10; i++) {
-    console.log(i); //0,1,2,...,9,10
+    console.log(i); //=> 0,1,2,...,9,10
 }
+```
+
+```
+<script>
+    count = 0;
+    while (count < 10) { //間違えて「=」にすると無限ループ
+        console.log(count); //=> 0,1,2,...,9,10
+        count++;
+    }
+</script>
 ```
 
 ◆Python編
