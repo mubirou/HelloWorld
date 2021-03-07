@@ -17,7 +17,7 @@
 
 作成者：夢寐郎  
 作成日：2020年12月04日  
-更新日：2021年03月05日
+更新日：2021年03月08日
 
 
 <a name="たしざんをしよう"></a>
@@ -238,7 +238,7 @@ print(x) #=> 1～100までの乱数
 
 # ◆もしも…
 
-◆JavaScript編
+◆JavaScript編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#if%E6%96%87)）
 
 ```
 if (new Date().getHours() >= 23) {
@@ -273,7 +273,7 @@ console.log(blackbox(60)); //=> 60以上65未満
 console.log(blackbox(66)); //=> 65以上
 ```
 
-◆Python編
+◆Python編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#if%E6%96%87)）
 
 ```
 import datetime
