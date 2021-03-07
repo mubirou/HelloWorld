@@ -1,6 +1,6 @@
 # <b>JavaScript 基礎文法</b>
 
-これより新しいバージョン[ECMAScript 6](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md)があります
+これより新しいバージョン [ECMAScript 6](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md) があります
 
 ### <b>INDEX</b>
 
