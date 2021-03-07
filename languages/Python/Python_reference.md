@@ -3,6 +3,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_win.md)）
+* [コメント](#コメント)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス0)
@@ -38,6 +39,39 @@
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
+
+<a name="コメント"></a>
+# <b>コメント</b>
+
+### 1行コメント
+
+```
+# 冒頭からコメント
+```
+
+```
+x = 1 + 1 # コードと同じ行にコメント
+```
+
+```
+"""コメント""""
+```
+
+### 複数行コメント
+
+```
+"""
+複数行にわたる
+コメント
+"""
+```
+
+```
+"""コメント開始
+〇〇〇〇〇
+〇〇〇〇〇
+"""コメント終了
+```
 
 
 <a name="データ型"></a>
