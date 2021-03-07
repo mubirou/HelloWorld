@@ -314,28 +314,32 @@ print(blackbox(66)) #=> 65以上
 ◆JavaScript編
 
 ```
-for (let i = 0; i <= 10; i++) {
-    console.log(i); //=> 0,1,2,...,9,10
+for (let i = 0; i < 10; i++) {
+    console.log(i); //=> 0,1,2,...,9
 }
 ```
 
 ```
-<script>
-    count = 0;
-    while (count < 10) { //間違えて「=」にすると無限ループ
-        console.log(count); //=> 0,1,2,...,9,10
-        count++;
-    }
-</script>
+count = 0;
+while (count < 10) { //間違えて「=」にすると無限ループ
+    console.log(count); //=> 0,1,2,...,9
+    count++;
+}
 ```
 
 ◆Python編
 
 ```
-for i in range(0,11): #第１引数を省略すると0扱い
-    print(i) #0,1,2,3,4,5,6,7,8,9,10
+for i in range(0,10): #第１引数を省略すると0扱い
+    print(i) #=> 0,1,2,3,4,5,6,7,8,9
 ```
 
+```
+count = 0
+while (count < 10): //()内が「True」だと無限ループ
+    print(count) #0,1,2,3,4,5,6,7,8,9
+    count += 1
+```
 
 
 <a name="にてひなるもの"></a>
