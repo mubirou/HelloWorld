@@ -3,6 +3,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_win.md)）
+* [コメント](#コメント)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -42,6 +43,44 @@
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
+
+
+<a name="コメント"></a>
+# <b>コメント</b>
+
+### 1行コメント
+
+```
+// 〇〇〇〇〇
+```
+
+```
+x = 1 + 1 // 〇〇〇〇〇
+```
+
+```
+/*〇〇〇〇〇*/
+```
+
+### 複数行コメント
+
+```
+/*
+〇〇〇〇〇
+〇〇〇〇〇
+*/
+```
+
+```
+/*コメント開始
+〇〇〇〇〇
+〇〇〇〇〇
+コメント終了*/
+```
+
+実行環境：Windows 10 Pro、Google Chrome 88  
+作成者：夢寐郎  
+作成日：2021年03月08日  
 
 
 <a name="データ型"></a>
