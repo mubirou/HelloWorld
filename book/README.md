@@ -48,7 +48,7 @@ x = 1+2+3+4+5+6+7+8+9+10;
 console.log(x); //=> 55
 ```
 
-◆Python編
+◆Python編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
 
 ```
 print(1+2+3+4+5+6+7+8+9+10) #=> 55
