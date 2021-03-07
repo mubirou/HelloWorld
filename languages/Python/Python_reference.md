@@ -5,7 +5,7 @@
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_win.md)）
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-* [クラス](#クラス)
+* [クラス](#クラス0)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -350,7 +350,7 @@ print(convertXto10("1d", 16)) #29 ←16進数の"1d"を10進数に変換
 更新日：2020年09月02日 基数変換を追加
 
 
-<a name="クラス"></a>
+<a name="クラス0"></a>
 # <b>クラス</b>
 
 ### 最小構成
