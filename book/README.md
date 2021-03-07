@@ -527,19 +527,27 @@ class Member {
         return this._birthday;
     }
 
-    get age() {
-        var _year = this._birthday.substr(0,4); //"1958"
-        var _month = this._birthday.substr(5,2); //"05"
-        var _date = this._birthday.substr(8,2); //"05"
-        var _birthDate = new Date(_year, _month-1, _date);
-        var _y2 = _birthDate.getFullYear().toString().padStart(4, '0');
-        var _m2 = (_birthDate.getMonth() + 1).toString().padStart(2, '0');
-        var _d2 = _birthDate.getDate().toString().padStart(2, '0');
+    get age() {    
+        var _y1 = Number(this._birthday.substr(0,4)); //"1958"→1958
+        var _m1 = Number(this._birthday.substr(5,2)); //"05"→5
+        var _d1 = Number(this._birthday.substr(8,2)); //"05"→5
+
+
         var _today = new Date();
-        var _y1 = _today.getFullYear().toString().padStart(4, '0');
-        var _m1 = (_today.getMonth() + 1).toString().padStart(2, '0');
-        var _d1 = _today.getDate().toString().padStart(2, '0');
-        var _age = Math.floor((Number(_y1 + _m1 + _d1) - Number(_y2 + _m2 + _d2)) / 10000);
+        var _y2 = _today.getFullYear();
+        var _m2 = _today.getMonth() + 1;
+        var _d2 = _today.getDate();
+
+        var _age = _y2 - _y1;
+
+        if (_m2 < _m1) {
+            _age -= 1;
+        } else if (_m2 == _m1) {
+            if (_d2 < _d1) {
+                _age -= 1;
+            }
+        }
+        
         return _age;
     }
     
