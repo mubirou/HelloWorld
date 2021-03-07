@@ -326,6 +326,7 @@ while (count < 10) { //間違えて「=」にすると無限ループ
     count++;
 }
 ```
+詳細は [演算子](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90) を参照。
 
 ◆Python編
 
