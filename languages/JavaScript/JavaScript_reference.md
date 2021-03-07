@@ -1,5 +1,7 @@
 # <b>JavaScript 基礎文法</b>
 
+このプログラム言語は新しいバージョン[ECMAScript 6](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md)があります
+
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/JavaScript/JavaScript_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/JavaScript/JavaScript_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/JavaScript/JavaScript_win.md)）
