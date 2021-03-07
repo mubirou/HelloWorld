@@ -573,6 +573,7 @@ console.log(_0001.money); //=> 25144
 
 ◆Python編
 
+ここから以下のような様々な知識が必要になります
 * クラス（class）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9)）
 * ゲッター･セッター（getter/setter）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5)）
 * 関数≒メソッド（method）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E9%96%A2%E6%95%B0)）
