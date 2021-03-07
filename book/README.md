@@ -29,7 +29,7 @@
 ## 1+2+3+4+5+6+7+8+9+10 = ?
 （1から10までの自然数の和）
 
-◆JavaScript編（詳細は[演算子](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)を参照）
+◆JavaScript編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
 
 * window.alert()メソッド
 * console.log()メソッド
