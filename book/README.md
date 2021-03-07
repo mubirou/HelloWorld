@@ -274,6 +274,12 @@ console.log(blackbox(66)); //=> 65以上
 ◆Python編
 
 ```
+import datetime
+if (datetime.datetime.now().hour >= 23):
+    print("もう寝ましょう")
+```
+
+```
 def blackbox(num):
     if (num < 60) : #()は省略可
         return True
