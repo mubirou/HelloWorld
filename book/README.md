@@ -324,6 +324,7 @@ for (let i = 0; i < 10; i++) {
     console.log(i); //=> 0,1,2,...,9
 }
 ```
+++（インクリメント）については[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)
 
 👇while文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#while%E6%96%87)）
 ```
