@@ -898,11 +898,74 @@ class Calendar {
 }
 
 _calendar = new Calendar(); //カレンダーオブジェクトの生成
-_calendar.showMonth("2021/9"); //指定年月のカレンダー表示
-_calendar.showMonth(); //指定年月のカレンダー表示
+_calendar.showMonth("2021/4"); //指定年月のカレンダー表示
+_calendar.showMonth(); //今月のカレンダー表示
 console.log(_calendar.showDifferenceDate("2021/2/25")); //=> 37
 console.log(_calendar.showDifferenceDate("2021/02/25")); //=> 37
 console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
+```
+
+◆Python編
+
+```
+import datetime
+
+class Calendar:
+    def __init__(self):
+        #self.__showMonth("2020/2")
+        pass
+
+    # 閏年調査
+    def __isUruu(self, _year):
+        if (_year % 400 == 0):
+            return True
+        elif ((_year % 4 == 0) and (_year % 100 != 0)):
+            return True
+        return False
+    
+    # 各月の日数リスト（閏年対応）
+    def __monthDate(self, _year):
+        self.__monthDateList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        if (self.__isUruu(_year)):
+            self.__monthDateList[1] += 1
+        return self.__monthDateList
+
+    # カレンダー表示
+    def showMonth(self, _yearAndMonth = str(datetime.datetime.now().year) + "/" + str(datetime.datetime.now().month)):
+        _year = int(_yearAndMonth[0:4]) # "2021"→2021
+        _month = int(_yearAndMonth[5:7]) # "01"→1            
+        _thisMonthDate = self.__monthDate(_year)[_month - 1] # 指定月の日数
+        
+        print(_yearAndMonth) # 指定年月の表示
+        print("SU MO TU WE TH FR SA") # 曜日の表示
+
+        _dates = ""
+
+        # 1日目の曜日分ずらす
+        _dateObj = datetime.datetime(_year, _month, 1)
+        _startDay = _dateObj.weekday() # 指定月の1日の曜日
+        for _i in range(0, _startDay + 1):
+            _dates = "   " + _dates
+
+        # 日にちの文字列（改行付）を作成
+        for _j in range(1, _thisMonthDate + 1):
+            _space = ""
+
+            if (((_j + _startDay + 1) % 7) == 0):
+                _space = "\n"
+            else:
+                _space = " "
+
+            if (_j < 10):
+                _j = " " + str(_j)
+
+            _dates += (str(_j) + _space)
+        
+        print(_dates)
+
+_calendar = Calendar()
+_calendar.showMonth("2020/2") # 指定年月のカレンダー表示
+_calendar.showMonth() # 今月のカレンダー表示
 ```
 
 
