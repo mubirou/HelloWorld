@@ -15,7 +15,7 @@
 |項目|備考|JavaScript|Python|Java|C#|C++|PHP|
 |:--|:--|:--:|:--:|:--:|:--:|:--:|:--:|
 |[偏差値](#偏差値)|偏差値を調べる|〇|〇|||||
-|[カレンダー](#カレンダー)|指定年月のカレンダー表示、日付計算|〇||||||
+|[カレンダー](#カレンダー)|指定年月のカレンダー表示、日付計算|〇|〇|||||
 |[鬼ごっこ](#鬼ごっこ)|オブジェクト間の連携|〇||||||
 |[読書記録](#読書記録)|継承|〇||||||
 |[組み込みタイマー](#組み込みタイマー)|委譲、オブジェクトの中のオブジェクト|〇||||||
@@ -900,8 +900,8 @@ class Calendar {
 _calendar = new Calendar(); //カレンダーオブジェクトの生成
 _calendar.showMonth("2021/4"); //指定年月のカレンダー表示
 _calendar.showMonth(); //今月のカレンダー表示
-console.log(_calendar.showDifferenceDate("2021/2/25")); //=> 37
-console.log(_calendar.showDifferenceDate("2021/02/25")); //=> 37
+console.log(_calendar.showDifferenceDate("2021/2/25")); //=> 今日までとの差
+console.log(_calendar.showDifferenceDate("2021/02/25")); //=> 今日までとの差
 console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
 ```
 
@@ -909,10 +909,10 @@ console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
 
 ```
 import datetime
+import re  # 正規表現
 
 class Calendar:
     def __init__(self):
-        #self.__showMonth("2020/2")
         pass
 
     # 閏年調査
@@ -922,7 +922,7 @@ class Calendar:
         elif ((_year % 4 == 0) and (_year % 100 != 0)):
             return True
         return False
-    
+
     # 各月の日数リスト（閏年対応）
     def __monthDate(self, _year):
         self.__monthDateList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -931,19 +931,19 @@ class Calendar:
         return self.__monthDateList
 
     # カレンダー表示
-    def showMonth(self, _yearAndMonth = str(datetime.datetime.now().year) + "/" + str(datetime.datetime.now().month)):
-        _year = int(_yearAndMonth[0:4]) # "2021"→2021
-        _month = int(_yearAndMonth[5:7]) # "01"→1            
-        _thisMonthDate = self.__monthDate(_year)[_month - 1] # 指定月の日数
-        
-        print(_yearAndMonth) # 指定年月の表示
-        print("SU MO TU WE TH FR SA") # 曜日の表示
+    def showMonth(self, _yearAndMonth=str(datetime.datetime.now().year) + "/" + str(datetime.datetime.now().month)):
+        _year = int(_yearAndMonth[0:4])  # "2021"→2021
+        _month = int(_yearAndMonth[5:7])  # "01"→1
+        _thisMonthDate = self.__monthDate(_year)[_month - 1]  # 指定月の日数
+
+        print(_yearAndMonth)  # 指定年月の表示
+        print("SU MO TU WE TH FR SA")  # 曜日の表示
 
         _dates = ""
 
         # 1日目の曜日分ずらす
         _dateObj = datetime.datetime(_year, _month, 1)
-        _startDay = _dateObj.weekday() # 指定月の1日の曜日
+        _startDay = _dateObj.weekday()  # 指定月の1日の曜日
         for _i in range(0, _startDay + 1):
             _dates = "   " + _dates
 
@@ -960,12 +960,43 @@ class Calendar:
                 _j = " " + str(_j)
 
             _dates += (str(_j) + _space)
-        
+
         print(_dates)
 
+    # 指定日と指定日間の日数を返す（明日と今日が指定日の場合1が返る）
+    def showDifferenceDate(self, _end, _start=str(datetime.datetime.now().year) + "/" + str(datetime.datetime.now().month) + "/" + str(datetime.datetime.now().day)):
+        # END
+        _endYear = int(_end[0:4])
+        _endMonth = int(re.sub("\\D", "", _end[5:7]))  # 正規表現（"02","2/"→2）
+        _count = 0
+        for _i in range(0, len(_end)):
+            if (_end[_i:_i+1] == "/"):
+                _count += 1
+                if (_count == 2):
+                    _endDay = int(_end[_i+1:_i+3])
+
+        # START
+        _startYear = int(_start[0:4])
+        _startMonth = int(re.sub("\\D", "", _start[5:7]))  # 正規表現（"02","2/"→2）
+        _count = 0
+        for _i in range(0, len(_start)):
+            if (_start[_i:_i+1] == "/"):
+                _count += 1
+                if (_count == 2):
+                    _startDay = int(_start[_i+1:_i+3])
+
+        _start = datetime.datetime(_startYear, _startMonth, _startDay)
+        _end = datetime.datetime(_endYear, _endMonth, _endDay)
+        _differenceDays = _end - _start
+        return _differenceDays.days
+
+
 _calendar = Calendar()
-_calendar.showMonth("2020/2") # 指定年月のカレンダー表示
+_calendar.showMonth("2002/8")  # 指定年月のカレンダー表示
 _calendar.showMonth() # 今月のカレンダー表示
+print(_calendar.showDifferenceDate("2021/2/25")) #=> 今日までとの差
+print(_calendar.showDifferenceDate("2021/02/25"))  # => 今日までとの差
+print(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")) #=> 40
 ```
 
 
