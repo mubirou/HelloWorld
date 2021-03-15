@@ -907,6 +907,10 @@ console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
 
 ◆Python編
 
+Calendar(): コンストラクタ  
+Calenar.showMonth(): 指定日のカレンダー表示  
+Calenar.showDifferenceDate(): 指定日と指定日間の日数を返す  
+
 ```
 import datetime
 import re  # 正規表現
