@@ -1151,6 +1151,138 @@ _cocoya.showMembers(); //メンバー情報の一覧
 _cocoya.check(); //各メンバー間の距離と方向を調べる
 ```
 
+◆Python編
+
+```
+# =================
+# Cocoyaクラス
+# =================
+import math
+
+class Cocoya:
+    def __init__(self):
+        self.__members = []
+    
+    def addMember(self, _member):
+        self.__members.append(_member)
+    
+    def showMembers(self):
+        for _tmp in self.__members:
+            print(_tmp.name, _tmp.northPos, _tmp.eastPos, _tmp.isDemon)
+
+    def check(self): # 全員の位置情報と感染状況をチェックし〇km以内の場合に警報する
+        _r = 6371 # 地球の半径（km）
+
+        # 1対1の全組み合わせのチェック
+        for i in range(0, len(self.__members)):
+
+            for j in range(i+1, len(self.__members)):
+                # Aの北緯（緯度）と東経（経度）
+                _nPosA = self.__members[i].northPos
+                _ePosA = self.__members[i].eastPos
+
+                # Bの北緯と東経
+                _nPosB = self.__members[j].northPos
+                _ePosB = self.__members[j].eastPos
+
+                # TEST中
+                _direction = self.__geoDirection(_nPosA, _ePosA, _nPosB, _ePosB)
+
+                # 弧度法（ラジアン）へ変換
+                _nPosA *= math.pi / 180
+                _ePosA *= math.pi / 180
+                _nPosB *= math.pi / 180
+                _ePosB *= math.pi / 180
+
+                # AとBとの距離（km）
+                _distance = _r * math.acos(math.cos(_nPosA) * math.cos(_nPosB) * math.cos(_ePosB - _ePosA) + math.sin(_nPosA) * math.sin(_nPosB))
+
+                # DEBUG（オプション）
+                _distance = round(_distance * 100) / 100
+                print(self.__members[i].name + "⇒" + self.__members[j].name + ": " + str(_distance) + "km" + " / " + str(_direction) + "°")
+
+    # 2点間の角度（北0° 東90° 南180° 西270°）を返す
+    def __geoDirection(self, _nPosA, _ePosA, _nPosB, _ePosB): # Aの北緯, Aの東経, Bの北緯, Bの東経
+        Y = math.cos(_ePosB * math.pi / 180) * math.sin(_nPosB * math.pi / 180 - _nPosA * math.pi / 180)
+        X = math.cos(_ePosA * math.pi / 180) * math.sin(_ePosB * math.pi / 180) - math.sin(_ePosA * math.pi / 180) * math.cos(_ePosB * math.pi / 180) * math.cos(_nPosB * math.pi / 180 - _nPosA * math.pi / 180)
+        dirE0 = 180 * math.atan2(Y, X) / math.pi
+        if (dirE0 < 0):
+            dirE0 = dirE0 + 360
+        dirN0 = (dirE0 + 90) % 360
+        return round(dirN0)
+
+# =================
+# Memberクラス
+# =================
+class Member:
+    def __init__(self, _name):
+        self.__name = _name
+        self.__northPos = None # 北緯
+        self.__eastPos = None # 東経
+        self.__isDemon = False # ウィルス感染状況
+
+    def setPosition(self, _northPos, _eastPos): # 北緯（緯度）, 東経（経度）
+        self.__northPos = _northPos
+        self.__eastPos = _eastPos
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def northPos(self):
+        return self.__northPos # 北緯（緯度）
+
+    @property
+    def eastPos(self):
+        return self.__eastPos # 東経（経度）
+
+    @property
+    def isDemon(self):
+        return self.__isDemon
+
+    @isDemon.setter
+    def isDemon(self, arg):
+        self.__isDemon = arg
+
+
+# =================
+# 実行
+# =================
+# メンバー
+_member1 = Member("A")
+_member2 = Member("B")
+_member3 = Member("C")
+
+# 登録
+_cocoya = Cocoya()
+_cocoya.addMember(_member1)
+_cocoya.addMember(_member2)
+_cocoya.addMember(_member3)
+
+# 鬼
+_member2.isDemon = True
+
+# 位置のセット
+_member1.setPosition(35.69249397906168, 139.70106485400788) # ALTA前
+#_member1.setPosition(35.68472052734823, 139.70113392865585) # 鉄緑会本部前
+#_member1.setPosition(35.70082425083744, 139.7706831191022) # 九州じゃんがら秋葉本店
+#_member1.setPosition(35.67411566475787, 139.7168733264519) # 神宮球場ホームベース
+
+_member2.setPosition(35.69190209347951, 139.70275307933625) # 紀伊国屋書店本店前
+#_member2.setPosition(35.6810697406674, 139.7112894578003) # 千駄ヶ谷駅改札
+#_member2.setPosition(35.690088547140604, 139.72191559301672) # 我楽多屋
+#_member2.setPosition(35.67512700463573, 139.71734255456653) # 神宮球場バックスクリーン
+
+_member3.setPosition(35.69293465316442, 139.70194307270413) # 沖縄そば･やんばる
+#_member3.setPosition(35.7067699939533, 139.66641660292396) # フジヤカメラ本店
+#_member3.setPosition(35.69270736096414, 139.6997132857424) # 但馬屋珈琲本店
+
+_cocoya.showMembers() # メンバー情報の一覧
+_cocoya.check() # 各メンバー間の距離と方向を調べる
+```
+
+
 
 <a name="読書記録"></a>
 
