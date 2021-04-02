@@ -17,7 +17,7 @@
 |[偏差値](#偏差値)|偏差値を調べる|〇|〇|||||
 |[カレンダー](#カレンダー)|指定年月のカレンダー表示、日付計算|〇|〇|||||
 |[鬼ごっこ](#鬼ごっこ)|オブジェクト間の連携|〇|〇|||||
-|[読書記録](#読書記録)|継承|〇||||||
+|[読書記録](#読書記録)|継承|〇|〇|||||
 |[組み込みタイマー](#組み込みタイマー)|委譲、オブジェクトの中のオブジェクト|〇||||||
 
 作成者：夢寐郎  
@@ -34,7 +34,7 @@
 ## 1+2+3+4+5+6+7+8+9+10 = ?
 （1から10までの自然数の和）
 
-◆JavaScript編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
+👇JavaScript編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
 
 * window.alert()メソッド
 * console.log()メソッド
@@ -53,7 +53,7 @@ x = 1+2+3+4+5+6+7+8+9+10;
 console.log(x); //=> 55
 ```
 
-◆Python編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
+👇Python編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
 
 ```
 print(1+2+3+4+5+6+7+8+9+10) #=> 55
@@ -75,7 +75,7 @@ print(x) #=> 55
 （処理速度：足し算 > 等差数列の和 >>>（数十倍）>>> for文）  
 （可読性、汎用性 vs 処理速度）
 
-◆JavaScript編
+👇JavaScript編
 
 * 関数（function）と引数
 * 変数宣言（let,var）
@@ -101,7 +101,7 @@ function blackbox(end) {
 console.log(blackbox(100)); //=> 5050
 ```
 
-◆Python編
+👇Python編
 
 ```
 print(1/2*100*(100+1)) #=> 5050.0
@@ -123,7 +123,7 @@ print(blackbox(100)) #=> 5050
 
 ## 1+2+3+4+5+6+7+8+9+10+...+920918 = ?
 
-◆JavaScript編
+👇JavaScript編
 
 ```
 function blackbox(end) {
@@ -143,7 +143,7 @@ function blackbox(end) {
 console.log(blackbox(920918)); //=> 424045441821
 ```
 
-◆Python編
+👇Python編
 
 ```
 def blackbox(end):
@@ -169,7 +169,7 @@ print(blackbox(920918)) #=> 424045441821.0
 
 「処理した結果を後で利用」したい場合は、function内に「return文」を記述します。
 
-◆JavaScript編
+👇JavaScript編
 
 ```
 function blackbox() {
@@ -201,7 +201,7 @@ x = blackbox(1, 100);
 console.log(x); //=> 1～100までの乱数
 ```
 
-◆Python編
+👇Python編
 
 ```
 def blackbox():
@@ -243,7 +243,7 @@ print(x) #=> 1～100までの乱数
 
 # ◆もしも…
 
-◆JavaScript編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#if%E6%96%87)）
+👇JavaScript編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#if%E6%96%87)）
 
 ```
 if (new Date().getHours() >= 23) {
@@ -278,7 +278,7 @@ console.log(blackbox(60)); //=> 60以上65未満
 console.log(blackbox(66)); //=> 65以上
 ```
 
-◆Python編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#if%E6%96%87)）
+👇Python編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#if%E6%96%87)）
 
 ```
 import datetime
@@ -316,7 +316,7 @@ print(blackbox(66)) #=> 65以上
 
 # 繰り返し…
 
-◆JavaScript編
+👇JavaScript編
 
 👇for文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#for%E6%96%87)）
 ```
@@ -335,7 +335,7 @@ while (count < 10) { //間違えて「=」にすると無限ループ
 }
 ```
 
-◆Python編
+👇Python編
 
 👇for文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#for%E6%96%87)）
 ```
@@ -358,7 +358,7 @@ while (count < 10): //()内が「True」だと無限ループ（=にするとErr
 
 ## 1 + 1 = 11 ?
 
-◆JavaScript編
+👇JavaScript編
 
 ```
 console.log(1); //=> 1
@@ -377,7 +377,7 @@ y = x + 1;
 console.log(y); //=> 11
 ```
 
-◆Python編
+👇Python編
 
 ```
 print(1) #=> 1
@@ -398,7 +398,7 @@ y = x + 1 #TypeError: can only concatenate str (not "int") to str
 
 ### 数値 + 文字列 = 文字列
 
-◆JavaScript編
+👇JavaScript編
 
 ```
 x = 100;
@@ -412,7 +412,7 @@ y = "トータル" + x + "点です";
 console.log(y); //=> トータル100点です
 ```
 
-◆Python編
+👇Python編
 
 ```
 x = 100
@@ -428,7 +428,7 @@ print(y) #=> トータル100点です
 
 ### データ型を調べる
 
-◆JavaScript編
+👇JavaScript編
 
 ```
 console.log(typeof 1); //=> number
@@ -440,7 +440,7 @@ console.log(1 == "1"); //=> true
 console.log(1 === "1");  //=> false
 ```
 
-◆Python編
+👇Python編
 
 ```
 print(type(1)) #=> <class 'int'>
@@ -510,7 +510,7 @@ print(1 is "1") #=> False（厳密一致）
 
 上記の機能や属性を持った「見えないオブジェクト」を作成します。
 
-◆JavaScript編
+👇JavaScript編
 
 ```
 class Member {
@@ -580,7 +580,7 @@ _0001.useMoney(2856);
 console.log(_0001.money); //=> 25144
 ```
 
-◆Python編
+👇Python編
 
 ここから以下のような様々な知識が必要になります
 * クラス（class）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E3%82%AF%E3%83%A9%E3%82%B90)）
@@ -664,7 +664,7 @@ print(_0001.money) #=> 25144
 0点の偏差値は約37.8。  
 100点の偏差値は約62.2。    
 
-◆JavaScript編
+👇JavaScript編
 
 new DeviationValue(): コンストラクタ  
 DeviationValue.scores: 全員の点数  
@@ -783,7 +783,7 @@ print(_deviation.exec(0)) #=> 37.75255128608411（0点の偏差値）
 
 # ◆カレンダー
 
-◆JavaScript編
+👇JavaScript編
 
 new Calendar(): コンストラクタ  
 Calenar.showMonth(): 指定日のカレンダー表示  
@@ -905,7 +905,7 @@ console.log(_calendar.showDifferenceDate("2021/02/25")); //=> 今日までとの
 console.log(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")); //=> 40
 ```
 
-◆Python編
+👇Python編
 
 Calendar(): コンストラクタ  
 Calenar.showMonth(): 指定日のカレンダー表示  
@@ -1010,7 +1010,7 @@ print(_calendar.showDifferenceDate("2021/2/25", "2021/1/16")) #=> 40
 
 スマホ等の位置情報をもとにメンバーとの距離と方向を調べる。
 
-◆JavaScript編
+👇JavaScript編
 
 * Cocoyaクラス  
     * new Cocoya(): コンストラクタ  
@@ -1151,7 +1151,7 @@ _cocoya.showMembers(); //メンバー情報の一覧
 _cocoya.check(); //各メンバー間の距離と方向を調べる
 ```
 
-◆Python編
+👇Python編
 
 * Cocoyaクラス  
     * Cocoya(): コンストラクタ  
@@ -1299,7 +1299,7 @@ _cocoya.check() # 各メンバー間の距離と方向を調べる
 
 # ◆読書記録
 
-◆JavaScript編
+👇JavaScript編
 
 * Bookクラス（スーパークラス）
     * new Book(): コンストラクタ
@@ -1421,7 +1421,7 @@ callbackFunction = () => {
 _timerID = setTimeout(callbackFunction, 2000); //2秒後実行
 ```
 
-◆Python編
+👇Python編
 
 * Bookクラス（スーパークラス）
     * Book(): コンストラクタ
@@ -1564,7 +1564,7 @@ print(_book1.readingDate) # 読了日
 
 # ◆組み込みタイマー
 
-◆JavaScript編
+👇JavaScript編
 
 * Timerクラス
     * new Timer(): コンストラクタ
