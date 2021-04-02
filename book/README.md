@@ -318,7 +318,7 @@ print(blackbox(66)) #=> 65以上
 
 👇JavaScript編
 
-👇for文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#for%E6%96%87)）
+①for文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#for%E6%96%87)）
 ```
 for (let i = 0; i < 10; i++) {
     console.log(i); //=> 0,1,2,...,9
@@ -326,7 +326,7 @@ for (let i = 0; i < 10; i++) {
 ```
 ++（インクリメント）については[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)
 
-👇while文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#while%E6%96%87)）
+②while文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#while%E6%96%87)）
 ```
 count = 0;
 while (count < 10) { //間違えて「=」にすると無限ループ
@@ -337,13 +337,13 @@ while (count < 10) { //間違えて「=」にすると無限ループ
 
 👇Python編
 
-👇for文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#for%E6%96%87)）
+①for文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#for%E6%96%87)）
 ```
 for i in range(0,10): #第１引数を省略すると0扱い
     print(i) #=> 0,1,2,3,4,5,6,7,8,9
 ```
 
-👇while文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#while%E6%96%87)）
+②while文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#while%E6%96%87)）
 ```
 count = 0
 while (count < 10): //()内が「True」だと無限ループ（=にするとError）
