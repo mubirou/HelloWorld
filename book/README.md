@@ -1421,6 +1421,144 @@ callbackFunction = () => {
 _timerID = setTimeout(callbackFunction, 2000); //2秒後実行
 ```
 
+◆Python編
+
+* Bookクラス（スーパークラス）
+    * Book(): コンストラクタ
+    * Book.author: 著者名
+    * Book.pageCount: 頁数
+    * Book.publishedDate: 発行日
+    * Book.publiser: 出版社
+    * Book.title: 書籍名
+    * Book.description: 説明
+
+* MyBookクラス（サブクラス）
+    * MyBook(): コンストラクタ
+    * MyBook.star: 星（評価）
+    * MyBook.review: レビュー
+    * MyBook.readingDate: 読了日
+
+```
+# =================
+# Bookクラス
+# =================
+import json
+import urllib.request
+
+class Book:
+    def __init__(self, _ISBN):
+        self.__isbn = _ISBN # ISBN
+        self.__authors = None # 著者名
+        self.__pageCount = None # 頁数
+        self.__publishedDate = None # 発行日
+        self.__publisher = None # 出版社
+        self.__title = None # 書籍名
+
+        self.__search1() # Google Books APIs
+        self.__search2() # OpenDB
+        # 他にも国立国会図書館のデータを利用する方法もあり（要検証）
+    
+    def __search1(self): # Google Books APIs
+        _url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + str(self.__isbn)
+        _request = urllib.request.urlopen(_url)
+        _json  = json.loads(_request.read().decode('utf-8'))
+        self.__author = _json['items'][0]['volumeInfo']['authors'][0] # 著者名
+        self.__pageCount = _json['items'][0]['volumeInfo']['pageCount'] # 頁数
+        self.__publishedDate = _json['items'][0]['volumeInfo']['publishedDate'] # 発行日
+        self.__title = _json['items'][0]['volumeInfo']['title'] # 書籍名
+        self.__description = _json['items'][0]['volumeInfo']['description'] # 説明
+    
+    def __search2(self): # OpenDB
+        _url = "https://api.openbd.jp/v1/get?isbn=" + str(self.__isbn)
+        _request = urllib.request.urlopen(_url)
+        _json  = json.loads(_request.read().decode('utf-8'))
+        #self.__author = _json[0]['summary']['author'] # 著者名
+        #self.__publishedDate = _json[0]['summary']['pubdate'] # 発行日
+        self.__publisher  = _json[0]['summary']['publisher'] # 出版社
+        #self.__title = _json[0]['summary']['title'] # 書籍名
+
+    @property
+    def author(self):
+        return self.__author # 著者名
+
+    @property
+    def pageCount(self):
+        return self.__pageCount # 頁数
+
+    @property
+    def publishedDate(self):
+        return self.__publishedDate # 発行日
+    
+    @property
+    def publiser(self):
+        return self.__publisher # 出版社
+    
+    @property
+    def title(self):
+        return self.__title # 書籍名
+    
+    @property
+    def description(self):
+        return self.__description # 説明
+
+# =================
+# MyBookクラス
+# =================
+class MyBook(Book): # Bookクラスを継承
+    def __init__(self, _ISBN):
+        super(MyBook, self).__init__(_ISBN) # スーパークラスのコンストラクタを呼び出す
+        self.__review = None # レビュー
+        self.__star = None # 星（評価）
+        self.__readingDate = None # 読了日
+    
+    # MyBook.review のゲッター＆セッター
+    @property
+    def review(self):
+        return self.__review
+
+    @review.setter
+    def review(self, newValue):
+        self.__review = newValue
+
+    # MyBook.star のゲッター＆セッター
+    @property
+    def star(self):
+        return self.__star 
+
+    @star.setter
+    def star(self, newValue):
+        self.__star  = newValue
+    
+    # MyBook.readingDate のゲッター＆セッター
+    @property
+    def readingDate(self):
+        return self.__readingDate 
+
+    @readingDate.setter
+    def readingDate(self, newValue):
+        self.__readingDate  = newValue
+
+# =================
+# 実行
+# =================
+#_book1 = Book(9784480433008)
+_book1 = MyBook(9784480433008)
+print(_book1.author) # 著者名
+print(_book1.pageCount) # 頁数
+print(_book1.publishedDate) # 発行日
+print(_book1.publiser) # 出版社（これのみOpenDBより）
+print(_book1.title) # 書籍名
+print(_book1.description) # 説明
+
+_book1.star = "★★★★★"
+_book1.review = "著者は東大医学部卒、東大名誉教授、解剖学が専門。とても面白い。"
+_book1.readingDate = "2019/07/08"
+
+print(_book1.star) # 星（評価）
+print(_book1.review) # レビュー
+print(_book1.readingDate) # 読了日
+```
+
 
 <a name="組み込みタイマー"></a>
 
