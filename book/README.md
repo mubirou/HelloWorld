@@ -1318,7 +1318,7 @@ _cocoya.check() # 各メンバー間の距離と方向を調べる
 
 ```
 //=================
-//Cocoyaクラス
+// Bookクラス
 //=================
 class Book {
     constructor(_ISBN) {
