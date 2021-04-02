@@ -733,7 +733,7 @@ console.log(_deviation.exec(100)); //=> 62.24744871391589（100点の偏差値�
 console.log(_deviation.exec(0)); //=> 37.75255128608411（0点の偏差値）
 ```
 
-◆Python版
+👇Python編
 
 ```
 import math
