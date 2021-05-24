@@ -100,7 +100,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/" id="id001">mubirou</a>
+    <a href="https://www.instagram.com/mubirou.book/" id="id001">mubirou</a>
   </body>
 </html>
 ```
@@ -120,8 +120,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/" class="class001">mubirou Books</a><br>
-    <a href="https://www.instagram.com/mubirou_touring/" class="class001">mubirou Touring</a>
+    <a href="https://www.instagram.com/mubirou.book/" class="class001">MUBIROU BOOK</a><br>
+    <a href="https://www.instagram.com/mubirou.studio/" class="class001">MUBIROU STUDIO</a>
   </body>
 </html>
 ```
@@ -138,8 +138,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/">mubirou Books</a>
-    <p class="class001">mubirou Touring</a>
+    <a href="https://www.instagram.com/mubirou.book/">MUBIROU BOOK</a>
+    <p class="class001">MUBIROU STUDIO</a>
   </body>
 </html>
 ```
@@ -160,8 +160,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
   </head>
   <body>
     <p>
-      <span class="class001">mubirou Books</span><br>
-      <span class="class002">mubirou Touring</span>
+      <span class="class001">MUBIROU BOOK</span><br>
+      <span class="class002">MUBIROU STUDIO</span>
     </p>
   </body>
 </html>
@@ -195,7 +195,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://github.com/mubirou">mubirou</a>
+    <a href="https://github.com/mubirou">MUBIROU</a>
   </body>
 </html>
 ```
@@ -217,7 +217,7 @@ a {
     <link rel="stylesheet" href="sample.css" type="text/css">
   </head>
   <body>
-    <a href="https://github.com/mubirou">mubirou</a>
+    <a href="https://github.com/mubirou">MUBIROU</a>
   </body>
 </html>
 ```
