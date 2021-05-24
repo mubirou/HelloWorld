@@ -222,9 +222,10 @@ a {
 </html>
 ```
 
-実行環境：Windows 7、Google Chrome 60  
+実行環境：Windows 10、Google Chrome 90  
 作成者：夢寐郎  
-作成日：2017年08月10日
+作成日：2017年08月10日  
+更新日：2021年05月24日
 
 
 <a name="XXX"></a>
