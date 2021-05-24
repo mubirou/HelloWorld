@@ -191,7 +191,10 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     <meta charset="UTF-8">
     <title>xxx</title>
     <style>
-      a { color: #800000; }
+      a {
+        color: #800000;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
