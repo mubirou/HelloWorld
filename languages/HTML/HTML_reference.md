@@ -100,7 +100,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou.book/" id="id001">mubirou</a>
+    <a href="https://www.instagram.com/mubirou.book/" id="id001">MUBIROU</a>
   </body>
 </html>
 ```
