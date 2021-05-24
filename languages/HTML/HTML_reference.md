@@ -79,8 +79,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/">mubirou Books</a><br>
-    <a href="https://www.instagram.com/mubirou_touring/">mubirou Touring</a>
+    <a href="https://www.instagram.com/mubirou.book/">MUBIROU BOOK</a><br>
+    <a href="https://www.instagram.com/mubirou.studio/">MUBIROU STUDIO</a>
   </body>
 </html>
 ```
