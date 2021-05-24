@@ -63,7 +63,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 # <b>CSS の基礎</b>
 
 ### 3種類のセレクター
-他にも「属性」「疑似クラス」セレクターがあります。
+他にも<a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Selectors">さまざまなセレクター</a>があります。
 
 1. 「要素」名
 ```
