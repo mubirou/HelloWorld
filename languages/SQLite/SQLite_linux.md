@@ -26,7 +26,7 @@
 1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール（省略可）  
     $ sudo apt install sqlite3  
     $ sqlite3 -version  
-    3.11.0 ...
+    3.31.1 ...
 
 1. バージョン確認（以下の xxx.php を Web サーバ上で実行）
     ```

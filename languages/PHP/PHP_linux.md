@@ -10,18 +10,18 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|Ubuntu 16.04.2 LTS|2017年02月|
-|Web サーバ|Apache 2.4.18|2016年07月|
-|実行エンジン|PHP 7.0.15|2017年01月|
-|エディタ|Visual Studio Code 1.9.1|2017年01月|
-|拡張機能|PHP Debug 1.10.0|ー|
-|ブラウザ|Mozilla Firefox 51.0.1|2017年01月|
+|OS|Ubuntu 20.04.2 LTS|2021年02月|
+|Web サーバ|Apache 2.4.41|2019年08月|
+|実行エンジン|PHP 7.4.3|2020年02月|
+|エディタ|Visual Studio Code 1.56.2|2021年05月|
+|拡張機能|PHP Debug 1.15.1|ー|
+|ブラウザ|Google Chrome 91.0.4472.77 |2021年05月|
 
 1. 端末で Web サーバのインストール＆起動  
     $ sudo apt-get update  
     $ sudo apt-get install apache2  
     $ apache2 -v ←バージョン確認  
-    Server version: Apache/2.4.18 (Ubuntu)  
+    Server version: Apache/2.4.41 (Ubuntu)
 
     * Web サーバの操作（参考）  
         $ service apache2 start ←起動（上記の作業で起動済）  
@@ -30,27 +30,36 @@
 
 1. PHP のインストール  
     $ sudo apt-get update  
-    $ sudo apt-get install php php-mysql php-sqlite3 libapache2-mod-php php-cgi php-common php-pear php-mbs
-tring  
+    $ sudo apt-get install php php-mysql php-sqlite3 libapache2-mod-php php-cgi php-common php-pear
     $ service apache2 restart  
     $ php -v ←バージョン確認  
-    PHP 7.0.15-0ubuntu0.16.04.2 (cli) ( NTS )  
+    PHP 7.4.3 (cli) (built: Oct  6 2020 15:47:56) ( NTS )
 
 1. エラー表示を有効にする（<b>本番環境では Off に戻す</b>）  
-    $ sudo vi /etc/php/7.0/apache2/php.ini ←PHP設定ファイルを開く  
+    $ sudo vi /etc/php/7.4/apache2/php.ini ←PHP設定ファイルを開く  
     ```
-    462行目 display_errors = On ;OffをOnに変更
+    482行目 display_errors = On ;OffをOnに変更
     ```
     * [Vi](https://ja.wikipedia.org/wiki/Vi) エディタの使い方（参考）
         * 入力モード: [i]
         * 編集モード: [Esc]
         * 行番号表示: [Esc] → 「:set number」
         * 指定行へジャンプ: [Esc] → 「:行番号」
+        * 検索: [/○○○]
         * 保存せず終了: [Esc] → 「:q!」
         * 保存して終了: [Esc] → 「ZZ」
+    * VSCodeで編集することも可能
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から PHP Debug を検索＆インストール
+
+1. パーミッションの変更  
+    $ cd /var/www  
+    $ ls -l  
+    drwxr-xr-x ... ←755（所有者以外は書込不可）  
+    $ sudo chmod -R 777 /var/www/html  
+    $ ls -l  
+    drwxrwxrwx ... ←777（所有者以外も書込可能）
 
 ## コードの記述
 
@@ -84,7 +93,7 @@ phpinfo();
 
 ## 実行
 
-1. Web ブラウザ（Firefox）を起動
+1. Web ブラウザ（Google Chrome）を起動
 
 1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/index.php を開く
 
@@ -92,4 +101,5 @@ phpinfo();
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年03月01日
+作成日: 2017年03月01日  
+更新日: 2021年05月27日
