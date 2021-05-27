@@ -16,14 +16,14 @@
 |OS|Ubuntu 20.04.2 LTS|2021年02月|
 |Web サーバ|[Apache](https://ja.wikipedia.org/wiki/Apache_HTTP_Server) 2.4.41|2019年08月|
 |データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.31.1|2020年01月|
-|実行エンジン|[PHP](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor) PHP 7.4.3|2020年02月|
+|実行エンジン|[PHP](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor) 7.4.3|2020年02月|
 |エディタ|Visual Studio Code 1.56.2|2021年05月|
 |拡張機能|PHP Debug 1.15.1|ー|
 |ブラウザ|Google Chrome 91.0|2021年05月|
 
 1. [PHP の開発環境の構築](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/PHP_linux.md) をする
 
-1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール（省略可）  
+1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール  
     $ sudo apt install sqlite3  
     $ sqlite3 -version  
     3.31.1 ...
