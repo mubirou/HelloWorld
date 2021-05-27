@@ -13,13 +13,13 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|Ubuntu 16.04.2 LTS|2017年02月|
-|Web サーバ|[Apache](https://ja.wikipedia.org/wiki/Apache_HTTP_Server) 2.4.18|2016年07月|
-|データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.11.0|2016年02月|
-|実行エンジン|[PHP](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor) 7.0.18|2017年04月|
-|エディタ|Visual Studio Code 1.14.2|2017年06月|
-|拡張機能|PHP Debug 1.11.1|2017年07月|
-|ブラウザ|Mozilla Firefox 54.0|2017年06月|
+|OS|Ubuntu 20.04.2 LTS|2021年02月|
+|Web サーバ|[Apache](https://ja.wikipedia.org/wiki/Apache_HTTP_Server) 2.4.41|2019年08月|
+|データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.31.1|2020年01月|
+|実行エンジン|[PHP](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor) PHP 7.4.3|2020年02月|
+|エディタ|Visual Studio Code 1.56.2|2021年05月|
+|拡張機能|PHP Debug 1.15.1|ー|
+|ブラウザ|Google Chrome 91.0|2021年05月|
 
 1. [PHP の開発環境の構築](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/PHP_linux.md) をする
 
@@ -28,25 +28,7 @@
     $ sqlite3 -version  
     3.31.1 ...
 
-1. バージョン確認（以下の xxx.php を Web サーバ上で実行）
-    ```
-    <?php
-        $con = new PDO('sqlite::memory:', null, null);
-        $statement = $con->prepare('SELECT sqlite_version()');
-        $statement->execute();
-        echo $statement->fetchColumn(); //=> 3.11.0
-    ?>
-    ```
-
-1. パーミッションの変更（xxx.sqlite3 を置くディレクトリ）  
-    $ cd /var/www  
-    $ ls -l  
-    drwxr-xr-x ... ←755（所有者以外は書込不可）  
-    $ sudo chmod -R 777 /var/www/html  
-    $ ls -l  
-    drwxrwxrwx ... ←777（所有者以外も書込可能）
-
-## コードの記述
+## コードの記述（その１）
 
 1. Visual Studio Code を起動
     1. [ファイル] → [新規ファイル] を選択
@@ -54,6 +36,26 @@
     1. Web サーバのルートディレクトリ（ /ver/www/html/ ）に test<b>.php</b> という名で保存 
 
 1. コードの記述（test.php）
+```
+<?php
+    $con = new PDO('sqlite::memory:', null, null);
+    $statement = $con->prepare('SELECT sqlite_version()');
+    $statement->execute();
+    echo $statement->fetchColumn(); //=> 3.11.0
+?>
+```
+
+## 実行（その１）
+
+1. Web ブラウザ（Google Chrome）を起動
+
+1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/test.php を開く
+
+1. PHPのバージョンが表示されたらOK
+
+## コードの記述（その２）
+上記の test.php を書き換える
+
 ```
 <?php
     // データベースの作成（既存の場合はファイルを開く）
@@ -79,9 +81,9 @@
 ?>
 ```
 
-## 実行
+## 実行（その２）
 
-1. Web ブラウザ（Firefox）を起動
+1. Web ブラウザ（Google Chrome）を起動
 
 1. [localhost](https://ja.wikipedia.org/wiki/Localhost)/test.php を開く
 
@@ -89,4 +91,5 @@
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年07月25日
+作成日: 2017年07月25日  
+更新日: 2021年05月27日

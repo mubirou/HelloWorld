@@ -3,7 +3,7 @@
 ## PHPについて
 
 * [PHP:Hypertext Preprocessor](https://ja.wikipedia.org/wiki/PHP:_Hypertext_Preprocessor)
-* 1995年に登場、2015年には PHP 5.X → 7.0 に約10年ぶりのメジャーバージョンアップ（互換性は維持）
+* 1995年に登場、2015年には PHP 5.X → 7.0 に約10年ぶりのメジャーバージョンアップ（互換性は維持）→ 2020年11月 PHP 8.0 リリース
 * [サーバーサイド・スクリプト](http://bit.ly/2lajhCj)言語として [Webサーバ](http://bit.ly/2mbzR4D)上で動作するプログラミング言語
 
 ## 開発環境の構築
@@ -15,7 +15,11 @@
 |実行エンジン|PHP 7.4.3|2020年02月|
 |エディタ|Visual Studio Code 1.56.2|2021年05月|
 |拡張機能|PHP Debug 1.15.1|ー|
+<<<<<<< HEAD
+|ブラウザ|Google Chrome 91.0|2021年05月|
+=======
 |ブラウザ|Google Chrome 91.0.4472.77 |2021年05月|
+>>>>>>> 0134dca55a2982409d04568f778017f64a39e55a
 
 1. 端末で Web サーバのインストール＆起動  
     $ sudo apt-get update  
