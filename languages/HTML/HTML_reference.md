@@ -62,9 +62,10 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 <a name="CSSの基礎"></a>
 # <b>CSS の基礎</b>
 
-### 3種類のセレクタ
+### 主なセレクター
+他にも<a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Selectors">さまざまなセレクター</a>があります。
 
-1. タグ名
+1. 「要素」名
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -79,13 +80,13 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/">mubirou Books</a><br>
-    <a href="https://www.instagram.com/mubirou_touring/">mubirou Touring</a>
+    <a href="https://www.instagram.com/mubirou.book/">MUBIROU BOOK</a><br>
+    <a href="https://www.instagram.com/mubirou.studio/">MUBIROU STUDIO</a>
   </body>
 </html>
 ```
 
-2. id 名（1回しか使わない場合に使用）
+2. 「ID」名（1回しか使わない場合に使用）
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -100,12 +101,12 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/" id="id001">mubirou</a>
+    <a href="https://www.instagram.com/mubirou.book/" id="id001">MUBIROU</a>
   </body>
 </html>
 ```
 
-3. class 名（複数回使う場合に使用）
+3. 「クラス」名（複数回使う場合に使用）
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -120,13 +121,15 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/" class="class001">mubirou Books</a><br>
-    <a href="https://www.instagram.com/mubirou_touring/" class="class001">mubirou Touring</a>
+    <a href="https://www.instagram.com/mubirou.book/" class="class001">MUBIROU BOOK</a><br>
+    <a href="https://www.instagram.com/mubirou.studio/" class="class001">MUBIROU STUDIO</a>
   </body>
 </html>
 ```
 
-（応用1）まとめて設定
+### セレクターの組合せ
+
+1. （応用1）まとめて設定
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -138,13 +141,13 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     </style>
   </head>
   <body>
-    <a href="https://www.instagram.com/mubirou_books/">mubirou Books</a>
-    <p class="class001">mubirou Touring</a>
+    <a href="https://www.instagram.com/mubirou.book/">MUBIROU BOOK</a>
+    <p class="class001">MUBIROU STUDIO</a>
   </body>
 </html>
 ```
 
-（応用2）絞込み設定
+2. （応用2）絞込み設定
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -160,8 +163,8 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
   </head>
   <body>
     <p>
-      <span class="class001">mubirou Books</span><br>
-      <span class="class002">mubirou Touring</span>
+      <span class="class001">MUBIROU BOOK</span><br>
+      <span class="class002">MUBIROU STUDIO</span>
     </p>
   </body>
 </html>
@@ -191,11 +194,14 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
     <meta charset="UTF-8">
     <title>xxx</title>
     <style>
-      a { color: #800000; }
+      a {
+        color: #800000;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
-    <a href="https://github.com/mubirou">mubirou</a>
+    <a href="https://github.com/mubirou">MUBIROU</a>
   </body>
 </html>
 ```
@@ -217,14 +223,15 @@ a {
     <link rel="stylesheet" href="sample.css" type="text/css">
   </head>
   <body>
-    <a href="https://github.com/mubirou">mubirou</a>
+    <a href="https://github.com/mubirou">MUBIROU</a>
   </body>
 </html>
 ```
 
-実行環境：Windows 7、Google Chrome 60  
+実行環境：Windows 10、Google Chrome 90  
 作成者：夢寐郎  
-作成日：2017年08月10日
+作成日：2017年08月10日  
+更新日：2021年05月24日
 
 
 <a name="XXX"></a>

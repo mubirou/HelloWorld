@@ -3,6 +3,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_win.md)）
+* [コメント](#コメント)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -42,6 +43,44 @@
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
+
+
+<a name="コメント"></a>
+# <b>コメント</b>
+
+### 1行コメント
+
+```
+// 〇〇〇〇〇
+```
+
+```
+x = 1 + 1 // 〇〇〇〇〇
+```
+
+```
+/*〇〇〇〇〇*/
+```
+
+### 複数行コメント
+
+```
+/*
+〇〇〇〇〇
+〇〇〇〇〇
+*/
+```
+
+```
+/*コメント開始
+〇〇〇〇〇
+〇〇〇〇〇
+コメント終了*/
+```
+
+実行環境：Windows 10 Pro、Google Chrome 88  
+作成者：夢寐郎  
+作成日：2021年03月08日  
 
 
 <a name="データ型"></a>
@@ -2606,7 +2645,7 @@ var xxx = new Date();
 xxx.getFullYear(); //年（2015等）
 xxx.getMonth(); //月（0〜11）
 xxx.getDate(); //日（1〜31）
-xxx.getDay(); //曜日（0=日曜〜5=金曜）
+xxx.getDay(); //曜日（0=日曜〜6=土曜）
 xxx.getHours(); //時（0〜23）
 xxx.getMinutes(); //分（0〜59）
 xxx.getSeconds(); //秒（0〜59）
@@ -2637,7 +2676,7 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
 実行環境：Ubuntu 16.04 LTS、Chromium 56  
 作成者：夢寐郎  
 作成日：2016年09月30日  
-更新日：2017年03月22日
+更新日：2021年01月15日
 
 
 <a name="タイマー"></a>
@@ -2799,6 +2838,13 @@ xxx.getMilliseconds(); //ミリ秒（0〜999）
     _request.onload = function() {
         console.log(this.responseText); //⑤読み込んだテキストの表示
     }
+
+    /*
+    ②はアロー関数を使うことも可能（thisの値が異なる）
+    _request.onload = () => {
+        console.log(_request.responseText);
+    }
+    */
 
     //③ヘッダの設定
     _request.open("GET", "sample.txt");

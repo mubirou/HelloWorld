@@ -3,9 +3,10 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_win.md)）
+* [コメント](#コメント)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
-* [クラス](#クラス)
+* [クラス](#クラス0)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
@@ -38,6 +39,43 @@
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
+
+<a name="コメント"></a>
+# <b>コメント</b>
+
+### 1行コメント
+
+```
+# 〇〇〇〇〇
+```
+
+```
+x = 1 + 1 # 〇〇〇〇〇
+```
+
+```
+"""〇〇〇〇〇""""
+```
+
+### 複数行コメント
+
+```
+"""
+〇〇〇〇〇
+〇〇〇〇〇
+"""
+```
+
+```
+"""コメント開始
+〇〇〇〇〇
+〇〇〇〇〇
+コメント終了"""
+```
+
+実行環境：Windows 10 Pro、Python 3.9.2  
+作成者：夢寐郎  
+作成日：2021年03月08日  
 
 
 <a name="データ型"></a>
@@ -350,7 +388,7 @@ print(convertXto10("1d", 16)) #29 ←16進数の"1d"を10進数に変換
 更新日：2020年09月02日 基数変換を追加
 
 
-<a name="クラス"></a>
+<a name="クラス0"></a>
 # <b>クラス</b>
 
 ### 最小構成
