@@ -3,7 +3,7 @@
 ## Pythonについて
 
 * 1991年に登場した汎用プログラミング言語（コンパイル不要）
-* [Python](https://ja.wikipedia.org/wiki/Python) 3 系（最新版 3.8.3）と 2 系（最終版 2.7.18）がある
+* [Python](https://ja.wikipedia.org/wiki/Python) 3 系（最新版 3.9.5）の他に 2 系（最終版 2.7.18）があったが2020年に 2 系は正式に廃止された
 * 標準を含めライブラリが充実
 * 記述には {} や ; が不要
 * インデントが重要な意味を持ち、同じ数の空白でインデントされた文がブロックとみなされる
@@ -13,22 +13,16 @@
 
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
-|OS|Ubuntu 20.04 LTS|2020年04月|
-|実行エンジン|Python 3.8.2|2020年02月|
-|エディタ|Visual Studio Code 1.46.1|2020年06月|
-|拡張機能|Python v2020.6.91350|ー|
+|OS|Ubuntu 20.04.2 LTS|2021年02月|
+|実行エンジン|Python 3.8.5|2020年07月|
+|エディタ|Visual Studio Code 1.56.2|2021年05月|
+|拡張機能|Python 2021.5.842923320|ー|
 
 1. 端末でバージョン確認  
-    $ python --version  
-    Python 2.7.18rc1
-
     $ <b>python3 --version</b>  
-    Python 3.8.2
+    Python 3.8.5
 
-    $ ls -l \`which python\` ←デフォルトの Python を調べる  
-    lrwxrwxrwx 1 root root 7  4月 15 19:45 /usr/bin/python -> python2 -> python2.7
-
-1. PyLing（コードの質のチェック用）のインストール  
+1. Pylint（コードの質のチェック用）のインストール  
     $ sudo apt-get update  
     $ <b>sudo apt-get install pylint</b>  
 
@@ -64,5 +58,5 @@ Hello,world! ←と表示されたら成功！
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年03月01日  
-更新日：2020年07月07日 Ubuntu 20.04 LTS 対応
+作成日: 2017年03月01日    
+更新日：2021年05月27日
