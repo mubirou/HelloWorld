@@ -31,7 +31,7 @@
 ## ユーザの作成
 
 ```
-$ sudo mysql -u root -p ←とりあえずLinuxのパスワードでログイン
+$ sudo mysql -u root -p ←とりあえずroot（Linuxのパスワード）でログイン
 
 mysql> SELECT host, user FROM mysql.user; ←ユーザ一覧確認
 +-----------+------------------+
