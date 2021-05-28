@@ -13,18 +13,18 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
-|実行エンジン|[Python](https://www.python.org/) 3.9.2|2021年02月|
-|エディタ|Visual Studio Code 1.53.0|2021年01月|
-|拡張機能|Python（Microsoft）|2021年02月|
+|実行エンジン|[Python](https://www.python.org/) 3.9.5|2021年05月|
+|エディタ|Visual Studio Code 1.56.2|2021年05月|
+|拡張機能|Python（Microsoft）|2021年05月|
 
 1. Python 3 のインストール
     1. https://www.python.org/ にアクセス
-    1. [Downloads]-[Download for Windows] の [Python 3.9.2] をクリック
-    1. ダウンロードした python-3.9.2-amd64.exe をダブルクリック
+    1. [Downloads]-[Windows] の [Download Windows installer (64-bit)] をクリック
+    1. ダウンロードした python-3.9.5-amd64.exe をダブルクリック
     1. [Install Now] を選択、インストール開始  
     1. コマンドプロンプトを起動してバージョン確認  
         \>py --version  
-        Python 3.9.2
+        Python 3.9.5
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から Python（Microsoft）を検索＆インストール
@@ -59,4 +59,4 @@ Hello,world! ←と表示されたら成功！（ファイルは生成されな�
 ***
 作成者: 夢寐郎  
 作成日: 2017年03月16日  
-更新日: 2021年02月24日
+更新日: 2021年05月29日
