@@ -5,6 +5,7 @@
 * MySQL は1995年に登場したオープンソースの [RDBMS](http://bit.ly/2lunAUm) 。商標権･著作権は MySQL AB（〜2008年）→ サン･マイクロシステムズ（2010年にオラクルが買収）に移行している。
 * 派生のデータベースに [MariaDB](https://ja.wikipedia.org/wiki/MariaDB) がある（Google の検索システムに採用）。
 * MySQL 5.6（2013年2月リリース）で大規模なリファクタリングが行われて以降は、MariaDB と MySQL との間で新機能の取り扱い方などで相違がある。
+* MySQL 5.7.8（2015年8月リリース）以降、複雑なパスワードを要求するようになっている。
 *  データの操作を行う[問い合わせ言語](http://bit.ly/2mvUUPR)として [SQL](https://ja.wikipedia.org/wiki/SQL) を利用。
 
 ## 開発環境の構築
@@ -12,18 +13,18 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
-|ソフトウェア|[XAMPP](https://ja.wikipedia.org/wiki/XAMPP) 7.1.1|2017年2月|
-|Web サーバ|Apache 2.4.25|2016年12月|
-|データベース|[MariaDB](https://ja.wikipedia.org/wiki/MariaDB) 10.1.21|2017年1月|
-|実行エンジン|PHP 7.1.1|2017年01月|
-|エディタ|Visual Studio Code 1.10.2|2017年03月|
-|拡張機能|PHP Debug 1.10.0|ー|
-|拡張機能|[vscode-database](http://bit.ly/2mh8nYF) 1.2.0|ー|
-|ブラウザ|Google Chrome 57.0.2987.98|2017年03月|
+|ソフトウェア|[XAMPP](https://ja.wikipedia.org/wiki/XAMPP) 8.0.6|2021年05月|
+|Web サーバ|Apache 2.4.47|2020年04月|
+|データベース|[MariaDB](https://ja.wikipedia.org/wiki/MariaDB) 10.1.21|2021年05月|
+|実行エンジン|PHP 8.0.6|2021年05月|
+|エディタ|Visual Studio Code 1.56.2|2021年05月|
+|拡張機能|PHP Debug 1.15.1|ー|
+|拡張機能|[vscode-database](http://bit.ly/2mh8nYF) 2.2.3|ー|
+|ブラウザ|Google Chrome 91.0|2021年05月|
 
 1. [XAMPP](https://ja.wikipedia.org/wiki/XAMPP) のインストール
     1. https://www.apachefriends.org/download.html にアクセス
-    1. [XAMPP for Windows 5.6.30, 7.0.15 & 7.1.1] の [7.1.1 / PHP 7.1.1] の [Download（32bit）] をクリック、ダウンロード
+    1. [XAMPP for Windows 7.3.28, 7.4.19 & 8.0.6] の [8.0.6 / PHP 8.0.6] の [Download（64bit）] をクリック、ダウンロード
     1. ダウンロードした .exe ファイルをダブルクリック、インストール
     1. XAMPP Control Panel が起動したら以下の Service の [Start] ボタンをクリック
         * Apache
@@ -36,13 +37,17 @@
 
 1. エディタで C:\xampp\php\php.ini を開いて、エラー表示が有効か確認する（<b>本番環境では Off にする</b>）
     ```
-    477行目 display_errors=On  
+    501行目 display_errors=On  
     ```
 
 1. [環境変数](http://bit.ly/2lCIAgK)の設定  
-    1. タスクバーのスタートボタンを右クリック → [コントロールパネル] → [システムとセキュリティ] → [システム] → [システムの詳細設定] → [環境変数] を開く
+    1. [ここに入力して検索] → [Windows Power Shell] → [管理者として実行] を選択（要注意）
+    1. コマンドを実行
+    ```
+    > Start C:\Windows\system32\rundll32.exe sysdm.cpl, EditEnvironmentVariables
+    ```
     1. [システム環境変数] で変数 "Path" を探して選択 → [編集] ボタンをクリック
-    1. 変数値の最後に ;C:\xampp\mysql\bin を追加（mysql.exeが存在）
+    1. 変数値の最後に C:\xampp\mysql\bin を追加（mysql.exeが存在）
     1. Windows を再起動
     1. コマンドプロンプトでバージョン確認  
         \>mysql --version  
