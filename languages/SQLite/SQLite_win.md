@@ -16,18 +16,18 @@
 |カテゴリ|ソフトウェア|リリース|
 |:--:|:--:|:--:|
 |OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
-|ソフトウェア|[XAMPP](https://ja.wikipedia.org/wiki/XAMPP) 7.1.1|2017年2月|
-|Web サーバ|Apache 2.4.25|2016年12月|
-|データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.15.1|2016年11月|
-|実行エンジン|PHP 7.1.1|2017年01月|
-|エディタ|Visual Studio Code 1.10.2|2017年03月|
-|拡張機能|PHP Debug 1.10.0|ー|
-|拡張機能|[vscode-database](http://bit.ly/2mh8nYF) 1.2.0|ー|
-|ブラウザ|Google Chrome 57.0.2987.98|2017年03月|
+|ソフトウェア|[XAMPP](https://ja.wikipedia.org/wiki/XAMPP) 8.0.6|2021年5月|
+|Web サーバ|Apache 2.4.47|2020年04月|
+|データベース|[SQLite](https://ja.wikipedia.org/wiki/SQLite) 3.33.0|2020年08月|
+|実行エンジン|PHP 8.0.6|2021年05月|
+|エディタ|Visual Studio Code 1.56.2|2021年05月|
+|拡張機能|PHP Debug 1.15.1|ー|
+|拡張機能|[vscode-database](http://bit.ly/2mh8nYF) 2.2.3|ー|
+|ブラウザ|Google Chrome 91.0|2021年05月|
 
 1. [XAMPP](https://ja.wikipedia.org/wiki/XAMPP) のインストール
     1. https://www.apachefriends.org/download.html にアクセス
-    1. [XAMPP for Windows 5.6.30, 7.0.15 & 7.1.1] の [7.1.1 / PHP 7.1.1] の [Download（32bit）] をクリック、ダウンロード
+    1. [XAMPP for Windows 7.3.28, 7.4.19 & 8.0.6] の [8.0.6 / PHP 8.0.6] の [Download（64bit）] をクリック、ダウンロード
     1. ダウンロードした .exe ファイルをダブルクリック、インストール
     1. XAMPP Control Panel が起動したら Service（<b>Apache</b>） の [Start] ボタンをクリック
 
@@ -36,20 +36,20 @@
     <?php phpinfo(); ?>
     ```
 
-1. バージョン確認（以下の xxx.php を Web サーバ上で実行）  
+1. バージョン確認（以下の test.php を Web サーバ上で実行）  
     ※ドキュメントルートは（ C:\xampp\htdocs ）
     ```
     <?php
         $con = new PDO('sqlite::memory:', null, null);
         $statement = $con->prepare('SELECT sqlite_version()');
         $statement->execute();
-        echo $statement->fetchColumn(); //=> 3.15.1
+        echo $statement->fetchColumn(); //=> 3.33.0
     ?>
     ```
 
 1. エディタで C:\xampp\php\php.ini を開いて、エラー表示が有効か確認する（<b>本番環境では Off にする</b>）
     ```
-    477行目 display_errors=On  
+    501行目 display_errors=On  
     ```
 
 1. Visual Studio Codeに拡張機能の追加  
@@ -92,4 +92,5 @@
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年07月26日
+作成日: 2017年07月26日  
+更新日: 2021年05月29日
