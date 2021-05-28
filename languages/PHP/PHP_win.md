@@ -12,7 +12,7 @@
 |:--:|:--:|:--:|
 |OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
 |ソフトウェア|[XAMPP](https://ja.wikipedia.org/wiki/XAMPP) 8.0.6|2021年5月|
-|Web サーバ|Apache 2.4.47|2021年04月|
+|Web サーバ|Apache 2.4.47|2020年04月|
 |実行エンジン|PHP 8.0.6|2021年05月|
 |エディタ|Visual Studio Code 1.56.2|2021年05月|
 |拡張機能|PHP Debug 1.15.1|ー|
