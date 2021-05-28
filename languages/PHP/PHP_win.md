@@ -16,7 +16,7 @@
 |実行エンジン|PHP 8.0.6|2021年05月|
 |エディタ|Visual Studio Code 1.56.2|2021年05月|
 |拡張機能|PHP Debug 1.15.1|ー|
-|ブラウザ|Google Chrome 90.0|2021年04月|
+|ブラウザ|Google Chrome 91.0|2021年05月|
 
 1. [XAMPP](https://ja.wikipedia.org/wiki/XAMPP) のインストール
     1. https://www.apachefriends.org/download.html にアクセス
