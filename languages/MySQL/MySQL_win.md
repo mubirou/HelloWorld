@@ -51,7 +51,7 @@
     1. Windows を再起動
     1. コマンドプロンプトでバージョン確認  
         \>mysql --version  
-        mysql  Ver 15.1 Distrib 10.1.21-MariaDB, for Win32 (AMD64)
+        C:\xampp\mysql\bin\mysql.exe  Ver 15.1 Distrib 10.4.19-MariaDB, ...
 
 1. Visual Studio Codeに拡張機能の追加  
     [表示] → [拡張機能] から PHP Debug と [vscode-database](http://bit.ly/2mh8nYF) を検索＆インストール
@@ -81,9 +81,10 @@
     | performance_schema |
     | phpmyadmin         |
     | test               |
-    | test_db            |
+    | test_db            | ←新しくできた
     +--------------------+
     ```
+    * 終了方法は > exit と入力
 
 * データベースの削除（参考）
     ```
@@ -121,10 +122,14 @@
     ```
     <?php
         //mariaDBに接続
-        $dbname = "mysql:host=localhost;dbname=test_db";
-        $username = "root";
-        $password = "";
-        $con = new PDO($dbname, $username, $password);
+        try {
+            $dbname = "mysql:host=localhost;dbname=test_db";
+            $username = "root";
+            $password = "";
+            $con = new PDO($dbname, $username, $password);
+        } catch (PDOException $e) {
+            echo 'DB接続エラー: ' . $e->getMessage();
+        }
         
         //データの挿入
         $sql = "INSERT INTO hello_tb VALUES('english', 'Hello,world!')";
@@ -151,4 +156,5 @@
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年03月16日
+作成日: 2017年03月16日  
+更新日: 2021年05月29日
