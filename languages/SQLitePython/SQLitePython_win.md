@@ -1,4 +1,4 @@
-### <font color="Red"><b>この項目は編集中です</b></font>
+### <b>この項目は編集中です</b>
 
 # SQLite with Python（ Windows ）
 
