@@ -1,3 +1,5 @@
+### <b>この項目は編集中です</b>
+
 # SQLite with Python（ Linux ）
 
 ## <ruby>SQLite<rt>エスキューライト</rt></ruby> について

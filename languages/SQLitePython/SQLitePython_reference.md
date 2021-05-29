@@ -1,3 +1,5 @@
+### <b>この項目は編集中です</b>
+
 # <b>SQLite with Python 基礎文法</b>
 
 ### <b>INDEX</b>
