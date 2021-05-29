@@ -1,4 +1,4 @@
-# <b>SQLite 基礎文法</b>
+# <b>SQLite with Python 基礎文法</b>
 
 ### <b>INDEX</b>
 

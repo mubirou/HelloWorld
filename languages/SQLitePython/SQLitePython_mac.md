@@ -1,6 +1,6 @@
 ### この項目は編集中です
 
-# SQLite（ macOS ）
+# SQLite with Python（ macOS ）
 
 ## <ruby>SQLite<rt>エスキューライト</rt></ruby> について
 

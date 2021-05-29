@@ -1,4 +1,4 @@
-# SQLite（ Linux ）
+# SQLite with Python（ Linux ）
 
 ## <ruby>SQLite<rt>エスキューライト</rt></ruby> について
 
