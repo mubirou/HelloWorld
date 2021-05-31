@@ -1,4 +1,4 @@
-### <b>この項目は編集中です</b>
+### <b>この項目は書きかけです</b>
 
 # SQLite with Python（ Linux ）
 
@@ -24,13 +24,36 @@
 |ブラウザ|Google Chrome 91.0|2021年05月|
 
 1. Web サーバの開発環境の構築をする（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/PHP/PHP_linux.md)）
+
 1. [SQLite](https://ja.wikipedia.org/wiki/SQLite) のインストール  
     $ sudo apt install sqlite3  
     $ sqlite3 -version  
     3.31.1 ...
 
 1. Apache 上で Python が動作するように設定する
-    1. XXXXX
+    1. モジュールの有効化
+        ```
+        $ sudo a2enmod cgid
+        $ sudo service apache2 restart
+        ```
+    1. .pyファイルを置くフォルダを作成
+        ```
+        $ sudo mkdir /var/www/cgi-bin
+        $ sudo chmod -R 777 /var/www/cgi-bin
+        ```
+    1. apache2.conf の書き換え
+        1. VSCode 等で **/etc/apache2/apache2.conf** を開く
+        1. 176行目あたりに以下を追加し保存
+            ```
+            <Directory "/var/www/cgi-bin">
+                Options +ExecCGI
+                AddHandler cgi-script .cgi .py
+            </Directory>
+            ```
+        1. Apache の再起動
+            ```
+            $ sudo service apache2 restart
+            ```
 
 ## コードの記述
 
