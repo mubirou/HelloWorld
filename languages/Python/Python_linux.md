@@ -20,8 +20,8 @@
 
 1. 端末でバージョン確認  
     $ <b>python3 --version</b>  
-    Python 3.8.5
-    * Which python3 でパスを調べるこｔも可能
+    Python 3.8.5  
+    （which python3 でパスを調べることも可能）
 
 1. Pylint（コードの質のチェック用）のインストール  
     $ sudo apt-get update  
