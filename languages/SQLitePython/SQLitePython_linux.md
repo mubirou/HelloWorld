@@ -36,7 +36,7 @@
         $ sudo a2enmod cgid
         $ sudo service apache2 restart
         ```
-    1. .pyファイルを置くフォルダを作成
+    1. .py ファイルを置くフォルダを作成
         ```
         $ sudo mkdir /var/www/cgi-bin
         $ sudo chmod -R 777 /var/www/cgi-bin
@@ -60,7 +60,7 @@
 1. Visual Studio Code を起動
     1. [ファイル] → [新規ファイル] を選択
     1. [ファイル] → [保存] を選択
-    1. Web サーバのルートディレクトリ（ /ver/www/html/ ）に test<b>.py</b> という名で保存 
+    1. Web サーバのルートディレクトリ（ /ver/www/cgi-bin/ ）に test<b>.py</b> という名で保存 
 
 1. コードの記述
 ```
