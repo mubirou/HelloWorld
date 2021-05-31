@@ -67,6 +67,11 @@
 
 ```
 
+1. アクセス権の変更
+    ```
+    $ sudo chmod -R 755 /var/www/cgi-bin/test.py
+    ```
+
 ## 実行
 
 1. Web ブラウザ（Google Chrome）を起動
