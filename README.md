@@ -40,7 +40,7 @@
 |**Visual Basic .NET**|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_linux.md)|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_mac.md)|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_win.md)|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_reference.md)|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/VisualBasic/VisualBasic_pattern.md)||
 
 「×」は非プログラミング言語のため非対応  
-「－」は非オブジェクト指向言語のため非対応
+「－」は非オブジェクト指向言語のため非対応  
 「○」は現在編集中
 
 © 2017-2021 夢寐郎
