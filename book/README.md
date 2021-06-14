@@ -5,7 +5,7 @@
 |:--|:--|:--:|:--:|:--:|:--:|:--:|:--:|
 |[たしざんをしよう](#たしざんをしよう)|出力、演算子、関数、数学Ｂ|〇|〇|〇|||
 |[ブラックボックスの作り方](#ブラックボックスの作り方)|関数、戻り値、引数|〇|〇|〇||||
-|[もしも…](#もしも…)|if文|〇|〇|||||
+|[もしも…](#もしも…)|if文|〇|〇|〇||||
 |[繰り返し…](#繰り返し…)|for文|〇|〇|||||
 |[にてひなるもの](#にてひなるもの)|数値、文字列、データ型|〇|〇|||||
 |[みんなオブジェクト](#みんなオブジェクト)|属性、機能|―|―|―|―|―|―|
@@ -340,8 +340,8 @@ puts(x) # => 1～100までの乱数
 👇JavaScript編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#if%E6%96%87)）
 
 ```
-if (new Date().getHours() >= 23) {
-    console.log("早く寝ましょう");
+if (new Date().getHours() >= 22) {
+    console.log("そろそろ寝ましょう");
 }
 ```
 
@@ -376,8 +376,8 @@ console.log(blackbox(66)); //=> 65以上
 
 ```
 import datetime
-if (datetime.datetime.now().hour >= 23):
-    print("もう寝ましょう")
+if (datetime.datetime.now().hour >= 22):
+    print("そろそろ寝ましょう")
 ```
 
 ```
@@ -403,6 +403,43 @@ def blackbox(num):
 print(blackbox(58)) #=> 60未満
 print(blackbox(60)) #=> 60以上65未満
 print(blackbox(66)) #=> 65以上
+```
+
+👇Ruby編（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#if%E6%96%87)）
+
+```
+if (Time.now.hour >= 22)
+    print("そろそろ寝ましょう")
+end
+```
+
+```
+def blackbox(_num)
+    if (_num < 60) then
+        return true
+    else
+        return false
+    end
+end
+
+puts(blackbox(58)) # => true
+puts(blackbox(60)) # => false
+```
+
+```
+def blackbox(_num)
+    if (_num < 60) then
+        return "60未満"
+    elsif (_num < 65) then
+        return "60以上65未満"
+    else
+        return "65以上"
+    end
+end
+
+puts(blackbox(58)) # => 60未満
+puts(blackbox(60)) # => 60以上65未満
+puts(blackbox(66)) # => 65以上
 ```
 
 
