@@ -64,6 +64,16 @@ x = 1+2+3+4+5+6+7+8+9+10
 print(x) #=> 55
 ```
 
+👇Ruby（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
+```
+puts(1+2+3+4+5+6+7+8+9+10) # => 55
+```
+
+```
+x = 1+2+3+4+5+6+7+8+9+10
+puts(x) # => 55
+```
+
 
 ## 1+2+3+4+5+6+7+8+9+10+...+100 = ?
 * 算術演算子（/,*）
