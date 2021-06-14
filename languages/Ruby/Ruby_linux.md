@@ -11,7 +11,7 @@
 |OS|Ubuntu 20.04.2 LTS|2021年02月|
 |実行エンジン|[Ruby](https://www.ruby-lang.org/ja/) 2.7.0|2019年12月|
 |エディタ|Visual Studio Code 1.57.0|2021年05月|
-|拡張機能|Ruby（Peng Lv）](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) 0.28.1|2021年01月|
+|拡張機能|[Ruby（Peng Lv）](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) 0.28.1|2021年01月|
 
 1. 端末で Ruby のインストール  
     $ sudo apt-get update  
