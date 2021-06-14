@@ -22,7 +22,7 @@
     1. 途中、[インストール先とオプションの指定] 画面で次の2つをチェック
         * ✓ Add Ruby executables to your PATH
         * ✓ Associate .rb and .rbw files with this Ruby installation
-    1. 途中で[RubyInstaller2 for Windows]が表示されるがここでは不要
+    1. 途中で[RubyInstaller2 for Windows]が表示される（Rubyのライブラリのひとつ）がここでは不要
     1. Windowsを再起動
     1. コマンドプロンプトでバージョン確認  
         \>ruby -v  
