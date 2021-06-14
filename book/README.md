@@ -131,6 +131,13 @@ def blackbox(end):
 print(blackbox(100)) #=> 5050
 ```
 
+👇Python編
+```
+puts(1.0/2*100*(100+1)) # => 5050.0
+```
+※整数同士の除算の余りは切り捨てられる（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
+
+
 ## 1+2+3+4+5+6+7+8+9+10+...+920918 = ?
 
 👇JavaScript編
