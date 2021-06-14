@@ -194,11 +194,35 @@ print(blackbox(920918)) #=> 424045441821
 
 ```
 def blackbox(end):
-    return 1/2*end*(end+1)
+    return 1/2*end*(end+1) #等差数列の和の公式より
 
 print(blackbox(920918)) #=> 424045441821.0
 
 ```
+
+👇Ruby編
+```
+def blackbox(_end)
+    _x = 0 #ローカル変数（関数内でのみ利用可）
+
+    for i in 0.._end do #範囲オブジェクトの場合
+        _x += i
+    end
+    return _x
+end
+
+puts(blackbox(920918)) # => 424045441821
+```
+
+```
+def blackbox(_end)
+    return 1.0/2*_end*(_end+1) #等差数列の和の公式より
+end
+
+puts(blackbox(920918)) # => 424045441821.0
+```
+整数同士の除算の余りは切り捨てられるので注意（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)）
+
 
 <a name="ブラックボックスの作り方"></a>
 
