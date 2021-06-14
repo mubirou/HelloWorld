@@ -37,13 +37,22 @@
 
 ### コマンドラインの場合
 ```
+>cd C:\xampp\htdocs <= 作成したいディレクトリに移動
+>C:\xampp\MercuryMail\sqlite3.exe <= SQLiteを起動
+sqlite> sqlite3 test.sqlite3 <= 既存の場合はファイルを開く
+
+
+>cd C:\xampp\MercuryMail\ <= sqlite3.exeがあるディレクトリに移動
 $ cd /var/www/html <= 作成したいディレクトリに移動
 $ sqlite3 test.sqlite3 <= 既存の場合はファイルを開く（慣例的に xxx.sqlite3 とする）
 sqlite> .databases <= ここで実際に.sqlite3 ファイルが生成される
 sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合「;」を入力）
 ```
+* 終了する場合は「.exit」
+* ファイル名は慣例的に拡張子「.sqlite3」を付けます
+* システム環境変数を設定すると実行のコマンドが短縮できます（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/MySQL/MySQL_win.md)）
 
-### PHP の場合
+### 例文
 ```
 <?php
     // データベースの作成（既存の場合はファイルを開く）
@@ -52,9 +61,9 @@ sqlite> .exit <= 終了（間違えてコマンドを打ってしまった場合
 ?>
 ```
 
-実行環境：Ubuntu 16.04 LTS、SQLite 3.11、PHP 7.0、Chromium 59  
+実行環境：SQLite 3.7.6.3、Google Chrome 91、Windows 10 
 作成者：夢寐郎  
-作成日：2017年07月27日
+作成日：2021年0X月XX日
 
 
 <a name="データベースの削除"></a>
