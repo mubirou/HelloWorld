@@ -324,6 +324,14 @@ puts(x) # => 0～9までの乱数
 ```
 参考（[数学関数](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0%EF%BC%88Math%EF%BC%89)）
 
+```
+def blackbox(_min, _max)
+    return (Random.rand() * (_max - _min + 1)).floor + _min
+end
+x = blackbox(1, 100)
+puts(x) # => 1～100までの乱数
+```
+
 
 <a name="もしも…"></a>
 
