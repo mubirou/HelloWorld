@@ -20,7 +20,7 @@
     ruby 2.7.0p0 (2019-12-25 revision 647ee6f091) [x86_64-linux-gnu]
 
 1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から [Ruby](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) を検索＆インストール
+    [表示] → [拡張機能] から [Ruby（Peng Lv）](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) を検索＆インストール
 
 ## コードの記述
 
