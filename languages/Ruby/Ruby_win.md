@@ -10,7 +10,7 @@
 |:--:|:--:|:--:|
 |OS|[Windows](https://ja.wikipedia.org/wiki/Microsoft_Windows) 10（64bit）|ー|
 |実行エンジン|[Ruby](https://www.ruby-lang.org/ja/) 3.0.1|2021年04月|
-|エディタ|Visual Studio Code 1.56.2|2021年04月|
+|エディタ|[Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) 1.56.2|2021年04月|
 |拡張機能|[Ruby（Peng Lv）](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby) 0.28.1|2021年01月|
 
 1. [Ruby](http://www.ruby-lang.org/ja/) をインストール
