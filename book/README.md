@@ -441,7 +441,7 @@ puts(blackbox(58)) # => 60未満
 puts(blackbox(60)) # => 60以上65未満
 puts(blackbox(66)) # => 65以上
 ```
-（注意）"elsif"は"elif"でも"elseif"でもない
+（注意）elsif は elif でも elseif でもない
 
 
 <a name="繰り返し…"></a>
