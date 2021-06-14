@@ -204,7 +204,6 @@ print(blackbox(920918)) #=> 424045441821.0
 ```
 def blackbox(_end)
     _x = 0 #ローカル変数（関数内でのみ利用可）
-
     for i in 0.._end do #範囲オブジェクトの場合
         _x += i
     end
