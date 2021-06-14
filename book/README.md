@@ -412,6 +412,7 @@ if (Time.now.hour >= 22)
     print("そろそろ寝ましょう")
 end
 ```
+参考：[日時情報](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)
 
 ```
 def blackbox(_num)
