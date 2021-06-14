@@ -22,7 +22,7 @@
 
 作成者：夢寐郎  
 作成日：2020年12月04日  
-更新日：2021年04月02日
+更新日：2021年06月14日
 
 
 <a name="たしざんをしよう"></a>
@@ -299,6 +299,31 @@ def blackbox(min, max):
 x = blackbox(1, 100)
 print(x) #=> 1～100までの乱数
 ```
+
+👇Ruby編
+```
+def blackbox()
+    puts("Hello,world!")
+end
+blackbox() # => Hello,world!
+```
+
+```
+def blackbox(_name)
+    puts(_name + "さんこんにちは!")
+end
+blackbox("ICHIRO") # => ICHIROさんこんにちは!
+```
+
+```
+def blackbox()
+    return (Random.rand() * 10).floor
+end
+x = blackbox()
+puts(x) # => 0～9までの乱数
+```
+参考（[数学関数](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0%EF%BC%88Math%EF%BC%89)）
+
 
 <a name="もしも…"></a>
 
