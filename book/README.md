@@ -687,14 +687,6 @@ puts(1.eql?(1.0)) # => false
 
 # ◆オブジェクト指向の実践
 
-ここから以下のような様々な知識が必要になります
-* クラス（class）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9)）
-* ゲッター･セッター（getter/setter）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5)）
-* メソッド（method）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89)）
-* 疑似プライベート変数（private variables）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E5%A4%89%E6%95%B0%E3%81%A8%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97)）
-
-***
-
 1. 作例として、〇〇さんの預金口座を開設します。
 1. 開設する際、氏名（ローマ字）、生年月日、預入金額（0円でも可）を入力。
 1. 開設されたかどうか以下を確認してみます。
@@ -710,6 +702,14 @@ puts(1.eql?(1.0)) # => false
 上記の機能や属性を持った「見えないオブジェクト」を作成します。
 
 👇JavaScript編
+
+ここから以下のような様々な知識が必要になります
+* クラス（class）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9)）
+* ゲッター･セッター（getter/setter）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5)）
+* メソッド（method）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89)）
+* 疑似プライベート変数（private variables）: 詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/ECMAScript6/ECMAScript6_reference.md#%E5%A4%89%E6%95%B0%E3%81%A8%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97)）
+
+***
 
 ```
 class Member {
