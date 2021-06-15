@@ -594,7 +594,7 @@ y = "トータル" + str(x) + "点です"
 print(y) #=> トータル100点です
 ```
 
-👇Ruby編
+👇Ruby編（参考：[データ型の操作](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)）
 ```
 x = 100
 y = x.to_s(10) + "点です"
@@ -606,7 +606,6 @@ x = 100
 y = "トータル" + x.to_s(10) + "点です"
 puts(y) # => トータル100点です
 ```
-参考（[データ型の操作](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)）
 
 
 ### データ型を調べる
