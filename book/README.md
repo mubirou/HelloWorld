@@ -635,7 +635,7 @@ print(1 == "1") #=> False（等号）
 print(1 is "1") #=> False（厳密一致）
 ```
 
-👇Ruby編
+👇Ruby編（参考：[データ型の操作](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)）
 
 ```
 puts(1.class.name) # => Integer
@@ -651,7 +651,6 @@ puts(1 == 1.0) # => true
 puts(1 === 1.0) # => true
 puts(1.eql?(1.0)) # => false
 ```
-参考（[データ型の操作](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)）
 
 
 <a name="みんなオブジェクト"></a>
