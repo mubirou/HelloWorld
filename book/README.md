@@ -22,7 +22,7 @@
 
 作成者：夢寐郎  
 作成日：2020年12月04日  
-更新日：2021年06月14日
+更新日：2021年06月15日
 
 
 <a name="たしざんをしよう"></a>
@@ -546,6 +546,23 @@ x = "1"
 y = x + 1 #TypeError: can only concatenate str (not "int") to str
 ```
 
+👇Ruby編
+
+```
+puts(1) # => 1
+puts("1") # => 1
+```
+
+```
+x = 1
+y = x + 1
+puts(y) # => 2
+```
+
+```
+x = "1"
+y = x + 1 # TypeEffor（`+': no implicit conversion of Integer into String）
+```
 
 ### 数値 + 文字列 = 文字列
 
@@ -575,6 +592,19 @@ print(y) #=> 100点です
 x = 100
 y = "トータル" + str(x) + "点です"
 print(y) #=> トータル100点です
+```
+
+👇Ruby編
+```
+x = 100
+y = x.to_s(10) + "点です"
+puts(y) # => 100点です
+```
+
+```
+x = 100
+y = "トータル" + x.to_s(10) + "点です"
+puts(y) # => トータル100点です
 ```
 
 ### データ型を調べる
