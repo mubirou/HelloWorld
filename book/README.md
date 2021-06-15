@@ -561,7 +561,7 @@ puts(y) # => 2
 
 ```
 x = "1"
-y = x + 1 # TypeEffor（`+': no implicit conversion of Integer into String）
+y = x + 1 # TypeError（`+': no implicit conversion of Integer into String）
 ```
 
 ### 数値 + 文字列 = 文字列
