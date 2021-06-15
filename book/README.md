@@ -483,6 +483,25 @@ while (count < 10): //()内が「True」だと無限ループ（=にするとErr
     count += 1
 ```
 
+👇Ruby編
+
+①for文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#for%E6%96%87)）
+```
+for i in 0..9 do
+    puts(i) # => 0,1,2,3,4,5,6,7,8,9
+end
+```
+
+②while文（詳細は[こちら](https://github.com/mubirou/HelloWorld/blob/master/languages/Ruby/Ruby_reference.md#while%E6%96%87)）
+```
+count = 0
+while (count < 10) do
+    puts(count) # => 0,1,2,3,4,5,6,7,8,9
+    count += 1
+end
+puts(count) # => 10 ←while文の外でも変数はまだ有効
+```
+
 
 <a name="にてひなるもの"></a>
 
