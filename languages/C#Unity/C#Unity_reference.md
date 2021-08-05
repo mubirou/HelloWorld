@@ -3535,7 +3535,8 @@ public class Main : MonoBehaviour {
 
 <a name="タイマー"></a>
 # <b>タイマー</b>
-* システムタイマー（System.Timers.Timer）を利用
+
+### システムタイマー（System.Timers.Timer）を利用する場合
 * MonoBehaviour.[Invoke()](https://github.com/mubirou/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) や繰返し実行可能な MonoBehaviour.[InvokeRepeating()](https://docs.unity3d.com/ja/current/ScriptReference/MonoBehaviour.InvokeRepeating.html) を使う方法もあり
 ```
 //Main.cs
@@ -3560,6 +3561,29 @@ public class Main : MonoBehaviour {
     }
 }
 ```
+
+
+```
+//Main.cs
+using UnityEngine;
+using System.Collections; //IEnumeratorに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        TimerStart(3f);
+    }
+
+    void TimerStart(float arg) { //メソッド名は任意
+        StartCoroutine(TimerEnd(arg)); //引数無しの場合"TimerEnd"でもよい
+    }
+
+    IEnumerator TimerEnd(float arg) { //メソッド名は任意
+        yield return new WaitForSeconds(arg);
+        Debug.Log(arg + "秒後に実行");
+    }
+}
+```
+
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：夢寐郎  
