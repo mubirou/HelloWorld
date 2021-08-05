@@ -3536,8 +3536,8 @@ public class Main : MonoBehaviour {
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### システムタイマー（System.Timers.Timer）を利用する場合
-* MonoBehaviour.[Invoke()](https://github.com/mubirou/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) や繰返し実行可能な MonoBehaviour.[InvokeRepeating()](https://docs.unity3d.com/ja/current/ScriptReference/MonoBehaviour.InvokeRepeating.html) を使う方法もあり
+### 繰り返し実行する
+* システムタイマー（System.Timers.Timer）を利用する方法
 ```
 //Main.cs
 using UnityEngine;
@@ -3561,9 +3561,10 @@ public class Main : MonoBehaviour {
     }
 }
 ```
+* ほかに MonoBehaviour.[InvokeRepeating()](https://docs.unity3d.com/ja/current/ScriptReference/MonoBehaviour.InvokeRepeating.html) を使う方法もあり
 
-### コールチンを利用する場合
-* 〇秒後に実行する（メインプログラムとは別に平行して処理が進められる機能）
+### 〇秒後に一度だけ実行する
+* コールチンを利用する場合
 ```
 //Main.cs
 using UnityEngine;
@@ -3584,7 +3585,7 @@ public class Main : MonoBehaviour {
     }
 }
 ```
-
+* ほかに MonoBehaviour.[Invoke()](https://github.com/mubirou/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) を使う方法もあり
 
 実行環境：Ubuntu 16.04.4 LTS、Unity 2017.2  
 作成者：夢寐郎  
