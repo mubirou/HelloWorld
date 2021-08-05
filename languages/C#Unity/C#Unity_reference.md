@@ -3562,7 +3562,8 @@ public class Main : MonoBehaviour {
 }
 ```
 
-
+### コールチンを利用する場合
+* 〇秒後に実行する（メインプログラムとは別に平行して処理が進められる機能）
 ```
 //Main.cs
 using UnityEngine;
