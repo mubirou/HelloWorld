@@ -45,6 +45,7 @@
 # <b>コメント</b>
 
 ### 1行コメント
+[参考](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88#comments)
 
 ```
 # 〇〇〇〇〇
