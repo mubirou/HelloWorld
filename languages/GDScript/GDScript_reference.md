@@ -74,7 +74,7 @@ x = 1 + 1 # 〇〇〇〇〇
 コメント終了"""
 ```
 
-実行環境：Windows 10 Pro、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -196,7 +196,7 @@ print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
 print(type(None)) #<class 'NoneType'>
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -382,7 +382,7 @@ print(convertXto10("10100", 2)) #20 ←2進数の"10100"を10進数に変換
 print(convertXto10("1d", 16)) #29 ←16進数の"1d"を10進数に変換
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -471,7 +471,7 @@ print(_rectangle.height) #1080
 print(_rectangle.getArea()) #2073600
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -550,7 +550,7 @@ print(subClassA_.mSuperClass()) #基本クラスのメソッド
 print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -587,7 +587,7 @@ _tokyo = tokyo.Member('nishimura') #別ディレクトリ、別ファイル内�
 print(_tokyo.name) #'nishimura'
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -633,7 +633,7 @@ _classB = ClassB()
 _classB.myMethod() #'ClassA.myMethod
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -777,7 +777,7 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
     _myClass = MyClass()
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -826,7 +826,7 @@ print(_nishimura.age) #48
 #_nishimura.age = 18 #エラー（変更不可）
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -874,7 +874,7 @@ print(2 << 7) #256（ビット･シフト）
 print(~3) #-4（ビット反転）
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -922,7 +922,7 @@ MyClass.MY_NAME = "TARO NISHIMURA" #変更できてしまう（実際は定数�
 print(MyClass.MY_NAME) #"TARO NISHIMURA"
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1108,7 +1108,7 @@ _myClass = MyClass()
 _myClass.rect(endX=100, endY=100) #面積:10000m2 ←デフォルト値付との併用
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1164,7 +1164,7 @@ hello = chinesehHello #変数の中を「lambda」構文による関数と入れ
 print(hello()) #"您好"
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1209,7 +1209,7 @@ print(MyClass.PI) #3.14
 print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1310,7 +1310,7 @@ else:
         print("両方共にtrueかfalseです")
     ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1331,7 +1331,7 @@ _result = "現役" if (_age < 60) else "退職"
 print(_result)
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1384,7 +1384,7 @@ for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile�
     print(count_) #1,2,....,99,100
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1442,7 +1442,7 @@ for i, tmp in enumerate(_dict):
     print(i, tmp, _dict[tmp]) # 0 A あ → 1 I い
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1493,7 +1493,7 @@ while (i_ <= 20) :
     i_ += 1
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
+実行環境：Windows 10、Ruby 2.3.1  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1565,7 +1565,7 @@ for 変数 in タプル: print(変数) ←要素だけを取得する場合
 ```
 * [for...in 文](#for...in文)参照
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1829,7 +1829,7 @@ print(['A','B','C'] == ["A","B","C"]) #True ←'○'と"○"は同一扱い
 print(['A','B','C'] is ['A','B','C']) #False ←オブジェクトが異なるので…
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1907,7 +1907,7 @@ _dict = {'A':'あ', 'I':'い', 'U':'う'}
 print(len(_dict)) #3
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -1938,7 +1938,7 @@ _myClass = MyClass(500)
 _myClass.myMethod()
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2056,7 +2056,7 @@ list_ = _string.split(',') #「,」区切りで分割してリスト化
 print(list_) #['A', 'B', 'C']
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2108,7 +2108,7 @@ pattern_ = re.compile('吉田') #正規表現をコンパイル
 print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文
 ```
 
-実行環境：Ubuntu 16.04 LTS、Godot Engine 3.4.2 
+実行環境：Windows 10、Godot Engine 3.4.2 
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2155,7 +2155,7 @@ _subClass.common() #"共通の関数"
 _subClass.abstractFunction() #"派生クラスでオーバーライドした抽象関数"
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2204,7 +2204,7 @@ _subClass = SubClass()
 _subClass.hoge("派生クラスからの呼び出し")
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2251,7 +2251,7 @@ _subClass = SubClass()
 _subClass.myFunction()
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2297,7 +2297,7 @@ _robot.fight()
 _robot.fight() #"GAME OVER"
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2418,7 +2418,7 @@ print(max(5.01, -10, 8, 2.9)) #8 ←リスト･タプルの要素の比較
 print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2469,7 +2469,7 @@ import random #必須
 print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #"X"...など
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2516,7 +2516,7 @@ else: s_ = str(now_.second)
 print(h_ + ":" + m_ + ":" + s_) #14:23:07
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2561,7 +2561,7 @@ _loop.start()
 #_loop.stop() #ループを止める場合
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2598,7 +2598,7 @@ _result = time.time() - _start
 print(str(_result) + 'sec.') #3.835374116897583sec.
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
 
@@ -2647,6 +2647,6 @@ print(result_)
 #たちつてと
 ```
 
-実行環境：Ubuntu 16.04.2 LTS、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
