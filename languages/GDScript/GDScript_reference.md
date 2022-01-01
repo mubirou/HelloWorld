@@ -44,6 +44,8 @@
 <a name="コメント"></a>
 # <b>コメント</b>
 
+### 1行コメント
+
 ```
 # 〇〇〇〇〇
 ```
@@ -55,8 +57,7 @@ var x = 1 + 1 # 〇〇〇〇〇
 ```
 """〇〇〇〇〇""""
 ```
-### 1行コメント
-[参考](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88#comments)
+[参考:GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88#comments)
 
 ### 複数行コメント
 
