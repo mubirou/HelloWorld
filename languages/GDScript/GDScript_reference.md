@@ -112,7 +112,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 ### ①論理型（bool）
 * trueまたはfalse
-```GD#
+```GD
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
