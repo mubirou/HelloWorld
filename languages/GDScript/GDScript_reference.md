@@ -124,6 +124,7 @@ var _bool = true #True/Falaseは不可
 func _ready():
 	print(_bool) #-> True
 	print(typeof(_bool)) #-> 1（TYPE_BOOL）
+	print(_bool is bool) #-> True
 ```
 
 
@@ -133,13 +134,14 @@ func _ready():
 * 約±922京まで扱えます
 ```GDScript
 #test.gd
-extends Spatial
+extends Spatial #2Dの場合はNode2D
 
 var _int = 9223372036854775807 # ±9223372036854775807まで扱える
 
 func _ready():
 	print(_int) #-> 9223372036854775807
 	print(typeof(_int)) #-> 2（TYPE_INT）
+	print(_int is int) #-> True
 ```
 
 
@@ -156,6 +158,7 @@ var _float = 3.14159265358979323846264338327950288419716939937510582097494459230
 func _ready():
 	print(_float) #-> 3.141593（小数点第6桁まで）
 	print(typeof(_float)) #-> 3（TYPE_REAL）
+	print(_float is float) #-> True
 ```
 
 
@@ -164,13 +167,14 @@ func _ready():
 ### ➃文字列（String）
 ```GDScript
 #test.gd
-extends Spatial
+extends Spatial #2Dの場合はNode2D
 
 var _string = "あいうえお" # '〇〇'でも可
 
 func _ready():
 	print(_string) #-> あいうえお
 	print(typeof(_string)) #-> 4（TYPE_STRING）
+	print(_string is String) #-> True
 ```
 
 
@@ -179,13 +183,14 @@ func _ready():
 ### ➄配列（Array）
 ```GDScript
 #test.gd
-extends Spatial
+extends Spatial #2Dの場合はNode2D
 
-var _list = ["A", "I", "U"]
+var _array = ["A", "I", "U"]
 
 func _ready():
-	print(_list) #-> True
-	print(typeof(_list)) #-> 19（TYPE_ARRAY）
+	print(_array) #-> True
+	print(typeof(_array)) #-> 19（TYPE_ARRAY）
+	print(_array is Array) #-> True
 ```
 他にもさまざまな配列あり  
 
@@ -195,13 +200,14 @@ func _ready():
 ### ⑩辞書型（Dictionary） : 連想配列
 ```GDScript
 #test.gd
-extends Spatial
+extends Spatial #2Dの場合はNode2D
 
 var _dic = {"A":"あ", "I":"い"}
 
 func _ready():
 	print(_dic) #-> True
-	print(typeof(_dic)) #-> 18（TYPE_DICTIONARY）
+	print(typeof(_dic)) #-> 18（TYPE_ARRAY）
+	print(_dic is Dictionary) #-> True
 ```
 
 
