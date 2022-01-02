@@ -139,6 +139,7 @@ func _ready():
 ### ③浮動小数点数（float）
 * 小数点第6桁まで
 ```GDScript
+#test.gd
 extends Spatial
 
 var _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
@@ -148,7 +149,7 @@ func _ready():
 	print(typeof(_float)) #-> 3（TYPE_REAL）
 ```
 
-### ④文字列（str）
+### ④文字列（String）
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
