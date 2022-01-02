@@ -186,6 +186,7 @@ func _ready():
 	print(_list) #-> True
 	print(typeof(_list)) #-> 19（TYPE_ARRAY）
 ```
+* 他にもさまざまな配列あり  
  [[BACK](#typeof()の戻り値一覧)]
 
 ### ⑥変更不可のリスト（tupleタプル）
