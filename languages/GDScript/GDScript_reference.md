@@ -133,7 +133,7 @@ var _int = 9223372036854775807 # ±9223372036854775807まで扱える
 
 func _ready():
 	print(_int) #-> 9223372036854775807
-	print(typeof(_int)) #-> 2（TYPE_BOOL）
+	print(typeof(_int)) #-> 2（TYPE_INT）
 ```
 
 ### ③浮動小数点数（float）
