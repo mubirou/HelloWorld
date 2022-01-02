@@ -110,7 +110,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
 |TYPE_MAX|27|||||
 
-### ①論理型（bool）
+### ➀論理型（bool）
 * trueまたはfalse
 ```GDScript
 #test.gd
@@ -123,7 +123,7 @@ func _ready():
 	print(typeof(_bool)) #-> 1（TYPE_BOOL）
 ```
 
-### ②整数型（int）
+### ➁整数型（int）
 * 約±922京まで扱えます
 ```GDScript
 #test.gd
@@ -136,7 +136,7 @@ func _ready():
 	print(typeof(_int)) #-> 2（TYPE_INT）
 ```
 
-### ③浮動小数点数（float）
+### ➂浮動小数点数（float）
 * 小数点第6桁まで
 ```GDScript
 #test.gd
@@ -149,7 +149,7 @@ func _ready():
 	print(typeof(_float)) #-> 3（TYPE_REAL）
 ```
 
-### ④文字列（String）
+### ➃文字列（String）
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
