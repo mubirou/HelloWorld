@@ -99,7 +99,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ### typeof()の戻り値一覧
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--|:--:|:--|:--:|:--|:--:|
-|TYPE_NIL|0|[TYPE_BOOL](#TYPE_BOOL)|**1**|**TYPE_INT**|**2**|
+|TYPE_NIL|0|[TYPE_BOOL](#TYPE_BOOL)|**1**|[TYPE_INT](#TYPE_INT)|**2**|
 |**TYPE_REAL**|**3**|**TYPE_STRING**|**4**|TYPE_VECTOR2|5|
 |TYPE_RECT2|6|TYPE_VECTOR3|7|TYPE_TRANSFORM2D|8|
 |TYPE_PLANE|9|TYPE_QUAT|10|TYPE_AABB|11|
@@ -111,6 +111,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_MAX|27|||||
 
 <a name="TYPE_BOOL"></a>
+
 ### ➀論理型（bool）
 * trueまたはfalse
 ```GDScript
@@ -123,6 +124,8 @@ func _ready():
 	print(_bool) #-> True
 	print(typeof(_bool)) #-> 1（TYPE_BOOL）
 ```
+
+<a name="TYPE_INT"></a>
 
 ### ➁整数型（int）
 * 約±922京まで扱えます
