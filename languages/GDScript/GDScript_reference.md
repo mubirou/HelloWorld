@@ -149,12 +149,15 @@ func _ready():
 ```
 
 ### ④文字列（str）
-* シングル/ダブルクォーテーション可
-```
-#test.py
-_string = 'あいうえお' #"○"でも可（Python 2.Xではダブルバイトはエラー）
-print(_string) #あいうえお
-print(type(_string)) #<class 'str'>
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+var _string = "あいうえお" # '〇〇'でも可
+
+func _ready():
+	print(_string) #-> あいうえお
+	print(typeof(_string)) #-> 4（TYPE_STRING）
 ```
 
 ### ⑤リスト（list）
