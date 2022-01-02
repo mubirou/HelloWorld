@@ -96,7 +96,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. 辞書型（dict）
 1. 複素数オブジェクト型（complex）
 
-### typeof() の戻り値一覧
+### typeof()の戻り値一覧
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--:|:--:|:--:|:--:|:--:|:--:|
 |TYPE_NIL|0|TYPE_BOOL|1|TYPE_INT|2|
@@ -111,12 +111,15 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_MAX|27|||||
 
 ### ①論理型（bool）
-* TrueまたはFalse
+* trueまたはfalse
 ```
-#test.py
-_bool = True #true/falseは不可
-print(_bool) #True
-print(type(_bool)) #<class 'bool'>
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _bool = true #True/Falaseは不可
+	print(_bool) #-> True
+	print(typeof(_bool)) #-> 1（TYPE_BOOL）
 ```
 
 ### ②整数型（int）
