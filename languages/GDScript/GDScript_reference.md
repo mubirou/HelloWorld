@@ -96,6 +96,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. 辞書型（dict）
 1. 複素数オブジェクト型（complex）
 
+
 <a name="typeof()の戻り値一覧"></a>
 
 ### typeof()の戻り値一覧
@@ -112,6 +113,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
 |TYPE_MAX|27|||||
 
+
 <a name="TYPE_BOOL"></a>
 
 ### ➀論理型（bool）
@@ -126,7 +128,7 @@ func _ready():
 	print(_bool) #-> True
 	print(typeof(_bool)) #-> 1（TYPE_BOOL）
 ```
- [[BACK](#typeof()の戻り値一覧)]
+
 
 <a name="TYPE_INT"></a>
 
@@ -142,7 +144,7 @@ func _ready():
 	print(_int) #-> 9223372036854775807
 	print(typeof(_int)) #-> 2（TYPE_INT）
 ```
- [[BACK](#typeof()の戻り値一覧)]
+
 
 <a name="TYPE_REAL"></a>
 
@@ -158,7 +160,7 @@ func _ready():
 	print(_float) #-> 3.141593（小数点第6桁まで）
 	print(typeof(_float)) #-> 3（TYPE_REAL）
 ```
- [[BACK](#typeof()の戻り値一覧)]
+
 
 <a name="TYPE_STRING"></a>
 
@@ -173,7 +175,7 @@ func _ready():
 	print(_string) #-> あいうえお
 	print(typeof(_string)) #-> 4（TYPE_STRING）
 ```
- [[BACK](#typeof()の戻り値一覧)]
+
 
 <a name="TYPE_ARRAY"></a>
 
@@ -188,8 +190,8 @@ func _ready():
 	print(_list) #-> True
 	print(typeof(_list)) #-> 19（TYPE_ARRAY）
 ```
-* 他にもさまざまな配列あり  
- [[BACK](#typeof()の戻り値一覧)]
+他にもさまざまな配列あり  
+
 
 
 ### ⑥変更不可のリスト（tupleタプル）
