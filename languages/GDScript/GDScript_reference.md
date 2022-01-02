@@ -124,12 +124,16 @@ func _ready():
 ```
 
 ### ②整数型（int）
-* 非常に大きな値も扱えます
+* ±922京まで扱えます
 ```
-#test.py
-_int = 10000000000000000000 #1000京以上も扱える
-print(_int) #10000000000000000000
-print(type(_int)) #<class 'int'>
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+var _int = 9223372036854775807 # ±9223372036854775807まで扱える
+
+func _ready():
+	print(_int) #-> 9223372036854775807
+	print(typeof(_int)) #-> 2（TYPE_BOOL）
 ```
 
 ### ③浮動小数点数（float）
