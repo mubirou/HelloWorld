@@ -126,7 +126,7 @@ func _ready():
 	print(_bool) #-> True
 	print(typeof(_bool)) #-> 1（TYPE_BOOL）
 ```
-[一覧](#typeof()の戻り値一覧)
+[[一覧](#typeof()の戻り値一覧)]
 
 <a name="TYPE_INT"></a>
 
@@ -142,7 +142,7 @@ func _ready():
 	print(_int) #-> 9223372036854775807
 	print(typeof(_int)) #-> 2（TYPE_INT）
 ```
-[一覧](#typeof()の戻り値一覧)
+[[一覧](#typeof()の戻り値一覧)]
 
 <a name="TYPE_REAL"></a>
 
@@ -158,7 +158,7 @@ func _ready():
 	print(_float) #-> 3.141593（小数点第6桁まで）
 	print(typeof(_float)) #-> 3（TYPE_REAL）
 ```
-[一覧](#typeof()の戻り値一覧)
+[[一覧](#typeof()の戻り値一覧)]
 
 <a name="TYPE_STRING"></a>
 
@@ -173,7 +173,7 @@ func _ready():
 	print(_string) #-> あいうえお
 	print(typeof(_string)) #-> 4（TYPE_STRING）
 ```
-[一覧](#typeof()の戻り値一覧)
+[[一覧](#typeof()の戻り値一覧)]
 
 ### ➄配列（Array）
 ```GDScript
@@ -186,7 +186,7 @@ func _ready():
 	print(_list) #-> True
 	print(typeof(_list)) #-> 19（TYPE_ARRAY）
 ```
-[一覧](#typeof()の戻り値一覧)
+[[一覧](#typeof()の戻り値一覧)]
 
 ### ⑥変更不可のリスト（tupleタプル）
 * 配列（変更不可）
