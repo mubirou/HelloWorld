@@ -127,7 +127,7 @@ func _ready():
 * 約±922京まで扱えます
 ```GDScript
 #test.gd
-extends Spatial #2Dの場合はNode2D
+extends Spatial
 
 var _int = 9223372036854775807 # ±9223372036854775807まで扱える
 
@@ -138,8 +138,8 @@ func _ready():
 
 ### ③浮動小数点数（float）
 * 小数点第6桁まで
-```
-extends Spatial #2Dの場合はNode2D
+```GDScript
+extends Spatial
 
 var _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 
