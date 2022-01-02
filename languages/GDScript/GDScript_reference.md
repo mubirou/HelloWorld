@@ -190,7 +190,7 @@ func _ready():
 他にもさまざまな配列あり  
 
 
-<a name="TYPE_ARRAY"></a>
+<a name="TYPE_DICTIONARY"></a>
 
 ### ⑩辞書型（Dictionary） : 連想配列
 ```
