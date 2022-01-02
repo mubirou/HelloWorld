@@ -126,7 +126,7 @@ func _ready():
 	print(_bool) #-> True
 	print(typeof(_bool)) #-> 1（TYPE_BOOL）
 ```
-[[一覧](#typeof()の戻り値一覧)]
+[[BACK](#typeof()の戻り値一覧)]
 
 <a name="TYPE_INT"></a>
 
