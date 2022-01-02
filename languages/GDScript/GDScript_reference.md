@@ -193,7 +193,7 @@ func _ready():
 <a name="TYPE_DICTIONARY"></a>
 
 ### ⑩辞書型（Dictionary） : 連想配列
-```
+```GDScript
 #test.gd
 extends Spatial
 
