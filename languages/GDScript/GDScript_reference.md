@@ -107,7 +107,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_PLANE|9|TYPE_QUAT|10|TYPE_AABB|11|
 |TYPE_BASIS|12|TYPE_TRANSFORM|13|TYPE_COLOR|14|
 |TYPE_NODE_PATH|15|TYPE_RID|16|TYPE_OBJECT|17|
-|TYPE_DICTIONARY|18|**TYPE_ARRAY**|**19**|TYPE_RAW_ARRAY|20|
+|TYPE_DICTIONARY|18|[TYPE_ARRAY](#TYPE_ARRAY)|**19**|TYPE_RAW_ARRAY|20|
 |TYPE_INT_ARRAY|21|TYPE_REAL_ARRAY|22|TYPE_STRING_ARRAY|23|
 |TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
 |TYPE_MAX|27|||||
@@ -175,6 +175,8 @@ func _ready():
 ```
  [[BACK](#typeof()の戻り値一覧)]
 
+<a name="TYPE_ARRAY"></a>
+
 ### ➄配列（Array）
 ```GDScript
 #test.gd
@@ -188,6 +190,7 @@ func _ready():
 ```
 * 他にもさまざまな配列あり  
  [[BACK](#typeof()の戻り値一覧)]
+
 
 ### ⑥変更不可のリスト（tupleタプル）
 * 配列（変更不可）
