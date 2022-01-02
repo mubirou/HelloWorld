@@ -87,8 +87,8 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. 論理型（bool）
 1. 整数型（int）
 1. 浮動小数点数（float）
-1. 文字列（str）
-1. リスト（list）
+1. 文字列（String）
+1. 配列（Array）
 1. 変更不可のリスト（tuple）
 1. 重複不許可な集合型（set）
 1. 変更不可の集合型（frozenset）
