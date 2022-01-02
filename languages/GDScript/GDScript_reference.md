@@ -116,8 +116,9 @@ var _x = 1 + 1 # 〇〇〇〇〇
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
+var _bool = true #True/Falaseは不可
+
 func _ready():
-	var _bool = true #True/Falaseは不可
 	print(_bool) #-> True
 	print(typeof(_bool)) #-> 1（TYPE_BOOL）
 ```
