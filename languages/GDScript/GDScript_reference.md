@@ -161,13 +161,17 @@ func _ready():
 	print(typeof(_string)) #-> 4（TYPE_STRING）
 ```
 
-### ⑤リスト（list）
+### ⑤リスト（Array）
 * 配列（変更可）
-```
-#test.py
-_list = ['A', 'I', 'U']
-print(_list) #['A', 'I', 'U']
-print(type(_list))  #<class 'list'>
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+var _list = ["A", "I", "U"]
+
+func _ready():
+	print(_list) #-> True
+	print(typeof(_list)) #-> 19（TYPE_ARRAY）
 ```
 
 ### ⑥変更不可のリスト（tupleタプル）
