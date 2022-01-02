@@ -89,11 +89,8 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. 浮動小数点数（float）
 1. 文字列（String）
 1. 配列（Array）
-1. 変更不可のリスト（tuple）
-1. 重複不許可な集合型（set）
-1. 変更不可の集合型（frozenset）
-1. クラス
 1. 辞書型（dict）
+1. クラス
 1. 複素数オブジェクト型（complex）
 
 
@@ -193,31 +190,14 @@ func _ready():
 他にもさまざまな配列あり  
 
 
-
-### ⑥変更不可のリスト（tupleタプル）
-* 配列（変更不可）
+### ⑩辞書型（dict） : 連想配列
 ```
 #test.py
-_lockList = ('A', 'I', 'U')
-print(_lockList) #('A', 'I', 'U')
-print(type(_lockList)) #<class 'tuple'>
+_dict = {'A':'あ', 'I':'い'}
+print(_dict) #{'A': 'あ', 'I': 'い'}
+print(type(_dict)) #<class 'dict'>
 ```
 
-### ⑦重複不許可な集合型（set）
-```
-#test.py
-_set = set(['0002', '0001', '0003'])
-print(_set) #{'0003', '0001', '0002'} ←順序が変更される
-print(type(_set)) #<class 'set'>
-```
-
-### ⑧変更不可の集合型（frozenset）
-```
-#test.py
-_frozenset = frozenset(['A', 'C', 'B'])
-print(_frozenset) #frozenset({'C', 'A', 'B'}) ←順序が変更される
-print(type(_frozenset)) #<class 'frozenset'>
-```
 
 ### ⑨クラス
 ```
@@ -228,14 +208,6 @@ class MyClass: #前方宣言が必要
 _myClass = MyClass()
 print(_myClass) #<__main__.MyClass object at 0x7fcbae161cc0>
 print(type(_myClass)) #<class '__main__.MyClass'>
-```
-
-### ⑩辞書型（dict） : 連想配列
-```
-#test.py
-_dict = {'A':'あ', 'I':'い'}
-print(_dict) #{'A': 'あ', 'I': 'い'}
-print(type(_dict)) #<class 'dict'>
 ```
 
 ### ⑪複素数オブジェクト型（complex）
