@@ -96,6 +96,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. 辞書型（dict）
 1. 複素数オブジェクト型（complex）
 
+### TYPE_*と番号一覧
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--:|:--|:--:|:--:|:--:|:--:|
 |TYPE_NIL|0|TYPE_BOOL|1|TYPE_INT|2|
