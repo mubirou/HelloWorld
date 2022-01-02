@@ -100,7 +100,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--|:--:|:--|:--:|:--|:--:|
 |TYPE_NIL|0|[TYPE_BOOL](#TYPE_BOOL)|**1**|[TYPE_INT](#TYPE_INT)|**2**|
-|**TYPE_REAL**|**3**|**TYPE_STRING**|**4**|TYPE_VECTOR2|5|
+|[TYPE_REAL](#TYPE_REAL)|**3**|[TYPE_STRING]|**4**|TYPE_VECTOR2|5|
 |TYPE_RECT2|6|TYPE_VECTOR3|7|TYPE_TRANSFORM2D|8|
 |TYPE_PLANE|9|TYPE_QUAT|10|TYPE_AABB|11|
 |TYPE_BASIS|12|TYPE_TRANSFORM|13|TYPE_COLOR|14|
@@ -140,6 +140,8 @@ func _ready():
 	print(typeof(_int)) #-> 2（TYPE_INT）
 ```
 
+<a name="TYPE_REAL"></a>
+
 ### ➂浮動小数点数（float）
 * 小数点第6桁まで
 ```GDScript
@@ -152,6 +154,8 @@ func _ready():
 	print(_float) #-> 3.141593（小数点第6桁まで）
 	print(typeof(_float)) #-> 3（TYPE_REAL）
 ```
+
+<a name="TYPE_STRING"></a>
 
 ### ➃文字列（String）
 ```GDScript
