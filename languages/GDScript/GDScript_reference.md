@@ -105,7 +105,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_PLANE|9|TYPE_QUAT|10|TYPE_AABB|11|
 |TYPE_BASIS|12|TYPE_TRANSFORM|13|TYPE_COLOR|14|
 |TYPE_NODE_PATH|15|TYPE_RID|16|TYPE_OBJECT|17|
-|TYPE_DICTIONARY|18|[TYPE_ARRAY](#TYPE_ARRAY)|**19**|TYPE_RAW_ARRAY|20|
+|[TYPE_DICTIONARY](#TYPE_DICTIONARY)|**18**|[TYPE_ARRAY](#TYPE_ARRAY)|**19**|TYPE_RAW_ARRAY|20|
 |TYPE_INT_ARRAY|21|TYPE_REAL_ARRAY|22|TYPE_STRING_ARRAY|23|
 |TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
 |TYPE_MAX|27|||||
@@ -164,7 +164,7 @@ func _ready():
 ### ➃文字列（String）
 ```GDScript
 #test.gd
-extends Spatial #2Dの場合はNode2D
+extends Spatial
 
 var _string = "あいうえお" # '〇〇'でも可
 
@@ -179,7 +179,7 @@ func _ready():
 ### ➄配列（Array）
 ```GDScript
 #test.gd
-extends Spatial #2Dの場合はNode2D
+extends Spatial
 
 var _list = ["A", "I", "U"]
 
@@ -190,12 +190,18 @@ func _ready():
 他にもさまざまな配列あり  
 
 
-### ⑩辞書型（dict） : 連想配列
+<a name="TYPE_ARRAY"></a>
+
+### ⑩辞書型（Dictionary） : 連想配列
 ```
-#test.py
-_dict = {'A':'あ', 'I':'い'}
-print(_dict) #{'A': 'あ', 'I': 'い'}
-print(type(_dict)) #<class 'dict'>
+#test.gd
+extends Spatial
+
+var _dic = {"A":"あ", "I":"い"}
+
+func _ready():
+	print(_dic) #-> True
+	print(typeof(_dic)) #-> 18（TYPE_DICTIONARY）
 ```
 
 
