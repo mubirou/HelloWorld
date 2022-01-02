@@ -124,7 +124,7 @@ func _ready():
 ```
 
 ### ②整数型（int）
-* ±922京まで扱えます
+* 約±922京まで扱えます
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
