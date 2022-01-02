@@ -99,7 +99,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ### typeof()の戻り値一覧
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--:|:--:|:--:|:--:|:--:|:--:|
-|TYPE_NIL|0|TYPE_BOOL|1|TYPE_INT|2|
+|TYPE_NIL|0|**TYPE_BOOL**|**1**|TYPE_INT|2|
 |TYPE_REAL|3|TYPE_STRING|4|TYPE_VECTOR2|5|
 |TYPE_RECT2|6|TYPE_VECTOR3|7|TYPE_TRANSFORM2D|8|
 |TYPE_PLANE|9|TYPE_QUAT|10|TYPE_AABB|11|
