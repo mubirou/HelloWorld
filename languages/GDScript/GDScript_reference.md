@@ -221,6 +221,9 @@ func _ready():
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
+class MyClass: #前方宣言でなくてもよい
+	pass
+
 func _ready():
 	var _myClass = MyClass.new()
 	print(_myClass) #-> TYPE_OBJECT
@@ -440,10 +443,14 @@ print(convertXto10("1d", 16)) #29 ←16進数の"1d"を10進数に変換
 
 ### 最小構成
 ```
-#test.py
-class MyClass(object): #前方宣言が必要（(object)は省略可）
-   pass #何もしない
-_myClass = MyClass() #インスタンスの生成
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+class MyClass: #前方宣言でなくてもよい
+	pass #何もしない
+
+func _ready():
+	var _myClass = MyClass.new() ##インスタンスの生成
 ```
 
 * passについて  
