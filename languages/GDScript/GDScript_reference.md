@@ -143,6 +143,7 @@ func _ready():
 	print(typeof(_int)) #-> 2（TYPE_INT）
 	print(_int is int) #-> True
 ```
+[[データ型TOP](#データ型)]
 
 
 <a name="TYPE_REAL"></a>
@@ -176,6 +177,7 @@ func _ready():
 	print(typeof(_string)) #-> 4（TYPE_STRING）
 	print(_string is String) #-> True
 ```
+[[データ型TOP](#データ型)]
 
 
 <a name="TYPE_ARRAY"></a>
@@ -209,6 +211,7 @@ func _ready():
 	print(typeof(_dic)) #-> 18（TYPE_ARRAY）
 	print(_dic is Dictionary) #-> True
 ```
+[[データ型TOP](#データ型)]
 
 
 <a name="TYPE_OBJECT"></a>
@@ -224,19 +227,14 @@ func _ready():
 	print(typeof(_myClass)) #-> 17(TYPE_OBJECT)
 	print(_myClass is Object) #-> True
 ```
-[[データ型TOP](#データ型)]
 
-### ⑪複素数オブジェクト型（complex）
-```
-#test.py
-print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
-```
 
-### ⑫None型（None）......何もないことを示す定数
+### ➇None型（None）......何もないことを示す定数
 ```
 #test.py
 print(type(None)) #<class 'NoneType'>
 ```
+[[データ型TOP](#データ型)]
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
