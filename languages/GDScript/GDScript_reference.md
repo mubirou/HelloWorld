@@ -85,12 +85,12 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 ### 主なデータ型の種類
 1. 論理型（bool / TYPE_BOOL）
-1. 整数型（int）
-1. 浮動小数点数（float）
-1. 文字列（String）
-1. 配列（Array）
-1. 辞書型（Dictionary）
-1. クラス（Object）
+1. 整数型（int / TYPE_INT）
+1. 浮動小数点数（float / TYPE_REAL）
+1. 文字列（String / TYPE_STRING）
+1. 配列（Array / TYPE_ARRAY）
+1. 辞書型（Dictionary / TYPE_DICTIONARY）
+1. クラス（Object / TYPE_OBJECT）
 1. 複素数オブジェクト型（complex）
 
 
