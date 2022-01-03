@@ -91,7 +91,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. [配列](#TYPE_ARRAY)（Array / TYPE_ARRAY）
 1. [辞書型](#TYPE_DICTIONARY)（Dictionary / TYPE_DICTIONARY）
 1. [クラス](#TYPE_OBJECT)（Object / TYPE_OBJECT）
-1. [null](複素数オブジェクト型（complex）
+1. [null](#TYPE_NIL)（null）
 
 
 <a name="typeof()の戻り値一覧"></a>
@@ -99,7 +99,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ### typeof()の戻り値一覧
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--|:--:|:--|:--:|:--|:--:|
-|TYPE_NIL|0|[TYPE_BOOL](#TYPE_BOOL)|**1**|[TYPE_INT](#TYPE_INT)|**2**|
+|[TYPE_NIL](#TYPE_NIL)|**0**|[TYPE_BOOL](#TYPE_BOOL)|**1**|[TYPE_INT](#TYPE_INT)|**2**|
 |[TYPE_REAL](#TYPE_REAL)|**3**|[TYPE_STRING](#TYPE_STRING)|**4**|TYPE_VECTOR2|5|
 |TYPE_RECT2|6|TYPE_VECTOR3|7|TYPE_TRANSFORM2D|8|
 |TYPE_PLANE|9|TYPE_QUAT|10|TYPE_AABB|11|
@@ -229,6 +229,8 @@ func _ready():
 ```
 
 
+<a name="TYPE_NIL"></a>
+
 ### ➇null…何もないことを示す定数
 ```GDScript
 #test.gd
@@ -244,7 +246,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月03日  
 
 
 <a name="データ型の操作"></a>
