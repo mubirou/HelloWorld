@@ -224,6 +224,7 @@ func _ready():
 	print(typeof(_myClass)) #-> 17(TYPE_OBJECT)
 	print(_myClass is Object) #-> True
 ```
+[[データ型TOP](#データ型)]
 
 ### ⑪複素数オブジェクト型（complex）
 ```
