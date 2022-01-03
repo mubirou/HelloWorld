@@ -90,7 +90,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. 文字列（String）
 1. 配列（Array）
 1. 辞書型（Dictionary）
-1. クラス
+1. クラス（Object）
 1. 複素数オブジェクト型（complex）
 
 
