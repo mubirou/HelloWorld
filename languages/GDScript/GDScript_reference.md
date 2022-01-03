@@ -197,7 +197,7 @@ func _ready():
 
 <a name="TYPE_DICTIONARY"></a>
 
-### ⑩辞書型（Dictionary） : 連想配列
+### ➅辞書型（Dictionary） : 連想配列
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
@@ -213,7 +213,7 @@ func _ready():
 
 <a name="TYPE_OBJECT"></a>
 
-### ⑨クラス（Object）
+### ➆クラス（Object）
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
