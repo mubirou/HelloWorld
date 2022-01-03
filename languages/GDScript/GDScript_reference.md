@@ -211,15 +211,18 @@ func _ready():
 ```
 
 
-### ⑨クラス
-```
-#test.py
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ
-        pass
-_myClass = MyClass()
-print(_myClass) #<__main__.MyClass object at 0x7fcbae161cc0>
-print(type(_myClass)) #<class '__main__.MyClass'>
+<a name="TYPE_OBJECT"></a>
+
+### ⑨クラス（Object）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _myClass = MyClass.new()
+	print(_myClass) #-> TYPE_OBJECT
+	print(typeof(_myClass)) #-> 17(TYPE_OBJECT)
+	print(_myClass is Object) #-> True
 ```
 
 ### ⑪複素数オブジェクト型（complex）
