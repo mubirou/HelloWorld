@@ -91,7 +91,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. [配列](#TYPE_ARRAY)（Array / TYPE_ARRAY）
 1. [辞書型](#TYPE_DICTIONARY)（Dictionary / TYPE_DICTIONARY）
 1. [クラス](#TYPE_OBJECT)（Object / TYPE_OBJECT）
-1. 複素数オブジェクト型（complex）
+1. [null](複素数オブジェクト型（complex）
 
 
 <a name="typeof()の戻り値一覧"></a>
@@ -229,10 +229,16 @@ func _ready():
 ```
 
 
-### ➇None型（None）......何もないことを示す定数
-```
-#test.py
-print(type(None)) #<class 'NoneType'>
+### ➇null…何もないことを示す定数
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _something
+	print(_something) #Null
+	print(typeof(_something)) #-> 0（TYPE_NIL）
+	print(_something == null) #-> True
 ```
 [[データ型TOP](#データ型)]
 
