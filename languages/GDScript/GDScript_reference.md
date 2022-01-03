@@ -450,7 +450,7 @@ class MyClass: #前方宣言でなくてもよい
 	pass #何もしない
 
 func _ready():
-	var _myClass = MyClass.new() ##インスタンスの生成
+	var _myClass = MyClass.new() #インスタンスの生成
 ```
 
 * passについて  
