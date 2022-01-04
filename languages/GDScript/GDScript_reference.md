@@ -465,7 +465,7 @@ extends Spatial #2Dの場合はNode2D
 # 長方形クラス
 #==============
 class Rectangle:
-	# Public Property
+	# 公開プロパティ
 	var width setget setWidth, getWidth
 	var height setget setHeight, getHeight
 
@@ -478,7 +478,7 @@ class Rectangle:
 		__width = w
 		__height = h
 	
-	# setter / getter 用
+	# 公開プロパティ（setter/getter用）
 	func setWidth(value):
 		__width = value
 
@@ -491,7 +491,7 @@ class Rectangle:
 	func getHeight():
 		return __height
 	
-	# 面積計算用関数
+	# 公開関数（面積計算用）
 	func getArea():
 		return __width * __height
 	
@@ -521,7 +521,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月04日
 
 
 <a name="基本クラスと派生クラス"></a>
