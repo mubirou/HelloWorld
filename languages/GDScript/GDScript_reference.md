@@ -93,8 +93,8 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. [配列](#TYPE_ARRAY)（Array / TYPE_ARRAY）
 1. [辞書型](#TYPE_DICTIONARY)（Dictionary / TYPE_DICTIONARY）
 1. [クラス](#TYPE_OBJECT)（Object / TYPE_OBJECT）
-1. [null](#TYPE_NIL)（null）
-
+1. [null](#TYPE_NIL)（null）  
+[[TOP](#TOP)]
 
 <a name="typeof()の戻り値一覧"></a>
 
@@ -110,8 +110,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |[TYPE_DICTIONARY](#TYPE_DICTIONARY)|**18**|[TYPE_ARRAY](#TYPE_ARRAY)|**19**|TYPE_RAW_ARRAY|20|
 |TYPE_INT_ARRAY|21|TYPE_REAL_ARRAY|22|TYPE_STRING_ARRAY|23|
 |TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
-|TYPE_MAX|27|||||  
-[[TOP](#TOP)]
+|TYPE_MAX|27|||||
 
 <a name="TYPE_BOOL"></a>
 
