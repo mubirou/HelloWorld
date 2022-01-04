@@ -495,7 +495,6 @@ class Rectangle:
 	func getArea():
 		return __width * __height
 	
-
 #======
 # 実行
 #======
