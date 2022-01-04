@@ -442,7 +442,7 @@ print(convertXto10("1d", 16)) #29 ←16進数の"1d"を10進数に変換
 # <b>クラス</b>
 
 ### 最小構成
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -457,73 +457,66 @@ func _ready():
 Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味するpass文が用意されています。
 
 ### 例文
-```
-#test.py
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
 #==============
 # 長方形クラス
 #==============
-class Rectangle(object): #(object)は省略可
-    #-----------------------------------------------------------
-    # プライベート変数（ここではself.は付けない／__○○にする）
-    #-----------------------------------------------------------
-    __width = None #値を設定可（コンストラクタ内に記述可）
-    __height = None #値を設定可（コンストラクタ内に記述可）
+class Rectangle:
+	# Public Property
+	var width setget setWidth, getWidth
+	var height setget setHeight, getHeight
 
-    #----------------
-    # コンストラクタ
-    #----------------
-    def __init__(self, w, h): #self（自分自身を指す）は省略不可
-        self.__width = w
-        self.__height = h
+	# 疑似プライベート変数（値の設定も可）
+	var __width
+	var __height
 
-    #-----------------------------------
-    # _widthアクセス用（getter/setter）
-    #-----------------------------------
-    def __getWidth(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        return self.__width
+	# コンストラクタ
+	func _init(w,h):
+		__width = w
+		__height = h
+	
+	# setter / getter 用
+	func setWidth(value):
+		__width = value
 
-    def __setWidth(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        self.__width = value #引数名「value」は任意
+	func getWidth():
+		return __width
 
-    width = property(__getWidth, __setWidth) #プロパティを設定
-
-    #------------------------------------
-    # _heightアクセス用（getter/setter）
-    #------------------------------------
-    def __getHeight(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        return self.__height
-
-    def __setHeight(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        self.__height = value #引数名「value」は任意
-
-    height = property(__getHeight, __setHeight) #プロパティを設定
-
-    #----------------
-    # 面積計算用関数
-    #----------------
-    def getArea(self): #self（自分自身を指す）は省略不可（引数は追加可）
-        return self.__width * self.__height
+	func setHeight(value):
+		__height = value
+	
+	func getHeight():
+		return __height
+	
+	# 面積計算用関数
+	func getArea():
+		return __width * __height
+	
 
 #======
 # 実行
 #======
-#①インスタンスの生成
-_rectangle = Rectangle(640,480)
+func _ready():
+	# ➀インスタンスの生成
+	var _rectangle = Rectangle.new(640,480)
 
-#②プロパティの取得（その１）
-print(_rectangle.width) #640
-print(_rectangle.height) #480
+	# ➁プロパティの取得（その１）
+	print(_rectangle.width) #-> 640
+	print(_rectangle.height) #-> 480
 
-#③プロパティの更新
-_rectangle.width = 1920
-_rectangle.height = 1080
+	# ➂プロパティの更新
+	_rectangle.width = 1920
+	_rectangle.height = 1080
 
-#④プロパティの取得（その２）
-print(_rectangle.width) #1920
-print(_rectangle.height) #1080
+	# ➃プロパティの取得（その２）
+	print(_rectangle.width) #-> 1920
+	print(_rectangle.height) #-> 1080
 
-#⑤関数の実行
-print(_rectangle.getArea()) #2073600
+	# ➄関数の実行
+	print(_rectangle.getArea()) #-> 2073600
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
