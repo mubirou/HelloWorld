@@ -482,7 +482,7 @@ class Rectangle:
 		__width = w
 		__height = h
 	
-	# 公開プロパティ（setter/getter用）
+	# 公開プロパティ用（setter/getter）
 	func setWidth(value):
 		__width = value
 
