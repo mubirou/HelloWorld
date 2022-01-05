@@ -10,7 +10,7 @@
 * [データ型](#データ型)
 * <!--[データ型の操作](#データ型の操作)-->
 * [クラス](#クラス)
-* <!--[基本クラスと派生クラス](#基本クラスと派生クラス)-->
+* [基本クラスと派生クラス](#基本クラスと派生クラス)
 * <!--[名前空間](#名前空間)-->
 * <!--[継承と委譲](#継承と委譲)-->
 * <!--[変数とスコープ](#変数とスコープ)-->
@@ -531,80 +531,97 @@ func _ready():
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
-```
-#test.py
-#====================
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+#=================
 # 基本（基底）クラス
-#====================
-class SuperClass(object):
-    # プライベート変数
-    __pSuperClass = "基本クラスのプロパティ"
+#=================
+class SuperClass:
+	# 疑似プライベート変数
+	var __pSuper = "基本クラスのプロパティ"
 
-    # getter/setter
-    def __get__pSuperClass(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        return self.__pSuperClass
-    def __set__pSuperClass(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        self.__pSuperClass = value
-    pSuperClass = property(__get__pSuperClass, __set__pSuperClass)
+	# getter/setter
+	var pSuper setget set_pSuper, get_pSuper
 
-    # 関数
-    def mSuperClass(self):
-        return "基本クラスのメソッド"
+	func set_pSuper(value):
+		__pSuper = value
+	
+	func get_pSuper():
+		return __pSuper
+	
+	# 関数
+	func mSuper():
+		return "基本クラスのメソッド"
 
-#=================================================================
+#============
 # 派生クラスＡ
-# class 派生クラス(基本クラス①, 基本クラス②, …) で多重継承可能
-#=================================================================
-class SubClassA(SuperClass): #基本クラス（SuperClass）を継承
-    # 擬似プライベート変数
-    __pSubClassA = "派生クラスＡのプロパティ"
+#============
+class SubClassA extends SuperClass:
+	# 疑似プライベート変数
+	var __pSubA = "派生クラスＡのプロパティ"
 
-    # getter/setter
-    def __get__pSubClassA(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        return self.__pSubClassA
-    def __set__pSubClassA(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        self.__pSubClassA = value
-    pSubClassA = property(__get__pSubClassA, __set__pSubClassA)
+	# getter/setter
+	var pSubA setget set_pSubA, get_pSubA
 
-    # 関数
-    def mSubClassA(self):
-        return "派生クラスＡのメソッド"
+	func set_pSubA(value):
+		__pSubA = value
+	
+	func get_pSubA():
+		return __pSubA
 
-#==============
+	# 関数
+	func mSubA():
+		return "派生クラスＡのメソッド"
+	
+#============
 # 派生クラスＢ
-#==============
-class SubClassB(SuperClass): #基本クラス（SuperClass）を継承
-    # 擬似プライベート変数
-    __pSubClassB = "派生クラスＢのプロパティ"
+#============
+class SubClassB extends SuperClass:
+	# 疑似プライベート変数
+	var __pSubB = "派生クラスＢのプロパティ"
 
-    # getter/setter
-    def __get__pSubClassB(self):
-        return self.__pSubClassB
-    def __set__pSubClassB(self, value):
-        self.__pSubClassB = value
-    pSubClassB = property(__get__pSubClassB, __set__pSubClassB)
+	# getter/setter
+	var pSubB setget set_pSubB, get_pSubB
 
-    # 関数
-    def mSubClassB(self):
-        return "派生クラスＢのメソッド"
+	func set_pSubB(value):
+		__pSubB = value
+	
+	func get_pSubB():
+		return __pSubB
 
-#======
+	# 関数
+	func mSubB():
+		return "派生クラスＢのメソッド"
+
+#=====
 # 実行
-#======
-# 派生クラスＡ
-subClassA_ = SubClassA() #インスタンスの生成
-print(subClassA_) #<__main__.SubClassA object at 0x7f3b6d678e80>
-print(isinstance(subClassA_, SubClassA)) #True（SubClassのインスタンス）
-print(isinstance(subClassA_, SuperClass)) #True（SuperClassのインスタンスでもある）
-print(subClassA_.pSuperClass) #基本クラスのプロパティ
-print(subClassA_.pSubClassA) #派生クラスＡのプロパティ
-print(subClassA_.mSuperClass()) #基本クラスのメソッド
-print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
+#=====
+func _ready():
+	var _subClassA = SubClassA.new()
+	print(_subClassA) #-> [Reference:1240]
+	print(_subClassA is SubClassA) #-> True（SubClassA型である）
+	print(_subClassA is SuperClass) #-> True（SuperClass型でもある）
+	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
+	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
+	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
+	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
+
+	var _subClassB = SubClassB.new()
+	print(_subClassB) #-> [Reference:1241]
+	print(_subClassB is SubClassB) #-> True（SubClassA型である）
+	print(_subClassB is SuperClass) #-> True（SuperClass型でもある）
+	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
+	print(_subClassB.pSubB) #-> 派生クラスＢのプロパティ
+	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
+	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月05日  
+[[TOP](#TOP)]
 
 
 <a name="名前空間"></a>
