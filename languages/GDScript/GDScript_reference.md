@@ -2367,7 +2367,8 @@ func gameoverHandler(): #前方定義でなくてもよい
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月05日
+作成日：2022年01月05日  
+[[TOP](#TOP)]
 
 
 <a name="数学関数（math）"></a>
