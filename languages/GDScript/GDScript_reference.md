@@ -34,7 +34,7 @@
 * <!--[抽象クラス](#抽象クラス)-->
 * <!--[super 関数](#super関数)-->
 * <!--[オーバーライド](#オーバーライド)-->
-* <!--[カスタムイベント](#カスタムイベント)-->
+* [カスタムイベント](#カスタムイベント)
 * <!--[数学関数（math）](#数学関数（math）)-->
 * <!--[乱数](#乱数)-->
 * <!--[日時情報](#日時情報)-->
@@ -2328,47 +2328,46 @@ _subClass.myFunction()
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-```
-#test.py
-#================
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+#==============
 # カスタムクラス 
-#================
-class Robot(object):
-    __energy = 100 #プライベート変数
-    __dieHandler = None #プライベート変数（これにリスナー関数を格納）
+#==============
+class MyGame:
+	signal gameover #イベント名の定義
+	
+	#疑似プライベート変数
+	var __energy = 100
 
-    def __init__(self): #コンストラクタ関数
-        pass
-    
-    def addEventListener(self, event_, function_):
-        if (event_ == "die"):
-            self.__dieHandler = function_ #変数にリスナー関数を格納（ポイント）
-        else:
-            print("Error: Robot.addEventListener()")
+	func _init(): #コンストラクタ
+		pass
 
-    def fight(self):
-        self.__energy -= 20
-        if (self.__energy <= 0):
-           self.__dieHandler(self) #dieイベント発生!!（リスナー関数の呼出し）
+	func fight():
+		__energy -= 20
+		if (__energy <= 0):
+			emit_signal("gameover") #イベント発生
 
+#=====
+# 実行
+#=====
+func _ready():
+	var _robot = MyGame.new()
+	_robot.connect("gameover", self, "gameoverHandler") #≒addEventListener
+	_robot.fight()
+	_robot.fight()
+	_robot.fight()
+	_robot.fight()
+	_robot.fight() #-> GAMEOVER
 
-# メイン =================================================================================
-def die_Robot(arg): #前方定義
-    print(arg) #<__main__.Robot object at 0x7f98ba5ebc50>
-    print("GAME OVER!!") #dieイベントが発生した時に実行すること
-
-_robot = Robot()
-_robot.addEventListener("die", die_Robot)
-_robot.fight()
-_robot.fight()
-_robot.fight()
-_robot.fight()
-_robot.fight() #"GAME OVER"
+func gameoverHandler(): #前方定義でなくてもよい
+	print("GAMEOVER")
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月05日
 
 
 <a name="数学関数（math）"></a>
