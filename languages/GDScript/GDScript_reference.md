@@ -558,7 +558,7 @@ class SuperClass:
 #============
 # 派生クラスＡ
 #============
-class SubClassA extends SuperClass:
+class SubClassA extends SuperClass: #多重継承は不可
 	# 疑似プライベート変数
 	var __pSubA = "派生クラスＡのプロパティ"
 
@@ -578,7 +578,7 @@ class SubClassA extends SuperClass:
 #============
 # 派生クラスＢ
 #============
-class SubClassB extends SuperClass:
+class SubClassB extends SuperClass: #多重継承は不可
 	# 疑似プライベート変数
 	var __pSubB = "派生クラスＢのプロパティ"
 
@@ -610,7 +610,7 @@ func _ready():
 
 	var _subClassB = SubClassB.new()
 	print(_subClassB) #-> [Reference:1241]
-	print(_subClassB is SubClassB) #-> True（SubClassB型である）
+	print(_subClassB is SubClassB) #-> True（SubClassA型である）
 	print(_subClassB is SuperClass) #-> True（SuperClass型でもある）
 	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
 	print(_subClassB.pSubB) #-> 派生クラスＢのプロパティ
