@@ -669,7 +669,7 @@ print(_tokyo.name) #'nishimura'
 * 継承の場合は <b>class 派生クラス名(基本クラス名):</b> を使い、委譲の場合は <b>クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -687,7 +687,7 @@ func _ready():
 ```
 
 ### 委譲版
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
