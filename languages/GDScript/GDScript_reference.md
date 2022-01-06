@@ -883,7 +883,7 @@ func _ready():
 ```
 
 ### 読み取り専用のプロパティ
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -908,7 +908,7 @@ func _ready():
 ```
 
 ### 書き込み専用のプロパティ
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
