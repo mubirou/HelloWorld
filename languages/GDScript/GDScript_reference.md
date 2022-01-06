@@ -14,7 +14,7 @@
 * <!--[名前空間](#名前空間)-->
 * <!--[継承と委譲](#継承と委譲)-->
 * <!--[変数とスコープ](#変数とスコープ)-->
-* <!--[アクセサ （getter / setter）](#アクセサ)-->
+* [アクセサ （getter / setter）](#アクセサ)
 * <!--[演算子](#演算子)-->
 * <!--[定数](#定数)-->
 * <!--[関数](#関数)-->
@@ -855,49 +855,86 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
 # <b>アクセサ （getter / setter）</b>
 
 ### 読み書き可能なプロパティ
-```
-#test.py
-class Nishimura(object):
-    #プライベート変数の宣言（selfは不要）←省略可
-    __age = None
-    #コンストラクタ
-    def __init__(self): 
-        self.__age = 49
-    # プライベート変数へのアクセス用（getter/setter）
-    # ↓__○○()でプライベート関数（最後__で終わるのは不可）
-    def __getAge(self):
-        return self.__age
-    def __setAge(self, value): #プライベート関数（__○○()）←__○○__()は不可
-        self.__age = value
-    age = property(__getAge, __setAge)
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-_nishimura = Nishimura()
-print(_nishimura.age) #49
-_nishimura.age = 18 #変更できてしまう
-print(_nishimura.age) #18
+class Member:
+	# 疑似プライベート変数
+	var __age = 19
+	
+	# setter/getter
+	var age setget setAge, getAge
+
+	func setAge(value):
+		__age = value
+
+	func getAge():
+		return __age
+	
+#======
+# 実行
+#======
+func _ready():
+	var _member = Member.new()
+	print(_member.age) #-> 19
+	_member.age = 20
+	print(_member.age) #-> 20
 ```
 
 ### 読み取り専用のプロパティ
 ```
-class Nishimura(object):
-    #プライベート変数の宣言（selfは不要）←個人的慣例として冒頭で宣言（省略可）
-    __age = None
-    #コンストラクタ
-    def __init__(self): 
-        self.__age = 49
-    # プライベート変数へのアクセス用（getter/setter）
-    def __getAge(self): #プライベート関数（__○○()）
-        return self.__age
-    age = property(__getAge) #setterを省略すれば良い
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-_nishimura = Nishimura()
-print(_nishimura.age) #48
-#_nishimura.age = 18 #エラー（変更不可）
+class Member:
+	# 疑似プライベート変数
+	var __age = 19
+	
+	# getter（set〇〇を記述しない）
+	var age setget , getAge
+
+	func getAge():
+		return __age
+	
+#======
+# 実行
+#======
+func _ready():
+	var _member = Member.new()
+	print(_member.age) #-> 19
+	_member.age = 20 # 変更不可（エラーは出ない）
+	print(_member.age) #-> 19
+```
+
+### 書き込み専用のプロパティ
+```
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+class Member:
+	# 疑似プライベート変数
+	var __age = 19
+	
+	# setter（get〇〇を記述しない）
+	var age setget setAge
+
+	func setAge(value):
+		__age = value
+	
+#======
+# 実行
+#======
+func _ready():
+	var _member = Member.new()
+	_member.age = 20
+	print(_member.age) #-> null
+	print(_member.__age) #-> 20（内部では変更されている）
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月06日
 
 
 <a name="演算子"></a>
