@@ -716,140 +716,36 @@ func _ready():
 # <b>変数とスコープ</b>
 
 ### 変数の種類
-1. [グローバル変数](#グローバル変数)
-1. [パブリック変数](#パブリック変数)
-1. [プライベート変数](#プライベート変数)
+1. [グローバル変数](#グローバル変数)…どこからでもアクセスできる
+1. [疑似プライベート変数](#疑似プライベート変数)…単なるパブリック変数（[アクセサ](#アクセサ)を利用すべき）
 1. [ローカル変数](#ローカル変数)
 
 <a name="グローバル変数"></a>
 ### グローバル変数
 ```
-#test.py
-_global = "グローバル変数" #関数の外部で宣言するとグローバル変数扱い
-
-#=====================================
-# 関数内のグローバル変数の扱い
-#=====================================
-def myFunction():
-    global _global #グローバル変数を扱う「宣言」
-    _global = "グローバル変数②" #global宣言すれば変更可（宣言なしでも参照は可）
-    print(_global)
-
-myFunction() #"グローバル変数②"
-
-#=====================================
-# クラス内のグローバル変数の扱い
-#=====================================
-class MyClass(object):
-    #コンストラクタ（省略可）
-    def __init__(self):
-        pass #何もしない
-
-    def myMethod(self):
-        global _global #グローバル変数を扱う「宣言」
-        _global = "グローバル変数③" #global宣言すれば変更可（宣言なしでも参照は可）
-        print(_global)
-
-_myClass = MyClass()
-_myClass.myMethod() #"グローバル変数③"
-
-print(_global) #"グローバル変数③" ←クラス内（または関数内）での変更が反映される
 ```
 
-<a name="パブリック変数"></a>
-### パブリック変数
-* 全クラスからアクセスが可能
-* クラス定義の直後、コンストラクタの直前に定義
-* パブリック変数を使った以下のような例文は「他人の変数を勝手にいじってはいけない」というルールに反するため、プラーベート変数 + get / set アクセサを使うべきでしょう
-```
-#test.py（悪い例）
-class MyClass(object):
-    def __init__(self): #コンストラクタ
-        self._p = "パブリック変数" #パブリック変数の宣言と設定
+<a name="疑似プライベート変数"></a>
 
-_myClass = MyClass()
-print(_myClass._p) #"パブリック変数"（クラスの外からアクセス可能）
-_myClass._p = "○△☆□？" #クラスの外から変更できてしまう
-print(_myClass._p) #"○△☆□？"
+### 疑似プライベート変数
+* 実際は単なるパブリック変数
+* 変数へのアクセスは[アクセサ](#アクセサ)を利用する（推奨）
+```
 ```
 
-<a name="プライベート変数"></a>
-### プライベート変数
-* 同じクラス内のみアクセス可能
-* 外部からは get / set アクセサを使ってアクセス
-* __○○と命名することでプライベート変数になる
+<a name="ローカル変数"></a>
 
-```
-#test.py
-class MyClass(object):
-    #プライベート変数の宣言（selfは不要）＝省略可
-    __p = None
-
-    #コンストラクタ
-    def __init__(self):
-        self.__p = "プライベート変数①"
-
-    #-------------------------------------------------
-    # プライベート変数へのアクセス用（getter/setter）
-    #-------------------------------------------------
-    def __getP(self): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        return self.__p
-    def __setP(self, value): #__○○()でプライベート関数（selfは自分自身、省略不可）
-        self.__p = value #引数名「value」は任意
-    p = property(__getP, __setP) #プロパティを設定
-
-_myClass = MyClass()
-print(_myClass.p) #プライベート変数①（≠他人の変数を勝手にいじる行為）
-_myClass.p = "プライベート変数②"
-print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行為）
-```
-
-<a name="プライベート変数"></a>
 ### ローカル変数
 1. 関数内で宣言する場合
     ```
-    #test.py
-    def myFunction1():
-        _local = "ローカル変数" #この関数内でのみ利用可能
-        print(_local) #"ローカル変数"（アクセス可）
-
-    def myfunction2():
-        #print(_local) #ERROR（アクセス不可）
-        pass
-
-    myFunction1()
-    myfunction2()
-    #print(_local) #ERROR（アクセス不可）
     ```
 
 1. クラスの関数内で宣言する場合
     ```
-    #test.py
-    class MyClass(object):
-        def myMethod1(self): #selfは必須
-            _local = "ローカル変数" #self.は付けない（付けるとパブリック変数扱い）
-            print(_local) #この関数内でのみ利用可能!!
-        def myMethod2(self): #selfは必須
-            #print(_local) #ERROR（アクセス不可）
-            pass
-
-    _myClass = MyClass()
-    _myClass.myMethod1()
-    _myClass.myMethod2()
-    #print(_myClass._local) #ERROR（アクセス不可）
     ```
 
 1. for文内で宣言する場合
     ```
-    #test.py
-    class MyClass(object):
-        def __init__(self): #コンストラクタ
-            _i = 999 #ローカル変数
-            for _i in range(6): #ローカル変数（_i）0〜5
-                print(_i) #0、1、2、...、5
-            print(_i) #5（for文を出ても関数内であればアクセス可能）
-
-    _myClass = MyClass()
     ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
