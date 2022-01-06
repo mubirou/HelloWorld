@@ -12,7 +12,7 @@
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * <!--[名前空間](#名前空間)-->
-* <!--[継承と委譲](#継承と委譲)-->
+* [継承と委譲](#継承と委譲)
 * <!--[変数とスコープ](#変数とスコープ)-->
 * [アクセサ （getter / setter）](#アクセサ)
 * <!--[演算子](#演算子)-->
@@ -670,41 +670,46 @@ print(_tokyo.name) #'nishimura'
 
 ### 継承版
 ```
-#test.py
-class ClassA(object):
-    def myMethod(self):
-        print('ClassA.myMethod()')
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-class ClassB(ClassA): #クラスＡを継承（ポイント）
-    pass
+class ClassA:
+	func myMethod():
+		print("ClassA.myMethod()")
+	
+class ClassB extends ClassA: # ClassAを継承（ポイント）
+	pass
 
-_classB = ClassB()
-_classB.myMethod() #'ClassA.myMethod()'
+
+func _ready():
+	var _classB = ClassB.new()
+	_classB.myMethod() #-> "ClassA.myMethod()"
 ```
 
 ### 委譲版
 ```
-#test.py
-class ClassA(object):
-    def myMethod(self):
-        print('ClassA.myMethod()')
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-class ClassB(): #この内容のみ継承と異なる
-    __classA = None #プライベート変数の宣言（省略可）
+class ClassA:
+	func myMethod():
+		print("ClassA.myMethod()")
+	
+class ClassB: # この中身のみ継承と異なる
+	var _classA = ClassA.new() # ClassAのインスタンスを生成（ポイント）
 
-    def __init__(self): #コンストラクタ
-        self.__classA = ClassA() #クラスＡのインスタンスを生成（ポイント）
+	func myMethod():
+		_classA.myMethod()
 
-    def myMethod(self):
-        self.__classA.myMethod()
-
-_classB = ClassB()
-_classB.myMethod() #'ClassA.myMethod
+func _ready():
+	var _classB = ClassB.new()
+	_classB.myMethod() #-> "ClassA.myMethod()"
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月06日
+
 
 <a name="変数とスコープ"></a>
 # <b>変数とスコープ</b>
