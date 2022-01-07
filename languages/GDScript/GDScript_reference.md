@@ -799,7 +799,22 @@ func _ready():
 
 ### ローカル変数
 1. 関数内で宣言する場合
-    ```
+    ```GDScript
+    #test.gd
+    extends Spatial #2Dの場合はNode2D
+
+    func myFunction1():
+        var _local = "ローカル変数"
+        print(_local) #-> "ローカル変数"
+
+    func myfunction2():
+        #print(_local) # Error（アクセス不可）
+        pass
+
+    func _ready():
+        myFunction1()
+        myfunction2()
+        #print(_local) # Error（アクセス不可）
     ```
 
 1. クラスの関数内で宣言する場合
