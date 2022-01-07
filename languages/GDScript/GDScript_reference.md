@@ -733,6 +733,25 @@ var _someGlobal = 100
 ```
 1. [プロジェクト]-[プロジェクト設定]-[自動読み込み]を選択
 1. [パス]を"res://**Global.gd**"に設定し[追加]を選択
+1. [グローバル変数]は[✓有効]のままにする
+1. 動作確認
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	print(Global._someGlobal) #-> 100（参照）
+	Global._someGlobal = 200 # 変更
+	print(Global._someGlobal) #-> 200（変更されている）
+
+	var _myClass = MyClass.new()
+
+class MyClass:
+	func _init():
+		print(Global._someGlobal) #-> 200（参照）
+		Global._someGlobal = 300 # 変更
+		print(Global._someGlobal) #-> 300（変更されている）
+```
 
 <a name="疑似プライベート変数"></a>
 
