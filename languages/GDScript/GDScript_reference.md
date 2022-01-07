@@ -804,7 +804,7 @@ func _ready():
     extends Spatial #2Dの場合はNode2D
 
     func myFunction1():
-        var _local = "ローカル変数"
+        var _local = "ローカル変数" # ローカル変数の定義
         print(_local) #-> "ローカル変数"
 
     func myfunction2():
