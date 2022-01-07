@@ -818,7 +818,19 @@ func _ready():
     ```
 
 1. クラスの関数内で宣言する場合
-    ```
+    ```GDScript
+    #test.gd
+    extends Spatial #2Dの場合はNode2D
+
+    class MyClass:
+        func myMethod1():
+            var _local = "ローカル変数" # メソッド外で定義するとパブリック変数扱い
+            print(_local)
+
+    func _ready():
+        var _myClass = MyClass.new()
+        _myClass.myMethod1()
+        #print(_myClass._local) # アクセス不可
     ```
 
 1. for文内で宣言する場合
