@@ -804,7 +804,7 @@ func _ready():
     extends Spatial #2Dの場合はNode2D
 
     func myFunction1():
-        var _local = "ローカル変数" # ローカル変数の定義
+        var _local = "ローカル変数" # ローカル変数の宣言
         print(_local) #-> "ローカル変数"
 
     func myfunction2():
@@ -833,13 +833,24 @@ func _ready():
         #print(_myClass._local) # アクセス不可
     ```
 
-1. for文内で宣言する場合
-    ```
+1. for文内のループ変数
+    ```GDScript
+    #test.gd
+    extends Spatial #2Dの場合はNode2D
+
+    class MyClass:
+        func _init():
+            for _i in range(6): #ローカル変数（_i）0～5
+                print(_i) #-> 0,1,2,...,5
+            #print(_i) # Error（for文外ではアクセス不可）
+
+    func _ready():
+        var _myClass = MyClass.new()
     ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月08日  
 [[TOP](#TOP)]
 
 
