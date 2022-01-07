@@ -1,7 +1,7 @@
 # HelloWorld
 各言語 x 各OSによる "Hello,world!" や基礎文法など...
 
-|言語|Linux|macOS|Windows|基礎文法|デザパタ|ライブラリ|
+|言語|Linux|Mac|Win|基礎文法|デザパタ|ライブラリ|
 |:--|:--:|:--:|:--:|:--:|:--:|:--:|
 |**ActionScript 3.0**|[●](https://github.com/mubirou/HelloWorld/tree/master/languages/ActionScript/ActionScript_linux.md)|[●](https://github.com/mubirou/HelloWorld/tree/master/languages/ActionScript/ActionScript_mac.md)|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/ActionScript/ActionScript_win.md)|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/ActionScript/ActionScript_reference.md)|[●](https://github.com/mubirou/HelloWorld/blob/master/languages/ActionScript/ActionScript_pattern.md)||
 |アセンブリ言語|[●](https://github.com/mubirou/HelloWorld/tree/master/languages/Assembly/Assembly_linux.md)|[●](https://github.com/mubirou/HelloWorld/tree/master/languages/Assembly/Assembly_mac.md)|[●](https://github.com/mubirou/HelloWorld/tree/master/languages/Assembly/Assembly_win.md)||－||
