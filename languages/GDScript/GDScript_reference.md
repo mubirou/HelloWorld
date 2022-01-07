@@ -739,6 +739,9 @@ func _ready():
     #test.gd
     extends Spatial #2Dの場合はNode2D
 
+    #-----------------------------
+    # 関数内でのグローバル変数の扱い
+    #-----------------------------
     func _ready():
         print(Global._someGlobal) #-> 100（参照）
         Global._someGlobal = 200 # 変更
@@ -746,6 +749,9 @@ func _ready():
 
         var _myClass = MyClass.new()
 
+    #-------------------------------
+    # クラス内でのグローバル変数の扱い
+    #-------------------------------
     class MyClass:
         func _init():
             print(Global._someGlobal) #-> 200（参照）
