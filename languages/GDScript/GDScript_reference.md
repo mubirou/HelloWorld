@@ -724,7 +724,12 @@ func _ready():
 
 ### グローバル変数
 1. [Godot Engine]-[ファイルシステム]上で右クリック→[新規スクリプト]を選択
-```
+1. [パス]は"res://Global.gd"としコードを次の通りに記述
+```GDScript
+#Global.gd
+extends Node
+
+var _someGlobal = 100
 ```
 
 <a name="疑似プライベート変数"></a>
