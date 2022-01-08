@@ -1450,7 +1450,7 @@ print(_result)
 
 
 <a name="match文"></a>
-# <b>match 文</b>
+# <b>match 文 ≒ switch 文</b>
 
 ### 判別式が bool 値ではない場合
 ```GDScript
