@@ -1454,26 +1454,23 @@ print(_result)
 
 ### 判別式が boolean 値ではない場合
 ```
-<script>
-    var _name = "TARO";
-    switch (_name) {
-        case "TARO":
-            console.log("父"); //これが出力される
-            break;
-        case "HANAKO":
-            console.log("母");
-            break;
-        case "ICHIRO":
-            console.log("長男");
-            break;
-        case "JIRO":
-            console.log("次男");
-            break;
-        default:
-            console.log("家族以外");
-            break; //省略可
-    }
-</script>
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _name = "TARO"
+	
+	match _name:
+		"TARO":
+			print("父") # これが出力される
+		"HANAKO":
+			print("母")
+		"ICHIRO":
+			print("長男")
+		"JIRO":
+			print("次男")
+		_:
+			print("家族以外")
 ```
 
 ### 判別式が boolean 値の場合
