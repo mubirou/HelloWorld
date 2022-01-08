@@ -1404,7 +1404,7 @@ func _ready():
     ```
 
 ### 排他的論理和（XOR）
-* GDScriptでは XOR 演算子（^）は使えない（要調査）
+* GDScriptでは ^ 演算子は使えない（要調査）
 * 「&& は and」「|| は or」「! は NOT」でも可  
 ```GDScript
 #test.gd
