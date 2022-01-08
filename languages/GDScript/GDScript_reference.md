@@ -1417,7 +1417,7 @@ func _ready():
     if ((_a || _b) && !(_a || _b)) : #()は省略可
         print("どちらか一方だけTrueです")
     else:
-        print("両方共にtrueかFalseです")
+        print("両方共にTrueかFalseです")
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
