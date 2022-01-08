@@ -1452,7 +1452,7 @@ print(_result)
 <a name="match文"></a>
 # <b>match 文</b>
 
-### 判別式が boolean 値ではない場合
+### 判別式が bool 値ではない場合
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
@@ -1473,7 +1473,7 @@ func _ready():
 			print("家族以外")
 ```
 
-### 判別式が boolean 値の場合
+### 判別式が bool 値の場合
 * case 式に比較演算子が使われる
 ```
 <script>
