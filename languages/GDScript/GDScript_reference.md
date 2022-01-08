@@ -1404,18 +1404,6 @@ func _ready():
     ```
 
 ### 排他的論理和（XOR）
-1. ^演算子を使う方法
-    ```GDScript
-    #test.py
-    a_ = True
-    b_ = False
-    if (a_ ^ b_) : #()は省略可
-        print("どちらか一方だけtrueです")
-    else:
-        print("両方共にtrueかfalseです")
-    ```
-
-1. ^演算子を使わない場合
     * && は and、|| は or、! は NOT でも可
     ```GDScript
     #test.gd
@@ -1423,7 +1411,7 @@ func _ready():
 
     func _ready():
         var _a = false
-        var _b = false
+        var _b = true
 
         if ((_a || _b) && !(_a || _b)) : #()は省略可
             print("どちらか一方だけTrueです")
@@ -1433,7 +1421,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月08日  
 [[TOP](#TOP)]
 
 
