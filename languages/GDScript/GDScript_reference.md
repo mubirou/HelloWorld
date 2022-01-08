@@ -1,6 +1,7 @@
 <a name="TOP"></a>
 
 # <b>GDScript 基礎文法</b>
+[[GodotスタディーノートTOP](https://github.com/mubirou/Godot)]
 
 ### これは書きかけの項目です
 
