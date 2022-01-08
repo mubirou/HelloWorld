@@ -21,7 +21,7 @@
 * <!--[関数](#関数)-->
 * <!--[匿名関数](#匿名関数)-->
 * <!--[静的変数・静的関数](#静的変数・静的関数)-->
-* <!--[if 文](#if文)-->
+* [if 文](#if文)
 * <!--[三項演算子](#三項演算子)-->
 * <!--[for 文](#for文)-->
 * <!--[for...in 文](#for...in文)-->
@@ -1327,36 +1327,41 @@ print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 
 <a name="if文"></a>
 # <b>if 文</b>
-* Python には switch 文は存在しない  
-（何かをするのに明確な方法がただ１つあるべきという思想とか…）
 
 ### 基本構文
 * Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```
-#test.py
-_age = 49
-if (_age <= 20) : #()は省略可
-    print("20歳以下")
-elif (_age <= 40) : #「else if」でも「elseif」でもない（要注意）
-    print("21〜40歳")
-elif (_age <= 60) :
-    print("41〜60歳") #これが出力される
-else:
-    print("61歳以上")
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _age = 54
+	
+	if (_age <= 20) : #()は省略可
+		print("20歳以下")
+	elif (_age <= 40) : #「else if」でも「elseif」でもない（要注意）
+		print("21〜40歳")
+	elif (_age <= 60) :
+		print("41〜60歳") #これが出力される
+	else:
+		print("61歳以上")
 ```
 
 * 注意：条件式の判断記述について
 ```
-#test.py
-if None : #() '' "" も同じFalseとして判断
-    print("A")
-else:
-    print("B") #こちらが実行される
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-if "あ" : #中身が何かあればTrueとして判断
-    print("A") #こちらが実行される
-else:
-    print("B")
+func _ready():
+	if null : # '' "" も同じFalseとして判断
+		print("A")
+	else:
+		print("B") #こちらが実行される
+
+	if "あ" : #中身が何かあればTrueとして判断
+		print("A") #こちらが実行される
+	else:
+		print("B")
 ```
 
 ### 論理積（and）
@@ -1423,7 +1428,8 @@ else:
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年0X月XX日  
+[[TOP](#TOP)]
 
 
 <a name="三項演算子"></a>
