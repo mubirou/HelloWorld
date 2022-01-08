@@ -1453,7 +1453,7 @@ print(_result)
 # <b>match 文</b>
 
 ### 判別式が boolean 値ではない場合
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
