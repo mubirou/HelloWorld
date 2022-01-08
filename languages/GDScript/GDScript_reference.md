@@ -1330,7 +1330,7 @@ print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 
 ### 基本構文
 * Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1348,7 +1348,7 @@ func _ready():
 ```
 
 * 注意：条件式の判断記述について
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1366,7 +1366,7 @@ func _ready():
 
 ### 論理積（and または &&）
 1. 論理演算子（and または &&）を使う方法
-    ```
+    ```GDScript
     if (条件式➀ and 条件➁) : #()は省略可
         処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
     else:
@@ -1374,7 +1374,7 @@ func _ready():
     ```
 
 1. ifのネストを使う方法
-    ```
+    ```GDScript
     if (条件式➀) : #()は省略可
         if (条件➁) :
             処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
@@ -1386,7 +1386,7 @@ func _ready():
 
 ### 論理和（or または ||）
 1. 論理演算子（or または ||）を使う方法
-    ```
+    ```GDScript
     if (条件式➀ or 条件➁) : #()は省略可
         処理A ←条件式➀または条件式➁の両方がTrueの場合に実行
     else:
@@ -1394,7 +1394,7 @@ func _ready():
     ```
 
 1. ifのネストを使う方法
-    ```
+    ```GDScript
     if (条件式➀) : #()は省略可
         処理A ←条件式➀がTrueの場合に実行
     elif (条件➁) :
@@ -1405,7 +1405,7 @@ func _ready():
 
 ### 排他的論理和（XOR）
 1. ^演算子を使う方法
-    ```
+    ```GDScript
     #test.py
     a_ = True
     b_ = False
@@ -1416,14 +1416,19 @@ func _ready():
     ```
 
 1. ^演算子を使わない場合
-    ```
-    #test.py
-    a_ = True
-    b_ = False
-    if ((a_ or b_) and not (a_ and b_)) : #()は省略可
-        print("どちらか一方だけtrueです")
-    else:
-        print("両方共にtrueかfalseです")
+    * && は and、|| は or、! は NOT でも可
+    ```GDScript
+    #test.gd
+    extends Spatial #2Dの場合はNode2D
+
+    func _ready():
+        var _a = false
+        var _b = false
+
+        if ((_a || _b) && !(_a || _b)) : #()は省略可
+            print("どちらか一方だけTrueです")
+        else:
+            print("両方共にtrueかFalseです")
     ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
