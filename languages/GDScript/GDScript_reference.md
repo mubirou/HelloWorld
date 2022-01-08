@@ -1404,20 +1404,21 @@ func _ready():
     ```
 
 ### 排他的論理和（XOR）
-    * && は and、|| は or、! は NOT でも可
-    ```GDScript
-    #test.gd
-    extends Spatial #2Dの場合はNode2D
+* GDScriptではXOR演算子（^）は使えない（要調査）
+* 「&& は and」「|| は or」「! は NOT」でも可  
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-    func _ready():
-        var _a = false
-        var _b = true
+func _ready():
+    var _a = false
+    var _b = true
 
-        if ((_a || _b) && !(_a || _b)) : #()は省略可
-            print("どちらか一方だけTrueです")
-        else:
-            print("両方共にtrueかFalseです")
-    ```
+    if ((_a || _b) && !(_a || _b)) : #()は省略可
+        print("どちらか一方だけTrueです")
+    else:
+        print("両方共にtrueかFalseです")
+```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
