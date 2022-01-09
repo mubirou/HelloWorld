@@ -17,7 +17,7 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ（getter / setter）](#アクセサ)
 * [演算子](#演算子)
-* <!--[定数](#定数)-->
+* [定数](#定数)
 * <!--[関数](#関数)-->
 * <!--[匿名関数](#匿名関数)-->
 * <!--[静的変数・静的関数](#静的変数・静的関数)-->
@@ -1007,49 +1007,43 @@ func _ready():
 <a name="定数"></a>
 # <b>定数</b>
 
-### 概要
-* 多くの言語にある const 修飾子が存在しない
-* 慣例的に_（アンダースコア）付で全て大文字にすることで定数と判断する
-* 実際は通常のグローバル変数やパブリック変数と同じなので、変更は出来てしまう
-
 ### 通常の定数
-```
-#test.py
-#擬似「定数」←実際はグローバル変数
-MY_NAME = "mubirou"
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-print(MY_NAME) #"mubirou"
+const MY_NAME = "mubirou"
 
-MY_NAME = "TARO NISHIMURA" #変更できてしまう（本当は定数ではない）
-print(MY_NAME) #"TARO NISHIMURA"
+func _ready():
+	print(MY_NAME) #-> "mubirou"
+	#MY_NAME = "ICHIRO" # Error（変更不可）
 ```
 
 ### クラス定数（クラスからもインスタンスからも呼び出せる）
-```
-#test.py
-#カスタムクラス（MyClass）
-class MyClass(object):
-    #擬似「クラス定数」←実際はパブリック変数
-    MY_NAME = "mubirou"
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-#=====================================================
-# 「インスタンス変数」と「クラス定数」の違いを検証
-#=====================================================
-_myClass = MyClass() #インスタンスの生成
-print(_myClass.MY_NAME) #"mubirou" ←インスタンス変数へのアクセス
-_myClass.MY_NAME = "HANAKO NISHIMURA" #インスタンス変数を変更（他人をいじる…）
-#↑オブジェクト指向のルールとしてgetter/setterでアクセスすべきですが…
-print(_myClass.MY_NAME) #"HANAKO NISHIMURA"
+class MyClass:
+	const MY_NAME = "mubirou" # 定数の定義
 
-print(MyClass.MY_NAME) #"mubirou" ←クラス変数とインスタンス変数は別扱い
+	func _init():
+		print(MY_NAME) #-> "mubioru"（クラス内でのアクセス方法）
 
-MyClass.MY_NAME = "TARO NISHIMURA" #変更できてしまう（実際は定数ではない）
-print(MyClass.MY_NAME) #"TARO NISHIMURA"
+func _ready():
+	print(MyClass.MY_NAME) #-> "mubirou"（クラス外からのアクセス方法）
+	#MyClass.MY_NAME = "ICHIRO" # Error（変更不可）
+
+	# 実験
+	var _myClass = MyClass.new()
+	print(_myClass.MY_NAME) #-> "mubirou"（インスタンスからのアクセスも可能！）
+	#_myClass.MY_NAME = "ICHIRO" # Error（変更は不可）
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月09日  
+[[TOP](#TOP)]
 
 
 <a name="関数"></a>
