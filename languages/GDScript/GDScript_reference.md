@@ -1474,7 +1474,7 @@ func _ready():
 ```
 
 ### 注意➀：判別式に bool 型が使えない
-```#GDScript
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1490,7 +1490,7 @@ func _ready():
 
 ### 注意➁：フォロースルーの動作
 * 以下の場合 "A" "C" が出力される
-```#GDScript
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
