@@ -1534,7 +1534,7 @@ for 変数 in range(開始,終了):
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	for i in range(0,10): #第１引数を省略すると0扱い
+	for i in range(0,10): #第1引数を省略すると0扱い
 		print(i) #-> 0,1,2,3,4,5,6,7,8,9
 
 	# print(i) # Error（for文の外ではiは無効）
