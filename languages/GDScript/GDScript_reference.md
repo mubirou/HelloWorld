@@ -39,7 +39,7 @@
 * [カスタムイベント](#カスタムイベント)
 * <!--[数学関数（math）](#数学関数（math）)-->
 * <!--[乱数](#乱数)-->
-* <!--[日時情報](#日時情報)-->
+* [日時情報](#日時情報)
 * <!--[タイマー](#タイマー)-->
 * <!--[処理速度計測](#処理速度計測)-->
 * <!--[外部テキストの読み込み](#外部テキストの読み込み)-->
@@ -2682,17 +2682,21 @@ print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #"X"...など
 # <b>日時情報</b>
 
 ### 書式
-```
-import datetime #必須
-○ = datetime.datetime.now()
-○.year #年（2016等）
-○.month #月（1〜12）
-○.day #日（1〜31）
-○.weekday() #0（月曜）〜6（日曜） ←これだけ関数（注意）
-○.hour #時間（0〜23）
-○.minute #分（0〜59）
-○.second #秒（0〜59）
-○.microsecond #マイクロ秒（0〜999999）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _time = OS.get_datetime()
+	print(_time) #-> {day:9, dst:False, hour:17, minute:49, month:1, second:26, weekday:0, year:2022}
+	print(_time.year)
+	print(_time.month)
+	print(_time.day)
+	print(_time.weekday)
+	print(_time.hour)
+	print(_time.minute)
+	print(_time.second)
+	print(_time.dst)
 ```
 
 ### 例文
@@ -2722,7 +2726,8 @@ print(h_ + ":" + m_ + ":" + s_) #14:23:07
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年0X月XX日  
+[[TOP](#TOP)]
 
 
 <a name="タイマー"></a>
