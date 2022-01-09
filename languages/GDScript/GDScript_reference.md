@@ -2683,20 +2683,16 @@ print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #"X"...など
 
 ### 書式
 ```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _time = OS.get_datetime()
-	print(_time) #-> {day:9, dst:False, hour:17, minute:49, month:1, second:26, weekday:0, year:2022}
-	print(_time.year)
-	print(_time.month)
-	print(_time.day)
-	print(_time.weekday)
-	print(_time.hour)
-	print(_time.minute)
-	print(_time.second)
-	print(_time.dst)
+var XXX = OS.get_datetime()
+XXX.year # 年（2016等）
+XXX.month # 月（1〜12）
+XXX.day # 日（1〜31）
+XXX.weekday() # 0（日曜）〜6（土曜） ←Pythonと異なる（注意）
+XXX.hour # 時間（0〜23）
+XXX.minute # 分（0〜59）
+XXX.second # 秒（0〜59）
+XXX.dst # サマータイム（True or False）
+# マイクロ秒を取得する場合 OS.get_system_time_msecs() を利用
 ```
 
 ### 例文
