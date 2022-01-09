@@ -1021,7 +1021,7 @@ func _ready():
 	#MY_NAME = "ICHIRO" # Error（変更不可）
 ```
 
-### クラス定数（クラスからもインスタンスからも呼び出せる）
+### クラス定数（インスタンスからも呼び出せる）
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
