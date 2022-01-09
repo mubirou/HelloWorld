@@ -1523,18 +1523,21 @@ func _ready():
 # <b>for 文</b>
 
 ### 基本構文
-```
+```GDScript
 for 変数 in range(開始,終了):
     繰り返す処理
 ```
 
 ### 基本例文
-```
-#test.py
-for i in range(0,10): #第１引数を省略すると0扱い
-    print(i) #0,1,2,3,4,5,6,7,8,9
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-print(i) #9（for文の外でもiは有効）
+func _ready():
+	for i in range(0,10): #第１引数を省略すると0扱い
+		print(i) #-> 0,1,2,3,4,5,6,7,8,9
+
+	# print(i) # Error（for文の外ではiは無効）
 ```
 
 ### for文のネスト
@@ -1569,7 +1572,8 @@ for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile�
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年0X月XX日  
+[[TOP](#TOP)]
 
 
 <a name="for...in文"></a>
