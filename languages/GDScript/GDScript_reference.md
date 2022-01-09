@@ -22,7 +22,7 @@
 * <!--[匿名関数](#匿名関数)-->
 * <!--[静的変数・静的関数](#静的変数・静的関数)-->
 * [if 文](#if文)
-* <!--[三項演算子](#三項演算子)-->
+* [三項演算子](#三項演算子)
 * [match 文](#match文) ≒ switch 文
 * <!--[for 文](#for文)-->
 * <!--[for...in 文](#for...in文)-->
@@ -1431,21 +1431,25 @@ func _ready():
 # <b>三項演算子</b>
 
 ### 構文
-* Python の三項演算子は if 文を使った独特のものです
+* GDScript の三項演算子は [Python](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90) と同様 if 文を使った独特のものです
 ```
 変数 = (True時の返り値) if (比較式) else (False時の返り値)
 ```
 
 ### 例文
-```
-_age = 49
-_result = "現役" if (_age < 60) else "退職"
-print(_result)
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _age = 54
+	var _result = "現役" if (_age < 60) else "退職"
+	print(_result)
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月09日
 [[TOP](#TOP)]
 
 
