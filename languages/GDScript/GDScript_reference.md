@@ -1540,7 +1540,7 @@ func _ready():
 	# print(i) # Error（for文の外ではiは無効）
 ```
 
-### for文のネスト
+### for 文のネスト
 * ループ制御変数には i, j, k が使われる
 ```GDScript
 #test.gd
@@ -1552,14 +1552,18 @@ func _ready():
 			print("x" + str(i) + "y" + str(j)) #x1y1, x1y2, ...., x5y4, x5y5
 ```
 
-### continue文
+### continue 文
 * ループカウンタを○つずつアップする
-```
-#test.py
-for i in range(0,50):
-    if i % 5: #5つずつアップする場合…
-        continue #以降処理せず、for文のブロックの先頭に戻って再度繰返す
-    print(i) #0,5,10,15,20,25,30,35,40,45
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	for i in range(0,50):
+		if i % 5: #5つずつアップする場合…
+			continue #以降処理せず、for文のブロックの先頭に戻って再度繰返す
+		
+		print(i) #->0, 5, 10, 15, 20, 25, 30, 35, 40, 45
 ```
 
 ### 無限ループと break 文
