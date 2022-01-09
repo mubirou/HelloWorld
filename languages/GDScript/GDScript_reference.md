@@ -800,7 +800,8 @@ func _ready():
 <a name="ローカル変数"></a>
 
 ### ローカル変数
-1. 関数内で宣言する場合
+1. 関数内で宣言する場合（for 文、if 文等でも同様）  
+    ※宣言した場所より大きく深いインデント範囲内で有効
     ```GDScript
     #test.gd
     extends Spatial #2Dの場合はNode2D
@@ -853,6 +854,7 @@ func _ready():
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月08日  
+更新日：2022年01月09日  
 [[TOP](#TOP)]
 
 
