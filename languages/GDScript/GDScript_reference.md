@@ -1473,53 +1473,45 @@ func _ready():
 			print("家族以外")
 ```
 
-### 判別式が bool 値の場合
-* case 式に比較演算子が使われる
-```
-<script>
-    var _age = 49;
-    switch (true) {
-        case _age <= 20:
-            console.log("20歳以下");
-            break;
-        case _age <= 40:
-            console.log("21〜40歳");
-            break;
-        case _age <= 60:
-            console.log("41〜60歳"); //これが出力される
-            break;
-        default:
-            console.log("61歳以上");
-            break; //省略可
-    }
-</script>
+### 注意➀：判別式に bool 型が使えない
+```#GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _age = 54
+	
+	match true:
+		_age < 20: # Error（比較演算子を使った条件式は不可）
+			print("未成年")
+		_:
+			print("成人")
 ```
 
-### break文が無い使い方
-* [C#](https://ja.wikipedia.org/wiki/C_Sharp) のようなフォールスルー禁止規則（何か処理をしておきながら break を書かないとエラー）は無い
-```
-<script>
-    var _name = "JIRO";
-    switch (_name) {
-        case "TARO":
-        case "HANAKO":
-            console.log("親です");
-            break;
-        case "ICHIRO":
-        case "JIRO":
-            console.log("子供です"); //これが出力される
-            break;
-        default:
-            console.log("家族ではありません");
-            break; //省略可
-    }
-</script>
+### 注意➁：フォロースルーの動作
+* 以下の場合 "A" "C" が出力される
+```#GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _value = "A"
+	
+	match _value:
+		"A":
+			print("A")
+			continue
+		"B":
+			print("B")
+			continue
+		_:
+			print("C")
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#match)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2021年01月XX日  
+作成日：2021年01月09日  
 [[TOP](#TOP)]
 
 
