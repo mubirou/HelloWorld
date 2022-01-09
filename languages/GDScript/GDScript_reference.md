@@ -1560,8 +1560,8 @@ extends Spatial #2Dの場合はNode2D
 
 func _ready():
 	for i in range(0,50):
-		if i % 5: #5つずつアップする場合…
-			continue #以降処理せず、for文のブロックの先頭に戻って再度繰返す
+		if i % 5: # 5つずつアップする場合…
+			continue # 以降処理せず、for文のブロックの先頭に戻って再度繰返す
 		
 		print(i) #->0, 5, 10, 15, 20, 25, 30, 35, 40, 45
 ```
