@@ -969,30 +969,38 @@ func _ready():
 ```
 
 ### その他の演算子
-```
-#test.py
-print(True and True) #True（論理積）←他の多く言語と異なる（&ではない）
-print(True or False) #True（論理和）←他の多く言語と異なる（||ではない）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-print(not True) #False（否定）←他の多く言語と異なる（!ではない）
+func _ready():
+	# 論理積
+	print(true and true) #-> True
+	print(true && true) #-> True
 
-print(2 < 3) #True（比較/未満）
-print(2 <= 2) #True（比較/以下）
-print(1 == True) #True（等号）
-print(1 != True) #False（不等号）
-print(1 is True) #False（厳密一致）←他の多く言語と異なる（===ではない）
-print(1 is not True) #True（厳密不一致）←他の多く言語と異なる（!===ではない）
+	# 論理和
+	print(true or false) #-> True
+	print(true || false) #-> True
 
-print(3 & 1) #1（ビット積）
-print(3 | 1) #3（ビット和）
-print(3 ^ 1) #2（排他的ビット和）
-print(2 << 7) #256（ビット･シフト）
-print(~3) #-4（ビット反転）
+	# 否定
+	print(not true) #-> False
+	print(! true) #-> False
+ 
+	print(2 < 3) #-> True（比較/未満）
+	print(2 <= 2) #-> True（比較/以下）
+	print(1 == 1.0) #-> True（等号）
+	print(1 != 1.0) #-> False（不等号）
+
+	print(3 & 1) #-> 1（ビット積）
+	print(3 | 1) #-> 3（ビット和）
+	print(3 ^ 1) #-> 2（排他的ビット和）
+	print(2 << 7) #-> 256（ビット･シフト）
+	print(~3) #-> -4（ビット反転）
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#operators)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月09日  
 [[TOP](#TOP)]
 
 
