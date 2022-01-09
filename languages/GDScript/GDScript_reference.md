@@ -16,7 +16,7 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ（getter / setter）](#アクセサ)
-* <!--[演算子](#演算子)-->
+* [演算子](#演算子)
 * <!--[定数](#定数)-->
 * <!--[関数](#関数)-->
 * <!--[匿名関数](#匿名関数)-->
@@ -940,7 +940,7 @@ func _ready():
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月06日  
-[[TOP](#TOP)]
+[[TOP](#TOP)]  
 
 
 <a name="演算子"></a>
@@ -985,10 +985,11 @@ print(3 ^ 1) #2（排他的ビット和）
 print(2 << 7) #256（ビット･シフト）
 print(~3) #-4（ビット反転）
 ```
-
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#operators)
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年0X月XX日  
+[[TOP](#TOP)]
 
 
 <a name="定数"></a>
