@@ -1567,19 +1567,22 @@ func _ready():
 ```
 
 ### 無限ループと break 文
-```
-#test.py
-count_ = 0
-for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile文を使います）
-    count_ += 1
-    if (count_ > 100):
-        break #100を超えたらループを抜け出す
-    print(count_) #1,2,....,99,100
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _count = 0
+	for i in range(0, 9e9): # ほぼ無限ループ（厳密な無限にはwhile文を使用）
+		_count += 1
+		if (_count > 100):
+			break #100 を超えたらループを抜け出す
+		print(_count) #1, 2, ...., 99, 100
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月09日  
 [[TOP](#TOP)]
 
 
