@@ -1431,7 +1431,7 @@ func _ready():
 # <b>三項演算子</b>
 
 ### 構文
-* GDScript の三項演算子は [Python と同様](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90) if 文を使った独特のものです
+* GDScript の三項演算子は [Pythonと同様](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90) if 文を使った独特のものです
 ```
 変数 = (True時の返り値) if (比較式) else (False時の返り値)
 ```
