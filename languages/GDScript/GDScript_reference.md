@@ -2687,7 +2687,7 @@ var XXX = OS.get_datetime()
 XXX.year # 年（2016等）
 XXX.month # 月（1〜12）
 XXX.day # 日（1〜31）
-XXX.weekday() # 0（日曜）〜6（土曜） ←Pythonと異なる（注意）
+XXX.weekday() # 0（日曜）〜6（土曜）←Pythonと異なる
 XXX.hour # 時間（0〜23）
 XXX.minute # 分（0〜59）
 XXX.second # 秒（0〜59）
@@ -2696,33 +2696,37 @@ XXX.dst # サマータイム（True or False）
 ```
 
 ### 例文
-```
-#test.py
-import datetime #必須
-now_ = datetime.datetime.now()
-print(now_) #2017-04-11 14:23:07.857409
-print(now_.year) #年（2017等）
-print(now_.month) #月（1〜12）
-print(now_.day) #日（1〜31）
-print(now_.weekday()) #0（月曜）〜6（日曜） ←…これだけ関数（注意）
-print(now_.hour) #時間（0〜23）
-print(now_.minute) #分（0〜59）
-print(now_.second) #秒（0〜59）
-print(now_.microsecond) #マイクロ秒（0〜999999）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-#"hh:mm:ss"で現在の時間を表示する方法
-if (now_.hour < 10) : h_ = "0" + str(now_.hour)
-else: h_ = str(now_.hour)
-if (now_.minute < 10) : m_ = "0" + str(now_.minute)
-else: m_ = str(now_.minute)
-if (now_.second < 10) : s_ = "0" + str(now_.second)
-else: s_ = str(now_.second)
-print(h_ + ":" + m_ + ":" + s_) #14:23:07
+func _ready():
+	var _now = OS.get_datetime()
+	print(_now) #-> {day:9, dst:False, hour:18, minute:21, month:1, second:45, weekday:0, year:2022}
+	print(_now.year) # 年（2017等）
+	print(_now.month) # 月（1〜12）
+	print(_now.day) # 日（1〜31）
+	print(_now.weekday) #0（日曜）〜6（土曜）←Pythonと異なる
+	print(_now.hour) # 時間（0〜23）
+	print(_now.minute) # 分（0〜59）
+	print(_now.second) # 秒（0〜59）
+	
+	#"hh:mm:ss"で現在の時間を表示する方法
+	var _h
+	var _m
+	var _s
+	if (_now.hour < 10) : _h = "0" + str(_now.hour)
+	else: _h = str(_now.hour)
+	if (_now.minute < 10) : _m = "0" + str(_now.minute)
+	else: _m = str(_now.minute)
+	if (_now.second < 10) : _s = "0" + str(_now.second)
+	else: _s = str(_now.second)
+	print(_h + ":" + _m + ":" + _s) #-> "18:21:45"
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月09日  
 [[TOP](#TOP)]
 
 
