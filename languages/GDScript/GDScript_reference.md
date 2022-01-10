@@ -2511,7 +2511,7 @@ func gameoverHandler(): #前方定義でなくてもよい
 <a name="数学関数（math）"></a>
 # <b>数学関数（math）</b>
 
-### math.sin() : サイン（正弦）
+### sin() : サイン（正弦）
 ```GDScript
 print(sin(0)) #-> 0（0°）
 print(sin(PI / 2)) #-> 1（90°）
@@ -2521,7 +2521,7 @@ print(sin(PI * 2)) #-> -0（360°）
 print(sin(PI * 2) == 0) #-> False（要注意）
 ```
 
-### math.cos() : コサイン（余弦）
+### cos() : コサイン（余弦）
 ```GDScript
 print(cos(0)) #-> 1（0°）
 print(cos(PI / 2)) #-> 0（90°）
@@ -2530,7 +2530,7 @@ print(cos(PI * 3 / 2)) #-> -0（270°）←要注意
 print(cos(PI * 2)) #-> 1（360°）
 ```
 
-### math.atan2() : アークタンジェント2
+### atan2() : アークタンジェント2
 * 2つの値のアークタンジェント（逆タンジェント）
 * X、Y 座標の角度をラジアン単位で返す
 * Π ラジアン（3.141592…）は180°
@@ -2541,11 +2541,10 @@ print(atan2(_disY, _disX)) #-> 0.523599（ラジアン）
 print(180 * atan2(_disY, _disX) / PI) #-> 30（度）
 ```
 
-### math.pi : 円周率
-```
-#test.py
-import math #必須
-print(math.pi) #3.141592653589793 ※math.piラジアン=180°
+### PI : 円周率
+```GDScript
+print(PI) #-> 3.141593
+print(PI == 3.141593) #-> False
 ```
 
 ### math.floor() : 切り捨て
