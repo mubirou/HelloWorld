@@ -2511,23 +2511,10 @@ func gameoverHandler(): #前方定義でなくてもよい
 <a name="数学関数（math）"></a>
 # <b>数学関数（math）</b>
 
-### sin() : サイン（正弦）
+### abs() : 絶対値
 ```GDScript
-print(sin(0)) #-> 0（0°）
-print(sin(PI / 2)) #-> 1（90°）
-print(sin(PI)) #-> 0（180°）
-print(sin(PI * 3 / 2)) #-> -1（270°）
-print(sin(PI * 2)) #-> -0（360°）
-print(sin(PI * 2) == 0) #-> False（要注意）
-```
-
-### cos() : コサイン（余弦）
-```GDScript
-print(cos(0)) #-> 1（0°）
-print(cos(PI / 2)) #-> 0（90°）
-print(cos(PI)) #-> -1（180°）
-print(cos(PI * 3 / 2)) #-> -0（270°）←要注意
-print(cos(PI * 2)) #-> 1（360°）
+print(abs(100)) #-> 100
+print(abs(-100)) #-> 100
 ```
 
 ### atan2() : アークタンジェント2
@@ -2541,49 +2528,25 @@ print(atan2(_disY, _disX)) #-> 0.523599（ラジアン）
 print(180 * atan2(_disY, _disX) / PI) #-> 30（度）
 ```
 
-### PI : 円周率
-```GDScript
-print(PI) #-> 3.141593
-print(PI == 3.141593) #-> False
-```
-
-### floor() : 切り捨て
-```GDScript
-print(floor(1.001)) #-> 1
-print(floor(1.999)) #-> 1
-```
-
 ### ceil() : 切り上げ
 ```GDScript
 print(ceil(1.001)) #-> 2
 print(ceil(1.999)) #-> 2
 ```
 
-### abs() : 絶対値
+### cos() : コサイン（余弦）
 ```GDScript
-print(abs(100)) #-> 100
-print(abs(-100)) #-> 100
+print(cos(0)) #-> 1（0°）
+print(cos(PI / 2)) #-> 0（90°）
+print(cos(PI)) #-> -1（180°）
+print(cos(PI * 3 / 2)) #-> -0（270°）←要注意
+print(cos(PI * 2)) #-> 1（360°）
 ```
 
-### pow() : 累乗（べき乗）
+### floor() : 切り捨て
 ```GDScript
-print(pow(2, 0)) #-> 1（2の0乗）
-print(pow(2, 8)) #-> 256（2の8乗）
-```
-
-### sqrt() : 平方根（√XXX）
-```GDScript
-print(sqrt(2)) #-> 1.414214（一夜一夜にひとみごろ）
-print(sqrt(3)) #-> 1.732051（人並みに奢れや）
-print(sqrt(4)) #-> 2
-print(sqrt(5)) #-> 2.236068（富士山麓オウム鳴く）
-print(sqrt(6)) #-> 2.44949（二夜シクシク）
-```
-
-### round() : 四捨五入
-```GDScript
-print(round(1.499)) #-> 1
-print(round(1.500)) #-> 2
+print(floor(1.001)) #-> 1
+print(floor(1.999)) #-> 1
 ```
 
 ### max() : 比較（最大値）
@@ -2594,6 +2557,43 @@ print(max(5.01, -10)) #-> 5.01（2つの数値の比較）
 ### min() : 比較（最小値）
 ```GDScript
 print(min(5.01, -10)) #-> -10（2つの数値の比較）
+```
+
+### PI : 円周率
+```GDScript
+print(PI) #-> 3.141593
+print(PI == 3.141593) #-> False
+```
+
+### pow() : 累乗（べき乗）
+```GDScript
+print(pow(2, 0)) #-> 1（2の0乗）
+print(pow(2, 8)) #-> 256（2の8乗）
+```
+
+### round() : 四捨五入
+```GDScript
+print(round(1.499)) #-> 1
+print(round(1.500)) #-> 2
+```
+
+### sin() : サイン（正弦）
+```GDScript
+print(sin(0)) #-> 0（0°）
+print(sin(PI / 2)) #-> 1（90°）
+print(sin(PI)) #-> 0（180°）
+print(sin(PI * 3 / 2)) #-> -1（270°）
+print(sin(PI * 2)) #-> -0（360°）
+print(sin(PI * 2) == 0) #-> False（要注意）
+```
+
+### sqrt() : 平方根（√XXX）
+```GDScript
+print(sqrt(2)) #-> 1.414214（一夜一夜にひとみごろ）
+print(sqrt(3)) #-> 1.732051（人並みに奢れや）
+print(sqrt(4)) #-> 2
+print(sqrt(5)) #-> 2.236068（富士山麓オウム鳴く）
+print(sqrt(6)) #-> 2.44949（二夜シクシク）
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)  
