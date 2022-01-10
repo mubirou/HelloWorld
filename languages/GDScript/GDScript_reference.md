@@ -2587,21 +2587,19 @@ print(round(1.500)) #-> 2
 ```
 
 ### max() : 比較（最大値）
-```
-#test.py
-print(max(5.01, -10, 8, 2.9)) #8 ←リスト･タプルの要素の比較
+```GDScript
+print(max(5.01, -10)) #-> 5.01（2つの数値の比較）
 ```
 
 ### min() : 比較（最小値）
-```
-#test.py
-print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
+```GDScript
+print(min(5.01, -10)) #-> -10（2つの数値の比較）
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)
+参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月10日  
 [[TOP](#TOP)]
 
 
