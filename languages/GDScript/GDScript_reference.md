@@ -2535,12 +2535,10 @@ print(cos(PI * 2)) #-> 1（360°）
 * X、Y 座標の角度をラジアン単位で返す
 * Π ラジアン（3.141592…）は180°
 ```
-#test.py
-import math #必須
-disX_ = math.sqrt(3) #√3のこと
-disY_ = 1;
-print(math.atan2(disY_, disX_)) #0.5235987755982989（ラジアン）
-print(180*math.atan2(disY_, disX_)/math.pi) #30.000000000000004（度）
+var _disX = sqrt(3) # √3のこと
+var _disY = 1
+print(atan2(_disY, _disX)) #-> 0.523599（ラジアン）
+print(180 * atan2(_disY, _disX) / PI) #-> 30（度）
 ```
 
 ### math.pi : 円周率
