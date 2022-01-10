@@ -2512,14 +2512,13 @@ func gameoverHandler(): #前方定義でなくてもよい
 # <b>数学関数（math）</b>
 
 ### math.sin() : サイン（正弦）
-```
-#test.py
-import math #必須
-print(math.sin(0)) #0.0 ←0°
-print(math.sin(math.pi/2)) #1.0 ←90°
-print(math.sin(math.pi)) #1.2246467991473532e-16（≒0） ←180°
-print(math.sin(math.pi*3/2)) #-1.0 ←270°
-print(math.sin(math.pi*2)) #-2.4492935982947064e-16（≒0） ←360°
+```GDScript
+print(sin(0)) #-> 0（0°）
+print(sin(PI / 2)) #-> 1（90°）
+print(sin(PI)) #-> 0（180°）
+print(sin(PI * 3 / 2)) #-> -1（270°）
+print(sin(PI * 2)) #-> -0（360°）
+print(sin(PI * 2) == 0) #-> False（要注意）
 ```
 
 ### math.cos() : コサイン（余弦）
@@ -2626,7 +2625,8 @@ print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年0X月XX日  
+[[TOP](#TOP)]
 
 
 <a name="乱数"></a>
