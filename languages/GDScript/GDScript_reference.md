@@ -2547,53 +2547,37 @@ print(PI) #-> 3.141593
 print(PI == 3.141593) #-> False
 ```
 
-### math.floor() : 切り捨て
+### floor() : 切り捨て
+```GDScript
+print(floor(1.001)) #-> 1
+print(floor(1.999)) #-> 1
 ```
-#test.py
-import math #必須
-print(math.floor(1.001)) #1
-print(math.floor(1.999)) #1
-```
-* 4倍程度高速な、[切り捨て除算演算子「//」](#演算子)もあり
 
-### math.ceil() : 切り上げ
-```
-#test.py
-import math #必須
-print(math.ceil(1.001)) #2
-print(math.ceil(1.999)) #2
+### ceil() : 切り上げ
+```GDScript
+print(ceil(1.001)) #-> 2
+print(ceil(1.999)) #-> 2
 ```
 
 ### math.fabs() : 絶対値
-```
-#test.py
-import math #必須
-print(math.fabs(100)) #100.0
-print(math.fabs(-100)) #100.0
+```GDScript
+print(abs(100)) #-> 100
+print(abs(-100)) #-> 100
 ```
 
-### math.pow() : 累乗（○の□乗）
-```
-#test.py
-import math #必須
-print(math.pow(2, 0)) #1.0（2の0乗）
-print(math.pow(2, 8)) #256.0（2の8乗）
-```
-* 指数演算子「**」を使う方法もある（こちらの方が5倍程度高速）
-```
-#test.py
-print(2**0) #1（2の0乗）
-print(2**8) #256（2の8乗）
+### pow() : 累乗（べき乗）
+```GDScript
+print(pow(2, 0)) #-> 1（2の0乗）
+print(pow(2, 8)) #-> 256（2の8乗）
 ```
 
 ### math.sqrt() : 平方根（√○）
-```
-#test.py
-import math #必須
-print(math.sqrt(2)) #1.4142135623730951（一夜一夜にひとみごろ）
-print(math.sqrt(3)) #1.7320508075688772（人並みに奢れや）
-print(math.sqrt(4)) #2.0
-print(math.sqrt(5)) #2.23606797749979（富士山麓オウム鳴く）
+```GDScript
+print(sqrt(2)) #-> 1.414214（一夜一夜にひとみごろ）
+print(sqrt(3)) #-> 1.732051（人並みに奢れや）
+print(sqrt(4)) #-> 2
+print(sqrt(5)) #-> 2.236068（富士山麓オウム鳴く）
+print(sqrt(6)) #-> 2.44949（二夜シクシク）
 ```
 
 以下は math モジュールを使わないもの
@@ -2618,6 +2602,7 @@ print(max(5.01, -10, 8, 2.9)) #8 ←リスト･タプルの要素の比較
 print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 ```
 
+参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日  
