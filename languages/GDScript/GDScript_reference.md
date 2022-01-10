@@ -2559,7 +2559,7 @@ print(ceil(1.001)) #-> 2
 print(ceil(1.999)) #-> 2
 ```
 
-### math.fabs() : 絶対値
+### abs() : 絶対値
 ```GDScript
 print(abs(100)) #-> 100
 print(abs(-100)) #-> 100
@@ -2571,7 +2571,7 @@ print(pow(2, 0)) #-> 1（2の0乗）
 print(pow(2, 8)) #-> 256（2の8乗）
 ```
 
-### math.sqrt() : 平方根（√○）
+### sqrt() : 平方根（√XXX）
 ```GDScript
 print(sqrt(2)) #-> 1.414214（一夜一夜にひとみごろ）
 print(sqrt(3)) #-> 1.732051（人並みに奢れや）
