@@ -37,7 +37,7 @@
 * <!--[super 関数](#super関数)-->
 * <!--[オーバーライド](#オーバーライド)-->
 * [カスタムイベント](#カスタムイベント)
-* <!--[数学関数（math）](#数学関数（math）)-->
+* [数学関数（math）](#数学関数（math）)
 * <!--[乱数](#乱数)-->
 * [日時情報](#日時情報)
 * <!--[タイマー](#タイマー)-->
@@ -2522,14 +2522,12 @@ print(sin(PI * 2) == 0) #-> False（要注意）
 ```
 
 ### math.cos() : コサイン（余弦）
-```
-#test.py
-import math #必須
-print(math.cos(0)) #1.0 ←0°
-print(math.cos(math.pi/2)) #6.123233995736766e-17（≒0） ←90°
-print(math.cos(math.pi)) #-1.0 ←180°
-print(math.cos(math.pi*3/2)) #-1.8369701987210297e-16（≒0） ←270°
-print(math.cos(math.pi*2)) #1.0 ←360°
+```GDScript
+print(cos(0)) #-> 1（0°）
+print(cos(PI / 2)) #-> 0（90°）
+print(cos(PI)) #-> -1（180°）
+print(cos(PI * 3 / 2)) #-> -0（270°）←要注意
+print(cos(PI * 2)) #-> 1（360°）
 ```
 
 ### math.atan2() : アークタンジェント2
