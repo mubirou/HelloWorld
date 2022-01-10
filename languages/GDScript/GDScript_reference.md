@@ -2580,14 +2580,10 @@ print(sqrt(5)) #-> 2.236068（富士山麓オウム鳴く）
 print(sqrt(6)) #-> 2.44949（二夜シクシク）
 ```
 
-以下は math モジュールを使わないもの
-***
-
 ### round() : 四捨五入
-```
-#test.py
-print(round(1.499)) #1
-print(round(1.500)) #2
+```GDScript
+print(round(1.499)) #-> 1
+print(round(1.500)) #-> 2
 ```
 
 ### max() : 比較（最大値）
