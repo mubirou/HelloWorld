@@ -97,7 +97,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 1. [辞書型](#TYPE_DICTIONARY)（Dictionary / TYPE_DICTIONARY）
 1. [クラス](#TYPE_OBJECT)（Object / TYPE_OBJECT）
 1. [null](#TYPE_NIL)（null）  
-
+[typeof()の戻り値一覧](#typeof()の戻り値一覧)
 
 <a name="TYPE_BOOL"></a>
 
