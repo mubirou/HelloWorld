@@ -248,7 +248,7 @@ func _ready():
 
 <a name="typeof()の戻り値一覧"></a>
 
-* typeof()の戻り値一覧  
+typeof()の戻り値一覧  
 
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--|:--:|:--|:--:|:--|:--:|
@@ -263,24 +263,21 @@ func _ready():
 |TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
 |TYPE_MAX|27|||||
 
-```
-#test.py
-print(type(True)) #<class 'bool'>
-print(type(100)) #<class 'int'>
-print(type(0.1)) #<class 'float'>
-print(type('1')) #<class 'str'>
-print(type(["CHIKASHI", "TARO", "HANAKO"])) #<class 'list'>
-print(type(("CHIKASHI", "TARO", "HANAKO"))) #<class 'tuple'>
-print(type(set(["CHIKASHI", "TARO", "HANAKO"]))) #<class 'set'>
-print(type(frozenset(["CHIKASHI", "TARO", "HANAKO"]))) #<class 'frozenset'>
-print(type({"CHIKASHI":48, "TARO":13})) #<class 'dict'>
-print(type(1+1j)) #<class 'complex'>
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ
-        pass #何もしない
-_myClass = MyClass()
-print(type(_myClass)) #<class '__main__.MyClass'>
+func _ready():
+	print(typeof(true)) #-> 1（TYPE_BOOL）
+	print(typeof(100)) #-> 2（TYPE_INT）
+	print(typeof(0.1)) #-> 3（TYPE_REAL）
+	print(typeof("1")) #-> 4（TYPE_STRING）
+	print(typeof(["A", "B", "C"])) #-> 19（TYPE_ARRAY）
+	print(typeof({"ICHIRO":54, "HANAKO":"15"})) #-> 18（TYPE_ARRAY）
+	print(typeof(MyClass.new())) #-> 17(TYPE_OBJECT)
+
+class MyClass:
+	pass
 ```
 
 ### is 演算子 : 厳密一致
