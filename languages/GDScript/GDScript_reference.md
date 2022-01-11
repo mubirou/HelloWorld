@@ -263,7 +263,7 @@ func _ready():
 
 <a name="typeof()関数"></a>
 
-### typeof() 関数 : データ型を返す
+### typeof() 関数
 
 [typeof() の戻り値一覧](#typeof()の戻り値一覧)
 
@@ -284,7 +284,7 @@ class MyClass:
 	pass
 ```
 
-### is 演算子 : 厳密一致
+### is 演算子
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
@@ -302,6 +302,25 @@ func _ready():
 	print(_myClass is MyClass) #-> True
 
 class MyClass:
+	pass
+```
+
+### as 演算子
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	print("123" as int) #-> 123（int型）
+	print("123A" as int) #-> 123（int型）
+	
+	var _hogeClass = HogeClass.new()
+	print(_hogeClass as FugaClass) #-> Null
+
+class HogeClass:
+	pass
+
+class FugaClass:
 	pass
 ```
 
