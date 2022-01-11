@@ -311,8 +311,9 @@ class MyClass:
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
+	print(1 as bool) #-> True
 	print("123" as int) #-> 123（int型）
-	print("123A" as int) #-> 123（int型）
+	print("X12Y34" as int) #-> 1234（int型）
 	
 	var _hogeClass = HogeClass.new()
 	print(_hogeClass as FugaClass) #-> Null
@@ -324,17 +325,6 @@ class FugaClass:
 	pass
 ```
 
-### isinstance() 関数 : インスタンスの判定
-* オブジェクトが指定したクラスのインスタンスか判定
-```
-#test.py
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ（オプション）
-        pass #何もしない
-
-_myClass = MyClass()
-print(isinstance(_myClass, MyClass)) #True ←isinstance(オブジェクト, クラス名)
-```
 
 ### データ型のキャスト（数値 ↔ bool 型）
 ```
