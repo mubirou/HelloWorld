@@ -285,6 +285,7 @@ class MyClass:
 ```
 
 ### is 演算子
+* データ型を判断する
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
@@ -306,6 +307,7 @@ class MyClass:
 ```
 
 ### as 演算子
+* キャスト成功時に変換後の値が、失敗すると Null が返される
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
