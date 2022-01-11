@@ -248,7 +248,7 @@ func _ready():
 
 <a name="typeof()の戻り値一覧"></a>
 
-### typeof()の戻り値一覧
+* typeof()の戻り値一覧
 |TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
 |:--|:--:|:--|:--:|:--|:--:|
 |[TYPE_NIL](#TYPE_NIL)|**0**|[TYPE_BOOL](#TYPE_BOOL)|**1**|[TYPE_INT](#TYPE_INT)|**2**|
