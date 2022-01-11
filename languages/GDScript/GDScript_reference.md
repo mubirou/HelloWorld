@@ -285,18 +285,24 @@ class MyClass:
 ```
 
 ### is 演算子 : 厳密一致
-```
-#test.py
-# 数値のブール値の比較
-print(1 is True) #False（厳密一致）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-# クラスとインスタンスの比較
-class MyClass: #前方宣言が必要
-    def __init__(self): #コンストラクタ
-        pass #何もしない
+func _ready():
+	print(true is bool) #-> True
+	print(100 is int) #-> True
+	print(0.1 is float) #-> True
+	print("1" is String) #-> True
+	print(["A", "B", "C"] is Array) #-> True
+	print({"ICHIRO":54, "HANAKO":"15"} is Dictionary) #-> True
 
-_myClass = MyClass()
-print(_myClass is MyClass) #False（厳密一致）
+	var _myClass = MyClass.new()
+	print(_myClass is Object) #-> True
+	print(_myClass is MyClass) #-> True
+
+class MyClass:
+	pass
 ```
 
 ### isinstance() 関数 : インスタンスの判定
