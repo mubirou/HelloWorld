@@ -264,7 +264,7 @@ func _ready():
 <a name="typeof()関数"></a>
 
 ### typeof() 関数
-* データ型を返す（[typeof() の戻り値一覧](#typeof()の戻り値一覧)）
+* データ型を返す（[戻り値一覧](#typeof()の戻り値一覧)）
 
 ```GDScript
 #test.gd
