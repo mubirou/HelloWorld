@@ -328,30 +328,30 @@ class FugaClass:
 	pass
 ```         
 
-### データ型のキャスト（数値 ⇔ bool 型）
+### データ型のキャスト（数値 ⇔ bool型）
 ```GDScript
-# int 型 → bool 型
+# int型 → bool型
 var _tmp = bool(1)
 print(_tmp) #-> Trye
 print(typeof(_tmp)) #-> 1（bool型）
 
-# bool 型 → int 型
+# bool型 → int型
 _tmp = int(true)
 print(_tmp) #-> 1
 print(typeof(_tmp)) #-> 2（int型）
 ```
 
-### データ型のキャスト（数値 ⇔ string 型）
+### データ型のキャスト（数値 ⇔ String型）
 ```GDScript
-# String 型 → int 型
+# String型 → int型
 var _tmp = int("001")
 print(_tmp) #-> 1
-print(typeof(_tmp)) #-> 2（int 型）
+print(typeof(_tmp)) #-> 2（int型）
 
-# int 型 → String 型
+# int型 → String型
 _tmp = str(100)
 print(_tmp) #-> "100"
-print(typeof(_tmp)) #-> 4（String 型）
+print(typeof(_tmp)) #-> 4（String型）
 ```
 
 ### 基数変換（◯進数→2進数）
