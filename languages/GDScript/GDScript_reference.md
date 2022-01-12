@@ -330,12 +330,12 @@ class FugaClass:
 
 ### データ型のキャスト（数値 ⇔ bool型）
 ```GDScript
-# int型 → bool型
+# 数値（int）型 → bool型
 var _tmp = bool(1)
 print(_tmp) #-> Trye
 print(typeof(_tmp)) #-> 1（bool型）
 
-# bool型 → int型
+# bool型 → 数値（int）型
 _tmp = int(true)
 print(_tmp) #-> 1
 print(typeof(_tmp)) #-> 2（int型）
@@ -343,12 +343,12 @@ print(typeof(_tmp)) #-> 2（int型）
 
 ### データ型のキャスト（数値 ⇔ String型）
 ```GDScript
-# String型 → int型
+# String型 → 数値（int）型
 var _tmp = int("001")
 print(_tmp) #-> 1
 print(typeof(_tmp)) #-> 2（int型）
 
-# int型 → String型
+# 数値（int）型 → String型
 _tmp = str(100)
 print(_tmp) #-> "100"
 print(typeof(_tmp)) #-> 4（String型）
