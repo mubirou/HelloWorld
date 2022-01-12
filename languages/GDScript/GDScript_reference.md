@@ -326,21 +326,19 @@ class HogeClass:
 
 class FugaClass:
 	pass
-```
-
+```         
 
 ### データ型のキャスト（数値 ↔ bool 型）
-```
-#test.py
-#数値→bool型
-_tmp = bool(1)
-print(_tmp) #True
-print(type(_tmp)) #<class 'bool'>
+```GDScript
+# 数値 → bool型
+var _tmp = bool(1)
+print(_tmp) #-> Trye
+print(typeof(_tmp)) #-> 1（bool型）
 
-#bool型→数値
-_tmp = int(True) #True→1に変換（Falseは0に変換）
-print(_tmp) #1
-print(type(_tmp)) #<class 'int'>
+#bool型 → 数値
+_tmp = int(true)
+print(_tmp) #-> 1
+print(typeof(_tmp)) #-> 2（int型）
 ```
 
 ### データ型のキャスト（数値 ↔ string 型）
