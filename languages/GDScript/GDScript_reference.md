@@ -330,29 +330,28 @@ class FugaClass:
 
 ### データ型のキャスト（数値 ⇔ bool 型）
 ```GDScript
-# 数値 → bool型
+# int 型 → bool 型
 var _tmp = bool(1)
 print(_tmp) #-> Trye
 print(typeof(_tmp)) #-> 1（bool型）
 
-#bool型 → 数値
+# bool 型 → int 型
 _tmp = int(true)
 print(_tmp) #-> 1
 print(typeof(_tmp)) #-> 2（int型）
 ```
 
-### データ型のキャスト（数値 ↔ string 型）
-```
-#test.py
-#string型→数値
-_tmp = int("001")
-print(_tmp) #1
-print(type(_tmp)) #<class 'int'>
+### データ型のキャスト（数値 ⇔ string 型）
+```GDScript
+# String 型 → int 型
+var _tmp = int("001")
+print(_tmp) #-> 1
+print(typeof(_tmp)) #-> 2（int 型）
 
-#数値→string型
+# int 型 → String 型
 _tmp = str(100)
-print(_tmp) #100
-print(type(_tmp)) #<class 'str'>
+print(_tmp) #-> "100"
+print(typeof(_tmp)) #-> 4（String 型）
 ```
 
 ### 基数変換（◯進数→2進数）
