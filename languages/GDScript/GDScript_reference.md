@@ -328,7 +328,7 @@ class FugaClass:
 	pass
 ```         
 
-### データ型のキャスト（数値 ↔ bool 型）
+### データ型のキャスト（数値 ⇔ bool 型）
 ```GDScript
 # 数値 → bool型
 var _tmp = bool(1)
