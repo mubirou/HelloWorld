@@ -969,6 +969,7 @@ func _ready():
 ### これは書きかけの項目です
 
 ### 基本構文
+* 関数は必ず class 内に記述する必要があります
 ```GDScript
 func 関数名(引数➀, 引数➁, ...):
     ......（何もしない場合 pass を記述）
@@ -1148,6 +1149,7 @@ _myClass = MyClass()
 _myClass.rect(endX=100, endY=100) #面積:10000m2 ←デフォルト値付との併用
 ```
 
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日  
