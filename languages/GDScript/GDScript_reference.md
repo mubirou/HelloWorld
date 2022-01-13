@@ -12,7 +12,7 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
-* <!--[名前空間](#名前空間)-->
+* [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ（getter / setter）](#アクセサ)
@@ -545,37 +545,37 @@ func _ready():
 # <b>名前空間</b>
 
 ### 概要
-Python の名前空間の目的は、他のディレクトリ（パッケージ）にあるモジュールをインポートして活用できるようにする事です。モジュールとは、再利用可能なコードのまとまりの基本的な単位（xxx.py）です。
+他のディレクトリにある .gd ファイルモジュールを読み込んで活用できるようにします。.gd ファイルには再利用可能なコード（クラス）群を記述します。
 
 ### 例文
-* test.py と同階層に japan ディレクトリがあり、その中に tokyo.py が存在する場合
+* test.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
+
+```GDScript
+# japan/tokyo.gd
+class Shinjuku:
+	func _init():
+		print("japan/tokyo/Shinjuku")
+
+class Setagaya:
+	func _init():
+		print("japan/tokyo/Setagaya")
+```
 
 ```
-# japan/tokyo.py（tokyoモジュール）
-class Member(object):
-    #プライベート変数
-    __name = None
-    #コンストラクタ
-    def __init__(self,name): self.__name = name
-    #アクセサ（getter）
-    def __getName(self): return self.__name
-    name = property(__getName)
-```
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-```
-# test.py（モジュールを利用するファイル）
-import sys #決め打ち
-sys.path.append('japan') #japanディレクトリ（相対パス）を検索範囲に追加
-import tokyo #モジュール（tokyo.py）をインポート
-#「import tokyo as nw」等と別名を使って利用することも可能
+var _tokyo = preload("japan/tokyo.gd") #外部.gdファイルの読み込み
 
-_tokyo = tokyo.Member('nishimura') #別ディレクトリ、別ファイル内のクラスが利用可
-print(_tokyo.name) #'nishimura'
+func _ready():
+	_tokyo.Shinjuku.new() #-> "japan/tokyo/Shinjuku"
+	_tokyo.Setagaya.new() #-> "japan/tokyo/Setagaya"
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月13日  
+[[TOP](#TOP)]
 
 
 <a name="継承と委譲"></a>
