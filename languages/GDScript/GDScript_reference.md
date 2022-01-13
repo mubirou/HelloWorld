@@ -561,8 +561,8 @@ class Setagaya:
 		print("japan/tokyo/Setagaya")
 ```
 
-```
-#test.gd
+```GDScript
+#test.gd（外部.gdファイルを利用する側）
 extends Spatial #2Dの場合はNode2D
 
 var _tokyo = preload("japan/tokyo.gd") #外部.gdファイルの読み込み
