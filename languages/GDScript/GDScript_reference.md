@@ -977,18 +977,21 @@ func 関数名(引数➀, 引数➁, ...):
 
 ### パブリック関数
 * 例：○〜○までの値を足した合計を調べる
-```
-#test.py
-class MyClass(object): #前方宣言
-    def tashizan(self, _start, end_): #self（第1引数）は必須 ←オブジェクト自身を指す
-        _result = 0 #ローカル変数
-        for i in range(_start, end_+1):
-            _result += i
-        return _result
-        
-_myClass = MyClass()
-print(_myClass.tashizan (1,10)) #55
-print(_myClass.tashizan (1,100)) #5050
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+class MyClass:
+	func tashizan(_start, end_):
+		var _result = 0 #ローカル変数
+		for i in range(_start, end_+1):
+			_result += i
+		return _result
+
+func _ready():
+	var _myClass = MyClass.new()
+	print(_myClass.tashizan(1,10)) #-> 55
+	print(_myClass.tashizan(1,100)) #-> 5050
 ```
 
 ### プライベート関数
