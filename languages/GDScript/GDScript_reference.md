@@ -1019,7 +1019,7 @@ func _ready():
 ```
 
 ### コンストラクタ
-* 書式
+* 書式（参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor) ）  
 ```GDScript
 class MyClass:
 	func _init(引数➀, 引数➁, ...):
@@ -1049,8 +1049,6 @@ func _ready():
 	var _myClass = MyClass.new("mubirou")
 	print(_myClass.name) #-> "mubirou"
 ```
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
-
 
 ### 静的メソッドとクラスメソッド
 * Pythonでは別々に扱われる
