@@ -1020,45 +1020,37 @@ func _ready():
 
 ### コンストラクタ
 * 書式
-```
+```GDScript
 class MyClass:
 	func _init(引数➀, 引数➁, ...):
 		.....（何もしない場合 pass を記述）
 ```
 
 * 例文
-```
-#test.py
-#カスタムクラス
-class Point(object):
-    #プライベート変数の宣言
-    __x = __y = None
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-    def __init__(self, arg1, arg2): #コンストラクタ（selfは省略不可）
-        #変数の初期化などを行ないます
-        self.__x = arg1
-        self.__y = arg2
+class MyClass:
+	var __name = null # 疑似プライベート変数
 
-    # プライベート変数（__x）のアクセサ
-    def __getX(self): #プライベート関数
-        return self.__x
-    def __setX(self, value): #プライベート関数
-        self.__x = value
-    x = property(__getX, __setX)
+	# コンストラクタ
+	func _init(_name): # 引数は省略可
+		__name = _name
+	
+	# setter/getter
+	var name setget setName, getName
+	func setName(value):
+		__name = value
+	func getName():
+		return __name
 
-    # プライベート変数（__y）のアクセサ
-    def __getY(self): #プライベート関数
-        return self.__y
-    def __setY(self, value): #プライベート関数
-        self.__y = value
-    y = property(__getY, __setY)
-
-# 実行
-_point = Point(100,150)
-print(_point.x) #100
-print(_point.y) #150
+func _ready():
+	var _myClass = MyClass.new("mubirou")
+	print(_myClass.name) #-> "mubirou"
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
+
 
 ### 静的メソッドとクラスメソッド
 * Pythonでは別々に扱われる
