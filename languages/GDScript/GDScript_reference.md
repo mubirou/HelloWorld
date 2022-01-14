@@ -1019,13 +1019,11 @@ func _ready():
 ```
 
 ### コンストラクタ
-* 他に __new__(cls) もあり（併用すると __init__(self) は実行されない）
-
 * 書式
 ```
-class MyClass(object): #前方宣言
-    def __init__(self, 引数①, 引数②, ...): #省略可
-        ...... ←最低1行は記述する必要があるため何も無い場合は「pass（何もしない）」を記述
+class MyClass:
+	func _init(引数➀, 引数➁, ...):
+		.....（何もしない場合 pass を記述）
 ```
 
 * 例文
@@ -1060,6 +1058,7 @@ _point = Point(100,150)
 print(_point.x) #100
 print(_point.y) #150
 ```
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 
 ### 静的メソッドとクラスメソッド
 * Pythonでは別々に扱われる
