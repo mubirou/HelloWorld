@@ -983,9 +983,9 @@ func 関数名(引数➀, 引数➁, ...):
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
-	func tashizan(_start, end_):
+	func tashizan(_start, _end):
 		var _result = 0 #ローカル変数
-		for i in range(_start, end_+1):
+		for i in range(_start, _end + 1):
 			_result += i
 		return _result
 
@@ -995,8 +995,9 @@ func _ready():
 	print(_myClass.tashizan(1,100)) #-> 5050
 ```
 
-### プライベート関数
-* 例：○〜○までの値を足した合計を調べる
+### 疑似プライベート関数
+* 実際は単なるパブリック関数
+* アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
 ```
 #test.py
 class MyClass(object): #前方宣言
