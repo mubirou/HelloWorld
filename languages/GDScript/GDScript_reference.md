@@ -998,23 +998,24 @@ func _ready():
 ### 疑似プライベート関数
 * 実際は単なるパブリック関数
 * アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
-```
-#test.py
-class MyClass(object): #前方宣言
-    def __init__(self):
-        print(self.__Tashizan(1,10)) #55
-        print(self.__Tashizan(1,100)) #5050
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-    #関数名は__○○にすることでプライベート関数扱いになります
-    def __Tashizan(self, _start, end_): #self（第1引数）は必須 ←オブジェクト自身を指す
-        _result = 0 #ローカル変数
-        for i in range(_start, end_+1):
-            _result += i
-        return _result
+class MyClass:
+	func _init():
+		print(__tashizan(1, 10)) #-> 55
 
-_myClass = MyClass()
-#print(_myClass.__Tashizan(1,10)) #エラー（プライベート関数はアクセス不可）
-#print(_myClass.__Tashizan(1,100)) #エラー（プライベート関数はアクセス不可）
+	# 疑似プライベート関数
+	func __tashizan(_start, _end):
+		var _result = 0 #ローカル変数
+		for i in range(_start, _end + 1):
+			_result += i
+		return _result
+
+func _ready():
+	var _myClass = MyClass.new()
+	print(_myClass.__tashizan(1,10)) #-> 55（外からアクセスできてしまう）
 ```
 
 ### コンストラクタ
