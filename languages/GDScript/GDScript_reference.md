@@ -1015,7 +1015,7 @@ class MyClass:
 
 func _ready():
 	var _myClass = MyClass.new()
-	print(_myClass.__tashizan(1,10)) #-> 55（外からアクセスできてしまう）
+	print(_myClass.__tashizan(1,10)) #-> 55（外からアクセスできてしまうが…）
 ```
 
 ### コンストラクタ
