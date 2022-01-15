@@ -1536,22 +1536,20 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _list = ["A","B"]
+	var _list = ["A", "B"]
 	_list.insert(0, "C") # インデックス0（先頭）に追加
 	print(_list) #-> [C, A, B]
 ```
 
 ### 更新（任意の位置）
-* 構文
-```
-リスト[インデックス番号] = 値
-```
-* 例文
-```
-#test.py
-_list = ['A', 'B', 'C']
-_list[0] = None #0番目を変更する場合 ←None型も指定可能
-print(_list) #[None, 'B', 'C']
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _list = ["A", "B", "C"]
+	_list[0] = null # インデックス0（先頭）を更新
+	print(_list) #-> [Null, B, C]
 ```
 
 ### 削除（指定の要素）
