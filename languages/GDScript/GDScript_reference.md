@@ -975,6 +975,22 @@ func 関数名(引数➀, 引数➁, ...):
     ......（何もしない場合 pass を記述）
     [return 戻り値]
 ```
+* 例文（class 内に定義しない場合）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func tashizan(_start, _end):
+	var _result = 0 #ローカル変数
+	for i in range(_start, _end + 1):
+		_result += i
+	return _result
+
+# print(tashizan(1, 10)) # Error
+
+func _ready():
+	print(tashizan(1, 10)) #-> 55
+```
 
 ### パブリック関数
 * 例：○〜○までの値を足した合計を調べる
@@ -1048,6 +1064,14 @@ class MyClass:
 func _ready():
 	var _myClass = MyClass.new("mubirou")
 	print(_myClass.name) #-> "mubirou"
+```
+
+### _init()、_ready() 関数
+* 特徴
+
+
+* 例文
+```GDScript
 ```
 
 ### 静的メソッドとクラスメソッド
