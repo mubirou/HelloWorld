@@ -1100,39 +1100,10 @@ func _ready():
 	_myClass.addPoint(10) #-> 11（引数を指定した場合）
 ```
 
-### 可変長引数（シーケンス型）
-* 他にも <b>**○○</b> で指定する「辞書型」がある
-```
-class MyClass(object):
-    def sum(self, *arg): #可変長引数はtuple型（変更不可のリスト）
-        _result = 0 #ローカル変数
-        print(arg) #(1, 2, 3, 4, 5)等 ←tuple（変更不可のリスト）
-        for i in range(len(arg)): #len(○)で要素の数を調べる
-            _result += arg[i]
-        print(_result)
-
-_myClass = MyClass()
-_myClass.sum(1,1) #2 ←1+1
-_myClass.sum(1,2,3,4,5) #15 ←1+2+3+4+5（引数の数はいくつでも可能）
-```
-
-### 名前付き引数
-* 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
-```
-#test.py
-class MyClass(object):
-    def rect(self, startX=0, startY=0, endX=0, endY=0): #デフォルト値はオプション
-        _result = (endX - startX) * (endY - startY)
-        print("面積:" + str(_result) + "m2")
-
-_myClass = MyClass()
-_myClass.rect(endX=100, endY=100) #面積:10000m2 ←デフォルト値付との併用
-```
-
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月15日  
 [[TOP](#TOP)]
 
 
