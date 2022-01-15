@@ -986,7 +986,7 @@ func tashizan(_start, _end):
 		_result += i
 	return _result
 
-# print(tashizan(1, 10)) # Error
+# print(tashizan(1, 10)) # Error（ここでは実行できない）
 
 func _ready():
 	print(tashizan(1, 10)) #-> 55
