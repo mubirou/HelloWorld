@@ -1599,28 +1599,15 @@ func _ready():
 	print("F" in _array) #-> False
 ```
 
-### 検索(ヒット位置）
-* 構文
-```
-リスト.index(検索する値 [,開始位置,終了位置])
-```
-* 例文
-```
-#test.py
-_array = [0,1,2,3,4,5,6,7,8,9]
-print(_array.index(5)) #5（見つからない場合ValueError）
-```
-
 ### 検索（ヒット数）
-* 構文
-```
-リスト.count(検索する値)
-```
-* 例文
-```
-#test.py
-_array = ['A','C','B','C','A','C']
-print(_array.count('C')) #3（見つからなければ0）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _array = ["A", "C", "B", "C", "A", "C"]
+	print(_array.count("C")) #-> 3
+	print(_array.count("D")) #-> 0
 ```
 
 ### 並べ替え（反転）
