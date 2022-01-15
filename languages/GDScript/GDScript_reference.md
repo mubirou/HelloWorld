@@ -1054,8 +1054,11 @@ func _ready():
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
-func _init(): # 自動的に最初に実行される
-	print("_int()")
+func _init():
+	print("_int()") # 先に実行される
+
+func _ready(): # 通常はこちらを使う
+	print("_ready()") # _init()の次に実行される
 ```
 
 ### 静的メソッドとクラスメソッド
