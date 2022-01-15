@@ -1058,6 +1058,8 @@ func _ready(): # 通常はこちらを使う
 	print("_ready()") # _init()の次に実行される
 ```
 
+<a name="静的関数"></a>
+
 ### 静的関数
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
 ```GDScript
@@ -1107,46 +1109,13 @@ func _ready():
 <a name="静的変数・静的関数"></a>
 # <b>静的変数・静的関数</b>
 
-### 概要
-* 静的変数・静的関数は、クラスをインスタンス化せずにアクセス可能
-* Pythonでは静的関数は ①静的メソッド と ②クラスメソッド の２種類あり
-* Pythonには static 修飾子は存在せず、パブリック変数を擬似的に静的変数扱いにする  
-
-### 例文
-```
-#test.py
-class MyClass(object):
-    PI = 3.141592653589793 #擬似「静的変数」←実際は「パブリック変数」
-    #↑パブリック変数はここで初期化しないようにしましょう（静的変数と混乱するため…）
-    """ 
-    ②クラスメソッド の場合、上記の２行を次の通りに変更
-    @classmethod #「②クラスメソッド」の宣言
-    def Pow(cls, arg1, arg2): #cls（名前は任意／クラス自身）が必須
-    """
-    @staticmethod #「①静的メソッド」の宣言
-    def Pow(arg1, arg2):
-        if arg2 == 0:
-            return 1 #0乗対策
-        _result = arg1
-        for i in range(1, arg2):
-            _result = _result * arg1
-        return _result
-
-print(MyClass.PI) #3.141592653589793
-print(MyClass.Pow(2,8)) #256
-
-_myClass = MyClass() #インスタンスの生成
-print(_myClass.PI) #3.141592653589793 ←インスタンスからも呼び出せる
-print(_myClass.Pow(2,8)) #256 ←インスタンスからも呼び出せる
-
-MyClass.PI = 3.14 #変更が出来ます（変更不可にはできません）
-print(MyClass.PI) #3.14
-print(_myClass.PI) #3.14 ←インスタンス変数も変更される
-```
+* 静的変数 ⇒ [定数](#定数)
+* 静的関数 ⇒ [関数](#静的関数)
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月15日
+[[TOP](#TOP)]
 
 
 <a name="if文"></a>
