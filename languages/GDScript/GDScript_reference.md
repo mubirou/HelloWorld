@@ -19,7 +19,6 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [関数](#関数)
-* [匿名関数](#匿名関数)（これは書きかけの項目です）
 * <!--[静的変数・静的関数](#静的変数・静的関数)-->
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
@@ -1103,62 +1102,6 @@ func _ready():
 作成者：夢寐郎  
 作成日：2022年01月15日  
 [[TOP](#TOP)]
-
-
-<a name="匿名関数"></a>
-# <b>匿名関数</b>
-
-### 基本構文
-```
-lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
-```
-
-### def / lamda（ラムダ）構文の違い
-
-1. defの場合
-    ```
-    #test.py
-    def myFunction1(arg1, arg2):
-        #ここに様々な処理を記述可能（重要）
-        return arg1 * arg2
-    print(myFunction1) # <function myFunction1 at 0x7f4f0ad77378>
-    print(type(myFunction1)) #<class 'function'> ←function型
-    print(myFunction1(4,3)) #12 ←4x3
-    ```
-
-1. lambdaの場合
-    ```
-    #test.py
-    myFunction2 = lambda arg1,arg2 : arg1*arg2 #戻り値しか記述できない
-    print(myFunction2) # <function <lambda> at 0x7f3dcde4f378>
-    print(type(myFunction2)) #<class 'function'> ←function型
-    print(myFunction2(4,3)) #12 ←4x3
-    ```
-
-### 変数へ def / lambda 構文による関数の格納
-* def 構文の場合、関数名（変数）に function 型のデータが格納される
-* lambda 構文の場合、匿名の function 型のデータとなる（変数に格納可能）
-* def / lambda ともに function 型のデータのため、１つの変数に入れ替えることが可能
-```
-#test.py
-def japanesHello(): #「def」構文による関数
-    import datetime
-    _hour = datetime.datetime.now().hour
-    if (_hour > 18) or (5 > _hour ) : return "今晩は"
-    elif (11 > _hour) : return "おはようございます"
-    else: return "こんにちは"
-
-chinesehHello = lambda : "您好" #「lambda」構文による関数
-
-hello = japanesHello #変数に「def」構文による関数を格納
-print(hello()) #"こんにちは"（時間による）
-hello = chinesehHello #変数の中を「lambda」構文による関数と入れ替える
-print(hello()) #"您好"
-```
-
-実行環境：Windows 10、Godot Engine 3.4.2  
-作成者：夢寐郎  
-作成日：2022年0X月XX日
 
 
 <a name="静的変数・静的関数"></a>
