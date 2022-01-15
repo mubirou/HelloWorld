@@ -1041,9 +1041,9 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
-	func _init(_arg): # コンストラクタ（引数は省略可）
+	func _init(arg): # コンストラクタ（引数は省略可）
 		print("MyClass._init()")
-		print(_arg)
+		print(arg)
 
 func _ready():
 	var _myClass = MyClass.new("mubirou")
@@ -1061,52 +1061,26 @@ func _ready(): # 通常はこちらを使う
 	print("_ready()") # _init()の次に実行される
 ```
 
-### 静的メソッドとクラスメソッド
-* Pythonでは別々に扱われる
+### 静的関数
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
+```
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-1. 静的メソッド
-    ```
-    #test.py
-    #カスタムクラス（MyMath）
-    class MyMath(object):
-        @staticmethod #静的メソッドの宣言
-        def Pow(arg1, arg2): #個人的な慣例として大文字で開始（selfは不要）
-            if arg2 == 0:
-                return 1 #0乗対策
-            _result = arg1
-            for i in range(1, arg2):
-                _result = _result * arg1
-            return _result
+class MyMath:
+	static func Pow(arg1, arg2): #個人的慣例で大文字で始める
+		if arg2 == 0: return 1 # 0乗対策
+		var _result = arg1
+		for i in range(1, arg2):
+			_result *= arg1
+		return _result
 
-    # 実行
-    print(MyMath.Pow(2,0)) #1
-    print(MyMath.Pow(2,1)) #2
-    print(MyMath.Pow(2,8)) #256
-    myMath_ = MyMath()
-    print(myMath_.Pow(2,0)) #1（インスタンスからも呼び出せる）
-    ```
+func _ready(): # 通常はこちらを使う
+	print(MyMath.Pow(2,3)) #-> 8
 
-1. クラスメソッド
-    ```
-    #test.py
-    #カスタムクラス（MyMath）
-    class MyMath(object):
-        @classmethod #クラスメソッドの宣言
-        def Pow(cls, arg1, arg2): #cls（名前は任意／クラス自身）が必須
-            if arg2 == 0:
-                return 1 #0乗対策
-            _result = arg1
-            for i in range(1, arg2):
-                _result = _result * arg1
-            return _result
-
-    # 実行
-    print(MyMath.Pow(2,0)) #1
-    print(MyMath.Pow(2,1)) #2
-    print(MyMath.Pow(2,8)) #256
-    myMath_ = MyMath()
-    print(myMath_.Pow(2,0)) #1（インスタンスからも呼び出せる）
-    ```
+	var _myMath = MyMath.new()
+	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可能）
+```
 
 ### デフォルト値付き引数
 ```
