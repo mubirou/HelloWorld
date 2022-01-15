@@ -1054,7 +1054,7 @@ func _ready():
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
-func _init():
+func _init(): # 自動的に最初に実行される
 	print("_int()")
 ```
 
