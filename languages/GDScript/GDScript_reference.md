@@ -1557,16 +1557,14 @@ func _ready():
 ```
 
 ### 削除（指定の要素）
-* 構文
-```
-リスト.remove(削除する要素) #最初に見つかった指定の要素を削除
-```
-* 例文
-```
-#test.py
-_list = ['A', 'B', 'C']
-_list.remove("A")
-print(_list) #['B', 'C']
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _array = ["A", "B", "C"]
+	_array.remove("A") # 最初に見つかった指定の要素を削除
+	print(_array) #-> [B, C]
 ```
 
 ### 削除（指定の位置）
