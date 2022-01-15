@@ -1508,6 +1508,16 @@ func _ready():
 	print(_list3) #-> [[A, あ], [I, い]]
 ```
 
+### 要素の数
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _list = [0,1,2,3,4,5,6,7,8,9]
+	print(_list.size()) #-> 10
+```
+
 ### 追加（最後）
 * 構文
 ```
@@ -1634,18 +1644,6 @@ print(_list.index(5)) #5（見つからない場合ValueError）
 #test.py
 _list = ['A','C','B','C','A','C']
 print(_list.count('C')) #3（見つからなければ0）
-```
-
-### 要素の数
-* 構文
-```
-len(リスト)
-```
-* 例文
-```
-#test.py
-_list = [0,1,2,3,4,5,6,7,8,9]
-print(len(_list)) #10
 ```
 
 ### 並べ替え（反転）
