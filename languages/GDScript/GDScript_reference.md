@@ -1492,25 +1492,20 @@ while (i_ <= 20) :
 
 ### これは書きかけの項目です
 
-### 概要
-* [配列（タプル）](#配列（タプル）)とは異なり要素の数の変更･追加･削除等が可能
-
 ### 作成
-* 構文
-```
-変数名 = [] #空のリストを作成
-変数名 = [None] * 個数 #指定数の空（None）の要素を持つリスト作成
-変数名 = [要素①, 要素②,...] #要素のデータ型は何でも良い
-```
-* 例文
-```
-#test.py
-_list = []
-print(_list) #[]
-_list2 = ['A', 'B', 'C']
-print(_list2) #['A', 'B', 'C']
-list3_ = [None] * 10
-print(list3_) #[None, None, None, None, None, None, None, None, None, None]
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _list1 = [] # 空の配列を作成
+	print(_list1) #-> []
+
+	var _list2 = ["A", "B", "C"]
+	print(_list2) #-> [A, B, C]
+
+	var _list3 = [["A", "あ"], ["I", "い"]] # 配列のネスト
+	print(_list3) #-> [[A, あ], [I, い]]
 ```
 
 ### 追加（最後）
