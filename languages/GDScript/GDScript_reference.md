@@ -19,7 +19,7 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [関数](#関数)
-* [静的変数・静的関数](#静的変数・静的関数)（これは書きかけの項目です）
+* [静的変数・静的関数](#静的変数・静的関数)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [match 文](#match文) ≒ switch 文
@@ -935,7 +935,7 @@ func _ready():
 	#MY_NAME = "ICHIRO" # Error（変更不可）
 ```
 
-### クラス定数（インスタンスからも呼び出せる）
+### クラス定数（[静的変数](#静的変数)）
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
@@ -952,7 +952,7 @@ func _ready():
 
 	# 実験
 	var _myClass = MyClass.new()
-	print(_myClass.MY_NAME) #-> "mubirou"（インスタンスからのアクセスも可能！）
+	print(_myClass.MY_NAME) #-> "mubirou"（インスタンスからのアクセスも可能）
 	#_myClass.MY_NAME = "ICHIRO" # Error（変更は不可）
 ```
 
