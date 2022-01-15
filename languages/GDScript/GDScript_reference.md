@@ -1035,9 +1035,7 @@ func _ready():
 ```
 
 ### コンストラクタ
-* 書式（参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor) ）  
-
-* 例文（class 内の定義）
+* 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
