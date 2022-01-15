@@ -1531,16 +1531,14 @@ func _ready():
 ```
 
 ### 追加（指定位置）
-* 構文
-```
-リスト.insert(インデックス番号,値) #先頭（0）〜最後（len(リスト)）まで指定可能
-```
-* 例文
-```
-#test.py
-_list = ['A','B']
-_list.insert(0,'C')
-print(_list) #['C', 'A', 'B']
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _list = ["A","B"]
+	_list.insert(0, "C") # インデックス0（先頭）に追加
+	print(_list) #-> [C, A, B]
 ```
 
 ### 更新（任意の位置）
