@@ -1525,8 +1525,8 @@ extends Spatial #2Dの場合はNode2D
 
 func _ready():
 	var _list = []
-	_list.append("mubirou") # String型も…
-	_list.append(100) # int型も…
+	_list.append("mubirou") # String型の追加
+	_list.append(100) # int型の追加
 	print(_list) #-> [mubirou, 100]（混在可能）
 ```
 
