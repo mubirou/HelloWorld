@@ -1394,16 +1394,16 @@ for 要素変数 in リスト等: ←要素だけ取り出したい場合はこ�
 ### リスト（変更可能な配列）
 ```
 #test.py
-_list = ["A", "B", "C"]
-for i, tmp in enumerate(_list):
+_array = ["A", "B", "C"]
+for i, tmp in enumerate(_array):
     print(i, tmp) # 0 A → 1 B → 2 C
 ```
 
 ### タプル（tuple／変更不可の配列）
 ```
 #test.py
-lock_list = ("A", "B", "C")
-for i, tmp in enumerate(lock_list):
+lock_array = ("A", "B", "C")
+for i, tmp in enumerate(lock_array):
     print(i, tmp) # 0 A → 1 B → 2 C
 ```
 
@@ -1518,6 +1518,27 @@ func _ready():
 	print(_array.size()) #-> 10
 ```
 
+### 抽出
+```GDScrit
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _array = [0,1,2,3,4,5,6,7,8,9]
+
+	# 先頭の抽出
+	print(_array.front()) #-> 0
+	print(_array[0]) #-> 0
+
+	# 最後尾の抽出
+	print(_array.back()) #-> 9
+	print(_array[-1]) #-> 9
+	print(_array[_array.size() - 1])
+
+	# 指定位置の抽出
+	print(_array[5]) #-> 5（インデックス5番目）
+```
+
 ### 追加（最後）
 ```GDScript
 #test.gd
@@ -1567,22 +1588,6 @@ func _ready():
 	print(_array) #-> [B, C]
 ```
 
-### 抽出（〇番目）
-```GDScrit
-```
-
-### 抽出（○〜○番目）
-* 構文
-```
-リスト[開始インデックス:終了インデックス[:ステップ]] #終了番目は含まない
-```
-* 例文
-```
-#test.py
-_list = [0,1,2,3,4,5,6,7,8,9]
-print(_list[1:5]) #[1, 2, 3, 4]
-```
-
 ### 検索(ヒットしたか否か）
 * 構文
 ```
@@ -1591,8 +1596,8 @@ print(_list[1:5]) #[1, 2, 3, 4]
 * 例文
 ```
 #test.py
-_list = [0,1,2,3,4,5,6,7,8,9]
-print(5 in _list) #True（見つからなければFalse）
+_array = [0,1,2,3,4,5,6,7,8,9]
+print(5 in _array) #True（見つからなければFalse）
 ```
 
 ### 検索(ヒット位置）
@@ -1603,8 +1608,8 @@ print(5 in _list) #True（見つからなければFalse）
 * 例文
 ```
 #test.py
-_list = [0,1,2,3,4,5,6,7,8,9]
-print(_list.index(5)) #5（見つからない場合ValueError）
+_array = [0,1,2,3,4,5,6,7,8,9]
+print(_array.index(5)) #5（見つからない場合ValueError）
 ```
 
 ### 検索（ヒット数）
@@ -1615,8 +1620,8 @@ print(_list.index(5)) #5（見つからない場合ValueError）
 * 例文
 ```
 #test.py
-_list = ['A','C','B','C','A','C']
-print(_list.count('C')) #3（見つからなければ0）
+_array = ['A','C','B','C','A','C']
+print(_array.count('C')) #3（見つからなければ0）
 ```
 
 ### 並べ替え（反転）
@@ -1627,9 +1632,9 @@ print(_list.count('C')) #3（見つからなければ0）
 * 例文
 ```
 #test.py
-_list = [0,1,2,3,4,5,6,7,8,9]
-_list.reverse()
-print(_list) #[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+_array = [0,1,2,3,4,5,6,7,8,9]
+_array.reverse()
+print(_array) #[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
 
 ### 並べ替え（ソート）
@@ -1640,9 +1645,9 @@ print(_list) #[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 * 例文
 ```
 #test.py
-_list = [3,6,2,8,4,1,9,0,5,7]
-_list.sort()
-print(_list) #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+_array = [3,6,2,8,4,1,9,0,5,7]
+_array.sort()
+print(_array) #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 ### 結合
@@ -1653,10 +1658,10 @@ print(_list) #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 * 例文
 ```
 #test.py
-_list1 = ["A","B","C"]
-_list2 = ["D","E","F"]
-_list1.extend(_list2)
-print(_list1) #['A', 'B', 'C', 'D', 'E', 'F']
+_array1 = ["A","B","C"]
+_array2 = ["D","E","F"]
+_array1.extend(_array2)
+print(_array1) #['A', 'B', 'C', 'D', 'E', 'F']
 ```
 
 ### 複製
@@ -1685,24 +1690,24 @@ print(_copy) #['C', 'B']
 ```
 #test.py
 _string = "A,B,C"
-_list = _string.split(",") #カンマ区切りで分割してリスト化
-print(_list) #['A', 'B', 'C']
+_array = _string.split(",") #カンマ区切りで分割してリスト化
+print(_array) #['A', 'B', 'C']
 ```
 
 ### 全要素を取り出す
 1. インデックス番号と要素を取り出す
     ```
     #test.py
-    _list = ["A","B","C","D","E"]
-    for i, tmp in enumerate(_list):
+    _array = ["A","B","C","D","E"]
+    for i, tmp in enumerate(_array):
         print(i, tmp) # 0 A → 2 B → 3 C → 4 D → 5 E
     ```
 
 1. 要素のみ取り出す
     ```
     #test.py
-    _list = ["A","B","C","D","E"]
-    for tmp in _list:
+    _array = ["A","B","C","D","E"]
+    for tmp in _array:
         print(tmp) # "A"→"B"→"C"→"D"→"E"
     ```
 
