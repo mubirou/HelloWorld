@@ -1063,7 +1063,7 @@ func _ready(): # 通常はこちらを使う
 
 ### 静的関数
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
