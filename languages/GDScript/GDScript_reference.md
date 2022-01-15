@@ -1075,7 +1075,7 @@ class MyMath:
 			_result *= arg1
 		return _result
 
-func _ready(): # 通常はこちらを使う
+func _ready():
 	print(MyMath.Pow(2,3)) #-> 8
 
 	var _myMath = MyMath.new()
@@ -1083,17 +1083,21 @@ func _ready(): # 通常はこちらを使う
 ```
 
 ### デフォルト値付き引数
-```
-#test.py
-class MyClass(object):
-    __point = 0 #プライベート変数
-    def addPoint(self, arg=1): #初期値を1とした場合（selfは必須）
-       self.__point += arg
-       print(self.__point)
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-_myClass = MyClass()
-_myClass.addPoint() #1 ←引数を指定しないと初期値（1）で処理
-_myClass.addPoint(10) #11 ←引数を指定した場合
+class MyClass:
+	var __point = 0 # 疑似プライベート変数
+
+	func addPoint(arg := 1): #「=」でも動作
+		__point += arg
+		print(__point)	
+
+func _ready():
+	var _myClass = MyClass.new()
+	_myClass.addPoint() #-> 1（引数を指定しない場合は初期値1で処理）
+	_myClass.addPoint(10) #-> 11（引数を指定した場合）
 ```
 
 ### 可変長引数（シーケンス型）
