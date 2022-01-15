@@ -1519,7 +1519,7 @@ func _ready():
 ```
 
 ### 抽出
-```GDScrit
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
