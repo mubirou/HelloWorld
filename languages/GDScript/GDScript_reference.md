@@ -1036,42 +1036,28 @@ func _ready():
 
 ### コンストラクタ
 * 書式（参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor) ）  
-```GDScript
-class MyClass:
-	func _init(引数➀, 引数➁, ...):
-		.....（何もしない場合 pass を記述）
-```
 
-* 例文
+* 例文（class 内の定義）
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
-	var __name = null # 疑似プライベート変数
-
-	# コンストラクタ
-	func _init(_name): # 引数は省略可
-		__name = _name
-	
-	# setter/getter
-	var name setget setName, getName
-	func setName(value):
-		__name = value
-	func getName():
-		return __name
+	func _init(_arg): # コンストラクタ（引数は省略可）
+		print("MyClass._init()")
+		print(_arg)
 
 func _ready():
 	var _myClass = MyClass.new("mubirou")
-	print(_myClass.name) #-> "mubirou"
 ```
 
-### _init()、_ready() 関数
-* 特徴
-
-
-* 例文
+* 例文（class 内に定義しない場合）
 ```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _init():
+	print("_int()")
 ```
 
 ### 静的メソッドとクラスメソッド
