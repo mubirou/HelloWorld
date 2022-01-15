@@ -1589,15 +1589,14 @@ func _ready():
 ```
 
 ### 検索(ヒットしたか否か）
-* 構文
-```
-検索する値 in リスト
-```
-* 例文
-```
-#test.py
-_array = [0,1,2,3,4,5,6,7,8,9]
-print(5 in _array) #True（見つからなければFalse）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _array = ["A", "B", "C", "D", "E"]
+	print("E" in _array) #-> True
+	print("F" in _array) #-> False
 ```
 
 ### 検索(ヒット位置）
