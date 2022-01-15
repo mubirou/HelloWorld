@@ -935,7 +935,7 @@ func _ready():
 	#MY_NAME = "ICHIRO" # Error（変更不可）
 ```
 
-### クラス定数（[静的変数](#静的変数)）
+### クラス定数（[静的変数](#静的変数･静的関数)）
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
