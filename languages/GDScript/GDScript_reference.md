@@ -1519,17 +1519,15 @@ func _ready():
 ```
 
 ### 追加（最後）
-* 構文
-```
-リスト.append(値) #値は何も良い（混在可能）
-```
-* 例文
-```
-#test.py
-_list = []
-_list.append('A')
-_list.append('B')
-print(_list) #['A', 'B']
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _list = []
+	_list.append("mubirou") # String型も…
+	_list.append(100) # int型も…
+	print(_list) #-> [mubirou, 100]（混在可能）
 ```
 
 ### 追加（指定位置）
