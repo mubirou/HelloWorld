@@ -1498,14 +1498,14 @@ while (i_ <= 20) :
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _list1 = [] # 空の配列を作成
-	print(_list1) #-> []
+	var _array1 = [] # 空の配列を作成
+	print(_array1) #-> []
 
-	var _list2 = ["A", "B", "C"]
-	print(_list2) #-> [A, B, C]
+	var _array2 = ["A", "B", "C"]
+	print(_array2) #-> [A, B, C]
 
-	var _list3 = [["A", "あ"], ["I", "い"]] # 配列のネスト
-	print(_list3) #-> [[A, あ], [I, い]]
+	var _array3 = [["A", "あ"], ["I", "い"]] # 配列のネスト
+	print(_array3) #-> [[A, あ], [I, い]]
 ```
 
 ### 要素の数
@@ -1514,8 +1514,8 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _list = [0,1,2,3,4,5,6,7,8,9]
-	print(_list.size()) #-> 10
+	var _array = [0,1,2,3,4,5,6,7,8,9]
+	print(_array.size()) #-> 10
 ```
 
 ### 追加（最後）
@@ -1524,10 +1524,10 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _list = []
-	_list.append("mubirou") # String型の追加
-	_list.append(100) # int型の追加
-	print(_list) #-> [mubirou, 100]（混在可能）
+	var _array = []
+	_array.append("mubirou") # String型の追加
+	_array.append(100) # int型の追加
+	print(_array) #-> [mubirou, 100]（混在可能）
 ```
 
 ### 追加（指定位置）
@@ -1536,9 +1536,9 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _list = ["A", "B"]
-	_list.insert(0, "C") # インデックス0（先頭）に追加
-	print(_list) #-> [C, A, B]
+	var _array = ["A", "B"]
+	_array.insert(0, "C") # インデックス0（先頭）に追加
+	print(_array) #-> [C, A, B]
 ```
 
 ### 更新（任意の位置）
@@ -1547,9 +1547,13 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _list = ["A", "B", "C"]
-	_list[0] = null # インデックス0（先頭）を更新
-	print(_list) #-> [Null, B, C]
+	var _array = ["A", "B", "C"]
+
+	_array[0] = null # インデックス0（先頭）を更新
+	print(_array) #-> [Null, B, C]
+	
+	_array[-1] = "D" # 後ろから1番目を更新
+	print(_array) #-> [Null, B, D]
 ```
 
 ### 削除（指定の要素）
