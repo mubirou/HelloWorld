@@ -1372,6 +1372,7 @@ func _ready():
 		print(_count) #1, 2, ...., 99, 100
 ```
 
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#for)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月09日  
