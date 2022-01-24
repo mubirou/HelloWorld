@@ -24,7 +24,6 @@
 * [三項演算子](#三項演算子)
 * [match 文](#match文) ≒ switch 文
 * [for 文](#for文)
-* <!--[for...in 文](#for...in文)-->
 * <!--[while 文](#while文)-->
 * [配列](#配列)（これは書きかけの項目です）
 * <!--[動的配列（リスト）](#動的配列（リスト）)-->
@@ -1379,113 +1378,65 @@ func _ready():
 [[TOP](#TOP)]
 
 
-<a name="for...in文"></a>
-# <b>for...in 文</b>
-
-### 基本構文
-```
-for ループ制御変数, 要素変数 in enumerate(リスト等):
-    print(ループ制御変数, 要素変数）
-```
-```
-for 要素変数 in リスト等: ←要素だけ取り出したい場合はこちらを使います
-    print(要素変数）
-```
-
-### リスト（変更可能な配列）
-```
-#test.py
-_array = ["A", "B", "C"]
-for i, tmp in enumerate(_array):
-    print(i, tmp) # 0 A → 1 B → 2 C
-```
-
-### タプル（tuple／変更不可の配列）
-```
-#test.py
-lock_array = ("A", "B", "C")
-for i, tmp in enumerate(lock_array):
-    print(i, tmp) # 0 A → 1 B → 2 C
-```
-
-### セット（重複不許可な集合体）
-```
-#test.py
-set_ = set(["A", "B", "C"])
-for i, tmp in enumerate(set_):
-    print(i, tmp) # 0 C → 1 A → 2 B ←順序に注意
-```
-
-### フローズンセット（変更不可の集合型）
-```
-#test.py
-frozenset_ = frozenset(["A", "B", "C"])
-for i, tmp in enumerate(frozenset_):
-    print(i, tmp) # 0 C → 1 B → 2 A ←順序に注意
-```
-
-### 辞書（連想配列）
-```
-#test.py
-_dict = {"A":"あ", "I":"い"}
-for i, tmp in enumerate(_dict):
-    print(i, tmp, _dict[tmp]) # 0 A あ → 1 I い
-```
-
-実行環境：Windows 10、Godot Engine 3.4.2  
-作成者：夢寐郎  
-作成日：2022年0X月XX日
-
 
 <a name="while文"></a>
 # <b>while 文</b>
 * 他の多くの言語にある do...while 文はない
 
-### 基本構文
 ```
-while (ループ判定式) : #ループ判定式がTrueの間繰り返される（()は省略可）
-    繰り返す処理
-```
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-### 例文
-```
-#test.py
-i_ = 0
-while (i_ < 10) : #()は省略可
-    print(i_) #0,1,2,3,4,5,6,7,8,9
-    i_ += 1
+func _ready():
+	var _i = 0
 
-print(i_) #10 ←while文の外でも変数はまだ有効
+	while (_i < 10): # ()は省略可
+		print(_i) #-> 0,1,2,3,4,5,6,7,8,9
+		_i += 1
+
+	print(_i) #-> 10（while文の外でも変数はまだ有効）
 ```
 
 ### while 文と break 文
 ```
-#test.py
-count_ = 0
-while (True) : #ループ判別式をTrueにすると無限ループに!
-    count_ += 1
-    if (count_ > 100) :
-        break #ループを終了
-    print(count_) #1,2,....,99,100（1〜100までを出力）
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-print("while文終了") #while文の外
+func _ready():
+	var _count = 0
+
+	while (true) : #-> ループ判別式をtrueにすると無限ループに!
+		_count += 1
+		if (_count > 100) :
+			break #-> ループを終了
+
+		print(_count) #-> 1,2,....,99,100（1〜100までを出力）
+
+	print("while文終了") # while文の外
 ```
 
 ### while 文と continue 文（3の倍数を出力）
 ```
-#test.py
-i_ = 1
-while (i_ <= 20) :
-    if ((i_ % 3) != 0) : #3で割って余りが0ではない（＝3の倍数ではない）場合
-        i_ += 1
-        continue #while文の残処理をスキップしてwhile文の次の反復を開始する
-    print(i_) #3,6,9,12,15,18（3の倍数を出力）
-    i_ += 1
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _i = 1
+
+	while (_i <= 20) :
+
+		if ((_i % 3) != 0) : # 3で割って余りが0ではない（＝3の倍数ではない）場合
+			_i += 1
+			continue #while文の残処理をスキップしてwhile文の次の反復を開始する
+
+		print(_i) #-> 3,6,9,12,15,18（3の倍数を出力）
+		_i += 1
 ```
 
-実行環境：Windows 10、Ruby 2.3.1  
+参考：[GODOT DOCS](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#while)  
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月24日  
 
 
 <a name="配列"></a>
