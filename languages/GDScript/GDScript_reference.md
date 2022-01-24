@@ -1488,6 +1488,7 @@ func _ready():
 	var _array = [0,1,2,3,4,5,6,7,8,9]
 	print(_array.size()) #-> 10
 ```
+[[配列TOP](#配列)]
 
 <a name="配列抽出"></a>
 
@@ -1511,6 +1512,7 @@ func _ready():
 	# 指定位置の抽出
 	print(_array[5]) #-> 5（インデックス5番目）
 ```
+[[配列TOP](#配列)]
 
 <a name="配列追加（最後）"></a>
 
@@ -1525,6 +1527,7 @@ func _ready():
 	_array.append(100) # int型の追加
 	print(_array) #-> [mubirou, 100]（混在可能）
 ```
+[[配列TOP](#配列)]
 
 <a name="配列追加（指定位置）"></a>
 
@@ -1538,6 +1541,7 @@ func _ready():
 	_array.insert(0, "C") # インデックス0（先頭）に追加
 	print(_array) #-> [C, A, B]
 ```
+[[配列TOP](#配列)]
 
 <a name="配列更新（任意の位置）"></a>
 
@@ -1555,6 +1559,7 @@ func _ready():
 	_array[-1] = "D" # 後ろから1番目を更新
 	print(_array) #-> [Null, B, D]
 ```
+[[配列TOP](#配列)]
 
 <a name="配列削除（指定の要素）"></a>
 
@@ -1568,6 +1573,7 @@ func _ready():
 	_array.remove("A") # 最初に見つかった指定の要素を削除
 	print(_array) #-> [B, C]
 ```
+[[配列TOP](#配列)]
 
 <a name="配列検索（ヒットしたか否か）"></a>
 
@@ -1581,6 +1587,7 @@ func _ready():
 	print("E" in _array) #-> True
 	print("F" in _array) #-> False
 ```
+[[配列TOP](#配列)]
 
 <a name="配列検索（ヒット数）"></a>
 
@@ -1594,6 +1601,7 @@ func _ready():
 	print(_array.count("C")) #-> 3
 	print(_array.count("D")) #-> 0
 ```
+[[配列TOP](#配列)]
 
 ### 並べ替え（反転）
 * 構文
@@ -1607,6 +1615,7 @@ _array = [0,1,2,3,4,5,6,7,8,9]
 _array.reverse()
 print(_array) #[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
+[[配列TOP](#配列)]
 
 ### 並べ替え（ソート）
 * 構文
@@ -1620,6 +1629,7 @@ _array = [3,6,2,8,4,1,9,0,5,7]
 _array.sort()
 print(_array) #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
+[[配列TOP](#配列)]
 
 ### 結合
 * 構文
@@ -1634,6 +1644,7 @@ _array2 = ["D","E","F"]
 _array1.extend(_array2)
 print(_array1) #['A', 'B', 'C', 'D', 'E', 'F']
 ```
+[[配列TOP](#配列)]
 
 ### 複製
 * 構文
@@ -1651,6 +1662,7 @@ _copy[0] = "C" #値を変更してみる
 print(origin_) #['A', 'B'] ←参照ではないことが判る
 print(_copy) #['C', 'B']
 ```
+[[配列TOP](#配列)]
 
 ### 文字列→リスト
 * 構文
@@ -1664,6 +1676,7 @@ _string = "A,B,C"
 _array = _string.split(",") #カンマ区切りで分割してリスト化
 print(_array) #['A', 'B', 'C']
 ```
+[[配列TOP](#配列)]
 
 ### 全要素を取り出す
 1. インデックス番号と要素を取り出す
@@ -1681,6 +1694,7 @@ print(_array) #['A', 'B', 'C']
     for tmp in _array:
         print(tmp) # "A"→"B"→"C"→"D"→"E"
     ```
+[[配列TOP](#配列)]
 
 ### 比較
 ```
@@ -1689,6 +1703,7 @@ print(['A','B','C'] == ['A','B','C']) #True
 print(['A','B','C'] == ["A","B","C"]) #True ←'○'と"○"は同一扱い
 print(['A','B','C'] is ['A','B','C']) #False ←オブジェクトが異なるので…
 ```
+[[配列TOP](#配列)]
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
