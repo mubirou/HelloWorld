@@ -1621,24 +1621,22 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _array = [0,1,2,3,4,5,6,7,8,9]
+	var _array = [3,6,2,8,4,1,9,0,5,7]
 	_array.sort()
 	print(_array) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 [[配列TOP](#配列)]
 
 ### 結合
-* 構文
-```
-リスト①.extend(追加するリスト②) #リスト①の末尾にリスト②を結合
-```
-* 例文
-```
-#test.py
-_array1 = ["A","B","C"]
-_array2 = ["D","E","F"]
-_array1.extend(_array2)
-print(_array1) #['A', 'B', 'C', 'D', 'E', 'F']
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _array1 = ["A","B","C"]
+	var _array2 = ["D","E","F"]
+	_array1 += _array2
+	print(_array1) #-> [A, B, C, D, E, F]
 ```
 [[配列TOP](#配列)]
 
