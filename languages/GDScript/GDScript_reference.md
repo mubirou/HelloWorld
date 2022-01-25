@@ -1383,7 +1383,7 @@ func _ready():
 # <b>while 文</b>
 * 他の多くの言語にある do...while 文はない
 
-```
+```GDscript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1398,7 +1398,7 @@ func _ready():
 ```
 
 ### while 文と break 文
-```
+```GDscript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1416,7 +1416,7 @@ func _ready():
 ```
 
 ### while 文と continue 文（3の倍数を出力）
-```
+```GDscript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
