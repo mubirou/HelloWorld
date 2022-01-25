@@ -1604,7 +1604,7 @@ func _ready():
 [[配列TOP](#配列)]
 
 ### 並べ替え（反転）
-```
+```GDScrit
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
