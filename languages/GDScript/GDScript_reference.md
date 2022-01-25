@@ -1641,20 +1641,16 @@ func _ready():
 [[配列TOP](#配列)]
 
 ### 複製
-* 構文
-```
-import copy
-変数 = copy.deepcopy(コピー元のリスト)
-```
-* 例文
-```
-#test.py
-import copy
-origin_ = ["A","B"]
-_copy = copy.deepcopy(origin_)
-_copy[0] = "C" #値を変更してみる
-print(origin_) #['A', 'B'] ←参照ではないことが判る
-print(_copy) #['C', 'B']
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _origin = ["A","B"]
+	var _copy = _origin.duplicate()
+	_copy[0] = "C" #値を変更してみる
+	print(_origin) #-> [A, B]（参照ではないことが判る）
+	print(_copy) #-> [C, B]
 ```
 [[配列TOP](#配列)]
 
