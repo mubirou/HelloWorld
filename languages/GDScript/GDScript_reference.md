@@ -1604,16 +1604,14 @@ func _ready():
 [[配列TOP](#配列)]
 
 ### 並べ替え（反転）
-* 構文
 ```
-リスト.reverse()
-```
-* 例文
-```
-#test.py
-_array = [0,1,2,3,4,5,6,7,8,9]
-_array.reverse()
-print(_array) #[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _array = [0,1,2,3,4,5,6,7,8,9]
+	_array.invert()
+	print(_array) #-> [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
 [[配列TOP](#配列)]
 
