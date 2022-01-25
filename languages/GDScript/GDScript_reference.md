@@ -1677,7 +1677,6 @@ func _ready():
 		print(_tmp) #-> A → B → C → D → E
 ```
 （インデックス番号を取得したい場合はカウンタ変数を使用）  
-[[配列TOP](#配列)]
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
