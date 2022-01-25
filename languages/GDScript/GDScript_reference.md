@@ -1654,36 +1654,28 @@ func _ready():
 ```
 [[配列TOP](#配列)]
 
-### 文字列→リスト
-* 構文
-```
-変数 = 文字列.split("区切り文字")
-```
-* 例文
-```
-#test.py
-_string = "A,B,C"
-_array = _string.split(",") #カンマ区切りで分割してリスト化
-print(_array) #['A', 'B', 'C']
+### 文字列→配列
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _string = "A,B,C"
+	var _array = _string.rsplit (",") # カンマ区切りで分割してリスト化
+	print(_array) #-> [A, B, C]
 ```
 [[配列TOP](#配列)]
 
 ### 全要素を取り出す
-1. インデックス番号と要素を取り出す
-    ```
-    #test.py
-    _array = ["A","B","C","D","E"]
-    for i, tmp in enumerate(_array):
-        print(i, tmp) # 0 A → 2 B → 3 C → 4 D → 5 E
-    ```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-1. 要素のみ取り出す
-    ```
-    #test.py
-    _array = ["A","B","C","D","E"]
-    for tmp in _array:
-        print(tmp) # "A"→"B"→"C"→"D"→"E"
-    ```
+func _ready():
+	for _tmp in ["A","B","C","D","E"]:
+		print(_tmp) #-> A → B → C → D → E
+```
+（インデックス番号を取得したい場合はカウンタ変数を使用）  
 [[配列TOP](#配列)]
 
 ### 比較
