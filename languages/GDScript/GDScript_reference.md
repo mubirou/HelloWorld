@@ -26,8 +26,7 @@
 * [for 文](#for文)
 * [while 文](#while文)
 * [配列](#配列)
-* <!--[動的配列（リスト）](#動的配列（リスト）)-->
-* <!--[連想配列（辞書）](#連想配列（辞書）)-->
+* [連想配列（辞書）](#連想配列（辞書）)
 * <!--[self](#self) ≒ this-->
 * <!--[文字列の操作](#文字列の操作)-->
 * <!--[正規表現](#正規表現)-->
@@ -1775,7 +1774,8 @@ print(len(_dict)) #3
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年0X月XX日  
+[[TOP](#TOP)]
 
 
 <a name="self"></a>
