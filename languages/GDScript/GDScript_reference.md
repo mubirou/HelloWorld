@@ -1723,6 +1723,7 @@ func _ready():
 * 構文
 ```GDScript
 辞書["キー"]
+辞書.get("キー")
 ```
 * 例文
 ```GDScript
@@ -1732,6 +1733,7 @@ extends Spatial #2Dの場合はNode2D
 func _ready():
 	var _dict = {"A": "あ", "I": "い", "U": "う"}
 	print(_dict["A"]) #-> あ
+	print(_dict.get("A")) #-> あ
 ```
 
 ### 削除
