@@ -1699,7 +1699,7 @@ func _ready():
 # <b>連想配列（辞書）</b>
 
 ### 作成
-```
+```GDScript
 var 変数名 = {"キー➀": 値➀, "キー➁": 値➁}
 ```
 
@@ -1715,33 +1715,40 @@ extends Spatial #2Dの場合はNode2D
 
 func _ready():
 	var _dict = {"A": "あ", "I": "い"}
-	_dict["U"] = "う" #追加（存在する場合は更新）
+	_dict["U"] = "う" # 追加（存在する場合は更新）
 	print(_dict) #-> {A:あ, I:い, U:う}
 ```
 
 ### 取得
 * 構文
-```
-辞書['キー']
+```GDScript
+辞書["キー"]
 ```
 * 例文
-```
-#test.py
-_dict = {'A':'あ', 'I':'い', 'U':'う'}
-print(_dict['A']) #'あ'
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _dict = {"A": "あ", "I": "い", "U": "う"}
+	print(_dict["A"]) #-> あ
 ```
 
 ### 削除
 * 構文
-```
-del 辞書['キー']
+```GDScript
+辞書.erase("キー") # 任意のキーのペア
+辞書.clear() # 全てのキーのペア
 ```
 * 例文
-```
-#test.py
-_dict = {'A':'あ', 'I':'い', 'U':'う'}
-del _dict['A']
-print(_dict) #{'U': 'う', 'I': 'い'}
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready(): 
+	var _dict = {"A": "あ", "I": "い", "U": "う"}
+	_dict.erase("A")
+	print(_dict) #-> {I:い, U:う}
 ```
 
 ### キーの検索
