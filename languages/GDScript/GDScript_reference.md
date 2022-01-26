@@ -1723,7 +1723,7 @@ func _ready():
 * 構文
 ```GDScript
 辞書["キー"]
-辞書.get("キー")
+辞書.get("キー", [キーが無い場合の初期値])
 ```
 * 例文
 ```GDScript
@@ -1733,7 +1733,7 @@ extends Spatial #2Dの場合はNode2D
 func _ready():
 	var _dict = {"A": "あ", "I": "い", "U": "う"}
 	print(_dict["A"]) #-> あ
-	print(_dict.get("A")) #-> あ
+	print(_dict.get("A", null)) #-> あ
 ```
 
 ### 削除
@@ -1756,13 +1756,16 @@ func _ready():
 ### キーの検索
 * 構文
 ```
-'キー' in 辞書
+"キー" in 辞書
 ```
 * 例文
-```
-#test.py
-_dict = {'A':'あ', 'I':'い', 'U':'う'}
-print('A' in _dict) #True（任意のキーが無いとFalse）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _dict = {"A":"あ", "I":"い", "U":"う"}
+	print("A" in _dict) #-> True（任意のキーが無いとFalse）
 ```
 
 ### 要素数
