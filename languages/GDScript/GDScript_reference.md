@@ -1764,26 +1764,31 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _dict = {"A":"あ", "I":"い", "U":"う"}
+	var _dict = {"A": "あ", "I": "い", "U": "う"}
 	print("A" in _dict) #-> True（任意のキーが無いとFalse）
 ```
 
 ### 要素数
 * 構文
-```
+```GDScrip
+辞書.size()
 len(辞書)
 ```
 * 例文
-```
-#test.py
-_dict = {'A':'あ', 'I':'い', 'U':'う'}
-print(len(_dict)) #3
+```GDScrip
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _dict = {"A": "あ", "I": "い", "U": "う"}
+	print(_dict.size()) #-> 3
+	print(len(_dict)) #-> 3
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年01月27日  
 [[TOP](#TOP)]
 
 
