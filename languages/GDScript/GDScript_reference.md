@@ -1770,12 +1770,12 @@ func _ready():
 
 ### 要素数
 * 構文
-```GDScrip
+```GDScript
 辞書.size()
 len(辞書)
 ```
 * 例文
-```GDScrip
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
