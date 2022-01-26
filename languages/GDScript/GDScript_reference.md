@@ -1710,14 +1710,17 @@ func _ready():
 ### 追加･更新
 * 構文
 ```
-辞書['キー'] = 値
+辞書["キー"] = 値
 ```
 * 例文
-```
-#test.py
-_dict = {'A':'あ', 'I':'い'}
-_dict['U'] = 'う' #追加（存在する場合は更新）
-print(_dict) #{'U': 'う', 'A': 'あ', 'I': 'い'}
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _dict = {"A":"あ", "I":"い"}
+	_dict["U"] = "う" #追加（存在する場合は更新）
+	print(_dict) #-> {A:あ, I:い, U:う}
 ```
 
 ### 取得
@@ -1769,6 +1772,7 @@ _dict = {'A':'あ', 'I':'い', 'U':'う'}
 print(len(_dict)) #3
 ```
 
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日
