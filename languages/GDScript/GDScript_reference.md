@@ -1733,7 +1733,7 @@ extends Spatial #2Dの場合はNode2D
 func _ready():
 	var _dict = {"A": "あ", "I": "い", "U": "う"}
 	print(_dict["A"]) #-> あ
-	print(_dict.get("A", null)) #-> あ
+	print(_dict.get("A", null)) #-> あ（第2引数は省略可）
 ```
 
 ### 削除
