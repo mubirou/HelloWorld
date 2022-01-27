@@ -1795,6 +1795,7 @@ func _ready():
 <a name="self"></a>
 # <b>self</b> ≒ this
 
+self は現在のクラスインスタンスを参照するが Python のそれほど重要ではない
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
