@@ -1800,8 +1800,7 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
-	# __p（擬似プライベート変数）にすれば問題ないが…
-	var _p = null
+	var _p = null # __p（擬似プライベート変数）にすれば問題ないが…
 	
 	func _init(_p): # 引数がインスタンス名を同じ場合…
 		self._p = _p # この場合は self が必須（重要）
