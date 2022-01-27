@@ -27,7 +27,7 @@
 * [while 文](#while文)
 * [配列](#配列)
 * [連想配列（辞書）](#連想配列（辞書）)
-* <!--[self](#self) ≒ this-->
+* [self](#self) ≒ this
 * <!--[文字列の操作](#文字列の操作)-->
 * <!--[正規表現](#正規表現)-->
 * <!--[抽象クラス](#抽象クラス)-->
@@ -1795,32 +1795,33 @@ func _ready():
 <a name="self"></a>
 # <b>self</b> ≒ this
 
-```
-#test.py
-class MyClass(object):
-    #↓通常はプライベート（__p）にするので問題ない（他の言語と異なるところ）
-    _p = None #インスタンス変数（selfは不要）
-    
-    #コンストラクタ（第１引数にselfが必須)
-    def __init__(self, _p): #引数名がインスタンス変数名と同じ場合…
-        self._p = _p #selfが無いとローカル変数扱い
-        
-        #↓このメソッドが実行されたオブジェクト
-        print(self) #<__main__.Robot object at 0x7f3667656b00>
-        self.myMethod() #selfが必須（クラス内で関数を実行する場合）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-    def myMethod(self): #selfが必須（クラス内に定義する関数）
-        _p = None #ローカル変数
-        _p = self._p + 10 #selfが無いとError]
-        print(_p)
-    
-_myClass = MyClass(500)
-_myClass.myMethod()
+class MyClass:
+	# __p（擬似プライベート変数）にすれば問題ないが…
+	var _p = null
+	
+	func _init(_p): # 引数がインスタンス名を同じ場合…
+		self._p = _p # この場合は self が必須（重要）
+		print(self) #-> [Reference:1239]（※同じ）
+		self.myMethod() # selfは省略可能
+
+	func myMethod():
+		print(_p)
+
+
+func _ready():
+	var _myClass = MyClass.new(500)
+	print(_myClass) #-> [Reference:1239]（※同じ）
+	_myClass.myMethod() #-> 500
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年01月28日  
+[[TOP](#TOP)]
 
 
 <a name="文字列の操作"></a>
