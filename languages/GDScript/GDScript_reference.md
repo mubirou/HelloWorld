@@ -2044,7 +2044,6 @@ _subClass.abstractFunction() #"派生クラスでオーバーライドした抽�
 <a name="."></a>
 # <b>.</b> ≒ super
 
-（要調査）コンストラクタに引数がある場合構文エラー発生
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
@@ -2072,6 +2071,7 @@ func _ready():
 	var _subClass = SubClass.new()
 	_subClass.hoge("Hello1") 
 ```
+（要調査）コンストラクタに引数がある場合構文エラー発生  
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
