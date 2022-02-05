@@ -1894,20 +1894,15 @@ func _ready():
 ```
 
 ### 検索
-* 構文
-```
-検索したい文字列 in 文字列 ←True or False
-文字列.find("検索したい文字列" [,開始位置,終了位置]) ←見つからない場合-1
-文字列.rfind("検索したい文字" [,開始位置,終了位置])←見つからない場合-1
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-* 例文
-```
-#test.py
-_string = "ABCDEFG-ABCDEFG"
-if ("CD" in _string) : #見つかった（True）場合…
-    print(_string.find("CD")) #2 ←左から検索
-    print(_string.rfind("CD")) #10 ←右から検索
+func _ready():
+	var _string = "ABCDEFG-ABCDEFG"
+	if ("CD" in _string) : # 見つかった（True）場合…
+		print(_string.find("CD")) #-> 2（左から検索）
+		print(_string.rfind("CD")) #-> 10（右から検索）
 ```
 
 ### 文字列→配列
