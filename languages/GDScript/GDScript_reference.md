@@ -1859,6 +1859,28 @@ func _ready():
 	print(_string2.length()) #-> 5（全角文字も１字扱い）
 ```
 
+### 文字列の連結
+* 加算演算子を使う場合
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _address1 = "東京都"
+	var _address2 = "新宿区"
+	print(_address1 + _address2) #-> "東京都新宿区"
+```
+* フォーマット文字列を使う場合
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _address1 = "東京都%s"
+	var _address2 = "新宿区"
+	print(_address1 % _address2) #-> "東京都新宿区"
+```
+
 ### 一部分を取得
 ```GDScript
 #test.gd
