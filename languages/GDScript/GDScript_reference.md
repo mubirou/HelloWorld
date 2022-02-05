@@ -29,7 +29,7 @@
 * [連想配列（辞書）](#連想配列（辞書）)
 * [self](#self) ≒ this
 * [文字列の操作](#文字列の操作)
-* [正規表現](#正規表現)（これは書きかけの項目です）
+* [正規表現](#正規表現)
 * <!--[抽象クラス](#抽象クラス)-->
 * [.](#.) ≒ super
 * <!--[オーバーライド](#オーバーライド)-->
@@ -1971,26 +1971,22 @@ func _ready():
 ```
 
 ### 置換
-* 構文
-```
-import re ←正規表現に必須
-○ = re.compile('置換前の文字列') ←正規表現をコンパイル
-結果 = ○.sub('置換後の文字列', 文字列)
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-* 例文
-```
-#test.py
-import re #正規表現に必須
-_string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
-pattern_ = re.compile('吉田') #正規表現をコンパイル
-print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文
+func _ready():
+	var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
+
+	var _regex = RegEx.new()
+	_regex.compile("吉田")
+	print(_regex.sub(_string, "よしだ")) #-> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
 実行環境：Windows 10、Godot Engine 3.4.2 
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年02月05日  
 [[TOP](#TOP)]
 
 
