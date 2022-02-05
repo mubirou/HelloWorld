@@ -1987,6 +1987,7 @@ pattern_ = re.compile('吉田') #正規表現をコンパイル
 print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文
 ```
 
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
 実行環境：Windows 10、Godot Engine 3.4.2 
 作成者：夢寐郎  
 作成日：2022年0X月XX日  
