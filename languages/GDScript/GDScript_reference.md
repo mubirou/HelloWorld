@@ -1876,9 +1876,8 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _address1 = "東京都%s"
-	var _address2 = "新宿区"
-	print(_address1 % _address2) #-> "東京都新宿区"
+	var _address = "東京都%s"
+	print(_address % "新宿区") #-> "東京都新宿区"
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#gdscript-format-strings)（フォーマット文字列）  
 
