@@ -30,7 +30,7 @@
 * [self](#self) ≒ this
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-* [抽象クラス](#抽象クラス)（これは書きかけの項目です）
+* [抽象クラス](#抽象クラス)
 * [.](#.) ≒ super
 * <!--[オーバーライド](#オーバーライド)-->
 * [カスタムイベント](#カスタムイベント)
@@ -1995,47 +1995,34 @@ func _ready():
 # <b>抽象クラス</b>
 
 ### 概要
-* Pythonには interface や abstract キーワードは存在しません
-* Pythonでは、継承と例外を使って擬似的な抽象クラスを実現します
+* GDScript には interface や abstract キーワードは存在しません
+* 以下のサンプルでは疑似的に、継承と例外を使って抽象クラスを実現しています
 
-### 構文
-```
-class Abstract○○(object): #擬似抽象クラスの定義（実際には単なる基本クラス）
-    def □□(self): #擬似抽象関数の宣言（実際は単なる関数）
-        raise NotImplementedError() #派生クラスで実装しないとErrorを発生させる
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-class 派生クラス名(Abstract○○): #抽象クラスを継承
-    def □□(self):
-        #実際の処理
-```
+class AbstractClass: # 擬似抽象クラスの定義（実際には単なる基本クラス）
+	func common(): # 共通の関数
+		print("共通の関数")
 
-### 例文
-```
-#test.py
-class AbstractClass(object): #擬似抽象クラスの定義（実際には単なる基本クラス）
-    def common(self): #共通の関数
-        print("共通の関数")
-
-    def abstractFunction(self): #擬似抽象関数の宣言（実際は単なる関数）
-        #↓派生クラスで実装しないとErrorを発生させる（ポイント）
-        raise NotImplementedError() #例外処理
+	func abstractFunction(): # 擬似抽象関数の宣言（実際は単なる関数）
+		assert(false, "ERROR: 派生クラスで実装する必要があります") # 例外処理
 
 #派生クラス
-class SubClass(AbstractClass): #擬似抽象クラスを継承
-    #↓オーバーライドして実際の処理を記述
-    def abstractFunction(self):
-        #↓実際の処理
-        print("派生クラスでオーバーライドした抽象関数")
+class SubClass extends AbstractClass: #擬似抽象クラスを継承
+	func abstractFunction(): # オーバーライドして実際の処理を記述
+		print("派生クラスでオーバーライドした抽象関数") # 実際の処理
 
-#実行
-_subClass = SubClass()
-_subClass.common() #"共通の関数"
-_subClass.abstractFunction() #"派生クラスでオーバーライドした抽象関数"
+func _ready():
+	var _subClass = SubClass.new()
+	_subClass.common() #-> "共通の関数"
+	_subClass.abstractFunction() #-> "派生クラスでオーバーライドした抽象関数"
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年02月06日  
 [[TOP](#TOP)]
 
 
