@@ -1841,8 +1841,8 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	var _string1 = 'あいうえお'
-	var _string2 = "あいうえお" # ''と同じ
+	var _string2 = "あいうえお"
+	var _string1 = 'あいうえお' # "〇〇"と同じ
 	var _string3 = "１行目\n２行目"
 ```
 
