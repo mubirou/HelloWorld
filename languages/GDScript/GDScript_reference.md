@@ -1866,7 +1866,7 @@ func _ready():
 ```
 
 ### 一部分を取得
-```GDScrpt
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
