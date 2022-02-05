@@ -1880,6 +1880,7 @@ func _ready():
 	var _address2 = "新宿区"
 	print(_address1 % _address2) #-> "東京都新宿区"
 ```
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#gdscript-format-strings)  
 
 ### 一部分を取得
 ```GDScript
