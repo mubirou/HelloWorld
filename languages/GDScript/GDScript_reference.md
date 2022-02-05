@@ -1951,28 +1951,23 @@ func _ready():
 ### 概要
 * 正規表現は、URL、パスワード、メールアドレス等、特定の文字パターンを抽出するのに利用
 * 正規表現の基本文法は、特定のプログラミング言語に依存しない
-* Python では re モジュール（regex、regular expressionの略）として提供
-* Python には以下のサンプル以外にも多くの正規表現の機能が用意されている
+* GDScript には以下のサンプル以外にも多くの正規表現の機能が用意されている
 
 ### 検索
-* 構文
-```
-import re ←正規表現に必須
-○ = re.compile('検索する文字列') ←正規表現をコンパイル
-結果 = ○.search(文字列) ←見つからないとNone、見つかると<_sre.SRE_Match…が返る
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-* 例文
-```
-#test.py
-import re #正規表現に必須
-_string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
-pattern_ = re.compile('吉田') #正規表現をコンパイル
-_result = pattern_.search(_string) #見つからなければNone
-if (_result is None) :
-    print("吉田は含まれていません")
-else :
-    print("吉田は含まれています")
+func _ready():
+	var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
+
+	var _regex = RegEx.new()
+	_regex.compile("吉田")
+	var _result = _regex.search(_string)
+	if _result == null:
+		print("吉田は含まれていません")
+	else:
+		print("吉田は含まれています")
 ```
 
 ### 置換
@@ -1994,7 +1989,8 @@ print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂�
 
 実行環境：Windows 10、Godot Engine 3.4.2 
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年0X月XX日  
+[[TOP](#TOP)]
 
 
 <a name="抽象クラス"></a>
