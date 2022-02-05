@@ -32,7 +32,7 @@
 * [正規表現](#正規表現)
 * [抽象クラス](#抽象クラス)
 * [.](#.) ≒ super
-* <!--[オーバーライド](#オーバーライド)-->
+* [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数](#数学関数)
 * <!--[乱数](#乱数)-->
@@ -1995,8 +1995,8 @@ func _ready():
 # <b>抽象クラス</b>
 
 ### 概要
-* GDScript には interface や abstract キーワードは存在しません
-* 以下のサンプルでは疑似的に、継承と例外を使って抽象クラスを実現しています
+* GDScript には interface や abstract キーワードは存在しない
+* 以下のサンプルでは疑似的に継承と例外を使って抽象クラスを実現
 
 ```GDScript
 #test.gd
@@ -2071,46 +2071,34 @@ func _ready():
 
 ### 概要
 * 基本クラスで定義したメソッドを派生クラスで再定義することをオーバーライドと呼ぶ
-* 基本クラスのメソッドを呼び出したい場合は、super(クラス,self).メソッド()を使う
+* GDScript には override キーワードはない
+* 基本クラスのメソッドを呼び出したい場合は .関数名() を使う
 
-### 書式
-```
-class 基本クラス名(object):
-    def 関数名(self, 引数): #派生クラスでオーバーライドされる
-        ……
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-class 派生クラス名(基本クラス名):
-    def 関数名(self, 引数): #基本クラスの関数をオーバーライドする
-        #↓オーバーライドした基本クラスの関数を呼出す場合…
-        super(派生クラス名, self).関数名(引数)
-        ……
-```
+# 基本クラス
+class SuperClass:
+	func myFunction(): # 派生クラスでオーバーライドされる
+		print("基本クラスのmyFunction()")
 
-### 例文
-```
-#test.py
-#基本クラス
-class SuperClass(object):
-    #↓派生クラスでオーバーライドされる
-    def myFunction(self):
-        print("基本クラスのmyFunction()")
-
-#派生クラス
-class SubClass(SuperClass): #基本クラス（SuperClass）を継承
-    #↓基本クラスの関数をオーバーライドする
-    def myFunction(self):
-        #↓基本クラスのmyFunction()を呼出す場合…
-        super(SubClass, self).myFunction()
-        print("派生クラスのmyFunction()")
+# 派生クラス
+class SubClass extends SuperClass: #擬似抽象クラスを継承
+	func myFunction(): # 基本クラスの関数をオーバーライドする
+		print("派生クラスのmyFunction()")
+		.myFunction() # 基本クラスのmyFunction()を呼出す場合
 
 # 実行
-_subClass = SubClass()
-_subClass.myFunction()
+func _ready():
+	var _subClass = SubClass.new()
+	_subClass.myFunction()
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年02月06日  
+[[TOP](#TOP)]
 
 
 <a name="カスタムイベント"></a>
