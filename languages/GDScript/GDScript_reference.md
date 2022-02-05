@@ -1884,16 +1884,13 @@ func _ready():
 ```
 
 ### 置換
-* 構文
-```
-文字列.replace('置換前の文字列', '置換後の文字列')
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-* 例文
-```
-#test.py
-_string = "2017年4月11日"
-print(_string.replace('2017年','平成29年')) #平成29年4月11日
+func _ready():
+	var _string = "2022年2月5日"
+	print(_string.replace("2022年", "令和4年")) #-> "令和4年2月5日"
 ```
 
 ### 検索
