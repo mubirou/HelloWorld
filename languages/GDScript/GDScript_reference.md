@@ -1985,7 +1985,7 @@ func _ready():
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
-実行環境：Windows 10、Godot Engine 3.4.2 
+実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月05日  
 [[TOP](#TOP)]
