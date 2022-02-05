@@ -1849,16 +1849,20 @@ func _ready():
 ### 長さを調べる
 * 構文
 ```
-len(文字列)
+文字列.length()
 ```
 
 * 例文
 ```
-#test.py
-_string1 = "ABCDE"
-print(len(_string1)) #5
-_string2 = "あいうえお"
-print(len(_string2)) #5 ←全角文字も１字扱い
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _string1 = "ABCDE"
+	print(_string1.length()) #-> 5
+	
+	var _string2 = "あいうえお"
+	print(_string2.length()) #-> 5（全角文字も１字扱い）
 ```
 
 ### 一部分を取得
