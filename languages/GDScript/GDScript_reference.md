@@ -1980,7 +1980,8 @@ func _ready():
 
 	var _regex = RegEx.new()
 	_regex.compile("吉田")
-	print(_regex.sub(_string, "よしだ")) #-> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
+	print(_regex.sub(_string, "よしだ"))
+	#-> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
