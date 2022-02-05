@@ -1829,7 +1829,7 @@ func _ready():
 
 ### String オブジェクトの作成
 * 構文
-```
+```GDScript
 ➀変数 = "○○"
 ➁変数 = '○○' # ダブルクォーテーション（""）と同じ
 ➂変数 = "１行目\n２行目" # 改行を含む場合
@@ -1848,12 +1848,12 @@ func _ready():
 
 ### 長さを調べる
 * 構文
-```
+```GDScript
 文字列.length()
 ```
 
 * 例文
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
