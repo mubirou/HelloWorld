@@ -1866,19 +1866,15 @@ func _ready():
 ```
 
 ### 一部分を取得
-* 構文
-```
-文字列[番号] ←0〜len(文字列)
-文字列[開始:終了) ←終了は含まない
-```
+```GDScrpt
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-* 例文
-```
-#test.py
-_string = "0123456789"
-print(_string[4]) #4
-print(_string[4:7]) #456
-print(_string[4:len(_string)]) #456789
+func _ready():
+	var _string = "0123456789"
+	print(_string[4]) #-> "4"
+	print(_string.substr(4)) #-> "456789"
+	print(_string.substr(4, 3)) #-> "456"
 ```
 
 ### 一部分を削除
