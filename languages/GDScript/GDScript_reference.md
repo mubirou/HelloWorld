@@ -1872,21 +1872,15 @@ func _ready():
 ```
 
 ### 一部分を削除
-* 構文
-```
-文字列.strip('削除する文字列') ←両端から削除
-文字列.lstrip('削除する文字列') ←左端から削除
-文字列.rstrip('削除する文字列') ←右端から削除
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-* 例文
-```
-#test.py
-_string = "ABCDCBA"
-print(_string.strip('A')) #BCDCB ←両端から削除
-print(_string.lstrip('A')) #BCDCBA ←左端から削除
-print(_string.rstrip('A')) #ABCDCB ←右端から削除
-print(_string) #ABCDCBA ←元は変更なし
+func _ready():
+	var _string = "ABCDCBA"
+	print(_string.lstrip("A")) #-> "BCDCBA"（左端から1つ削除）
+	print(_string.rstrip("A")) #-> "ABCDCB"（右端から1つ削除）
+	print(_string) #-> "ABCDCBA"（元は変更なし）
 ```
 
 ### 置換
