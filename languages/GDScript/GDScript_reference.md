@@ -1847,12 +1847,6 @@ func _ready():
 ```
 
 ### 長さを調べる
-* 構文
-```GDScript
-文字列.length()
-```
-
-* 例文
 ```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
