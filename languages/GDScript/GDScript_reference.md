@@ -2002,18 +2002,20 @@ func _ready():
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
-class AbstractClass: # 擬似抽象クラスの定義（実際には単なる基本クラス）
+# 擬似抽象クラスの定義（実際には単なる基本クラス）
+class AbstractClass:
 	func common(): # 共通の関数
 		print("共通の関数")
 
 	func abstractFunction(): # 擬似抽象関数の宣言（実際は単なる関数）
 		assert(false, "ERROR: 派生クラスで実装する必要があります") # 例外処理
 
-#派生クラス
+# 派生クラス
 class SubClass extends AbstractClass: #擬似抽象クラスを継承
 	func abstractFunction(): # オーバーライドして実際の処理を記述
 		print("派生クラスでオーバーライドした抽象関数") # 実際の処理
 
+# 実行
 func _ready():
 	var _subClass = SubClass.new()
 	_subClass.common() #-> "共通の関数"
