@@ -28,7 +28,7 @@
 * [配列](#配列)
 * [連想配列（辞書）](#連想配列（辞書）)
 * [self](#self) ≒ this
-* [文字列の操作](#文字列の操作)（これは書きかけの項目です）
+* [文字列の操作](#文字列の操作)
 * <!--[正規表現](#正規表現)-->
 * <!--[抽象クラス](#抽象クラス)-->
 * [.](#.) ≒ super
@@ -1906,23 +1906,20 @@ func _ready():
 ```
 
 ### 文字列→配列
-* 構文
-```
-String.split('区切り文字');
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-* 例文
-```
-#test.py
-_string = "A,B,C" #「,」区切りの文字列
-list_ = _string.split(',') #「,」区切りで分割してリスト化
-print(list_) #['A', 'B', 'C']
+func _ready():
+	var _string = "A,B,C" #「,」区切りの文字列
+	var _list = _string.split(',') #「,」区切りで分割して配列化
+	print(_list) #-> [A, B, C]
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_string.html#string)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年02月05日  
 [[TOP](#TOP)]
 
 
