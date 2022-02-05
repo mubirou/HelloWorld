@@ -2246,7 +2246,7 @@ print(sqrt(6)) #-> 2.44949（二夜シクシク）
 # <b>乱数</b>
 
 ### 0.0〜1.0未満
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
