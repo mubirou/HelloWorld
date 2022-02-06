@@ -1474,6 +1474,9 @@ func _ready():
 
 	var _array3 = [["A", "あ"], ["I", "い"]] # 配列のネスト
 	print(_array3) #-> [[A, あ], [I, い]]
+
+	var _array4 = range(0, 10)
+	print(_array4) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 [[配列TOP](#配列)]
 
@@ -2261,7 +2264,7 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	print(rand_range(1, 100)) #-> 62.501232（0.0〜100.0以下）
+	print(rand_range(0, 100)) #-> 62.501232（0.0〜100.0以下）
 ```
 （注意）最初は62.501232, 2回目は75.845044, …と値が決まっている＝同じシード値を使用
 
