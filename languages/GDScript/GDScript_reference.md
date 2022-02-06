@@ -2270,26 +2270,33 @@ func _ready():
 
 
 ### 最小値〜最大値（int型）
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	var _i0=0; var _i1=0; var _i2=0; var _i3=0; var _i4=0
+	var _i5=0; var _i6=0; var _i7=0; var _i8=0; var _i9=0
+
+	var _random = RandomNumberGenerator.new()
+
+	for i in range(0, 100000):
+		var _tmp = _random.randi_range(0, 9) # 0～9の整数
+		if (_tmp == 0): _i0 += 1
+		elif (_tmp == 1): _i1 += 1
+		elif (_tmp == 2): _i2 += 1
+		elif (_tmp == 3): _i3 += 1
+		elif (_tmp == 4): _i4 += 1
+		elif (_tmp == 5): _i5 += 1
+		elif (_tmp == 6): _i6 += 1
+		elif (_tmp == 7): _i7 += 1
+		elif (_tmp == 8): _i8 += 1
+		elif (_tmp == 9): _i9 += 1
+		else: print("Error")
+	print([_i0, _i1, _i2, _i3, _i4, _i5, _i6, _i7, _i8, _i9])
+	#-> [9977, 10072, 10038, 10012, 9932, 10041, 10019, 9972, 9939, 9998]
 ```
-#test.py
-import random #必須
-i0=0; i1=0; i2=0; i3=0; i4=0; i5=0; i6=0; i7=0; i8=0; i9=0;
-for i in range(0,1000000): #100万回繰り返します
-    tmp = random.randint(0,9)
-    if (tmp == 0): i0 += 1
-    elif (tmp == 1): i1 += 1
-    elif (tmp == 2): i2 += 1
-    elif (tmp == 3): i3 += 1
-    elif (tmp == 4): i4 += 1
-    elif (tmp == 5): i5 += 1
-    elif (tmp == 6): i6 += 1
-    elif (tmp == 7): i7 += 1
-    elif (tmp == 8): i8 += 1
-    elif (tmp == 9): i9 += 1
-    else: print("Error")
-print(i0, i1, i2, i3, i4, i5, i6, i7, i8, i9)
-#100059 99956 100599 100200 99863 99702 99881 99715 99783 100242
-```
+（注意）結果が毎回同じ＝同じシード値を使用
 
 ### ランダムな文字
 ```
