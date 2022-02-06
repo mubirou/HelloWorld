@@ -2256,7 +2256,7 @@ func _ready():
 （注意）最初は0.735984, 2回目は0.621225, …と値が決まっている＝同じシード値を使用
 
 ### 最小値〜最大値（float型）
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
