@@ -2280,7 +2280,7 @@ func _ready():
 
 	var _random = RandomNumberGenerator.new()
 
-	for i in range(0, 100000):
+	for i in range(0, 100000): # 0～100000までの配列
 		var _tmp = _random.randi_range(0, 9) # 0～9の整数
 		if (_tmp == 0): _i0 += 1
 		elif (_tmp == 1): _i1 += 1
