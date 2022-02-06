@@ -2298,13 +2298,6 @@ func _ready():
 ```
 （注意）結果が毎回同じ＝同じシード値を使用
 
-### ランダムな文字
-```
-#test.py
-import random #必須
-print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #"X"...など
-```
-
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年0X月XX日  
