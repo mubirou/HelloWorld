@@ -2271,9 +2271,12 @@ print(sqrt(6)) #-> 2.44949（二夜シクシク）
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	print(randf()) #-> 0.735984（0.0〜1.0以下）
+	var _random = RandomNumberGenerator.new()
+	_random.randomize() # シード値の初期化（任意）
+	
+	print(_random.randf()) #-> 0.735984（0.0〜1.0以下）
 ```
-（注意）最初は0.735984, 2回目は0.621225, …と値が決まっている＝同じシード値を使用
+（注意）**randf()** 関数の場合、最初は0.735984, 2回目は0.621225, …と値が決まっている（同じシード値を使用）
 
 ### 最小値〜最大値（float型）
 ```GDScript
