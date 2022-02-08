@@ -2295,6 +2295,7 @@ func _ready():
 	var _i5=0; var _i6=0; var _i7=0; var _i8=0; var _i9=0
 
 	var _random = RandomNumberGenerator.new()
+	_random.randomize() # シード値の初期化（任意）
 
 	for i in range(0, 100000): # 0～100000までの配列
 		var _tmp = _random.randi_range(0, 9) # 0～9の整数
@@ -2312,7 +2313,7 @@ func _ready():
 	print([_i0, _i1, _i2, _i3, _i4, _i5, _i6, _i7, _i8, _i9])
 	#-> [9977, 10072, 10038, 10012, 9932, 10041, 10019, 9972, 9939, 9998]
 ```
-（注意）結果が毎回同じ＝同じシード値を使用
+（注意）**.randomize()** を実行しないと毎回結果が同じになる（同じシード値を使用しているため）
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#randomnumbergenerator)  
 実行環境：Windows 10、Godot Engine 3.4.2  
