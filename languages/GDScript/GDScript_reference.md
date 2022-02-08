@@ -2276,7 +2276,7 @@ func _ready():
 	
 	print(_random.randf()) #-> 0.735984（0.0〜1.0以下）
 ```
-（注意）**randf()** 関数の場合、最初は0.735984, 2回目は0.621225, …と値が決まっている（同じシード値を使用）
+（注意）**randf()** 関数の場合、最初は0.735984, 2回目は0.621225, …と毎回結果が同じになる（＝同じシード値を使用しているため）
 
 ### 最小値〜最大値（float型）
 ```GDScript
@@ -2317,7 +2317,7 @@ func _ready():
 	print([_i0, _i1, _i2, _i3, _i4, _i5, _i6, _i7, _i8, _i9])
 	#-> [10079, 10000, 10150, 10161, 10097, 9901, 10091, 9704, 9912, 9905]
 ```
-（注意）**.randomize()** を実行しないと毎回結果が同じになる（同じシード値を使用しているため）
+（注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#randomnumbergenerator)  
 実行環境：Windows 10、Godot Engine 3.4.2  
