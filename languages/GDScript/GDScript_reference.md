@@ -2274,9 +2274,9 @@ func _ready():
 	var _random = RandomNumberGenerator.new()
 	_random.randomize() # シード値の初期化（任意）
 	
-	print(_random.randf()) #-> 0.735984（0.0〜1.0以下）
+	print(_random.randf()) #-> 0.521781（0.0〜1.0以下）
 ```
-（注意）**randf()** 関数の場合、最初は0.735984, 2回目は0.621225, …と毎回結果が同じになる（＝同じシード値を使用しているため）
+（注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
 ### 最小値〜最大値（float型）
 ```GDScript
@@ -2284,9 +2284,12 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	print(rand_range(0, 100)) #-> 62.501232（0.0〜100.0以下）
+	var _random = RandomNumberGenerator.new()
+	_random.randomize() # シード値の初期化（任意）
+	
+	print(_random.randf_range(0, 100)) #-> 35.13369（0.0〜100.0以下）
 ```
-（注意）最初は62.501232, 2回目は75.845044, …と値が決まっている＝同じシード値を使用
+（注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
 
 ### 最小値〜最大値（int型）
@@ -2322,7 +2325,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#randomnumbergenerator)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年02月09日  
 [[TOP](#TOP)]
 
 
