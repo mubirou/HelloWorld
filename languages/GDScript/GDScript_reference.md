@@ -2385,7 +2385,7 @@ func _ready():
 # <b>タイマー</b>
 
 ### 一度だけ実行する場合
-```
+```GDScript
 #test.gd
 extends Spatial #2Dの場合はNode2D
 
