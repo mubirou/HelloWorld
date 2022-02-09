@@ -2400,6 +2400,7 @@ func _ready():
 	self.add_child(_timer) # selfは省略可能
 	_timer.start()
 ```
+※繰り返す場合は **.set_one_shot(true)** は不要  
 
 ### 繰り返し実行する場合
 ```GDScript
@@ -2417,6 +2418,7 @@ func _ready():
 	_timer.start()
 	#_timer.stop() #ループを止める場合
 ```
+※一度だけ実行する場合は **.set_one_shot(true)** が必要  
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
 実行環境：Windows 10、Godot Engine 3.4.2  
