@@ -3,8 +3,6 @@
 # <b>GDScript 基礎文法</b>
 [[Godot Study Notes](https://github.com/mubirou/Godot)]
 
-### これは書きかけの項目です
-
 ### <b>INDEX</b>
 
 * [コメント](#コメント)
