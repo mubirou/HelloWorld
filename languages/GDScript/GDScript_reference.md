@@ -38,7 +38,7 @@
 * [乱数](#乱数)
 * [日時情報](#日時情報)
 * [タイマー](#タイマー)
-* <!--[処理速度計測](#処理速度計測)-->
+* [処理速度計測](#処理速度計測)
 * <!--[外部テキストの読み込み](#外部テキストの読み込み)-->
 ***
 
@@ -2430,38 +2430,30 @@ func _ready():
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-### 構文
-```
-#test.py
-import time #timeモジュール（日付と時間を扱うCライブラリ関数を提供）
-開始時間 = time.time() #UNIX時間（1970年1月1日 午前0:00からの経過時間）
-………
-様々な処理
-………
-結果 = time.time() - 開始時間
-print(結果) #○○秒（浮動小数点数値＝小数点15桁）
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-### 例文
-```
-#test.py
-import time #必須
-_start = time.time() #計測開始時間
+func _ready():
+	# UNIX時間（1970年1月1日0:00からの経過時間＝ミリ秒）
+	var _start = OS.get_system_time_msecs()
 
-#===========================================
-#ここに計測したい様々な処理を記述
-for i in range(0,100000000): #1億回繰り返す
-    #速度計測したい処理
-    pass #今回は何もしない
-#===========================================
+	#===========================================
+	# ここに計測したい様々な処理を記述
+	for i in range(0,100000000): #1億回繰り返す
+		#速度計測したい処理
+		pass #今回は何もしない
+	#===========================================
 
-_result = time.time() - _start
-print(str(_result) + 'sec.') #3.835374116897583sec.
+	var _result = OS.get_system_time_msecs() - _start
+	print(str(_result) + " sec.") #-> 4189 sec.
 ```
 
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_os.html#os)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日
+作成日：2022年02月09日  
+[[TOP](#TOP)]
 
 
 <a name="外部テキストの読み込み"></a>
