@@ -2404,11 +2404,7 @@ func loop():
 
 func _ready():
 	var _timer = Timer.new()
-
-	# 何秒間隔で実行するか（初期値は1.0秒間隔）
-	print(_timer.get_wait_time()) #-> 1（float型）
-	_timer.set_wait_time(2.0) # 2.0秒毎に実行したい場合
-
+	_timer.set_wait_time(2.0) # 2.0秒毎に実行したい場合（初期値1.0）
 	_timer.connect("timeout", self, "loop")
 	self.add_child(_timer) # selfは省略可能
 	_timer.start()
