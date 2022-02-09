@@ -37,7 +37,7 @@
 * [数学関数](#数学関数)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-* [タイマー](#タイマー)（これは書きかけの項目です）
+* [タイマー](#タイマー)
 * <!--[処理速度計測](#処理速度計測)-->
 * <!--[外部テキストの読み込み](#外部テキストの読み込み)-->
 ***
@@ -2386,12 +2386,19 @@ func _ready():
 
 ### 一度だけ実行する場合
 ```
-#test.py
-import threading #必須
-def timeOut():
-    print("一度だけ実行したい処理")
-timer_ = threading.Timer(3, timeOut) # 3秒後に1度だけ実行したい場合…
-timer_.start()
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func timeOut():
+	print("一度だけ実行したい処理")
+
+func _ready():
+	var _timer = Timer.new()
+	_timer.set_wait_time(3.0) # 3.0秒後に実行したい場合（初期値1.0）
+	_timer.set_one_shot(true) # ポイント（繰り返す場合は不要）
+	_timer.connect("timeout", self, "timeOut")
+	self.add_child(_timer) # selfは省略可能
+	_timer.start()
 ```
 
 ### 繰り返し実行する場合
@@ -2414,7 +2421,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年02月09日  
 [[TOP](#TOP)]
 
 
