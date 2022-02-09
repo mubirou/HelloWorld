@@ -2395,30 +2395,24 @@ timer_.start()
 ```
 
 ### 繰り返し実行する場合
-```
-# test.py（threading.Thread を継承したクラスを作成した方法）
-import threading #必須
-import time
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-class Loop(threading.Thread):
-    __isLoop = False
+func loop():
+	print("繰返し実行したい処理")
 
-    def run(self):
-        if (self.__isLoop) :
-            print("繰返し実行したい処理を記述")
-            time.sleep(0.5) #0.5秒間隔で実行したい場合…
-            self.run() #これが無いと1回だけしか実行しない
+func _ready():
+	var _timer = Timer.new()
 
-    def stop(self): #カスタム関数
-        self.__isLoop = False
+	# 何秒間隔で実行するか（初期値は1.0秒間隔）
+	print(_timer.get_wait_time()) #-> 1（float型）
+	_timer.set_wait_time(2.0) # 2.0秒毎に実行したい場合
 
-    def start(self): #継承元の関数をオーバーライド
-        self.__isLoop = True
-        super(Loop, self).start() #継承元の関数を呼出す
-
-_loop = Loop()
-_loop.start()
-#_loop.stop() #ループを止める場合
+	_timer.connect("timeout", self, "loop")
+	self.add_child(_timer) # selfは省略可能
+	_timer.start()
+	#_timer.stop() #ループを止める場合
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
