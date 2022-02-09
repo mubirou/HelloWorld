@@ -2457,8 +2457,6 @@ func _ready():
 
 
 <a name="外部テキストの読み込み"></a>
-# <b>外部テキストの読み込み</b>
-* [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はない
 
 ### テキストファイルの用意（sample.txt/UTF-8として保存）
 ```
@@ -2467,41 +2465,23 @@ func _ready():
 さしすせそ
 ```
 
-### 構文
-```
-○ = open("□□.txt", "r")
-○.read() #テキストファイルの内容が返る
-```
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
 
-### 例文
-```
-#test.py
-file_ = open("sample.txt", "r") #同じ階層に○.txtがある場合…
-result_ = file_.read()
-print(result_)
-#あいうえお
-#かきくけこ
-#さしすせそ
-```
+func _ready():
+	var _file = File.new()
+	_file.open("res://sample.txt", File.READ)
+	print(_file.get_as_text())
+	_file.close()
 
-### 外部テキストの書き込み（参考）
-```
-#test.py
-#ファイルの書き込み
-file_ = open("sample.txt", "w") # "r" ではなく "w"
-file_.write("さしすせそ\nたちつてと") #「\n」で改行も可能
-file_.close()
-
-#ファイルの読み込み（確認）
-file_ = open("sample.txt", "r") #同じ階層に○.txtがある場合
-result_ = file_.read()
-print(result_)
-#さしすせそ
-#たちつてと
+#-> あいうえお
+#-> かきくけこ
+#-> さしすせそ
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_file.html#file)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年0X月XX日  
+作成日：2022年02月09日  
 [[TOP](#TOP)]
