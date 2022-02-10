@@ -1,6 +1,9 @@
 <a name="TOP"></a>
 
-# <b>C# with GDScript 基礎文法</b>
+# <b>C# with Godot 基礎文法</b>
+
+# この項目は書きかけです
+
 [[Godot Study Notes](https://github.com/mubirou/Godot)]
 
 ### <b>INDEX</b>
