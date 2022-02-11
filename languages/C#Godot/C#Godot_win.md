@@ -8,7 +8,7 @@
 
 ## Hello,world!
 
-1. https://godotengine.org/download/windows から [Standard version]-[64-bit(x86_64)] をダウンロードして解凍
+1. https://godotengine.org/download/windows から [Mono version (C# support)]-[64-bit(x86_64)] をダウンロードして解凍
 
 1. Godot_v3.4.2-stable_win64.exe を起動（インストール作業は不要）
 
