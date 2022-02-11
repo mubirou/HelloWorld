@@ -9,9 +9,6 @@
 
 1. https://godotengine.org/download/windows から [Standard version]-[64-bit(x86_64)] をダウンロードして解凍
 
-1. Visual Studio Codeに拡張機能の追加  
-    [表示] → [拡張機能] から C#（Microsoft） を検索＆インストール
-
 1. Godot_v3.4.2-stable_win64.exe を起動
 
 1. [新規プロジェクト] を選択し以下を設定し[作成して編集]
