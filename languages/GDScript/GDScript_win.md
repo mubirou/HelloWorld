@@ -5,6 +5,7 @@
 * [Godot Engine](https://godotengine.org/)で使われるスクリプト言語
 * [Python](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#python-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)に似た構文を採用してはいるが全く別物のプログラミング言語
 * [GDScript 基本文法](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#gdscript-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)
+* Godot 3.0（2018年リリース）から[C#](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)も利用可能
 
 ## Hello,world!
 
