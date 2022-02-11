@@ -5,7 +5,7 @@
 * [Godot Engine](https://godotengine.org/)で使われるスクリプト言語
 * [Python](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#python-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)に似た構文を採用してはいるが全く別物のプログラミング言語
 
-## 開発環境の構築
+## Hello,world!
 
 1. https://godotengine.org/download/windows から [Standard version]-[64-bit(x86_64)] をダウンロードして解凍
 
