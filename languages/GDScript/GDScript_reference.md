@@ -1,7 +1,7 @@
 <a name="TOP"></a>
 
 # <b>GDScript 基礎文法</b>
-[[Godot Study Notes](https://github.com/mubirou/Godot)]
+[[Godot Study Notes](https://github.com/mubirou/Godot#godot-study-notes)]
 
 ### <b>INDEX</b>
 
