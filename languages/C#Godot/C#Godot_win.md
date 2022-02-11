@@ -10,7 +10,7 @@
 
 1. https://godotengine.org/download/windows から [Mono version (C# support)]-[64-bit(x86_64)] をダウンロードして解凍
 
-1. Godot_v3.4.2-stable_win64.exe を起動（インストール作業は不要）
+1. Godot_v3.4.2-stable_mono_win64.exe を起動（インストール作業は不要）
 
 1. [新規プロジェクト] を選択. 以下を設定し[作成して編集]
     * プロジェクト名：任意
@@ -24,15 +24,19 @@
 
 1. 再生ボタン[▶]を押すと「メインシーンが定義されていません。選択しますか？」というダイアログが表示されるので[現在のものを選択]を選択
 
-1. [Main]タブ（または[ファイルシステム]-[Main.tscn]）を選択し、[シーン]タブ-[Main]→[右クリック]-[スクリプトをアタッチ]-[作成]すると"Main.gd"が生成される
+1. [Main]タブ（または[ファイルシステム]-[Main.tscn]）を選択し、[シーン]タブ-[Main]→[右クリック]-[スクリプトをアタッチ]を選択し[言語]を"GDScript"を"**C#**"に変更（重要）してから[作成]すると"Main.cs"が生成される
 
 1. コードの変更（[外部エディタ](https://github.com/mubirou/Godot#%E5%A4%96%E9%83%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF)を使用することも可能）
 
-```GDScript
-extends Spatial #2Dの場合はNode2D
+```CSharp
+using Godot;
+using System;
 
-func _ready():
-	print("Hello,world!")
+public class Main : Spatial {
+    public override void _Ready() {
+        GD.Print("Hello,world!");
+    }
+}
 ```
 
 1. 再生ボタン[▶]を押すと…  
@@ -42,6 +46,7 @@ Hello,world!
 と表示されたら成功！
 
 ***
-参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
-作成者: 夢寐郎  
-作成日: 2022年02月11日
+参考：[GDScript](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)  
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月12日

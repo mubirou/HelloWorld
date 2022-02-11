@@ -43,5 +43,6 @@ Hello,world!
 
 ***
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
-作成者: 夢寐郎  
-作成日: 2022年02月11日
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月11日
