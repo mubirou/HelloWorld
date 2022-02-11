@@ -1,10 +1,9 @@
 # GDScript（ Windows ）
 
-この項目は、書きかけの項目です。
-
 ## GDScript について
 
-* XXXXXXX
+* [Godot Engine](https://godotengine.org/)で使われるスクリプト言語
+* [Python](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#python-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)に似た構文を採用してはいるが全く別物のプログラミング言語
 
 ## 開発環境の構築
 
@@ -27,42 +26,24 @@
 
 1. 再生ボタン[▶]を押すと「メインシーンが定義されていません。選択しますか？」というダイアログが表示されるので[現在のものを選択]を選択
 
-## コードの記述
+1. [Main]タブ（または[ファイルシステム]-[Main.tscn]）を選択し、[シーン]タブ-[Main]→[右クリック]-[スクリプトをアタッチ]-[作成]すると"Main.gd"が生成される
 
-1. Visual Studio Code を起動
-    1. [ファイル] → [新規ファイル] を選択
-    1. [ファイル] → [保存] を選択
-    1. 任意の場所（今回はデスクトップ上に C# フォルダを作成）に test<b>.cs</b> という名で保存
+1. コードの変更（[外部エディタ](https://github.com/mubirou/Godot#%E5%A4%96%E9%83%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF)を使用することも可能）
 
-1. コードの記述
-```
-//test.cs
-using System; //Console.WriteLine() に必要
+```GDScript
+extends Spatial #2Dの場合はNode2D
 
-class HelloWorld { //Mainは不可
-    static void Main() { //自動的に最初に実行される
-        Console.WriteLine("Hello,world!");
-    }
-}
+func _ready():
+	print("Hello,world!")
 ```
 
-## コンパイル〜実行
-
-1. コマンドプロンプトを起動
-
-1. test.cs ファイルのあるディレクトリに移動  
-\>cd \Users\（ユーザー名）\Desktop\C#
-
-1. コンパイル（.cs → .exe）  
-\>csc test.cs
-
-1. test.cs ファイルと同階層に test.exe ファイルが生成されたのを確認
-
-1. 実行  
-\>test.exe  
-Hello,world! ←と表示されたら成功！
+1. 再生ボタン[▶]を押すと…  
+```
+Hello,world!
+```
+と表示されたら成功！
 
 ***
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)
 作成者: 夢寐郎  
-作成日: 20XX年0X月XX日
+作成日: 20XX年02月11日
