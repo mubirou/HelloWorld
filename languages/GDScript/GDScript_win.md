@@ -44,4 +44,4 @@ Hello,world!
 ***
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
 作成者: 夢寐郎  
-作成日: 20XX年02月11日
+作成日: 2022年02月11日
