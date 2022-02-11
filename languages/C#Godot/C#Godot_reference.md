@@ -8,6 +8,7 @@
 
 ### <b>INDEX</b>
 
+* Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)）
 * [コメント](#コメント)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
