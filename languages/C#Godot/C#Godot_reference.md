@@ -4,7 +4,7 @@
 
 # この項目は書きかけです
 
-[[Godot Study Notes](https://github.com/mubirou/Godot)]
+[[Godot Study Notes](https://github.com/mubirou/Godot#godot-study-notes)]
 
 ### <b>INDEX</b>
 
