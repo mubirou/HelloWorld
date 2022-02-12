@@ -83,169 +83,173 @@
 <a name="データ型"></a>
 # <b>データ型</b>
 
-### 主なデータ型の種類
-1. [論理型](#TYPE_BOOL)（bool / TYPE_BOOL）
-1. [整数型](#TYPE_INT)（int / TYPE_INT）
-1. [浮動小数点数](#TYPE_REAL)（float / TYPE_REAL）
-1. [文字列](#TYPE_STRING)（String / TYPE_STRING）
-1. [配列](#TYPE_ARRAY)（Array / TYPE_ARRAY）
-1. [辞書型](#TYPE_DICTIONARY)（Dictionary / TYPE_DICTIONARY）
-1. [クラス](#TYPE_OBJECT)（Object / TYPE_OBJECT）
-1. [null](#TYPE_NIL)（null）
+### データ型の種類
+* 論理型
+    * bool型 : true または false
 
-<a name="typeof()の戻り値一覧"></a>
+* 整数型
+    * byte 型 : 0〜255（8 bit）
+    * sbyte 型 : -128〜127（8 bit）
+    * short 型 : -32768〜32767（16 bit）←約±3万
+    * ushort 型 :  0〜65535（16 bit）←約6万
+    * int 型 : -2147483648〜2147483647（32 bit）←約±20億／16進数（0xFFCC00等）も可
+    * uint 型 :  0〜4294967295（32 bit）←約40億（初期値）
+    * long 型 : -9223372036854775808〜9223372036854775807（64 bit）←約±900京
+    * ulong 型 : 0〜18446744073709551615（64 bit）←約1800京
 
-* [typeof()](#typeof()関数) の戻り値一覧  
+* 浮動小数点数型
+    * float 型 : 小数点第6位までの値（第7位を四捨五入）←最後に f を付ける
+    * double 型 : 小数点第14位までの値（第15位を四捨五入）←デフォルト
+    * decimal 型 : 小数点第28位までの値（第29位を四捨五入）←最後に m を付ける
 
-|TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
-|:--|:--:|:--|:--:|:--|:--:|
-|[TYPE_NIL](#TYPE_NIL)|**0**|[TYPE_BOOL](#TYPE_BOOL)|**1**|[TYPE_INT](#TYPE_INT)|**2**|
-|[TYPE_REAL](#TYPE_REAL)|**3**|[TYPE_STRING](#TYPE_STRING)|**4**|TYPE_VECTOR2|5|
-|TYPE_RECT2|6|TYPE_VECTOR3|7|TYPE_TRANSFORM2D|8|
-|TYPE_PLANE|9|TYPE_QUAT|10|TYPE_AABB|11|
-|TYPE_BASIS|12|TYPE_TRANSFORM|13|TYPE_COLOR|14|
-|TYPE_NODE_PATH|15|TYPE_RID|16|[TYPE_OBJECT](#TYPE_OBJECT)|**17**|
-|[TYPE_DICTIONARY](#TYPE_DICTIONARY)|**18**|[TYPE_ARRAY](#TYPE_ARRAY)|**19**|TYPE_RAW_ARRAY|20|
-|TYPE_INT_ARRAY|21|TYPE_REAL_ARRAY|22|TYPE_STRING_ARRAY|23|
-|TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
-|TYPE_MAX|27|||||
+* 文字型
+    * char 型 : 1文字（シングルクォーテーションで囲む）
+    * string 型 : 2文字以上（ダブルクォーテーションで囲む）
 
+* その他のデータ型
+    * null 許容型 : 変数の値が未定義（宣言には ? を追記）
+    * 列挙型（enum） : 内部的には0、1、2...（int 型）で処理
+    * 構造体（struct）: 継承が出来ないクラスに似たもの
+    * 匿名型クラス（new {}）: class を使わないクラス（プロパティは読取専用）
+    * クラス（class）: class を使った参照型（データそのものではなくアドレスを保持）
+    * dynamic 型 : 動的型（型が未確定）←TypeScript の any 相当
+    * データ型[] : 任意のデータ型の配列
 
-<a name="TYPE_BOOL"></a>
+### 検証
+予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます
+```CSharp
+//Main.cs
+using Godot;
+using System;
 
-### ➀論理型（bool）
-* trueまたはfalse
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+public class Main : Spatial {
+    public override void _Ready() {
+        // bool型
+        bool _bool = true;
+        GD.Print(_bool); //-> True
+        GD.Print(_bool.GetType()); //-> System.Boolean
+        
+        // 整数型➀（0〜255）
+        byte _byte = 255;
+        GD.Print(_byte); //-> 255
+        GD.Print(_byte.GetType()); //-> System.Byte
+        
+        // 整数型➁（-128〜127）
+        sbyte _sbyte = -128;
+        GD.Print(_sbyte); // -128
+        GD.Print(_sbyte.GetType()); //-> System.SByte
+        
+        // 整数型➂（-32768〜32767）
+        short _short = -32768;
+        GD.Print(_short); //-> -32768
+        GD.Print(_short.GetType()); //-> System.Int16
+        
+        // 整数型➃（0〜65535）
+        ushort _ushort = 65535;
+        GD.Print(_ushort); //-> 65535
+        GD.Print(_ushort.GetType()); //-> System.UInt16
+        
+        // 整数型➄（-2147483648〜2147483647）
+        int _int = -2147483648;
+        GD.Print(_int); //-> -2147483648
+        GD.Print(_int.GetType()); //-> System.Int32
 
-var _bool = true #True/Falaseは不可
+        int _int16 = 0xFFCC00; // 16進数の場合
+        GD.Print(_int16); //-> 16763904
+        GD.Print(_int16.GetType()); //-> System.Int32
+        
+        // 整数型➅（0〜4294967295）
+        uint _uint = 4294967295;
+        GD.Print(_uint); //-> 4294967295
+        GD.Print(_uint.GetType()); //-> System.UInt32
+        
+        // 整数型➆（-9223372036854775808〜9223372036854775807）
+        long _long = -9223372036854775808;
+        GD.Print(_long); //-> -9223372036854775808
+        GD.Print(_long.GetType()); //-> System.Int64
+        
+        // 整数型➇（0〜18446744073709551615）
+        ulong _ulong = 18446744073709551615;
+        GD.Print(_ulong); //-> 18446744073709551615
+        GD.Print(_ulong.GetType()); //-> System.UInt64
+        
+        // 浮動小数点数型➀
+        float _float = 3.1415926f; // 最後に「f」
+        GD.Print(_float); //-> 3.141593
+        GD.Print(_float.GetType()); //-> System.Single
+        
+        // 浮動小数点数型➁
+        double _double = 3.141592653589793d; // 「d」をつけなくても同じ
+        GD.Print(_double); //-> 3.14159265358979
+        GD.Print(_double.GetType()); //-> System.Double
+        
+        // 浮動小数点数型➂
+        decimal _decimal = 3.14159265358979323846264338327m; // 最後に「m」
+        GD.Print(_decimal); //-> 3.1415926535897932384626433833
+        GD.Print(_decimal.GetType()); //-> System.Decimal
+        
+        // 文字型➀（char型＝1文字）
+        char _char = 'a'; // シングルクォーテーション
+        GD.Print(_char); //-> a
+        GD.Print(_char.GetType()); //-> System.Char
+        
+        // 文字型➁（string型）
+        string _string = "999"; // ダブルクォーテーション
+        GD.Print(_string); //-> 999
+        GD.Print(_string.GetType()); //-> System.string
 
-func _ready():
-	print(_bool) #-> True
-	print(typeof(_bool)) #-> 1（TYPE_BOOL）
-	print(_bool is bool) #-> True
+        // null許容型
+        int? _null = null; // string型は不可
+        GD.Print(_null); //-> null
+        GD.Print(_null == null); //-> True
+
+        // 列挙型（enum）
+        GD.Print(Signal.BLUE); //-> BLUE
+        GD.Print(Signal.BLUE.GetType()); //-> Signal
+        GD.Print((int)Signal.BLUE); //-> 0（キャストによる型変換が必要）
+
+        // 構造体（クラスに似ているが継承は不可）
+        MyStruct _struct = new MyStruct("mubirou", 54);
+        GD.Print(_struct); //-> MyStruct
+        GD.Print(_struct.GetType()); //-> MyStruct
+        
+        // 匿名型クラス（宣言には、必ずvarキーワードを使います）
+        var _anon = new { Name = "mubirou", Age = 54 }; // 読み取り専用（注意）
+        GD.Print(_anon); //-> { Name = mubirou, Age = 49 }
+        GD.Print(_anon.Name); //-> mubirou（取得方法）
+        GD.Print(_anon.GetType());//-> <>f__AnonymousType0`2[...
+
+        // クラス
+        MyClass _myClass = new MyClass("mubirou", 54);
+        GD.Print(_myClass); //-> MyClass
+        GD.Print(_myClass.GetType()); //-> MyClass
+
+        // 配列
+        int[] _array = new int[4]; // 4個の空の要素を持つ配列の場合
+        GD.Print(_array); //-> System.Int32[]
+    }
+}
+
+enum Signal { BLUE,YELLOW,RED }; // 列挙（enum）の定義
+
+struct MyStruct { // 構造体の定義
+    public string name;
+    public byte age;
+    public MyStruct(string p1, byte p2) {
+        name = p1;
+        age = p2;
+    }
+}
+
+class MyClass { // クラスの定義
+    public string name;
+    public byte age;
+    public MyClass(string p1, byte p2) {
+        name = p1;
+        age = p2;
+    }
+}
 ```
-
-
-<a name="TYPE_INT"></a>
-
-### ➁整数型（int）
-* 約±922京まで扱えます
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-var _int = 9223372036854775807 # ±9223372036854775807まで扱える
-
-func _ready():
-	print(_int) #-> 9223372036854775807
-	print(typeof(_int)) #-> 2（TYPE_INT）
-	print(_int is int) #-> True
-```
-[[データ型TOP](#データ型)]
-
-
-<a name="TYPE_REAL"></a>
-
-### ➂浮動小数点数（float）
-* 小数点第6桁まで
-```GDScript
-#test.gd
-extends Spatial
-
-var _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
-
-func _ready():
-	print(_float) #-> 3.141593（小数点第6桁まで）
-	print(typeof(_float)) #-> 3（TYPE_REAL）
-	print(_float is float) #-> True
-```
-
-
-<a name="TYPE_STRING"></a>
-
-### ➃文字列（String）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-var _string = "あいうえお" # '〇〇'でも可
-
-func _ready():
-	print(_string) #-> あいうえお
-	print(typeof(_string)) #-> 4（TYPE_STRING）
-	print(_string is String) #-> True
-```
-[[データ型TOP](#データ型)]
-
-
-<a name="TYPE_ARRAY"></a>
-
-### ➄配列（Array）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-var _array = ["A", "I", "U"]
-
-func _ready():
-	print(_array) #-> True
-	print(typeof(_array)) #-> 19（TYPE_ARRAY）
-	print(_array is Array) #-> True
-```
-他にもさまざまな配列あり  
-
-
-<a name="TYPE_DICTIONARY"></a>
-
-### ➅辞書型（Dictionary） : 連想配列
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-var _dic = {"A":"あ", "I":"い"}
-
-func _ready():
-	print(_dic) #-> True
-	print(typeof(_dic)) #-> 18（TYPE_ARRAY）
-	print(_dic is Dictionary) #-> True
-```
-[[データ型TOP](#データ型)]
-
-
-<a name="TYPE_OBJECT"></a>
-
-### ➆クラス（Object）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-class MyClass: #前方宣言でなくてもよい
-	pass
-
-func _ready():
-	var _myClass = MyClass.new()
-	print(_myClass) #-> TYPE_OBJECT
-	print(typeof(_myClass)) #-> 17(TYPE_OBJECT)
-	print(_myClass is Object) #-> True
-```
-
-
-<a name="TYPE_NIL"></a>
-
-### ➇null…何もないことを示す定数
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _something
-	print(_something) #Null
-	print(typeof(_something)) #-> 0（TYPE_NIL）
-	print(_something == null) #-> True
-```
-[[データ型TOP](#データ型)]
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
