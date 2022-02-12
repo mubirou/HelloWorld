@@ -32,7 +32,7 @@
 using Godot;
 using System;
 
-public class Main : Spatial {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     public override void _Ready() {
         GD.Print("Hello,world!");
     }
