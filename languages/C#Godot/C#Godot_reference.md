@@ -10,38 +10,38 @@
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
-* [データ型](#データ型)（この項目は書きかけです）
-* <!--データ型の操作](#データ型の操作)-->
-* <!--クラス](#クラス)-->
-* <!--基本クラスと派生クラス](#基本クラスと派生クラス)-->
-* <!--名前空間](#名前空間)-->
-* <!--継承と委譲](#継承と委譲)-->
-* <!--変数とスコープ](#変数とスコープ)-->
-* <!--アクセサ（getter / setter）](#アクセサ)-->
-* <!--演算子](#演算子)-->
-* <!--定数](#定数)-->
-* <!--関数](#関数)-->
-* <!--静的変数・静的関数](#静的変数・静的関数)-->
-* <!--if 文](#if文)-->
-* <!--三項演算子](#三項演算子)-->
-* <!--match 文](#match文) ≒ switch 文-->
-* <!--for 文](#for文)-->
-* <!--while 文](#while文)-->
-* <!--配列](#配列)-->
-* <!--連想配列（辞書）](#連想配列（辞書）)-->
-* <!--self](#self) ≒ this-->
-* <!--文字列の操作](#文字列の操作)-->
-* <!--正規表現](#正規表現)-->
-* <!--抽象クラス](#抽象クラス)-->
-* <!--.](#.) ≒ super-->
-* <!--オーバーライド](#オーバーライド)-->
-* <!--カスタムイベント](#カスタムイベント)-->
-* <!--数学関数](#数学関数)-->
-* <!--乱数](#乱数)-->
-* <!--日時情報](#日時情報)-->
-* <!--タイマー](#タイマー)-->
-* <!--処理速度計測](#処理速度計測)-->
-* <!--外部テキストの読み込み](#外部テキストの読み込み)-->
+* [データ型](#データ型)
+* [データ型の操作](#データ型の操作)（この項目は書きかけです）
+* <!--[クラス](#クラス)-->
+* <!--[基本クラスと派生クラス](#基本クラスと派生クラス)-->
+* <!--[名前空間](#名前空間)-->
+* <!--[継承と委譲](#継承と委譲)-->
+* <!--[変数とスコープ](#変数とスコープ)-->
+* <!--[アクセサ（getter / setter）](#アクセサ)-->
+* <!--[演算子](#演算子)-->
+* <!--[定数](#定数)-->
+* <!--[関数](#関数)-->
+* <!--[静的変数・静的関数](#静的変数・静的関数)-->
+* <!--[if 文](#if文)-->
+* <!--[三項演算子](#三項演算子)-->
+* <!--[match 文](#match文) ≒ switch 文-->
+* <!--[for 文](#for文)-->
+* <!--[while 文](#while文)-->
+* <!--[配列](#配列)-->
+* <!--[連想配列（辞書）](#連想配列（辞書）)-->
+* <!--[self](#self) ≒ this-->
+* <!--[文字列の操作](#文字列の操作)-->
+* <!--[正規表現](#正規表現)-->
+* <!--[抽象クラス](#抽象クラス)-->
+* <!--[.](#.) ≒ super-->
+* <!--[オーバーライド](#オーバーライド)-->
+* <!--[カスタムイベント](#カスタムイベント)-->
+* <!--[数学関数](#数学関数)-->
+* <!--[乱数](#乱数)-->
+* <!--[日時情報](#日時情報)-->
+* <!--[タイマー](#タイマー)-->
+* <!--[処理速度計測](#処理速度計測)-->
+* <!--[外部テキストの読み込み](#外部テキストの読み込み)-->
 ***
 
 <a name="コメントアウト"></a>
@@ -260,98 +260,178 @@ class MyClass { // クラスの定義
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
-<a name="typeof()関数"></a>
+### データ型の調べ方
+1. is 演算子
+    * クラスか否かを調べる（○ is int といった使い方も可能）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-### typeof() 関数
-* データ型を返す（[戻り値一覧](#typeof()の戻り値一覧)）
+    public class Main : MonoBehaviour {
+        void Start() {
+            //クラスの場合
+            var _tmp = new SubClass();
+            Debug.Log(_tmp is SubClass); //True
+            Debug.Log(_tmp is SuperClass); //True
 
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+            //匿名型クラスの場合
+            var _tmp2 = new {};
+            Debug.Log(_tmp2 is object); //True
+        }
+    }
 
-func _ready():
-	print(typeof(true)) #-> 1（TYPE_BOOL）
-	print(typeof(100)) #-> 2（TYPE_INT）
-	print(typeof(0.1)) #-> 3（TYPE_REAL）
-	print(typeof("1")) #-> 4（TYPE_STRING）
-	print(typeof(["A", "B", "C"])) #-> 19（TYPE_ARRAY）
-	print(typeof({"ICHIRO":54, "HANAKO":"15"})) #-> 18（TYPE_ARRAY）
-	print(typeof(MyClass.new())) #-> 17(TYPE_OBJECT)
+    class SuperClass {} //基本クラスの定義
+    class SubClass : SuperClass {} //派生クラスの定義
+    ```
 
-class MyClass:
-	pass
-```
+1. as 演算子
+    * キャスト成功時に変換後の値が返され、失敗するとエラー
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-### is 演算子
-* データ型を判断する
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+    public class Main : MonoBehaviour {
+        void Start() {
+            var _myClass = new MyClass();
+            Debug.Log(_myClass as MyClass); //=> MyClass
+            Debug.Log(_myClass as HogeClass); //=> error CS0039
+        }
+    }
 
-func _ready():
-	print(true is bool) #-> True
-	print(100 is int) #-> True
-	print(0.1 is float) #-> True
-	print("1" is String) #-> True
-	print(["A", "B", "C"] is Array) #-> True
-	print({"ICHIRO":54, "HANAKO":"15"} is Dictionary) #-> True
+    class MyClass {}
+    class HogeClass {}
+    ```
 
-	var _myClass = MyClass.new()
-	print(_myClass is Object) #-> True
-	print(_myClass is MyClass) #-> True
+1. GetType() メソッド
+    * Object.GetType() メソッド（オブジェクトの型を返す）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-class MyClass:
-	pass
-```
+    public class Main : MonoBehaviour {
+        void Start() {
+            Debug.Log(true.GetType()); //=> System.Boolean
+            Debug.Log(100.GetType()); //=> System.Int32
+            Debug.Log(10000000000.GetType()); //=> System.UInt64
+            Debug.Log(0.1.GetType()); //=> System.Double
+            Debug.Log('1'.GetType()); //=> System.Char
+            Debug.Log("1".GetType()); //=> System.String
+            Debug.Log(new {}.GetType()); //=> <>__AnonType0
+            Debug.Log(new MyClass().GetType()); //=> MyClass
+        }
+    }
 
-### as 演算子
-* キャスト成功時に変換後の値が、失敗すると Null が返される
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+    class MyClass {}
+    ```
 
-func _ready():
-	print(1 as bool) #-> True
-	print("123" as int) #-> 123（int型）
-	print("X12Y34" as int) #-> 1234（int型）
-	
-	var _hogeClass = HogeClass.new()
-	print(_hogeClass as FugaClass) #-> Null
+### データ型のキャスト
+1. 数値↔ bool 型（不可）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-class HogeClass:
-	pass
+    public class Main : MonoBehaviour {
+        void Start() {
+            //bool _tmp = (bool)1; //error CS0030（数値→bool型への変換は不可）
+            //int _tmp = (int)true; //error CS0030（bool型→数値への変換は不可）
+        }
+    }
+    ```
 
-class FugaClass:
-	pass
-```         
+1. 数値→ bool 型へ変換（力技）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-### データ型のキャスト（数値 ⇔ bool型）
-```GDScript
-# 数値（int）型 → bool型
-var _tmp = bool(1)
-print(_tmp) #-> Trye
-print(typeof(_tmp)) #-> 1（bool型）
+    public class Main : MonoBehaviour {
+        void Start() {
+            int _tmp = 0;
+            bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
+            Debug.Log(_tmp2); //False
+        }
+    }
+    ```
 
-# bool型 → 数値（int）型
-_tmp = int(true)
-print(_tmp) #-> 1
-print(typeof(_tmp)) #-> 2（int型）
-```
+1. bool型→数値へ変換
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+    using System; //Convertに必要
 
-### データ型のキャスト（数値 ⇔ String型）
-```GDScript
-# String型 → 数値（int）型
-var _tmp = int("001")
-print(_tmp) #-> 1
-print(typeof(_tmp)) #-> 2（int型）
+    public class Main : MonoBehaviour {
+        void Start() {
+            bool _tmp = true;
+            int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
+            Debug.Log(_tmp2); //1
+        }
+    }
+    ```
 
-# 数値（int）型 → String型
-_tmp = str(100)
-print(_tmp) #-> "100"
-print(typeof(_tmp)) #-> 4（String型）
-```
+1. 数値↔数値（縮小変換）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#placeholder-types)（String型の〇進数変換）  
+    public class Main : MonoBehaviour {
+        void Start() {
+            //整数の場合
+            long _tmp1 = 2147483648; //intは-2147483648〜2147483647
+            int _tmp2 = (int)_tmp1; //long型→int型へ変換
+            Debug.Log(_tmp2); //-2147483648 ←元のデータが失われる
+
+            //浮動小数点数の場合
+            decimal _decimal = 3.14159265358979323846264338327m;
+            double _tmp3 = (double)_decimal;
+            Debug.Log(_tmp3); //3.14159265358979 ←データの一部が失われる
+        }
+    }
+    ```
+
+1. 数値↔数値（拡張変換）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            int _tmp = 2147483647; //intは-2147483648〜2147483647
+            long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
+            Debug.Log(_tmp2); //2147483648
+        }
+    }
+    ```
+
+1. 数値↔ string 型
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+    using System; //Int32.Parse()に必要
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            string _tmp = "001";
+            int _tmp2 = Int32.Parse(_tmp); //"001"（string型）→1（int型）に変換
+            Debug.Log(_tmp2); //1
+            Debug.Log(_tmp2.GetType()); //System.Int32
+        }
+    }
+    ```
+
+1. 数値→ string 型
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            int _tmp = 100;
+            string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
+            Debug.Log(_tmp2); //"100"
+            Debug.Log(_tmp2.GetType()); //System.String
+        }
+    }
+    ```
+
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -361,81 +441,48 @@ print(typeof(_tmp)) #-> 4（String型）
 <a name="クラス"></a>
 # <b>クラス</b>
 
-### 最小構成
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-class MyClass: #前方宣言でなくてもよい
-	pass #何もしない
+public class Main : MonoBehaviour {
+    void Start() {
+        //①インタンスの生成
+        Rectangle _rectangle = new Rectangle();
+        
+        //②プロパティの更新
+        _rectangle.width = 1920;
+        _rectangle.height = 1080;
+        //③プロパティの取得
+        Debug.Log(_rectangle.width); //1920
+        Debug.Log(_rectangle.height); //1080
+        
+        //④メソッドの実行
+        Debug.Log(_rectangle.getArea()); //2073600
+    }
+}
 
-func _ready():
-	var _myClass = MyClass.new() #インスタンスの生成
-```
+class Rectangle { //長方形クラス
+    //プロパティの定義･初期値の設定
+    private int _width = 0; //privateは省略可
+    private int _height = 0; //privateは省略可
 
-* passについて  
-Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味するpass文が用意されています。
-
-### 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-#==============
-# 長方形クラス
-#==============
-class Rectangle:
-	# 公開プロパティ
-	var width setget setWidth, getWidth
-	var height setget setHeight, getHeight
-
-	# 疑似プライベート変数（値の設定も可）
-	var __width
-	var __height
-
-	# コンストラクタ
-	func _init(w,h):
-		__width = w
-		__height = h
-	
-	# 公開プロパティ用（setter/getter）
-	func setWidth(value):
-		__width = value
-
-	func getWidth():
-		return __width
-
-	func setHeight(value):
-		__height = value
-	
-	func getHeight():
-		return __height
-	
-	# 公開関数（面積計算用）
-	func getArea():
-		return __width * __height
-	
-#======
-# 実行
-#======
-func _ready():
-	# ➀インスタンスの生成
-	var _rectangle = Rectangle.new(640,480)
-
-	# ➁プロパティの取得（その１）
-	print(_rectangle.width) #-> 640
-	print(_rectangle.height) #-> 480
-
-	# ➂プロパティの更新
-	_rectangle.width = 1920
-	_rectangle.height = 1080
-
-	# ➃プロパティの取得（その２）
-	print(_rectangle.width) #-> 1920
-	print(_rectangle.height) #-> 1080
-
-	# ➄関数の実行
-	print(_rectangle.getArea()) #-> 2073600
+    //コンストラクタは省略可（初期値はここで設定してもよい）
+    public Rectangle() {}
+    
+    //メソッド群の定義
+    public int width {
+        get { return this._width; } //thisは省略可
+        set { this._width = value; } //valueは決め打ち
+    }
+    public int height {
+        get { return this._height; } //thisは省略可
+        set { this._height = value; } //valueは決め打ち
+    }
+    public int getArea() { //面積を計算して値を返す
+        return this._width * this._height; //thisは省略可
+    }
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -447,91 +494,66 @@ func _ready():
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-#=================
-# 基本（基底）クラス
-#=================
-class SuperClass:
-	# 疑似プライベート変数
-	var __pSuper = "基本クラスのプロパティ"
+public class Main : MonoBehaviour {
+    void Start() {
+        //派生クラスＡのインスタンス
+        SubClassA _subclassA = new SubClassA();
+        Debug.Log(_subclassA.pSuperClass); //"基本クラスのプロパティ"
+        Debug.Log(_subclassA.pSubClassA); //"派生クラスＡのプロパティ"
+        Debug.Log(_subclassA.mSuperClass()); //"基本クラスのメソッド"
+        Debug.Log(_subclassA.mSubClassA()); //"派生クラスＡのメソッド"
+        
+        //派生クラスＢのインスタンス
+        SubClassB _subclassB = new SubClassB();
+        Debug.Log(_subclassB.pSuperClass); //"基本クラスのプロパティ"
+        Debug.Log(_subclassB.pSubClassB); //"派生クラスＢのプロパティ"
+        Debug.Log(_subclassB.mSuperClass()); //"基本クラスのメソッド"
+        Debug.Log(_subclassB.mSubClassB()); //"派生クラスＢのメソッド"
+    }
+}
 
-	# getter/setter
-	var pSuper setget set_pSuper, get_pSuper
+//基本クラス（スーパークラス）
+class SuperClass {
+    //①プロパティの定義
+    string _pSuperClass = "基本クラスのプロパティ"; //privateは省略
+    //②メソッド群の定義
+    public string pSuperClass {
+        get { return _pSuperClass; } //thisは省略
+    }
+    public string mSuperClass() {
+        return "基本クラスのメソッド";
+    }
+}
 
-	func set_pSuper(value):
-		__pSuper = value
-	
-	func get_pSuper():
-		return __pSuper
-	
-	# 関数
-	func mSuper():
-		return "基本クラスのメソッド"
+//派生クラスＡ
+class SubClassA : SuperClass { //基本クラスを継承（多重継承は不可）
+    //①プロパティの定義
+    string _pSubClassA = "派生クラスＡのプロパティ"; //privateは省略
+    //②メソッド群の定義
+    public string pSubClassA {
+        get { return _pSubClassA; } //thisは省略
+    }
+    public string mSubClassA() {
+        return "派生クラスＡのメソッド";
+    }
+}
 
-#============
-# 派生クラスＡ
-#============
-class SubClassA extends SuperClass: #多重継承は不可
-	# 疑似プライベート変数
-	var __pSubA = "派生クラスＡのプロパティ"
-
-	# getter/setter
-	var pSubA setget set_pSubA, get_pSubA
-
-	func set_pSubA(value):
-		__pSubA = value
-	
-	func get_pSubA():
-		return __pSubA
-
-	# 関数
-	func mSubA():
-		return "派生クラスＡのメソッド"
-	
-#============
-# 派生クラスＢ
-#============
-class SubClassB extends SuperClass: #多重継承は不可
-	# 疑似プライベート変数
-	var __pSubB = "派生クラスＢのプロパティ"
-
-	# getter/setter
-	var pSubB setget set_pSubB, get_pSubB
-
-	func set_pSubB(value):
-		__pSubB = value
-	
-	func get_pSubB():
-		return __pSubB
-
-	# 関数
-	func mSubB():
-		return "派生クラスＢのメソッド"
-
-#=====
-# 実行
-#=====
-func _ready():
-	var _subClassA = SubClassA.new()
-	print(_subClassA) #-> [Reference:1240]
-	print(_subClassA is SubClassA) #-> True（SubClassA型である）
-	print(_subClassA is SuperClass) #-> True（SuperClass型でもある）
-	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
-	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
-	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
-	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
-
-	var _subClassB = SubClassB.new()
-	print(_subClassB) #-> [Reference:1241]
-	print(_subClassB is SubClassB) #-> True（SubClassB型である）
-	print(_subClassB is SuperClass) #-> True（SuperClass型でもある）
-	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
-	print(_subClassB.pSubB) #-> 派生クラスＢのプロパティ
-	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
-	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
+//派生クラスＢ
+class SubClassB : SuperClass { //基本クラスを継承（多重継承は不可）
+    //①プロパティの定義
+    string _pSubClassB = "派生クラスＢのプロパティ"; //privateは省略
+    //②メソッド群の定義
+    public string pSubClassB {
+        get { return _pSubClassB; } //thisは省略
+    }
+    public string mSubClassB() {
+        return "派生クラスＢのメソッド";
+    }
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -544,31 +566,41 @@ func _ready():
 # <b>名前空間</b>
 
 ### 概要
-他のディレクトリにある .gd ファイルモジュールを読み込んで活用します。.gd ファイルには再利用可能なコード（クラス）群を記述します。
+* フォルダによる階層構造でファイルを管理するかのようにクラスを管理（但し論理的）
+* デフォルトでは無名の名前空間（global名前空間）が使用される
+* 1つの名前空間の中に、クラス/構造体/デリゲート/列挙/インターフェース等を宣言できる他、別の名前空間を宣言することも可能
 
-### 例文
-* test.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
-
-```GDScript
-# japan/tokyo.gd
-class Shinjuku:
-	func _init():
-		print("japan/tokyo/Shinjuku")
-
-class Setagaya:
-	func _init():
-		print("japan/tokyo/Setagaya")
+### 書式
+```CSharp
+namespace 名前空間名 {
+    class XXX {
+    }
+    ......
+}
 ```
 
-```GDScript
-#test.gd（外部.gdファイルを利用する側）
-extends Spatial #2Dの場合はNode2D
+### 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-var _tokyo = preload("japan/tokyo.gd") #外部.gdファイルの読み込み
+public class Main : MonoBehaviour {
+    void Start() {
+        MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
+        Debug.Log(_myClass); //MyLibrary.MyClass
+    }
+}
 
-func _ready():
-	_tokyo.Shinjuku.new() #-> "japan/tokyo/Shinjuku"
-	_tokyo.Setagaya.new() #-> "japan/tokyo/Setagaya"
+namespace MyLibrary {
+    //インターフェース等
+    class MyClass {
+        public MyClass() { //コンストラクタ
+            //いろいろな処理
+        }
+        //いろいろなメソッド
+    }
+    //いろいろなクラス
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -581,45 +613,56 @@ func _ready():
 # <b>継承と委譲</b>
 
 ### 概要
-*  GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は **extends クラス名** を使い、委譲の場合は **クラス名.new()** を使ってオブジェクトを生成し、他のクラスの機能を利用する
+* GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
+* 継承の場合は <b>:クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-class ClassA:
-	func myMethod():
-		print("ClassA.myMethod()")
-	
-class ClassB extends ClassA: # ClassAを継承（ポイント）
-	pass
+public class Main : MonoBehaviour {
+    void Start() {
+        ClassB _classB = new ClassB();
+        _classB.MyMethod();
+    }
+}
 
-
-func _ready():
-	var _classB = ClassB.new()
-	_classB.myMethod() #-> "ClassA.myMethod()"
+class ClassA {
+    public void MyMethod() {
+        Debug.Log("ClassA.MyMethod()");
+    }
+}
+class ClassB : ClassA {} //ClassAを継承
 ```
 
 ### 委譲版
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-class ClassA:
-	func myMethod():
-		print("ClassA.myMethod()")
-	
-class ClassB: # この中身のみ継承と異なる
-	var _classA = ClassA.new() # ClassAのインスタンスを生成（ポイント）
+public class Main : MonoBehaviour {
+    void Start() {
+        ClassB _classB = new ClassB();
+        _classB.MyMethod();
+    }
+}
 
-	func myMethod():
-		_classA.myMethod()
+class ClassA {
+    public void MyMethod() {
+        Debug.Log("ClassA.MyMethod()");
+    }
+}
 
-func _ready():
-	var _classB = ClassB.new()
-	_classB.myMethod() #-> "ClassA.myMethod()"
+class ClassB { //この内容だけが継承と異なる
+    private ClassA _classA;
+    public ClassB() {
+        _classA = new ClassA(); //コンストラクタでオブジェクト生成
+    }
+    public void MyMethod() {
+        _classA.MyMethod();
+    }
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -632,137 +675,165 @@ func _ready():
 # <b>変数とスコープ</b>
 
 ### 変数の種類
-1. [グローバル変数](#グローバル変数) 
-1. [疑似プライベート変数](#疑似プライベート変数) 
-1. [ローカル変数](#ローカル変数) 
+1. public 変数 : 全クラスからアクセス可能
+1. protected 変数 : 同じクラスおよび派生クラス内でのみアクセス可能
+1. private 変数 : 同じクラス内のみアクセス可能（省略すると private 扱い）
+1. ローカル変数 : メソッド内でのみアクセス可能（メソッド内で宣言したもの）
+* その他「ブロックスコープ」等あり
 
-<a name="グローバル変数"></a>
+###  public 変数
+* 特徴
+    * 全クラスからアクセスが可能
+    * クラス定義の直後、コンストラクタの直前に定義
+    * 通常は private 変数を利用し、アクセスには「get / set アクセサ」を使用する
 
-### グローバル変数
-1. [Godot Engine]-[ファイルシステム]上で右クリック→[新規スクリプト]を選択
-1. [パス]は"res://**Global.gd**"としコードを次の通りに記述  
-    ```GDScript
-    #Global.gd
-    extends Node
-
-    var _someGlobal = 100
-    ```
-1. [プロジェクト]-[プロジェクト設定]-[自動読み込み]を選択
-1. [パス]を"res://**Global.gd**"に設定し[追加]を選択
-1. [グローバル変数]は[✓有効]のままにする
-1. 動作確認  
-    ```GDScript
-    #test.gd
-    extends Spatial #2Dの場合はNode2D
-
-    #-----------------------------
-    # 関数内でのグローバル変数の扱い
-    #-----------------------------
-    func _ready():
-        print(Global._someGlobal) #-> 100（参照）
-        Global._someGlobal = 200 # 変更
-        print(Global._someGlobal) #-> 200（変更されている）
-
-        var _myClass = MyClass.new()
-
-    #-------------------------------
-    # クラス内でのグローバル変数の扱い
-    #-------------------------------
-    class MyClass:
-        func _init():
-            print(Global._someGlobal) #-> 200（参照）
-            Global._someGlobal = 300 # 変更
-            print(Global._someGlobal) #-> 300（変更されている）
-    ```
-
-<a name="疑似プライベート変数"></a>
-
-### 疑似プライベート変数
-* 実際は単なるパブリック変数
-* 変数へのアクセスは[アクセサ](#アクセサ)を利用する（推奨）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-class MyClass:
-	# 擬似プライベート変数の定義
-	var __propA = "いろは" # 変数名は__xxxにする（任意）
-	
-	# setter/getter
-	var propA setget setPropA, getPropA
-
-	func setPropA(value):
-		__propA = value
-
-	func getPropA():
-		return __propA
-
-func _ready():
-	var _myClass = MyClass.new()
-
-	# 良い例（setter/getterを使ってアクセスする）
-	print(_myClass.propA) #-> "いろは"（参照）
-	_myClass.propA = "ABC" # 変更
-	print(_myClass.propA) #-> "ABC"（変更されている）
-
-	# 悪い例（外部から直接アクセスするべきではない）
-	_myClass.__propA = "あいう" # 外部から直接変更
-	print(_myClass.__propA) #-> "あいう"（変更できてしまう）
+* 書式
+```CSharp
+class クラス名 { //クラス定義
+public データ型 変数名; //public変数宣言（初期化も可）
+    public クラス名() {} //コンストラクタ（省略可）
+    ......
 ```
-[[変数とスコープTOP](#変数とスコープ)]
 
-<a name="ローカル変数"></a>
+* 悪い例
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        Debug.Log(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
+     }
+}
+class MyClass {
+    public string _p = "public変数"; //public宣言は冒頭でおこなう
+}
+```
+
+### protected 変数
+* 特徴
+    * 同じクラスおよび派生クラス内でのみアクセス可能
+    * 基本クラス（スーパークラス）の定義の直後、コンストラクタの直前に定義
+
+* 書式
+```CSharp
+class 基本クラス { //スーパークラス定義
+    protected データ型 変数名; //protected変数宣言（初期化も可）
+    public クラス名() {} //コンストラクタ（省略可）
+    ......
+```
+
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        SubClass _subClass = new SubClass();
+        Debug.Log(_subClass); //SubClass
+        //Debug.Log(_subClass._pSuperClass); //error CS0122（アクセス不可）
+     }
+}
+
+class SuperClass { //基本クラス
+    protected string _pSuperClass = "SuperClass変数"; //protected変数宣言
+}
+
+class SubClass : SuperClass { //派生クラス
+    public SubClass() {
+        Debug.Log(_pSuperClass); //"SuperClass変数"（アクセス可能）
+    }
+}
+```
+
+### private 変数
+* 特徴
+    * 同じクラス内のみアクセス可能（省略すると private 扱い）
+    * クラス定義の直後、コンストラクタの直前に定義
+    * 「他人の変数を勝手にいじってはいけない」というルールに則り、インスタンス変数は通常、private 変数とし、外部からは「get / set アクセサ」を使ってアクセスする
+
+* 書式
+```CSharp
+class クラス名 { //クラス定義
+private データ型 変数名; //private変数宣言（初期化も可）←privateは省略可
+    public クラス名() {} //コンストラクタ（省略可）
+    ......
+```
+
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        Debug.Log(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
+     }
+}
+
+class MyClass {
+    private string _p = "private変数"; //private宣言は冒頭でおこなう
+    public string P {
+        get { return _p; }
+        set { _p = value; }
+    }
+}
+```
 
 ### ローカル変数
-1. 関数内で宣言する場合（for 文、if 文等でも同様）  
-    ※宣言した場所より大きい＝深いインデント範囲内で有効
-    ```GDScript
-    #test.gd
-    extends Spatial #2Dの場合はNode2D
+* 特徴
+    * ①メソッド ② for ③ foreach 文内で宣言
+    * 宣言した ①メソッド ② for ③ foreach 文内でのみアクセス可能
 
-    func myFunction1():
-        var _local = "ローカル変数" # ローカル変数の宣言
-        print(_local) #-> "ローカル変数"
+1. メソッド内で宣言する場合
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-    func myfunction2():
-        #print(_local) # Error（アクセス不可）
-        pass
+    public class Main : MonoBehaviour {
+        void Start() {
+            MyClass _myClass = new MyClass();
+            _myClass.MyMethod();
+        }
+    }
 
-    func _ready():
-        myFunction1()
-        myfunction2()
-        #print(_local) # Error（アクセス不可）
+    class MyClass {
+        private string _string = "private変数";
+        public MyClass() { //コンストラクタ
+            Debug.Log(_string); //private変数（ここはthisは無くても良い）
+        }
+        public void MyMethod() {
+            string _string = "ローカル変数"; //ローカル変数宣言
+            Debug.Log(_string); //"ローカル変数"
+            Debug.Log(this._string); //"private変数"（ここではthisが必須）
+        }
+    }
     ```
 
-1. クラスの関数内で宣言する場合
-    ```GDScript
-    #test.gd
-    extends Spatial #2Dの場合はNode2D
+1. for 文内で宣言する場合（foreach 文も同様）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-    class MyClass:
-        func myMethod1():
-            var _local = "ローカル変数" # メソッド外で定義するとパブリック変数扱い
-            print(_local)
-
-    func _ready():
-        var _myClass = MyClass.new()
-        _myClass.myMethod1()
-        #print(_myClass._local) # アクセス不可
-    ```
-
-1. for文内のループ変数
-    ```GDScript
-    #test.gd
-    extends Spatial #2Dの場合はNode2D
-
-    class MyClass:
-        func _init():
-            for _i in range(6): #ローカル変数（_i）0～5
-                print(_i) #-> 0,1,2,...,5
-            #print(_i) # Error（for文外ではアクセス不可）
-
-    func _ready():
-        var _myClass = MyClass.new()
+    public class Main : MonoBehaviour {
+        void Start() {
+            new MyClass();
+        }
+    }
+    class MyClass {
+        private int _i = 999; //private変数
+        public MyClass() { //コンストラクタ
+            for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
+                Debug.Log(_i); //0、1、2、...、5
+                Debug.Log(this._i); //999（private変数）
+            }
+            Debug.Log(_i); //999（ロカール変数のアクセスは不可）
+            Debug.Log(this._i); //999（thisが無くても同じ）
+        }
+    }
     ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -772,147 +843,104 @@ func _ready():
 
 
 <a name="アクセサ"></a>
-# <b>アクセサ（getter / setter）</b>
+# <b>アクセサ （getter / setter）</b>
 
 ### 読み書き可能なプロパティ
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-class Member:
-	# 疑似プライベート変数
-	var __age = 19
-	
-	# setter/getter
-	var age setget setAge, getAge
+public class Main : MonoBehaviour {
+    void Start() {
+        Nishimura _nishimura = new Nishimura();
+        Debug.Log(_nishimura.Age); //50
+        _nishimura.Age = 51; //値を変更可能
+        Debug.Log(_nishimura.Age); //51
+    }
+}
 
-	func setAge(value):
-		__age = value
-
-	func getAge():
-		return __age
-	
-#======
-# 実行
-#======
-func _ready():
-	var _member = Member.new()
-	print(_member.age) #-> 19
-	_member.age = 20
-	print(_member.age) #-> 20
+class Nishimura {
+    int _age = 50; //privateは省略
+    public int Age {
+        get { return _age; } //thisは省略
+        set { _age = value; } //thisは省略 ←valueは予め定義された変数（決め打ち）
+    }
+}
 ```
 
 ### 読み取り専用のプロパティ
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-class Member:
-	# 疑似プライベート変数
-	var __age = 19
-	
-	# getter（set〇〇を記述しない）
-	var age setget , getAge
+public class Main : MonoBehaviour {
+    void Start() {
+        Nishimura _nishimura = new Nishimura();
+        Debug.Log(_nishimura.Age); //50
+        //_nishimura.Age = 50; //error CS0272（値の変更は不可）
+        _nishimura.NextYear();
+        Debug.Log(_nishimura.Age); //51
+    }
+}
 
-	func getAge():
-		return __age
-	
-#======
-# 実行
-#======
-func _ready():
-	var _member = Member.new()
-	print(_member.age) #-> 19
-	_member.age = 20 # 変更不可（エラーは出ない）
-	print(_member.age) #-> 19
-```
-
-### 書き込み専用のプロパティ
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-class Member:
-	# 疑似プライベート変数
-	var __age = 19
-	
-	# setter（get〇〇を記述しない）
-	var age setget setAge
-
-	func setAge(value):
-		__age = value
-	
-#======
-# 実行
-#======
-func _ready():
-	var _member = Member.new()
-	_member.age = 20
-	print(_member.age) #-> null
-	print(_member.__age) #-> 20（内部では変更されている）
+class Nishimura {
+    int _age = 50; //privateは省略
+    public int Age {
+        get { return _age; } //thisは省略
+        private set {} //外部からアクセス不可（読み取り専用にする）
+    }
+    public void NextYear() { _age += 1; } //クラスの内部からに限り変更可能
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
-[[TOP](#TOP)]  
+[[TOP](#TOP)]
 
 
 <a name="演算子"></a>
 # <b>演算子</b>
 
-### 算術演算子
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	print(3 + 2) #-> 5 (可算) 
-	print(5 - 8) #-> -3 (減算)
-	print(3 * 4) #-> 12 (乗算)
-	print(1 + 2 * 3 - 4 / 2) #-> 5 (複雑な計算)
-	print(63 % 60) #-> 3 (余剰)
+public class Main : MonoBehaviour {
+    void Start() {
+        Debug.Log(3 + 2); //5 (可算) 
+        Debug.Log(5 - 8); //-3 (減算)
+        Debug.Log(3 * 4); //12 (乗算)
+        Debug.Log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
+        Debug.Log(63 % 60); //3 (余剰)
+        
+        // 除算（注意が必要です）
+        Debug.Log(8 / 3); //2(除算) ←整数同士の場合、余りは切り捨てられる
+        Debug.Log(8 / 3.0); //2.66666666666667（小数点第14位までの値＝double型）
 
-	# 除算（注意が必要です）
-	print(8 / 3) #-> 2(除算) ←整数同士の場合、余りは切り捨てられる
-	print(8 / 3.0) #-> 2.666667（小数点第6位までの値＝float型）
+        float _float = (float)8.0 / 3;
+        Debug.Log(_float); //2.666667（小数点第6位までの値）
 
-	#インクリメント（++）・デクリメント（--）は存在しないので以下で代用
-	var _hoge = 0
-	_hoge += 1
-	print(_hoge) #-> 1
+        decimal _decimal = (decimal)8.0 / 3;
+        Debug.Log(_decimal); //2.6666666666666666666666666667（第28位まで）
+
+        // 後ろに付けるインクリメント（デクリメント）
+        // _hoge++（_hoge--）が返す値は、加算（減算）する前の_hogeの値です
+        int _hoge = 0;
+        int _piyo = _hoge++; //デクリメントの場合_hoge--
+        Debug.Log(_hoge); //1（デクリメントの場合-1）
+        Debug.Log(_piyo); //0（デクリメントの場合0）
+
+        // 前に付けるインクリメント（デクリメント）
+        // ++_hoge（--_hoge）が返す値は、加算（減算）後の_hogeの値です
+        _hoge = _piyo = 0;
+        _piyo = ++_hoge; //デクリメントの場合--_hoge
+        Debug.Log(_hoge); //1（デクリメントの場合-1）
+        Debug.Log(_piyo); //1（デクリメントの場合-1） ←注目
+    }
+}
 ```
 
-### その他の演算子
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	# 論理積
-	print(true and true) #-> True
-	print(true && true) #-> True
-
-	# 論理和
-	print(true or false) #-> True
-	print(true || false) #-> True
-
-	# 否定
-	print(not true) #-> False
-	print(! true) #-> False
- 
-	print(2 < 3) #-> True（比較/未満）
-	print(2 <= 2) #-> True（比較/以下）
-	print(1 == 1.0) #-> True（等号）
-	print(1 != 1.0) #-> False（不等号）
-
-	print(3 & 1) #-> 1（ビット積）
-	print(3 | 1) #-> 3（ビット和）
-	print(3 ^ 1) #-> 2（排他的ビット和）
-	print(2 << 7) #-> 256（ビット･シフト）
-	print(~3) #-> -4（ビット反転）
-```
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#operators)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -923,36 +951,50 @@ func _ready():
 # <b>定数</b>
 
 ### 通常の定数
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-const MY_NAME = "mubirou"
-
-func _ready():
-	print(MY_NAME) #-> "mubirou"
-	#MY_NAME = "ICHIRO" # Error（変更不可）
+public class Main : MonoBehaviour {
+    void Start() {
+        const float PI = 3.14159f; //staticは記述しない（注意）
+        Debug.Log(PI); //=> 3.14159
+        //PI = 3.14; //error CS0131（変更不可）
+    }
+}
 ```
 
-### クラス定数（[静的変数](#静的変数・静的関数)）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 静的定数（メンバ定数）
+* 構文
+```CSharp
+class クラス名 {
+    public const float 定数名 = 値; //staticは記述しない
+    ...
+}
+```
 
-class MyClass:
-	const MY_NAME = "mubirou" # 定数の定義
+* アクセス方法
+```CSharp
+クラス名.定数名
+```
 
-	func _init():
-		print(MY_NAME) #-> "mubioru"（クラス内でのアクセス方法）
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	print(MyClass.MY_NAME) #-> "mubirou"（クラス外からのアクセス方法）
-	#MyClass.MY_NAME = "ICHIRO" # Error（変更不可）
+public class Main : MonoBehaviour {
+    void Start() {
+        Debug.Log(MyMath.PI); //=> 3.14159
+        //MyMath.PI = 3.14; //error CS0131（変更不可）
+    }
+}
 
-	# 実験
-	var _myClass = MyClass.new()
-	print(_myClass.MY_NAME) #-> "mubirou"（インスタンスからのアクセスも可能）
-	#_myClass.MY_NAME = "ICHIRO" # Error（変更は不可）
+//カスタムクラス（MyMath）
+class MyMath {
+    public const float PI = 3.14159f; //staticは記述しない（注意）
+    public MyMath() {} //コンストラクタ
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -961,155 +1003,375 @@ func _ready():
 [[TOP](#TOP)]
 
 
-<a name="関数"></a>
-# <b>関数</b>
+<a name="メソッド"></a>
+# <b>メソッド</b>
 
 ### 基本構文
-* 関数は必ず class 内に記述する必要があります
-```GDScript
-func 関数名(引数➀, 引数➁, ...):
-    ......（何もしない場合 pass を記述）
-    [return 戻り値]
-```
-* 例文（class 内に定義しない場合）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func tashizan(_start, _end):
-	var _result = 0 #ローカル変数
-	for i in range(_start, _end + 1):
-		_result += i
-	return _result
-
-# print(tashizan(1, 10)) # Error（ここでは実行できない）
-
-func _ready():
-	print(tashizan(1, 10)) #-> 55
+```CSharp
+アクセス修飾子 [static] 戻り値のデータ型 メソッド名([データ型 引数, ...]) {
+    [return 戻り値;]
+}
 ```
 
-### パブリック関数
-* 例：○〜○までの値を足した合計を調べる
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### アクセス修飾子
+1. public : 全クラスからアクセス可能
+1. protected : 同じクラスおよび派生クラス内でのみアクセス可能
+1. private : 同じクラス内のみアクセス可能（省略すると private 扱い）
+1. internal : アセンブリ内でのみアクセス可能
+* static : 静的メソッド＝クラスメソッド
 
-class MyClass:
-	func tashizan(_start, _end):
-		var _result = 0 #ローカル変数
-		for i in range(_start, _end + 1):
-			_result += i
-		return _result
+### 基本例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _myClass = MyClass.new()
-	print(_myClass.tashizan(1,10)) #-> 55
-	print(_myClass.tashizan(1,100)) #-> 5050
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        Debug.Log(_myClass.Tashizan(1,10)); //55
+        Debug.Log(_myClass.Tashizan(1,100)); //5050
+    }
+}
+
+class MyClass {
+    //○〜○までの値を足した合計を返す
+    public int Tashizan(int _start, int _end) {
+        int _result = 0; //ローカル変数
+        for (int _i = _start; _i <= _end; _i++) {
+            _result += _i;
+        }
+        return _result;
+    }
+}
 ```
 
-### 疑似プライベート関数
-* 実際は単なるパブリック関数
-* アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### Awake()、Start()メソッド
+* 特徴
+    * .NET Framework 版の Main() メソッドと同等
+    * Awake() に続き Start() が自動的に実行される
 
-class MyClass:
-	func _init():
-		print(__tashizan(1, 10)) #-> 55
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-	# 疑似プライベート関数
-	func __tashizan(_start, _end):
-		var _result = 0 #ローカル変数
-		for i in range(_start, _end + 1):
-			_result += i
-		return _result
+public class Main : MonoBehaviour {
+    void Awake() {
+        MyMethod("Awake");
+    }
+    void Start() { //通常こちらを使用
+        MyMethod("Start");
+    }
+    void MyMethod(string arg) { //staticである必要はない
+        Debug.Log(arg);
+    }
+}
+```
 
-func _ready():
-	var _myClass = MyClass.new()
-	print(_myClass.__tashizan(1,10)) #-> 55（外からアクセスできてしまうが…）
+### Update()、FixedUpdate()メソッド
+* 特徴
+    * <b>Update()</b> は再生中に画面がアップデートされる度に実行（毎フレーム呼び出される）
+    * <b>FixedUpdate()</b> は一定時間毎に実行（[Edit]-[Project Settings]-[Time]-[Fixed timestep] で変更可能／初期値0.02秒）
+    * 他にも LastUpdate()（様々な計算終了後、毎フレーム呼び出される／要調査）や OnCollisionEnter() 等もある  
+
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Update() {
+        Debug.Log("Update"); //毎フレーム呼び出される
+    }
+    void FixedUpdate() {
+        Debug.Log("FiexedUpdate"); //0.02秒毎（初期値）に呼び出される
+    }
+}
 ```
 
 ### コンストラクタ
-* 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-class MyClass:
-	func _init(arg): # コンストラクタ（引数は省略可）
-		print("MyClass._init()")
-		print(arg)
-
-func _ready():
-	var _myClass = MyClass.new("mubirou")
+* 書式
+```CSharp
+class クラス名 {
+    public クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
+        ......
+    }
+    ......
 ```
 
-* 例文（class 内に定義しない場合）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _init():
-	print("_int()") # 先に実行される
+public class Main : MonoBehaviour {
+    void Start() {
+        Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
+        Debug.Log(_point.X); //100
+        Debug.Log(_point.Y); //150
+     }
+}
 
-func _ready(): # 通常はこちらを使う
-	print("_ready()") # _init()の次に実行される
+class Point {
+    private int _x, _y;
+    public Point(int _x=0, int _y=0) { //コンストラクタ
+        this._x = _x;
+        this._y = _y;
+    }
+    public int X {
+        get { return _x; }
+        set { _x = value; }
+    }
+    public int Y {
+        get { return _y; }
+        set { _y = value; }
+    }
+}
 ```
 
-<a name="静的関数"></a>
+### 静的メソッド（クラスメソッド）
+```CSharp
+//Main.cs
+using UnityEngine;
 
-### 静的関数
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+public class Main : MonoBehaviour {
+    void Start() {
+        Debug.Log(Math.Pow(2,0)); //1（2の0乗）
+        Debug.Log(Math.Pow(2,1)); //2（2の1乗）
+        Debug.Log(Math.Pow(2,8)); //256（2の8乗）
+    }
+}
 
-class MyMath:
-	static func Pow(arg1, arg2): #個人的慣例で大文字で始める
-		if arg2 == 0: return 1 # 0乗対策
-		var _result = arg1
-		for i in range(1, arg2):
-			_result *= arg1
-		return _result
-
-func _ready():
-	print(MyMath.Pow(2,3)) #-> 8
-
-	var _myMath = MyMath.new()
-	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可能）
+class Math {
+    public static long Pow(int arg1, int arg2) {
+        if (arg2 == 0) { return 1; } //0乗対策
+        long _result = arg1;
+        for (int i=1; i<arg2; i++) {
+            _result = _result * arg1;
+        }
+        return _result;
+    }
+}
 ```
 
 ### デフォルト値付き引数
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* オプション引数（引数は省略可）
+```CSharp
+//Main.cs
+using UnityEngine;
 
-class MyClass:
-	var __point = 0 # 疑似プライベート変数
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        _myClass.AddPoint(); //1
+        _myClass.AddPoint(10); //11
+    }
+}
 
-	func addPoint(arg := 1): #「=」でも動作
-		__point += arg
-		print(__point)	
-
-func _ready():
-	var _myClass = MyClass.new()
-	_myClass.addPoint() #-> 1（引数を指定しない場合は初期値1で処理）
-	_myClass.addPoint(10) #-> 11（引数を指定した場合）
+class MyClass {
+    private int _point = 0;
+    public void AddPoint(int arg = 1) { //初期値を1とした場合
+        _point += arg;
+        Debug.Log(_point);
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
+### 可変長引数
+* 引数を固定の数ではなく任意の数にすることが可能
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        _myClass.Sum(1,1); //2（1+1）
+        _myClass.Sum(1,2,3,4,5); //15（1+2+3+4+5）
+    }
+}
+
+class MyClass {
+    public void Sum(params int[] args) {
+        int _result = 0; //ローカル変数
+        foreach (int tmp in args) {
+            _result += tmp;
+        }
+        Debug.Log(_result);
+    }
+}
+```
+
+### 名前付き引数
+* 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        _myClass.Rect(endX:100, endY:100); //面積:10000m2
+        _myClass.Rect(10,10,100,100); //面積:8100m2
+    }
+}
+
+class MyClass {
+    public void Rect(int startX=0, int startY=0, int endX=0, int endY=0) {
+        int _result = (endX - startX) * (endY - startY);
+        Debug.Log("面積:" + _result + "m2");
+    }
+}
+```
+
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
-<a name="静的変数・静的関数"></a>
-# <b>静的変数・静的関数</b>
+<a name="匿名メソッド"></a>
+# <b>匿名メソッド</b>
 
-* 静的変数 ⇒ [定数](#定数)
-* 静的関数 ⇒ [関数（静的関数）](#静的関数)
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        _myClass.Move(1); //→
+        _myClass.change();
+        _myClass.Move(3); //←←←
+    }
+}
+
+class MyClass {
+    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
+    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
+    private bool _right = true;
+
+    public MyClass() { //コンストラクタ
+        //匿名メソッドの定義
+        Move = delegate(int arg) {
+            string _tmp = "";
+            for (int i=0; i<arg; i++) _tmp += "→";
+            Debug.Log(_tmp);
+        };
+    }
+
+    public void change() {
+        _right = ! _right;
+        if (_right) {
+            //...匿名メソッドの再定義（メソッドの内容を変更）
+            Move = delegate(int arg) {
+                string _tmp = "";
+                for (int i=0; i<arg; i++) _tmp += "→";
+                Debug.Log(_tmp);
+            };
+        } else {
+            //匿名メソッドの再定義（メソッドの内容を変更）
+            Move = delegate(int arg) {
+                string _tmp = "";
+                for (int i=0; i<arg; i++) _tmp += "←";
+                Debug.Log(_tmp);
+            };
+        }
+    }
+}
+```
+
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月XX日  
+[[TOP](#TOP)]
+
+
+<a name="ラムダ式"></a>
+# <b>ラムダ式</b>
+* [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
+
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        MyClass _myClass = new MyClass();
+        _myClass.Move(1); //→
+        _myClass.change();
+        _myClass.Move(3); //←←←
+    }
+}
+
+class MyClass {
+    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
+    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
+    private bool _right = true;
+
+    public MyClass() { //コンストラクタ
+        Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+            string _tmp = "";
+            for (int i=0; i<arg; i++) _tmp += "→";
+            Debug.Log(_tmp);
+        }; //メソッドの内容を変更
+    }
+
+    public void change() {
+        _right = ! _right;
+        if (_right) {
+            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+                string _tmp = "";
+                for (int i=0; i<arg; i++) _tmp += "→";
+                Debug.Log(_tmp);
+            }; //メソッドの内容を変更
+        } else {
+            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+                string _tmp = "";
+                for (int i=0; i<arg; i++) _tmp += "←";
+                Debug.Log(_tmp);
+            }; //メソッドの内容を変更
+        }
+    }
+}
+```
+
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月XX日  
+[[TOP](#TOP)]
+
+
+<a name="静的メンバ（static）"></a>
+# <b>静的メンバ（static）</b>
+* 静的メンバはクラスをインスタンス化せずにアクセスが可能
+
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        Debug.Log(Math.PI); //3.14159265358979 ←静的変数の呼び出し
+        Debug.Log(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
+    }
+}
+
+class Math { //独自クラス
+    //静的変数
+    public static double PI = 3.14159265358979;
+
+    //静的メソッド
+    public static long Pow(int arg1, int arg2) {
+        if (arg2 == 0) { return 1; } //0乗対策
+        long _result = arg1;
+        for (int i=1; i<arg2; i++) {
+            _result = _result * arg1;
+        }
+        return _result;
+    }
+}
+```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1120,97 +1382,105 @@ func _ready():
 <a name="if文"></a>
 # <b>if 文</b>
 
-### 基本構文
-* Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 基本例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _age = 54
-	
-	if (_age <= 20) : #()は省略可
-		print("20歳以下")
-	elif (_age <= 40) : #「else if」でも「elseif」でもない（要注意）
-		print("21〜40歳")
-	elif (_age <= 60) :
-		print("41〜60歳") #これが出力される
-	else:
-		print("61歳以上")
+public class Main : MonoBehaviour {
+    void Start() {
+        int _age = 50;
+        if (_age <= 20) {
+            Debug.Log("20歳以下");
+        } else if (_age <= 40) {
+            Debug.Log("21〜40歳");
+        } else if (_age <= 60) {
+            Debug.Log("41〜60歳"); //これが出力される
+        } else {
+            Debug.Log("61歳以上");
+        }
+    }
+}
 ```
 
-* 注意：条件式の判断記述について
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	if null : # '' "" も同じFalseとして判断
-		print("A")
-	else:
-		print("B") #こちらが実行される
-
-	if "あ" : #中身が何かあればTrueとして判断
-		print("A") #こちらが実行される
-	else:
-		print("B")
-```
-
-### 論理積（and または &&）
-1. 論理演算子（and または &&）を使う方法
-    ```GDScript
-    if (条件式➀ and 条件➁) : #()は省略可
-        処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
-    else:
+### 論理積（AND）
+1. 論理演算子（&&）を使う方法
+    ```CSharp
+    if (条件式① && 条件②) {
+        処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+    } else {
         処理B
+    }
     ```
 
-1. ifのネストを使う方法
-    ```GDScript
-    if (条件式➀) : #()は省略可
-        if (条件➁) :
-            処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
-        else:
+1. if のネストを使う方法
+    ```CSharp
+    if (条件式①) {
+        if (条件②) {
+            処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+        } else {
             処理B
-    else:
+        }
+    } else {
         処理B
+    }
     ```
 
-### 論理和（or または ||）
-1. 論理演算子（or または ||）を使う方法
-    ```GDScript
-    if (条件式➀ or 条件➁) : #()は省略可
-        処理A ←条件式➀または条件式➁の両方がTrueの場合に実行
-    else:
+### 論理和（OR）
+1. 論理演算子（||）を使う方法
+    ```CSharp
+    if (条件式① || 条件②) {
+        処理A ←条件式①または条件式②の両方がtrueの場合に実行
+    } else {
         処理B
+    }
     ```
 
-1. ifのネストを使う方法
-    ```GDScript
-    if (条件式➀) : #()は省略可
-        処理A ←条件式➀がTrueの場合に実行
-    elif (条件➁) :
-        処理A ←条件式②がTrueの場合に実行
-    else:
+2. if のネストを使う方法
+    ```CSharp
+    if (条件式①) {
+        処理A ←条件式①がtrueの場合に実行
+    } else if (条件②) {
+        処理A ←条件式②がtrueの場合に実行
+    } else {
         処理B
+    }
     ```
 
 ### 排他的論理和（XOR）
-* GDScriptでは ^ 演算子は使えない（要調査）
-* 「&& は and」「|| は or」「! は NOT」でも可  
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+1. ^ 演算子を使う方法
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-func _ready():
-    var _a = false
-    var _b = true
+    public class Main : MonoBehaviour {
+        void Start() {
+            bool _a = true, _b = false;
+            if (_a ^ _b) {
+                Debug.Log("どちらか一方だけtrueです");
+            } else {
+                Debug.Log("両方共にtrueかfalseです");
+            }
+        }
+    }
+    ```
 
-    if ((_a || _b) && !(_a || _b)) : #()は省略可
-        print("どちらか一方だけTrueです")
-    else:
-        print("両方共にTrueかFalseです")
-```
+1. ^ 演算子を使わない方法
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            bool _a = true, _b = false;
+            if ((_a || _b) && !(_a && _b)) {
+                Debug.Log("どちらか一方だけtrueです");
+            } else {
+                Debug.Log("両方共にtrueかfalseです");
+            }
+        }
+    }
+    ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1221,21 +1491,48 @@ func _ready():
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
 
-### 構文
-* GDScript の三項演算子は [Pythonと同様](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90) if 文を使った独特のものです
-```GDScript
-変数 = (True時の返り値) if (比較式) else (False時の返り値)
+### 比較式が１つの場合
+* 構文
+```CSharp
+データ型 変数名 = (比較式) ? (true時の返り値) : (false時の返り値);
 ```
 
-### 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _age = 54
-	var _result = "現役" if (_age < 60) else "退職"
-	print(_result)
+public class Main : MonoBehaviour {
+    void Start() {
+        int _age = 50;
+        string _result = (_age < 60) ? "現役" : "退職";
+        Debug.Log(_result); //"現役"
+    }
+}
+```
+
+### 比較式が複数の場合
+* 構文
+```CSharp
+データ型 変数名 = (比較式①) ? (①がtrueの場合の返り値) : //①がfalseの場合↓
+変数名 = (比較式②) ? (②がtrueの場合の返り値) : //②がfalseの場合↓
+変数名 = (①②の全てがfalseの場合の返り値);
+```
+
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        int _age = 50;
+        string _result = (_age < 20) ? "未成年" :
+        _result = (_age < 60) ? "現役" :
+        _result = "退職";
+        Debug.Log(_result); //"現役"
+    }
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -1244,66 +1541,95 @@ func _ready():
 [[TOP](#TOP)]
 
 
-<a name="match文"></a>
-# <b>match ≒ switch 文</b>
+<a name="switch文"></a>
+# <b>switch 文</b>
 
-### 判別式が bool 値ではない場合
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 基本サンプル
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _name = "TARO"
-	
-	match _name:
-		"TARO":
-			print("父") # これが出力される
-		"HANAKO":
-			print("母")
-		"ICHIRO":
-			print("長男")
-		"JIRO":
-			print("次男")
-		_:
-			print("家族以外")
+public class Main : MonoBehaviour {
+    void Start() {
+        string _name = "CHIKASHI";
+        switch (_name) { //判別式には「整数型」「文字型」しか使えない!
+            case "CHIKASHI" :
+                Debug.Log("父");
+                break;
+            case "HANAKO" : 
+                Debug.Log("母");
+                break;
+            case "TARO" :
+                Debug.Log("長男");
+                break;
+            case "JIRO" :
+                Debug.Log("次男");
+                break;
+            default:
+                Debug.Log("家族以外");
+                break; //defaultのbreakは省略不可（注意）
+        }
+    }
+}
 ```
 
-### 注意➀：判別式に bool 型が使えない
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 注意その１ : 判別式に bool 型が使えない
+* 判別式に指定可能なもの
+    * byte 型、short 型、int 型 などの整数型（浮動小数点型は指定不可）
+    * char 型、string 型といった文字型
 
-func _ready():
-	var _age = 54
-	
-	match true:
-		_age < 20: # Error（比較演算子を使った条件式は不可）
-			print("未成年")
-		_:
-			print("成人")
+* 悪い例（エラー発生）
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        int _age = 50;
+        switch (true) { //bool型はエラー（注意）
+            case _age < 20 :
+                Debug.Log("未成年");
+                break;
+            default:
+                Debug.Log("成人");
+                break;
+        }
+    }
+}
 ```
 
-### 注意➁：フォロースルーの動作
-* 以下の場合 "A" "C" が出力される
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _value = "A"
-	
-	match _value:
-		"A":
-			print("A")
-			continue
-		"B":
-			print("B")
-			continue
-		_:
-			print("C")
+### 注意その２ : フォールスルーの禁止規則
+* C#では、下記のように case で何か処理をしておきながら break 文を書かないで次の case の処理に入っていくことは不可（フォールスルーの禁止規則）
+```CSharp
+case "○○" : 何か処理; //何か処理をしておきながらbreakを書かないとエラー
+case "□□" : 何か処理; break;
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#match)  
+* 良い例
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        string _name = "JIRO";
+        switch (_name) {
+            case "CHIKASHI" : //breakが無いと次のcaseも処理
+            case "HANAKO" : 
+                Debug.Log("親");
+                break;
+            case "TARO" : //breakが無いと次のcaseも処理
+            case "JIRO" :
+                Debug.Log("子");
+                break;
+            default:
+                Debug.Log("家族以外");
+                break; //defaultのbreakは省略不可
+        }
+    }
+}
+```
+
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -1314,126 +1640,329 @@ func _ready():
 # <b>for 文</b>
 
 ### 基本構文
-```GDScript
-for 変数 in range(開始,終了):
+```CSharp
+for (①初期化; ②ループ判定式; ③更新処理) {
     繰り返す処理
+}
 ```
 
-### 基本例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### ループカウンタ（ループ制御変数）の宣言位置
+1. for 文の中で宣言
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-func _ready():
-	for i in range(0,10): #第1引数を省略すると0扱い
-		print(i) #-> 0,1,2,3,4,5,6,7,8,9
+    public class Main : MonoBehaviour {
+        void Start() {
+            for (int i=0; i<10; i++) { //ここでint型を宣言すると...
+                Debug.Log(i); //0,1,2,3,4,5,6,7,8,9
+            }
+            //Debug.Log(i); //error CS0103（for文の外では使用不可）
+        }
+    }
+    ```
 
-	# print(i) # Error（for文の外ではiは無効）
+1. for 文の外でループ制御変数を宣言する
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            int _i; //ここでint型を宣言すると...
+            for (_i=0; _i<10; _i++) {
+                Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
+            }
+            Debug.Log(_i); //10（for文の外でも有効）
+        }
+    }
+    ```
+
+### ループカウンタを○つずつアップする
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        for (int i=0; i<50; i+=5) { //5つずつアップする場合...
+            Debug.Log(i); //0,5,10,15,20,25,30,35,40,45
+        }
+    }
+}
 ```
 
 ### for 文のネスト
-* ループ制御変数には i, j, k が使われる
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	for i in range(1,6):
-		for j in range(1,6):
-			print("x" + str(i) + "y" + str(j)) #x1y1, x1y2, ...., x5y4, x5y5
-```
-
-### continue 文
-* ループカウンタを○つずつアップする
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	for i in range(0,50):
-		if i % 5: # 5つずつアップする場合…
-			continue # 以降処理せず、for文のブロックの先頭に戻って再度繰返す
-		
-		print(i) #->0, 5, 10, 15, 20, 25, 30, 35, 40, 45
+public class Main : MonoBehaviour {
+    void Start() {
+        for (int i=1; i<=5; i++) {
+            for (int j=1; j<=5; j++) {
+                Debug.Log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+            }
+        }
+    }
+}
 ```
 
 ### 無限ループと break 文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _count = 0
-	for i in range(0, 9e9): # ほぼ無限ループ（厳密な無限にはwhile文を使用）
-		_count += 1
-		if (_count > 100):
-			break #100 を超えたらループを抜け出す
-		print(_count) #1, 2, ...., 99, 100
+public class Main : MonoBehaviour {
+    void Start() {
+        int _count = 0;
+        for (;;) { //①初期化 ②ループ判定式 ③更新処理...の全てを省略すると無限ループ
+            _count++;
+            if (_count > 100) break; //ループを終了
+            Debug.Log(_count); //1,2,....,99,100
+        }
+        Debug.Log("for文終了");
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#for)  
+### for 文と continue 文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        for (int i=1; i<=20; i++) { //iは1,2,...19,20
+            if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+                continue; //for文の残処理をスキップしてfor文の次の反復を開始する
+            }
+            Debug.Log(i); //3,6,9,12,15,18（3の倍数）
+        }
+    }
+}
+```
+
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
+<a name="foreach文"></a>
+# <b>foreach 文</b>
+
+### 基本構文
+```CSharp
+foreach (データ型 変数名 in 配列等) {
+    Debug.Log(変数名);
+}
+```
+
+### 配列（1次元）の場合
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        string[] _array = {"A","B","C","D"}; 
+        foreach (string value in _array) {
+            Debug.Log(value); //"A"→"B"→"C"→"D"
+        }
+    }
+}
+```
+
+### 配列（2次元）の場合
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        string[,] _array = {
+            {"x0y0","x1y0","x2y0"}, //0行目
+            {"x0y1","x1y1","x2y1"}  //1行目
+        }; 
+        foreach (string value in _array) {
+            Debug.Log(value); //"x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
+        }
+    }
+}
+```
+
+### 配列（ジャグ配列）の場合
+* [Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「.NET」のバージョンが低いと dynamic が利用できません
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        dynamic[][] _array = new dynamic[2][];
+        _array[0] = new dynamic[]{"A","あ"};
+        _array[1] = new dynamic[]{"I","い"};
+        foreach (object[] theArray in _array) {
+            foreach (object value in theArray) {
+                Debug.Log(value); //"A"→"あ"、"I"→"い"
+            }
+            Debug.Log(""); //オプション（改行）
+        }
+    }
+}
+```
+
+### 動的配列（ArrayList）の場合
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections; //ArrayListに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        ArrayList _array = new ArrayList();
+        _array.Add("CHIKASHI");
+        _array.Add(50);
+        foreach (object value in _array) {
+            Debug.Log(value); //"CHIKASHI"→49
+        }
+    }
+}
+```
+
+### 動的配列（List）の場合
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
+
+public class Main : MonoBehaviour {
+    void Start() {
+        List<string> _list = new List<string>() { "A", "B" };
+        foreach (string value in _list) {
+            Debug.Log(value); //"A"→"B"
+        }
+    }
+}
+```
+
+### 連想配列の場合
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
+
+public class Main : MonoBehaviour {
+    void Start() {
+        Dictionary<string, string> _dic = new Dictionary<string, string>() {
+            {"A", "あ"},{"I", "い"}
+        };
+        foreach (KeyValuePair<string, string> tmp in _dic) {
+            Debug.Log(tmp.Key + ":" + tmp.Value); //A:あ → I:い
+        }
+    }
+}
+```
+
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月XX日  
+[[TOP](#TOP)]
+
 
 <a name="while文"></a>
 # <b>while 文</b>
-* 他の多くの言語にある do...while 文はない
 
-```GDscript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### while 文
+* 構文
+```CSharp
+while (ループ判定式) {
+    繰り返す処理
+}
+```
 
-func _ready():
-	var _i = 0
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-	while (_i < 10): # ()は省略可
-		print(_i) #-> 0,1,2,3,4,5,6,7,8,9
-		_i += 1
+public class Main : MonoBehaviour {
+    void Start() {
+        int _i = 0;
+        while (_i < 10) { //ループ判定式にはbool型しか使えない
+            Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
+            _i++;
+        }
+        Debug.Log(_i); //10（変数はまだ有効）
+    }
+}
+```
 
-	print(_i) #-> 10（while文の外でも変数はまだ有効）
+### do...while 文
+* 構文
+```CSharp
+do {
+    繰り返す処理 ←ループ判定式がfalseの場合でも最低１回は実行される
+} while(ループ判定式);
+```
+
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        int _i = 0;
+        do {
+            Debug.Log(_i); //0 ←ループ判定式はfalseだが１回実行される
+            _i++;
+        } while(_i < 0);
+    }
+}
 ```
 
 ### while 文と break 文
-```GDscript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _count = 0
-
-	while (true) : #-> ループ判別式をtrueにすると無限ループに!
-		_count += 1
-		if (_count > 100) :
-			break #-> ループを終了
-
-		print(_count) #-> 1,2,....,99,100（1〜100までを出力）
-
-	print("while文終了") # while文の外
+public class Main : MonoBehaviour {
+    void Start() {
+        int _count = 0;
+        while (true) { //ループ判別式をtrueにすると無限ループに
+            _count++;
+            if (_count > 100) {
+                break; //break文を使ってループを終了→★
+            }
+            Debug.Log(_count); //1,2,....,99,100（1〜100までを出力）
+        }
+        Debug.Log("while文終了"); //★
+    }
+}
 ```
 
-### while 文と continue 文（3の倍数を出力）
-```GDscript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### while 文と continue 文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _i = 1
-
-	while (_i <= 20) :
-
-		if ((_i % 3) != 0) : # 3で割って余りが0ではない（＝3の倍数ではない）場合
-			_i += 1
-			continue #while文の残処理をスキップしてwhile文の次の反復を開始する
-
-		print(_i) #-> 3,6,9,12,15,18（3の倍数を出力）
-		_i += 1
+public class Main : MonoBehaviour {
+    void Start() {
+        int _i = 1;
+        while (_i <= 20) {
+            if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+                _i++;
+                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+            }
+            Debug.Log(_i); //3,6,9,12,15,18（3の倍数を出力）
+            _i++;
+        }
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#while)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -1442,272 +1971,145 @@ func _ready():
 
 <a name="配列"></a>
 # <b>配列</b>
+* C# では配列宣言後の要素数変更は不可
 
-1. [作成](#配列作成)
-1. [要素の数](#配列要素の数)
-1. [抽出](#配列抽出)
-1. [追加（最後）](#配列追加（最後）)
-1. [追加（指定位置）](#配列追加（指定位置）)
-1. [更新（任意の位置）](#配列更新（任意の位置）)
-1. [削除（指定の要素）](#配列削除（指定の要素）)
-1. [検索（ヒットしたか否か）](#配列検索（ヒットしたか否か）)
-1. [検索（ヒット数）](#配列検索（ヒット数）)
-1. [並べ替え（反転）](#配列並べ替え（反転）)
-1. [並べ替え（ソート）](#配列並べ替え（ソート）)
-1. [シャッフル](#配列シャッフル)
-1. [結合](#配列結合)
-1. [複製](#配列複製)
-1. [文字列→配列](#配列文字列→配列)
-1. [全要素を取り出す](#配列全要素を取り出す)
-
-<a name="配列作成"></a>
-
-### 作成
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array1 = [] # 空の配列を作成
-	print(_array1) #-> []
-
-	var _array2 = ["A", "B", "C"]
-	print(_array2) #-> [A, B, C]
-
-	var _array3 = [["A", "あ"], ["I", "い"]] # 配列のネスト
-	print(_array3) #-> [[A, あ], [I, い]]
-
-	var _array4 = range(0, 10)
-	print(_array4) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+### １次元配列の作成
+* 構文（他にも var キーワードを使ってデータ型を省略した定義も可能）
+```CSharp
+データ型[] 変数名 = new データ型[要素数];
+データ型[] 変数名 = new データ型[]{要素①,要素②,...};
+データ型[] 変数名 = {要素①,要素②,...}; //簡単
 ```
-[[配列TOP](#配列)]
 
-<a name="配列要素の数"></a>
-
-### 要素の数
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [0,1,2,3,4,5,6,7,8,9]
-	print(_array.size()) #-> 10
+* 例文
+```CSharp
+dynamic[] _array1 = new dynamic[4]; //4つの空の要素（動的型）を持つ配列を作成
+string[] _array2 = new string[]{"A","B","C","D"};
+string[] _array3 = {"A","B","C","D"}; //簡単
 ```
-[[配列TOP](#配列)]
 
-<a name="配列抽出"></a>
-
-### 抽出
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [0,1,2,3,4,5,6,7,8,9]
-
-	# 先頭の抽出
-	print(_array.front()) #-> 0
-	print(_array[0]) #-> 0
-
-	# 最後尾の抽出
-	print(_array.back()) #-> 9
-	print(_array[-1]) #-> 9
-	print(_array[_array.size() - 1])
-
-	# 指定位置の抽出
-	print(_array[5]) #-> 5（インデックス5番目）
+### ２次元配列（四角配列）の作成
+* 構文
+```CSharp
+データ型[,] 変数名 = new データ型[行数,列数]; //縦x横の空の要素を持つ２次元配列
+データ型[,] 変数名 = {{1行目の配列},{2行目の配列},...};
 ```
-[[配列TOP](#配列)]
 
-<a name="配列追加（最後）"></a>
+1. new 演算子を使う方法（≒５行x４列のコインロッカー）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-### 追加（最後）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+    public class Main : MonoBehaviour {
+        void Start() {
+            string[,] _coinlocker = new string[5,4];
+            _coinlocker[0,0] = "1083"; //0,0の値
+            _coinlocker[0,1] = "7777"; //0,1の値
+            _coinlocker[2,1] = "0135"; //2,1の値
+            _coinlocker[4,3] = "1234"; //4,3の値
+        }
+    }
+    ```
 
-func _ready():
-	var _array = []
-	_array.append("mubirou") # String型の追加
-	_array.append(100) # int型の追加
-	print(_array) #-> [mubirou, 100]（混在可能）
+1. 配列リテラルを使う方法（≒５行x４列のコインロッカー）
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            string[,] _coinlocker = {
+                {"1083","7777","",""}, //0行目
+                {"","","",""}, //1行目
+                {"","0135","",""}, //2行目
+                {"","","",""}, //3行目
+                {"","","","1234"} //4行目
+            };
+            //確認
+            Debug.Log(_coinlocker[0,0]); //"1083"
+            Debug.Log(_coinlocker[0,1]); //"7777"
+            Debug.Log(_coinlocker[2,1]); //"0135"
+            Debug.Log(_coinlocker[4,3]); //"1234"
+        }
+    }
+    ```
+
+### 配列の配列（ジャグ配列）の作成
+* 構文（それぞれの配列の長さは異なるものにできる）
+* データ型に dynamic を利用する場合、[Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「.NET」のバージョンを確認して下さい（低いと利用できません）
+```CSharp
+①データ型[][] 変数名 = new データ型[要素数][];
+②データ型[][] 変数名 = new データ型[][]{new データ型[]{配列①},...};
 ```
-[[配列TOP](#配列)]
 
-<a name="配列追加（指定位置）"></a>
+1. ジャグ配列の宣言→後で値を割り当てる方法
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
 
-### 追加（指定位置）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+    public class Main : MonoBehaviour {
+        void Start() {
+            dynamic[][] _array = new dynamic[4][];
+            _array[0] = new dynamic[]{"A","あ","ア"}; //配列リテラルは不可
+            _array[1] = new dynamic[]{"I","い","イ"};
+            _array[2] = new dynamic[]{"U","う","ウ"};
+            _array[3] = new dynamic[]{"E","え","エ"};
+        }
+    }
+    ```
 
-func _ready():
-	var _array = ["A", "B"]
-	_array.insert(0, "C") # インデックス0（先頭）に追加
-	print(_array) #-> [C, A, B]
+1. ジャグ配列の宣言と同時に値を割り当てる方法
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            dynamic[][] _array = new dynamic[][]{
+            new dynamic[]{"A","あ","ア"},
+            new dynamic[]{"I","い","イ"},
+            new dynamic[]{"U","う","ウ"},
+            new dynamic[]{"E","え","エ"}
+            };
+            foreach (dynamic[] theArray in _array) { //確認 (コマンドライン版の例）
+                foreach (object theValue in theArray) {
+                    Debug.Log(theValue);
+                }
+            }
+        }
+    }
+    ```
+
+### 配列の Length プロパティ
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        string[] _array = {"A","B","C","D"};
+        for (int i=0; i<_array.Length; i++) { //配列の要素の数
+            Debug.Log(_array[i]);
+        }
+    }
+}
 ```
-[[配列TOP](#配列)]
-
-<a name="配列更新（任意の位置）"></a>
-
-### 更新（任意の位置）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = ["A", "B", "C"]
-
-	_array[0] = null # インデックス0（先頭）を更新
-	print(_array) #-> [Null, B, C]
-	
-	_array[-1] = "D" # 後ろから1番目を更新
-	print(_array) #-> [Null, B, D]
-```
-[[配列TOP](#配列)]
-
-<a name="配列削除（指定の要素）"></a>
-
-### 削除（指定の要素）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = ["A", "B", "C"]
-	_array.remove("A") # 最初に見つかった指定の要素を削除
-	print(_array) #-> [B, C]
-```
-[[配列TOP](#配列)]
-
-<a name="配列検索（ヒットしたか否か）"></a>
-
-### 検索（ヒットしたか否か）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = ["A", "B", "C", "D", "E"]
-	print("E" in _array) #-> True
-	print("F" in _array) #-> False
-```
-[[配列TOP](#配列)]
-
-<a name="配列検索（ヒット数）"></a>
-
-### 検索（ヒット数）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = ["A", "C", "B", "C", "A", "C"]
-	print(_array.count("C")) #-> 3
-	print(_array.count("D")) #-> 0
-```
-[[配列TOP](#配列)]
-
-<a name="配列並べ替え（反転）"></a>
-
-### 並べ替え（反転）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [0,1,2,3,4,5,6,7,8,9]
-	_array.invert()
-	print(_array) #-> [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-```
-[[配列TOP](#配列)]
-
-<a name="配列並べ替え（ソート）"></a>
-
-### 並べ替え（ソート）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [3,6,2,8,4,1,9,0,5,7]
-	_array.sort()
-	print(_array) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-```
-[[配列TOP](#配列)]
-
-<a name="配列シャッフル"></a>
-
-### シャッフル
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-	_array.shuffle()
-	print(_array) #-> [5, 7, 8, 4, 6, 1, 2, 3, 0, 9]
-```
-（注意）内部では [randi()](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#class-randomnumbergenerator-method-randi) 関数を利用しているため同じ値が返る（回避したい場合は[乱数](#乱数)を利用）  
-[[配列TOP](#配列)]
-
-<a name="配列結合"></a>
-
-### 結合
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array1 = ["A","B","C"]
-	var _array2 = ["D","E","F"]
-	_array1 += _array2
-	print(_array1) #-> [A, B, C, D, E, F]
-```
-[[配列TOP](#配列)]
-
-<a name="配列複製"></a>
-
-### 複製
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _origin = ["A","B"]
-	var _copy = _origin.duplicate()
-	_copy[0] = "C" #値を変更してみる
-	print(_origin) #-> [A, B]（参照ではないことが判る）
-	print(_copy) #-> [C, B]
-```
-[[配列TOP](#配列)]
-
-<a name="配列文字列→配列"></a>
 
 ### 文字列→配列
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string = "A,B,C"
-	var _array = _string.rsplit (",") # カンマ区切りで分割してリスト化
-	print(_array) #-> [A, B, C]
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "A,B,C,D"; //「,」区切りの文字列
+        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
+        foreach (string value in _array) {
+            Debug.Log(value); //"A"→"B"→"C"→"D"
+        }
+    }
+}
 ```
-[[配列TOP](#配列)]
-
-<a name="配列全要素を取り出す"></a>
-
-### 全要素を取り出す
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	for _tmp in ["A","B","C","D","E"]:
-		print(_tmp) #-> A → B → C → D → E
-```
-※インデックス番号を取得したい場合はカウンタ変数を使用  
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1715,127 +2117,552 @@ func _ready():
 [[TOP](#TOP)]
 
 
-<a name="連想配列（辞書）"></a>
-# <b>連想配列（辞書）</b>
+<a name="動的配列（List）"></a>
+# <b>動的配列（List）</b>
+
+### 概要
+* 配列と異なり List は要素の数を変更したり追加･削除などが可能
+* 動的配列（ArrayList）の.NET framework 2.0 対応版
 
 ### 作成
-```GDScript
-var 変数名 = {"キー➀": 値➀, "キー➁": 値➁}
-```
-
-### 追加･更新
 * 構文
-```GDScript
-辞書["キー"] = 値
+```CSharp
+List<データ型> 変数名 = new List<データ型>(); //空のListを作成
+List<データ型> 変数名 = new List<データ型>(数); //指定数の空の要素を持つList作成
+List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,... };
 ```
 * 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
 
-func _ready():
-	var _dict = {"A": "あ", "I": "い"}
-	_dict["U"] = "う" # 追加（存在する場合は更新）
-	print(_dict) #-> {A:あ, I:い, U:う}
+public class Main : MonoBehaviour {
+    void Start() {
+        List<string> _list = new List<string>() { "A", "B" };
+        foreach (object value in _list) {
+            Debug.Log(value); //"A"→"B"
+        }
+    }
+}
 ```
 
-### 取得
+### 追加（最後）
 * 構文
-```GDScript
-辞書["キー"]
-辞書.get("キー", [キーが無い場合の初期値])
+```CSharp
+List.Add(値); //値はobject型（文字型、数値型等）で混在不可（dynamic型は除く）
 ```
 * 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
 
-func _ready():
-	var _dict = {"A": "あ", "I": "い", "U": "う"}
-	print(_dict["A"]) #-> あ
-	print(_dict.get("A", null)) #-> あ（第2引数は省略可）
+public class Main : MonoBehaviour {
+    void Start() {
+        //空 → "A" → "A","B"
+        List<string> _list = new List<string>();
+        _list.Add("A");
+        _list.Add("B");
+        foreach (object value in _list) {
+            Debug.Log(value); //"A"→"B"
+        }
+    }
+}
 ```
 
-### 削除
+### 追加（指定位置）
 * 構文
-```GDScript
-辞書.erase("キー") # 任意のキーのペア
-辞書.clear() # 全てのキーのペア
+```CSharp
+List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capacity-1）まで指定可能
 ```
 * 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
 
-func _ready(): 
-	var _dict = {"A": "あ", "I": "い", "U": "う"}
-	_dict.erase("A")
-	print(_dict) #-> {I:い, U:う}
+public class Main : MonoBehaviour {
+    void Start() {
+        //"A","B" → "C","A","B"
+        List<string> _list = new List<string>() { "A", "B" };
+        _list.Insert(0,"C"); //先頭に追加する場合は0
+        foreach (object value in _list) {
+            Debug.Log(value); //"C"→"A"→"B"
+        }
+    }
+}
 ```
 
-### キーの検索
+### 更新（任意の値）
 * 構文
-```GDScript
-"キー" in 辞書
+```CSharp
+List[インデックス番号] = 値;
 ```
 * 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
 
-func _ready():
-	var _dict = {"A": "あ", "I": "い", "U": "う"}
-	print("A" in _dict) #-> True（任意のキーが無いとFalse）
+public class Main : MonoBehaviour {
+    void Start() {
+        //"A","B" → "C","B"
+        List<string> _list = new List<string>() { "A", "B" };
+        _list[0] = "C"; //0番目を変更する場合
+        foreach (object value in _list) {
+            Debug.Log(value); //"C"→"B"
+        }
+    }
+}
 ```
 
-### 要素数
+### 更新（null）
 * 構文
-```GDScript
-辞書.size()
-len(辞書)
+```CSharp
+List[インデックス番号] = null;
 ```
 * 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
 
-func _ready():
-	var _dict = {"A": "あ", "I": "い", "U": "う"}
-	print(_dict.size()) #-> 3
-	print(len(_dict)) #-> 3
+public class Main : MonoBehaviour {
+    void Start() {
+        //"A","B","C" → "A","B",null
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        _list[2] = null;
+        foreach (object value in _list) {
+            Debug.Log(value); // "A"→"B"→Null
+        }
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
+### 削除（指定のオブジェクト）
+* 構文
+```CSharp
+List.Remove(object); //最初に見つかった指定のオブジェクトを削除
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        //"A","B","C" → "A","C"
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        _list.Remove("B");
+        foreach (object value in _list) {
+            Debug.Log(value); // "A"→"C"
+        }
+    }
+}
+```
+
+### 削除（指定のインデックス）
+* 構文
+```CSharp
+List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacity-1）まで指定可能
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        //"A","B","C" → "B","C"
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        _list.RemoveAt(0); //先頭を削除する場合
+        //_list.RemoveAt(_list.Capacity-1); //最後を削除する場合
+        foreach (object value in _list) {
+            Debug.Log(value); // "B"→"C"
+        }
+    }
+}
+```
+
+### 削除（○番目から□個）
+* 構文
+```CSharp
+List.RemoveRange(開始, 削除する個数); //開始＝削除開始したいインデックス番号
+List.RemoveRange(開始, List.Capacity-開始); //○番目から最後まで削除
+List.Clear(); //全て削除
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        //"A","B","C","D" → "A","B"
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        _list.RemoveRange(2, 2); //2番目から2個削除
+        //]_list.RemoveRange(1, _list.Capacity-1); //1番目〜最後を削除する場合
+        //_list.Clear(); //全て削除する場合
+        foreach (object value in _list) {
+            Debug.Log(value); // "A"→"B"
+        }
+    }
+}
+```
+
+### 抽出（○番目から□個）
+* 構文
+```CSharp
+List.GetRange(開始, 抜き出す個数); //開始＝抜出しを開始したいインデックス番号
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        //"A","B","C","D" → "C","D"を返す
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        List<string> _result = _list.GetRange(2, 2); //2番目から2個抽出する場合
+        //List<string> _result = _list.GetRange(1, _list.Capacity-1);//1番目〜最後を抽出
+        foreach (object value in _result) {
+            Debug.Log(value); // "C"→"D"
+        }
+    }
+}
+```
+
+### 検索(前から）
+* 構文
+```CSharp
+List.IndexOf(object [,検索開始するインデックス番号]);
+//最初に見つかったインデックス番号を返す（無い場合-1）
+//第2引数を省略すると最初（0）から検索
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        Debug.Log(_list.IndexOf("C",0)); //2
+        //最初から検索する場合（第2引数が0の場合は省略可能）
+    }
+}
+```
+
+### 検索（後ろから）
+* 構文
+```CSharp
+List.LastIndexOf(object [,検索開始するインデックス番号]);
+//最後に見つかったインデックス番号を返す（無い場合-1）
+//第2引数を省略すると最後（List.Capacity-1）から検索
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        Debug.Log(_list.LastIndexOf("C")); //2
+        //最初から検索する場合（第2引数が0の場合は省略可能）
+    }
+}
+```
+
+### 要素の数
+* 構文
+```CSharp
+List.Count; //実際に格納されている要素の数
+List.Capacity; //格納可能な要素の数
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        //List<string> _list = new List<string>() { "A", "B", "C"};
+        List<string> _list = new List<string>(3); //空のArrayListを作成
+        Debug.Log(_list.Count); //0 ←実際に格納されている要素の数
+        Debug.Log(_list.Capacity); //3 ←格納可能な要素の数
+    }
+}
+```
+
+### 並べ替え（反転）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        List<string> _list = new List<string>() { "A", "B", "C", "D"};
+        _list.Reverse();
+        foreach (object value in _list) {
+            Debug.Log(value); // "D"→"C"→"B"→"A"
+        }
+    }
+}
+```
+
+### 並べ替え（ソート）
+* 構文
+```CSharp
+List.Sort(); //引数で範囲や比較方法を指定することも可能
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        //"C", "02", "A", "01", "03", "B" → "01", "02", "03", "A", "B", "C"
+        List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
+        _list.Sort();
+        foreach (object value in _list) {
+            Debug.Log(value); // "01"→"02"→"03"→"A"→"B"→"C"
+        }
+    }
+}
+```
+
+### 結合
+* 構文
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        List<string> _list1 = new List<string>() { "A", "B", "C" };
+        List<string> _list2 = new List<string>() { "D", "E", "F" };
+
+        //_list1の末尾に_list2を結合
+        _list1.AddRange(_list2);
+
+        foreach (object value in _list1) {
+            Debug.Log(value); // "A"→"B"→"C"→"D"→"E"→"F"
+        }
+    }
+}
+```
+
+### 複製
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        List<string> _listCopy = new List<string>(_list); //簡易型コピー方法
+        _list[0] = "X";
+        Debug.Log(_list[0]); //"X"
+        Debug.Log(_listCopy[0]); //"A（参照コピーではない）
+    }
+}
+```
+
+### 文字列→ List
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Listに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "A,B,C,D"; //①元となる文字列
+        string[] _array = _string.Split(','); //②文字列→配列に変換（「配列」参照）
+        List<string> _list = new List<string>(); //③空のListを作成
+        foreach (string _tmp in _array) { //データ型に注意
+            _list.Add(_tmp); //④配列の要素を1つずつListに追加
+        }
+
+        //確認
+        foreach (object value in _array) {
+            Debug.Log(value); // "A"→"B"→"C"→"D"
+        }
+    }
+}
+```
+
+
+### 全要素を取り出す
+1. foreach 文を使う方法
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+    using System.Collections.Generic; //Listに必要
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            List<string> _list = new List<string>() { "A", "B", "C" };
+
+            //全要素を取り出す
+            foreach (object value in _list) {
+                Debug.Log(value); // "A"→"B"→"C"
+            }
+        }
+    }
+    ```
+
+1. for 文を使う方法
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+    using System.Collections.Generic; //Listに必要
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            List<string> _list = new List<string>() { "A", "B", "C" };
+
+            //全要素を取り出す
+            for (int i=0; i < _list.Count; i++) {
+                Debug.Log(_list[i]); // "A"→"B"→"C"
+            }
+        }
+    }
+    ```
+
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
-<a name="self"></a>
-# <b>self</b> ≒ this
+<a name="連想配列（Dictionary）"></a>
+# <b>連想配列（Dictionary）</b>
 
-self は現在のクラスインスタンスを参照するが Python のそれほど重要ではない
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 概要
+* ディクショナリ、ハッシュとも呼ばれる「キー」と「値」の組み合わせを格納するデータ構造
+* 匿名型クラスは、同様のデータ構造を持てるが読取り専用
 
-class MyClass:
-	var _p = null # __p（擬似プライベート変数）にすれば問題ないが…
-	
-	func _init(_p): # 引数がインスタンス名を同じ場合…
-		self._p = _p # この場合は self が必須（重要）
-		print(self) #-> [Reference:1239]（※同じ）
-		self.myMethod() # selfは省略可能
+### 作成方法
+```CSharp
+Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>();
+Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>() {
+    {"キー①", 値①},
+    {"キー②", 値②}, 
+    ......…
+};
+```
 
-	func myMethod():
-		print(_p)
+* 例文
+    ```CSharp
+    //Main.cs
+    using UnityEngine;
+    using System.Collections.Generic; //Dictionaryに必要
+
+    public class Main : MonoBehaviour {
+        void Start() {
+            //①作成（空のDictionaryを作成する場合、{}は不要）
+            Dictionary<string, string> _dic = new Dictionary<string, string>() {
+                {"A", "あ"},
+                {"I", "い"}
+            };
+
+            //②追加
+            _dic.Add("U", "う");
+            _dic.Add("E", "え");
+
+            //③更新
+            _dic["A"] = "ア"; //上書き変更
+
+            //④取得
+            Debug.Log(_dic["A"]); //"ア"
+        }
+    }
+    ```
+
+### キー、値の検索
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections.Generic; //Dictionaryに必要
+
+public class Main : MonoBehaviour {
+    void Start() {
+        //①作成（空のDictionaryを作成する場合、{}は不要）
+        Dictionary<string, string> _dic = new Dictionary<string, string>() {
+            {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
+        };
+
+        Debug.Log(_dic.ContainsKey("B")); //任意のキーがあるか否か（True／False）
+        Debug.Log(_dic.ContainsValue("え")); //任意の値があるか否か（True／False）
+    }
+}
+```
+
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月XX日  
+[[TOP](#TOP)]
 
 
-func _ready():
-	var _myClass = MyClass.new(500)
-	print(_myClass) #-> [Reference:1239]（※同じ）
-	_myClass.myMethod() #-> 500
+<a name="this"></a>
+# <b>this</b>
+
+### this が必要な場合
+1. 「引数」と「インスタンス変数」が同じ場合
+1. 「ローカル変数」と「インスタンス変数」が同じ場合
+* this は、this を記述したメソッドを所有するクラス（オブジェクト）を指す
+
+### 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        Robot _robot = new Robot(500);
+        _robot.Move();
+        Debug.Log(_robot.X); //510
+        Debug.Log(this); //GameObject（このC#に紐付いたGameObject名）
+    }
+}
+
+//カスタムクラス
+class Robot {
+    private int _x; //インスタンス変数（thisは不要）
+    
+    public Robot(int _x) { //引数
+        this._x = _x; //①thisが無いとWarning（引数を参照してしまう）
+        Debug.Log(this); //Robot（このメソッドが実行されたオブジェクト）
+    }
+
+    public void Move() {
+        int _x; //ローカル変数
+        _x = this._x + 10; //②thisが無いとerror（ローカル変数を参照してしまう）
+        if (_x >= 1920) _x = 0;
+        this._x = _x; //②thisが無いとローカル変数を参照してしまう
+        Debug.Log(this); //Robot（このメソッドが実行されたオブジェクト）
+    }
+
+    public int X {
+        get { return _x; } //thisを付けてもよい（通常は省略）
+        private set {}
+    }
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -1847,118 +2674,148 @@ func _ready():
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
-### String オブジェクトの作成
+### string オブジェクトの作成
 * 構文
-```GDScript
-➀変数 = "○○"
-➁変数 = '○○' # ダブルクォーテーション（""）と同じ
-➂変数 = "１行目\n２行目" # 改行を含む場合
+```CSharp
+string 変数名 = "○○"; //文字列リテラルを使う方法
+string 変数名 = new string(new char[]{'○','○',...}); //new演算子とchar型配列を使う方法
 ```
-
 * 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string2 = "あいうえお"
-	var _string1 = 'あいうえお' # "〇〇"と同じ
-	var _string3 = "１行目\n２行目"
+public class Main : MonoBehaviour {
+    void Start() {
+        //①文字列リテラルを使う
+        string _string1 = "ABCDE";
+        Debug.Log(_string1); //"ABCDE"
+
+        //②new演算子とchar型配列を使う
+        string _string2 = new string(new char[]{'A','B','C','D','E'});
+        Debug.Log(_string2); //"ABCDE" 
+    }
+}
 ```
 
 ### 長さを調べる
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string1 = "ABCDE"
-	print(_string1.length()) #-> 5
-	
-	var _string2 = "あいうえお"
-	print(_string2.length()) #-> 5（全角文字も１字扱い）
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "ABCDE";
+        Debug.Log(_string.Length); //5
+    }
+}
 ```
-
-### 文字列の連結
-* 加算演算子を使う場合
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _address1 = "東京都"
-	var _address2 = "新宿区"
-	print(_address1 + _address2) #-> "東京都新宿区"
-```
-* フォーマット文字列を使う場合
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _address = "東京都%s"
-	print(_address % "新宿区") #-> "東京都新宿区"
-```
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#gdscript-format-strings)（フォーマット文字列）  
 
 ### 一部分を取得
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* 構文
+```CSharp
+String[番号] ←0（最初）〜String.Length-1（最後）
+String.Substring(開始 [,文字数])
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string = "0123456789"
-	print(_string[4]) #-> "4"
-	print(_string.substr(4)) #-> "456789"
-	print(_string.substr(4, 3)) #-> "456"
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "0123456789";
+        Debug.Log(_string[4]); //"4"
+        Debug.Log(_string.Substring(4)); //"456789"
+        Debug.Log(_string.Substring(4,3)); //"456"
+    }
+}
 ```
 
 ### 一部分を削除
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* 構文
+```CSharp
+String.Remove(開始位置, 削除する文字数);
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string = "ABCDCBA"
-	print(_string.lstrip("A")) #-> "BCDCBA"（左端から1つ削除）
-	print(_string.rstrip("A")) #-> "ABCDCB"（右端から1つ削除）
-	print(_string) #-> "ABCDCBA"（元は変更なし）
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "にしむらたかし";
+        Debug.Log(_string.Remove(0, 4)); //"たかし"
+    }
+}
 ```
 
 ### 置換
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* 構文
+```CSharp
+String.Replace("置換前の文字列", "置換後の文字列");
+String.Replace('置換前の文字', '置換後の文字');
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string = "2022年2月5日"
-	print(_string.replace("2022年", "令和4年")) #-> "令和4年2月5日"
+public class Main : MonoBehaviour {
+    void Start() {
+       	string _string = "2018年03月13日";
+        Debug.Log(_string.Replace("2018年", "平成30年")); //"平成30年03月13日"
+    }
+}
 ```
 
 ### 検索
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* 構文
+```CSharp
+String.IndexOf("検索したい文字列", 開始位置);
+String.IndexOf('検索したい文字', 開始位置);
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string = "ABCDEFG-ABCDEFG"
-	if ("CD" in _string) : # 見つかった（True）場合…
-		print(_string.find("CD")) #-> 2（左から検索）
-		print(_string.rfind("CD")) #-> 10（右から検索）
+public class Main : MonoBehaviour {
+    void Start() {
+       	string _string = "ABCDEFG-ABCDEFG";
+        string _word = "CD";
+        int _i = 0;
+        while (_string.IndexOf(_word, _i) != -1) { //見つからない場合「-1」
+            int _num = _string.IndexOf(_word, _i);
+            Debug.Log(_num); //2、10 ←"CD"が見つかった位置を出力
+            Debug.Log(_string.Substring(_num, _word.Length)); //"CD"、"CD"
+            _i = _num + 1;
+        }
+    }
+}
 ```
 
 ### 文字列→配列
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+* 構文
+```CSharp
+String.Split('区切り文字');
+```
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _string = "A,B,C" #「,」区切りの文字列
-	var _list = _string.split(',') #「,」区切りで分割して配列化
-	print(_list) #-> [A, B, C]
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "A,B,C,D"; //「,」区切りの文字列
+        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
+        foreach (object value in _array) {
+            Debug.Log(value); // "A"→"B"→"C"→"D"
+        }
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_string.html#string)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -1968,78 +2825,59 @@ func _ready():
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-### 概要
-* 正規表現は、URL、パスワード、メールアドレス等、特定の文字パターンを抽出するのに利用
-* 正規表現の基本文法は、特定のプログラミング言語に依存しない
-* GDScript には以下のサンプル以外にも多くの正規表現の機能が用意されている
+* C# には以下のサンプル以外にも多くの正規表現の機能が用意されています
 
-### 検索
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### マッチした数
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Text.RegularExpressions; //Regexに必要
 
-func _ready():
-	var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
-
-	var _regex = RegEx.new()
-	_regex.compile("吉田")
-	var _result = _regex.search(_string)
-	if _result == null:
-		print("吉田は含まれていません")
-	else:
-		print("吉田は含まれています")
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "cabacbbacbcba";
+        //"a"がいくつ含まれるか
+        MatchCollection _mc = Regex.Matches(_string, "a");
+        Debug.Log(_mc.Count); //4
+    }
+}
 ```
 
-### 置換
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### パスワード
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Text.RegularExpressions; //Regexに必要
 
-func _ready():
-	var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
-
-	var _regex = RegEx.new()
-	_regex.compile("吉田")
-	print(_regex.sub(_string, "よしだ"))
-	#-> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = @"U7eLoERa"; //任意のパスワード（@を付ける）
+        /* 条件
+        8文字以上（全て半角）
+        1文字以上の「数字」を含む
+        1文字以上の大文字および小文字の「英字」を含む
+        */
+        Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");//②
+        Match _match = _regex.Match(_string);
+        Debug.Log(_match.Success); //True ←パスワードとして条件に合致
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
-実行環境：Windows 10、Godot Engine 3.4.2  
-作成者：夢寐郎  
-作成日：2022年02月XX日  
-[[TOP](#TOP)]
+### 郵便番号（7桁）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Text.RegularExpressions; //Regexに必要
 
-
-<a name="抽象クラス"></a>
-# <b>抽象クラス</b>
-
-### 概要
-* GDScript には interface や abstract キーワードは存在しない
-* 以下のサンプルでは疑似的に継承と例外を使って抽象クラスを実現
-
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
-
-# 擬似抽象クラスの定義（実際には単なる基本クラス）
-class AbstractClass:
-	func common(): # 共通の関数
-		print("共通の関数")
-
-	func abstractFunction(): # 擬似抽象関数の宣言（実際は単なる関数）
-		assert(false, "ERROR: 派生クラスで実装する必要があります") # 例外処理
-
-# 派生クラス
-class SubClass extends AbstractClass: #擬似抽象クラスを継承
-	func abstractFunction(): # オーバーライドして実際の処理を記述
-		print("派生クラスでオーバーライドした抽象関数") # 実際の処理
-
-# 実行
-func _ready():
-	var _subClass = SubClass.new()
-	_subClass.common() #-> "共通の関数"
-	_subClass.abstractFunction() #-> "派生クラスでオーバーライドした抽象関数"
+public class Main : MonoBehaviour {
+    void Start() {
+        string _string = "123-4567"; //任意の郵便番号
+        Regex _regex = new Regex("\\d{3}-\\d{4}");
+        Match _match = _regex.Match(_string);
+        Debug.Log(_match.Success); //True ←郵便番号として条件に合致
+    }
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -2048,37 +2886,157 @@ func _ready():
 [[TOP](#TOP)]
 
 
-<a name="."></a>
-# <b>.</b> ≒ super
+<a name="インターフェース"></a>
+# <b>インターフェース</b>
 
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 概要
+* クラスにどのような機能（メソッド）を持たせるか、ということだけを定める
+* 抽象クラスと似ているが、抽象クラスとは異なり、実際の処理は一切記述できない
+* 実際の処理はインターフェースを継承したクラスで定義（実装しないとエラー）
+* 多重実装（複数のインターフェースを同時に指定）や多重継承も可能
 
-# 基本（基底）クラス
-class SuperClass:
-	func _init():
-		print("SuperClass._init()")
-
-	func hoge(arg): # 派生クラスでオーバーライドされる
-		print("SuperClass.hoge(): " + arg)
-
-# 派生クラス
-class SubClass extends SuperClass:
-	func _init():
-		print("SubClass._init()")
-		._init() # 基本クラスのコンストラクタを呼び出す
-	
-	func hoge(arg): # 基本クラスの関数をオーバーライド
-		print("SubClass.hoge(): " + arg)
-		.hoge("Hello2") # 基本クラスの関数を呼び出す
-
-# 実行
-func _ready():
-	var _subClass = SubClass.new()
-	_subClass.hoge("Hello1") 
+### 構文
+```CSharp
+//インターフェースの宣言
+interface Iインターフェース名 { //慣例的にインターフェース名の先頭にIを付けます
+    戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]); //暗黙的にpublic扱い
+    ......
+}
+//インターフェースの実装
+class クラス名 : Iインターフェース名 { ......
 ```
-（要調査）コンストラクタに引数がある場合構文エラー発生  
+
+### 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start() {
+        Moneybox _moneybox = new Moneybox();
+        _moneybox.Add(5000);
+        Debug.Log(_moneybox.Total); //5000
+    }
+}
+
+//インターフェースの宣言
+interface IMoneybox {
+    void Add(int _money); //通常のメソッド（暗黙的にpublicになる）
+    int Total { get; set; } //get/setアクセサ（暗黙的にpublicになる）
+}
+
+//インターフェースの実装（継承との併用は,を使う）
+class Moneybox : IMoneybox {
+    private int _total = 0;
+    public void Add(int _money) { _total += _money; } 
+    public int Total {
+        get { return _total; }
+        set { _total = value; }
+    }
+}
+```
+
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月XX日  
+[[TOP](#TOP)]
+
+
+<a name="抽象クラス（abstract）"></a>
+# <b>抽象クラス（abstract）</b>
+
+### 概要
+* 派生クラスに"実装しなければならないメソッド"を抽象クラスで定義する
+* 実際の処理は、抽象クラスを継承した派生クラスで、抽象メソッドを override して記述
+
+### 構文
+```CSharp
+abstract class Abstract○○ { //抽象クラスの定義
+    public abstract 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
+}
+
+class SubClass : Abstract○○ { //抽象クラスの継承
+    public override 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
+        //実際の処理
+    }
+    ……
+```
+
+### 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        SubClass _subClass = new SubClass();
+        _subClass.Common(); //"AbstractClass.Common()"
+        _subClass.Method(); //"SubClass.Method()"
+    }
+}
+
+abstract class AbstractClass { //「抽象クラス」の定義
+    public void Common() { //共通のメソッド
+        Debug.Log("AbstractClass.Common()");
+    }
+    public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
+}
+
+class SubClass : AbstractClass { //抽象クラスを継承
+    public override void Method() { //オーバーライドして実際の処理を記述
+        Debug.Log("SubClass.Method()"); //実際の処理
+    }
+}
+```
+
+実行環境：Windows 10、Godot Engine 3.4.2  
+作成者：夢寐郎  
+作成日：2022年02月XX日  
+[[TOP](#TOP)]
+
+
+<a name="baseキーワード"></a>
+# <b>base キーワード</b>
+
+### 概要
+基本クラスに定義されたコンストラクタ（private 以外）は、派生クラスのコンストラクタが実行される直前に必ず実行される。その際、基本クラスのコンストラクタへ、派生クラスのコンストラクタから引数を渡すことがbaseを使うことで可能になる（≒ super）。base.メソッド() で基本クラスのメソッドを呼び出す事が可能（「[オーバーライド](#オーバーライド)」参照）。
+
+### 書式
+```CSharp
+class 基本クラス名 { 
+    public 基本クラス名(型 引数) { //基本クラスのコンストラクタ
+        //引数を使った処理etc.
+    }
+}
+class 派生クラス名 : 基本クラス名 { //派生クラス（基本クラスを継承）
+    public 派生クラス名() : base(引数) { //派生クラスのコンストラクタ
+    }
+}
+```
+
+### 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        SubClass _subClass = new SubClass("A");
+    }
+}
+
+class SuperClass { //基本クラス
+    public SuperClass(string p1, string p2) { //基本クラスのコンストラクタ
+        Debug.Log("SuperClass:" + p1 + ":" + p2); //①番目（p1は"A"、p2は"B"）
+    }
+}
+
+class SubClass : SuperClass { //派生クラス
+    public SubClass(string p) : base(p, "B") { //派生クラスのコンストラクタ
+        Debug.Log("SubClass:" + p); //②番目（pは"A"）
+    } 
+}
+```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -2090,29 +3048,90 @@ func _ready():
 # <b>オーバーライド</b>
 
 ### 概要
-* 基本クラスで定義したメソッドを派生クラスで再定義することをオーバーライドと呼ぶ
-* GDScript には override キーワードはない
-* 派生クラスから基本クラスのメソッドを呼び出したい場合は **.関数名()** を使う
+* 基本クラス（または抽象クラス）で定義したメソッドを、派生クラスで再定義することをオーバーライドと呼ぶ
+* オーバーライドできるメソッドは、基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
+* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[base キーワード](#baseキーワード)」参照）。
 
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 「仮想メソッド」のオーバーライド
+* 書式
+```CSharp
+class 基本クラス名 {
+    アクセス修飾子 virtual 戻り値の型 メソッド名([型 引数]) {
+        ……
+    }
+    ……
+}
+class 派生クラス名 : 基本クラス { //派生クラス（基本クラスを継承）
+    アクセス修飾子 override 戻り値の型 メソッド名([型 引数]) { 
+        base.メソッド名(引数); //基本クラスのメソッドを呼び出す（オプション）
+        …… 
+    }
+    ……
+}
+```
 
-# 基本クラス
-class SuperClass:
-	func myFunction(): # 派生クラスでオーバーライドされる
-		print("基本クラスのmyFunction()")
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-# 派生クラス
-class SubClass extends SuperClass: #擬似抽象クラスを継承
-	func myFunction(): # 基本クラスの関数をオーバーライドする
-		print("派生クラスのmyFunction()")
-		.myFunction() # 基本クラスのmyFunction()を呼出す場合
+public class Main : MonoBehaviour {
+    void Start () {
+        SubClass _subClass = new SubClass();
+        _subClass.Method();
+    }
+}
 
-# 実行
-func _ready():
-	var _subClass = SubClass.new()
-	_subClass.myFunction()
+class SuperClass { //基本クラス
+    public virtual void Method() { //オーバーライドを許可
+        Debug.Log("SuperClass.Method");
+    }
+}
+
+class SubClass : SuperClass { //派生クラス（基本クラスを継承）
+    public override void Method() { //基本クラスのメソッドのオーバーライド
+        Debug.Log("SubClass.Method");
+        base.Method(); //"SuperClass.Method"←基本クラスのメソッド実行（オプション）
+    } 
+}
+```
+
+### 「抽象メソッド」のオーバーライド
+* 書式
+```CSharp
+abstract class 抽象クラス名 { //抽象クラスの定義
+    アクセス修飾子 abstract 型 抽象メソッド名([型 引数]); //抽象メソッド宣言
+    ……
+}
+class 派生クラス : 抽象クラス名 { //抽象クラスを継承
+    アクセス修飾子 override 型 抽象メソッド名([型 引数]) { //オーバーライド
+        //実際の処理
+    }
+    ……
+}
+```
+
+* 例文
+```CSharp
+//Main.cs
+using UnityEngine;
+
+public class Main : MonoBehaviour {
+    void Start () {
+        SubClass _subClass = new SubClass();
+        _subClass.Method();
+    }
+}
+
+abstract class AbstractClass { //抽象クラス
+    public abstract void Method(); //抽象メソッドの宣言
+}
+
+class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
+    public override void Method() { //オーバーライドして実際の処理を記述
+        Debug.Log("AbstractClass.Method");
+    } 
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -2124,41 +3143,71 @@ func _ready():
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 概要
+イベントとは、あるアクションが発生したことを自動的に通知する仕組み。カスタムクラス内で何か処理をし終えた際、別のオブジェクトにそのことを知らせる場合に、このイベント機能を使用。イベントを設定したカスタムクラスからは、情報（イベント）を発信するだけ。情報を受けたいオブジェクトは、リスナーメソッドを準備して待ち受ける...。このことにより、カスタムクラスを汚さずに済む、というメリットが生まれる。C# に用意された event は、特殊なデリゲート（delegate）と言えるものです。デリゲートとの違いは、event 宣言した変数（イベント名）には、イベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等。
 
-#==============
-# カスタムクラス 
-#==============
-class MyGame:
-	signal gameover #イベント名の定義
-	
-	#疑似プライベート変数
-	var __energy = 100
+### 書式
+* イベントの設定
+```CSharp
+class クラス名 {
+    public delegate void デリゲート名([型 引数]); //デリゲート宣言
+    public event デリゲート名 イベント名; //これにイベントハンドラを登録
+    public 戻り値の型 メソッド名([型 引数]) { //イベントを発生させたいメソッド
+        ……
+        イベント名([引数]); //ここでイベントハンドラを呼出す!
+    }
+    ……
+}
+```
 
-	func _init(): #コンストラクタ
-		pass
+* イベントハンドラの登録
+```CSharp
+クラス名 ○ = new クラス名();
+○.イベント名 += イベントハンドラ名; //イベントハンドラを削除する場合「-=」
+……
+static 戻り値の型 イベントハンドラ名([型 引数]) {
+    //イベントが発生した際に処理すること
+}
+```
 
-	func fight():
-		__energy -= 20
-		if (__energy <= 0):
-			emit_signal("gameover") #イベント発生
+### 例文
+```CSharp
+//Main.cs
+using UnityEngine;
 
-#=====
-# 実行
-#=====
-func _ready():
-	var _robot = MyGame.new()
-	_robot.connect("gameover", self, "gameoverHandler") #≒addEventListener
-	_robot.fight()
-	_robot.fight()
-	_robot.fight()
-	_robot.fight()
-	_robot.fight() #-> GAMEOVER
+public class Main : MonoBehaviour {
+    void Start () {
+        MyGame _myGame = new MyGame();
+        _myGame.GameOverEvent += GameOverHandler_myGame; //複数登録可能（+=、-=のみ）
+        //_myGame.GameOverEvent -= GameOverHandler_myGame; //イベントハンドラの削除
+        for (int i=0; i<10; i++) { //10回繰返す場合…
+            Debug.Log("得点:" + _myGame.Point);
+            _myGame.AddPoint();
+        }
+    }
 
-func gameoverHandler(): #前方定義でなくてもよい
-	print("GAMEOVER")
+    static void GameOverHandler_myGame(object arg) { //イベントハンドラ
+        Debug.Log("ゲームオーバー! " + arg); //"ゲームオーバー! MyGame"
+    }
+}
+
+//イベントを設定するクラス
+class MyGame {
+    private int _point = 0;
+    public delegate void MyEventHandler(object arg); //デリゲート宣言
+    public event MyEventHandler GameOverEvent; //これにイベントハンドラを登録
+    public void AddPoint() { //イベントを発生させたいメソッド
+        if (++_point >= 10) {
+            if (GameOverEvent != null) {
+                GameOverEvent(this); //イベントハンドラの呼出し
+            }
+        }
+    }
+    public int Point {
+        get { return _point; }
+        private set {} //読取専用
+    }
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -2167,95 +3216,202 @@ func gameoverHandler(): #前方定義でなくてもよい
 [[TOP](#TOP)]
 
 
-<a name="数学関数"></a>
-# <b>数学関数</b>
+<a name="数学関数（Math）"></a>
+# <b>数学関数（Math）</b>
 
-### abs() : 絶対値
-```GDScript
-print(abs(100)) #-> 100
-print(abs(-100)) #-> 100
+### Math.Sin() : サイン（正弦）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Sin(0)); //0 ←0°
+        Debug.Log(Math.Sin(Math.PI/2)); //1 ←90°
+        Debug.Log(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
+        Debug.Log(Math.Sin(Math.PI*3/2)); //-1 ←270°
+        Debug.Log(Math.Sin(Math.PI*2)); //-2.44921270764475E-16（≒0）←360°
+    }
+}
 ```
 
-### atan2() : アークタンジェント2
-* 2つの値のアークタンジェント（逆タンジェント）
-* X、Y 座標の角度をラジアン単位で返す
-* Π ラジアン（3.141592…）は180°
-```GDScript
-var _disX = sqrt(3) # √3のこと
-var _disY = 1
-print(atan2(_disY, _disX)) #-> 0.523599（ラジアン）
-print(180 * atan2(_disY, _disX) / PI) #-> 30（度）
+### Math.Cos() : コサイン（余弦）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Cos(0)); //1 ←0°
+        Debug.Log(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
+        Debug.Log(Math.Cos(Math.PI)); //-1 ←180°
+        Debug.Log(Math.Cos(Math.PI*3/2)); //-1.83690953073357E-16（≒0）←270°
+        Debug.Log(Math.Cos(Math.PI*2)); //1 ←360°
+    }
+}
 ```
 
-### ceil() : 切り上げ
-```GDScript
-print(ceil(1.001)) #-> 2
-print(ceil(1.999)) #-> 2
+### Math.Atan2() : アークタンジェント2
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        //2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
+        //Πラジアン（3.141592…）は180°
+        //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
+        double _disX = Math.Sqrt(3); //√3のこと
+        int _disY = 1;
+        Debug.Log(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
+        Debug.Log(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
+    }
+}
 ```
 
-### cos() : コサイン（余弦）
-```GDScript
-print(cos(0)) #-> 1（0°）
-print(cos(PI / 2)) #-> 0（90°）
-print(cos(PI)) #-> -1（180°）
-print(cos(PI * 3 / 2)) #-> -0（270°）←要注意
-print(cos(PI * 2)) #-> 1（360°）
+### Math.PI : 円周率
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
+    }
+}
 ```
 
-### floor() : 切り捨て
-```GDScript
-print(floor(1.001)) #-> 1
-print(floor(1.999)) #-> 1
+### Math.Floor() : 切り捨て
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Floor(1.001)); //1
+        Debug.Log(Math.Floor(1.999)); //1
+    }
+}
 ```
 
-### max() : 比較（最大値）
-```GDScript
-print(max(5.01, -10)) #-> 5.01（2つの数値の比較）
+### Math.Ceiling() : 切り上げ
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Ceiling(1.001)); //2
+        Debug.Log(Math.Ceiling(1.999)); //2
+    }
+}
 ```
 
-### min() : 比較（最小値）
-```GDScript
-print(min(5.01, -10)) #-> -10（2つの数値の比較）
+### Math.Round() : 四捨五入
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Round(1.499)); //1
+        Debug.Log(Math.Round(1.500)); //2
+    }
+}
 ```
 
-### PI : 円周率
-```GDScript
-print(PI) #-> 3.141593
-print(PI == 3.141593) #-> False
+### Math.Abs() : 絶対値
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Abs(100)); //100
+        Debug.Log(Math.Abs(-100)); //100
+    }
+}
 ```
 
-### pow() : 累乗（べき乗）
-```GDScript
-print(pow(2, 0)) #-> 1（2の0乗）
-print(pow(2, 8)) #-> 256（2の8乗）
+### Math.Pow() : 累乗（○の□乗）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Pow(2, 0)); //1（2の0乗）
+        Debug.Log(Math.Pow(2, 8)); //256（2の8乗）
+    }
+}
 ```
 
-### round() : 四捨五入
-```GDScript
-print(round(1.499)) #-> 1
-print(round(1.500)) #-> 2
+### Math.Sqrt() : 平方根（√○）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
+        Debug.Log(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
+        Debug.Log(Math.Sqrt(4)); //2
+        Debug.Log(Math.Sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+    }
+}
 ```
 
-### sin() : サイン（正弦）
-```GDScript
-print(sin(0)) #-> 0（0°）
-print(sin(PI / 2)) #-> 1（90°）
-print(sin(PI)) #-> 0（180°）
-print(sin(PI * 3 / 2)) #-> -1（270°）
-print(sin(PI * 2)) #-> -0（360°）
-print(sin(PI * 2) == 0) #-> False（要注意）
+### Math.Max() : 比較（最大値）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
+    }
+}
 ```
 
-### sqrt() : 平方根（√XXX）
-```GDScript
-print(sqrt(2)) #-> 1.414214（一夜一夜にひとみごろ）
-print(sqrt(3)) #-> 1.732051（人並みに奢れや）
-print(sqrt(4)) #-> 2
-print(sqrt(5)) #-> 2.236068（富士山麓オウム鳴く）
-print(sqrt(6)) #-> 2.44949（二夜シクシク）
+### Math.Min() : 比較（最小値）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)  
+### Math.Sign() : 符号（正か負の値か）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //Mathに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(Math.Sign(-0.1)); //-1（負の値）
+        Debug.Log(Math.Sign(0)); //0（0）
+        Debug.Log(Math.Sign(0.1)); //1（正の値）
+    }
+}
+```
+
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -2264,65 +3420,63 @@ print(sqrt(6)) #-> 2.44949（二夜シクシク）
 
 <a name="乱数"></a>
 # <b>乱数</b>
+* Unity の独自仕様（一般的な C# の Random クラスとは異なります）
 
-### 0.0〜1.0未満
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 0〜1.0 未満
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _random = RandomNumberGenerator.new()
-	_random.randomize() # シード値の初期化（任意）
-	
-	print(_random.randf()) #-> 0.521781（0.0〜1.0以下）
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(UnityEngine.Random.value); //0〜0.999…（1.0未満）
+    }
+}
 ```
-（注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
-### 最小値〜最大値（float型）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 最小値〜最大値（float 型）
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _random = RandomNumberGenerator.new()
-	_random.randomize() # シード値の初期化（任意）
-	
-	print(_random.randf_range(0, 100)) #-> 35.13369（0.0〜100.0以下）
+public class Main : MonoBehaviour {
+    void Start () {
+        Debug.Log(UnityEngine.Random.Range(-0.3f, 0.8f)); //-0.3〜0.8以下
+    }
+}
 ```
-（注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
-
 
 ### 最小値〜最大値（int型）
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
 
-func _ready():
-	var _i0=0; var _i1=0; var _i2=0; var _i3=0; var _i4=0
-	var _i5=0; var _i6=0; var _i7=0; var _i8=0; var _i9=0
+public class Main : MonoBehaviour {
+    void Start () {
+        int _u5=0,_u4=0,_u3=0,_u2=0,_u1=0,_o0=0,_o1=0,_o2=0,_o3=0,_o4=0,_o5=0;
 
-	var _random = RandomNumberGenerator.new()
-	_random.randomize() # シード値の初期化（任意）
+        for (int i=0; i < 1000000; i++) {
+            switch (UnityEngine.Random.Range(-5, 5)) {
+                case -5: _u5++; break;
+                case -4: _u4++; break;
+                case -3: _u3++; break;
+                case -2: _u2++; break;
+                case -1: _u1++; break;
+                case  0: _o0++; break;
+                case  1: _o1++; break;
+                case  2: _o2++; break;
+                case  3: _o3++; break;
+                case  4: _o4++; break;
+                case  5: _o5++; break;
+            }
+        }
 
-	for i in range(0, 100000): # 0～100000までの配列
-		var _tmp = _random.randi_range(0, 9) # 0～9の整数
-		if (_tmp == 0): _i0 += 1
-		elif (_tmp == 1): _i1 += 1
-		elif (_tmp == 2): _i2 += 1
-		elif (_tmp == 3): _i3 += 1
-		elif (_tmp == 4): _i4 += 1
-		elif (_tmp == 5): _i5 += 1
-		elif (_tmp == 6): _i6 += 1
-		elif (_tmp == 7): _i7 += 1
-		elif (_tmp == 8): _i8 += 1
-		elif (_tmp == 9): _i9 += 1
-		else: print("Error")
-	print([_i0, _i1, _i2, _i3, _i4, _i5, _i6, _i7, _i8, _i9])
-	#-> [10079, 10000, 10150, 10161, 10097, 9901, 10091, 9704, 9912, 9905]
+        Debug.Log(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
+        //99736,100201,100107,99676,100238,100700,99774,100459,99486,99623,0
+    }
+}
 ```
-（注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#randomnumbergenerator)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -2333,46 +3487,114 @@ func _ready():
 # <b>日時情報</b>
 
 ### 書式
-```GDScript
-var XXX = OS.get_datetime()
-XXX.year # 年（2016等）
-XXX.month # 月（1〜12）
-XXX.day # 日（1〜31）
-XXX.weekday() # 0（日曜）〜6（土曜）←Pythonと異なる
-XXX.hour # 時間（0〜23）
-XXX.minute # 分（0〜59）
-XXX.second # 秒（0〜59）
-XXX.dst # サマータイム（True or False）
-# マイクロ秒を取得する場合 OS.get_system_time_msecs() を利用
+```CSharp
+DateTime ○ = DateTime.Now; //DateTimeは構造体
+○.Year; //年（2017等）
+○.Month; //月（1〜12）
+○.Day; //日（1〜31）
+○.DayOfYear; //元日から日数（1〜366）
+○.DayOfWeek; //曜日（Sanday〜Saturday）
+○.Hour; //時間（0〜23）
+○.Minute; //分（0〜59）
+○.Second; //秒（0〜59）
+○.Millisecond; //ミリ秒（0〜999）
+○.Ticks; //0001年1月1日00:00:00からの経過時間（ナノ秒）：但し精度は10ミリ秒
 ```
 
 ### 例文
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //DateTimeに必要
 
-func _ready():
-	var _now = OS.get_datetime()
-	print(_now) #-> {day:9, dst:False, hour:18, minute:21, month:1, second:45, weekday:0, year:2022}
-	print(_now.year) # 年（2017等）
-	print(_now.month) # 月（1〜12）
-	print(_now.day) # 日（1〜31）
-	print(_now.weekday) #0（日曜）〜6（土曜）←Pythonと異なる
-	print(_now.hour) # 時間（0〜23）
-	print(_now.minute) # 分（0〜59）
-	print(_now.second) # 秒（0〜59）
+public class Main : MonoBehaviour {
+    void Start () {
+        DateTime _now = DateTime.Now;
+        Debug.Log(_now); //2018/03/13 18:00:08
+        Debug.Log(_now.Year); //2018
+        Debug.Log(_now.Month); //3
+        Debug.Log(_now.Day); //13
+        Debug.Log(_now.DayOfYear); //72（元日からの日数）
+        Debug.Log(_now.DayOfWeek); //Tuesday
+        Debug.Log(_now.Hour); //18
+        Debug.Log(_now.Minute); //0
+        Debug.Log(_now.Second); //8
+        Debug.Log(_now.Millisecond); //853
+        Debug.Log(_now.Ticks); //636565608088534190（100ナノ秒単位）
+        
+        //"hh:mm:ss"で現在の時間を表示する方法
+        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
+        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
+        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
+        Debug.Log(_h + ":" + _m + ":" + _s); //"18:00:08"
+    }
+}
+```
+
+### 万年カレンダー
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //DateTimeに必要
+
+public class Main : MonoBehaviour {
+	void Start() {
+		Calender(2016,2); //2016年2月の場合
+	}
 	
-	#"hh:mm:ss"で現在の時間を表示する方法
-	var _h
-	var _m
-	var _s
-	if (_now.hour < 10) : _h = "0" + str(_now.hour)
-	else: _h = str(_now.hour)
-	if (_now.minute < 10) : _m = "0" + str(_now.minute)
-	else: _m = str(_now.minute)
-	if (_now.second < 10) : _s = "0" + str(_now.second)
-	else: _s = str(_now.second)
-	print(_h + ":" + _m + ":" + _s) #-> "18:21:45"
+	void Calender(int _year, int _month) {
+		DateTime _dateTime = new DateTime(_year, _month, 1); //○年○月1日
+
+		int _fistWeek = (int)_dateTime.DayOfWeek; //その日が何曜日か（0は日曜日）
+
+		int _lastDay = DateTime.DaysInMonth(_year, _month); //月の最終日は何日か
+
+		//各週を配列化〜各配列に値（日にち）を代入
+		int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
+		int[] _4week = new int[7], _5week = new int[7];
+
+		int _count = 1; //代入する日にち
+
+		//第1週
+		for (int i=_fistWeek; i<_1week.Length; i++) {
+			_1week[i] = _count++;
+		}
+
+		//第2週
+		for (int i=0; i<_2week.Length; i++) {
+			_2week[i] = _count++;
+		}
+
+		//第3週
+		for (int i=0; i<_3week.Length; i++) {
+			_3week[i] = _count++;
+		}
+
+		//第4週
+		for (int i=0; i<_4week.Length; i++) {
+			_4week[i] = _count++;
+		}
+
+		//第5週
+		for (int i=0; i<_5week.Length; i++) {
+			if (_count <= _lastDay) {
+				_5week[i] = _count++;
+			}
+		}
+
+		//結果＝カレンダー表示（うるう年に対応）
+		Debug.Log("第1週");
+		for (int i=0; i<=6; i++) { Debug.Log(_1week[i]);} // 0, 1, 2, 3, 4, 5, 6
+		Debug.Log("第2週");
+		for (int i=0; i<=6; i++) { Debug.Log(_2week[i]); } // 7, 8, 9,10,11,12,13
+		Debug.Log("第3週");
+		for (int i=0; i<=6; i++) { Debug.Log(_3week[i]); } //14,15,16,17,18,19,20
+		Debug.Log("第4週");
+		for (int i=0; i<=6; i++) { Debug.Log(_4week[i]); } //21,22,23,24,25,26,27
+		Debug.Log("第5週");
+		for (int i=0; i<=6; i++) { Debug.Log(_5week[i]); } //28,29, 0, 0, 0, 0, 0
+	}
+}
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
@@ -2384,43 +3606,57 @@ func _ready():
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### 一度だけ実行する場合
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 繰り返し実行する
+* システムタイマー（System.Timers.Timer）を利用する方法
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //ElapsedEventHandlerに必要
+using System.Timers; //System.Timers.Timerに必要
 
-func timeOut():
-	print("一度だけ実行したい処理")
+public class Main : MonoBehaviour {
+    private static Timer _timer; //privateは省略可
 
-func _ready():
-	var _timer = Timer.new()
-	_timer.set_wait_time(3.0) # 3.0秒後に実行したい場合（初期値1.0）
-	_timer.set_one_shot(true) # ポイント（繰り返す場合は不要）
-	_timer.connect("timeout", self, "timeOut")
-	self.add_child(_timer) # selfは省略可能
-	_timer.start()
+    void Start () {
+        _timer = new Timer(); //タイマーの生成
+        _timer.Interval = 1000; //1000ミリ秒間隔
+        _timer.Elapsed += new ElapsedEventHandler(Loop); //イベントハンドラの追加
+        _timer.Start(); //開始
+    }
+    
+    static void Loop(object arg1, EventArgs arg2) { //1000ミリ秒毎に実行される
+        Debug.Log(arg1); //System.Timers.Timer（タイマー本体）
+        Debug.Log(arg2); //System.Timers.ElapsedEventArgs（各種情報）
+        //_timer.Stop(); //停止 ←この場合１回で停止
+    }
+}
 ```
-※繰り返す場合は **.set_one_shot(true)** は不要  
+* ほかに MonoBehaviour.[InvokeRepeating()](https://docs.unity3d.com/ja/current/ScriptReference/MonoBehaviour.InvokeRepeating.html) を使う方法もあり
 
-### 繰り返し実行する場合
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 〇秒後に一度だけ実行する
+* コールチンを利用する場合
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.Collections; //IEnumeratorに必要
 
-func loop():
-	print("繰返し実行したい処理")
+public class Main : MonoBehaviour {
+    void Start () {
+        TimerStart(3f);
+    }
 
-func _ready():
-	var _timer = Timer.new()
-	_timer.set_wait_time(2.0) # 2.0秒毎に実行したい場合（初期値1.0）
-	_timer.connect("timeout", self, "loop")
-	self.add_child(_timer) # selfは省略可能
-	_timer.start()
-	#_timer.stop() #ループを止める場合
+    void TimerStart(float arg) { //メソッド名は任意
+        StartCoroutine(TimerEnd(arg)); //引数無しの場合"TimerEnd"でもよい
+    }
+
+    IEnumerator TimerEnd(float arg) { //メソッド名は任意
+        yield return new WaitForSeconds(arg);
+        Debug.Log(arg + "秒後に実行");
+    }
+}
 ```
-※一度だけ実行する場合は **.set_one_shot(true)** が必要  
+* ほかに MonoBehaviour.[Invoke()](https://github.com/mubirou/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) を使う方法もあり
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -2429,27 +3665,25 @@ func _ready():
 
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
+* DateTime 構造体を利用します
+* 他に Stopwatch クラスを利用する方法もありますが、その場合 UnityEngine と System.Diagnostics がバッティングする為に Debug.Log() が使えません
 
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+//Main.cs
+using UnityEngine;
+using System; //DateTimeに必要
 
-func _ready():
-	# UNIX時間（1970年1月1日0:00からの経過時間＝ミリ秒）
-	var _start = OS.get_system_time_msecs()
-
-	#===========================================
-	# ここに計測したい様々な処理を記述
-	for i in range(0,100000000): #1億回繰り返す
-		#速度計測したい処理
-		pass #今回は何もしない
-	#===========================================
-
-	var _result = OS.get_system_time_msecs() - _start
-	print(str(_result) + " sec.") #-> 4189 sec.
+public class Main : MonoBehaviour {
+    void Start () {
+        long _start = DateTime.Now.Ticks; //100ナノ秒単位（精度は10ミリ秒）
+        for (long i=0; i<1000000000; i++) { //10億回繰り返す場合…
+            //速度計測したい処理
+        }
+        Debug.Log(DateTime.Now.Ticks - _start); //19560350（≒2秒）
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_os.html#os)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
@@ -2458,30 +3692,51 @@ func _ready():
 
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
+* [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はありません
 
-sample.txt（UTF-8として保存）
+### テキストファイルの用意
+* sample.txt / UTF-8 として Project フォルダ内に保存
 ```
 あいうえお
 かきくけこ
 さしすせそ
 ```
 
-```GDScript
-#test.gd
-extends Spatial #2Dの場合はNode2D
+### 例文（StreamReader クラスを使う方法）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.IO; //StreamReaderに必要
 
-func _ready():
-	var _file = File.new()
-	_file.open("res://sample.txt", File.READ)
-	print(_file.get_as_text())
-	_file.close()
-
-#-> あいうえお
-#-> かきくけこ
-#-> さしすせそ
+public class Main : MonoBehaviour {
+    void Start () {
+        string _path = "sample.txt";
+        //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
+        StreamReader _stream = new StreamReader(_path); //.txt以外も可能
+        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
+        _stream.Close(); //閉じる
+        Debug.Log(_string); //結果を出力
+    }
+}
 ```
 
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_file.html#file)  
+###  例文（File.OpenTextメソッドを使う方法）
+```CSharp
+//Main.cs
+using UnityEngine;
+using System.IO; //StreamReaderに必要
+
+public class Main : MonoBehaviour {
+    void Start () {
+        string _path = "sample.txt";
+        StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
+        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
+        _stream.Close(); //閉じる
+        Debug.Log(_string); //結果を出力
+    }
+}
+```
+
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月XX日  
