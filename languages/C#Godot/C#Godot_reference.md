@@ -311,9 +311,9 @@ class MyClass { // クラスの定義
     public class Main : MonoBehaviour {
         void Start() {
             Debug.Log(true.GetType()); //=> System.Boolean
-            Debug.Log(100.GetType()); //=> System.Int32
-            Debug.Log(10000000000.GetType()); //=> System.UInt64
-            Debug.Log(0.1.GetType()); //=> System.Double
+            Debug.Log((100).GetType()); //=> System.Int32
+            Debug.Log((10000000000).GetType()); //=> System.UInt64
+            Debug.Log((0.1).GetType()); //=> System.Double
             Debug.Log('1'.GetType()); //=> System.Char
             Debug.Log("1".GetType()); //=> System.String
             Debug.Log(new {}.GetType()); //=> <>__AnonType0
