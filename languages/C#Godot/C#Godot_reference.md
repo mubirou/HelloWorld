@@ -253,7 +253,7 @@ class MyClass { // クラスの定義
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月12日  
 [[TOP](#TOP)]
 
 
