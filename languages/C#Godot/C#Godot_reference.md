@@ -116,7 +116,7 @@
     * データ型[] : 任意のデータ型の配列
 
 ### 検証
-予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます
+予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#helloworld)）
 ```CSharp
 //Main.cs
 using Godot;
