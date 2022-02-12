@@ -6,7 +6,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)）
-* [コメント](#コメント)
+* [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -41,10 +41,10 @@
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
 
-<a name="コメント"></a>
-# <b>コメント</b>
+<a name="コメントアウト"></a>
+# <b>コメントアウト</b>
 
-### 1行コメント
+### 1行コメントアウト
 
 ```GDScript
 # 〇〇〇〇〇
@@ -55,10 +55,10 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ```
 
 ```GDScript
-"""〇〇〇〇〇""""
+""" 〇〇〇〇〇 """"
 ```
 
-### 複数行コメント
+### 複数行コメントアウト
 
 ```GDScript
 """
@@ -68,10 +68,10 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ```
 
 ```GDScript
-"""コメント開始
+""" コメントアウト開始
 〇〇〇〇〇
 〇〇〇〇〇
-コメント終了"""
+コメントアウト終了 """
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88#comments)  

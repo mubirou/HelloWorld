@@ -9,7 +9,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
-* <!--[コメント](#コメント)-->
+* [コメントアウト](#コメントアウト)
 * <!--データ型](#データ型)-->
 * <!--データ型の操作](#データ型の操作)-->
 * <!--クラス](#クラス)-->
@@ -44,37 +44,37 @@
 * <!--外部テキストの読み込み](#外部テキストの読み込み)-->
 ***
 
-<a name="コメント"></a>
-# <b>コメント</b>
+<a name="コメントアウト"></a>
+# <b>コメントアウト</b>
 
-### 1行コメント
+### 1行コメントアウト
 
-```GDScript
-# 〇〇〇〇〇
+```CSharp
+// 〇〇〇〇〇
 ```
 
-```GDScript
-var _x = 1 + 1 # 〇〇〇〇〇
+```CSharp
+var _x = 1 + 1; // 〇〇〇〇〇
 ```
 
-```GDScript
-"""〇〇〇〇〇""""
+```CSharp
+/* 〇〇〇〇〇 */
 ```
 
-### 複数行コメント
+### 複数行コメントアウト
 
-```GDScript
-"""
+```CSharp
+/*
 〇〇〇〇〇
 〇〇〇〇〇
-"""
+*/
 ```
 
-```GDScript
-"""コメント開始
+```CSharp
+/* コメントアウト開始
 〇〇〇〇〇
 〇〇〇〇〇
-コメント終了"""
+コメントアウト終了 */
 ```
 
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88#comments)  
