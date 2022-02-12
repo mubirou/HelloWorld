@@ -10,7 +10,7 @@
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
-* <!--データ型](#データ型)-->
+* [データ型](#データ型)（この項目は書きかけです）
 * <!--データ型の操作](#データ型の操作)-->
 * <!--クラス](#クラス)-->
 * <!--基本クラスと派生クラス](#基本クラスと派生クラス)-->
@@ -253,7 +253,7 @@ class MyClass { // クラスの定義
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月03日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -354,7 +354,7 @@ print(typeof(_tmp)) #-> 4（String型）
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#placeholder-types)（String型の〇進数変換）  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月13日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -440,7 +440,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月04日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -536,7 +536,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月05日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -573,7 +573,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月13日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -624,7 +624,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月06日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -767,8 +767,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月08日  
-更新日：2022年01月09日 ローカル変数を修正  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -855,7 +854,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月06日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]  
 
 
@@ -916,7 +915,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#operators)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -958,7 +957,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1102,7 +1101,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月15日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1114,7 +1113,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月15日
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1215,7 +1214,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月08日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1241,7 +1240,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1307,7 +1306,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#match)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2021年01月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1375,7 +1374,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#for)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1437,7 +1436,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#while)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月24日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1712,8 +1711,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月25日  
-更新日：2022年02月09日 シャッフルを追加  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1810,7 +1808,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月27日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1842,7 +1840,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月28日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -1963,7 +1961,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_string.html#string)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月05日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2009,7 +2007,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月05日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2046,7 +2044,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月06日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2084,7 +2082,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月04日   
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2119,7 +2117,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月06日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2165,7 +2163,7 @@ func gameoverHandler(): #前方定義でなくてもよい
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月05日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2260,7 +2258,7 @@ print(sqrt(6)) #-> 2.44949（二夜シクシク）
 参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月10日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2327,7 +2325,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#randomnumbergenerator)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2379,7 +2377,7 @@ func _ready():
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2425,7 +2423,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2454,7 +2452,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_os.html#os)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
 
 
@@ -2486,5 +2484,5 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_file.html#file)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月09日  
+作成日：2022年02月XX日  
 [[TOP](#TOP)]
