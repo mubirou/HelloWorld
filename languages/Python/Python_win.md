@@ -37,7 +37,7 @@
     1. 任意の場所（今回はデスクトップ上に作成）に test<b>.py</b> という名で保存  
 
 1. コードの記述
-    ```
+    ```py
     #test.py
     class MyClass(object): #(object)は省略可能
         print("Hello,world!")
