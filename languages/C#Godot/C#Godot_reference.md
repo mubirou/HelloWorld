@@ -18,8 +18,8 @@
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ（getter / setter）](#アクセサ)
-* [演算子](#演算子)（この項目は書きかけです）
-* <!--[定数](#定数)-->
+* [演算子](#演算子)
+* [定数](#定数)（この項目は書きかけです）
 * <!--[関数](#関数)-->
 * <!--[静的変数・静的関数](#静的変数・静的関数)-->
 * <!--[if 文](#if文)-->
@@ -906,46 +906,46 @@ class Suzuki {
 
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        Debug.Log(3 + 2); //5 (可算) 
-        Debug.Log(5 - 8); //-3 (減算)
-        Debug.Log(3 * 4); //12 (乗算)
-        Debug.Log(1 + 2 * 3 - 4 / 2); //5 (複雑な計算)
-        Debug.Log(63 % 60); //3 (余剰)
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(3 + 2); //-> 5 (可算) 
+        GD.Print(5 - 8); //-> -3 (減算)
+        GD.Print(3 * 4); //-> 12 (乗算)
+        GD.Print(1 + 2 * 3 - 4 / 2); //-> 5 (複雑な計算)
+        GD.Print(63 % 60); //-> 3 (余剰)
         
         // 除算（注意が必要です）
-        Debug.Log(8 / 3); //2(除算) ←整数同士の場合、余りは切り捨てられる
-        Debug.Log(8 / 3.0); //2.66666666666667（小数点第14位までの値＝double型）
+        GD.Print(8 / 3); //-> 2(除算) ←整数同士の場合余りは切り捨てられる
+        GD.Print(8 / 3.0); //-> 2.66666666666667（小数点第14位までの値＝double型）
 
         float _float = (float)8.0 / 3;
-        Debug.Log(_float); //2.666667（小数点第6位までの値）
+        GD.Print(_float); //-> 2.666667（小数点第6位までの値）
 
         decimal _decimal = (decimal)8.0 / 3;
-        Debug.Log(_decimal); //2.6666666666666666666666666667（第28位まで）
+        GD.Print(_decimal); //-> 2.6666666666666666666666666667（第28位まで）
 
         // 後ろに付けるインクリメント（デクリメント）
         // _hoge++（_hoge--）が返す値は、加算（減算）する前の_hogeの値です
         int _hoge = 0;
-        int _piyo = _hoge++; //デクリメントの場合_hoge--
-        Debug.Log(_hoge); //1（デクリメントの場合-1）
-        Debug.Log(_piyo); //0（デクリメントの場合0）
+        int _piyo = _hoge++; // デクリメントの場合_hoge--
+        GD.Print(_hoge); //-> 1（デクリメントの場合-1）
+        GD.Print(_piyo); //-> 0（デクリメントの場合0）
 
         // 前に付けるインクリメント（デクリメント）
         // ++_hoge（--_hoge）が返す値は、加算（減算）後の_hogeの値です
         _hoge = _piyo = 0;
-        _piyo = ++_hoge; //デクリメントの場合--_hoge
-        Debug.Log(_hoge); //1（デクリメントの場合-1）
-        Debug.Log(_piyo); //1（デクリメントの場合-1） ←注目
+        _piyo = ++_hoge; // デクリメントの場合--_hoge
+        GD.Print(_hoge); //-> 1（デクリメントの場合-1）
+        GD.Print(_piyo); //-> 1（デクリメントの場合-1） ←注目
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
