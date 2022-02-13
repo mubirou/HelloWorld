@@ -1,3 +1,5 @@
+<a name="TOP"></a>
+
 # <b>Python 基礎文法</b>
 
 ### <b>INDEX</b>
@@ -45,28 +47,28 @@
 
 ### 1行コメント
 
-```
+```py
 # 〇〇〇〇〇
 ```
 
-```
+```py
 x = 1 + 1 # 〇〇〇〇〇
 ```
 
-```
+```py
 """〇〇〇〇〇""""
 ```
 
 ### 複数行コメント
 
-```
+```py
 """
 〇〇〇〇〇
 〇〇〇〇〇
 """
 ```
 
-```
+```py
 """コメント開始
 〇〇〇〇〇
 〇〇〇〇〇
@@ -76,6 +78,7 @@ x = 1 + 1 # 〇〇〇〇〇
 実行環境：Windows 10 Pro、Python 3.9.2  
 作成者：夢寐郎  
 作成日：2021年03月08日  
+[[TOP](#TOP)]
 
 
 <a name="データ型"></a>
@@ -96,7 +99,7 @@ x = 1 + 1 # 〇〇〇〇〇
 
 ### ①論理型（bool）
 * TrueまたはFalse
-```
+```py
 #test.py
 _bool = True #true/falseは不可
 print(_bool) #True
@@ -105,7 +108,7 @@ print(type(_bool)) #<class 'bool'>
 
 ### ②整数型（int）
 * 非常に大きな値も扱えます
-```
+```py
 #test.py
 _int = 10000000000000000000 #1000京以上も扱える
 print(_int) #10000000000000000000
@@ -114,7 +117,7 @@ print(type(_int)) #<class 'int'>
 
 ### ③浮動小数点数（float）
 * 小数点第15桁まで
-```
+```py
 #test.py
 _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 print(_float) #3.141592653589793（小数点第15桁まで）
@@ -123,7 +126,7 @@ print(type(_float)) #<class 'float'>
 
 ### ④文字列（str）
 * シングル/ダブルクォーテーション可
-```
+```py
 #test.py
 _string = 'あいうえお' #"○"でも可（Python 2.Xではダブルバイトはエラー）
 print(_string) #あいうえお
@@ -132,7 +135,7 @@ print(type(_string)) #<class 'str'>
 
 ### ⑤リスト（list）
 * 配列（変更可）
-```
+```py
 #test.py
 _list = ['A', 'I', 'U']
 print(_list) #['A', 'I', 'U']
@@ -141,7 +144,7 @@ print(type(_list))  #<class 'list'>
 
 ### ⑥変更不可のリスト（tupleタプル）
 * 配列（変更不可）
-```
+```py
 #test.py
 _lockList = ('A', 'I', 'U')
 print(_lockList) #('A', 'I', 'U')
@@ -149,7 +152,7 @@ print(type(_lockList)) #<class 'tuple'>
 ```
 
 ### ⑦重複不許可な集合型（set）
-```
+```py
 #test.py
 _set = set(['0002', '0001', '0003'])
 print(_set) #{'0003', '0001', '0002'} ←順序が変更される
@@ -157,7 +160,7 @@ print(type(_set)) #<class 'set'>
 ```
 
 ### ⑧変更不可の集合型（frozenset）
-```
+```py
 #test.py
 _frozenset = frozenset(['A', 'C', 'B'])
 print(_frozenset) #frozenset({'C', 'A', 'B'}) ←順序が変更される
@@ -165,7 +168,7 @@ print(type(_frozenset)) #<class 'frozenset'>
 ```
 
 ### ⑨クラス
-```
+```py
 #test.py
 class MyClass: #前方宣言が必要
     def __init__(self): #コンストラクタ
@@ -176,7 +179,7 @@ print(type(_myClass)) #<class '__main__.MyClass'>
 ```
 
 ### ⑩辞書型（dict） : 連想配列
-```
+```py
 #test.py
 _dict = {'A':'あ', 'I':'い'}
 print(_dict) #{'A': 'あ', 'I': 'い'}
@@ -184,13 +187,13 @@ print(type(_dict)) #<class 'dict'>
 ```
 
 ### ⑪複素数オブジェクト型（complex）
-```
+```py
 #test.py
 print(type(1+1j)) #<class 'complex'> ←内部では２つの別個の型扱い
 ```
 
 ### ⑫None型（None）......何もないことを示す定数
-```
+```py
 #test.py
 print(type(None)) #<class 'NoneType'>
 ```
@@ -198,14 +201,15 @@ print(type(None)) #<class 'NoneType'>
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月20日  
-更新日：2017年04月10日
+更新日：2017年04月10日  
+[[TOP](#TOP)]
 
 
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
 ### type() 関数 : データ型を返す
-```
+```py
 #test.py
 print(type(True)) #<class 'bool'>
 print(type(100)) #<class 'int'>
@@ -226,7 +230,7 @@ print(type(_myClass)) #<class '__main__.MyClass'>
 ```
 
 ### is 演算子 : 厳密一致
-```
+```py
 #test.py
 # 数値のブール値の比較
 print(1 is True) #False（厳密一致）
@@ -242,7 +246,7 @@ print(_myClass is MyClass) #False（厳密一致）
 
 ### isinstance() 関数 : インスタンスの判定
 * オブジェクトが指定したクラスのインスタンスか判定
-```
+```py
 #test.py
 class MyClass: #前方宣言が必要
     def __init__(self): #コンストラクタ（オプション）
@@ -253,7 +257,7 @@ print(isinstance(_myClass, MyClass)) #True ←isinstance(オブジェクト, ク
 ```
 
 ### データ型のキャスト（数値 ↔ bool 型）
-```
+```py
 #test.py
 #数値→bool型
 _tmp = bool(1)
@@ -267,7 +271,7 @@ print(type(_tmp)) #<class 'int'>
 ```
 
 ### データ型のキャスト（数値 ↔ string 型）
-```
+```py
 #test.py
 #string型→数値
 _tmp = int("001")
@@ -281,7 +285,7 @@ print(type(_tmp)) #<class 'str'>
 ```
 
 ### 基数変換（◯進数→2進数）
-```
+```py
 #test.py
 #10進数→2進数
 _tmp = bin(6) #10進数の6を2進数に変換
@@ -294,7 +298,7 @@ print(_tmp) #0b11101...「0b」は値が2進数であることを表している
 print(type(_tmp)) #<class 'str'>
 ```
 * 参考: 10進数→2進数（list型で表示）
-```
+```py
 #test.py
 def convert10to2(_num):
     _result = []
@@ -310,7 +314,7 @@ print(convert10to2(6)) #[1, 1, 0] ←10進数の6を2進数に変換
 ```
 
 ### 基数変換（◯進数→16進数）
-```
+```py
 #test.py
 #10進数→16進数
 _tmp = hex(29) #10進数の29を16進数に変換
@@ -323,7 +327,7 @@ print(_tmp) #0x1d...「0x」は値が16進数であることを表している
 print(type(_tmp)) #<class 'str'>
 ```
 * 参考: 10進数→16進数（list型で表示）
-```
+```py
 #test.py
 def convert10to16(_num):
     _result = []
@@ -348,7 +352,7 @@ print(convert10to16(29)) #[1, 'd'] ←10進数の29を16進数に変換
 ```
 
 ### 基数変換（◯進数→10進数）
-```
+```py
 #test.py
 #2進数→10進数
 print(int("0b11101", 2)) #29
@@ -357,7 +361,7 @@ print(int("0b11101", 2)) #29
 print(int("1d", 16)) #29
 ```
 * 参考: X進数→10進数（通常は int() 関数を使えば済む処理）
-```
+```py
 #test.py
 def convertXto10(_stringNum, _base): #文字列の数字, #進数
     _n = len(_stringNum) - 1 #指数
@@ -385,14 +389,15 @@ print(convertXto10("1d", 16)) #29 ←16進数の"1d"を10進数に変換
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月20日  
-更新日：2020年09月02日 基数変換を追加
+更新日：2020年09月02日 基数変換を追加  
+[[TOP](#TOP)]
 
 
 <a name="クラス0"></a>
 # <b>クラス</b>
 
 ### 最小構成
-```
+```py
 #test.py
 class MyClass(object): #前方宣言が必要（(object)は省略可）
    pass #何もしない
@@ -403,7 +408,7 @@ _myClass = MyClass() #インスタンスの生成
 Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味するpass文が用意されています。
 
 ### 例文
-```
+```py
 #test.py
 #==============
 # 長方形クラス
@@ -475,13 +480,14 @@ print(_rectangle.getArea()) #2073600
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月20日  
-更新日：2017年04月10日
+更新日：2017年04月10日  
+[[TOP](#TOP)]
 
 
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
-```
+```py
 #test.py
 #====================
 # 基本（基底）クラス
@@ -555,7 +561,8 @@ print(subClassA_.mSubClassA()) #派生クラスＡのメソッド
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月21日  
-更新日：2017年04月10日
+更新日：2017年04月10日  
+[[TOP](#TOP)]
 
 
 <a name="名前空間"></a>
@@ -567,7 +574,7 @@ Python の名前空間の目的は、他のディレクトリ（パッケージ�
 ### 例文
 * test.py と同階層に japan ディレクトリがあり、その中に tokyo.py が存在する場合
 
-```
+```py
 # japan/tokyo.py（tokyoモジュール）
 class Member(object):
     #プライベート変数
@@ -579,7 +586,7 @@ class Member(object):
     name = property(__getName)
 ```
 
-```
+```py
 # test.py（モジュールを利用するファイル）
 import sys #決め打ち
 sys.path.append('japan') #japanディレクトリ（相対パス）を検索範囲に追加
@@ -593,7 +600,8 @@ print(_tokyo.name) #'nishimura'
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月28日  
-更新日：2017年04月10日
+更新日：2017年04月10日  
+[[TOP](#TOP)]
 
 
 <a name="継承と委譲"></a>
@@ -604,7 +612,7 @@ print(_tokyo.name) #'nishimura'
 * 継承の場合は <b>class 派生クラス名(基本クラス名):</b> を使い、委譲の場合は <b>クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
-```
+```py
 #test.py
 class ClassA(object):
     def myMethod(self):
@@ -618,7 +626,7 @@ _classB.myMethod() #'ClassA.myMethod()'
 ```
 
 ### 委譲版
-```
+```py
 #test.py
 class ClassA(object):
     def myMethod(self):
@@ -640,7 +648,8 @@ _classB.myMethod() #'ClassA.myMethod
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月21日  
-更新日：2017年04月10日
+更新日：2017年04月10日  
+[[TOP](#TOP)]
 
 
 <a name="変数とスコープ"></a>
@@ -654,7 +663,8 @@ _classB.myMethod() #'ClassA.myMethod
 
 <a name="グローバル変数"></a>
 ### グローバル変数
-```
+
+```py
 #test.py
 _global = "グローバル変数" #関数の外部で宣言するとグローバル変数扱い
 
@@ -692,7 +702,8 @@ print(_global) #"グローバル変数③" ←クラス内（または関数内�
 * 全クラスからアクセスが可能
 * クラス定義の直後、コンストラクタの直前に定義
 * パブリック変数を使った以下のような例文は「他人の変数を勝手にいじってはいけない」というルールに反するため、プラーベート変数 + get / set アクセサを使うべきでしょう
-```
+
+```py
 #test.py（悪い例）
 class MyClass(object):
     def __init__(self): #コンストラクタ
@@ -710,7 +721,7 @@ print(_myClass._p) #"○△☆□？"
 * 外部からは get / set アクセサを使ってアクセス
 * __○○と命名することでプライベート変数になる
 
-```
+```py
 #test.py
 class MyClass(object):
     #プライベート変数の宣言（selfは不要）＝省略可
@@ -738,7 +749,8 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
 <a name="プライベート変数"></a>
 ### ローカル変数
 1. 関数内で宣言する場合
-    ```
+
+    ```py
     #test.py
     def myFunction1():
         _local = "ローカル変数" #この関数内でのみ利用可能
@@ -754,7 +766,8 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
     ```
 
 1. クラスの関数内で宣言する場合
-    ```
+
+    ```py
     #test.py
     class MyClass(object):
         def myMethod1(self): #selfは必須
@@ -771,7 +784,8 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
     ```
 
 1. for文内で宣言する場合
-    ```
+
+    ```py
     #test.py
     class MyClass(object):
         def __init__(self): #コンストラクタ
@@ -786,14 +800,15 @@ print(_myClass.p) #アクセス可（≠他人の変数を勝手にいじる行�
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月21日  
-更新日：2017年04月10日
+更新日：2017年04月10日  
+[[TOP](#TOP)]
 
 
 <a name="アクセサ"></a>
 # <b>アクセサ （getter / setter）</b>
 
 ### 読み書き可能なプロパティ
-```
+```py
 #test.py
 class Nishimura(object):
     #プライベート変数の宣言（selfは不要）←省略可
@@ -816,7 +831,7 @@ print(_nishimura.age) #18
 ```
 
 ### 読み取り専用のプロパティ
-```
+```py
 class Nishimura(object):
     #プライベート変数の宣言（selfは不要）←個人的慣例として冒頭で宣言（省略可）
     __age = None
@@ -836,14 +851,15 @@ print(_nishimura.age) #48
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月22日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="演算子"></a>
 # <b>演算子</b>
 
 ### 算術演算子
-```
+```py
 #test.py
 print(3 + 2) #5 (可算) 
 print(5 - 8) #-3 (減算)
@@ -861,7 +877,7 @@ print(hoge_) #1
 ```
 
 ### その他の演算子
-```
+```py
 #test.py
 print(True and True) #True（論理積）←他の多く言語と異なる（&ではない）
 print(True or False) #True（論理和）←他の多く言語と異なる（||ではない）
@@ -885,7 +901,8 @@ print(~3) #-4（ビット反転）
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月22日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="定数"></a>
@@ -897,7 +914,7 @@ print(~3) #-4（ビット反転）
 * 実際は通常のグローバル変数やパブリック変数と同じなので、変更は出来てしまう
 
 ### 通常の定数
-```
+```py
 #test.py
 #擬似「定数」←実際はグローバル変数
 MY_NAME = "mubirou"
@@ -909,7 +926,7 @@ print(MY_NAME) #"TARO NISHIMURA"
 ```
 
 ### クラス定数（クラスからもインスタンスからも呼び出せる）
-```
+```py
 #test.py
 #カスタムクラス（MyClass）
 class MyClass(object):
@@ -934,14 +951,15 @@ print(MyClass.MY_NAME) #"TARO NISHIMURA"
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月23日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="関数"></a>
 # <b>関数</b>
 
 ### 基本構文
-```
+```py
 def 関数名(引数①, 引数②, ...):
     ...... ←最低1行は記述する必要があるため何も無い場合は「pass（何もしない）」を記述
     [return 戻り値]
@@ -950,7 +968,7 @@ def 関数名(引数①, 引数②, ...):
 
 ### パブリック関数
 * 例：○〜○までの値を足した合計を調べる
-```
+```py
 #test.py
 class MyClass(object): #前方宣言
     def tashizan(self, _start, end_): #self（第1引数）は必須 ←オブジェクト自身を指す
@@ -966,7 +984,7 @@ print(_myClass.tashizan (1,100)) #5050
 
 ### プライベート関数
 * 例：○〜○までの値を足した合計を調べる
-```
+```py
 #test.py
 class MyClass(object): #前方宣言
     def __init__(self):
@@ -989,14 +1007,14 @@ _myClass = MyClass()
 * 他に __new__(cls) もあり（併用すると __init__(self) は実行されない）
 
 * 書式
-```
+```py
 class MyClass(object): #前方宣言
     def __init__(self, 引数①, 引数②, ...): #省略可
         ...... ←最低1行は記述する必要があるため何も無い場合は「pass（何もしない）」を記述
 ```
 
 * 例文
-```
+```py
 #test.py
 #カスタムクラス
 class Point(object):
@@ -1032,7 +1050,7 @@ print(_point.y) #150
 * Pythonでは別々に扱われる
 
 1. 静的メソッド
-    ```
+    ```py
     #test.py
     #カスタムクラス（MyMath）
     class MyMath(object):
@@ -1054,7 +1072,7 @@ print(_point.y) #150
     ```
 
 1. クラスメソッド
-    ```
+    ```py
     #test.py
     #カスタムクラス（MyMath）
     class MyMath(object):
@@ -1076,7 +1094,7 @@ print(_point.y) #150
     ```
 
 ### デフォルト値付き引数
-```
+```py
 #test.py
 class MyClass(object):
     __point = 0 #プライベート変数
@@ -1091,7 +1109,7 @@ _myClass.addPoint(10) #11 ←引数を指定した場合
 
 ### 可変長引数（シーケンス型）
 * 他にも <b>**○○</b> で指定する「辞書型」がある
-```
+```py
 class MyClass(object):
     def sum(self, *arg): #可変長引数はtuple型（変更不可のリスト）
         _result = 0 #ローカル変数
@@ -1107,7 +1125,7 @@ _myClass.sum(1,2,3,4,5) #15 ←1+2+3+4+5（引数の数はいくつでも可能�
 
 ### 名前付き引数
 * 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
-```
+```py
 #test.py
 class MyClass(object):
     def rect(self, startX=0, startY=0, endX=0, endY=0): #デフォルト値はオプション
@@ -1121,21 +1139,22 @@ _myClass.rect(endX=100, endY=100) #面積:10000m2 ←デフォルト値付との
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月23日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="匿名関数"></a>
 # <b>匿名関数</b>
 
 ### 基本構文
-```
+```py
 lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
 ```
 
 ### def / lamda（ラムダ）構文の違い
 
 1. defの場合
-    ```
+    ```py
     #test.py
     def myFunction1(arg1, arg2):
         #ここに様々な処理を記述可能（重要）
@@ -1146,7 +1165,7 @@ lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
     ```
 
 1. lambdaの場合
-    ```
+    ```py
     #test.py
     myFunction2 = lambda arg1,arg2 : arg1*arg2 #戻り値しか記述できない
     print(myFunction2) # <function <lambda> at 0x7f3dcde4f378>
@@ -1158,7 +1177,7 @@ lambda 引数①, 引数②, ... : 戻り値   ←引数は省略可
 * def 構文の場合、関数名（変数）に function 型のデータが格納される
 * lambda 構文の場合、匿名の function 型のデータとなる（変数に格納可能）
 * def / lambda ともに function 型のデータのため、１つの変数に入れ替えることが可能
-```
+```py
 #test.py
 def japanesHello(): #「def」構文による関数
     import datetime
@@ -1178,7 +1197,8 @@ print(hello()) #"您好"
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月23日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="静的変数・静的関数"></a>
@@ -1190,7 +1210,7 @@ print(hello()) #"您好"
 * Pythonには static 修飾子は存在せず、パブリック変数を擬似的に静的変数扱いにする  
 
 ### 例文
-```
+```py
 #test.py
 class MyClass(object):
     PI = 3.141592653589793 #擬似「静的変数」←実際は「パブリック変数」
@@ -1224,7 +1244,8 @@ print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月24日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="if文"></a>
@@ -1234,7 +1255,7 @@ print(_myClass.PI) #3.14 ←インスタンス変数も変更される
 
 ### 基本構文
 * Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
-```
+```py
 #test.py
 _age = 49
 if (_age <= 20) : #()は省略可
@@ -1248,7 +1269,7 @@ else:
 ```
 
 * 注意：条件式の判断記述について
-```
+```py
 #test.py
 if None : #() '' "" も同じFalseとして判断
     print("A")
@@ -1263,7 +1284,7 @@ else:
 
 ### 論理積（and）
 1. 論理演算子（and）を使う方法
-    ```
+    ```py
     if (条件式① and 条件②) : #()は省略可
         処理A ←条件式① かつ 条件式② の両方がTrueの場合に実行
     else:
@@ -1271,7 +1292,7 @@ else:
     ```
 
 1. ifのネストを使う方法
-    ```
+    ```py
     if (条件式①) : #()は省略可
         if (条件②) :
             処理A ←条件式① かつ 条件式② の両方がTrueの場合に実行
@@ -1283,7 +1304,7 @@ else:
 
 ### 論理和（or）
 1. 論理演算子（or）を使う方法
-    ```
+    ```py
     if (条件式① or 条件②) : #()は省略可
         処理A ←条件式①または条件式②の両方がTrueの場合に実行
     else:
@@ -1291,7 +1312,7 @@ else:
     ```
 
 1. ifのネストを使う方法
-    ```
+    ```py
     if (条件式①) : #()は省略可
         処理A ←条件式①がTrueの場合に実行
     elif (条件②) :
@@ -1302,7 +1323,7 @@ else:
 
 ### 排他的論理和（XOR）
 1. ^演算子を使う方法
-    ```
+    ```py
     #test.py
     a_ = True
     b_ = False
@@ -1313,7 +1334,7 @@ else:
     ```
 
 1. ^演算子を使わない場合
-    ```
+    ```py
     #test.py
     a_ = True
     b_ = False
@@ -1326,7 +1347,8 @@ else:
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月24日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="三項演算子"></a>
@@ -1334,12 +1356,12 @@ else:
 
 ### 構文
 * Python の三項演算子は if 文を使った独特のものです
-```
+```py
 変数 = (True時の返り値) if (比較式) else (False時の返り値)
 ```
 
 ### 例文
-```
+```py
 _age = 49
 _result = "現役" if (_age < 60) else "退職"
 print(_result)
@@ -1348,20 +1370,21 @@ print(_result)
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月24日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="for文"></a>
 # <b>for 文</b>
 
 ### 基本構文
-```
+```py
 for 変数 in range(開始,終了):
     繰り返す処理
 ```
 
 ### 基本例文
-```
+```py
 #test.py
 for i in range(0,10): #第１引数を省略すると0扱い
     print(i) #0,1,2,3,4,5,6,7,8,9
@@ -1371,7 +1394,7 @@ print(i) #9（for文の外でもiは有効）
 
 ### for文のネスト
 * ループ制御変数にはi,j,kが使われる
-```
+```py
 #test.py
 for i in range(1,6):
     for j in range(1,6):
@@ -1380,7 +1403,7 @@ for i in range(1,6):
 
 ### continue文
 * ループカウンタを○つずつアップする
-```
+```py
 #test.py
 for i in range(0,50):
     if i % 5: #5つずつアップする場合…
@@ -1389,7 +1412,7 @@ for i in range(0,50):
 ```
 
 ### 無限ループと break 文
-```
+```py
 #test.py
 count_ = 0
 for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile文を使います）
@@ -1402,14 +1425,15 @@ for i in range(0,int(9e9)): #ほぼ無限ループ（厳密な無限にはwhile�
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月24日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="for...in文"></a>
 # <b>for...in 文</b>
 
 ### 基本構文
-```
+```py
 for ループ制御変数, 要素変数 in enumerate(リスト等):
     print(ループ制御変数, 要素変数）
 ```
@@ -1419,7 +1443,7 @@ for 要素変数 in リスト等: ←要素だけ取り出したい場合はこ�
 ```
 
 ### リスト（変更可能な配列）
-```
+```py
 #test.py
 _list = ["A", "B", "C"]
 for i, tmp in enumerate(_list):
@@ -1427,7 +1451,7 @@ for i, tmp in enumerate(_list):
 ```
 
 ### タプル（tuple／変更不可の配列）
-```
+```py
 #test.py
 lock_list = ("A", "B", "C")
 for i, tmp in enumerate(lock_list):
@@ -1435,7 +1459,7 @@ for i, tmp in enumerate(lock_list):
 ```
 
 ### セット（重複不許可な集合体）
-```
+```py
 #test.py
 set_ = set(["A", "B", "C"])
 for i, tmp in enumerate(set_):
@@ -1443,7 +1467,7 @@ for i, tmp in enumerate(set_):
 ```
 
 ### フローズンセット（変更不可の集合型）
-```
+```py
 #test.py
 frozenset_ = frozenset(["A", "B", "C"])
 for i, tmp in enumerate(frozenset_):
@@ -1451,7 +1475,7 @@ for i, tmp in enumerate(frozenset_):
 ```
 
 ### 辞書（連想配列）
-```
+```py
 #test.py
 _dict = {"A":"あ", "I":"い"}
 for i, tmp in enumerate(_dict):
@@ -1461,7 +1485,8 @@ for i, tmp in enumerate(_dict):
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月24日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="while文"></a>
@@ -1469,13 +1494,13 @@ for i, tmp in enumerate(_dict):
 * 他の多くの言語にある do...while 文はない
 
 ### 基本構文
-```
+```py
 while (ループ判定式) : #ループ判定式がTrueの間繰り返される（()は省略可）
     繰り返す処理
 ```
 
 ### 例文
-```
+```py
 #test.py
 i_ = 0
 while (i_ < 10) : #()は省略可
@@ -1486,7 +1511,7 @@ print(i_) #10 ←while文の外でも変数はまだ有効
 ```
 
 ### while 文と break 文
-```
+```py
 #test.py
 count_ = 0
 while (True) : #ループ判別式をTrueにすると無限ループに!
@@ -1499,7 +1524,7 @@ print("while文終了") #while文の外
 ```
 
 ### while 文と continue 文（3の倍数を出力）
-```
+```py
 #test.py
 i_ = 1
 while (i_ <= 20) :
@@ -1513,7 +1538,8 @@ while (i_ <= 20) :
 実行環境：Ubuntu 16.04.2 LTS、Ruby 2.3.1  
 作成者：夢寐郎  
 作成日：2016年06月24日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="配列（タプル）"></a>
@@ -1525,12 +1551,12 @@ while (i_ <= 20) :
 
 ### 作成（２次元配列の作成可能）
 * 構文
-```
+```py
 ①変数名 = (要素①, 要素②, 要素③)
 ②変数名 = tuple([要素①, 要素②, 要素③])
 ```
 * 例文
-```
+```py
 #test.py
 tuple_ = ('A', 'B', 'C')
 print(type(tuple_)) #<class 'tuple'> ←tuple（タプル）型
@@ -1539,11 +1565,11 @@ print(tuple_) #('A', 'B', 'C')
 
 ### 要素の数
 * 構文
-```
+```py
 len(タプル)
 ```
 * 例文
-```
+```py
 #test.py
 tuple_ = ("A","B","C")
 print(len(tuple_)) #3
@@ -1551,11 +1577,11 @@ print(len(tuple_)) #3
 
 ### 抽出
 * 構文
-```
+```py
 タプル[開始インデックス[:終了インデックス:ステップ]]
 ```
 * 例文
-```
+```py
 #test.py
 tuple_ = (0,1,2,3,4,5,6,7,8,9,10)
 print(tuple_[10]) #10
@@ -1565,12 +1591,12 @@ print(tuple_[0:10:3]) #(0, 3, 6, 9) ←インデックス番号0〜10未満ま�
 
 ### 検索
 * 構文
-```
+```py
 ①タプル.index(検索する要素[,検索開始位置,検索終了位置]) ←見つかった位置を返す
 ②検索する要素 in タプル ←見つかるとTrue（見つからないとFalase）を返す
 ```
 * 例文
-```
+```py
 #test.py
 tuple_ = ("A","B","C","D","E","F","G","H","I","J","K")
 print("E" in tuple_) #True ←"E"が見つかった
@@ -1578,7 +1604,7 @@ print(tuple_.index("E")) #4 ←"E"を検索（インデックス4番目にヒッ
 ```
 
 ### 全要素の取得
-```
+```py
 for 変数 in タプル: print(変数) ←要素だけを取得する場合
 ```
 * [for...in 文](#for...in文)参照
@@ -1586,7 +1612,8 @@ for 変数 in タプル: print(変数) ←要素だけを取得する場合
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月24日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="動的配列（リスト）"></a>
@@ -1597,13 +1624,13 @@ for 変数 in タプル: print(変数) ←要素だけを取得する場合
 
 ### 作成
 * 構文
-```
+```py
 変数名 = [] #空のリストを作成
 変数名 = [None] * 個数 #指定数の空（None）の要素を持つリスト作成
 変数名 = [要素①, 要素②,...] #要素のデータ型は何でも良い
 ```
 * 例文
-```
+```py
 #test.py
 _list = []
 print(_list) #[]
@@ -1615,11 +1642,11 @@ print(list3_) #[None, None, None, None, None, None, None, None, None, None]
 
 ### 追加（最後）
 * 構文
-```
+```py
 リスト.append(値) #値は何も良い（混在可能）
 ```
 * 例文
-```
+```py
 #test.py
 _list = []
 _list.append('A')
@@ -1629,11 +1656,11 @@ print(_list) #['A', 'B']
 
 ### 追加（指定位置）
 * 構文
-```
+```py
 リスト.insert(インデックス番号,値) #先頭（0）〜最後（len(リスト)）まで指定可能
 ```
 * 例文
-```
+```py
 #test.py
 _list = ['A','B']
 _list.insert(0,'C')
@@ -1642,11 +1669,11 @@ print(_list) #['C', 'A', 'B']
 
 ### 更新（任意の位置）
 * 構文
-```
+```py
 リスト[インデックス番号] = 値
 ```
 * 例文
-```
+```py
 #test.py
 _list = ['A', 'B', 'C']
 _list[0] = None #0番目を変更する場合 ←None型も指定可能
@@ -1659,7 +1686,7 @@ print(_list) #[None, 'B', 'C']
 リスト.remove(削除する要素) #最初に見つかった指定の要素を削除
 ```
 * 例文
-```
+```py
 #test.py
 _list = ['A', 'B', 'C']
 _list.remove("A")
@@ -1668,11 +1695,11 @@ print(_list) #['B', 'C']
 
 ### 削除（指定の位置）
 * 構文
-```
+```py
 del リスト[インデックス番号] #指定のインデックス番号の要素を削除
 ```
 * 例文
-```
+```py
 #test.py
 _list = ['A', 'B', 'C']
 del _list[0] #先頭を削除する場合
@@ -1682,11 +1709,11 @@ print(_list) #['B', 'C']
 
 ### 削除（○〜○番目）
 * 構文
-```
+```py
 del リスト[開始インデックス:終了インデックス[:ステップ]] #終了番目は含まない
 ```
 * 例文
-```
+```py
 #test.py
 _list = [0,1,2,3,4,5,6,7,8,9]
 del _list[1:5] #1〜5番目（5番目は含まない）を削除する場合
@@ -1695,11 +1722,11 @@ print(_list) #[0, 5, 6, 7, 8, 9]
 
 ### 抽出（○〜○番目）
 * 構文
-```
+```py
 リスト[開始インデックス:終了インデックス[:ステップ]] #終了番目は含まない
 ```
 * 例文
-```
+```py
 #test.py
 _list = [0,1,2,3,4,5,6,7,8,9]
 print(_list[1:5]) #[1, 2, 3, 4]
@@ -1707,11 +1734,11 @@ print(_list[1:5]) #[1, 2, 3, 4]
 
 ### 検索(ヒットしたか否か）
 * 構文
-```
+```py
 検索する値 in リスト
 ```
 * 例文
-```
+```py
 #test.py
 _list = [0,1,2,3,4,5,6,7,8,9]
 print(5 in _list) #True（見つからなければFalse）
@@ -1719,11 +1746,11 @@ print(5 in _list) #True（見つからなければFalse）
 
 ### 検索(ヒット位置）
 * 構文
-```
+```py
 リスト.index(検索する値 [,開始位置,終了位置])
 ```
 * 例文
-```
+```py
 #test.py
 _list = [0,1,2,3,4,5,6,7,8,9]
 print(_list.index(5)) #5（見つからない場合ValueError）
@@ -1731,11 +1758,11 @@ print(_list.index(5)) #5（見つからない場合ValueError）
 
 ### 検索（ヒット数）
 * 構文
-```
+```py
 リスト.count(検索する値)
 ```
 * 例文
-```
+```py
 #test.py
 _list = ['A','C','B','C','A','C']
 print(_list.count('C')) #3（見つからなければ0）
@@ -1743,11 +1770,11 @@ print(_list.count('C')) #3（見つからなければ0）
 
 ### 要素の数
 * 構文
-```
+```py
 len(リスト)
 ```
 * 例文
-```
+```py
 #test.py
 _list = [0,1,2,3,4,5,6,7,8,9]
 print(len(_list)) #10
@@ -1755,11 +1782,11 @@ print(len(_list)) #10
 
 ### 並べ替え（反転）
 * 構文
-```
+```py
 リスト.reverse()
 ```
 * 例文
-```
+```py
 #test.py
 _list = [0,1,2,3,4,5,6,7,8,9]
 _list.reverse()
@@ -1768,11 +1795,11 @@ print(_list) #[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
 ### 並べ替え（ソート）
 * 構文
-```
+```py
 リスト.sort()
 ```
 * 例文
-```
+```py
 #test.py
 _list = [3,6,2,8,4,1,9,0,5,7]
 _list.sort()
@@ -1781,11 +1808,11 @@ print(_list) #[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ### 結合
 * 構文
-```
+```py
 リスト①.extend(追加するリスト②) #リスト①の末尾にリスト②を結合
 ```
 * 例文
-```
+```py
 #test.py
 _list1 = ["A","B","C"]
 _list2 = ["D","E","F"]
@@ -1795,12 +1822,12 @@ print(_list1) #['A', 'B', 'C', 'D', 'E', 'F']
 
 ### 複製
 * 構文
-```
+```py
 import copy
 変数 = copy.deepcopy(コピー元のリスト)
 ```
 * 例文
-```
+```py
 #test.py
 import copy
 origin_ = ["A","B"]
@@ -1812,11 +1839,11 @@ print(_copy) #['C', 'B']
 
 ### 文字列→リスト
 * 構文
-```
+```py
 変数 = 文字列.split("区切り文字")
 ```
 * 例文
-```
+```py
 #test.py
 _string = "A,B,C"
 _list = _string.split(",") #カンマ区切りで分割してリスト化
@@ -1825,7 +1852,7 @@ print(_list) #['A', 'B', 'C']
 
 ### 全要素を取り出す
 1. インデックス番号と要素を取り出す
-    ```
+    ```py
     #test.py
     _list = ["A","B","C","D","E"]
     for i, tmp in enumerate(_list):
@@ -1833,7 +1860,7 @@ print(_list) #['A', 'B', 'C']
     ```
 
 1. 要素のみ取り出す
-    ```
+    ```py
     #test.py
     _list = ["A","B","C","D","E"]
     for tmp in _list:
@@ -1841,7 +1868,7 @@ print(_list) #['A', 'B', 'C']
     ```
 
 ### 比較
-```
+```py
 #test.py
 print(['A','B','C'] == ['A','B','C']) #True
 print(['A','B','C'] == ["A","B","C"]) #True ←'○'と"○"は同一扱い
@@ -1851,14 +1878,15 @@ print(['A','B','C'] is ['A','B','C']) #False ←オブジェクトが異なる�
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月27日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="連想配列（辞書）"></a>
 # <b>連想配列（辞書）</b>
 
 ### 作成
-```
+```py
 ①変数名 = {'キー①':値①, 'キー②':値②} ←これがわかり易い
 ②変数名 = dict(キー①=値②, キー②=値)
 ③変数名 = dict([('キー①',値①),('キー②',値②])
@@ -1867,11 +1895,11 @@ print(['A','B','C'] is ['A','B','C']) #False ←オブジェクトが異なる�
 
 ### 追加･更新
 * 構文
-```
+```py
 辞書['キー'] = 値
 ```
 * 例文
-```
+```py
 #test.py
 _dict = {'A':'あ', 'I':'い'}
 _dict['U'] = 'う' #追加（存在する場合は更新）
@@ -1880,11 +1908,11 @@ print(_dict) #{'U': 'う', 'A': 'あ', 'I': 'い'}
 
 ### 取得
 * 構文
-```
+```py
 辞書['キー']
 ```
 * 例文
-```
+```py
 #test.py
 _dict = {'A':'あ', 'I':'い', 'U':'う'}
 print(_dict['A']) #'あ'
@@ -1892,11 +1920,11 @@ print(_dict['A']) #'あ'
 
 ### 削除
 * 構文
-```
+```py
 del 辞書['キー']
 ```
 * 例文
-```
+```py
 #test.py
 _dict = {'A':'あ', 'I':'い', 'U':'う'}
 del _dict['A']
@@ -1905,11 +1933,11 @@ print(_dict) #{'U': 'う', 'I': 'い'}
 
 ### キーの検索
 * 構文
-```
+```py
 'キー' in 辞書
 ```
 * 例文
-```
+```py
 #test.py
 _dict = {'A':'あ', 'I':'い', 'U':'う'}
 print('A' in _dict) #True（任意のキーが無いとFalse）
@@ -1917,11 +1945,11 @@ print('A' in _dict) #True（任意のキーが無いとFalse）
 
 ### 要素数
 * 構文
-```
+```py
 len(辞書)
 ```
 * 例文
-```
+```py
 #test.py
 _dict = {'A':'あ', 'I':'い', 'U':'う'}
 print(len(_dict)) #3
@@ -1930,13 +1958,14 @@ print(len(_dict)) #3
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月27日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="self"></a>
 # <b>self</b> ≒ this
 
-```
+```py
 #test.py
 class MyClass(object):
     #↓通常はプライベート（__p）にするので問題ない（他の言語と異なるところ）
@@ -1962,7 +1991,8 @@ _myClass.myMethod()
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月27日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="文字列の操作"></a>
@@ -1970,14 +2000,14 @@ _myClass.myMethod()
 
 ### string オブジェクトの作成
 * 構文
-```
+```py
 ①変数 = "○○"
 ②変数 = '○○' ←ダブルクォーテーション（""）と同じ
 ③変数 = """○○""" ←\nを使わない改行が可能
 ```
 
 * 例文
-```
+```py
 ↓３つとも同じ結果になります。
 ①_string = "１行目\n２行目"
 ②_string = '１行目\n２行目'
@@ -1987,12 +2017,12 @@ _myClass.myMethod()
 
 ### 長さを調べる
 * 構文
-```
+```py
 len(文字列)
 ```
 
 * 例文
-```
+```py
 #test.py
 _string1 = "ABCDE"
 print(len(_string1)) #5
@@ -2002,13 +2032,13 @@ print(len(_string2)) #5 ←全角文字も１字扱い
 
 ### 一部分を取得
 * 構文
-```
+```py
 文字列[番号] ←0〜len(文字列)
 文字列[開始:終了) ←終了は含まない
 ```
 
 * 例文
-```
+```py
 #test.py
 _string = "0123456789"
 print(_string[4]) #4
@@ -2018,14 +2048,14 @@ print(_string[4:len(_string)]) #456789
 
 ### 一部分を削除
 * 構文
-```
+```py
 文字列.strip('削除する文字列') ←両端から削除
 文字列.lstrip('削除する文字列') ←左端から削除
 文字列.rstrip('削除する文字列') ←右端から削除
 ```
 
 * 例文
-```
+```py
 #test.py
 _string = "ABCDCBA"
 print(_string.strip('A')) #BCDCB ←両端から削除
@@ -2036,12 +2066,12 @@ print(_string) #ABCDCBA ←元は変更なし
 
 ### 置換
 * 構文
-```
+```py
 文字列.replace('置換前の文字列', '置換後の文字列')
 ```
 
 * 例文
-```
+```py
 #test.py
 _string = "2017年4月11日"
 print(_string.replace('2017年','平成29年')) #平成29年4月11日
@@ -2049,14 +2079,14 @@ print(_string.replace('2017年','平成29年')) #平成29年4月11日
 
 ### 検索
 * 構文
-```
+```py
 検索したい文字列 in 文字列 ←True or False
 文字列.find("検索したい文字列" [,開始位置,終了位置]) ←見つからない場合-1
 文字列.rfind("検索したい文字" [,開始位置,終了位置])←見つからない場合-1
 ```
 
 * 例文
-```
+```py
 #test.py
 _string = "ABCDEFG-ABCDEFG"
 if ("CD" in _string) : #見つかった（True）場合…
@@ -2066,12 +2096,12 @@ if ("CD" in _string) : #見つかった（True）場合…
 
 ### 文字列→配列
 * 構文
-```
+```py
 String.split('区切り文字');
 ```
 
 * 例文
-```
+```py
 #test.py
 _string = "A,B,C" #「,」区切りの文字列
 list_ = _string.split(',') #「,」区切りで分割してリスト化
@@ -2081,7 +2111,8 @@ print(list_) #['A', 'B', 'C']
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月28日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="正規表現"></a>
@@ -2095,14 +2126,14 @@ print(list_) #['A', 'B', 'C']
 
 ### 検索
 * 構文
-```
+```py
 import re ←正規表現に必須
 ○ = re.compile('検索する文字列') ←正規表現をコンパイル
 結果 = ○.search(文字列) ←見つからないとNone、見つかると<_sre.SRE_Match…が返る
 ```
 
 * 例文
-```
+```py
 #test.py
 import re #正規表現に必須
 _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
@@ -2116,14 +2147,14 @@ else :
 
 ### 置換
 * 構文
-```
+```py
 import re ←正規表現に必須
 ○ = re.compile('置換前の文字列') ←正規表現をコンパイル
 結果 = ○.sub('置換後の文字列', 文字列)
 ```
 
 * 例文
-```
+```py
 #test.py
 import re #正規表現に必須
 _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
@@ -2134,7 +2165,8 @@ print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂�
 実行環境：Ubuntu 16.04 LTS、Python 2.3 
 作成者：夢寐郎  
 作成日：2016年06月28日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="抽象クラス"></a>
@@ -2145,7 +2177,7 @@ print(pattern_.sub('よしだ', _string)) #よしだ松蔭,高杉晋作,久坂�
 * Pythonでは、継承と例外を使って擬似的な抽象クラスを実現します
 
 ### 構文
-```
+```py
 class Abstract○○(object): #擬似抽象クラスの定義（実際には単なる基本クラス）
     def □□(self): #擬似抽象関数の宣言（実際は単なる関数）
         raise NotImplementedError() #派生クラスで実装しないとErrorを発生させる
@@ -2156,7 +2188,7 @@ class 派生クラス名(Abstract○○): #抽象クラスを継承
 ```
 
 ### 例文
-```
+```py
 #test.py
 class AbstractClass(object): #擬似抽象クラスの定義（実際には単なる基本クラス）
     def common(self): #共通の関数
@@ -2182,14 +2214,15 @@ _subClass.abstractFunction() #"派生クラスでオーバーライドした抽�
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月28日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="super関数"></a>
 # <b>super 関数</b>
 
 ### 書式
-```
+```py
 # 基本クラス
 class 基本クラス名(object):
     def __init__(self, 引数): ←コンストラクタ
@@ -2208,7 +2241,7 @@ class 派生クラス名(基本クラス名): ←基本クラスを継承
 ```
 
 ## 例文
-```
+```py
 #test.py
 #基本クラス
 class SuperClass(object):
@@ -2232,7 +2265,8 @@ _subClass.hoge("派生クラスからの呼び出し")
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月28日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="オーバーライド"></a>
@@ -2243,7 +2277,7 @@ _subClass.hoge("派生クラスからの呼び出し")
 * 基本クラスのメソッドを呼び出したい場合は、super(クラス,self).メソッド()を使う
 
 ### 書式
-```
+```py
 class 基本クラス名(object):
     def 関数名(self, 引数): #派生クラスでオーバーライドされる
         ……
@@ -2256,7 +2290,7 @@ class 派生クラス名(基本クラス名):
 ```
 
 ### 例文
-```
+```py
 #test.py
 #基本クラス
 class SuperClass(object):
@@ -2280,13 +2314,14 @@ _subClass.myFunction()
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月28日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="カスタムイベント"></a>
 # <b>カスタムイベント</b>
 
-```
+```py
 #test.py
 #================
 # カスタムクラス 
@@ -2310,7 +2345,7 @@ class Robot(object):
            self.__dieHandler(self) #dieイベント発生!!（リスナー関数の呼出し）
 
 
-# メイン =================================================================================
+# メイン ========================
 def die_Robot(arg): #前方定義
     print(arg) #<__main__.Robot object at 0x7f98ba5ebc50>
     print("GAME OVER!!") #dieイベントが発生した時に実行すること
@@ -2327,14 +2362,15 @@ _robot.fight() #"GAME OVER"
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月28日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="数学関数（math）"></a>
 # <b>数学関数（math）</b>
 
 ### math.sin() : サイン（正弦）
-```
+```py
 #test.py
 import math #必須
 print(math.sin(0)) #0.0 ←0°
@@ -2345,7 +2381,7 @@ print(math.sin(math.pi*2)) #-2.4492935982947064e-16（≒0） ←360°
 ```
 
 ### math.cos() : コサイン（余弦）
-```
+```py
 #test.py
 import math #必須
 print(math.cos(0)) #1.0 ←0°
@@ -2359,7 +2395,7 @@ print(math.cos(math.pi*2)) #1.0 ←360°
 * 2つの値のアークタンジェント（逆タンジェント）
 * X、Y 座標の角度をラジアン単位で返す
 * Π ラジアン（3.141592…）は180°
-```
+```py
 #test.py
 import math #必須
 disX_ = math.sqrt(3) #√3のこと
@@ -2369,14 +2405,14 @@ print(180*math.atan2(disY_, disX_)/math.pi) #30.000000000000004（度）
 ```
 
 ### math.pi : 円周率
-```
+```py
 #test.py
 import math #必須
 print(math.pi) #3.141592653589793 ※math.piラジアン=180°
 ```
 
 ### math.floor() : 切り捨て
-```
+```py
 #test.py
 import math #必須
 print(math.floor(1.001)) #1
@@ -2385,7 +2421,7 @@ print(math.floor(1.999)) #1
 * 4倍程度高速な、[切り捨て除算演算子「//」](#演算子)もあり
 
 ### math.ceil() : 切り上げ
-```
+```py
 #test.py
 import math #必須
 print(math.ceil(1.001)) #2
@@ -2393,7 +2429,7 @@ print(math.ceil(1.999)) #2
 ```
 
 ### math.fabs() : 絶対値
-```
+```py
 #test.py
 import math #必須
 print(math.fabs(100)) #100.0
@@ -2401,21 +2437,21 @@ print(math.fabs(-100)) #100.0
 ```
 
 ### math.pow() : 累乗（○の□乗）
-```
+```py
 #test.py
 import math #必須
 print(math.pow(2, 0)) #1.0（2の0乗）
 print(math.pow(2, 8)) #256.0（2の8乗）
 ```
 * 指数演算子「**」を使う方法もある（こちらの方が5倍程度高速）
-```
+```py
 #test.py
 print(2**0) #1（2の0乗）
 print(2**8) #256（2の8乗）
 ```
 
 ### math.sqrt() : 平方根（√○）
-```
+```py
 #test.py
 import math #必須
 print(math.sqrt(2)) #1.4142135623730951（一夜一夜にひとみごろ）
@@ -2428,20 +2464,20 @@ print(math.sqrt(5)) #2.23606797749979（富士山麓オウム鳴く）
 ***
 
 ### round() : 四捨五入
-```
+```py
 #test.py
 print(round(1.499)) #1
 print(round(1.500)) #2
 ```
 
 ### max() : 比較（最大値）
-```
+```py
 #test.py
 print(max(5.01, -10, 8, 2.9)) #8 ←リスト･タプルの要素の比較
 ```
 
 ### min() : 比較（最小値）
-```
+```py
 #test.py
 print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 ```
@@ -2449,28 +2485,29 @@ print(min(5.01, -10, 8, 2.9)) #-10 ←リスト･タプルの要素の比較
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月29日  
-更新日：2020年08月29日 指数演算子を追加
+更新日：2020年08月29日 指数演算子を追加  
+[[TOP](#TOP)]
 
 
 <a name="乱数"></a>
 # <b>乱数</b>
 
 ### 0〜1.0未満
-```
+```py
 #test.py
 import random #必須
 print(random.random()) #0.831427260696891 ←0〜0.999...
 ```
 
 ### 最小値〜最大値（float型）
-```
+```py
 #test.py
 import random #必須
 print(random.uniform(1,100)) #56.961497327378886 ←0.0〜100.0以下
 ```
 
 ### 最小値〜最大値（int型）
-```
+```py
 #test.py
 import random #必須
 i0=0; i1=0; i2=0; i3=0; i4=0; i5=0; i6=0; i7=0; i8=0; i9=0;
@@ -2501,14 +2538,15 @@ print(random.choice("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ")) #"X"...など
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月29日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
 ### 書式
-```
+```py
 import datetime #必須
 ○ = datetime.datetime.now()
 ○.year #年（2016等）
@@ -2522,7 +2560,7 @@ import datetime #必須
 ```
 
 ### 例文
-```
+```py
 #test.py
 import datetime #必須
 now_ = datetime.datetime.now()
@@ -2549,14 +2587,15 @@ print(h_ + ":" + m_ + ":" + s_) #14:23:07
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月29日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
 ### 一度だけ実行する場合
-```
+```py
 #test.py
 import threading #必須
 def timeOut():
@@ -2566,7 +2605,7 @@ timer_.start()
 ```
 
 ### 繰り返し実行する場合
-```
+```py
 # test.py（threading.Thread を継承したクラスを作成した方法）
 import threading #必須
 import time
@@ -2595,14 +2634,15 @@ _loop.start()
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月29日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
 ### 構文
-```
+```py
 #test.py
 import time #timeモジュール（日付と時間を扱うCライブラリ関数を提供）
 開始時間 = time.time() #UNIX時間（1970年1月1日 午前0:00からの経過時間）
@@ -2614,7 +2654,7 @@ print(結果) #○○秒（浮動小数点数値＝小数点15桁）
 ```
 
 ### 例文
-```
+```py
 #test.py
 import time #必須
 _start = time.time() #計測開始時間
@@ -2633,7 +2673,8 @@ print(str(_result) + 'sec.') #3.835374116897583sec.
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月29日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
 
 
 <a name="外部テキストの読み込み"></a>
@@ -2648,13 +2689,13 @@ print(str(_result) + 'sec.') #3.835374116897583sec.
 ```
 
 ### 構文
-```
+```py
 ○ = open("□□.txt", "r")
 ○.read() #テキストファイルの内容が返る
 ```
 
 ### 例文
-```
+```py
 #test.py
 file_ = open("sample.txt", "r") #同じ階層に○.txtがある場合…
 result_ = file_.read()
@@ -2665,7 +2706,7 @@ print(result_)
 ```
 
 ### 外部テキストの書き込み（参考）
-```
+```py
 #test.py
 #ファイルの書き込み
 file_ = open("sample.txt", "w") # "r" ではなく "w"
@@ -2683,4 +2724,5 @@ print(result_)
 実行環境：Ubuntu 16.04.2 LTS、Python 3.5.2  
 作成者：夢寐郎  
 作成日：2016年06月29日  
-更新日：2017年04月11日
+更新日：2017年04月11日  
+[[TOP](#TOP)]
