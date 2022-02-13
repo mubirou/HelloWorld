@@ -16,8 +16,8 @@
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
-* [変数とスコープ](#変数とスコープ)（この項目は書きかけです）
-* <!--[アクセサ（getter / setter）](#アクセサ)-->
+* [変数とスコープ](#変数とスコープ)
+* [アクセサ（getter / setter）](#アクセサ)（この項目は書きかけです）
 * <!--[演算子](#演算子)-->
 * <!--[定数](#定数)-->
 * <!--[関数](#関数)-->
@@ -698,16 +698,17 @@ public データ型 変数名; //public変数宣言（初期化も可）
 * 悪い例
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        Debug.Log(_myClass._p); //アクセス可（他人の変数を勝手にいじる行為）
+        GD.Print(_myClass._p); // アクセス可（他人の変数を勝手にいじる行為）
      }
 }
+
 class MyClass {
-    public string _p = "public変数"; //public宣言は冒頭でおこなう
+    public string _p = "public変数"; // public宣言は冒頭でおこなう
 }
 ```
 
@@ -727,23 +728,23 @@ class 基本クラス { //スーパークラス定義
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         SubClass _subClass = new SubClass();
-        Debug.Log(_subClass); //SubClass
-        //Debug.Log(_subClass._pSuperClass); //error CS0122（アクセス不可）
+        GD.Print(_subClass); //-> SubClass
+        //GD.Print(_subClass._pSuperClass); // CS0122 error（アクセス不可）
      }
 }
 
 class SuperClass { //基本クラス
-    protected string _pSuperClass = "SuperClass変数"; //protected変数宣言
+    protected string _pSuperClass = "SuperClass変数"; // protected変数宣言
 }
 
-class SubClass : SuperClass { //派生クラス
+class SubClass : SuperClass { // 派生クラス
     public SubClass() {
-        Debug.Log(_pSuperClass); //"SuperClass変数"（アクセス可能）
+        GD.Print(_pSuperClass); //-> SuperClass変数（アクセス可能）
     }
 }
 ```
@@ -765,17 +766,17 @@ private データ型 変数名; //private変数宣言（初期化も可）←pri
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        Debug.Log(_myClass.P); //アクセス可（≠他人の変数を勝手にいじる行為）
+        GD.Print(_myClass.P); // アクセス可（≠他人の変数を勝手にいじる行為）
      }
 }
 
 class MyClass {
-    private string _p = "private変数"; //private宣言は冒頭でおこなう
+    private string _p = "private変数"; // private宣言は冒頭でおこなう
     public string P {
         get { return _p; }
         set { _p = value; }
@@ -791,10 +792,10 @@ class MyClass {
 1. メソッド内で宣言する場合
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             MyClass _myClass = new MyClass();
             _myClass.MyMethod();
         }
@@ -802,13 +803,13 @@ class MyClass {
 
     class MyClass {
         private string _string = "private変数";
-        public MyClass() { //コンストラクタ
-            Debug.Log(_string); //private変数（ここはthisは無くても良い）
+        public MyClass() { // コンストラクタ
+            GD.Print(_string); // private変数（ここはthisは無くても良い）
         }
         public void MyMethod() {
-            string _string = "ローカル変数"; //ローカル変数宣言
-            Debug.Log(_string); //"ローカル変数"
-            Debug.Log(this._string); //"private変数"（ここではthisが必須）
+            string _string = "ローカル変数"; // ローカル変数宣言
+            GD.Print(_string); //-> ローカル変数
+            GD.Print(this._string); //-> private変数（ここではthisが必須）
         }
     }
     ```
@@ -816,29 +817,29 @@ class MyClass {
 1. for 文内で宣言する場合（foreach 文も同様）
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             new MyClass();
         }
     }
     class MyClass {
-        private int _i = 999; //private変数
-        public MyClass() { //コンストラクタ
-            for (int _i=0; _i<=5; _i++) { //ローカル変数宣言
-                Debug.Log(_i); //0、1、2、...、5
-                Debug.Log(this._i); //999（private変数）
+        private int _i = 999; // private変数
+        public MyClass() { // コンストラクタ
+            for (int _i=0; _i<=5; _i++) { // ローカル変数宣言
+                GD.Print(_i); //-> 0,1,2,...,5
+                GD.Print(this._i); //-> 999（private変数）
             }
-            Debug.Log(_i); //999（ロカール変数のアクセスは不可）
-            Debug.Log(this._i); //999（thisが無くても同じ）
+            GD.Print(_i); //-> 999（ロカール変数のアクセスは不可）
+            GD.Print(this._i); //-> 999（thisが無くても同じ）
         }
     }
     ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
