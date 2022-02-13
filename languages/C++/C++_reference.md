@@ -3218,7 +3218,7 @@ int main() {
 ```
 
 ### ceil() : 切り上げ
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <math.h> //「数学関数」に必要
