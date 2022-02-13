@@ -683,17 +683,16 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     ```
 
 ### ループカウンタをXつずつアップする
-    ```cpp
-    //test.c
-    #include <stdio.h> //printf()関数に必要
 
-    int main() {
-        for (int i=0; i<50; i+=5) { //5つずつアップする場合
-            printf("%d\n", i); //=> 0,5,10,15,20,25,30,35,40,45
-        }
-        return 0;
+//test.c
+#include <stdio.h> //printf()関数に必要
+
+int main() {
+    for (int i=0; i<50; i+=5) { //5つずつアップする場合
+        printf("%d\n", i); //=> 0,5,10,15,20,25,30,35,40,45
     }
-    ```
+    return 0;
+}
 
 ### for 文のネスト
 ```cpp
