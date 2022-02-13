@@ -118,7 +118,7 @@
 ### 検証
 予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#helloworld)）
 ```CSharp
-//Main.cs
+// Main.cs
 using Godot;
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
@@ -263,7 +263,7 @@ class MyClass { // クラスの定義
 1. is 演算子
     * クラスか否かを調べる（○ is int といった使い方も可能）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -286,7 +286,7 @@ class MyClass { // クラスの定義
 1. as 演算子
     * キャスト成功時に変換後の値が返され、失敗するとエラー
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -304,7 +304,7 @@ class MyClass { // クラスの定義
 1. GetType() メソッド
     * Object.GetType() メソッド（オブジェクトの型を返す）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -326,7 +326,7 @@ class MyClass { // クラスの定義
 ### データ型のキャスト
 1. 数値⇔bool 型（不可）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -339,7 +339,7 @@ class MyClass { // クラスの定義
 
 1. 数値→bool 型へ変換（力技）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -353,7 +353,7 @@ class MyClass { // クラスの定義
 
 1. bool型→数値へ変換
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
     using System; // Convertに必要
 
@@ -368,7 +368,7 @@ class MyClass { // クラスの定義
 
 1. 数値⇔数値（縮小変換）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -388,7 +388,7 @@ class MyClass { // クラスの定義
 
 1. 数値⇔数値（拡張変換）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -402,7 +402,7 @@ class MyClass { // クラスの定義
 
 1. 数値⇔ string 型
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
     using System; //Int32.Parse()に必要
 
@@ -418,7 +418,7 @@ class MyClass { // クラスの定義
 
 1. 数値→ string 型
     ```CSharp
-    //Main.cs
+    // Main.cs
     using Godot;
 
     public class Main : Spatial {
@@ -441,52 +441,52 @@ class MyClass { // クラスの定義
 # <b>クラス</b>
 
 ```CSharp
-//Main.cs
-using UnityEngine;
+// Main.cs
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        //①インタンスの生成
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        //➀インタンスの生成
         Rectangle _rectangle = new Rectangle();
         
-        //②プロパティの更新
+        //➁プロパティの更新
         _rectangle.width = 1920;
         _rectangle.height = 1080;
-        //③プロパティの取得
-        Debug.Log(_rectangle.width); //1920
-        Debug.Log(_rectangle.height); //1080
+        //➂プロパティの取得
+        GD.Print(_rectangle.width); //-> 1920
+        GD.Print(_rectangle.height); //-> 1080
         
-        //④メソッドの実行
-        Debug.Log(_rectangle.getArea()); //2073600
+        //➃メソッドの実行
+        GD.Print(_rectangle.getArea()); //-> 2073600
     }
 }
 
-class Rectangle { //長方形クラス
-    //プロパティの定義･初期値の設定
-    private int _width = 0; //privateは省略可
-    private int _height = 0; //privateは省略可
+class Rectangle { // 長方形クラス
+    // プロパティの定義･初期値の設定
+    private int _width = 0; // privateは省略可
+    private int _height = 0; // privateは省略可
 
-    //コンストラクタは省略可（初期値はここで設定してもよい）
+    // コンストラクタは省略可（初期値はここで設定してもよい）
     public Rectangle() {}
     
-    //メソッド群の定義
+    // メソッド群の定義
     public int width {
-        get { return this._width; } //thisは省略可
-        set { this._width = value; } //valueは決め打ち
+        get { return this._width; } // thisは省略可
+        set { this._width = value; } // valueは決め打ち
     }
     public int height {
-        get { return this._height; } //thisは省略可
-        set { this._height = value; } //valueは決め打ち
+        get { return this._height; } // thisは省略可
+        set { this._height = value; } // valueは決め打ち
     }
-    public int getArea() { //面積を計算して値を返す
-        return this._width * this._height; //thisは省略可
+    public int getArea() { // 面積を計算して値を返す
+        return this._width * this._height; // thisは省略可
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
@@ -494,7 +494,7 @@ class Rectangle { //長方形クラス
 # <b>基本クラスと派生クラス</b>
 
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -580,7 +580,7 @@ namespace 名前空間名 {
 
 ### 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -617,7 +617,7 @@ namespace MyLibrary {
 
 ### 継承版
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -637,7 +637,7 @@ class ClassB : ClassA {} //ClassAを継承
 
 ### 委譲版
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -696,7 +696,7 @@ public データ型 変数名; //public変数宣言（初期化も可）
 
 * 悪い例
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -725,7 +725,7 @@ class 基本クラス { //スーパークラス定義
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -763,7 +763,7 @@ private データ型 変数名; //private変数宣言（初期化も可）←pri
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -789,7 +789,7 @@ class MyClass {
 
 1. メソッド内で宣言する場合
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -814,7 +814,7 @@ class MyClass {
 
 1. for 文内で宣言する場合（foreach 文も同様）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -846,7 +846,7 @@ class MyClass {
 
 ### 読み書き可能なプロパティ
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -869,7 +869,7 @@ class Nishimura {
 
 ### 読み取り専用のプロパティ
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -902,7 +902,7 @@ class Nishimura {
 # <b>演算子</b>
 
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -951,7 +951,7 @@ public class Main : MonoBehaviour {
 
 ### 通常の定数
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -979,7 +979,7 @@ class クラス名 {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1021,7 +1021,7 @@ class MyMath {
 
 ### 基本例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1051,7 +1051,7 @@ class MyClass {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1075,7 +1075,7 @@ public class Main : MonoBehaviour {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1100,7 +1100,7 @@ class クラス名 {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1130,7 +1130,7 @@ class Point {
 
 ### 静的メソッド（クラスメソッド）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1156,7 +1156,7 @@ class Math {
 ### デフォルト値付き引数
 * オプション引数（引数は省略可）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1179,7 +1179,7 @@ class MyClass {
 ### 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1204,7 +1204,7 @@ class MyClass {
 ### 名前付き引数
 * 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1233,7 +1233,7 @@ class MyClass {
 # <b>匿名メソッド</b>
 
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1291,7 +1291,7 @@ class MyClass {
 * [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
 
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1346,7 +1346,7 @@ class MyClass {
 * 静的メンバはクラスをインスタンス化せずにアクセスが可能
 
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1383,7 +1383,7 @@ class Math { //独自クラス
 
 ### 基本例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1449,7 +1449,7 @@ public class Main : MonoBehaviour {
 ### 排他的論理和（XOR）
 1. ^ 演算子を使う方法
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -1466,7 +1466,7 @@ public class Main : MonoBehaviour {
 
 1. ^ 演算子を使わない方法
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -1498,7 +1498,7 @@ public class Main : MonoBehaviour {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1520,7 +1520,7 @@ public class Main : MonoBehaviour {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1545,7 +1545,7 @@ public class Main : MonoBehaviour {
 
 ### 基本サンプル
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1579,7 +1579,7 @@ public class Main : MonoBehaviour {
 
 * 悪い例（エラー発生）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1606,7 +1606,7 @@ case "□□" : 何か処理; break;
 
 * 良い例
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1648,7 +1648,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 ### ループカウンタ（ループ制御変数）の宣言位置
 1. for 文の中で宣言
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -1663,7 +1663,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 
 1. for 文の外でループ制御変数を宣言する
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -1679,7 +1679,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 
 ### ループカウンタを○つずつアップする
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1693,7 +1693,7 @@ public class Main : MonoBehaviour {
 
 ### for 文のネスト
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1709,7 +1709,7 @@ public class Main : MonoBehaviour {
 
 ### 無限ループと break 文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1727,7 +1727,7 @@ public class Main : MonoBehaviour {
 
 ### for 文と continue 文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1760,7 +1760,7 @@ foreach (データ型 変数名 in 配列等) {
 
 ### 配列（1次元）の場合
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1775,7 +1775,7 @@ public class Main : MonoBehaviour {
 
 ### 配列（2次元）の場合
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1794,7 +1794,7 @@ public class Main : MonoBehaviour {
 ### 配列（ジャグ配列）の場合
 * [Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「.NET」のバージョンが低いと dynamic が利用できません
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1814,7 +1814,7 @@ public class Main : MonoBehaviour {
 
 ### 動的配列（ArrayList）の場合
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections; //ArrayListに必要
 
@@ -1832,7 +1832,7 @@ public class Main : MonoBehaviour {
 
 ### 動的配列（List）の場合
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
 
@@ -1848,7 +1848,7 @@ public class Main : MonoBehaviour {
 
 ### 連想配列の場合
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
 
@@ -1883,7 +1883,7 @@ while (ループ判定式) {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1908,7 +1908,7 @@ do {
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1924,7 +1924,7 @@ public class Main : MonoBehaviour {
 
 ### while 文と break 文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1944,7 +1944,7 @@ public class Main : MonoBehaviour {
 
 ### while 文と continue 文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -1996,7 +1996,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. new 演算子を使う方法（≒５行x４列のコインロッカー）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -2012,7 +2012,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. 配列リテラルを使う方法（≒５行x４列のコインロッカー）
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -2043,7 +2043,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. ジャグ配列の宣言→後で値を割り当てる方法
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -2059,7 +2059,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 1. ジャグ配列の宣言と同時に値を割り当てる方法
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
 
     public class Main : MonoBehaviour {
@@ -2081,7 +2081,7 @@ string[] _array3 = {"A","B","C","D"}; //簡単
 
 ### 配列の Length プロパティ
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2096,7 +2096,7 @@ public class Main : MonoBehaviour {
 
 ### 文字列→配列
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2132,7 +2132,7 @@ List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,..
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2153,7 +2153,7 @@ List.Add(値); //値はobject型（文字型、数値型等）で混在不可（
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2177,7 +2177,7 @@ List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capac
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2200,7 +2200,7 @@ List[インデックス番号] = 値;
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2223,7 +2223,7 @@ List[インデックス番号] = null;
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2246,7 +2246,7 @@ List.Remove(object); //最初に見つかった指定のオブジェクトを削
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2269,7 +2269,7 @@ List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacit
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2295,7 +2295,7 @@ List.Clear(); //全て削除
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2320,7 +2320,7 @@ List.GetRange(開始, 抜き出す個数); //開始＝抜出しを開始した�
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2346,7 +2346,7 @@ List.IndexOf(object [,検索開始するインデックス番号]);
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2368,7 +2368,7 @@ List.LastIndexOf(object [,検索開始するインデックス番号]);
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2389,7 +2389,7 @@ List.Capacity; //格納可能な要素の数
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2405,7 +2405,7 @@ public class Main : MonoBehaviour {
 
 ### 並べ替え（反転）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2427,7 +2427,7 @@ List.Sort(); //引数で範囲や比較方法を指定することも可能
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2446,7 +2446,7 @@ public class Main : MonoBehaviour {
 ### 結合
 * 構文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2467,7 +2467,7 @@ public class Main : MonoBehaviour {
 
 ### 複製
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2484,7 +2484,7 @@ public class Main : MonoBehaviour {
 
 ### 文字列→ List
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Listに必要
 
@@ -2509,7 +2509,7 @@ public class Main : MonoBehaviour {
 ### 全要素を取り出す
 1. foreach 文を使う方法
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
     using System.Collections.Generic; //Listに必要
 
@@ -2527,7 +2527,7 @@ public class Main : MonoBehaviour {
 
 1. for 文を使う方法
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
     using System.Collections.Generic; //Listに必要
 
@@ -2568,7 +2568,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 
 * 例文
     ```CSharp
-    //Main.cs
+    // Main.cs
     using UnityEngine;
     using System.Collections.Generic; //Dictionaryに必要
 
@@ -2595,7 +2595,7 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 
 ### キー、値の検索
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections.Generic; //Dictionaryに必要
 
@@ -2628,7 +2628,7 @@ public class Main : MonoBehaviour {
 
 ### 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2681,7 +2681,7 @@ string 変数名 = new string(new char[]{'○','○',...}); //new演算子とcha
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2699,7 +2699,7 @@ public class Main : MonoBehaviour {
 
 ### 長さを調べる
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2718,7 +2718,7 @@ String.Substring(開始 [,文字数])
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2738,7 +2738,7 @@ String.Remove(開始位置, 削除する文字数);
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2757,7 +2757,7 @@ String.Replace('置換前の文字', '置換後の文字');
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2776,7 +2776,7 @@ String.IndexOf('検索したい文字', 開始位置);
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2801,7 +2801,7 @@ String.Split('区切り文字');
 ```
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2828,7 +2828,7 @@ public class Main : MonoBehaviour {
 
 ### マッチした数
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
 
@@ -2844,7 +2844,7 @@ public class Main : MonoBehaviour {
 
 ### パスワード
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
 
@@ -2865,7 +2865,7 @@ public class Main : MonoBehaviour {
 
 ### 郵便番号（7桁）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Text.RegularExpressions; //Regexに必要
 
@@ -2907,7 +2907,7 @@ class クラス名 : Iインターフェース名 { ......
 
 ### 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -2963,7 +2963,7 @@ class SubClass : Abstract○○ { //抽象クラスの継承
 
 ### 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3015,7 +3015,7 @@ class 派生クラス名 : 基本クラス名 { //派生クラス（基本クラ
 
 ### 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3071,7 +3071,7 @@ class 派生クラス名 : 基本クラス { //派生クラス（基本クラス
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3112,7 +3112,7 @@ class 派生クラス : 抽象クラス名 { //抽象クラスを継承
 
 * 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3171,7 +3171,7 @@ static 戻り値の型 イベントハンドラ名([型 引数]) {
 
 ### 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3220,7 +3220,7 @@ class MyGame {
 
 ### Math.Sin() : サイン（正弦）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3237,7 +3237,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Cos() : コサイン（余弦）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3254,7 +3254,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Atan2() : アークタンジェント2
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3273,7 +3273,7 @@ public class Main : MonoBehaviour {
 
 ### Math.PI : 円周率
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3286,7 +3286,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Floor() : 切り捨て
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3300,7 +3300,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Ceiling() : 切り上げ
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3314,7 +3314,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Round() : 四捨五入
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3328,7 +3328,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Abs() : 絶対値
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3342,7 +3342,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Pow() : 累乗（○の□乗）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3356,7 +3356,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Sqrt() : 平方根（√○）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3372,7 +3372,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Max() : 比較（最大値）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3385,7 +3385,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Min() : 比較（最小値）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3398,7 +3398,7 @@ public class Main : MonoBehaviour {
 
 ### Math.Sign() : 符号（正か負の値か）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //Mathに必要
 
@@ -3423,7 +3423,7 @@ public class Main : MonoBehaviour {
 
 ### 0〜1.0 未満
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3435,7 +3435,7 @@ public class Main : MonoBehaviour {
 
 ### 最小値〜最大値（float 型）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3447,7 +3447,7 @@ public class Main : MonoBehaviour {
 
 ### 最小値〜最大値（int型）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 
 public class Main : MonoBehaviour {
@@ -3502,7 +3502,7 @@ DateTime ○ = DateTime.Now; //DateTimeは構造体
 
 ### 例文
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //DateTimeに必要
 
@@ -3532,7 +3532,7 @@ public class Main : MonoBehaviour {
 
 ### 万年カレンダー
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //DateTimeに必要
 
@@ -3608,7 +3608,7 @@ public class Main : MonoBehaviour {
 ### 繰り返し実行する
 * システムタイマー（System.Timers.Timer）を利用する方法
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //ElapsedEventHandlerに必要
 using System.Timers; //System.Timers.Timerに必要
@@ -3635,7 +3635,7 @@ public class Main : MonoBehaviour {
 ### 〇秒後に一度だけ実行する
 * コールチンを利用する場合
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.Collections; //IEnumeratorに必要
 
@@ -3668,7 +3668,7 @@ public class Main : MonoBehaviour {
 * 他に Stopwatch クラスを利用する方法もありますが、その場合 UnityEngine と System.Diagnostics がバッティングする為に Debug.Log() が使えません
 
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System; //DateTimeに必要
 
@@ -3703,7 +3703,7 @@ public class Main : MonoBehaviour {
 
 ### 例文（StreamReader クラスを使う方法）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.IO; //StreamReaderに必要
 
@@ -3721,7 +3721,7 @@ public class Main : MonoBehaviour {
 
 ###  例文（File.OpenTextメソッドを使う方法）
 ```CSharp
-//Main.cs
+// Main.cs
 using UnityEngine;
 using System.IO; //StreamReaderに必要
 
