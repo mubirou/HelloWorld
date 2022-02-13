@@ -711,20 +711,20 @@ int main() {
 ```
 
 ### 無限ループと break 文
-    ```cpp
-    //test.c
-    #include <stdio.h> //printf()に必要
+```cpp
+//test.c
+#include <stdio.h> //printf()に必要
 
-    int main() {
-        int _count = 0;
-        for (;;) { //①初期化②ループ判定式③更新処理...の全てを省略すると無限ループに
-            _count ++;
-            if (_count > 100) break; //ループを終了
-            printf("%d\n", _count); //=> 1,2,...,99,100
-        }
-        printf("%s\n", "for文終了");
-        return 0;
+int main() {
+    int _count = 0;
+    for (;;) { //①初期化②ループ判定式③更新処理...の全てを省略すると無限ループに
+        _count ++;
+        if (_count > 100) break; //ループを終了
+        printf("%d\n", _count); //=> 1,2,...,99,100
     }
+    printf("%s\n", "for文終了");
+    return 0;
+}
     ```
 
 ### for 文と continue 文
