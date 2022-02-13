@@ -324,7 +324,7 @@ class MyClass { // クラスの定義
     ```
 
 ### データ型のキャスト
-1. 数値↔bool 型（不可）
+1. 数値⇔bool 型（不可）
     ```CSharp
     //Main.cs
     using Godot;
@@ -366,7 +366,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値↔数値（縮小変換）
+1. 数値⇔数値（縮小変換）
     ```CSharp
     //Main.cs
     using Godot;
@@ -386,7 +386,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値↔数値（拡張変換）
+1. 数値⇔数値（拡張変換）
     ```CSharp
     //Main.cs
     using Godot;
@@ -400,7 +400,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値↔ string 型
+1. 数値⇔ string 型
     ```CSharp
     //Main.cs
     using Godot;
