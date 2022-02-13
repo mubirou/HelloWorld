@@ -17,8 +17,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-* [アクセサ（getter / setter）](#アクセサ)（この項目は書きかけです）
-* <!--[演算子](#演算子)-->
+* [アクセサ（getter / setter）](#アクセサ)
+* [演算子](#演算子)（この項目は書きかけです）
 * <!--[定数](#定数)-->
 * <!--[関数](#関数)-->
 * <!--[静的変数・静的関数](#静的変数・静的関数)-->
@@ -824,6 +824,7 @@ class MyClass {
             new MyClass();
         }
     }
+
     class MyClass {
         private int _i = 999; // private変数
         public MyClass() { // コンストラクタ
@@ -849,22 +850,22 @@ class MyClass {
 ### 読み書き可能なプロパティ
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        Nishimura _nishimura = new Nishimura();
-        Debug.Log(_nishimura.Age); //50
-        _nishimura.Age = 51; //値を変更可能
-        Debug.Log(_nishimura.Age); //51
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        Suzuki _suzuki = new Suzuki();
+        GD.Print(_suzuki.Age); //-> 54
+        _suzuki.Age = 55; // 値を変更可能
+        GD.Print(_suzuki.Age); //-> 55
     }
 }
 
-class Nishimura {
-    int _age = 50; //privateは省略
+class Suzuki {
+    int _age = 54; // privateは省略
     public int Age {
-        get { return _age; } //thisは省略
-        set { _age = value; } //thisは省略 ←valueは予め定義された変数（決め打ち）
+        get { return _age; } // thisは省略
+        set { _age = value; } // thisは省略（valueは決め打ち）
     }
 }
 ```
@@ -872,31 +873,31 @@ class Nishimura {
 ### 読み取り専用のプロパティ
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        Nishimura _nishimura = new Nishimura();
-        Debug.Log(_nishimura.Age); //50
-        //_nishimura.Age = 50; //error CS0272（値の変更は不可）
-        _nishimura.NextYear();
-        Debug.Log(_nishimura.Age); //51
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        Suzuki _suzuki = new Suzuki();
+        GD.Print(_suzuki.Age); //-> 54
+        //_suzuki.Age = 55; // CS0272 error（値の変更は不可）
+        _suzuki.NextYear();
+        GD.Print(_suzuki.Age); //-> 55
     }
 }
 
-class Nishimura {
-    int _age = 50; //privateは省略
+class Suzuki {
+    int _age = 54; // privateは省略
     public int Age {
-        get { return _age; } //thisは省略
-        private set {} //外部からアクセス不可（読み取り専用にする）
+        get { return _age; } // thisは省略
+        private set {} // 外部からアクセス不可（読み取り専用にする）
     }
-    public void NextYear() { _age += 1; } //クラスの内部からに限り変更可能
+    public void NextYear() { _age += 1; } // クラスの内部からに限り変更可能
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
