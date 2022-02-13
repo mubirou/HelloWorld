@@ -5,7 +5,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_win.md)）
-* [コメント](#コメント)
+* [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス0)
@@ -42,10 +42,10 @@
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
 
-<a name="コメント"></a>
-# <b>コメント</b>
+<a name="コメントアウト"></a>
+# <b>コメントアウト</b>
 
-### 1行コメント
+### 1行コメントアウト
 
 ```py
 # 〇〇〇〇〇
@@ -59,7 +59,7 @@ x = 1 + 1 # 〇〇〇〇〇
 """〇〇〇〇〇""""
 ```
 
-### 複数行コメント
+### 複数行コメントアウト
 
 ```py
 """
@@ -69,10 +69,10 @@ x = 1 + 1 # 〇〇〇〇〇
 ```
 
 ```py
-"""コメント開始
+"""コメントアウト開始
 〇〇〇〇〇
 〇〇〇〇〇
-コメント終了"""
+コメントアウト終了"""
 ```
 
 実行環境：Windows 10 Pro、Python 3.9.2  
