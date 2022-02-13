@@ -1,3 +1,5 @@
+<a name="TOP"></a>
+
 # <b>Python デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -36,7 +38,7 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-```
+```py
 #test.py
 
 """
@@ -73,7 +75,8 @@ print(_singleton1 == _singleton2) #True ←中身は全く同じインスタン�
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年06月30日  
-更新日：2017年05月08日
+更新日：2017年05月08日  
+[[TOP](#TOP)]
 
 
 <a name="Prototype"></a>
@@ -84,7 +87,7 @@ print(_singleton1 == _singleton2) #True ←中身は全く同じインスタン�
 1. 複製には インスタンス.clone() を使う。
 
 ### 例文
-```
+```py
 # test.py
 
 """
@@ -125,13 +128,14 @@ print(_prototype2.firstName, _prototype2.lastName) #HANAKO NISHIMURA
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年06月30日  
-更新日：2017年05月09日
+更新日：2017年05月09日  
+[[TOP](#TOP)]
 
 
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-```
+```py
 # test.py
 
 #=================================
@@ -201,13 +205,14 @@ HAPPY NEW YEAR!
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年06月30日  
-更新日：2017年05月10日
+更新日：2017年05月10日  
+[[TOP](#TOP)]
 
 
 <a name="FactoryMethod"></a>
 # <b><ruby>Factory Method<rt>ファクトリー メソッド</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #========================================
@@ -328,13 +333,14 @@ _cardHANAKO.templateMethod("同級生")
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年06月30日  
-更新日：2017年05月10日
+更新日：2017年05月10日  
+[[TOP](#TOP)]
 
 
 <a name="AbstractFactory"></a>
 # <b><ruby>Abstract Factory<rt>アブストラクト ファクトリー</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #=================================
@@ -411,13 +417,14 @@ _factoryHANAKO.createSummer()
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年06月30日  
-更新日：2017年05月10日
+更新日：2017年05月10日  
+[[TOP](#TOP)]
 
 
 <a name="Adapter（継承）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（継承）</b>
 
-```
+```py
 #test.py
 
 #======================
@@ -455,13 +462,14 @@ print(exchange_.getDollar()) #158.25600058618022（ドル）
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年06月30日  
-更新日：2017年05月10日
+更新日：2017年05月10日  
+[[TOP](#TOP)]
 
 
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-```
+```py
 # test.py
 
 #=========================================
@@ -503,13 +511,14 @@ print(exchange_.getDollar()) #158.25600058618022（ドル）
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年06月30日  
-更新日：2017年05月10日
+更新日：2017年05月10日  
+[[TOP](#TOP)]
 
 
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #================
@@ -581,14 +590,15 @@ _smartPhone2.phone() #電話をかける
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月01日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Composite"></a>
 # <b><ruby>Composite<rt>コンポジット</rt></ruby></b>
 * 以下のサンプルは root に Authoring フォルダを作成し、その中に Unity3D と Unreal Engine ファイルを格納してみます。
 
-```
+```py
 #test.py
 
 #===============================
@@ -665,13 +675,14 @@ _unity3D.getList() #Authoring/Unity3D(File)
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月01日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #================================================================
@@ -741,13 +752,15 @@ _special.show() # <---CHIKASHI--->
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月01日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Facade"></a>
 # <b><ruby>Facade<rt>ファサード</rt></ruby></b>
 * 以下の例文では「Decorator パターン」を「Facade パターン」でシンプルにします。
-```
+
+```py
 _special = Decorator2(
             Decorator1(
                 Decorator1(
@@ -756,11 +769,11 @@ _special = Decorator2(
 _special.show();
 ```
 ...としていたものを次の1行で実現可能になります。
-```
+```py
 DecoratorFacade.Set("CHIKASHI", 3, 1);
 ```
 
-```
+```py
 #test.py
 
 #=====================================================
@@ -822,7 +835,8 @@ DecoratorFacade.Set("CHIKASHI", 3, 1) # <---CHIKASHI--->
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月01日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Flyweight"></a>
@@ -831,7 +845,7 @@ DecoratorFacade.Set("CHIKASHI", 3, 1) # <---CHIKASHI--->
     * A.txt（"あいうえお"）
     * KA.txt（"かきくけこ"）
 
-```
+```py
 #test.py
 
 #===========================================
@@ -902,13 +916,14 @@ _readerKA.getText() #"かきくけこ"
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月01日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #============================
@@ -947,7 +962,8 @@ _loader.load() #実際は必要になった時にロードしますが...
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月02日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Iterator"></a>
@@ -959,7 +975,7 @@ _loader.load() #実際は必要になった時にロードしますが...
 * データの集合体に対して、for 文等による操作でデータを取り出すのではなく、hasNext() と Next() メソッドを使って取り出します。
 
 ### 例文
-```
+```py
 # test.py
 
 #===========
@@ -1043,13 +1059,14 @@ while _iterator.hasNext():
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月02日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #======================================
@@ -1099,7 +1116,8 @@ _cardTaro.templateMethod()
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月03日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Strategy"></a>
@@ -1110,7 +1128,7 @@ _cardTaro.templateMethod()
 * State パターンに似ていますが、State パターンの場合は Context() とするところを Strategy パターンの場合は Context(Strategy()) となります。
 
 ### 例文
-```
+```py
 # test.py
 
 #=============
@@ -1153,13 +1171,14 @@ _janken.exec() #パー、グー、チョキ
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月03日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #========
@@ -1230,13 +1249,14 @@ print(_hanako.getMoney()) #15000
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月03日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-```
+```py
 # test.py
 
 #=====================
@@ -1309,13 +1329,14 @@ _shinjukuPO.send("千葉県我孫子市XX町X-X-X") #一週間前後で届きま
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月03日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-```
+```py
 # test.py
 
 #==================================
@@ -1432,13 +1453,14 @@ Mediator.MEMBER_A.request("西へ行く")
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月03日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #=======================
@@ -1509,13 +1531,14 @@ iPadは10.3.1にアップデート可能
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月03日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-```
+```py
 # test.py
 
 #===================================================
@@ -1625,13 +1648,14 @@ print(_snapShot.point) #これ以上、Redoできません → 8000
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年XX月XX日  
-更新日：2017年05月XX日
+更新日：2017年05月XX日  
+[[TOP](#TOP)]
 
 
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-```
+```py
 # test.py
 
 #========================
@@ -1693,13 +1717,14 @@ _janken.exec() #パー、グー、チョキ
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月03日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-```
+```py
 #test.py
 
 #=====================================================================
@@ -1773,13 +1798,14 @@ _inkscape.draw("影を付ける")
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月04日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
 
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
 
-```
+```py
 # test.py
 
 #==============================
@@ -1845,4 +1871,5 @@ _avm.execute(_swf) #≒SWFファイルをAVM上で実行
 実行環境：Ubuntu 16.04.2 LTS、Python 2.7.12  
 作成者：夢寐郎  
 作成日：2016年07月04日  
-更新日：2017年05月11日
+更新日：2017年05月11日  
+[[TOP](#TOP)]
