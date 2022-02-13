@@ -20,7 +20,7 @@
 * [アクセサ（getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)（この項目は書きかけです）
-* <!--[関数](#関数)-->
+* [メソッド](#メソッド)（この項目は書きかけです）
 * <!--[静的変数・静的関数](#静的変数・静的関数)-->
 * <!--[if 文](#if文)-->
 * <!--[三項演算子](#三項演算子)-->
@@ -955,13 +955,13 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### 通常の定数
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        const float PI = 3.14159f; //staticは記述しない（注意）
-        Debug.Log(PI); //=> 3.14159
-        //PI = 3.14; //error CS0131（変更不可）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        const float PI = 3.14159f; // staticは記述しない（注意）
+        GD.Print(PI); //-> 3.14159
+        //PI = 3.14; // CS0131 error（変更不可）
     }
 }
 ```
@@ -983,25 +983,25 @@ class クラス名 {
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        Debug.Log(MyMath.PI); //=> 3.14159
-        //MyMath.PI = 3.14; //error CS0131（変更不可）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(MyMath.PI); //-> 3.14159
+        //MyMath.PI = 3.14; // CS0131 error（変更不可）
     }
 }
 
 //カスタムクラス（MyMath）
 class MyMath {
-    public const float PI = 3.14159f; //staticは記述しない（注意）
-    public MyMath() {} //コンストラクタ
+    public const float PI = 3.14159f; // staticは記述しない（注意）
+    public MyMath() {} // コンストラクタ
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月14日  
 [[TOP](#TOP)]
 
 
@@ -1025,20 +1025,20 @@ class MyMath {
 ### 基本例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        Debug.Log(_myClass.Tashizan(1,10)); //55
-        Debug.Log(_myClass.Tashizan(1,100)); //5050
+        GD.Print(_myClass.Tashizan(1,10)); //-> 55
+        GD.Print(_myClass.Tashizan(1,100)); //-> 5050
     }
 }
 
 class MyClass {
     //○〜○までの値を足した合計を返す
     public int Tashizan(int _start, int _end) {
-        int _result = 0; //ローカル変数
+        int _result = 0; // ローカル変数
         for (int _i = _start; _i <= _end; _i++) {
             _result += _i;
         }
