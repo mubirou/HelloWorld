@@ -15,8 +15,8 @@
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
-* [継承と委譲](#継承と委譲)（この項目は書きかけです）
-* <!--[変数とスコープ](#変数とスコープ)-->
+* [継承と委譲](#継承と委譲)
+* [変数とスコープ](#変数とスコープ)（この項目は書きかけです）
 * <!--[アクセサ（getter / setter）](#アクセサ)-->
 * <!--[演算子](#演算子)-->
 * <!--[定数](#定数)-->
@@ -618,45 +618,46 @@ namespace MyLibrary {
 ### 継承版
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         ClassB _classB = new ClassB();
-        _classB.MyMethod();
+        _classB.MyMethod(); //-> ClassA.MyMethod()
     }
 }
 
 class ClassA {
     public void MyMethod() {
-        Debug.Log("ClassA.MyMethod()");
+        GD.Print("ClassA.MyMethod()");
     }
 }
-class ClassB : ClassA {} //ClassAを継承
+
+class ClassB : ClassA {} // ClassAを継承
 ```
 
 ### 委譲版
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         ClassB _classB = new ClassB();
-        _classB.MyMethod();
+        _classB.MyMethod(); //-> ClassA.MyMethod()
     }
 }
 
 class ClassA {
     public void MyMethod() {
-        Debug.Log("ClassA.MyMethod()");
+        GD.Print("ClassA.MyMethod()");
     }
 }
 
-class ClassB { //この内容だけが継承と異なる
+class ClassB { // この内容だけが継承と異なる
     private ClassA _classA;
     public ClassB() {
-        _classA = new ClassA(); //コンストラクタでオブジェクト生成
+        _classA = new ClassA(); // コンストラクタでオブジェクト生成
     }
     public void MyMethod() {
         _classA.MyMethod();
@@ -666,7 +667,7 @@ class ClassB { //この内容だけが継承と異なる
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
