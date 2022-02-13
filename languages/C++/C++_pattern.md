@@ -1,3 +1,5 @@
+<a name="TOP"></a>
+
 # <b>C++ デザインパターン</b>
 
 ### <b>INDEX</b>
@@ -36,7 +38,7 @@
 <a name="Singleton"></a>
 # <b><ruby>Singleton<rt>シングルトン</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -80,7 +82,8 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年05月31日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Prototype"></a>
@@ -91,7 +94,7 @@ int main() {
 1. Clone() メソッド内では、通常インスタンスを生成するようですが、今回は <b>this ポインタ</b> を使って <b>*this</b> でそのインスタンスの「値」をコピーしています。
 
 ### 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -165,13 +168,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年05月31日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Builder"></a>
 # <b><ruby>Builder<rt>ビルダー</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -251,7 +255,8 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月01日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="FactoryMethod"></a>
@@ -264,7 +269,7 @@ int main() {
 * インスタンスを生成する工場を Template Method パターンで構成したもの。
 
 ### 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -389,7 +394,8 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月02日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="AbstractFactory"></a>
@@ -406,7 +412,7 @@ int main() {
 * <b>new クラス名</b> を使って実際にインスタンスを生成する場合、記述する順序を工夫する必要があります。
 
 ### 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -510,7 +516,8 @@ _factoryICHIRO -> CreateNewYear();
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月03日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Adapter（継承）"></a>
@@ -522,7 +529,7 @@ _factoryICHIRO -> CreateNewYear();
 * クラスによるAdapterパターン。継承を使って、オリジナルのクラスを拡張。
 
 ### 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -600,13 +607,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月03日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Adapter（委譲）"></a>
 # <b><ruby>Adapter<rt>アダプター</rt></ruby>（委譲）</b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -690,13 +698,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月06日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Bridge"></a>
 # <b><ruby>Bridge<rt>ブリッジ</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -812,7 +821,8 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月06日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Composite"></a>
@@ -824,7 +834,7 @@ int main() {
 * 以下のサンプルは root に Authoring フォルダを作成し、その中に Unity3D と Unreal Engine ファイルを格納してみます。
 
 ### 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <vector> //vectorに必要
@@ -937,13 +947,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月06日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Decorator"></a>
 # <b><ruby>Decorator<rt>デコレータ</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -1030,7 +1041,8 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月06日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Facade"></a>
@@ -1041,7 +1053,7 @@ int main() {
 * ファサード＝「建物の正面」の意味。
 * たくさんのクラスやメソッドを、このパターン（窓口）を使うことでシンプルにして迷いを生じさせないようにします。
 * 以下の例文では、「Decoratorパターン」を Facade パターンでシンプルにします。
-    ```
+    ```cpp
     Display* _special = new Decorator2(
                                 new Decorator1(
                                     new Decorator1(
@@ -1055,7 +1067,7 @@ int main() {
     ```
 
 ### 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -1142,13 +1154,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月07日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Flyweight"></a>
 # <b><ruby>Flyweight<rt>フライウエイト</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <map> //mapクラスに必須
@@ -1226,13 +1239,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月07日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Proxy"></a>
 # <b><ruby>Proxy<rt>プロキシー</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -1297,13 +1311,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月07日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Iterator"></a>
 # <b><ruby>Iterator<rt>イテレータ</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <vector> //vectorに必要
@@ -1418,13 +1433,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月08日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="TemplateMethod"></a>
 # <b><ruby>Template Method<rt>テンプレート メソッド</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -1505,7 +1521,8 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月08日  
-更新日：2017年05月05日
+更新日：2017年05月05日  
+[[TOP](#TOP)]
 
 
 <a name="Strategy"></a>
@@ -1514,16 +1531,16 @@ int main() {
 ### 概要
 * アルゴリズムをごっそり切り替える。戦略。Strategy ＝作戦。アルゴリズム（手順）。
 * State パターン（後述）に似ていますが、State パターンの場合は...
-    ```
+    ```cpp
     new Context()
     ```
     Strategyパターンの場合は次の通りになります。
-    ```
+    ```cpp
     new Context(new Strategy())
     ```
 
 ### 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -1596,13 +1613,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月08日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="Visitor"></a>
 # <b><ruby>Visitor<rt>ビジター</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -1714,13 +1732,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月08日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="ChainofResponsibility"></a>
 # <b><ruby>Chain of Responsibility<rt>チェーン オブ レスポンシビリティ</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <regex> //正規表現に必要
@@ -1804,13 +1823,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月08日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="Mediator"></a>
 # <b><ruby>Mediator<rt>メディエイター</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <vector> //vector配列に必要
@@ -1961,13 +1981,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月09日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="Observer"></a>
 # <b><ruby>Observer<rt>オブザーバ</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <vector> //vector配列に必要
@@ -2080,13 +2101,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月10日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="Memento"></a>
 # <b><ruby>Memento<rt>メメント</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <vector> //vector配列に必要
@@ -2236,13 +2258,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月10日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="State"></a>
 # <b><ruby>State<rt>ステート</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std;
@@ -2308,13 +2331,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月10日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="Command"></a>
 # <b><ruby>Command<rt>コマンド</rt></ruby></b>
 
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 #include <vector> //vector配列に必要
@@ -2428,12 +2452,14 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月10日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
 
 
 <a name="Interpreter"></a>
 # <b><ruby>Interpreter<rt>インタプリタ</rt></ruby></b>
-```
+
+```cpp
 //test.cpp
 /*******************************************************************
 * ここでは ActionScript、SWF、AVM（ActionScript Virtual Machine）を
@@ -2547,4 +2573,5 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、C++14  
 作成者：夢寐郎  
 作成日：2016年06月10日  
-更新日：2017年05月06日
+更新日：2017年05月06日  
+[[TOP](#TOP)]
