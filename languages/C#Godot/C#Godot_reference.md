@@ -14,8 +14,8 @@
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
-* [名前空間](#名前空間)（この項目は書きかけです）
-* <!--[継承と委譲](#継承と委譲)-->
+* [名前空間](#名前空間)
+* [継承と委譲](#継承と委譲)（この項目は書きかけです）
 * <!--[変数とスコープ](#変数とスコープ)-->
 * <!--[アクセサ（getter / setter）](#アクセサ)-->
 * <!--[演算子](#演算子)-->
@@ -581,12 +581,12 @@ namespace 名前空間名 {
 ### 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
-        Debug.Log(_myClass); //MyLibrary.MyClass
+        GD.Print(_myClass); //-> MyLibrary.MyClass
     }
 }
 
@@ -604,7 +604,7 @@ namespace MyLibrary {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
