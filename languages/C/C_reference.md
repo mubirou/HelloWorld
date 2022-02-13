@@ -1,3 +1,5 @@
+<a name="TOP"></a>
+
 ##### すこしだけ触れてみます…
 # <b>C言語 基礎文法</b>
 
@@ -29,7 +31,7 @@
 <a name="データ型"></a>
 # <b>データ型</b>
 
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 #include <stdbool.h> //boolに必要（標準では未サポート）
@@ -112,6 +114,7 @@ int main() {
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
 作成日：2017年06月06日  
+[[TOP](#TOP)]
 
 
 <a name="データ型の操作"></a>
@@ -120,7 +123,7 @@ int main() {
 ### サイズ（バイト）の調べ方 : sizeof()
 * 「sizeof 式」または「sizeof(式)」、「sizeof(型の名前)」によって式や型のサイズ（バイト）を調べることが可能
 * sizeof() 演算子で返す値は size_t 型である
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 #include <stdbool.h> //boolに必要（標準では未サポート）
@@ -209,7 +212,7 @@ int main() {
 
 ### データ型のキャスト
 1. 数値→bool型へ変換
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
     #include <stdbool.h> //boolに必要（標準では未サポート）
@@ -222,7 +225,7 @@ int main() {
     ```
 
 1. bool型→数値へ変換
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
     #include <stdbool.h> //boolに必要（標準では未サポート）
@@ -235,7 +238,7 @@ int main() {
     ```
 
 1. 数値→数値（整数の縮小変換＝変換失敗）
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
     int main() {
@@ -247,7 +250,7 @@ int main() {
     ```
 
 1. 数値→数値（浮動小数点数の縮小変換）
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
     int main() {
@@ -259,7 +262,7 @@ int main() {
     ```
 
 1. 文字列→数値
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
     #include <stdlib.h> //atoi関数に必要
@@ -271,7 +274,7 @@ int main() {
     ```
 
 1. 数値→文字列
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
     #include <stdlib.h> //atoi関数に必要
@@ -286,7 +289,8 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月06日
+作成日：2017年06月06日  
+[[TOP](#TOP)]
 
 
 <a name="構造体"></a>
@@ -300,7 +304,7 @@ int main() {
 * オブジェクト指向的な記述も可能だが煩雑
 
 ### 例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -335,13 +339,14 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月07日
+作成日：2017年06月07日  
+[[TOP](#TOP)]
 
 
 <a name="変数とスコープ"></a>
 # <b>変数とスコープ</b>
 
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -366,13 +371,14 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月09日
+作成日：2017年06月09日  
+[[TOP](#TOP)]
 
 
 <a name="演算子"></a>
 # <b>演算子</b>
 
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -409,14 +415,15 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月12日
+作成日：2017年06月12日  
+[[TOP](#TOP)]
 
 
 <a name="関数"></a>
 # <b>関数</b>
 
 ### 基本例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -449,14 +456,15 @@ int main() { //自動的に最初に実行される
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月13日
+作成日：2017年06月13日  
+[[TOP](#TOP)]
 
 
 <a name="if文"></a>
 # <b>if 文</b>
 
 ### 基本例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -477,7 +485,7 @@ int main() {
 
 ### 論理積（AND）
 1. 論理演算子（&&）を使う方法
-    ```
+    ```cpp
     if (条件式① && 条件②) {
         処理A <=条件式① かつ 条件式② の両方がtrueの場合に実行
     } else {
@@ -486,7 +494,7 @@ int main() {
     ```
 
 1. if のネストを使う方法
-    ```
+    ```cpp
     if (条件式①) {
         if (条件②) {
             処理A <=条件式① かつ 条件式② の両方がtrueの場合に実行
@@ -500,7 +508,7 @@ int main() {
 
 ### 論理和（OR）
 1. 論理演算子（||）を使う方法
-    ```
+    ```cpp
     if (条件式① || 条件②) {
         処理A <=条件式①または条件式②の両方がtrueの場合に実行
     } else {
@@ -509,7 +517,7 @@ int main() {
     ```
 
 1. ifのネストを使う方法
-    ```
+    ```cpp
     if (条件式①) {
         処理A <=条件式①がtrueの場合に実行
     } else if (条件②) {
@@ -521,7 +529,7 @@ int main() {
 
 ### 排他的論理和（XOR）
 1. ^ 演算子を使う方法
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
 
@@ -538,7 +546,7 @@ int main() {
     ```
 
 2. ^ 演算子を使わない方法
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
 
@@ -556,19 +564,20 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月13日
+作成日：2017年06月13日  
+[[TOP](#TOP)]
 
 
 <a name="三項演算子"></a>
 # <b>三項演算子</b>
 
 * 構文
-```
+```cpp
 (比較式) ? (true時の返り値) : (false時の返り値);
 ```
 
 * 例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -581,14 +590,15 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月13日
+作成日：2017年06月13日  
+[[TOP](#TOP)]
 
 
 <a name="switch文"></a>
 # <b>switch 文</b>
 
 ### 基本例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -607,7 +617,7 @@ int main() {
 ```
 
 ### break 文を意図的に記述しない方法
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
@@ -627,14 +637,15 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月13日
+作成日：2017年06月13日  
+[[TOP](#TOP)]
 
 
 <a name="for文"></a>
 # <b>for 文</b>
 
 ### 基本構文
-```
+```cpp
 for (①初期化; ②ループ判定式; ③更新処理) {
     繰り返す処理
 }
@@ -643,7 +654,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 ### ループカウンタ（ループ制御変数）の宣言位置
 
 1. for文の中でループ制御変数を宣言する
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
 
@@ -657,7 +668,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     ```
 
 1. for文の外でループ制御変数を宣言する
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
 
@@ -672,7 +683,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     ```
 
 ### ループカウンタをXつずつアップする
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()関数に必要
 
@@ -685,7 +696,7 @@ for (①初期化; ②ループ判定式; ③更新処理) {
     ```
 
 ### for 文のネスト
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -700,7 +711,7 @@ int main() {
 ```
 
 ### 無限ループと break 文
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()に必要
 
@@ -717,7 +728,7 @@ int main() {
     ```
 
 ### for 文と continue 文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -734,7 +745,8 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月13日
+作成日：2017年06月13日  
+[[TOP](#TOP)]
 
 
 <a name="while文"></a>
@@ -742,14 +754,14 @@ int main() {
 
 ### while 文
 * 構文
-```
+```cpp
 while (ループ判定式) {
     繰り返す処理
 }
 ```
 
 * 例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -766,14 +778,14 @@ int main() {
 
 ### do...while 文
 * 構文
-```
+```cpp
 do {
     繰り返す処理 <=ループ判定式がfalseの場合でも最低１回は実行される
 } while(ループ判定式);
 ```
 
 * 例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -788,7 +800,7 @@ int main() {
 ```
 
 ### while 文と break 文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -807,7 +819,7 @@ int main() {
 ```
 
 ### while 文と continue 文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -827,14 +839,15 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月14日
+作成日：2017年06月14日  
+[[TOP](#TOP)]
 
 
 <a name="配列"></a>
 # <b>配列</b>
 
 ### 作成
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -849,11 +862,11 @@ int main() {
 
 ### 更新（任意の値）
 * 構文
-```
+```cpp
 vector[インデックス番号] = 値;
 ```
 * 例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -868,7 +881,7 @@ int main() {
 ```
 
 ### 要素の数
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -887,7 +900,8 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月14日
+作成日：2017年06月14日  
+[[TOP](#TOP)]
 
 
 <a name="ポインタ"></a>
@@ -901,7 +915,7 @@ int main() {
     * <b>ポインタ</b>に、別の変数の<b>アドレス</b>を代入して置換することも可能
 
 * 例文
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()に必要
 
@@ -920,7 +934,7 @@ int main() {
 
 ### 配列のポインタ
 * 基本例文
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()に必要
 
@@ -941,7 +955,7 @@ int main() {
     ```
 
 * ポインタ演算
-    ```
+    ```cpp
     //test.c
     #include <stdio.h> //printf()に必要
 
@@ -965,14 +979,15 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月15日
+作成日：2017年06月15日  
+[[TOP](#TOP)]
 
 
 <a name="文字列の操作"></a>
 # <b>文字列の操作</b>
 
 ### 文字列の作成
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 
@@ -992,7 +1007,7 @@ int main() {
 ```
 
 ### 連結
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <string.h> //strcat()に必要
@@ -1008,7 +1023,7 @@ int main() {
 ```
 
 ### 長さを調べる
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <string.h> //strlen()に必要
@@ -1022,7 +1037,7 @@ int main() {
 ```
 
 ### 一部分を取得
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <string.h> //strncpy()に必要
@@ -1037,7 +1052,7 @@ int main() {
 ```
 
 ### 検索
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <string.h> //strstr()に必要
@@ -1053,14 +1068,15 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月16日
+作成日：2017年06月16日  
+[[TOP](#TOP)]
 
 
 <a name="数学関数"></a>
 # <b>数学関数</b>
 
 ### sin() : サイン（正弦）
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1076,7 +1092,7 @@ int main() {
 ```
 
 ### cos() : コサイン（余弦）
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1092,7 +1108,7 @@ int main() {
 ```
 
 ### M_PI : 円周率
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1109,7 +1125,7 @@ int main() {
 ```
 
 ### floor() : 切り捨て
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1122,7 +1138,7 @@ int main() {
 ```
 
 ### ceil() : 切り上げ
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1135,7 +1151,7 @@ int main() {
 ```
 
 ### pow() : 累乗（○の□乗）
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1148,7 +1164,7 @@ int main() {
 ```
 
 ### sqrt() : 平方根（√○）
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1163,7 +1179,7 @@ int main() {
 ```
 
 ### fmaxf() : 比較（最大値）
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1175,7 +1191,7 @@ int main() {
 ```
 
 ### fminf() : 比較（最小値）
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1188,13 +1204,14 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月16日
+作成日：2017年06月16日  
+[[TOP](#TOP)]
 
 
 <a name="乱数"></a>
 # <b>乱数</b>
 
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <math.h> //数学関数に必要
@@ -1231,13 +1248,14 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月16日
+作成日：2017年06月16日  
+[[TOP](#TOP)]
 
 
 <a name="日時情報"></a>
 # <b>日時情報</b>
 
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <time.h> //time()に必要
@@ -1259,13 +1277,14 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月16日
+作成日：2017年06月16日  
+[[TOP](#TOP)]
 
 
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <time.h> //clock系に必要
@@ -1282,7 +1301,8 @@ int main() {
 ```
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
-作成日：2017年06月16日
+作成日：2017年06月16日  
+[[TOP](#TOP)]
 
 
 <a name="外部テキストの読み込み"></a>
@@ -1297,7 +1317,7 @@ int main() {
 ```
 
 ### 例文
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()に必要
 #include <string.h> //strcat()に必要
@@ -1323,4 +1343,5 @@ int main() {
 
 実行環境：Ubuntu 16.04.2 LTS、GCC 5.4.0  
 作成者：夢寐郎  
-作成日：2017年06月16日
+作成日：2017年06月16日  
+[[TOP](#TOP)]

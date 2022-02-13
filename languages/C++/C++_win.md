@@ -51,7 +51,7 @@
     1. 任意の場所（今回はデスクトップ上に C++ フォルダを作成）に test<b>.cpp</b> という名で保存
 
 1. コードの記述
-```
+```cpp
 //test.cpp
 #include <iostream> //coutに必要
 using namespace std; //countに必要
