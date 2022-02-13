@@ -444,7 +444,7 @@ int main() {
 ```
 
 ### main() 関数
-```
+```cpp
 //test.c
 #include <stdio.h> //printf()関数に必要
 
