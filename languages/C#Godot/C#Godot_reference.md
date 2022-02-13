@@ -11,8 +11,8 @@
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
-* [データ型の操作](#データ型の操作)（この項目は書きかけです）
-* <!--[クラス](#クラス)-->
+* [データ型の操作](#データ型の操作)
+* [クラス](#クラス)（この項目は書きかけです）
 * <!--[基本クラスと派生クラス](#基本クラスと派生クラス)-->
 * <!--[名前空間](#名前空間)-->
 * <!--[継承と委譲](#継承と委譲)-->
@@ -120,7 +120,6 @@
 ```CSharp
 //Main.cs
 using Godot;
-using System;
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     public override void _Ready() {
@@ -265,36 +264,36 @@ class MyClass { // クラスの定義
     * クラスか否かを調べる（○ is int といった使い方も可能）
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             //クラスの場合
             var _tmp = new SubClass();
-            Debug.Log(_tmp is SubClass); //True
-            Debug.Log(_tmp is SuperClass); //True
+            GD.Print(_tmp is SubClass); //-> True
+            GD.Print(_tmp is SuperClass); //-> True
 
             //匿名型クラスの場合
             var _tmp2 = new {};
-            Debug.Log(_tmp2 is object); //True
+            GD.Print(_tmp2 is object); //-> True
         }
     }
 
-    class SuperClass {} //基本クラスの定義
-    class SubClass : SuperClass {} //派生クラスの定義
+    class SuperClass {} // 基本クラスの定義
+    class SubClass : SuperClass {} // 派生クラスの定義
     ```
 
 1. as 演算子
     * キャスト成功時に変換後の値が返され、失敗するとエラー
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             var _myClass = new MyClass();
-            Debug.Log(_myClass as MyClass); //=> MyClass
-            Debug.Log(_myClass as HogeClass); //=> error CS0039
+            GD.Print(_myClass as MyClass); //=> MyClass
+            //GD.Print(_myClass as HogeClass); //=> CS0039 error
         }
     }
 
@@ -306,18 +305,18 @@ class MyClass { // クラスの定義
     * Object.GetType() メソッド（オブジェクトの型を返す）
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
-            Debug.Log(true.GetType()); //=> System.Boolean
-            Debug.Log((100).GetType()); //=> System.Int32
-            Debug.Log((10000000000).GetType()); //=> System.UInt64
-            Debug.Log((0.1).GetType()); //=> System.Double
-            Debug.Log('1'.GetType()); //=> System.Char
-            Debug.Log("1".GetType()); //=> System.String
-            Debug.Log(new {}.GetType()); //=> <>__AnonType0
-            Debug.Log(new MyClass().GetType()); //=> MyClass
+    public class Main : Spatial {
+        public override void _Ready() {
+            GD.Print(true.GetType()); //-> System.Boolean
+            GD.Print((100).GetType()); //-> System.Int32
+            GD.Print((10000000000).GetType()); //-> System.UInt64
+            GD.Print((0.1).GetType()); //-> System.Double
+            GD.Print('1'.GetType()); //-> System.Char
+            GD.Print("1".GetType()); //-> System.String
+            GD.Print(new {}.GetType()); //-> <>f__AnonymousType0
+            GD.Print(new MyClass().GetType()); //-> MyClass
         }
     }
 
@@ -325,29 +324,29 @@ class MyClass { // クラスの定義
     ```
 
 ### データ型のキャスト
-1. 数値↔ bool 型（不可）
+1. 数値↔bool 型（不可）
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
-            //bool _tmp = (bool)1; //error CS0030（数値→bool型への変換は不可）
-            //int _tmp = (int)true; //error CS0030（bool型→数値への変換は不可）
+    public class Main : Spatial {
+        public override void _Ready() {
+            //bool _tmp = (bool)1; // CS0030 error（数値→bool型への変換は不可）
+            //int _tmp = (int)true; // CS0030 error（bool型→数値への変換は不可）
         }
     }
     ```
 
-1. 数値→ bool 型へ変換（力技）
+1. 数値→bool 型へ変換（力技）
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             int _tmp = 0;
             bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
-            Debug.Log(_tmp2); //False
+            GD.Print(_tmp2); //-> False
         }
     }
     ```
@@ -355,14 +354,14 @@ class MyClass { // クラスの定義
 1. bool型→数値へ変換
     ```CSharp
     //Main.cs
-    using UnityEngine;
-    using System; //Convertに必要
+    using Godot;
+    using System; // Convertに必要
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             bool _tmp = true;
             int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
-            Debug.Log(_tmp2); //1
+            GD.Print(_tmp2); //-> 1
         }
     }
     ```
@@ -370,19 +369,19 @@ class MyClass { // クラスの定義
 1. 数値↔数値（縮小変換）
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             //整数の場合
             long _tmp1 = 2147483648; //intは-2147483648〜2147483647
             int _tmp2 = (int)_tmp1; //long型→int型へ変換
-            Debug.Log(_tmp2); //-2147483648 ←元のデータが失われる
+            GD.Print(_tmp2); //-> -2147483648（元のデータが失われる）
 
             //浮動小数点数の場合
             decimal _decimal = 3.14159265358979323846264338327m;
             double _tmp3 = (double)_decimal;
-            Debug.Log(_tmp3); //3.14159265358979 ←データの一部が失われる
+            GD.Print(_tmp3); //-> 3.14159265358979（データの一部が失われる）
         }
     }
     ```
@@ -390,13 +389,13 @@ class MyClass { // クラスの定義
 1. 数値↔数値（拡張変換）
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             int _tmp = 2147483647; //intは-2147483648〜2147483647
             long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
-            Debug.Log(_tmp2); //2147483648
+            GD.Print(_tmp2); //=> 2147483648
         }
     }
     ```
@@ -404,15 +403,15 @@ class MyClass { // クラスの定義
 1. 数値↔ string 型
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
     using System; //Int32.Parse()に必要
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             string _tmp = "001";
-            int _tmp2 = Int32.Parse(_tmp); //"001"（string型）→1（int型）に変換
-            Debug.Log(_tmp2); //1
-            Debug.Log(_tmp2.GetType()); //System.Int32
+            int _tmp2 = Int32.Parse(_tmp); // 001（string型）→1（int型）に変換
+            GD.Print(_tmp2); //-> 1
+            GD.Print(_tmp2.GetType()); //-> System.Int32
         }
     }
     ```
@@ -420,21 +419,21 @@ class MyClass { // クラスの定義
 1. 数値→ string 型
     ```CSharp
     //Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial {
+        public override void _Ready() {
             int _tmp = 100;
-            string _tmp2 = _tmp.ToString(); //100（int型）→"100"（string）に変換
-            Debug.Log(_tmp2); //"100"
-            Debug.Log(_tmp2.GetType()); //System.String
+            string _tmp2 = _tmp.ToString(); // 100（int型）→"100"（string）に変換
+            GD.Print(_tmp2); //-> 100
+            GD.Print(_tmp2.GetType()); //-> System.String
         }
     }
     ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
