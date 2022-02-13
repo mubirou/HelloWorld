@@ -2034,7 +2034,7 @@ vector.insert(vector.begin() + インデックス番号,値);
 //インデックス番号は、先頭「0」〜「vector.size()」まで指定可能
 ```
 * 例文
-```
+```cpp
 //test.cpp
 #include <iostream> //cout に必要
 #include <vector> //vector クラスに必要
