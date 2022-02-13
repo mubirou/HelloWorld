@@ -13,8 +13,8 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-* [基本クラスと派生クラス](#基本クラスと派生クラス)（この項目は書きかけです）
-* <!--[名前空間](#名前空間)-->
+* [基本クラスと派生クラス](#基本クラスと派生クラス)
+* [名前空間](#名前空間)（この項目は書きかけです）
 * <!--[継承と委譲](#継承と委譲)-->
 * <!--[変数とスコープ](#変数とスコープ)-->
 * <!--[アクセサ（getter / setter）](#アクセサ)-->
@@ -446,17 +446,17 @@ using Godot;
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     public override void _Ready() {
-        //➀インタンスの生成
+        // ➀インタンスの生成
         Rectangle _rectangle = new Rectangle();
         
-        //➁プロパティの更新
+        // ➁プロパティの更新
         _rectangle.width = 1920;
         _rectangle.height = 1080;
-        //➂プロパティの取得
+        // ➂プロパティの取得
         GD.Print(_rectangle.width); //-> 1920
         GD.Print(_rectangle.height); //-> 1080
         
-        //➃メソッドの実行
+        // ➃メソッドの実行
         GD.Print(_rectangle.getArea()); //-> 2073600
     }
 }
@@ -495,59 +495,59 @@ class Rectangle { // 長方形クラス
 
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         //派生クラスＡのインスタンス
         SubClassA _subclassA = new SubClassA();
-        Debug.Log(_subclassA.pSuperClass); //"基本クラスのプロパティ"
-        Debug.Log(_subclassA.pSubClassA); //"派生クラスＡのプロパティ"
-        Debug.Log(_subclassA.mSuperClass()); //"基本クラスのメソッド"
-        Debug.Log(_subclassA.mSubClassA()); //"派生クラスＡのメソッド"
+        GD.Print(_subclassA.pSuperClass); //-> 基本クラスのプロパティ
+        GD.Print(_subclassA.pSubClassA); //-> 派生クラスＡのプロパティ
+        GD.Print(_subclassA.mSuperClass()); //-> 基本クラスのメソッド
+        GD.Print(_subclassA.mSubClassA()); //-> 派生クラスＡのメソッド
         
         //派生クラスＢのインスタンス
         SubClassB _subclassB = new SubClassB();
-        Debug.Log(_subclassB.pSuperClass); //"基本クラスのプロパティ"
-        Debug.Log(_subclassB.pSubClassB); //"派生クラスＢのプロパティ"
-        Debug.Log(_subclassB.mSuperClass()); //"基本クラスのメソッド"
-        Debug.Log(_subclassB.mSubClassB()); //"派生クラスＢのメソッド"
+        GD.Print(_subclassB.pSuperClass); //-> 基本クラスのプロパティ
+        GD.Print(_subclassB.pSubClassB); //-> 派生クラスＢのプロパティ
+        GD.Print(_subclassB.mSuperClass()); //-> 基本クラスのメソッド
+        GD.Print(_subclassB.mSubClassB()); //-> 派生クラスＢのメソッド
     }
 }
 
-//基本クラス（スーパークラス）
+// 基本クラス（スーパークラス）
 class SuperClass {
-    //①プロパティの定義
-    string _pSuperClass = "基本クラスのプロパティ"; //privateは省略
-    //②メソッド群の定義
+    // ➀プロパティの定義
+    string _pSuperClass = "基本クラスのプロパティ"; // privateは省略
+    // ➁メソッド群の定義
     public string pSuperClass {
-        get { return _pSuperClass; } //thisは省略
+        get { return _pSuperClass; } // thisは省略
     }
     public string mSuperClass() {
         return "基本クラスのメソッド";
     }
 }
 
-//派生クラスＡ
-class SubClassA : SuperClass { //基本クラスを継承（多重継承は不可）
-    //①プロパティの定義
-    string _pSubClassA = "派生クラスＡのプロパティ"; //privateは省略
-    //②メソッド群の定義
+// 派生クラスＡ
+class SubClassA : SuperClass { // 基本クラスを継承（多重継承は不可）
+    // ➀プロパティの定義
+    string _pSubClassA = "派生クラスＡのプロパティ"; // privateは省略
+    // ➁メソッド群の定義
     public string pSubClassA {
-        get { return _pSubClassA; } //thisは省略
+        get { return _pSubClassA; } // thisは省略
     }
     public string mSubClassA() {
         return "派生クラスＡのメソッド";
     }
 }
 
-//派生クラスＢ
-class SubClassB : SuperClass { //基本クラスを継承（多重継承は不可）
-    //①プロパティの定義
-    string _pSubClassB = "派生クラスＢのプロパティ"; //privateは省略
-    //②メソッド群の定義
+// 派生クラスＢ
+class SubClassB : SuperClass { // 基本クラスを継承（多重継承は不可）
+    // ➀プロパティの定義
+    string _pSubClassB = "派生クラスＢのプロパティ"; // privateは省略
+    // ➁メソッド群の定義
     public string pSubClassB {
-        get { return _pSubClassB; } //thisは省略
+        get { return _pSubClassB; } // thisは省略
     }
     public string mSubClassB() {
         return "派生クラスＢのメソッド";
@@ -557,7 +557,7 @@ class SubClassB : SuperClass { //基本クラスを継承（多重継承は不�
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月13日  
 [[TOP](#TOP)]
 
 
