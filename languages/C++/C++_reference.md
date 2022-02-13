@@ -5,6 +5,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/C%2B%2B/C%2B%2B_linux.md) / [macOS](https://github.com/mubirou/HelloWorld/blob/master/languages/C%2B%2B/C%2B%2B_mac.md) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%2B%2B/C%2B%2B_win.md)）
+* [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
@@ -43,6 +44,40 @@
 * [処理速度計測](#処理速度計測)
 * [外部テキストの読み込み](#外部テキストの読み込み)
 ***
+
+
+<a name="コメントアウト"></a>
+# <b>コメントアウト</b>
+
+### 1行コメントアウト
+
+```cpp
+// 〇〇〇〇〇
+```
+
+```cpp
+/* 〇〇〇〇〇 */
+```
+
+### 複数行コメントアウト
+
+```cpp
+/*
+〇〇〇〇〇
+〇〇〇〇〇
+*/
+```
+
+```cpp
+/* コメントアウト開始
+〇〇〇〇〇
+〇〇〇〇〇
+コメントアウト終了 */
+```
+
+作成者：夢寐郎  
+作成日：2022年02月13日  
+[[TOP](#TOP)]
 
 
 <a name="データ型"></a>
