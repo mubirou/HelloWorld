@@ -787,7 +787,7 @@ class MyClass {
 ### ローカル変数
 * 特徴
     * ①メソッド ② for ③ foreach 文内で宣言
-    * 宣言した ①メソッド ② for ③ foreach 文内でのみアクセス可能
+    * 宣言した ①メソッド ② for ③ foreach 文内でのみアクセス可能  
     参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/c_sharp/c_sharp_style_guide.html?highlight=protected#implicitly-typed-local-variables)  
 
 1. メソッド内で宣言する場合
