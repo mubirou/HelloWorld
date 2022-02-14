@@ -1047,46 +1047,20 @@ class MyClass {
 }
 ```
 
-### Awake()、Start()メソッド
-* 特徴
-    * .NET Framework 版の Main() メソッドと同等
-    * Awake() に続き Start() が自動的に実行される
-
-* 例文
+### _Ready()、_Process()メソッド
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Awake() {
-        MyMethod("Awake");
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    // 最初に一度だけ実行される
+    public override void _Ready() {
+        GD.Print("_Ready()");
     }
-    void Start() { //通常こちらを使用
-        MyMethod("Start");
-    }
-    void MyMethod(string arg) { //staticである必要はない
-        Debug.Log(arg);
-    }
-}
-```
 
-### Update()、FixedUpdate()メソッド
-* 特徴
-    * <b>Update()</b> は再生中に画面がアップデートされる度に実行（毎フレーム呼び出される）
-    * <b>FixedUpdate()</b> は一定時間毎に実行（[Edit]-[Project Settings]-[Time]-[Fixed timestep] で変更可能／初期値0.02秒）
-    * 他にも LastUpdate()（様々な計算終了後、毎フレーム呼び出される／要調査）や OnCollisionEnter() 等もある  
-
-* 例文
-```CSharp
-// Main.cs
-using UnityEngine;
-
-public class Main : MonoBehaviour {
-    void Update() {
-        Debug.Log("Update"); //毎フレーム呼び出される
-    }
-    void FixedUpdate() {
-        Debug.Log("FiexedUpdate"); //0.02秒毎（初期値）に呼び出される
+    // 繰り返し実行される
+    public override void _Process(float _delta) {
+        //GD.Print(_delta); //-> 0.006944444
     }
 }
 ```
@@ -1095,7 +1069,8 @@ public class Main : MonoBehaviour {
 * 書式
 ```CSharp
 class クラス名 {
-    public クラス名([型① 引数①, 型② 引数②, ...]) { //コンストラクタは省略可
+    //コンストラクタは省略可
+    public クラス名([型➀ 引数➀, 型➁ 引数➁, ...]) { 
         ......
     }
     ......
@@ -1104,26 +1079,30 @@ class クラス名 {
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        Point _point = new Point(100,150); //ここでコンストラクタを呼び出す
-        Debug.Log(_point.X); //100
-        Debug.Log(_point.Y); //150
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        Point _point = new Point(100, 150); // ここでコンストラクタを呼び出す
+        GD.Print(_point.X); //-> 100
+        GD.Print(_point.Y); //-> 150
      }
 }
 
 class Point {
     private int _x, _y;
-    public Point(int _x=0, int _y=0) { //コンストラクタ
+
+    //コンストラクタ
+    public Point(int _x=0, int _y=0) { 
         this._x = _x;
         this._y = _y;
     }
+
     public int X {
         get { return _x; }
         set { _x = value; }
     }
+
     public int Y {
         get { return _y; }
         set { _y = value; }
@@ -1134,13 +1113,13 @@ class Point {
 ### 静的メソッド（クラスメソッド）
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        Debug.Log(Math.Pow(2,0)); //1（2の0乗）
-        Debug.Log(Math.Pow(2,1)); //2（2の1乗）
-        Debug.Log(Math.Pow(2,8)); //256（2の8乗）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Pow(2,0)); //-> 1（2の0乗）
+        GD.Print(Math.Pow(2,1)); //->2（2の1乗）
+        GD.Print(Math.Pow(2,8)); //->256（2の8乗）
     }
 }
 
@@ -1160,21 +1139,21 @@ class Math {
 * オプション引数（引数は省略可）
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        _myClass.AddPoint(); //1
-        _myClass.AddPoint(10); //11
+        _myClass.AddPoint(); //-> 1
+        _myClass.AddPoint(10); //-> 11
     }
 }
 
 class MyClass {
     private int _point = 0;
-    public void AddPoint(int arg = 1) { //初期値を1とした場合
+    public void AddPoint(int arg = 1) { // 初期値を1とした場合
         _point += arg;
-        Debug.Log(_point);
+        GD.Print(_point);
     }
 }
 ```
@@ -1183,23 +1162,23 @@ class MyClass {
 * 引数を固定の数ではなく任意の数にすることが可能
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        _myClass.Sum(1,1); //2（1+1）
-        _myClass.Sum(1,2,3,4,5); //15（1+2+3+4+5）
+        _myClass.Sum(1,1); //-> 2（1+1）
+        _myClass.Sum(1,2,3,4,5); //-> 15（1+2+3+4+5）
     }
 }
 
 class MyClass {
     public void Sum(params int[] args) {
-        int _result = 0; //ローカル変数
+        int _result = 0; // ローカル変数
         foreach (int tmp in args) {
             _result += tmp;
         }
-        Debug.Log(_result);
+        GD.Print(_result);
     }
 }
 ```
@@ -1208,27 +1187,27 @@ class MyClass {
 * 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        _myClass.Rect(endX:100, endY:100); //面積:10000m2
-        _myClass.Rect(10,10,100,100); //面積:8100m2
+        _myClass.Rect(endX:100, endY:100); //-> 面積:10000m2
+        _myClass.Rect(10,10,100,100); //-> 面積:8100m2
     }
 }
 
 class MyClass {
     public void Rect(int startX=0, int startY=0, int endX=0, int endY=0) {
         int _result = (endX - startX) * (endY - startY);
-        Debug.Log("面積:" + _result + "m2");
+        GD.Print("面積:" + _result + "m2");
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月15日  
 [[TOP](#TOP)]
 
 
