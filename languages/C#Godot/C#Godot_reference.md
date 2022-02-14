@@ -1151,6 +1151,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 class MyClass {
     private int _point = 0;
+    
     public void AddPoint(int arg = 1) { // 初期値を1とした場合
         _point += arg;
         GD.Print(_point);
