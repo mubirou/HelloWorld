@@ -28,8 +28,8 @@
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
 * [for 文](#for文)
-* [foreach 文](#foreach文)（この項目は書きかけです）
-* <!--[while 文](#while文)-->
+* [foreach 文](#foreach文)
+* [while 文](#while文)（この項目は書きかけです）
 * <!--[配列](#配列)-->
 * <!--[動的配列（List）](#動的配列（List）)-->
 * <!--[連想配列（Dictionary）](#連想配列（Dictionary）)-->
@@ -1746,20 +1746,20 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### 基本構文
 ```CSharp
 foreach (データ型 変数名 in 配列等) {
-    Debug.Log(変数名);
+    GD.Print(変数名);
 }
 ```
 
 ### 配列（1次元）の場合
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string[] _array = {"A","B","C","D"}; 
         foreach (string value in _array) {
-            Debug.Log(value); //"A"→"B"→"C"→"D"
+            GD.Print(value); //-> A → B → C → D
         }
     }
 }
@@ -1768,16 +1768,17 @@ public class Main : MonoBehaviour {
 ### 配列（2次元）の場合
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string[,] _array = {
             {"x0y0","x1y0","x2y0"}, //0行目
             {"x0y1","x1y1","x2y1"}  //1行目
         }; 
         foreach (string value in _array) {
-            Debug.Log(value); //"x0y0"→"x1y0"→"x2y0"→"x0y1"→"x1y1"→"x2y1"
+            GD.Print(value); 
+            //-> x0y0 → x1y0 → x2y0 → x0y1 → x1y1 → x2y1
         }
     }
 }
@@ -1787,18 +1788,18 @@ public class Main : MonoBehaviour {
 * [Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「.NET」のバージョンが低いと dynamic が利用できません
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         dynamic[][] _array = new dynamic[2][];
         _array[0] = new dynamic[]{"A","あ"};
         _array[1] = new dynamic[]{"I","い"};
         foreach (object[] theArray in _array) {
             foreach (object value in theArray) {
-                Debug.Log(value); //"A"→"あ"、"I"→"い"
+                GD.Print(value); //-> A → あ、I → い
             }
-            Debug.Log(""); //オプション（改行）
+            GD.Print(""); // オプション（改行）
         }
     }
 }
@@ -1807,16 +1808,16 @@ public class Main : MonoBehaviour {
 ### 動的配列（ArrayList）の場合
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections; //ArrayListに必要
+using Godot;
+using System.Collections; // ArrayListに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         ArrayList _array = new ArrayList();
         _array.Add("CHIKASHI");
-        _array.Add(50);
+        _array.Add(54);
         foreach (object value in _array) {
-            Debug.Log(value); //"CHIKASHI"→49
+            GD.Print(value); //-> CHIKASHI → 54
         }
     }
 }
@@ -1825,14 +1826,14 @@ public class Main : MonoBehaviour {
 ### 動的配列（List）の場合
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (string value in _list) {
-            Debug.Log(value); //"A"→"B"
+            GD.Print(value); //-> A → B
         }
     }
 }
@@ -1841,16 +1842,16 @@ public class Main : MonoBehaviour {
 ### 連想配列の場合
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要（一般的なC#と同じ）
+using Godot;
+using System.Collections.Generic; // Dictionaryに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         Dictionary<string, string> _dic = new Dictionary<string, string>() {
             {"A", "あ"},{"I", "い"}
         };
         foreach (KeyValuePair<string, string> tmp in _dic) {
-            Debug.Log(tmp.Key + ":" + tmp.Value); //A:あ → I:い
+            GD.Print(tmp.Key + ":" + tmp.Value); //-> A:あ → I:い
         }
     }
 }
@@ -1858,7 +1859,7 @@ public class Main : MonoBehaviour {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
