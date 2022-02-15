@@ -1632,7 +1632,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 ### 基本構文
 ```CSharp
-for (①初期化; ②ループ判定式; ③更新処理) {
+for (➀初期化; ➁ループ判定式; ➂更新処理) {
     繰り返す処理
 }
 ```
@@ -1641,14 +1641,14 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 1. for 文の中で宣言
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
-            for (int i=0; i<10; i++) { //ここでint型を宣言すると...
-                Debug.Log(i); //0,1,2,3,4,5,6,7,8,9
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
+            for (int i=0; i<10; i++) { // ここでint型を宣言すると...
+                GD.Print(i); //-> 0,1,2,3,4,5,6,7,8,9
             }
-            //Debug.Log(i); //error CS0103（for文の外では使用不可）
+            //GD.Print(i); // CS0103 error（for文の外では使用不可）
         }
     }
     ```
@@ -1656,15 +1656,15 @@ for (①初期化; ②ループ判定式; ③更新処理) {
 1. for 文の外でループ制御変数を宣言する
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             int _i; //ここでint型を宣言すると...
             for (_i=0; _i<10; _i++) {
-                Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
+                GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
             }
-            Debug.Log(_i); //10（for文の外でも有効）
+            GD.Print(_i); //-> 10（for文の外でも有効）
         }
     }
     ```
