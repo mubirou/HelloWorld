@@ -1660,7 +1660,7 @@ for (➀初期化; ➁ループ判定式; ➂更新処理) {
 
     public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
         public override void _Ready() {
-            int _i; //ここでint型を宣言すると...
+            int _i; // ここでint型を宣言すると...
             for (_i=0; _i<10; _i++) {
                 GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
             }
