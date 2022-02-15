@@ -21,10 +21,10 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
-* [匿名メソッド](#匿名メソッド)（この項目は書きかけです）
-* [ラムダ式](#ラムダ式)（この項目は書きかけです）
-* <!--[静的メンバ（static）](#静的メンバ（static）)-->
-* <!--[if 文](#if文)-->
+* [匿名メソッド](#匿名メソッド)
+* [ラムダ式](#ラムダ式)
+* [静的メンバ（static）](#静的メンバ（static）)
+* [if 文](#if文)（この項目は書きかけです）
 * <!--[三項演算子](#三項演算子)-->
 * <!--[switch 文](#switch文)-->
 * <!--[for 文](#for文)-->
@@ -1224,6 +1224,7 @@ class MyClass {
 # <b>匿名メソッド</b>
 
 ```CSharp
+// Main.cs
 using Godot;
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
@@ -1282,6 +1283,7 @@ class MyClass {
 * [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
 
 ```CSharp
+// Main.cs
 using Godot;
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
@@ -1337,22 +1339,22 @@ class MyClass {
 
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        Debug.Log(Math.PI); //3.14159265358979 ←静的変数の呼び出し
-        Debug.Log(Math.Pow(2,8)); //256（2の8乗） ←静的メソッドの実行
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.PI); //-> 3.14159265358979（静的変数の呼び出し）
+        GD.Print(Math.Pow(2,8)); //-> 256（2の8乗）（静的メソッドの実行）
     }
 }
 
 class Math { //独自クラス
-    //静的変数
+    // 静的変数
     public static double PI = 3.14159265358979;
 
-    //静的メソッド
+    // 静的メソッド
     public static long Pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
+        if (arg2 == 0) { return 1; } // 0乗対策
         long _result = arg1;
         for (int i=1; i<arg2; i++) {
             _result = _result * arg1;
@@ -1364,7 +1366,7 @@ class Math { //独自クラス
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
