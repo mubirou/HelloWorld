@@ -27,8 +27,8 @@
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [switch 文](#switch文)
-* [for 文](#for文)（この項目は書きかけです）
-* <!--[foreach 文](#foreach文)-->
+* [for 文](#for文)
+* [foreach 文](#foreach文)（この項目は書きかけです）
 * <!--[while 文](#while文)-->
 * <!--[配列](#配列)-->
 * <!--[動的配列（List）](#動的配列（List）)-->
@@ -1672,12 +1672,12 @@ for (➀初期化; ➁ループ判定式; ➂更新処理) {
 ### ループカウンタを○つずつアップする
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        for (int i=0; i<50; i+=5) { //5つずつアップする場合...
-            Debug.Log(i); //0,5,10,15,20,25,30,35,40,45
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        for (int i=0; i<50; i+=5) { // 5つずつアップする場合...
+            GD.Print(i); //-> 0,5,10,15,20,25,30,35,40,45
         }
     }
 }
@@ -1686,13 +1686,13 @@ public class Main : MonoBehaviour {
 ### for 文のネスト
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         for (int i=1; i<=5; i++) {
             for (int j=1; j<=5; j++) {
-                Debug.Log("x" + i + "y" + j); //x1y1,x1y2,....,x5y4,x5y5
+                GD.Print("x" + i + "y" + j); //-> x1y1,x1y2,....,x5y4,x5y5
             }
         }
     }
@@ -1702,17 +1702,17 @@ public class Main : MonoBehaviour {
 ### 無限ループと break 文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         int _count = 0;
-        for (;;) { //①初期化 ②ループ判定式 ③更新処理...の全てを省略すると無限ループ
+        for (;;) { // ➀初期化 ➁ループ判定式 ➂更新処理の全てを省略すると無限ループ
             _count++;
-            if (_count > 100) break; //ループを終了
-            Debug.Log(_count); //1,2,....,99,100
+            if (_count > 100) break; // ループを終了
+            GD.Print(_count); //-> 1,2,....,99,100
         }
-        Debug.Log("for文終了");
+        GD.Print("for文終了");
     }
 }
 ```
@@ -1720,15 +1720,15 @@ public class Main : MonoBehaviour {
 ### for 文と continue 文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        for (int i=1; i<=20; i++) { //iは1,2,...19,20
-            if ((i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
-                continue; //for文の残処理をスキップしてfor文の次の反復を開始する
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        for (int i=1; i<=20; i++) { // iは1,2,...19,20
+            if ((i % 3) != 0) { // 3で割って余りが0ではない（＝3の倍数ではない）場合
+                continue; // for文の残処理をスキップしてfor文の次の反復を開始する
             }
-            Debug.Log(i); //3,6,9,12,15,18（3の倍数）
+            GD.Print(i); //-> 3,6,9,12,15,18（3の倍数）
         }
     }
 }
@@ -1736,7 +1736,7 @@ public class Main : MonoBehaviour {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
