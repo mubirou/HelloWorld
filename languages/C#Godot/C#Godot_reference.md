@@ -29,8 +29,8 @@
 * [switch 文](#switch文)
 * [for 文](#for文)
 * [foreach 文](#foreach文)
-* [while 文](#while文)（この項目は書きかけです）
-* <!--[配列](#配列)-->
+* [while 文](#while文)
+* [配列](#配列)（この項目は書きかけです）
 * <!--[動的配列（List）](#動的配列（List）)-->
 * <!--[連想配列（Dictionary）](#連想配列（Dictionary）)-->
 * <!--[this](#this)-->
@@ -1877,16 +1877,16 @@ while (ループ判定式) {
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         int _i = 0;
         while (_i < 10) { //ループ判定式にはbool型しか使えない
-            Debug.Log(_i); //0,1,2,3,4,5,6,7,8,9
+            GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
             _i++;
         }
-        Debug.Log(_i); //10（変数はまだ有効）
+        GD.Print(_i); //-> 10（変数はまだ有効）
     }
 }
 ```
@@ -1902,13 +1902,13 @@ do {
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         int _i = 0;
         do {
-            Debug.Log(_i); //0 ←ループ判定式はfalseだが１回実行される
+            GD.Print(_i); //-> 0（ループ判定式はfalseだが１回実行される）
             _i++;
         } while(_i < 0);
     }
@@ -1918,19 +1918,19 @@ public class Main : MonoBehaviour {
 ### while 文と break 文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         int _count = 0;
-        while (true) { //ループ判別式をtrueにすると無限ループに
+        while (true) { // ループ判別式をtrueにすると無限ループに
             _count++;
             if (_count > 100) {
-                break; //break文を使ってループを終了→★
+                break; // break文を使ってループを終了→★
             }
-            Debug.Log(_count); //1,2,....,99,100（1〜100までを出力）
+            GD.Print(_count); //-> 1,2,....,99,100
         }
-        Debug.Log("while文終了"); //★
+        GD.Print("while文終了"); // ★
     }
 }
 ```
@@ -1938,17 +1938,17 @@ public class Main : MonoBehaviour {
 ### while 文と continue 文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         int _i = 1;
         while (_i <= 20) {
-            if ((_i % 3) != 0) { //3で割って余りが0ではない（＝3の倍数ではない）場合
+            if ((_i % 3) != 0) { // 3で割って余りが0ではない（＝3の倍数ではない）場合
                 _i++;
-                continue; //while文の残処理をスキップしてwhile文の次の反復を開始する
+                continue; // while文の残処理をスキップしてwhile文の次の反復を開始する
             }
-            Debug.Log(_i); //3,6,9,12,15,18（3の倍数を出力）
+            GD.Print(_i); //-> 3,6,9,12,15,18（3の倍数を出力）
             _i++;
         }
     }
@@ -1957,7 +1957,7 @@ public class Main : MonoBehaviour {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
@@ -1975,9 +1975,9 @@ public class Main : MonoBehaviour {
 
 * 例文
 ```CSharp
-dynamic[] _array1 = new dynamic[4]; //4つの空の要素（動的型）を持つ配列を作成
+dynamic[] _array1 = new dynamic[4]; // 4つの空の要素（動的型）を持つ配列を作成
 string[] _array2 = new string[]{"A","B","C","D"};
-string[] _array3 = {"A","B","C","D"}; //簡単
+string[] _array3 = {"A","B","C","D"}; // 簡単
 ```
 
 ### ２次元配列（四角配列）の作成
