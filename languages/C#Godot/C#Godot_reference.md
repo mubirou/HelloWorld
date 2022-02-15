@@ -24,8 +24,8 @@
 * [匿名メソッド](#匿名メソッド)
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
-* [if 文](#if文)（この項目は書きかけです）
-* <!--[三項演算子](#三項演算子)-->
+* [if 文](#if文)
+* [三項演算子](#三項演算子)（この項目は書きかけです）
 * <!--[switch 文](#switch文)-->
 * <!--[for 文](#for文)-->
 * <!--[foreach 文](#foreach文)-->
@@ -1376,19 +1376,19 @@ class Math { //独自クラス
 ### 基本例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        int _age = 50;
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        int _age = 54;
         if (_age <= 20) {
-            Debug.Log("20歳以下");
+            GD.Print("20歳以下");
         } else if (_age <= 40) {
-            Debug.Log("21〜40歳");
+            GD.Print("21〜40歳");
         } else if (_age <= 60) {
-            Debug.Log("41〜60歳"); //これが出力される
+            GD.Print("41〜60歳"); // これが出力される
         } else {
-            Debug.Log("61歳以上");
+            GD.Print("61歳以上");
         }
     }
 }
@@ -1442,15 +1442,15 @@ public class Main : MonoBehaviour {
 1. ^ 演算子を使う方法
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             bool _a = true, _b = false;
             if (_a ^ _b) {
-                Debug.Log("どちらか一方だけtrueです");
+                GD.Print("どちらか一方だけtrueです");
             } else {
-                Debug.Log("両方共にtrueかfalseです");
+                GD.Print("両方共にtrueかfalseです");
             }
         }
     }
@@ -1459,15 +1459,15 @@ public class Main : MonoBehaviour {
 1. ^ 演算子を使わない方法
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             bool _a = true, _b = false;
             if ((_a || _b) && !(_a && _b)) {
-                Debug.Log("どちらか一方だけtrueです");
+                GD.Print("どちらか一方だけtrueです");
             } else {
-                Debug.Log("両方共にtrueかfalseです");
+                GD.Print("両方共にtrueかfalseです");
             }
         }
     }
@@ -1475,7 +1475,7 @@ public class Main : MonoBehaviour {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
