@@ -25,9 +25,9 @@
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
-* [三項演算子](#三項演算子)（この項目は書きかけです）
-* <!--[switch 文](#switch文)-->
-* <!--[for 文](#for文)-->
+* [三項演算子](#三項演算子)
+* [switch 文](#switch文)
+* [for 文](#for文)この項目は書きかけです
 * <!--[foreach 文](#foreach文)-->
 * <!--[while 文](#while文)-->
 * <!--[配列](#配列)-->
@@ -1491,13 +1491,13 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        int _age = 50;
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        int _age = 54;
         string _result = (_age < 60) ? "現役" : "退職";
-        Debug.Log(_result); //"現役"
+        GD.Print(_result); //-> 現役
     }
 }
 ```
@@ -1513,22 +1513,22 @@ public class Main : MonoBehaviour {
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        int _age = 50;
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        int _age = 54;
         string _result = (_age < 20) ? "未成年" :
         _result = (_age < 60) ? "現役" :
         _result = "退職";
-        Debug.Log(_result); //"現役"
+        GD.Print(_result); //-> 現役
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
@@ -1538,27 +1538,27 @@ public class Main : MonoBehaviour {
 ### 基本サンプル
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _name = "CHIKASHI";
-        switch (_name) { //判別式には「整数型」「文字型」しか使えない!
+        switch (_name) { // 判別式には「整数型」「文字型」しか使えない
             case "CHIKASHI" :
-                Debug.Log("父");
+                GD.Print("父"); // これが実行される
                 break;
             case "HANAKO" : 
-                Debug.Log("母");
+                GD.Print("母");
                 break;
             case "TARO" :
-                Debug.Log("長男");
+                GD.Print("長男");
                 break;
             case "JIRO" :
-                Debug.Log("次男");
+                GD.Print("次男");
                 break;
             default:
-                Debug.Log("家族以外");
-                break; //defaultのbreakは省略不可（注意）
+                GD.Print("家族以外");
+                break; // defaultのbreakは省略不可（注意）
         }
     }
 }
@@ -1572,17 +1572,17 @@ public class Main : MonoBehaviour {
 * 悪い例（エラー発生）
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        int _age = 50;
-        switch (true) { //bool型はエラー（注意）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        int _age = 54;
+        switch (true) { // bool型はエラー（注意）
             case _age < 20 :
-                Debug.Log("未成年");
+                GD.Print("未成年");
                 break;
             default:
-                Debug.Log("成人");
+                GD.Print("成人");
                 break;
         }
     }
@@ -1592,30 +1592,30 @@ public class Main : MonoBehaviour {
 ### 注意その２ : フォールスルーの禁止規則
 * C#では、下記のように case で何か処理をしておきながら break 文を書かないで次の case の処理に入っていくことは不可（フォールスルーの禁止規則）
 ```CSharp
-case "○○" : 何か処理; //何か処理をしておきながらbreakを書かないとエラー
+case "○○" : 何か処理; // 何か処理をしておきながらbreakを書かないとエラー
 case "□□" : 何か処理; break;
 ```
 
 * 良い例
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _name = "JIRO";
         switch (_name) {
-            case "CHIKASHI" : //breakが無いと次のcaseも処理
+            case "CHIKASHI" : // breakが無いと次のcaseも処理
             case "HANAKO" : 
-                Debug.Log("親");
+                GD.Print("親");
                 break;
-            case "TARO" : //breakが無いと次のcaseも処理
+            case "TARO" : // breakが無いと次のcaseも処理
             case "JIRO" :
-                Debug.Log("子");
+                GD.Print("子"); // これが実行される
                 break;
             default:
-                Debug.Log("家族以外");
-                break; //defaultのbreakは省略不可
+                GD.Print("家族以外");
+                break; // defaultのbreakは省略不可
         }
     }
 }
@@ -1623,7 +1623,7 @@ public class Main : MonoBehaviour {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
