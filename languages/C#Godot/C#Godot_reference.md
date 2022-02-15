@@ -1224,47 +1224,46 @@ class MyClass {
 # <b>匿名メソッド</b>
 
 ```CSharp
-// Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        _myClass.Move(1); //→
+        _myClass.Move(1); //-> →
         _myClass.change();
-        _myClass.Move(3); //←←←
+        _myClass.Move(3); //-> ←←←
     }
 }
 
 class MyClass {
-    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
-    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
+    public delegate void Method(int arg); // デリゲートの宣言（名前＝Methodは任意）
+    public Method Move; // 匿名メソッドを格納する変数Move（＝メソッド名）
     private bool _right = true;
 
-    public MyClass() { //コンストラクタ
-        //匿名メソッドの定義
+    public MyClass() { // コンストラクタ
+        // 匿名メソッドの定義
         Move = delegate(int arg) {
             string _tmp = "";
             for (int i=0; i<arg; i++) _tmp += "→";
-            Debug.Log(_tmp);
+            GD.Print(_tmp);
         };
     }
 
     public void change() {
         _right = ! _right;
         if (_right) {
-            //...匿名メソッドの再定義（メソッドの内容を変更）
+            // 匿名メソッドの再定義
             Move = delegate(int arg) {
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "→";
-                Debug.Log(_tmp);
+                GD.Print(_tmp);
             };
         } else {
-            //匿名メソッドの再定義（メソッドの内容を変更）
+            // 匿名メソッドの再定義
             Move = delegate(int arg) {
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "←";
-                Debug.Log(_tmp);
+                GD.Print(_tmp);
             };
         }
     }
@@ -1273,7 +1272,7 @@ class MyClass {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
