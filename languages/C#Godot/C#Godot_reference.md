@@ -22,7 +22,7 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名メソッド](#匿名メソッド)（この項目は書きかけです）
-* <!--[ラムダ式](#ラムダ式)-->
+* [ラムダ式](#ラムダ式)（この項目は書きかけです）
 * <!--[静的メンバ（static）](#静的メンバ（static）)-->
 * <!--[if 文](#if文)-->
 * <!--[三項演算子](#三項演算子)-->
@@ -1278,48 +1278,48 @@ class MyClass {
 
 <a name="ラムダ式"></a>
 # <b>ラムダ式</b>
+
 * [匿名メソッド](#匿名メソッド)を「ラムダ式」に置き換えたバージョン
 
 ```CSharp
-// Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyClass _myClass = new MyClass();
-        _myClass.Move(1); //→
+        _myClass.Move(1); //-> →
         _myClass.change();
-        _myClass.Move(3); //←←←
+        _myClass.Move(3); //-> ←←←
     }
 }
 
 class MyClass {
-    public delegate void Method(int arg); //デリゲートの宣言（名前＝Methodは任意）
-    public Method Move; //匿名メソッドを格納する変数Move（＝メソッド名）
+    public delegate void Method(int arg); // デリゲートの宣言（名前＝Methodは任意）
+    public Method Move; // 匿名メソッドを格納する変数Move（＝メソッド名）
     private bool _right = true;
 
-    public MyClass() { //コンストラクタ
-        Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+    public MyClass() { // コンストラクタ
+        Move = (int arg) => { // 匿名メソッドの代りにラムダ式を利用
             string _tmp = "";
             for (int i=0; i<arg; i++) _tmp += "→";
-            Debug.Log(_tmp);
-        }; //メソッドの内容を変更
+            GD.Print(_tmp);
+        };
     }
 
     public void change() {
         _right = ! _right;
         if (_right) {
-            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+            Move = (int arg) => { // 匿名メソッドの代りにラムダ式を利用
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "→";
-                Debug.Log(_tmp);
-            }; //メソッドの内容を変更
+                GD.Print(_tmp);
+            };
         } else {
-            Move = (int arg) => { //匿名メソッドの代りにラムダ式を利用
+            Move = (int arg) => { // 匿名メソッドの代りにラムダ式を利用
                 string _tmp = "";
                 for (int i=0; i<arg; i++) _tmp += "←";
-                Debug.Log(_tmp);
-            }; //メソッドの内容を変更
+                GD.Print(_tmp);
+            };
         }
     }
 }
@@ -1327,7 +1327,7 @@ class MyClass {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月16日  
 [[TOP](#TOP)]
 
 
