@@ -1592,8 +1592,8 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### 注意その２ : フォールスルーの禁止規則
 * C#では、下記のように case で何か処理をしておきながら break 文を書かないで次の case の処理に入っていくことは不可（フォールスルーの禁止規則）
 ```CSharp
-case "○○" : 何か処理; // 何か処理をしておきながらbreakを書かないとエラー
-case "□□" : 何か処理; break;
+case "〇〇" : 何か処理; // 何か処理をしておきながらbreakを書かないとエラー
+case "◇◇" : 何か処理; break;
 ```
 
 * 良い例
@@ -2316,7 +2316,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-### 削除（○番目から□個）
+### 削除（〇番目から◇個）
 * 構文
 ```CSharp
 List.RemoveRange(開始, 削除する個数); // 開始＝削除開始したいインデックス番号
@@ -3379,7 +3379,7 @@ public class Main : MonoBehaviour {
 }
 ```
 
-### Math.Pow() : 累乗（○の□乗）
+### Math.Pow() : 累乗（〇の◇乗）
 ```CSharp
 // Main.cs
 using UnityEngine;
