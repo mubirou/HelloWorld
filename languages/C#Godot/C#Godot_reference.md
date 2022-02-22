@@ -1975,9 +1975,21 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 * 例文
 ```CSharp
-dynamic[] _array1 = new dynamic[4]; // 4つの空の要素（動的型）を持つ配列を作成
-string[] _array2 = new string[]{"A","B","C","D"};
-string[] _array3 = {"A","B","C","D"}; // 簡単
+// Main.cs
+using Godot;
+
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        dynamic[] _array1 = new dynamic[4]; // 4つの空の要素（動的型）を持つ配列を作成
+        string[] _array2 = new string[]{"A","B","C","D"};
+        string[] _array3 = {"A","B","C","D"}; // 簡単
+        
+        // 動作確認
+        GD.Print(_array1); //-> nullnullnullnull
+        GD.Print(_array2); //-> ABCD
+        GD.Print(_array3); //-> ABCD
+    }
+}
 ```
 
 ### ２次元配列（四角配列）の作成
@@ -1990,15 +2002,21 @@ string[] _array3 = {"A","B","C","D"}; // 簡単
 1. new 演算子を使う方法（≒５行x４列のコインロッカー）
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             string[,] _coinlocker = new string[5,4];
             _coinlocker[0,0] = "1083"; //0,0の値
             _coinlocker[0,1] = "7777"; //0,1の値
             _coinlocker[2,1] = "0135"; //2,1の値
             _coinlocker[4,3] = "1234"; //4,3の値
+
+            // 動作確認
+            GD.Print(_coinlocker[0,0]); //-> 1083
+            GD.Print(_coinlocker[0,1]); //-> 7777
+            GD.Print(_coinlocker[0,2]); //-> null
+            // 以下略
         }
     }
     ```
@@ -2006,22 +2024,23 @@ string[] _array3 = {"A","B","C","D"}; // 簡単
 1. 配列リテラルを使う方法（≒５行x４列のコインロッカー）
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             string[,] _coinlocker = {
-                {"1083","7777","",""}, //0行目
-                {"","","",""}, //1行目
-                {"","0135","",""}, //2行目
-                {"","","",""}, //3行目
-                {"","","","1234"} //4行目
+                {"1083", "7777", null, null}, // 0行目
+                {null, null, null, null}, // 1行目
+                {null, "0135", null, null}, // 2行目
+                {null, null, null, null}, // 3行目
+                {null, null, null, "1234"} // 4行目
             };
-            //確認
-            Debug.Log(_coinlocker[0,0]); //"1083"
-            Debug.Log(_coinlocker[0,1]); //"7777"
-            Debug.Log(_coinlocker[2,1]); //"0135"
-            Debug.Log(_coinlocker[4,3]); //"1234"
+
+            // 動作確認
+            GD.Print(_coinlocker[0,0]); //-> 1083
+            GD.Print(_coinlocker[0,1]); //-> 7777
+            GD.Print(_coinlocker[0,2]); //-> null
+            // 以下略
         }
     }
     ```
@@ -2037,15 +2056,21 @@ string[] _array3 = {"A","B","C","D"}; // 簡単
 1. ジャグ配列の宣言→後で値を割り当てる方法
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             dynamic[][] _array = new dynamic[4][];
-            _array[0] = new dynamic[]{"A","あ","ア"}; //配列リテラルは不可
+            _array[0] = new dynamic[]{"A","あ","ア"}; // 配列リテラルは不可
             _array[1] = new dynamic[]{"I","い","イ"};
             _array[2] = new dynamic[]{"U","う","ウ"};
             _array[3] = new dynamic[]{"E","え","エ"};
+
+            // 動作確認
+            GD.Print(_array[0]); //-> Aあア
+            GD.Print(_array[1]); //-> Iいイ
+            GD.Print(_array[2]); //-> Uうウ
+            GD.Print(_array[3]); //-> Eえエ
         }
     }
     ```
@@ -2053,19 +2078,21 @@ string[] _array3 = {"A","B","C","D"}; // 簡単
 1. ジャグ配列の宣言と同時に値を割り当てる方法
     ```CSharp
     // Main.cs
-    using UnityEngine;
+    using Godot;
 
-    public class Main : MonoBehaviour {
-        void Start() {
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
             dynamic[][] _array = new dynamic[][]{
             new dynamic[]{"A","あ","ア"},
             new dynamic[]{"I","い","イ"},
             new dynamic[]{"U","う","ウ"},
             new dynamic[]{"E","え","エ"}
             };
-            foreach (dynamic[] theArray in _array) { //確認 (コマンドライン版の例）
+
+            // 動作確認
+            foreach (dynamic[] theArray in _array) {
                 foreach (object theValue in theArray) {
-                    Debug.Log(theValue);
+                    GD.Print(theValue); //-> A→あ→ア→I→い→イ...→エ
                 }
             }
         }
@@ -2075,13 +2102,13 @@ string[] _array3 = {"A","B","C","D"}; // 簡単
 ### 配列の Length プロパティ
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string[] _array = {"A","B","C","D"};
-        for (int i=0; i<_array.Length; i++) { //配列の要素の数
-            Debug.Log(_array[i]);
+        for (int i=0; i<_array.Length; i++) { // 配列の要素の数
+            GD.Print(_array[i]); //-> A→B→C→D
         }
     }
 }
@@ -2090,14 +2117,14 @@ public class Main : MonoBehaviour {
 ### 文字列→配列
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (string value in _array) {
-            Debug.Log(value); //"A"→"B"→"C"→"D"
+            GD.Print(value); //-> A→B→C→D
         }
     }
 }
@@ -2105,7 +2132,7 @@ public class Main : MonoBehaviour {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月22日  
 [[TOP](#TOP)]
 
 
