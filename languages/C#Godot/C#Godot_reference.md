@@ -2469,7 +2469,7 @@ using System.Collections.Generic; // Listに必要
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     public override void _Ready() {
-        List<string> _list = new List<string>() { "C", "02", "A", "01", "03", "B" };
+        List<string> _list = new List<string>() {"C", "02", "A", "01", "03", "B"};
         _list.Sort();
         
         // 動作確認
@@ -2477,6 +2477,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
             GD.Print(value); //-> 01→02→03→A→B→C
         }
     }
+}
 ```
 
 ### 結合
