@@ -30,8 +30,8 @@
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
-* [配列](#配列)（この項目は書きかけです）
-* <!--[動的配列（List）](#動的配列（List）)-->
+* [配列](#配列)
+* [動的配列（List）](#動的配列（List）)（この項目は書きかけです）
 * <!--[連想配列（Dictionary）](#連想配列（Dictionary）)-->
 * <!--[this](#this)-->
 * <!--[文字列の操作](#文字列の操作)-->
@@ -1963,6 +1963,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 <a name="配列"></a>
 # <b>配列</b>
+
 * C# では配列宣言後の要素数変更は不可
 
 ### １次元配列の作成
@@ -2139,9 +2140,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 <a name="動的配列（List）"></a>
 # <b>動的配列（List）</b>
 
-### 概要
 * 配列と異なり List は要素の数を変更したり追加･削除などが可能
-* 動的配列（ArrayList）の.NET framework 2.0 対応版
 
 ### 作成
 * 構文
