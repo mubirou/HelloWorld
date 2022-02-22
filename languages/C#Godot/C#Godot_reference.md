@@ -1970,8 +1970,8 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 * 構文（他にも var キーワードを使ってデータ型を省略した定義も可能）
 ```CSharp
 データ型[] 変数名 = new データ型[要素数];
-データ型[] 変数名 = new データ型[]{要素①,要素②,...};
-データ型[] 変数名 = {要素①,要素②,...}; //簡単
+データ型[] 変数名 = new データ型[]{要素➀, 要素➁ ,...};
+データ型[] 変数名 = {要素➀ ,要素➁, ...}; //簡単
 ```
 
 * 例文
@@ -1996,8 +1996,8 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### ２次元配列（四角配列）の作成
 * 構文
 ```CSharp
-データ型[,] 変数名 = new データ型[行数,列数]; //縦x横の空の要素を持つ２次元配列
-データ型[,] 変数名 = {{1行目の配列},{2行目の配列},...};
+データ型[,] 変数名 = new データ型[行数, 列数]; // 縦x横の空の要素を持つ２次元配列
+データ型[,] 変数名 = {{1行目の配列}, {2行目の配列}, ...};
 ```
 
 1. new 演算子を使う方法（≒５行x４列のコインロッカー）
@@ -2048,10 +2048,9 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 ### 配列の配列（ジャグ配列）の作成
 * 構文（それぞれの配列の長さは異なるものにできる）
-* データ型に dynamic を利用する場合、[Edit]-[Project Settings]-[Player] を選択し、「Other Settings」の「Configuration」の「.NET」のバージョンを確認して下さい（低いと利用できません）
 ```CSharp
-①データ型[][] 変数名 = new データ型[要素数][];
-②データ型[][] 変数名 = new データ型[][]{new データ型[]{配列①},...};
+➀データ型[][] 変数名 = new データ型[要素数][];
+➁データ型[][] 変数名 = new データ型[][]{new データ型[]{配列➀},...};
 ```
 
 1. ジャグ配列の宣言→後で値を割り当てる方法
@@ -2145,21 +2144,21 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### 作成
 * 構文
 ```CSharp
-List<データ型> 変数名 = new List<データ型>(); //空のListを作成
-List<データ型> 変数名 = new List<データ型>(数); //指定数の空の要素を持つList作成
-List<データ型> 変数名 = new List<データ型>() { 要素①,要素②,... };
+List<データ型> 変数名 = new List<データ型>(); // 空のListを作成
+List<データ型> 変数名 = new List<データ型>(数); // 指定数の空の要素を持つList作成
+List<データ型> 変数名 = new List<データ型>() { 要素➀, 要素➁, ... };
 ```
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        List<string> _list = new List<string>() { "A", "B" };
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        List<string> _list = new List<string>() {"A", "B"};
         foreach (object value in _list) {
-            Debug.Log(value); //"A"→"B"
+            GD.Print(value); //-> A→B
         }
     }
 }
@@ -2168,22 +2167,24 @@ public class Main : MonoBehaviour {
 ### 追加（最後）
 * 構文
 ```CSharp
-List.Add(値); //値はobject型（文字型、数値型等）で混在不可（dynamic型は除く）
+List.Add(値); // 値はobject型（文字型、数値型等）で混在不可（dynamic型は除く）
 ```
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        //空 → "A" → "A","B"
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        // 空 → "A" → "A","B"
         List<string> _list = new List<string>();
         _list.Add("A");
         _list.Add("B");
+
+        // 動作確認
         foreach (object value in _list) {
-            Debug.Log(value); //"A"→"B"
+            GD.Print(value); //-> A→B
         }
     }
 }
@@ -2192,21 +2193,21 @@ public class Main : MonoBehaviour {
 ### 追加（指定位置）
 * 構文
 ```CSharp
-List.Insert(インデックス番号,値); //先頭（0）〜最後（List.Capacity-1）まで指定可能
+List.Insert(インデックス番号,値); // 先頭(0)〜最後(List.Capacity-1)まで指定可能
 ```
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        //"A","B" → "C","A","B"
-        List<string> _list = new List<string>() { "A", "B" };
-        _list.Insert(0,"C"); //先頭に追加する場合は0
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        // "A","B" → "C","A","B"
+        List<string> _list = new List<string>() {"A", "B"};
+        _list.Insert(0, "C"); // 先頭に追加する場合は0
         foreach (object value in _list) {
-            Debug.Log(value); //"C"→"A"→"B"
+            GD.Print(value); //-> C→A→B
         }
     }
 }
@@ -2220,16 +2221,18 @@ List[インデックス番号] = 値;
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        //"A","B" → "C","B"
-        List<string> _list = new List<string>() { "A", "B" };
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        // "A","B" → "C","B"
+        List<string> _list = new List<string>() {"A", "B"};
         _list[0] = "C"; //0番目を変更する場合
+
+        // 動作確認
         foreach (object value in _list) {
-            Debug.Log(value); //"C"→"B"
+            GD.Print(value); //-> C→B
         }
     }
 }
@@ -2243,16 +2246,18 @@ List[インデックス番号] = null;
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        //"A","B","C" → "A","B",null
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        // "A","B","C" → "A","B",null
         List<string> _list = new List<string>() { "A", "B", "C" };
         _list[2] = null;
+
+        // 動作確認
         foreach (object value in _list) {
-            Debug.Log(value); // "A"→"B"→Null
+            GD.Print(value); //-> A→B→null
         }
     }
 }
@@ -2261,21 +2266,23 @@ public class Main : MonoBehaviour {
 ### 削除（指定のオブジェクト）
 * 構文
 ```CSharp
-List.Remove(object); //最初に見つかった指定のオブジェクトを削除
+List.Remove(object); // 最初に見つかった指定のオブジェクトを削除
 ```
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         //"A","B","C" → "A","C"
-        List<string> _list = new List<string>() { "A", "B", "C" };
+        List<string> _list = new List<string>() {"A", "B", "C"};
         _list.Remove("B");
+
+        // 動作確認
         foreach (object value in _list) {
-            Debug.Log(value); // "A"→"C"
+            GD.Print(value); //-> A→C
         }
     }
 }
@@ -2284,22 +2291,24 @@ public class Main : MonoBehaviour {
 ### 削除（指定のインデックス）
 * 構文
 ```CSharp
-List.RemoveAt(インデックス番号); //先頭（0）〜最後（List.Capacity-1）まで指定可能
+List.RemoveAt(インデックス番号); // 先頭（0）〜最後（List.Capacity-1）まで指定可能
 ```
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Listに必要
+using Godot;
+using System.Collections.Generic; // Listに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         //"A","B","C" → "B","C"
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list.RemoveAt(0); //先頭を削除する場合
-        //_list.RemoveAt(_list.Capacity-1); //最後を削除する場合
+        List<string> _list = new List<string>() {"A", "B", "C"};
+        _list.RemoveAt(0); // 先頭を削除する場合
+        //_list.RemoveAt(_list.Count - 1); // 最後を削除する場合
+        
+        // 動作確認
         foreach (object value in _list) {
-            Debug.Log(value); // "B"→"C"
+            GD.Print(value); //-> B→C
         }
     }
 }
