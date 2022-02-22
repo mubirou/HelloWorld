@@ -2361,7 +2361,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
         // "A","B","C","D" → "C","D"を返す
         List<string> _list = new List<string>() {"A", "B", "C", "D"};
         List<string> _result = _list.GetRange(2, 2); // 2番目から2個抽出する場合
-        //List<string> _result = _list.GetRange(1, _list.Count - 1);//1番目〜最後を抽出
+        //List<string> _result = _list.GetRange(1, _list.Count - 1);// 1番目〜最後を抽出
         
         // 動作確認
         foreach (object value in _result) {
