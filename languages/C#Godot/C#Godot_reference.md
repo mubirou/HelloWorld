@@ -2321,7 +2321,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```CSharp
 List.RemoveRange(開始, 削除する個数); // 開始＝削除開始したいインデックス番号
 List.RemoveRange(開始, List.Count-開始); // 〇番目から最後まで削除
-List.Clear(); //全て削除
+List.Clear(); // 全て削除
 ```
 * 例文
 ```CSharp
