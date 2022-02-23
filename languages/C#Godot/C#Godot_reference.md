@@ -1397,8 +1397,8 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### 論理積（AND）
 1. 論理演算子（&&）を使う方法
     ```CSharp
-    if (条件式① && 条件②) {
-        処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+    if (条件式➀ && 条件➁) {
+        処理A（条件式➀ かつ 条件式➁ の両方がtrueの場合に実行）
     } else {
         処理B
     }
@@ -1406,9 +1406,9 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 1. if のネストを使う方法
     ```CSharp
-    if (条件式①) {
-        if (条件②) {
-            処理A ←条件式① かつ 条件式② の両方がtrueの場合に実行
+    if (条件式➀) {
+        if (条件➁) {
+            処理A（条件式➀ かつ 条件式➁ の両方がtrueの場合に実行）
         } else {
             処理B
         }
@@ -1420,8 +1420,8 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### 論理和（OR）
 1. 論理演算子（||）を使う方法
     ```CSharp
-    if (条件式① || 条件②) {
-        処理A ←条件式①または条件式②の両方がtrueの場合に実行
+    if (条件式➀ || 条件➁) {
+        処理A（条件式➁または条件式➁の両方がtrueの場合に実行）
     } else {
         処理B
     }
@@ -1429,10 +1429,10 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 2. if のネストを使う方法
     ```CSharp
-    if (条件式①) {
-        処理A ←条件式①がtrueの場合に実行
-    } else if (条件②) {
-        処理A ←条件式②がtrueの場合に実行
+    if (条件式➀) {
+        処理A（条件式➀がtrueの場合に実行）
+    } else if (条件➁) {
+        処理A（条件式➁がtrueの場合に実行）
     } else {
         処理B
     }
