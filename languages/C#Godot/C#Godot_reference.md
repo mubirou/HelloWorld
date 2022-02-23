@@ -42,8 +42,8 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
-* [乱数](#乱数)（この項目は書きかけです）
-* <!--[日時情報](#日時情報)-->
+* [乱数](#乱数)
+* [日時情報](#日時情報)（この項目は書きかけです）
 * <!--[タイマー](#タイマー)-->
 * <!--[処理速度計測](#処理速度計測)-->
 * <!--[外部テキストの読み込み](#外部テキストの読み込み)-->
@@ -3462,41 +3462,51 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 # <b>乱数</b>
 * Godot の独自仕様（一般的な C# の [Random](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_reference.md#%E4%B9%B1%E6%95%B0) クラスとは異なります）
 
-### 0〜1.0 未満
+### 0.0〜1.0
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(UnityEngine.Random.value); //0〜0.999…（1.0未満）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Randomize(); // 乱数のシード値を設定（任意）
+        GD.Print(GD.Randf()); //-> 0.4617555（0～1.0）
     }
 }
 ```
+（注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
-### 最小値〜最大値（float 型）
+### 最小値〜最大値（float型）
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(UnityEngine.Random.Range(-0.3f, 0.8f)); //-0.3〜0.8以下
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Randomize(); // 乱数のシード値を設定（任意）
+        GD.Print(GD.RandRange(0d, 100d)); //-> 43.8898437012383（0.0～100.0）
     }
 }
 ```
+（注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
+
 
 ### 最小値〜最大値（int型）
+* GDScript の [RandomNumberGenerator.randi_range()](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%9C%80%E5%B0%8F%E5%80%A4%E6%9C%80%E5%A4%A7%E5%80%A4int%E5%9E%8B) に相当する機能が見当たらないため力技で処理  
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        int _u5=0,_u4=0,_u3=0,_u2=0,_u1=0,_o0=0,_o1=0,_o2=0,_o3=0,_o4=0,_o5=0;
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        int _u5=0, _u4=0, _u3=0, _u2=0, _u1=0;
+        int _o0=0, _o1=0, _o2=0, _o3=0, _o4=0, _o5=0;
+        int _min = -5, _max = 5; // 最小値と最大値を設定
+        GD.Randomize(); // 乱数のシード値を設定（任意）
 
         for (int i=0; i < 1000000; i++) {
-            switch (UnityEngine.Random.Range(-5, 5)) {
+            switch (Math.Floor(GD.RandRange(_min-1, _max+1))) {
                 case -5: _u5++; break;
                 case -4: _u4++; break;
                 case -3: _u3++; break;
@@ -3511,15 +3521,17 @@ public class Main : MonoBehaviour {
             }
         }
 
-        Debug.Log(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
-        //99736,100201,100107,99676,100238,100700,99774,100459,99486,99623,0
+        GD.Print(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
+        //-> 83154,83611,83840,83321,83460,83433,83274,83431,83126,83195,83366
     }
 }
 ```
+（注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
+参考：[Qiita](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
