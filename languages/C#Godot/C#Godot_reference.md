@@ -35,8 +35,8 @@
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
-* [正規表現](#正規表現)（この項目は書きかけです）
-* <!--[インターフェース](#インターフェース)-->
+* [正規表現](#正規表現)
+* [インターフェース](#インターフェース)（この項目は書きかけです）
 * <!--[抽象クラス（abstract）](#抽象クラス（abstract）)-->
 * <!--[base キーワード](#baseキーワード)-->
 * <!--[オーバーライド](#オーバーライド)-->
@@ -2870,15 +2870,15 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### マッチした数
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _string = "cabacbbacbcba";
-        //"a"がいくつ含まれるか
+        // "a"がいくつ含まれるか
         MatchCollection _mc = Regex.Matches(_string, "a");
-        Debug.Log(_mc.Count); //4
+        GD.Print(_mc.Count); //-> 4
     }
 }
 ```
@@ -2886,12 +2886,12 @@ public class Main : MonoBehaviour {
 ### パスワード
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        string _string = @"U7eLoERa"; //任意のパスワード（@を付ける）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        string _string = @"U7eLoERa"; // 任意のパスワード（@を付ける）
         /* 条件
         8文字以上（全て半角）
         1文字以上の「数字」を含む
@@ -2899,7 +2899,7 @@ public class Main : MonoBehaviour {
         */
         Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");//②
         Match _match = _regex.Match(_string);
-        Debug.Log(_match.Success); //True ←パスワードとして条件に合致
+        GD.Print(_match.Success); //-> True（パスワードとして条件に合致）
     }
 }
 ```
@@ -2907,22 +2907,22 @@ public class Main : MonoBehaviour {
 ### 郵便番号（7桁）
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        string _string = "123-4567"; //任意の郵便番号
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        string _string = "123-4567"; // 任意の郵便番号
         Regex _regex = new Regex("\\d{3}-\\d{4}");
         Match _match = _regex.Match(_string);
-        Debug.Log(_match.Success); //True ←郵便番号として条件に合致
+        GD.Print(_match.Success); //-> True（郵便番号として条件に合致）
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
