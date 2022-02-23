@@ -3685,32 +3685,33 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```
 
 ### 〇秒後に一度だけ実行する
-* コールチンを利用する場合
+* システムタイマー（[System.Timers.Timer](https://docs.microsoft.com/ja-jp/dotnet/api/system.timers.timer?view=net-6.0)）を利用した力技  
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections; //IEnumeratorに必要
+using Godot;
+using System; // EventArgsに必要
+using System.Timers; // ElapsedEventHandlerに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        TimerStart(3f);
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    private static System.Timers.Timer _timer; // privateは省略可
+
+    public override void _Ready() {
+        _timer = new System.Timers.Timer(); // タイマーの生成
+        _timer.Interval = 3000; // 3000ミリ秒間隔
+        _timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
+        _timer.Start(); // 開始
     }
-
-    void TimerStart(float arg) { //メソッド名は任意
-        StartCoroutine(TimerEnd(arg)); //引数無しの場合"TimerEnd"でもよい
-    }
-
-    IEnumerator TimerEnd(float arg) { //メソッド名は任意
-        yield return new WaitForSeconds(arg);
-        Debug.Log(arg + "秒後に実行");
+    
+    static void Loop(object arg1, System.EventArgs arg2) { // 3000ミリ秒後に実行される
+        _timer.Stop(); // 停止（この場合１回で停止）
+        GD.Print(_timer.Interval + "秒後に実行");
     }
 }
 ```
-* ほかに MonoBehaviour.[Invoke()](https://github.com/mubirou/Unity/tree/master/examples#029-%E6%95%B0%E7%A7%92%E5%BE%8C%E3%81%AB%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%AE%9F%E8%A1%8C) を使う方法もあり
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
