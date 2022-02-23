@@ -3659,7 +3659,8 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 # <b>タイマー</b>
 
 ### 繰り返し実行する
-* システムタイマー（[System.Timers.Timer](https://docs.microsoft.com/ja-jp/dotnet/api/system.timers.timer?view=net-6.0)）を利用する方法
+* システムタイマー（[System.Timers.Timer](https://docs.microsoft.com/ja-jp/dotnet/api/system.timers.timer?view=net-6.0)）を利用する方法  
+* Godot.Timer による方法もあるかもしれません（要調査）
 ```CSharp
 // Main.cs
 using Godot;
@@ -3686,6 +3687,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 ### 〇秒後に一度だけ実行する
 * システムタイマー（[System.Timers.Timer](https://docs.microsoft.com/ja-jp/dotnet/api/system.timers.timer?view=net-6.0)）を利用した力技  
+* Godot.Timer による方法もあるかもしれません（要調査）  
 ```CSharp
 // Main.cs
 using Godot;
