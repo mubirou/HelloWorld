@@ -39,8 +39,8 @@
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
-* [オーバーライド](#オーバーライド)（この項目は書きかけです）
-* <!--[カスタムイベント](#カスタムイベント)-->
+* [オーバーライド](#オーバーライド)
+* [カスタムイベント](#カスタムイベント)（この項目は書きかけです）
 * <!--[数学関数（Math）](#数学関数（Math）)-->
 * <!--[乱数](#乱数)-->
 * <!--[日時情報](#日時情報)-->
@@ -3088,9 +3088,9 @@ class SubClass : SuperClass { //派生クラス
 # <b>オーバーライド</b>
 
 ### 概要
-* 基本クラス（または抽象クラス）で定義したメソッドを、派生クラスで再定義することをオーバーライドと呼ぶ
-* オーバーライドできるメソッドは、基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
-* 基本クラスのメソッドを、オーバーライドによって拡張する場合などで、基本クラスのメソッドを呼び出したい場合は、base.メソッド名() を使用する（「[base キーワード](#baseキーワード)」参照）。
+* 基本クラス（または抽象クラス）で定義したメソッドを派生クラスで再定義することをオーバーライドと呼ぶ
+* オーバーライドできるメソッドは基本クラスの場合 virtual 、抽象クラスの場合 abstract キーワードが付加されたものに限る
+* 基本クラスのメソッドをオーバーライドによって拡張する場合などで基本クラスのメソッドを呼び出したい場合はbase.メソッド名() を使用する（「[base キーワード](#baseキーワード)」参照）
 
 ### 「仮想メソッド」のオーバーライド
 * 書式
@@ -3101,9 +3101,9 @@ class 基本クラス名 {
     }
     ……
 }
-class 派生クラス名 : 基本クラス { //派生クラス（基本クラスを継承）
+class 派生クラス名 : 基本クラス { // 派生クラス（基本クラスを継承）
     アクセス修飾子 override 戻り値の型 メソッド名([型 引数]) { 
-        base.メソッド名(引数); //基本クラスのメソッドを呼び出す（オプション）
+        base.メソッド名(引数); // 基本クラスのメソッドを呼び出す（オプション）
         …… 
     }
     ……
@@ -3113,25 +3113,25 @@ class 派生クラス名 : 基本クラス { //派生クラス（基本クラス
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start () {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         SubClass _subClass = new SubClass();
         _subClass.Method();
     }
 }
 
 class SuperClass { //基本クラス
-    public virtual void Method() { //オーバーライドを許可
-        Debug.Log("SuperClass.Method");
+    public virtual void Method() { // オーバーライドを許可
+        GD.Print("SuperClass.Method()");
     }
 }
 
-class SubClass : SuperClass { //派生クラス（基本クラスを継承）
-    public override void Method() { //基本クラスのメソッドのオーバーライド
-        Debug.Log("SubClass.Method");
-        base.Method(); //"SuperClass.Method"←基本クラスのメソッド実行（オプション）
+class SubClass : SuperClass { // 派生クラス（基本クラスを継承）
+    public override void Method() { // 基本クラスのメソッドのオーバーライド
+        GD.Print("SubClass.Method()");
+        base.Method(); // 基本クラスのメソッド実行（オプション）
     } 
 }
 ```
@@ -3139,13 +3139,13 @@ class SubClass : SuperClass { //派生クラス（基本クラスを継承）
 ### 「抽象メソッド」のオーバーライド
 * 書式
 ```CSharp
-abstract class 抽象クラス名 { //抽象クラスの定義
-    アクセス修飾子 abstract 型 抽象メソッド名([型 引数]); //抽象メソッド宣言
+abstract class 抽象クラス名 { // 抽象クラスの定義
+    アクセス修飾子 abstract 型 抽象メソッド名([型 引数]); // 抽象メソッド宣言
     ……
 }
-class 派生クラス : 抽象クラス名 { //抽象クラスを継承
-    アクセス修飾子 override 型 抽象メソッド名([型 引数]) { //オーバーライド
-        //実際の処理
+class 派生クラス : 抽象クラス名 { // 抽象クラスを継承
+    アクセス修飾子 override 型 抽象メソッド名([型 引数]) { // オーバーライド
+        // 実際の処理
     }
     ……
 }
@@ -3154,29 +3154,29 @@ class 派生クラス : 抽象クラス名 { //抽象クラスを継承
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start () {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         SubClass _subClass = new SubClass();
         _subClass.Method();
     }
 }
 
-abstract class AbstractClass { //抽象クラス
-    public abstract void Method(); //抽象メソッドの宣言
+abstract class AbstractClass { // 抽象クラス
+    public abstract void Method(); // 抽象メソッドの宣言
 }
 
-class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
-    public override void Method() { //オーバーライドして実際の処理を記述
-        Debug.Log("AbstractClass.Method");
+class SubClass : AbstractClass { // 派生クラス（抽象クラスを継承）
+    public override void Method() { // オーバーライドして実際の処理を記述
+        GD.Print("AbstractClass.Method()");
     } 
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
@@ -3184,17 +3184,17 @@ class SubClass : AbstractClass { //派生クラス（抽象クラスを継承）
 # <b>カスタムイベント</b>
 
 ### 概要
-イベントとは、あるアクションが発生したことを自動的に通知する仕組み。カスタムクラス内で何か処理をし終えた際、別のオブジェクトにそのことを知らせる場合に、このイベント機能を使用。イベントを設定したカスタムクラスからは、情報（イベント）を発信するだけ。情報を受けたいオブジェクトは、リスナーメソッドを準備して待ち受ける...。このことにより、カスタムクラスを汚さずに済む、というメリットが生まれる。C# に用意された event は、特殊なデリゲート（delegate）と言えるものです。デリゲートとの違いは、event 宣言した変数（イベント名）には、イベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等。
+イベントとはあるアクションが発生したことを自動的に通知する仕組み。カスタムクラス内で何か処理をし終えた際別のオブジェクトにそのことを知らせる場合にこのイベント機能を使用。イベントを設定したカスタムクラスからは情報（イベント）を発信するだけ。情報を受けたいオブジェクトはリスナーメソッドを準備して待ち受ける...。このことによりカスタムクラスを汚さずに済むというメリットが生まれる。C# に用意された event は特殊なデリゲート（delegate）と言えるものです。デリゲートとの違いは event 宣言した変数（イベント名）にはイベントハンドラ（≒リスナー関数）の追加（+=）または削除（-=）のみ可能ということ等である。
 
 ### 書式
 * イベントの設定
 ```CSharp
 class クラス名 {
-    public delegate void デリゲート名([型 引数]); //デリゲート宣言
-    public event デリゲート名 イベント名; //これにイベントハンドラを登録
-    public 戻り値の型 メソッド名([型 引数]) { //イベントを発生させたいメソッド
+    public delegate void デリゲート名([型 引数]); // デリゲート宣言
+    public event デリゲート名 イベント名; // これにイベントハンドラを登録
+    public 戻り値の型 メソッド名([型 引数]) { // イベントを発生させたいメソッド
         ……
-        イベント名([引数]); //ここでイベントハンドラを呼出す!
+        イベント名([引数]); // ここでイベントハンドラを呼出す!
     }
     ……
 }
@@ -3203,56 +3203,56 @@ class クラス名 {
 * イベントハンドラの登録
 ```CSharp
 クラス名 ○ = new クラス名();
-○.イベント名 += イベントハンドラ名; //イベントハンドラを削除する場合「-=」
+○.イベント名 += イベントハンドラ名; // イベントハンドラを削除する場合「-=」
 ……
 static 戻り値の型 イベントハンドラ名([型 引数]) {
-    //イベントが発生した際に処理すること
+    // イベントが発生した際に処理すること
 }
 ```
 
 ### 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start () {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         MyGame _myGame = new MyGame();
-        _myGame.GameOverEvent += GameOverHandler_myGame; //複数登録可能（+=、-=のみ）
-        //_myGame.GameOverEvent -= GameOverHandler_myGame; //イベントハンドラの削除
-        for (int i=0; i<10; i++) { //10回繰返す場合…
-            Debug.Log("得点:" + _myGame.Point);
+        _myGame.GameOverEvent += GameOverHandler_myGame; // 複数登録可能（+=、-=のみ）
+        //_myGame.GameOverEvent -= GameOverHandler_myGame; // イベントハンドラの削除
+        for (int i=0; i<10; i++) { // 10回繰返す場合…
+            GD.Print("得点:" + _myGame.Point);
             _myGame.AddPoint();
         }
     }
 
-    static void GameOverHandler_myGame(object arg) { //イベントハンドラ
-        Debug.Log("ゲームオーバー! " + arg); //"ゲームオーバー! MyGame"
+    static void GameOverHandler_myGame(object arg) { // イベントハンドラ
+        GD.Print("ゲームオーバー! " + arg); //-> ゲームオーバー! MyGame
     }
 }
 
 //イベントを設定するクラス
 class MyGame {
     private int _point = 0;
-    public delegate void MyEventHandler(object arg); //デリゲート宣言
-    public event MyEventHandler GameOverEvent; //これにイベントハンドラを登録
-    public void AddPoint() { //イベントを発生させたいメソッド
+    public delegate void MyEventHandler(object arg); // デリゲート宣言
+    public event MyEventHandler GameOverEvent; // これにイベントハンドラを登録
+    public void AddPoint() { // イベントを発生させたいメソッド
         if (++_point >= 10) {
             if (GameOverEvent != null) {
-                GameOverEvent(this); //イベントハンドラの呼出し
+                GameOverEvent(this); // イベントハンドラの呼出し
             }
         }
     }
     public int Point {
         get { return _point; }
-        private set {} //読取専用
+        private set {} // 読取専用
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
