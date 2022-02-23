@@ -2716,23 +2716,23 @@ class Robot {
 ### string オブジェクトの作成
 * 構文
 ```CSharp
-string 変数名 = "○○"; //文字列リテラルを使う方法
-string 変数名 = new string(new char[]{'○','○',...}); //new演算子とchar型配列を使う方法
+string 変数名 = "〇〇"; // 文字列リテラルを使う方法
+string 変数名 = new string(new char[]{'〇', '〇', ...}); // new演算子とchar型配列を使う方法
 ```
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-        //①文字列リテラルを使う
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        // ➀文字列リテラルを使う
         string _string1 = "ABCDE";
-        Debug.Log(_string1); //"ABCDE"
+        GD.Print(_string1); //-> ABCDE
 
-        //②new演算子とchar型配列を使う
+        // ➁new演算子とchar型配列を使う
         string _string2 = new string(new char[]{'A','B','C','D','E'});
-        Debug.Log(_string2); //"ABCDE" 
+        GD.Print(_string2); //-> ABCDE 
     }
 }
 ```
@@ -2740,12 +2740,12 @@ public class Main : MonoBehaviour {
 ### 長さを調べる
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _string = "ABCDE";
-        Debug.Log(_string.Length); //5
+        GD.Print(_string.Length); //-> 5
     }
 }
 ```
@@ -2753,20 +2753,20 @@ public class Main : MonoBehaviour {
 ### 一部分を取得
 * 構文
 ```CSharp
-String[番号] ←0（最初）〜String.Length-1（最後）
-String.Substring(開始 [,文字数])
+String[番号] // 0（最初）〜String.Length-1（最後）
+String.Substring(開始 [, 文字数])
 ```
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _string = "0123456789";
-        Debug.Log(_string[4]); //"4"
-        Debug.Log(_string.Substring(4)); //"456789"
-        Debug.Log(_string.Substring(4,3)); //"456"
+        GD.Print(_string[4]); //-> 4
+        GD.Print(_string.Substring(4)); //-> 456789
+        GD.Print(_string.Substring(4,3)); //-> 456
     }
 }
 ```
@@ -2779,12 +2779,13 @@ String.Remove(開始位置, 削除する文字数);
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _string = "にしむらたかし";
-        Debug.Log(_string.Remove(0, 4)); //"たかし"
+        GD.Print(_string.Remove(0, 4)); //-> たかし
+        GD.Print(_string); //-> にしむらたかし
     }
 }
 ```
@@ -2798,12 +2799,12 @@ String.Replace('置換前の文字', '置換後の文字');
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-       	string _string = "2018年03月13日";
-        Debug.Log(_string.Replace("2018年", "平成30年")); //"平成30年03月13日"
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        string _string = "2022年02月23日";
+        GD.Print(_string.Replace("2022年", "令和4年")); //"令和4年02月23日"
     }
 }
 ```
@@ -2817,17 +2818,17 @@ String.IndexOf('検索したい文字', 開始位置);
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
-       	string _string = "ABCDEFG-ABCDEFG";
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        string _string = "ABCDEFG-ABCDEFG";
         string _word = "CD";
         int _i = 0;
-        while (_string.IndexOf(_word, _i) != -1) { //見つからない場合「-1」
+        while (_string.IndexOf(_word, _i) != -1) { // 見つからない場合「-1」
             int _num = _string.IndexOf(_word, _i);
-            Debug.Log(_num); //2、10 ←"CD"が見つかった位置を出力
-            Debug.Log(_string.Substring(_num, _word.Length)); //"CD"、"CD"
+            GD.Print(_num); //-> 2→10（"CD"が見つかった位置を出力）
+            GD.Print(_string.Substring(_num, _word.Length)); //-> CD→CD
             _i = _num + 1;
         }
     }
@@ -2842,14 +2843,14 @@ String.Split('区切り文字');
 * 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _string = "A,B,C,D"; //「,」区切りの文字列
         string[] _array = _string.Split(','); //「,」区切りで分割して配列化
         foreach (object value in _array) {
-            Debug.Log(value); // "A"→"B"→"C"→"D"
+            GD.Print(value); //-> A→B→C→D
         }
     }
 }
@@ -2857,7 +2858,7 @@ public class Main : MonoBehaviour {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
