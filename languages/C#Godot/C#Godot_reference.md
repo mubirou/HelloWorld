@@ -3460,7 +3460,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 <a name="乱数"></a>
 # <b>乱数</b>
-* Unity の独自仕様（一般的な C# の Random クラスとは異なります）
+* Godot の独自仕様（一般的な C# の [Random](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_reference.md#%E4%B9%B1%E6%95%B0) クラスとは異なります）
 
 ### 0〜1.0 未満
 ```CSharp
