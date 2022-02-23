@@ -41,8 +41,8 @@
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
-* [数学関数（Math）](#数学関数（Math）)（この項目は書きかけです）
-* <!--[乱数](#乱数)-->
+* [数学関数（Math）](#数学関数（Math）)
+* [乱数](#乱数)（この項目は書きかけです）
 * <!--[日時情報](#日時情報)-->
 * <!--[タイマー](#タイマー)-->
 * <!--[処理速度計測](#処理速度計測)-->
@@ -3262,16 +3262,16 @@ class MyGame {
 ### Math.Sin() : サイン（正弦）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Sin(0)); //0 ←0°
-        Debug.Log(Math.Sin(Math.PI/2)); //1 ←90°
-        Debug.Log(Math.Sin(Math.PI)); //1.22460635382238E-16（≒0）←180°
-        Debug.Log(Math.Sin(Math.PI*3/2)); //-1 ←270°
-        Debug.Log(Math.Sin(Math.PI*2)); //-2.44921270764475E-16（≒0）←360°
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Sin(0)); //-> 0（0°）
+        GD.Print(Math.Sin(Math.PI/2)); //-> 1（90°）
+        GD.Print(Math.Sin(Math.PI)); //-> 1.22460635382238E-16（≒0＝180°）
+        GD.Print(Math.Sin(Math.PI*3/2)); //-> -1（270°）
+        GD.Print(Math.Sin(Math.PI*2)); //-> -2.44921270764475E-16（≒0＝360°）
     }
 }
 ```
@@ -3279,16 +3279,16 @@ public class Main : MonoBehaviour {
 ### Math.Cos() : コサイン（余弦）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Cos(0)); //1 ←0°
-        Debug.Log(Math.Cos(Math.PI/2)); //6.12303176911189E-17（≒0）←90°
-        Debug.Log(Math.Cos(Math.PI)); //-1 ←180°
-        Debug.Log(Math.Cos(Math.PI*3/2)); //-1.83690953073357E-16（≒0）←270°
-        Debug.Log(Math.Cos(Math.PI*2)); //1 ←360°
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Cos(0)); //-> 1（0°）
+        GD.Print(Math.Cos(Math.PI/2)); //-> 6.12303176911189E-17（≒0＝90°）
+        GD.Print(Math.Cos(Math.PI)); //-> -1（180°）
+        GD.Print(Math.Cos(Math.PI*3/2)); //-> -1.83690953073357E-16（≒0＝270°）
+        GD.Print(Math.Cos(Math.PI*2)); //-> 1（360°）
     }
 }
 ```
@@ -3296,18 +3296,18 @@ public class Main : MonoBehaviour {
 ### Math.Atan2() : アークタンジェント2
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        //2つの値のアークタンジェント（逆タンジェント）。X、Y座標の角度をラジアン単位で返す
-        //Πラジアン（3.141592…）は180°
-        //三角形の各辺が1:2:√3の場合、2:√3の間の角度は30°であることを検証
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        // 2つの値のアークタンジェント（逆タンジェント）、X･Y座標の角度をラジアン単位で返す
+        // Πラジアン（3.141592…）は180°
+        // 三角形の各辺が1:2:√3の場合2:√3の間の角度は30°であることを検証
         double _disX = Math.Sqrt(3); //√3のこと
         int _disY = 1;
-        Debug.Log(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
-        Debug.Log(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
+        GD.Print(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
+        GD.Print(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
     }
 }
 ```
@@ -3315,12 +3315,12 @@ public class Main : MonoBehaviour {
 ### Math.PI : 円周率
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.PI); //3.14159265358979（Math.PIラジアン=180°）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.PI); //-> 3.14159265358979（Math.PIラジアン=180°）
     }
 }
 ```
@@ -3328,13 +3328,13 @@ public class Main : MonoBehaviour {
 ### Math.Floor() : 切り捨て
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Floor(1.001)); //1
-        Debug.Log(Math.Floor(1.999)); //1
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Floor(1.001)); //-> 1
+        GD.Print(Math.Floor(1.999)); //-> 1
     }
 }
 ```
@@ -3342,13 +3342,13 @@ public class Main : MonoBehaviour {
 ### Math.Ceiling() : 切り上げ
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Ceiling(1.001)); //2
-        Debug.Log(Math.Ceiling(1.999)); //2
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Ceiling(1.001)); //-> 2
+        GD.Print(Math.Ceiling(1.999)); //-> 2
     }
 }
 ```
@@ -3356,13 +3356,13 @@ public class Main : MonoBehaviour {
 ### Math.Round() : 四捨五入
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Round(1.499)); //1
-        Debug.Log(Math.Round(1.500)); //2
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Round(1.499)); //-> 1
+        GD.Print(Math.Round(1.500)); //-> 2
     }
 }
 ```
@@ -3370,13 +3370,13 @@ public class Main : MonoBehaviour {
 ### Math.Abs() : 絶対値
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Abs(100)); //100
-        Debug.Log(Math.Abs(-100)); //100
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Abs(100)); //-> 100
+        GD.Print(Math.Abs(-100)); //-> 100
     }
 }
 ```
@@ -3384,29 +3384,29 @@ public class Main : MonoBehaviour {
 ### Math.Pow() : 累乗（〇の◇乗）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Pow(2, 0)); //1（2の0乗）
-        Debug.Log(Math.Pow(2, 8)); //256（2の8乗）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Pow(2, 0)); //-> 1（2の0乗）
+        GD.Print(Math.Pow(2, 8)); //-> 256（2の8乗）
     }
 }
 ```
 
-### Math.Sqrt() : 平方根（√○）
+### Math.Sqrt() : 平方根（√〇）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Sqrt(2)); //1.4142135623731（一夜一夜にひとみごろ）
-        Debug.Log(Math.Sqrt(3)); //1.73205080756888（人並みに奢れや）
-        Debug.Log(Math.Sqrt(4)); //2
-        Debug.Log(Math.Sqrt(5)); //2.23606797749979（富士山麓オウム鳴く）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Sqrt(2)); //-> 1.4142135623731（一夜一夜にひとみごろ）
+        GD.Print(Math.Sqrt(3)); //-> 1.73205080756888（人並みに奢れや）
+        GD.Print(Math.Sqrt(4)); //-> 2
+        GD.Print(Math.Sqrt(5)); //-> 2.23606797749979（富士山麓オウム鳴く）
     }
 }
 ```
@@ -3414,12 +3414,12 @@ public class Main : MonoBehaviour {
 ### Math.Max() : 比較（最大値）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Max(5.01, -10)); //5.01 ←「2つ」の数値の比較
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Max(5.01, -10)); //-> 5.01（2つの数値の比較）
     }
 }
 ```
@@ -3427,12 +3427,12 @@ public class Main : MonoBehaviour {
 ### Math.Min() : 比較（最小値）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Min(5.01, -10)); //-10 ←「2つ」の数値の比較
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Min(5.01, -10)); //-> -10（2つの数値の比較）
     }
 }
 ```
@@ -3440,21 +3440,21 @@ public class Main : MonoBehaviour {
 ### Math.Sign() : 符号（正か負の値か）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //Mathに必要
+using Godot;
+using System; // Mathに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        Debug.Log(Math.Sign(-0.1)); //-1（負の値）
-        Debug.Log(Math.Sign(0)); //0（0）
-        Debug.Log(Math.Sign(0.1)); //1（正の値）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print(Math.Sign(-0.1)); //-> -1（負の値）
+        GD.Print(Math.Sign(0)); //-> 0（0）
+        GD.Print(Math.Sign(0.1)); //-> 1（正の値）
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
