@@ -3726,7 +3726,6 @@ using Godot;
 using System; // DateTimeに必要
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-
     public override void _Ready() {
         long _start = DateTime.Now.Ticks; // 100ナノ秒単位（精度は10ミリ秒）
         for (long i=0; i<1000000000; i++) { // 10億回繰り返す場合…
@@ -3755,42 +3754,42 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 さしすせそ
 ```
 
-### 例文（StreamReader クラスを使う方法）
+### 例文（System.IO.StreamReader クラスを使う方法）
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 using System.IO; //StreamReaderに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _path = "sample.txt";
-        //↓Shift-JISなどUTF-8以外の場合、第2引数で指定します。
-        StreamReader _stream = new StreamReader(_path); //.txt以外も可能
-        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-        Debug.Log(_string); //結果を出力
+        // Shift-JISなどUTF-8以外の場合は第2引数で指定します
+        StreamReader _stream = new StreamReader(_path); // .txt以外も可能
+        string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
+        _stream.Close(); // 閉じる
+        GD.Print(_string); //-> あいうえお…
     }
 }
 ```
 
-###  例文（File.OpenTextメソッドを使う方法）
+###  例文（System.IO.File.OpenTextメソッドを使う方法）
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.IO; //StreamReaderに必要
+using Godot;
+using System.IO; // StreamReaderに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         string _path = "sample.txt";
-        StreamReader _stream = File.OpenText(_path); //.txt以外も可能（UFT-8限定）
-        string _string = _stream.ReadToEnd(); //全ての内容を読み込む
-        _stream.Close(); //閉じる
-        Debug.Log(_string); //結果を出力
+        StreamReader _stream = System.IO.File.OpenText(_path); // .txt以外も可能（UFT-8限定）
+        string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
+        _stream.Close(); // 閉じる
+        GD.Print(_string); //-> あいうえお…
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
