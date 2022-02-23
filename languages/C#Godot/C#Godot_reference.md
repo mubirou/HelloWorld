@@ -32,8 +32,8 @@
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
-* [連想配列（Dictionary）](#連想配列（Dictionary）)（この項目は書きかけです）
-* <!--[this](#this)-->
+* [連想配列（Dictionary）](#連想配列（Dictionary）)
+* [this](#this)（この項目は書きかけです）
 * <!--[文字列の操作](#文字列の操作)-->
 * <!--[正規表現](#正規表現)-->
 * <!--[インターフェース](#インターフェース)-->
@@ -2600,8 +2600,8 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```CSharp
 Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>();
 Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値の型>() {
-    {"キー①", 値①},
-    {"キー②", 値②}, 
+    {"キー➀", 値➀},
+    {"キー➁", 値➁}, 
     ......…
 };
 ```
@@ -2609,26 +2609,26 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 * 例文
     ```CSharp
     // Main.cs
-    using UnityEngine;
-    using System.Collections.Generic; //Dictionaryに必要
+    using Godot;
+    using System.Collections.Generic; // Dictionaryに必要
 
-    public class Main : MonoBehaviour {
-        void Start() {
-            //①作成（空のDictionaryを作成する場合、{}は不要）
+    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+        public override void _Ready() {
+            // ➀作成（空のDictionaryを作成する場合{}は不要）
             Dictionary<string, string> _dic = new Dictionary<string, string>() {
                 {"A", "あ"},
                 {"I", "い"}
             };
 
-            //②追加
+            // ➁追加
             _dic.Add("U", "う");
             _dic.Add("E", "え");
 
-            //③更新
-            _dic["A"] = "ア"; //上書き変更
+            // ➂更新
+            _dic["A"] = "ア"; // 上書き変更
 
-            //④取得
-            Debug.Log(_dic["A"]); //"ア"
+            // ➃取得
+            GD.Print(_dic["A"]); //-> ア
         }
     }
     ```
@@ -2636,25 +2636,25 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 ### キー、値の検索
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System.Collections.Generic; //Dictionaryに必要
+using Godot;
+using System.Collections.Generic; // Dictionaryに必要
 
-public class Main : MonoBehaviour {
-    void Start() {
-        //①作成（空のDictionaryを作成する場合、{}は不要）
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        // ➀作成（空のDictionaryを作成する場合{}は不要）
         Dictionary<string, string> _dic = new Dictionary<string, string>() {
             {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
         };
 
-        Debug.Log(_dic.ContainsKey("B")); //任意のキーがあるか否か（True／False）
-        Debug.Log(_dic.ContainsValue("え")); //任意の値があるか否か（True／False）
+        GD.Print(_dic.ContainsKey("B")); //-> Flase（任意のキーがあるか否か）
+        GD.Print(_dic.ContainsValue("え")); //-> True（任意の値があるか否か）
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
