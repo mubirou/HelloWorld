@@ -1882,7 +1882,7 @@ using Godot;
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     public override void _Ready() {
         int _i = 0;
-        while (_i < 10) { //ループ判定式にはbool型しか使えない
+        while (_i < 10) { // ループ判定式にはbool型しか使えない
             GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
             _i++;
         }
