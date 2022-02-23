@@ -44,8 +44,8 @@
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-* [タイマー](#タイマー)（この項目は書きかけです）
-* <!--[処理速度計測](#処理速度計測)-->
+* [タイマー](#タイマー)
+* [処理速度計測](#処理速度計測)（この項目は書きかけです）
 * <!--[外部テキストの読み込み](#外部テキストの読み込み)-->
 ***
 
@@ -3719,28 +3719,27 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
-* DateTime 構造体を利用します
-* 他に Stopwatch クラスを利用する方法もありますが、その場合 UnityEngine と System.Diagnostics がバッティングする為に Debug.Log() が使えません
 
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //DateTimeに必要
+using Godot;
+using System; // DateTimeに必要
 
-public class Main : MonoBehaviour {
-    void Start () {
-        long _start = DateTime.Now.Ticks; //100ナノ秒単位（精度は10ミリ秒）
-        for (long i=0; i<1000000000; i++) { //10億回繰り返す場合…
-            //速度計測したい処理
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+
+    public override void _Ready() {
+        long _start = DateTime.Now.Ticks; // 100ナノ秒単位（精度は10ミリ秒）
+        for (long i=0; i<1000000000; i++) { // 10億回繰り返す場合…
+            // 速度計測したい処理
         }
-        Debug.Log(DateTime.Now.Ticks - _start); //19560350（≒2秒）
+        GD.Print(DateTime.Now.Ticks - _start); //-> 30796671（≒3秒）
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
