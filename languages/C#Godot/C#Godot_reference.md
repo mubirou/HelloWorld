@@ -2,8 +2,6 @@
 
 # <b>C# with Godot 基礎文法</b>
 
-# この項目は書きかけです
-
 [[Godot Study Notes](https://github.com/mubirou/Godot#godot-study-notes)]
 
 ### <b>INDEX</b>
