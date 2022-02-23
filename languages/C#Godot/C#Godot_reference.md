@@ -3662,28 +3662,28 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 * システムタイマー（System.Timers.Timer）を利用する方法
 ```CSharp
 // Main.cs
-using UnityEngine;
-using System; //ElapsedEventHandlerに必要
-using System.Timers; //System.Timers.Timerに必要
+using Godot;
+using System; // EventArgsに必要
+using System.Timers; // ElapsedEventHandlerに必要
 
-public class Main : MonoBehaviour {
-    private static Timer _timer; //privateは省略可
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    private static System.Timers.Timer _timer; // privateは省略可
 
-    void Start () {
-        _timer = new Timer(); //タイマーの生成
-        _timer.Interval = 1000; //1000ミリ秒間隔
-        _timer.Elapsed += new ElapsedEventHandler(Loop); //イベントハンドラの追加
-        _timer.Start(); //開始
+    public override void _Ready() {
+        _timer = new System.Timers.Timer(); // タイマーの生成
+        _timer.Interval = 1000; // 1000ミリ秒間隔
+        _timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
+        _timer.Start(); // 開始
     }
     
-    static void Loop(object arg1, EventArgs arg2) { //1000ミリ秒毎に実行される
-        Debug.Log(arg1); //System.Timers.Timer（タイマー本体）
-        Debug.Log(arg2); //System.Timers.ElapsedEventArgs（各種情報）
-        //_timer.Stop(); //停止 ←この場合１回で停止
+    static void Loop(object arg1, System.EventArgs arg2) { //1000ミリ秒毎に実行される
+        GD.Print(arg1); //-> System.Timers.Timer（タイマー本体）
+        GD.Print(arg2); //-> System.Timers.ElapsedEventArgs（各種情報）
+        //_timer.Stop(); // 停止（この場合１回で停止）
     }
 }
 ```
-* ほかに MonoBehaviour.[InvokeRepeating()](https://docs.unity3d.com/ja/current/ScriptReference/MonoBehaviour.InvokeRepeating.html) を使う方法もあり
+参考：[Microsoft](https://docs.microsoft.com/ja-jp/dotnet/api/system.timers.timer?view=net-6.0)  
 
 ### 〇秒後に一度だけ実行する
 * コールチンを利用する場合
