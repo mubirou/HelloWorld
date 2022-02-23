@@ -36,10 +36,10 @@
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-* [インターフェース](#インターフェース)（この項目は書きかけです）
-* <!--[抽象クラス（abstract）](#抽象クラス（abstract）)-->
-* <!--[base キーワード](#baseキーワード)-->
-* <!--[オーバーライド](#オーバーライド)-->
+* [インターフェース](#インターフェース)
+* [抽象クラス（abstract）](#抽象クラス（abstract）)
+* [base キーワード](#baseキーワード)
+* [オーバーライド](#オーバーライド)（この項目は書きかけです）
 * <!--[カスタムイベント](#カスタムイベント)-->
 * <!--[数学関数（Math）](#数学関数（Math）)-->
 * <!--[乱数](#乱数)-->
@@ -2931,15 +2931,15 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 ### 概要
 * クラスにどのような機能（メソッド）を持たせるか、ということだけを定める
-* 抽象クラスと似ているが、抽象クラスとは異なり、実際の処理は一切記述できない
+* 抽象クラスと似ているが抽象クラスとは異なり実際の処理は一切記述できない
 * 実際の処理はインターフェースを継承したクラスで定義（実装しないとエラー）
 * 多重実装（複数のインターフェースを同時に指定）や多重継承も可能
 
 ### 構文
 ```CSharp
 //インターフェースの宣言
-interface Iインターフェース名 { //慣例的にインターフェース名の先頭にIを付けます
-    戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]); //暗黙的にpublic扱い
+interface Iインターフェース名 { // 慣例的にインターフェース名の先頭にIを付けます
+    戻り値の型 メソッド名Ａ([型➀ 引数➀, 型➁ 引数➁, ...]); // 暗黙的にpublic扱い
     ......
 }
 //インターフェースの実装
@@ -2949,23 +2949,23 @@ class クラス名 : Iインターフェース名 { ......
 ### 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         Moneybox _moneybox = new Moneybox();
         _moneybox.Add(5000);
-        Debug.Log(_moneybox.Total); //5000
+        GD.Print(_moneybox.Total); //-> 5000
     }
 }
 
-//インターフェースの宣言
+// インターフェースの宣言
 interface IMoneybox {
-    void Add(int _money); //通常のメソッド（暗黙的にpublicになる）
-    int Total { get; set; } //get/setアクセサ（暗黙的にpublicになる）
+    void Add(int _money); // 通常のメソッド（暗黙的にpublicになる）
+    int Total { get; set; } // get/setアクセサ（暗黙的にpublicになる）
 }
 
-//インターフェースの実装（継承との併用は,を使う）
+// インターフェースの実装（継承との併用は,を使う）
 class Moneybox : IMoneybox {
     private int _total = 0;
     public void Add(int _money) { _total += _money; } 
@@ -2978,7 +2978,7 @@ class Moneybox : IMoneybox {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
@@ -2987,17 +2987,17 @@ class Moneybox : IMoneybox {
 
 ### 概要
 * 派生クラスに"実装しなければならないメソッド"を抽象クラスで定義する
-* 実際の処理は、抽象クラスを継承した派生クラスで、抽象メソッドを override して記述
+* 実際の処理は抽象クラスを継承した派生クラスで抽象メソッドを override して記述
 
 ### 構文
 ```CSharp
-abstract class Abstract○○ { //抽象クラスの定義
-    public abstract 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]);
+abstract class Abstract〇〇 { // 抽象クラスの定義
+    public abstract 戻り値の型 メソッド名Ａ([型➀ 引数➀, 型➁ 引数➁, ...]);
 }
 
-class SubClass : Abstract○○ { //抽象クラスの継承
-    public override 戻り値の型 メソッド名Ａ([型① 引数①, 型② 引数②,...]) {
-        //実際の処理
+class SubClass : Abstract〇〇 { // 抽象クラスの継承
+    public override 戻り値の型 メソッド名Ａ([型➀ 引数➀, 型➁ 引数➁, ...]) {
+        // 実際の処理
     }
     ……
 ```
@@ -3005,33 +3005,33 @@ class SubClass : Abstract○○ { //抽象クラスの継承
 ### 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start () {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         SubClass _subClass = new SubClass();
-        _subClass.Common(); //"AbstractClass.Common()"
-        _subClass.Method(); //"SubClass.Method()"
+        _subClass.Common(); //-> AbstractClass.Common()
+        _subClass.Method(); //-> SubClass.Method()
     }
 }
 
 abstract class AbstractClass { //「抽象クラス」の定義
-    public void Common() { //共通のメソッド
-        Debug.Log("AbstractClass.Common()");
+    public void Common() { // 共通のメソッド
+        GD.Print("AbstractClass.Common()");
     }
     public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
 }
 
-class SubClass : AbstractClass { //抽象クラスを継承
-    public override void Method() { //オーバーライドして実際の処理を記述
-        Debug.Log("SubClass.Method()"); //実際の処理
+class SubClass : AbstractClass { // 抽象クラスを継承
+    public override void Method() { // オーバーライドして実際の処理を記述
+        GD.Print("SubClass.Method()"); // 実際の処理
     }
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
@@ -3039,17 +3039,17 @@ class SubClass : AbstractClass { //抽象クラスを継承
 # <b>base キーワード</b>
 
 ### 概要
-基本クラスに定義されたコンストラクタ（private 以外）は、派生クラスのコンストラクタが実行される直前に必ず実行される。その際、基本クラスのコンストラクタへ、派生クラスのコンストラクタから引数を渡すことがbaseを使うことで可能になる（≒ super）。base.メソッド() で基本クラスのメソッドを呼び出す事が可能（「[オーバーライド](#オーバーライド)」参照）。
+基本クラスに定義されたコンストラクタ（private 以外）は派生クラスのコンストラクタが実行される直前に必ず実行される。その際基本クラスのコンストラクタへ派生クラスのコンストラクタから引数を渡すことがbaseを使うことで可能になる（≒ super）。base.メソッド() で基本クラスのメソッドを呼び出す事が可能（「[オーバーライド](#オーバーライド)」参照）。
 
 ### 書式
 ```CSharp
 class 基本クラス名 { 
-    public 基本クラス名(型 引数) { //基本クラスのコンストラクタ
-        //引数を使った処理etc.
+    public 基本クラス名(型 引数) { // 基本クラスのコンストラクタ
+        // 引数を使った処理等
     }
 }
-class 派生クラス名 : 基本クラス名 { //派生クラス（基本クラスを継承）
-    public 派生クラス名() : base(引数) { //派生クラスのコンストラクタ
+class 派生クラス名 : 基本クラス名 { // 派生クラス（基本クラスを継承）
+    public 派生クラス名() : base(引数) { // 派生クラスのコンストラクタ
     }
 }
 ```
@@ -3057,30 +3057,30 @@ class 派生クラス名 : 基本クラス名 { //派生クラス（基本クラ
 ### 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start () {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         SubClass _subClass = new SubClass("A");
     }
 }
 
 class SuperClass { //基本クラス
-    public SuperClass(string p1, string p2) { //基本クラスのコンストラクタ
-        Debug.Log("SuperClass:" + p1 + ":" + p2); //①番目（p1は"A"、p2は"B"）
+    public SuperClass(string p1, string p2) { // 基本クラスのコンストラクタ
+        GD.Print("SuperClass:" + p1 + ":" + p2); //-> SuperClass:A:B
     }
 }
 
 class SubClass : SuperClass { //派生クラス
-    public SubClass(string p) : base(p, "B") { //派生クラスのコンストラクタ
-        Debug.Log("SubClass:" + p); //②番目（pは"A"）
+    public SubClass(string p) : base(p, "B") { // 派生クラスのコンストラクタ
+        GD.Print("SubClass:" + p); //-> SubClass:A
     } 
 }
 ```
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
