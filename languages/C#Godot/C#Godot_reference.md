@@ -3758,7 +3758,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```CSharp
 // Main.cs
 using Godot;
-using System.IO; //StreamReaderに必要
+using System.IO; // StreamReaderに必要
 
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     public override void _Ready() {
