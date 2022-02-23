@@ -33,8 +33,8 @@
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
-* [this](#this)（この項目は書きかけです）
-* <!--[文字列の操作](#文字列の操作)-->
+* [this](#this)
+* [文字列の操作](#文字列の操作)（この項目は書きかけです）
 * <!--[正規表現](#正規表現)-->
 * <!--[インターフェース](#インターフェース)-->
 * <!--[抽象クラス（abstract）](#抽象クラス（abstract）)-->
@@ -2664,41 +2664,41 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ### this が必要な場合
 1. 「引数」と「インスタンス変数」が同じ場合
 1. 「ローカル変数」と「インスタンス変数」が同じ場合
-* this は、this を記述したメソッドを所有するクラス（オブジェクト）を指す
+* this は this を記述したメソッドを所有するクラス（オブジェクト）を指す
 
 ### 例文
 ```CSharp
 // Main.cs
-using UnityEngine;
+using Godot;
 
-public class Main : MonoBehaviour {
-    void Start() {
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
         Robot _robot = new Robot(500);
         _robot.Move();
-        Debug.Log(_robot.X); //510
-        Debug.Log(this); //GameObject（このC#に紐付いたGameObject名）
+        GD.Print(_robot.X); //-> 510
+        GD.Print(this); //-> [Spatial:1240]（＝Mainクラス）
     }
 }
 
-//カスタムクラス
+// カスタムクラス
 class Robot {
-    private int _x; //インスタンス変数（thisは不要）
+    private int _x; // インスタンス変数（thisは不要）
     
-    public Robot(int _x) { //引数
-        this._x = _x; //①thisが無いとWarning（引数を参照してしまう）
-        Debug.Log(this); //Robot（このメソッドが実行されたオブジェクト）
+    public Robot(int _x) { // 引数
+        this._x = _x; // ➀thisが無いとWarning（引数を参照してしまう）
+        GD.Print(this); //-> Robot（＝Robotクラス）
     }
 
     public void Move() {
-        int _x; //ローカル変数
-        _x = this._x + 10; //②thisが無いとerror（ローカル変数を参照してしまう）
+        int _x; // ローカル変数
+        _x = this._x + 10; // ➁thisが無いとerror（ローカル変数を参照してしまう）
         if (_x >= 1920) _x = 0;
-        this._x = _x; //②thisが無いとローカル変数を参照してしまう
-        Debug.Log(this); //Robot（このメソッドが実行されたオブジェクト）
+        this._x = _x; // ➁thisが無いとローカル変数を参照してしまう
+        GD.Print(this); //-> Robot（＝Robotクラス）
     }
 
     public int X {
-        get { return _x; } //thisを付けてもよい（通常は省略）
+        get { return _x; } // thisを付けてもよい（通常は省略）
         private set {}
     }
 }
@@ -2706,7 +2706,7 @@ class Robot {
 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年02月XX日  
+作成日：2022年02月23日  
 [[TOP](#TOP)]
 
 
