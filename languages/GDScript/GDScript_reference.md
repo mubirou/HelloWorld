@@ -249,6 +249,7 @@ func _ready():
 ```
 [[データ型TOP](#データ型)]
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月03日  
@@ -349,6 +350,7 @@ print(_tmp) #-> "100"
 print(typeof(_tmp)) #-> 4（String型）
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#placeholder-types)（String型の〇進数変換）  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -436,6 +438,7 @@ func _ready():
 	print(_rectangle.getArea()) #-> 2073600
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月04日  
@@ -532,6 +535,7 @@ func _ready():
 	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月05日  
@@ -569,6 +573,7 @@ func _ready():
 	_tokyo.Setagaya.new() #-> "japan/tokyo/Setagaya"
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月13日  
@@ -620,6 +625,7 @@ func _ready():
 	_classB.myMethod() #-> "ClassA.myMethod()"
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月06日  
@@ -763,6 +769,7 @@ func _ready():
         var _myClass = MyClass.new()
     ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月08日  
@@ -851,6 +858,7 @@ func _ready():
 	print(_member.__age) #-> 20（内部では変更されている）
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月06日  
@@ -911,6 +919,8 @@ func _ready():
 	print(2 << 7) #-> 256（ビット･シフト）
 	print(~3) #-> -4（ビット反転）
 ```
+
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#operators)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -954,6 +964,7 @@ func _ready():
 	#_myClass.MY_NAME = "ICHIRO" # Error（変更は不可）
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月09日  
@@ -1097,6 +1108,7 @@ func _ready():
 	_myClass.addPoint(10) #-> 11（引数を指定した場合）
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1110,6 +1122,7 @@ func _ready():
 * 静的変数 ⇒ [定数](#定数)
 * 静的関数 ⇒ [関数（静的関数）](#静的関数)
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月15日
@@ -1211,6 +1224,7 @@ func _ready():
         print("両方共にTrueかFalseです")
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月08日  
@@ -1237,6 +1251,7 @@ func _ready():
 	print(_result)
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月09日  
@@ -1302,6 +1317,7 @@ func _ready():
 			print("C")
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#match)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1370,6 +1386,7 @@ func _ready():
 		print(_count) #1, 2, ...., 99, 100
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#for)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1432,6 +1449,7 @@ func _ready():
 		_i += 1
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#while)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1708,6 +1726,7 @@ func _ready():
 ```
 ※インデックス番号を取得したい場合はカウンタ変数を使用  
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月25日  
@@ -1805,6 +1824,7 @@ func _ready():
 	print(len(_dict)) #-> 3
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -1838,6 +1858,7 @@ func _ready():
 	_myClass.myMethod() #-> 500
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月28日  
@@ -1958,6 +1979,7 @@ func _ready():
 	print(_list) #-> [A, B, C]
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_string.html#string)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -2004,6 +2026,7 @@ func _ready():
 	#-> "よしだ松蔭,高杉晋作,久坂玄瑞,よしだ稔麿,伊藤博文"
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -2042,6 +2065,7 @@ func _ready():
 	_subClass.abstractFunction() #-> "派生クラスでオーバーライドした抽象関数"
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月06日  
@@ -2080,6 +2104,7 @@ func _ready():
 ```
 （要調査）コンストラクタに引数がある場合構文エラー発生  
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月04日   
@@ -2115,6 +2140,7 @@ func _ready():
 	_subClass.myFunction()
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月06日  
@@ -2161,6 +2187,7 @@ func gameoverHandler(): #前方定義でなくてもよい
 	print("GAMEOVER")
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月05日  
@@ -2255,6 +2282,7 @@ print(sqrt(5)) #-> 2.236068（富士山麓オウム鳴く）
 print(sqrt(6)) #-> 2.44949（二夜シクシク）
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -2322,6 +2350,7 @@ func _ready():
 ```
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#randomnumbergenerator)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -2375,6 +2404,7 @@ func _ready():
 	print(_h + ":" + _m + ":" + _s) #-> "18:21:45"
 ```
 
+[[C# 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月09日  
@@ -2420,6 +2450,7 @@ func _ready():
 ```
 ※一度だけ実行する場合は **.set_one_shot(true)** が必要  
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -2449,6 +2480,7 @@ func _ready():
 	print(str(_result) + " sec.") #-> 4189 sec.
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_os.html#os)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -2481,6 +2513,7 @@ func _ready():
 #-> さしすせそ
 ```
 
+[[C# 版]()]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_file.html#file)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
