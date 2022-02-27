@@ -45,7 +45,7 @@ Hello,world!
 と表示されたら成功！
 
 ***
-参考：[GDScript](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)] 
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月12日
