@@ -254,7 +254,7 @@ class MyClass { // クラスの定義
 }
 ```
 
-[[GDScript 版]()]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月12日  
@@ -436,7 +436,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-[[GDScript 版]()]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -490,7 +490,7 @@ class Rectangle { // 長方形クラス
 }
 ```
 
-[[GDScript 版]()]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -562,7 +562,7 @@ class SubClassB : SuperClass { // 基本クラスを継承（多重継承は不�
 }
 ```
 
-[[GDScript 版]()]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%9F%BA%E6%9C%AC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8%E6%B4%BE%E7%94%9F%E3%82%AF%E3%83%A9%E3%82%B9)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
