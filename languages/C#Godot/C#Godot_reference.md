@@ -254,6 +254,7 @@ class MyClass { // クラスの定義
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月12日  
@@ -435,6 +436,7 @@ class MyClass { // クラスの定義
     }
     ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -488,6 +490,7 @@ class Rectangle { // 長方形クラス
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -559,6 +562,7 @@ class SubClassB : SuperClass { // 基本クラスを継承（多重継承は不�
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -606,6 +610,7 @@ namespace MyLibrary {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -669,6 +674,7 @@ class ClassB { // この内容だけが継承と異なる
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -843,6 +849,7 @@ class MyClass {
     }
     ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -901,6 +908,7 @@ class Suzuki {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -949,6 +957,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
@@ -1005,6 +1014,7 @@ class MyMath {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月14日  
@@ -1213,6 +1223,7 @@ class MyClass {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月15日  
@@ -1270,6 +1281,7 @@ class MyClass {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1326,6 +1338,7 @@ class MyClass {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1363,6 +1376,7 @@ class Math { //独自クラス
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1472,6 +1486,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     }
     ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1525,6 +1540,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1620,6 +1636,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1733,6 +1750,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1856,6 +1874,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1954,6 +1973,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -2129,6 +2149,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月22日  
@@ -2582,6 +2603,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     }
     ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月22日  
@@ -2651,6 +2673,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2703,6 +2726,7 @@ class Robot {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2855,6 +2879,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2919,6 +2944,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2975,6 +3001,7 @@ class Moneybox : IMoneybox {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3028,6 +3055,7 @@ class SubClass : AbstractClass { // 抽象クラスを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3077,6 +3105,7 @@ class SubClass : SuperClass { //派生クラス
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3173,6 +3202,7 @@ class SubClass : AbstractClass { // 派生クラス（抽象クラスを継承�
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3249,6 +3279,7 @@ class MyGame {
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3451,6 +3482,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3527,6 +3559,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```
 （注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
+[[GDScript 版]()]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -3648,6 +3681,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3710,6 +3744,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3735,6 +3770,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3788,6 +3824,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
+[[GDScript 版]()]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
