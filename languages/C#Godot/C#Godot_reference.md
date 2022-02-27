@@ -76,7 +76,6 @@
 コメントアウト終了 */
 ```
 
-[C#版]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/shaders/shaders_style_guide.html?highlight=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%82%A2%E3%82%A6%E3%83%88%20C%23#comment-spacing)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
