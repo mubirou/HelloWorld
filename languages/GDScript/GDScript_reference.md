@@ -118,7 +118,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ### ➀論理型（bool）
 * trueまたはfalse
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 var _bool = true #True/Falaseは不可
@@ -135,7 +135,7 @@ func _ready():
 ### ➁整数型（int）
 * 約±922京まで扱えます
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 var _int = 9223372036854775807 # ±9223372036854775807まで扱える
@@ -153,7 +153,7 @@ func _ready():
 ### ➂浮動小数点数（float）
 * 小数点第6桁まで
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial
 
 var _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
@@ -169,7 +169,7 @@ func _ready():
 
 ### ➃文字列（String）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 var _string = "あいうえお" # '〇〇'でも可
@@ -186,7 +186,7 @@ func _ready():
 
 ### ➄配列（Array）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 var _array = ["A", "I", "U"]
@@ -203,7 +203,7 @@ func _ready():
 
 ### ➅辞書型（Dictionary） : 連想配列
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 var _dic = {"A":"あ", "I":"い"}
@@ -220,7 +220,7 @@ func _ready():
 
 ### ➆クラス（Object）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass: #前方宣言でなくてもよい
@@ -238,7 +238,7 @@ func _ready():
 
 ### ➇null…何もないことを示す定数
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -265,7 +265,7 @@ func _ready():
 * データ型を返す（[戻り値一覧](#typeof()の戻り値一覧)）
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -284,7 +284,7 @@ class MyClass:
 ### is 演算子
 * データ型を判断する
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -306,7 +306,7 @@ class MyClass:
 ### as 演算子
 * キャスト成功時に変換後の値が、失敗すると Null が返される
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -363,7 +363,7 @@ print(typeof(_tmp)) #-> 4（String型）
 
 ### 最小構成
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass: #前方宣言でなくてもよい
@@ -378,7 +378,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 
 ### 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 #==============
@@ -449,7 +449,7 @@ func _ready():
 # <b>基本クラスと派生クラス</b>
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 #=================
@@ -563,7 +563,7 @@ class Setagaya:
 ```
 
 ```GDScript
-#test.gd（外部.gdファイルを利用する側）
+#Main.gd（外部.gdファイルを利用する側）
 extends Spatial #2Dの場合はNode2D
 
 var _tokyo = preload("japan/tokyo.gd") #外部.gdファイルの読み込み
@@ -589,7 +589,7 @@ func _ready():
 
 ### 継承版
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class ClassA:
@@ -607,7 +607,7 @@ func _ready():
 
 ### 委譲版
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class ClassA:
@@ -656,7 +656,7 @@ func _ready():
 1. [グローバル変数]は[✓有効]のままにする
 1. 動作確認  
     ```GDScript
-    #test.gd
+    #Main.gd
     extends Spatial #2Dの場合はNode2D
 
     #-----------------------------
@@ -685,7 +685,7 @@ func _ready():
 * 実際は単なるパブリック変数
 * 変数へのアクセスは[アクセサ](#アクセサ)を利用する（推奨）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
@@ -721,7 +721,7 @@ func _ready():
 1. 関数内で宣言する場合（for 文、if 文等でも同様）  
     ※宣言した場所より大きい＝深いインデント範囲内で有効
     ```GDScript
-    #test.gd
+    #Main.gd
     extends Spatial #2Dの場合はNode2D
 
     func myFunction1():
@@ -740,7 +740,7 @@ func _ready():
 
 1. クラスの関数内で宣言する場合
     ```GDScript
-    #test.gd
+    #Main.gd
     extends Spatial #2Dの場合はNode2D
 
     class MyClass:
@@ -756,7 +756,7 @@ func _ready():
 
 1. for文内のループ変数
     ```GDScript
-    #test.gd
+    #Main.gd
     extends Spatial #2Dの場合はNode2D
 
     class MyClass:
@@ -782,7 +782,7 @@ func _ready():
 
 ### 読み書き可能なプロパティ
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class Member:
@@ -810,7 +810,7 @@ func _ready():
 
 ### 読み取り専用のプロパティ
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class Member:
@@ -835,7 +835,7 @@ func _ready():
 
 ### 書き込み専用のプロパティ
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class Member:
@@ -870,7 +870,7 @@ func _ready():
 
 ### 算術演算子
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -892,7 +892,7 @@ func _ready():
 
 ### その他の演算子
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -933,7 +933,7 @@ func _ready():
 
 ### 通常の定数
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 const MY_NAME = "mubirou"
@@ -945,7 +945,7 @@ func _ready():
 
 ### クラス定数（[静的変数](#静的変数・静的関数)）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
@@ -983,7 +983,7 @@ func 関数名(引数➀, 引数➁, ...):
 ```
 * 例文（class 内に定義しない場合）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func tashizan(_start, _end):
@@ -1001,7 +1001,7 @@ func _ready():
 ### パブリック関数
 * 例：○〜○までの値を足した合計を調べる
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
@@ -1021,7 +1021,7 @@ func _ready():
 * 実際は単なるパブリック関数
 * アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
@@ -1042,7 +1042,7 @@ func _ready():
 
 ### _ready()、_process()関数
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1059,7 +1059,7 @@ func _process(_delta):
 ### コンストラクタ
 * 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
@@ -1073,7 +1073,7 @@ func _ready():
 
 * 例文（class 内に定義しない場合）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _init():
@@ -1088,7 +1088,7 @@ func _ready(): # 通常はこちらを使う
 ### 静的関数
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyMath:
@@ -1108,7 +1108,7 @@ func _ready():
 
 ### デフォルト値付き引数
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
@@ -1151,7 +1151,7 @@ func _ready():
 ### 基本構文
 * Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1169,7 +1169,7 @@ func _ready():
 
 * 注意：条件式の判断記述について
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1227,7 +1227,7 @@ func _ready():
 * GDScriptでは ^ 演算子は使えない（要調査）
 * 「&& は and」「|| は or」「! は NOT」でも可  
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1258,7 +1258,7 @@ func _ready():
 
 ### 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1279,7 +1279,7 @@ func _ready():
 
 ### 判別式が bool 値ではない場合
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1300,7 +1300,7 @@ func _ready():
 
 ### 注意➀：判別式に bool 型が使えない
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1316,7 +1316,7 @@ func _ready():
 ### 注意➁：フォロースルーの動作
 * 以下の場合 "A" "C" が出力される
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1352,7 +1352,7 @@ for 変数 in range(開始,終了):
 
 ### 基本例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1365,7 +1365,7 @@ func _ready():
 ### for 文のネスト
 * ループ制御変数には i, j, k が使われる
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1377,7 +1377,7 @@ func _ready():
 ### continue 文
 * ループカウンタを○つずつアップする
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1390,7 +1390,7 @@ func _ready():
 
 ### 無限ループと break 文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1416,7 +1416,7 @@ func _ready():
 * 他の多くの言語にある do...while 文はない
 
 ```GDscript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1431,7 +1431,7 @@ func _ready():
 
 ### while 文と break 文
 ```GDscript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1449,7 +1449,7 @@ func _ready():
 
 ### while 文と continue 文（3の倍数を出力）
 ```GDscript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1497,7 +1497,7 @@ func _ready():
 
 ### 作成
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1519,7 +1519,7 @@ func _ready():
 
 ### 要素の数
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1532,7 +1532,7 @@ func _ready():
 
 ### 抽出
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1556,7 +1556,7 @@ func _ready():
 
 ### 追加（最後）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1571,7 +1571,7 @@ func _ready():
 
 ### 追加（指定位置）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1585,7 +1585,7 @@ func _ready():
 
 ### 更新（任意の位置）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1603,7 +1603,7 @@ func _ready():
 
 ### 削除（指定の要素）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1617,7 +1617,7 @@ func _ready():
 
 ### 検索（ヒットしたか否か）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1631,7 +1631,7 @@ func _ready():
 
 ### 検索（ヒット数）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1645,7 +1645,7 @@ func _ready():
 
 ### 並べ替え（反転）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1659,7 +1659,7 @@ func _ready():
 
 ### 並べ替え（ソート）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1673,7 +1673,7 @@ func _ready():
 
 ### シャッフル
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1688,7 +1688,7 @@ func _ready():
 
 ### 結合
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1703,7 +1703,7 @@ func _ready():
 
 ### 複製
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1719,7 +1719,7 @@ func _ready():
 
 ### 文字列→配列
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1733,7 +1733,7 @@ func _ready():
 
 ### 全要素を取り出す
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1765,7 +1765,7 @@ var 変数名 = {"キー➀": 値➀, "キー➁": 値➁}
 ```
 * 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1782,7 +1782,7 @@ func _ready():
 ```
 * 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1799,7 +1799,7 @@ func _ready():
 ```
 * 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready(): 
@@ -1815,7 +1815,7 @@ func _ready():
 ```
 * 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1831,7 +1831,7 @@ len(辞書)
 ```
 * 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1853,7 +1853,7 @@ func _ready():
 
 self は現在のクラスインスタンスを参照するが Python のそれほど重要ではない
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 class MyClass:
@@ -1894,7 +1894,7 @@ func _ready():
 
 * 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1905,7 +1905,7 @@ func _ready():
 
 ### 長さを調べる
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1919,7 +1919,7 @@ func _ready():
 ### 文字列の連結
 * 加算演算子を使う場合
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1929,7 +1929,7 @@ func _ready():
 ```
 * フォーマット文字列を使う場合
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1940,7 +1940,7 @@ func _ready():
 
 ### 一部分を取得
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1952,7 +1952,7 @@ func _ready():
 
 ### 一部分を削除
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1964,7 +1964,7 @@ func _ready():
 
 ### 置換
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1974,7 +1974,7 @@ func _ready():
 
 ### 検索
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -1986,7 +1986,7 @@ func _ready():
 
 ### 文字列→配列
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2013,7 +2013,7 @@ func _ready():
 
 ### 検索
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2030,7 +2030,7 @@ func _ready():
 
 ### 置換
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2058,7 +2058,7 @@ func _ready():
 * 以下のサンプルでは疑似的に継承と例外を使って抽象クラスを実現
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 # 擬似抽象クラスの定義（実際には単なる基本クラス）
@@ -2092,7 +2092,7 @@ func _ready():
 # <b>.</b> ≒ super
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 # 基本（基底）クラス
@@ -2136,7 +2136,7 @@ func _ready():
 * 派生クラスから基本クラスのメソッドを呼び出したい場合は **.関数名()** を使う
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 # 基本クラス
@@ -2167,7 +2167,7 @@ func _ready():
 # <b>カスタムイベント</b>
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 #==============
@@ -2311,7 +2311,7 @@ print(sqrt(6)) #-> 2.44949（二夜シクシク）
 
 ### 0.0〜1.0未満
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2324,7 +2324,7 @@ func _ready():
 
 ### 最小値〜最大値（float型）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2338,7 +2338,7 @@ func _ready():
 
 ### 最小値〜最大値（int型）
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2393,7 +2393,7 @@ XXX.dst # サマータイム（True or False）
 
 ### 例文
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2432,7 +2432,7 @@ func _ready():
 
 ### 一度だけ実行する場合
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func timeOut():
@@ -2450,7 +2450,7 @@ func _ready():
 
 ### 繰り返し実行する場合
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func loop():
@@ -2478,7 +2478,7 @@ func _ready():
 # <b>処理速度計測</b>
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
@@ -2515,7 +2515,7 @@ sample.txt（UTF-8として保存）
 ```
 
 ```GDScript
-#test.gd
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():

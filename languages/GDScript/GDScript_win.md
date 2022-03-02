@@ -30,6 +30,7 @@
 1. コードの変更（[外部エディタ](https://github.com/mubirou/Godot#%E5%A4%96%E9%83%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF)を使用することも可能）
 
 ```GDScript
+#Main.gd
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
