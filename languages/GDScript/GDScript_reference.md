@@ -1040,6 +1040,22 @@ func _ready():
 	print(_myClass.__tashizan(1,10)) #-> 55（外からアクセスできてしまうが…）
 ```
 
+### _ready()、_process()関数
+```GDScript
+#test.gd
+extends Spatial #2Dの場合はNode2D
+
+func _ready():
+	# 最初に一度だけ実行される
+	print("_ready()")
+
+func _process(_delta):
+	# 繰り返し実行される
+	print(OS.get_system_time_msecs()) #-> 1646231024584（ミリ秒）
+```
+参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/best_practices/godot_notifications.html#godot-notifications)  
+
+
 ### コンストラクタ
 * 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 ```GDScript
