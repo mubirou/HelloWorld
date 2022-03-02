@@ -1129,6 +1129,7 @@ func _ready():
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月15日  
+更新日：2022年03月02日 _process()関数を追加  
 [[TOP](#TOP)]
 
 
