@@ -768,7 +768,7 @@ class SubClass : SuperClass { // 派生クラス
 * 書式
 ```CSharp
 class クラス名 { //クラス定義
-private データ型 変数名; //private変数宣言（初期化も可）←privateは省略可
+    private データ型 変数名; //private変数宣言（初期化可/privateは省略可）
     public クラス名() {} //コンストラクタ（省略可）
     ......
 ```
