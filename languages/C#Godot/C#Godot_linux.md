@@ -49,7 +49,7 @@ Hello,world!
 と表示されたら成功！  
 
 （要検証）  
-"Build error（Failed to build project solution）"のエラーが発生  
+"Build error（Failed to build project solution）"のエラーが発生し失敗  
 
 ***
 [[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)]  
