@@ -1,4 +1,4 @@
-# GDScript（ Linux ）
+# C# with Godot（ Linux ）
 
 ## GDScript について
 
@@ -26,16 +26,18 @@
 
 1. 再生ボタン[▶]を押すと「メインシーンが定義されていません。選択しますか？」というダイアログが表示されるので[現在のものを選択]を選択
 
-1. [Main]タブ（または[ファイルシステム]-[Main.tscn]）を選択し、[シーン]タブ-[Main]→[右クリック]-[スクリプトをアタッチ]-[作成]すると"Main.gd"が生成される
+1. [Main]タブ（または[ファイルシステム]-[Main.tscn]）を選択し、[シーン]タブ-[Main]→[右クリック]-[スクリプトをアタッチ]を選択し[言語]を"GDScript"を"**C#**"に変更（重要）してから[作成]すると"Main.cs"が生成される
 
 1. コードの変更（[外部エディタ](https://github.com/mubirou/Godot#%E5%A4%96%E9%83%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF)を使用することも可能）
 
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+```CSharp
+using Godot;
 
-func _ready():
-	print("Hello,world!")
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print("Hello,world!");
+    }
+}
 ```
 
 1. 再生ボタン[▶]を押すと…  
