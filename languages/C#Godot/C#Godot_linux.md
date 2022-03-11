@@ -1,5 +1,7 @@
 # C# with Godot（ Linux ）
 
+## この項目は書きかけです
+
 ## GDScript について
 
 * [Godot Engine](https://godotengine.org/)で使われるスクリプト言語
@@ -44,11 +46,14 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```
 Hello,world!
 ```
-と表示されたら成功！
+と表示されたら成功！  
+
+（要検証）  
+"Build error（Failed to build project solution）"のエラーが発生  
 
 ***
 [[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
 実行環境：Ubuntu 20.04.4 LTS、Godot Engine 3.4.3  
 作成者：夢寐郎  
-作成日：2022年03月12日
+作成日：2022年03月XX日
