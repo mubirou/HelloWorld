@@ -10,9 +10,9 @@
 ## Hello,world!
 
 1. https://godotengine.org/download/linux 
-から [Standard version] または [Mono version (C# support)]-[64-bit(x86_64)] をダウンロードして解凍
+から [Mono version (C# support)]-[64-bit(x86_64)] をダウンロードして解凍
 
-1. Godot_v3.4.3-stable_win64.exe または Godot_v3.4.3-stable_mono_x11.64 を起動（インストール作業は不要）
+1. Godot_v3.4.3-stable_mono_x11.64 を起動（インストール作業は不要）
 
 1. [新規プロジェクト] を選択. 以下を設定し[作成して編集]
     * プロジェクト名：任意
