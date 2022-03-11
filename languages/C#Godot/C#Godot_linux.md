@@ -47,10 +47,6 @@ Hello,world!
 と表示されたら成功！
 
 ***
-https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md
-
-
-
 [[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
 実行環境：Ubuntu 20.04.4 LTS、Godot Engine 3.4.3  
