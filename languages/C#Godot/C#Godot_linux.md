@@ -47,7 +47,7 @@ Hello,world!
 と表示されたら成功！
 
 ***
-[[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_linux.md#c-with-godot-linux-)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_linux.md#c-with-godot-linux-)]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
 実行環境：Ubuntu 20.04.4 LTS、Godot Engine 3.4.3  
 作成者：夢寐郎  
