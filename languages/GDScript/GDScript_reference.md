@@ -2433,7 +2433,7 @@ func _ready():
 
 ### この項目は書きかけです
 
-### 一度だけ実行する場合（非同期）
+### 一度だけ実行する場合(1)  
 
 ```gdscript
 extends Node3D
@@ -2449,7 +2449,7 @@ func timeOut():
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
-### 繰り返し実行する場合（非同期）
+### 繰り返し実行する場合(1)  
 
 ```gdscript
 extends Node3D
@@ -2464,22 +2464,21 @@ func loop():
 ```
 
 ### 繰り返し実行する場合
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
 
-func loop():
-	print("繰返し実行したい処理")
+```gdscript
+extends Node3D
 
 func _ready():
 	var _timer = Timer.new()
-	_timer.set_wait_time(2.0) # 2.0秒毎に実行したい場合（初期値1.0）
-	_timer.connect("timeout", self, "loop")
+	_timer.set_wait_time(1.0) # 1.0秒毎に実行したい場合（初期値1.0）
+	_timer.connect("timeout", loop)
 	self.add_child(_timer) # selfは省略可能
 	_timer.start()
 	#_timer.stop() #ループを止める場合
+
+func loop():
+	print("繰返し実行したい処理")
 ```
-※一度だけ実行する場合は **.set_one_shot(true)** が必要  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
