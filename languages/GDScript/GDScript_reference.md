@@ -2449,23 +2449,19 @@ func timeOut():
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
-### 一度だけ実行する場合
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+### 繰り返し実行する場合（非同期）
 
-func timeOut():
-	print("一度だけ実行したい処理")
+```gdscript
+extends Node3D
 
 func _ready():
-	var _timer = Timer.new()
-	_timer.set_wait_time(3.0) # 3.0秒後に実行したい場合（初期値1.0）
-	_timer.set_one_shot(true) # ポイント（繰り返す場合は不要）
-	_timer.connect("timeout", self, "timeOut")
-	self.add_child(_timer) # selfは省略可能
-	_timer.start()
+	await loop()
+
+func loop():
+	await get_tree().create_timer(1.0).timeout
+	print("1.0秒事に実行したい処理")
+	await loop()
 ```
-※繰り返す場合は **.set_one_shot(true)** は不要  
 
 ### 繰り返し実行する場合
 ```GDScript
