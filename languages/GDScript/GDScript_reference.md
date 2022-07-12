@@ -2447,6 +2447,7 @@ func timeOut():
 	await _timer.timeout
 	return "〇秒後に一度だけ実行したい処理"
 ```
+参考：[submax](https://zenn.dev/submax/articles/30433a77da3cca#godot4%E3%81%8B%E3%82%89%E3%81%AE%E9%9D%9E%E5%90%8C%E6%9C%9F(await))  
 
 ### 一度だけ実行する場合
 ```GDScript
