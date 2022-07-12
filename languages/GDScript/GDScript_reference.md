@@ -2433,7 +2433,7 @@ func _ready():
 
 ### この項目は書きかけです
 
-### 一度だけ実行する場合(1)  ：推奨
+### 一度だけ実行する場合➀
 ```gdscript
 extends Node3D
 
@@ -2448,7 +2448,7 @@ func timeOut():
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
-### 一度だけ実行する場合（２）：非推奨
+### 一度だけ実行する場合➁
 ```gdscript
 extends Node3D
 
@@ -2466,7 +2466,6 @@ func timeOut():
 
 ### 繰り返し実行する場合（１）  
 ループし半永久的に続ける場合  
-
 ```gdscript
 extends Node3D
 
@@ -2481,7 +2480,6 @@ func loop():
 
 ### 繰り返し実行する場合（２）
 ループを途中で停止させる可能性がある場合  
-
 ```gdscript
 extends Node3D
 
