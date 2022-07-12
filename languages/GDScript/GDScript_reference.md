@@ -2479,12 +2479,11 @@ func _ready():
 # <b>処理速度計測</b>
 
 ```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+extends Node3D
 
 func _ready():
-	# UNIX時間（1970年1月1日0:00からの経過時間＝ミリ秒）
-	var _start = OS.get_system_time_msecs()
+	# UNIX時間（1970年1月1日0:00からの経過時間＝秒）
+	var _start = Time.get_unix_time_from_system()
 
 	#===========================================
 	# ここに計測したい様々な処理を記述
@@ -2492,16 +2491,17 @@ func _ready():
 		#速度計測したい処理
 		pass #今回は何もしない
 	#===========================================
-
-	var _result = OS.get_system_time_msecs() - _start
-	print(str(_result) + " sec.") #-> 4189 sec.
+	
+	var _result = Time.get_unix_time_from_system() - _start
+	print(str(_result) + " sec.") #-> 1.78699994087219 sec.
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_os.html#os)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 11  
 作成者：夢寐郎  
 作成日：2022年02月09日  
+更新日：2022年07月12日 Godot 4 対応  
 [[TOP](#TOP)]
 
 
