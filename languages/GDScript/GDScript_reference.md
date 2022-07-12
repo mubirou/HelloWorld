@@ -2439,11 +2439,11 @@ func _ready():
 extends Node3D
 
 func _ready():
-	print("すぐに実行Ａ")
+	print("すぐに実行➀")
 	await timeOut()  #=> "一度だけ実行したい処理"
 
 func timeOut():
-	print("すぐに実行Ｂ")
+	print("すぐに実行➁")
 	await get_tree().create_timer(3.0).timeout
 	print("〇秒後に一度だけ実行したい処理")
 ```
