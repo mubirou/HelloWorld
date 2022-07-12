@@ -2498,7 +2498,7 @@ func _ready():
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_time.html?highlight=datetime#time)  
-実行環境：Windows 10、Godot 4.0 alpha 11  
+実行環境：Windows 10、Godot 4.0（alpha 11）  
 作成者：夢寐郎  
 作成日：2022年02月09日  
 更新日：2022年07月12日 Godot 4 対応  
