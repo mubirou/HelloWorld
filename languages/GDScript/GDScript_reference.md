@@ -2439,15 +2439,15 @@ func _ready():
 extends Node3D
 
 func _ready():
-	print("すぐに実行")
-	print(await timeOut())  #=> "〇秒後に一度だけ実行したい処理"
+	print("すぐに実行Ａ")
+	await timeOut()  #=> "一度だけ実行したい処理"
 
 func timeOut():
-	var _timer = self.get_tree().create_timer(3.0)
-	await _timer.timeout
-	return "〇秒後に一度だけ実行したい処理"
+	print("すぐに実行Ｂ")
+	await get_tree().create_timer(3.0).timeout
+	print("〇秒後に一度だけ実行したい処理")
 ```
-参考：[submax](https://zenn.dev/submax/articles/30433a77da3cca#godot4%E3%81%8B%E3%82%89%E3%81%AE%E9%9D%9E%E5%90%8C%E6%9C%9F(await))  
+参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
 ### 一度だけ実行する場合
 ```GDScript
