@@ -2434,6 +2434,7 @@ func _ready():
 ### この項目は書きかけです
 
 ### 一度だけ実行する場合(1)  
+インスタンスを生成しない方法
 
 ```gdscript
 extends Node3D
@@ -2448,6 +2449,23 @@ func timeOut():
 	print("3.0秒後に一度だけ実行したい処理")
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
+
+### 一度だけ実行する場合（２）
+
+```gdscript
+extends Node3D
+
+func _ready():
+	var _timer = Timer.new()
+	_timer.set_wait_time(3.0) # 3.0秒後に実行したい場合（初期値1.0）
+	_timer.connect("timeout", timeOut)
+	_timer.set_one_shot(true)
+	self.add_child(_timer) # selfは省略可能
+	_timer.start()
+
+func timeOut():
+	print("一度だけ実行したい処理")
+```
 
 ### 繰り返し実行する場合（１）  
 ループし半永久的に続ける場合  
@@ -2483,7 +2501,6 @@ func loop():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
 実行環境：Windows 10、Godot 4.0（alpha 11）  
 作成者：夢寐郎  
 作成日：2022年02月09日  
