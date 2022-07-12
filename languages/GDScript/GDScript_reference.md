@@ -2431,6 +2431,23 @@ func _ready():
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
+### この項目は書きかけです
+
+### 一度だけ実行する場合（非同期）
+
+```gdscript
+extends Node3D
+
+func _ready():
+	print("すぐに実行")
+	print(await timeOut())  #=> "〇秒後に一度だけ実行したい処理"
+
+func timeOut():
+	var _timer = self.get_tree().create_timer(3.0)
+	await _timer.timeout
+	return "〇秒後に一度だけ実行したい処理"
+```
+
 ### 一度だけ実行する場合
 ```GDScript
 #Main.gd
@@ -2469,9 +2486,10 @@ func _ready():
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_timer.html#timer)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0（alpha 11）  
 作成者：夢寐郎  
 作成日：2022年02月09日  
+作成日：2022年07月13日 Godot 4 対応     
 [[TOP](#TOP)]
 
 
