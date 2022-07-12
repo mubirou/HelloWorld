@@ -2445,7 +2445,7 @@ func _ready():
 func timeOut():
 	print("すぐに実行➁")
 	await get_tree().create_timer(3.0).timeout
-	print("〇秒後に一度だけ実行したい処理")
+	print("3.0秒後に一度だけ実行したい処理")
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
