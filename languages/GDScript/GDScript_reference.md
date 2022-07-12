@@ -2476,7 +2476,6 @@ func loop():
 ```
 
 ### 📝 繰り返し実行：途中停止
-ループを途中で停止させる可能性がある場合  
 ```gdscript
 extends Node3D
 
