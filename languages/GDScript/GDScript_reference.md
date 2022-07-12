@@ -2433,9 +2433,7 @@ func _ready():
 
 ### この項目は書きかけです
 
-### 一度だけ実行する場合(1)  
-インスタンスを生成しない方法
-
+### 一度だけ実行する場合(1)  ：推奨
 ```gdscript
 extends Node3D
 
@@ -2450,8 +2448,7 @@ func timeOut():
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
-### 一度だけ実行する場合（２）
-
+### 一度だけ実行する場合（２）：非推奨
 ```gdscript
 extends Node3D
 
