@@ -2437,7 +2437,7 @@ extends Node3D
 
 func _ready():
 	print("すぐに実行➀")
-	await timeOut()  #=> "一度だけ実行したい処理"
+	await timeOut()  # ⚠最終行に記述すること
 
 func timeOut():
 	print("すぐに実行➁")
@@ -2467,7 +2467,7 @@ func timeOut():
 extends Node3D
 
 func _ready():
-	await loop()
+	await loop() # ⚠最終行に記述すること
 
 func loop():
 	await get_tree().create_timer(1.0).timeout
