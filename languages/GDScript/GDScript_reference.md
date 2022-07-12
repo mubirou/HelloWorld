@@ -2449,7 +2449,8 @@ func timeOut():
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
-### 繰り返し実行する場合(1)  
+### 繰り返し実行する場合（１）  
+ループし半永久的に続ける場合  
 
 ```gdscript
 extends Node3D
@@ -2463,7 +2464,8 @@ func loop():
 	await loop()
 ```
 
-### 繰り返し実行する場合
+### 繰り返し実行する場合（２）
+ループを途中で停止させる可能性がある場合  
 
 ```gdscript
 extends Node3D
