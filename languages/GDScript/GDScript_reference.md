@@ -2431,9 +2431,7 @@ func _ready():
 <a name="タイマー"></a>
 # <b>タイマー</b>
 
-### この項目は書きかけです
-
-### 📝 一度だけ実行する場合➀
+### 📝 一度だけ実行：推奨
 ```gdscript
 extends Node3D
 
@@ -2448,7 +2446,7 @@ func timeOut():
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
-📝 一度だけ実行する場合➁
+### 📝 一度だけ実行：非推奨  
 ```gdscript
 extends Node3D
 
@@ -2464,8 +2462,7 @@ func timeOut():
 	print("一度だけ実行したい処理")
 ```
 
-📝 繰り返し実行する場合（１）  
-ループし半永久的に続ける場合  
+### 📝 繰り返し実行：永久継続  
 ```gdscript
 extends Node3D
 
@@ -2478,7 +2475,7 @@ func loop():
 	await loop()
 ```
 
-📝 繰り返し実行する場合（２）
+### 📝 繰り返し実行：途中停止
 ループを途中で停止させる可能性がある場合  
 ```gdscript
 extends Node3D
