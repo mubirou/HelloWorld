@@ -2380,7 +2380,7 @@ func _ready():
 
 ### 書式
 ```GDScript
-var XXX = OS.get_datetime()
+var XXX = Time.get_datetime_dict_from_system()
 XXX.year # 年（2016等）
 XXX.month # 月（1〜12）
 XXX.day # 日（1〜31）
@@ -2388,18 +2388,17 @@ XXX.weekday() # 0（日曜）〜6（土曜）←Pythonと異なる
 XXX.hour # 時間（0〜23）
 XXX.minute # 分（0〜59）
 XXX.second # 秒（0〜59）
-XXX.dst # サマータイム（True or False）
+XXX.dst # サマータイム（true or false）
 # マイクロ秒を取得する場合 OS.get_system_time_msecs() を利用
 ```
 
 ### 例文
 ```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+extends Node3D
 
 func _ready():
-	var _now = OS.get_datetime()
-	print(_now) #-> {day:9, dst:False, hour:18, minute:21, month:1, second:45, weekday:0, year:2022}
+	var _now = Time.get_datetime_dict_from_system()
+	print(_now) #-> {"year":2022, "month":7, "day":13, "weekday":3, "dst":false, "hour":9, "minute":1, "second":17}
 	print(_now.year) # 年（2017等）
 	print(_now.month) # 月（1〜12）
 	print(_now.day) # 日（1〜31）
@@ -2409,22 +2408,21 @@ func _ready():
 	print(_now.second) # 秒（0〜59）
 	
 	#"hh:mm:ss"で現在の時間を表示する方法
-	var _h
-	var _m
-	var _s
-	if (_now.hour < 10) : _h = "0" + str(_now.hour)
-	else: _h = str(_now.hour)
-	if (_now.minute < 10) : _m = "0" + str(_now.minute)
-	else: _m = str(_now.minute)
-	if (_now.second < 10) : _s = "0" + str(_now.second)
-	else: _s = str(_now.second)
-	print(_h + ":" + _m + ":" + _s) #-> "18:21:45"
+	var _h = _now.hour
+	var _m = _now.minute
+	var _s = _now.second
+	if _h < 10: _h = "0" + str(_h)
+	if _m < 10: _m = "0" + str(_m)
+	if _s < 10: _s = "0" + str(_s)
+	print(str(_h) + ":" + str(_m) + ":" + str(_s)) #-> "09:04:11"
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参照：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_time.html?highlight=Time#time)  
+実行環境：Windows 10、Godot 4.0（alpha 11）  
 作成者：夢寐郎  
 作成日：2022年01月09日  
+更新日：2022年07月13日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
