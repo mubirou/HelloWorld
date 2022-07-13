@@ -32,7 +32,7 @@
 * [抽象クラス](#抽象クラス)
 * [.](#.) ≒ super
 * [オーバーライド](#オーバーライド)
-* [カスタムイベント](#カスタムイベント)
+* [カスタムイベント](#202207130930)
 * [数学関数](#数学関数)
 * [乱数](#乱数)
 * [日時情報](#202207130907)
@@ -2164,36 +2164,26 @@ func _ready():
 [[TOP](#TOP)]
 
 
-<a name="カスタムイベント"></a>
+<a name="202207130930"></a>
 # <b>カスタムイベント</b>
 
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+```gdscript
+extends Node3D
 
-#==============
 # カスタムクラス 
-#==============
 class MyGame:
 	signal gameover #イベント名の定義
-	
-	#疑似プライベート変数
-	var __energy = 100
 
-	func _init(): #コンストラクタ
-		pass
+	var __energy = 100 #疑似プライベート変数
 
 	func fight():
 		__energy -= 20
 		if (__energy <= 0):
 			emit_signal("gameover") #イベント発生
 
-#=====
-# 実行
-#=====
-func _ready():
+func _ready(): # 実行
 	var _robot = MyGame.new()
-	_robot.connect("gameover", self, "gameoverHandler") #≒addEventListener
+	_robot.connect("gameover", gameoverHandler) #≒addEventListener
 	_robot.fight()
 	_robot.fight()
 	_robot.fight()
@@ -2205,9 +2195,10 @@ func gameoverHandler(): #前方定義でなくてもよい
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0（alpha 11）  
 作成者：夢寐郎  
 作成日：2022年01月05日  
+更新日：2022年07月13日  Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
