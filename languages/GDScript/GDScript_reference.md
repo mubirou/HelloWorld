@@ -1,8 +1,7 @@
 <a name="TOP"></a>
 
 # <b>GDScript 基礎文法</b>
-[[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
-⌚402h00min  
+[[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes) ⌚402h00min  
 
 ### <b>INDEX</b>
 
