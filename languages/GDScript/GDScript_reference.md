@@ -46,28 +46,30 @@
 
 ### 1行コメントアウト
 
-```GDScript
+```python
 # 〇〇〇〇〇
 ```
 
-```GDScript
+```python
 var _x = 1 + 1 # 〇〇〇〇〇
-```
-
-```GDScript
-""" 〇〇〇〇〇 """"
 ```
 
 ### 複数行コメントアウト
 
-```GDScript
+```python
+# 〇〇〇〇〇
+# 〇〇〇〇〇
+# 〇〇〇〇〇
+```
+
+```python
 """
 〇〇〇〇〇
 〇〇〇〇〇
 """
 ```
 
-```GDScript
+```python
 """ コメントアウト開始
 〇〇〇〇〇
 〇〇〇〇〇
@@ -75,10 +77,12 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%82%A2%E3%82%A6%E3%83%88)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88#comments)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（コメントの間隔）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_styleguide.html?highlight=comment#comment-spacing)  
+参考：[Pythonのコメント](https://note.nkmk.me/python-comment/)  
+実行環境：Windows 10、Godot Engine 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月01日  
+更新日：2022年08月13日  
 [[TOP](#TOP)]
 
 
