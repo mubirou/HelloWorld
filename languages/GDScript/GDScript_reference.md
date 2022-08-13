@@ -1,45 +1,45 @@
 <a name="TOP"></a>
 
-# <b>GDScript 基礎文法</b>
+# <b>GDScript（Godot 4）基礎文法</b>
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
 ⌚402h00min  
 
 ### <b>INDEX</b>
 
-* Hello,world! （[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-) / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)）
+* Hello,world! （~~[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)~~ / ~~[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)~~）
 * [コメントアウト](#コメントアウト)
-* [データ型](#データ型)
-* [データ型の操作](#データ型の操作)
-* [クラス](#クラス)
-* [基本クラスと派生クラス](#基本クラスと派生クラス)
-* [名前空間](#名前空間)
-* [継承と委譲](#継承と委譲)
-* [変数とスコープ](#変数とスコープ)
-* [アクセサ（getter / setter）](#アクセサ)
-* [演算子](#演算子)
-* [定数](#定数)
-* [関数](#関数)
-* [静的変数・静的関数](#静的変数・静的関数)
-* [if 文](#if文)
-* [三項演算子](#三項演算子)
-* [match 文](#match文) ≒ switch 文
-* [for 文](#for文)
-* [while 文](#while文)
-* [配列](#配列)
-* [連想配列（辞書）](#連想配列（辞書）)
+* ~~[データ型](#データ型)~~
+* ~~[データ型の操作](#データ型の操作)~~
+* ~~[クラス](#クラス)~~
+* ~~[基本クラスと派生クラス](#基本クラスと派生クラス)~~
+* ~~[名前空間](#名前空間)~~
+* ~~[継承と委譲](#継承と委譲)~~
+* ~~[変数とスコープ](#変数とスコープ)~~
+* ~~[アクセサ（getter / setter）](#アクセサ)~~
+* ~~[演算子](#演算子)~~
+* ~~[定数](#定数)~~
+* ~~[関数](#関数)~~
+* ~~[静的変数・静的関数](#静的変数・静的関数)~~
+* ~~[if 文](#if文)~~
+* ~~[三項演算子](#三項演算子)~~
+* ~~[match 文](#match文) ≒ switch 文~~
+* ~~[for 文](#for文)~~
+* ~~[while 文](#while文)~~
+* ~~[配列](#配列)~~
+* ~~[連想配列（辞書）](#連想配列（辞書）)~~
 * ~~[self](#self) ≒ this~~
-* [文字列の操作](#文字列の操作)
-* [正規表現](#正規表現)
-* [抽象クラス](#抽象クラス)
-* [.](#.) ≒ super
-* [オーバーライド](#オーバーライド)
-* [カスタムイベント](#202207130930)
-* [数学関数](#数学関数)
-* [乱数](#乱数)
-* [日時情報](#202207130907)
-* [タイマー](#タイマー)
-* [処理速度計測](#処理速度計測)
-* [外部テキストの読み込み](#外部テキストの読み込み)
+* ~~[文字列の操作](#文字列の操作)~~
+* ~~[正規表現](#正規表現)~~
+* ~~[抽象クラス](#抽象クラス)~~
+* ~~[.](#.) ≒ super~~
+* ~~[オーバーライド](#オーバーライド)~~
+* ~~[カスタムイベント](#202207130930)~~
+* ~~[数学関数](#数学関数)~~
+* ~~[乱数](#乱数)~~
+* ~~[日時情報](#202207130907)~~
+* ~~[タイマー](#タイマー)~~
+* ~~[処理速度計測](#処理速度計測)~~
+* ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
 ***
 
 <a name="コメントアウト"></a>
