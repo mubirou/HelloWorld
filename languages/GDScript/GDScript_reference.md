@@ -59,7 +59,6 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ```python
 # 〇〇〇〇〇
 # 〇〇〇〇〇
-# 〇〇〇〇〇
 ```
 
 ```python
@@ -67,13 +66,6 @@ var _x = 1 + 1 # 〇〇〇〇〇
 〇〇〇〇〇
 〇〇〇〇〇
 """
-```
-
-```python
-""" コメントアウト開始
-〇〇〇〇〇
-〇〇〇〇〇
-コメントアウト終了 """
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%82%A2%E3%82%A6%E3%83%88)]  
