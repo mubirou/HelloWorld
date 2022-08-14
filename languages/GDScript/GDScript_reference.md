@@ -1455,8 +1455,6 @@ func _ready():
 # <b>while 文</b>
 * 他の多くの言語にある do...while 文はない
 
-### この項目は書きかけです  
-
 ```gdscript
 # main.gd
 extends Node3D
@@ -1507,7 +1505,7 @@ func _ready():
 実行環境：Windows 10、Godot Engine 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月24日  
-更新日：2022年08月XX日  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
 
 
