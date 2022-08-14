@@ -1607,19 +1607,15 @@ print(_array) #-> ["C", "A", "B"]
 
 <a name="配列更新（任意の位置）"></a>
 
-### 更新（任意の位置）
+### 👉 更新（任意の位置）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+var _array = ["A", "B", "C"]
 
-func _ready():
-	var _array = ["A", "B", "C"]
+_array[0] = null # インデックス0（先頭）を更新
+print(_array) #-> [null, "B", "C"]
 
-	_array[0] = null # インデックス0（先頭）を更新
-	print(_array) #-> [Null, B, C]
-	
-	_array[-1] = "D" # 後ろから1番目を更新
-	print(_array) #-> [Null, B, D]
+_array[-1] = "D" # 後ろから1番目を更新
+print(_array) #-> [null, "B", "D"]
 ```
 [[配列TOP](#配列)]
 
