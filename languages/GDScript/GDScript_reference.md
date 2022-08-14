@@ -40,7 +40,8 @@
 * [日時情報](#202207130907)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
-* ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
+* [外部テキストの読み込み](#外部テキストの読み込み)
+
 ***
 
 <a name="コメントアウト"></a>
@@ -2558,18 +2559,19 @@ func _ready():
 <a name="外部テキストの読み込み"></a>
 # <b>外部テキストの読み込み</b>
 
-sample.txt（UTF-8として保存）
+sample.txt
 ```
 あいうえお
 かきくけこ
 さしすせそ
 ```
 
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+```python
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _file = File.new()
 	_file.open("res://sample.txt", File.READ)
 	print(_file.get_as_text())
@@ -2581,8 +2583,9 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%A4%96%E9%83%A8%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_file.html#file)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（**File**）](https://docs.godotengine.org/en/latest/classes/class_file.html?highlight=File#file)  
+実行環境：Windows 10、Godot Engine 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年02月09日  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
