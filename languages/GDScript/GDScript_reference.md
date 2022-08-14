@@ -1554,7 +1554,6 @@ print(_array3) #-> [["A", "あ"], ["I", "い"]]
 var _array4 = range(0, 10)
 print(_array4) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列要素の数"></a>
 
@@ -1563,7 +1562,6 @@ print(_array4) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 var _array = [0,1,2,3,4,5,6,7,8,9]
 print(_array.size()) #-> 10
 ```
-[[配列TOP](#配列)]
 
 <a name="配列抽出"></a>
 
@@ -1583,7 +1581,6 @@ print(_array[_array.size() - 1]) #-> 9
 # 指定位置の抽出
 print(_array[5]) #-> 5（インデックス5番目）
 ```
-[[配列TOP](#配列)]
 
 <a name="配列追加（最後）"></a>
 
@@ -1594,7 +1591,6 @@ _array.append("mubirou") # String型の追加
 _array.append(100) # int型の追加
 print(_array) #-> ["mubirou", 100]（混在可能）
 ```
-[[配列TOP](#配列)]
 
 <a name="配列追加（指定位置）"></a>
 
@@ -1604,7 +1600,6 @@ var _array = ["A", "B"]
 _array.insert(0, "C") # インデックス0（先頭）に追加
 print(_array) #-> ["C", "A", "B"]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列更新（指定位置）"></a>
 
@@ -1618,7 +1613,6 @@ print(_array) #-> [null, "B", "C"]
 _array[-1] = "D" # 後ろから1番目を更新
 print(_array) #-> [null, "B", "D"]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列削除（指定の要素）"></a>
 
@@ -1628,7 +1622,6 @@ var _array = ["A", "B", "C"]
 _array.erase("A") # 最初に見つかった指定の要素を削除
 print(_array) #-> ["B", "C"]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列削除（指定位置）"></a>
 
@@ -1638,7 +1631,6 @@ var _array = ["A", "B", "C"]
 _array.remove_at(1) # インデックス1の要素を削除
 print(_array) #-> ["A", "C"]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列検索（ヒットしたか否か）"></a>
 
@@ -1652,7 +1644,6 @@ func _ready():
 	print("E" in _array) #-> True
 	print("F" in _array) #-> False
 ```
-[[配列TOP](#配列)]
 
 <a name="配列検索（ヒット数）"></a>
 
@@ -1666,7 +1657,6 @@ func _ready():
 	print(_array.count("C")) #-> 3
 	print(_array.count("D")) #-> 0
 ```
-[[配列TOP](#配列)]
 
 <a name="配列並べ替え（反転）"></a>
 
@@ -1680,7 +1670,6 @@ func _ready():
 	_array.invert()
 	print(_array) #-> [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列並べ替え（ソート）"></a>
 
@@ -1694,7 +1683,6 @@ func _ready():
 	_array.sort()
 	print(_array) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列シャッフル"></a>
 
@@ -1709,7 +1697,6 @@ func _ready():
 	print(_array) #-> [5, 7, 8, 4, 6, 1, 2, 3, 0, 9]
 ```
 （注意）内部では [randi()](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#class-randomnumbergenerator-method-randi) 関数を利用しているため同じ値が返る（回避したい場合は[乱数](#乱数)を利用）  
-[[配列TOP](#配列)]
 
 <a name="配列結合"></a>
 
@@ -1724,7 +1711,6 @@ func _ready():
 	_array1 += _array2
 	print(_array1) #-> [A, B, C, D, E, F]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列複製"></a>
 
@@ -1740,7 +1726,6 @@ func _ready():
 	print(_origin) #-> [A, B]（参照ではないことが判る）
 	print(_copy) #-> [C, B]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列文字列→配列"></a>
 
@@ -1754,7 +1739,6 @@ func _ready():
 	var _array = _string.rsplit (",") # カンマ区切りで分割してリスト化
 	print(_array) #-> [A, B, C]
 ```
-[[配列TOP](#配列)]
 
 <a name="配列全要素を取り出す"></a>
 
