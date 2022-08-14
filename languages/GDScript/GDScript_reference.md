@@ -1763,7 +1763,8 @@ func _ready():
 ※インデックス番号を取得したい場合はカウンタ変数を使用  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%8B%95%E7%9A%84%E9%85%8D%E5%88%97list)]  
-実行環境：Windows 10、Godot 4.0 alpha 14   
+参考：[GODOT DOCS（**Array**）](https://docs.godotengine.org/en/latest/classes/class_array.html?highlight=Array#array)  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月25日  
 更新日：2022年08月XX日  
