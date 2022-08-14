@@ -1381,22 +1381,24 @@ func _ready():
 <a name="for文"></a>
 # <b>for 文</b>
 
+### この項目は書きかけです  
+
 ### 基本構文
-```GDScript
-for 変数 in range(開始,終了):
+```python
+for 変数 in range(開始, 終了):
     繰り返す処理
 ```
 
 ### 基本例文
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+```python
+# main.gd
+extends Node3D
+……
 func _ready():
-	for i in range(0,10): #第1引数を省略すると0扱い
+	……	
+	for i in range(0, 10):
 		print(i) #-> 0,1,2,3,4,5,6,7,8,9
-
-	# print(i) # Error（for文の外ではiは無効）
+	#print(i) # Error（for文の外ではiは無効）
 ```
 
 ### for 文のネスト
@@ -1440,10 +1442,11 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#for-%E6%96%87)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#for)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（**for**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%22in%20range%22#for)  
+実行環境：Windows 10、Godot 4.0 alpha 14    
 作成者：夢寐郎  
 作成日：2022年01月09日  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
