@@ -1314,6 +1314,8 @@ func _ready():
 <a name="match文"></a>
 # <b>match ≒ switch 文</b>
 
+### この項目は書きかけです  
+
 ### 判別式が bool 値ではない場合
 ```gdscript
 #Main.gd
@@ -1371,10 +1373,11 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#switch-%E6%96%87)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#match)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（**match**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%22in%20range%22#match)  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2021年01月09日  
+更新日：2021年08月14日  
 [[TOP](#TOP)]
 
 
