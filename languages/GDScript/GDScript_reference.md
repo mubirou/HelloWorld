@@ -1679,16 +1679,12 @@ print(_array) #-> [5, 7, 8, 4, 6, 1, 2, 3, 0, 9]（毎回異なる）
 
 <a name="配列結合"></a>
 
-### 結合
+### 👉 結合
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array1 = ["A","B","C"]
-	var _array2 = ["D","E","F"]
-	_array1 += _array2
-	print(_array1) #-> [A, B, C, D, E, F]
+var _array1 = ["A","B","C"]
+var _array2 = ["D","E","F"]
+_array1 += _array2
+print(_array1) #-> ["A", "B", "C", "D", "E", "F"]
 ```
 
 <a name="配列複製"></a>
