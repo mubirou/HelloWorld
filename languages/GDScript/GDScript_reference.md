@@ -39,7 +39,7 @@
 * ~~[乱数](#乱数)~~
 * ~~[日時情報](#202207130907)~~
 * ~~[タイマー](#タイマー)~~
-* ~~[処理速度計測](#処理速度計測)~~
+* [処理速度計測](#処理速度計測)
 * ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
 ***
 
@@ -2526,30 +2526,32 @@ func loop():
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-```GDScript
+```python
+# main.gd
 extends Node3D
 
 func _ready():
+	……
 	# UNIX時間（1970年1月1日0:00からの経過時間＝秒）
 	var _start = Time.get_unix_time_from_system()
 
 	#===========================================
 	# ここに計測したい様々な処理を記述
-	for i in range(0,100000000): #1億回繰り返す
-		#速度計測したい処理
-		pass #今回は何もしない
+	for i in range(0,100000000): # 1億回繰り返す
+		# 速度計測したい処理
+		pass # 今回は何もしない
 	#===========================================
 	
 	var _result = Time.get_unix_time_from_system() - _start
-	print(str(_result) + " sec.") #-> 1.78699994087219 sec.
+	print(str(_result) + " sec.") #-> 1.83999991416931 sec.
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_time.html?highlight=datetime#time)  
-実行環境：Windows 10、Godot 4.0（alpha 11）  
+参考：[GODOT DOCS（**Time**）](https://docs.godotengine.org/en/latest/classes/class_time.html?highlight=datetime#time)  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年02月09日  
-更新日：2022年07月12日 Godot 4.0 対応  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
 
 
