@@ -32,7 +32,7 @@
 * ~~[文字列の操作](#文字列の操作)~~
 * ~~[正規表現](#正規表現)~~
 * ~~[抽象クラス](#抽象クラス)~~
-* ~~[.](#.) ≒ super~~
+* ~~[super](#super)~~
 * ~~[オーバーライド](#オーバーライド)~~
 * ~~[カスタムイベント](#202207130930)~~
 * ~~[数学関数](#数学関数)~~
@@ -2125,8 +2125,10 @@ func _ready():
 [[TOP](#TOP)]
 
 
-<a name="."></a>
-# <b>.</b> ≒ super
+<a name="super"></a>
+# <b>super</b>＝旧'.'
+
+### この項目は書きかけです  
 
 ```GDScript
 #Main.gd
@@ -2158,9 +2160,11 @@ func _ready():
 （要調査）コンストラクタに引数がある場合構文エラー発生  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#base-%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（**Class constructor**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=super#class-constructor)  
+実行環境：Windows 10、Godot Engine 4.0 alpha 14  
 作成者：夢寐郎  
-作成日：2022年02月04日   
+作成日：2022年02月04日  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
