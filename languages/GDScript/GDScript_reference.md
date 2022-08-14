@@ -37,7 +37,7 @@
 * ~~[カスタムイベント](#202207130930)~~
 * ~~[数学関数](#数学関数)~~
 * ~~[乱数](#乱数)~~
-* ~~[日時情報](#202207130907)~~
+* [日時情報](#202207130907)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
 * ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
@@ -2445,7 +2445,7 @@ func _ready():
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
 参照：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_time.html?highlight=Time#time)  
-実行環境：Windows 10、Godot 4.0（alpha 11）  
+実行環境：Windows 10、Godot 4.0 alpha 11  
 作成者：夢寐郎  
 作成日：2022年01月09日  
 更新日：2022年07月13日 Godot 4.0 対応  
