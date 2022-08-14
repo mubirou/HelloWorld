@@ -548,7 +548,7 @@ func _ready():
 他のディレクトリにある .gd ファイルモジュールを読み込んで活用します。.gd ファイルには再利用可能なコード（クラス）群を記述します。
 
 ### 例文
-* test.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
+* res://main.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
 
 ```gdscript
 # res://japan/tokyo.gd
