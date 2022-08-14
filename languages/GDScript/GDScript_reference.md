@@ -2127,7 +2127,7 @@ func _ready():
 
 <a name="superキーワード"></a>
 # <b>super キーワード</b>
-旧「.」の新しい書き方  
+旧（[**.**](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=super#inheritance)） の新しい書き方  
 
 ```GDScript
 # main.gd
