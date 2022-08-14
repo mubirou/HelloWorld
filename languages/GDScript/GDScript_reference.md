@@ -1537,6 +1537,8 @@ func _ready():
 
 <a name="配列作成"></a>
 
+### この項目は書きかけです  
+
 ### 作成
 ```gdscript
 # main.gd
@@ -1562,12 +1564,8 @@ func _ready():
 
 ### 要素の数
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [0,1,2,3,4,5,6,7,8,9]
-	print(_array.size()) #-> 10
+var _array = [0,1,2,3,4,5,6,7,8,9]
+print(_array.size()) #-> 10
 ```
 [[配列TOP](#配列)]
 
@@ -1786,10 +1784,10 @@ func _ready():
 ※インデックス番号を取得したい場合はカウンタ変数を使用  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%8B%95%E7%9A%84%E9%85%8D%E5%88%97list)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14   
 作成者：夢寐郎  
 作成日：2022年01月25日  
-更新日：2022年02月09日 シャッフルを追加  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
