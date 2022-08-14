@@ -1450,7 +1450,6 @@ func _ready():
 [[TOP](#TOP)]
 
 
-
 <a name="while文"></a>
 # <b>while 文</b>
 * 他の多くの言語にある do...while 文はない
