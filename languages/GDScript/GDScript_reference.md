@@ -19,6 +19,7 @@
 * ~~[演算子](#演算子)~~
 * ~~[定数](#定数)~~
 * ~~[関数](#関数)~~
+* [匿名関数](#匿名関数)
 * ~~[静的変数・静的関数](#静的変数・静的関数)~~
 * ~~[if 文](#if文)~~
 * ~~[三項演算子](#三項演算子)~~
@@ -1127,6 +1128,44 @@ func _ready():
 作成者：夢寐郎  
 作成日：2022年01月15日  
 更新日：2022年03月02日 _process()関数を追加  
+[[TOP](#TOP)]
+
+
+<a name="匿名関数"></a>
+# <b>匿名関数</b>
+
+```python
+# main.gd
+……
+var _hello
+var _american
+var _japanese
+var _chinese
+
+func _ready():
+	……
+		
+	_american = func(_name): # 匿名関数(1)
+		print(_name + "," + "Hello!")
+		
+	_japanese = func(_name): # 匿名関数(2)
+		print(_name + "、" + "こんにちは!")
+	
+	_chinese = func(_name): # 匿名関数(3)
+		print(_name + "," + "你好!")
+	
+	_hello = _american
+	_hello.call("TARO") #-> TARO,Hello!
+	_hello = _japanese
+	_hello.call("太郎") #-> 太郎、こんにちは!
+	_hello = _chinese
+	_hello.call("太郎") #-> 太郎,你好!
+```
+
+参考：[GODOT DOCS（**Callable**）](https://docs.godotengine.org/en/latest/classes/class_callable.html?highlight=Callable#callable)  
+実行環境：Windows 10、Godot Engine 4.0 alpha 14  
+作成者：夢寐郎  
+作成日：2022年08月14日  
 [[TOP](#TOP)]
 
 
