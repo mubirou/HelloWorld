@@ -1472,19 +1472,17 @@ func _ready():
 
 ### while 文と break 文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _count = 0
-
-	while (true) : #-> ループ判別式をtrueにすると無限ループに!
+	while true: #-> ループ判別式をtrueにすると無限ループに!
 		_count += 1
 		if (_count > 100) :
 			break #-> ループを終了
-
 		print(_count) #-> 1,2,....,99,100（1〜100までを出力）
-
 	print("while文終了") # while文の外
 ```
 
