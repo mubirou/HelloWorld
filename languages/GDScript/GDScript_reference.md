@@ -1314,8 +1314,6 @@ func _ready():
 <a name="match文"></a>
 # <b>match ≒ switch 文</b>
 
-### この項目は書きかけです  
-
 ### 判別式が bool 値ではない場合
 ```gdscript
 # main.gd
@@ -1337,14 +1335,14 @@ func _ready():
 			print("家族以外")
 ```
 
-### 注意➀：判別式に bool 型が使えない
+### ⚠ 注意➀：判別式に bool 型が使えない
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
-	var _age = 54
-	
+	……
+	var _age = 55
 	match true:
 		_age < 20: # Error（比較演算子を使った条件式は不可）
 			print("未成年")
@@ -1352,15 +1350,16 @@ func _ready():
 			print("成人")
 ```
 
-### 注意➁：フォロースルーの動作
+### ⚠ 注意➁：フォロースルーの動作
 * 以下の場合 "A" "C" が出力される
 ```gdscript
 #Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _value = "A"
-	
 	match _value:
 		"A":
 			print("A")
