@@ -1709,13 +1709,13 @@ print(_array) #-> ["A", "B", "C"]
 
 <a name="配列全要素を取り出す"></a>
 
-### 全要素を取り出す
+### 👉 全要素を取り出す
 ```gdscript
 var _count = 0 # インデックス番号取得用（オプション）
-	for _tmp in ["A","B","C","D","E"]:
-		print(str(_count) + ":" + _tmp) 
-		#-> 0:A → 1:B → 2:C → 3:D → 4:E
-		_count += 1
+for _tmp in ["A","B","C","D","E"]:
+	print(str(_count) + ":" + _tmp) 
+	#-> 0:A → 1:B → 2:C → 3:D → 4:E
+	_count += 1
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%8B%95%E7%9A%84%E9%85%8D%E5%88%97list)]  
