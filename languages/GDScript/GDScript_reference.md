@@ -1210,7 +1210,7 @@ func _ready():
 extends Spatial #2Dの場合はNode2D
 
 func _ready():
-	if null : # '' "" も同じFalseとして判断
+	if null: # '' "" も同じFalseとして判断
 		print("A")
 	else:
 		print("B") #こちらが実行される
@@ -1224,7 +1224,7 @@ func _ready():
 ### 論理積（and または &&）
 1. 論理演算子（and または &&）を使う方法
     ```gdscript
-    if (条件式➀ and 条件➁) : #()は省略可
+    if 条件式➀ and 条件➁:
         処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
     else:
         処理B
@@ -1232,8 +1232,8 @@ func _ready():
 
 1. ifのネストを使う方法
     ```gdscript
-    if (条件式➀) : #()は省略可
-        if (条件➁) :
+    if 条件式➀:
+        if (条件➁):
             処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
         else:
             処理B
@@ -1244,7 +1244,7 @@ func _ready():
 ### 論理和（or または ||）
 1. 論理演算子（or または ||）を使う方法
     ```gdscript
-    if (条件式➀ or 条件➁) : #()は省略可
+    if 条件式➀ or 条件➁:
         処理A ←条件式➀または条件式➁の両方がTrueの場合に実行
     else:
         処理B
@@ -1252,9 +1252,9 @@ func _ready():
 
 1. ifのネストを使う方法
     ```gdscript
-    if (条件式➀) : #()は省略可
+    if 条件式➀:
         処理A ←条件式➀がTrueの場合に実行
-    elif (条件➁) :
+    elif 条件➁:
         処理A ←条件式②がTrueの場合に実行
     else:
         処理B
