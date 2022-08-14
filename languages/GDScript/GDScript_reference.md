@@ -2228,7 +2228,7 @@ class MyGame:
 
 func _ready(): # 実行
 	var _robot = MyGame.new()
-	_robot.connect("gameover", gameoverHandler) #≒addEventListener
+	_robot.connect("gameover", gameoverHandler) # ≒addEventListener
 	_robot.fight()
 	_robot.fight()
 	_robot.fight()
