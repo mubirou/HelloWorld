@@ -1508,7 +1508,7 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#while-%E6%96%87)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%22in%20range%22#while)  
+参考：[GODOT DOCS（**while**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%22in%20range%22#while)  
 実行環境：Windows 10、Godot Engine 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月24日  
