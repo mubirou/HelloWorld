@@ -12,7 +12,7 @@
 * ~~[データ型の操作](#データ型の操作)~~
 * ~~[クラス](#クラス)~~
 * ~~[基本クラスと派生クラス](#基本クラスと派生クラス)~~
-* ~~[名前空間](#名前空間)~~
+* [名前空間](#名前空間)
 * ~~[継承と委譲](#継承と委譲)~~
 * ~~[変数とスコープ](#変数とスコープ)~~
 * ~~[アクセサ（getter / setter）](#アクセサ)~~
@@ -551,7 +551,7 @@ func _ready():
 * test.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
 
 ```gdscript
-# japan/tokyo.gd
+# res://japan/tokyo.gd
 class Shinjuku:
 	func _init():
 		print("japan/tokyo/Shinjuku")
@@ -562,20 +562,21 @@ class Setagaya:
 ```
 
 ```gdscript
-#Main.gd（外部.gdファイルを利用する側）
-extends Spatial #2Dの場合はNode2D
-
-var _tokyo = preload("japan/tokyo.gd") #外部.gdファイルの読み込み
-
+# main.gd（外部.gdファイルを利用する側）
+extends Node3D
+……
 func _ready():
+	……
+	var _tokyo = preload("res://japan/tokyo.gd") # 外部.gdファイルの読み込み
 	_tokyo.Shinjuku.new() #-> "japan/tokyo/Shinjuku"
 	_tokyo.Setagaya.new() #-> "japan/tokyo/Setagaya"
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月13日  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
 
 
