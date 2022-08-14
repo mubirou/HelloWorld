@@ -1178,7 +1178,7 @@ func _ready():
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E9%9D%99%E7%9A%84%E3%83%A1%E3%83%B3%E3%83%90static)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
-作成日：2022年01月15日
+作成日：2022年01月15日  
 [[TOP](#TOP)]
 
 
