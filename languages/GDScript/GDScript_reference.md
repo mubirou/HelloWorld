@@ -1566,25 +1566,21 @@ print(_array.size()) #-> 10
 
 <a name="配列抽出"></a>
 
-### 抽出
+### 👉 抽出
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+var _array = [0,1,2,3,4,5,6,7,8,9]
 
-func _ready():
-	var _array = [0,1,2,3,4,5,6,7,8,9]
+# 先頭の抽出
+print(_array.front()) #-> 0
+print(_array[0]) #-> 0
 
-	# 先頭の抽出
-	print(_array.front()) #-> 0
-	print(_array[0]) #-> 0
+# 最後尾の抽出
+print(_array.back()) #-> 9
+print(_array[-1]) #-> 9
+print(_array[_array.size() - 1]) #-> 9
 
-	# 最後尾の抽出
-	print(_array.back()) #-> 9
-	print(_array[-1]) #-> 9
-	print(_array[_array.size() - 1])
-
-	# 指定位置の抽出
-	print(_array[5]) #-> 5（インデックス5番目）
+# 指定位置の抽出
+print(_array[5]) #-> 5（インデックス5番目）
 ```
 [[配列TOP](#配列)]
 
