@@ -1261,26 +1261,27 @@ func _ready():
     ```
 
 ### 排他的論理和（XOR）
-* GDScriptでは ^ 演算子は使えない（要調査）
-* 「&& は and」「|| は or」「! は NOT」でも可  
+* GDScriptでは ^ 演算子は使えない
+* 「&& は and」「|| は or」「! は not」でも可  
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
-    var _a = false
-    var _b = true
-
-    if ((_a || _b) && !(_a || _b)) : #()は省略可
-        print("どちらか一方だけTrueです")
-    else:
-        print("両方共にTrueかFalseです")
+	……
+	var _a = false
+	var _b = false
+	if (_a || _b) && !(_a && _b):
+		print("どちらか一方だけtrue（false）です")
+	else:
+		print("両方共にtrueかfalseです")
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#if-%E6%96%87)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月08日  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
 
 
