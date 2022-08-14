@@ -2351,15 +2351,15 @@ func _ready():
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
 ### 最小値〜最大値（float型）
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+```python
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _random = RandomNumberGenerator.new()
 	_random.randomize() # シード値の初期化（任意）
-	
-	print(_random.randf_range(0, 100)) #-> 35.13369（0.0〜100.0以下）
+	print(_random.randf_range(0, 100)) #-> 88.5496139526367（0.0〜100.0以下）
 ```
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
