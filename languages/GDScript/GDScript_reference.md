@@ -22,7 +22,7 @@
 * [匿名関数](#匿名関数)
 * ~~[静的変数・静的関数](#静的変数・静的関数)~~
 * ~~[if 文](#if文)~~
-* ~~[三項演算子](#三項演算子)~~
+* [三項演算子](#三項演算子)
 * [match 文](#match文) ≒ switch 文
 * [for 文](#for文)
 * [while 文](#while文)
@@ -1295,19 +1295,21 @@ func _ready():
 
 ### 例文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
-	var _age = 54
+	……
+	var _age = 55
 	var _result = "現役" if (_age < 60) else "退職"
 	print(_result)
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月09日  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
 
 
