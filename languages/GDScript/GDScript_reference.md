@@ -1153,12 +1153,12 @@ func _ready():
 	_chinese = func(_name): # 匿名関数➂
 		print(_name + "," + "你好!")
 	
-	_hello = _american
-	_hello.call("TARO") #-> TARO,Hello!
-	_hello = _japanese
-	_hello.call("太郎") #-> 太郎、こんにちは!
-	_hello = _chinese
-	_hello.call("太郎") #-> 太郎,你好!
+	_hello = _american #変数に匿名関数を代入
+	_hello.call("TARO") #-> "TARO,Hello!"
+	_hello = _japanese # 匿名関数の入替え
+	_hello.call("太郎") #-> "太郎、こんにちは!"
+	_hello = _chinese # 匿名関数の入替え
+	_hello.call("太郎") #-> "太郎,你好!"
 ```
 
 参考：[GODOT DOCS（**Callable**）](https://docs.godotengine.org/en/latest/classes/class_callable.html?highlight=Callable#callable)  
