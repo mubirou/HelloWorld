@@ -1404,13 +1404,14 @@ func _ready():
 ### for 文のネスト
 * ループ制御変数には i, j, k が使われる
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
-	for i in range(1,6):
-		for j in range(1,6):
-			print("x" + str(i) + "y" + str(j)) #x1y1, x1y2, ...., x5y4, x5y5
+	……	
+	for i in range(1, 6):
+		for j in range(1, 6):
+			print("x" + str(i) + "y" + str(j)) #-> x1y1, x1y2, …, x5y4, x5y5
 ```
 
 ### continue 文
