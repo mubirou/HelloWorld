@@ -36,7 +36,7 @@
 * ~~[オーバーライド](#オーバーライド)~~
 * ~~[カスタムイベント](#202207130930)~~
 * ~~[数学関数](#数学関数)~~
-* ~~[乱数](#乱数)~~
+* [乱数](#乱数)
 * [日時情報](#202207130907)
 * [タイマー](#タイマー)
 * [処理速度計測](#処理速度計測)
@@ -2365,11 +2365,18 @@ func _ready():
 
 
 ### 最小値〜最大値（int型）
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+```python
+# main.gd
+extends Node3D
+
+var _interface:XRInterface
 
 func _ready():
+	_interface = XRServer.find_interface("OpenXR")
+	if _interface and _interface.is_initialized():
+		var _viewport : Viewport = get_viewport()
+		_viewport.use_xr = true
+	
 	var _i0=0; var _i1=0; var _i2=0; var _i3=0; var _i4=0
 	var _i5=0; var _i6=0; var _i7=0; var _i8=0; var _i9=0
 
@@ -2390,15 +2397,17 @@ func _ready():
 		elif (_tmp == 9): _i9 += 1
 		else: print("Error")
 	print([_i0, _i1, _i2, _i3, _i4, _i5, _i6, _i7, _i8, _i9])
-	#-> [10079, 10000, 10150, 10161, 10097, 9901, 10091, 9704, 9912, 9905]
+	#-> [10045, 10159, 9839, 10011, 10162, 10063, 9772, 9824, 10000, 10125]
 ```
+
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E4%B9%B1%E6%95%B0)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#randomnumbergenerator)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_randomnumbergenerator.html?highlight=RandomNumberGenerator)  
+実行環境：Windows 10、Godot Engine 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年02月09日  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
 
 
