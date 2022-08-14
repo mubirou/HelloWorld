@@ -49,22 +49,22 @@
 
 ### 1行コメントアウト
 
-```python
+```gdscript
 # 〇〇〇〇〇
 ```
 
-```python
+```gdscript
 var _x = 1 + 1 # 〇〇〇〇〇
 ```
 
 ### 複数行コメントアウト
 
-```python
+```gdscript
 # 〇〇〇〇〇
 # 〇〇〇〇〇
 ```
 
-```python
+```gdscript
 """
 〇〇〇〇〇
 〇〇〇〇〇
@@ -116,7 +116,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 ### ➀論理型（bool）
 * trueまたはfalse
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -133,7 +133,7 @@ func _ready():
 
 ### ➁整数型（int）
 * 約±922京まで扱えます
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -151,7 +151,7 @@ func _ready():
 
 ### ➂浮動小数点数（float）
 * 小数点第6桁まで
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial
 
@@ -167,7 +167,7 @@ func _ready():
 <a name="TYPE_STRING"></a>
 
 ### ➃文字列（String）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -184,7 +184,7 @@ func _ready():
 <a name="TYPE_ARRAY"></a>
 
 ### ➄配列（Array）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -201,7 +201,7 @@ func _ready():
 <a name="TYPE_DICTIONARY"></a>
 
 ### ➅辞書型（Dictionary） : 連想配列
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -218,7 +218,7 @@ func _ready():
 <a name="TYPE_OBJECT"></a>
 
 ### ➆クラス（Object）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -236,7 +236,7 @@ func _ready():
 <a name="TYPE_NIL"></a>
 
 ### ➇null…何もないことを示す定数
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -263,7 +263,7 @@ func _ready():
 ### typeof() 関数
 * データ型を返す（[戻り値一覧](#typeof()の戻り値一覧)）
 
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -282,7 +282,7 @@ class MyClass:
 
 ### is 演算子
 * データ型を判断する
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -304,7 +304,7 @@ class MyClass:
 
 ### as 演算子
 * キャスト成功時に変換後の値が、失敗すると Null が返される
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -324,7 +324,7 @@ class FugaClass:
 ```         
 
 ### データ型のキャスト（数値 ⇔ bool型）
-```GDScript
+```gdscript
 # 数値（int）型 → bool型
 var _tmp = bool(1)
 print(_tmp) #-> Trye
@@ -337,7 +337,7 @@ print(typeof(_tmp)) #-> 2（int型）
 ```
 
 ### データ型のキャスト（数値 ⇔ String型）
-```GDScript
+```gdscript
 # String型 → 数値（int）型
 var _tmp = int("001")
 print(_tmp) #-> 1
@@ -361,7 +361,7 @@ print(typeof(_tmp)) #-> 4（String型）
 # <b>クラス</b>
 
 ### 最小構成
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -376,7 +376,7 @@ func _ready():
 Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味するpass文が用意されています。
 
 ### 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -447,7 +447,7 @@ func _ready():
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -550,7 +550,7 @@ func _ready():
 ### 例文
 * test.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
 
-```GDScript
+```gdscript
 # japan/tokyo.gd
 class Shinjuku:
 	func _init():
@@ -561,7 +561,7 @@ class Setagaya:
 		print("japan/tokyo/Setagaya")
 ```
 
-```GDScript
+```gdscript
 #Main.gd（外部.gdファイルを利用する側）
 extends Spatial #2Dの場合はNode2D
 
@@ -587,7 +587,7 @@ func _ready():
 * 継承の場合は **extends クラス名** を使い、委譲の場合は **クラス名.new()** を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -605,7 +605,7 @@ func _ready():
 ```
 
 ### 委譲版
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -644,7 +644,7 @@ func _ready():
 ### グローバル変数
 1. [Godot Engine]-[ファイルシステム]上で右クリック→[新規スクリプト]を選択
 1. [パス]は"res://**Global.gd**"としコードを次の通りに記述  
-    ```GDScript
+    ```gdscript
     #Global.gd
     extends Node
 
@@ -654,7 +654,7 @@ func _ready():
 1. [パス]を"res://**Global.gd**"に設定し[追加]を選択
 1. [グローバル変数]は[✓有効]のままにする
 1. 動作確認  
-    ```GDScript
+    ```gdscript
     #Main.gd
     extends Spatial #2Dの場合はNode2D
 
@@ -683,7 +683,7 @@ func _ready():
 ### 疑似プライベート変数
 * 実際は単なるパブリック変数
 * 変数へのアクセスは[アクセサ](#アクセサ)を利用する（推奨）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -719,7 +719,7 @@ func _ready():
 ### ローカル変数
 1. 関数内で宣言する場合（for 文、if 文等でも同様）  
     ※宣言した場所より大きい＝深いインデント範囲内で有効
-    ```GDScript
+    ```gdscript
     #Main.gd
     extends Spatial #2Dの場合はNode2D
 
@@ -738,7 +738,7 @@ func _ready():
     ```
 
 1. クラスの関数内で宣言する場合
-    ```GDScript
+    ```gdscript
     #Main.gd
     extends Spatial #2Dの場合はNode2D
 
@@ -754,7 +754,7 @@ func _ready():
     ```
 
 1. for文内のループ変数
-    ```GDScript
+    ```gdscript
     #Main.gd
     extends Spatial #2Dの場合はNode2D
 
@@ -780,7 +780,7 @@ func _ready():
 # <b>アクセサ（getter / setter）</b>
 
 ### 読み書き可能なプロパティ
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -808,7 +808,7 @@ func _ready():
 ```
 
 ### 読み取り専用のプロパティ
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -833,7 +833,7 @@ func _ready():
 ```
 
 ### 書き込み専用のプロパティ
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -868,7 +868,7 @@ func _ready():
 # <b>演算子</b>
 
 ### 算術演算子
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -890,7 +890,7 @@ func _ready():
 ```
 
 ### その他の演算子
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -931,7 +931,7 @@ func _ready():
 # <b>定数</b>
 
 ### 通常の定数
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -943,7 +943,7 @@ func _ready():
 ```
 
 ### クラス定数（[静的変数](#静的変数・静的関数)）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -975,13 +975,13 @@ func _ready():
 
 ### 基本構文
 * 関数は必ず class 内に記述する必要があります
-```GDScript
+```gdscript
 func 関数名(引数➀, 引数➁, ...):
     ......（何もしない場合 pass を記述）
     [return 戻り値]
 ```
 * 例文（class 内に定義しない場合）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -999,7 +999,7 @@ func _ready():
 
 ### パブリック関数
 * 例：○〜○までの値を足した合計を調べる
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1019,7 +1019,7 @@ func _ready():
 ### 疑似プライベート関数
 * 実際は単なるパブリック関数
 * アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1040,7 +1040,7 @@ func _ready():
 ```
 
 ### _ready()、_process()関数
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1057,7 +1057,7 @@ func _process(_delta):
 
 ### コンストラクタ
 * 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1071,7 +1071,7 @@ func _ready():
 ```
 
 * 例文（class 内に定義しない場合）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1086,7 +1086,7 @@ func _ready(): # 通常はこちらを使う
 
 ### 静的関数
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1106,7 +1106,7 @@ func _ready():
 ```
 
 ### デフォルト値付き引数
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1135,7 +1135,7 @@ func _ready():
 <a name="匿名関数"></a>
 # <b>匿名関数</b>
 
-```python
+```gdscript
 # main.gd
 ……
 var _hello : Callable
@@ -1187,7 +1187,7 @@ func _ready():
 
 ### 基本構文
 * Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1205,7 +1205,7 @@ func _ready():
 ```
 
 * 注意：条件式の判断記述について
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1223,7 +1223,7 @@ func _ready():
 
 ### 論理積（and または &&）
 1. 論理演算子（and または &&）を使う方法
-    ```GDScript
+    ```gdscript
     if (条件式➀ and 条件➁) : #()は省略可
         処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
     else:
@@ -1231,7 +1231,7 @@ func _ready():
     ```
 
 1. ifのネストを使う方法
-    ```GDScript
+    ```gdscript
     if (条件式➀) : #()は省略可
         if (条件➁) :
             処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
@@ -1243,7 +1243,7 @@ func _ready():
 
 ### 論理和（or または ||）
 1. 論理演算子（or または ||）を使う方法
-    ```GDScript
+    ```gdscript
     if (条件式➀ or 条件➁) : #()は省略可
         処理A ←条件式➀または条件式➁の両方がTrueの場合に実行
     else:
@@ -1251,7 +1251,7 @@ func _ready():
     ```
 
 1. ifのネストを使う方法
-    ```GDScript
+    ```gdscript
     if (条件式➀) : #()は省略可
         処理A ←条件式➀がTrueの場合に実行
     elif (条件➁) :
@@ -1263,7 +1263,7 @@ func _ready():
 ### 排他的論理和（XOR）
 * GDScriptでは ^ 演算子は使えない（要調査）
 * 「&& は and」「|| は or」「! は NOT」でも可  
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1289,12 +1289,12 @@ func _ready():
 
 ### 構文
 * GDScript の三項演算子は [Pythonと同様](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90) if 文を使った独特のものです
-```GDScript
+```gdscript
 変数 = (True時の返り値) if (比較式) else (False時の返り値)
 ```
 
 ### 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1315,7 +1315,7 @@ func _ready():
 # <b>match ≒ switch 文</b>
 
 ### 判別式が bool 値ではない場合
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1336,7 +1336,7 @@ func _ready():
 ```
 
 ### 注意➀：判別式に bool 型が使えない
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1352,7 +1352,7 @@ func _ready():
 
 ### 注意➁：フォロースルーの動作
 * 以下の場合 "A" "C" が出力される
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1384,13 +1384,13 @@ func _ready():
 ### この項目は書きかけです  
 
 ### 基本構文
-```GDScript
+```gdscript
 for 変数 in range(開始, 終了):
     繰り返す処理
 ```
 
 ### 基本例文
-```GDScript
+```gdscript
 # main.gd
 extends Node3D
 ……
@@ -1403,7 +1403,7 @@ func _ready():
 
 ### for 文のネスト
 * ループ制御変数には i, j, k が使われる
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1415,7 +1415,7 @@ func _ready():
 
 ### continue 文
 * ループカウンタを○つずつアップする
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1428,7 +1428,7 @@ func _ready():
 ```
 
 ### 無限ループと break 文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1536,7 +1536,7 @@ func _ready():
 <a name="配列作成"></a>
 
 ### 作成
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1558,7 +1558,7 @@ func _ready():
 <a name="配列要素の数"></a>
 
 ### 要素の数
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1571,7 +1571,7 @@ func _ready():
 <a name="配列抽出"></a>
 
 ### 抽出
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1595,7 +1595,7 @@ func _ready():
 <a name="配列追加（最後）"></a>
 
 ### 追加（最後）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1610,7 +1610,7 @@ func _ready():
 <a name="配列追加（指定位置）"></a>
 
 ### 追加（指定位置）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1624,7 +1624,7 @@ func _ready():
 <a name="配列更新（任意の位置）"></a>
 
 ### 更新（任意の位置）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1642,7 +1642,7 @@ func _ready():
 <a name="配列削除（指定の要素）"></a>
 
 ### 削除（指定の要素）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1656,7 +1656,7 @@ func _ready():
 <a name="配列検索（ヒットしたか否か）"></a>
 
 ### 検索（ヒットしたか否か）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1670,7 +1670,7 @@ func _ready():
 <a name="配列検索（ヒット数）"></a>
 
 ### 検索（ヒット数）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1684,7 +1684,7 @@ func _ready():
 <a name="配列並べ替え（反転）"></a>
 
 ### 並べ替え（反転）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1698,7 +1698,7 @@ func _ready():
 <a name="配列並べ替え（ソート）"></a>
 
 ### 並べ替え（ソート）
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1712,7 +1712,7 @@ func _ready():
 <a name="配列シャッフル"></a>
 
 ### シャッフル
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1727,7 +1727,7 @@ func _ready():
 <a name="配列結合"></a>
 
 ### 結合
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1742,7 +1742,7 @@ func _ready():
 <a name="配列複製"></a>
 
 ### 複製
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1758,7 +1758,7 @@ func _ready():
 <a name="配列文字列→配列"></a>
 
 ### 文字列→配列
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1772,7 +1772,7 @@ func _ready():
 <a name="配列全要素を取り出す"></a>
 
 ### 全要素を取り出す
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1794,17 +1794,17 @@ func _ready():
 # <b>連想配列（辞書）</b>
 
 ### 作成
-```GDScript
+```gdscript
 var 変数名 = {"キー➀": 値➀, "キー➁": 値➁}
 ```
 
 ### 追加･更新
 * 構文
-```GDScript
+```gdscript
 辞書["キー"] = 値
 ```
 * 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1816,12 +1816,12 @@ func _ready():
 
 ### 取得
 * 構文
-```GDScript
+```gdscript
 辞書["キー"]
 辞書.get("キー", [キーが無い場合の初期値])
 ```
 * 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1833,12 +1833,12 @@ func _ready():
 
 ### 削除
 * 構文
-```GDScript
+```gdscript
 辞書.erase("キー") # 任意のキーのペア
 辞書.clear() # 全てのキーのペア
 ```
 * 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1850,11 +1850,11 @@ func _ready():
 
 ### キーの検索
 * 構文
-```GDScript
+```gdscript
 "キー" in 辞書
 ```
 * 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1865,12 +1865,12 @@ func _ready():
 
 ### 要素数
 * 構文
-```GDScript
+```gdscript
 辞書.size()
 len(辞書)
 ```
 * 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1892,7 +1892,7 @@ func _ready():
 # <b>self</b> ≒ this
 
 self は現在のクラスインスタンスを参照するが Python のそれほど重要ではない
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1926,14 +1926,14 @@ func _ready():
 
 ### String オブジェクトの作成
 * 構文
-```GDScript
+```gdscript
 ➀変数 = "○○"
 ➁変数 = '○○' # ダブルクォーテーション（""）と同じ
 ➂変数 = "１行目\n２行目" # 改行を含む場合
 ```
 
 * 例文
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1944,7 +1944,7 @@ func _ready():
 ```
 
 ### 長さを調べる
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1958,7 +1958,7 @@ func _ready():
 
 ### 文字列の連結
 * 加算演算子を使う場合
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1968,7 +1968,7 @@ func _ready():
 	print(_address1 + _address2) #-> "東京都新宿区"
 ```
 * フォーマット文字列を使う場合
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1979,7 +1979,7 @@ func _ready():
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#gdscript-format-strings)（フォーマット文字列）  
 
 ### 一部分を取得
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1991,7 +1991,7 @@ func _ready():
 ```
 
 ### 一部分を削除
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2003,7 +2003,7 @@ func _ready():
 ```
 
 ### 置換
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2013,7 +2013,7 @@ func _ready():
 ```
 
 ### 検索
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2025,7 +2025,7 @@ func _ready():
 ```
 
 ### 文字列→配列
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2052,7 +2052,7 @@ func _ready():
 * GDScript には以下のサンプル以外にも多くの正規表現の機能が用意されている
 
 ### 検索
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2069,7 +2069,7 @@ func _ready():
 ```
 
 ### 置換
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2097,7 +2097,7 @@ func _ready():
 * GDScript には interface や abstract キーワードは存在しない
 * 以下のサンプルでは疑似的に継承と例外を使って抽象クラスを実現
 
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2132,7 +2132,7 @@ func _ready():
 # <b>super キーワード</b>
 旧「 [**.**（ドット）](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=super#inheritance)」の新しい書き方  
 
-```GDScript
+```gdscript
 # main.gd
 extends Node3D
 ……
@@ -2179,7 +2179,7 @@ func _ready():
 * GDScript には override キーワードはない
 * 派生クラスから基本クラスのメソッドを呼び出したい場合は **.関数名()** を使う
 
-```GDScript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -2249,7 +2249,7 @@ func gameoverHandler(): #前方定義でなくてもよい
 # <b>数学関数</b>
 
 ### abs() : 絶対値
-```python
+```gdscript
 print(abs(100)) #-> 100
 print(abs(-100)) #-> 100
 ```
@@ -2258,7 +2258,7 @@ print(abs(-100)) #-> 100
 * 2つの値のアークタンジェント（逆タンジェント）
 * X、Y 座標の角度をラジアン（rad）単位で返す
 * Π ラジアン（3.141592…）は180°
-```python
+```gdscript
 var _disX = sqrt(3) # √3のこと
 var _disY = 1
 print(atan2(_disY, _disX)) #-> 0.5235987755983（弧度法）
@@ -2266,13 +2266,13 @@ print(180 * atan2(_disY, _disX) / PI) #-> 30（度数法）
 ```
 
 ### ceil() : 切り上げ
-```python
+```gdscript
 print(ceil(1.001)) #-> 2
 print(ceil(1.999)) #-> 2
 ```
 
 ### cos() : コサイン（余弦）
-```python
+```gdscript
 print(cos(0)) #-> 1（0°）
 print(cos(PI / 2)) #-> 0（90°）
 print(cos(PI)) #-> -1（180°）
@@ -2281,41 +2281,41 @@ print(cos(PI * 2)) #-> 1（360°）
 ```
 
 ### floor() : 切り捨て
-```python
+```gdscript
 print(floor(1.001)) #-> 1
 print(floor(1.999)) #-> 1
 ```
 
 ### max() : 比較（最大値）
-```python
+```gdscript
 print(max(5.01, -10)) #-> 5.01（2つの数値の比較）
 ```
 
 ### min() : 比較（最小値）
-```python
+```gdscript
 print(min(5.01, -10)) #-> -10（2つの数値の比較）
 ```
 
 ### PI : 円周率
-```python
+```gdscript
 print(PI) #-> 3.14159265358979
 print(PI == 3.14159265358979) #-> False
 ```
 
 ### pow() : 累乗（べき乗）
-```python
+```gdscript
 print(pow(2, 0)) #-> 1（2の0乗）
 print(pow(2, 8)) #-> 256（2の8乗）
 ```
 
 ### round() : 四捨五入
-```python
+```gdscript
 print(round(1.499)) #-> 1
 print(round(1.500)) #-> 2
 ```
 
 ### sin() : サイン（正弦）
-```python
+```gdscript
 print(sin(0)) #-> 0（0°）
 print(sin(PI / 2)) #-> 1（90°）
 print(sin(PI)) #-> 0（180°）
@@ -2325,7 +2325,7 @@ print(sin(PI * 2) == 0) #-> false（要注意）
 ```
 
 ### sqrt() : 平方根（√XXX）
-```python
+```gdscript
 print(sqrt(2)) #-> 1.4142135623731（一夜一夜にひとみごろ）
 print(sqrt(3)) #-> 1.73205080756888（人並みに奢れや）
 print(sqrt(4)) #-> 2
@@ -2345,7 +2345,7 @@ print(sqrt(6)) #-> 2.44948974278318（二夜シクシク）
 # <b>乱数</b>
 
 ### 0.0〜1.0未満
-```python
+```gdscript
 # main.gd
 extends Node3D
 ……
@@ -2358,7 +2358,7 @@ func _ready():
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
 ### 最小値〜最大値（float型）
-```python
+```gdscript
 # main.gd
 extends Node3D
 ……
@@ -2372,7 +2372,7 @@ func _ready():
 
 
 ### 最小値〜最大値（int型）
-```python
+```gdscript
 # main.gd
 extends Node3D
 
@@ -2422,7 +2422,7 @@ func _ready():
 # <b>日時情報</b>
 
 ### 書式
-```GDScript
+```gdscript
 var XXX = Time.get_datetime_dict_from_system()
 XXX.year # 年（2016等）
 XXX.month # 月（1〜12）
@@ -2436,7 +2436,7 @@ XXX.dst # サマータイム（true or false）
 ```
 
 ### 例文
-```GDScript
+```gdscript
 extends Node3D
 
 func _ready():
@@ -2543,7 +2543,7 @@ func loop():
 <a name="処理速度計測"></a>
 # <b>処理速度計測</b>
 
-```python
+```gdscript
 # main.gd
 extends Node3D
 
@@ -2582,7 +2582,7 @@ sample.txt
 さしすせそ
 ```
 
-```python
+```gdscript
 # main.gd
 extends Node3D
 ……
