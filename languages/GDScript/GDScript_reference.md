@@ -1,6 +1,6 @@
 <a name="TOP"></a>
 
-# <b>GDScript（Godot 4）基礎文法</b>
+# <b>GDScript 2.0 基礎文法</b>
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
 ⌚402h00min  
 
