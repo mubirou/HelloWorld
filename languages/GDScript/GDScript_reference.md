@@ -1634,41 +1634,29 @@ print(_array) #-> ["A", "C"]
 
 <a name="配列検索（ヒットしたか否か）"></a>
 
-### 検索（ヒットしたか否か）
+### 👉 検索（ヒットしたか否か）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = ["A", "B", "C", "D", "E"]
-	print("E" in _array) #-> True
-	print("F" in _array) #-> False
+var _array = ["A", "B", "C", "D", "E"]
+print("E" in _array) #-> true
+print("F" in _array) #-> false
 ```
 
 <a name="配列検索（ヒット数）"></a>
 
-### 検索（ヒット数）
+### 👉 検索（ヒット数）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = ["A", "C", "B", "C", "A", "C"]
-	print(_array.count("C")) #-> 3
-	print(_array.count("D")) #-> 0
+var _array = ["A", "C", "B", "C", "A", "C"]
+print(_array.count("C")) #-> 3
+print(_array.count("D")) #-> 0
 ```
 
 <a name="配列並べ替え（反転）"></a>
 
-### 並べ替え（反転）
+### 👉 並べ替え（反転）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [0,1,2,3,4,5,6,7,8,9]
-	_array.invert()
-	print(_array) #-> [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+var _array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+_array.reverse()
+print(_array) #-> [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
 
 <a name="配列並べ替え（ソート）"></a>
