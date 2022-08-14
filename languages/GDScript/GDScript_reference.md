@@ -1430,16 +1430,17 @@ func _ready():
 
 ### 無限ループと break 文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _count = 0
-	for i in range(0, 9e9): # ほぼ無限ループ（厳密な無限にはwhile文を使用）
+	for i in range(0, 99999999999999999): # ほぼ無限ループ（厳密な無限にはwhile文を使用）
 		_count += 1
 		if (_count > 100):
 			break #100 を超えたらループを抜け出す
-		print(_count) #1, 2, ...., 99, 100
+		print(_count) #-> 1, 2, ...., 99, 100
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#for-%E6%96%87)]  
