@@ -1318,12 +1318,12 @@ func _ready():
 
 ### 判別式が bool 値ではない場合
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _name = "TARO"
-	
 	match _name:
 		"TARO":
 			print("父") # これが出力される
