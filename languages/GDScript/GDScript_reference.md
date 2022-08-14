@@ -1137,14 +1137,13 @@ func _ready():
 ```python
 # main.gd
 ……
-var _hello
-var _american
-var _japanese
-var _chinese
+var _hello : Callable
+var _american : Callable
+var _japanese : Callable
+var _chinese : Callable
 
 func _ready():
 	……
-		
 	_american = func(_name): # 匿名関数(1)
 		print(_name + "," + "Hello!")
 		
