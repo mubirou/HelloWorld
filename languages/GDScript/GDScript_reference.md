@@ -2126,7 +2126,8 @@ func _ready():
 
 
 <a name="super"></a>
-# <b>super</b>＝旧'.'
+# <b>super</b>
+旧 '.' の新しい書き方  
 
 ### この項目は書きかけです  
 
