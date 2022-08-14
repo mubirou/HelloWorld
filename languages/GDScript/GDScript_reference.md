@@ -2129,16 +2129,15 @@ func _ready():
 # <b>super キーワード</b>
 旧「.」の新しい書き方  
 
-### この項目は書きかけです  
-
 ```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# main.gd
+extends Node3D
+……
 
 # 基本（基底）クラス
 class SuperClass:
-	func _init():
-		print("SuperClass._init()")
+	func _init(arg):
+		print("SuperClass._init()" + " : " + str(arg))
 
 	func hoge(arg): # 派生クラスでオーバーライドされる
 		print("SuperClass.hoge(): " + arg)
@@ -2147,18 +2146,18 @@ class SuperClass:
 class SubClass extends SuperClass:
 	func _init():
 		print("SubClass._init()")
-		._init() # 基本クラスのコンストラクタを呼び出す
+		super(100) # 基本クラスのコンストラクタを呼び出す
 	
 	func hoge(arg): # 基本クラスの関数をオーバーライド
 		print("SubClass.hoge(): " + arg)
-		.hoge("Hello2") # 基本クラスの関数を呼び出す
+		super.hoge("Hello2") # 基本クラスの関数を呼び出す
 
 # 実行
 func _ready():
+	……		
 	var _subClass = SubClass.new()
 	_subClass.hoge("Hello1") 
 ```
-（要調査）コンストラクタに引数がある場合構文エラー発生  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#base-%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89)]  
 参考：[GODOT DOCS（**Class constructor**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=super#class-constructor)  
