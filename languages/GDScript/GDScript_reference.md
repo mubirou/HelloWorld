@@ -21,7 +21,7 @@
 * ~~[関数](#関数)~~
 * [匿名関数](#匿名関数)
 * ~~[静的変数・静的関数](#静的変数・静的関数)~~
-* ~~[if 文](#if文)~~
+* [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [match 文](#match文) ≒ switch 文
 * [for 文](#for文)
@@ -1206,16 +1206,17 @@ func _ready():
 
 * 注意：条件式の判断記述について
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
-	if null: # '' "" も同じFalseとして判断
+	……
+	if null: # '' "" []も同じfalseとして判断
 		print("A")
 	else:
 		print("B") #こちらが実行される
 
-	if "あ" : #中身が何かあればTrueとして判断
+	if "あ": # 中身が何かあればtrueとして判断
 		print("A") #こちらが実行される
 	else:
 		print("B")
