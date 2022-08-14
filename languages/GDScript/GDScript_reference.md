@@ -1586,16 +1586,12 @@ print(_array[5]) #-> 5（インデックス5番目）
 
 <a name="配列追加（最後）"></a>
 
-### 追加（最後）
+### 👉 追加（最後）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = []
-	_array.append("mubirou") # String型の追加
-	_array.append(100) # int型の追加
-	print(_array) #-> [mubirou, 100]（混在可能）
+var _array = []
+_array.append("mubirou") # String型の追加
+_array.append(100) # int型の追加
+print(_array) #-> [mubirou, 100]（混在可能）
 ```
 [[配列TOP](#配列)]
 
