@@ -2338,15 +2338,15 @@ print(sqrt(6)) #-> 2.44949（二夜シクシク）
 # <b>乱数</b>
 
 ### 0.0〜1.0未満
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+```python
+# main.gd
+extends Node3D
+……
 func _ready():
+	……	
 	var _random = RandomNumberGenerator.new()
 	_random.randomize() # シード値の初期化（任意）
-	
-	print(_random.randf()) #-> 0.521781（0.0〜1.0以下）
+	print(_random.randf()) #-> 0.18828691542149（0.0〜1.0以下）
 ```
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
