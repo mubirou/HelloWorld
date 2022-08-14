@@ -1672,15 +1672,10 @@ print(_array) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ### シャッフル
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-	_array.shuffle()
-	print(_array) #-> [5, 7, 8, 4, 6, 1, 2, 3, 0, 9]
-```
-（注意）内部では [randi()](https://docs.godotengine.org/ja/stable/classes/class_randomnumbergenerator.html#class-randomnumbergenerator-method-randi) 関数を利用しているため同じ値が返る（回避したい場合は[乱数](#乱数)を利用）  
+var _array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+_array.shuffle()
+print(_array) #-> [5, 7, 8, 4, 6, 1, 2, 3, 0, 9]
+``` 
 
 <a name="配列結合"></a>
 
