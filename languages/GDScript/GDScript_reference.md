@@ -1457,22 +1457,21 @@ func _ready():
 
 ### この項目は書きかけです  
 
-```GDscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+```gdscript
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _i = 0
-
-	while (_i < 10): # ()は省略可
+	while _i < 10: # ()は省略可
 		print(_i) #-> 0,1,2,3,4,5,6,7,8,9
 		_i += 1
-
 	print(_i) #-> 10（while文の外でも変数はまだ有効）
 ```
 
 ### while 文と break 文
-```GDscript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
@@ -1490,7 +1489,7 @@ func _ready():
 ```
 
 ### while 文と continue 文（3の倍数を出力）
-```GDscript
+```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
