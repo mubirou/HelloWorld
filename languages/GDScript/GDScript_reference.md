@@ -1539,18 +1539,19 @@ func _ready():
 
 ### 作成
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _array1 = [] # 空の配列を作成
 	print(_array1) #-> []
 
 	var _array2 = ["A", "B", "C"]
-	print(_array2) #-> [A, B, C]
+	print(_array2) #-> ["A", "B", "C"]
 
 	var _array3 = [["A", "あ"], ["I", "い"]] # 配列のネスト
-	print(_array3) #-> [[A, あ], [I, い]]
+	print(_array3) #-> [["A", "あ"], ["I", "い"]]
 
 	var _array4 = range(0, 10)
 	print(_array4) #-> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
