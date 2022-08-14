@@ -2444,7 +2444,7 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
-参照：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_time.html?highlight=Time#time)  
+参照：[GODOT DOCS（**Time**）](https://docs.godotengine.org/en/latest/classes/class_time.html?highlight=Time#time)  
 実行環境：Windows 10、Godot 4.0 alpha 11  
 作成者：夢寐郎  
 作成日：2022年01月09日  
