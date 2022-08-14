@@ -1689,17 +1689,13 @@ print(_array1) #-> ["A", "B", "C", "D", "E", "F"]
 
 <a name="配列複製"></a>
 
-### 複製
+### 👉 複製
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _origin = ["A","B"]
-	var _copy = _origin.duplicate()
-	_copy[0] = "C" #値を変更してみる
-	print(_origin) #-> [A, B]（参照ではないことが判る）
-	print(_copy) #-> [C, B]
+var _origin = ["A","B"]
+var _copy = _origin.duplicate()
+_copy[0] = "C" #値を変更してみる
+print(_origin) #-> ["A", "B"]（参照ではないことが判る）
+print(_copy) #-> ["C", "B"]
 ```
 
 <a name="配列文字列→配列"></a>
