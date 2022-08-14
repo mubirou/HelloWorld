@@ -1478,28 +1478,26 @@ extends Node3D
 func _ready():
 	……
 	var _count = 0
-	while true: #-> ループ判別式をtrueにすると無限ループに!
+	while true: # ループ判別式をtrueにすると無限ループに!
 		_count += 1
 		if (_count > 100) :
-			break #-> ループを終了
+			break # ループを終了
 		print(_count) #-> 1,2,....,99,100（1〜100までを出力）
 	print("while文終了") # while文の外
 ```
 
 ### while 文と continue 文（3の倍数を出力）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _i = 1
-
-	while (_i <= 20) :
-
-		if ((_i % 3) != 0) : # 3で割って余りが0ではない（＝3の倍数ではない）場合
+	while _i <= 20:
+		if (_i % 3) != 0: # 3で割って余りが0ではない（＝3の倍数ではない）場合
 			_i += 1
-			continue #while文の残処理をスキップしてwhile文の次の反復を開始する
-
+			continue # while文の残処理をスキップしてwhile文の次の反復を開始する
 		print(_i) #-> 3,6,9,12,15,18（3の倍数を出力）
 		_i += 1
 ```
