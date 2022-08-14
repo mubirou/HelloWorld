@@ -1591,21 +1591,17 @@ print(_array[5]) #-> 5（インデックス5番目）
 var _array = []
 _array.append("mubirou") # String型の追加
 _array.append(100) # int型の追加
-print(_array) #-> [mubirou, 100]（混在可能）
+print(_array) #-> ["mubirou", 100]（混在可能）
 ```
 [[配列TOP](#配列)]
 
 <a name="配列追加（指定位置）"></a>
 
-### 追加（指定位置）
+### 👉 追加（指定位置）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _array = ["A", "B"]
-	_array.insert(0, "C") # インデックス0（先頭）に追加
-	print(_array) #-> [C, A, B]
+var _array = ["A", "B"]
+_array.insert(0, "C") # インデックス0（先頭）に追加
+print(_array) #-> ["C", "A", "B"]
 ```
 [[配列TOP](#配列)]
 
