@@ -1700,29 +1700,23 @@ print(_copy) #-> ["C", "B"]
 
 <a name="配列文字列→配列"></a>
 
-### 文字列→配列
+### 👉 文字列→配列
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _string = "A,B,C"
-	var _array = _string.rsplit (",") # カンマ区切りで分割してリスト化
-	print(_array) #-> [A, B, C]
+var _string = "A,B,C"
+var _array = _string.rsplit (",") # カンマ区切りで分割してリスト化
+print(_array) #-> ["A", "B", "C"]
 ```
 
 <a name="配列全要素を取り出す"></a>
 
 ### 全要素を取り出す
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
+var _count = 0 # インデックス番号取得用（オプション）
 	for _tmp in ["A","B","C","D","E"]:
-		print(_tmp) #-> A → B → C → D → E
+		print(str(_count) + ":" + _tmp) 
+		#-> 0:A → 1:B → 2:C → 3:D → 4:E
+		_count += 1
 ```
-※インデックス番号を取得したい場合はカウンタ変数を使用  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%8B%95%E7%9A%84%E9%85%8D%E5%88%97list)]  
 参考：[GODOT DOCS（**Array**）](https://docs.godotengine.org/en/latest/classes/class_array.html?highlight=Array#array)  
