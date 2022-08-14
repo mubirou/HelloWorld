@@ -1186,19 +1186,19 @@ func _ready():
 # <b>if 文</b>
 
 ### 基本構文
-* Trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
+* trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
-	var _age = 54
-	
-	if (_age <= 20) : #()は省略可
+	……
+	var _age = 55
+	if _age <= 20:
 		print("20歳以下")
-	elif (_age <= 40) : #「else if」でも「elseif」でもない（要注意）
+	elif _age <= 40: #「else if」でも「elseif」でもない（要注意）
 		print("21〜40歳")
-	elif (_age <= 60) :
+	elif _age <= 60:
 		print("41〜60歳") #これが出力される
 	else:
 		print("61歳以上")
@@ -1233,7 +1233,7 @@ func _ready():
 1. ifのネストを使う方法
     ```gdscript
     if 条件式➀:
-        if (条件➁):
+        if 条件➁:
             処理A ←条件式➀かつ条件式➁の両方がTrueの場合に実行
         else:
             処理B
