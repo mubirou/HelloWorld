@@ -1144,13 +1144,13 @@ var _chinese : Callable
 
 func _ready():
 	……
-	_american = func(_name): # 匿名関数①➀
+	_american = func(_name): # 匿名関数➀
 		print(_name + "," + "Hello!")
 
 	_japanese = func(_name): # 匿名関数➁
 		print(_name + "、" + "こんにちは!")
 	
-	_chinese = func(_name): # 匿名関数③➂
+	_chinese = func(_name): # 匿名関数➂
 		print(_name + "," + "你好!")
 	
 	_hello = _american
