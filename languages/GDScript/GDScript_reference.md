@@ -2245,6 +2245,8 @@ func gameoverHandler(): #前方定義でなくてもよい
 <a name="数学関数"></a>
 # <b>数学関数</b>
 
+### この項目は書きかけです  
+
 ### abs() : 絶対値
 ```GDScript
 print(abs(100)) #-> 100
@@ -2253,13 +2255,13 @@ print(abs(-100)) #-> 100
 
 ### atan2() : アークタンジェント2
 * 2つの値のアークタンジェント（逆タンジェント）
-* X、Y 座標の角度をラジアン単位で返す
+* X、Y 座標の角度をラジアン（rad）単位で返す
 * Π ラジアン（3.141592…）は180°
-```GDScript
+```python
 var _disX = sqrt(3) # √3のこと
 var _disY = 1
-print(atan2(_disY, _disX)) #-> 0.523599（ラジアン）
-print(180 * atan2(_disY, _disX) / PI) #-> 30（度）
+print(atan2(_disY, _disX)) #-> 0.5235987755983（弧度法）
+print(180 * atan2(_disY, _disX) / PI) #-> 30（度数法）
 ```
 
 ### ceil() : 切り上げ
@@ -2332,9 +2334,10 @@ print(sqrt(6)) #-> 2.44949（二夜シクシク）
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0math)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/en/3.0/classes/class_@gdscript.html)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14   
 作成者：夢寐郎  
 作成日：2022年01月10日  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
