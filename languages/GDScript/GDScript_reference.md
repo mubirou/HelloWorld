@@ -1384,13 +1384,13 @@ func _ready():
 ### この項目は書きかけです  
 
 ### 基本構文
-```python
+```GDScript
 for 変数 in range(開始, 終了):
     繰り返す処理
 ```
 
 ### 基本例文
-```python
+```GDScript
 # main.gd
 extends Node3D
 ……
