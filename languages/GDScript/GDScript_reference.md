@@ -1455,6 +1455,8 @@ func _ready():
 # <b>while 文</b>
 * 他の多くの言語にある do...while 文はない
 
+### この項目は書きかけです  
+
 ```GDscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -1506,10 +1508,11 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#while-%E6%96%87)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#while)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=%22in%20range%22#while)  
+実行環境：Windows 10、Godot Engine 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月24日  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
