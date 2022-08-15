@@ -1911,16 +1911,12 @@ var _string = "2022年8月15日"
 print(_string.replace("2022年", "令和4年")) #-> "令和4年8月15日
 ```
 
-### 検索
+### 👉 検索
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _string = "ABCDEFG-ABCDEFG"
-	if ("CD" in _string) : # 見つかった（True）場合…
-		print(_string.find("CD")) #-> 2（左から検索）
-		print(_string.rfind("CD")) #-> 10（右から検索）
+var _string = "ABCDEFG-ABCDEFG"
+if ("CD" in _string) : # 見つかった（true）場合…
+	print(_string.find("CD")) #-> 2（左から検索）
+	print(_string.rfind("CD")) #-> 10（右から検索）
 ```
 
 ### 文字列→配列
