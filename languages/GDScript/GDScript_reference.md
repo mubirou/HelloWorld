@@ -1719,12 +1719,12 @@ for _tmp in ["A","B","C","D","E"]:
 
 <a name="フィルタをかける"></a>
 
-### 👉 フィルタをかける
+### 👉 フィルタをかける  
+GDScript 2.0 の新機能（ラムダ式＝匿名関数)を利用 
 ```gdscript
 var _array = [5, 7, 8, 4, 6, 1, 2, 3, 0, 9]
 print(_array.filter(func(x): return x < 5)) #-> [4, 1, 2, 3, 0]
 ```
-💡 GDScript 2.0 の新機能（ラムダ式＝匿名関数)を利用  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%8B%95%E7%9A%84%E9%85%8D%E5%88%97list)]  
 参考：[GODOT DOCS（**Array**）](https://docs.godotengine.org/en/latest/classes/class_array.html?highlight=Array#array)  
