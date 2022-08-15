@@ -1868,12 +1868,13 @@ func _ready():
 
 * 例文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
-	var _string2 = "あいうえお"
-	var _string1 = 'あいうえお' # "〇〇"と同じ
+	……
+	var _string1 = "あいうえお"
+	var _string2 = 'あいうえお' # "〇〇"と同じ
 	var _string3 = "１行目\n２行目"
 ```
 
@@ -1890,27 +1891,19 @@ func _ready():
 	print(_string2.length()) #-> 5（全角文字も１字扱い）
 ```
 
-### 文字列の連結
+### 👉 文字列の連結
 * 加算演算子を使う場合
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _address1 = "東京都"
-	var _address2 = "新宿区"
-	print(_address1 + _address2) #-> "東京都新宿区"
+var _address1 = "東京都"
+var _address2 = "新宿区"
+print(_address1 + _address2) #-> 東京都新宿区
 ```
 * フォーマット文字列を使う場合
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _address = "東京都%s"
-	print(_address % "新宿区") #-> "東京都新宿区"
+var _address = "東京都%s"
+print(_address % "新宿区") #-> "東京都新宿区"
 ```
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#gdscript-format-strings)（フォーマット文字列）  
+参考：[GODOT DOCS（**GDScript format strings）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_format_string.html?highlight=gdscript-format-strings#gdscript-format-strings)（フォーマット文字列）  
 
 ### 一部分を取得
 ```gdscript
