@@ -27,7 +27,7 @@
 * [for 文](#for文)
 * [while 文](#while文)
 * [配列](#配列)
-* ~~[連想配列（辞書）](#連想配列（辞書）)~~
+* [連想配列（辞書）](#連想配列（辞書）)
 * ~~[self](#self) ≒ this~~
 * ~~[文字列の操作](#文字列の操作)~~
 * ~~[正規表現](#正規表現)~~
@@ -1811,7 +1811,7 @@ print(len(_dict)) #-> 3
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97dictionary)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
+参考：[GODOT DOCS（**Dictionary**）](https://docs.godotengine.org/en/latest/classes/class_dictionary.html?highlight=dictionary#dictionary)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月27日  
