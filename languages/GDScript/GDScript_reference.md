@@ -1786,19 +1786,15 @@ _dict.erase("A")
 print(_dict) #-> {"I":"い", "U":"う"}
 ```
 
-### キーの検索
+### 👉 キーの検索
 * 構文
 ```gdscript
 "キー" in 辞書
 ```
 * 例文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _dict = {"A": "あ", "I": "い", "U": "う"}
-	print("A" in _dict) #-> True（任意のキーが無いとFalse）
+var _dict = {"A": "あ", "I": "い", "U": "う"}
+print("A" in _dict) #-> true（任意のキーが無いとfalse）
 ```
 
 ### 要素数
