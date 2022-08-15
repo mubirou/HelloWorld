@@ -2060,8 +2060,9 @@ func _ready():
 
 ### 概要
 * 基本クラスで定義したメソッドを派生クラスで再定義することをオーバーライドと呼ぶ
-* GDScript には override キーワードはない
-* 派生クラスから基本クラスのメソッドを呼び出したい場合は **.関数名()** を使う
+* GDScript には [override](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89) キーワードはない
+* 派生クラスから基本クラスのメソッドを呼び出したい場合は [**super.関数名()**]を使う
+* 派生クラスから基本クラスのメソッドを呼び出したい場合は [**super**].関数名() を使う
 
 ```gdscript
 #Main.gd
@@ -2076,7 +2077,7 @@ class SuperClass:
 class SubClass extends SuperClass: #擬似抽象クラスを継承
 	func myFunction(): # 基本クラスの関数をオーバーライドする
 		print("派生クラスのmyFunction()")
-		.myFunction() # 基本クラスのmyFunction()を呼出す場合
+		super.myFunction() # 基本クラスのmyFunction()を呼出す場合
 
 # 実行
 func _ready():
@@ -2085,9 +2086,10 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年02月06日  
+更新日：2022年08月15日  
 [[TOP](#TOP)]
 
 
