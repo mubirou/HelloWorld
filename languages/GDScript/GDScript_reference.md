@@ -29,7 +29,7 @@
 * [配列](#配列)
 * [連想配列（辞書）](#連想配列（辞書）)
 * [self](#self) ≒ this
-* ~~[文字列の操作](#文字列の操作)~~
+* [文字列の操作](#文字列の操作)
 * ~~[正規表現](#正規表現)~~
 * ~~[抽象クラス](#抽象クラス)~~
 * [super キーワード](#superキーワード)
@@ -1919,22 +1919,19 @@ if ("CD" in _string) : # 見つかった（true）場合…
 	print(_string.rfind("CD")) #-> 10（右から検索）
 ```
 
-### 文字列→配列
+### 👉 文字列→配列
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _string = "A,B,C" #「,」区切りの文字列
-	var _list = _string.split(',') #「,」区切りで分割して配列化
-	print(_list) #-> [A, B, C]
+var _string = "A,B,C" # 「,」区切りの文字列
+var _list = _string.split(',') # 「,」区切りで分割して配列化
+print(_list) #-> ["A", "B", "C"]
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%93%8D%E4%BD%9C)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_string.html#string)  
+参考：[GODOT DOCS（**String**）](https://docs.godotengine.org/en/latest/classes/class_string.html?highlight=String#string)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月05日  
+更新日：2022年08月15日  
 [[TOP](#TOP)]
 
 
