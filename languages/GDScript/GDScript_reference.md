@@ -1938,26 +1938,21 @@ print(_list) #-> ["A", "B", "C"]
 <a name="正規表現"></a>
 # <b>正規表現</b>
 
-### 概要
+### 📝 概要
 * 正規表現は、URL、パスワード、メールアドレス等、特定の文字パターンを抽出するのに利用
 * 正規表現の基本文法は、特定のプログラミング言語に依存しない
 * GDScript には以下のサンプル以外にも多くの正規表現の機能が用意されている
 
-### 検索
+### 👉 検索
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
-
-	var _regex = RegEx.new()
-	_regex.compile("吉田")
-	var _result = _regex.search(_string)
-	if _result == null:
-		print("吉田は含まれていません")
-	else:
-		print("吉田は含まれています")
+var _string = "吉田松蔭,高杉晋作,久坂玄瑞,吉田稔麿,伊藤博文"
+var _regex = RegEx.new()
+_regex.compile("吉田")
+var _result = _regex.search(_string)
+if _result == null:
+	print("吉田は含まれていません")
+else:
+	print("吉田は含まれています")
 ```
 
 ### 置換
@@ -1975,10 +1970,11 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_regex.html?highlight=RegEx#regex)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（**RegEx**）](https://docs.godotengine.org/en/latest/classes/class_regex.html?highlight=RegEx#regex)  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年02月05日  
+更新日：2022年08月15日  
 [[TOP](#TOP)]
 
 
