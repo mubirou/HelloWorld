@@ -1797,7 +1797,7 @@ var _dict = {"A": "あ", "I": "い", "U": "う"}
 print("A" in _dict) #-> true（任意のキーが無いとfalse）
 ```
 
-### 要素数
+### 👉 要素数
 * 構文
 ```gdscript
 辞書.size()
@@ -1805,13 +1805,9 @@ len(辞書)
 ```
 * 例文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _dict = {"A": "あ", "I": "い", "U": "う"}
-	print(_dict.size()) #-> 3
-	print(len(_dict)) #-> 3
+var _dict = {"A": "あ", "I": "い", "U": "う"}
+print(_dict.size()) #-> 3
+print(len(_dict)) #-> 3
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97dictionary)]  
