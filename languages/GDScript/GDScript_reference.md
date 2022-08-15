@@ -1773,7 +1773,7 @@ print(_dict["A"]) #-> あ
 print(_dict.get("A", null)) #-> あ（第2引数は省略可）
 ```
 
-### 削除
+### 👉 削除
 * 構文
 ```gdscript
 辞書.erase("キー") # 任意のキーのペア
@@ -1781,13 +1781,9 @@ print(_dict.get("A", null)) #-> あ（第2引数は省略可）
 ```
 * 例文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready(): 
-	var _dict = {"A": "あ", "I": "い", "U": "う"}
-	_dict.erase("A")
-	print(_dict) #-> {I:い, U:う}
+var _dict = {"A": "あ", "I": "い", "U": "う"}
+_dict.erase("A")
+print(_dict) #-> {"I":"い", "U":"う"}
 ```
 
 ### キーの検索
