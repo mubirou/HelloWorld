@@ -1997,6 +1997,7 @@ class SubClass extends AbstractClass: #擬似抽象クラスを継承
 	func abstractFunction(): # オーバーライドして実際の処理を記述
 		print("派生クラスでオーバーライドした抽象関数") # 実際の処理
 
+# 実行
 func _ready():
 	……
 	var _subClass = SubClass.new()
@@ -2064,9 +2065,9 @@ func _ready():
 * 派生クラスから基本クラスのメソッドを呼び出したい場合は [**super.関数名()**](#superキーワード) を使う
 
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 # 基本クラス
 class SuperClass:
 	func myFunction(): # 派生クラスでオーバーライドされる
@@ -2080,6 +2081,7 @@ class SubClass extends SuperClass: #擬似抽象クラスを継承
 
 # 実行
 func _ready():
+	……
 	var _subClass = SubClass.new()
 	_subClass.myFunction()
 ```
