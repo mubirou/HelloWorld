@@ -1903,7 +1903,7 @@ print(_address1 + _address2) #-> 東京都新宿区
 var _address = "東京都%s"
 print(_address % "新宿区") #-> "東京都新宿区"
 ```
-参考：[GODOT DOCS（**GDScript format strings）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_format_string.html?highlight=gdscript-format-strings#gdscript-format-strings)（フォーマット文字列）  
+参考：[GODOT DOCS（**GDScript format strings**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_format_string.html?highlight=gdscript-format-strings#gdscript-format-strings)（フォーマット文字列）  
 
 ### 一部分を取得
 ```gdscript
