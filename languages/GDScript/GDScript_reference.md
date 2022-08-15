@@ -1860,14 +1860,10 @@ func _ready():
 
 ### 👉 String オブジェクトの作成
 ```gdscript
-# main.gd
-extends Node3D
-……
-func _ready():
-	……
-	var _string1 = "あいうえお"
-	var _string2 = 'あいうえお' # "〇〇"と同じ
-	var _string3 = "１行目\n２行目"
+var _string1 = String("あいうえお")
+var _string2 = "あいうえお"
+var _string3 = 'あいうえお' # "〇〇"と同じ
+var _string4 = "１行目\n２行目"
 ```
 
 ### 👉 長さを調べる
