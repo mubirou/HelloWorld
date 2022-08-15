@@ -1905,14 +1905,10 @@ print(_string.rstrip("A")) #-> "ABCDCB"（右端から1つ削除）
 print(_string) #-> "ABCDCBA"（元は変更なし）
 ```
 
-### 置換
+### 👉 置換
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _string = "2022年2月5日"
-	print(_string.replace("2022年", "令和4年")) #-> "令和4年2月5日"
+var _string = "2022年8月15日"
+print(_string.replace("2022年", "令和4年")) #-> "令和4年8月15日
 ```
 
 ### 検索
