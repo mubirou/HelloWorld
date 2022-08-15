@@ -1750,13 +1750,14 @@ var 変数名 = {"キー➀": 値➀, "キー➁": 値➁}
 ```
 * 例文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 func _ready():
+	……
 	var _dict = {"A": "あ", "I": "い"}
 	_dict["U"] = "う" # 追加（存在する場合は更新）
-	print(_dict) #-> {A:あ, I:い, U:う}
+	print(_dict) #-> {"A":"あ", "I":"い", "U":"う"}
 ```
 
 ### 取得
@@ -1827,9 +1828,10 @@ func _ready():
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97dictionary)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/classes/class_dictionary.html#dictionary)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月27日  
+更新日：2022年08月14日  
 [[TOP](#TOP)]
 
 
