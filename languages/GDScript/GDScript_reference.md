@@ -1824,24 +1824,26 @@ print(len(_dict)) #-> 3
 
 self は現在のクラスインスタンスを参照するが Python のそれほど重要ではない
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 class MyClass:
-	var _p = null # __p（擬似プライベート変数）にすれば問題ないが…
+	var _p #= null # __p（擬似プライベート変数）にすれば問題ないが…
 	
 	func _init(_p): # 引数がインスタンス名を同じ場合…
-		self._p = _p # この場合は self が必須（重要）
-		print(self) #-> [Reference:1239]（※同じ）
-		self.myMethod() # selfは省略可能
+		print(_p) #-> 500
+		print(self._p) #-> null
+		self._p = _p # この場合は self が必須（ポイント！）
+		print(self) #-> [RefCounted:-9223372012007718366]（※同じ）
+		self.myMethod() #-> 500（selfは省略可能）
 
 	func myMethod():
 		print(_p)
 
-
 func _ready():
+	……
 	var _myClass = MyClass.new(500)
-	print(_myClass) #-> [Reference:1239]（※同じ）
+	print(_myClass) #-> [RefCounted:-9223372012007718366]（※同じ）
 	_myClass.myMethod() #-> 500
 ```
 
