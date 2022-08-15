@@ -1901,28 +1901,20 @@ print(_address % "新宿区") #-> "東京都新宿区"
 ```
 参考：[GODOT DOCS（**GDScript format strings**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_format_string.html?highlight=gdscript-format-strings#gdscript-format-strings)（フォーマット文字列）  
 
-### 一部分を取得
+### 👉 一部分を取得
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _string = "0123456789"
-	print(_string[4]) #-> "4"
-	print(_string.substr(4)) #-> "456789"
-	print(_string.substr(4, 3)) #-> "456"
+var _string = "0123456789"
+print(_string[4]) #-> "4"
+print(_string.substr(4)) #-> "456789"
+print(_string.substr(4, 3)) #-> "456"
 ```
 
-### 一部分を削除
+### 👉 一部分を削除
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _string = "ABCDCBA"
-	print(_string.lstrip("A")) #-> "BCDCBA"（左端から1つ削除）
-	print(_string.rstrip("A")) #-> "ABCDCB"（右端から1つ削除）
-	print(_string) #-> "ABCDCBA"（元は変更なし）
+var _string = "ABCDCBA"
+print(_string.lstrip("A")) #-> "BCDCBA"（左端から1つ削除）
+print(_string.rstrip("A")) #-> "ABCDCB"（右端から1つ削除）
+print(_string) #-> "ABCDCBA"（元は変更なし）
 ```
 
 ### 置換
