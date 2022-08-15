@@ -1878,17 +1878,13 @@ func _ready():
 	var _string3 = "１行目\n２行目"
 ```
 
-### 長さを調べる
+### 👉 長さを調べる
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+var _string1 = "ABCDE"
+print(_string1.length()) #-> 5
 
-func _ready():
-	var _string1 = "ABCDE"
-	print(_string1.length()) #-> 5
-	
-	var _string2 = "あいうえお"
-	print(_string2.length()) #-> 5（全角文字も１字扱い）
+var _string2 = "あいうえお"
+print(_string2.length()) #-> 5（全角文字も１字扱い）
 ```
 
 ### 👉 文字列の連結
