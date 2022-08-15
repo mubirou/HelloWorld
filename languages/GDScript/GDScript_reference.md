@@ -1822,7 +1822,7 @@ print(len(_dict)) #-> 3
 <a name="self"></a>
 # <b>self</b> ≒ this
 
-self は現在のクラスインスタンスを参照するが Python のそれほど重要ではない
+self は現在のクラスインスタンスを参照するのは同じだが [Python の self](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#self--this) ほど重要ではない
 ```gdscript
 # main.gd
 extends Node3D
