@@ -1977,37 +1977,38 @@ print(_regex.sub(_string, "よしだ"))
 # <b>抽象クラス</b>
 
 ### 概要
-* GDScript には interface や abstract キーワードは存在しない
+* GDScript には [interface](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9) や [abstract](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9abstract) キーワードは存在しない
 * 以下のサンプルでは疑似的に継承と例外を使って抽象クラスを実現
 
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 # 擬似抽象クラスの定義（実際には単なる基本クラス）
 class AbstractClass:
 	func common(): # 共通の関数
 		print("共通の関数")
 
 	func abstractFunction(): # 擬似抽象関数の宣言（実際は単なる関数）
-		assert(false, "ERROR: 派生クラスで実装する必要があります") # 例外処理
+		assert(false, "Error: 派生クラスで実装する必要があります") # 例外処理
 
 # 派生クラス
 class SubClass extends AbstractClass: #擬似抽象クラスを継承
 	func abstractFunction(): # オーバーライドして実際の処理を記述
 		print("派生クラスでオーバーライドした抽象関数") # 実際の処理
 
-# 実行
 func _ready():
+	……
 	var _subClass = SubClass.new()
 	_subClass.common() #-> "共通の関数"
 	_subClass.abstractFunction() #-> "派生クラスでオーバーライドした抽象関数"
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9abstract)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年02月06日  
+更新日：2022年08月15日  
 [[TOP](#TOP)]
 
 
