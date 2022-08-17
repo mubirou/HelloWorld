@@ -15,7 +15,7 @@
 * [名前空間](#名前空間)
 * ~~[継承と委譲](#継承と委譲)~~
 * ~~[変数とスコープ](#変数とスコープ)~~
-* ~~[アクセサ（getter / setter）](#アクセサ)~~
+* [アクセサ（getter / setter）](#アクセサ)
 * ~~[演算子](#演算子)~~
 * ~~[定数](#定数)~~
 * ~~[関数](#関数)~~
@@ -782,26 +782,20 @@ func _ready():
 
 ### 読み書き可能なプロパティ
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 class Member:
-	# 疑似プライベート変数
-	var __age = 19
+	var __age = 19 # 疑似プライベート変数
 	
 	# setter/getter
-	var age setget setAge, getAge
+	var age:
+		get: return __age
+		set(value): __age = value
 
-	func setAge(value):
-		__age = value
-
-	func getAge():
-		return __age
-	
-#======
 # 実行
-#======
 func _ready():
+	……
 	var _member = Member.new()
 	print(_member.age) #-> 19
 	_member.age = 20
@@ -810,23 +804,19 @@ func _ready():
 
 ### 読み取り専用のプロパティ
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 class Member:
-	# 疑似プライベート変数
-	var __age = 19
+	var __age = 19 # 疑似プライベート変数
 	
-	# getter（set〇〇を記述しない）
-	var age setget , getAge
+	# setter/getter
+	var age: 
+		get: return __age
 
-	func getAge():
-		return __age
-	
-#======
 # 実行
-#======
 func _ready():
+	……
 	var _member = Member.new()
 	print(_member.age) #-> 19
 	_member.age = 20 # 変更不可（エラーは出ない）
@@ -835,23 +825,19 @@ func _ready():
 
 ### 書き込み専用のプロパティ
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# main.gd
+extends Node3D
+……
 class Member:
-	# 疑似プライベート変数
-	var __age = 19
+	var __age = 19 # 疑似プライベート変数
 	
-	# setter（get〇〇を記述しない）
-	var age setget setAge
+	# setter/getter
+	var age: 
+		set(value): __age = value
 
-	func setAge(value):
-		__age = value
-	
-#======
 # 実行
-#======
 func _ready():
+	……
 	var _member = Member.new()
 	_member.age = 20
 	print(_member.age) #-> null
@@ -859,9 +845,10 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5-getter--setter)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14    
 作成者：夢寐郎  
 作成日：2022年01月06日  
+更新日：2022年08月18日 Godot 4.0 対応  
 [[TOP](#TOP)]  
 
 
