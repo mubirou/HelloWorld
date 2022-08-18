@@ -379,7 +379,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 ```gdscript
 # res://Rectangle.gd
 
-class Rectangle: # 長方形クラス
+class Rectangle: # 長方形クラス（ファイル名と別でも可）
 	# 疑似プライベート変数
 	var __width
 	var __height
