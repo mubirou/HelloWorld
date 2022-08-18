@@ -359,6 +359,7 @@ print(typeof(_tmp)) #-> 4（String型）
 
 <a name="クラス"></a>
 # <b>クラス</b>
+外部クラス（.gd）を使う実用的な方法  
 
 ### 最小構成
 ```gdscript
