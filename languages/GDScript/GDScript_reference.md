@@ -446,86 +446,74 @@ func _ready():
 # <b>基本クラスと派生クラス</b>
 
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://main.gd
+extends Node3D
+var _interface:XRInterface
 
-#=================
+#===================
 # 基本（基底）クラス
-#=================
+#===================
 class SuperClass:
 	# 疑似プライベート変数
 	var __pSuper = "基本クラスのプロパティ"
 
-	# getter/setter
-	var pSuper setget set_pSuper, get_pSuper
-
-	func set_pSuper(value):
-		__pSuper = value
+	var pSuper: # getter/setter
+		get: return __pSuper
+		set(value): __pSuper = value
 	
-	func get_pSuper():
-		return __pSuper
-	
-	# 関数
-	func mSuper():
+	func mSuper(): # 関数
 		return "基本クラスのメソッド"
 
-#============
+#=============
 # 派生クラスＡ
-#============
+#=============
 class SubClassA extends SuperClass: #多重継承は不可
 	# 疑似プライベート変数
 	var __pSubA = "派生クラスＡのプロパティ"
 
-	# getter/setter
-	var pSubA setget set_pSubA, get_pSubA
+	var pSubA: # getter/setter
+		get: return __pSubA
+		set(value): __pSubA = value
 
-	func set_pSubA(value):
-		__pSubA = value
-	
-	func get_pSubA():
-		return __pSubA
-
-	# 関数
-	func mSubA():
+	func mSubA(): # 関数
 		return "派生クラスＡのメソッド"
 	
-#============
+#=============
 # 派生クラスＢ
-#============
+#=============
 class SubClassB extends SuperClass: #多重継承は不可
 	# 疑似プライベート変数
 	var __pSubB = "派生クラスＢのプロパティ"
 
-	# getter/setter
-	var pSubB setget set_pSubB, get_pSubB
+	var pSubB: # getter/setter
+		get: return __pSubB
+		set(value): __pSubB = value
 
-	func set_pSubB(value):
-		__pSubB = value
-	
-	func get_pSubB():
-		return __pSubB
-
-	# 関数
-	func mSubB():
+	func mSubB(): # 関数
 		return "派生クラスＢのメソッド"
 
 #=====
 # 実行
 #=====
 func _ready():
+	_interface = XRServer.find_interface("OpenXR")
+	if _interface and _interface.is_initialized():
+		var _viewport : Viewport = get_viewport()
+		_viewport.use_xr = true
+	
 	var _subClassA = SubClassA.new()
-	print(_subClassA) #-> [Reference:1240]
-	print(_subClassA is SubClassA) #-> True（SubClassA型である）
-	print(_subClassA is SuperClass) #-> True（SuperClass型でもある）
+	print(_subClassA) #-> [RefCounted:-9223372008887156325]
+	print(_subClassA is SubClassA) #-> true（SubClassA型である）
+	print(_subClassA is SuperClass) #-> true（SuperClass型でもある）
 	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
 	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
 	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
 	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
 
 	var _subClassB = SubClassB.new()
-	print(_subClassB) #-> [Reference:1241]
-	print(_subClassB is SubClassB) #-> True（SubClassB型である）
-	print(_subClassB is SuperClass) #-> True（SuperClass型でもある）
+	print(_subClassB) #-> [RefCounted:-9223372008870379111]
+	print(_subClassB is SubClassB) #-> true（SubClassB型である）
+	print(_subClassB is SuperClass) #-> true（SuperClass型でもある）
 	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
 	print(_subClassB.pSubB) #-> 派生クラスＢのプロパティ
 	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
@@ -533,9 +521,11 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%9F%BA%E6%9C%AC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8%E6%B4%BE%E7%94%9F%E3%82%AF%E3%83%A9%E3%82%B9)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（**Inheritance**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=inheritance#inheritance)  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月05日  
+更新日：2022年08月18日  
 [[TOP](#TOP)]
 
 
