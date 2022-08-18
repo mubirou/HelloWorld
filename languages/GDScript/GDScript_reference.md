@@ -435,9 +435,10 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月04日  
+作成日：2022年08月18日  
 [[TOP](#TOP)]
 
 
