@@ -360,7 +360,7 @@ print(typeof(_tmp)) #-> 4（String型）
 <a name="クラス"></a>
 # <b>クラス</b>
 
-### 👉 内部クラス
+### 👉 内部クラスを使う場合
 
 ```gdscript
 # res://main.gd
@@ -404,7 +404,7 @@ func _ready():
 	print(_rectangle.getArea()) #-> 2073600
 ```
 
-### 👉 クラスファイル（.gd）
+### 👉 クラスファイル（.gd）を使う場合
 [ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
 
 ```gdscript
@@ -438,59 +438,6 @@ func _ready():
 	……
 	var Rectangle = load("res://Rectangle.gd")
 	var _rectangle = Rectangle.new(640, 480)
-
-	# プロパティの取得
-	print(_rectangle.width) #-> 640
-	print(_rectangle.height) #-> 480
-
-	# プロパティの更新
-	_rectangle.width = 1920
-	_rectangle.height = 1080
-
-	# プロパティの取得（再度）
-	print(_rectangle.width) #-> 1920
-	print(_rectangle.height) #-> 1080
-
-	# 関数の実行
-	print(_rectangle.getArea()) #-> 2073600
-```
-
-### 例文
-```gdscript
-# res://Rectangle.gd
-
-class Rectangle: # 長方形クラス
-	# 疑似プライベート変数
-	var __width
-	var __height
-
-	# コンストラクタ
-	func _init(w,h):
-		__width = w
-		__height = h
-	
-	# getter / setter
-	var width:
-		get: return __width
-		set(value): __width = value
-		
-	var height:
-		get: return __height
-		set(value): __height = value
-
-	# 公開関数（面積計算用）
-	func getArea():
-		return __width * __height
-```
-
-```gdscript
-# res://main.gd
-extends Node3D
-……
-func _ready():
-	……
-	var _script = load("res://Rectangle.gd")
-	var _rectangle = _script.Rectangle.new(640, 480)
 
 	# プロパティの取得
 	print(_rectangle.width) #-> 640
