@@ -444,83 +444,99 @@ func _ready():
 
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
+クラスファイル（ファイルがクラス！）を継承する方法
 
+### 👉 SuperClass（基本クラス）
+```gdscript
+# res://SuperClass.gd（基本＝基底クラス）
+
+# 疑似プライベート変数
+var __pSuper = "基本クラスのプロパティ"
+
+var pSuper: # getter/setter
+	get: return __pSuper
+	set(value): __pSuper = value
+
+func mSuper(): # 関数
+	return "基本クラスのメソッド"
+	
+func _init():
+	print("基本クラスのコンストラクタ")
+```
+
+### 👉 SubClassA（派生クラスＡ）
+```gdscript
+# res://SubClassA.gd（派生クラスＡ）
+extends "res://SuperClass.gd"
+
+# 疑似プライベート変数
+var __pSubA = "派生クラスＡのプロパティ"
+
+var pSubA: # getter/setter
+	get: return __pSubA
+	set(value): __pSubA = value
+
+func mSubA(): # 関数
+	return "派生クラスＡのメソッド"
+
+func _init():
+	print("派生クラスＡのコンストラクタ")
+```
+
+### 👉 SubClassB（派生クラスＢ）
+```gdscript
+# res://SubClassA.gd（派生クラスＡ）
+extends "res://SuperClass.gd"
+
+# 疑似プライベート変数
+var __pSubB = "派生クラスＢのプロパティ"
+
+var pSubB: # getter/setter
+	get: return __pSubB
+	set(value): __pSubB = value
+
+func mSubB(): # 関数
+	return "派生クラスＢのメソッド"
+
+func _init():
+	print("派生クラスＢのコンストラクタ")
+```
+
+### 👉 実行
 ```gdscript
 # res://main.gd
 extends Node3D
 ……
-#===================
-# 基本（基底）クラス
-#===================
-class SuperClass:
-	# 疑似プライベート変数
-	var __pSuper = "基本クラスのプロパティ"
-
-	var pSuper: # getter/setter
-		get: return __pSuper
-		set(value): __pSuper = value
-	
-	func mSuper(): # 関数
-		return "基本クラスのメソッド"
-
-#=============
-# 派生クラスＡ
-#=============
-class SubClassA extends SuperClass: #多重継承は不可
-	# 疑似プライベート変数
-	var __pSubA = "派生クラスＡのプロパティ"
-
-	var pSubA: # getter/setter
-		get: return __pSubA
-		set(value): __pSubA = value
-
-	func mSubA(): # 関数
-		return "派生クラスＡのメソッド"
-	
-#=============
-# 派生クラスＢ
-#=============
-class SubClassB extends SuperClass: #多重継承は不可
-	# 疑似プライベート変数
-	var __pSubB = "派生クラスＢのプロパティ"
-
-	var pSubB: # getter/setter
-		get: return __pSubB
-		set(value): __pSubB = value
-
-	func mSubB(): # 関数
-		return "派生クラスＢのメソッド"
-
-#=====
-# 実行
-#=====
 func _ready():
 	……
+	var SubClassA = load("res://SubClassA.gd")
 	var _subClassA = SubClassA.new()
-	print(_subClassA) #-> [RefCounted:-9223372008887156325]
-	print(_subClassA is SubClassA) #-> true（SubClassA型である）
-	print(_subClassA is SuperClass) #-> true（SuperClass型でもある）
-	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
+	print(_subClassA) #-> [RefCounted:-9223372011974164085]
+	print(_subClassA is SubClassA) #-> true（＝SubClassA型）
+	print(_subClassA is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
 	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
-	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
+	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
 	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
-
+	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
+	
+	var SubClassB = load("res://SubClassB.gd")
 	var _subClassB = SubClassB.new()
-	print(_subClassB) #-> [RefCounted:-9223372008870379111]
-	print(_subClassB is SubClassB) #-> true（SubClassB型である）
-	print(_subClassB is SuperClass) #-> true（SuperClass型でもある）
+	print(_subClassB) #-> [RefCounted:-9223372011974164085]
+	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
+	print(_subClassB is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
+	print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
 	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
-	print(_subClassB.pSubB) #-> 派生クラスＢのプロパティ
-	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
 	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
+	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%9F%BA%E6%9C%AC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8%E6%B4%BE%E7%94%9F%E3%82%AF%E3%83%A9%E3%82%B9)]  
 参考：[GODOT DOCS（**Inheritance**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=inheritance#inheritance)  
+参考：[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月05日  
-更新日：2022年08月18日  
+更新日：2022年08月19日  
 [[TOP](#TOP)]
 
 
