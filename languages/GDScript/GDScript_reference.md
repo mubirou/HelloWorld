@@ -2,7 +2,7 @@
 
 # <b>GDScript 2.0 基礎文法</b>
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
-⌚413h15min  
+⌚414h15min  
 
 ### <b>INDEX</b>
 
