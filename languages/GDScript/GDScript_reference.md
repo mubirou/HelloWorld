@@ -374,8 +374,8 @@ extends Node3D
 ……
 func _ready():
 	……
-	var _gd = preload("res://MyClass.gd")
-	var _myClass = _gd.MyClass.new()
+	var _script = preload("res://MyClass.gd")
+	var _myClass = _script.MyClass.new()
 ```
 
 * [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
@@ -415,8 +415,8 @@ extends Node3D
 ……
 func _ready():
 	……
-	var _gd = preload("res://Rectangle.gd")
-	var _rectangle = _gd.Rectangle.new(640, 480)
+	var _script = load("res://Rectangle.gd")
+	var _rectangle = _script.Rectangle.new(640, 480)
 
 	# プロパティの取得
 	print(_rectangle.width) #-> 640
