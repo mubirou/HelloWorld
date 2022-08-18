@@ -394,7 +394,7 @@ class Rectangle: # 長方形クラス（ファイル名と別でも可）
 		__width = w
 		__height = h
 	
-	# getter / setter
+	# getter/setter
 	var width:
 		get: return __width
 		set(value): __width = value
