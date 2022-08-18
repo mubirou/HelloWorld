@@ -362,14 +362,19 @@ print(typeof(_tmp)) #-> 4（String型）
 
 ### 最小構成
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://MyClass.gd
+class MyClass:
+	pass
+```
 
-class MyClass: #前方宣言でなくてもよい
-	pass #何もしない
-
+```gdscript
+# main.gd
+extends Node3D
+……
 func _ready():
-	var _myClass = MyClass.new() #インスタンスの生成
+	……
+	var _gd = preload("res://MyClass.gd")
+	var _myClass = _gd.MyClass.new()
 ```
 
 * passについて  
