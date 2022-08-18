@@ -408,22 +408,23 @@ class Rectangle: # 長方形クラス（ファイル名と別でも可）
 extends Node3D
 ……
 func _ready():
-	……	
+	……
 	var _gd = preload("res://Rectangle.gd")
 	var _rectangle = _gd.Rectangle.new(640, 480)
-	# ➁プロパティの取得（その１）
+
+	# プロパティの取得
 	print(_rectangle.width) #-> 640
 	print(_rectangle.height) #-> 480
 
-	# ➂プロパティの更新
+	# プロパティの更新
 	_rectangle.width = 1920
 	_rectangle.height = 1080
 
-	# ➃プロパティの取得（その２）
+	# プロパティの取得（再度）
 	print(_rectangle.width) #-> 1920
 	print(_rectangle.height) #-> 1080
 
-	# ➄関数の実行
+	# 関数の実行
 	print(_rectangle.getArea()) #-> 2073600
 ```
 
