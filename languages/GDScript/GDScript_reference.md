@@ -359,14 +359,52 @@ print(typeof(_tmp)) #-> 4（String型）
 
 <a name="クラス"></a>
 # <b>クラス</b>
-外部クラス（.gd）を使う実用的な方法  
 
-### 最小構成
+### 👉 内部クラスを使う場合
+
 ```gdscript
-# res://MyClass.gd
-class MyClass: # ファイル名と別でも可
-	pass
+# res://main.gd
+extends Node3D
+……
+class Rectangle: # 長方形クラス
+	# 疑似プライベート変数
+	var __width
+	var __height
+	
+	var width: # getter/setter
+		get: return __width
+		set(value): __width = value
+		
+	var height: # getter/setter
+		get: return __height
+		set(value): __height = value
+
+	func getArea(): # 公開関数（面積計算用）
+		return __width * __height
+	
+	func _init(w,h): # コンストラクタ
+		__width = w
+		__height = h
+	
+func _ready():
+	……
+	# プロパティの取得
+	print(_rectangle.width) #-> 640
+	print(_rectangle.height) #-> 480
+
+	# プロパティの更新
+	_rectangle.width = 1920
+	_rectangle.height = 1080
+
+	# プロパティの取得（再度）
+	print(_rectangle.width) #-> 1920
+	print(_rectangle.height) #-> 1080
+
+	# 関数の実行
+	print(_rectangle.getArea()) #-> 2073600
 ```
+
+### クラスファイル（.gd）を使う場合
 
 ```gdscript
 # main.gd
@@ -438,7 +476,7 @@ func _ready():
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月04日  
-作成日：2022年08月18日  
+作成日：2022年08月19日   
 [[TOP](#TOP)]
 
 
