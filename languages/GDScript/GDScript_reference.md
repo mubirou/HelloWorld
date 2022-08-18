@@ -448,8 +448,7 @@ func _ready():
 ```gdscript
 # res://main.gd
 extends Node3D
-var _interface:XRInterface
-
+……
 #===================
 # 基本（基底）クラス
 #===================
@@ -496,11 +495,7 @@ class SubClassB extends SuperClass: #多重継承は不可
 # 実行
 #=====
 func _ready():
-	_interface = XRServer.find_interface("OpenXR")
-	if _interface and _interface.is_initialized():
-		var _viewport : Viewport = get_viewport()
-		_viewport.use_xr = true
-	
+	……
 	var _subClassA = SubClassA.new()
 	print(_subClassA) #-> [RefCounted:-9223372008887156325]
 	print(_subClassA is SubClassA) #-> true（SubClassA型である）
