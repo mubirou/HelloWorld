@@ -404,7 +404,7 @@ class Rectangle: # 長方形クラス
 ```
 
 ```gdscript
-# main.gd
+# res://main.gd
 extends Node3D
 ……
 func _ready():
