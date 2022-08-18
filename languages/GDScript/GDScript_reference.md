@@ -377,18 +377,10 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 
 ### 例文
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://Rectangle.gd
 
-#==============
-# 長方形クラス
-#==============
-class Rectangle:
-	# 公開プロパティ
-	var width setget setWidth, getWidth
-	var height setget setHeight, getHeight
-
-	# 疑似プライベート変数（値の設定も可）
+class Rectangle: # 長方形クラス
+	# 疑似プライベート変数
 	var __width
 	var __height
 
@@ -397,30 +389,28 @@ class Rectangle:
 		__width = w
 		__height = h
 	
-	# 公開プロパティ用（setter/getter）
-	func setWidth(value):
-		__width = value
+	# getter / setter
+	var width:
+		get: return __width
+		set(value): __width = value
+		
+	var height:
+		get: return __height
+		set(value): __height = value
 
-	func getWidth():
-		return __width
-
-	func setHeight(value):
-		__height = value
-	
-	func getHeight():
-		return __height
-	
 	# 公開関数（面積計算用）
 	func getArea():
 		return __width * __height
-	
-#======
-# 実行
-#======
-func _ready():
-	# ➀インスタンスの生成
-	var _rectangle = Rectangle.new(640,480)
+```
 
+```gdscript
+# main.gd
+extends Node3D
+……
+func _ready():
+	……	
+	var _gd = preload("res://Rectangle.gd")
+	var _rectangle = _gd.Rectangle.new(640, 480)
 	# ➁プロパティの取得（その１）
 	print(_rectangle.width) #-> 640
 	print(_rectangle.height) #-> 480
