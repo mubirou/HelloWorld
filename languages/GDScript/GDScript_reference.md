@@ -364,7 +364,7 @@ print(typeof(_tmp)) #-> 4（String型）
 ### 最小構成
 ```gdscript
 # res://MyClass.gd
-class MyClass:
+class MyClass: # ファイル名と別でも可
 	pass
 ```
 
