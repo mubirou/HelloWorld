@@ -388,6 +388,8 @@ class Rectangle: # 長方形クラス
 	
 func _ready():
 	……
+	var _rectangle = Rectangle.new(640, 480)
+
 	# プロパティの取得
 	print(_rectangle.width) #-> 640
 	print(_rectangle.height) #-> 480
