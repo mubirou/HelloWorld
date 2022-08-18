@@ -405,7 +405,7 @@ func _ready():
 ```
 
 ### 👉 クラスファイル（.gd）
-[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる
+[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
 
 ```gdscript
 # res://Rectangle.gd（クラスファイル）
@@ -521,7 +521,7 @@ func _ready():
 
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
-クラスファイル（ファイルがクラス！）を継承する方法
+クラスファイル（[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)＝class キーワードは記述しない）を継承する方法  
 
 ### 👉 SuperClass（基本クラス）
 ```gdscript
