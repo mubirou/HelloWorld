@@ -492,6 +492,7 @@ func _init():
 ```gdscript
 # res://SubClassA.gd（派生クラスＡ）
 extends "res://SuperClass.gd"
+class_name SubClassA
 
 # 疑似プライベート変数
 var __pSubA = "派生クラスＡのプロパティ"
@@ -509,11 +510,12 @@ func _init():
 
 ### 👉 SubClassB（派生クラスＢ）
 ```gdscript
-# res://SubClassA.gd（派生クラスＡ）
+# res://SubClassB.gd（派生クラスＢ）
 extends "res://SuperClass.gd"
+class_name SubClassB
 
 # 疑似プライベート変数
-var __pSubB = "派生クラスＢのプロパティ"
+var __pSubB = "派生クラスＢのプロパティ"	
 
 var pSubB: # getter/setter
 	get: return __pSubB
@@ -523,7 +525,7 @@ func mSubB(): # 関数
 	return "派生クラスＢのメソッド"
 
 func _init():
-	pass
+	print("派生クラスＢのコンストラクタ")
 ```
 
 ### 👉 実行
@@ -533,9 +535,9 @@ extends Node3D
 ……
 func _ready():
 	……
-	var SubClassA = load("res://SubClassA.gd")
+	load("res://SubClassA.gd")
 	var _subClassA = SubClassA.new()
-	print(_subClassA) #-> [RefCounted:-9223372011974164085]
+	print(_subClassA) #-> [RefCounted:-9223372011789614097]
 	print(_subClassA is SubClassA) #-> true（＝SubClassA型）
 	print(_subClassA is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
 	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
@@ -543,9 +545,9 @@ func _ready():
 	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
 	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
 	
-	var SubClassB = load("res://SubClassB.gd")
+	load("res://SubClassB.gd")
 	var _subClassB = SubClassB.new()
-	print(_subClassB) #-> [RefCounted:-9223372011974164085]
+	print(_subClassB) #-> [RefCounted:-9223372011772836883]
 	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
 	print(_subClassB is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
 	print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
@@ -563,7 +565,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月05日  
-更新日：2022年08月19日  
+更新日：2022年08月20日  
 [[TOP](#TOP)]
 
 
