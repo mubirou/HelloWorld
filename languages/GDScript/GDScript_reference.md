@@ -251,10 +251,11 @@ func _ready():
 [[データ型TOP](#データ型)]
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
-参考：[GODOT DOCS（**Variant.Type**）](https://docs.godotengine.org/en/latest/classes/class_@globalscope.html?highlight=TYPE_BOOL#enumerations)
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（**Variant.Type**）](https://docs.godotengine.org/en/latest/classes/class_@globalscope.html?highlight=TYPE_BOOL#enumerations)  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月03日  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
