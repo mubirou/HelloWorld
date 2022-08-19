@@ -16,7 +16,7 @@
 * [継承と委譲](#継承と委譲)
 * ~~[変数とスコープ](#変数とスコープ)~~
 * [アクセサ（getter / setter）](#アクセサ)
-* ~~[演算子](#演算子)~~
+* [演算子](#演算子)
 * ~~[定数](#定数)~~
 * ~~[関数](#関数)~~
 * [匿名関数](#匿名関数)
@@ -993,8 +993,8 @@ func _ready():
 
 ### 算術演算子
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://main.gd
+extends Node3D
 
 func _ready():
 	print(3 + 2) #-> 5 (可算) 
@@ -1005,7 +1005,7 @@ func _ready():
 
 	# 除算（注意が必要です）
 	print(8 / 3) #-> 2(除算) ←整数同士の場合、余りは切り捨てられる
-	print(8 / 3.0) #-> 2.666667（小数点第6位までの値＝float型）
+	print(8 / 3.0) #-> 2.66666666666667（小数点第14位までの値＝float型）
 
 	#インクリメント（++）・デクリメント（--）は存在しないので以下で代用
 	var _hoge = 0
@@ -1015,26 +1015,26 @@ func _ready():
 
 ### その他の演算子
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://main.gd
+extends Node3D
 
 func _ready():
 	# 論理積
-	print(true and true) #-> True
-	print(true && true) #-> True
+	print(true and true) #-> true
+	print(true && true) #-> true
 
 	# 論理和
-	print(true or false) #-> True
-	print(true || false) #-> True
+	print(true or false) #-> true
+	print(true || false) #-> true
 
 	# 否定
-	print(not true) #-> False
-	print(! true) #-> False
+	print(not true) #-> false
+	print(! true) #-> false
  
-	print(2 < 3) #-> True（比較/未満）
-	print(2 <= 2) #-> True（比較/以下）
-	print(1 == 1.0) #-> True（等号）
-	print(1 != 1.0) #-> False（不等号）
+	print(2 < 3) #-> true（比較/未満）
+	print(2 <= 2) #-> true（比較/以下）
+	print(1 == 1.0) #-> true（等号）
+	print(1 != 1.0) #-> false（不等号）
 
 	print(3 & 1) #-> 1（ビット積）
 	print(3 | 1) #-> 3（ビット和）
@@ -1044,10 +1044,11 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#operators)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+参考：[GODOT DOCS（Operators）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=x.attribute#operators)  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月09日  
+更新日：2022年08月20日  
 [[TOP](#TOP)]
 
 
