@@ -728,29 +728,42 @@ func _ready():
 ```
 
 ### 👉 委譲版
+
+#### ClassA の定義
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://ClassA.gd
+class_name ClassA
 
-class ClassA:
-	func myMethod():
-		print("ClassA.myMethod()")
-	
-class ClassB: # この中身のみ継承と異なる
-	var _classA = ClassA.new() # ClassAのインスタンスを生成（ポイント）
-
-	func myMethod():
-		_classA.myMethod()
-
-func _ready():
-	var _classB = ClassB.new()
-	_classB.myMethod() #-> "ClassA.myMethod()"
+func myMethod():
+	print("ClassA.myMethod()")
 ```
 
+#### ClassB の定義
+```gdscript
+# res://ClassB.gd（この中身だけ継承と異なる）
+class_name ClassB
+
+var _classA = ClassA.new() # ポイント
+
+func myMethod():
+	_classA.myMethod()
+```
+
+#### 実行
+```gdscript
+# res://main.gd
+extends Node3D
+……
+func _ready():
+	………
+	var _classB = ClassB.new()
+	_classB.myMethod() #-> ClassA.myMethod()
+
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E7%B6%99%E6%89%BF%E3%81%A8%E5%A7%94%E8%AD%B2)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月06日  
+更新日：2022年08月20日  
 [[TOP](#TOP)]
 
 
