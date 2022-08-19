@@ -713,8 +713,7 @@ func myMethod():
 #### ClassB（ClassA を継承）の定義
 ```gdscript
 # res://ClassB.gd
-extends ClassA # ClassAを継承（ポイント）
-class_name ClassB
+class_name ClassB extends ClassA # ClassAを継承（ポイント）
 ```
 
 #### 実行
