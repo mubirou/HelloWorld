@@ -714,6 +714,7 @@ func myMethod():
 # res://ClassB.gd（この中身だけ委譲版と異なる）
 class_name ClassB extends ClassA # ポイント
 ```
+（注意）extends 以降を別行にしても可能
 
 #### 実行
 ```gdscript
