@@ -1,10 +1,10 @@
 <a name="TOP"></a>
 
-**GDScript 2.0 基礎文法**
+# <b>GDScript 2.0 基礎文法</b>
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
 ⌚414h15min  
 
-### **INDEX**
+### <b>INDEX</b>
 
 * Hello,world! （~~[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)~~ / ~~[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)~~）
 * [コメントアウト](#コメントアウト)
