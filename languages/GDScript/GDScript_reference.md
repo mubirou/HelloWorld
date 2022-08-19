@@ -1,10 +1,10 @@
 <a name="TOP"></a>
 
-# <b>GDScript 2.0 基礎文法</b>
+**GDScript 2.0 基礎文法**
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
 ⌚414h15min  
 
-### <b>INDEX</b>
+### **INDEX**
 
 * Hello,world! （~~[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)~~ / ~~[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)~~）
 * [コメントアウト](#コメントアウト)
@@ -83,6 +83,8 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 <a name="データ型"></a>
 # <b>データ型</b>
+
+### この項目は書きかけです
 
 ### 主なデータ型の種類
 1. [論理型](#TYPE_BOOL)（bool / TYPE_BOOL）
@@ -249,6 +251,7 @@ func _ready():
 [[データ型TOP](#データ型)]
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
+参考：[GODOT DOCS（**Variant.Type**）](https://docs.godotengine.org/en/latest/classes/class_@globalscope.html?highlight=TYPE_BOOL#enumerations)
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年01月03日  
