@@ -367,6 +367,7 @@ print(typeof(_tmp)) #-> 4（String型）
 ```gdscript
 # res://Rectangle.gd（クラスファイル）
 class_name Rectangle # ファイル名と別名でも可
+# 👆 var Rectangle = load("res://Rectangle.gd") が不要になる
 
 # 疑似プライベート変数
 var __width
@@ -395,7 +396,6 @@ extends Node3D
 ……	
 func _ready():
 	……
-	load("res://Rectangle.gd")
 	var _rectangle = Rectangle.new(640, 480)
 
 	# プロパティの取得
