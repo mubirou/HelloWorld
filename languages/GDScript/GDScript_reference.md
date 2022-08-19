@@ -13,7 +13,7 @@
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
-* ~~[継承と委譲](#継承と委譲)~~
+* [継承と委譲](#継承と委譲)
 * ~~[変数とスコープ](#変数とスコープ)~~
 * [アクセサ（getter / setter）](#アクセサ)
 * ~~[演算子](#演算子)~~
@@ -693,12 +693,10 @@ func _ready():
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
 
-### この項目は書きかけです
-
 ### 概要
 *  GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
 * 継承の場合は **extends クラス名** を使い、委譲の場合は **クラス名.new()** を使ってオブジェクトを生成し、他のクラスの機能を利用する
-* サンプルは「[クラスファイル](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%86%E6%96%B9%E6%B3%95)」を利用
+* サンプルは「[クラスファイル](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%BF%E3%81%86%E6%96%B9%E6%B3%95)」を使用
 
 ### 👉 継承版
 
