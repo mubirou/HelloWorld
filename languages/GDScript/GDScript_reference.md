@@ -411,6 +411,7 @@ func _ready():
 
 ```gdscript
 # res://Rectangle.gd（クラスファイル）
+class_name Rectangle # ファイル名と別名でも可
 
 # 疑似プライベート変数
 var __width
@@ -438,7 +439,7 @@ extends Node3D
 ……	
 func _ready():
 	……
-	var Rectangle = load("res://Rectangle.gd")
+	load("res://Rectangle.gd")
 	var _rectangle = Rectangle.new(640, 480)
 
 	# プロパティの取得
@@ -461,7 +462,7 @@ func _ready():
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月04日  
-作成日：2022年08月19日  
+作成日：2022年08月20日  
 [[TOP](#TOP)]
 
 
