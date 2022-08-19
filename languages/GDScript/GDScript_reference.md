@@ -408,7 +408,9 @@ func _ready():
 
 ### 👉 クラスファイル（.gd）を使う場合
 
-#### クラスの定義（[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる＝class キーワードは記述しない）
+#### クラスの定義
+
+（[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる＝class キーワードは記述しない）  
 
 ```gdscript
 # res://Rectangle.gd（クラスファイル）
