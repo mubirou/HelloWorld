@@ -498,7 +498,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 #### SubClassA（派生クラスＡ）の定義
 ```gdscript
 # res://SubClassA.gd（派生クラスＡ）
-class_name SubClassA extends SuperClass
+class_name SubClassA extends SuperClass # extends 以降を別行にしても可能
 
 # 疑似プライベート変数
 var __pSubA = "派生クラスＡのプロパティ"
@@ -517,7 +517,7 @@ func _init():
 #### SubClassB（派生クラスＢ）の定義
 ```gdscript
 # res://SubClassB.gd（派生クラスＢ）
-class_name SubClassB extends SuperClass
+class_name SubClassB extends SuperClass # extends 以降を別行にしても可能
 
 # 疑似プライベート変数
 var __pSubB = "派生クラスＢのプロパティ"
