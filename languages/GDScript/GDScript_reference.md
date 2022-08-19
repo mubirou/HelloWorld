@@ -490,6 +490,8 @@ func mSuper(): # 関数
 func _init():
 	pass
 ```
+* [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
+Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
 
 #### SubClassA（派生クラスＡ）の定義
 ```gdscript
@@ -558,9 +560,6 @@ func _ready():
 	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
 	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
 ```
-
-* [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
-Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%9F%BA%E6%9C%AC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8%E6%B4%BE%E7%94%9F%E3%82%AF%E3%83%A9%E3%82%B9)]  
 参考：[GODOT DOCS（**Inheritance**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=inheritance#inheritance)  
