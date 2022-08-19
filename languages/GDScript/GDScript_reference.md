@@ -360,7 +360,7 @@ print(typeof(_tmp)) #-> 4（String型）
 <a name="クラス"></a>
 # <b>クラス</b>
 
-### 👉 クラスファイルを使う方法
+### 👉「クラスファイル」を使う方法
 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
 
 #### クラスの定義
@@ -414,7 +414,7 @@ func _ready():
 	print(_rectangle.getArea()) #-> 2073600
 ```
 
-### 👉 内部クラスを使う方法
+### 👉「内部クラス」を使う方法
 ```gdscript
 # res://main.gd
 extends Node3D
@@ -470,7 +470,7 @@ func _ready():
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
 
-### 👉 クラスファイルを継承する方法
+### 👉「クラスファイル」を継承する方法
 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
 
 #### SuperClass（基本クラス）の定義
