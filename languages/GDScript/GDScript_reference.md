@@ -693,29 +693,42 @@ func _ready():
 <a name="継承と委譲"></a>
 # <b>継承と委譲</b>
 
+### この項目は書きかけです
+
 ### 概要
 *  GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
 * 継承の場合は **extends クラス名** を使い、委譲の場合は **クラス名.new()** を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
-### 継承版
+### 👉 継承版
+
+#### ClassA の定義
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://ClassA.gd
+class_name ClassA
 
-class ClassA:
-	func myMethod():
-		print("ClassA.myMethod()")
-	
-class ClassB extends ClassA: # ClassAを継承（ポイント）
-	pass
-
-
-func _ready():
-	var _classB = ClassB.new()
-	_classB.myMethod() #-> "ClassA.myMethod()"
+func myMethod():
+	print("ClassA.myMethod()")
 ```
 
-### 委譲版
+#### ClassB（ClassA を継承）の定義
+```gdscript
+# res://ClassB.gd
+extends ClassA # ClassAを継承（ポイント）
+class_name ClassB
+```
+
+#### 実行
+```gdscript
+# res://main.gd
+extends Node3D
+……
+func _ready():
+	………
+	var _classB = ClassB.new()
+	_classB.myMethod() #-> ClassA.myMethod()
+```
+
+### 👉 委譲版
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
