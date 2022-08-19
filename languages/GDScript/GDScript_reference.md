@@ -112,7 +112,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |TYPE_INT_ARRAY|21|TYPE_REAL_ARRAY|22|TYPE_STRING_ARRAY|23|
 |TYPE_VECTOR2_ARRAY|24|TYPE_VECTOR3_ARRAY|25|TYPE_COLOR_ARRAY|26|
 |TYPE_MAX|27|||||
-
+参考：[GODOT DOCS（**Variant.Type**）](https://bit.ly/3KazmjS)  
 
 <a name="TYPE_BOOL"></a>
 
@@ -251,7 +251,6 @@ func _ready():
 [[データ型TOP](#データ型)]
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
-参考：[GODOT DOCS（**Variant.Type**）](https://docs.godotengine.org/en/latest/classes/class_@globalscope.html?highlight=TYPE_BOOL#enumerations)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月03日  
