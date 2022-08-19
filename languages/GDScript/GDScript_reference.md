@@ -360,8 +360,8 @@ print(typeof(_tmp)) #-> 4（String型）
 <a name="クラス"></a>
 # <b>クラス</b>
 
-### 👉 クラスファイル（.gd）を使う場合
-[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
+### 👉 クラスファイルを使う場合
+[.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
 
 #### クラスの定義
 
