@@ -469,7 +469,6 @@ func _ready():
 
 <a name="基本クラスと派生クラス"></a>
 # <b>基本クラスと派生クラス</b>
-クラスファイル（[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)＝class キーワードは記述しない）を継承する方法  
 
 ### 👉 クラスファイルを継承する方法
 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
