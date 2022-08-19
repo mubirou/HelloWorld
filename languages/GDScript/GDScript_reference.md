@@ -1044,7 +1044,7 @@ func _ready():
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)]  
-参考：[GODOT DOCS（Operators）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=x.attribute#operators)  
+参考：[GODOT DOCS（**Operators**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html?highlight=x.attribute#operators)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月09日  
