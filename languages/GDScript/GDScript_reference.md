@@ -520,7 +520,7 @@ extends "res://SuperClass.gd"
 class_name SubClassB
 
 # 疑似プライベート変数
-var __pSubB = "派生クラスＢのプロパティ"	
+var __pSubB = "派生クラスＢのプロパティ"
 
 var pSubB: # getter/setter
 	get: return __pSubB
@@ -530,7 +530,7 @@ func mSubB(): # 関数
 	return "派生クラスＢのメソッド"
 
 func _init():
-	print("派生クラスＢのコンストラクタ")
+	pass
 ```
 
 #### 実行
@@ -555,6 +555,86 @@ func _ready():
 	print(_subClassB) #-> [RefCounted:-9223372011772836883]
 	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
 	print(_subClassB is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
+	print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
+	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
+	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
+	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
+```
+
+### 👉「内部クラス」を使う方法
+```gdscript
+# res://main.gd
+extends Node3D
+……
+#===============================
+# SuperClass（基本クラス）の定義
+#===============================
+class SuperClass:
+	# 疑似プライベート変数
+	var __pSuper = "基本クラスのプロパティ"
+
+	var pSuper: # getter/setter
+		get: return __pSuper
+		set(value): __pSuper = value
+
+	func mSuper(): # 関数
+		return "基本クラスのメソッド"
+
+	func _init():
+		pass
+
+#================================
+# SubClassA（派生クラスＡ）の定義
+#================================
+class SubClassA extends SuperClass:
+	# 疑似プライベート変数
+	var __pSubA = "派生クラスＡのプロパティ"
+
+	var pSubA: # getter/setter
+		get: return __pSubA
+		set(value): __pSubA = value
+
+	func mSubA(): # 関数
+		return "派生クラスＡのメソッド"
+
+	func _init():
+		pass
+
+#================================
+# SubClassB（派生クラスＢ）の定義
+#================================
+class SubClassB extends SuperClass:
+	# 疑似プライベート変数
+	var __pSubB = "派生クラスＢのプロパティ"
+
+	var pSubB: # getter/setter
+		get: return __pSubB
+		set(value): __pSubB = value
+
+	func mSubB(): # 関数
+		return "派生クラスＢのメソッド"
+
+	func _init():
+		pass
+
+#=====
+# 実行
+#=====
+func _ready():
+	……
+	var _subClassA = SubClassA.new()
+	print(_subClassA) #-> [RefCounted:-9223372012041272799]
+	print(_subClassA is SubClassA) #-> true（＝SubClassA型）
+	print(_subClassA is SuperClass) #-> true（＝SuperClass型）
+	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
+	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
+	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
+	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
+
+	var _subClassB = SubClassB.new()
+	print(_subClassB) #-> [RefCounted:-9223372012024495730]
+	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
+	print(_subClassB is SuperClass) #-> true（＝SuperClass型）
 	print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
 	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
 	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
