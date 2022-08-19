@@ -711,7 +711,7 @@ func myMethod():
 
 #### ClassB（ClassA を継承）の定義
 ```gdscript
-# res://ClassB.gd
+# res://ClassB.gd（この中身だけ委譲版と異なる）
 class_name ClassB extends ClassA # ポイント
 ```
 
@@ -739,7 +739,7 @@ func myMethod():
 
 #### ClassB の定義
 ```gdscript
-# res://ClassB.gd（この中身だけ継承と異なる）
+# res://ClassB.gd（この中身だけ継承版と異なる）
 class_name ClassB
 
 var _classA = ClassA.new() # ポイント
