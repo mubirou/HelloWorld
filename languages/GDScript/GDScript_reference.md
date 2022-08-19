@@ -361,8 +361,10 @@ print(typeof(_tmp)) #-> 4（String型）
 # <b>クラス</b>
 
 ### 👉 クラスファイル（.gd）を使う場合
+[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
 
-**クラスの定義**（[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる＝class キーワードは記述しない）  
+#### クラスの定義
+
 ```gdscript
 # res://Rectangle.gd（クラスファイル）
 class_name Rectangle # ファイル名と別名でも可
@@ -387,7 +389,8 @@ func _init(w,h): # コンストラクタ
 	__height = h
 ```
 
-**実行**
+#### 実行
+
 ```gdscript
 # res://main.gd
 extends Node3D
