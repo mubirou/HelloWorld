@@ -758,8 +758,9 @@ func _ready():
 	………
 	var _classB = ClassB.new()
 	_classB.myMethod() #-> ClassA.myMethod()
+```
 
-[[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E7%B6%99%E6%89%BF%E3%81%A8%E5%A7%94%E8%AD%B2)]  
+[[C# 版](https://bit.ly/3c58g0H)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月06日  
