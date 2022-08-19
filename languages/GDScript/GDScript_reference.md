@@ -476,6 +476,8 @@ func _ready():
 #### SuperClass（基本クラス）の定義
 ```gdscript
 # res://SuperClass.gd（基本＝基底クラス）
+class_name SuperClass
+# 継承時に extends "res://SuperClass.gd" ではなく簡略できる
 
 # 疑似プライベート変数
 var __pSuper = "基本クラスのプロパティ"
@@ -496,8 +498,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 #### SubClassA（派生クラスＡ）の定義
 ```gdscript
 # res://SubClassA.gd（派生クラスＡ）
-extends "res://SuperClass.gd"
-class_name SubClassA
+class_name SubClassA extends SuperClass
 
 # 疑似プライベート変数
 var __pSubA = "派生クラスＡのプロパティ"
@@ -516,8 +517,7 @@ func _init():
 #### SubClassB（派生クラスＢ）の定義
 ```gdscript
 # res://SubClassB.gd（派生クラスＢ）
-extends "res://SuperClass.gd"
-class_name SubClassB
+class_name SubClassB extends SuperClass
 
 # 疑似プライベート変数
 var __pSubB = "派生クラスＢのプロパティ"
