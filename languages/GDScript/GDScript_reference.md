@@ -360,11 +360,10 @@ print(typeof(_tmp)) #-> 4（String型）
 <a name="クラス"></a>
 # <b>クラス</b>
 
-### 👉 クラスファイルを使う場合
+### 👉 クラスファイルを使う方法
 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
 
 #### クラスの定義
-
 ```gdscript
 # res://Rectangle.gd（クラスファイル）
 class_name Rectangle # ファイル名と別名でも可
@@ -390,7 +389,6 @@ func _init(w,h): # コンストラクタ
 ```
 
 #### 実行
-
 ```gdscript
 # res://main.gd
 extends Node3D
@@ -416,8 +414,7 @@ func _ready():
 	print(_rectangle.getArea()) #-> 2073600
 ```
 
-### 👉 内部クラスを使う場合
-
+### 👉 内部クラスを使う方法
 ```gdscript
 # res://main.gd
 extends Node3D
@@ -474,7 +471,10 @@ func _ready():
 # <b>基本クラスと派生クラス</b>
 クラスファイル（[ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)＝class キーワードは記述しない）を継承する方法  
 
-### 👉 SuperClass（基本クラス）
+### 👉 クラスファイルを継承する方法
+[.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html)になる（class キーワードは記述しない）  
+
+#### SuperClass（基本クラス）の定義
 ```gdscript
 # res://SuperClass.gd（基本＝基底クラス）
 
@@ -492,7 +492,7 @@ func _init():
 	pass
 ```
 
-### 👉 SubClassA（派生クラスＡ）
+#### SubClassA（派生クラスＡ）の定義
 ```gdscript
 # res://SubClassA.gd（派生クラスＡ）
 extends "res://SuperClass.gd"
@@ -512,7 +512,7 @@ func _init():
 	pass
 ```
 
-### 👉 SubClassB（派生クラスＢ）
+#### SubClassB（派生クラスＢ）の定義
 ```gdscript
 # res://SubClassB.gd（派生クラスＢ）
 extends "res://SuperClass.gd"
@@ -532,7 +532,7 @@ func _init():
 	print("派生クラスＢのコンストラクタ")
 ```
 
-### 👉 実行
+#### 実行
 ```gdscript
 # res://main.gd
 extends Node3D
