@@ -207,17 +207,12 @@ func _ready():
 <a name="TYPE_DICTIONARY"></a>
 ### 👉 辞書型（Dictionary） : 連想配列
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
 var _dic = {"A":"あ", "I":"い"}
-
-func _ready():
-	print(_dic) #-> True
-	print(typeof(_dic)) #-> 18（TYPE_ARRAY）
-	print(_dic is Dictionary) #-> True
+print(_dic) #-> {"A":"あ", "I":"い"}
+print(typeof(_dic)) #-> 27
+print(typeof(_dic) == TYPE_DICTIONARY) #-> true
+print(_dic is Dictionary) #-> true
 ```
-
 
 <a name="TYPE_ARRAY"></a>
 ### 👉 配列（Array）
