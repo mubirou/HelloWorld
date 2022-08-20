@@ -291,7 +291,7 @@ func _ready():
 	#print("X12Y34" as int) #-> Invalid cast: could not convert value to 'int'.
 	
 	var _hogeClass = HogeClass.new()
-	#print(_hogeClass as FugaClass) #-> Parser Error: Invalid cast. Cannot convert from "HogeClass" to "FugaClass".
+	#print(_hogeClass as FugaClass) #-> Parser Error
 
 class HogeClass:
 	pass
