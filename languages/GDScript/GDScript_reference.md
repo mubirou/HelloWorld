@@ -136,26 +136,21 @@ var _x = 1 + 1 # 〇〇〇〇〇
 <a name="TYPE_NIL"></a>
 ### 👉 null…内容がないことを示す定数
 ```gdscript
-print(_bool) #-> true
-print(typeof(_bool)) #-> 1（TYPE_BOOL）
-print(typeof(_bool) == TYPE_BOOL) #-> true
-print(_bool is bool) #-> true
+var _something
+print(_something) #-> null
+print(typeof(_something)) #-> 0
+print(typeof(_something) == TYPE_NIL) #-> true
+print(_something == null) #-> true
 ```
-
 
 <a name="TYPE_BOOL"></a>
 ### 👉 論理型（bool）
 * trueまたはfalse
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-var _bool = true #True/Falaseは不可
-
-func _ready():
-	print(_bool) #-> True
-	print(typeof(_bool)) #-> 1（TYPE_BOOL）
-	print(_bool is bool) #-> True
+print(_bool) #-> true
+print(typeof(_bool)) #-> 1
+print(typeof(_bool) == TYPE_BOOL) #-> true
+print(_bool is bool) #-> true
 ```
 
 
