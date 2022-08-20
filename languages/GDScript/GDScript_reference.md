@@ -179,17 +179,12 @@ print(_float is float) #-> true
 <a name="TYPE_STRING"></a>
 ### 👉 文字列（String）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
 var _string = "あいうえお" # '〇〇'でも可
-
-func _ready():
-	print(_string) #-> あいうえお
-	print(typeof(_string)) #-> 4（TYPE_STRING）
-	print(_string is String) #-> True
+print(_string) #-> あいうえお
+print(typeof(_string)) #-> 4
+print(typeof(_string) == TYPE_STRING) #-> true
+print(_string is String) #-> true
 ```
-
 
 <a name="TYPE_OBJECT"></a>
 ### 👉 クラス（Object）
