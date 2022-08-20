@@ -300,20 +300,17 @@ class FugaClass:
 	pass
 ```
 
-***
-### この項目は書きかけです
-
 ###  👉 データ型のキャスト（数値 ⇔ bool型）
 ```gdscript
 # 数値（int）型 → bool型
 var _tmp = bool(1)
-print(_tmp) #-> Trye
-print(typeof(_tmp)) #-> 1（bool型）
+print(_tmp) #-> true
+print(typeof(_tmp)) #-> 1（== TYPE_BOOL）
 
 # bool型 → 数値（int）型
 _tmp = int(true)
 print(_tmp) #-> 1
-print(typeof(_tmp)) #-> 2（int型）
+print(typeof(_tmp)) #-> 2（== TYPE_INT）
 ```
 
 ###  👉 データ型のキャスト（数値 ⇔ String型）
