@@ -315,14 +315,14 @@ print(typeof(_tmp)) #-> 2（== TYPE_INT）
 
 ###  👉 データ型のキャスト（数値 ⇔ String型）
 
-* String型 → 数値（int）型（⚠ 要調査）
+* **String → int 型** （⚠ 要調査）
 ```gdscript
 var _tmp = int("001") #-> ⚠ エラー
 #print(_tmp) #-> 1
 #print(typeof(_tmp)) #-> 2（int型）
 ```
 
-* 数値（int）型 → String型
+* **int → String 型**
 ```gdscript
 var _tmp = str(100)
 print(_tmp) #-> "100"
