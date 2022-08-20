@@ -134,7 +134,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 参考：[GODOT DOCS（**Variant.Type**）](https://bit.ly/3KazmjS)  
 
 <a name="TYPE_NIL"></a>
-### null…内容がないことを示す定数
+### 👉 null…内容がないことを示す定数
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -149,7 +149,7 @@ func _ready():
 
 
 <a name="TYPE_BOOL"></a>
-### 論理型（bool）
+### 👉 論理型（bool）
 * trueまたはfalse
 ```gdscript
 #Main.gd
@@ -165,7 +165,7 @@ func _ready():
 
 
 <a name="TYPE_INT"></a>
-### 整数型（int）
+### 👉 整数型（int）
 * 約±922京まで扱えます
 ```gdscript
 #Main.gd
@@ -182,7 +182,7 @@ func _ready():
 
 
 <a name="TYPE_FLOAT"></a>
-### 浮動小数点数（float）
+### 👉 浮動小数点数（float）
 * 小数点第6桁まで
 ```gdscript
 #Main.gd
@@ -198,7 +198,7 @@ func _ready():
 
 
 <a name="TYPE_STRING"></a>
-### 文字列（String）
+### 👉 文字列（String）
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -214,7 +214,7 @@ func _ready():
 
 
 <a name="TYPE_OBJECT"></a>
-### クラス（Object）
+### 👉 クラス（Object）
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -231,7 +231,7 @@ func _ready():
 
 
 <a name="TYPE_DICTIONARY"></a>
-### 辞書型（Dictionary） : 連想配列
+### 👉 辞書型（Dictionary） : 連想配列
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -247,7 +247,7 @@ func _ready():
 
 
 <a name="TYPE_ARRAY"></a>
-### 配列（Array）
+### 👉 配列（Array）
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
