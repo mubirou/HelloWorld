@@ -278,29 +278,16 @@ class MyClass:
 	pass
 ```
 
+###  👉 as 演算子
+* Godot 3.x と異なり失敗するとエラーになる
+```gdscript
+print(1 as bool) #-> True
+#print("123" as int) #-> Invalid cast: could not convert value to 'int'.
+#print("X12Y34" as int) #-> Invalid cast: could not convert value to 'int'.
+```
+
 ***
 ### この項目は書きかけです
-
-###  👉 as 演算子
-* キャスト成功時に変換後の値が、失敗すると Null が返される
-```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	print(1 as bool) #-> True
-	print("123" as int) #-> 123（int型）
-	print("X12Y34" as int) #-> 1234（int型）
-	
-	var _hogeClass = HogeClass.new()
-	print(_hogeClass as FugaClass) #-> Null
-
-class HogeClass:
-	pass
-
-class FugaClass:
-	pass
-```
 
 ###  👉 データ型のキャスト（数値 ⇔ bool型）
 ```gdscript
