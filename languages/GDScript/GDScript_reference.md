@@ -106,7 +106,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |1|[bool](https://bit.ly/3QGNq6Y)（[**論理型**](#TYPE_BOOL)）|TYPE_BOOL|
 |2|[int](https://bit.ly/3c8lGZX)（[**整数型**](#TYPE_INT)）|TYPE_INT|
 |3|[float](https://bit.ly/3dIQhxN)（[**浮動小数点数**](#TYPE_FLOAT)）|TYPE_FLOAT|
-|4|[String](https://bit.ly/3cbXwOk)[**文字列**](#TYPE_STRING)）|TYPE_STRING|
+|4|[String](https://bit.ly/3cbXwOk)（[**文字列**](#TYPE_STRING)）|TYPE_STRING|
 |5|TYPE_VECTOR2||
 |6|TYPE_VECTOR2I||
 |7|TYPE_RECT2||
