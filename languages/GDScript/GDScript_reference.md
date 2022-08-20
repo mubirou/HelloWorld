@@ -102,11 +102,11 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 |番号|TYPE_*|内容|
 |:--:|:--|:--|
-|**0**|[null](https://bit.ly/3K8PxOu)（[**内容がない**](#TYPE_NIL)）|TYPE_NIL|
-|**1**|[TYPE_BOOL](#TYPE_BOOL)|[bool](https://bit.ly/3QGNq6Y)|
-|**2**|[TYPE_INT](#TYPE_INT)|[int](https://bit.ly/3c8lGZX)|
-|**3**|[TYPE_FLOAT](#TYPE_FLOAT)|float|
-|**4**|[TYPE_STRING](#TYPE_STRING)||
+|0|[null](https://bit.ly/3K8PxOu)（[**内容がない**](#TYPE_NIL)）|TYPE_NIL|
+|1|[TYPE_BOOL](#TYPE_BOOL)|[bool](https://bit.ly/3QGNq6Y)|
+|2|[TYPE_INT](#TYPE_INT)|[int](https://bit.ly/3c8lGZX)|
+|3|[TYPE_FLOAT](#TYPE_FLOAT)|float|
+|4|[TYPE_STRING](#TYPE_STRING)||
 |5|TYPE_VECTOR2||
 |6|TYPE_VECTOR2I||
 |7|TYPE_RECT2||
@@ -126,11 +126,11 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |21|TYPE_STRING_NAME||
 |22|TYPE_NODE_PATH||
 |23|TYPE_RID||
-|**24**|[TYPE_OBJECT](#TYPE_OBJECT)||
+|24|[TYPE_OBJECT](#TYPE_OBJECT)||
 |25|TYPE_CALLABLE||
 |26|TYPE_SIGNAL||
-|**27**|[TYPE_DICTIONARY](#TYPE_DICTIONARY)||
-|**28**|[TYPE_ARRAY](#TYPE_ARRAY)||
+|27|[TYPE_DICTIONARY](#TYPE_DICTIONARY)||
+|28|[TYPE_ARRAY](#TYPE_ARRAY)||
 |29|TYPE_PACKED_BYTE_ARRAY||
 |30|TYPE_PACKED_INT32_ARRAY||
 |31|TYPE_PACKED_INT64_ARRAY||
