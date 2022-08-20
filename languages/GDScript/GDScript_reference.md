@@ -8,7 +8,7 @@
 
 * Hello,world! （~~[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)~~ / ~~[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)~~）
 * [コメントアウト](#コメントアウト)
-* ~~[データ型](#データ型)~~
+* [データ型](#データ型)
 * ~~[データ型の操作](#データ型の操作)~~
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
@@ -83,8 +83,6 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 <a name="データ型"></a>
 # <b>データ型</b>
-
-### この項目は書きかけです
 
 <a name="typeof()の戻り値一覧"></a>
 ### [typeof()](#typeof()関数) の戻り値一覧  
@@ -228,7 +226,7 @@ print(_array is Array) #-> true
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月03日  
-更新日：2022年08月XX日  
+更新日：2022年08月20日  
 [[TOP](#TOP)]
 
 
