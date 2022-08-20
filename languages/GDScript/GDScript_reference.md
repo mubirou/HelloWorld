@@ -130,7 +130,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |25|TYPE_CALLABLE||
 |26|TYPE_SIGNAL||
 |27|[Dictionary](https://bit.ly/3T4BZYb)（[**辞書型･連想配列**](#TYPE_DICTIONARY)）|TYPE_DICTIONARY|
-|28|[TYPE_ARRAY](#TYPE_ARRAY)||
+|28|[Array](https://bit.ly/3CrSTtU)（[**配列**](#TYPE_ARRAY)）|TYPE_ARRAY|
 |29|TYPE_PACKED_BYTE_ARRAY||
 |30|TYPE_PACKED_INT32_ARRAY||
 |31|TYPE_PACKED_INT64_ARRAY||
