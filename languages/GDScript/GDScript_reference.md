@@ -280,6 +280,8 @@ class MyClass:
 	pass
 ```
 
+**
+
 ###  👉 as 演算子
 * キャスト成功時に変換後の値が、失敗すると Null が返される
 ```gdscript
