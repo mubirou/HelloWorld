@@ -260,20 +260,21 @@ class MyClass:
 ###  👉 is 演算子
 * データ型を判断する（[データ型一覧](#typeof()の戻り値一覧)）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# res://main.gd
+extends Node3D
+……
 func _ready():
-	print(true is bool) #-> True
-	print(100 is int) #-> True
-	print(0.1 is float) #-> True
-	print("1" is String) #-> True
-	print(["A", "B", "C"] is Array) #-> True
-	print({"ICHIRO":54, "HANAKO":"15"} is Dictionary) #-> True
+	……
+	print(true is bool) #-> true
+	print(100 is int) #-> true
+	print(0.1 is float) #-> true
+	print("1" is String) #-> true
+	print(["A", "B", "C"] is Array) #-> true
+	print({"ICHIRO":54, "HANAKO":"15"} is Dictionary) #-> true
 
 	var _myClass = MyClass.new()
-	print(_myClass is Object) #-> True
-	print(_myClass is MyClass) #-> True
+	print(_myClass is Object) #-> true
+	print(_myClass is MyClass) #-> true
 
 class MyClass:
 	pass
