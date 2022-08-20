@@ -232,29 +232,32 @@ print(_array is Array) #-> true
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
+### この項目は書きかけです
+
 <a name="typeof()関数"></a>
 
-### typeof() 関数
+### 👉 typeof() 関数
 * データ型を返す（[戻り値一覧](#typeof()の戻り値一覧)）
 
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# res://main.gd
+extends Node3D
+……
 func _ready():
-	print(typeof(true)) #-> 1（TYPE_BOOL）
-	print(typeof(100)) #-> 2（TYPE_INT）
-	print(typeof(0.1)) #-> 3（TYPE_REAL）
-	print(typeof("1")) #-> 4（TYPE_STRING）
-	print(typeof(["A", "B", "C"])) #-> 19（TYPE_ARRAY）
-	print(typeof({"ICHIRO":54, "HANAKO":"15"})) #-> 18（TYPE_ARRAY）
-	print(typeof(MyClass.new())) #-> 17(TYPE_OBJECT)
+	……
+	print(typeof(true)) #-> 1（== TYPE_BOOL）
+	print(typeof(100)) #-> 2（== TYPE_INT）
+	print(typeof(0.1)) #-> 3（== TYPE_FLOAT）
+	print(typeof("1")) #-> 4（== TYPE_STRING）
+	print(typeof(["A", "B", "C"])) #-> 28（== TYPE_ARRAY）
+	print(typeof({"ICHIRO":54, "HANAKO":"15"})) #-> 27（== TYPE_DICTIONARY）
+	print(typeof(MyClass.new())) #-> 24（== TYPE_OBJECT）
 
 class MyClass:
 	pass
 ```
 
-### is 演算子
+###  👉 is 演算子
 * データ型を判断する
 ```gdscript
 #Main.gd
@@ -276,7 +279,7 @@ class MyClass:
 	pass
 ```
 
-### as 演算子
+###  👉 as 演算子
 * キャスト成功時に変換後の値が、失敗すると Null が返される
 ```gdscript
 #Main.gd
@@ -297,7 +300,7 @@ class FugaClass:
 	pass
 ```         
 
-### データ型のキャスト（数値 ⇔ bool型）
+###  👉 データ型のキャスト（数値 ⇔ bool型）
 ```gdscript
 # 数値（int）型 → bool型
 var _tmp = bool(1)
@@ -310,7 +313,7 @@ print(_tmp) #-> 1
 print(typeof(_tmp)) #-> 2（int型）
 ```
 
-### データ型のキャスト（数値 ⇔ String型）
+###  👉 データ型のキャスト（数値 ⇔ String型）
 ```gdscript
 # String型 → 数値（int）型
 var _tmp = int("001")
@@ -325,9 +328,10 @@ print(typeof(_tmp)) #-> 4（String型）
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_format_string.html#placeholder-types)（String型の〇進数変換）  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月13日  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
