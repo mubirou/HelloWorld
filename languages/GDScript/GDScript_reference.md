@@ -258,7 +258,7 @@ class MyClass:
 ```
 
 ###  👉 is 演算子
-* データ型を判断する
+* データ型を判断する（[データ型](#typeof()の戻り値一覧)）
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -298,7 +298,7 @@ class HogeClass:
 
 class FugaClass:
 	pass
-```         
+```
 
 ###  👉 データ型のキャスト（数値 ⇔ bool型）
 ```gdscript
