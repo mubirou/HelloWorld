@@ -169,17 +169,12 @@ print(_int is int) #-> true
 ### 👉 浮動小数点数（float）
 * 小数点第6桁まで
 ```gdscript
-#Main.gd
-extends Spatial
-
 var _float = 3.141592653589793238462643383279502884197169399375105820974944592307816406286
-
-func _ready():
-	print(_float) #-> 3.141593（小数点第6桁まで）
-	print(typeof(_float)) #-> 3（TYPE_REAL）
-	print(_float is float) #-> True
+print(_float) #-> 3.14159265358979（小数点第14桁まで）
+print(typeof(_float)) #-> 3
+print(typeof(_float) == TYPE_FLOAT) #-> true
+print(_float is float) #-> true
 ```
-
 
 <a name="TYPE_STRING"></a>
 ### 👉 文字列（String）
