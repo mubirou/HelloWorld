@@ -485,7 +485,7 @@ func mSubA(): # 関数
 	return "派生クラスＡのメソッド"
 
 func _init():
-	pass
+	print("SubClassA._init()")
 ```
 
 #### SubClassB（派生クラスＢ）の定義
@@ -504,7 +504,7 @@ func mSubB(): # 関数
 	return "派生クラスＢのメソッド"
 
 func _init():
-	pass
+	print("SubClassB._init()")
 ```
 
 #### 実行
@@ -515,7 +515,7 @@ extends Node3D
 func _ready():
 	……
 	load("res://SubClassA.gd")
-	var _subClassA = SubClassA.new()
+	var _subClassA = SubClassA.new() #-> SubClassA._init()
 	print(_subClassA) #-> [RefCounted:-9223372011789614097]
 	print(_subClassA is SubClassA) #-> true（＝SubClassA型）
 	print(_subClassA is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
@@ -525,7 +525,7 @@ func _ready():
 	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
 	
 	load("res://SubClassB.gd")
-	var _subClassB = SubClassB.new()
+	var _subClassB = SubClassB.new() #-> SubClassB._init()
 	print(_subClassB) #-> [RefCounted:-9223372011772836883]
 	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
 	print(_subClassB is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
@@ -572,7 +572,7 @@ class SubClassA extends SuperClass:
 		return "派生クラスＡのメソッド"
 
 	func _init():
-		pass
+		print("SubClassA._init()")
 
 #================================
 # SubClassB（派生クラスＢ）の定義
@@ -589,14 +589,14 @@ class SubClassB extends SuperClass:
 		return "派生クラスＢのメソッド"
 
 	func _init():
-		pass
+		print("SubClassB._init()")
 
 #=====
 # 実行
 #=====
 func _ready():
 	……
-	var _subClassA = SubClassA.new()
+	var _subClassA = SubClassA.new() #-> SubClassA._init()
 	print(_subClassA) #-> [RefCounted:-9223372012041272799]
 	print(_subClassA is SubClassA) #-> true（＝SubClassA型）
 	print(_subClassA is SuperClass) #-> true（＝SuperClass型）
@@ -605,7 +605,7 @@ func _ready():
 	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
 	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
 
-	var _subClassB = SubClassB.new()
+	var _subClassB = SubClassB.new() #-> SubClassB._init()
 	print(_subClassB) #-> [RefCounted:-9223372012024495730]
 	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
 	print(_subClassB is SuperClass) #-> true（＝SuperClass型）
