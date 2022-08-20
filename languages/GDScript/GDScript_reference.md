@@ -222,7 +222,7 @@ print(_array is Array) #-> true
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
-参考：[GODOT DOCS（**Variant.Type**）](https://bit.ly/3KazmjS)  
+参考：[GODOT DOCS（**Variant.Type**）](https://bit.ly/3K6kGSC)  
 作成者：夢寐郎  
 作成日：2022年01月03日  
 更新日：2022年08月20日  
