@@ -279,7 +279,7 @@ class MyClass:
 ```
 
 ###  👉 as 演算子
-* Godot 3.x と異なり失敗するとエラーになる（要調査）
+* Godot 3.x と異なり失敗するとエラーになる（**要調査**）
 ```gdscript
 # res://main.gd
 extends Node3D
@@ -315,7 +315,7 @@ print(typeof(_tmp)) #-> 2（== TYPE_INT）
 
 ###  👉 データ型のキャスト（数値 ⇔ String型）
 
-* **String → int 型** （ [**int(String from) が無い**](https://bit.ly/3AAB4aZ)）
+* **String → int 型** （ [**int(String from) が無い**](https://bit.ly/3AAB4aZ)＝**要調査**）
 ```gdscript
 var _tmp = int("001") #-> ⚠ Parser Error
 #print(_tmp) #-> 1
