@@ -318,8 +318,8 @@ print(typeof(_tmp)) #-> 2（== TYPE_INT）
 * **String → int 型** （ [**int(String from) が無い**](https://bit.ly/3AAB4aZ)＝**要調査**）
 ```gdscript
 var _tmp = int("001") #-> ⚠ Parser Error
-#print(_tmp) #-> 1
-#print(typeof(_tmp)) #-> 2（int型）
+#print(_tmp)
+#print(typeof(_tmp))
 ```
 
 * **int → String 型**
