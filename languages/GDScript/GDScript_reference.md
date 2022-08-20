@@ -189,19 +189,20 @@ print(_string is String) #-> true
 <a name="TYPE_OBJECT"></a>
 ### 👉 クラス（Object）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# res://main.gd
+extends Node3D
+……
 class MyClass: #前方宣言でなくてもよい
 	pass
 
 func _ready():
+	……
 	var _myClass = MyClass.new()
-	print(_myClass) #-> TYPE_OBJECT
-	print(typeof(_myClass)) #-> 17(TYPE_OBJECT)
-	print(_myClass is Object) #-> True
+	print(_myClass) #-> [RefCounted:-92233720120XXXXXXXX]
+	print(typeof(_myClass)) #-> 24
+	print(typeof(_myClass) == TYPE_OBJECT) #-> true
+	print(_myClass is Object) #-> true
 ```
-
 
 <a name="TYPE_DICTIONARY"></a>
 ### 👉 辞書型（Dictionary） : 連想配列
