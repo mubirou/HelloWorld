@@ -154,22 +154,16 @@ print(typeof(_bool) == TYPE_BOOL) #-> true
 print(_bool is bool) #-> true
 ```
 
-
 <a name="TYPE_INT"></a>
 ### 👉 整数型（int）
 * 約±922京まで扱えます
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
 var _int = 9223372036854775807 # ±9223372036854775807まで扱える
-
-func _ready():
-	print(_int) #-> 9223372036854775807
-	print(typeof(_int)) #-> 2（TYPE_INT）
-	print(_int is int) #-> True
+print(_int) #-> 9223372036854775807
+print(typeof(_int)) #-> 2
+print(typeof(_int) == TYPE_INT) #-> true
+print(_int is int) #-> true
 ```
-
 
 <a name="TYPE_FLOAT"></a>
 ### 👉 浮動小数点数（float）
