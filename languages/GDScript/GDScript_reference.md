@@ -147,6 +147,7 @@ print(_something == null) #-> true
 ### 👉 論理型（bool）
 * trueまたはfalse
 ```gdscript
+var _bool = true # True/Falaseは不可
 print(_bool) #-> true
 print(typeof(_bool)) #-> 1
 print(typeof(_bool) == TYPE_BOOL) #-> true
@@ -168,7 +169,6 @@ func _ready():
 	print(typeof(_int)) #-> 2（TYPE_INT）
 	print(_int is int) #-> True
 ```
-[[データ型TOP](#データ型)]
 
 
 <a name="TYPE_FLOAT"></a>
@@ -200,7 +200,6 @@ func _ready():
 	print(typeof(_string)) #-> 4（TYPE_STRING）
 	print(_string is String) #-> True
 ```
-[[データ型TOP](#データ型)]
 
 
 <a name="TYPE_OBJECT"></a>
@@ -233,7 +232,6 @@ func _ready():
 	print(typeof(_dic)) #-> 18（TYPE_ARRAY）
 	print(_dic is Dictionary) #-> True
 ```
-[[データ型TOP](#データ型)]
 
 
 <a name="TYPE_ARRAY"></a>
