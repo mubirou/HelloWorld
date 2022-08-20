@@ -313,13 +313,19 @@ print(_tmp) #-> 1
 print(typeof(_tmp)) #-> 2（== TYPE_INT）
 ```
 
-###  👉 データ型のキャスト（数値 ⇔ String型）
+###  👉 データ型のキャスト（数値 ⇔ String 型）
 
-* **String → int 型** （ [**int(String from) が無い**](https://bit.ly/3AAB4aZ)＝**要調査**）
+* **文字列 → 数値**
+* ⚠ Godot 4.0 では **int("〇〇")** は不可（[参考]((https://bit.ly/3AAB4aZ))）
+* [String → 整数] は [**String.to_int()**](https://bit.ly/3PEn1oX)
+* [String → 浮動小数点数] は [**String.to_float()](https://bit.ly/3QFiILz)
+
 ```gdscript
-var _tmp = int("001") #-> ⚠ Parser Error
-#print(_tmp)
-#print(typeof(_tmp))
+print("001".to_int()) #-> 1
+print("X12Y34".to_int()) #-> 1234
+
+var _string = "3.141592653589793238462643383279502884197169399375105820974944592307816406286"
+print(_string.to_float()) #-> 3.14159265358979（小数点第14桁まで）
 ```
 
 * **int → String 型**
