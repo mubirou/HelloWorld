@@ -316,9 +316,9 @@ print(typeof(_tmp)) #-> 2（== TYPE_INT）
 ###  👉 データ型のキャスト（数値 ⇔ String 型）
 
 * **文字列 → 数値**
-* ⚠ Godot 4.0 では **int("〇〇")** は不可（[参考]((https://bit.ly/3AAB4aZ))）
-* [String → 整数] は [**String.to_int()**](https://bit.ly/3PEn1oX)
-* [String → 浮動小数点数] は [**String.to_float()](https://bit.ly/3QFiILz)
+	* ⚠ Godot 4.0 では **int("〇〇")** は不可（[参考]((https://bit.ly/3AAB4aZ))）
+	* [String → 整数] は [**String.to_int()**](https://bit.ly/3PEn1oX)
+	* [String → 浮動小数点数] は [**String.to_float()](https://bit.ly/3QFiILz)
 
 ```gdscript
 print("001".to_int()) #-> 1
