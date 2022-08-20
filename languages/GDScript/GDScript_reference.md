@@ -136,16 +136,11 @@ var _x = 1 + 1 # 〇〇〇〇〇
 <a name="TYPE_NIL"></a>
 ### 👉 null…内容がないことを示す定数
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _ready():
-	var _something
-	print(_something) #Null
-	print(typeof(_something)) #-> 0（TYPE_NIL）
-	print(_something == null) #-> True
+print(_bool) #-> true
+print(typeof(_bool)) #-> 1（TYPE_BOOL）
+print(typeof(_bool) == TYPE_BOOL) #-> true
+print(_bool is bool) #-> true
 ```
-[[データ型TOP](#データ型)]
 
 
 <a name="TYPE_BOOL"></a>
