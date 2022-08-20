@@ -217,17 +217,12 @@ print(_dic is Dictionary) #-> true
 <a name="TYPE_ARRAY"></a>
 ### 👉 配列（Array）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
 var _array = ["A", "I", "U"]
-
-func _ready():
-	print(_array) #-> True
-	print(typeof(_array)) #-> 19（TYPE_ARRAY）
-	print(_array is Array) #-> True
-```
-他にもさまざまな配列あり  
+print(_array) #-> ["A", "I", "U"]
+print(typeof(_array)) #-> 28
+print(typeof(_array) == TYPE_ARRAY) #-> true
+print(_array is Array) #-> true
+``` 
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
