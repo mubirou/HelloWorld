@@ -102,7 +102,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 |番号|TYPE_*|内容|
 |:--:|:--|:--|
-|**0**|[null](https://bit.ly/3K8PxOu)（[内容がない](#TYPE_NIL)）|TYPE_NIL|
+|**0**|[null](https://bit.ly/3K8PxOu)（[**内容がない**](#TYPE_NIL)）|TYPE_NIL|
 |**1**|[TYPE_BOOL](#TYPE_BOOL)|[bool](https://bit.ly/3QGNq6Y)|
 |**2**|[TYPE_INT](#TYPE_INT)|[int](https://bit.ly/3c8lGZX)|
 |**3**|[TYPE_FLOAT](#TYPE_FLOAT)|float|
