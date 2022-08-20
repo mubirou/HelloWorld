@@ -315,9 +315,9 @@ print(typeof(_tmp)) #-> 2（== TYPE_INT）
 
 ###  👉 データ型のキャスト（数値 ⇔ String型）
 
-* **String → int 型** （ [int(String from) が無い](https://bit.ly/3AAB4aZ)）
+* **String → int 型** （ [**int(String from) が無い**](https://bit.ly/3AAB4aZ)）
 ```gdscript
-var _tmp = int("001") #-> ⚠ エラー
+var _tmp = int("001") #-> ⚠ Parser Error
 #print(_tmp) #-> 1
 #print(typeof(_tmp)) #-> 2（int型）
 ```
