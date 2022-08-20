@@ -279,7 +279,7 @@ class MyClass:
 ```
 
 ###  👉 as 演算子
-* Godot 3.x と異なり失敗するとエラーになる（要調査）
+* Godot 3.x と異なり失敗するとエラーになる（使い道なさそう…要調査）
 ```gdscript
 # res://main.gd
 extends Node3D
