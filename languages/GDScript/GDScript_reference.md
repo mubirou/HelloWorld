@@ -100,7 +100,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 * [typeof()](#typeof()関数) の戻り値一覧  
 
-|番号|内容|TYPE_*|
+|番号|データ型の種類|TYPE_*|
 |:--:|:--|:--|
 |0|[null](https://bit.ly/3K8PxOu)（[**内容がない**](#TYPE_NIL)）|TYPE_NIL|
 |1|[TYPE_BOOL](#TYPE_BOOL)|[bool](https://bit.ly/3QGNq6Y)|
