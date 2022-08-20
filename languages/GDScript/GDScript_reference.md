@@ -129,8 +129,6 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |37|[PackedColorArray](https://bit.ly/3CfYlA3)|TYPE_PACKED_COLOR_ARRAY|
 |38|[Variant.Type](https://bit.ly/3c9GDno)|TYPE_MAX|
 
-参考：[GODOT DOCS（**Variant.Type**）](https://bit.ly/3KazmjS)  
-
 <a name="TYPE_NIL"></a>
 ### 👉 null…内容がないことを示す定数
 ```gdscript
@@ -224,6 +222,7 @@ print(_array is Array) #-> true
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
+参考：[GODOT DOCS（**Variant.Type**）](https://bit.ly/3KazmjS)  
 作成者：夢寐郎  
 作成日：2022年01月03日  
 更新日：2022年08月20日  
