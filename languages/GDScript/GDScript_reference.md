@@ -91,11 +91,11 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 |番号|データ型|内容|TYPE_*|
 |:--:|:--|:--|:--|
-|0|[null](https://bit.ly/3K8PxOu)|[**内容がない**](#TYPE_NIL)|TYPE_NIL|
-|1|[bool](https://bit.ly/3QGNq6Y)|[**論理型**](#TYPE_BOOL)|TYPE_BOOL|
-|2|[int](https://bit.ly/3c8lGZX)|[**整数型**](#TYPE_INT)|TYPE_INT|
-|3|[float](https://bit.ly/3dIQhxN)|[**浮動小数点数**](#TYPE_FLOAT)|TYPE_FLOAT|
-|4|[String](https://bit.ly/3cbXwOk)|[**文字列**](#TYPE_STRING)|TYPE_STRING|
+|0|[null](https://bit.ly/3K8PxOu)|TYPE_NIL|[**内容がない**](#TYPE_NIL)|
+|1|[bool](https://bit.ly/3QGNq6Y)|TYPE_BOOL|[**論理型**](#TYPE_BOOL)|
+|2|[int](https://bit.ly/3c8lGZX)|TYPE_INT|[**整数型**](#TYPE_INT)|
+|3|[float](https://bit.ly/3dIQhxN)|TYPE_FLOAT|[**浮動小数点数**](#TYPE_FLOAT)|
+|4|[String](https://bit.ly/3cbXwOk)|TYPE_STRING|[**文字列**](#TYPE_STRING)|
 |5|[Vector2]()|TYPE_VECTOR2|
 |6|[Vector2i]()|TYPE_VECTOR2I|
 |7|[Rect2]()|TYPE_RECT2|
@@ -115,11 +115,11 @@ var _x = 1 + 1 # 〇〇〇〇〇
 |21|[StringName]()|TYPE_STRING_NAME|
 |22|[NodePath]()|TYPE_NODE_PATH|
 |23|[RID]()|TYPE_RID|
-|24|[Object](https://bit.ly/3PCb2IC)|[**クラス**](#TYPE_OBJECT)|TYPE_OBJECT|
+|24|[Object](https://bit.ly/3PCb2IC)|TYPE_OBJECT|[**クラス**](#TYPE_OBJECT)|
 |25|[Callable]()|TYPE_CALLABLE|
 |26|[Signal]()|TYPE_SIGNAL|
-|27|[Dictionary](https://bit.ly/3T4BZYb)|[**辞書型･連想配列**](#TYPE_DICTIONARY)|TYPE_DICTIONARY|
-|28|[Array](https://bit.ly/3CrSTtU)|[**配列**](#TYPE_ARRAY)|TYPE_ARRAY|
+|27|[Dictionary](https://bit.ly/3T4BZYb)|TYPE_DICTIONARY|[**辞書型･連想配列**](#TYPE_DICTIONARY)|
+|28|[Array](https://bit.ly/3CrSTtU)|TYPE_ARRAY|[**配列**](#TYPE_ARRAY)|
 |29|[PackedByteArray]()|TYPE_PACKED_BYTE_ARRAY|
 |30|[PackedInt32Array]()|TYPE_PACKED_INT32_ARRAY|
 |31|[PackedInt64Array]()|TYPE_PACKED_INT64_ARRAY|
