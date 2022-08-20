@@ -314,16 +314,32 @@ print(typeof(_tmp)) #-> 2（== TYPE_INT）
 ```
 
 ###  👉 データ型のキャスト（数値 ⇔ String型）
-```gdscript
-# String型 → 数値（int）型
-var _tmp = int("001")
-print(_tmp) #-> 1
-print(typeof(_tmp)) #-> 2（int型）
 
-# 数値（int）型 → String型
-_tmp = str(100)
+* String型 → 数値（int）型（⚠ 要調査）
+```gdscript
+var _tmp = int("001") #-> ⚠ エラー
+#print(_tmp) #-> 1
+#print(typeof(_tmp)) #-> 2（int型）
+```
+
+* 数値（int）型 → String型
+```gdscript
+var _tmp = str(100)
 print(_tmp) #-> "100"
-print(typeof(_tmp)) #-> 4（String型）
+print(typeof(_tmp)) #-> 4（== TYPE_STRING）
+```
+
+### 👉 基数変換
+* ◯進数→2進数
+```gdscript
+# 10進数（6）を2進数（"110"）に変換
+```
+
+* ◯進数→16進数
+```gdscript
+# 10進数（29）を16進数（"1d"）に変換
+
+# 2進数（"11101"）を16進数（"1d"）に変換
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)]  
