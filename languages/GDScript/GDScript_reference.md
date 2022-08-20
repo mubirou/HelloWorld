@@ -281,9 +281,23 @@ class MyClass:
 ###  👉 as 演算子
 * Godot 3.x と異なり失敗するとエラーになる（要調査）
 ```gdscript
-print(1 as bool) #-> True
-#print("123" as int) #-> Invalid cast: could not convert value to 'int'.
-#print("X12Y34" as int) #-> Invalid cast: could not convert value to 'int'.
+# res://main.gd
+extends Node3D
+……
+func _ready():
+	……
+	print(1 as bool) #-> True
+	#print("123" as int) #-> Invalid cast: could not convert value to 'int'.
+	#print("X12Y34" as int) #-> Invalid cast: could not convert value to 'int'.
+	
+	var _hogeClass = HogeClass.new()
+	#print(_hogeClass as FugaClass) #-> Parser Error: Invalid cast. Cannot convert from "HogeClass" to "FugaClass".
+
+class HogeClass:
+	pass
+
+class FugaClass:
+	pass
 ```
 
 ***
