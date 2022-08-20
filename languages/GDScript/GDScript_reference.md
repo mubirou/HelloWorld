@@ -100,10 +100,11 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 * [typeof()](#typeof()関数) の戻り値一覧  
 
-|TYPE_*|番号|TYPE_*|番号|TYPE_*|番号|
+|TYPE_*|番号|内容|TYPE_*|番号|内容|
 |:--|:--:|:--|:--:|:--|:--:|
-|[TYPE_NIL](#TYPE_NIL)|**0**|[TYPE_BOOL](#TYPE_BOOL)|**1**|[TYPE_INT](#TYPE_INT)|**2**|
-|[TYPE_FLOAT](#TYPE_FLOAT)|**3**|[TYPE_STRING](#TYPE_STRING)|**4**|TYPE_VECTOR2|5|
+|[TYPE_NIL](#TYPE_NIL)|**0**|null|[TYPE_BOOL](#TYPE_BOOL)|**1**|bool|
+[TYPE_INT](#TYPE_INT)|**2**|int|[TYPE_FLOAT](#TYPE_FLOAT)|**3**|float|
+[TYPE_STRING](#TYPE_STRING)|**4**|TYPE_VECTOR2|5|
 |TYPE_VECTOR2I|6|TYPE_RECT2|7|TYPE_RECT2I|8|
 |TYPE_VECTOR3|9|TYPE_VECTOR3I|10|TYPE_TRANSFORM2D|11|
 |TYPE_VECTOR4|12|TYPE_VECTOR4I|13|TYPE_PLANE|14|
