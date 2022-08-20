@@ -87,7 +87,6 @@ var _x = 1 + 1 # 〇〇〇〇〇
 ### この項目は書きかけです
 
 <a name="typeof()の戻り値一覧"></a>
-
 ### [typeof()](#typeof()関数) の戻り値一覧  
 
 |番号|データ型の種類|TYPE_*|
@@ -134,9 +133,23 @@ var _x = 1 + 1 # 〇〇〇〇〇
 
 参考：[GODOT DOCS（**Variant.Type**）](https://bit.ly/3KazmjS)  
 
-<a name="TYPE_BOOL"></a>
+<a name="TYPE_NIL"></a>
+### null…内容がないことを示す定数
+```gdscript
+#Main.gd
+extends Spatial #2Dの場合はNode2D
 
-### ➀論理型（bool）
+func _ready():
+	var _something
+	print(_something) #Null
+	print(typeof(_something)) #-> 0（TYPE_NIL）
+	print(_something == null) #-> True
+```
+[[データ型TOP](#データ型)]
+
+
+<a name="TYPE_BOOL"></a>
+### 論理型（bool）
 * trueまたはfalse
 ```gdscript
 #Main.gd
@@ -152,8 +165,7 @@ func _ready():
 
 
 <a name="TYPE_INT"></a>
-
-### ➁整数型（int）
+### 整数型（int）
 * 約±922京まで扱えます
 ```gdscript
 #Main.gd
@@ -170,8 +182,7 @@ func _ready():
 
 
 <a name="TYPE_FLOAT"></a>
-
-### ➂浮動小数点数（float）
+### 浮動小数点数（float）
 * 小数点第6桁まで
 ```gdscript
 #Main.gd
@@ -187,8 +198,7 @@ func _ready():
 
 
 <a name="TYPE_STRING"></a>
-
-### ➃文字列（String）
+### 文字列（String）
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -203,43 +213,8 @@ func _ready():
 [[データ型TOP](#データ型)]
 
 
-<a name="TYPE_ARRAY"></a>
-
-### ➄配列（Array）
-```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-var _array = ["A", "I", "U"]
-
-func _ready():
-	print(_array) #-> True
-	print(typeof(_array)) #-> 19（TYPE_ARRAY）
-	print(_array is Array) #-> True
-```
-他にもさまざまな配列あり  
-
-
-<a name="TYPE_DICTIONARY"></a>
-
-### ➅辞書型（Dictionary） : 連想配列
-```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-var _dic = {"A":"あ", "I":"い"}
-
-func _ready():
-	print(_dic) #-> True
-	print(typeof(_dic)) #-> 18（TYPE_ARRAY）
-	print(_dic is Dictionary) #-> True
-```
-[[データ型TOP](#データ型)]
-
-
 <a name="TYPE_OBJECT"></a>
-
-### ➆クラス（Object）
+### クラス（Object）
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -255,20 +230,36 @@ func _ready():
 ```
 
 
-<a name="TYPE_NIL"></a>
-
-### ➇null…内容がないことを示す定数
+<a name="TYPE_DICTIONARY"></a>
+### 辞書型（Dictionary） : 連想配列
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
 
+var _dic = {"A":"あ", "I":"い"}
+
 func _ready():
-	var _something
-	print(_something) #Null
-	print(typeof(_something)) #-> 0（TYPE_NIL）
-	print(_something == null) #-> True
+	print(_dic) #-> True
+	print(typeof(_dic)) #-> 18（TYPE_ARRAY）
+	print(_dic is Dictionary) #-> True
 ```
 [[データ型TOP](#データ型)]
+
+
+<a name="TYPE_ARRAY"></a>
+### 配列（Array）
+```gdscript
+#Main.gd
+extends Spatial #2Dの場合はNode2D
+
+var _array = ["A", "I", "U"]
+
+func _ready():
+	print(_array) #-> True
+	print(typeof(_array)) #-> 19（TYPE_ARRAY）
+	print(_array is Array) #-> True
+```
+他にもさまざまな配列あり  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
