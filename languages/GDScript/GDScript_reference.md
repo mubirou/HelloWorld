@@ -824,7 +824,6 @@ func _ready():
 1. [プロジェクト]-[プロジェクト設定]-[Autoload（自動読み込み）]を選択
 1. [パス]-[📁] から上記の **Global.gd** を選択し [追加]  
 ![image](https://github.com/mubirou/Godot/blob/main/jpg/202208131844.jpg)
-1. [グローバル変数]は[✓有効]のままにする
 1. 動作確認  
     ```gdscript
 	# res://main.gd
