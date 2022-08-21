@@ -1272,8 +1272,6 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 
 
 ### 👉 静的関数<a name="静的関数"></a>
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
-
 ```gdscript
 # res://MyMath.gd（クラスファイル）
 class_name MyMath
@@ -1296,6 +1294,7 @@ func _ready(): # 通常はこちらを使う
 	var _myMath = MyMath.new()
 	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可）
 ```
+参考：[GODOT DOCS（**Static functions**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
 
 [[関数TOP](#関数)]  
 
