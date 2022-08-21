@@ -344,7 +344,7 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 	```
 	* 16進整数 → 10進整数
 	```gdscript
-	pass
+	print("1d".hex_to_int()) #-> 29（int型）
 	```
 
 * **10進整数 ⇆ 2進整数**
