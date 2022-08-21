@@ -43,7 +43,6 @@ Hello,world!
 ```
 と表示されたら成功！
 
-***
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
 実行環境：Windows 10、Godot Engine 3.5  
