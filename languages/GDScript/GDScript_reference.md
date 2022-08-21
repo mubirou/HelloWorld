@@ -1206,6 +1206,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		var _myClass = MyClass.new()
 		print(_myClass.__tashizan(1, 10)) #-> 55（外からアクセスできてしまうが…）
 	```
+[[関数TOP](#関数)]  
 
 ### 👉 コンストラクタ<a name="関数-3"></a>
 
@@ -1241,6 +1242,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 	```
 	💡 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html) であるためノードにアタッチしたスクリプトもクラスであると言えます。そのため [class_name](#クラス) を記述することで外部からアクセスが可能です。  
 参考：[GODOT DOCS（**Class constructor**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
+[[関数TOP](#関数)]  
 
 ### 👉 _ready()、_process()、_physics_process() 関数<a name="関数-4"></a>
 ```gdscript
@@ -1260,6 +1262,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 	print("physics_process: " + str(Time.get_unix_time_from_system()))
 ```
 参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
+[[関数TOP](#関数)]  
 
 ***
 ### この項目は書きかけです
@@ -1267,7 +1270,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 ### 👉 入力イベント<a name="関数-5"></a>
 
 参考：[VRコントローラーの入力イベント](https://bit.ly/3wg7QeH)
-
+[[関数TOP](#関数)]  
 
 ### 👉 静的関数<a name="静的関数"></a>
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
@@ -1289,6 +1292,7 @@ func _ready():
 	var _myMath = MyMath.new()
 	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可能）
 ```
+[[関数TOP](#関数)]  
 
 ### 👉 デフォルト値付き引数<a name="関数-6"></a>
 ```gdscript
@@ -1314,6 +1318,7 @@ func _ready():
 作成者：夢寐郎  
 作成日：2022年01月15日  
 更新日：2022年08月XX日  
+[[関数TOP](#関数)]  
 [[TOP](#TOP)]
 
 
