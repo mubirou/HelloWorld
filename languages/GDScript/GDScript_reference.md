@@ -1217,8 +1217,8 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 	func _physics_process(_delta):
 		# 各物理ステップの前に安定して実行される(初期値60fps)
 		print("physics_process: " + str(Time.get_unix_time_from_system()))
-	```
-	参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
+	```  
+参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
 
 
 ### 👉 コンストラクタ
