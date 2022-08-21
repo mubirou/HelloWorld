@@ -9,7 +9,7 @@
 * Hello,world! （~~[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)~~ / ~~[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)~~）
 * [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
-* ~~[データ型の操作](#データ型の操作)~~
+* [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
@@ -388,7 +388,7 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月13日  
-更新日：2022年08月XX日  
+更新日：2022年08月21日  
 [[TOP](#TOP)]
 
 
