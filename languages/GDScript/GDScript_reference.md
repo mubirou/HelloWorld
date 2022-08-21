@@ -814,12 +814,11 @@ func _ready():
 <a name="グローバル変数"></a><a name="グローバル変数"></a>
 
 ### 👉 グローバル変数
-1. [Godot Engine]-[ファイルシステム]上で右クリック→[新規スクリプト]を選択
-1. [パス]は"res://**Global.gd**"としコードを次の通りに記述  
+1. [ファイルシステム]上で右クリック→[新規スクリプト]を選択
+1. [パス]は "**res://Global.gd**" としコードを次の通りに記述  
     ```gdscript
-    #Global.gd
+    #res://Global.gd
     extends Node
-
     var _someGlobal = 100
     ```
 1. [プロジェクト]-[プロジェクト設定]-[自動読み込み]を選択
@@ -849,6 +848,7 @@ func _ready():
             Global._someGlobal = 300 # 変更
             print(Global._someGlobal) #-> 300（変更されている）
     ```
+参考：[共有ファイル](https://bit.ly/3KbSj5v)  
 
 <a name="疑似プライベート変数"></a>
 
