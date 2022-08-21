@@ -1252,31 +1252,7 @@ func _ready(): # 通常はこちらを使う
 	print("Main._ready()")
 ```
 
-* 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
-```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-class MyClass:
-	func _init(arg): # コンストラクタ（引数は省略可）
-		print("MyClass._init()")
-		print(arg)
-
-func _ready():
-	var _myClass = MyClass.new("mubirou")
-```
-
-* 例文（class 内に定義しない場合）
-```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-func _init():
-	print("_int()") # 先に実行される
-
-func _ready(): # 通常はこちらを使う
-	print("_ready()") # _init()の次に実行される
-```
+*参考：[GODOT DOCS（**Class constructor**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 
 ### 👉 静的関数<a name="静的関数"></a>
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
