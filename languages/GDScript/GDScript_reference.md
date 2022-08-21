@@ -1125,9 +1125,9 @@ func _ready():
 ### 基本構文
 ```gdscript
 func 関数名(引数➀, 引数➁, ...):
-    ......
-	（何もしない場合 pass を記述）
-    [return 戻り値]
+	......
+	[return 戻り値]
+	[pass]（何もしない場合 pass を記述）
 ```
 * [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
 Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
