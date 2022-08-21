@@ -361,7 +361,8 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 		print(int2bin(524287)) #-> 1111111111111111111（int型）
 
 	func int2bin(arg):
-		if arg > 524287: assert(false, "Error: 524287 以内のみ処理可能")
+		if (arg > 524287) or (arg < 0):
+			assert(false, "Error: 0～524287 のみ処理可能")
 		var _binary = ""
 		var _temp:int
 		var _count = 31 # Checking up to 32 bits 
