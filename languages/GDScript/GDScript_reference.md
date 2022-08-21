@@ -1221,7 +1221,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 
 ### 👉 コンストラクタ
 
-#### 1.「クラスファイル」を使う場合
+1. **「クラスファイル」を使う場合**
 	```gdscript
 	# res://MyClass.gd（クラスファイル）
 	class_name MyClass
@@ -1239,7 +1239,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 		var _myClass = MyClass.new("Hello")
 	```
 
-#### 1. ノードにアタッチしたスクリプト
+1. **ノードにアタッチしたスクリプト**
 	```gdscript
 	# res://main.gd
 	extends Node3D
