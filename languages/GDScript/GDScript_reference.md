@@ -819,35 +819,22 @@ func _ready():
     ```gdscript
     #res://Global.gd
     extends Node
-    var _someGlobal = 100
+    var someGlobal = 100
     ```
 1. [プロジェクト]-[プロジェクト設定]-[Autoload（自動読み込み）]を選択
 1. [パス]-[📁] から上記の **Global.gd** を選択し [追加]  
-![image](https://github.com/mubirou/Godot/blob/main/jpg/202208131844.jpg) 
+![image](https://github.com/mubirou/Godot/blob/main/jpg/202208131844.jpg)
 1. [グローバル変数]は[✓有効]のままにする
 1. 動作確認  
     ```gdscript
-    #Main.gd
-    extends Spatial #2Dの場合はNode2D
-
-    #-----------------------------
-    # 関数内でのグローバル変数の扱い
-    #-----------------------------
-    func _ready():
-        print(Global._someGlobal) #-> 100（参照）
-        Global._someGlobal = 200 # 変更
-        print(Global._someGlobal) #-> 200（変更されている）
-
-        var _myClass = MyClass.new()
-
-    #-------------------------------
-    # クラス内でのグローバル変数の扱い
-    #-------------------------------
-    class MyClass:
-        func _init():
-            print(Global._someGlobal) #-> 200（参照）
-            Global._someGlobal = 300 # 変更
-            print(Global._someGlobal) #-> 300（変更されている）
+	# res://main.gd
+	extends Node3D
+	……
+	func _ready():
+		……
+		print(Global.someGlobal) #-> 100（参照）
+		Global.someGlobal = 200 # 変更
+		print(Global.someGlobal) #-> 200（変更されている）
     ```
 参考：[共有ファイル](https://bit.ly/3KbSj5v)  
 
