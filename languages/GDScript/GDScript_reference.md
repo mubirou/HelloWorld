@@ -348,9 +348,31 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 	```
 
 * **10進整数 ⇆ 2進整数**
-	* 10進整数 → 2進整数
+	* 10進整数 → 2進整数（参考）
 	```gdscript
-	pass
+	# res://main.gd
+	extends Node3D
+	……
+	func _ready():
+		……
+		print(int2bin(0)) #-> 0（int型）
+		print(int2bin(2)) #-> 10（int型）
+		print(int2bin(100)) #-> 1100100（int型）
+		print(int2bin(524287)) #-> 1111111111111111111（int型）
+
+	func int2bin(arg):
+		if arg > 524287: assert(false, "Error: 524287 以内のみ処理可能")
+		var _binary = ""
+		var _temp:int
+		var _count = 31 # Checking up to 32 bits 
+		while(_count >= 0):
+			_temp = arg >> _count # Bit shifting
+			if _temp & 1: # Bitwise AND
+				_binary += "1" 
+			else: 
+				_binary += "0" 
+			_count -= 1 
+		return _binary.to_int()
 	```
 	* 2進整数 → 10進整数
 	```gdscript
