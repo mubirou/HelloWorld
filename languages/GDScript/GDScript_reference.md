@@ -813,7 +813,7 @@ func _ready():
 
 <a name="グローバル変数"></a><a name="グローバル変数"></a>
 
-### グローバル変数
+### 👉 グローバル変数
 1. [Godot Engine]-[ファイルシステム]上で右クリック→[新規スクリプト]を選択
 1. [パス]は"res://**Global.gd**"としコードを次の通りに記述  
     ```gdscript
@@ -852,7 +852,7 @@ func _ready():
 
 <a name="疑似プライベート変数"></a>
 
-### 疑似プライベート変数
+### 👉 疑似プライベート変数
 * 実際は単なるパブリック変数
 * 変数へのアクセスは[アクセサ](#アクセサ)を利用する（推奨）
 ```gdscript
@@ -888,7 +888,7 @@ func _ready():
 
 <a name="ローカル変数"></a>
 
-### ローカル変数
+### 👉 ローカル変数
 1. 関数内で宣言する場合（for 文、if 文等でも同様）  
     ※宣言した場所より大きい＝深いインデント範囲内で有効
     ```gdscript
@@ -941,7 +941,7 @@ func _ready():
     ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%A4%89%E6%95%B0%E3%81%A8%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alphba 14  
 作成者：夢寐郎  
 作成日：2022年01月08日  
 更新日：2022年01月09日 ローカル変数を修正  
