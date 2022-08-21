@@ -1661,7 +1661,7 @@ extends Node3D
 func _ready():
 	……
 	var _i = 0
-	while _i < 10: # ()は省略可
+	while _i < 10:
 		print(_i) #-> 0,1,2,3,4,5,6,7,8,9
 		_i += 1
 	print(_i) #-> 10（while文の外でも変数はまだ有効）
@@ -1677,7 +1677,7 @@ func _ready():
 	var _count = 0
 	while true: # ループ判別式をtrueにすると無限ループに!
 		_count += 1
-		if (_count > 100) :
+		if _count > 100:
 			break # ループを終了
 		print(_count) #-> 1,2,....,99,100（1〜100までを出力）
 	print("while文終了") # while文の外
