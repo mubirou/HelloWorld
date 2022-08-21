@@ -917,19 +917,11 @@ func _ready():
 		#print(_myClass._local) # アクセス不可
     ```
 
-1. for文内のループ変数
+1. for 文内のループ変数
     ```gdscript
-    #Main.gd
-    extends Spatial #2Dの場合はNode2D
-
-    class MyClass:
-        func _init():
-            for _i in range(6): #ローカル変数（_i）0～5
-                print(_i) #-> 0,1,2,...,5
-            #print(_i) # Error（for文外ではアクセス不可）
-
-    func _ready():
-        var _myClass = MyClass.new()
+	for _i in range(6): #ローカル変数（_i）0～5
+		print(_i) #-> 0,1,2,...,5
+	#print(_i) # Error（for文外ではアクセス不可）
     ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%A4%89%E6%95%B0%E3%81%A8%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97)]  
