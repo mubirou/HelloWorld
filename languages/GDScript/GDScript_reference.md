@@ -841,7 +841,7 @@ func _ready():
 
 ### 👉 疑似プライベート変数
 
-#### [クラス](#クラス)の定義
+1. [クラス](#クラス)の定義
 ```gdscript
 # res://MyClass.gd（クラスファイル）
 class_name MyClass
@@ -855,7 +855,7 @@ var propA:
 	set(value): __propA = value
 ```
 
-#### 実行
+1. 実行
 ```gdscript
 # res://main.gd
 extends Node3D
@@ -863,7 +863,7 @@ extends Node3D
 func _ready():
 	……
 	var _myClass = MyClass.new()
-	
+
 	# 良い例（setter/getterを使ってアクセスする）
 	print(_myClass.propA) #-> "いろは"（参照）
 	_myClass.propA = "ABC" # 変更
