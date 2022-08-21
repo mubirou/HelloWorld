@@ -1120,6 +1120,15 @@ func _ready():
 <a name="関数"></a>
 # <b>関数</b>
 
+### 関数の種類
+1. [パブリック関数](#関数-1) 
+1. [疑似プライベート関数](#関数-2) 
+1. [コンストラクタ](#関数-3) 
+1. [_ready()、_process()、_physics_process() 関数](#関数-4)
+1. [入力イベント](#関数-5)
+1. [静的関数](#静的関数)
+1. [デフォルト値付き引数](#関数-6)
+
 ### 👉 基本構文
 ```gdscript
 func 関数名(引数➀, 引数➁, ...):
@@ -1147,7 +1156,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		return _result
 	```
 
-### 👉 パブリック関数
+### 👉 パブリック関数<a name="関数-1"></a>
 * 例：○〜○までの値を足した合計を調べる
 	```gdscript
 	# res://MyClass.gd（クラスファイル）
@@ -1170,7 +1179,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		print(_myClass.tashizan(1, 100)) #-> 5050
 	```
 
-### 👉 疑似プライベート関数
+### 👉 疑似プライベート関数<a name="関数-2"></a>
 * 実際は単なるパブリック関数
 * アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
 	```gdscript
@@ -1197,7 +1206,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		print(_myClass.__tashizan(1, 10)) #-> 55（外からアクセスできてしまうが…）
 	```
 
-### 👉 コンストラクタ
+### 👉 コンストラクタ<a name="関数-3"></a>
 
 1. **「クラスファイル」を使う場合**
 	```gdscript
@@ -1232,7 +1241,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 	💡 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html) であるためノードにアタッチしたスクリプトもクラスであると言えます。そのため [class_name](#クラス) を記述することで外部からアクセスが可能です。  
 参考：[GODOT DOCS（**Class constructor**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 
-### 👉 _ready()、_process()、_physics_process() 関数
+### 👉 _ready()、_process()、_physics_process() 関数<a name="関数-4"></a>
 ```gdscript
 # res://main.gd
 extends Node3D
@@ -1254,7 +1263,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 ***
 ### この項目は書きかけです
 
-### 👉 入力イベント関連
+### 👉 入力イベント<a name="関数-5"></a>
 
 参考：[VRコントローラーの入力イベント](https://bit.ly/3wg7QeH)
 
@@ -1280,7 +1289,7 @@ func _ready():
 	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可能）
 ```
 
-### 👉 デフォルト値付き引数
+### 👉 デフォルト値付き引数<a name="関数-6"></a>
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
