@@ -1122,7 +1122,7 @@ func _ready():
 
 ### この項目は書きかけです
 
-### 基本構文
+### 👉 基本構文
 ```gdscript
 func 関数名(引数➀, 引数➁, ...):
 	......
@@ -1149,7 +1149,7 @@ func _ready():
 	print(tashizan(1, 10)) #-> 55
 ```
 
-### パブリック関数
+### 👉 パブリック関数
 * 例：○〜○までの値を足した合計を調べる
 ```gdscript
 #Main.gd
@@ -1168,7 +1168,7 @@ func _ready():
 	print(_myClass.tashizan(1,100)) #-> 5050
 ```
 
-### 疑似プライベート関数
+### 👉 疑似プライベート関数
 * 実際は単なるパブリック関数
 * アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
 ```gdscript
@@ -1191,7 +1191,7 @@ func _ready():
 	print(_myClass.__tashizan(1,10)) #-> 55（外からアクセスできてしまうが…）
 ```
 
-### _ready()、_process()関数
+### 👉 _ready()、_process()関数
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -1207,7 +1207,7 @@ func _process(_delta):
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/best_practices/godot_notifications.html#godot-notifications)  
 
 
-### コンストラクタ
+### 👉 コンストラクタ
 * 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 ```gdscript
 #Main.gd
@@ -1234,9 +1234,7 @@ func _ready(): # 通常はこちらを使う
 	print("_ready()") # _init()の次に実行される
 ```
 
-<a name="静的関数"></a>
-
-### 静的関数
+### 👉 静的関数<a name="静的関数"></a>
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
 ```gdscript
 #Main.gd
@@ -1257,7 +1255,7 @@ func _ready():
 	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可能）
 ```
 
-### デフォルト値付き引数
+### 👉 デフォルト値付き引数
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -1277,10 +1275,10 @@ func _ready():
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89)]  
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月15日  
-更新日：2022年03月02日 _process()関数を追加  
+更新日：2022年08月XX日  
 [[TOP](#TOP)]
 
 
