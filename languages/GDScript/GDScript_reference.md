@@ -1175,25 +1175,29 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 ### 👉 疑似プライベート関数
 * 実際は単なるパブリック関数
 * アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
-```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+	```gdscript
+	# res://MyClass.gd（クラスファイル）
+	class_name MyClass
 
-class MyClass:
-	func _init():
-		print(__tashizan(1, 10)) #-> 55
-
-	# 疑似プライベート関数
+	# 疑似プライベート関数（Python風に__〇〇とする）
 	func __tashizan(_start, _end):
 		var _result = 0 #ローカル変数
 		for i in range(_start, _end + 1):
 			_result += i
 		return _result
 
-func _ready():
-	var _myClass = MyClass.new()
-	print(_myClass.__tashizan(1,10)) #-> 55（外からアクセスできてしまうが…）
-```
+	func _init():
+		print(__tashizan(1, 10)) #-> 55
+	```
+	```gdscript
+	# res://main.gd
+	extends Node3D
+	……
+	func _ready():
+		……	
+		var _myClass = MyClass.new()
+		print(_myClass.__tashizan(1, 10)) #-> 55（外からアクセスできてしまうが…）
+	```
 
 ### 👉 _ready()、_process()関数
 ```gdscript
