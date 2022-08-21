@@ -1303,14 +1303,9 @@ func _ready(): # 通常はこちらを使う
 ```gdscript
 # res://main.gd
 extends Node3D
-
-var _interface:XRInterface
-
+……
 func _ready(): # 通常はこちらを使う
-	_interface = XRServer.find_interface("OpenXR")
-	if _interface and _interface.is_initialized():
-		var _viewport : Viewport = get_viewport()
-		_viewport.use_xr = true
+	……
 	Hello() #-> Hello!（引数を指定しないと初期値で処理）
 	Hello("ja") #-> こんにちは!（引数を指定した場合）
 	
