@@ -842,37 +842,37 @@ func _ready():
 ### 👉 疑似プライベート変数
 
 1. [クラス](#クラス)の定義
-```gdscript
-# res://MyClass.gd（クラスファイル）
-class_name MyClass
+	```gdscript
+	# res://MyClass.gd（クラスファイル）
+	class_name MyClass
 
-# 擬似プライベート変数の定義（実際は単なるパブリック変数）
-var __propA = "いろは" # 変数名は__xxxにする（任意）
+	# 擬似プライベート変数の定義（実際は単なるパブリック変数）
+	var __propA = "いろは" # 変数名は__xxxにする（任意）
 
-# setter/getter（変数へのアクセスは[アクセサ]を利用する＝推奨）
-var propA:
-	get: return __propA
-	set(value): __propA = value
-```
+	# setter/getter（変数へのアクセスは[アクセサ]を利用する＝推奨）
+	var propA:
+		get: return __propA
+		set(value): __propA = value
+	```
 
 1. 実行
-```gdscript
-# res://main.gd
-extends Node3D
-……
-func _ready():
+	```gdscript
+	# res://main.gd
+	extends Node3D
 	……
-	var _myClass = MyClass.new()
+	func _ready():
+		……
+		var _myClass = MyClass.new()
 
-	# 良い例（setter/getterを使ってアクセスする）
-	print(_myClass.propA) #-> "いろは"（参照）
-	_myClass.propA = "ABC" # 変更
-	print(_myClass.propA) #-> "ABC"（変更されている）
+		# 良い例（setter/getterを使ってアクセスする）
+		print(_myClass.propA) #-> "いろは"（参照）
+		_myClass.propA = "ABC" # 変更
+		print(_myClass.propA) #-> "ABC"（変更されている）
 
-	# 悪い例（外部から直接アクセスするべきではない）
-	_myClass.__propA = "あいう" # 外部から直接変更
-	print(_myClass.__propA) #-> "あいう"（変更できてしまう）
-```
+		# 悪い例（外部から直接アクセスするべきではない）
+		_myClass.__propA = "あいう" # 外部から直接変更
+		print(_myClass.__propA) #-> "あいう"（変更できてしまう）
+	```
 
 <a name="ローカル変数"></a>
 
