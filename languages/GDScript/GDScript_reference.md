@@ -358,16 +358,6 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 	print(0b11101) #-> 29（int型）
 	```
 
-* **16進整数 ⇆ 2進整数**
-	* 16進整数 → 2進整数
-	```gdscript
-	pass
-	```
-	* 2進整数 → 16進整数
-	```gdscript
-	print("%x" % ("11101".bin_to_int())) #-> 1d（String型）
-	```
-
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)]  
 参考：[GODOT DOCS（Padding）](https://bit.ly/3CnLxYI)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
