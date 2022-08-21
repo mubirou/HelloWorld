@@ -842,23 +842,21 @@ func _ready():
 ### 👉 疑似プライベート変数
 * 実際は単なるパブリック変数
 * 変数へのアクセスは[アクセサ](#アクセサ)を利用する（推奨）
+* [クラス](#クラス)の定義
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://MyClass.gd（クラスファイル）
+class_name MyClass
 
-class MyClass:
-	# 擬似プライベート変数の定義
-	var __propA = "いろは" # 変数名は__xxxにする（任意）
-	
-	# setter/getter
-	var propA setget setPropA, getPropA
+# 擬似プライベート変数の定義
+var __propA = "いろは" # 変数名は__xxxにする（任意）
 
-	func setPropA(value):
-		__propA = value
-
-	func getPropA():
-		return __propA
-
+# setter/getter
+var propA:
+	get: return __propA
+	set(value): __propA = value
+```
+* 実行
+```gdscript
 func _ready():
 	var _myClass = MyClass.new()
 
