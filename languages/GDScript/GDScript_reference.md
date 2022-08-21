@@ -1322,11 +1322,11 @@ func Hello(arg = "en"):
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
+参考：[GODOT DOCS（**Functions**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月15日  
-更新日：2022年08月XX日  
+更新日：2022年08月21日  
 [[関数TOP](#関数)]  
 [[TOP](#TOP)]
 
