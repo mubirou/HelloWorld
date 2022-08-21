@@ -840,14 +840,12 @@ func _ready():
 <a name="疑似プライベート変数"></a>
 
 ### 👉 疑似プライベート変数
-* 実際は単なるパブリック変数
-* 変数へのアクセスは[アクセサ](#アクセサ)を利用する（推奨）
 * [クラス](#クラス)の定義
 ```gdscript
 # res://MyClass.gd（クラスファイル）
 class_name MyClass
 
-# 擬似プライベート変数の定義
+# 擬似プライベート変数の定義（実際は単なるパブリック変数）
 var __propA = "いろは" # 変数名は__xxxにする（任意）
 
 # setter/getter
@@ -855,7 +853,7 @@ var propA:
 	get: return __propA
 	set(value): __propA = value
 ```
-* 実行
+* 実行（変数へのアクセスは[アクセサ](#アクセサ)を利用する＝推奨）
 ```gdscript
 func _ready():
 	var _myClass = MyClass.new()
