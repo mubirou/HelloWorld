@@ -1151,22 +1151,26 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 
 ### 👉 パブリック関数
 * 例：○〜○までの値を足した合計を調べる
-```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+	```gdscript
+	# res://MyClass.gd（クラスファイル）
+	class_name MyClass
 
-class MyClass:
 	func tashizan(_start, _end):
 		var _result = 0 #ローカル変数
 		for i in range(_start, _end + 1):
 			_result += i
 		return _result
-
-func _ready():
-	var _myClass = MyClass.new()
-	print(_myClass.tashizan(1,10)) #-> 55
-	print(_myClass.tashizan(1,100)) #-> 5050
-```
+	```
+	```gdscript
+	# res://main.gd
+	extends Node3D
+	……
+	func _ready():
+		……	
+		var _myClass = MyClass.new()
+		print(_myClass.tashizan(1, 10)) #-> 55
+		print(_myClass.tashizan(1, 100)) #-> 5050
+	```
 
 ### 👉 疑似プライベート関数
 * 実際は単なるパブリック関数
