@@ -862,6 +862,8 @@ extends Node3D
 ……
 func _ready():
 	……
+	var _myClass = MyClass.new()
+	
 	# 良い例（setter/getterを使ってアクセスする）
 	print(_myClass.propA) #-> "いろは"（参照）
 	_myClass.propA = "ABC" # 変更
