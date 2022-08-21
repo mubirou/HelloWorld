@@ -880,21 +880,22 @@ func _ready():
 1. 関数内で宣言する場合（for 文、if 文等でも同様）  
     ※宣言した場所より大きい＝深いインデント範囲内で有効
     ```gdscript
-    #Main.gd
-    extends Spatial #2Dの場合はNode2D
+    # res://main.gd
+	extends Node3D
+	……
+	func _ready():
+		……
+		myFunction1()
+		myfunction2()
+		#print(_local) # Error（アクセス不可）
 
-    func myFunction1():
-        var _local = "ローカル変数" # ローカル変数の宣言
-        print(_local) #-> "ローカル変数"
+	func myFunction1():
+		var _local = "ローカル変数" # ローカル変数の宣言
+		print(_local) #-> "ローカル変数"
 
-    func myfunction2():
-        #print(_local) # Error（アクセス不可）
-        pass
-
-    func _ready():
-        myFunction1()
-        myfunction2()
-        #print(_local) # Error（アクセス不可）
+	func myfunction2():
+		#print(_local) # Error（アクセス不可）
+		pass
     ```
 
 1. クラスの関数内で宣言する場合
