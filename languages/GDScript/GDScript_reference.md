@@ -86,7 +86,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 <a name="typeof()の戻り値一覧"></a>
 ### [typeof()](#typeof()関数) の戻り値一覧  
 
-|番号|データ型|内容|TYPE_*|
+|番号|データ型|TYPE_*|内容|
 |:--:|:--|:--|:--|
 |0|[null](https://bit.ly/3K8PxOu)|TYPE_NIL|[**内容がない**](#TYPE_NIL)|
 |1|[bool](https://bit.ly/3QGNq6Y)|TYPE_BOOL|[**論理型**](#TYPE_BOOL)|
