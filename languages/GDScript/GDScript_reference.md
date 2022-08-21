@@ -1254,6 +1254,11 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 ***
 ### この項目は書きかけです
 
+### 👉 入力イベント関連
+
+参考：[VRコントローラーの入力イベント](https://bit.ly/3wg7QeH)
+
+
 ### 👉 静的関数<a name="静的関数"></a>
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
 ```gdscript
