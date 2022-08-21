@@ -20,7 +20,7 @@
 * [定数](#定数)
 * [関数](#関数)
 * [匿名関数](#匿名関数)
-* ~~[静的変数・静的関数](#静的変数・静的関数)~~
+* [静的変数・静的関数](#静的変数・静的関数)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
 * [match 文](#match文) ≒ switch 文
@@ -1267,7 +1267,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 
 ### 👉 入力イベント<a name="関数-5"></a>
 
-参照：[**VRコントローラーの入力イベント**](https://bit.ly/3wg7QeH)  
+参照 ⇒ [**VRコントローラーの入力イベント**](https://bit.ly/3wg7QeH)  
 参考：[GODOT DOCS（**Connecting a signal**）](https://bit.ly/3PG7YLF)  
 
 
@@ -1370,9 +1370,10 @@ func _ready():
 * 静的関数 ⇒ [関数（静的関数）](#静的関数)
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E9%9D%99%E7%9A%84%E3%83%A1%E3%83%B3%E3%83%90static)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月15日  
+更新日：2022年08月21日  
 [[TOP](#TOP)]
 
 
