@@ -348,7 +348,7 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 	```
 
 * **10進整数 ⇆ 2進整数**
-	* 10進整数 → 2進整数（参考）
+	* 10進整数 → 2進整数（**要調査**）
 	```gdscript
 	# res://main.gd
 	extends Node3D
