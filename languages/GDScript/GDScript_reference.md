@@ -1301,24 +1301,28 @@ func _ready(): # 通常はこちらを使う
 
 ### 👉 デフォルト値付き引数<a name="関数-6"></a>
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://main.gd
+extends Node3D
 
-class MyClass:
-	var __point = 0 # 疑似プライベート変数
+var _interface:XRInterface
 
-	func addPoint(arg := 1): #「=」でも動作
-		__point += arg
-		print(__point)	
-
-func _ready():
-	var _myClass = MyClass.new()
-	_myClass.addPoint() #-> 1（引数を指定しない場合は初期値1で処理）
-	_myClass.addPoint(10) #-> 11（引数を指定した場合）
+func _ready(): # 通常はこちらを使う
+	_interface = XRServer.find_interface("OpenXR")
+	if _interface and _interface.is_initialized():
+		var _viewport : Viewport = get_viewport()
+		_viewport.use_xr = true
+	Hello() #-> Hello!（引数を指定しないと初期値で処理）
+	Hello("ja") #-> こんにちは!（引数を指定した場合）
+	
+func Hello(arg = "en"):
+	if arg == "en":
+		print("Hello!")
+	elif arg == "ja":
+		print("こんにちは!")
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89)]  
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
+参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#functions)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月15日  
