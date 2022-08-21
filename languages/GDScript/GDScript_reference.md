@@ -1131,23 +1131,23 @@ func 関数名(引数➀, 引数➁, ...):
 ```
 * [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
 Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
-
-```gdscript
-# res://main.gd
-extends Node3D
-……
-func _ready():
+* 例文
+	```gdscript
+	# res://main.gd
+	extends Node3D
 	……
-	print(tashizan(1, 10)) #-> 55
-	
-#print(tashizan(1, 10)) #-> Parser Error（ここでは実行できない）
+	func _ready():
+		……
+		print(tashizan(1, 10)) #-> 55
+		
+	#print(tashizan(1, 10)) #-> Parser Error（ここでは実行できない）
 
-func tashizan(_start, _end):
-	var _result = 0 #ローカル変数
-	for i in range(_start, _end + 1):
-		_result += i
-	return _result
-```
+	func tashizan(_start, _end):
+		var _result = 0 #ローカル変数
+		for i in range(_start, _end + 1):
+			_result += i
+		return _result
+	```
 
 ### 👉 パブリック関数
 * 例：○〜○までの値を足した合計を調べる
