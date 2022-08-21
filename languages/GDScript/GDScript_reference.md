@@ -1199,7 +1199,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		print(_myClass.__tashizan(1, 10)) #-> 55（外からアクセスできてしまうが…）
 	```
 
-### 👉 _ready()、_process()関数
+### 👉 _ready()、_process()、_physics_process() 関数
 ```gdscript
 #Main.gd
 extends Spatial #2Dの場合はNode2D
@@ -1212,7 +1212,7 @@ func _process(_delta):
 	# 繰り返し実行される
 	print(OS.get_system_time_msecs()) #-> 1646231024584（ミリ秒）
 ```
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/best_practices/godot_notifications.html#godot-notifications)  
+参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
 
 
 ### 👉 コンストラクタ
