@@ -1264,13 +1264,14 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
 [[関数TOP](#関数)]  
 
-***
-### この項目は書きかけです
 
 ### 👉 入力イベント<a name="関数-5"></a>
 
 参考：[VRコントローラーの入力イベント](https://bit.ly/3wg7QeH)  
-[[関数TOP](#関数)]  
+[[関数TOP](#関数)]
+
+***
+### この項目は書きかけです 
 
 ### 👉 静的関数<a name="静的関数"></a>
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
