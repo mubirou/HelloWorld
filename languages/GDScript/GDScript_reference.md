@@ -1201,16 +1201,22 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 
 ### 👉 _ready()、_process()、_physics_process() 関数
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
+# res://main.gd
+extends Node3D
+……
 func _ready():
-	# 最初に一度だけ実行される
-	print("_ready()")
-
+	_interface = XRServer.find_interface("OpenXR")
+	if _interface and _interface.is_initialized():
+		var _viewport : Viewport = get_viewport()
+		_viewport.use_xr = true
+		
 func _process(_delta):
 	# 繰り返し実行される
-	print(OS.get_system_time_msecs()) #-> 1646231024584（ミリ秒）
+	print("process: " + str(Time.get_unix_time_from_system()))
+
+func _physics_process(_delta):
+	# 各物理ステップの前に安定して実行される(初期値60fps)
+	print("physics_process: " + str(Time.get_unix_time_from_system()))
 ```
 参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
 
