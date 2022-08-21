@@ -11,7 +11,7 @@
 
 1. https://godotengine.org/download/windows から [Standard version]-[64-bit(x86_64)] をダウンロードして解凍
 
-1. Godot_v3.4.2-stable_win64.exe を起動（インストール作業は不要）
+1. Godot_v3.5-stable_win64.exe を起動（インストール作業は不要）
 
 1. [新規プロジェクト] を選択. 以下を設定し[作成して編集]
     * プロジェクト名：任意
@@ -29,9 +29,9 @@
 
 1. コードの変更（[外部エディタ](https://github.com/mubirou/Godot#%E5%A4%96%E9%83%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF)を使用することも可能）
 
-```GDScript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+```gdscript
+# res://Main.gd
+extends Spatial
 
 func _ready():
 	print("Hello,world!")
@@ -46,6 +46,7 @@ Hello,world!
 ***
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/2f8e3690260af7946aed)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 3.5  
 作成者：夢寐郎  
-作成日：2022年02月11日
+作成日：2022年02月11日  
+更新日：2022年08月21日  
