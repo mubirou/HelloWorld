@@ -355,6 +355,7 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 	* 2進整数 → 10進整数
 	```gdscript
 	print("11101".bin_to_int()) #-> 29（int型）
+	print("%d" % 0b11101) #-> 29（String型）
 	print(0b11101) #-> 29（int型）
 	```
 
