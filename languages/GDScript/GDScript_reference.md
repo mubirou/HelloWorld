@@ -1251,7 +1251,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 		……
 		print("Main._ready()")
 	```
-	💡 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html) であるためノードにアタッチしたスクリプトもクラス扱いです。そのため [class_name](#クラス) を記述することで外部からアクセスが可能になります。  
+	💡 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html) であるためノードにアタッチしたスクリプトもクラスであると言えます。そのため [class_name](#クラス) を記述することで外部からアクセスが可能です。  
 
 *参考：[GODOT DOCS（**Class constructor**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 
