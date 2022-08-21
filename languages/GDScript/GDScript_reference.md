@@ -1239,7 +1239,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 		var _myClass = MyClass.new("Hello")
 	```
 
-1. **ノードにアタッチしたスクリプト**
+1. **ノードにアタッチしたスクリプトの場合**
 	```gdscript
 	# res://main.gd
 	extends Node3D
