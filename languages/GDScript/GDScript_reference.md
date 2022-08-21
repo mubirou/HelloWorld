@@ -1272,6 +1272,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 
 
 ### 👉 静的関数<a name="静的関数"></a>
+* Math.Pow() の代替例（車輪の再発明）
 ```gdscript
 # res://MyMath.gd（クラスファイル）
 class_name MyMath
