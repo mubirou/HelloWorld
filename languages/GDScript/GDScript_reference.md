@@ -1213,7 +1213,7 @@ func _ready():
 func _process(_delta): # 繰り返し実行される
 	print("process: " + str(Time.get_unix_time_from_system()))
 
-func _physics_process(_delta): # 物理ステップ前に安定して実行される(初期値60fps)
+func _physics_process(_delta): # 物理ステップの前に安定して実行される(初期値60fps)
 	print("physics_process: " + str(Time.get_unix_time_from_system()))
 ```
 参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
