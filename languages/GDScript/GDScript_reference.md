@@ -1267,8 +1267,7 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 
 ### 👉 入力イベント<a name="関数-5"></a>
 
-参考：[VRコントローラーの入力イベント](https://bit.ly/3wg7QeH)  
-[[関数TOP](#関数)]
+参照：[VRコントローラーの入力イベント](https://bit.ly/3wg7QeH)  
 
 ***
 ### この項目は書きかけです 
