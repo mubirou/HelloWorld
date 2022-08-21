@@ -1220,6 +1220,38 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 
 
 ### 👉 コンストラクタ
+
+#### 「クラスファイル」を使う場合
+```gdscript
+# res://MyClass.gd（クラスファイル）
+class_name MyClass
+
+func _init(arg):
+	print("MyClass._init()")
+	print(arg)
+```
+```gdscript
+# res://main.gd
+extends Node3D
+……
+func _ready():
+	……
+	var _myClass = MyClass.new("Hello")
+```
+
+#### ノードにアタッチしたスクリプト
+```gdscript
+# res://main.gd
+extends Node3D
+……
+func _init():
+	print("Main._init()") # 先に実行される
+
+func _ready(): # 通常はこちらを使う
+	……
+	print("Main._ready()")
+```
+
 * 例文（class 内の定義）参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 ```gdscript
 #Main.gd
