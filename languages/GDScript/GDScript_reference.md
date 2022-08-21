@@ -525,10 +525,8 @@ func mSuper(): # 関数
 	return "基本クラスのメソッド"
 	
 func _init():
-	pass
+	print("SuperClass._init()")
 ```
-* [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
-Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
 
 #### SubClassA（派生クラスＡ）の定義
 ```gdscript
@@ -1122,13 +1120,18 @@ func _ready():
 <a name="関数"></a>
 # <b>関数</b>
 
+### この項目は書きかけです
+
 ### 基本構文
-* 関数は必ず class 内に記述する必要があります
 ```gdscript
 func 関数名(引数➀, 引数➁, ...):
-    ......（何もしない場合 pass を記述）
+    ......
+	（何もしない場合 pass を記述）
     [return 戻り値]
 ```
+* [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
+Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
+
 * 例文（class 内に定義しない場合）
 ```gdscript
 #Main.gd
