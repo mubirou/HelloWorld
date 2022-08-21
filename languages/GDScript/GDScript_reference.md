@@ -1270,29 +1270,33 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 参照：[**VRコントローラーの入力イベント**](https://bit.ly/3wg7QeH)  
 参考：[GODOT DOCS（**Connecting a signal**）](https://bit.ly/3PG7YLF)  
 
-***
-### この項目は書きかけです 
 
 ### 👉 静的関数<a name="静的関数"></a>
 参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
+
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://MyMath.gd（クラスファイル）
+class_name MyMath
 
-class MyMath:
-	static func Pow(arg1, arg2): #個人的慣例で大文字で始める
-		if arg2 == 0: return 1 # 0乗対策
-		var _result = arg1
-		for i in range(1, arg2):
-			_result *= arg1
-		return _result
-
-func _ready():
-	print(MyMath.Pow(2,3)) #-> 8
-
-	var _myMath = MyMath.new()
-	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可能）
+static func Pow(arg1, arg2): # 慣例的に大文字で始める
+	if arg2 == 0: return 1 # 0乗対策
+	var _result = arg1
+	for i in range(1, arg2):
+		_result *= arg1
+	return _result
 ```
+```gdscript
+# res://main.gd
+extends Node3D
+……
+func _ready(): # 通常はこちらを使う
+	……
+	print(MyMath.Pow(2,3)) #-> 8
+	
+	var _myMath = MyMath.new()
+	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可）
+```
+
 [[関数TOP](#関数)]  
 
 ### 👉 デフォルト値付き引数<a name="関数-6"></a>
