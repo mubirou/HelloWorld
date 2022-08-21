@@ -849,14 +849,13 @@ class_name MyClass
 # 擬似プライベート変数の定義（実際は単なるパブリック変数）
 var __propA = "いろは" # 変数名は__xxxにする（任意）
 
-# setter/getter
+# setter/getter（変数へのアクセスは[アクセサ]を利用する＝推奨）
 var propA:
 	get: return __propA
 	set(value): __propA = value
 ```
 
 #### 実行
-（変数へのアクセスは[アクセサ](#アクセサ)を利用する＝推奨）
 ```gdscript
 func _ready():
 	var _myClass = MyClass.new()
