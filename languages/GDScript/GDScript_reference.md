@@ -359,7 +359,8 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 	```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)]  
-参考：[GODOT DOCS（Padding）](https://bit.ly/3CnLxYI)  
+参考：[GODOT DOCS（**Padding**）](https://bit.ly/3CnLxYI)  
+参考：[GODOT DOCS（**String**)](https://bit.ly/3dKy3vL)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月13日  
