@@ -1076,41 +1076,46 @@ func _ready():
 
 ### 通常の定数
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
-
-const MY_NAME = "mubirou"
-
+# res://main.gd
+extends Node3D
+……
+const MY_NAME = "MUBIROU"
+……
 func _ready():
-	print(MY_NAME) #-> "mubirou"
-	#MY_NAME = "ICHIRO" # Error（変更不可）
+	……	
+	print(MY_NAME) #-> MUBIROU
+	MY_NAME = "ICHIRO" # Parser Error（変更不可）
 ```
 
 ### クラス定数（[静的変数](#静的変数・静的関数)）
 ```gdscript
-#Main.gd
-extends Spatial #2Dの場合はNode2D
+# res://MyClass.gd（クラスファイル）
+class_name MyClass
 
-class MyClass:
-	const MY_NAME = "mubirou" # 定数の定義
+const MY_NAME = "MUBIROU" # クラス定数の定義
 
-	func _init():
-		print(MY_NAME) #-> "mubioru"（クラス内でのアクセス方法）
-
+func _init():
+	print(MY_NAME) #-> "MUBIROU"（クラス内でアクセス可）
+```
+```gdscript
+# res://main.gd
+extends Node3D
+……
 func _ready():
-	print(MyClass.MY_NAME) #-> "mubirou"（クラス外からのアクセス方法）
+	……	
+	print(MyClass.MY_NAME) #-> MUBIROU（インスタンス生成せずにアクセス可）
 	#MyClass.MY_NAME = "ICHIRO" # Error（変更不可）
-
-	# 実験
+	
 	var _myClass = MyClass.new()
-	print(_myClass.MY_NAME) #-> "mubirou"（インスタンスからのアクセスも可能）
-	#_myClass.MY_NAME = "ICHIRO" # Error（変更は不可）
+	print(_myClass.MY_NAME) #-> MUBIROU（インスタンスからもアクセス可）
+	#_myClass.MY_NAME = "ICHIRO" # 変更不可
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%AE%9A%E6%95%B0)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月09日  
+更新日：2022年08月21日  
 [[TOP](#TOP)]
 
 
