@@ -2043,7 +2043,7 @@ func _ready():
 ***
 ### この項目は書きかけです
 
-参考  
+参考（ノードにアタッチしたスクリプト内の **self**）
   * 階層構造  
   **Main**（Node3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)  
 　├ XROrigin3D  
