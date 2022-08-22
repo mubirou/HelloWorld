@@ -2040,10 +2040,7 @@ func _ready():
 	_myClass.myMethod() #-> 500
 ```
 
-***
-### この項目は書きかけです
-
-参考（ノードにアタッチしたスクリプト内の **self** について）  
+#### ノードにアタッチしたスクリプト内の **self** について  
 * 階層構造  
   **Main**（Node3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Main.gd**）  
 　├ XROrigin3D  
