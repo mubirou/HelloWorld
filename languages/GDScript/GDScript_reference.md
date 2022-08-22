@@ -184,7 +184,7 @@ print(_string is String) #-> true
 <a name="TYPE_OBJECT"></a>
 ### 👉 クラス（Object）
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 class MyClass: #前方宣言でなくてもよい
@@ -237,7 +237,7 @@ print(_array is Array) #-> true
 * データ型を返す（[戻り値一覧](#typeof()の戻り値一覧)）
 
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -257,7 +257,7 @@ class MyClass:
 ###  👉 is 演算子
 * データ型を判断する（[データ型一覧](#typeof()の戻り値一覧)）
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -280,7 +280,7 @@ class MyClass:
 ###  👉 as 演算子
 * Godot 3.x と異なり失敗するとエラーになる（**要調査**）
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -349,7 +349,7 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 * **10進整数 ⇆ 2進整数**
 	* 10進整数 → 2進整数（**要調査**）
 	```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -425,7 +425,7 @@ func _init(w,h): # コンストラクタ
 
 #### 実行
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……	
 func _ready():
@@ -450,7 +450,7 @@ func _ready():
 
 ### 👉「内部クラス」を使う方法
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 class Rectangle: # 長方形クラス
@@ -567,7 +567,7 @@ func _init():
 
 #### 実行
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -595,7 +595,7 @@ func _ready():
 
 ### 👉「内部クラス」を使う方法
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 #===============================
@@ -750,7 +750,7 @@ class_name ClassB extends ClassA # ポイント
 
 #### 実行
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -783,7 +783,7 @@ func myMethod():
 
 #### 実行
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -823,7 +823,7 @@ func _ready():
 ![image](https://github.com/mubirou/Godot/blob/main/jpg/202208131844.jpg)
 1. 動作確認  
     ```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -854,7 +854,7 @@ func _ready():
 
 1. 実行
 	```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -877,7 +877,7 @@ func _ready():
 1. 関数内で宣言する場合（if 文等でも同様）  
     ※宣言したブロック内かつ、インデントが同じかより深い範囲内で有効
     ```gdscript
-    # res://main.gd
+    # /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -897,7 +897,7 @@ func _ready():
 
 1. クラスの関数内で宣言する場合
     ```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	class MyClass:
@@ -1009,7 +1009,7 @@ func _ready():
 
 ### 算術演算子
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 
 func _ready():
@@ -1031,7 +1031,7 @@ func _ready():
 
 ### その他の演算子
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 
 func _ready():
@@ -1073,7 +1073,7 @@ func _ready():
 
 ### 通常の定数
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 const MY_NAME = "MUBIROU"
@@ -1095,7 +1095,7 @@ func _init():
 	print(MY_NAME) #-> "MUBIROU"（クラス内でアクセス可）
 ```
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1139,7 +1139,7 @@ func 関数名(引数➀, 引数➁, ...):
 Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
 * サンプルコード
 	```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -1168,7 +1168,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		return _result
 	```
 	```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -1197,7 +1197,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		print(__tashizan(1, 10)) #-> 55
 	```
 	```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -1219,7 +1219,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 		print(arg)
 	```
 	```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _ready():
@@ -1229,7 +1229,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 
 1. **ノードにアタッチしたスクリプトの場合**
 	```gdscript
-	# res://main.gd
+	# /root/Main(Main.gd)
 	extends Node3D
 	……
 	func _init():
@@ -1245,7 +1245,7 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 
 ### 👉 _ready()、_process()、_physics_process() 関数<a name="関数-4"></a>
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1284,7 +1284,7 @@ static func Pow(arg1, arg2): # 慣例的に大文字で始める
 	return _result
 ```
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready(): # 通常はこちらを使う
@@ -1300,7 +1300,7 @@ func _ready(): # 通常はこちらを使う
 
 ### 👉 デフォルト値付き引数<a name="関数-6"></a>
 ```gdscript
-# res://main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready(): # 通常はこちらを使う
