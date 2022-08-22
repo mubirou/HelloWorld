@@ -2058,8 +2058,8 @@ func _ready():
 		# 全て同じ値
 		print(self) #-> Main:[Node3D:2503160XXXX]
 		print(get_node("."))
-		print(get_parent().get_node("Main"))
 		print(get_node("/root/Main"))
+		print(get_parent().get_node("Main"))
 		print(get_tree().get_root().get_node("Main"))
 	```
 * **Box** にアタッチしたスクリプト（**Box.gd**）
@@ -2071,8 +2071,8 @@ func _ready():
 		# 全て同じ値
 		print(self) #-> Box:[MeshInstance3D:2509871XXXX]
 		print(get_node("."))
-		print(get_parent().get_node("Box"))
 		print(get_node("/root/Main/Box"))
+		print(get_parent().get_node("Box"))
 		print(get_tree().get_root().get_node("Main").get_node("Box"))
 	```
 * **Sphere** にアタッチしたスクリプト（**Sphere.gd**）
@@ -2084,8 +2084,8 @@ func _ready():
 		# 全て同じ値
 		print(self) #-> Sphere:[MeshInstance3D:2511549XXXX]
 		print(get_node("."))
-		print(get_parent().get_node("Sphere"))
 		print(get_node("/root/Main/Sphere"))
+		print(get_parent().get_node("Sphere"))
 		print(get_tree().get_root().get_node("Main").get_node("Sphere"))
 	```
 
