@@ -2045,7 +2045,7 @@ func _ready():
 
 参考  
   * 階層構造  
-  **Main**（Node3D）  
+  **Main**（Node3D）![image](https://github.com/mubirou/HelloWorld/blob/master/GDScript/png/script.png)  
 　├ XROrigin3D  
 　├ **Box**（MeshInstance3D）  
 　└ **Sphere**（MeshInstance3D）  
