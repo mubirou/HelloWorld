@@ -690,7 +690,7 @@ func _ready():
 他のディレクトリにある .gd ファイルモジュールを読み込んで活用します。.gd ファイルには再利用可能なコード（クラス）群を記述します。
 
 ### 例文
-* res://main.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
+* res://Main.gd と同階層に japan ディレクトリがあり、その中に tokyo.gd が存在する場合
 
 ```gdscript
 # res://japan/tokyo.gd
@@ -704,7 +704,7 @@ class Setagaya:
 ```
 
 ```gdscript
-# main.gd（外部.gdファイルを利用する側）
+# /root/Main(Main.gd)（外部.gdファイルを利用する側）
 extends Node3D
 ……
 func _ready():
@@ -934,7 +934,7 @@ func _ready():
 
 ### 読み書き可能なプロパティ
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 class Member:
@@ -956,7 +956,7 @@ func _ready():
 
 ### 読み取り専用のプロパティ
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 class Member:
@@ -977,7 +977,7 @@ func _ready():
 
 ### 書き込み専用のプロパティ
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 class Member:
@@ -1329,7 +1329,7 @@ func Hello(arg = "en"):
 # <b>匿名関数</b>
 
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 ……
 var _hello : Callable
 var _american : Callable
@@ -1382,7 +1382,7 @@ func _ready():
 ### 基本構文
 * trueと評価される可能性が高い順に並べるとif文を早く抜け出せる可能性が高い
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1400,7 +1400,7 @@ func _ready():
 
 * 注意：条件式の判断記述について
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1459,7 +1459,7 @@ func _ready():
 * GDScriptでは ^ 演算子は使えない
 * 「&& は and」「|| は or」「! は not」でも可  
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1491,7 +1491,7 @@ func _ready():
 
 ### 例文
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1514,7 +1514,7 @@ func _ready():
 
 ### 判別式が bool 値ではない場合
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1535,7 +1535,7 @@ func _ready():
 
 ### ⚠ 注意➀：判別式に bool 型が使えない
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1552,7 +1552,7 @@ func _ready():
 * 以下の場合 "A" "C" が出力される
 ```gdscript
 #Main.gd
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1589,7 +1589,7 @@ for 変数 in range(開始, 終了):
 
 ### 基本例文
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1602,7 +1602,7 @@ func _ready():
 ### for 文のネスト
 * ループ制御変数には i, j, k が使われる
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1615,7 +1615,7 @@ func _ready():
 ### continue 文
 * ループカウンタを○つずつアップする
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1628,7 +1628,7 @@ func _ready():
 
 ### 無限ループと break 文
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1655,7 +1655,7 @@ func _ready():
 * 他の多くの言語にある do...while 文はない
 
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1669,7 +1669,7 @@ func _ready():
 
 ### while 文と break 文
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1685,7 +1685,7 @@ func _ready():
 
 ### while 文と continue 文（3の倍数を出力）
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -1943,7 +1943,7 @@ var 変数名 = {"キー➀": 値➀, "キー➁": 値➁}
 ```
 * 例文
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -2017,7 +2017,7 @@ print(len(_dict)) #-> 3
 
 self は現在のクラスインスタンスを参照するのは同じだが [Python の self](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#self--this) ほど重要ではない
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 class MyClass:
@@ -2174,7 +2174,7 @@ print(_regex.sub(_string, "よしだ"))
 * 以下のサンプルでは疑似的に継承と例外を使って抽象クラスを実現
 
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 # 擬似抽象クラスの定義（実際には単なる基本クラス）
@@ -2211,7 +2211,7 @@ func _ready():
 旧「 [**.**（ドット）](https://docs.godotengine.org/ja/stable/tutorials/scripting/gdscript/gdscript_basics.html?highlight=super#inheritance)」の新しい書き方  
 
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 
@@ -2258,7 +2258,7 @@ func _ready():
 * 派生クラスから基本クラスのメソッドを呼び出したい場合は [**super.関数名()**](#superキーワード) を使う
 
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 # 基本クラス
@@ -2426,7 +2426,7 @@ print(sqrt(6)) #-> 2.44948974278318（二夜シクシク）
 
 ### 0.0〜1.0未満
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -2439,7 +2439,7 @@ func _ready():
 
 ### 最小値〜最大値（float型）
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
@@ -2453,7 +2453,7 @@ func _ready():
 
 ### 最小値〜最大値（int型）
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 
 var _interface:XRInterface
@@ -2624,7 +2624,7 @@ func loop():
 # <b>処理速度計測</b>
 
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 
 func _ready():
@@ -2663,7 +2663,7 @@ sample.txt
 ```
 
 ```gdscript
-# main.gd
+# /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
