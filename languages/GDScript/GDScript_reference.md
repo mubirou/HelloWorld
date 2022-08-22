@@ -2085,6 +2085,7 @@ func _ready():
 		print(get_node("/root/Main/Sphere"))
 		print(get_tree().get_root().get_node("Main").get_node("Sphere"))
 	```
+参考ファイル：[SelfInScriptAttachedNode.zip](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/zip/SelfInScriptAttachedNode.zip)  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#this)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
