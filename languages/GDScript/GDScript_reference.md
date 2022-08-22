@@ -2042,6 +2042,7 @@ func _ready():
 
 #### 📝 ノードにアタッチしたスクリプト内の **self** について  
 * 階層構造  
+
   **Main**（Node3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Main.gd**）  
 　├ XROrigin3D  
 　├ **Box**（MeshInstance3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Box.gd**）  
