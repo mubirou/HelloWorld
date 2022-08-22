@@ -2044,11 +2044,13 @@ func _ready():
 ### この項目は書きかけです
 
 参考（ノードにアタッチしたスクリプト内の **self** について）  
-  * 階層構造  
+* 階層構造  
   **Main**（Node3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Main.gd**）  
 　├ XROrigin3D  
 　├ **Box**（MeshInstance3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Box.gd**）  
-　└ **Sphere**（MeshInstance3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Sphere.gd**）    
+　└ **Sphere**（MeshInstance3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Sphere.gd**）  
+
+
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#this)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
