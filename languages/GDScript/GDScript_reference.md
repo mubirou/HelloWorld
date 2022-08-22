@@ -2090,6 +2090,7 @@ func _ready():
 	```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#this)]  
+参考：[他人のメソッドの実行](https://bit.ly/3wkDMPc)  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
 作成日：2022年01月28日  
