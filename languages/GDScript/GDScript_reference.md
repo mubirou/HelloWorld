@@ -2040,6 +2040,16 @@ func _ready():
 	_myClass.myMethod() #-> 500
 ```
 
+***
+### この項目は書きかけです
+
+参考  
+  * 階層構造  
+  **Main**（Node3D）  
+　├ XROrigin3D  
+　├ **Box**（MeshInstance3D）  
+　└ **Sphere**（MeshInstance3D）  
+
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#this)]  
 実行環境：Windows 10、Godot 4.0 alpha 14  
 作成者：夢寐郎  
