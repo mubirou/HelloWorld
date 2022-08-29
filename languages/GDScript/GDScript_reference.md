@@ -2562,7 +2562,6 @@ XXX.hour # 時間（0〜23）
 XXX.minute # 分（0〜59）
 XXX.second # 秒（0〜59）
 XXX.dst # サマータイム（true or false）
-# マイクロ秒を取得する場合 Time.get_ticks_msec() を利用
 ```
 
 ### 例文
@@ -2595,7 +2594,7 @@ func _ready():
 実行環境：Windows 10、Godot 4.0 alpha 11  
 作成者：夢寐郎  
 作成日：2022年01月09日  
-更新日：2022年08月29日 Time.get_ticks_msec() を追加  
+更新日：2022年08月29日 マイクロ秒の取得を削除  
 [[TOP](#TOP)]
 
 
