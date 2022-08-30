@@ -69,6 +69,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 〇〇〇〇〇
 """
 ```
+⚠ [インデントに注意](https://www.fenet.jp/dotnet/column/language/7733/)  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%82%A2%E3%82%A6%E3%83%88)]  
 参考：[GODOT DOCS（コメントの間隔）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_styleguide.html?highlight=comment#comment-spacing)  
