@@ -12,11 +12,11 @@
 
 1. [.NET 6.0 のダウンロード](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0) を開く
 
-1. 最新の SDK（**SDK 6.0**.401）の Windows / **x64**（64ビット版）をダウンロード＆インストール後に Windows を再起動
+1. 最新の SDK（SDK 6.0.401）の Windows / x64（64ビット版）をダウンロード＆インストール後に Windows を再起動
 
 ### 👉 Godot Engine（.NET 6 対応版）のインストール
 
-1. [godotengine.org](https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1#downloads) から **.NET 6 build**（C#, GDScript, GDExtension）を選択
+1. [godotengine.org](https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1#downloads) から .NET 6 build（C#, GDScript, GDExtension）を選択
 
 1. **Godot_v4.0-beta1_mono_win64.zip** をダウンロード＆解凍
 
@@ -35,7 +35,7 @@
 
 ### 👉 コードの記述（最小限の構成）
 
-1. [シーン]-[Main]→[右クリック]-[スクリプトをアタッチ]-[言語: **C#**] で "Main.cs" を [作成]  
+1. [シーン]-[Main]→[右クリック]-[スクリプトをアタッチ]-[言語: C#] で "Main.cs" を [作成]  
 1. [ファイルシステム] に "Main.cs" が生成される
 1. コードの変更
 
