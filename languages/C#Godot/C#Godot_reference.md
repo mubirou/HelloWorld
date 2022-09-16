@@ -10,7 +10,7 @@
 ### **INDEX**
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
-* ~~[コメントアウト](#コメントアウト)~~
+* [コメントアウト](#コメントアウト)
 * ~~[データ型](#データ型)~~
 * ~~[データ型の操作](#データ型の操作)~~
 * ~~[クラス](#クラス)~~
@@ -86,7 +86,7 @@
 実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月12日  
-更新日：2022年09月16日 Godot 4.0 対応
+更新日：2022年09月16日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
