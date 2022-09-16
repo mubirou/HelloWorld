@@ -11,7 +11,7 @@
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
-* ~~[データ型](#データ型)~~
+* [データ型](#データ型)
 * ~~[データ型の操作](#データ型の操作)~~
 * ~~[クラス](#クラス)~~
 * ~~[基本クラスと派生クラス](#基本クラスと派生クラス)~~
@@ -261,9 +261,10 @@ class MyClass { // クラスの定義
 ```
 
 [[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月12日  
+更新日：2022年09月16日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
