@@ -2,7 +2,7 @@
 
 ## C# with Godot について
 
-* [Godot Engine](https://godotengine.org/) **3.0**（2018年リリース）から [Mono](https://bit.ly/3Uh2xGw) を利用して使えるようになったスクリプト言語で **4.0** Beta 1（2022年9月16日リリース）からは [**.NET 6**](https://bit.ly/3eVjVQG) 対応になった
+* [Godot Engine](https://godotengine.org/) **3.0**（2018年リリース）から [Mono](https://bit.ly/3Uh2xGw) を利用して使えるようになったスクリプト言語で **4.0** Beta 1（2022年9月16日リリース）からは [.NET 6](https://bit.ly/3eVjVQG) 対応になった
 * C#のほかに [Python](https://bit.ly/3RQjwh0) に似た構文を採用している [GDScript](https://bit.ly/3RHFFhD) も利用可能
 * [C# with Godot 基本文法](https://bit.ly/3LkAwKb)
 
