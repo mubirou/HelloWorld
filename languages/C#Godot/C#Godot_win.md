@@ -58,7 +58,7 @@ Hello,world!
 
 1. [.NET 6.0 のダウンロード](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0) を開く
 
-1. 最新の SDK（**SDK 6.0.401**）をダウンロード＆インストール後に再起動
+1. 最新の SDK（**SDK 6.0.401**）をダウンロード＆インストール後に Windows を再起動
     * OS：Windows
     * インストーラー：**x64**（64ビット）
 
