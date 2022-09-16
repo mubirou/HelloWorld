@@ -8,7 +8,6 @@
 ### この項目は書きかけです（Godot 4.0 対応中）
 
 ### **INDEX**
-**参考：[Microsoft](https://bit.ly/3Uh6YBa)**
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * ~~[コメントアウト](#コメントアウト)~~
@@ -49,6 +48,8 @@
 * ~~[タイマー](#タイマー)~~
 * ~~[処理速度計測](#処理速度計測)~~
 * ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
+
+参考：[Microsoft](https://bit.ly/3Uh6YBa)  
 ***
 
 <a name="コメントアウト"></a>
