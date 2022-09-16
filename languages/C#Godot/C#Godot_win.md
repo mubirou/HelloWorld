@@ -75,8 +75,10 @@ Hello,world!
     * プロジェクト名：任意
     * プロジェクトパス：任意
     * レンダラー：[Vulkan](https://ja.wikipedia.org/wiki/Vulkan_(API)) Clustered
+1. [シーン]-[3D シーン] を選択
+1. "Node3d" → "Main" に変更
 
-1. [シーン]タブ（ルートノードを生成）から[3D シーン]を選択. 名前を[Spatial]→[Main]に変更
+***
 
 1. [シーン]-[シーンを保存]で"Main.tscn"を[保存]  
 （[ファイルシステム]タブ内に"Main.tscn"が生成されます）
