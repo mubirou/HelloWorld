@@ -132,131 +132,131 @@
 using Godot;
 
 public partial class Main:Node3D {
-  public override void _Ready() {
-    // bool型
-    bool _bool = true;
-    GD.Print(_bool); //-> True
-    GD.Print(_bool.GetType()); //-> System.Boolean
-    
-    // 整数型➀（0〜255）
-    byte _byte = 255;
-    GD.Print(_byte); //-> 255
-    GD.Print(_byte.GetType()); //-> System.Byte
-    
-    // 整数型➁（-128〜127）
-    sbyte _sbyte = -128;
-    GD.Print(_sbyte); // -128
-    GD.Print(_sbyte.GetType()); //-> System.SByte
-    
-    // 整数型➂（-32768〜32767）
-    short _short = -32768;
-    GD.Print(_short); //-> -32768
-    GD.Print(_short.GetType()); //-> System.Int16
-    
-    // 整数型➃（0〜65535）
-    ushort _ushort = 65535;
-    GD.Print(_ushort); //-> 65535
-    GD.Print(_ushort.GetType()); //-> System.UInt16
-    
-    // 整数型➄（-2147483648〜2147483647）
-    int _int = -2147483648;
-    GD.Print(_int); //-> -2147483648
-    GD.Print(_int.GetType()); //-> System.Int32
+    public override void _Ready() {
+        // bool型
+        bool _bool = true;
+        GD.Print(_bool); //-> True
+        GD.Print(_bool.GetType()); //-> System.Boolean
+        
+        // 整数型➀（0〜255）
+        byte _byte = 255;
+        GD.Print(_byte); //-> 255
+        GD.Print(_byte.GetType()); //-> System.Byte
+        
+        // 整数型➁（-128〜127）
+        sbyte _sbyte = -128;
+        GD.Print(_sbyte); // -128
+        GD.Print(_sbyte.GetType()); //-> System.SByte
+        
+        // 整数型➂（-32768〜32767）
+        short _short = -32768;
+        GD.Print(_short); //-> -32768
+        GD.Print(_short.GetType()); //-> System.Int16
+        
+        // 整数型➃（0〜65535）
+        ushort _ushort = 65535;
+        GD.Print(_ushort); //-> 65535
+        GD.Print(_ushort.GetType()); //-> System.UInt16
+        
+        // 整数型➄（-2147483648〜2147483647）
+        int _int = -2147483648;
+        GD.Print(_int); //-> -2147483648
+        GD.Print(_int.GetType()); //-> System.Int32
 
-    int _int16 = 0xFFCC00; // 16進数の場合
-    GD.Print(_int16); //-> 16763904
-    GD.Print(_int16.GetType()); //-> System.Int32
-    
-    // 整数型➅（0〜4294967295）
-    uint _uint = 4294967295;
-    GD.Print(_uint); //-> 4294967295
-    GD.Print(_uint.GetType()); //-> System.UInt32
-    
-    // 整数型➆（-9223372036854775808〜9223372036854775807）
-    long _long = -9223372036854775808;
-    GD.Print(_long); //-> -9223372036854775808
-    GD.Print(_long.GetType()); //-> System.Int64
-    
-    // 整数型➇（0〜18446744073709551615）
-    ulong _ulong = 18446744073709551615;
-    GD.Print(_ulong); //-> 18446744073709551615
-    GD.Print(_ulong.GetType()); //-> System.UInt64
-    
-    // 浮動小数点数型➀
-    float _float = 3.14159265358979323846264338327f; // 最後に「f」
-    GD.Print(_float); //-> 3.1415927
-    GD.Print(_float.GetType()); //-> System.Single
-    
-    // 浮動小数点数型➁
-    double _double = 3.14159265358979323846264338327d; // 「d」をつけなくても同じ
-    GD.Print(_double); //-> 3.141592653589793
-    GD.Print(_double.GetType()); //-> System.Double
-    
-    // 浮動小数点数型➂
-    decimal _decimal = 3.14159265358979323846264338327m; // 最後に「m」
-    GD.Print(_decimal); //-> 3.1415926535897932384626433833
-    GD.Print(_decimal.GetType()); //-> System.Decimal
-    
-    // 文字型➀（char型＝1文字）
-    char _char = 'a'; // シングルクォーテーション
-    GD.Print(_char); //-> a
-    GD.Print(_char.GetType()); //-> System.Char
-    
-    // 文字型➁（string型）
-    string _string = "999"; // ダブルクォーテーション
-    GD.Print(_string); //-> 999
-    GD.Print(_string.GetType()); //-> System.string
+        int _int16 = 0xFFCC00; // 16進数の場合
+        GD.Print(_int16); //-> 16763904
+        GD.Print(_int16.GetType()); //-> System.Int32
+        
+        // 整数型➅（0〜4294967295）
+        uint _uint = 4294967295;
+        GD.Print(_uint); //-> 4294967295
+        GD.Print(_uint.GetType()); //-> System.UInt32
+        
+        // 整数型➆（-9223372036854775808〜9223372036854775807）
+        long _long = -9223372036854775808;
+        GD.Print(_long); //-> -9223372036854775808
+        GD.Print(_long.GetType()); //-> System.Int64
+        
+        // 整数型➇（0〜18446744073709551615）
+        ulong _ulong = 18446744073709551615;
+        GD.Print(_ulong); //-> 18446744073709551615
+        GD.Print(_ulong.GetType()); //-> System.UInt64
+        
+        // 浮動小数点数型➀
+        float _float = 3.14159265358979323846264338327f; // 最後に「f」
+        GD.Print(_float); //-> 3.1415927
+        GD.Print(_float.GetType()); //-> System.Single
+        
+        // 浮動小数点数型➁
+        double _double = 3.14159265358979323846264338327d; // 「d」をつけなくても同じ
+        GD.Print(_double); //-> 3.141592653589793
+        GD.Print(_double.GetType()); //-> System.Double
+        
+        // 浮動小数点数型➂
+        decimal _decimal = 3.14159265358979323846264338327m; // 最後に「m」
+        GD.Print(_decimal); //-> 3.1415926535897932384626433833
+        GD.Print(_decimal.GetType()); //-> System.Decimal
+        
+        // 文字型➀（char型＝1文字）
+        char _char = 'a'; // シングルクォーテーション
+        GD.Print(_char); //-> a
+        GD.Print(_char.GetType()); //-> System.Char
+        
+        // 文字型➁（string型）
+        string _string = "999"; // ダブルクォーテーション
+        GD.Print(_string); //-> 999
+        GD.Print(_string.GetType()); //-> System.string
 
-    // null許容型
-    int? _null = null; // string型は不可
-    GD.Print(_null); //-> null
-    GD.Print(_null == null); //-> True
+        // null許容型
+        int? _null = null; // string型は不可
+        GD.Print(_null); //-> null
+        GD.Print(_null == null); //-> True
 
-    // 列挙型（enum）
-    GD.Print(Signal.BLUE); //-> BLUE
-    GD.Print(Signal.BLUE.GetType()); //-> Signal
-    GD.Print((int)Signal.BLUE); //-> 0（キャストによる型変換が必要）
+        // 列挙型（enum）
+        GD.Print(Signal.BLUE); //-> BLUE
+        GD.Print(Signal.BLUE.GetType()); //-> Signal
+        GD.Print((int)Signal.BLUE); //-> 0（キャストによる型変換が必要）
 
-    // 構造体（クラスに似ているが継承は不可）
-    MyStruct _struct = new MyStruct("mubirou", 55);
-    GD.Print(_struct); //-> MyStruct
-    GD.Print(_struct.GetType()); //-> MyStruct
-    
-    // 匿名型クラス（宣言には、必ずvarキーワードを使います）
-    var _anon = new { Name = "mubirou", Age = 55 }; // 読み取り専用（注意）
-    GD.Print(_anon); //-> { Name = mubirou, Age = 55 }
-    GD.Print(_anon.Name); //-> mubirou（取得方法）
-    GD.Print(_anon.GetType());//-> <>f__AnonymousType0`2[...
+        // 構造体（クラスに似ているが継承は不可）
+        MyStruct _struct = new MyStruct("mubirou", 55);
+        GD.Print(_struct); //-> MyStruct
+        GD.Print(_struct.GetType()); //-> MyStruct
+        
+        // 匿名型クラス（宣言には、必ずvarキーワードを使います）
+        var _anon = new { Name = "mubirou", Age = 55 }; // 読み取り専用（注意）
+        GD.Print(_anon); //-> { Name = mubirou, Age = 55 }
+        GD.Print(_anon.Name); //-> mubirou（取得方法）
+        GD.Print(_anon.GetType());//-> <>f__AnonymousType0`2[...
 
-    // クラス
-    MyClass _myClass = new MyClass("mubirou", 55);
-    GD.Print(_myClass); //-> MyClass
-    GD.Print(_myClass.GetType()); //-> MyClass
+        // クラス
+        MyClass _myClass = new MyClass("mubirou", 55);
+        GD.Print(_myClass); //-> MyClass
+        GD.Print(_myClass.GetType()); //-> MyClass
 
-    // 配列
-    int[] _array = new int[4]; // 4個の空の要素を持つ配列の場合
-    GD.Print(_array); //-> System.Int32[]
-  }
+        // 配列
+        int[] _array = new int[4]; // 4個の空の要素を持つ配列の場合
+        GD.Print(_array); //-> System.Int32[]
+    }
 }
 
 enum Signal { BLUE,YELLOW,RED }; // 列挙（enum）の定義
 
 struct MyStruct { // 構造体の定義
-  public string _name;
-  public byte _age;
-  public MyStruct(string arg1, byte arg2) {
-    _name = arg1;
-    _age = arg2;
-  }
+    public string _name;
+    public byte _age;
+    public MyStruct(string arg1, byte arg2) {
+        _name = arg1;
+        _age = arg2;
+    }
 }
 
 class MyClass { // クラスの定義
-  public string _name;
-  public byte _age;
-  public MyClass(string arg1, byte arg2) {
-    _name = arg1;
-    _age = arg2;
-  }
+    public string _name;
+    public byte _age;
+    public MyClass(string arg1, byte arg2) {
+        _name = arg1;
+        _age = arg2;
+    }
 }
 ```
 
@@ -3625,60 +3625,60 @@ using System; // DateTimeに必要
 public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     public override void _Ready() {
         Calender(2020, 2); // 2020年2月の場合
-  }
-  
-  void Calender(int _year, int _month) {
-    DateTime _dateTime = new DateTime(_year, _month, 1); // 〇年〇月1日
-
-    int _fistWeek = (int)_dateTime.DayOfWeek; // その日が何曜日か（0は日曜日）
-
-    int _lastDay = DateTime.DaysInMonth(_year, _month); // 月の最終日は何日か
-
-    // 各週を配列化〜各配列に値（日にち）を代入
-    int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
-    int[] _4week = new int[7], _5week = new int[7];
-
-    int _count = 1; // 代入する日にち
-
-    // 第1週
-    for (int i=_fistWeek; i<_1week.Length; i++) {
-      _1week[i] = _count++;
     }
+    
+    void Calender(int _year, int _month) {
+        DateTime _dateTime = new DateTime(_year, _month, 1); // 〇年〇月1日
 
-    // 第2週
-    for (int i=0; i<_2week.Length; i++) {
-      _2week[i] = _count++;
+        int _fistWeek = (int)_dateTime.DayOfWeek; // その日が何曜日か（0は日曜日）
+
+        int _lastDay = DateTime.DaysInMonth(_year, _month); // 月の最終日は何日か
+
+        // 各週を配列化〜各配列に値（日にち）を代入
+        int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
+        int[] _4week = new int[7], _5week = new int[7];
+
+        int _count = 1; // 代入する日にち
+
+        // 第1週
+        for (int i=_fistWeek; i<_1week.Length; i++) {
+            _1week[i] = _count++;
+        }
+
+        // 第2週
+        for (int i=0; i<_2week.Length; i++) {
+            _2week[i] = _count++;
+        }
+
+        // 第3週
+        for (int i=0; i<_3week.Length; i++) {
+            _3week[i] = _count++;
+        }
+
+        // 第4週
+        for (int i=0; i<_4week.Length; i++) {
+            _4week[i] = _count++;
+        }
+
+        // 第5週
+        for (int i=0; i<_5week.Length; i++) {
+            if (_count <= _lastDay) {
+                _5week[i] = _count++;
+            }
+        }
+
+        // 結果＝カレンダー表示（うるう年に対応）
+        GD.Print("第1週");
+        for (int i=0; i<=6; i++) { GD.Print(_1week[i]);} //-> 0→0→0→0→0→0→1
+        GD.Print("第2週");
+        for (int i=0; i<=6; i++) { GD.Print(_2week[i]); } //-> 2→3→4→5→6→7→8
+        GD.Print("第3週");
+        for (int i=0; i<=6; i++) { GD.Print(_3week[i]); } //-> 9→10→11→13→14→14→15
+        GD.Print("第4週");
+        for (int i=0; i<=6; i++) { GD.Print(_4week[i]); } //-> 16→17→18→19→20→21→22
+        GD.Print("第5週");
+        for (int i=0; i<=6; i++) { GD.Print(_5week[i]); } //-> 23→24→25→26→27→28→29
     }
-
-    // 第3週
-    for (int i=0; i<_3week.Length; i++) {
-      _3week[i] = _count++;
-    }
-
-    // 第4週
-    for (int i=0; i<_4week.Length; i++) {
-      _4week[i] = _count++;
-    }
-
-    // 第5週
-    for (int i=0; i<_5week.Length; i++) {
-      if (_count <= _lastDay) {
-        _5week[i] = _count++;
-      }
-    }
-
-    // 結果＝カレンダー表示（うるう年に対応）
-    GD.Print("第1週");
-    for (int i=0; i<=6; i++) { GD.Print(_1week[i]);} //-> 0→0→0→0→0→0→1
-    GD.Print("第2週");
-    for (int i=0; i<=6; i++) { GD.Print(_2week[i]); } //-> 2→3→4→5→6→7→8
-    GD.Print("第3週");
-    for (int i=0; i<=6; i++) { GD.Print(_3week[i]); } //-> 9→10→11→13→14→14→15
-    GD.Print("第4週");
-    for (int i=0; i<=6; i++) { GD.Print(_4week[i]); } //-> 16→17→18→19→20→21→22
-    GD.Print("第5週");
-    for (int i=0; i<=6; i++) { GD.Print(_5week[i]); } //-> 23→24→25→26→27→28→29
-  }
 }
 ```
 
