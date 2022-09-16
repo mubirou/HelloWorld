@@ -271,8 +271,11 @@ class MyClass { // クラスの定義
 <a name="データ型の操作"></a>
 # <b>データ型の操作</b>
 
+### この項目は書きかけです
+
 ### 👉 データ型の調べ方
-### is 演算子  
+
+### is 演算子
 クラスか否かを調べる（○ is int といった使い方も可能）  
 
 ```CSharp
@@ -296,156 +299,166 @@ class SuperClass {} // 基本クラスの定義
 class SubClass : SuperClass {} // 派生クラスの定義
 ```
 
-**as 演算子**  
-    * キャスト成功時に変換後の値が返され、失敗するとエラー
-    ```CSharp
-    // Main.cs
-    using Godot;
+### as 演算子
+キャスト成功時に変換後の値が返され、失敗するとエラー
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            var _myClass = new MyClass();
-            GD.Print(_myClass as MyClass); //=> MyClass
-            //GD.Print(_myClass as HogeClass); //=> CS0039 error
-        }
+```CSharp
+// Main.cs
+using Godot;
+
+public class Main : Spatial {
+    public override void _Ready() {
+        var _myClass = new MyClass();
+        GD.Print(_myClass as MyClass); //=> MyClass
+        //GD.Print(_myClass as HogeClass); //=> CS0039 error
     }
+}
 
-    class MyClass {}
-    class HogeClass {}
-    ```
+class MyClass {}
+class HogeClass {}
+```
 
-**GetType() メソッド**  
-    * Object.GetType() メソッド（オブジェクトの型を返す）
-    ```CSharp
-    // Main.cs
-    using Godot;
+### GetType() メソッド
+Object.GetType() メソッド（オブジェクトの型を返す）
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            GD.Print(true.GetType()); //-> System.Boolean
-            GD.Print((100).GetType()); //-> System.Int32
-            GD.Print((10000000000).GetType()); //-> System.UInt64
-            GD.Print((0.1).GetType()); //-> System.Double
-            GD.Print('1'.GetType()); //-> System.Char
-            GD.Print("1".GetType()); //-> System.String
-            GD.Print(new {}.GetType()); //-> <>f__AnonymousType0
-            GD.Print(new MyClass().GetType()); //-> MyClass
-        }
+```CSharp
+// Main.cs
+using Godot;
+
+public class Main : Spatial {
+    public override void _Ready() {
+        GD.Print(true.GetType()); //-> System.Boolean
+        GD.Print((100).GetType()); //-> System.Int32
+        GD.Print((10000000000).GetType()); //-> System.UInt64
+        GD.Print((0.1).GetType()); //-> System.Double
+        GD.Print('1'.GetType()); //-> System.Char
+        GD.Print("1".GetType()); //-> System.String
+        GD.Print(new {}.GetType()); //-> <>f__AnonymousType0
+        GD.Print(new MyClass().GetType()); //-> MyClass
     }
+}
 
-    class MyClass {}
-    ```
+class MyClass {}
+```
 
-### 👉 データ型のキャスト  
-**数値⇔bool 型（不可）**
-    ```CSharp
-    // Main.cs
-    using Godot;
+### 👉 データ型のキャスト
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            //bool _tmp = (bool)1; // CS0030 error（数値→bool型への変換は不可）
-            //int _tmp = (int)true; // CS0030 error（bool型→数値への変換は不可）
-        }
+### 数値⇔bool 型（不可）
+
+```CSharp
+// Main.cs
+using Godot;
+
+public class Main : Spatial {
+    public override void _Ready() {
+        //bool _tmp = (bool)1; // CS0030 error（数値→bool型への変換は不可）
+        //int _tmp = (int)true; // CS0030 error（bool型→数値への変換は不可）
     }
-    ```
+}
+```
 
-**数値→bool 型へ変換（力技）**  
-    ```CSharp
-    // Main.cs
-    using Godot;
+### 数値→bool 型へ変換（力技）
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            int _tmp = 0;
-            bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
-            GD.Print(_tmp2); //-> False
-        }
+```CSharp
+// Main.cs
+using Godot;
+
+public class Main : Spatial {
+    public override void _Ready() {
+        int _tmp = 0;
+        bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
+        GD.Print(_tmp2); //-> False
     }
-    ```
+}
+```
 
-**bool型→数値へ変換**  
-    ```CSharp
-    // Main.cs
-    using Godot;
-    using System; // Convertに必要
+### bool型→数値へ変換
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            bool _tmp = true;
-            int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
-            GD.Print(_tmp2); //-> 1
-        }
+```CSharp
+// Main.cs
+using Godot;
+using System; // Convertに必要
+
+public class Main : Spatial {
+    public override void _Ready() {
+        bool _tmp = true;
+        int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
+        GD.Print(_tmp2); //-> 1
     }
-    ```
+}
+```
 
-**数値⇔数値（縮小変換）**  
-    ```CSharp
-    // Main.cs
-    using Godot;
+### 数値⇔数値（縮小変換）
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            //整数の場合
-            long _tmp1 = 2147483648; //intは-2147483648〜2147483647
-            int _tmp2 = (int)_tmp1; //long型→int型へ変換
-            GD.Print(_tmp2); //-> -2147483648（元のデータが失われる）
+```CSharp
+// Main.cs
+using Godot;
 
-            //浮動小数点数の場合
-            decimal _decimal = 3.14159265358979323846264338327m;
-            double _tmp3 = (double)_decimal;
-            GD.Print(_tmp3); //-> 3.14159265358979（データの一部が失われる）
-        }
+public class Main : Spatial {
+    public override void _Ready() {
+        //整数の場合
+        long _tmp1 = 2147483648; //intは-2147483648〜2147483647
+        int _tmp2 = (int)_tmp1; //long型→int型へ変換
+        GD.Print(_tmp2); //-> -2147483648（元のデータが失われる）
+
+        //浮動小数点数の場合
+        decimal _decimal = 3.14159265358979323846264338327m;
+        double _tmp3 = (double)_decimal;
+        GD.Print(_tmp3); //-> 3.14159265358979（データの一部が失われる）
     }
-    ```
+}
+```
 
-**数値⇔数値（拡張変換）**  
-    ```CSharp
-    // Main.cs
-    using Godot;
+### 数値⇔数値（拡張変換）
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            int _tmp = 2147483647; //intは-2147483648〜2147483647
-            long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
-            GD.Print(_tmp2); //=> 2147483648
-        }
+```CSharp
+// Main.cs
+using Godot;
+
+public class Main : Spatial {
+    public override void _Ready() {
+        int _tmp = 2147483647; //intは-2147483648〜2147483647
+        long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
+        GD.Print(_tmp2); //=> 2147483648
     }
-    ```
+}
+```
 
-**数値⇔ string 型**  
-    ```CSharp
-    // Main.cs
-    using Godot;
-    using System; //Int32.Parse()に必要
+### 数値⇔ string 型
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            string _tmp = "001";
-            int _tmp2 = Int32.Parse(_tmp); // 001（string型）→1（int型）に変換
-            GD.Print(_tmp2); //-> 1
-            GD.Print(_tmp2.GetType()); //-> System.Int32
-        }
+```CSharp
+// Main.cs
+using Godot;
+using System; //Int32.Parse()に必要
+
+public class Main : Spatial {
+    public override void _Ready() {
+        string _tmp = "001";
+        int _tmp2 = Int32.Parse(_tmp); // 001（string型）→1（int型）に変換
+        GD.Print(_tmp2); //-> 1
+        GD.Print(_tmp2.GetType()); //-> System.Int32
     }
-    ```
+}
+```
 
-**数値→ string 型**  
-    ```CSharp
-    // Main.cs
-    using Godot;
+### 数値→ string 型
 
-    public class Main : Spatial {
-        public override void _Ready() {
-            int _tmp = 100;
-            string _tmp2 = _tmp.ToString(); // 100（int型）→"100"（string）に変換
-            GD.Print(_tmp2); //-> 100
-            GD.Print(_tmp2.GetType()); //-> System.String
-        }
+```CSharp
+// Main.cs
+using Godot;
+
+public class Main : Spatial {
+    public override void _Ready() {
+        int _tmp = 100;
+        string _tmp2 = _tmp.ToString(); // 100（int型）→"100"（string）に変換
+        GD.Print(_tmp2); //-> 100
+        GD.Print(_tmp2.GetType()); //-> System.String
     }
-    ```
+}
+```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3S7pb1Z)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
 更新日：2022年09月XX日 Godot 4.0 対応  
