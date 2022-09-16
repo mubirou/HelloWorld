@@ -272,7 +272,7 @@ class MyClass { // クラスの定義
 # <b>データ型の操作</b>
 
 ### データ型の調べ方
-**👉 is 演算子**
+**👉 is 演算子**  
     * クラスか否かを調べる（○ is int といった使い方も可能）
     ```CSharp
     // Main.cs
@@ -295,7 +295,7 @@ class MyClass { // クラスの定義
     class SubClass : SuperClass {} // 派生クラスの定義
     ```
 
-**👉 as 演算子**
+**👉 as 演算子**  
     * キャスト成功時に変換後の値が返され、失敗するとエラー
     ```CSharp
     // Main.cs
@@ -313,7 +313,7 @@ class MyClass { // クラスの定義
     class HogeClass {}
     ```
 
-**👉 GetType() メソッド**
+**👉 GetType() メソッド**  
     * Object.GetType() メソッド（オブジェクトの型を返す）
     ```CSharp
     // Main.cs
@@ -335,7 +335,7 @@ class MyClass { // クラスの定義
     class MyClass {}
     ```
 
-### データ型のキャスト
+### データ型のキャスト  
 **👉 数値⇔bool 型（不可）**
     ```CSharp
     // Main.cs
@@ -349,7 +349,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-**👉 数値→bool 型へ変換（力技）**
+**👉 数値→bool 型へ変換（力技）**  
     ```CSharp
     // Main.cs
     using Godot;
@@ -363,7 +363,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-**👉 bool型→数値へ変換**
+**👉 bool型→数値へ変換**  
     ```CSharp
     // Main.cs
     using Godot;
@@ -378,7 +378,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-**👉 数値⇔数値（縮小変換）**
+**👉 数値⇔数値（縮小変換）**  
     ```CSharp
     // Main.cs
     using Godot;
@@ -398,7 +398,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-**👉 数値⇔数値（拡張変換）**
+**👉 数値⇔数値（拡張変換）**  
     ```CSharp
     // Main.cs
     using Godot;
@@ -412,7 +412,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-**👉 数値⇔ string 型**
+**👉 数値⇔ string 型**  
     ```CSharp
     // Main.cs
     using Godot;
@@ -428,7 +428,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-**👉 数値→ string 型**
+**👉 数値→ string 型**  
     ```CSharp
     // Main.cs
     using Godot;
