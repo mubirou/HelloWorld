@@ -282,17 +282,17 @@ class MyClass { // クラスの定義
 // Main.cs
 using Godot;
 
-public partial class Main : Node3D {	
-	public override void _Ready() {
-		 //クラスの場合
-		var _tmp = new SubClass();
-		GD.Print(_tmp is SubClass); //-> True
-		GD.Print(_tmp is SuperClass); //-> True
+public partial class Main : Node3D {
+    public override void _Ready() {
+         //クラスの場合
+        var _tmp = new SubClass();
+        GD.Print(_tmp is SubClass); //-> True
+        GD.Print(_tmp is SuperClass); //-> True
 
-		//匿名型クラスの場合
-		var _tmp2 = new {};
-		GD.Print(_tmp2 is object); //-> True
-	}
+        //匿名型クラスの場合
+        var _tmp2 = new {};
+        GD.Print(_tmp2 is object); //-> True
+    }
 }
 
 class SuperClass {} // 基本クラスの定義
