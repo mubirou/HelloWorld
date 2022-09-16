@@ -16,7 +16,7 @@
 
 ### 👉 Godot Engine（.NET 6 対応版）のインストール
 
-1. [**ここ**](https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1#downloads)から **.NET 6 build**（C#, GDScript, GDExtension）を選択
+1. [ここ](https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1#downloads)から **.NET 6 build**（C#, GDScript, GDExtension）を選択
 
 1. **Godot_v4.0-beta1_mono_win64.zip** をダウンロード＆解凍
 
