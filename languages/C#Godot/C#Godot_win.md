@@ -51,9 +51,9 @@
 
 1. 再生ボタン ▶ を押すと…  
 
-```CSharp
-Hello,world!
-```
+    ```CSharp
+    Hello,world!
+    ```
 
 と表示されたら成功！
 
