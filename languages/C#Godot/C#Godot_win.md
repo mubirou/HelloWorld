@@ -68,6 +68,6 @@ Hello,world!
 
 1. **Godot_v4.0-beta1_mono_win64.zip** をダウンロード＆解凍
 
-実行環境：Windows 10、Godot Engine 4.0 Beta 1、.NET SDK 6.0.401  
+実行環境：Windows 10、Godot Engine 4.0 beta 1（.NET 6 対応版）、.NET SDK 6.0.401  
 作成者：夢寐郎  
 作成日：2022年09月XX日  
