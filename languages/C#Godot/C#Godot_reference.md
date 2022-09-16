@@ -1,10 +1,11 @@
 <a name="TOP"></a>
 
-# <b>C# with Godot 基礎文法</b>
+# **C# with Godot 基礎文法**
 
-[[Godot Study Notes](https://github.com/mubirou/Godot#godot-study-notes)]
+[[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
+⌚ 535h00min  
 
-### <b>INDEX</b>
+### **INDEX**
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
