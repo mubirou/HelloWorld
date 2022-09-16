@@ -75,8 +75,8 @@ Hello,world!
     * レンダラー：[Vulkan](https://ja.wikipedia.org/wiki/Vulkan_(API)) Clustered
 1. [シーン]-[3D シーン] を選択
 1. "Node3d" → "Main" に変更
-1. [シーン]-[シーンを保存]で"main.tscn"を[保存]  
-（[ファイルシステム]タブ内に"main.tscn"が生成される）
+1. [シーン]-[シーンを保存] で "main.tscn" を[保存]  
+（[ファイルシステム] タブ内に "main.tscn" が生成される）
 
 1. シーンに以下のようにノードを追加  
     Main（**Node3D**）  
