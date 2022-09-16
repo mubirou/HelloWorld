@@ -54,8 +54,20 @@ Hello,world!
 
 ### この項目は書きかけです
 
+### 👉 .NET 6.0 SDK のインストール
+
 1. [.NET 6.0 のダウンロード](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0) を開く
 
-実行環境：Windows 10、Godot Engine 4.0 Beta 1  
+1. 最新の SDK 6.0.XXX の次のものをダウンロード＆インストール後に再起動
+    * OS：Windows
+    * インストーラー：x64
+
+### 👉 Godot Engine（.NET 6 対応版）のインストール
+
+1. [ここ](https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1#downloads) から **.NET 6 build**（C#, GDScript, GDExtension）を選択
+
+1. **Godot_v4.0-beta1_mono_win64.zip** をダウンロード＆解凍
+
+実行環境：Windows 10、Godot Engine 4.0 Beta 1、.NET SDK 6.0.401  
 作成者：夢寐郎  
 作成日：2022年09月XX日  
