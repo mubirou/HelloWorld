@@ -2,9 +2,9 @@
 
 ## C# with Godot について
 
-* [Godot Engine](https://godotengine.org/) 3.0（2018年リリース）から[Mono](https://bit.ly/3Uh2xGw)を利用して使えるようになったスクリプト言語
-* C#のほかに[Python](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#python-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)に似た構文を採用している[GDScript](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)も利用可能
-* [C# with Godot 基本文法](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#c-with-godot-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)
+* [Godot Engine](https://godotengine.org/) **3.0**（2018年リリース）から [Mono] (https://bit.ly/3Uh2xGw)を利用して使えるようになったスクリプト言語で **4.0** Beta 1（2022年9月16日リリース）からは [**.NET 6.0**](https://bit.ly/3eVjVQG) 対応となった
+* C#のほかに [Python](https://bit.ly/3RQjwh0) に似た構文を採用している [GDScript](https://bit.ly/3RHFFhD) も利用可能
+* [C# with Godot 基本文法](https://bit.ly/3LkAwKb)
 
 ## Hello,world
 
