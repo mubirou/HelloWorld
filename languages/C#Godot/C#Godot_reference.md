@@ -49,7 +49,7 @@
 * ~~[処理速度計測](#処理速度計測)~~
 * ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
 
-参考：[Microsoft](https://bit.ly/3Uh6YBa)  
+参考：[Microsoft C# リファレンス](https://bit.ly/3Uh6YBa)  
 ***
 
 <a name="コメントアウト"></a>
