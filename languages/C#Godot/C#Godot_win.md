@@ -2,7 +2,7 @@
 
 ## C# with Godot について
 
-* [Godot Engine](https://godotengine.org/) 3.0（2018年リリース）から[Mono](https://ja.wikipedia.org/wiki/Mono_(%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2))を利用して使えるようになったスクリプト言語
+* [Godot Engine](https://godotengine.org/) 3.0（2018年リリース）から[Mono](https://bit.ly/3Uh2xGw)を利用して使えるようになったスクリプト言語
 * C#のほかに[Python](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#python-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)に似た構文を採用している[GDScript](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)も利用可能
 * [C# with Godot 基本文法](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#c-with-godot-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)
 
@@ -41,7 +41,6 @@
 
     ```CSharp
     using Godot;
-    using System;
 
     public partial class Main:Node3D {
         public override void _Ready() {
@@ -61,4 +60,4 @@ Hello,world!
 実行環境：Windows 10、Godot Engine 4.0 beta 1（.NET 6 対応版）、.NET SDK 6.0.401  
 作成者：夢寐郎  
 作成日：2022年02月12日  
-更新日：2022年09月XX日 Godot 4.0 対応  
+更新日：2022年09月16日 Godot 4.0 対応  
