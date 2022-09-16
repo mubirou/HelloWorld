@@ -12,7 +12,7 @@
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
-* ~~[データ型の操作](#データ型の操作)~~
+* [データ型の操作](#データ型の操作)
 * ~~[クラス](#クラス)~~
 * ~~[基本クラスと派生クラス](#基本クラスと派生クラス)~~
 * ~~[名前空間](#名前空間)~~
@@ -284,7 +284,7 @@ using Godot;
 
 public partial class Main : Node3D {
     public override void _Ready() {
-         //クラスの場合
+        //クラスの場合
         var _tmp = new SubClass();
         GD.Print(_tmp is SubClass); //-> True
         GD.Print(_tmp is SuperClass); //-> True
@@ -306,11 +306,11 @@ class SubClass : SuperClass {} // 派生クラスの定義
 // Main.cs
 using Godot;
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
         var _myClass = new MyClass();
         GD.Print(_myClass as MyClass); //=> MyClass
-        //GD.Print(_myClass as HogeClass); //=> CS0039 error
+        //GD.Print(_myClass as HogeClass); // エラー
     }
 }
 
@@ -325,7 +325,7 @@ Object.GetType() メソッド（オブジェクトの型を返す）
 // Main.cs
 using Godot;
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(true.GetType()); //-> System.Boolean
         GD.Print((100).GetType()); //-> System.Int32
@@ -349,10 +349,10 @@ class MyClass {}
 // Main.cs
 using Godot;
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
-        //bool _tmp = (bool)1; // CS0030 error（数値→bool型への変換は不可）
-        //int _tmp = (int)true; // CS0030 error（bool型→数値への変換は不可）
+        //bool _tmp = (bool)1; // エラー（数値→bool型への変換は不可）
+        //int _tmp = (int)true; // エラー（bool型→数値への変換は不可）
     }
 }
 ```
@@ -363,7 +363,7 @@ public class Main : Spatial {
 // Main.cs
 using Godot;
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
         int _tmp = 0;
         bool _tmp2 = _tmp != 0; //0→Falseに変換（0以外はTrueに変換）
@@ -379,7 +379,7 @@ public class Main : Spatial {
 using Godot;
 using System; // Convertに必要
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
         bool _tmp = true;
         int _tmp2 = Convert.ToInt32(_tmp); //true→1に変換（falseは0に変換）
@@ -394,17 +394,17 @@ public class Main : Spatial {
 // Main.cs
 using Godot;
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
-        //整数の場合
+        // 整数の場合
         long _tmp1 = 2147483648; //intは-2147483648〜2147483647
         int _tmp2 = (int)_tmp1; //long型→int型へ変換
         GD.Print(_tmp2); //-> -2147483648（元のデータが失われる）
 
-        //浮動小数点数の場合
+        // 浮動小数点数の場合
         decimal _decimal = 3.14159265358979323846264338327m;
         double _tmp3 = (double)_decimal;
-        GD.Print(_tmp3); //-> 3.14159265358979（データの一部が失われる）
+        GD.Print(_tmp3); //-> 3.141592653589793（データの一部が失われる）
     }
 }
 ```
@@ -415,7 +415,7 @@ public class Main : Spatial {
 // Main.cs
 using Godot;
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
         int _tmp = 2147483647; //intは-2147483648〜2147483647
         long _tmp2 = (long)_tmp + 1; //int型→long型へ変換
@@ -429,9 +429,9 @@ public class Main : Spatial {
 ```CSharp
 // Main.cs
 using Godot;
-using System; //Int32.Parse()に必要
+using System; // Int32.Parse()に必要
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
         string _tmp = "001";
         int _tmp2 = Int32.Parse(_tmp); // 001（string型）→1（int型）に変換
@@ -447,7 +447,7 @@ public class Main : Spatial {
 // Main.cs
 using Godot;
 
-public class Main : Spatial {
+public partial class Main : Node3D {
     public override void _Ready() {
         int _tmp = 100;
         string _tmp2 = _tmp.ToString(); // 100（int型）→"100"（string）に変換
@@ -461,7 +461,7 @@ public class Main : Spatial {
 実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
-更新日：2022年09月XX日 Godot 4.0 対応  
+更新日：2022年09月16日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
