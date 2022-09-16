@@ -1,5 +1,5 @@
 # C# with Godot 4.0（ Windows ）
-[[C# with Godot 基本文法](https://bit.ly/3LkAwKb)]  
+[[C# with Godot 4.0 基本文法](https://bit.ly/3LkAwKb)]  
 
 ## C# with Godot について
 
