@@ -54,7 +54,7 @@ Hello,world!
 
 ### この項目は書きかけです
 
-### 👉 .NET 6.0 SDK のインストール
+### 👉 .NET 6.0 SDK のインストール（必須）
 
 1. [.NET 6.0 のダウンロード](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0) を開く
 
