@@ -78,9 +78,9 @@ Hello,world!
 1. [シーン]-[シーンを保存] で "main.tscn" を[保存]  
 （[ファイルシステム] タブ内に "main.tscn" が生成される）
 1. シーンに以下のようにノードを追加  
-  > Main（**Node3D**）  
-  >　└ **XrOrigin3d**  
-  >　　└ **XrCamera3d**  
+    > Main（**Node3D**）  
+    >　└ **XrOrigin3d**  
+    >　　└ **XrCamera3d**  
 1. [プロジェクト]-[プロジェクト設定]-[**XR**] の設定変更＆再起動  
     * [**OpenXR**]-[Enabled]：**✓オン**
     * [**シェーダー**]-[Enabled]：**✓オン**
