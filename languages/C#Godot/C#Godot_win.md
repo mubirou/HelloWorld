@@ -39,9 +39,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```
 
 1. 再生ボタン[▶]を押すと…  
-```
+
+```CSharp
 Hello,world!
 ```
+
 と表示されたら成功！
 
 ***
@@ -49,3 +51,11 @@ Hello,world!
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月12日
+
+### この項目は書きかけです
+
+1. [.NET 6.0 のダウンロード](https://dotnet.microsoft.com/ja-jp/download/dotnet/6.0) を開く
+
+実行環境：Windows 10、Godot Engine 4.0 Beta 1  
+作成者：夢寐郎  
+作成日：2022年09月XX日  
