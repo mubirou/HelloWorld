@@ -82,7 +82,7 @@
 ```
 
 [[GDScript 版](https://bit.ly/3BlqaF5)]  
-参考：[GODOT DOCS](https://bit.ly/3LgNEQt)  
+参考：[GODOT DOCS（Comment spacing）](https://bit.ly/3DzTjPP)  
 実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月12日  
