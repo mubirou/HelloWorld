@@ -5,6 +5,8 @@
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
 ⌚ 535h00min  
 
+### この項目は書きかけです（Godot 4.0 対応中）
+
 ### **INDEX**
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
