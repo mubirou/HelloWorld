@@ -1,6 +1,6 @@
 <a name="TOP"></a>
 
-# **C# with Godot 基礎文法**
+# **C# with Godot 4.0 基礎文法**
 
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
 ⌚ 535h00min  
