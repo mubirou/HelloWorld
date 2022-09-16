@@ -60,13 +60,56 @@ Hello,world!
 
 1. 最新の SDK（**SDK 6.0.401**）をダウンロード＆インストール後に Windows を再起動
     * OS：Windows
-    * インストーラー：**x64**（64ビット）
+    * インストーラー：**x64**（64ビット版）
 
 ### 👉 Godot Engine（.NET 6 対応版）のインストール
 
 1. [**ここ**](https://godotengine.org/article/dev-snapshot-godot-4-0-beta-1#downloads)から **.NET 6 build**（C#, GDScript, GDExtension）を選択
 
 1. **Godot_v4.0-beta1_mono_win64.zip** をダウンロード＆解凍
+
+### 👉 プロジェクトの作成
+
+1. **Godot_v4.0-beta1_mono_win64.exe** を起動
+1. [新規プロジェクト] を選び以下を設定し[作成して編集]
+    * プロジェクト名：任意
+    * プロジェクトパス：任意
+    * レンダラー：[Vulkan](https://ja.wikipedia.org/wiki/Vulkan_(API)) Clustered
+
+1. [シーン]タブ（ルートノードを生成）から[3D シーン]を選択. 名前を[Spatial]→[Main]に変更
+
+1. [シーン]-[シーンを保存]で"Main.tscn"を[保存]  
+（[ファイルシステム]タブ内に"Main.tscn"が生成されます）
+
+1. 再生ボタン[▶]を押すと「メインシーンが定義されていません。選択しますか？」というダイアログが表示されるので[現在のものを選択]を選択
+
+1. [Main]タブ（または[ファイルシステム]-[Main.tscn]）を選択し、[シーン]タブ-[Main]→[右クリック]-[スクリプトをアタッチ]を選択し[言語]を"GDScript"を"**C#**"に変更（重要）してから[作成]すると"Main.cs"が生成される
+
+1. コードの変更（[外部エディタ](https://github.com/mubirou/Godot#%E5%A4%96%E9%83%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF)を使用することも可能）
+
+```CSharp
+using Godot;
+
+public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public override void _Ready() {
+        GD.Print("Hello,world!");
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 実行環境：Windows 10、Godot Engine 4.0 beta 1（.NET 6 対応版）、.NET SDK 6.0.401  
 作成者：夢寐郎  
