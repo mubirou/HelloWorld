@@ -275,26 +275,26 @@ class MyClass { // クラスの定義
 ### is 演算子  
 クラスか否かを調べる（○ is int といった使い方も可能）  
 
-        ```CSharp
-        // Main.cs
-        using Godot;
+    ```CSharp
+    // Main.cs
+    using Godot;
 
-        public class Main : Spatial {
-            public override void _Ready() {
-                //クラスの場合
-                var _tmp = new SubClass();
-                GD.Print(_tmp is SubClass); //-> True
-                GD.Print(_tmp is SuperClass); //-> True
+    public class Main : Spatial {
+        public override void _Ready() {
+            //クラスの場合
+            var _tmp = new SubClass();
+            GD.Print(_tmp is SubClass); //-> True
+            GD.Print(_tmp is SuperClass); //-> True
 
-                //匿名型クラスの場合
-                var _tmp2 = new {};
-                GD.Print(_tmp2 is object); //-> True
-            }
+            //匿名型クラスの場合
+            var _tmp2 = new {};
+            GD.Print(_tmp2 is object); //-> True
         }
+    }
 
-        class SuperClass {} // 基本クラスの定義
-        class SubClass : SuperClass {} // 派生クラスの定義
-        ```
+    class SuperClass {} // 基本クラスの定義
+    class SubClass : SuperClass {} // 派生クラスの定義
+    ```
 
 **as 演算子**  
     * キャスト成功時に変換後の値が返され、失敗するとエラー
