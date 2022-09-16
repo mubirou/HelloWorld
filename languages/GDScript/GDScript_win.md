@@ -1,10 +1,10 @@
 # GDScript（ Windows ）
+[[GDScript（for Godot 4.0）基本文法](https://bit.ly/3QIt5gV)]  
 
 ## GDScript について
 
 * [Godot Engine](https://godotengine.org/) で使われるスクリプト言語
 * [Python](https://github.com/mubirou/HelloWorld/blob/master/languages/Python/Python_reference.md#python-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95) に似た構文を採用してはいるが全く別物のプログラミング言語
-* [GDScript（for Godot 4.0）基本文法](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#gdscript-%E5%9F%BA%E7%A4%8E%E6%96%87%E6%B3%95)
 * Godot 3.0（2018年リリース）から [C#](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-) も利用可能だったが 4.0 で使用不可に。但し 4.1 からは [.NET 6](https://docs.microsoft.com/ja-jp/dotnet/core/whats-new/dotnet-6) 対応の C# が利用可能になる予定
 
 ## Hello,world!
