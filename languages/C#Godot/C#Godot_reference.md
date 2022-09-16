@@ -272,7 +272,7 @@ class MyClass { // クラスの定義
 # <b>データ型の操作</b>
 
 ### データ型の調べ方
-1. is 演算子
+**👉 is 演算子**
     * クラスか否かを調べる（○ is int といった使い方も可能）
     ```CSharp
     // Main.cs
@@ -295,7 +295,7 @@ class MyClass { // クラスの定義
     class SubClass : SuperClass {} // 派生クラスの定義
     ```
 
-1. as 演算子
+**👉 as 演算子**
     * キャスト成功時に変換後の値が返され、失敗するとエラー
     ```CSharp
     // Main.cs
@@ -313,7 +313,7 @@ class MyClass { // クラスの定義
     class HogeClass {}
     ```
 
-1. GetType() メソッド
+**👉 GetType() メソッド**
     * Object.GetType() メソッド（オブジェクトの型を返す）
     ```CSharp
     // Main.cs
@@ -336,7 +336,7 @@ class MyClass { // クラスの定義
     ```
 
 ### データ型のキャスト
-1. 数値⇔bool 型（不可）
+**👉 数値⇔bool 型（不可）**
     ```CSharp
     // Main.cs
     using Godot;
@@ -349,7 +349,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値→bool 型へ変換（力技）
+**👉 数値→bool 型へ変換（力技）**
     ```CSharp
     // Main.cs
     using Godot;
@@ -363,7 +363,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. bool型→数値へ変換
+**👉 bool型→数値へ変換**
     ```CSharp
     // Main.cs
     using Godot;
@@ -378,7 +378,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値⇔数値（縮小変換）
+**👉 数値⇔数値（縮小変換）**
     ```CSharp
     // Main.cs
     using Godot;
@@ -398,7 +398,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値⇔数値（拡張変換）
+**👉 数値⇔数値（拡張変換）**
     ```CSharp
     // Main.cs
     using Godot;
@@ -412,7 +412,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値⇔ string 型
+**👉 数値⇔ string 型**
     ```CSharp
     // Main.cs
     using Godot;
@@ -428,7 +428,7 @@ class MyClass { // クラスの定義
     }
     ```
 
-1. 数値→ string 型
+**👉 数値→ string 型**
     ```CSharp
     // Main.cs
     using Godot;
@@ -447,6 +447,7 @@ class MyClass { // クラスの定義
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月13日  
+更新日：2022年09月XX日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
