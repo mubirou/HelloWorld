@@ -7,7 +7,8 @@
 
 ### この項目は書きかけです（Godot 4.0 対応中）
 
-### **INDEX**（参考：[Microsoft](https://bit.ly/3Uh6YBa)）
+### **INDEX**
+**参考：[Microsoft](https://bit.ly/3Uh6YBa)**
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * ~~[コメントアウト](#コメントアウト)~~
