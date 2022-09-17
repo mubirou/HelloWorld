@@ -1072,7 +1072,7 @@ class MyMath {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         GD.Print(_myClass.Tashizan(1,10)); //-> 55
@@ -1092,24 +1092,28 @@ class MyClass {
 }
 ```
 
-### _Ready()、_Process()メソッド
+### _Ready()、_Process()、_PhysicsProcess メソッド
 ```CSharp
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    // 最初に一度だけ実行される
-    public override void _Ready() {
-        GD.Print("_Ready()");
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		GD.Print("_Ready()");
+	}
 
-    // 繰り返し実行される
-    public override void _Process(float _delta) {
-        //GD.Print(_delta); //-> 0.006944444
-    }
+	// 繰り返し実行される
+	public override void _Process(double _delta) {
+		GD.Print("Process: " + _delta); //-> Process: 0.016666666666666666
+	}
+
+	// 物理ステップの前に安定して実行される(初期値60fps)
+	public override void _PhysicsProcess(double _delta) {
+		GD.Print("PhysicsProcess: " + _delta); //-> PhysicsProcess: 0.016666666666666666
+	}
 }
 ```
-参考：[GODOT DOCS](https://docs.godotengine.org/ja/stable/tutorials/best_practices/godot_notifications.html?highlight=_Ready#godot-notifications)  
+参考：[GODOT DOCS（Godot notifications）](https://bit.ly/3qNQcvX)  
 
 ### コンストラクタ
 * 書式
