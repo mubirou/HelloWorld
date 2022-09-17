@@ -18,8 +18,8 @@
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
 * [変数とスコープ](#変数とスコープ)
-* ~~[アクセサ（getter / setter）](#アクセサ)~~
-* ~~[演算子](#演算子)~~
+* [アクセサ（getter / setter）](#アクセサ)
+* [演算子](#演算子)
 * ~~[定数](#定数)~~
 * ~~[メソッド](#メソッド)~~
 * ~~[匿名メソッド](#匿名メソッド)~~
@@ -891,7 +891,7 @@ class MyClass {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         Suzuki _suzuki = new Suzuki();
         GD.Print(_suzuki.Age); //-> 54
@@ -914,11 +914,11 @@ class Suzuki {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         Suzuki _suzuki = new Suzuki();
         GD.Print(_suzuki.Age); //-> 54
-        //_suzuki.Age = 55; // CS0272 error（値の変更は不可）
+        //_suzuki.Age = 55; // エラー（値の変更は不可）
         _suzuki.NextYear();
         GD.Print(_suzuki.Age); //-> 55
     }
@@ -934,10 +934,11 @@ class Suzuki {
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5getter--setter)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3Lllzat)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
+更新日：2022年09月17日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -948,7 +949,7 @@ class Suzuki {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(3 + 2); //-> 5 (可算) 
         GD.Print(5 - 8); //-> -3 (減算)
@@ -958,10 +959,10 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
         
         // 除算（注意が必要です）
         GD.Print(8 / 3); //-> 2(除算) ←整数同士の場合余りは切り捨てられる
-        GD.Print(8 / 3.0); //-> 2.66666666666667（小数点第14位までの値＝double型）
+        GD.Print(8 / 3.0); //-> 2.6666666666666665（小数点第16位までの値＝double型）
 
         float _float = (float)8.0 / 3;
-        GD.Print(_float); //-> 2.666667（小数点第6位までの値）
+        GD.Print(_float); //-> 2.6666667（小数点第7位までの値）
 
         decimal _decimal = (decimal)8.0 / 3;
         GD.Print(_decimal); //-> 2.6666666666666666666666666667（第28位まで）
@@ -983,10 +984,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3xxuVKB)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
+更新日：2022年09月17日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
