@@ -655,16 +655,16 @@ namespace MyLibrary {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		ClassB _classB = new ClassB();
-		_classB.MyMethod(); //-> ClassA.MyMethod()
-	}
+    public override void _Ready() {
+        ClassB _classB = new ClassB();
+        _classB.MyMethod(); //-> ClassA.MyMethod()
+    }
 }
 
 class ClassA {
-	public void MyMethod() {
-		GD.Print("ClassA.MyMethod()");
-	}
+    public void MyMethod() {
+        GD.Print("ClassA.MyMethod()");
+    }
 }
 
 class ClassB : ClassA {} // ClassAを継承
@@ -676,26 +676,26 @@ class ClassB : ClassA {} // ClassAを継承
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		ClassB _classB = new ClassB();
-		_classB.MyMethod(); //-> ClassA.MyMethod()
-	}
+    public override void _Ready() {
+        ClassB _classB = new ClassB();
+        _classB.MyMethod(); //-> ClassA.MyMethod()
+    }
 }
 
 class ClassA {
-	public void MyMethod() {
-		GD.Print("ClassA.MyMethod()");
-	}
+    public void MyMethod() {
+        GD.Print("ClassA.MyMethod()");
+    }
 }
 
 class ClassB { // この内容だけが継承と異なる
-	private ClassA _classA;
-	public ClassB() {
-		_classA = new ClassA(); // コンストラクタでオブジェクト生成
-	}
-	public void MyMethod() {
-		_classA.MyMethod();
-	}
+    private ClassA _classA;
+    public ClassB() {
+        _classA = new ClassA(); // コンストラクタでオブジェクト生成
+    }
+    public void MyMethod() {
+        _classA.MyMethod();
+    }
 }
 ```
 
