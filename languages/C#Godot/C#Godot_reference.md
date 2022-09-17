@@ -14,9 +14,9 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-* ~~[基本クラスと派生クラス](#基本クラスと派生クラス)~~
-* ~~[名前空間](#名前空間)~~
-* ~~[継承と委譲](#継承と委譲)~~
+* [基本クラスと派生クラス](#基本クラスと派生クラス)
+* [名前空間](#名前空間)
+* [継承と委譲](#継承と委譲)
 * ~~[変数とスコープ](#変数とスコープ)~~
 * ~~[アクセサ（getter / setter）](#アクセサ)~~
 * ~~[演算子](#演算子)~~
@@ -527,7 +527,7 @@ class Rectangle { // 長方形クラス
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         //派生クラスＡのインスタンス
         SubClassA _subclassA = new SubClassA();
@@ -585,10 +585,11 @@ class SubClassB : SuperClass { // 基本クラスを継承（多重継承は不�
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%9F%BA%E6%9C%AC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8%E6%B4%BE%E7%94%9F%E3%82%AF%E3%83%A9%E3%82%B9)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3qJag2i)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
+更新日：2022年09月17日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -614,7 +615,7 @@ namespace 名前空間名 {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyLibrary.MyClass _myClass = new MyLibrary.MyClass();
         GD.Print(_myClass); //-> MyLibrary.MyClass
@@ -622,21 +623,22 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 
 namespace MyLibrary {
-    //インターフェース等
+    // インターフェース等
     class MyClass {
-        public MyClass() { //コンストラクタ
-            //いろいろな処理
+        public MyClass() { // コンストラクタ
+            // いろいろな処理
         }
-        //いろいろなメソッド
+        // いろいろなメソッド
     }
-    //いろいろなクラス
+    // いろいろなクラス
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3xuLJlk)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
+更新日：2022年09月17日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -645,24 +647,24 @@ namespace MyLibrary {
 
 ### 概要
 * GoF デザインパターンの [Adapter パターン](http://bit.ly/2naab8x)等で利用される
-* 継承の場合は <b>:クラス名</b> を使い、委譲の場合は <b>new クラス名()</b> を使ってオブジェクトを生成し、他のクラスの機能を利用する
+* 継承の場合は **:クラス名** を使い、委譲の場合は **new クラス名()** を使ってオブジェクトを生成し、他のクラスの機能を利用する
 
 ### 継承版
 ```CSharp
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        ClassB _classB = new ClassB();
-        _classB.MyMethod(); //-> ClassA.MyMethod()
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		ClassB _classB = new ClassB();
+		_classB.MyMethod(); //-> ClassA.MyMethod()
+	}
 }
 
 class ClassA {
-    public void MyMethod() {
-        GD.Print("ClassA.MyMethod()");
-    }
+	public void MyMethod() {
+		GD.Print("ClassA.MyMethod()");
+	}
 }
 
 class ClassB : ClassA {} // ClassAを継承
@@ -673,34 +675,35 @@ class ClassB : ClassA {} // ClassAを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        ClassB _classB = new ClassB();
-        _classB.MyMethod(); //-> ClassA.MyMethod()
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		ClassB _classB = new ClassB();
+		_classB.MyMethod(); //-> ClassA.MyMethod()
+	}
 }
 
 class ClassA {
-    public void MyMethod() {
-        GD.Print("ClassA.MyMethod()");
-    }
+	public void MyMethod() {
+		GD.Print("ClassA.MyMethod()");
+	}
 }
 
 class ClassB { // この内容だけが継承と異なる
-    private ClassA _classA;
-    public ClassB() {
-        _classA = new ClassA(); // コンストラクタでオブジェクト生成
-    }
-    public void MyMethod() {
-        _classA.MyMethod();
-    }
+	private ClassA _classA;
+	public ClassB() {
+		_classA = new ClassA(); // コンストラクタでオブジェクト生成
+	}
+	public void MyMethod() {
+		_classA.MyMethod();
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E7%B6%99%E6%89%BF%E3%81%A8%E5%A7%94%E8%AD%B2)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3eRLMBr)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
+更新日：2022年09月17日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
