@@ -20,7 +20,7 @@
 * [変数とスコープ](#変数とスコープ)
 * [アクセサ（getter / setter）](#アクセサ)
 * [演算子](#演算子)
-* ~~[定数](#定数)~~
+* [定数](#定数)
 * ~~[メソッド](#メソッド)~~
 * ~~[匿名メソッド](#匿名メソッド)~~
 * ~~[ラムダ式](#ラムダ式)~~
@@ -1000,11 +1000,11 @@ public partial class Main : Node3D {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         const float PI = 3.14159f; // staticは記述しない（注意）
         GD.Print(PI); //-> 3.14159
-        //PI = 3.14; // CS0131 error（変更不可）
+        PI = 3.14; // エラー（変更不可）
     }
 }
 ```
@@ -1028,10 +1028,10 @@ class クラス名 {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(MyMath.PI); //-> 3.14159
-        //MyMath.PI = 3.14; // CS0131 error（変更不可）
+        //MyMath.PI = 3.14; // エラー（変更不可）
     }
 }
 
@@ -1042,10 +1042,11 @@ class MyMath {
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%AE%9A%E6%95%B0)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3S9nAIZ)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月14日  
+更新日：2022年09月17日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
