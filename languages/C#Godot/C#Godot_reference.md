@@ -14,7 +14,7 @@
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
-* ~~[基本クラスと派生クラス](#基本クラスと派生クラス)~~
+* [基本クラスと派生クラス](#基本クラスと派生クラス)
 * ~~[名前空間](#名前空間)~~
 * ~~[継承と委譲](#継承と委譲)~~
 * ~~[変数とスコープ](#変数とスコープ)~~
@@ -473,42 +473,42 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// ➀インタンスの生成
-		Rectangle _rectangle = new Rectangle();
-		
-		// ➁プロパティの更新
-		_rectangle.width = 1920;
-		_rectangle.height = 1080;
-		// ➂プロパティの取得
-		GD.Print(_rectangle.width); //-> 1920
-		GD.Print(_rectangle.height); //-> 1080
-		
-		// ➃メソッドの実行
-		GD.Print(_rectangle.getArea()); //-> 2073600
-	}
+    public override void _Ready() {
+        // ➀インタンスの生成
+        Rectangle _rectangle = new Rectangle();
+        
+        // ➁プロパティの更新
+        _rectangle.width = 1920;
+        _rectangle.height = 1080;
+        // ➂プロパティの取得
+        GD.Print(_rectangle.width); //-> 1920
+        GD.Print(_rectangle.height); //-> 1080
+        
+        // ➃メソッドの実行
+        GD.Print(_rectangle.getArea()); //-> 2073600
+    }
 }
 
 class Rectangle { // 長方形クラス
-	// プロパティの定義･初期値の設定
-	private int _width = 0; // privateは省略可
-	private int _height = 0; // privateは省略可
+    // プロパティの定義･初期値の設定
+    private int _width = 0; // privateは省略可
+    private int _height = 0; // privateは省略可
 
-	// コンストラクタは省略可（初期値はここで設定してもよい）
-	public Rectangle() {}
-	
-	// メソッド群の定義
-	public int width {
-		get { return this._width; } // thisは省略可
-		set { this._width = value; } // valueは決め打ち
-	}
-	public int height {
-		get { return this._height; } // thisは省略可
-		set { this._height = value; } // valueは決め打ち
-	}
-	public int getArea() { // 面積を計算して値を返す
-		return this._width * this._height; // thisは省略可
-	}
+    // コンストラクタは省略可（初期値はここで設定してもよい）
+    public Rectangle() {}
+    
+    // メソッド群の定義
+    public int width {
+        get { return this._width; } // thisは省略可
+        set { this._width = value; } // valueは決め打ち
+    }
+    public int height {
+        get { return this._height; } // thisは省略可
+        set { this._height = value; } // valueは決め打ち
+    }
+    public int getArea() { // 面積を計算して値を返す
+        return this._width * this._height; // thisは省略可
+    }
 }
 ```
 
