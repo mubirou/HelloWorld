@@ -17,7 +17,7 @@
 * [基本クラスと派生クラス](#基本クラスと派生クラス)
 * [名前空間](#名前空間)
 * [継承と委譲](#継承と委譲)
-* ~~[変数とスコープ](#変数とスコープ)~~
+* [変数とスコープ](#変数とスコープ)
 * ~~[アクセサ（getter / setter）](#アクセサ)~~
 * ~~[演算子](#演算子)~~
 * ~~[定数](#定数)~~
@@ -736,7 +736,7 @@ public データ型 変数名; //public変数宣言（初期化も可）
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         GD.Print(_myClass._p); // アクセス可（他人の変数を勝手にいじる行為）
@@ -766,11 +766,11 @@ class 基本クラス { //スーパークラス定義
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         SubClass _subClass = new SubClass();
         GD.Print(_subClass); //-> SubClass
-        //GD.Print(_subClass._pSuperClass); // CS0122 error（アクセス不可）
+        //GD.Print(_subClass._pSuperClass); // エラー（アクセス不可）
      }
 }
 
@@ -804,7 +804,7 @@ class クラス名 { //クラス定義
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         GD.Print(_myClass.P); // アクセス可（≠他人の変数を勝手にいじる行為）
@@ -831,7 +831,7 @@ class MyClass {
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             MyClass _myClass = new MyClass();
             _myClass.MyMethod();
@@ -856,7 +856,7 @@ class MyClass {
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             new MyClass();
         }
@@ -875,11 +875,11 @@ class MyClass {
     }
     ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%A4%89%E6%95%B0%E3%81%A8%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3UjUpVy)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月13日  
-更新日：2022年02月15日 ローカル変数の暗黙的な型指定を追加  
+更新日：2022年09月17日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
