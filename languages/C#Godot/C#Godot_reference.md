@@ -2,14 +2,14 @@
 
 # **C# with Godot 4.0 基礎文法**
 
-[[Godot Study Notes 🔰](    com/mubirou/Godot#godot-study-notes)]  
+[[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
 ⌚ 541h00min  
 
 ### この項目は書きかけです（Godot 4.0 対応中）
 
 ### **INDEX**
 
-* Hello,world! （[Windows](    com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
+* Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
@@ -126,7 +126,7 @@
     * データ型[] : 任意のデータ型の配列
 
 ### 👉 検証
-予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます（[参考](    com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#helloworld)）
+予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#helloworld)）
 ```CSharp
 // Main.cs
 using Godot;
@@ -3541,7 +3541,7 @@ public partial class Main : Node3D {
 
 <a name="乱数"></a>
 # <b>乱数</b>
-* Godot の独自仕様（一般的な C# の [Random](    com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_reference.md#%E4%B9%B1%E6%95%B0) クラスとは異なります）
+* Godot の独自仕様（一般的な C# の [Random](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_reference.md#%E4%B9%B1%E6%95%B0) クラスとは異なります）
 
 ### 0.0〜1.0
 ```CSharp
