@@ -39,7 +39,7 @@
 * [正規表現](#正規表現)
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
-* ~~[base キーワード](#baseキーワード)~~
+* [base キーワード](#baseキーワード)
 * ~~[オーバーライド](#オーバーライド)~~
 * ~~[カスタムイベント](#カスタムイベント)~~
 * ~~[数学関数（Math）](#数学関数（Math）)~~
@@ -3132,29 +3132,30 @@ class 派生クラス名 : 基本クラス名 { // 派生クラス（基本ク�
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        SubClass _subClass = new SubClass("A");
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		SubClass _subClass = new SubClass("A");
+	}
 }
 
 class SuperClass { //基本クラス
-    public SuperClass(string p1, string p2) { // 基本クラスのコンストラクタ
-        GD.Print("SuperClass:" + p1 + ":" + p2); //-> SuperClass:A:B
-    }
+	public SuperClass(string p1, string p2) { // 基本クラスのコンストラクタ
+		GD.Print("SuperClass:" + p1 + ":" + p2); //-> SuperClass:A:B
+	}
 }
 
 class SubClass : SuperClass { //派生クラス
-    public SubClass(string p) : base(p, "B") { // 派生クラスのコンストラクタ
-        GD.Print("SubClass:" + p); //-> SubClass:A
-    } 
+	public SubClass(string p) : base(p, "B") { // 派生クラスのコンストラクタ
+		GD.Print("SubClass:" + p); //-> SubClass:A
+	} 
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#--super)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3Dzh8XY)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
