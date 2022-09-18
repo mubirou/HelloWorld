@@ -3578,30 +3578,30 @@ using Godot;
 using System; // Mathに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _u5=0, _u4=0, _u3=0, _u2=0, _u1=0;
-		int _o0=0, _o1=0, _o2=0, _o3=0, _o4=0, _o5=0;
-		int _min = -5, _max = 5; // 最小値と最大値を設定
+    public override void _Ready() {
+        int _u5=0, _u4=0, _u3=0, _u2=0, _u1=0;
+        int _o0=0, _o1=0, _o2=0, _o3=0, _o4=0, _o5=0;
+        int _min = -5, _max = 5; // 最小値と最大値を設定
 
-		for (int i=0; i < 1000000; i++) {
-			switch (Math.Floor(GD.RandRange((double)_min-1, (double)_max+1))) {
-				case -5: _u5++; break;
-				case -4: _u4++; break;
-				case -3: _u3++; break;
-				case -2: _u2++; break;
-				case -1: _u1++; break;
-				case  0: _o0++; break;
-				case  1: _o1++; break;
-				case  2: _o2++; break;
-				case  3: _o3++; break;
-				case  4: _o4++; break;
-				case  5: _o5++; break;
-			}
-		}
+        for (int i=0; i < 1000000; i++) {
+            switch (Math.Floor(GD.RandRange((double)_min-1, (double)_max+1))) {
+                case -5: _u5++; break;
+                case -4: _u4++; break;
+                case -3: _u3++; break;
+                case -2: _u2++; break;
+                case -1: _u1++; break;
+                case  0: _o0++; break;
+                case  1: _o1++; break;
+                case  2: _o2++; break;
+                case  3: _o3++; break;
+                case  4: _o4++; break;
+                case  5: _o5++; break;
+            }
+        }
 
-		GD.Print(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
-		//-> 83361,83522,83579,83255,83443,83475,83372,82998,82977,83076,83322
-	}
+        GD.Print(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
+        //-> 83361,83522,83579,83255,83443,83475,83372,82998,82977,83076,83322
+    }
 }
 ```
 （注意）Godot 4.0 では **GD.Randomize()** を実行しなくても毎回結果が異なる＝要調査  
