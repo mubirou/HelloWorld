@@ -40,7 +40,7 @@
 * [インターフェース](#インターフェース)
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
-* ~~[オーバーライド](#オーバーライド)~~
+* [オーバーライド](#オーバーライド)
 * ~~[カスタムイベント](#カスタムイベント)~~
 * ~~[数学関数（Math）](#数学関数（Math）)~~
 * ~~[乱数](#乱数)~~
@@ -3133,21 +3133,21 @@ class 派生クラス名 : 基本クラス名 { // 派生クラス（基本ク�
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		SubClass _subClass = new SubClass("A");
-	}
+    public override void _Ready() {
+        SubClass _subClass = new SubClass("A");
+    }
 }
 
 class SuperClass { //基本クラス
-	public SuperClass(string p1, string p2) { // 基本クラスのコンストラクタ
-		GD.Print("SuperClass:" + p1 + ":" + p2); //-> SuperClass:A:B
-	}
+    public SuperClass(string p1, string p2) { // 基本クラスのコンストラクタ
+        GD.Print("SuperClass:" + p1 + ":" + p2); //-> SuperClass:A:B
+    }
 }
 
 class SubClass : SuperClass { //派生クラス
-	public SubClass(string p) : base(p, "B") { // 派生クラスのコンストラクタ
-		GD.Print("SubClass:" + p); //-> SubClass:A
-	} 
+    public SubClass(string p) : base(p, "B") { // 派生クラスのコンストラクタ
+        GD.Print("SubClass:" + p); //-> SubClass:A
+    } 
 }
 ```
 
@@ -3190,7 +3190,7 @@ class 派生クラス名 : 基本クラス { // 派生クラス（基本クラ�
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         SubClass _subClass = new SubClass();
         _subClass.Method();
@@ -3231,7 +3231,7 @@ class 派生クラス : 抽象クラス名 { // 抽象クラスを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         SubClass _subClass = new SubClass();
         _subClass.Method();
@@ -3249,10 +3249,11 @@ class SubClass : AbstractClass { // 派生クラス（抽象クラスを継承�
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3UvQNAb)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
