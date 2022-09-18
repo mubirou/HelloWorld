@@ -36,7 +36,7 @@
 * [連想配列（Dictionary）](#連想配列（Dictionary）)
 * [this](#this)
 * [文字列の操作](#文字列の操作)
-* ~~[正規表現](#正規表現)~~
+* [正規表現](#正規表現)
 * ~~[インターフェース](#インターフェース)~~
 * ~~[抽象クラス（abstract）](#抽象クラス（abstract）)~~
 * ~~[base キーワード](#baseキーワード)~~
@@ -2941,13 +2941,13 @@ public partial class Main : Node3D {
 using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "cabacbbacbcba";
-        // "a"がいくつ含まれるか
-        MatchCollection _mc = Regex.Matches(_string, "a");
-        GD.Print(_mc.Count); //-> 4
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "cabacbbacbcba";
+		// "a"がいくつ含まれるか
+		MatchCollection _mc = Regex.Matches(_string, "a");
+		GD.Print(_mc.Count); //-> 4
+	}
 }
 ```
 
@@ -2957,18 +2957,18 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = @"U7eLoERa"; // 任意のパスワード（@を付ける）
-        /* 条件
-        8文字以上（全て半角）
-        1文字以上の「数字」を含む
-        1文字以上の大文字および小文字の「英字」を含む
-        */
-        Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");//②
-        Match _match = _regex.Match(_string);
-        GD.Print(_match.Success); //-> True（パスワードとして条件に合致）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = @"U7eLoERa"; // 任意のパスワード（@を付ける）
+		/* 条件
+		8文字以上（全て半角）
+		1文字以上の「数字」を含む
+		1文字以上の大文字および小文字の「英字」を含む
+		*/
+		Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");
+		Match _match = _regex.Match(_string);
+		GD.Print(_match.Success); //-> True（パスワードとして条件に合致）
+	}
 }
 ```
 
@@ -2978,20 +2978,21 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "123-4567"; // 任意の郵便番号
-        Regex _regex = new Regex("\\d{3}-\\d{4}");
-        Match _match = _regex.Match(_string);
-        GD.Print(_match.Success); //-> True（郵便番号として条件に合致）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "123-4567"; // 任意の郵便番号
+		Regex _regex = new Regex("\\d{3}-\\d{4}");
+		Match _match = _regex.Match(_string);
+		GD.Print(_match.Success); //-> True（郵便番号として条件に合致）
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3DyMtK9)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
