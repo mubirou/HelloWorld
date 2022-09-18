@@ -5,8 +5,6 @@
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot-Study-Notes#godot-study-notes-)]  
 ⌚ 541h00min  
 
-### この項目は書きかけです（Godot 4.0 対応中）
-
 ### **INDEX**
 
 * Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
@@ -3640,26 +3638,26 @@ using Godot;
 using System; // DateTimeに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		DateTime _now = DateTime.Now;
-		GD.Print(_now); //-> 2022/09/18 16:03:56
-		GD.Print(_now.Year); //-> 2022
-		GD.Print(_now.Month); //-> 9
-		GD.Print(_now.Day); //-> 18
-		GD.Print(_now.DayOfYear); //-> 261（元日からの日数）
-		GD.Print(_now.DayOfWeek); //-> Sunday
-		GD.Print(_now.Hour); //-> 16
-		GD.Print(_now.Minute); //-> 3
-		GD.Print(_now.Second); //-> 56
-		GD.Print(_now.Millisecond); //-> 771
-		GD.Print(_now.Ticks); //-> 637991138367719137（100ナノ秒単位）
-		
-		// "hh:mm:ss"で現在の時間を表示する方法
-		string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
-		string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
-		string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
-		GD.Print(_h + ":" + _m + ":" + _s); //-> 16:03:56
-	}
+    public override void _Ready() {
+        DateTime _now = DateTime.Now;
+        GD.Print(_now); //-> 2022/09/18 16:03:56
+        GD.Print(_now.Year); //-> 2022
+        GD.Print(_now.Month); //-> 9
+        GD.Print(_now.Day); //-> 18
+        GD.Print(_now.DayOfYear); //-> 261（元日からの日数）
+        GD.Print(_now.DayOfWeek); //-> Sunday
+        GD.Print(_now.Hour); //-> 16
+        GD.Print(_now.Minute); //-> 3
+        GD.Print(_now.Second); //-> 56
+        GD.Print(_now.Millisecond); //-> 771
+        GD.Print(_now.Ticks); //-> 637991138367719137（100ナノ秒単位）
+        
+        // "hh:mm:ss"で現在の時間を表示する方法
+        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
+        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
+        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
+        GD.Print(_h + ":" + _m + ":" + _s); //-> 16:03:56
+    }
 }
 ```
 
@@ -3670,62 +3668,62 @@ using Godot;
 using System; // DateTimeに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		Calender(2022, 9); // 2022年9月の場合
-	}
-	
-	void Calender(int _year, int _month) {
-		DateTime _dateTime = new DateTime(_year, _month, 1); // 〇年〇月1日
+    public override void _Ready() {
+        Calender(2022, 9); // 2022年9月の場合
+    }
+    
+    void Calender(int _year, int _month) {
+        DateTime _dateTime = new DateTime(_year, _month, 1); // 〇年〇月1日
 
-		int _fistWeek = (int)_dateTime.DayOfWeek; // その日が何曜日か（0は日曜日）
+        int _fistWeek = (int)_dateTime.DayOfWeek; // その日が何曜日か（0は日曜日）
 
-		int _lastDay = DateTime.DaysInMonth(_year, _month); // 月の最終日は何日か
+        int _lastDay = DateTime.DaysInMonth(_year, _month); // 月の最終日は何日か
 
-		// 各週を配列化〜各配列に値（日にち）を代入
-		int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
-		int[] _4week = new int[7], _5week = new int[7];
+        // 各週を配列化〜各配列に値（日にち）を代入
+        int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
+        int[] _4week = new int[7], _5week = new int[7];
 
-		int _count = 1; // 代入する日にち
+        int _count = 1; // 代入する日にち
 
-		// 第1週
-		for (int i=_fistWeek; i<_1week.Length; i++) {
-			_1week[i] = _count++;
-		}
+        // 第1週
+        for (int i=_fistWeek; i<_1week.Length; i++) {
+            _1week[i] = _count++;
+        }
 
-		// 第2週
-		for (int i=0; i<_2week.Length; i++) {
-			_2week[i] = _count++;
-		}
+        // 第2週
+        for (int i=0; i<_2week.Length; i++) {
+            _2week[i] = _count++;
+        }
 
-		// 第3週
-		for (int i=0; i<_3week.Length; i++) {
-			_3week[i] = _count++;
-		}
+        // 第3週
+        for (int i=0; i<_3week.Length; i++) {
+            _3week[i] = _count++;
+        }
 
-		// 第4週
-		for (int i=0; i<_4week.Length; i++) {
-			_4week[i] = _count++;
-		}
+        // 第4週
+        for (int i=0; i<_4week.Length; i++) {
+            _4week[i] = _count++;
+        }
 
-		// 第5週
-		for (int i=0; i<_5week.Length; i++) {
-			if (_count <= _lastDay) {
-				_5week[i] = _count++;
-			}
-		}
+        // 第5週
+        for (int i=0; i<_5week.Length; i++) {
+            if (_count <= _lastDay) {
+                _5week[i] = _count++;
+            }
+        }
 
-		// 結果＝カレンダー表示（うるう年に対応）
-		GD.Print("第1週");
-		for (int i=0; i<=6; i++) { GD.Print(_1week[i]);} //-> 0→0→0→0→0→0→1
-		GD.Print("第2週");
-		for (int i=0; i<=6; i++) { GD.Print(_2week[i]); } //-> 2→3→4→5→6→7→8
-		GD.Print("第3週");
-		for (int i=0; i<=6; i++) { GD.Print(_3week[i]); } //-> 9→10→11→13→14→14→15
-		GD.Print("第4週");
-		for (int i=0; i<=6; i++) { GD.Print(_4week[i]); } //-> 16→17→18→19→20→21→22
-		GD.Print("第5週");
-		for (int i=0; i<=6; i++) { GD.Print(_5week[i]); } //-> 23→24→25→26→27→28→29
-	}
+        // 結果＝カレンダー表示（うるう年に対応）
+        GD.Print("第1週");
+        for (int i=0; i<=6; i++) { GD.Print(_1week[i]);} //-> 0→0→0→0→0→0→1
+        GD.Print("第2週");
+        for (int i=0; i<=6; i++) { GD.Print(_2week[i]); } //-> 2→3→4→5→6→7→8
+        GD.Print("第3週");
+        for (int i=0; i<=6; i++) { GD.Print(_3week[i]); } //-> 9→10→11→13→14→14→15
+        GD.Print("第4週");
+        for (int i=0; i<=6; i++) { GD.Print(_4week[i]); } //-> 16→17→18→19→20→21→22
+        GD.Print("第5週");
+        for (int i=0; i<=6; i++) { GD.Print(_5week[i]); } //-> 23→24→25→26→27→28→29
+    }
 }
 
 ```
@@ -3751,20 +3749,20 @@ using System; // EventArgsに必要
 using System.Timers; // ElapsedEventHandlerに必要
 
 public partial class Main : Node3D {
-	private static System.Timers.Timer _timer; // privateは省略可
+    private static System.Timers.Timer _timer; // privateは省略可
 
-	public override void _Ready() {
-		_timer = new System.Timers.Timer(); // タイマーの生成
-		_timer.Interval = 1000; // 1000ミリ秒間隔
-		_timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
-		_timer.Start(); // 開始
-	}
-	
-	static void Loop(object arg1, System.EventArgs arg2) { //1000ミリ秒毎に実行される
-		GD.Print(arg1); //-> System.Timers.Timer（タイマー本体）
-		GD.Print(arg2); //-> System.Timers.ElapsedEventArgs（各種情報）
-		//_timer.Stop(); // 停止（この場合１回で停止）
-	}
+    public override void _Ready() {
+        _timer = new System.Timers.Timer(); // タイマーの生成
+        _timer.Interval = 1000; // 1000ミリ秒間隔
+        _timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
+        _timer.Start(); // 開始
+    }
+    
+    static void Loop(object arg1, System.EventArgs arg2) { //1000ミリ秒毎に実行される
+        GD.Print(arg1); //-> System.Timers.Timer（タイマー本体）
+        GD.Print(arg2); //-> System.Timers.ElapsedEventArgs（各種情報）
+        //_timer.Stop(); // 停止（この場合１回で停止）
+    }
 }
 ```
 
@@ -3778,19 +3776,19 @@ using System; // EventArgsに必要
 using System.Timers; // ElapsedEventHandlerに必要
 
 public partial class Main : Node3D {
-	private static System.Timers.Timer _timer; // privateは省略可
+    private static System.Timers.Timer _timer; // privateは省略可
 
-	public override void _Ready() {
-		_timer = new System.Timers.Timer(); // タイマーの生成
-		_timer.Interval = 3000; // 3000ミリ秒間隔
-		_timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
-		_timer.Start(); // 開始
-	}
-	
-	static void Loop(object arg1, System.EventArgs arg2) { // 3000ミリ秒後に実行される
-		_timer.Stop(); // 停止（この場合１回で停止）
-		GD.Print(_timer.Interval + "秒後に実行");
-	}
+    public override void _Ready() {
+        _timer = new System.Timers.Timer(); // タイマーの生成
+        _timer.Interval = 3000; // 3000ミリ秒間隔
+        _timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
+        _timer.Start(); // 開始
+    }
+    
+    static void Loop(object arg1, System.EventArgs arg2) { // 3000ミリ秒後に実行される
+        _timer.Stop(); // 停止（この場合１回で停止）
+        GD.Print(_timer.Interval + "秒後に実行");
+    }
 }
 ```
 
@@ -3811,13 +3809,13 @@ using Godot;
 using System; // DateTimeに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		long _start = DateTime.Now.Ticks; // 100ナノ秒単位（精度は10ミリ秒）
-		for (long i=0; i<1000000000; i++) { // 10億回繰り返す場合…
-			// 速度計測したい処理
-		}
-		GD.Print(DateTime.Now.Ticks - _start); //-> 17333337（≒1.7秒）
-	}
+    public override void _Ready() {
+        long _start = DateTime.Now.Ticks; // 100ナノ秒単位（精度は10ミリ秒）
+        for (long i=0; i<1000000000; i++) { // 10億回繰り返す場合…
+            // 速度計測したい処理
+        }
+        GD.Print(DateTime.Now.Ticks - _start); //-> 17333337（≒1.7秒）
+    }
 }
 ```
 
@@ -3848,14 +3846,14 @@ using Godot;
 using System.IO; // StreamReaderに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _path = "sample.txt";
-		// Shift-JISなどUTF-8以外の場合は第2引数で指定します
-		StreamReader _stream = new StreamReader(_path); // .txt以外も可能
-		string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
-		_stream.Close(); // 閉じる
-		GD.Print(_string); //-> あいうえお…
-	}
+    public override void _Ready() {
+        string _path = "sample.txt";
+        // Shift-JISなどUTF-8以外の場合は第2引数で指定します
+        StreamReader _stream = new StreamReader(_path); // .txt以外も可能
+        string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
+        _stream.Close(); // 閉じる
+        GD.Print(_string); //-> あいうえお…
+    }
 }
 ```
 
@@ -3866,13 +3864,13 @@ using Godot;
 using System.IO; // StreamReaderに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _path = "sample.txt";
-		StreamReader _stream = System.IO.File.OpenText(_path); // .txt以外も可能（UFT-8限定）
-		string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
-		_stream.Close(); // 閉じる
-		GD.Print(_string); //-> あいうえお…
-	}
+    public override void _Ready() {
+        string _path = "sample.txt";
+        StreamReader _stream = System.IO.File.OpenText(_path); // .txt以外も可能（UFT-8限定）
+        string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
+        _stream.Close(); // 閉じる
+        GD.Print(_string); //-> あいうえお…
+    }
 }
 ```
 
