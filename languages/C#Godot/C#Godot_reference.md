@@ -44,7 +44,7 @@
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
-* ~~[日時情報](#日時情報)~~
+* [日時情報](#日時情報)
 * ~~[タイマー](#タイマー)~~
 * ~~[処理速度計測](#処理速度計測)~~
 * ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
@@ -3639,27 +3639,27 @@ DateTime 〇 = DateTime.Now; //DateTimeは構造体
 using Godot;
 using System; // DateTimeに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        DateTime _now = DateTime.Now;
-        GD.Print(_now); //-> 2022/02/23 17:29:17
-        GD.Print(_now.Year); //-> 2022
-        GD.Print(_now.Month); //-> 2
-        GD.Print(_now.Day); //-> 23
-        GD.Print(_now.DayOfYear); //-> 54（元日からの日数）
-        GD.Print(_now.DayOfWeek); //-> Wednesday
-        GD.Print(_now.Hour); //-> 17
-        GD.Print(_now.Minute); //-> 29
-        GD.Print(_now.Second); //-> 17
-        GD.Print(_now.Millisecond); //-> 466
-        GD.Print(_now.Ticks); //-> 637812341574668368（100ナノ秒単位）
-        
-        // "hh:mm:ss"で現在の時間を表示する方法
-        string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
-        string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
-        string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
-        GD.Print(_h + ":" + _m + ":" + _s); //-> 17:29:17
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		DateTime _now = DateTime.Now;
+		GD.Print(_now); //-> 2022/09/18 16:03:56
+		GD.Print(_now.Year); //-> 2022
+		GD.Print(_now.Month); //-> 9
+		GD.Print(_now.Day); //-> 18
+		GD.Print(_now.DayOfYear); //-> 261（元日からの日数）
+		GD.Print(_now.DayOfWeek); //-> Sunday
+		GD.Print(_now.Hour); //-> 16
+		GD.Print(_now.Minute); //-> 3
+		GD.Print(_now.Second); //-> 56
+		GD.Print(_now.Millisecond); //-> 771
+		GD.Print(_now.Ticks); //-> 637991138367719137（100ナノ秒単位）
+		
+		// "hh:mm:ss"で現在の時間を表示する方法
+		string _h = (_now.Hour < 10) ? "0" + _now.Hour : _now.Hour.ToString();
+		string _m = (_now.Minute < 10) ? "0" + _now.Minute : _now.Minute.ToString();
+		string _s = (_now.Second < 10) ? "0" + _now.Second : _now.Second.ToString();
+		GD.Print(_h + ":" + _m + ":" + _s); //-> 16:03:56
+	}
 }
 ```
 
@@ -3669,70 +3669,72 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // DateTimeに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        Calender(2020, 2); // 2020年2月の場合
-    }
-    
-    void Calender(int _year, int _month) {
-        DateTime _dateTime = new DateTime(_year, _month, 1); // 〇年〇月1日
+public partial class Main : Node3D {
+	public override void _Ready() {
+		Calender(2022, 9); // 2022年9月の場合
+	}
+	
+	void Calender(int _year, int _month) {
+		DateTime _dateTime = new DateTime(_year, _month, 1); // 〇年〇月1日
 
-        int _fistWeek = (int)_dateTime.DayOfWeek; // その日が何曜日か（0は日曜日）
+		int _fistWeek = (int)_dateTime.DayOfWeek; // その日が何曜日か（0は日曜日）
 
-        int _lastDay = DateTime.DaysInMonth(_year, _month); // 月の最終日は何日か
+		int _lastDay = DateTime.DaysInMonth(_year, _month); // 月の最終日は何日か
 
-        // 各週を配列化〜各配列に値（日にち）を代入
-        int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
-        int[] _4week = new int[7], _5week = new int[7];
+		// 各週を配列化〜各配列に値（日にち）を代入
+		int[] _1week = new int[7], _2week = new int[7], _3week = new int[7];
+		int[] _4week = new int[7], _5week = new int[7];
 
-        int _count = 1; // 代入する日にち
+		int _count = 1; // 代入する日にち
 
-        // 第1週
-        for (int i=_fistWeek; i<_1week.Length; i++) {
-            _1week[i] = _count++;
-        }
+		// 第1週
+		for (int i=_fistWeek; i<_1week.Length; i++) {
+			_1week[i] = _count++;
+		}
 
-        // 第2週
-        for (int i=0; i<_2week.Length; i++) {
-            _2week[i] = _count++;
-        }
+		// 第2週
+		for (int i=0; i<_2week.Length; i++) {
+			_2week[i] = _count++;
+		}
 
-        // 第3週
-        for (int i=0; i<_3week.Length; i++) {
-            _3week[i] = _count++;
-        }
+		// 第3週
+		for (int i=0; i<_3week.Length; i++) {
+			_3week[i] = _count++;
+		}
 
-        // 第4週
-        for (int i=0; i<_4week.Length; i++) {
-            _4week[i] = _count++;
-        }
+		// 第4週
+		for (int i=0; i<_4week.Length; i++) {
+			_4week[i] = _count++;
+		}
 
-        // 第5週
-        for (int i=0; i<_5week.Length; i++) {
-            if (_count <= _lastDay) {
-                _5week[i] = _count++;
-            }
-        }
+		// 第5週
+		for (int i=0; i<_5week.Length; i++) {
+			if (_count <= _lastDay) {
+				_5week[i] = _count++;
+			}
+		}
 
-        // 結果＝カレンダー表示（うるう年に対応）
-        GD.Print("第1週");
-        for (int i=0; i<=6; i++) { GD.Print(_1week[i]);} //-> 0→0→0→0→0→0→1
-        GD.Print("第2週");
-        for (int i=0; i<=6; i++) { GD.Print(_2week[i]); } //-> 2→3→4→5→6→7→8
-        GD.Print("第3週");
-        for (int i=0; i<=6; i++) { GD.Print(_3week[i]); } //-> 9→10→11→13→14→14→15
-        GD.Print("第4週");
-        for (int i=0; i<=6; i++) { GD.Print(_4week[i]); } //-> 16→17→18→19→20→21→22
-        GD.Print("第5週");
-        for (int i=0; i<=6; i++) { GD.Print(_5week[i]); } //-> 23→24→25→26→27→28→29
-    }
+		// 結果＝カレンダー表示（うるう年に対応）
+		GD.Print("第1週");
+		for (int i=0; i<=6; i++) { GD.Print(_1week[i]);} //-> 0→0→0→0→0→0→1
+		GD.Print("第2週");
+		for (int i=0; i<=6; i++) { GD.Print(_2week[i]); } //-> 2→3→4→5→6→7→8
+		GD.Print("第3週");
+		for (int i=0; i<=6; i++) { GD.Print(_3week[i]); } //-> 9→10→11→13→14→14→15
+		GD.Print("第4週");
+		for (int i=0; i<=6; i++) { GD.Print(_4week[i]); } //-> 16→17→18→19→20→21→22
+		GD.Print("第5週");
+		for (int i=0; i<=6; i++) { GD.Print(_5week[i]); } //-> 23→24→25→26→27→28→29
+	}
 }
+
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3QMbzs0)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
