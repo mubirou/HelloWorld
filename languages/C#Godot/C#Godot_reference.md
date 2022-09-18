@@ -2039,16 +2039,16 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		dynamic[] _array1 = new dynamic[4]; // 4つの空の要素（動的型）を持つ配列を作成
-		string[] _array2 = new string[]{"A","B","C","D"};
-		string[] _array3 = {"A","B","C","D"}; // 簡単
-		
-		// 動作確認
-		GD.Print(_array1); //-> nullnullnullnull
-		GD.Print(_array2); //-> ABCD
-		GD.Print(_array3); //-> ABCD
-	}
+    public override void _Ready() {
+        dynamic[] _array1 = new dynamic[4]; // 4つの空の要素（動的型）を持つ配列を作成
+        string[] _array2 = new string[]{"A","B","C","D"};
+        string[] _array3 = {"A","B","C","D"}; // 簡単
+        
+        // 動作確認
+        GD.Print(_array1); //-> nullnullnullnull
+        GD.Print(_array2); //-> ABCD
+        GD.Print(_array3); //-> ABCD
+    }
 }
 ```
 
@@ -2164,12 +2164,12 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string[] _array = {"A","B","C","D"};
-		for (int i=0; i<_array.Length; i++) { // 配列の要素の数
-			GD.Print(_array[i]); //-> A→B→C→D
-		}
-	}
+    public override void _Ready() {
+        string[] _array = {"A","B","C","D"};
+        for (int i=0; i<_array.Length; i++) { // 配列の要素の数
+            GD.Print(_array[i]); //-> A→B→C→D
+        }
+    }
 }
 ```
 
@@ -2179,13 +2179,13 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "A,B,C,D"; // 「,」区切りの文字列
-		string[] _array = _string.Split(','); // 「,」区切りで分割して配列化
-		foreach (string value in _array) {
-			GD.Print(value); //-> A→B→C→D
-		}
-	}
+    public override void _Ready() {
+        string _string = "A,B,C,D"; // 「,」区切りの文字列
+        string[] _array = _string.Split(','); // 「,」区切りで分割して配列化
+        foreach (string value in _array) {
+            GD.Print(value); //-> A→B→C→D
+        }
+    }
 }
 ```
 
@@ -2215,12 +2215,12 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		List<string> _list = new List<string>() {"A", "B"};
-		foreach (object value in _list) {
-			GD.Print(value); //-> A→B
-		}
-	}
+    public override void _Ready() {
+        List<string> _list = new List<string>() {"A", "B"};
+        foreach (object value in _list) {
+            GD.Print(value); //-> A→B
+        }
+    }
 }
 ```
 
@@ -2236,17 +2236,17 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// 空 → "A" → "A","B"
-		List<string> _list = new List<string>();
-		_list.Add("A");
-		_list.Add("B");
+    public override void _Ready() {
+        // 空 → "A" → "A","B"
+        List<string> _list = new List<string>();
+        _list.Add("A");
+        _list.Add("B");
 
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> A→B
-		}
-	}
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> A→B
+        }
+    }
 }
 ```
 
@@ -2262,16 +2262,16 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// "A","B" → "C","A","B"
-		List<string> _list = new List<string>() {"A", "B"};
-		_list.Insert(0, "C"); // 先頭に追加する場合は0
+    public override void _Ready() {
+        // "A","B" → "C","A","B"
+        List<string> _list = new List<string>() {"A", "B"};
+        _list.Insert(0, "C"); // 先頭に追加する場合は0
 
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> C→A→B
-		}
-	}
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> C→A→B
+        }
+    }
 }
 ```
 
@@ -2287,16 +2287,16 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// "A","B" → "C","B"
-		List<string> _list = new List<string>() {"A", "B"};
-		_list[0] = "C"; // 0番目を変更する場合
+    public override void _Ready() {
+        // "A","B" → "C","B"
+        List<string> _list = new List<string>() {"A", "B"};
+        _list[0] = "C"; // 0番目を変更する場合
 
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> C→B
-		}
-	}
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> C→B
+        }
+    }
 }
 ```
 
@@ -2312,16 +2312,16 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// "A","B","C" → "A","B",null
-		List<string> _list = new List<string>() { "A", "B", "C" };
-		_list[2] = null;
+    public override void _Ready() {
+        // "A","B","C" → "A","B",null
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        _list[2] = null;
 
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> A→B→null
-		}
-	}
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> A→B→null
+        }
+    }
 }
 ```
 
@@ -2337,16 +2337,16 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// "A","B","C" → "A","C"
-		List<string> _list = new List<string>() {"A", "B", "C"};
-		_list.Remove("B");
+    public override void _Ready() {
+        // "A","B","C" → "A","C"
+        List<string> _list = new List<string>() {"A", "B", "C"};
+        _list.Remove("B");
 
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> A→C
-		}
-	}
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> A→C
+        }
+    }
 }
 ```
 
@@ -2362,17 +2362,17 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		//"A","B","C" → "B","C"
-		List<string> _list = new List<string>() {"A", "B", "C"};
-		_list.RemoveAt(0); // 先頭を削除する場合
-		//_list.RemoveAt(_list.Count - 1); // 最後を削除する場合
-		
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> B→C
-		}
-	}
+    public override void _Ready() {
+        //"A","B","C" → "B","C"
+        List<string> _list = new List<string>() {"A", "B", "C"};
+        _list.RemoveAt(0); // 先頭を削除する場合
+        //_list.RemoveAt(_list.Count - 1); // 最後を削除する場合
+        
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> B→C
+        }
+    }
 }
 ```
 
@@ -2390,18 +2390,18 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// "A","B","C","D" → "A","B"
-		List<string> _list = new List<string>() {"A", "B", "C", "D"};
-		_list.RemoveRange(2, 2); // 2番目から2個削除
-		//_list.RemoveRange(1, _list.Count - 1); // 1番目〜最後を削除する場合
-		//_list.Clear(); // 全て削除する場合
-		
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> A→B
-		}
-	}
+    public override void _Ready() {
+        // "A","B","C","D" → "A","B"
+        List<string> _list = new List<string>() {"A", "B", "C", "D"};
+        _list.RemoveRange(2, 2); // 2番目から2個削除
+        //_list.RemoveRange(1, _list.Count - 1); // 1番目〜最後を削除する場合
+        //_list.Clear(); // 全て削除する場合
+        
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> A→B
+        }
+    }
 }
 ```
 
@@ -2417,17 +2417,17 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// "A","B","C","D" → "C","D"を返す
-		List<string> _list = new List<string>() {"A", "B", "C", "D"};
-		List<string> _result = _list.GetRange(2, 2); // 2番目から2個抽出する場合
-		//List<string> _result = _list.GetRange(1, _list.Count - 1);// 1番目〜最後を抽出
-		
-		// 動作確認
-		foreach (object value in _result) {
-			GD.Print(value); //-> C→D
-		}
-	}
+    public override void _Ready() {
+        // "A","B","C","D" → "C","D"を返す
+        List<string> _list = new List<string>() {"A", "B", "C", "D"};
+        List<string> _result = _list.GetRange(2, 2); // 2番目から2個抽出する場合
+        //List<string> _result = _list.GetRange(1, _list.Count - 1);// 1番目〜最後を抽出
+        
+        // 動作確認
+        foreach (object value in _result) {
+            GD.Print(value); //-> C→D
+        }
+    }
 }
 ```
 
@@ -2445,11 +2445,11 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		List<string> _list = new List<string>() {"A", "B", "C", "D"};
-		GD.Print(_list.IndexOf("C",0)); //-> 2
-		// 最初から検索する場合（第2引数が0の場合は省略可能）
-	}
+    public override void _Ready() {
+        List<string> _list = new List<string>() {"A", "B", "C", "D"};
+        GD.Print(_list.IndexOf("C",0)); //-> 2
+        // 最初から検索する場合（第2引数が0の場合は省略可能）
+    }
 }
 ```
 
@@ -2467,11 +2467,11 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		List<string> _list = new List<string>() {"A", "B", "C", "D"};
-		GD.Print(_list.LastIndexOf("C")); //-> 2
-		// 最初から検索する場合（第2引数が0の場合は省略可能）
-	}
+    public override void _Ready() {
+        List<string> _list = new List<string>() {"A", "B", "C", "D"};
+        GD.Print(_list.LastIndexOf("C")); //-> 2
+        // 最初から検索する場合（第2引数が0の場合は省略可能）
+    }
 }
 ```
 
@@ -2488,12 +2488,12 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		//List<string> _list = new List<string>() {"A", "B", "C"};
-		List<string> _list = new List<string>(3); // 空のArrayListを作成
-		GD.Print(_list.Count); //-> 0（実際に格納されている要素の数）
-		GD.Print(_list.Capacity); //-> 3（格納可能な要素の数）
-	}
+    public override void _Ready() {
+        //List<string> _list = new List<string>() {"A", "B", "C"};
+        List<string> _list = new List<string>(3); // 空のArrayListを作成
+        GD.Print(_list.Count); //-> 0（実際に格納されている要素の数）
+        GD.Print(_list.Capacity); //-> 3（格納可能な要素の数）
+    }
 }
 ```
 
@@ -2504,15 +2504,15 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		List<string> _list = new List<string>() {"A", "B", "C", "D"};
-		_list.Reverse();
+    public override void _Ready() {
+        List<string> _list = new List<string>() {"A", "B", "C", "D"};
+        _list.Reverse();
 
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> D→C→B→A
-		}
-	}
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> D→C→B→A
+        }
+    }
 }
 ```
 
@@ -2528,15 +2528,15 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		List<string> _list = new List<string>() {"C", "02", "A", "01", "03", "B"};
-		_list.Sort();
-		
-		// 動作確認
-		foreach (object value in _list) {
-			GD.Print(value); //-> 01→02→03→A→B→C
-		}
-	}
+    public override void _Ready() {
+        List<string> _list = new List<string>() {"C", "02", "A", "01", "03", "B"};
+        _list.Sort();
+        
+        // 動作確認
+        foreach (object value in _list) {
+            GD.Print(value); //-> 01→02→03→A→B→C
+        }
+    }
 }
 ```
 
@@ -2548,18 +2548,18 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		List<string> _list1 = new List<string>() {"A", "B", "C"};
-		List<string> _list2 = new List<string>() {"D", "E", "F"};
+    public override void _Ready() {
+        List<string> _list1 = new List<string>() {"A", "B", "C"};
+        List<string> _list2 = new List<string>() {"D", "E", "F"};
 
-		// _list1の末尾に_list2を結合
-		_list1.AddRange(_list2);
+        // _list1の末尾に_list2を結合
+        _list1.AddRange(_list2);
 
-		// 動作確認
-		foreach (object value in _list1) {
-			GD.Print(value); //-> A→B→C→D→E→F
-		}
-	}
+        // 動作確認
+        foreach (object value in _list1) {
+            GD.Print(value); //-> A→B→C→D→E→F
+        }
+    }
 }
 ```
 
@@ -2570,15 +2570,15 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		List<string> _list = new List<string>() { "A", "B", "C" };
-		List<string> _listCopy = new List<string>(_list); // 簡易型コピー方法
-		_list[0] = "X";
-		
-		// 動作確認
-		GD.Print(_list[0]); //-> X
-		GD.Print(_listCopy[0]); //-> A（参照コピーではない）
-	}
+    public override void _Ready() {
+        List<string> _list = new List<string>() { "A", "B", "C" };
+        List<string> _listCopy = new List<string>(_list); // 簡易型コピー方法
+        _list[0] = "X";
+        
+        // 動作確認
+        GD.Print(_list[0]); //-> X
+        GD.Print(_listCopy[0]); //-> A（参照コピーではない）
+    }
 }
 ```
 
@@ -2589,19 +2589,19 @@ using Godot;
 using System.Collections.Generic; // Listに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "A,B,C,D"; // ➀元となる文字列
-		string[] _array = _string.Split(','); // ➁文字列→配列に変換（「配列」参照）
-		List<string> _list = new List<string>(); // ➂空のListを作成
-		foreach (string _tmp in _array) { // データ型に注意
-			_list.Add(_tmp); // ➃配列の要素を1つずつListに追加
-		}
+    public override void _Ready() {
+        string _string = "A,B,C,D"; // ➀元となる文字列
+        string[] _array = _string.Split(','); // ➁文字列→配列に変換（「配列」参照）
+        List<string> _list = new List<string>(); // ➂空のListを作成
+        foreach (string _tmp in _array) { // データ型に注意
+            _list.Add(_tmp); // ➃配列の要素を1つずつListに追加
+        }
 
-		// 動作確認
-		foreach (object value in _array) {
-			GD.Print(value); //-> A→B→C→D
-		}
-	}
+        // 動作確認
+        foreach (object value in _array) {
+            GD.Print(value); //-> A→B→C→D
+        }
+    }
 }
 ```
 
@@ -2675,23 +2675,23 @@ using Godot;
 using System.Collections.Generic; // Dictionaryに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// ➀作成（空のDictionaryを作成する場合{}は不要）
-		Dictionary<string, string> _dic = new Dictionary<string, string>() {
-			{"A", "あ"},
-			{"I", "い"}
-		};
+    public override void _Ready() {
+        // ➀作成（空のDictionaryを作成する場合{}は不要）
+        Dictionary<string, string> _dic = new Dictionary<string, string>() {
+            {"A", "あ"},
+            {"I", "い"}
+        };
 
-		// ➁追加
-		_dic.Add("U", "う");
-		_dic.Add("E", "え");
+        // ➁追加
+        _dic.Add("U", "う");
+        _dic.Add("E", "え");
 
-		// ➂更新
-		_dic["A"] = "ア"; // 上書き変更
+        // ➂更新
+        _dic["A"] = "ア"; // 上書き変更
 
-		// ➃取得
-		GD.Print(_dic["A"]); //-> ア
-	}
+        // ➃取得
+        GD.Print(_dic["A"]); //-> ア
+    }
 }
 ```
 
@@ -2702,15 +2702,15 @@ using Godot;
 using System.Collections.Generic; // Dictionaryに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// ➀作成（空のDictionaryを作成する場合{}は不要）
-		Dictionary<string, string> _dic = new Dictionary<string, string>() {
-			{"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
-		};
+    public override void _Ready() {
+        // ➀作成（空のDictionaryを作成する場合{}は不要）
+        Dictionary<string, string> _dic = new Dictionary<string, string>() {
+            {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
+        };
 
-		GD.Print(_dic.ContainsKey("B")); //-> Flase（任意のキーがあるか否か）
-		GD.Print(_dic.ContainsValue("え")); //-> True（任意の値があるか否か）
-	}
+        GD.Print(_dic.ContainsKey("B")); //-> Flase（任意のキーがあるか否か）
+        GD.Print(_dic.ContainsValue("え")); //-> True（任意の値があるか否か）
+    }
 }
 ```
 
@@ -2736,35 +2736,35 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		Robot _robot = new Robot(500);
-		_robot.Move();
-		GD.Print(_robot.X); //-> 510
-		GD.Print(this); //-> <Node3D#24561844620>（＝Mainクラス）
-	}
+    public override void _Ready() {
+        Robot _robot = new Robot(500);
+        _robot.Move();
+        GD.Print(_robot.X); //-> 510
+        GD.Print(this); //-> <Node3D#24561844620>（＝Mainクラス）
+    }
 }
 
 // カスタムクラス
 class Robot {
-	private int _x; // インスタンス変数（thisは不要）
-	
-	public Robot(int _x) { // 引数
-		this._x = _x; // ➀thisが無いとWarning（引数を参照してしまう）
-		GD.Print(this); //-> Robot（＝Robotクラス）
-	}
+    private int _x; // インスタンス変数（thisは不要）
+    
+    public Robot(int _x) { // 引数
+        this._x = _x; // ➀thisが無いとWarning（引数を参照してしまう）
+        GD.Print(this); //-> Robot（＝Robotクラス）
+    }
 
-	public void Move() {
-		int _x; // ローカル変数
-		_x = this._x + 10; // ➁thisが無いとerror（ローカル変数を参照してしまう）
-		if (_x >= 1920) _x = 0;
-		this._x = _x; // ➁thisが無いとローカル変数を参照してしまう
-		GD.Print(this); //-> Robot（＝Robotクラス）
-	}
+    public void Move() {
+        int _x; // ローカル変数
+        _x = this._x + 10; // ➁thisが無いとerror（ローカル変数を参照してしまう）
+        if (_x >= 1920) _x = 0;
+        this._x = _x; // ➁thisが無いとローカル変数を参照してしまう
+        GD.Print(this); //-> Robot（＝Robotクラス）
+    }
 
-	public int X {
-		get { return _x; } // thisを付けてもよい（通常は省略）
-		private set {}
-	}
+    public int X {
+        get { return _x; } // thisを付けてもよい（通常は省略）
+        private set {}
+    }
 }
 ```
 
@@ -2791,15 +2791,15 @@ string 変数名 = new string(new char[]{'〇', '〇', ...}); // new演算子と
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		// ➀文字列リテラルを使う
-		string _string1 = "ABCDE";
-		GD.Print(_string1); //-> ABCDE
+    public override void _Ready() {
+        // ➀文字列リテラルを使う
+        string _string1 = "ABCDE";
+        GD.Print(_string1); //-> ABCDE
 
-		// ➁new演算子とchar型配列を使う
-		string _string2 = new string(new char[]{'A','B','C','D','E'});
-		GD.Print(_string2); //-> ABCDE 
-	}
+        // ➁new演算子とchar型配列を使う
+        string _string2 = new string(new char[]{'A','B','C','D','E'});
+        GD.Print(_string2); //-> ABCDE 
+    }
 }
 ```
 
@@ -2809,10 +2809,10 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "ABCDE";
-		GD.Print(_string.Length); //-> 5
-	}
+    public override void _Ready() {
+        string _string = "ABCDE";
+        GD.Print(_string.Length); //-> 5
+    }
 }
 ```
 
@@ -2828,12 +2828,12 @@ String.Substring(開始 [, 文字数])
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "0123456789";
-		GD.Print(_string[4]); //-> 4
-		GD.Print(_string.Substring(4)); //-> 456789
-		GD.Print(_string.Substring(4,3)); //-> 456
-	}
+    public override void _Ready() {
+        string _string = "0123456789";
+        GD.Print(_string[4]); //-> 4
+        GD.Print(_string.Substring(4)); //-> 456789
+        GD.Print(_string.Substring(4,3)); //-> 456
+    }
 }
 ```
 
@@ -2848,11 +2848,11 @@ String.Remove(開始位置, 削除する文字数);
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "すずきいちろう";
-		GD.Print(_string.Remove(0, 3)); //-> いちろう
-		GD.Print(_string); //-> すずきいちろう
-	}
+    public override void _Ready() {
+        string _string = "すずきいちろう";
+        GD.Print(_string.Remove(0, 3)); //-> いちろう
+        GD.Print(_string); //-> すずきいちろう
+    }
 }
 ```
 
@@ -2868,10 +2868,10 @@ String.Replace('置換前の文字', '置換後の文字');
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "2022年09月18日";
-		GD.Print(_string.Replace("2022年", "令和4年")); //-> "令和4年09月18日"
-	}
+    public override void _Ready() {
+        string _string = "2022年09月18日";
+        GD.Print(_string.Replace("2022年", "令和4年")); //-> "令和4年09月18日"
+    }
 }
 ```
 
@@ -2887,17 +2887,17 @@ String.IndexOf('検索したい文字', 開始位置);
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "ABCDEFG-ABCDEFG";
-		string _word = "CD";
-		int _i = 0;
-		while (_string.IndexOf(_word, _i) != -1) { // 見つからない場合「-1」
-			int _num = _string.IndexOf(_word, _i);
-			GD.Print(_num); //-> 2→10（"CD"が見つかった位置を出力）
-			GD.Print(_string.Substring(_num, _word.Length)); //-> CD→CD
-			_i = _num + 1;
-		}
-	}
+    public override void _Ready() {
+        string _string = "ABCDEFG-ABCDEFG";
+        string _word = "CD";
+        int _i = 0;
+        while (_string.IndexOf(_word, _i) != -1) { // 見つからない場合「-1」
+            int _num = _string.IndexOf(_word, _i);
+            GD.Print(_num); //-> 2→10（"CD"が見つかった位置を出力）
+            GD.Print(_string.Substring(_num, _word.Length)); //-> CD→CD
+            _i = _num + 1;
+        }
+    }
 }
 ```
 
@@ -2912,13 +2912,13 @@ String.Split('区切り文字');
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "A,B,C,D"; // 「,」区切りの文字列
-		string[] _array = _string.Split(','); // 「,」区切りで分割して配列化
-		foreach (object value in _array) {
-			GD.Print(value); //-> A→B→C→D
-		}
-	}
+    public override void _Ready() {
+        string _string = "A,B,C,D"; // 「,」区切りの文字列
+        string[] _array = _string.Split(','); // 「,」区切りで分割して配列化
+        foreach (object value in _array) {
+            GD.Print(value); //-> A→B→C→D
+        }
+    }
 }
 ```
 
@@ -2942,12 +2942,12 @@ using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "cabacbbacbcba";
-		// "a"がいくつ含まれるか
-		MatchCollection _mc = Regex.Matches(_string, "a");
-		GD.Print(_mc.Count); //-> 4
-	}
+    public override void _Ready() {
+        string _string = "cabacbbacbcba";
+        // "a"がいくつ含まれるか
+        MatchCollection _mc = Regex.Matches(_string, "a");
+        GD.Print(_mc.Count); //-> 4
+    }
 }
 ```
 
@@ -2958,17 +2958,17 @@ using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = @"U7eLoERa"; // 任意のパスワード（@を付ける）
-		/* 条件
-		8文字以上（全て半角）
-		1文字以上の「数字」を含む
-		1文字以上の大文字および小文字の「英字」を含む
-		*/
-		Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");
-		Match _match = _regex.Match(_string);
-		GD.Print(_match.Success); //-> True（パスワードとして条件に合致）
-	}
+    public override void _Ready() {
+        string _string = @"U7eLoERa"; // 任意のパスワード（@を付ける）
+        /* 条件
+        8文字以上（全て半角）
+        1文字以上の「数字」を含む
+        1文字以上の大文字および小文字の「英字」を含む
+        */
+        Regex _regex = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$");
+        Match _match = _regex.Match(_string);
+        GD.Print(_match.Success); //-> True（パスワードとして条件に合致）
+    }
 }
 ```
 
@@ -2979,12 +2979,12 @@ using Godot;
 using System.Text.RegularExpressions; //Regexに必要
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		string _string = "123-4567"; // 任意の郵便番号
-		Regex _regex = new Regex("\\d{3}-\\d{4}");
-		Match _match = _regex.Match(_string);
-		GD.Print(_match.Success); //-> True（郵便番号として条件に合致）
-	}
+    public override void _Ready() {
+        string _string = "123-4567"; // 任意の郵便番号
+        Regex _regex = new Regex("\\d{3}-\\d{4}");
+        Match _match = _regex.Match(_string);
+        GD.Print(_match.Success); //-> True（郵便番号として条件に合致）
+    }
 }
 ```
 
