@@ -1098,19 +1098,19 @@ class MyClass {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		GD.Print("_Ready()");
-	}
+    public override void _Ready() {
+        GD.Print("_Ready()");
+    }
 
-	// 繰り返し実行される
-	public override void _Process(double _delta) {
-		GD.Print("Process: " + _delta); //-> Process: 0.016666666666666666
-	}
+    // 繰り返し実行される
+    public override void _Process(double _delta) {
+        GD.Print("Process: " + _delta); //-> Process: 0.016666666666666666
+    }
 
-	// 物理ステップの前に安定して実行される(初期値60fps)
-	public override void _PhysicsProcess(double _delta) {
-		GD.Print("PhysicsProcess: " + _delta); //-> PhysicsProcess: 0.016666666666666666
-	}
+    // 物理ステップの前に安定して実行される(初期値60fps)
+    public override void _PhysicsProcess(double _delta) {
+        GD.Print("PhysicsProcess: " + _delta); //-> PhysicsProcess: 0.016666666666666666
+    }
 }
 ```
 参考：[GODOT DOCS（Godot notifications）](https://bit.ly/3qNQcvX)  
