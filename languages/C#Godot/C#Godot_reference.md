@@ -43,7 +43,7 @@
 * [オーバーライド](#オーバーライド)
 * [カスタムイベント](#カスタムイベント)
 * [数学関数（Math）](#数学関数（Math）)
-* ~~[乱数](#乱数)~~
+* [乱数](#乱数)
 * ~~[日時情報](#日時情報)~~
 * ~~[タイマー](#タイマー)~~
 * ~~[処理速度計測](#処理速度計測)~~
@@ -3577,41 +3577,41 @@ public partial class Main : Node3D {
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _u5=0, _u4=0, _u3=0, _u2=0, _u1=0;
-        int _o0=0, _o1=0, _o2=0, _o3=0, _o4=0, _o5=0;
-        int _min = -5, _max = 5; // 最小値と最大値を設定
-        GD.Randomize(); // 乱数のシード値を設定（任意）
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _u5=0, _u4=0, _u3=0, _u2=0, _u1=0;
+		int _o0=0, _o1=0, _o2=0, _o3=0, _o4=0, _o5=0;
+		int _min = -5, _max = 5; // 最小値と最大値を設定
 
-        for (int i=0; i < 1000000; i++) {
-            switch (Math.Floor(GD.RandRange(_min-1, _max+1))) {
-                case -5: _u5++; break;
-                case -4: _u4++; break;
-                case -3: _u3++; break;
-                case -2: _u2++; break;
-                case -1: _u1++; break;
-                case  0: _o0++; break;
-                case  1: _o1++; break;
-                case  2: _o2++; break;
-                case  3: _o3++; break;
-                case  4: _o4++; break;
-                case  5: _o5++; break;
-            }
-        }
+		for (int i=0; i < 1000000; i++) {
+			switch (Math.Floor(GD.RandRange((double)_min-1, (double)_max+1))) {
+				case -5: _u5++; break;
+				case -4: _u4++; break;
+				case -3: _u3++; break;
+				case -2: _u2++; break;
+				case -1: _u1++; break;
+				case  0: _o0++; break;
+				case  1: _o1++; break;
+				case  2: _o2++; break;
+				case  3: _o3++; break;
+				case  4: _o4++; break;
+				case  5: _o5++; break;
+			}
+		}
 
-        GD.Print(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
-        //-> 83154,83611,83840,83321,83460,83433,83274,83431,83126,83195,83366
-    }
+		GD.Print(_u5+","+_u4+","+_u3+","+_u2+","+_u1+","+_o0+","+_o1+","+_o2+","+_o3+","+_o4+","+_o5);
+		//-> 83361,83522,83579,83255,83443,83475,83372,82998,82977,83076,83322
+	}
 }
 ```
-（注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
+（注意）Godot 4.0 では **GD.Randomize()** を実行しなくても毎回結果が異なる＝要調査  
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E4%B9%B1%E6%95%B0)]  
-参考：[Qiita](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3eZOBQQ)]  
+参考：[Qiita（【Godot】乱数の使い方について）](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
