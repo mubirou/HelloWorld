@@ -45,9 +45,9 @@
 * [数学関数（Math）](#数学関数（Math）)
 * [乱数](#乱数)
 * [日時情報](#日時情報)
-* ~~[タイマー](#タイマー)~~
-* ~~[処理速度計測](#処理速度計測)~~
-* ~~[外部テキストの読み込み](#外部テキストの読み込み)~~
+* [タイマー](#タイマー)
+* [処理速度計測](#処理速度計測)
+* [外部テキストの読み込み](#外部テキストの読み込み)
 
 参考：[Microsoft（C# リファレンス）](https://bit.ly/3Uh6YBa)  
 ***
@@ -3750,54 +3750,55 @@ using Godot;
 using System; // EventArgsに必要
 using System.Timers; // ElapsedEventHandlerに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    private static System.Timers.Timer _timer; // privateは省略可
+public partial class Main : Node3D {
+	private static System.Timers.Timer _timer; // privateは省略可
 
-    public override void _Ready() {
-        _timer = new System.Timers.Timer(); // タイマーの生成
-        _timer.Interval = 1000; // 1000ミリ秒間隔
-        _timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
-        _timer.Start(); // 開始
-    }
-    
-    static void Loop(object arg1, System.EventArgs arg2) { //1000ミリ秒毎に実行される
-        GD.Print(arg1); //-> System.Timers.Timer（タイマー本体）
-        GD.Print(arg2); //-> System.Timers.ElapsedEventArgs（各種情報）
-        //_timer.Stop(); // 停止（この場合１回で停止）
-    }
+	public override void _Ready() {
+		_timer = new System.Timers.Timer(); // タイマーの生成
+		_timer.Interval = 1000; // 1000ミリ秒間隔
+		_timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
+		_timer.Start(); // 開始
+	}
+	
+	static void Loop(object arg1, System.EventArgs arg2) { //1000ミリ秒毎に実行される
+		GD.Print(arg1); //-> System.Timers.Timer（タイマー本体）
+		GD.Print(arg2); //-> System.Timers.ElapsedEventArgs（各種情報）
+		//_timer.Stop(); // 停止（この場合１回で停止）
+	}
 }
 ```
 
 ### 〇秒後に一度だけ実行する
 * システムタイマー（[System.Timers.Timer](https://docs.microsoft.com/ja-jp/dotnet/api/system.timers.timer?view=net-6.0)）を利用した力技  
-* Godot.Timer による方法もあるかもしれません（要調査）  
+* Godot 独自の方法は要調査  
 ```CSharp
 // Main.cs
 using Godot;
 using System; // EventArgsに必要
 using System.Timers; // ElapsedEventHandlerに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    private static System.Timers.Timer _timer; // privateは省略可
+public partial class Main : Node3D {
+	private static System.Timers.Timer _timer; // privateは省略可
 
-    public override void _Ready() {
-        _timer = new System.Timers.Timer(); // タイマーの生成
-        _timer.Interval = 3000; // 3000ミリ秒間隔
-        _timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
-        _timer.Start(); // 開始
-    }
-    
-    static void Loop(object arg1, System.EventArgs arg2) { // 3000ミリ秒後に実行される
-        _timer.Stop(); // 停止（この場合１回で停止）
-        GD.Print(_timer.Interval + "秒後に実行");
-    }
+	public override void _Ready() {
+		_timer = new System.Timers.Timer(); // タイマーの生成
+		_timer.Interval = 3000; // 3000ミリ秒間隔
+		_timer.Elapsed += new ElapsedEventHandler(Loop); // イベントハンドラの追加
+		_timer.Start(); // 開始
+	}
+	
+	static void Loop(object arg1, System.EventArgs arg2) { // 3000ミリ秒後に実行される
+		_timer.Stop(); // 停止（この場合１回で停止）
+		GD.Print(_timer.Interval + "秒後に実行");
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3dpR7Q6)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -3809,21 +3810,22 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // DateTimeに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        long _start = DateTime.Now.Ticks; // 100ナノ秒単位（精度は10ミリ秒）
-        for (long i=0; i<1000000000; i++) { // 10億回繰り返す場合…
-            // 速度計測したい処理
-        }
-        GD.Print(DateTime.Now.Ticks - _start); //-> 30796671（≒3秒）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		long _start = DateTime.Now.Ticks; // 100ナノ秒単位（精度は10ミリ秒）
+		for (long i=0; i<1000000000; i++) { // 10億回繰り返す場合…
+			// 速度計測したい処理
+		}
+		GD.Print(DateTime.Now.Ticks - _start); //-> 17333337（≒1.7秒）
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3Lnxche)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -3832,7 +3834,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 * [Web サーバ](http://bit.ly/2mbzR4D)を稼働する必要はありません
 
 ### テキストファイルの用意
-* sample.txt / UTF-8 として Project フォルダ内に保存
+* sample.txt を Godot プロジェクトフォルダ内に保存
 ```
 あいうえお
 かきくけこ
@@ -3845,15 +3847,15 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.IO; // StreamReaderに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _path = "sample.txt";
-        // Shift-JISなどUTF-8以外の場合は第2引数で指定します
-        StreamReader _stream = new StreamReader(_path); // .txt以外も可能
-        string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
-        _stream.Close(); // 閉じる
-        GD.Print(_string); //-> あいうえお…
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _path = "sample.txt";
+		// Shift-JISなどUTF-8以外の場合は第2引数で指定します
+		StreamReader _stream = new StreamReader(_path); // .txt以外も可能
+		string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
+		_stream.Close(); // 閉じる
+		GD.Print(_string); //-> あいうえお…
+	}
 }
 ```
 
@@ -3863,19 +3865,20 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.IO; // StreamReaderに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _path = "sample.txt";
-        StreamReader _stream = System.IO.File.OpenText(_path); // .txt以外も可能（UFT-8限定）
-        string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
-        _stream.Close(); // 閉じる
-        GD.Print(_string); //-> あいうえお…
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _path = "sample.txt";
+		StreamReader _stream = System.IO.File.OpenText(_path); // .txt以外も可能（UFT-8限定）
+		string _string = _stream.ReadToEnd(); // 全ての内容を読み込む
+		_stream.Close(); // 閉じる
+		GD.Print(_string); //-> あいうえお…
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%A4%96%E9%83%A8%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3S9Dy67)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
