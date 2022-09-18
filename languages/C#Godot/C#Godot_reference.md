@@ -31,8 +31,8 @@
 * [for 文](#for文)
 * [foreach 文](#foreach文)
 * [while 文](#while文)
-* ~~[配列](#配列)~~
-* ~~[動的配列（List）](#動的配列（List）)~~
+* [配列](#配列)
+* [動的配列（List）](#動的配列（List）)
 * ~~[連想配列（Dictionary）](#連想配列（Dictionary）)~~
 * ~~[this](#this)~~
 * ~~[文字列の操作](#文字列の操作)~~
@@ -1937,14 +1937,14 @@ while (ループ判定式) {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _i = 0;
-		while (_i < 10) { // ループ判定式にはbool型しか使えない
-			GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
-			_i++;
-		}
-		GD.Print(_i); //-> 10（変数はまだ有効）
-	}
+    public override void _Ready() {
+        int _i = 0;
+        while (_i < 10) { // ループ判定式にはbool型しか使えない
+            GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
+            _i++;
+        }
+        GD.Print(_i); //-> 10（変数はまだ有効）
+    }
 }
 ```
 
@@ -1962,13 +1962,13 @@ do {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _i = 0;
-		do {
-			GD.Print(_i); //-> 0（ループ判定式はfalseだが１回実行される）
-			_i++;
-		} while(_i < 0);
-	}
+    public override void _Ready() {
+        int _i = 0;
+        do {
+            GD.Print(_i); //-> 0（ループ判定式はfalseだが１回実行される）
+            _i++;
+        } while(_i < 0);
+    }
 }
 ```
 
@@ -1978,17 +1978,17 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _count = 0;
-		while (true) { // ループ判別式をtrueにすると無限ループに
-			_count++;
-			if (_count > 100) {
-				break; // break文を使ってループを終了→★
-			}
-			GD.Print(_count); //-> 1,2,....,99,100
-		}
-		GD.Print("while文終了"); // ★
-	}
+    public override void _Ready() {
+        int _count = 0;
+        while (true) { // ループ判別式をtrueにすると無限ループに
+            _count++;
+            if (_count > 100) {
+                break; // break文を使ってループを終了→★
+            }
+            GD.Print(_count); //-> 1,2,....,99,100
+        }
+        GD.Print("while文終了"); // ★
+    }
 }
 ```
 
@@ -1998,17 +1998,17 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _i = 1;
-		while (_i <= 20) {
-			if ((_i % 3) != 0) { // 3で割って余りが0ではない（＝3の倍数ではない）場合
-				_i++;
-				continue; // while文の残処理をスキップしてwhile文の次の反復を開始する
-			}
-			GD.Print(_i); //-> 3,6,9,12,15,18（3の倍数を出力）
-			_i++;
-		}
-	}
+    public override void _Ready() {
+        int _i = 1;
+        while (_i <= 20) {
+            if ((_i % 3) != 0) { // 3で割って余りが0ではない（＝3の倍数ではない）場合
+                _i++;
+                continue; // while文の残処理をスキップしてwhile文の次の反復を開始する
+            }
+            GD.Print(_i); //-> 3,6,9,12,15,18（3の倍数を出力）
+            _i++;
+        }
+    }
 }
 ```
 
@@ -2038,17 +2038,17 @@ public partial class Main : Node3D {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        dynamic[] _array1 = new dynamic[4]; // 4つの空の要素（動的型）を持つ配列を作成
-        string[] _array2 = new string[]{"A","B","C","D"};
-        string[] _array3 = {"A","B","C","D"}; // 簡単
-        
-        // 動作確認
-        GD.Print(_array1); //-> nullnullnullnull
-        GD.Print(_array2); //-> ABCD
-        GD.Print(_array3); //-> ABCD
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		dynamic[] _array1 = new dynamic[4]; // 4つの空の要素（動的型）を持つ配列を作成
+		string[] _array2 = new string[]{"A","B","C","D"};
+		string[] _array3 = {"A","B","C","D"}; // 簡単
+		
+		// 動作確認
+		GD.Print(_array1); //-> nullnullnullnull
+		GD.Print(_array2); //-> ABCD
+		GD.Print(_array3); //-> ABCD
+	}
 }
 ```
 
@@ -2064,13 +2064,13 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             string[,] _coinlocker = new string[5,4];
-            _coinlocker[0,0] = "1083"; //0,0の値
-            _coinlocker[0,1] = "7777"; //0,1の値
-            _coinlocker[2,1] = "0135"; //2,1の値
-            _coinlocker[4,3] = "1234"; //4,3の値
+            _coinlocker[0,0] = "1083"; // 0,0の値
+            _coinlocker[0,1] = "7777"; // 0,1の値
+            _coinlocker[2,1] = "0135"; // 2,1の値
+            _coinlocker[4,3] = "1234"; // 4,3の値
 
             // 動作確認
             GD.Print(_coinlocker[0,0]); //-> 1083
@@ -2086,7 +2086,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             string[,] _coinlocker = {
                 {"1083", "7777", null, null}, // 0行目
@@ -2117,7 +2117,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             dynamic[][] _array = new dynamic[4][];
             _array[0] = new dynamic[]{"A","あ","ア"}; // 配列リテラルは不可
@@ -2139,13 +2139,13 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             dynamic[][] _array = new dynamic[][]{
-            new dynamic[]{"A","あ","ア"},
-            new dynamic[]{"I","い","イ"},
-            new dynamic[]{"U","う","ウ"},
-            new dynamic[]{"E","え","エ"}
+                new dynamic[]{"A","あ","ア"},
+                new dynamic[]{"I","い","イ"},
+                new dynamic[]{"U","う","ウ"},
+                new dynamic[]{"E","え","エ"}
             };
 
             // 動作確認
@@ -2163,13 +2163,13 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string[] _array = {"A","B","C","D"};
-        for (int i=0; i<_array.Length; i++) { // 配列の要素の数
-            GD.Print(_array[i]); //-> A→B→C→D
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string[] _array = {"A","B","C","D"};
+		for (int i=0; i<_array.Length; i++) { // 配列の要素の数
+			GD.Print(_array[i]); //-> A→B→C→D
+		}
+	}
 }
 ```
 
@@ -2178,20 +2178,21 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "A,B,C,D"; //「,」区切りの文字列
-        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
-        foreach (string value in _array) {
-            GD.Print(value); //-> A→B→C→D
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "A,B,C,D"; // 「,」区切りの文字列
+		string[] _array = _string.Split(','); // 「,」区切りで分割して配列化
+		foreach (string value in _array) {
+			GD.Print(value); //-> A→B→C→D
+		}
+	}
 }
 ```
 
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月22日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -2213,13 +2214,13 @@ List<データ型> 変数名 = new List<データ型>() { 要素➀, 要素➁, 
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        List<string> _list = new List<string>() {"A", "B"};
-        foreach (object value in _list) {
-            GD.Print(value); //-> A→B
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		List<string> _list = new List<string>() {"A", "B"};
+		foreach (object value in _list) {
+			GD.Print(value); //-> A→B
+		}
+	}
 }
 ```
 
@@ -2234,18 +2235,18 @@ List.Add(値); // 値はobject型（文字型、数値型等）で混在不可�
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // 空 → "A" → "A","B"
-        List<string> _list = new List<string>();
-        _list.Add("A");
-        _list.Add("B");
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// 空 → "A" → "A","B"
+		List<string> _list = new List<string>();
+		_list.Add("A");
+		_list.Add("B");
 
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> A→B
-        }
-    }
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> A→B
+		}
+	}
 }
 ```
 
@@ -2260,17 +2261,17 @@ List.Insert(インデックス番号,値); // 先頭(0)〜最後(List.Capacity-1
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // "A","B" → "C","A","B"
-        List<string> _list = new List<string>() {"A", "B"};
-        _list.Insert(0, "C"); // 先頭に追加する場合は0
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// "A","B" → "C","A","B"
+		List<string> _list = new List<string>() {"A", "B"};
+		_list.Insert(0, "C"); // 先頭に追加する場合は0
 
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> C→A→B
-        }
-    }
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> C→A→B
+		}
+	}
 }
 ```
 
@@ -2285,17 +2286,17 @@ List[インデックス番号] = 値;
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // "A","B" → "C","B"
-        List<string> _list = new List<string>() {"A", "B"};
-        _list[0] = "C"; // 0番目を変更する場合
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// "A","B" → "C","B"
+		List<string> _list = new List<string>() {"A", "B"};
+		_list[0] = "C"; // 0番目を変更する場合
 
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> C→B
-        }
-    }
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> C→B
+		}
+	}
 }
 ```
 
@@ -2310,17 +2311,17 @@ List[インデックス番号] = null;
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // "A","B","C" → "A","B",null
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        _list[2] = null;
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// "A","B","C" → "A","B",null
+		List<string> _list = new List<string>() { "A", "B", "C" };
+		_list[2] = null;
 
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> A→B→null
-        }
-    }
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> A→B→null
+		}
+	}
 }
 ```
 
@@ -2335,17 +2336,17 @@ List.Remove(object); // 最初に見つかった指定のオブジェクトを�
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // "A","B","C" → "A","C"
-        List<string> _list = new List<string>() {"A", "B", "C"};
-        _list.Remove("B");
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// "A","B","C" → "A","C"
+		List<string> _list = new List<string>() {"A", "B", "C"};
+		_list.Remove("B");
 
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> A→C
-        }
-    }
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> A→C
+		}
+	}
 }
 ```
 
@@ -2360,18 +2361,18 @@ List.RemoveAt(インデックス番号); // 先頭(0)〜最後(List.Count-1)ま�
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        //"A","B","C" → "B","C"
-        List<string> _list = new List<string>() {"A", "B", "C"};
-        _list.RemoveAt(0); // 先頭を削除する場合
-        //_list.RemoveAt(_list.Count - 1); // 最後を削除する場合
-        
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> B→C
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		//"A","B","C" → "B","C"
+		List<string> _list = new List<string>() {"A", "B", "C"};
+		_list.RemoveAt(0); // 先頭を削除する場合
+		//_list.RemoveAt(_list.Count - 1); // 最後を削除する場合
+		
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> B→C
+		}
+	}
 }
 ```
 
@@ -2388,19 +2389,19 @@ List.Clear(); // 全て削除
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // "A","B","C","D" → "A","B"
-        List<string> _list = new List<string>() {"A", "B", "C", "D"};
-        _list.RemoveRange(2, 2); // 2番目から2個削除
-        //_list.RemoveRange(1, _list.Count - 1); // 1番目〜最後を削除する場合
-        //_list.Clear(); // 全て削除する場合
-        
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> A→B
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// "A","B","C","D" → "A","B"
+		List<string> _list = new List<string>() {"A", "B", "C", "D"};
+		_list.RemoveRange(2, 2); // 2番目から2個削除
+		//_list.RemoveRange(1, _list.Count - 1); // 1番目〜最後を削除する場合
+		//_list.Clear(); // 全て削除する場合
+		
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> A→B
+		}
+	}
 }
 ```
 
@@ -2415,18 +2416,18 @@ List.GetRange(開始, 抜き出す個数); // 開始＝抜出しを開始した�
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // "A","B","C","D" → "C","D"を返す
-        List<string> _list = new List<string>() {"A", "B", "C", "D"};
-        List<string> _result = _list.GetRange(2, 2); // 2番目から2個抽出する場合
-        //List<string> _result = _list.GetRange(1, _list.Count - 1);// 1番目〜最後を抽出
-        
-        // 動作確認
-        foreach (object value in _result) {
-            GD.Print(value); //-> C→D
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// "A","B","C","D" → "C","D"を返す
+		List<string> _list = new List<string>() {"A", "B", "C", "D"};
+		List<string> _result = _list.GetRange(2, 2); // 2番目から2個抽出する場合
+		//List<string> _result = _list.GetRange(1, _list.Count - 1);// 1番目〜最後を抽出
+		
+		// 動作確認
+		foreach (object value in _result) {
+			GD.Print(value); //-> C→D
+		}
+	}
 }
 ```
 
@@ -2443,12 +2444,12 @@ List.IndexOf(object [, 検索開始するインデックス番号]);
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        List<string> _list = new List<string>() {"A", "B", "C", "D"};
-        GD.Print(_list.IndexOf("C",0)); //-> 2
-        // 最初から検索する場合（第2引数が0の場合は省略可能）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		List<string> _list = new List<string>() {"A", "B", "C", "D"};
+		GD.Print(_list.IndexOf("C",0)); //-> 2
+		// 最初から検索する場合（第2引数が0の場合は省略可能）
+	}
 }
 ```
 
@@ -2465,12 +2466,12 @@ List.LastIndexOf(object [, 検索開始するインデックス番号]);
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        List<string> _list = new List<string>() {"A", "B", "C", "D"};
-        GD.Print(_list.LastIndexOf("C")); //-> 2
-        // 最初から検索する場合（第2引数が0の場合は省略可能）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		List<string> _list = new List<string>() {"A", "B", "C", "D"};
+		GD.Print(_list.LastIndexOf("C")); //-> 2
+		// 最初から検索する場合（第2引数が0の場合は省略可能）
+	}
 }
 ```
 
@@ -2486,13 +2487,13 @@ List.Capacity; // 格納可能な要素の数
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        //List<string> _list = new List<string>() {"A", "B", "C"};
-        List<string> _list = new List<string>(3); // 空のArrayListを作成
-        GD.Print(_list.Count); //-> 0（実際に格納されている要素の数）
-        GD.Print(_list.Capacity); //-> 3（格納可能な要素の数）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		//List<string> _list = new List<string>() {"A", "B", "C"};
+		List<string> _list = new List<string>(3); // 空のArrayListを作成
+		GD.Print(_list.Count); //-> 0（実際に格納されている要素の数）
+		GD.Print(_list.Capacity); //-> 3（格納可能な要素の数）
+	}
 }
 ```
 
@@ -2502,16 +2503,16 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        List<string> _list = new List<string>() {"A", "B", "C", "D"};
-        _list.Reverse();
+public partial class Main : Node3D {
+	public override void _Ready() {
+		List<string> _list = new List<string>() {"A", "B", "C", "D"};
+		_list.Reverse();
 
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> D→C→B→A
-        }
-    }
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> D→C→B→A
+		}
+	}
 }
 ```
 
@@ -2526,16 +2527,16 @@ List.Sort(); //引数で範囲や比較方法を指定することも可能
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        List<string> _list = new List<string>() {"C", "02", "A", "01", "03", "B"};
-        _list.Sort();
-        
-        // 動作確認
-        foreach (object value in _list) {
-            GD.Print(value); //-> 01→02→03→A→B→C
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		List<string> _list = new List<string>() {"C", "02", "A", "01", "03", "B"};
+		_list.Sort();
+		
+		// 動作確認
+		foreach (object value in _list) {
+			GD.Print(value); //-> 01→02→03→A→B→C
+		}
+	}
 }
 ```
 
@@ -2546,19 +2547,19 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        List<string> _list1 = new List<string>() {"A", "B", "C"};
-        List<string> _list2 = new List<string>() {"D", "E", "F"};
+public partial class Main : Node3D {
+	public override void _Ready() {
+		List<string> _list1 = new List<string>() {"A", "B", "C"};
+		List<string> _list2 = new List<string>() {"D", "E", "F"};
 
-        // _list1の末尾に_list2を結合
-        _list1.AddRange(_list2);
+		// _list1の末尾に_list2を結合
+		_list1.AddRange(_list2);
 
-        // 動作確認
-        foreach (object value in _list1) {
-            GD.Print(value); //-> A→B→C→D→E→F
-        }
-    }
+		// 動作確認
+		foreach (object value in _list1) {
+			GD.Print(value); //-> A→B→C→D→E→F
+		}
+	}
 }
 ```
 
@@ -2568,16 +2569,16 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        List<string> _list = new List<string>() { "A", "B", "C" };
-        List<string> _listCopy = new List<string>(_list); // 簡易型コピー方法
-        _list[0] = "X";
-        
-        // 動作確認
-        GD.Print(_list[0]); //-> X
-        GD.Print(_listCopy[0]); //-> A（参照コピーではない）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		List<string> _list = new List<string>() { "A", "B", "C" };
+		List<string> _listCopy = new List<string>(_list); // 簡易型コピー方法
+		_list[0] = "X";
+		
+		// 動作確認
+		GD.Print(_list[0]); //-> X
+		GD.Print(_listCopy[0]); //-> A（参照コピーではない）
+	}
 }
 ```
 
@@ -2587,20 +2588,20 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "A,B,C,D"; // ➀元となる文字列
-        string[] _array = _string.Split(','); // ➁文字列→配列に変換（「配列」参照）
-        List<string> _list = new List<string>(); // ➂空のListを作成
-        foreach (string _tmp in _array) { // データ型に注意
-            _list.Add(_tmp); // ➃配列の要素を1つずつListに追加
-        }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "A,B,C,D"; // ➀元となる文字列
+		string[] _array = _string.Split(','); // ➁文字列→配列に変換（「配列」参照）
+		List<string> _list = new List<string>(); // ➂空のListを作成
+		foreach (string _tmp in _array) { // データ型に注意
+			_list.Add(_tmp); // ➃配列の要素を1つずつListに追加
+		}
 
-        // 動作確認
-        foreach (object value in _array) {
-            GD.Print(value); //-> A→B→C→D
-        }
-    }
+		// 動作確認
+		foreach (object value in _array) {
+			GD.Print(value); //-> A→B→C→D
+		}
+	}
 }
 ```
 
@@ -2612,7 +2613,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     using Godot;
     using System.Collections.Generic; // Listに必要
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             List<string> _list = new List<string>() {"A", "B", "C"};
 
@@ -2630,7 +2631,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     using Godot;
     using System.Collections.Generic; // Listに必要
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             List<string> _list = new List<string>() {"A", "B", "C"};
 
@@ -2642,10 +2643,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     }
     ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%85%8D%E5%88%97)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3Llpjcf)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月22日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
