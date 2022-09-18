@@ -27,10 +27,10 @@
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
 * [三項演算子](#三項演算子)
-* ~~[switch 文](#switch文)~~
-* ~~[for 文](#for文)~~
-* ~~[foreach 文](#foreach文)~~
-* ~~[while 文](#while文)~~
+* [switch 文](#switch文)
+* [for 文](#for文)
+* [foreach 文](#foreach文)
+* [while 文](#while文)
 * ~~[配列](#配列)~~
 * ~~[動的配列（List）](#動的配列（List）)~~
 * ~~[連想配列（Dictionary）](#連想配列（Dictionary）)~~
@@ -260,7 +260,7 @@ class MyClass { // クラスの定義
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
 実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月12日  
@@ -1427,18 +1427,18 @@ class Math { //独自クラス
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _age = 55;
-		if (_age <= 20) {
-			GD.Print("20歳以下");
-		} else if (_age <= 40) {
-			GD.Print("21〜40歳");
-		} else if (_age <= 60) {
-			GD.Print("41〜60歳"); // これが出力される
-		} else {
-			GD.Print("61歳以上");
-		}
-	}
+    public override void _Ready() {
+        int _age = 55;
+        if (_age <= 20) {
+            GD.Print("20歳以下");
+        } else if (_age <= 40) {
+            GD.Print("21〜40歳");
+        } else if (_age <= 60) {
+            GD.Print("41〜60歳"); // これが出力される
+        } else {
+            GD.Print("61歳以上");
+        }
+    }
 }
 ```
 
@@ -1544,11 +1544,11 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _age = 55;
-		string _result = (_age < 60) ? "現役" : "退職";
-		GD.Print(_result); //-> 現役
-	}
+    public override void _Ready() {
+        int _age = 55;
+        string _result = (_age < 60) ? "現役" : "退職";
+        GD.Print(_result); //-> 現役
+    }
 }
 ```
 
@@ -1566,13 +1566,13 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		int _age = 55;
-		string _result = (_age < 20) ? "未成年" :
-		_result = (_age < 60) ? "現役" :
-		_result = "退職";
-		GD.Print(_result); //-> 現役
-	}
+    public override void _Ready() {
+        int _age = 55;
+        string _result = (_age < 20) ? "未成年" :
+        _result = (_age < 60) ? "現役" :
+        _result = "退職";
+        GD.Print(_result); //-> 現役
+    }
 }
 ```
 
@@ -1592,7 +1592,7 @@ public partial class Main : Node3D {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         string _name = "CHIKASHI";
         switch (_name) { // 判別式には「整数型」「文字型」しか使えない
@@ -1626,9 +1626,9 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
-        int _age = 54;
+        int _age = 55;
         switch (true) { // bool型はエラー（注意）
             case _age < 20 :
                 GD.Print("未成年");
@@ -1653,7 +1653,7 @@ case "◇◇" : 何か処理; break;
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         string _name = "JIRO";
         switch (_name) {
@@ -1673,10 +1673,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#match--switch-%E6%96%87)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3Bm0tV3)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -1711,7 +1712,7 @@ for (➀初期化; ➁ループ判定式; ➂更新処理) {
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             int _i; // ここでint型を宣言すると...
             for (_i=0; _i<10; _i++) {
@@ -1727,7 +1728,7 @@ for (➀初期化; ➁ループ判定式; ➂更新処理) {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         for (int i=0; i<50; i+=5) { // 5つずつアップする場合...
             GD.Print(i); //-> 0,5,10,15,20,25,30,35,40,45
@@ -1741,7 +1742,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         for (int i=1; i<=5; i++) {
             for (int j=1; j<=5; j++) {
@@ -1757,7 +1758,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         int _count = 0;
         for (;;) { // ➀初期化 ➁ループ判定式 ➂更新処理の全てを省略すると無限ループ
@@ -1775,7 +1776,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         for (int i=1; i<=20; i++) { // iは1,2,...19,20
             if ((i % 3) != 0) { // 3で割って余りが0ではない（＝3の倍数ではない）場合
@@ -1787,10 +1788,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#for-%E6%96%87)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3dkC6yU)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -1809,7 +1811,7 @@ foreach (データ型 変数名 in 配列等) {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         string[] _array = {"A","B","C","D"}; 
         foreach (string value in _array) {
@@ -1824,7 +1826,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         string[,] _array = {
             {"x0y0","x1y0","x2y0"}, //0行目
@@ -1844,7 +1846,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         dynamic[][] _array = new dynamic[2][];
         _array[0] = new dynamic[]{"A","あ"};
@@ -1865,11 +1867,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Collections; // ArrayListに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
-        ArrayList _array = new ArrayList();
+         ArrayList _array = new ArrayList();
         _array.Add("CHIKASHI");
-        _array.Add(54);
+        _array.Add(55);
         foreach (object value in _array) {
             GD.Print(value); //-> CHIKASHI → 54
         }
@@ -1883,7 +1885,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Collections.Generic; // Listに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         List<string> _list = new List<string>() { "A", "B" };
         foreach (string value in _list) {
@@ -1899,7 +1901,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System.Collections.Generic; // Dictionaryに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         Dictionary<string, string> _dic = new Dictionary<string, string>() {
             {"A", "あ"},{"I", "い"}
@@ -1911,9 +1913,10 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -1933,15 +1936,15 @@ while (ループ判定式) {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _i = 0;
-        while (_i < 10) { // ループ判定式にはbool型しか使えない
-            GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
-            _i++;
-        }
-        GD.Print(_i); //-> 10（変数はまだ有効）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _i = 0;
+		while (_i < 10) { // ループ判定式にはbool型しか使えない
+			GD.Print(_i); //-> 0,1,2,3,4,5,6,7,8,9
+			_i++;
+		}
+		GD.Print(_i); //-> 10（変数はまだ有効）
+	}
 }
 ```
 
@@ -1958,14 +1961,14 @@ do {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _i = 0;
-        do {
-            GD.Print(_i); //-> 0（ループ判定式はfalseだが１回実行される）
-            _i++;
-        } while(_i < 0);
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _i = 0;
+		do {
+			GD.Print(_i); //-> 0（ループ判定式はfalseだが１回実行される）
+			_i++;
+		} while(_i < 0);
+	}
 }
 ```
 
@@ -1974,18 +1977,18 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _count = 0;
-        while (true) { // ループ判別式をtrueにすると無限ループに
-            _count++;
-            if (_count > 100) {
-                break; // break文を使ってループを終了→★
-            }
-            GD.Print(_count); //-> 1,2,....,99,100
-        }
-        GD.Print("while文終了"); // ★
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _count = 0;
+		while (true) { // ループ判別式をtrueにすると無限ループに
+			_count++;
+			if (_count > 100) {
+				break; // break文を使ってループを終了→★
+			}
+			GD.Print(_count); //-> 1,2,....,99,100
+		}
+		GD.Print("while文終了"); // ★
+	}
 }
 ```
 
@@ -1994,25 +1997,26 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _i = 1;
-        while (_i <= 20) {
-            if ((_i % 3) != 0) { // 3で割って余りが0ではない（＝3の倍数ではない）場合
-                _i++;
-                continue; // while文の残処理をスキップしてwhile文の次の反復を開始する
-            }
-            GD.Print(_i); //-> 3,6,9,12,15,18（3の倍数を出力）
-            _i++;
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _i = 1;
+		while (_i <= 20) {
+			if ((_i % 3) != 0) { // 3で割って余りが0ではない（＝3の倍数ではない）場合
+				_i++;
+				continue; // while文の残処理をスキップしてwhile文の次の反復を開始する
+			}
+			GD.Print(_i); //-> 3,6,9,12,15,18（3の倍数を出力）
+			_i++;
+		}
+	}
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#while-%E6%96%87)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3BKPPsd)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -2638,7 +2642,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     }
     ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%85%8D%E5%88%97)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%85%8D%E5%88%97)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月22日  
@@ -2708,7 +2712,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97%E8%BE%9E%E6%9B%B8)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97%E8%BE%9E%E6%9B%B8)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2761,7 +2765,7 @@ class Robot {
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#self--this)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#self--this)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2914,7 +2918,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%93%8D%E4%BD%9C)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%93%8D%E4%BD%9C)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2979,7 +2983,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3089,7 +3093,7 @@ class SubClass : AbstractClass { // 抽象クラスを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3139,7 +3143,7 @@ class SubClass : SuperClass { //派生クラス
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#--super)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#--super)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3236,7 +3240,7 @@ class SubClass : AbstractClass { // 派生クラス（抽象クラスを継承�
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3313,7 +3317,7 @@ class MyGame {
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3516,7 +3520,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3593,7 +3597,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```
 （注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E4%B9%B1%E6%95%B0)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E4%B9%B1%E6%95%B0)]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -3715,7 +3719,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3778,7 +3782,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3804,7 +3808,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3858,7 +3862,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%A4%96%E9%83%A8%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF)]  
+[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%A4%96%E9%83%A8%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
