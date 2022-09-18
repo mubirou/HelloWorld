@@ -3,7 +3,6 @@
 # **C# with Godot 4.0 基礎文法**
 
 [[Godot Study Notes 🔰](https://github.com/mubirou/Godot-Study-Notes#godot-study-notes-)]  
-⌚ 541h00min  
 
 ### **INDEX**
 
