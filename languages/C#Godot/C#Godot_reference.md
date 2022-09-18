@@ -3605,7 +3605,7 @@ public partial class Main : Node3D {
 （注意）Godot 4.0 では **GD.Randomize()** を実行しなくても毎回結果が異なる＝要調査  
 
 [[GDScript 版](https://bit.ly/3eZOBQQ)]  
-参考：[Qiita（【Godot】乱数の使い方について）](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
+参考：[Qiita（乱数の使い方について）](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
 実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
