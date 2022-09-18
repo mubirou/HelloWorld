@@ -33,8 +33,8 @@
 * [while 文](#while文)
 * [配列](#配列)
 * [動的配列（List）](#動的配列（List）)
-* ~~[連想配列（Dictionary）](#連想配列（Dictionary）)~~
-* ~~[this](#this)~~
+* [連想配列（Dictionary）](#連想配列（Dictionary）)
+* [this](#this)
 * ~~[文字列の操作](#文字列の操作)~~
 * ~~[正規表現](#正規表現)~~
 * ~~[インターフェース](#インターフェース)~~
@@ -2669,31 +2669,31 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 ```
 
 * 例文
-    ```CSharp
-    // Main.cs
-    using Godot;
-    using System.Collections.Generic; // Dictionaryに必要
+```CSharp
+// Main.cs
+using Godot;
+using System.Collections.Generic; // Dictionaryに必要
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-        public override void _Ready() {
-            // ➀作成（空のDictionaryを作成する場合{}は不要）
-            Dictionary<string, string> _dic = new Dictionary<string, string>() {
-                {"A", "あ"},
-                {"I", "い"}
-            };
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// ➀作成（空のDictionaryを作成する場合{}は不要）
+		Dictionary<string, string> _dic = new Dictionary<string, string>() {
+			{"A", "あ"},
+			{"I", "い"}
+		};
 
-            // ➁追加
-            _dic.Add("U", "う");
-            _dic.Add("E", "え");
+		// ➁追加
+		_dic.Add("U", "う");
+		_dic.Add("E", "え");
 
-            // ➂更新
-            _dic["A"] = "ア"; // 上書き変更
+		// ➂更新
+		_dic["A"] = "ア"; // 上書き変更
 
-            // ➃取得
-            GD.Print(_dic["A"]); //-> ア
-        }
-    }
-    ```
+		// ➃取得
+		GD.Print(_dic["A"]); //-> ア
+	}
+}
+```
 
 ### キー、値の検索
 ```CSharp
@@ -2701,23 +2701,24 @@ Dictionary<キーの型, 値の型> 変数名 = new Dictionary<キーの型, 値
 using Godot;
 using System.Collections.Generic; // Dictionaryに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // ➀作成（空のDictionaryを作成する場合{}は不要）
-        Dictionary<string, string> _dic = new Dictionary<string, string>() {
-            {"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
-        };
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// ➀作成（空のDictionaryを作成する場合{}は不要）
+		Dictionary<string, string> _dic = new Dictionary<string, string>() {
+			{"A", "あ"},{"I", "い"},{"U", "う"},{"E", "え"},{"O", "お"}
+		};
 
-        GD.Print(_dic.ContainsKey("B")); //-> Flase（任意のキーがあるか否か）
-        GD.Print(_dic.ContainsValue("え")); //-> True（任意の値があるか否か）
-    }
+		GD.Print(_dic.ContainsKey("B")); //-> Flase（任意のキーがあるか否か）
+		GD.Print(_dic.ContainsValue("え")); //-> True（任意の値があるか否か）
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97%E8%BE%9E%E6%9B%B8)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3LnjB9C)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -2734,43 +2735,44 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        Robot _robot = new Robot(500);
-        _robot.Move();
-        GD.Print(_robot.X); //-> 510
-        GD.Print(this); //-> [Spatial:1240]（＝Mainクラス）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		Robot _robot = new Robot(500);
+		_robot.Move();
+		GD.Print(_robot.X); //-> 510
+		GD.Print(this); //-> <Node3D#24561844620>（＝Mainクラス）
+	}
 }
 
 // カスタムクラス
 class Robot {
-    private int _x; // インスタンス変数（thisは不要）
-    
-    public Robot(int _x) { // 引数
-        this._x = _x; // ➀thisが無いとWarning（引数を参照してしまう）
-        GD.Print(this); //-> Robot（＝Robotクラス）
-    }
+	private int _x; // インスタンス変数（thisは不要）
+	
+	public Robot(int _x) { // 引数
+		this._x = _x; // ➀thisが無いとWarning（引数を参照してしまう）
+		GD.Print(this); //-> Robot（＝Robotクラス）
+	}
 
-    public void Move() {
-        int _x; // ローカル変数
-        _x = this._x + 10; // ➁thisが無いとerror（ローカル変数を参照してしまう）
-        if (_x >= 1920) _x = 0;
-        this._x = _x; // ➁thisが無いとローカル変数を参照してしまう
-        GD.Print(this); //-> Robot（＝Robotクラス）
-    }
+	public void Move() {
+		int _x; // ローカル変数
+		_x = this._x + 10; // ➁thisが無いとerror（ローカル変数を参照してしまう）
+		if (_x >= 1920) _x = 0;
+		this._x = _x; // ➁thisが無いとローカル変数を参照してしまう
+		GD.Print(this); //-> Robot（＝Robotクラス）
+	}
 
-    public int X {
-        get { return _x; } // thisを付けてもよい（通常は省略）
-        private set {}
-    }
+	public int X {
+		get { return _x; } // thisを付けてもよい（通常は省略）
+		private set {}
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#self--this)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3RWswRW)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -2788,16 +2790,16 @@ string 変数名 = new string(new char[]{'〇', '〇', ...}); // new演算子と
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        // ➀文字列リテラルを使う
-        string _string1 = "ABCDE";
-        GD.Print(_string1); //-> ABCDE
+public partial class Main : Node3D {
+	public override void _Ready() {
+		// ➀文字列リテラルを使う
+		string _string1 = "ABCDE";
+		GD.Print(_string1); //-> ABCDE
 
-        // ➁new演算子とchar型配列を使う
-        string _string2 = new string(new char[]{'A','B','C','D','E'});
-        GD.Print(_string2); //-> ABCDE 
-    }
+		// ➁new演算子とchar型配列を使う
+		string _string2 = new string(new char[]{'A','B','C','D','E'});
+		GD.Print(_string2); //-> ABCDE 
+	}
 }
 ```
 
@@ -2806,11 +2808,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "ABCDE";
-        GD.Print(_string.Length); //-> 5
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "ABCDE";
+		GD.Print(_string.Length); //-> 5
+	}
 }
 ```
 
@@ -2825,13 +2827,13 @@ String.Substring(開始 [, 文字数])
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "0123456789";
-        GD.Print(_string[4]); //-> 4
-        GD.Print(_string.Substring(4)); //-> 456789
-        GD.Print(_string.Substring(4,3)); //-> 456
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "0123456789";
+		GD.Print(_string[4]); //-> 4
+		GD.Print(_string.Substring(4)); //-> 456789
+		GD.Print(_string.Substring(4,3)); //-> 456
+	}
 }
 ```
 
@@ -2845,12 +2847,12 @@ String.Remove(開始位置, 削除する文字数);
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "にしむらたかし";
-        GD.Print(_string.Remove(0, 4)); //-> たかし
-        GD.Print(_string); //-> にしむらたかし
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "すずきいちろう";
+		GD.Print(_string.Remove(0, 3)); //-> いちろう
+		GD.Print(_string); //-> すずきいちろう
+	}
 }
 ```
 
@@ -2865,11 +2867,11 @@ String.Replace('置換前の文字', '置換後の文字');
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "2022年02月23日";
-        GD.Print(_string.Replace("2022年", "令和4年")); //"令和4年02月23日"
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "2022年09月18日";
+		GD.Print(_string.Replace("2022年", "令和4年")); //-> "令和4年09月18日"
+	}
 }
 ```
 
@@ -2884,18 +2886,18 @@ String.IndexOf('検索したい文字', 開始位置);
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "ABCDEFG-ABCDEFG";
-        string _word = "CD";
-        int _i = 0;
-        while (_string.IndexOf(_word, _i) != -1) { // 見つからない場合「-1」
-            int _num = _string.IndexOf(_word, _i);
-            GD.Print(_num); //-> 2→10（"CD"が見つかった位置を出力）
-            GD.Print(_string.Substring(_num, _word.Length)); //-> CD→CD
-            _i = _num + 1;
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "ABCDEFG-ABCDEFG";
+		string _word = "CD";
+		int _i = 0;
+		while (_string.IndexOf(_word, _i) != -1) { // 見つからない場合「-1」
+			int _num = _string.IndexOf(_word, _i);
+			GD.Print(_num); //-> 2→10（"CD"が見つかった位置を出力）
+			GD.Print(_string.Substring(_num, _word.Length)); //-> CD→CD
+			_i = _num + 1;
+		}
+	}
 }
 ```
 
@@ -2909,21 +2911,22 @@ String.Split('区切り文字');
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        string _string = "A,B,C,D"; //「,」区切りの文字列
-        string[] _array = _string.Split(','); //「,」区切りで分割して配列化
-        foreach (object value in _array) {
-            GD.Print(value); //-> A→B→C→D
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		string _string = "A,B,C,D"; // 「,」区切りの文字列
+		string[] _array = _string.Split(','); // 「,」区切りで分割して配列化
+		foreach (object value in _array) {
+			GD.Print(value); //-> A→B→C→D
+		}
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%93%8D%E4%BD%9C)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3QRYP38)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
