@@ -2,14 +2,14 @@
 
 # **C# with Godot 4.0 基礎文法**
 
-[[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
+[[Godot Study Notes 🔰](    com/mubirou/Godot#godot-study-notes)]  
 ⌚ 541h00min  
 
 ### この項目は書きかけです（Godot 4.0 対応中）
 
 ### **INDEX**
 
-* Hello,world! （[Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
+* Hello,world! （[Windows](    com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#c-with-godot-windows-)）
 * [コメントアウト](#コメントアウト)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
@@ -26,7 +26,7 @@
 * [ラムダ式](#ラムダ式)
 * [静的メンバ（static）](#静的メンバ（static）)
 * [if 文](#if文)
-* ~~[三項演算子](#三項演算子)~~
+* [三項演算子](#三項演算子)
 * ~~[switch 文](#switch文)~~
 * ~~[for 文](#for文)~~
 * ~~[foreach 文](#foreach文)~~
@@ -126,7 +126,7 @@
     * データ型[] : 任意のデータ型の配列
 
 ### 👉 検証
-予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます（[参考](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#helloworld)）
+予め Main.tscn と以下の Main.cs ファイルを紐付けしておきます（[参考](    com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_win.md#helloworld)）
 ```CSharp
 // Main.cs
 using Godot;
@@ -260,7 +260,7 @@ class MyClass { // クラスの定義
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B)]  
 実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月12日  
@@ -1543,12 +1543,12 @@ public partial class Main : Node3D {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _age = 54;
-        string _result = (_age < 60) ? "現役" : "退職";
-        GD.Print(_result); //-> 現役
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _age = 55;
+		string _result = (_age < 60) ? "現役" : "退職";
+		GD.Print(_result); //-> 現役
+	}
 }
 ```
 
@@ -1565,21 +1565,22 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _age = 54;
-        string _result = (_age < 20) ? "未成年" :
-        _result = (_age < 60) ? "現役" :
-        _result = "退職";
-        GD.Print(_result); //-> 現役
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _age = 55;
+		string _result = (_age < 20) ? "未成年" :
+		_result = (_age < 60) ? "現役" :
+		_result = "退職";
+		GD.Print(_result); //-> 現役
+	}
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3DzLhGu)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -1672,7 +1673,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#match--switch-%E6%96%87)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#match--switch-%E6%96%87)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -1786,7 +1787,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#for-%E6%96%87)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#for-%E6%96%87)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -2008,7 +2009,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#while-%E6%96%87)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#while-%E6%96%87)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月16日  
@@ -2637,7 +2638,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     }
     ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%85%8D%E5%88%97)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%85%8D%E5%88%97)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月22日  
@@ -2707,7 +2708,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97%E8%BE%9E%E6%9B%B8)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%80%A3%E6%83%B3%E9%85%8D%E5%88%97%E8%BE%9E%E6%9B%B8)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2760,7 +2761,7 @@ class Robot {
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#self--this)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#self--this)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2913,7 +2914,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%93%8D%E4%BD%9C)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%93%8D%E4%BD%9C)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -2978,7 +2979,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3088,7 +3089,7 @@ class SubClass : AbstractClass { // 抽象クラスを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3138,7 +3139,7 @@ class SubClass : SuperClass { //派生クラス
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#--super)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#--super)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3235,7 +3236,7 @@ class SubClass : AbstractClass { // 派生クラス（抽象クラスを継承�
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3312,7 +3313,7 @@ class MyGame {
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3515,7 +3516,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3524,7 +3525,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 <a name="乱数"></a>
 # <b>乱数</b>
-* Godot の独自仕様（一般的な C# の [Random](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_reference.md#%E4%B9%B1%E6%95%B0) クラスとは異なります）
+* Godot の独自仕様（一般的な C# の [Random](    com/mubirou/HelloWorld/blob/master/languages/C%23/C%23_reference.md#%E4%B9%B1%E6%95%B0) クラスとは異なります）
 
 ### 0.0〜1.0
 ```CSharp
@@ -3556,7 +3557,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 
 
 ### 最小値〜最大値（int型）
-* GDScript の [RandomNumberGenerator.randi_range()](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%9C%80%E5%B0%8F%E5%80%A4%E6%9C%80%E5%A4%A7%E5%80%A4int%E5%9E%8B) に相当する機能が見当たらないため力技で処理  
+* GDScript の [RandomNumberGenerator.randi_range()](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%9C%80%E5%B0%8F%E5%80%A4%E6%9C%80%E5%A4%A7%E5%80%A4int%E5%9E%8B) に相当する機能が見当たらないため力技で処理  
 ```CSharp
 // Main.cs
 using Godot;
@@ -3592,7 +3593,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 ```
 （注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E4%B9%B1%E6%95%B0)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E4%B9%B1%E6%95%B0)]  
 参考：[Qiita](https://qiita.com/2dgames_jp/items/6fe31e73cdd1b47f157e)  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
@@ -3714,7 +3715,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3777,7 +3778,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3803,7 +3804,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
@@ -3857,7 +3858,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%A4%96%E9%83%A8%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF)]  
+[[GDScript 版](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E5%A4%96%E9%83%A8%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF)]  
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月23日  
