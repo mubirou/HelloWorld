@@ -189,15 +189,15 @@ print(_string is String) #-> true
 extends Node3D
 ……
 class MyClass: #前方宣言でなくてもよい
-	pass
+    pass
 
 func _ready():
-	……
-	var _myClass = MyClass.new()
-	print(_myClass) #-> [RefCounted:-92233720120XXXXXXXX]
-	print(typeof(_myClass)) #-> 24
-	print(typeof(_myClass) == TYPE_OBJECT) #-> true
-	print(_myClass is Object) #-> true
+    ……
+    var _myClass = MyClass.new()
+    print(_myClass) #-> [RefCounted:-92233720120XXXXXXXX]
+    print(typeof(_myClass)) #-> 24
+    print(typeof(_myClass) == TYPE_OBJECT) #-> true
+    print(_myClass is Object) #-> true
 ```
 
 <a name="TYPE_DICTIONARY"></a>
@@ -242,17 +242,17 @@ print(_array is Array) #-> true
 extends Node3D
 ……
 func _ready():
-	……
-	print(typeof(true)) #-> 1（== TYPE_BOOL）
-	print(typeof(100)) #-> 2（== TYPE_INT）
-	print(typeof(0.1)) #-> 3（== TYPE_FLOAT）
-	print(typeof("1")) #-> 4（== TYPE_STRING）
-	print(typeof(["A", "B", "C"])) #-> 28（== TYPE_ARRAY）
-	print(typeof({"ICHIRO":54, "HANAKO":"15"})) #-> 27（== TYPE_DICTIONARY）
-	print(typeof(MyClass.new())) #-> 24（== TYPE_OBJECT）
+    ……
+    print(typeof(true)) #-> 1（== TYPE_BOOL）
+    print(typeof(100)) #-> 2（== TYPE_INT）
+    print(typeof(0.1)) #-> 3（== TYPE_FLOAT）
+    print(typeof("1")) #-> 4（== TYPE_STRING）
+    print(typeof(["A", "B", "C"])) #-> 28（== TYPE_ARRAY）
+    print(typeof({"ICHIRO":54, "HANAKO":"15"})) #-> 27（== TYPE_DICTIONARY）
+    print(typeof(MyClass.new())) #-> 24（== TYPE_OBJECT）
 
 class MyClass:
-	pass
+    pass
 ```
 
 ###  👉 is 演算子
@@ -262,20 +262,20 @@ class MyClass:
 extends Node3D
 ……
 func _ready():
-	……
-	print(true is bool) #-> true
-	print(100 is int) #-> true
-	print(0.1 is float) #-> true
-	print("1" is String) #-> true
-	print(["A", "B", "C"] is Array) #-> true
-	print({"ICHIRO":54, "HANAKO":"15"} is Dictionary) #-> true
+    ……
+    print(true is bool) #-> true
+    print(100 is int) #-> true
+    print(0.1 is float) #-> true
+    print("1" is String) #-> true
+    print(["A", "B", "C"] is Array) #-> true
+    print({"ICHIRO":54, "HANAKO":"15"} is Dictionary) #-> true
 
-	var _myClass = MyClass.new()
-	print(_myClass is Object) #-> true
-	print(_myClass is MyClass) #-> true
+    var _myClass = MyClass.new()
+    print(_myClass is Object) #-> true
+    print(_myClass is MyClass) #-> true
 
 class MyClass:
-	pass
+    pass
 ```
 
 ###  👉 as 演算子
@@ -285,19 +285,19 @@ class MyClass:
 extends Node3D
 ……
 func _ready():
-	……
-	print(1 as bool) #-> True
-	#print("123" as int) #-> Invalid cast: could not convert value to 'int'.
-	#print("X12Y34" as int) #-> Invalid cast: could not convert value to 'int'.
-	
-	var _hogeClass = HogeClass.new()
-	#print(_hogeClass as FugaClass) #-> Parser Error
+    ……
+    print(1 as bool) #-> True
+    #print("123" as int) #-> Invalid cast: could not convert value to 'int'.
+    #print("X12Y34" as int) #-> Invalid cast: could not convert value to 'int'.
+    
+    var _hogeClass = HogeClass.new()
+    #print(_hogeClass as FugaClass) #-> Parser Error
 
 class HogeClass:
-	pass
+    pass
 
 class FugaClass:
-	pass
+    pass
 ```
 
 ###  👉 データ型のキャスト（数値 ⇔ bool型）
@@ -316,9 +316,9 @@ print(typeof(_tmp)) #-> 2（== TYPE_INT）
 ###  👉 データ型のキャスト（数値 ⇔ String 型）
 
 * **String 型 → 数値**
-	* ⚠ Godot 4.0 では **int("〇〇")** は不可（[参考](https://bit.ly/3AAB4aZ)）
-	* [String → 整数] は [**String.to_int()**](https://bit.ly/3PEn1oX) で可能
-	* [String → 浮動小数点数] は [**String.to_float()**](https://bit.ly/3QFiILz) で可能
+    * ⚠ Godot 4.0 では **int("〇〇")** は不可（[参考](https://bit.ly/3AAB4aZ)）
+    * [String → 整数] は [**String.to_int()**](https://bit.ly/3PEn1oX) で可能
+    * [String → 浮動小数点数] は [**String.to_float()**](https://bit.ly/3QFiILz) で可能
 
 ```gdscript
 print("001".to_int()) #-> 1
@@ -337,50 +337,50 @@ print(typeof(_tmp)) #-> 4（== TYPE_STRING）
 
 ### 👉 基数変換
 * **10進整数 ⇆ 16進整数**
-	* 10進整数 → 16進整数
-	```gdscript
-	print("%x" % 29) #-> 1d（String型）
-	print("%X" % 29) #-> 1D（String型）
-	```
-	* 16進整数 → 10進整数
-	```gdscript
-	print("1d".hex_to_int()) #-> 29（int型）
-	```
+    * 10進整数 → 16進整数
+    ```gdscript
+    print("%x" % 29) #-> 1d（String型）
+    print("%X" % 29) #-> 1D（String型）
+    ```
+    * 16進整数 → 10進整数
+    ```gdscript
+    print("1d".hex_to_int()) #-> 29（int型）
+    ```
 
 * **10進整数 ⇆ 2進整数**
-	* 10進整数 → 2進整数（**要調査**）
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……
-		print(int2bin(0)) #-> 0（int型）
-		print(int2bin(2)) #-> 10（int型）
-		print(int2bin(100)) #-> 1100100（int型）
-		print(int2bin(524287)) #-> 1111111111111111111（int型）
+    * 10進整数 → 2進整数（**要調査**）
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……
+        print(int2bin(0)) #-> 0（int型）
+        print(int2bin(2)) #-> 10（int型）
+        print(int2bin(100)) #-> 1100100（int型）
+        print(int2bin(524287)) #-> 1111111111111111111（int型）
 
-	func int2bin(arg):
-		if (arg > 524287) or (arg < 0):
-			assert(false, "Error: 0～524287 のみ処理可能")
-		var _binary = ""
-		var _temp:int
-		var _count = 31 # Checking up to 32 bits 
-		while(_count >= 0):
-			_temp = arg >> _count # Bit shifting
-			if _temp & 1: # Bitwise AND
-				_binary += "1" 
-			else: 
-				_binary += "0" 
-			_count -= 1 
-		return _binary.to_int()
-	```
-	* 2進整数 → 10進整数
-	```gdscript
-	print("11101".bin_to_int()) #-> 29（int型）
-	print("%d" % 0b11101) #-> 29（String型）
-	print(0b11101) #-> 29（int型）
-	```
+    func int2bin(arg):
+        if (arg > 524287) or (arg < 0):
+            assert(false, "Error: 0～524287 のみ処理可能")
+        var _binary = ""
+        var _temp:int
+        var _count = 31 # Checking up to 32 bits 
+        while(_count >= 0):
+            _temp = arg >> _count # Bit shifting
+            if _temp & 1: # Bitwise AND
+                _binary += "1" 
+            else: 
+                _binary += "0" 
+            _count -= 1 
+        return _binary.to_int()
+    ```
+    * 2進整数 → 10進整数
+    ```gdscript
+    print("11101".bin_to_int()) #-> 29（int型）
+    print("%d" % 0b11101) #-> 29（String型）
+    print(0b11101) #-> 29（int型）
+    ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B%E3%81%AE%E6%93%8D%E4%BD%9C)]  
 参考：[GODOT DOCS（**Padding**）](https://bit.ly/3CnLxYI)  
@@ -409,44 +409,44 @@ var __width
 var __height
 
 var width: # getter/setter
-	get: return __width
-	set(value): __width = value
-	
+    get: return __width
+    set(value): __width = value
+    
 var height: # getter/setter
-	get: return __height
-	set(value): __height = value
+    get: return __height
+    set(value): __height = value
 
 func getArea(): # 公開関数（面積計算用）
-	return __width * __height
+    return __width * __height
 
 func _init(w,h): # コンストラクタ
-	__width = w
-	__height = h
+    __width = w
+    __height = h
 ```
 
 #### 実行
 ```gdscript
 # /root/Main(Main.gd)
 extends Node3D
-……	
+……    
 func _ready():
-	……
-	var _rectangle = Rectangle.new(640, 480)
+    ……
+    var _rectangle = Rectangle.new(640, 480)
 
-	# プロパティの取得
-	print(_rectangle.width) #-> 640
-	print(_rectangle.height) #-> 480
+    # プロパティの取得
+    print(_rectangle.width) #-> 640
+    print(_rectangle.height) #-> 480
 
-	# プロパティの更新
-	_rectangle.width = 1920
-	_rectangle.height = 1080
+    # プロパティの更新
+    _rectangle.width = 1920
+    _rectangle.height = 1080
 
-	# プロパティの取得（再度）
-	print(_rectangle.width) #-> 1920
-	print(_rectangle.height) #-> 1080
+    # プロパティの取得（再度）
+    print(_rectangle.width) #-> 1920
+    print(_rectangle.height) #-> 1080
 
-	# 関数の実行
-	print(_rectangle.getArea()) #-> 2073600
+    # 関数の実行
+    print(_rectangle.getArea()) #-> 2073600
 ```
 
 ### 👉「内部クラス」を使う方法
@@ -455,43 +455,43 @@ func _ready():
 extends Node3D
 ……
 class Rectangle: # 長方形クラス
-	# 疑似プライベート変数
-	var __width
-	var __height
-	
-	var width: # getter/setter
-		get: return __width
-		set(value): __width = value
-		
-	var height: # getter/setter
-		get: return __height
-		set(value): __height = value
+    # 疑似プライベート変数
+    var __width
+    var __height
+    
+    var width: # getter/setter
+        get: return __width
+        set(value): __width = value
+        
+    var height: # getter/setter
+        get: return __height
+        set(value): __height = value
 
-	func getArea(): # 公開関数（面積計算用）
-		return __width * __height
-	
-	func _init(w,h): # コンストラクタ
-		__width = w
-		__height = h
-	
+    func getArea(): # 公開関数（面積計算用）
+        return __width * __height
+    
+    func _init(w,h): # コンストラクタ
+        __width = w
+        __height = h
+    
 func _ready():
-	……
-	var _rectangle = Rectangle.new(640, 480)
+    ……
+    var _rectangle = Rectangle.new(640, 480)
 
-	# プロパティの取得
-	print(_rectangle.width) #-> 640
-	print(_rectangle.height) #-> 480
+    # プロパティの取得
+    print(_rectangle.width) #-> 640
+    print(_rectangle.height) #-> 480
 
-	# プロパティの更新
-	_rectangle.width = 1920
-	_rectangle.height = 1080
+    # プロパティの更新
+    _rectangle.width = 1920
+    _rectangle.height = 1080
 
-	# プロパティの取得（再度）
-	print(_rectangle.width) #-> 1920
-	print(_rectangle.height) #-> 1080
+    # プロパティの取得（再度）
+    print(_rectangle.width) #-> 1920
+    print(_rectangle.height) #-> 1080
 
-	# 関数の実行
-	print(_rectangle.getArea()) #-> 2073600
+    # 関数の実行
+    print(_rectangle.getArea()) #-> 2073600
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%AF%E3%83%A9%E3%82%B9)]  
@@ -518,14 +518,14 @@ class_name SuperClass
 var __pSuper = "基本クラスのプロパティ"
 
 var pSuper: # getter/setter
-	get: return __pSuper
-	set(value): __pSuper = value
+    get: return __pSuper
+    set(value): __pSuper = value
 
 func mSuper(): # 関数
-	return "基本クラスのメソッド"
-	
+    return "基本クラスのメソッド"
+    
 func _init():
-	print("SuperClass._init()")
+    print("SuperClass._init()")
 ```
 
 #### SubClassA（派生クラスＡ）の定義
@@ -537,14 +537,14 @@ class_name SubClassA extends SuperClass # extends 以降を別行にしても可
 var __pSubA = "派生クラスＡのプロパティ"
 
 var pSubA: # getter/setter
-	get: return __pSubA
-	set(value): __pSubA = value
+    get: return __pSubA
+    set(value): __pSubA = value
 
 func mSubA(): # 関数
-	return "派生クラスＡのメソッド"
+    return "派生クラスＡのメソッド"
 
 func _init():
-	print("SubClassA._init()")
+    print("SubClassA._init()")
 ```
 
 #### SubClassB（派生クラスＢ）の定義
@@ -556,14 +556,14 @@ class_name SubClassB extends SuperClass # extends 以降を別行にしても可
 var __pSubB = "派生クラスＢのプロパティ"
 
 var pSubB: # getter/setter
-	get: return __pSubB
-	set(value): __pSubB = value
+    get: return __pSubB
+    set(value): __pSubB = value
 
 func mSubB(): # 関数
-	return "派生クラスＢのメソッド"
+    return "派生クラスＢのメソッド"
 
 func _init():
-	print("SubClassB._init()")
+    print("SubClassB._init()")
 ```
 
 #### 実行
@@ -572,26 +572,26 @@ func _init():
 extends Node3D
 ……
 func _ready():
-	……
-	load("res://SubClassA.gd")
-	var _subClassA = SubClassA.new() #-> SubClassA._init()
-	print(_subClassA) #-> [RefCounted:-9223372011789614097]
-	print(_subClassA is SubClassA) #-> true（＝SubClassA型）
-	print(_subClassA is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
-	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
-	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
-	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
-	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
-	
-	load("res://SubClassB.gd")
-	var _subClassB = SubClassB.new() #-> SubClassB._init()
-	print(_subClassB) #-> [RefCounted:-9223372011772836883]
-	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
-	print(_subClassB is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
-	print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
-	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
-	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
-	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
+    ……
+    load("res://SubClassA.gd")
+    var _subClassA = SubClassA.new() #-> SubClassA._init()
+    print(_subClassA) #-> [RefCounted:-9223372011789614097]
+    print(_subClassA is SubClassA) #-> true（＝SubClassA型）
+    print(_subClassA is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
+    print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
+    print(_subClassA.pSuper) #-> 基本クラスのプロパティ
+    print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
+    print(_subClassA.mSuper()) #-> 基本クラスのメソッド
+    
+    load("res://SubClassB.gd")
+    var _subClassB = SubClassB.new() #-> SubClassB._init()
+    print(_subClassB) #-> [RefCounted:-9223372011772836883]
+    print(_subClassB is SubClassB) #-> true（＝SubClassB型）
+    print(_subClassB is load("res://SuperClass.gd")) #-> true（＝SuperClass型）
+    print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
+    print(_subClassB.pSuper) #-> 基本クラスのプロパティ
+    print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
+    print(_subClassB.mSuper()) #-> 基本クラスのメソッド
 ```
 
 ### 👉「内部クラス」を使う方法
@@ -603,75 +603,75 @@ extends Node3D
 # SuperClass（基本クラス）の定義
 #===============================
 class SuperClass:
-	# 疑似プライベート変数
-	var __pSuper = "基本クラスのプロパティ"
+    # 疑似プライベート変数
+    var __pSuper = "基本クラスのプロパティ"
 
-	var pSuper: # getter/setter
-		get: return __pSuper
-		set(value): __pSuper = value
+    var pSuper: # getter/setter
+        get: return __pSuper
+        set(value): __pSuper = value
 
-	func mSuper(): # 関数
-		return "基本クラスのメソッド"
+    func mSuper(): # 関数
+        return "基本クラスのメソッド"
 
-	func _init():
-		pass
+    func _init():
+        pass
 
 #================================
 # SubClassA（派生クラスＡ）の定義
 #================================
 class SubClassA extends SuperClass:
-	# 疑似プライベート変数
-	var __pSubA = "派生クラスＡのプロパティ"
+    # 疑似プライベート変数
+    var __pSubA = "派生クラスＡのプロパティ"
 
-	var pSubA: # getter/setter
-		get: return __pSubA
-		set(value): __pSubA = value
+    var pSubA: # getter/setter
+        get: return __pSubA
+        set(value): __pSubA = value
 
-	func mSubA(): # 関数
-		return "派生クラスＡのメソッド"
+    func mSubA(): # 関数
+        return "派生クラスＡのメソッド"
 
-	func _init():
-		print("SubClassA._init()")
+    func _init():
+        print("SubClassA._init()")
 
 #================================
 # SubClassB（派生クラスＢ）の定義
 #================================
 class SubClassB extends SuperClass:
-	# 疑似プライベート変数
-	var __pSubB = "派生クラスＢのプロパティ"
+    # 疑似プライベート変数
+    var __pSubB = "派生クラスＢのプロパティ"
 
-	var pSubB: # getter/setter
-		get: return __pSubB
-		set(value): __pSubB = value
+    var pSubB: # getter/setter
+        get: return __pSubB
+        set(value): __pSubB = value
 
-	func mSubB(): # 関数
-		return "派生クラスＢのメソッド"
+    func mSubB(): # 関数
+        return "派生クラスＢのメソッド"
 
-	func _init():
-		print("SubClassB._init()")
+    func _init():
+        print("SubClassB._init()")
 
 #=====
 # 実行
 #=====
 func _ready():
-	……
-	var _subClassA = SubClassA.new() #-> SubClassA._init()
-	print(_subClassA) #-> [RefCounted:-9223372012041272799]
-	print(_subClassA is SubClassA) #-> true（＝SubClassA型）
-	print(_subClassA is SuperClass) #-> true（＝SuperClass型）
-	print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
-	print(_subClassA.pSuper) #-> 基本クラスのプロパティ
-	print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
-	print(_subClassA.mSuper()) #-> 基本クラスのメソッド
+    ……
+    var _subClassA = SubClassA.new() #-> SubClassA._init()
+    print(_subClassA) #-> [RefCounted:-9223372012041272799]
+    print(_subClassA is SubClassA) #-> true（＝SubClassA型）
+    print(_subClassA is SuperClass) #-> true（＝SuperClass型）
+    print(_subClassA.pSubA) #-> 派生クラスＡのプロパティ
+    print(_subClassA.pSuper) #-> 基本クラスのプロパティ
+    print(_subClassA.mSubA()) #-> 派生クラスＡのメソッド
+    print(_subClassA.mSuper()) #-> 基本クラスのメソッド
 
-	var _subClassB = SubClassB.new() #-> SubClassB._init()
-	print(_subClassB) #-> [RefCounted:-9223372012024495730]
-	print(_subClassB is SubClassB) #-> true（＝SubClassB型）
-	print(_subClassB is SuperClass) #-> true（＝SuperClass型）
-	print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
-	print(_subClassB.pSuper) #-> 基本クラスのプロパティ
-	print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
-	print(_subClassB.mSuper()) #-> 基本クラスのメソッド
+    var _subClassB = SubClassB.new() #-> SubClassB._init()
+    print(_subClassB) #-> [RefCounted:-9223372012024495730]
+    print(_subClassB is SubClassB) #-> true（＝SubClassB型）
+    print(_subClassB is SuperClass) #-> true（＝SuperClass型）
+    print(_subClassB.pSubB) #-> 派生クラＢのプロパティ
+    print(_subClassB.pSuper) #-> 基本クラスのプロパティ
+    print(_subClassB.mSubB()) #-> 派生クラスＢのメソッド
+    print(_subClassB.mSuper()) #-> 基本クラスのメソッド
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%9F%BA%E6%9C%AC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%A8%E6%B4%BE%E7%94%9F%E3%82%AF%E3%83%A9%E3%82%B9)]  
@@ -696,12 +696,12 @@ func _ready():
 ```gdscript
 # res://japan/tokyo.gd
 class Shinjuku:
-	func _init():
-		print("japan/tokyo/Shinjuku")
+    func _init():
+        print("japan/tokyo/Shinjuku")
 
 class Setagaya:
-	func _init():
-		print("japan/tokyo/Setagaya")
+    func _init():
+        print("japan/tokyo/Setagaya")
 ```
 
 ```gdscript
@@ -709,10 +709,10 @@ class Setagaya:
 extends Node3D
 ……
 func _ready():
-	……
-	var _tokyo = preload("res://japan/tokyo.gd") # 外部.gdファイルの読み込み
-	_tokyo.Shinjuku.new() #-> "japan/tokyo/Shinjuku"
-	_tokyo.Setagaya.new() #-> "japan/tokyo/Setagaya"
+    ……
+    var _tokyo = preload("res://japan/tokyo.gd") # 外部.gdファイルの読み込み
+    _tokyo.Shinjuku.new() #-> "japan/tokyo/Shinjuku"
+    _tokyo.Setagaya.new() #-> "japan/tokyo/Setagaya"
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93)]  
@@ -739,7 +739,7 @@ func _ready():
 class_name ClassA
 
 func myMethod():
-	print("ClassA.myMethod()")
+    print("ClassA.myMethod()")
 ```
 
 #### ClassB（ClassA を継承）の定義
@@ -755,9 +755,9 @@ class_name ClassB extends ClassA # ポイント
 extends Node3D
 ……
 func _ready():
-	………
-	var _classB = ClassB.new()
-	_classB.myMethod() #-> ClassA.myMethod()
+    ………
+    var _classB = ClassB.new()
+    _classB.myMethod() #-> ClassA.myMethod()
 ```
 
 ### 👉 委譲版
@@ -768,7 +768,7 @@ func _ready():
 class_name ClassA
 
 func myMethod():
-	print("ClassA.myMethod()")
+    print("ClassA.myMethod()")
 ```
 
 #### ClassB の定義
@@ -779,7 +779,7 @@ class_name ClassB
 var _classA = ClassA.new() # ポイント
 
 func myMethod():
-	_classA.myMethod()
+    _classA.myMethod()
 ```
 
 #### 実行
@@ -788,9 +788,9 @@ func myMethod():
 extends Node3D
 ……
 func _ready():
-	………
-	var _classB = ClassB.new()
-	_classB.myMethod() #-> ClassA.myMethod()
+    ………
+    var _classB = ClassB.new()
+    _classB.myMethod() #-> ClassA.myMethod()
 ```
 
 [[C# 版](https://bit.ly/3c58g0H)]  
@@ -824,14 +824,14 @@ func _ready():
 ![image](https://github.com/mubirou/Godot/blob/main/jpg/202208131844.jpg)
 1. 動作確認  
     ```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……
-		print(Global.someGlobal) #-> 100（参照）
-		Global.someGlobal = 200 # 変更
-		print(Global.someGlobal) #-> 200（変更されている）
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……
+        print(Global.someGlobal) #-> 100（参照）
+        Global.someGlobal = 200 # 変更
+        print(Global.someGlobal) #-> 200（変更されている）
     ```
 参考：[共有ファイル](https://bit.ly/3KbSj5v)  
 
@@ -840,37 +840,37 @@ func _ready():
 ### 👉 疑似プライベート変数
 
 1. [クラス](#クラス)の定義
-	```gdscript
-	# res://MyClass.gd（クラスファイル）
-	class_name MyClass
+    ```gdscript
+    # res://MyClass.gd（クラスファイル）
+    class_name MyClass
 
-	# 擬似プライベート変数の定義（実際は単なるパブリック変数）
-	var __propA = "いろは" # 変数名は__xxxにする（任意）
+    # 擬似プライベート変数の定義（実際は単なるパブリック変数）
+    var __propA = "いろは" # 変数名は__xxxにする（任意）
 
-	# setter/getter（変数へのアクセスは[アクセサ]を利用する＝推奨）
-	var propA:
-		get: return __propA
-		set(value): __propA = value
-	```
+    # setter/getter（変数へのアクセスは[アクセサ]を利用する＝推奨）
+    var propA:
+        get: return __propA
+        set(value): __propA = value
+    ```
 
 1. 実行
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……
-		var _myClass = MyClass.new()
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……
+        var _myClass = MyClass.new()
 
-		# 良い例（setter/getterを使ってアクセスする）
-		print(_myClass.propA) #-> "いろは"（参照）
-		_myClass.propA = "ABC" # 変更
-		print(_myClass.propA) #-> "ABC"（変更されている）
+        # 良い例（setter/getterを使ってアクセスする）
+        print(_myClass.propA) #-> "いろは"（参照）
+        _myClass.propA = "ABC" # 変更
+        print(_myClass.propA) #-> "ABC"（変更されている）
 
-		# 悪い例（外部から直接アクセスするべきではない）
-		_myClass.__propA = "あいう" # 外部から直接変更
-		print(_myClass.__propA) #-> "あいう"（変更できてしまう）
-	```
+        # 悪い例（外部から直接アクセスするべきではない）
+        _myClass.__propA = "あいう" # 外部から直接変更
+        print(_myClass.__propA) #-> "あいう"（変更できてしまう）
+    ```
 
 <a name="ローカル変数"></a>
 
@@ -879,47 +879,47 @@ func _ready():
     ※宣言したブロック内かつ、インデントが同じかより深い範囲内で有効
     ```gdscript
     # /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……
-		myFunction1()
-		myfunction2()
-		#print(_local) # Error（アクセス不可）
+    extends Node3D
+    ……
+    func _ready():
+        ……
+        myFunction1()
+        myfunction2()
+        #print(_local) # Error（アクセス不可）
 
-	func myFunction1():
-		var _local = "ローカル変数" # ローカル変数の宣言
-		print(_local) #-> "ローカル変数"
+    func myFunction1():
+        var _local = "ローカル変数" # ローカル変数の宣言
+        print(_local) #-> "ローカル変数"
 
-	func myfunction2():
-		#print(_local) # Error（アクセス不可）
-		pass
+    func myfunction2():
+        #print(_local) # Error（アクセス不可）
+        pass
     ```
 
 1. クラスの関数内で宣言する場合
     ```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	class MyClass:
-		var _public = "パブリック変数"
-		func myMethod():
-			var _local = "ローカル変数"
-			print(_local)
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    class MyClass:
+        var _public = "パブリック変数"
+        func myMethod():
+            var _local = "ローカル変数"
+            print(_local)
 
-	func _ready():
-		……
-		var _myClass = MyClass.new()
-		_myClass.myMethod() #-> ローカル変数
-		print(_myClass._public) #-> パブリック変数
-		#print(_myClass._local) # アクセス不可
+    func _ready():
+        ……
+        var _myClass = MyClass.new()
+        _myClass.myMethod() #-> ローカル変数
+        print(_myClass._public) #-> パブリック変数
+        #print(_myClass._local) # アクセス不可
     ```
 
 1. for 文内のループ変数
     ```gdscript
-	for _i in range(6): #ローカル変数（_i）0～5
-		print(_i) #-> 0,1,2,...,5
-	#print(_i) # Error（for文外ではアクセス不可）
+    for _i in range(6): #ローカル変数（_i）0～5
+        print(_i) #-> 0,1,2,...,5
+    #print(_i) # Error（for文外ではアクセス不可）
     ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%A4%89%E6%95%B0%E3%81%A8%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97)]  
@@ -939,20 +939,20 @@ func _ready():
 extends Node3D
 ……
 class Member:
-	var __age = 19 # 疑似プライベート変数
-	
-	# setter/getter
-	var age:
-		get: return __age
-		set(value): __age = value
+    var __age = 19 # 疑似プライベート変数
+    
+    # setter/getter
+    var age:
+        get: return __age
+        set(value): __age = value
 
 # 実行
 func _ready():
-	……
-	var _member = Member.new()
-	print(_member.age) #-> 19
-	_member.age = 20
-	print(_member.age) #-> 20
+    ……
+    var _member = Member.new()
+    print(_member.age) #-> 19
+    _member.age = 20
+    print(_member.age) #-> 20
 ```
 
 ### 読み取り専用のプロパティ
@@ -961,19 +961,19 @@ func _ready():
 extends Node3D
 ……
 class Member:
-	var __age = 19 # 疑似プライベート変数
-	
-	# setter/getter
-	var age: 
-		get: return __age
+    var __age = 19 # 疑似プライベート変数
+    
+    # setter/getter
+    var age: 
+        get: return __age
 
 # 実行
 func _ready():
-	……
-	var _member = Member.new()
-	print(_member.age) #-> 19
-	_member.age = 20 # 変更不可（エラーは出ない）
-	print(_member.age) #-> 19
+    ……
+    var _member = Member.new()
+    print(_member.age) #-> 19
+    _member.age = 20 # 変更不可（エラーは出ない）
+    print(_member.age) #-> 19
 ```
 
 ### 書き込み専用のプロパティ
@@ -982,19 +982,19 @@ func _ready():
 extends Node3D
 ……
 class Member:
-	var __age = 19 # 疑似プライベート変数
-	
-	# setter/getter
-	var age: 
-		set(value): __age = value
+    var __age = 19 # 疑似プライベート変数
+    
+    # setter/getter
+    var age: 
+        set(value): __age = value
 
 # 実行
 func _ready():
-	……
-	var _member = Member.new()
-	_member.age = 20
-	print(_member.age) #-> null
-	print(_member.__age) #-> 20（内部では変更されている）
+    ……
+    var _member = Member.new()
+    _member.age = 20
+    print(_member.age) #-> null
+    print(_member.__age) #-> 20（内部では変更されている）
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B5-getter--setter)]  
@@ -1014,20 +1014,20 @@ func _ready():
 extends Node3D
 
 func _ready():
-	print(3 + 2) #-> 5 (可算) 
-	print(5 - 8) #-> -3 (減算)
-	print(3 * 4) #-> 12 (乗算)
-	print(1 + 2 * 3 - 4 / 2) #-> 5 (複雑な計算)
-	print(63 % 60) #-> 3 (余剰)
+    print(3 + 2) #-> 5 (可算) 
+    print(5 - 8) #-> -3 (減算)
+    print(3 * 4) #-> 12 (乗算)
+    print(1 + 2 * 3 - 4 / 2) #-> 5 (複雑な計算)
+    print(63 % 60) #-> 3 (余剰)
 
-	# 除算（注意が必要です）
-	print(8 / 3) #-> 2(除算) ←整数同士の場合、余りは切り捨てられる
-	print(8 / 3.0) #-> 2.66666666666667（小数点第14位までの値＝float型）
+    # 除算（注意が必要です）
+    print(8 / 3) #-> 2(除算) ←整数同士の場合、余りは切り捨てられる
+    print(8 / 3.0) #-> 2.66666666666667（小数点第14位までの値＝float型）
 
-	#インクリメント（++）・デクリメント（--）は存在しないので以下で代用
-	var _hoge = 0
-	_hoge += 1
-	print(_hoge) #-> 1
+    #インクリメント（++）・デクリメント（--）は存在しないので以下で代用
+    var _hoge = 0
+    _hoge += 1
+    print(_hoge) #-> 1
 ```
 
 ### その他の演算子
@@ -1036,28 +1036,28 @@ func _ready():
 extends Node3D
 
 func _ready():
-	# 論理積
-	print(true and true) #-> true
-	print(true && true) #-> true
+    # 論理積
+    print(true and true) #-> true
+    print(true && true) #-> true
 
-	# 論理和
-	print(true or false) #-> true
-	print(true || false) #-> true
+    # 論理和
+    print(true or false) #-> true
+    print(true || false) #-> true
 
-	# 否定
-	print(not true) #-> false
-	print(! true) #-> false
+    # 否定
+    print(not true) #-> false
+    print(! true) #-> false
  
-	print(2 < 3) #-> true（比較/未満）
-	print(2 <= 2) #-> true（比較/以下）
-	print(1 == 1.0) #-> true（等号）
-	print(1 != 1.0) #-> false（不等号）
+    print(2 < 3) #-> true（比較/未満）
+    print(2 <= 2) #-> true（比較/以下）
+    print(1 == 1.0) #-> true（等号）
+    print(1 != 1.0) #-> false（不等号）
 
-	print(3 & 1) #-> 1（ビット積）
-	print(3 | 1) #-> 3（ビット和）
-	print(3 ^ 1) #-> 2（排他的ビット和）
-	print(2 << 7) #-> 256（ビット･シフト）
-	print(~3) #-> -4（ビット反転）
+    print(3 & 1) #-> 1（ビット積）
+    print(3 | 1) #-> 3（ビット和）
+    print(3 ^ 1) #-> 2（排他的ビット和）
+    print(2 << 7) #-> 256（ビット･シフト）
+    print(~3) #-> -4（ビット反転）
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%BC%94%E7%AE%97%E5%AD%90)]  
@@ -1080,9 +1080,9 @@ extends Node3D
 const MY_NAME = "MUBIROU"
 ……
 func _ready():
-	……	
-	print(MY_NAME) #-> MUBIROU
-	MY_NAME = "ICHIRO" # Parser Error（変更不可）
+    ……    
+    print(MY_NAME) #-> MUBIROU
+    MY_NAME = "ICHIRO" # Parser Error（変更不可）
 ```
 
 ### クラス定数（[静的変数](#静的変数・静的関数)）
@@ -1093,20 +1093,20 @@ class_name MyClass
 const MY_NAME = "MUBIROU" # クラス定数の定義
 
 func _init():
-	print(MY_NAME) #-> "MUBIROU"（クラス内でアクセス可）
+    print(MY_NAME) #-> "MUBIROU"（クラス内でアクセス可）
 ```
 ```gdscript
 # /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready():
-	……	
-	print(MyClass.MY_NAME) #-> MUBIROU（インスタンス生成せずにアクセス可）
-	#MyClass.MY_NAME = "ICHIRO" # Error（変更不可）
-	
-	var _myClass = MyClass.new()
-	print(_myClass.MY_NAME) #-> MUBIROU（インスタンスからもアクセス可）
-	#_myClass.MY_NAME = "ICHIRO" # 変更不可
+    ……    
+    print(MyClass.MY_NAME) #-> MUBIROU（インスタンス生成せずにアクセス可）
+    #MyClass.MY_NAME = "ICHIRO" # Error（変更不可）
+    
+    var _myClass = MyClass.new()
+    print(_myClass.MY_NAME) #-> MUBIROU（インスタンスからもアクセス可）
+    #_myClass.MY_NAME = "ICHIRO" # 変更不可
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%AE%9A%E6%95%B0)]  
@@ -1132,115 +1132,115 @@ func _ready():
 ### 👉 基本構文
 ```gdscript
 func 関数名(引数➀, 引数➁, ...):
-	......
-	[return 戻り値]
-	[pass]（何もしない場合 pass を記述）
+    ......
+    [return 戻り値]
+    [pass]（何もしない場合 pass を記述）
 ```
 * [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) について  
 Pythonのコードブロックは {} ではなくインデントを揃えることで見なします。しかしインデントを強制する文法の弱点として、インデントしたブロックは必ず１行以上の記述が必要になります。そこで「何もしない」という処理を意味する [pass](https://godotengine.org/qa/19110/difference-between-pass-and-return) 文が用意されています。
 * サンプルコード
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……
-		print(tashizan(1, 10)) #-> 55
-		
-	#print(tashizan(1, 10)) #-> Parser Error（ここでは実行できない）
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……
+        print(tashizan(1, 10)) #-> 55
+        
+    #print(tashizan(1, 10)) #-> Parser Error（ここでは実行できない）
 
-	func tashizan(_start, _end):
-		var _result = 0 #ローカル変数
-		for i in range(_start, _end + 1):
-			_result += i
-		return _result
-	```
+    func tashizan(_start, _end):
+        var _result = 0 #ローカル変数
+        for i in range(_start, _end + 1):
+            _result += i
+        return _result
+    ```
 
 ### 👉 パブリック関数<a name="関数-1"></a>
 * 例：○〜○までの値を足した合計を調べる
-	```gdscript
-	# res://MyClass.gd（クラスファイル）
-	class_name MyClass
+    ```gdscript
+    # res://MyClass.gd（クラスファイル）
+    class_name MyClass
 
-	func tashizan(_start, _end):
-		var _result = 0 #ローカル変数
-		for i in range(_start, _end + 1):
-			_result += i
-		return _result
-	```
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……	
-		var _myClass = MyClass.new()
-		print(_myClass.tashizan(1, 10)) #-> 55
-		print(_myClass.tashizan(1, 100)) #-> 5050
-	```
+    func tashizan(_start, _end):
+        var _result = 0 #ローカル変数
+        for i in range(_start, _end + 1):
+            _result += i
+        return _result
+    ```
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……    
+        var _myClass = MyClass.new()
+        print(_myClass.tashizan(1, 10)) #-> 55
+        print(_myClass.tashizan(1, 100)) #-> 5050
+    ```
 [[関数TOP](#関数)]  
 
 ### 👉 疑似プライベート関数<a name="関数-2"></a>
 * 実際は単なるパブリック関数
 * アクセス修飾子が存在しないため、Python 風 に __メソッド名() と命名して外からアクセスしないようにする
-	```gdscript
-	# res://MyClass.gd（クラスファイル）
-	class_name MyClass
+    ```gdscript
+    # res://MyClass.gd（クラスファイル）
+    class_name MyClass
 
-	# 疑似プライベート関数（Python風に__〇〇とする）
-	func __tashizan(_start, _end):
-		var _result = 0 #ローカル変数
-		for i in range(_start, _end + 1):
-			_result += i
-		return _result
+    # 疑似プライベート関数（Python風に__〇〇とする）
+    func __tashizan(_start, _end):
+        var _result = 0 #ローカル変数
+        for i in range(_start, _end + 1):
+            _result += i
+        return _result
 
-	func _init():
-		print(__tashizan(1, 10)) #-> 55
-	```
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……	
-		var _myClass = MyClass.new()
-		print(_myClass.__tashizan(1, 10)) #-> 55（外からアクセスできてしまうが…）
-	```
+    func _init():
+        print(__tashizan(1, 10)) #-> 55
+    ```
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……    
+        var _myClass = MyClass.new()
+        print(_myClass.__tashizan(1, 10)) #-> 55（外からアクセスできてしまうが…）
+    ```
 [[関数TOP](#関数)]  
 
 ### 👉 コンストラクタ<a name="関数-3"></a>
 
 1. **「クラスファイル」を使う場合**
-	```gdscript
-	# res://MyClass.gd（クラスファイル）
-	class_name MyClass
+    ```gdscript
+    # res://MyClass.gd（クラスファイル）
+    class_name MyClass
 
-	func _init(arg):
-		print("MyClass._init()")
-		print(arg)
-	```
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……
-		var _myClass = MyClass.new("Hello")
-	```
+    func _init(arg):
+        print("MyClass._init()")
+        print(arg)
+    ```
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……
+        var _myClass = MyClass.new("Hello")
+    ```
 
 1. **ノードにアタッチしたスクリプトの場合**
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _init():
-		print("Main._init()") # 先に実行される
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _init():
+        print("Main._init()") # 先に実行される
 
-	func _ready(): # 通常はこちらを使う
-		……
-		print("Main._ready()")
-	```
-	💡 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html) であるためノードにアタッチしたスクリプトもクラスであると言えます。そのため [class_name](#クラス) を記述することで外部からアクセスが可能です。  
+    func _ready(): # 通常はこちらを使う
+        ……
+        print("Main._ready()")
+    ```
+    💡 [.gd ファイルがクラス！](http://puggygame.blogspot.com/2018/03/gdscript.html) であるためノードにアタッチしたスクリプトもクラスであると言えます。そのため [class_name](#クラス) を記述することで外部からアクセスが可能です。  
 参考：[GODOT DOCS（**Class constructor**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#class-constructor)  
 [[関数TOP](#関数)]  
 
@@ -1250,16 +1250,16 @@ Pythonのコードブロックは {} ではなくインデントを揃えるこ�
 extends Node3D
 ……
 func _ready():
-	_interface = XRServer.find_interface("OpenXR")
-	if _interface and _interface.is_initialized():
-		var _viewport : Viewport = get_viewport()
-		_viewport.use_xr = true
-		
+    _interface = XRServer.find_interface("OpenXR")
+    if _interface and _interface.is_initialized():
+        var _viewport : Viewport = get_viewport()
+        _viewport.use_xr = true
+        
 func _process(_delta): # 繰り返し実行される
-	print("process: " + str(Time.get_unix_time_from_system()))
+    print("process: " + str(Time.get_unix_time_from_system()))
 
 func _physics_process(_delta): # 物理ステップの前に安定して実行される(初期値60fps)
-	print("physics_process: " + str(Time.get_unix_time_from_system()))
+    print("physics_process: " + str(Time.get_unix_time_from_system()))
 ```
 参考：[GODOT DOCS（**Godot notifications**）](https://docs.godotengine.org/en/latest/tutorials/best_practices/godot_notifications.html?highlight=_physics_process#godot-notifications)  
 [[関数TOP](#関数)]  
@@ -1278,22 +1278,22 @@ func _physics_process(_delta): # 物理ステップの前に安定して実行�
 class_name MyMath
 
 static func Pow(arg1, arg2): # 慣例的に大文字で始める
-	if arg2 == 0: return 1 # 0乗対策
-	var _result = arg1
-	for i in range(1, arg2):
-		_result *= arg1
-	return _result
+    if arg2 == 0: return 1 # 0乗対策
+    var _result = arg1
+    for i in range(1, arg2):
+        _result *= arg1
+    return _result
 ```
 ```gdscript
 # /root/Main(Main.gd)
 extends Node3D
 ……
 func _ready(): # 通常はこちらを使う
-	……
-	print(MyMath.Pow(2,3)) #-> 8
-	
-	var _myMath = MyMath.new()
-	print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可）
+    ……
+    print(MyMath.Pow(2,3)) #-> 8
+    
+    var _myMath = MyMath.new()
+    print(_myMath.Pow(2,4)) #-> 16（インスタンスからも実行可）
 ```
 参考：[GODOT DOCS（**Static functions**）](https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#static-functions)  
 
@@ -1305,15 +1305,15 @@ func _ready(): # 通常はこちらを使う
 extends Node3D
 ……
 func _ready(): # 通常はこちらを使う
-	……
-	Hello() #-> Hello!（引数を指定しないと初期値で処理）
-	Hello("ja") #-> こんにちは!（引数を指定した場合）
-	
+    ……
+    Hello() #-> Hello!（引数を指定しないと初期値で処理）
+    Hello("ja") #-> こんにちは!（引数を指定した場合）
+    
 func Hello(arg = "en"):
-	if arg == "en":
-		print("Hello!")
-	elif arg == "ja":
-		print("こんにちは!")
+    if arg == "en":
+        print("Hello!")
+    elif arg == "ja":
+        print("こんにちは!")
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89)]  
@@ -1338,22 +1338,22 @@ var _japanese : Callable
 var _chinese : Callable
 
 func _ready():
-	……
-	_american = func(_name): # 匿名関数➀
-		print(_name + "," + "Hello!")
+    ……
+    _american = func(_name): # 匿名関数➀
+        print(_name + "," + "Hello!")
 
-	_japanese = func(_name): # 匿名関数➁
-		print(_name + "、" + "こんにちは!")
-	
-	_chinese = func(_name): # 匿名関数➂
-		print(_name + "," + "你好!")
-	
-	_hello = _american #変数に匿名関数を代入
-	_hello.call("TARO") #-> "TARO,Hello!"
-	_hello = _japanese # 匿名関数の入替え
-	_hello.call("太郎") #-> "太郎、こんにちは!"
-	_hello = _chinese # 匿名関数の入替え
-	_hello.call("太郎") #-> "太郎,你好!"
+    _japanese = func(_name): # 匿名関数➁
+        print(_name + "、" + "こんにちは!")
+    
+    _chinese = func(_name): # 匿名関数➂
+        print(_name + "," + "你好!")
+    
+    _hello = _american #変数に匿名関数を代入
+    _hello.call("TARO") #-> "TARO,Hello!"
+    _hello = _japanese # 匿名関数の入替え
+    _hello.call("太郎") #-> "太郎、こんにちは!"
+    _hello = _chinese # 匿名関数の入替え
+    _hello.call("太郎") #-> "太郎,你好!"
 ```
 
 参考：[GODOT DOCS（**Callable**）](https://docs.godotengine.org/en/latest/classes/class_callable.html?highlight=Callable#callable)  
@@ -1387,16 +1387,16 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _age = 55
-	if _age <= 20:
-		print("20歳以下")
-	elif _age <= 40: #「else if」でも「elseif」でもない（要注意）
-		print("21〜40歳")
-	elif _age <= 60:
-		print("41〜60歳") #これが出力される
-	else:
-		print("61歳以上")
+    ……
+    var _age = 55
+    if _age <= 20:
+        print("20歳以下")
+    elif _age <= 40: #「else if」でも「elseif」でもない（要注意）
+        print("21〜40歳")
+    elif _age <= 60:
+        print("41〜60歳") #これが出力される
+    else:
+        print("61歳以上")
 ```
 
 * 注意：条件式の判断記述について
@@ -1405,16 +1405,16 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	if null: # '' "" []も同じfalseとして判断
-		print("A")
-	else:
-		print("B") #こちらが実行される
+    ……
+    if null: # '' "" []も同じfalseとして判断
+        print("A")
+    else:
+        print("B") #こちらが実行される
 
-	if "あ": # 中身が何かあればtrueとして判断
-		print("A") #こちらが実行される
-	else:
-		print("B")
+    if "あ": # 中身が何かあればtrueとして判断
+        print("A") #こちらが実行される
+    else:
+        print("B")
 ```
 
 ### 論理積（and または &&）
@@ -1464,13 +1464,13 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _a = false
-	var _b = false
-	if (_a || _b) && !(_a && _b):
-		print("どちらか一方だけtrue（false）です")
-	else:
-		print("両方共にtrueかfalseです")
+    ……
+    var _a = false
+    var _b = false
+    if (_a || _b) && !(_a && _b):
+        print("どちらか一方だけtrue（false）です")
+    else:
+        print("両方共にtrueかfalseです")
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#if-%E6%96%87)]  
@@ -1496,10 +1496,10 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _age = 55
-	var _result = "現役" if (_age < 60) else "退職"
-	print(_result)
+    ……
+    var _age = 55
+    var _result = "現役" if (_age < 60) else "退職"
+    print(_result)
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E4%B8%89%E9%A0%85%E6%BC%94%E7%AE%97%E5%AD%90)]  
@@ -1519,19 +1519,19 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _name = "TARO"
-	match _name:
-		"TARO":
-			print("父") # これが出力される
-		"HANAKO":
-			print("母")
-		"ICHIRO":
-			print("長男")
-		"JIRO":
-			print("次男")
-		_:
-			print("家族以外")
+    ……
+    var _name = "TARO"
+    match _name:
+        "TARO":
+            print("父") # これが出力される
+        "HANAKO":
+            print("母")
+        "ICHIRO":
+            print("長男")
+        "JIRO":
+            print("次男")
+        _:
+            print("家族以外")
 ```
 
 ### ⚠ 注意➀：判別式に bool 型が使えない
@@ -1540,13 +1540,13 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _age = 55
-	match true:
-		_age < 20: # Error（比較演算子を使った条件式は不可）
-			print("未成年")
-		_:
-			print("成人")
+    ……
+    var _age = 55
+    match true:
+        _age < 20: # Error（比較演算子を使った条件式は不可）
+            print("未成年")
+        _:
+            print("成人")
 ```
 
 ### ⚠ 注意➁：フォロースルーの動作
@@ -1557,17 +1557,17 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _value = "A"
-	match _value:
-		"A":
-			print("A")
-			continue
-		"B":
-			print("B")
-			continue
-		_:
-			print("C")
+    ……
+    var _value = "A"
+    match _value:
+        "A":
+            print("A")
+            continue
+        "B":
+            print("B")
+            continue
+        _:
+            print("C")
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#switch-%E6%96%87)]  
@@ -1594,10 +1594,10 @@ for 変数 in range(開始, 終了):
 extends Node3D
 ……
 func _ready():
-	……	
-	for i in range(0, 10):
-		print(i) #-> 0,1,2,3,4,5,6,7,8,9
-	#print(i) # Error（for文の外ではiは無効）
+    ……    
+    for i in range(0, 10):
+        print(i) #-> 0,1,2,3,4,5,6,7,8,9
+    #print(i) # Error（for文の外ではiは無効）
 ```
 
 ### for 文のネスト
@@ -1607,10 +1607,10 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……	
-	for i in range(1, 6):
-		for j in range(1, 6):
-			print("x" + str(i) + "y" + str(j)) #-> x1y1, x1y2, …, x5y4, x5y5
+    ……    
+    for i in range(1, 6):
+        for j in range(1, 6):
+            print("x" + str(i) + "y" + str(j)) #-> x1y1, x1y2, …, x5y4, x5y5
 ```
 
 ### continue 文
@@ -1620,11 +1620,11 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……	
-	for i in range(0,50):
-		if i % 5: # 5つずつアップする場合…
-			continue # 以降処理せずfor文のブロックの先頭に戻って再度繰返す
-		print(i) #-> 0, 5, 10, 15, 20, 25, 30, 35, 40, 45
+    ……    
+    for i in range(0,50):
+        if i % 5: # 5つずつアップする場合…
+            continue # 以降処理せずfor文のブロックの先頭に戻って再度繰返す
+        print(i) #-> 0, 5, 10, 15, 20, 25, 30, 35, 40, 45
 ```
 
 ### 無限ループと break 文
@@ -1633,13 +1633,13 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _count = 0
-	for i in range(0, 99999999999999999): # ほぼ無限ループ（厳密な無限にはwhile文を使用）
-		_count += 1
-		if (_count > 100):
-			break #100 を超えたらループを抜け出す
-		print(_count) #-> 1, 2, ...., 99, 100
+    ……
+    var _count = 0
+    for i in range(0, 99999999999999999): # ほぼ無限ループ（厳密な無限にはwhile文を使用）
+        _count += 1
+        if (_count > 100):
+            break #100 を超えたらループを抜け出す
+        print(_count) #-> 1, 2, ...., 99, 100
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#for-%E6%96%87)]  
@@ -1660,12 +1660,12 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _i = 0
-	while _i < 10:
-		print(_i) #-> 0,1,2,3,4,5,6,7,8,9
-		_i += 1
-	print(_i) #-> 10（while文の外でも変数はまだ有効）
+    ……
+    var _i = 0
+    while _i < 10:
+        print(_i) #-> 0,1,2,3,4,5,6,7,8,9
+        _i += 1
+    print(_i) #-> 10（while文の外でも変数はまだ有効）
 ```
 
 ### while 文と break 文
@@ -1674,14 +1674,14 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _count = 0
-	while true: # ループ判別式をtrueにすると無限ループに!
-		_count += 1
-		if _count > 100:
-			break # ループを終了
-		print(_count) #-> 1,2,....,99,100（1〜100までを出力）
-	print("while文終了") # while文の外
+    ……
+    var _count = 0
+    while true: # ループ判別式をtrueにすると無限ループに!
+        _count += 1
+        if _count > 100:
+            break # ループを終了
+        print(_count) #-> 1,2,....,99,100（1〜100までを出力）
+    print("while文終了") # while文の外
 ```
 
 ### while 文と continue 文（3の倍数を出力）
@@ -1690,14 +1690,14 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _i = 1
-	while _i <= 20:
-		if (_i % 3) != 0: # 3で割って余りが0ではない（＝3の倍数ではない）場合
-			_i += 1
-			continue # while文の残処理をスキップしてwhile文の次の反復を開始する
-		print(_i) #-> 3,6,9,12,15,18（3の倍数を出力）
-		_i += 1
+    ……
+    var _i = 1
+    while _i <= 20:
+        if (_i % 3) != 0: # 3で割って余りが0ではない（＝3の倍数ではない）場合
+            _i += 1
+            continue # while文の残処理をスキップしてwhile文の次の反復を開始する
+        print(_i) #-> 3,6,9,12,15,18（3の倍数を出力）
+        _i += 1
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#while-%E6%96%87)]  
@@ -1906,9 +1906,9 @@ print(_array) #-> ["A", "B", "C"]
 ```gdscript
 var _count = 0 # インデックス番号取得用（オプション）
 for _tmp in ["A","B","C","D","E"]:
-	print(str(_count) + ":" + _tmp) 
-	#-> 0:A → 1:B → 2:C → 3:D → 4:E
-	_count += 1
+    print(str(_count) + ":" + _tmp) 
+    #-> 0:A → 1:B → 2:C → 3:D → 4:E
+    _count += 1
 ```
 
 <a name="フィルタをかける"></a>
@@ -1948,10 +1948,10 @@ var 変数名 = {"キー➀": 値➀, "キー➁": 値➁}
 extends Node3D
 ……
 func _ready():
-	……
-	var _dict = {"A": "あ", "I": "い"}
-	_dict["U"] = "う" # 追加（存在する場合は更新）
-	print(_dict) #-> {"A":"あ", "I":"い", "U":"う"}
+    ……
+    var _dict = {"A": "あ", "I": "い"}
+    _dict["U"] = "う" # 追加（存在する場合は更新）
+    print(_dict) #-> {"A":"あ", "I":"い", "U":"う"}
 ```
 
 ### 👉 取得
@@ -2022,23 +2022,23 @@ self は現在のクラスインスタンスを参照するのは同じだが [P
 extends Node3D
 ……
 class MyClass:
-	var _p #= null # __p（擬似プライベート変数）にすれば心配ないが…
-	
-	func _init(_p): # 引数がインスタンス名を同じ場合…
-		print(_p) #-> 500
-		print(self._p) #-> null
-		self._p = _p # この場合は self が必須（ポイント！）
-		print(self) #-> [RefCounted:-9223372012007718366]（※同じ）
-		self.myMethod() #-> 500（selfは省略可能）
+    var _p #= null # __p（擬似プライベート変数）にすれば心配ないが…
+    
+    func _init(_p): # 引数がインスタンス名を同じ場合…
+        print(_p) #-> 500
+        print(self._p) #-> null
+        self._p = _p # この場合は self が必須（ポイント！）
+        print(self) #-> [RefCounted:-9223372012007718366]（※同じ）
+        self.myMethod() #-> 500（selfは省略可能）
 
-	func myMethod():
-		print(_p)
+    func myMethod():
+        print(_p)
 
 func _ready():
-	……
-	var _myClass = MyClass.new(500)
-	print(_myClass) #-> [RefCounted:-9223372012007718366]（※同じ）
-	_myClass.myMethod() #-> 500
+    ……
+    var _myClass = MyClass.new(500)
+    print(_myClass) #-> [RefCounted:-9223372012007718366]（※同じ）
+    _myClass.myMethod() #-> 500
 ```
 
 ### 📝 ノードにアタッチしたスクリプト内の **self** について  
@@ -2050,45 +2050,45 @@ func _ready():
 　└ **Sphere**（MeshInstance3D）![image](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/png/script.png)（**Sphere.gd**）  
 
 * **Main** にアタッチしたスクリプト（**Main.gd**）
-	```gdscript
-	# /root/Main(Main.gd)
-	extends Node3D
-	……
-	func _ready():
-		……
-		# 全て同じ値
-		print(self) #-> Main:[Node3D:2503160XXXX]
-		print(get_node("."))
-		print(get_node("/root/Main"))
-		print(get_parent().get_node("Main"))
-		print(get_tree().get_root().get_node("Main"))
-	```
+    ```gdscript
+    # /root/Main(Main.gd)
+    extends Node3D
+    ……
+    func _ready():
+        ……
+        # 全て同じ値
+        print(self) #-> Main:[Node3D:2503160XXXX]
+        print(get_node("."))
+        print(get_node("/root/Main"))
+        print(get_parent().get_node("Main"))
+        print(get_tree().get_root().get_node("Main"))
+    ```
 * **Box** にアタッチしたスクリプト（**Box.gd**）
-	```gdscript
-	# /root/Main/Box(Box.gd)
-	extends MeshInstance3D
+    ```gdscript
+    # /root/Main/Box(Box.gd)
+    extends MeshInstance3D
 
-	func _ready():
-		# 全て同じ値
-		print(self) #-> Box:[MeshInstance3D:2509871XXXX]
-		print(get_node("."))
-		print(get_node("/root/Main/Box"))
-		print(get_parent().get_node("Box"))
-		print(get_tree().get_root().get_node("Main").get_node("Box"))
-	```
+    func _ready():
+        # 全て同じ値
+        print(self) #-> Box:[MeshInstance3D:2509871XXXX]
+        print(get_node("."))
+        print(get_node("/root/Main/Box"))
+        print(get_parent().get_node("Box"))
+        print(get_tree().get_root().get_node("Main").get_node("Box"))
+    ```
 * **Sphere** にアタッチしたスクリプト（**Sphere.gd**）
-	```gdscript
-	# /root/Main/Sphere(Sphere.gd)
-	extends MeshInstance3D
+    ```gdscript
+    # /root/Main/Sphere(Sphere.gd)
+    extends MeshInstance3D
 
-	func _ready():
-		# 全て同じ値
-		print(self) #-> Sphere:[MeshInstance3D:2511549XXXX]
-		print(get_node("."))
-		print(get_node("/root/Main/Sphere"))
-		print(get_parent().get_node("Sphere"))
-		print(get_tree().get_root().get_node("Main").get_node("Sphere"))
-	```
+    func _ready():
+        # 全て同じ値
+        print(self) #-> Sphere:[MeshInstance3D:2511549XXXX]
+        print(get_node("."))
+        print(get_node("/root/Main/Sphere"))
+        print(get_parent().get_node("Sphere"))
+        print(get_tree().get_root().get_node("Main").get_node("Sphere"))
+    ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#this)]  
 参考：[他人のメソッドの実行](https://bit.ly/3wkDMPc)  
@@ -2159,8 +2159,8 @@ print(_string.replace("2022年", "令和4年")) #-> "令和4年8月15日
 ```gdscript
 var _string = "ABCDEFG-ABCDEFG"
 if ("CD" in _string) : # 見つかった（true）場合…
-	print(_string.find("CD")) #-> 2（左から検索）
-	print(_string.rfind("CD")) #-> 10（右から検索）
+    print(_string.find("CD")) #-> 2（左から検索）
+    print(_string.rfind("CD")) #-> 10（右から検索）
 ```
 
 ### 👉 文字列→配列
@@ -2194,9 +2194,9 @@ var _regex = RegEx.new()
 _regex.compile("吉田")
 var _result = _regex.search(_string)
 if _result == null:
-	print("吉田は含まれていません")
+    print("吉田は含まれていません")
 else:
-	print("吉田は含まれています")
+    print("吉田は含まれています")
 ```
 
 ### 👉 置換
@@ -2230,23 +2230,23 @@ extends Node3D
 ……
 # 擬似抽象クラスの定義（実際には単なる基本クラス）
 class AbstractClass:
-	func common(): # 共通の関数
-		print("共通の関数")
+    func common(): # 共通の関数
+        print("共通の関数")
 
-	func abstractFunction(): # 擬似抽象関数の宣言（実際は単なる関数）
-		assert(false, "Error: 派生クラスで実装する必要があります") # 例外処理
+    func abstractFunction(): # 擬似抽象関数の宣言（実際は単なる関数）
+        assert(false, "Error: 派生クラスで実装する必要があります") # 例外処理
 
 # 派生クラス
 class SubClass extends AbstractClass: #擬似抽象クラスを継承
-	func abstractFunction(): # オーバーライドして実際の処理を記述
-		print("派生クラスでオーバーライドした抽象関数") # 実際の処理
+    func abstractFunction(): # オーバーライドして実際の処理を記述
+        print("派生クラスでオーバーライドした抽象関数") # 実際の処理
 
 # 実行
 func _ready():
-	……
-	var _subClass = SubClass.new()
-	_subClass.common() #-> "共通の関数"
-	_subClass.abstractFunction() #-> "派生クラスでオーバーライドした抽象関数"
+    ……
+    var _subClass = SubClass.new()
+    _subClass.common() #-> "共通の関数"
+    _subClass.abstractFunction() #-> "派生クラスでオーバーライドした抽象関数"
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9abstract)]  
@@ -2268,27 +2268,27 @@ extends Node3D
 
 # 基本（基底）クラス
 class SuperClass:
-	func _init(arg):
-		print("SuperClass._init()" + " : " + str(arg))
+    func _init(arg):
+        print("SuperClass._init()" + " : " + str(arg))
 
-	func hoge(arg): # 派生クラスでオーバーライドされる
-		print("SuperClass.hoge(): " + arg)
+    func hoge(arg): # 派生クラスでオーバーライドされる
+        print("SuperClass.hoge(): " + arg)
 
 # 派生クラス
 class SubClass extends SuperClass:
-	func _init():
-		print("SubClass._init()")
-		super(100) # 基本クラスのコンストラクタを呼び出す
-	
-	func hoge(arg): # 基本クラスの関数をオーバーライド
-		print("SubClass.hoge(): " + arg)
-		super.hoge("Hello2") # 基本クラスの関数を呼び出す
+    func _init():
+        print("SubClass._init()")
+        super(100) # 基本クラスのコンストラクタを呼び出す
+    
+    func hoge(arg): # 基本クラスの関数をオーバーライド
+        print("SubClass.hoge(): " + arg)
+        super.hoge("Hello2") # 基本クラスの関数を呼び出す
 
 # 実行
 func _ready():
-	……		
-	var _subClass = SubClass.new()
-	_subClass.hoge("Hello1") 
+    ……        
+    var _subClass = SubClass.new()
+    _subClass.hoge("Hello1") 
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#base-%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89)]  
@@ -2314,20 +2314,20 @@ extends Node3D
 ……
 # 基本クラス
 class SuperClass:
-	func myFunction(): # 派生クラスでオーバーライドされる
-		print("基本クラスのmyFunction()")
+    func myFunction(): # 派生クラスでオーバーライドされる
+        print("基本クラスのmyFunction()")
 
 # 派生クラス
 class SubClass extends SuperClass: #擬似抽象クラスを継承
-	func myFunction(): # 基本クラスの関数をオーバーライドする
-		print("派生クラスのmyFunction()")
-		super.myFunction() # 基本クラスのmyFunction()を呼出す場合
+    func myFunction(): # 基本クラスの関数をオーバーライドする
+        print("派生クラスのmyFunction()")
+        super.myFunction() # 基本クラスのmyFunction()を呼出す場合
 
 # 実行
 func _ready():
-	……
-	var _subClass = SubClass.new()
-	_subClass.myFunction()
+    ……
+    var _subClass = SubClass.new()
+    _subClass.myFunction()
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BC%E3%83%A9%E3%82%A4%E3%83%89)]  
@@ -2346,26 +2346,26 @@ extends Node3D
 
 # カスタムクラス 
 class MyGame:
-	signal gameover # イベント名の定義
+    signal gameover # イベント名の定義
 
-	var __energy = 100 # 疑似プライベート変数
+    var __energy = 100 # 疑似プライベート変数
 
-	func fight():
-		__energy -= 20
-		if (__energy <= 0):
-			emit_signal("gameover") # イベント発生
+    func fight():
+        __energy -= 20
+        if (__energy <= 0):
+            emit_signal("gameover") # イベント発生
 
 func _ready(): # 実行
-	var _robot = MyGame.new()
-	_robot.connect("gameover", gameoverHandler) # ≒addEventListener
-	_robot.fight()
-	_robot.fight()
-	_robot.fight()
-	_robot.fight()
-	_robot.fight() #-> GAMEOVER
+    var _robot = MyGame.new()
+    _robot.connect("gameover", gameoverHandler) # ≒addEventListener
+    _robot.fight()
+    _robot.fight()
+    _robot.fight()
+    _robot.fight()
+    _robot.fight() #-> GAMEOVER
 
 func gameoverHandler(): # 前方定義でなくてもよい
-	print("GAMEOVER")
+    print("GAMEOVER")
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)]  
@@ -2481,10 +2481,10 @@ print(sqrt(6)) #-> 2.44948974278318（二夜シクシク）
 extends Node3D
 ……
 func _ready():
-	……	
-	var _random = RandomNumberGenerator.new()
-	_random.randomize() # シード値の初期化（任意）
-	print(_random.randf()) #-> 0.18828691542149（0.0〜1.0以下）
+    ……    
+    var _random = RandomNumberGenerator.new()
+    _random.randomize() # シード値の初期化（任意）
+    print(_random.randf()) #-> 0.18828691542149（0.0〜1.0以下）
 ```
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
@@ -2494,10 +2494,10 @@ func _ready():
 extends Node3D
 ……
 func _ready():
-	……
-	var _random = RandomNumberGenerator.new()
-	_random.randomize() # シード値の初期化（任意）
-	print(_random.randf_range(0, 100)) #-> 88.5496139526367（0.0〜100.0以下）
+    ……
+    var _random = RandomNumberGenerator.new()
+    _random.randomize() # シード値の初期化（任意）
+    print(_random.randf_range(0, 100)) #-> 88.5496139526367（0.0〜100.0以下）
 ```
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
 
@@ -2510,32 +2510,32 @@ extends Node3D
 var _interface:XRInterface
 
 func _ready():
-	_interface = XRServer.find_interface("OpenXR")
-	if _interface and _interface.is_initialized():
-		var _viewport : Viewport = get_viewport()
-		_viewport.use_xr = true
-	
-	var _i0=0; var _i1=0; var _i2=0; var _i3=0; var _i4=0
-	var _i5=0; var _i6=0; var _i7=0; var _i8=0; var _i9=0
+    _interface = XRServer.find_interface("OpenXR")
+    if _interface and _interface.is_initialized():
+        var _viewport : Viewport = get_viewport()
+        _viewport.use_xr = true
+    
+    var _i0=0; var _i1=0; var _i2=0; var _i3=0; var _i4=0
+    var _i5=0; var _i6=0; var _i7=0; var _i8=0; var _i9=0
 
-	var _random = RandomNumberGenerator.new()
-	_random.randomize() # シード値の初期化（任意）
+    var _random = RandomNumberGenerator.new()
+    _random.randomize() # シード値の初期化（任意）
 
-	for i in range(0, 100000): # 0～100000までの配列
-		var _tmp = _random.randi_range(0, 9) # 0～9の整数
-		if (_tmp == 0): _i0 += 1
-		elif (_tmp == 1): _i1 += 1
-		elif (_tmp == 2): _i2 += 1
-		elif (_tmp == 3): _i3 += 1
-		elif (_tmp == 4): _i4 += 1
-		elif (_tmp == 5): _i5 += 1
-		elif (_tmp == 6): _i6 += 1
-		elif (_tmp == 7): _i7 += 1
-		elif (_tmp == 8): _i8 += 1
-		elif (_tmp == 9): _i9 += 1
-		else: print("Error")
-	print([_i0, _i1, _i2, _i3, _i4, _i5, _i6, _i7, _i8, _i9])
-	#-> [10045, 10159, 9839, 10011, 10162, 10063, 9772, 9824, 10000, 10125]
+    for i in range(0, 100000): # 0～100000までの配列
+        var _tmp = _random.randi_range(0, 9) # 0～9の整数
+        if (_tmp == 0): _i0 += 1
+        elif (_tmp == 1): _i1 += 1
+        elif (_tmp == 2): _i2 += 1
+        elif (_tmp == 3): _i3 += 1
+        elif (_tmp == 4): _i4 += 1
+        elif (_tmp == 5): _i5 += 1
+        elif (_tmp == 6): _i6 += 1
+        elif (_tmp == 7): _i7 += 1
+        elif (_tmp == 8): _i8 += 1
+        elif (_tmp == 9): _i9 += 1
+        else: print("Error")
+    print([_i0, _i1, _i2, _i3, _i4, _i5, _i6, _i7, _i8, _i9])
+    #-> [10045, 10159, 9839, 10011, 10162, 10063, 9772, 9824, 10000, 10125]
 ```
 
 （注意）**.randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
@@ -2570,24 +2570,24 @@ XXX.dst # サマータイム（true or false）
 extends Node3D
 
 func _ready():
-	var _now = Time.get_datetime_dict_from_system()
-	print(_now) #-> {"year":2022, "month":7, "day":13, "weekday":3, "dst":false, "hour":9, "minute":1, "second":17}
-	print(_now.year) # 年（2017等）
-	print(_now.month) # 月（1〜12）
-	print(_now.day) # 日（1〜31）
-	print(_now.weekday) #0（日曜）〜6（土曜）←Pythonと異なる
-	print(_now.hour) # 時間（0〜23）
-	print(_now.minute) # 分（0〜59）
-	print(_now.second) # 秒（0〜59）
-	
-	#"hh:mm:ss"で現在の時間を表示する方法
-	var _h = _now.hour
-	var _m = _now.minute
-	var _s = _now.second
-	if _h < 10: _h = "0" + str(_h)
-	if _m < 10: _m = "0" + str(_m)
-	if _s < 10: _s = "0" + str(_s)
-	print(str(_h) + ":" + str(_m) + ":" + str(_s)) #-> "09:04:11"
+    var _now = Time.get_datetime_dict_from_system()
+    print(_now) #-> {"year":2022, "month":7, "day":13, "weekday":3, "dst":false, "hour":9, "minute":1, "second":17}
+    print(_now.year) # 年（2017等）
+    print(_now.month) # 月（1〜12）
+    print(_now.day) # 日（1〜31）
+    print(_now.weekday) #0（日曜）〜6（土曜）←Pythonと異なる
+    print(_now.hour) # 時間（0〜23）
+    print(_now.minute) # 分（0〜59）
+    print(_now.second) # 秒（0〜59）
+    
+    #"hh:mm:ss"で現在の時間を表示する方法
+    var _h = _now.hour
+    var _m = _now.minute
+    var _s = _now.second
+    if _h < 10: _h = "0" + str(_h)
+    if _m < 10: _m = "0" + str(_m)
+    if _s < 10: _s = "0" + str(_s)
+    print(str(_h) + ":" + str(_m) + ":" + str(_s)) #-> "09:04:11"
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E6%97%A5%E6%99%82%E6%83%85%E5%A0%B1)]  
@@ -2607,13 +2607,13 @@ func _ready():
 extends Node3D
 
 func _ready():
-	print("すぐに実行➀")
-	await timeOut()  # ⚠最終行に記述すること
+    print("すぐに実行➀")
+    await timeOut()  # ⚠最終行に記述すること
 
 func timeOut():
-	print("すぐに実行➁")
-	await get_tree().create_timer(3.0).timeout
-	print("3.0秒後に一度だけ実行したい処理")
+    print("すぐに実行➁")
+    await get_tree().create_timer(3.0).timeout
+    print("3.0秒後に一度だけ実行したい処理")
 ```
 参考：[GODOT DOCS](https://docs.godotengine.org/en/latest/classes/class_scenetree.html#class-scenetree-method-create-timer)  
 
@@ -2622,15 +2622,15 @@ func timeOut():
 extends Node3D
 
 func _ready():
-	var _timer = Timer.new()
-	_timer.set_wait_time(3.0) # 3.0秒後に実行したい場合（初期値1.0）
-	_timer.connect("timeout", timeOut)
-	_timer.set_one_shot(true)
-	self.add_child(_timer) # selfは省略可能
-	_timer.start()
+    var _timer = Timer.new()
+    _timer.set_wait_time(3.0) # 3.0秒後に実行したい場合（初期値1.0）
+    _timer.connect("timeout", timeOut)
+    _timer.set_one_shot(true)
+    self.add_child(_timer) # selfは省略可能
+    _timer.start()
 
 func timeOut():
-	print("一度だけ実行したい処理")
+    print("一度だけ実行したい処理")
 ```
 
 ### 📝 繰り返し実行：永久継続  
@@ -2638,12 +2638,12 @@ func timeOut():
 extends Node3D
 
 func _ready():
-	await loop() # ⚠最終行に記述すること
+    await loop() # ⚠最終行に記述すること
 
 func loop():
-	await get_tree().create_timer(1.0).timeout
-	print("1.0秒事に実行したい処理")
-	await loop()
+    await get_tree().create_timer(1.0).timeout
+    print("1.0秒事に実行したい処理")
+    await loop()
 ```
 
 ### 📝 繰り返し実行：途中停止
@@ -2651,15 +2651,15 @@ func loop():
 extends Node3D
 
 func _ready():
-	var _timer = Timer.new()
-	_timer.set_wait_time(1.0) # 1.0秒毎に実行したい場合（初期値1.0）
-	_timer.connect("timeout", loop)
-	self.add_child(_timer) # selfは省略可能
-	_timer.start()
-	#_timer.stop() #ループを止める場合
+    var _timer = Timer.new()
+    _timer.set_wait_time(1.0) # 1.0秒毎に実行したい場合（初期値1.0）
+    _timer.connect("timeout", loop)
+    self.add_child(_timer) # selfは省略可能
+    _timer.start()
+    #_timer.stop() #ループを止める場合
 
 func loop():
-	print("繰返し実行したい処理")
+    print("繰返し実行したい処理")
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC)]  
@@ -2678,19 +2678,19 @@ func loop():
 extends Node3D
 
 func _ready():
-	……
-	# UNIX時間（1970年1月1日0:00からの経過時間＝秒）
-	var _start = Time.get_unix_time_from_system()
+    ……
+    # UNIX時間（1970年1月1日0:00からの経過時間＝秒）
+    var _start = Time.get_unix_time_from_system()
 
-	#===========================================
-	# ここに計測したい様々な処理を記述
-	for i in range(0,100000000): # 1億回繰り返す
-		# 速度計測したい処理
-		pass # 今回は何もしない
-	#===========================================
-	
-	var _result = Time.get_unix_time_from_system() - _start
-	print(str(_result) + " sec.") #-> 1.83999991416931 sec.
+    #===========================================
+    # ここに計測したい様々な処理を記述
+    for i in range(0,100000000): # 1億回繰り返す
+        # 速度計測したい処理
+        pass # 今回は何もしない
+    #===========================================
+    
+    var _result = Time.get_unix_time_from_system() - _start
+    print(str(_result) + " sec.") #-> 1.83999991416931 sec.
 ```
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E5%87%A6%E7%90%86%E9%80%9F%E5%BA%A6%E8%A8%88%E6%B8%AC)]  
@@ -2717,11 +2717,11 @@ sample.txt
 extends Node3D
 ……
 func _ready():
-	……
-	var _file = File.new()
-	_file.open("res://sample.txt", File.READ)
-	print(_file.get_as_text())
-	_file.close()
+    ……
+    var _file = File.new()
+    _file.open("res://sample.txt", File.READ)
+    print(_file.get_as_text())
+    _file.close()
 
 #-> あいうえお
 #-> かきくけこ
