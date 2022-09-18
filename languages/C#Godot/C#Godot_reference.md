@@ -3549,9 +3549,9 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		GD.Print(GD.Randf()); //-> 0.8494897（0～1.0）
-	}
+    public override void _Ready() {
+        GD.Print(GD.Randf()); //-> 0.8494897（0～1.0）
+    }
 }
 ```
 （注意）Godot 4.0 では **GD.Randomize()** を実行しなくても毎回結果が異なる＝要調査  
@@ -3562,16 +3562,16 @@ public partial class Main : Node3D {
 using Godot;
 
 public partial class Main : Node3D {
-	public override void _Ready() {
-		GD.Print(GD.RandRange(0d, 100d)); //-> 66.5619134185835（0.0～100.0）
-	}
+    public override void _Ready() {
+        GD.Print(GD.RandRange(0d, 100d)); //-> 66.5619134185835（0.0～100.0）
+    }
 }
 ```
 （注意）Godot 4.0 では **GD.Randomize()** を実行しなくても毎回結果が異なる＝要調査  
 
 
 ### 最小値〜最大値（int型）
-* GDScript の [RandomNumberGenerator.randi_range()](    com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%9C%80%E5%B0%8F%E5%80%A4%E6%9C%80%E5%A4%A7%E5%80%A4int%E5%9E%8B) に相当する機能が見当たらないため力技で処理  
+* GDScript の [RandomNumberGenerator.randi_range()](https://bit.ly/3LlFZQK) に相当する機能が見当たらないため力技で処理  
 ```CSharp
 // Main.cs
 using Godot;
