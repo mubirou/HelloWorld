@@ -23,9 +23,9 @@
 * [定数](#定数)
 * [メソッド](#メソッド)
 * [匿名メソッド](#匿名メソッド)
-* ~~[ラムダ式](#ラムダ式)~~
-* ~~[静的メンバ（static）](#静的メンバ（static）)~~
-* ~~[if 文](#if文)~~
+* [ラムダ式](#ラムダ式)
+* [静的メンバ（static）](#静的メンバ（static）)
+* [if 文](#if文)
 * ~~[三項演算子](#三項演算子)~~
 * ~~[switch 文](#switch文)~~
 * ~~[for 文](#for文)~~
@@ -1387,7 +1387,7 @@ class MyClass {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.PI); //-> 3.14159265358979（静的変数の呼び出し）
         GD.Print(Math.Pow(2,8)); //-> 256（2の8乗）（静的メソッドの実行）
@@ -1410,10 +1410,11 @@ class Math { //独自クラス
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%9D%99%E7%9A%84%E5%A4%89%E6%95%B0%E9%9D%99%E7%9A%84%E9%96%A2%E6%95%B0)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3dtq5qV)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -1425,19 +1426,19 @@ class Math { //独自クラス
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        int _age = 54;
-        if (_age <= 20) {
-            GD.Print("20歳以下");
-        } else if (_age <= 40) {
-            GD.Print("21〜40歳");
-        } else if (_age <= 60) {
-            GD.Print("41〜60歳"); // これが出力される
-        } else {
-            GD.Print("61歳以上");
-        }
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		int _age = 55;
+		if (_age <= 20) {
+			GD.Print("20歳以下");
+		} else if (_age <= 40) {
+			GD.Print("21〜40歳");
+		} else if (_age <= 60) {
+			GD.Print("41〜60歳"); // これが出力される
+		} else {
+			GD.Print("61歳以上");
+		}
+	}
 }
 ```
 
@@ -1491,7 +1492,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             bool _a = true, _b = false;
             if (_a ^ _b) {
@@ -1508,7 +1509,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     // Main.cs
     using Godot;
 
-    public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+    public partial class Main : Node3D {
         public override void _Ready() {
             bool _a = true, _b = false;
             if ((_a || _b) && !(_a && _b)) {
@@ -1520,10 +1521,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     }
     ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#if-%E6%96%87)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3UbR0bk)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
