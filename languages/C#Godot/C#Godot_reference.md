@@ -3571,7 +3571,7 @@ public partial class Main : Node3D {
 
 
 ### 最小値〜最大値（int型）
-* GDScript の [RandomNumberGenerator.randi_range()](https://bit.ly/3LlFZQK) に相当する機能が見当たらないため力技で処理  
+* GDScript の [RandomNumberGenerator.randi_range()](https://bit.ly/3LlFZQK) 相当の力技  
 ```CSharp
 // Main.cs
 using Godot;
