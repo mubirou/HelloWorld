@@ -21,7 +21,7 @@
 * [アクセサ（getter / setter）](#アクセサ)
 * [演算子](#演算子)
 * [定数](#定数)
-* ~~[メソッド](#メソッド)~~
+* [メソッド](#メソッド)
 * ~~[匿名メソッド](#匿名メソッド)~~
 * ~~[ラムダ式](#ラムダ式)~~
 * ~~[静的メンバ（static）](#静的メンバ（static）)~~
@@ -1131,7 +1131,7 @@ class クラス名 {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         Point _point = new Point(100, 150); // ここでコンストラクタを呼び出す
         GD.Print(_point.X); //-> 100
@@ -1142,7 +1142,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 class Point {
     private int _x, _y;
 
-    //コンストラクタ
+    // コンストラクタ
     public Point(int _x=0, int _y=0) { 
         this._x = _x;
         this._y = _y;
@@ -1165,17 +1165,17 @@ class Point {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Pow(2,0)); //-> 1（2の0乗）
-        GD.Print(Math.Pow(2,1)); //->2（2の1乗）
-        GD.Print(Math.Pow(2,8)); //->256（2の8乗）
+        GD.Print(Math.Pow(2,1)); //-> 2（2の1乗）
+        GD.Print(Math.Pow(2,8)); //-> 256（2の8乗）
     }
 }
 
 class Math {
     public static long Pow(int arg1, int arg2) {
-        if (arg2 == 0) { return 1; } //0乗対策
+        if (arg2 == 0) { return 1; } // 0乗対策
         long _result = arg1;
         for (int i=1; i<arg2; i++) {
             _result = _result * arg1;
@@ -1191,7 +1191,7 @@ class Math {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         _myClass.AddPoint(); //-> 1
@@ -1215,7 +1215,7 @@ class MyClass {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         _myClass.Sum(1,1); //-> 2（1+1）
@@ -1240,7 +1240,7 @@ class MyClass {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         _myClass.Rect(endX:100, endY:100); //-> 面積:10000m2
@@ -1256,11 +1256,11 @@ class MyClass {
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E9%96%A2%E6%95%B0)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3BjTWKq)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月15日  
-更新日：2022年09月XX日 Godot 4.0 対応  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
