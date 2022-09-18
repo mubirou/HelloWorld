@@ -1053,21 +1053,21 @@ class MyMath {
 <a name="メソッド"></a>
 # <b>メソッド</b>
 
-### 基本構文
+### 👉 基本構文
 ```CSharp
 アクセス修飾子 [static] 戻り値のデータ型 メソッド名([データ型 引数, ...]) {
     [return 戻り値;]
 }
 ```
 
-### アクセス修飾子
+### 👉 アクセス修飾子
 1. public : 全クラスからアクセス可能
 1. protected : 同じクラスおよび派生クラス内でのみアクセス可能
 1. private : 同じクラス内のみアクセス可能（省略すると private 扱い）
 1. internal : アセンブリ内でのみアクセス可能
 * static : 静的メソッド＝クラスメソッド
 
-### 基本例文
+### 👉 基本例文
 ```CSharp
 // Main.cs
 using Godot;
@@ -1092,7 +1092,7 @@ class MyClass {
 }
 ```
 
-### _Ready()、_Process()、_PhysicsProcess メソッド
+### 👉 _Ready()、_Process()、_PhysicsProcess メソッド
 ```CSharp
 // Main.cs
 using Godot;
@@ -1115,7 +1115,7 @@ public partial class Main : Node3D {
 ```
 参考：[GODOT DOCS（Godot notifications）](https://bit.ly/3qNQcvX)  
 
-### コンストラクタ
+### 👉 コンストラクタ
 * 書式
 ```CSharp
 class クラス名 {
@@ -1160,7 +1160,7 @@ class Point {
 }
 ```
 
-### 静的メソッド（クラスメソッド）
+### 👉 静的メソッド（クラスメソッド）
 ```CSharp
 // Main.cs
 using Godot;
@@ -1185,7 +1185,7 @@ class Math {
 }
 ```
 
-### デフォルト値付き引数
+### 👉 デフォルト値付き引数
 * オプション引数（引数は省略可）
 ```CSharp
 // Main.cs
@@ -1209,7 +1209,7 @@ class MyClass {
 }
 ```
 
-### 可変長引数
+### 👉 可変長引数
 * 引数を固定の数ではなく任意の数にすることが可能
 ```CSharp
 // Main.cs
@@ -1234,7 +1234,7 @@ class MyClass {
 }
 ```
 
-### 名前付き引数
+### 👉 名前付き引数
 * 引数名を指定してメソッドを呼び出す（任意の順序で引数を渡すことが可能）
 ```CSharp
 // Main.cs
@@ -1260,6 +1260,7 @@ class MyClass {
 実行環境：Windows 10、Godot Engine 3.4.2  
 作成者：夢寐郎  
 作成日：2022年02月15日  
+更新日：2022年09月XX日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
