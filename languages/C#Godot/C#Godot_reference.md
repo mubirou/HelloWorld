@@ -22,7 +22,7 @@
 * [演算子](#演算子)
 * [定数](#定数)
 * [メソッド](#メソッド)
-* ~~[匿名メソッド](#匿名メソッド)~~
+* [匿名メソッド](#匿名メソッド)
 * ~~[ラムダ式](#ラムダ式)~~
 * ~~[静的メンバ（static）](#静的メンバ（static）)~~
 * ~~[if 文](#if文)~~
@@ -1271,7 +1271,7 @@ class MyClass {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         _myClass.Move(1); //-> →
@@ -1315,9 +1315,10 @@ class MyClass {
 }
 ```
 
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -1330,7 +1331,7 @@ class MyClass {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyClass _myClass = new MyClass();
         _myClass.Move(1); //-> →
@@ -1371,9 +1372,10 @@ class MyClass {
 }
 ```
 
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月16日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
