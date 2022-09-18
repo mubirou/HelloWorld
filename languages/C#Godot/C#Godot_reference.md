@@ -41,8 +41,8 @@
 * [抽象クラス（abstract）](#抽象クラス（abstract）)
 * [base キーワード](#baseキーワード)
 * [オーバーライド](#オーバーライド)
-* ~~[カスタムイベント](#カスタムイベント)~~
-* ~~[数学関数（Math）](#数学関数（Math）)~~
+* [カスタムイベント](#カスタムイベント)
+* [数学関数（Math）](#数学関数（Math）)
 * ~~[乱数](#乱数)~~
 * ~~[日時情報](#日時情報)~~
 * ~~[タイマー](#タイマー)~~
@@ -3292,7 +3292,7 @@ static 戻り値の型 イベントハンドラ名([型 引数]) {
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         MyGame _myGame = new MyGame();
         _myGame.GameOverEvent += GameOverHandler_myGame; // 複数登録可能（+=、-=のみ）
@@ -3327,10 +3327,11 @@ class MyGame {
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3qNYW5i)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -3343,13 +3344,13 @@ class MyGame {
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Sin(0)); //-> 0（0°）
         GD.Print(Math.Sin(Math.PI/2)); //-> 1（90°）
-        GD.Print(Math.Sin(Math.PI)); //-> 1.22460635382238E-16（≒0＝180°）
+        GD.Print(Math.Sin(Math.PI)); //-> 1.2246467991473532E-16（≒0＝180°）
         GD.Print(Math.Sin(Math.PI*3/2)); //-> -1（270°）
-        GD.Print(Math.Sin(Math.PI*2)); //-> -2.44921270764475E-16（≒0＝360°）
+        GD.Print(Math.Sin(Math.PI*2)); //-> -2.4492935982947064E-16（≒0＝360°）
     }
 }
 ```
@@ -3360,12 +3361,12 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Cos(0)); //-> 1（0°）
-        GD.Print(Math.Cos(Math.PI/2)); //-> 6.12303176911189E-17（≒0＝90°）
+        GD.Print(Math.Cos(Math.PI/2)); //-> 6.123233995736766E-17（≒0＝90°）
         GD.Print(Math.Cos(Math.PI)); //-> -1（180°）
-        GD.Print(Math.Cos(Math.PI*3/2)); //-> -1.83690953073357E-16（≒0＝270°）
+        GD.Print(Math.Cos(Math.PI*3/2)); //-> -1.8369701987210297E-16（≒0＝270°）
         GD.Print(Math.Cos(Math.PI*2)); //-> 1（360°）
     }
 }
@@ -3377,15 +3378,15 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         // 2つの値のアークタンジェント（逆タンジェント）、X･Y座標の角度をラジアン単位で返す
         // Πラジアン（3.141592…）は180°
         // 三角形の各辺が1:2:√3の場合2:√3の間の角度は30°であることを検証
-        double _disX = Math.Sqrt(3); //√3のこと
+        double _disX = Math.Sqrt(3); // √3のこと
         int _disY = 1;
-        GD.Print(Math.Atan2(_disY, _disX)); //0.523598775598299（ラジアン）
-        GD.Print(180*Math.Atan2(_disY, _disX)/Math.PI); //30（度）
+        GD.Print(Math.Atan2(_disY, _disX)); //-> 0.5235987755982989（ラジアン）
+        GD.Print(180*Math.Atan2(_disY, _disX)/Math.PI); //-> 30.000000000000004（度）
     }
 }
 ```
@@ -3396,9 +3397,9 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
-        GD.Print(Math.PI); //-> 3.14159265358979（Math.PIラジアン=180°）
+        GD.Print(Math.PI); //-> 3.141592653589793（Math.PIラジアン=180°）
     }
 }
 ```
@@ -3409,7 +3410,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Floor(1.001)); //-> 1
         GD.Print(Math.Floor(1.999)); //-> 1
@@ -3423,7 +3424,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Ceiling(1.001)); //-> 2
         GD.Print(Math.Ceiling(1.999)); //-> 2
@@ -3437,7 +3438,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Round(1.499)); //-> 1
         GD.Print(Math.Round(1.500)); //-> 2
@@ -3451,7 +3452,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Abs(100)); //-> 100
         GD.Print(Math.Abs(-100)); //-> 100
@@ -3465,7 +3466,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Pow(2, 0)); //-> 1（2の0乗）
         GD.Print(Math.Pow(2, 8)); //-> 256（2の8乗）
@@ -3479,10 +3480,10 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
-        GD.Print(Math.Sqrt(2)); //-> 1.4142135623731（一夜一夜にひとみごろ）
-        GD.Print(Math.Sqrt(3)); //-> 1.73205080756888（人並みに奢れや）
+        GD.Print(Math.Sqrt(2)); //-> 1.4142135623730951（一夜一夜にひとみごろ）
+        GD.Print(Math.Sqrt(3)); //-> 1.7320508075688772（人並みに奢れや）
         GD.Print(Math.Sqrt(4)); //-> 2
         GD.Print(Math.Sqrt(5)); //-> 2.23606797749979（富士山麓オウム鳴く）
     }
@@ -3495,7 +3496,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Max(5.01, -10)); //-> 5.01（2つの数値の比較）
     }
@@ -3508,7 +3509,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Min(5.01, -10)); //-> -10（2つの数値の比較）
     }
@@ -3521,7 +3522,7 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 using Godot;
 using System; // Mathに必要
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         GD.Print(Math.Sign(-0.1)); //-> -1（負の値）
         GD.Print(Math.Sign(0)); //-> 0（0）
@@ -3530,10 +3531,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%95%B0%E5%AD%A6%E9%96%A2%E6%95%B0)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3Sds6X3)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -3546,28 +3548,26 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        GD.Randomize(); // 乱数のシード値を設定（任意）
-        GD.Print(GD.Randf()); //-> 0.4617555（0～1.0）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		GD.Print(GD.Randf()); //-> 0.8494897（0～1.0）
+	}
 }
 ```
-（注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
+（注意）Godot 4.0 では **GD.Randomize()** を実行しなくても毎回結果が異なる＝要調査  
 
 ### 最小値〜最大値（float型）
 ```CSharp
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
-    public override void _Ready() {
-        GD.Randomize(); // 乱数のシード値を設定（任意）
-        GD.Print(GD.RandRange(0d, 100d)); //-> 43.8898437012383（0.0～100.0）
-    }
+public partial class Main : Node3D {
+	public override void _Ready() {
+		GD.Print(GD.RandRange(0d, 100d)); //-> 66.5619134185835（0.0～100.0）
+	}
 }
 ```
-（注意）**GD.Randomize()** を実行しないと毎回結果が同じになる（＝同じシード値を使用しているため）
+（注意）Godot 4.0 では **GD.Randomize()** を実行しなくても毎回結果が異なる＝要調査  
 
 
 ### 最小値〜最大値（int型）
