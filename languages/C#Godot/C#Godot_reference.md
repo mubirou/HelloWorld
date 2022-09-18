@@ -2,7 +2,7 @@
 
 # **C# with Godot 4.0 基礎文法**
 
-[[Godot Study Notes 🔰](https://github.com/mubirou/Godot#godot-study-notes)]  
+[[Godot Study Notes 🔰](https://github.com/mubirou/Godot-Study-Notes#godot-study-notes-)]  
 ⌚ 541h00min  
 
 ### この項目は書きかけです（Godot 4.0 対応中）
