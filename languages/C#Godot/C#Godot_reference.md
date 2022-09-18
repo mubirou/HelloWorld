@@ -37,8 +37,8 @@
 * [this](#this)
 * [文字列の操作](#文字列の操作)
 * [正規表現](#正規表現)
-* ~~[インターフェース](#インターフェース)~~
-* ~~[抽象クラス（abstract）](#抽象クラス（abstract）)~~
+* [インターフェース](#インターフェース)
+* [抽象クラス（abstract）](#抽象クラス（abstract）)
 * ~~[base キーワード](#baseキーワード)~~
 * ~~[オーバーライド](#オーバーライド)~~
 * ~~[カスタムイベント](#カスタムイベント)~~
@@ -3021,7 +3021,7 @@ class クラス名 : Iインターフェース名 { ......
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         Moneybox _moneybox = new Moneybox();
         _moneybox.Add(5000);
@@ -3046,9 +3046,10 @@ class Moneybox : IMoneybox {
 }
 ```
 
-実行環境：Windows 10、Godot Engine 3.4.2  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
@@ -3077,7 +3078,7 @@ class SubClass : Abstract〇〇 { // 抽象クラスの継承
 // Main.cs
 using Godot;
 
-public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
+public partial class Main : Node3D {
     public override void _Ready() {
         SubClass _subClass = new SubClass();
         _subClass.Common(); //-> AbstractClass.Common()
@@ -3085,11 +3086,11 @@ public class Main : Spatial { // 2Dの場合はGodot.Node2Dを継承
     }
 }
 
-abstract class AbstractClass { //「抽象クラス」の定義
+abstract class AbstractClass { // 「抽象クラス」の定義
     public void Common() { // 共通のメソッド
         GD.Print("AbstractClass.Common()");
     }
-    public abstract void Method(); //「抽象メソッド」の宣言（実際の処理は書かない）
+    public abstract void Method(); // 「抽象メソッド」の宣言（実際の処理は書かない）
 }
 
 class SubClass : AbstractClass { // 抽象クラスを継承
@@ -3099,10 +3100,11 @@ class SubClass : AbstractClass { // 抽象クラスを継承
 }
 ```
 
-[[GDScript 版](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_reference.md#%E6%8A%BD%E8%B1%A1%E3%82%AF%E3%83%A9%E3%82%B9)]  
-実行環境：Windows 10、Godot Engine 3.4.2  
+[[GDScript 版](https://bit.ly/3LnqHLm)]  
+実行環境：Windows 10、Godot Engine 4.0 beta 1  
 作成者：夢寐郎  
 作成日：2022年02月23日  
+更新日：2022年09月18日 Godot 4.0 対応  
 [[TOP](#TOP)]
 
 
