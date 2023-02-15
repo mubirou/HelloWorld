@@ -54,7 +54,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 ```
 実際に Web ブラウザに表示される文書の本体。
 
-実行環境：Windows 10、Chrome 110  
+実行環境：Windows 11、Chrome 110  
 作成者：夢寐郎  
 作成日：2017年08月08日  
 更新日：2023年02月15日 HTML Living Standard 対応  
