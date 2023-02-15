@@ -13,12 +13,12 @@
 <a name="HTMLの基礎"></a>
 # <b>HTML の基礎</b>
 
-### HTML5 の最小構成
+### [HTML Living Standard](https://bit.ly/3RXG68w) の最小構成
 ```
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>xxx</title>
   </head>
   <body>
@@ -32,7 +32,7 @@
 ```
 <!DOCTYPE html>
 ```
-HTML5 文書に必須の文書型宣言。必ず HTML5 文書の先頭行に記述する。
+HTML Living Standard 文書に必須の文書型宣言。必ず HTML Living Standard 文書の先頭行に記述する。
 
 ```
 <html lang="ja">
@@ -54,9 +54,10 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 ```
 実際に Web ブラウザに表示される文書の本体。
 
-実行環境：Ubuntu 16.04 LTS、Chromium 59  
+実行環境：Windows 10、Chrome 110  
 作成者：夢寐郎  
-作成日：2017年08月08日
+作成日：2017年08月08日  
+更新日：2023年02月15日 HTML Living Standard 対応  
 
 
 <a name="CSSの基礎"></a>
