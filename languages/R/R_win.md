@@ -19,8 +19,8 @@
     1. https://www.r-project.org/ にアクセス
     1. [Download] → [CRAN] をクリックし、任意の Mirror サイトを選択
     1. [Download R for Windows] をクリック
-    1. [install R for the first time] → [Download R 3.3.3 for Windows] を選択
-    1. ダウンロードした R-3.3.3-win.exe をダブルクリックし、指示に従いインストール
+    1. [install R for the first time] → [Download R-4.3.2 for Windows] を選択
+    1. ダウンロードした R-4.3.2-win.exe をダブルクリックし、指示に従いインストール
 
 1. [環境変数](http://bit.ly/2lCIAgK)の設定  
     1. タスクバーのスタートボタンを右クリック → [コントロールパネル] → [システムとセキュリティ] → [システム] → [システムの詳細設定] → [環境変数] を開く
@@ -70,4 +70,5 @@ Reference class object of class "MyClass"
 
 ***
 作成者: 夢寐郎  
-作成日: 2017年03月16日
+作成日: 2017年03月16日  
+更新日: 2023年12月09日  Windows 11 + R 4.3.2 対応  
