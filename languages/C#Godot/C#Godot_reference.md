@@ -2,7 +2,7 @@
 
 # **C# with Godot 4.0 基礎文法**
 
-[[Godot Study Notes 🔰](https://github.com/mubirou/Godot-Study-Notes#godot-study-notes-)]  
+[[Godot Study Notes 🔰](https://github.com/mubirou/Godot-Study-Notes/blob/main/study_notes.md)]  
 
 ### **INDEX**
 
