@@ -64,7 +64,7 @@ var _x = 1 + 1 # 〇〇〇〇〇
 # 〇〇〇〇〇
 ```
 
-* """（トリプルクォート）もあるがほとんど使われていない  
+* """（トリプルクォート）はほとんど使われていない  
 * [Ctrl] + [K] でコメントの切り替えが可能  
 
 [[C# 版](https://github.com/mubirou/HelloWorld/blob/master/languages/C%23Godot/C%23Godot_reference.md#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E3%82%A2%E3%82%A6%E3%83%88)]  
