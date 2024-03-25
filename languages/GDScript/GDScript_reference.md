@@ -6,7 +6,7 @@
 ### <b>INDEX</b>
 
 * Hello,world! （~~[Linux](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_linux.md#gdscript-linux-)~~ / [Windows](https://github.com/mubirou/HelloWorld/blob/master/languages/GDScript/GDScript_win.md#gdscript-windows-)）
-* [コメントアウト](#コメントアウト)
+* [**コメントアウト**](#コメントアウト)
 * [データ型](#データ型)
 * [データ型の操作](#データ型の操作)
 * [クラス](#クラス)
