@@ -18,8 +18,8 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8">
     <title>xxx</title>
+    <meta charset="utf-8">
   </head>
   <body>
     Hello,world!
