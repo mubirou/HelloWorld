@@ -40,14 +40,14 @@ HTML Living Standard 文書に必須の文書型宣言。必ず HTML Living Stan
 HTML 文書であることを宣言するタグ（言語指定付き）。各言語の指定は "ja"（日本）、"en"（英語）、"fr"（フランス）、"de"（ドイツ）、"zh"（中国）、"ko"（韓国）など。
 
 ```
-<meta charset="utf-8">
-```
-「文字エンコーディング」を指定するためのもので、ヘッダ情報である \<head> タグの最初に指定する。Shift-JIS や EUC-JP などもあるが、HTML Living Standard 仕様に準拠する場合は、UTF-8 でHTML文書を作成する必要がある（大文字でも可）。
-
-```
 <title>...</title>
 ```
 Web ブラウザに表示されるタイトル。検索エンジンが HTML ページの内容を認識する上で重要となる。
+
+```
+<meta charset="utf-8">
+```
+「文字エンコーディング」を指定するためのもので、ヘッダ情報である \<head> タグの最初に指定する。Shift-JIS や EUC-JP などもあるが、HTML Living Standard 仕様に準拠する場合は、UTF-8 でHTML文書を作成する必要がある（大文字でも可）。
 
 ```
 <body>...</body>
