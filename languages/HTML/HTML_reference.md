@@ -18,8 +18,8 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8">
     <title>xxx</title>
+    <meta charset="utf-8">
   </head>
   <body>
     Hello,world!
@@ -40,14 +40,14 @@ HTML Living Standard 文書に必須の文書型宣言。必ず HTML Living Stan
 HTML 文書であることを宣言するタグ（言語指定付き）。各言語の指定は "ja"（日本）、"en"（英語）、"fr"（フランス）、"de"（ドイツ）、"zh"（中国）、"ko"（韓国）など。
 
 ```
+<title>...</title>
+```
+Web ブラウザのタブやウインドウのタイトル。検索エンジンの結果ページ、ブックマークやお気に入りの名前や履歴に表示される。
+
+```
 <meta charset="utf-8">
 ```
 「文字エンコーディング」を指定するためのもので、ヘッダ情報である \<head> タグの最初に指定する。Shift-JIS や EUC-JP などもあるが、HTML Living Standard 仕様に準拠する場合は、UTF-8 でHTML文書を作成する必要がある（大文字でも可）。
-
-```
-<title>...</title>
-```
-Web ブラウザに表示されるタイトル。検索エンジンが HTML ページの内容を認識する上で重要となる。
 
 ```
 <body>...</body>
@@ -57,8 +57,7 @@ Web ブラウザに表示されるタイトル。検索エンジンが HTML ペ�
 実行環境：Windows 11、Chrome 110  
 作成者：夢寐郎  
 作成日：2017年08月08日  
-更新日：2023年02月15日 HTML Living Standard 対応  
-
+更新日：2024年04月08日 <title>タグ関連を微修正  
 
 <a name="CSSの基礎"></a>
 # <b>CSS の基礎</b>
