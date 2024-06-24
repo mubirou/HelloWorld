@@ -139,7 +139,7 @@ print(_something == null) #-> true
 ### 👉 論理型（bool）
 * trueまたはfalse
 ```gdscript
-var _bool = true # True/Falaseは不可
+var _bool = true # True/Falseは不可
 print(_bool) #-> true
 print(typeof(_bool)) #-> 1
 print(typeof(_bool) == TYPE_BOOL) #-> true
